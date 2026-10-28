@@ -1,0 +1,24 @@
+{
+ "operation": "get-events-ical",
+ "request": {
+  "method": "GET",
+  "path": "/events/ical",
+  "query": [
+   [
+    "personId",
+    "1"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "module": "churchservice",
+   "attribute": "rosterICalSecret",
+   "value": "<redacted>"
+  },
+  "meta": {
+   "iCalUrl": "https://gemeinde.example/events/ical/<redacted>"
+  }
+ }
+}

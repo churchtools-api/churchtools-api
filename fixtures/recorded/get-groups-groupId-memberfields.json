@@ -1,0 +1,41 @@
+{
+ "operation": "get-groups-groupId-memberfields",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/memberfields",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "type": "group",
+    "field": {
+     "id": 7,
+     "groupId": 11,
+     "name": "Zuständigkeit",
+     "referenceName": "zustaendigkeit",
+     "note": null,
+     "sortKey": 0,
+     "fieldTypeCode": "text",
+     "fieldTypeId": 1,
+     "securityLevel": 1,
+     "defaultValue": null,
+     "maxLength": 4000,
+     "options": [],
+     "useInRegistrationForm": false,
+     "requiredInRegistrationForm": false,
+     "nameInSignupForm": null,
+     "noteInSignupForm": null,
+     "@deprecated": {
+      "fieldName": "name"
+     },
+     "fieldName": "Zuständigkeit"
+    }
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

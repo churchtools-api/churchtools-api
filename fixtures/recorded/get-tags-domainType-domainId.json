@@ -1,0 +1,15 @@
+{
+ "operation": "get-tags-domainType-domainId",
+ "request": {
+  "method": "GET",
+  "path": "/tags/person/10",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

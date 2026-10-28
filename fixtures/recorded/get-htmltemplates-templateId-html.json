@@ -1,0 +1,12 @@
+{
+ "operation": "get-htmltemplates-templateId-html",
+ "request": {
+  "method": "GET",
+  "path": "/htmltemplates/2/html",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": "<html><head><meta charset=\"UTF-8\"><style>* { box-sizing: border-box; } body {margin: 0;}@media (max-width: 9999mm){#idud{width:100%;}#imb7{width:32px;height:32px;}#ir3z{font-weight:bold;height:12px;}#ir73z{height:38px;}#ivet{margin-top:9px;font-size:9px;line-height:12px;}#izjwc{font-size:7px;line-height:9px;height:18px;}#i871p{margin-top:5px;font-size:10px;line-height:14px;height:42px;}#i770f{margin-top:14px;}#i9u46{margin-top:47px;width:100%;text-align:right;font-size:10px;line-height:18px;}#io5x2{font-size:11px;font-weight:bold;line-height:14px;margin-top:34px;}#iykgu{margin-top:26px;font-size:10px;line-height:16px;width:100%;}#il4t{margin:10mm 10mm 10mm 10mm;min-height:0;position:absolute;top:0;bottom:0;left:0;right:0;}}@page{ size: A4; margin: 10mm 10mm 10mm 10mm; }</style></head><body style=\"margin: 0;\"><body id=\"il4t\"><meta charset=\"UTF-8\"/><title>{{titel}}</title><div id=\"imb7\"><img src=\"{{logo}}\" id=\"idud\"/></div><div id=\"ivet\"><div id=\"ir3z\">{{sitename}}</div><div id=\"ir73z\">\n            Bostelreihe 9<br/>22083 Hamburg\n        </div></div><div id=\"i770f\"><div id=\"izjwc\">\n            {{sitename}} - Bostelreich 9, 22083 Hamburg\n        </div><div id=\"i871p\">{{person.firstName}} {{person.lastName}}<br/>\n            {{person.street}}<br/>\n            {{person.zip}} {{person.city}}\n        </div></div><div id=\"i9u46\">{{currentDate}}</div><div id=\"io5x2\">\n        {{titel}}\n    </div><div id=\"iykgu\">\n        {{content}}\n    </div></body></body></html>"
+ }
+}

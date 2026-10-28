@@ -1,0 +1,1113 @@
+{
+ "operation": "get-services",
+ "request": {
+  "method": "GET",
+  "path": "/services",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Predigt",
+    "nameTranslated": "Predigt",
+    "sortKey": 0,
+    "description": null,
+    "serviceGroupId": 1,
+    "standard": true,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     6
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 3,
+    "name": "Leitung",
+    "nameTranslated": "Leitung",
+    "sortKey": 10,
+    "description": null,
+    "serviceGroupId": 1,
+    "standard": true,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     133
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 2,
+    "name": "Lobpreisleitung",
+    "nameTranslated": "Lobpreisleitung",
+    "sortKey": 10,
+    "description": null,
+    "serviceGroupId": 4,
+    "standard": true,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     9,
+     27
+    ],
+    "tagIds": [
+     17
+    ],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 88,
+    "name": "Ordner Teamleiter",
+    "nameTranslated": "Ordner Teamleiter",
+    "sortKey": 10,
+    "description": null,
+    "serviceGroupId": 5,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": false,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     162
+    ],
+    "tagIds": [
+     31
+    ],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 6,
+    "name": "Ton",
+    "nameTranslated": "Ton",
+    "sortKey": 10,
+    "description": null,
+    "serviceGroupId": 3,
+    "standard": true,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     7
+    ],
+    "tagIds": [
+     25
+    ],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 9,
+    "name": "Gesang",
+    "nameTranslated": "Gesang",
+    "sortKey": 20,
+    "description": null,
+    "serviceGroupId": 4,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     9
+    ],
+    "tagIds": [
+     20
+    ],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 7,
+    "name": "Licht",
+    "nameTranslated": "Licht",
+    "sortKey": 20,
+    "description": null,
+    "serviceGroupId": 3,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     7
+    ],
+    "tagIds": [
+     28
+    ],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 10,
+    "name": "A-Gitarre",
+    "nameTranslated": "A-Gitarre",
+    "sortKey": 30,
+    "description": null,
+    "serviceGroupId": 4,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     9
+    ],
+    "tagIds": [
+     1
+    ],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 8,
+    "name": "Beamer",
+    "nameTranslated": "Beamer",
+    "sortKey": 30,
+    "description": null,
+    "serviceGroupId": 3,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     7
+    ],
+    "tagIds": [
+     10
+    ],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 94,
+    "name": "E-Gitarre",
+    "nameTranslated": "E-Gitarre",
+    "sortKey": 40,
+    "description": null,
+    "serviceGroupId": 4,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": false,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     9,
+     27
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 91,
+    "name": "Bass",
+    "nameTranslated": "Bass",
+    "sortKey": 50,
+    "description": null,
+    "serviceGroupId": 4,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": false,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     9,
+     9,
+     27
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 97,
+    "name": "Schlagzeug",
+    "nameTranslated": "Schlagzeug",
+    "sortKey": 60,
+    "description": null,
+    "serviceGroupId": 4,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": false,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     9,
+     27
+    ],
+    "tagIds": [
+     14
+    ],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 76,
+    "name": "Leitung Raupen",
+    "nameTranslated": "Leitung Raupen",
+    "sortKey": 99,
+    "description": null,
+    "serviceGroupId": 10,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     142
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 29,
+    "name": "Andacht",
+    "nameTranslated": "Andacht",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 8,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 43,
+    "name": "Cleaning Admin",
+    "nameTranslated": "Cleaning Admin",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 9,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     103
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 11,
+    "name": "Eventplanung",
+    "nameTranslated": "Eventplanung",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 1,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 13,
+    "name": "Fahrdienst",
+    "nameTranslated": "Fahrdienst",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 7,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 87,
+    "name": "Kaffeebar",
+    "nameTranslated": "Kaffeebar",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 11,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": false,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     165
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 84,
+    "name": "Kaffeebar Leitung",
+    "nameTranslated": "Kaffeebar Leitung",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 11,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": false,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     165
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 64,
+    "name": "Leitung Krabbelhasen",
+    "nameTranslated": "Leitung Krabbelhasen",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 10,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     64
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 70,
+    "name": "Leitung Schmetterlinge",
+    "nameTranslated": "Leitung Schmetterlinge",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 10,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     148
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 82,
+    "name": "Leitung Tiger",
+    "nameTranslated": "Leitung Tiger",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 10,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     14
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 12,
+    "name": "Ordner",
+    "nameTranslated": "Ordner",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 5,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [
+     162
+    ],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 52,
+    "name": "Querflöte",
+    "nameTranslated": "Querflöte",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 4,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 18,
+    "name": "Schlüsseldienst",
+    "nameTranslated": "Schlüsseldienst",
+    "sortKey": 100,
+    "description": "Auf und Zuschließen",
+    "serviceGroupId": 3,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": "Auf und Zuschließen"
+   },
+   {
+    "id": 49,
+    "name": "Sicherheitsbeamten",
+    "nameTranslated": "Sicherheitsbeamten",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 1,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 25,
+    "name": "Spiele",
+    "nameTranslated": "Spiele",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 8,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": false,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": false,
+    "sendServiceRequestEmails": false,
+    "onlyAssignFromGroups": false,
+    "groupIds": [],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   },
+   {
+    "id": 58,
+    "name": "Welcome Station",
+    "nameTranslated": "Welcome Station",
+    "sortKey": 100,
+    "description": null,
+    "serviceGroupId": 5,
+    "standard": false,
+    "hidePersonName": false,
+    "calTextTemplate": "",
+    "allowDecline": true,
+    "allowExchange": true,
+    "allowCommentOnConfirmation": false,
+    "allowControlLiveAgenda": false,
+    "allowChat": true,
+    "sendReminderMails": true,
+    "sendServiceRequestEmails": true,
+    "onlyAssignFromGroups": false,
+    "groupIds": [],
+    "tagIds": [],
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    },
+    "@deprecated": {
+     "commentOnConfirmation": "allowCommentOnConfirmation",
+     "comment": "description"
+    },
+    "commentOnConfirmation": false,
+    "comment": ""
+   }
+  ],
+  "meta": {
+   "count": 28
+  }
+ }
+}

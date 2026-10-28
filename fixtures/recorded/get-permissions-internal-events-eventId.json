@@ -1,0 +1,236 @@
+{
+ "operation": "get-permissions-internal-events-eventId",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/internal/events/1816",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "internalPerms": {
+    "+attach file": true,
+    "+edit info": true,
+    "+edit event": true
+   },
+   "serviceGroups": {
+    "3": {
+     "+view service": true,
+     "+view absence": true
+    },
+    "1": {
+     "+view service": true,
+     "+view absence": true
+    },
+    "4": {
+     "+view service": true,
+     "+view absence": true
+    },
+    "5": {
+     "+view service": true,
+     "+view absence": true
+    },
+    "10": {
+     "+view service": true,
+     "+view absence": true
+    },
+    "11": {
+     "+view service": true,
+     "+view absence": true
+    }
+   },
+   "services": {
+    "6": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "7": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "8": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "1": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "3": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "2": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "9": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "10": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "94": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "91": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "97": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "88": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "12": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "76": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "87": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "84": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "64": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "70": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    },
+    "82": {
+     "+entry free": true,
+     "+entry all": true,
+     "+edit service": true,
+     "+admin service": true,
+     "+see workload": true,
+     "+see history": true,
+     "+see reason": true,
+     "+start event chat": true
+    }
+   }
+  }
+ }
+}

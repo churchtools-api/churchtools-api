@@ -1,0 +1,49 @@
+{
+ "operation": "get-calendars-appointments-templates-id",
+ "request": {
+  "method": "GET",
+  "path": "/calendars/appointments/templates/4",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 4,
+   "calendarId": 3,
+   "meta": {
+    "createdDate": "2018-08-17T07:07:57Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2018-08-17T07:07:57Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "title": "Youth",
+   "comment": "",
+   "startTime": "19:00",
+   "duration": 10800,
+   "allDay": false,
+   "note": "",
+   "link": "",
+   "isInternal": false,
+   "categoryId": "3",
+   "repeatId": 0,
+   "repeatFrequence": null,
+   "repeatOptionId": null,
+   "repeatDuration": null,
+   "image": null,
+   "subtitle": "",
+   "description": "",
+   "repeatFrequency": null,
+   "@deprecated": {
+    "categoryId": "calendarId",
+    "comment": "subtitle",
+    "note": "description",
+    "repeatFrequence": "repeatFrequency",
+    "address.meetingAt": "address.name"
+   }
+  }
+ }
+}

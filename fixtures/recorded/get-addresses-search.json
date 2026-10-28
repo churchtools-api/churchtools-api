@@ -1,0 +1,341 @@
+{
+ "operation": "get-addresses-search",
+ "request": {
+  "method": "GET",
+  "path": "/addresses/search",
+  "query": [
+   [
+    "query",
+    "Go"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "address": {
+     "name": "Irmgard Gordon",
+     "street": "Neuer Kamp 31",
+     "addition": null,
+     "district": null,
+     "zip": "20359",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.556360850000004",
+     "longitude": "9.966176448578972"
+    },
+    "domainObject": {
+     "title": "Irmgard Gordon",
+     "domainType": "person",
+     "domainIdentifier": "74",
+     "apiUrl": "https://gemeinde.example/api/persons/74",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2374/",
+     "imageUrl": "https://gemeinde.example/images/1782/3fc760a0ca00770abf28a38302f8ce7613a75429ea79428b78aedb8bb04e5316",
+     "icon": "user",
+     "color": null,
+     "initials": "IG",
+     "domainAttributes": {
+      "firstName": "Irmgard",
+      "lastName": "Gordon",
+      "guid": "6255244C-7B6A-470B-93E5-E97248D8A486",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Gottlieb Buschmann",
+     "street": "Glockengießerwall 8-10",
+     "addition": null,
+     "district": null,
+     "zip": "20095",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.55334545",
+     "longitude": "10.006785802311501"
+    },
+    "domainObject": {
+     "title": "Gottlieb Buschmann",
+     "domainType": "person",
+     "domainIdentifier": "92",
+     "apiUrl": "https://gemeinde.example/api/persons/92",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2392/",
+     "imageUrl": "https://gemeinde.example/images/573/7c642e4d064b3277150f738aca03ad31a90e93391fa23615800466e0584a60ea",
+     "icon": "user",
+     "color": null,
+     "initials": "GB",
+     "domainAttributes": {
+      "firstName": "Gottlieb",
+      "lastName": "Buschmann",
+      "guid": "5BEC48EC-8DCC-4613-8B07-C066E08999D3",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Phillip Goldmann",
+     "street": "Nedderfeld 70",
+     "addition": null,
+     "district": null,
+     "zip": "22529",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.60120585",
+     "longitude": "9.974537988271255"
+    },
+    "domainObject": {
+     "title": "Phillip Goldmann",
+     "domainType": "person",
+     "domainIdentifier": "120",
+     "apiUrl": "https://gemeinde.example/api/persons/120",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23120/",
+     "imageUrl": "https://gemeinde.example/images/1674/897a5b80bf02c6db959b08c698eea94fe4a8adb9493550226c5ab2d530a0fe35",
+     "icon": "user",
+     "color": null,
+     "initials": "PG",
+     "domainAttributes": {
+      "firstName": "Phillip",
+      "lastName": "Goldmann",
+      "guid": "2F4382E1-18C6-4E01-B624-565E5EF77CF1",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Margot Moser",
+     "street": "Eppendorfer Landstr. 36",
+     "addition": null,
+     "district": null,
+     "zip": "20249",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.5870116",
+     "longitude": "9.9847997"
+    },
+    "domainObject": {
+     "title": "Margot Moser",
+     "domainType": "person",
+     "domainIdentifier": "548",
+     "apiUrl": "https://gemeinde.example/api/persons/548",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23548/",
+     "imageUrl": "https://gemeinde.example/images/1923/f2aef155936af9707aeb14ce07174ee06055a08e61c2d8f9d7eb37df00a5f76e",
+     "icon": "user",
+     "color": null,
+     "initials": "MM",
+     "domainAttributes": {
+      "firstName": "Margot",
+      "lastName": "Moser",
+      "guid": "7B7F7F13-ED5D-436D-9933-7FC74FAE5179",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Ingolf Völker",
+     "street": "Stapelfelder Str. 84",
+     "addition": null,
+     "district": null,
+     "zip": "22143",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.6028635",
+     "longitude": "10.1798696"
+    },
+    "domainObject": {
+     "title": "Ingolf Völker",
+     "domainType": "person",
+     "domainIdentifier": "617",
+     "apiUrl": "https://gemeinde.example/api/persons/617",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23617/",
+     "imageUrl": "https://gemeinde.example/images/1238/004fdacf0bb72358bb0587047e7097727a679c0aef13b043f631a2271ea58a69",
+     "icon": "user",
+     "color": null,
+     "initials": "IV",
+     "domainAttributes": {
+      "firstName": "Ingolf",
+      "lastName": "Völker",
+      "guid": "6A2902F1-1F98-495E-820C-C6D3C68A630C",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Egon Erdmann",
+     "street": "Heidrehmen 2",
+     "addition": null,
+     "district": null,
+     "zip": "22589",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.5752925",
+     "longitude": "9.8159177"
+    },
+    "domainObject": {
+     "title": "Egon Erdmann",
+     "domainType": "person",
+     "domainIdentifier": "845",
+     "apiUrl": "https://gemeinde.example/api/persons/845",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23845/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "EE",
+     "domainAttributes": {
+      "firstName": "Egon",
+      "lastName": "Erdmann",
+      "guid": "5302C193-79B0-47BF-9828-8773A3357B33",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Hugo Hartmann",
+     "street": "Pezolddamm 141",
+     "addition": null,
+     "district": null,
+     "zip": "22175",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.6248463",
+     "longitude": "10.1132679"
+    },
+    "domainObject": {
+     "title": "Hugo Hartmann",
+     "domainType": "person",
+     "domainIdentifier": "1295",
+     "apiUrl": "https://gemeinde.example/api/persons/1295",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231295/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "HH",
+     "domainAttributes": {
+      "firstName": "Hugo",
+      "lastName": "Hartmann",
+      "guid": "88118F19-6C22-4602-BEC3-86AEE8ED81E0",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Hugo Scharf",
+     "street": "Kielmannseggstr. 70",
+     "addition": null,
+     "district": null,
+     "zip": "22043",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.5682123",
+     "longitude": "10.0925413"
+    },
+    "domainObject": {
+     "title": "Hugo Scharf",
+     "domainType": "person",
+     "domainIdentifier": "1307",
+     "apiUrl": "https://gemeinde.example/api/persons/1307",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231307/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "HS",
+     "domainAttributes": {
+      "firstName": "Hugo",
+      "lastName": "Scharf",
+      "guid": "0B1EB9F3-F1A4-4A4B-9E00-250BE980CF89",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Conny Oswald",
+     "street": "Goernestr. 2",
+     "addition": null,
+     "district": null,
+     "zip": "20249",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.5899172",
+     "longitude": "9.9875593"
+    },
+    "domainObject": {
+     "title": "Conny Oswald",
+     "domainType": "person",
+     "domainIdentifier": "980",
+     "apiUrl": "https://gemeinde.example/api/persons/980",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23980/",
+     "imageUrl": "https://gemeinde.example/images/1517/2c78fd4207752e2ba8bf6b6b70a8a91f4d7e9c4292d3c1e198581c9f00ef21ab",
+     "icon": "user",
+     "color": null,
+     "initials": "CO",
+     "domainAttributes": {
+      "firstName": "Conny",
+      "lastName": "Oswald",
+      "guid": "FEB0670D-5119-4589-A9CE-9DA7D4F9D1EE",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   {
+    "address": {
+     "name": "Kornelia Bär",
+     "street": "Goernestr. 2",
+     "addition": null,
+     "district": null,
+     "zip": "20249",
+     "city": "Hamburg",
+     "country": "Deutschland",
+     "latitude": "53.5899172",
+     "longitude": "9.9875593"
+    },
+    "domainObject": {
+     "title": "Kornelia Bär",
+     "domainType": "person",
+     "domainIdentifier": "1376",
+     "apiUrl": "https://gemeinde.example/api/persons/1376",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231376/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "KB",
+     "domainAttributes": {
+      "firstName": "Kornelia",
+      "lastName": "Bär",
+      "guid": "D9E75367-6274-438B-A6AD-5E053FAE542B",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   }
+  ],
+  "meta": {
+   "count": 10
+  }
+ }
+}

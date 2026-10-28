@@ -1,0 +1,15 @@
+{
+ "operation": "get-groups-groupId-members-personId-meetings",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/members/108/meetings",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

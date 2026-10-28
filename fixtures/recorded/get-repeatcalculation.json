@@ -1,0 +1,38 @@
+{
+ "operation": "get-repeatcalculation",
+ "request": {
+  "method": "GET",
+  "path": "/repeatcalculation",
+  "query": [
+   [
+    "endDate",
+    "2026-09-20T09:30:00Z"
+   ],
+   [
+    "startDate",
+    "2026-09-20T08:00:00Z"
+   ]
+  ],
+  "body": null
+ },
+ "body": [
+  {
+   "base": {
+    "id": -1,
+    "startDate": "2026-09-20T08:00:00Z",
+    "endDate": "2026-09-20T09:30:00Z",
+    "allDay": false,
+    "repeatId": 0,
+    "repeatFrequency": null,
+    "repeatUntil": null,
+    "repeatOption": null,
+    "additions": [],
+    "exceptions": []
+   },
+   "calculated": {
+    "startDate": "2026-09-20T08:00:00Z",
+    "endDate": "2026-09-20T09:30:00Z"
+   }
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "operation": "get-groups-id-meetings",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/meetings",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0,
+   "statistics": {
+    "canceled": 0,
+    "notCanceled": 0,
+    "completed": 0,
+    "notCompleted": 0,
+    "total": 0,
+    "notCompletedAndNotCanceledAndInPast": 0,
+    "notCompletedAndNotCanceledAndInFuture": 0,
+    "completedAndNotCanceled": 0
+   },
+   "previous": null,
+   "next": null
+  }
+ }
+}

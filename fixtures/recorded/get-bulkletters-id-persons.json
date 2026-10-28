@@ -1,0 +1,40 @@
+{
+ "operation": "get-bulkletters-id-persons",
+ "request": {
+  "method": "GET",
+  "path": "/bulkletters/42/persons",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": "3",
+    "name": "Kommian",
+    "vorname": "Norbert",
+    "strasse": "Groten Hoff 12",
+    "ort": "Hamburg",
+    "plz": "22359",
+    "zusatz": ""
+   },
+   {
+    "id": "137",
+    "name": "Salewski",
+    "vorname": "Norbert",
+    "strasse": "Jürgen-Töpfer-Str. 18",
+    "ort": "Hamburg",
+    "plz": "22763",
+    "zusatz": ""
+   },
+   {
+    "id": "887",
+    "name": "Bergmann",
+    "vorname": "Norbert",
+    "strasse": "Ditmar-Koel-Str. 5",
+    "ort": "Hamburg",
+    "plz": "20459",
+    "zusatz": ""
+   }
+  ]
+ }
+}

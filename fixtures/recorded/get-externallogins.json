@@ -1,0 +1,62 @@
+{
+ "operation": "get-externallogins",
+ "request": {
+  "method": "GET",
+  "path": "/externallogins",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 28,
+    "type": "oidc",
+    "name": "ctrs-test OIDC",
+    "newPersonDepartmentId": null,
+    "newPersonStatusId": null,
+    "newPersonCampusId": null,
+    "createNewPerson": false,
+    "matchingMode": "auto_match",
+    "updateDataOnLogin": false,
+    "hasRegistration": false,
+    "isVisible": false,
+    "config": {
+     "clientId": "ctrs-test",
+     "issuer": "https://accounts.google.com",
+     "allowedConnections": []
+    },
+    "logoUrl": "https://accounts.google.com/favicon.ico",
+    "primaryLogin": false,
+    "subtitle": null
+   },
+   {
+    "id": 25,
+    "type": "saml",
+    "name": "ctrs-test SAML",
+    "newPersonDepartmentId": null,
+    "newPersonStatusId": null,
+    "newPersonCampusId": null,
+    "createNewPerson": false,
+    "matchingMode": "auto_match",
+    "updateDataOnLogin": false,
+    "hasRegistration": false,
+    "isVisible": false,
+    "config": {
+     "idAttribute": "urn:oid:0.9.2342.19200300.100.1.33",
+     "usernameAttribute": "urn:oid:0.9.2342.19200300.100.1.1",
+     "emailAttribute": "urn:oid:0.9.2342.19200300.100.1.3",
+     "firstNameAttribute": "urn:oid:2.5.4.42",
+     "lastNameAttribute": "urn:oid:2.5.4.4",
+     "signatureRequirement": "response",
+     "spX509cert": "-----BEGIN CERTIFICATE-----\nMIIDsDCCApigAwIBAgIBADANBgkqhkiG9w0BAQsFADBxMSowKAYDVQQDDCFDaHVy\nY2hUb29scyBTQU1MIFNlcnZpY2UgUHJvdmlkZXIxCzAJBgNVBAYTAkFVMRMwEQYD\nVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBM\ndGQwHhcNMjYxMDI4MjIzNTAwWhcNMzYxMDI1MjIzNTAwWjBxMSowKAYDVQQDDCFD\naHVyY2hUb29scyBTQU1MIFNlcnZpY2UgUHJvdmlkZXIxCzAJBgNVBAYTAkFVMRMw\nEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0\neSBMdGQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDjswW9EBOGJbMC\niftLqD7UTiHHSY6JDPNzgQnBIvCel0fA8rYQCmNWaJ+7k6nAZ1KE7nIgpcoY6WJh\nlcOS5fcLjCpJgm2zC9OBytS8dF487NoulOzhk9SK3y2Hl36+92QDWhPXyW5fY3CI\nYiXCAy4DpH30+j0PHmCLJEjl60/coh4BExTL4JR5dvmKwyAazU/owkNyM9U+F7t5\ntuOPVEtTSEB577TvsowgyXNCv2IlCWoeqf4r/eNQw6ruxGB62kxzr6Bcc+ajZ+zz\nkI59U7br2UnJrISrCNYu2uQX3/mtr76cH6/Xq38esNy3H53vucULFbPD+e4mI+/q\nUjfoky8bAgMBAAGjUzBRMB0GA1UdDgQWBBRKt8LzEN3KuqG7kWZdSVo2Y4s/JDAf\nBgNVHSMEGDAWgBRKt8LzEN3KuqG7kWZdSVo2Y4s/JDAPBgNVHRMBAf8EBTADAQH/\nMA0GCSqGSIb3DQEBCwUAA4IBAQBR8LsfwBzYImry/YP+hhgeHdVRr1uThXr8t3Lu\nl2HQSaehJAYxiM4NQdGcTPRkIuBxZiSuNMX/t3L7ZE/R+0EPI5G6NAKKtpjXVsH1\nQFe9kIt+NkTlAfofe4EcBZBvqFM9mB+m3GP0gpKKPrSQWuiSMZOVianqSqxmECAP\n+QQXX5ZEqcd9zI1gefi1+XLqdkWSdYDn84lhnjpXGXhI7NhX44NDyjuCUDAZ78//\n/OCclIn9VYojmEHVIFC/7u9kANZwQ8JXktytGXgtC187C3cZ9fW5NGPx9p9TLN5V\n4Y7/EgQkWdWtAzmGQ3+sCiyq5cpGd5c/sm4dF2K+43ZsHAw3\n-----END CERTIFICATE-----\n"
+    },
+    "logoUrl": null,
+    "primaryLogin": false,
+    "subtitle": null
+   }
+  ],
+  "meta": {
+   "count": 2
+  }
+ }
+}

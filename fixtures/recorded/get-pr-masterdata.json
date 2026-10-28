@@ -1,0 +1,1754 @@
+{
+ "operation": "get-pr-masterdata",
+ "request": {
+  "method": "GET",
+  "path": "/pr/masterdata",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "denominations": [
+    {
+     "name": "denomination.none",
+     "nameTranslated": "Keine Angabe",
+     "key": "NONE"
+    },
+    {
+     "name": "denomination.protestant",
+     "nameTranslated": "Evangelisch",
+     "key": "PROTESTANT"
+    },
+    {
+     "name": "denomination.free.evangelical",
+     "nameTranslated": "Ev.-freikirchlich",
+     "key": "FREE_EVANGELICAL"
+    },
+    {
+     "name": "denomination.catholic",
+     "nameTranslated": "Katholisch",
+     "key": "CATHOLIC"
+    },
+    {
+     "name": "denomination.ecumenical",
+     "nameTranslated": "Ökumenisch",
+     "key": "ECUMENICAL"
+    },
+    {
+     "name": "denomination.orthodox",
+     "nameTranslated": "Orthodox",
+     "key": "ORTHODOX"
+    }
+   ],
+   "associations": [
+    {
+     "id": 1,
+     "name": "Action Biblique Suisse",
+     "key": "ABS",
+     "abbreviation": "ABS",
+     "country": "CH"
+    },
+    {
+     "id": 2,
+     "name": "Anglikanische Kirche",
+     "key": "AngK",
+     "abbreviation": "Angl. Kirche",
+     "country": null
+    },
+    {
+     "id": 3,
+     "name": "Anskar-Kirche",
+     "key": "Anskar",
+     "abbreviation": "Anskar",
+     "country": "DE"
+    },
+    {
+     "id": 4,
+     "name": "BewegungPlus",
+     "key": "BePlus",
+     "abbreviation": "BewegungPlus",
+     "country": "CH"
+    },
+    {
+     "id": 5,
+     "name": "Bistum Aachen",
+     "key": "BtAac",
+     "abbreviation": "Bt. Aachen",
+     "country": "DE"
+    },
+    {
+     "id": 6,
+     "name": "Bistum Augsburg",
+     "key": "BtAug",
+     "abbreviation": "Bt. Augsburg",
+     "country": "DE"
+    },
+    {
+     "id": 7,
+     "name": "Bistum Basel",
+     "key": "BtBa",
+     "abbreviation": "Bt. Basel",
+     "country": "CH"
+    },
+    {
+     "id": 8,
+     "name": "Bistum Chur",
+     "key": "BtCh",
+     "abbreviation": "Bt. Chur",
+     "country": "CH"
+    },
+    {
+     "id": 9,
+     "name": "Bistum Dresden-Meißen",
+     "key": "BtDrMe",
+     "abbreviation": "Bt. Dresden-Meißen",
+     "country": "DE"
+    },
+    {
+     "id": 10,
+     "name": "Bistum Eichstätt",
+     "key": "BtEich",
+     "abbreviation": "Bt. Eichstätt",
+     "country": "DE"
+    },
+    {
+     "id": 11,
+     "name": "Bistum Erfurt",
+     "key": "BtErf",
+     "abbreviation": "Bt. Erfurt",
+     "country": "DE"
+    },
+    {
+     "id": 12,
+     "name": "Bistum Essen",
+     "key": "BtEss",
+     "abbreviation": "Bt. Essen",
+     "country": "DE"
+    },
+    {
+     "id": 13,
+     "name": "Bistum Fulda",
+     "key": "BtFul",
+     "abbreviation": "Bt. Fulda",
+     "country": "DE"
+    },
+    {
+     "id": 14,
+     "name": "Bistum Görlitz",
+     "key": "BtGörl",
+     "abbreviation": "Bt. Görlitz",
+     "country": "DE"
+    },
+    {
+     "id": 15,
+     "name": "Bistum Hildesheim",
+     "key": "BtHild",
+     "abbreviation": "Bt. Hildesheim",
+     "country": "DE"
+    },
+    {
+     "id": 16,
+     "name": "Bistum Lausanne-Genf-Freiburg",
+     "key": "BtLauGeFr",
+     "abbreviation": "Bt. Lau.-Genf-Fr.",
+     "country": "CH"
+    },
+    {
+     "id": 17,
+     "name": "Bistum Limburg",
+     "key": "BtLim",
+     "abbreviation": "Bt. Limburg",
+     "country": "DE"
+    },
+    {
+     "id": 18,
+     "name": "Bistum Lugano",
+     "key": "BtLug",
+     "abbreviation": "Bt. Lugano",
+     "country": "CH"
+    },
+    {
+     "id": 19,
+     "name": "Bistum Magdeburg",
+     "key": "BtMagd",
+     "abbreviation": "Bt. Magdeburg",
+     "country": "DE"
+    },
+    {
+     "id": 20,
+     "name": "Bistum Mainz",
+     "key": "BtMainz",
+     "abbreviation": "Bt. Mainz",
+     "country": "DE"
+    },
+    {
+     "id": 21,
+     "name": "Bistum Münster",
+     "key": "BtMün",
+     "abbreviation": "Bt. Münster",
+     "country": "DE"
+    },
+    {
+     "id": 22,
+     "name": "Bistum Osnabrück",
+     "key": "BtOsna",
+     "abbreviation": "Bt. Osnabrück",
+     "country": "DE"
+    },
+    {
+     "id": 23,
+     "name": "Bistum Passau",
+     "key": "BtPass",
+     "abbreviation": "Bt. Passau",
+     "country": "DE"
+    },
+    {
+     "id": 24,
+     "name": "Bistum Regensburg",
+     "key": "BtRegen",
+     "abbreviation": "Bt. Regensburg",
+     "country": "DE"
+    },
+    {
+     "id": 25,
+     "name": "Bistum Rottenburg-Stuttgart",
+     "key": "BtRotSt",
+     "abbreviation": "Bt. Rottenb.-Stgt.",
+     "country": "DE"
+    },
+    {
+     "id": 26,
+     "name": "Bistum Sitten",
+     "key": "BtSit",
+     "abbreviation": "Bt. Sitten",
+     "country": "CH"
+    },
+    {
+     "id": 27,
+     "name": "Bistum Speyer",
+     "key": "BtSpey",
+     "abbreviation": "Bt. Speyer",
+     "country": "DE"
+    },
+    {
+     "id": 28,
+     "name": "Bistum St. Gallen",
+     "key": "BtStGa",
+     "abbreviation": "Bt. St.",
+     "country": "CH"
+    },
+    {
+     "id": 29,
+     "name": "Bistum Trier",
+     "key": "BtTrier",
+     "abbreviation": "Bt. Trier",
+     "country": "DE"
+    },
+    {
+     "id": 30,
+     "name": "Bistum Würzburg",
+     "key": "BtWürz",
+     "abbreviation": "Bt. Würzburg",
+     "country": "DE"
+    },
+    {
+     "id": 31,
+     "name": "Bremische Evangelische Kirche",
+     "key": "KirBrem",
+     "abbreviation": "Kirche Bremen",
+     "country": "DE"
+    },
+    {
+     "id": 32,
+     "name": "Bund der Baptistengemeinden in Österreich",
+     "key": "BaptÖ",
+     "abbreviation": "Baptisten AT",
+     "country": "AT"
+    },
+    {
+     "id": 33,
+     "name": "Bund evangelikaler Gemeinden in Österreich",
+     "key": "BEGÖ",
+     "abbreviation": "BEG AT",
+     "country": "AT"
+    },
+    {
+     "id": 34,
+     "name": "Bund Evangelisch-Freikirchlicher Gemeinden",
+     "key": "Baptisten",
+     "abbreviation": "BEFG",
+     "country": "DE"
+    },
+    {
+     "id": 41,
+     "name": "Bund evangelischer Freikirchen (Taufgesinnte Gemeinden)",
+     "key": "BTG",
+     "abbreviation": "BeF(TG)",
+     "country": null
+    },
+    {
+     "id": 35,
+     "name": "Bund evangelischer Gemeinden Schweiz",
+     "key": "BEGCH",
+     "abbreviation": "BEG CH",
+     "country": "CH"
+    },
+    {
+     "id": 36,
+     "name": "Bund evangelischer Gemeinschaften",
+     "key": "BEG",
+     "abbreviation": "BEG",
+     "country": "DE"
+    },
+    {
+     "id": 37,
+     "name": "Bund Evangelischer Täufergemeinden",
+     "key": "BundETG",
+     "abbreviation": "ETG",
+     "country": null
+    },
+    {
+     "id": 134,
+     "name": "Bund Freier evangelischer Gemeinden Deutschland",
+     "key": "FeGDE",
+     "abbreviation": "FeG",
+     "country": "DE"
+    },
+    {
+     "id": 135,
+     "name": "Bund Freier evangelischer Gemeinden Schweiz",
+     "key": "FeGCH",
+     "abbreviation": "FeG CH",
+     "country": "CH"
+    },
+    {
+     "id": 38,
+     "name": "Bund freikirchlicher Christengemeinden",
+     "key": "BFC",
+     "abbreviation": "BFC",
+     "country": null
+    },
+    {
+     "id": 39,
+     "name": "Bund Freikirchlicher Pfingstgemeinden",
+     "key": "BFP",
+     "abbreviation": "BFP",
+     "country": null
+    },
+    {
+     "id": 40,
+     "name": "Bund Schweizer Baptistengemeinden",
+     "key": "BaptCH",
+     "abbreviation": "Baptisten CH",
+     "country": "CH"
+    },
+    {
+     "id": 45,
+     "name": "C1 evangelischer Gemeindebund",
+     "key": "ChrischGemDE",
+     "abbreviation": "C1 Gemeindebund",
+     "country": "DE"
+    },
+    {
+     "id": 42,
+     "name": "Calvary Chapel",
+     "key": "Calvary",
+     "abbreviation": "Calvary",
+     "country": null
+    },
+    {
+     "id": 43,
+     "name": "Campus für Christus Schweiz",
+     "key": "CFCCH",
+     "abbreviation": "CFC",
+     "country": "CH"
+    },
+    {
+     "id": 44,
+     "name": "Chrischona Deutschland",
+     "key": "ChrischDE",
+     "abbreviation": "Chrischona",
+     "country": "DE"
+    },
+    {
+     "id": 197,
+     "name": "ChristlicherMissionsVerband für Österreich",
+     "key": "ChMisVerband",
+     "abbreviation": "Christlicher MissionsVerb",
+     "country": "AT"
+    },
+    {
+     "id": 192,
+     "name": "Christusbund",
+     "key": "Christusbund",
+     "abbreviation": "Christusbund",
+     "country": "DE"
+    },
+    {
+     "id": 289,
+     "name": "ChristusForum Deutschland",
+     "key": "CFD",
+     "abbreviation": "CFD",
+     "country": "DE"
+    },
+    {
+     "id": 48,
+     "name": "CVJM Deutschland",
+     "key": "CVJMDE",
+     "abbreviation": "CVJM",
+     "country": "DE"
+    },
+    {
+     "id": 49,
+     "name": "CVJM Österreich",
+     "key": "CVJMÖ",
+     "abbreviation": "CVJM AT",
+     "country": "AT"
+    },
+    {
+     "id": 50,
+     "name": "CVJM Schweiz",
+     "key": "CVJMCH",
+     "abbreviation": "CVJM CH",
+     "country": "CH"
+    },
+    {
+     "id": 51,
+     "name": "Destiny Ministries Netzwerk",
+     "key": "Destiny",
+     "abbreviation": "Destiny",
+     "country": null
+    },
+    {
+     "id": 52,
+     "name": "Die Apis. Evangelischer Gemeinschaftsverband Württemberg",
+     "key": "Apis",
+     "abbreviation": "Die Apis",
+     "country": "DE"
+    },
+    {
+     "id": 53,
+     "name": "Die Christengemeinschaft in Deutschland",
+     "key": "ChrengemDE",
+     "abbreviation": "Christengem.",
+     "country": "DE"
+    },
+    {
+     "id": 54,
+     "name": "Diözese Eisenstadt",
+     "key": "DiözEis",
+     "abbreviation": "Diöz. Eisenstadt",
+     "country": "AT"
+    },
+    {
+     "id": 55,
+     "name": "Diözese Feldkirch",
+     "key": "DiözFeld",
+     "abbreviation": "Diöz. Feldkirch",
+     "country": "AT"
+    },
+    {
+     "id": 56,
+     "name": "Diözese Graz-Seckau",
+     "key": "DiözGrSec",
+     "abbreviation": "Diöz. Graz-Seckau",
+     "country": "AT"
+    },
+    {
+     "id": 57,
+     "name": "Diözese Gurk",
+     "key": "DiözGurk",
+     "abbreviation": "Diöz. Gurk",
+     "country": "AT"
+    },
+    {
+     "id": 58,
+     "name": "Diözese Innsbruck",
+     "key": "DiözInn",
+     "abbreviation": "Diöz. Innsbruck",
+     "country": "AT"
+    },
+    {
+     "id": 59,
+     "name": "Diözese Linz",
+     "key": "DiözLinz",
+     "abbreviation": "Diöz. Linz",
+     "country": "AT"
+    },
+    {
+     "id": 60,
+     "name": "Diözese St. Pölten",
+     "key": "DiözStPl",
+     "abbreviation": "Diöz. St.",
+     "country": "AT"
+    },
+    {
+     "id": 61,
+     "name": "Ecclesia Kirchen",
+     "key": "Ecclesia",
+     "abbreviation": "Ecclesia",
+     "country": "DE"
+    },
+    {
+     "id": 62,
+     "name": "Eglises Evangéliques Apostoliques Romandes",
+     "key": "EEAR",
+     "abbreviation": "EEAR",
+     "country": "CH"
+    },
+    {
+     "id": 63,
+     "name": "Ekklesia Movement",
+     "key": "Ekklesia",
+     "abbreviation": "Ekklesia",
+     "country": "CH"
+    },
+    {
+     "id": 200,
+     "name": "Elbingeröder Gemeinschaftsverband",
+     "key": "Elbingeröder",
+     "abbreviation": "Elbingeröder GV",
+     "country": "DE"
+    },
+    {
+     "id": 64,
+     "name": "Entschieden für Christus",
+     "key": "EC",
+     "abbreviation": "EC",
+     "country": null
+    },
+    {
+     "id": 249,
+     "name": "Erzbistum Bamberg",
+     "key": "EbtBamberg",
+     "abbreviation": "Ebt. Bamberg",
+     "country": "DE"
+    },
+    {
+     "id": 252,
+     "name": "Erzbistum Berlin",
+     "key": "EbtBerlin",
+     "abbreviation": "Ebt. Berlin",
+     "country": "DE"
+    },
+    {
+     "id": 255,
+     "name": "Erzbistum Freiburg",
+     "key": "EbtFreiburg",
+     "abbreviation": "Ebt. Freiburg",
+     "country": "DE"
+    },
+    {
+     "id": 258,
+     "name": "Erzbistum Hamburg",
+     "key": "EbtHamburg",
+     "abbreviation": "Ebt. Hamburg",
+     "country": "DE"
+    },
+    {
+     "id": 261,
+     "name": "Erzbistum Köln",
+     "key": "EbtKöln",
+     "abbreviation": "Ebt. Köln",
+     "country": "DE"
+    },
+    {
+     "id": 65,
+     "name": "Erzbistum Luxemburg",
+     "key": "EbtLux",
+     "abbreviation": "Ebt. Luxemburg",
+     "country": "LU"
+    },
+    {
+     "id": 264,
+     "name": "Erzbistum München und Freising",
+     "key": "EbtMüFre",
+     "abbreviation": "Ebt. München und Freising",
+     "country": "DE"
+    },
+    {
+     "id": 267,
+     "name": "Erzbistum Paderborn",
+     "key": "EbtPaderborn",
+     "abbreviation": "Ebt. Paderborn",
+     "country": "DE"
+    },
+    {
+     "id": 66,
+     "name": "Erzbistum Vaduz",
+     "key": "EbtVaduz",
+     "abbreviation": "Ebt. Vaduz",
+     "country": "LI"
+    },
+    {
+     "id": 270,
+     "name": "Erzdiözese Salzburg",
+     "key": "EdiözSalzburg",
+     "abbreviation": "Ediöz. Salzburg",
+     "country": "AT"
+    },
+    {
+     "id": 273,
+     "name": "Erzdiözese Wien",
+     "key": "EdiözWien",
+     "abbreviation": "Ediöz. Wien",
+     "country": "AT"
+    },
+    {
+     "id": 67,
+     "name": "Evangelisch im Burgenland",
+     "key": "EvBurgenland",
+     "abbreviation": "Ev. Burgenland",
+     "country": "AT"
+    },
+    {
+     "id": 68,
+     "name": "Evangelisch in Kärnten/Osttirol",
+     "key": "EvKärten",
+     "abbreviation": "Ev. Kärnten/Ostt.",
+     "country": "AT"
+    },
+    {
+     "id": 69,
+     "name": "Evangelisch in Niederösterreich",
+     "key": "EvNiederöst",
+     "abbreviation": "Ev. Niederöst.",
+     "country": "AT"
+    },
+    {
+     "id": 70,
+     "name": "Evangelisch in Oberösterreich",
+     "key": "EvOberöst",
+     "abbreviation": "Ev. Oberöst.",
+     "country": "AT"
+    },
+    {
+     "id": 71,
+     "name": "Evangelisch in Salzburg/Tirol",
+     "key": "EvSalzburg",
+     "abbreviation": "Ev. Salzburg/Tirol",
+     "country": "AT"
+    },
+    {
+     "id": 72,
+     "name": "Evangelisch in Steiermark",
+     "key": "EvSteiermark",
+     "abbreviation": "Ev. Steiermark",
+     "country": "AT"
+    },
+    {
+     "id": 73,
+     "name": "Evangelisch in Wien",
+     "key": "EvWien",
+     "abbreviation": "Ev. Wien",
+     "country": "AT"
+    },
+    {
+     "id": 74,
+     "name": "Evangelisch-lutherische Kirche in Bayern",
+     "key": "ELKB",
+     "abbreviation": "ELKB",
+     "country": "DE"
+    },
+    {
+     "id": 75,
+     "name": "Evangelisch-lutherische Kirche in Oldenburg",
+     "key": "Oldenburg",
+     "abbreviation": "Kirche Oldenburg",
+     "country": "DE"
+    },
+    {
+     "id": 76,
+     "name": "Evangelisch-lutherische Landeskirche Hannovers",
+     "key": "ELLKHannover",
+     "abbreviation": "ELLK Hannover",
+     "country": "DE"
+    },
+    {
+     "id": 77,
+     "name": "Evangelisch-lutherische Landeskirche in Braunschweig",
+     "key": "ELLKBraunschw",
+     "abbreviation": "ELLK Braunschweig",
+     "country": "DE"
+    },
+    {
+     "id": 78,
+     "name": "Evangelisch-lutherische Landeskirche Mecklenburgs",
+     "key": "ELLM",
+     "abbreviation": "ELLM",
+     "country": "DE"
+    },
+    {
+     "id": 79,
+     "name": "Evangelisch-lutherische Landeskirche Sachsens",
+     "key": "EVLKS",
+     "abbreviation": "EVLKS",
+     "country": "DE"
+    },
+    {
+     "id": 80,
+     "name": "Evangelisch-lutherische Landeskirche Schaumburg-Lippe",
+     "key": "ELLKLShgLippe",
+     "abbreviation": "ELLK Shg.-Lippe",
+     "country": "DE"
+    },
+    {
+     "id": 81,
+     "name": "Evangelisch-methodistische Kirche in der Schweiz",
+     "key": "MethodistenCH",
+     "abbreviation": "Methodisten CH",
+     "country": "CH"
+    },
+    {
+     "id": 82,
+     "name": "Evangelisch-methodistische Kirche in Deutschland",
+     "key": "MethodistenDE",
+     "abbreviation": "Methodisten",
+     "country": "DE"
+    },
+    {
+     "id": 83,
+     "name": "Evangelisch-methodistische Kirche in Österreich",
+     "key": "MethodistenÖ",
+     "abbreviation": "Methodisten AT",
+     "country": "AT"
+    },
+    {
+     "id": 84,
+     "name": "Evangelisch-reformierte Kantonalkirche Schwyz",
+     "key": "EvRefSchyz",
+     "abbreviation": "Ev.-ref. Schwyz",
+     "country": "CH"
+    },
+    {
+     "id": 85,
+     "name": "Evangelisch-reformierte Kirche",
+     "key": "EvReformiert",
+     "abbreviation": "Ev. reformiert",
+     "country": "DE"
+    },
+    {
+     "id": 86,
+     "name": "Evangelisch-reformierte Kirche Basel-Stadt",
+     "key": "EvRefBaselS",
+     "abbreviation": "Ev.-ref. Basel-Stadt",
+     "country": "CH"
+    },
+    {
+     "id": 87,
+     "name": "Evangelisch-reformierte Kirche des Kantons Basel-Landschaft",
+     "key": "EvRefBaselL",
+     "abbreviation": "Ev.-ref. Basel-L.",
+     "country": "CH"
+    },
+    {
+     "id": 88,
+     "name": "Evangelisch-reformierte Kirche des Kantons Freiburg",
+     "key": "EvRefFreibug",
+     "abbreviation": "Ev.-ref. Freiburg",
+     "country": "CH"
+    },
+    {
+     "id": 89,
+     "name": "Evangelisch-reformierte Kirche des Kantons Neuenburg",
+     "key": "EvRefNeuenburg",
+     "abbreviation": "Ev.-ref. Neuenburg",
+     "country": "CH"
+    },
+    {
+     "id": 90,
+     "name": "Evangelisch-reformierte Kirche des Kantons Schaffhausen",
+     "key": "EvRefSchaffh",
+     "abbreviation": "Ev.-ref. Schaffh.",
+     "country": "CH"
+    },
+    {
+     "id": 91,
+     "name": "Evangelisch-reformierte Kirche des Kantons St. Gallen",
+     "key": "EvRefStGallen",
+     "abbreviation": "Ev.-ref. St. Gallen",
+     "country": "CH"
+    },
+    {
+     "id": 92,
+     "name": "Evangelisch-reformierte Kirche des Kantons Waadt",
+     "key": "EvRefWaadt",
+     "abbreviation": "Ev.-ref. Waadt",
+     "country": "CH"
+    },
+    {
+     "id": 93,
+     "name": "Evangelisch-reformierte Kirche des Wallis",
+     "key": "EvRefWallis",
+     "abbreviation": "Ev.-ref. Wallis",
+     "country": "CH"
+    },
+    {
+     "id": 94,
+     "name": "Evangelisch-reformierte Kirche Genf",
+     "key": "EvRefGenf",
+     "abbreviation": "Ev.-ref. Genf",
+     "country": "CH"
+    },
+    {
+     "id": 95,
+     "name": "Evangelisch-reformierte Kirche Kanton Solothurn",
+     "key": "EvRefSolothurn",
+     "abbreviation": "Ev.-ref. Solothurn",
+     "country": "CH"
+    },
+    {
+     "id": 96,
+     "name": "Evangelisch-reformierte Kirche Nidwalden",
+     "key": "EvRefNidwalden",
+     "abbreviation": "Ev.-ref. Nidwalden",
+     "country": "CH"
+    },
+    {
+     "id": 97,
+     "name": "Evangelisch-reformierte Kirche Schweiz",
+     "key": "EvRefCH",
+     "abbreviation": "Ev. reformiert CH",
+     "country": "CH"
+    },
+    {
+     "id": 98,
+     "name": "Evangelisch-reformierte Kirchgemeinde des Kantons Zug",
+     "key": "EvRefZug",
+     "abbreviation": "Ev.-ref. Zug",
+     "country": "CH"
+    },
+    {
+     "id": 99,
+     "name": "Evangelisch-reformierte Landeskirche beider Appenzell",
+     "key": "EvRefLKApp",
+     "abbreviation": "Ev.-ref. LK Appenzell",
+     "country": "CH"
+    },
+    {
+     "id": 100,
+     "name": "Evangelisch-reformierte Landeskirche des Kantons Glarus",
+     "key": "EvRefGlarus",
+     "abbreviation": "Ev.-ref. Glarus",
+     "country": "CH"
+    },
+    {
+     "id": 101,
+     "name": "Evangelisch-reformierte Landeskirche des Kantons Luzern",
+     "key": "EvRefLuzern",
+     "abbreviation": "Ev.-ref. Luzern",
+     "country": "CH"
+    },
+    {
+     "id": 102,
+     "name": "Evangelisch-reformierte Landeskirche des Kantons Zürich",
+     "key": "EvRefZürich",
+     "abbreviation": "Ev.-ref. Zürich",
+     "country": "CH"
+    },
+    {
+     "id": 103,
+     "name": "Evangelisch-reformierte Landeskirche Graubünden",
+     "key": "EvRefGraubünden",
+     "abbreviation": "Ev.-ref. Graubünden",
+     "country": "CH"
+    },
+    {
+     "id": 104,
+     "name": "Evangelisch-reformierte Landeskirche im Tessin",
+     "key": "EvRefTessin",
+     "abbreviation": "Ev.-ref. Tessin",
+     "country": "CH"
+    },
+    {
+     "id": 105,
+     "name": "Evangelisch-reformierte Landeskirche Uri",
+     "key": "EvRefUri",
+     "abbreviation": "Ev.-ref. Uri",
+     "country": "CH"
+    },
+    {
+     "id": 106,
+     "name": "Evangelische Allianz Deutschland",
+     "key": "AllianzDE",
+     "abbreviation": "Allianz",
+     "country": "DE"
+    },
+    {
+     "id": 292,
+     "name": "Evangelische Bibelgemeinschaft e.V.",
+     "key": "EBG",
+     "abbreviation": "EBG",
+     "country": "DE"
+    },
+    {
+     "id": 107,
+     "name": "Evangelische Freikirchliche Gemeinden Schweiz",
+     "key": "VEFG",
+     "abbreviation": "VEFG",
+     "country": "CH"
+    },
+    {
+     "id": 108,
+     "name": "Evangelische Gesellschaft für Deutschland",
+     "key": "EGfD",
+     "abbreviation": "EGfD",
+     "country": "DE"
+    },
+    {
+     "id": 109,
+     "name": "Evangelische Kirche Berlin-Brandenburg-schlesische Oberlausitz",
+     "key": "EKBO",
+     "abbreviation": "EKBO",
+     "country": "DE"
+    },
+    {
+     "id": 110,
+     "name": "Evangelische Kirche der Pfalz",
+     "key": "EvKirPfalz",
+     "abbreviation": "Ev. Kirche Pfalz",
+     "country": "DE"
+    },
+    {
+     "id": 111,
+     "name": "Evangelische Kirche im Rheinland",
+     "key": "EKiR",
+     "abbreviation": "EKiR",
+     "country": "DE"
+    },
+    {
+     "id": 282,
+     "name": "Evangelische Kirche in Deutschland",
+     "key": "EKD",
+     "abbreviation": "EKD",
+     "country": "DE"
+    },
+    {
+     "id": 112,
+     "name": "Evangelische Kirche in Hessen und Nassau",
+     "key": "EKHN",
+     "abbreviation": "EKHN",
+     "country": "DE"
+    },
+    {
+     "id": 113,
+     "name": "Evangelische Kirche in Mitteldeutschland",
+     "key": "EKM",
+     "abbreviation": "EKM",
+     "country": "DE"
+    },
+    {
+     "id": 114,
+     "name": "Evangelische Kirche von Kurhessen-Waldeck",
+     "key": "EKKW",
+     "abbreviation": "EKKW",
+     "country": "DE"
+    },
+    {
+     "id": 115,
+     "name": "Evangelische Kirche von Westfalen",
+     "key": "EKvW",
+     "abbreviation": "EKvW",
+     "country": "DE"
+    },
+    {
+     "id": 116,
+     "name": "Evangelische Landeskirche Anhalts",
+     "key": "ELKAnhalts",
+     "abbreviation": "ELK Anhalts",
+     "country": "DE"
+    },
+    {
+     "id": 117,
+     "name": "Evangelische Landeskirche des Kantons Thurgau",
+     "key": "ELKThurgau",
+     "abbreviation": "ELK Thurgau",
+     "country": "CH"
+    },
+    {
+     "id": 118,
+     "name": "Evangelische Landeskirche in Baden",
+     "key": "EKIBA",
+     "abbreviation": "EKIBA",
+     "country": "DE"
+    },
+    {
+     "id": 119,
+     "name": "Evangelische Landeskirche in Württemberg",
+     "key": "ELKW",
+     "abbreviation": "ELKW",
+     "country": "DE"
+    },
+    {
+     "id": 120,
+     "name": "Evangelische Täufergemeinde Schweiz",
+     "key": "ETG",
+     "abbreviation": "ETG CH",
+     "country": "CH"
+    },
+    {
+     "id": 121,
+     "name": "Evangelischer Gemeinschaftsverband AB",
+     "key": "AB-Verband",
+     "abbreviation": "AB-Verband",
+     "country": "DE"
+    },
+    {
+     "id": 122,
+     "name": "Evangelischer Gemeinschaftsverband Hessen-Nassau",
+     "key": "EGHN",
+     "abbreviation": "EGHN",
+     "country": "DE"
+    },
+    {
+     "id": 203,
+     "name": "Evangelischer Gemeinschaftsverband Oberberg",
+     "key": "Oberberg",
+     "abbreviation": "EGV Oberberg",
+     "country": "DE"
+    },
+    {
+     "id": 123,
+     "name": "Evangelischer Gemeinschaftsverband Pfalz",
+     "key": "EGVPfalz",
+     "abbreviation": "EGVPfalz",
+     "country": "DE"
+    },
+    {
+     "id": 124,
+     "name": "Evangelischer Gemeinschaftsverband Rhein-Main",
+     "key": "EvGRM",
+     "abbreviation": "EvGRM",
+     "country": "DE"
+    },
+    {
+     "id": 125,
+     "name": "Evangelischer Gemeinschaftsverband Siegerland-Wittgenstein",
+     "key": "EGVSW",
+     "abbreviation": "EGVSW",
+     "country": "DE"
+    },
+    {
+     "id": 284,
+     "name": "Evangelischer Gnadauer Gemeinschaftsverband",
+     "key": "GnadauerGV",
+     "abbreviation": "Gnadauer GV",
+     "country": "DE"
+    },
+    {
+     "id": 127,
+     "name": "Evangelisches Gemeinschaftswerk Schweiz",
+     "key": "EGW",
+     "abbreviation": "EGW",
+     "country": "CH"
+    },
+    {
+     "id": 128,
+     "name": "Evangeliums Christen Gemeinde",
+     "key": "ECG",
+     "abbreviation": "ECG",
+     "country": null
+    },
+    {
+     "id": 129,
+     "name": "Fédération Romande d'Églises Évangéliques",
+     "key": "FREE",
+     "abbreviation": "FREE",
+     "country": "CH"
+    },
+    {
+     "id": 130,
+     "name": "Foursquare Deutschland",
+     "key": "Foursquare",
+     "abbreviation": "Foursquare",
+     "country": "DE"
+    },
+    {
+     "id": 131,
+     "name": "Freie Brüdergemeinden in Deutschland",
+     "key": "FBG",
+     "abbreviation": "FBG",
+     "country": "DE"
+    },
+    {
+     "id": 132,
+     "name": "Freie Charismatische Gemeinden der Schweiz",
+     "key": "FCGS",
+     "abbreviation": "FCGS",
+     "country": "CH"
+    },
+    {
+     "id": 133,
+     "name": "Freie Christengemeinde - Pfingstgemeinde Österreich",
+     "key": "FCGÖ",
+     "abbreviation": "FCGÖ",
+     "country": "AT"
+    },
+    {
+     "id": 136,
+     "name": "Freie Pfingstgemeinde",
+     "key": "Pfingstler",
+     "abbreviation": "Pfingstler",
+     "country": null
+    },
+    {
+     "id": 137,
+     "name": "Freikirche der Sieben-Tags-Adventisten Deutschschweiz",
+     "key": "AdventistenCH",
+     "abbreviation": "Adventisten CH",
+     "country": "CH"
+    },
+    {
+     "id": 138,
+     "name": "Freikirche der Sieben-Tags-Adventisten in Deutschland",
+     "key": "AdventistenDE",
+     "abbreviation": "Adventisten",
+     "country": "DE"
+    },
+    {
+     "id": 139,
+     "name": "Freikirchen in Österreich",
+     "key": "FKÖ",
+     "abbreviation": "FKÖ",
+     "country": "AT"
+    },
+    {
+     "id": 140,
+     "name": "Freikirchlicher Bund der Gemeinde Gottes",
+     "key": "FBGG",
+     "abbreviation": "FBGG",
+     "country": null
+    },
+    {
+     "id": 141,
+     "name": "Gemeinde für Christus ",
+     "key": "GFC",
+     "abbreviation": "GFC",
+     "country": null
+    },
+    {
+     "id": 142,
+     "name": "Gemeinde Gottes in Deutschland",
+     "key": "GemeindeGottes",
+     "abbreviation": "Gemeinde Gottes",
+     "country": "DE"
+    },
+    {
+     "id": 143,
+     "name": "Gemeindeverbund God in Life",
+     "key": "GodInLife",
+     "abbreviation": "God in Life",
+     "country": null
+    },
+    {
+     "id": 209,
+     "name": "Gemeinschafts-Diakonieverband Berlin",
+     "key": "GDVBerlin",
+     "abbreviation": "G-Diakoniev. Berlin",
+     "country": "DE"
+    },
+    {
+     "id": 212,
+     "name": "Gemeinschaftsverband Sachsen-Anhalt",
+     "key": "GVSachsenAnhalt",
+     "abbreviation": "GV Sachsen-Anhalt",
+     "country": "DE"
+    },
+    {
+     "id": 215,
+     "name": "Gemeinschaftswerk Berlin-Brandenburg",
+     "key": "GWBerBran",
+     "abbreviation": "GW Berlin-Brandenb",
+     "country": "DE"
+    },
+    {
+     "id": 218,
+     "name": "Gnadauer Arbeitskreis Hamburg",
+     "key": "AKHam",
+     "abbreviation": "Gnadauer AK Hamburg",
+     "country": "DE"
+    },
+    {
+     "id": 144,
+     "name": "Hannoverscher Verband Landeskirchlicher Gemeinschaften",
+     "key": "HVLG",
+     "abbreviation": "HVLG",
+     "country": "DE"
+    },
+    {
+     "id": 145,
+     "name": "Heilsarmee",
+     "key": "Heilarmee",
+     "abbreviation": "Heilsarmee",
+     "country": null
+    },
+    {
+     "id": 146,
+     "name": "Heilsarmee Schweiz",
+     "key": "HeilsarmeeCH",
+     "abbreviation": "Heilsarmee CH",
+     "country": "CH"
+    },
+    {
+     "id": 147,
+     "name": "Hensoltshöher Gemeinschaftsverband",
+     "key": "HGV",
+     "abbreviation": "HGV",
+     "country": "DE"
+    },
+    {
+     "id": 148,
+     "name": "Herrnhuter Brüdergemeine",
+     "key": "HerrnBrüder",
+     "abbreviation": "H. Brüdergemeine",
+     "country": "DE"
+    },
+    {
+     "id": 149,
+     "name": "Hessischer Gemeinschaftsverband",
+     "key": "HEGEV",
+     "abbreviation": "HEGEV",
+     "country": "DE"
+    },
+    {
+     "id": 150,
+     "name": "ID NET",
+     "key": "IDNET",
+     "abbreviation": "ID NET",
+     "country": null
+    },
+    {
+     "id": 151,
+     "name": "International Christian Fellowship",
+     "key": "ICF",
+     "abbreviation": "ICF",
+     "country": null
+    },
+    {
+     "id": 152,
+     "name": "Jesus Freaks Deutschland",
+     "key": "JesusFreaksDE",
+     "abbreviation": "Jesus Freaks",
+     "country": "DE"
+    },
+    {
+     "id": 153,
+     "name": "Jesus Freaks Österreich",
+     "key": "JesusFreaksÖ",
+     "abbreviation": "Jesus Freaks AT",
+     "country": "AT"
+    },
+    {
+     "id": 154,
+     "name": "Jesus Freaks Schweiz",
+     "key": "JesusFreaksCH",
+     "abbreviation": "Jesus Freaks CH",
+     "country": "CH"
+    },
+    {
+     "id": 155,
+     "name": "Kirche des Nazareners",
+     "key": "Nazarener",
+     "abbreviation": "Nazarener",
+     "country": null
+    },
+    {
+     "id": 156,
+     "name": "Koptisch-Orthodoxe Gemeinden in Deutschland",
+     "key": "KoptOrthodox",
+     "abbreviation": "Koptisch-Orthodoxe",
+     "country": "DE"
+    },
+    {
+     "id": 157,
+     "name": "Landeskirchliche Gemeinschaft",
+     "key": "LKG",
+     "abbreviation": "LKG",
+     "country": "DE"
+    },
+    {
+     "id": 221,
+     "name": "Landeskirchlicher Gemeinschaftsverband in Bayern",
+     "key": "LKGVBayern",
+     "abbreviation": "LKGV Bayern",
+     "country": "DE"
+    },
+    {
+     "id": 224,
+     "name": "Landesverband evangelischer Gemeinschaften Vorpommern",
+     "key": "LVEGVorpom",
+     "abbreviation": "LVEG Vorpommern",
+     "country": "DE"
+    },
+    {
+     "id": 227,
+     "name": "Landesverband Landeskirchlicher Gemeinschaften Sachsen",
+     "key": "LVLKGSachsen",
+     "abbreviation": "LVLKG Sachsen",
+     "country": "DE"
+    },
+    {
+     "id": 158,
+     "name": "Liebenzeller Gemeinschaftsverband",
+     "key": "LGV",
+     "abbreviation": "LGV",
+     "country": "DE"
+    },
+    {
+     "id": 159,
+     "name": "LIFE Church",
+     "key": "LifeChurch",
+     "abbreviation": "LIFE Church",
+     "country": null
+    },
+    {
+     "id": 160,
+     "name": "Lippische Landeskirche",
+     "key": "LippLK",
+     "abbreviation": "Lippische LK",
+     "country": "DE"
+    },
+    {
+     "id": 230,
+     "name": "Lippischer Gemeinschaftsbund",
+     "key": "LippischerGB",
+     "abbreviation": "Lippischer GB",
+     "country": "DE"
+    },
+    {
+     "id": 233,
+     "name": "Mecklenburgischer Gemeinschaftsverband",
+     "key": "Mecklenburgisch",
+     "abbreviation": "Mecklenburgischer GV",
+     "country": "DE"
+    },
+    {
+     "id": 161,
+     "name": "Mülheimer Verband",
+     "key": "MülheimerVerb",
+     "abbreviation": "Mülheimer Verband",
+     "country": "DE"
+    },
+    {
+     "id": 286,
+     "name": "Neuapostolische Kirche",
+     "key": "NAK",
+     "abbreviation": "NAK",
+     "country": "DE"
+    },
+    {
+     "id": 162,
+     "name": "New Covenant Ministries International",
+     "key": "NCMI",
+     "abbreviation": "NCMI",
+     "country": null
+    },
+    {
+     "id": 163,
+     "name": "Nordkirche",
+     "key": "Nordkirche",
+     "abbreviation": "Nordkirche",
+     "country": "DE"
+    },
+    {
+     "id": 236,
+     "name": "Ohofer Gemeinschaftsverband",
+     "key": "OhoferGV",
+     "abbreviation": "Ohofer GV",
+     "country": "DE"
+    },
+    {
+     "id": 164,
+     "name": "Orthodoxe Kirche",
+     "key": "OrthKirche",
+     "abbreviation": "Orth. Kirche",
+     "country": null
+    },
+    {
+     "id": 165,
+     "name": "Österreichische Evangelische Allianz",
+     "key": "AllianzÖ",
+     "abbreviation": "Allianz AT",
+     "country": "AT"
+    },
+    {
+     "id": 276,
+     "name": "Österreichische Militärdiözese",
+     "key": "ATMilitärdiöz",
+     "abbreviation": "AT Militärdiöz",
+     "country": "AT"
+    },
+    {
+     "id": 166,
+     "name": "Ostfriesischer Gemeinschaftsverband",
+     "key": "OGV",
+     "abbreviation": "OGV",
+     "country": "DE"
+    },
+    {
+     "id": 167,
+     "name": "Pietistischer Gemeinschaftsverband",
+     "key": "PietisGV",
+     "abbreviation": "Pietistischer GV",
+     "country": null
+    },
+    {
+     "id": 168,
+     "name": "Pommersche Evangelische Kirche",
+     "key": "KircheMV",
+     "abbreviation": "Kirche MV",
+     "country": "DE"
+    },
+    {
+     "id": 169,
+     "name": "Presbyterianische Kirche",
+     "key": "PresbKirche",
+     "abbreviation": "Presb. Kirche",
+     "country": null
+    },
+    {
+     "id": 170,
+     "name": "Reformierte Kirchen Bern-Jura-Solothurn",
+     "key": "RefBern",
+     "abbreviation": "Ref. Bern-J.-S.",
+     "country": "CH"
+    },
+    {
+     "id": 171,
+     "name": "Reformierte Landeskirche Aargau",
+     "key": "RefAargau",
+     "abbreviation": "Ref. Aargau",
+     "country": "CH"
+    },
+    {
+     "id": 239,
+     "name": "Scharnsteiner Bibelkreis",
+     "key": "ScharnsteinerBK",
+     "abbreviation": "Scharnsteiner Bibelkreis",
+     "country": "AT"
+    },
+    {
+     "id": 172,
+     "name": "Schweizerische Evangelische Allianz",
+     "key": "AllianzCH",
+     "abbreviation": "Allianz CH",
+     "country": "CH"
+    },
+    {
+     "id": 173,
+     "name": "Schweizerische Pfingstmission",
+     "key": "Pfingstmission",
+     "abbreviation": "Pfingstmission",
+     "country": "CH"
+    },
+    {
+     "id": 174,
+     "name": "Selbständige Evangelisch-Lutherische Kirche",
+     "key": "SELK",
+     "abbreviation": "SELK",
+     "country": null
+    },
+    {
+     "id": 175,
+     "name": "Stiftung Freie evangelisch Gemeinden in Norddeutschland",
+     "key": "FEGN",
+     "abbreviation": "FEGN",
+     "country": "DE"
+    },
+    {
+     "id": 176,
+     "name": "Süddeutscher Gemeinschaftsverband",
+     "key": "SV",
+     "abbreviation": "SV",
+     "country": "DE"
+    },
+    {
+     "id": 177,
+     "name": "Südwestdeutscher Gemeinschaftsverband",
+     "key": "SGV",
+     "abbreviation": "SGV",
+     "country": "DE"
+    },
+    {
+     "id": 178,
+     "name": "Südwestdeutscher Jugendverband \"Entschieden für Christus\"",
+     "key": "SWDEC",
+     "abbreviation": "SWD-EC",
+     "country": "DE"
+    },
+    {
+     "id": 279,
+     "name": "Territorialabtei Wettingen-Mehrerau",
+     "key": "TWettMehr",
+     "abbreviation": "T. Wettingen-Mehrerau",
+     "country": "DE"
+    },
+    {
+     "id": 179,
+     "name": "The Church of England",
+     "key": "ChurchOfEngland",
+     "abbreviation": "Church of England",
+     "country": null
+    },
+    {
+     "id": 180,
+     "name": "The Timothy Project",
+     "key": "TimothyProject",
+     "abbreviation": "Timothy Project",
+     "country": null
+    },
+    {
+     "id": 242,
+     "name": "Thüringer Gemeinschaftsbund",
+     "key": "ThüringerGB",
+     "abbreviation": "Thüringer GB",
+     "country": "DE"
+    },
+    {
+     "id": 181,
+     "name": "Verband der Evangelisch-Reformierten Kirchgemeinden des Kantons Obwalden",
+     "key": "EvRefObwalden",
+     "abbreviation": "Ev.-ref. Obwalden",
+     "country": "CH"
+    },
+    {
+     "id": 182,
+     "name": "Verband der Gemeinschaften in der Evangelischen Kirche in Schleswig-Holstein",
+     "key": "VGSH",
+     "abbreviation": "VG-SH",
+     "country": "DE"
+    },
+    {
+     "id": 183,
+     "name": "Verband deutscher Mennonitengemeinden",
+     "key": "Mennoiten",
+     "abbreviation": "Mennoniten",
+     "country": "DE"
+    },
+    {
+     "id": 194,
+     "name": "Verein für Berliner Stadtmission",
+     "key": "StadtmissionBER",
+     "abbreviation": "Berliner Stadtmission",
+     "country": "DE"
+    },
+    {
+     "id": 184,
+     "name": "Vereinigung Apostolischer Gemeinden",
+     "key": "VAG",
+     "abbreviation": "VAG",
+     "country": null
+    },
+    {
+     "id": 185,
+     "name": "Vereinigung Evangelisch Freikirchlicher Gemeinden",
+     "key": "VFG",
+     "abbreviation": "VFG",
+     "country": "DE"
+    },
+    {
+     "id": 186,
+     "name": "Vereinigung Evangelisch Freikirchlicher Gemeinden in der Schweiz",
+     "key": "VFGCH",
+     "abbreviation": "VFG CH",
+     "country": "CH"
+    },
+    {
+     "id": 187,
+     "name": "Vereinigung Evangelischer Freikirchen",
+     "key": "VEF",
+     "abbreviation": "VEF",
+     "country": null
+    },
+    {
+     "id": 188,
+     "name": "Vereinigung Freier Missionsgemeinden",
+     "key": "VFMG",
+     "abbreviation": "VFMG",
+     "country": null
+    },
+    {
+     "id": 189,
+     "name": "Vereinigung Freier Missionsgemeinden Schweiz",
+     "key": "VFMGCH",
+     "abbreviation": "VFMG CH",
+     "country": "CH"
+    },
+    {
+     "id": 246,
+     "name": "Via Movement",
+     "key": "VM",
+     "abbreviation": "VM",
+     "country": "DE"
+    },
+    {
+     "id": 190,
+     "name": "Vineyard DACH",
+     "key": "Vineyard",
+     "abbreviation": "Vineyard",
+     "country": "DE"
+    },
+    {
+     "id": 47,
+     "name": "Viva Kirche Schweiz",
+     "key": "ChrischCH",
+     "abbreviation": "Viva Kirche CH",
+     "country": "CH"
+    },
+    {
+     "id": 191,
+     "name": "Westdeutscher Gemeinschaftsverband",
+     "key": "WGV",
+     "abbreviation": "WGV",
+     "country": "DE"
+    },
+    {
+     "id": 245,
+     "name": "Westfälischer Gemeinschaftsverband",
+     "key": "WestfälischerGV",
+     "abbreviation": "Westfälischer GV",
+     "country": "DE"
+    }
+   ],
+   "socialMedia": [
+    "Facebook",
+    "Instagram",
+    "Pinterest",
+    "Spotify",
+    "Soundcloud",
+    "Snapchat",
+    "Telegram",
+    "TikTok",
+    "Twitter",
+    "Vimeo",
+    "WhatsApp",
+    "YouTube"
+   ],
+   "tags": [
+    {
+     "name": "active",
+     "nameTranslated": "aktiv",
+     "key": "ACTIVE"
+    },
+    {
+     "name": "biblically.devoted",
+     "nameTranslated": "bibeltreu",
+     "key": "BIBLICALLY_DEVOTED"
+    },
+    {
+     "name": "charismatic",
+     "nameTranslated": "charismatisch",
+     "key": "CHARISMATIC"
+    },
+    {
+     "name": "personal",
+     "nameTranslated": "familiär",
+     "key": "PERSONAL"
+    },
+    {
+     "name": "international",
+     "nameTranslated": "international",
+     "key": "INTERNATIONAL"
+    },
+    {
+     "name": "child.friendly",
+     "nameTranslated": "kinderfreundlich",
+     "key": "CHILD_FRIENDLY"
+    },
+    {
+     "name": "classical",
+     "nameTranslated": "klassisch",
+     "key": "CLASSICAL"
+    },
+    {
+     "name": "contemplative",
+     "nameTranslated": "kontemplativ",
+     "key": "CONTEMPLATIVE"
+    },
+    {
+     "name": "lively",
+     "nameTranslated": "lebendig",
+     "key": "LIVELY"
+    },
+    {
+     "name": "missionary",
+     "nameTranslated": "missionarisch",
+     "key": "MISSIONARY"
+    },
+    {
+     "name": "modern",
+     "nameTranslated": "modern",
+     "key": "MODERN"
+    },
+    {
+     "name": "open.to.guests",
+     "nameTranslated": "offen für Gäste",
+     "key": "OPEN_TO_GUESTS"
+    },
+    {
+     "name": "progressive",
+     "nameTranslated": "progressiv",
+     "key": "PROGRESSIVE"
+    },
+    {
+     "name": "traditional",
+     "nameTranslated": "traditionell",
+     "key": "TRADITIONAL"
+    }
+   ],
+   "groupHomepages": [
+    {
+     "groupId": 15,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr"
+    },
+    {
+     "groupId": 26,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/XSNfpKRirheeYbddbCvgbwX3nDrrYrU4"
+    },
+    {
+     "groupId": 32,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/ctZP68Ryo8aFF0OfKUw1XFAQKgjx3r7R"
+    },
+    {
+     "groupId": 39,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/cubuUUYsTCCC070EbLnBHK9eQ3YPEHTB"
+    },
+    {
+     "groupId": 13,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/6oasIhfmGt6uuLEPvgPnA52uFyYGWaCp"
+    },
+    {
+     "groupId": 136,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/o7xaF0VyCaAMMwyPD7Sf1JyaEAmErayx"
+    },
+    {
+     "groupId": 168,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/EBETdES12VIWHbDxpEtY4qBN1j6BnS7X"
+    },
+    {
+     "groupId": 171,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/gnxZhKrIqRSZjo9rmfMHaGFMsXMaf2U2"
+    },
+    {
+     "groupId": 183,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/mOVYPF9Lu7A9ciVEI9aygj9SSrmHLdP7"
+    },
+    {
+     "groupId": 10,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/eYDINyvZ55ROJQlrHsfGRFuJ0aRDcjd6"
+    },
+    {
+     "groupId": 11,
+     "groupHomepageUrl": "https://gemeinde.example/grouphomepage/1kPxtmtspn9U6JJalPcyy8VZkxCqcegB"
+    }
+   ]
+  },
+  "meta": {
+   "denominations": 6,
+   "associations": 224,
+   "socialMedia": 12,
+   "tags": 14,
+   "groupHomepages": 11
+  }
+ }
+}

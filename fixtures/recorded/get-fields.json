@@ -1,0 +1,3581 @@
+{
+ "operation": "get-fields",
+ "request": {
+  "method": "GET",
+  "path": "/fields",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "key": "title",
+    "name": "title",
+    "nameTranslated": "Titel",
+    "column": "titel",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": null,
+    "secLevel": 1,
+    "length": 30,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 2,
+    "key": "firstName",
+    "name": "given.name",
+    "nameTranslated": "Vorname",
+    "column": "vorname",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "&nbsp;",
+    "secLevel": 1,
+    "length": 100,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 3,
+    "key": "lastName",
+    "name": "surname",
+    "nameTranslated": "Nachname",
+    "column": "name",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 100,
+    "sortKey": 4,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 4,
+    "key": "street",
+    "name": "street",
+    "nameTranslated": "Straße",
+    "column": "strasse",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 100,
+    "sortKey": 5,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 5,
+    "key": "addressAddition",
+    "name": "addition",
+    "nameTranslated": "Zusatz",
+    "column": "zusatz",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 100,
+    "sortKey": 6,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 6,
+    "key": "zip",
+    "name": "postalcode",
+    "nameTranslated": "PLZ",
+    "column": "plz",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": null,
+    "secLevel": 2,
+    "length": 20,
+    "sortKey": 7,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 7,
+    "key": "city",
+    "name": "city",
+    "nameTranslated": "Ort",
+    "column": "ort",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 40,
+    "sortKey": 8,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 8,
+    "key": "country",
+    "name": "country",
+    "nameTranslated": "Land",
+    "column": "land",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/><br/>",
+    "secLevel": 2,
+    "length": 30,
+    "sortKey": 9,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 9,
+    "key": "sexId",
+    "name": "sex",
+    "nameTranslated": "Geschlecht",
+    "column": "geschlecht_no",
+    "shorty": "sex",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 11,
+    "sortKey": 10,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "0",
+      "name": "sex.unknown",
+      "sortKey": 0
+     },
+     {
+      "id": "1",
+      "name": "sex.male",
+      "sortKey": 0
+     },
+     {
+      "id": "2",
+      "name": "sex.female",
+      "sortKey": 0
+     },
+     {
+      "id": "3",
+      "name": "sex.diverse",
+      "sortKey": 0
+     }
+    ]
+   },
+   {
+    "id": 10,
+    "key": "phonePrivate",
+    "name": "phone.privat",
+    "nameTranslated": "Telefon privat",
+    "column": "telefonprivat",
+    "shorty": "ph.privat",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 30,
+    "sortKey": 11,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 11,
+    "key": "phoneWork",
+    "name": "phone.business",
+    "nameTranslated": "Telefon geschäftl.",
+    "column": "telefongeschaeftlich",
+    "shorty": "ph.business",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 20,
+    "sortKey": 12,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 12,
+    "key": "mobile",
+    "name": "phone.mobile",
+    "nameTranslated": "Handy",
+    "column": "telefonhandy",
+    "shorty": "ph.mobile",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 20,
+    "sortKey": 13,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 13,
+    "key": "fax",
+    "name": "fax",
+    "nameTranslated": "Fax",
+    "column": "fax",
+    "shorty": "fax",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 20,
+    "sortKey": 14,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 14,
+    "key": "email",
+    "name": "email",
+    "nameTranslated": "E-Mail",
+    "column": "email",
+    "shorty": "email",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 50,
+    "sortKey": 15,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 15,
+    "key": "cmsUserId",
+    "name": "cmsuserid",
+    "nameTranslated": "Benutzername",
+    "column": "cmsuserid",
+    "shorty": "cmsuserid",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 50,
+    "sortKey": 16,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 50,
+    "key": "optigemId",
+    "name": "optigem.nr",
+    "nameTranslated": "Optigem-Nr",
+    "column": "optigem_nr",
+    "shorty": "optigem.nr",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": 10,
+    "sortKey": 17,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 54,
+    "key": "nickname",
+    "name": "Rufname",
+    "nameTranslated": "Rufname",
+    "column": "spitzname",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "(%)",
+    "secLevel": 1,
+    "length": 30,
+    "sortKey": 3,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 89,
+    "key": "isSystemUser",
+    "name": "user.system",
+    "nameTranslated": "ChurchTools",
+    "column": "is_system_user",
+    "shorty": "user.system",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "0",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 1,
+    "sortKey": 100,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": true,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 108,
+    "key": "guid",
+    "name": "guid",
+    "nameTranslated": "GUID",
+    "column": "guid",
+    "shorty": "guid",
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 40,
+    "sortKey": 300,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 164,
+    "key": "geocodingFailed",
+    "name": "geocoding-failed.date",
+    "nameTranslated": "geocoding-failed.date",
+    "column": "geocoding_failed",
+    "shorty": null,
+    "fieldCategoryCode": "f_address",
+    "fieldTypeCode": "datetime",
+    "fieldTypeId": 11,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": null,
+    "secLevel": 1,
+    "length": null,
+    "sortKey": 150,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 16,
+    "key": "birthday",
+    "name": "date.of.birth",
+    "nameTranslated": "Geburtsdatum",
+    "column": "geburtsdatum",
+    "shorty": "date.of.birth",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": null,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 17,
+    "key": "birthName",
+    "name": "birth.name",
+    "nameTranslated": "Geburtsname",
+    "column": "geburtsname",
+    "shorty": "birth.name",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 30,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 18,
+    "key": "birthplace",
+    "name": "place.of.birth",
+    "nameTranslated": "Geburtsort",
+    "column": "geburtsort",
+    "shorty": "place.of.birth",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 30,
+    "sortKey": 3,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 19,
+    "key": "job",
+    "name": "profession",
+    "nameTranslated": "Beruf",
+    "column": "beruf",
+    "shorty": "profession",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 50,
+    "sortKey": 4,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 20,
+    "key": "nationalityId",
+    "name": "nationality",
+    "nameTranslated": "Nationalität",
+    "column": "nationalitaet_id",
+    "shorty": "nationality",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 11,
+    "sortKey": 5,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "3",
+      "name": "Äquatorialguinea"
+     },
+     {
+      "id": "32",
+      "name": "China, Volksrepublik"
+     },
+     {
+      "id": "8",
+      "name": "country.ad"
+     },
+     {
+      "id": "195",
+      "name": "country.ae"
+     },
+     {
+      "id": "5",
+      "name": "country.af"
+     },
+     {
+      "id": "10",
+      "name": "country.ag"
+     },
+     {
+      "id": "6",
+      "name": "country.al"
+     },
+     {
+      "id": "12",
+      "name": "country.am"
+     },
+     {
+      "id": "9",
+      "name": "country.ao"
+     },
+     {
+      "id": "11",
+      "name": "country.ar"
+     },
+     {
+      "id": "127",
+      "name": "country.at"
+     },
+     {
+      "id": "14",
+      "name": "country.au"
+     },
+     {
+      "id": "13",
+      "name": "country.az"
+     },
+     {
+      "id": "24",
+      "name": "country.ba"
+     },
+     {
+      "id": "18",
+      "name": "country.bb"
+     },
+     {
+      "id": "17",
+      "name": "country.bd"
+     },
+     {
+      "id": "19",
+      "name": "country.be"
+     },
+     {
+      "id": "29",
+      "name": "country.bf"
+     },
+     {
+      "id": "28",
+      "name": "country.bg"
+     },
+     {
+      "id": "16",
+      "name": "country.bh"
+     },
+     {
+      "id": "30",
+      "name": "country.bi"
+     },
+     {
+      "id": "21",
+      "name": "country.bj"
+     },
+     {
+      "id": "27",
+      "name": "country.bn"
+     },
+     {
+      "id": "23",
+      "name": "country.bo"
+     },
+     {
+      "id": "26",
+      "name": "country.br"
+     },
+     {
+      "id": "15",
+      "name": "country.bs"
+     },
+     {
+      "id": "22",
+      "name": "country.bt"
+     },
+     {
+      "id": "25",
+      "name": "country.bw"
+     },
+     {
+      "id": "197",
+      "name": "country.by"
+     },
+     {
+      "id": "20",
+      "name": "country.bz"
+     },
+     {
+      "id": "74",
+      "name": "country.ca"
+     },
+     {
+      "id": "198",
+      "name": "country.cf"
+     },
+     {
+      "id": "150",
+      "name": "country.ch"
+     },
+     {
+      "id": "41",
+      "name": "country.ci"
+     },
+     {
+      "id": "31",
+      "name": "country.cl"
+     },
+     {
+      "id": "73",
+      "name": "country.cm"
+     },
+     {
+      "id": "81",
+      "name": "country.co"
+     },
+     {
+      "id": "33",
+      "name": "country.cr"
+     },
+     {
+      "id": "86",
+      "name": "country.cu"
+     },
+     {
+      "id": "75",
+      "name": "country.cv"
+     },
+     {
+      "id": "35",
+      "name": "country.de"
+     },
+     {
+      "id": "38",
+      "name": "country.dj"
+     },
+     {
+      "id": "34",
+      "name": "country.dk"
+     },
+     {
+      "id": "36",
+      "name": "country.dm"
+     },
+     {
+      "id": "37",
+      "name": "country.do"
+     },
+     {
+      "id": "7",
+      "name": "country.dz"
+     },
+     {
+      "id": "39",
+      "name": "country.ec"
+     },
+     {
+      "id": "43",
+      "name": "country.ee"
+     },
+     {
+      "id": "2",
+      "name": "country.eg"
+     },
+     {
+      "id": "142",
+      "name": "country.eh"
+     },
+     {
+      "id": "42",
+      "name": "country.er"
+     },
+     {
+      "id": "160",
+      "name": "country.es"
+     },
+     {
+      "id": "4",
+      "name": "country.et"
+     },
+     {
+      "id": "45",
+      "name": "country.fi"
+     },
+     {
+      "id": "44",
+      "name": "country.fj"
+     },
+     {
+      "id": "46",
+      "name": "country.fr"
+     },
+     {
+      "id": "47",
+      "name": "country.ga"
+     },
+     {
+      "id": "53",
+      "name": "country.gb"
+     },
+     {
+      "id": "51",
+      "name": "country.gd"
+     },
+     {
+      "id": "49",
+      "name": "country.ge"
+     },
+     {
+      "id": "50",
+      "name": "country.gh"
+     },
+     {
+      "id": "48",
+      "name": "country.gm"
+     },
+     {
+      "id": "55",
+      "name": "country.gn"
+     },
+     {
+      "id": "52",
+      "name": "country.gr"
+     },
+     {
+      "id": "54",
+      "name": "country.gt"
+     },
+     {
+      "id": "56",
+      "name": "country.gw"
+     },
+     {
+      "id": "57",
+      "name": "country.gy"
+     },
+     {
+      "id": "59",
+      "name": "country.hn"
+     },
+     {
+      "id": "85",
+      "name": "country.hr"
+     },
+     {
+      "id": "58",
+      "name": "country.ht"
+     },
+     {
+      "id": "188",
+      "name": "country.hu"
+     },
+     {
+      "id": "61",
+      "name": "country.id"
+     },
+     {
+      "id": "64",
+      "name": "country.ie"
+     },
+     {
+      "id": "66",
+      "name": "country.il"
+     },
+     {
+      "id": "60",
+      "name": "country.in"
+     },
+     {
+      "id": "62",
+      "name": "country.iq"
+     },
+     {
+      "id": "63",
+      "name": "country.ir"
+     },
+     {
+      "id": "65",
+      "name": "country.is"
+     },
+     {
+      "id": "67",
+      "name": "country.it"
+     },
+     {
+      "id": "68",
+      "name": "country.jm"
+     },
+     {
+      "id": "71",
+      "name": "country.jo"
+     },
+     {
+      "id": "69",
+      "name": "country.jp"
+     },
+     {
+      "id": "78",
+      "name": "country.ke"
+     },
+     {
+      "id": "79",
+      "name": "country.kg"
+     },
+     {
+      "id": "72",
+      "name": "country.kh"
+     },
+     {
+      "id": "80",
+      "name": "country.ki"
+     },
+     {
+      "id": "162",
+      "name": "country.kn"
+     },
+     {
+      "id": "125",
+      "name": "country.kp"
+     },
+     {
+      "id": "167",
+      "name": "country.kr"
+     },
+     {
+      "id": "87",
+      "name": "country.kw"
+     },
+     {
+      "id": "76",
+      "name": "country.kz"
+     },
+     {
+      "id": "88",
+      "name": "country.la"
+     },
+     {
+      "id": "91",
+      "name": "country.lb"
+     },
+     {
+      "id": "94",
+      "name": "country.li"
+     },
+     {
+      "id": "161",
+      "name": "country.lk"
+     },
+     {
+      "id": "89",
+      "name": "country.ls"
+     },
+     {
+      "id": "95",
+      "name": "country.lt"
+     },
+     {
+      "id": "96",
+      "name": "country.lu"
+     },
+     {
+      "id": "90",
+      "name": "country.lv"
+     },
+     {
+      "id": "93",
+      "name": "country.ly"
+     },
+     {
+      "id": "103",
+      "name": "country.ma"
+     },
+     {
+      "id": "111",
+      "name": "country.mc"
+     },
+     {
+      "id": "113",
+      "name": "country.me"
+     },
+     {
+      "id": "97",
+      "name": "country.mg"
+     },
+     {
+      "id": "104",
+      "name": "country.mh"
+     },
+     {
+      "id": "107",
+      "name": "country.mk"
+     },
+     {
+      "id": "115",
+      "name": "country.mm"
+     },
+     {
+      "id": "112",
+      "name": "country.mn"
+     },
+     {
+      "id": "105",
+      "name": "country.mr"
+     },
+     {
+      "id": "102",
+      "name": "country.mt"
+     },
+     {
+      "id": "106",
+      "name": "country.mu"
+     },
+     {
+      "id": "100",
+      "name": "country.mv"
+     },
+     {
+      "id": "98",
+      "name": "country.mw"
+     },
+     {
+      "id": "108",
+      "name": "country.mx"
+     },
+     {
+      "id": "99",
+      "name": "country.my"
+     },
+     {
+      "id": "114",
+      "name": "country.mz"
+     },
+     {
+      "id": "116",
+      "name": "country.na"
+     },
+     {
+      "id": "122",
+      "name": "country.ne"
+     },
+     {
+      "id": "123",
+      "name": "country.ng"
+     },
+     {
+      "id": "120",
+      "name": "country.ni"
+     },
+     {
+      "id": "121",
+      "name": "country.nl"
+     },
+     {
+      "id": "126",
+      "name": "country.no"
+     },
+     {
+      "id": "118",
+      "name": "country.np"
+     },
+     {
+      "id": "117",
+      "name": "country.nr"
+     },
+     {
+      "id": "124",
+      "name": "country.nu"
+     },
+     {
+      "id": "119",
+      "name": "country.nz"
+     },
+     {
+      "id": "128",
+      "name": "country.om"
+     },
+     {
+      "id": "132",
+      "name": "country.pa"
+     },
+     {
+      "id": "135",
+      "name": "country.pe"
+     },
+     {
+      "id": "133",
+      "name": "country.pg"
+     },
+     {
+      "id": "136",
+      "name": "country.ph"
+     },
+     {
+      "id": "129",
+      "name": "country.pk"
+     },
+     {
+      "id": "137",
+      "name": "country.pl"
+     },
+     {
+      "id": "138",
+      "name": "country.pt"
+     },
+     {
+      "id": "130",
+      "name": "country.pw"
+     },
+     {
+      "id": "134",
+      "name": "country.py"
+     },
+     {
+      "id": "77",
+      "name": "country.qa"
+     },
+     {
+      "id": "140",
+      "name": "country.ro"
+     },
+     {
+      "id": "152",
+      "name": "country.rs"
+     },
+     {
+      "id": "139",
+      "name": "country.rw"
+     },
+     {
+      "id": "148",
+      "name": "country.sa"
+     },
+     {
+      "id": "143",
+      "name": "country.sb"
+     },
+     {
+      "id": "153",
+      "name": "country.sc"
+     },
+     {
+      "id": "165",
+      "name": "country.sd"
+     },
+     {
+      "id": "149",
+      "name": "country.se"
+     },
+     {
+      "id": "156",
+      "name": "country.sg"
+     },
+     {
+      "id": "158",
+      "name": "country.si"
+     },
+     {
+      "id": "157",
+      "name": "country.sk"
+     },
+     {
+      "id": "154",
+      "name": "country.sl"
+     },
+     {
+      "id": "146",
+      "name": "country.sm"
+     },
+     {
+      "id": "151",
+      "name": "country.sn"
+     },
+     {
+      "id": "168",
+      "name": "country.sr"
+     },
+     {
+      "id": "147",
+      "name": "country.st"
+     },
+     {
+      "id": "40",
+      "name": "country.sv"
+     },
+     {
+      "id": "170",
+      "name": "country.sy"
+     },
+     {
+      "id": "169",
+      "name": "country.sz"
+     },
+     {
+      "id": "183",
+      "name": "country.tc"
+     },
+     {
+      "id": "179",
+      "name": "country.td"
+     },
+     {
+      "id": "176",
+      "name": "country.tg"
+     },
+     {
+      "id": "174",
+      "name": "country.th"
+     },
+     {
+      "id": "171",
+      "name": "country.tj"
+     },
+     {
+      "id": "182",
+      "name": "country.tm"
+     },
+     {
+      "id": "181",
+      "name": "country.tn"
+     },
+     {
+      "id": "177",
+      "name": "country.to"
+     },
+     {
+      "id": "185",
+      "name": "country.tr"
+     },
+     {
+      "id": "178",
+      "name": "country.tt"
+     },
+     {
+      "id": "184",
+      "name": "country.tv"
+     },
+     {
+      "id": "172",
+      "name": "country.tw"
+     },
+     {
+      "id": "173",
+      "name": "country.tz"
+     },
+     {
+      "id": "187",
+      "name": "country.ua"
+     },
+     {
+      "id": "186",
+      "name": "country.ug"
+     },
+     {
+      "id": "190",
+      "name": "country.us"
+     },
+     {
+      "id": "189",
+      "name": "country.uy"
+     },
+     {
+      "id": "191",
+      "name": "country.uz"
+     },
+     {
+      "id": "194",
+      "name": "country.ve"
+     },
+     {
+      "id": "196",
+      "name": "country.vn"
+     },
+     {
+      "id": "192",
+      "name": "country.vu"
+     },
+     {
+      "id": "145",
+      "name": "country.ws"
+     },
+     {
+      "id": "200",
+      "name": "country.xk"
+     },
+     {
+      "id": "70",
+      "name": "country.ye"
+     },
+     {
+      "id": "144",
+      "name": "country.zm"
+     },
+     {
+      "id": "155",
+      "name": "country.zw"
+     },
+     {
+      "id": "82",
+      "name": "Komoren"
+     },
+     {
+      "id": "84",
+      "name": "Kongo, Demokratische Republik"
+     },
+     {
+      "id": "92",
+      "name": "Liberia, Republik"
+     },
+     {
+      "id": "101",
+      "name": "Mali, Republik"
+     },
+     {
+      "id": "109",
+      "name": "Mikronesien, Föderierte Staaten von"
+     },
+     {
+      "id": "110",
+      "name": "Moldawien"
+     },
+     {
+      "id": "175",
+      "name": "Osttimor"
+     },
+     {
+      "id": "131",
+      "name": "Palästinensische Autonomiegebiete"
+     },
+     {
+      "id": "83",
+      "name": "Republik Kongo"
+     },
+     {
+      "id": "141",
+      "name": "Russische Föderation"
+     },
+     {
+      "id": "159",
+      "name": "Somalia, Demokratische Republik"
+     },
+     {
+      "id": "163",
+      "name": "St. Lucia"
+     },
+     {
+      "id": "164",
+      "name": "St. Vincent und die Grenadinen"
+     },
+     {
+      "id": "166",
+      "name": "Südafrika"
+     },
+     {
+      "id": "180",
+      "name": "Tschechien"
+     },
+     {
+      "id": "0",
+      "name": "unknown"
+     },
+     {
+      "id": "193",
+      "name": "Vatikanstadt"
+     },
+     {
+      "id": "199",
+      "name": "Zypern, Republik"
+     }
+    ]
+   },
+   {
+    "id": 21,
+    "key": "familyStatusId",
+    "name": "family.status",
+    "nameTranslated": "Familienstand",
+    "column": "familienstand_no",
+    "shorty": "family.status",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 11,
+    "sortKey": 6,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "0",
+      "name": "familystatus.unknown"
+     },
+     {
+      "id": "1",
+      "name": "familystatus.single"
+     },
+     {
+      "id": "2",
+      "name": "familystatus.married"
+     },
+     {
+      "id": "3",
+      "name": "familystatus.split"
+     },
+     {
+      "id": "4",
+      "name": "familystatus.divorced"
+     },
+     {
+      "id": "5",
+      "name": "familystatus.widowed"
+     }
+    ]
+   },
+   {
+    "id": 22,
+    "key": "weddingDate",
+    "name": "date.of.marriage",
+    "nameTranslated": "Hochzeitsdatum",
+    "column": "hochzeitsdatum",
+    "shorty": "date.of.marriage",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/><br/>",
+    "secLevel": 4,
+    "length": null,
+    "sortKey": 7,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 23,
+    "key": "firstContact",
+    "name": "first.contact",
+    "nameTranslated": "Erstkontakt",
+    "column": "erstkontakt",
+    "shorty": "first.contact",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": null,
+    "sortKey": 8,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 24,
+    "key": "dateOfBelonging",
+    "name": "date.of.belonging",
+    "nameTranslated": "Zugehörig seit",
+    "column": "zugehoerig",
+    "shorty": "date.of.belonging",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": null,
+    "sortKey": 9,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 25,
+    "key": "dateOfEntry",
+    "name": "date.of.entry",
+    "nameTranslated": "Eintrittsdatum",
+    "column": "eintrittsdatum",
+    "shorty": "date.of.entry",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": null,
+    "sortKey": 10,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 26,
+    "key": "referredBy",
+    "name": "refer.from",
+    "nameTranslated": "Überwiesen von",
+    "column": "ueberwiesenvon",
+    "shorty": "refer.from",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 30,
+    "sortKey": 11,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 27,
+    "key": "dateOfResign",
+    "name": "date.of.resign",
+    "nameTranslated": "Austrittsdatum",
+    "column": "austrittsdatum",
+    "shorty": "date.of.resign",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": null,
+    "sortKey": 12,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 28,
+    "key": "referredTo",
+    "name": "refer.to",
+    "nameTranslated": "Überwiesen nach",
+    "column": "ueberwiesennach",
+    "shorty": "refer.to",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/><br/>",
+    "secLevel": 4,
+    "length": 30,
+    "sortKey": 13,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 29,
+    "key": "dateOfBaptism",
+    "name": "date.of.baptism",
+    "nameTranslated": "Taufdatum",
+    "column": "taufdatum",
+    "shorty": "date.of.baptism",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": null,
+    "sortKey": 14,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 30,
+    "key": "placeOfBaptism",
+    "name": "place.of.baptism",
+    "nameTranslated": "Taufort",
+    "column": "taufort",
+    "shorty": "place.of.baptism",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 50,
+    "sortKey": 15,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 31,
+    "key": "baptisedBy",
+    "name": "baptism.through",
+    "nameTranslated": "Getauft durch",
+    "column": "getauftdurch",
+    "shorty": "baptism.through",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 50,
+    "sortKey": 16,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 167,
+    "key": "dateOfDeath",
+    "name": "person.death-date",
+    "nameTranslated": "Sterbedatum",
+    "column": "death_date",
+    "shorty": "person.death-date",
+    "fieldCategoryCode": "f_church",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": null,
+    "sortKey": 17,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 32,
+    "key": "statusId",
+    "name": "glossary.person-status",
+    "nameTranslated": "Personenstatus",
+    "column": "status_id",
+    "shorty": "glossary.person-status",
+    "fieldCategoryCode": "f_category",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 11,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "0",
+      "name": "status.potential",
+      "sortKey": 10,
+      "secLevel": 1
+     },
+     {
+      "id": "4",
+      "name": "status.delete",
+      "sortKey": 100,
+      "secLevel": 1
+     },
+     {
+      "id": "1",
+      "name": "status.friend",
+      "sortKey": 20,
+      "secLevel": 1
+     },
+     {
+      "id": "3",
+      "name": "status.member",
+      "sortKey": 30,
+      "secLevel": 1
+     }
+    ]
+   },
+   {
+    "id": 33,
+    "key": "campusId",
+    "name": "station",
+    "nameTranslated": "Standort",
+    "column": "station_id",
+    "shorty": "station",
+    "fieldCategoryCode": "f_category",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 11,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "0",
+      "name": "Winterhude",
+      "sortKey": 1
+     },
+     {
+      "id": "1",
+      "name": "Hafencity",
+      "sortKey": 2
+     }
+    ]
+   },
+   {
+    "id": 34,
+    "key": "name",
+    "name": "caption",
+    "nameTranslated": "Titel",
+    "column": "bezeichnung",
+    "shorty": "caption",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 255,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 39,
+    "key": "dateOfFoundation",
+    "name": "date.of.foundation",
+    "nameTranslated": "Gründungsdatum",
+    "column": "gruendungsdatum",
+    "shorty": "date.of.foundation",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": null,
+    "sortKey": 6,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 40,
+    "key": "endDate",
+    "name": "date.of.completion",
+    "nameTranslated": "Abschlussdatum",
+    "column": "abschlussdatum",
+    "shorty": "date.of.completion",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": null,
+    "sortKey": 7,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 41,
+    "key": "meetingTime",
+    "name": "time.of.meeting",
+    "nameTranslated": "Startzeit",
+    "column": "treffzeit",
+    "shorty": "time.of.meeting",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 100,
+    "sortKey": 8,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 42,
+    "key": "treffpunkt",
+    "name": "place.of.meeting",
+    "nameTranslated": "Treffpunkt",
+    "column": "treffpunkt",
+    "shorty": "place.of.meeting",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 50,
+    "sortKey": 9,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 44,
+    "key": "targetGroupId",
+    "name": "target.group",
+    "nameTranslated": "Zielgruppe",
+    "column": "targetgroup_id",
+    "shorty": "target.group",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 30,
+    "sortKey": 11,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "1",
+      "name": "everyone",
+      "sortKey": 1
+     },
+     {
+      "id": "2",
+      "name": "men",
+      "sortKey": 2
+     },
+     {
+      "id": "3",
+      "name": "women",
+      "sortKey": 3
+     },
+     {
+      "id": "4",
+      "name": "singles",
+      "sortKey": 4
+     },
+     {
+      "id": "5",
+      "name": "students",
+      "sortKey": 5
+     }
+    ]
+   },
+   {
+    "id": 45,
+    "key": "note",
+    "name": "description",
+    "nameTranslated": "Beschreibung",
+    "column": "notiz",
+    "shorty": "description",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "textarea",
+    "fieldTypeId": 5,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 10000,
+    "sortKey": 12,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 48,
+    "key": "inStatistic",
+    "name": "show.in.statistic",
+    "nameTranslated": "In Statistik zeigen",
+    "column": "instatistik_yn",
+    "shorty": "show.in.statistic",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": 1,
+    "sortKey": 15,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 49,
+    "key": "createWeeklyGroupMeetings",
+    "name": "maintain.weekly.meeting",
+    "nameTranslated": "Wöchentliche Gruppentreffen erstellen",
+    "column": "treffen_yn",
+    "shorty": "maintain.weekly.meeting",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": 1,
+    "sortKey": 16,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 51,
+    "key": "maxMembers",
+    "name": "maximum.members",
+    "nameTranslated": "Plätze",
+    "column": "max_teilnehmer",
+    "shorty": "maximum.members",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "number",
+    "fieldTypeId": 6,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 11,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 55,
+    "key": "informLeader",
+    "name": "inform.via.email.about.changes",
+    "nameTranslated": "Per E-Mail über Änderungen informieren",
+    "column": "mail_an_leiter_yn",
+    "shorty": "inform.via.email.about.changes",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": 1,
+    "sortKey": 19,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 56,
+    "key": "groupTypeId",
+    "name": "group.type",
+    "nameTranslated": "Gruppentyp",
+    "column": "gruppentyp_id",
+    "shorty": "group.type",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": 11,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "1",
+      "name": "Kleingruppe",
+      "sortKey": 10
+     },
+     {
+      "id": "2",
+      "name": "Team",
+      "sortKey": 20
+     },
+     {
+      "id": "3",
+      "name": "Veranstaltung",
+      "sortKey": 30
+     },
+     {
+      "id": "4",
+      "name": "Verteiler",
+      "sortKey": 40
+     },
+     {
+      "id": "5",
+      "name": "Schlüssel",
+      "sortKey": 50
+     },
+     {
+      "id": "6",
+      "name": "Prozesse",
+      "sortKey": 60
+     }
+    ]
+   },
+   {
+    "id": 59,
+    "key": "campusId",
+    "name": "station",
+    "nameTranslated": "Standort",
+    "column": "station_id",
+    "shorty": "station",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 12,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": [
+     {
+      "id": "0",
+      "name": "Winterhude",
+      "sortKey": 1
+     },
+     {
+      "id": "1",
+      "name": "Hafencity",
+      "sortKey": 2
+     }
+    ]
+   },
+   {
+    "id": 60,
+    "key": "groupMeetingTemplateId",
+    "name": "groupmeeting.template",
+    "nameTranslated": "Vorlage für Gruppentreffen",
+    "column": "gruppentreffen_template_id",
+    "shorty": "groupmeeting.template",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 12,
+    "sortKey": 29,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": [
+     {
+      "id": "1",
+      "name": "Lowlights / Highlights"
+     },
+     {
+      "id": "2",
+      "name": "Gemeinschaft, Gebet, Gottes Wort"
+     }
+    ]
+   },
+   {
+    "id": 61,
+    "key": "newPersonCampusId",
+    "name": "station",
+    "nameTranslated": "Standort",
+    "column": "new_person_station_id",
+    "shorty": "station",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 12,
+    "sortKey": 30,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": [
+     {
+      "id": "0",
+      "name": "Winterhude",
+      "sortKey": 1
+     },
+     {
+      "id": "1",
+      "name": "Hafencity",
+      "sortKey": 2
+     }
+    ]
+   },
+   {
+    "id": 62,
+    "key": "newPersonStatusId",
+    "name": "status",
+    "nameTranslated": "Status",
+    "column": "new_person_status_id",
+    "shorty": "status",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 12,
+    "sortKey": 31,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": [
+     {
+      "id": "0",
+      "name": "status.potential",
+      "sortKey": 10,
+      "secLevel": 1
+     },
+     {
+      "id": "4",
+      "name": "status.delete",
+      "sortKey": 100,
+      "secLevel": 1
+     },
+     {
+      "id": "1",
+      "name": "status.friend",
+      "sortKey": 20,
+      "secLevel": 1
+     },
+     {
+      "id": "3",
+      "name": "status.member",
+      "sortKey": 30,
+      "secLevel": 1
+     }
+    ]
+   },
+   {
+    "id": 63,
+    "key": "newPersonDepartmentId",
+    "name": "department",
+    "nameTranslated": "Bereich",
+    "column": "new_person_dep_id",
+    "shorty": "department",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 12,
+    "sortKey": 32,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": [
+     {
+      "id": "1",
+      "name": "Gemeindeliste",
+      "sortKey": 1
+     }
+    ]
+   },
+   {
+    "id": 64,
+    "key": "autoAccept",
+    "name": "group.application.needs.approval",
+    "nameTranslated": "Für die Gruppenmitgliedschaft ist eine manuelle Freigabe durch die Leitung der Gruppe notwendig. Neue Gruppenmitglieder erhalten den Status \"angefragt\".",
+    "column": "direktteilnehmer_yn",
+    "shorty": "group.application.needs.approval",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": 1,
+    "sortKey": 25,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 65,
+    "key": "weekday",
+    "name": "day.of.meeting",
+    "nameTranslated": "Wochentag",
+    "column": "meetingday_no",
+    "shorty": "day.of.meeting",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 12,
+    "sortKey": 8,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "1",
+      "name": "monday",
+      "sortKey": 0
+     },
+     {
+      "id": "2",
+      "name": "tuesday",
+      "sortKey": 1
+     },
+     {
+      "id": "3",
+      "name": "wednesday",
+      "sortKey": 2
+     },
+     {
+      "id": "4",
+      "name": "thursday",
+      "sortKey": 3
+     },
+     {
+      "id": "5",
+      "name": "friday",
+      "sortKey": 4
+     },
+     {
+      "id": "6",
+      "name": "saturday",
+      "sortKey": 5
+     },
+     {
+      "id": "0",
+      "name": "sunday",
+      "sortKey": 6
+     }
+    ]
+   },
+   {
+    "id": 66,
+    "key": "ageGroupIds",
+    "name": "age.groups",
+    "nameTranslated": "Altersgruppen",
+    "column": "agegroup_ids",
+    "shorty": "age.groups",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "multiselect",
+    "fieldTypeId": 7,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 12,
+    "sortKey": 11,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "9",
+      "name": "0-2",
+      "sortKey": 0
+     },
+     {
+      "id": "1",
+      "name": "10-12",
+      "sortKey": 10
+     },
+     {
+      "id": "2",
+      "name": "13-19",
+      "sortKey": 13
+     },
+     {
+      "id": "4",
+      "name": "20er",
+      "sortKey": 20
+     },
+     {
+      "id": "10",
+      "name": "3-5",
+      "sortKey": 3
+     },
+     {
+      "id": "5",
+      "name": "30er",
+      "sortKey": 30
+     },
+     {
+      "id": "6",
+      "name": "40er",
+      "sortKey": 40
+     },
+     {
+      "id": "7",
+      "name": "50er",
+      "sortKey": 50
+     },
+     {
+      "id": "11",
+      "name": "6-9",
+      "sortKey": 6
+     },
+     {
+      "id": "8",
+      "name": "60+",
+      "sortKey": 60
+     }
+    ]
+   },
+   {
+    "id": 68,
+    "key": "groupStatusId",
+    "name": "group.status",
+    "nameTranslated": "Gruppenstatus",
+    "column": "groupstatus_id",
+    "shorty": "group.status",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 12,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": [
+     {
+      "id": 1,
+      "name": "Aktiv"
+     },
+     {
+      "id": 2,
+      "name": "Entwurf"
+     },
+     {
+      "id": 3,
+      "name": "Archiviert"
+     },
+     {
+      "id": 4,
+      "name": "Beendet"
+     }
+    ]
+   },
+   {
+    "id": 69,
+    "key": "groupCategoryId",
+    "name": "groupcategory",
+    "nameTranslated": "Kategorie",
+    "column": "groupcategory_id",
+    "shorty": "groupcategory",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 3,
+    "length": 12,
+    "sortKey": 12,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "2",
+      "name": "Kleingruppe",
+      "sortKey": 10
+     },
+     {
+      "id": "3",
+      "name": "Seminar",
+      "sortKey": 20
+     },
+     {
+      "id": "1",
+      "name": "Sportangebot",
+      "sortKey": 30
+     }
+    ]
+   },
+   {
+    "id": 71,
+    "key": "imageId",
+    "name": "groupimage",
+    "nameTranslated": "Gruppenbild",
+    "column": "groupimage_id",
+    "shorty": "groupimage",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 12,
+    "sortKey": 33,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 92,
+    "key": "signUpHeadline",
+    "name": "sign.up.headline",
+    "nameTranslated": "Überschrift der Anmeldung",
+    "column": "sign_up_headline",
+    "shorty": "sign.up.headline",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 255,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 95,
+    "key": "qrCodeCheckin",
+    "name": "qrcodecheckin.enable",
+    "nameTranslated": "Check-in-Code aktivieren",
+    "column": "qrcodecheckin_yn",
+    "shorty": "qrcodecheckin.enable",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 1,
+    "sortKey": 18,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 98,
+    "key": "allowSpouseRegistration",
+    "name": "group.allowspouseregistration",
+    "nameTranslated": "Ehepartner dürfen mit angemeldet werden.",
+    "column": "allow_spouse_registration",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 20,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 101,
+    "key": "allowChildRegistration",
+    "name": "group.allowchildregistration",
+    "nameTranslated": "Eigene Kinder unter 16 Jahren dürfen mit angemeldet werden.",
+    "column": "allow_child_registration",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 21,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 104,
+    "key": "allowSameEmailRegistration",
+    "name": "group.allowsameemailregistration",
+    "nameTranslated": "Personen mit gleicher E-Mail-Adresse dürfen mit angemeldet werden.",
+    "column": "allow_sameemail_registration",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 22,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 107,
+    "key": "allowOtherRegistration",
+    "name": "group.allowotherregistration",
+    "nameTranslated": "Beliebige weitere Personen dürfen mit angemeldet werden. Das Einverständnis dieser Personen vorausgesetzt.",
+    "column": "allow_other_registration",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 23,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 111,
+    "key": "allowWaitinglist",
+    "name": "group.allow.waitinglist",
+    "nameTranslated": "Warteliste: Wenn die Gruppe voll ist, weitere Gruppenmitgliedschafts-Anträge erlauben.",
+    "column": "allow_waitinglist",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 26,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 114,
+    "key": "automaticMoveUp",
+    "name": "group.automatic_move_up",
+    "nameTranslated": "Wenn in der Gruppe Plätze frei werden, automatisiert entsprechend viele freigeben. Gemeinsam angemeldete Personen werden erst freigegeben, wenn entsprechend viele Plätze frei sind.",
+    "column": "automatic_move_up",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 27,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 115,
+    "key": "guid",
+    "name": "guid",
+    "nameTranslated": "GUID",
+    "column": "guid",
+    "shorty": "guid",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 40,
+    "sortKey": 300,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 118,
+    "key": "waitinglistMaxPersons",
+    "name": "group.max.persons.on.waiting.list",
+    "nameTranslated": "Maximale Anzahl von Personen auf der Warteliste:",
+    "column": "waitinglist_max_persons",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "number",
+    "fieldTypeId": 6,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 11,
+    "sortKey": 28,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 121,
+    "key": "hideContactLeader",
+    "name": "group.hide.contact.leader",
+    "nameTranslated": "\"Leiter kontaktieren\" ausblenden",
+    "column": "hide_contact_leader",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 29,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 124,
+    "key": "hideLogin",
+    "name": "group.hide.login",
+    "nameTranslated": "\"Bei ChurchTools einloggen\" ausblenden",
+    "column": "hide_login",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 30,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 125,
+    "key": "signUpNotificationSentDate",
+    "name": "sign.up.notification.sent",
+    "nameTranslated": "Anmeldebenachrichtigung wurde gesendet",
+    "column": "signup_notification_sent",
+    "shorty": "sign.up.notification.sent",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "datetime",
+    "fieldTypeId": 11,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 255,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 128,
+    "key": "signUpNotificationSentCount",
+    "name": "sign.up.notification.sent.count",
+    "nameTranslated": "sign.up.notification.sent.count",
+    "column": "signup_notification_sent_count",
+    "shorty": "sign.up.notification.sent.count",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "number",
+    "fieldTypeId": 6,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 255,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 131,
+    "key": "color",
+    "name": "color",
+    "nameTranslated": "Farbe",
+    "column": "color",
+    "shorty": "color",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 20,
+    "sortKey": 400,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 132,
+    "key": "visibility",
+    "name": "group.visibility",
+    "nameTranslated": "Sichtbarkeit",
+    "column": "visibility",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "radioselect",
+    "fieldTypeId": 9,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 20,
+    "sortKey": 0,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": [
+     {
+      "id": "hidden",
+      "name": "Versteckt"
+     },
+     {
+      "id": "public",
+      "name": "Öffentlich"
+     },
+     {
+      "id": "restricted",
+      "name": "Eingeschränkt"
+     },
+     {
+      "id": "intern",
+      "name": "Intern"
+     }
+    ]
+   },
+   {
+    "id": 135,
+    "key": "signUpOverrideRoleId",
+    "name": "group.field.roleaftersignup.name",
+    "nameTranslated": "Rolle nach Anmeldung",
+    "column": "sign_up_override_role_id",
+    "shorty": "group.field.roleaftersignup.name",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 11,
+    "sortKey": 100,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 138,
+    "key": "showStreet",
+    "name": "group.show.street",
+    "nameTranslated": "Straße anzeigen",
+    "column": "show_street",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 31,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 139,
+    "key": "qrCodeCheckinAutomaticEmail",
+    "name": "qrcodecheckin.automatic.email",
+    "nameTranslated": "Check-in-Codes automatisch per E-Mail versenden",
+    "column": "qrcodecheckin_automatic_email_yn",
+    "shorty": "qrcodecheckin.automatic.email",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 1,
+    "length": 1,
+    "sortKey": 18,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 142,
+    "key": "postsEnabled",
+    "name": "Beiträge aktiviert",
+    "nameTranslated": "Beiträge aktiviert",
+    "column": "posts_enabled",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 500,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 145,
+    "key": "defaultPostVisibility",
+    "name": "***group.default-post-visibility***",
+    "nameTranslated": "***group.default-post-visibility***",
+    "column": "default_post_visibility",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "radioselect",
+    "fieldTypeId": 9,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 501,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 148,
+    "key": "defaultPostCommentsActive",
+    "name": "***group.default-post-comments-active***",
+    "nameTranslated": "***group.default-post-comments-active***",
+    "column": "default_post_comments_active",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 1,
+    "sortKey": 503,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 151,
+    "key": "defaultPostPlaceholderText",
+    "name": "***group.default-post-placeholder-text***",
+    "nameTranslated": "***group.default-post-placeholder-text***",
+    "column": "default_post_placeholder_text",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 500,
+    "sortKey": 504,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 154,
+    "key": "defaultPostNotificationScope",
+    "name": "group.default-post-notification-scope",
+    "nameTranslated": "group.default-post-notification-scope",
+    "column": "default_post_notification_scope",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 20,
+    "sortKey": 505,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 155,
+    "key": "signUpOpeningDate",
+    "name": "group.field.signup-opening-date.name",
+    "nameTranslated": "group.field.signup-opening-date.name",
+    "column": "signup_opening_date",
+    "shorty": "group.field.signup-opening-date.name",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "datetime",
+    "fieldTypeId": 11,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": null,
+    "secLevel": 5,
+    "length": null,
+    "sortKey": 18,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 158,
+    "key": "signUpClosingDate",
+    "name": "group.field.signup-closing-date.name",
+    "nameTranslated": "group.field.signup-closing-date.name",
+    "column": "signup_closing_date",
+    "shorty": "group.field.signup-closing-date.name",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "datetime",
+    "fieldTypeId": 11,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": null,
+    "secLevel": 5,
+    "length": null,
+    "sortKey": 18,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 161,
+    "key": "externalPostSubscriptionsEnabled",
+    "name": "Abonnieren von Beiträgen erlauben",
+    "nameTranslated": "Abonnieren von Beiträgen erlauben",
+    "column": "external_post_subscriptions_enabled",
+    "shorty": null,
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": null,
+    "sortKey": 520,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 169,
+    "key": "sendDefaultSignUpMail",
+    "name": "group.field.send-default-signup-mail.name",
+    "nameTranslated": "group.field.send-default-signup-mail.name",
+    "column": "send_default_signup_mail_yn",
+    "shorty": "group.field.send-default-signup-mail.name",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "",
+    "secLevel": 0,
+    "length": null,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 172,
+    "key": "signUpEmailRequiredForAll",
+    "name": "group.field.sign-up-email-required-for-all.name",
+    "nameTranslated": "group.field.sign-up-email-required-for-all.name",
+    "column": "sign_up_email_required_for_all",
+    "shorty": "group.field.sign-up-email-required-for-all.name",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "checkbox",
+    "fieldTypeId": 4,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "",
+    "secLevel": 2,
+    "length": null,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 175,
+    "key": "emailVerificationMode",
+    "name": "group.signup.verification.title",
+    "nameTranslated": "group.signup.verification.title",
+    "column": "verify_email_address",
+    "shorty": "group.signup.verification.title",
+    "fieldCategoryCode": "f_group",
+    "fieldTypeCode": "text",
+    "fieldTypeId": 1,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "",
+    "secLevel": 2,
+    "length": 16,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": false,
+    "hideInFrontend": true,
+    "isBasicInfo": "1",
+    "options": []
+   },
+   {
+    "id": 57,
+    "key": "departmentIds",
+    "name": "department",
+    "nameTranslated": "Bereich",
+    "column": "bereich_id",
+    "shorty": "department",
+    "fieldCategoryCode": "f_dep",
+    "fieldTypeCode": "multiselect",
+    "fieldTypeId": 7,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 2,
+    "length": 12,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "nullable": false,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "1",
+      "name": "Gemeindeliste",
+      "sortKey": 1
+     }
+    ]
+   },
+   {
+    "id": 67,
+    "key": "growPathId",
+    "name": "growpath",
+    "nameTranslated": "Wachstumspfad",
+    "column": "growpath_id",
+    "shorty": "growpath",
+    "fieldCategoryCode": "f_growpath",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 4,
+    "length": 12,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "1",
+      "name": "Willkommen",
+      "sortKey": 1
+     },
+     {
+      "id": "2",
+      "name": "Helfer",
+      "sortKey": 2
+     },
+     {
+      "id": "3",
+      "name": "Mitarbeiter",
+      "sortKey": 3
+     },
+     {
+      "id": "4",
+      "name": "Leiten (Gruppe)",
+      "sortKey": 4
+     },
+     {
+      "id": "5",
+      "name": "Leiten (Bereich)",
+      "sortKey": 5
+     },
+     {
+      "id": "6",
+      "name": "Leiten (Vorstand)",
+      "sortKey": 6
+     }
+    ]
+   },
+   {
+    "id": 72,
+    "key": "privacyPolicyAgreementDate",
+    "name": "privacy.policy.agreement.date",
+    "nameTranslated": "Einwilligung erfolgt am",
+    "column": "privacy_policy_agreement_date",
+    "shorty": "privacy.policy.agreement.date",
+    "fieldCategoryCode": "f_datasecurity",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": null,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   },
+   {
+    "id": 73,
+    "key": "privacyPolicyAgreementTypeId",
+    "name": "privacy.policy.agreement.wherby.long",
+    "nameTranslated": "Einwilligung wodurch",
+    "column": "privacy_policy_agreement_type_id",
+    "shorty": "privacy.policy.agreement.wherby",
+    "fieldCategoryCode": "f_datasecurity",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": 255,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "3",
+      "name": "privacy.policy.agreement.type.outside",
+      "sortKey": 10
+     },
+     {
+      "id": "1",
+      "name": "Gruppenanmeldungsformular",
+      "sortKey": 20
+     },
+     {
+      "id": "2",
+      "name": "privacy.policy.agreement.type.selfconfirmation",
+      "sortKey": 30
+     },
+     {
+      "id": "4",
+      "name": "Mündlich beim Checkin",
+      "sortKey": 40
+     }
+    ]
+   },
+   {
+    "id": 74,
+    "key": "privacyPolicyAgreementWhoId",
+    "name": "privacy.policy.agreement.who.long",
+    "nameTranslated": "Einwilligung durch wen",
+    "column": "privacy_policy_agreement_who_id",
+    "shorty": "privacy.policy.agreement.who",
+    "fieldCategoryCode": "f_datasecurity",
+    "fieldTypeCode": "select",
+    "fieldTypeId": 2,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": 255,
+    "sortKey": 3,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": [
+     {
+      "id": "1",
+      "name": "privacy.policy.agreement.who.own",
+      "sortKey": 10
+     },
+     {
+      "id": "2",
+      "name": "privacy.policy.agreement.who.parents",
+      "sortKey": 20
+     },
+     {
+      "id": "10000",
+      "name": "privacy.policy.agreement.who.groupsignupperson",
+      "sortKey": 30
+     }
+    ]
+   },
+   {
+    "id": 79,
+    "key": "acceptedsecurity",
+    "name": "data.security.date",
+    "nameTranslated": "Vertraulichkeitsvereinbarung akzeptiert am",
+    "column": "acceptedsecurity",
+    "shorty": "data.security.date",
+    "fieldCategoryCode": "f_datasecurity",
+    "fieldTypeCode": "date",
+    "fieldTypeId": 3,
+    "isActive": "1",
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "secLevel": 5,
+    "length": null,
+    "sortKey": 4,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "nullable": true,
+    "hideInFrontend": false,
+    "isBasicInfo": "0",
+    "options": []
+   }
+  ],
+  "meta": {
+   "count": 98
+  }
+ }
+}

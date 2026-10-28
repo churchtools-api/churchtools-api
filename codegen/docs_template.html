@@ -1,0 +1,452 @@
+<title>churchtools-rs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Python- und Rust-Client für die ChurchTools-API: Grundlagen, Projekte und vollständige Referenz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: sticky top bar; left nav rail; each topic pairs prose (left) with a code panel (right) on wide screens, stacked below. */
+:root {
+  --bg: #f5f7f8;
+  --surface: #ffffff;
+  --fg: #18212b;
+  --muted: #586472;
+  --line: #dde3e8;
+  --accent: #0a6a73;
+  --accent-soft: #e2f0f1;
+  --code-bg: #111820;
+  --code-fg: #d8e2ea;
+  --code-bar: #1a232d;
+  --code-muted: #8795a5;
+  --t-kw: #7fd0d8;
+  --t-string: #b8df8e;
+  --t-number: #f0b873;
+  --t-comment: #7d8a9b;
+  --t-type: #c9b8ff;
+  --t-macro: #8fc6ff;
+  --v-get: #0a6a73;
+  --v-post: #2e7a34;
+  --v-put: #8f5c00;
+  --v-patch: #6a4dbd;
+  --v-delete: #b0281f;
+  --warn-bg: #fff2d9;
+  --warn-fg: #7a4b00;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --header-h: 3.5rem;
+  --nav-w: 16.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+    --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+    --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+    --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+    --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+  --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+  --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+  --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+  --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 15px/1.6 var(--font-body);
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--surface);
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+code { font-family: var(--font-mono); font-size: 0.86em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; margin: 0; }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  display: flex; align-items: center; gap: 1rem;
+  min-height: var(--header-h);
+  padding-block: 0.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; color: var(--fg); white-space: nowrap; }
+.brand b { font: 700 1.15rem/1 var(--font-display); letter-spacing: -0.01em; }
+.brand span { font: 400 0.78rem/1 var(--font-mono); color: var(--muted); }
+.search { flex: 1; max-width: 26rem; margin-left: auto; position: relative; }
+.search input {
+  width: 100%; padding: 0.45rem 0.75rem; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: inherit; font-size: 0.9rem;
+}
+.lang-switch { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.lang-switch button, .nav-toggle {
+  border: 0; background: transparent; color: var(--muted); font: 500 0.85rem/1 var(--font-body);
+  padding: 0.5rem 0.8rem; cursor: pointer;
+}
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.nav-toggle { display: none; border: 1px solid var(--line); border-radius: 6px; }
+
+/* Shell */
+.shell { display: grid; grid-template-columns: var(--nav-w) minmax(0, 1fr); }
+.nav {
+  position: sticky; top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0px));
+  overflow-y: auto; padding: 1.25rem 0.75rem 3rem max(16px, env(safe-area-inset-left, 0px));
+  border-right: 1px solid var(--line); font-size: 0.88rem;
+}
+.nav ul { list-style: none; margin: 0; padding: 0; }
+.nav .nav-chapter > a, .nav h2 {
+  display: block; margin: 1.1rem 0 0.35rem; font: 600 0.72rem/1.2 var(--font-body);
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-decoration: none;
+}
+.nav li li a, .nav-ref a {
+  display: flex; justify-content: space-between; gap: 0.5rem;
+  padding: 0.22rem 0.5rem; border-radius: 5px; color: var(--fg); text-decoration: none;
+}
+.nav a:hover, .nav a.active { background: var(--accent-soft); color: var(--accent); }
+.nav .count { color: var(--muted); font: 400 0.75rem/1.6 var(--font-mono); font-variant-numeric: tabular-nums; }
+
+main {
+  min-width: 0;
+  padding-block: 2rem 6rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.inner { max-width: 82rem; margin: 0 auto; display: grid; gap: 3.5rem; }
+
+/* Hero */
+.hero { display: grid; gap: 1rem; max-width: 46rem; padding-top: 0.5rem; }
+.hero h1 { font: 700 clamp(2rem, 4vw, 2.9rem)/1.05 var(--font-display); letter-spacing: -0.02em; }
+.hero .lead { font-size: 1.12rem; color: var(--muted); margin: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none;
+  font: 400 0.85rem/1.4 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.facts b { color: var(--fg); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta a { padding: 0.55rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; border: 1px solid var(--line); color: var(--fg); background: var(--surface); }
+.cta a.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+
+/* Chapters and topics */
+.chapter, .reference { display: grid; gap: 2.5rem; }
+.chapter > h2, .reference > h2 {
+  font: 700 1.85rem/1.1 var(--font-display); letter-spacing: -0.015em;
+  padding-top: 1.5rem; border-top: 1px solid var(--line);
+}
+.chapter > .lead, .reference > .lead { margin: -1.75rem 0 0; color: var(--muted); max-width: 60ch; }
+.topic, .op { display: grid; gap: 1.25rem 2.5rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1180px) {
+  .topic, .op { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: start; }
+  .example { position: sticky; top: calc(var(--header-h) + 1rem); }
+}
+.topic.no-code { grid-template-columns: minmax(0, 1fr); }
+.prose { min-width: 0; max-width: 65ch; }
+.prose h3 { font: 600 1.25rem/1.25 var(--font-display); margin-bottom: 0.6rem; }
+.prose p, .prose ul, .prose ol { margin: 0 0 0.85rem; }
+.prose li { margin-bottom: 0.3rem; }
+.prose code, .call code, td code {
+  background: var(--accent-soft); padding: 0.08em 0.35em; border-radius: 4px; color: var(--fg);
+}
+.aside { font-size: 0.85rem; color: var(--muted); margin: 0.5rem 0 0; }
+.example { min-width: 0; }
+
+/* Code panels */
+.code { background: var(--code-bg); border-radius: 8px; overflow: hidden; }
+.code-bar { display: flex; align-items: center; gap: 0.25rem; padding: 0.3rem 0.4rem; background: var(--code-bar); }
+.code-bar button {
+  border: 0; background: transparent; color: var(--code-muted); cursor: pointer;
+  font: 500 0.78rem/1 var(--font-body); padding: 0.45rem 0.65rem; border-radius: 5px;
+}
+.code-bar .copy { margin-left: auto; }
+.code-bar button:hover { color: var(--code-fg); }
+#app[data-lang="python"] .tab[data-l="python"],
+#app[data-lang="rust"] .tab[data-l="rust"] { color: var(--code-fg); background: var(--code-bg); }
+.code pre { margin: 0; padding: 0.9rem 1rem 1rem; overflow-x: auto; color: var(--code-fg);
+  font: 400 0.82rem/1.6 var(--font-mono); tab-size: 4; }
+.code pre code { font-size: inherit; }
+.t-kw { color: var(--t-kw); }
+.t-string { color: var(--t-string); }
+.t-number { color: var(--t-number); }
+.t-comment { color: var(--t-comment); font-style: italic; }
+.t-type { color: var(--t-type); }
+.t-macro { color: var(--t-macro); }
+
+/* Language visibility */
+#app[data-lang="python"] .rs, #app[data-lang="rust"] .py { display: none; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th { text-align: left; font: 600 0.72rem/1.3 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+th, td { padding: 0.45rem 0.6rem 0.45rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.type code { background: transparent; padding: 0; white-space: nowrap; }
+td.type a { color: var(--accent); }
+details > summary { cursor: pointer; color: var(--accent); font-size: 0.88rem; margin-bottom: 0.5rem; }
+
+/* Reference */
+.tag { display: grid; gap: 2rem; }
+.tag-head { display: grid; gap: 0.5rem; max-width: 65ch; }
+.tag-head h3 { font: 700 1.45rem/1.15 var(--font-display); }
+.tag-head p { margin: 0; color: var(--muted); }
+.tag-index ul { list-style: none; padding: 0; margin: 0; columns: 2 18rem; font-size: 0.82rem; }
+.tag-index li { break-inside: avoid; }
+.tag-index a { display: flex; gap: 0.5rem; align-items: baseline; text-decoration: none; color: var(--fg); padding: 0.1rem 0; }
+.op { padding-top: 1.75rem; border-top: 1px dashed var(--line); }
+.op h4 { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+.op .path { font-size: 0.95rem; font-weight: 500; word-break: break-all; }
+.verb {
+  font: 600 0.7rem/1 var(--font-mono); letter-spacing: 0.04em; padding: 0.3rem 0.45rem; border-radius: 4px;
+  border: 1px solid currentColor; min-width: 3.6rem; text-align: center; flex-shrink: 0;
+}
+.v-get { color: var(--v-get); } .v-post { color: var(--v-post); } .v-put { color: var(--v-put); }
+.v-patch { color: var(--v-patch); } .v-delete { color: var(--v-delete); }
+.call { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0 0 0.5rem; }
+.call code { word-break: break-all; }
+.call .alt { font-size: 0.82rem; color: var(--muted); }
+.summary { font-weight: 600; margin: 0 0 0.35rem; }
+.desc { color: var(--muted); font-size: 0.92rem; }
+.desc p { margin: 0 0 0.6rem; }
+.badge { font: 500 0.72rem/1 var(--font-body); padding: 0.28rem 0.5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+.badge.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.untested { color: var(--v-delete); font-weight: 700; text-decoration: none; margin-left: 0.15rem; vertical-align: super; font-size: 0.8em; line-height: 0; }
+a.untested:hover { text-decoration: underline; }
+.returns { font-size: 0.88rem; margin: 0; }
+.returns .label, .model .count { font: 600 0.72rem/1 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-right: 0.4rem; }
+.returns code a { color: var(--accent); }
+
+/* Models */
+.models { display: grid; gap: 0.25rem; }
+.model { border-bottom: 1px solid var(--line); padding: 0.4rem 0; }
+.model > summary { display: flex; justify-content: space-between; gap: 1rem; color: var(--fg); margin: 0; }
+.model > summary code { font-size: 0.88rem; }
+.model[open] { padding-bottom: 1rem; }
+.model:target > summary code { color: var(--accent); }
+.model-doc { color: var(--muted); font-size: 0.9rem; max-width: 65ch; }
+
+.nohits { color: var(--muted); }
+.searching .chapter, .searching .hide-search { display: none; }
+.next { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.next a { display: block; padding: 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--fg); }
+.next a b { display: block; color: var(--accent); margin-bottom: 0.25rem; }
+.next a span { color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .nav-toggle { display: block; }
+  .nav { display: none; position: fixed; z-index: 15; inset: calc(var(--header-h) + env(safe-area-inset-top, 0px)) 0 0 0;
+    height: auto; background: var(--surface); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .nav.open { display: block; }
+  .brand span { display: none; }
+}
+@media (max-width: 560px) {
+  .topbar { flex-wrap: wrap; }
+  .search { order: 3; flex-basis: 100%; max-width: none; }
+  :root { --header-h: 6.25rem; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div id="app" data-lang="python">
+  <header class="topbar">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">Inhalt</button>
+    <a class="brand" href="#start"><b>churchtools-rs</b><span>%%VERSION%%</span></a>
+    <div class="search"><input id="search" type="search" placeholder="Endpunkt oder Modell suchen, z. B. members" aria-label="Referenz durchsuchen" autocomplete="off"></div>
+    <div class="lang-switch" role="group" aria-label="Sprache der Beispiele">
+      <button type="button" data-l="python" aria-pressed="true">Python</button>
+      <button type="button" data-l="rust" aria-pressed="false">Rust</button>
+    </div>
+  </header>
+
+  <div class="shell">
+    <nav class="nav" id="nav" aria-label="Inhalt">
+      <ul>%%NAV_GUIDE%%</ul>
+      <h2><a href="#referenz">Referenz</a></h2>
+      <ul class="nav-ref">%%NAV_REF%%</ul>
+      <h2>Anhang</h2>
+      <ul class="nav-ref">
+        <li><a href="#modelle">Modelle <span class="count">%%MODELS%%</span></a></li>
+        <li><a href="#fehlercodes">Fehlercodes</a></li>
+        <li><a href="#testabdeckung">Testabdeckung</a></li>
+        <li><a href="#weiter">Nächste Schritte</a></li>
+      </ul>
+    </nav>
+
+    <main id="main">
+      <div class="inner">
+        <section class="hero hide-search" id="start">
+          <h1>ChurchTools aus Python und Rust ansprechen</h1>
+          <p class="lead">Ein Client für die gesamte ChurchTools-REST-API: typisierte Antworten, Fehler mit verständlicher Meldung, automatisches Blättern durch lange Listen.</p>
+          <ul class="facts">
+            <li><b>%%OPS%%</b> Endpunkte</li>
+            <li><b>%%MODELS%%</b> Modelle</li>
+            <li>API-Stand <b>%%VERSION%%</b></li>
+          </ul>
+          <div class="cta">
+            <a class="primary" href="#schnellstart">Erster Aufruf</a>
+            <a href="#projekte">Projekte ansehen</a>
+            <a href="#referenz">Zur Referenz</a>
+          </div>
+        </section>
+
+        %%GUIDE%%
+
+        <section class="reference" id="referenz">
+          <h2>Referenz</h2>
+          <p class="lead hide-search">Alle Endpunkte nach Bereichen, jeweils mit Aufruf, Parametern, Rückgabe und einem Beispiel. Beschreibungen stammen aus der offiziellen API-Beschreibung und sind englisch.</p>
+          <p class="nohits" id="nohits" hidden>Keine Treffer. Suche nach einem Pfadteil wie <code>members</code> oder einem Methodennamen wie <code>list_birthdays</code>.</p>
+          %%REFERENCE%%
+        </section>
+
+        <section class="reference" id="modelle">
+          <h2>Modelle</h2>
+          <p class="lead hide-search">Die Typen der Antworten und Request-Bodies. Felder heißen in Python wie die Python-Attribute, in Rust wie die Struct-Felder.</p>
+          <div class="models">%%MODEL_LIST%%</div>
+        </section>
+
+        <section class="reference hide-search" id="fehlercodes">
+          <h2>Fehlercodes</h2>
+          <p class="lead">Was ein Fehler bedeutet und wie du ihn abfängst. Mehr dazu unter <a href="#fehler">Fehler behandeln</a>.</p>
+          <div class="table-wrap"><table><thead><tr><th>Status</th><th>Ausnahme / Variante</th><th>Bedeutung</th></tr></thead><tbody>%%ERRORS%%</tbody></table></div>
+        </section>
+
+        <section class="reference hide-search" id="testabdeckung">
+          <h2>Testabdeckung</h2>
+          <p class="lead">Alle Endpunkte werden gegen eine echte ChurchTools-Testinstanz geprüft. Ein rotes
+          Sternchen <span class="untested">*</span> an einem Endpunkt heißt: <b>noch nicht oder nicht ausreichend
+          getestet.</b> Fährst du mit der Maus darüber, steht dort der Grund.</p>
+          <ul>
+            <li><b>kein Testszenario:</b> Der Aufruf wurde bewusst nicht ausgeführt, etwa weil er E-Mails verschickt,
+            Logins oder Rechte ändert oder ein externes System braucht.</li>
+            <li><b>keine Testdaten:</b> Die Testinstanz hatte nichts, worauf sich der Aufruf anwenden ließ, und es ließ
+            sich auch nicht über die API anlegen.</li>
+            <li><b>getestet, Fehler der API:</b> Der Aufruf scheitert auch auf der Testinstanz, mit bekannter Ursache,
+            meist einem Fehler in ChurchTools.</li>
+          </ul>
+          <p>Ohne Sternchen heißt: Der Aufruf lief erfolgreich, und die Antwort passte zu den Typen in Python und Rust.
+          Das garantiert nicht jede Kombination von Parametern. Details stehen im Testbericht (<code>docs/testbericht.md</code>).</p>
+          <div class="table-wrap"><table>%%COVERAGE%%</table></div>
+        </section>
+
+        <section class="reference hide-search" id="weiter">
+          <h2>Nächste Schritte</h2>
+          <div class="next">
+            <a href="#projekte"><b>Ein Projekt nachbauen</b><span>Monatsplan, Dienstplan, Geburtstage, CSV-Export, Anmeldung.</span></a>
+            <a href="#tag-person"><b>Personen</b><span>Der größte Bereich der API, mit Suche, Beziehungen und Einstellungen.</span></a>
+            <a href="#tag-group"><b>Gruppen</b><span>Mitglieder, Rollen und Treffen verwalten.</span></a>
+            <a href="#modelle"><b>Modelle nachschlagen</b><span>Welche Felder ein Objekt hat und welchen Typ sie haben.</span></a>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(() => {
+  const app = document.getElementById("app");
+  const switches = document.querySelectorAll(".lang-switch button");
+
+  function setLang(lang, anchor) {
+    const before = anchor ? anchor.getBoundingClientRect().top : 0;
+    app.dataset.lang = lang;
+    switches.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.l === lang)));
+    try { localStorage.setItem("ct-lang", lang); } catch (e) {}
+    // Keep the clicked element in place although code heights above it change.
+    if (anchor) window.scrollBy(0, anchor.getBoundingClientRect().top - before);
+  }
+  try {
+    const saved = localStorage.getItem("ct-lang");
+    if (saved === "python" || saved === "rust") setLang(saved);
+  } catch (e) {}
+
+  document.addEventListener("click", (event) => {
+    const langButton = event.target.closest("[data-l]");
+    if (langButton) { setLang(langButton.dataset.l, langButton); return; }
+    const copy = event.target.closest(".copy");
+    if (copy) {
+      const pre = copy.closest(".code").querySelector(app.dataset.lang === "rust" ? "pre.rs" : "pre.py");
+      const done = () => { copy.textContent = "Kopiert"; setTimeout(() => (copy.textContent = "Kopieren"), 1500); };
+      const select = () => {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        copy.textContent = "Markiert";
+        setTimeout(() => (copy.textContent = "Kopieren"), 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pre.innerText).then(done, select);
+      } else select();
+    }
+    if (event.target.closest(".nav a")) closeNav();
+  });
+
+  // Navigation drawer on small screens
+  const nav = document.getElementById("nav");
+  const toggle = document.getElementById("nav-toggle");
+  function closeNav() { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  // Open a model when its link is followed
+  function openTarget() {
+    const id = location.hash.slice(1);
+    const el = id && document.getElementById(id);
+    if (el && el.tagName === "DETAILS") el.open = true;
+  }
+  window.addEventListener("hashchange", openTarget);
+  openTarget();
+
+  // Search over endpoints and models
+  const search = document.getElementById("search");
+  const main = document.getElementById("main");
+  const ops = Array.from(document.querySelectorAll(".op"));
+  const models = Array.from(document.querySelectorAll(".model"));
+  const tags = Array.from(document.querySelectorAll(".tag"));
+  const nohits = document.getElementById("nohits");
+  let timer;
+  search.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const q = search.value.trim().toLowerCase();
+      main.classList.toggle("searching", q.length > 0);
+      let hits = 0;
+      ops.forEach((op) => { const show = !q || op.dataset.search.includes(q); op.hidden = !show; if (show) hits++; });
+      models.forEach((m) => { const show = !q || m.dataset.search.includes(q); m.hidden = !show; if (show) hits++; });
+      tags.forEach((t) => { t.hidden = q && !t.querySelector(".op:not([hidden])"); });
+      nohits.hidden = !q || hits > 0;
+      if (q) document.getElementById("referenz").scrollIntoView();
+    }, 150);
+  });
+
+  // Highlight the current area in the navigation
+  const links = new Map(Array.from(nav.querySelectorAll('a[href^="#"]')).map((a) => [a.getAttribute("href").slice(1), a]));
+  const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #weiter"));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const link = links.get(e.target.id);
+        if (!link) return;
+        nav.querySelectorAll("a.active").forEach((a) => a.classList.remove("active"));
+        link.classList.add("active");
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    observed.forEach((el) => io.observe(el));
+  }
+})();
+</script>

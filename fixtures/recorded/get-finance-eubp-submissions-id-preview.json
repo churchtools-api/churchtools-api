@@ -1,0 +1,25 @@
+{
+ "operation": "get-finance-eubp-submissions-id-preview",
+ "request": {
+  "method": "GET",
+  "path": "/finance/eubp/submissions/13/preview",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "periods": [
+    {
+     "year": 2024,
+     "hasData": true,
+     "isLast": true,
+     "dateRange": {
+      "from": "2024-01-01",
+      "to": "2024-12-31"
+     }
+    }
+   ],
+   "warnings": []
+  }
+ }
+}

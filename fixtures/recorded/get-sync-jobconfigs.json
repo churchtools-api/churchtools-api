@@ -1,0 +1,39 @@
+{
+ "operation": "get-sync-jobconfigs",
+ "request": {
+  "method": "GET",
+  "path": "/sync/jobconfigs",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 13,
+    "name": "ctrs-test Job",
+    "externalSystem": {
+     "id": 13,
+     "name": "ctrs-test",
+     "accessHeaderValues": [],
+     "adapter": "churchtools",
+     "jobConfigsCount": 1
+    },
+    "domainType": "person",
+    "autoScheduleEnabled": false,
+    "createBehaviorMaster": "never",
+    "createBehaviorES": "never",
+    "createDefaultsMaster": null,
+    "createDefaultsES": null,
+    "linkBehavior": "never",
+    "linkData": "lastUpdated",
+    "updateBehavior": "never",
+    "updateData": "lastUpdated",
+    "deleteBehaviorMaster": "never",
+    "deleteBehaviorES": "never"
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

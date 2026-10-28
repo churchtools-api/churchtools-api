@@ -1,0 +1,14 @@
+{
+ "operation": "get-resources-resourceId-statistics",
+ "request": {
+  "method": "GET",
+  "path": "/resources/10/statistics",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "numRequestedBookingsInFuture": 0
+  }
+ }
+}

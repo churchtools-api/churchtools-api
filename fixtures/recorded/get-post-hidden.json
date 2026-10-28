@@ -1,0 +1,12 @@
+{
+ "operation": "get-post-hidden",
+ "request": {
+  "method": "GET",
+  "path": "/post/hidden",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": []
+ }
+}

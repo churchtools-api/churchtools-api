@@ -1,0 +1,841 @@
+{
+ "operation": "get-posts",
+ "request": {
+  "method": "GET",
+  "path": "/posts",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 51,
+    "guid": "89C8187F-7A5A-4209-A5AE-6A2DF8B76DF3",
+    "group": {
+     "title": "Ankündigungen",
+     "domainType": "group",
+     "domainIdentifier": "346",
+     "apiUrl": "https://gemeinde.example/api/groups/346",
+     "frontendUrl": "https://gemeinde.example/groups/346",
+     "imageUrl": "https://gemeinde.example/images/2389/dea95f1adc57154139d42ded9fba51783f95e534831f7aa80063055f81699d28",
+     "icon": "users",
+     "color": {
+      "key": "violet",
+      "shade": null
+     },
+     "initials": "A",
+     "domainAttributes": {
+      "note": "Diese Gruppe ist deine zentrale Anlaufstelle für alle offiziellen Mitteilungen unserer Kirchengemeinde. Hier bekommst du schnell und unkompliziert Infos über bevorstehende Veranstaltungen, wichtige Neuigkeiten und alles, was unsere Gemeinde angeht. Perfekt, um immer auf dem Laufenden zu sein und aktiv am Gemeindeleben teilzunehmen.\n\nWenn du Fragen oder Anmerkungen zu einem Beitrag hast, kannst du darauf kommentieren. Oder du reagierst mit einem Emoji - auch gut. :) Nur kurz der Hinweis, dass andere dadurch deinen Namen und dein Profilbild sehen können.  \n\nUm nichts zu verpassen, aktiviere am besten auf deinem Smartphone die Benachrichtigungen für diese Gruppe. So wirst du immer sofort informiert, wenn es wichtige Updates gibt. \n\nPS: Der Gemeindebrief erscheint weiterhin jeden Monat und fasst nochmal alle wichtigen Informationen zusammen.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "actor": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Gemeindefreizeit 2026: Jetzt anmelden ✅",
+    "content": "**Herzliche Einladung!** Wir freuen uns, euch ganz persönlich zu unserer Gemeindefreizeit 2026 einzuladen. Drei Tage Zeit für Gemeinschaft, Gottes Gegenwart, gute Gespräche, Inspiration und Abstand vom Alltag.\n\nOb jung oder alt, allein oder mit der ganzen Familie: jede und jeder ist herzlich willkommen.\n\n***\n\n# **Wann & Wo?**\n\nFreitag, 6. – Sonntag, 8. November 2026\n\n[Im Monbachtal 1, 75378 Bad Liebenzell](https://maps.app.goo.gl/CV69NJqNYgJUUGn27)\n\n***\n\n# **Was euch erwartet**\n\n* Impulse und Austausch in kleinen Gruppen\n* Lobpreis und Anbetung\n* Zeit zum Wandern, Spielen und Durchatmen\n* Leckeres Essen und viel Raum für Begegnung\n\n**Ihr könnt euch jetzt schon zu den Workshops anmelden:**\n\n[Untergruppen von Gemeindefreizeit 2026](https://template.church.tools/groups/744/hierarchy/children?ctmd_layout=visual-card)\n\n<br />\n\n# **🛏️ Zimmeroptionen & Preise**\n\n| Zimmertyp                  | Preis p.P. | Kinder (bis 12 Jahre) |\n| :------------------------- | :--------- | :-------------------- |\n| Einzelzimmer               | 145 €      | -/-                   |\n| Doppelzimmer               | 115 €      | 60 €                  |\n| Mehrbettzimmer (3–4 Pers.) | 95 €       | 50 €                  |\n\n<br />\n\n```\nIm Preis enthalten: Übernachtung, Vollpension und das gesamte Programm.\n```\n\n***\n\n# **Jetzt anmelden**\n\n*Die Plätze sind begrenzt* – meldet euch am besten gleich an!\n\n[Gemeindefreizeit 2026](https://template.church.tools/groups/744?ctmd_layout=signup)\n\n> **Wir freuen uns auf eine gesegnete gemeinsame Zeit mit euch!**\n\n<br />\n\n## Fragen?\n\nBei Fragen oder Anmerkungen meldet euch bitte bei [Karin Messerschmidt](https://template.church.tools/?q=churchdb\\&ctmd_layout=mention#PersonView/searchEntry:%232812/)",
+    "groupVisibility": "public",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [
+     "https://gemeinde.example/images/3213/33dacd2d0c3f4c1632b4d3cd57d24acb649083b8cc5c86db401def13e7f48904"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://gemeinde.example/images/3213/33dacd2d0c3f4c1632b4d3cd57d24acb649083b8cc5c86db401def13e7f48904",
+      "aspectRatio": 2
+     }
+    ],
+    "publicationDate": "2026-08-17T11:40:18Z",
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-26T13:05:18Z",
+    "lastEditedDate": "2026-08-17T12:05:18Z",
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-26T13:05:18Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-17T12:05:18Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 48,
+    "guid": "79C67574-A068-4597-BB7D-18CFBA51D94B",
+    "group": {
+     "title": "Kinderkirche",
+     "domainType": "group",
+     "domainIdentifier": "8",
+     "apiUrl": "https://gemeinde.example/api/groups/8",
+     "frontendUrl": "https://gemeinde.example/groups/8",
+     "imageUrl": "https://gemeinde.example/images/2906/63a53822634e6abc9bbf3b08066dc94bf0b60372c57926f55124760069163672",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "B672A315-EF25-49A9-B347-90555EBB5E4C"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "actor": {
+     "title": "Lennart Baldauf",
+     "domainType": "person",
+     "domainIdentifier": "133",
+     "apiUrl": "https://gemeinde.example/api/persons/133",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23133/",
+     "imageUrl": "https://gemeinde.example/images/514/6f83dadf44cf94a71fdb93d3f34858c37183d89abee6f60dedca838759dfb60c",
+     "icon": "user",
+     "color": null,
+     "initials": "LB",
+     "domainAttributes": {
+      "firstName": "Lennart",
+      "lastName": "Baldauf",
+      "guid": "68554A70-0735-4174-833B-4F3F0A9BA861",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Kinderbetreuung für die Raupen 🐛 jetzt auch im zweiten Gottesdienst 🤩",
+    "content": "Wir freuen uns riesig, dass wir die Kinderbetreuung für die [Raupen (3-5)](https://template.church.tools/groups/142?ctmd_layout=mention) dieses Jahr auch im zweiten Gottesdienst anbieten können. 🎉\n\nEinige unserer Jugendlichen haben vorgeschlagen, dass sie die Betreuung abdecken. Ein riesen Dank an euch 🫶🏼\n\n## Verstärkung weiterhin gesucht für die [Löwen (10-12)](https://template.church.tools/groups/14?ctmd_layout=mention) und [Schmetterlinge (6-9)](https://template.church.tools/groups/148?ctmd_layout=mention)\n\nWir würden uns freuen, wenn wir dahin wachsen, dass wir das Kinderprogramm auch für die Schulkinder anbieten können. Allerdings benötigen wir dort noch einige Mitarbeitende, um das möglich zu machen.\n\n***Bist du bereit mitzumachen?*** Wir suchen insbesondere Verstärkung für\n\n[Löwen (10-12)](https://template.church.tools/groups/14?ctmd_layout=large-card)\n\n[Schmetterlinge (6-9)](https://template.church.tools/groups/148?ctmd_layout=large-card)\n\n<br />\n\n... dann melde dich gerne bei mir. :)\n\n[Leiter von Kinderkirche](https://template.church.tools/groups/8/members/16?ctmd_layout=compact-card)",
+    "groupVisibility": "intern",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [
+     "https://gemeinde.example/images/3177/e977bca614d670344744c394036abc501dc63760389b259e82441dca7c73af1b",
+     "https://gemeinde.example/images/3192/36d832f6b70466dbc15bd78bc755659444e2b3384c34e1d993c048335515c0b1"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://gemeinde.example/images/3177/e977bca614d670344744c394036abc501dc63760389b259e82441dca7c73af1b",
+      "aspectRatio": 1.50282
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/3192/36d832f6b70466dbc15bd78bc755659444e2b3384c34e1d993c048335515c0b1",
+      "aspectRatio": 1.32398
+     }
+    ],
+    "publicationDate": "2026-08-17T11:29:29Z",
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-26T12:34:16Z",
+    "lastEditedDate": "2026-08-17T11:34:16Z",
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-26T12:34:16Z",
+     "createdPerson": {
+      "id": 133
+     },
+     "modifiedDate": "2026-08-17T11:34:16Z",
+     "modifiedPerson": {
+      "id": 133
+     }
+    }
+   },
+   {
+    "id": 42,
+    "guid": "39E5AD8A-B988-48BD-836A-47A3ABFFD9B3",
+    "group": {
+     "title": "Sportangebote",
+     "domainType": "group",
+     "domainIdentifier": "352",
+     "apiUrl": "https://gemeinde.example/api/groups/352",
+     "frontendUrl": "https://gemeinde.example/groups/352",
+     "imageUrl": "https://gemeinde.example/images/2401/8cf51fac93ccf1086bff3721562d024cac798be3c40a937c26ccf27a7c814a7f",
+     "icon": "users",
+     "color": {
+      "key": "teal",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "Dies ist der perfekte Ort für alle in unserer Kirchengemeinde, die sich gerne bewegen, neue Sportarten ausprobieren möchten oder einfach nur nach Gleichgesinnten suchen, um gemeinsam aktiv zu sein. Egal, ob du regelmäßig Sport treibst oder gerade erst anfängst, hier bist du genau richtig.\n\nIn dieser Gruppe kannst du alles rund um Sport posten: Ob du bouldern gehst, eine Wanderung planst oder einfach nur jemanden suchst, der mit dir joggen geht – lass es uns wissen! Es ist eine tolle Gelegenheit, aktiv zu bleiben, Spaß zu haben und gleichzeitig neue Leute aus der Gemeinde kennen zu lernen.\n\nUnsere Gruppe hat das Motto \"Jeder darf mitmachen\". Also egal welches Fitnesslevel, Alter oder Interesse du hast, fühle dich herzlich eingeladen, teilzunehmen. Wenn du Lust hast, mitzumachen, poste einfach, was du vorhast, oder schließe dich den Aktivitäten anderer an.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "actor": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Wir starten sportlich in das neue Schuljahr",
+    "content": "***Als Gemeinde wollen wir Alltag teilen und gemeinschaftlich gestalten***: Das geht super bei gemeinsamen Mahlzeiten und auch beim Sport. 💪🏼😉\n\nSchau doch mal, ob bei folgenden offenen Angeboten etwas passendes für dich dabei ist, meld dich gerne an oder komm spontan dazu und bring gerne Freunde mit:\n\n<br />\n\n[Untergruppen von Sportangebote](https://template.church.tools/groups/352/hierarchy/children?ctmd_layout=large-card)\n\n<br />\n\n## Fragen? Sprich uns gerne an:\n\n[Admin von Sportangebote](https://template.church.tools/groups/352/members/30?ctmd_layout=visual-card)",
+    "groupVisibility": "intern",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [
+     "https://gemeinde.example/images/3189/c36c957df2bf9e90a1e84de6b3065db65376b9c5338597e596eb641f53dd63db",
+     "https://gemeinde.example/images/3186/c18a0b6b56ff4d74042e85a2235cee72e69c856f1fd510d283acb23976377eb7"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://gemeinde.example/images/3189/c36c957df2bf9e90a1e84de6b3065db65376b9c5338597e596eb641f53dd63db",
+      "aspectRatio": 1.5
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/3186/c18a0b6b56ff4d74042e85a2235cee72e69c856f1fd510d283acb23976377eb7",
+      "aspectRatio": 0.66667
+     }
+    ],
+    "publicationDate": "2026-08-17T10:05:47Z",
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-26T12:32:35Z",
+    "lastEditedDate": "2026-08-17T11:32:35Z",
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-26T12:32:35Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-17T11:32:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 45,
+    "guid": "FFD9E492-2B8B-43A2-9F04-E1E12B046D53",
+    "group": {
+     "title": "Finde deine Kleingruppe",
+     "domainType": "group",
+     "domainIdentifier": "168",
+     "apiUrl": "https://gemeinde.example/api/groups/168",
+     "frontendUrl": "https://gemeinde.example/groups/168",
+     "imageUrl": "https://gemeinde.example/images/3228/e2b26015632acb2724fa3e302f3e63406aebcfa9c98c9a52a6b60507b685f851",
+     "icon": "users",
+     "color": {
+      "key": "red",
+      "shade": null
+     },
+     "initials": "F",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 6,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "DF7DCF17-90AD-4B17-9730-29FEDE4EC636"
+     },
+     "infos": [
+      "Prozesse"
+     ]
+    },
+    "actor": {
+     "title": "Karin Messerschmidt",
+     "domainType": "person",
+     "domainIdentifier": "2812",
+     "apiUrl": "https://gemeinde.example/api/persons/2812",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232812/",
+     "imageUrl": "https://gemeinde.example/images/2410/fd0ce517efcd8eee5196289846713a7317fe5933a383647ae6d4f3c5753d8fdb",
+     "icon": "user",
+     "color": null,
+     "initials": "KM",
+     "domainAttributes": {
+      "firstName": "Karin",
+      "lastName": "Messerschmidt",
+      "guid": "1E3A0461-3E37-4A77-A4B7-920747B23312",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Hast du deine Kleingruppe gefunden?",
+    "content": "Nach dem Sommer starten auch unsere Kleingruppen wieder neu. 🌱 Sie sind ein wichtiger Teil unserer Gemeinde-DNA – ein zentraler Ort für **geistliche Gemeinschaft, persönliches Wachstum** und **gemeinsames Unterwegssein**.\n\n<br />\n\nWenn du also noch ohne Kleingruppe bist, dann melde dich gerne persönlich bei mir ( [Karin Messerschmidt](https://template.church.tools/?q=churchdb\\&ctmd_layout=mention#PersonView/searchEntry:%232812/)) oder melde dich für weitere Infos an:\n\n[Finde deine Kleingruppe](https://template.church.tools/groups/168?ctmd_layout=signup)\n\n<br />\n\n## Hier ist ein Überblick über unsere Kleingruppen:\n\n<br />\n\n[Untergruppen von Finde deine Kleingruppe](https://template.church.tools/groups/168/hierarchy/children?ctmd_layout=visual-card)",
+    "groupVisibility": "public",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [],
+    "imagesMeta": [],
+    "publicationDate": null,
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-26T12:15:46Z",
+    "lastEditedDate": null,
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-26T12:15:46Z",
+     "createdPerson": {
+      "id": 2812
+     },
+     "modifiedDate": "2026-08-17T11:15:46Z",
+     "modifiedPerson": {
+      "id": 2812
+     }
+    }
+   },
+   {
+    "id": 164,
+    "guid": "3E553C9B-ED9D-4758-8328-CBB455C6A365",
+    "group": {
+     "apiUrl": "https://news.church.tools/api/groups/12",
+     "color": {
+      "key": "blue",
+      "shade": null
+     },
+     "domainAttributes": {
+      "campusId": null,
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "guid": "EDE57571-841E-4711-BF56-7AD56BA2AFC2",
+      "note": "Auf unserem ChurchTools-Blog erhältst du spannende News aus dem Unternehmen: Gemeinsam mit dir möchten wir Erfolge feiern, dir einen Blick hinter die Kulissen ermöglichen oder dich über offene Stellen informieren.\n\n[blog.church.tools](https://blog.church.tools/)",
+      "visibility": "public"
+     },
+     "domainIdentifier": "12",
+     "domainType": "group",
+     "frontendUrl": "https://news.church.tools/groups/12",
+     "icon": "users",
+     "imageUrl": "https://news.church.tools/images/91/7528b8c353f676e4d2f51ab261fb4118b81e067b9f7ad61a2f295f3eb2419d4a",
+     "infos": [
+      "Öffentliche Beiträge"
+     ],
+     "initials": "C",
+     "title": "ChurchTools News"
+    },
+    "actor": {
+     "apiUrl": "https://news.church.tools/api/persons/13",
+     "color": null,
+     "domainAttributes": {
+      "dateOfDeath": null,
+      "firstName": "Hans-Helge",
+      "guid": "A4DDF05F-7475-477C-BF41-EF6516CEAFD8",
+      "isArchived": false,
+      "lastName": "Bürger"
+     },
+     "domainIdentifier": "13",
+     "domainType": "person",
+     "frontendUrl": "https://news.church.tools/?q=churchdb#PersonView/searchEntry:%2313/",
+     "icon": "user",
+     "imageUrl": "https://news.church.tools/images/302/06a8f9136b5e5d6662406c020a86688dbd5efcf2ec02c7a9bfa7dbdc06e787d1",
+     "infos": [],
+     "initials": "HB",
+     "title": "Hans-Helge Bürger"
+    },
+    "title": "Warum ChurchTools am 21. Oktober vorübergehend offline war",
+    "content": "*Der 21. Oktober 2026 sollte der entspannte Auftakt für unsere jährlichen Team-Tage werden. Drei Tage treffen wir uns in diesem Rahmen – dieses Jahr im schönen Schwarzwald – um gemeinsam an der Firma und ChurchTools zu arbeiten. Doch der Tag gestaltete sich turbulenter als erwartet.*\n\nDas PHP-Team, das die Programmiersprache PHP entwickelt, die wir auch für ChurchTools verwenden, hat am 20. Oktober 2026 eine Sicherheitslücke angekündigt und einen Patch (Behebung dieser Sicherheitslücke) für den Nachmittag des 21. Oktober in Aussicht gestellt. Diese Lücke hat weltweit Wellen geschlagen; die [Tagesschau](https://www.tagesschau.de/wirtschaft/digitales/php-panne-100.html) und auch das [BSI](https://www.bsi.bund.de/SharedDocs/Cybersicherheitswarnungen/DE/2026/2026-297981-1032.html) haben darüber berichtet.\n\n[In unserem neuen Blogbeitrag erfährst du](https://blog.church.tools/blog/warum-churchtools-am-21-oktober-voruebergehend-offline-war/), warum die Sicherheitslücke gefährlich war, warum und wie wir gehandelt haben, was wir daraus lernen – und dass eure Daten sicher sind.\n\n<br />\n\n**Hier geht es zum Blogbeitrag 👇🏼**\n\n[https://blog.church.tools/blog/warum-churchtools-am-21-oktober-voruebergehend-offline-war/](https://blog.church.tools/blog/warum-churchtools-am-21-oktober-voruebergehend-offline-war/)",
+    "groupVisibility": "public",
+    "visibility": "group_visible",
+    "commentsActive": false,
+    "images": [
+     "https://news.church.tools/images/518/59a0d9ec0df93136594954c0a5db222a62d9333a56c13dcfb598bef4fc7c9595"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://news.church.tools/images/518/59a0d9ec0df93136594954c0a5db222a62d9333a56c13dcfb598bef4fc7c9595",
+      "aspectRatio": null
+     }
+    ],
+    "publicationDate": null,
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-23T18:06:00Z",
+    "lastEditedDate": null,
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-23T18:06:00Z",
+     "createdPerson": {
+      "id": 13
+     },
+     "modifiedDate": "2026-10-23T18:06:00Z",
+     "modifiedPerson": {
+      "id": 13
+     }
+    },
+    "instance": {
+     "guid": "C06069D5-D6CF-4107-97F7-426D9546D6E8",
+     "shortName": "ChurchTools",
+     "siteName": "ChurchTools",
+     "siteUrl": "https://news.church.tools"
+    }
+   },
+   {
+    "id": 40,
+    "guid": "bafa996f-321f-11ef-87ca-86180747f536",
+    "group": {
+     "title": "Kleingruppe Bischof",
+     "domainType": "group",
+     "domainIdentifier": "22",
+     "apiUrl": "https://gemeinde.example/api/groups/22",
+     "frontendUrl": "https://gemeinde.example/groups/22",
+     "imageUrl": "https://gemeinde.example/images/2855/b2aee6f3e35a34859a038e3f6a0e1c25259b7dfdc6fc7a2f596042621891035d",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "Wir sind eine bunte Mischung junger Erwachsener, die gerne Zeit miteinander verbringen und voneinander lernen. Unser Ziel ist es, eine unterstützende und ermutigende Gemeinschaft zu schaffen, in der alle Teilnehmer im Glauben wachsen und ihre Beziehung zu Gott vertiefen können.\n\nWir treffen uns jeden Mittwoch um 19 Uhr meist bei uns Bischofs, aber hin und wieder auch bei jemand anderem aus der Kleingruppe. Details dazu findet ihr immer in den Gruppenbeiträgen oder im Gruppen-Chat. 💬\n\nNeben den regelmäßigen Treffen organisieren wir auch gemeinsame Aktivitäten, die uns ermöglichen, unseren Glauben aktiv zu leben. Von sozialen Einsätzen bis hin zu kreativen Projekten – wir suchen stets nach Wegen, wie wir unsere Talente zu SEINER Ehre einsetzen können. \n\nWenn das dein Interesse geweckt hat, melde dich gerne bei einem von uns. Wäre super, wenn wir dich bald mal in unser Runde begrüßen dürften. 🤗",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "intern",
+      "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "actor": {
+     "title": "Marten Bischof",
+     "domainType": "person",
+     "domainIdentifier": "170",
+     "apiUrl": "https://gemeinde.example/api/persons/170",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23170/",
+     "imageUrl": "https://gemeinde.example/images/2374/a6ef47a39b2e512d02b865a80c3747206d3e3e814e50fd1a16bffe6ee618da8d",
+     "icon": "user",
+     "color": null,
+     "initials": "MB",
+     "domainAttributes": {
+      "firstName": "Marten",
+      "lastName": "Bischof",
+      "guid": "FE2742A8-AB37-42D5-B6B6-EA0E3D8CCFE6",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Grillen am Mittwoch um 19h 🍗🤤",
+    "content": "Hier kommt der versprochene Beitrag.  Nächste Woche wollen wir zusammen grillen. Dazu werden noch einige Dinge benötigt. Es wäre schön, wenn ihr kommentieren könntet, wenn ihr was mitbringen könnt. 😊\n\nWir brauchen (je für 8 Personen):  \n- Getränke (Wasser, Apfelsaft, Cola, Bier)  \n- Nudelsalat  \n- Grünen Salat  \n- Kräuterbaguette  \n- Gemüsespieße  \n- Maiskolben  \nGrill, Kohle und Fleisch bring ich mit.  \nWir treffen uns wie immer um 19h.  Bringt Hunger mit. 😁\n\nFreu mich schon drauf!   \nBis dann, Marten",
+    "groupVisibility": "intern",
+    "visibility": "group_intern",
+    "commentsActive": true,
+    "images": [
+     "https://gemeinde.example/images/2524/e0af7228d0ecd72fa042fc0c65be644bb5520bcbd4437d1ea8103225f5f41d54",
+     "https://gemeinde.example/images/2521/649bd36e74b4c268eb243d582f666398b358110f61c41e68085ac76298aa3f7d",
+     "https://gemeinde.example/images/2518/b90bc21a9647a927da7bd13ee06af27c249fdfd950f79a714500c67d0e908d01",
+     "https://gemeinde.example/images/2527/2d6945f930db8f56abbc82404723d9cf9eb1ab6ed11f9b237a4911eaa366fffd"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://gemeinde.example/images/2524/e0af7228d0ecd72fa042fc0c65be644bb5520bcbd4437d1ea8103225f5f41d54",
+      "aspectRatio": 0.75
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/2521/649bd36e74b4c268eb243d582f666398b358110f61c41e68085ac76298aa3f7d",
+      "aspectRatio": 1.49718
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/2518/b90bc21a9647a927da7bd13ee06af27c249fdfd950f79a714500c67d0e908d01",
+      "aspectRatio": 1.50257
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/2527/2d6945f930db8f56abbc82404723d9cf9eb1ab6ed11f9b237a4911eaa366fffd",
+      "aspectRatio": 1.25107
+     }
+    ],
+    "publicationDate": null,
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-07T12:50:03Z",
+    "lastEditedDate": null,
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-07T12:50:03Z",
+     "createdPerson": {
+      "id": 170
+     },
+     "modifiedDate": "2026-07-29T12:50:03Z",
+     "modifiedPerson": {
+      "id": 170
+     }
+    }
+   },
+   {
+    "id": 22,
+    "guid": "bafa977f-321f-11ef-87ca-86180747f536",
+    "group": {
+     "title": "Suche/Biete",
+     "domainType": "group",
+     "domainIdentifier": "349",
+     "apiUrl": "https://gemeinde.example/api/groups/349",
+     "frontendUrl": "https://gemeinde.example/groups/349",
+     "imageUrl": "https://gemeinde.example/images/2398/7724e96078f1d65123a50cac802fe4cca4543919311b46585bd97f774a4a422b",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "### Willkommen in der Gruppe \"Suche/Biete\"!  \nIn unserer Gemeinschaft steht das Teilen im Mittelpunkt. Hier kann jeder beitreten, um Dinge zu verkaufen, zu verschenken oder spezifische Gesuche zu posten. Ob du nach einem seltenen Buch suchst, ein altes Fahrrad loswerden möchtest oder handgemachte Kunstwerke anbieten willst – bei uns findest du ein offenes Ohr und vielleicht sogar genau das, was du brauchst!\n\n### Regeln für das Posten  \n- **Klarheit ist König:** Gib eine genaue Beschreibung dessen, was du anbietest oder suchst, inklusive Zustand, Preis (falls zum Verkauf) oder ob es zu verschenken ist. Für jeden Artikel mindestens 1 Foto hinzufügen.   \n- **Respektvoller Umgang:** Behandle alle Mitglieder mit Respekt. Unhöfliches Verhalten wird nicht toleriert.  \n- **Fairness:** Der Erste, der sich meldet und ernsthaftes Interesse zeigt, hat Vorrang, den Artikel zu erhalten. Bitte halte dich an deine Zusagen.\n\nVereinbart Details privat: Sobald sich ein Interessent gefunden hat, klärt alle weiteren Details wie Übergabe oder Bezahlung über den Chat.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "8F3D1663-D4A3-4028-9826-513C7764392C"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "actor": {
+     "title": "Helge Häuser",
+     "domainType": "person",
+     "domainIdentifier": "2809",
+     "apiUrl": "https://gemeinde.example/api/persons/2809",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232809/",
+     "imageUrl": "https://gemeinde.example/images/2407/f3bb70604f0a8eef5eaf65bce25b7b41be96d055420eaa0d8f75e473d3b34d15",
+     "icon": "user",
+     "color": null,
+     "initials": "HH",
+     "domainAttributes": {
+      "firstName": "Helge",
+      "lastName": "Häuser",
+      "guid": "48FCE7F5-7901-4D42-B4A1-677741518B83",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Snowboard zu verkaufen - 150€ VHB",
+    "content": "Ich verkaufe mein selten gefahrenes Burton-Snowboard. Es ist 162cm lang, vom Typ “Process Chamber” und hat einen weichen Kern. Der Zustand ist sehr gut. Falls ihr Interesse haben solltet, meldet euch gern in den Kommentaren. :)",
+    "groupVisibility": "intern",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [
+     "https://gemeinde.example/images/2464/7470c5ab23be43296ba83c54ac9ede0c40b979d253f90fbe215540729b91bc49",
+     "https://gemeinde.example/images/2455/ccdb977c15d8981b8cba40c461dcf0dbc5e36b3d9eccf6f945e88a1252dd0188",
+     "https://gemeinde.example/images/2458/e9e6fa676624fa90ff89bb4d741cf196428d2a13ae21c216a8f8481b0e2af9b6",
+     "https://gemeinde.example/images/2461/e2a2e18cc9b91d0282a8bc574aff002102fbbf8246daa2dc4c0fcc5428787bdb"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://gemeinde.example/images/2464/7470c5ab23be43296ba83c54ac9ede0c40b979d253f90fbe215540729b91bc49",
+      "aspectRatio": 0.8
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/2455/ccdb977c15d8981b8cba40c461dcf0dbc5e36b3d9eccf6f945e88a1252dd0188",
+      "aspectRatio": 1.53535
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/2458/e9e6fa676624fa90ff89bb4d741cf196428d2a13ae21c216a8f8481b0e2af9b6",
+      "aspectRatio": 1.48889
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/2461/e2a2e18cc9b91d0282a8bc574aff002102fbbf8246daa2dc4c0fcc5428787bdb",
+      "aspectRatio": 0.66785
+     }
+    ],
+    "publicationDate": null,
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-04T13:48:11Z",
+    "lastEditedDate": null,
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-04T13:48:11Z",
+     "createdPerson": {
+      "id": 2809
+     },
+     "modifiedDate": "2026-07-26T13:48:11Z",
+     "modifiedPerson": {
+      "id": 2809
+     }
+    }
+   },
+   {
+    "id": 16,
+    "guid": "bafa9688-321f-11ef-87ca-86180747f536",
+    "group": {
+     "title": "Gebetsanliegen",
+     "domainType": "group",
+     "domainIdentifier": "355",
+     "apiUrl": "https://gemeinde.example/api/groups/355",
+     "frontendUrl": "https://gemeinde.example/groups/355",
+     "imageUrl": "https://gemeinde.example/images/2386/1580eda99f777f7fbce186f1a8664f001daaaa19b12075f24792f644f9963d1a",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "Herzlich willkommen in der \"Gebetsanliegen\"-Gruppe!\n\nHier geht es darum, zusammenzukommen und zu beten. Egal, was dir auf dem Herzen liegt; ob es was Persönliches ist oder du für jemand anderen oder etwas Größeres beten möchtest, hier ist der richtige Platz dafür. Diese Gruppe ist für jeden offen! Egal, ob du Gebetsunterstützung suchst oder einfach nur für andere beten möchtest, du bist hier goldrichtig.\n\nWenn du etwas Persönliches von jemand anderem teilen möchtest, dann frag die betroffene Person bitte vorher, ob es für sie ok ist, dass du ihr Thema in der Gruppe teilst. \n\nWir glauben fest daran, dass Gebete wirklich etwas bewegen können. Also egal ob du Trost suchst, Unterstützung brauchst oder einfach nur deine Gedanken teilen möchtest - nur Mut dazu.\n\nMach mit, bring dich ein und lass uns gemeinsam durch unsere Gebete etwas bewegen.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "44CA0294-0769-4F30-8B75-114985E01DD7"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "actor": {
+     "title": "Karin Messerschmidt",
+     "domainType": "person",
+     "domainIdentifier": "2812",
+     "apiUrl": "https://gemeinde.example/api/persons/2812",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232812/",
+     "imageUrl": "https://gemeinde.example/images/2410/fd0ce517efcd8eee5196289846713a7317fe5933a383647ae6d4f3c5753d8fdb",
+     "icon": "user",
+     "color": null,
+     "initials": "KM",
+     "domainAttributes": {
+      "firstName": "Karin",
+      "lastName": "Messerschmidt",
+      "guid": "1E3A0461-3E37-4A77-A4B7-920747B23312",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Bitte betet für Amir",
+    "content": "Hallo ihr Lieben, ich habe ein neues Gebetsanliegen, was mir sehr auf dem Herzen liegt.   \nEs geht um die Familie Al-Hassan, die vor einiger Zeit zu uns gestoßen ist. Ihr Sohn Amir konnte aufgrund der komplizierten Lage nicht mit ihnen fliehen und ist momentan alleine in Syrien. Die Unsicherheit und Sorge um ihn lastet schwer auf der Familie. Wir alle können uns nur schwer vorstellen, welche Belastung er gerade durchmachen muss.\n\nIn diesen Zeiten der Not und des Wartens bitten wir um eure Gebete für Amir und seine Familie. Betet bitte dafür, dass Amir sicher und wohlbehalten bleibt, dass er Trost und Kraft findet und dass eine Möglichkeit für ihn gefunden wird, zu seiner Familie zu kommen oder zumindest in Sicherheit zu leben. Lasst uns auch für die Familie Al-Hassan beten, dass sie Geduld, Frieden und Hoffnung bewahren können, während sie auf ein Wiedersehen mit Amir hoffen.\n\nZusätzlich zu unseren Gebeten möchte ich vorschlagen, dass wir als Gemeinschaft praktische Unterstützung anbieten. Ob es nun finanzielle Hilfe, Beratung in rechtlichen Fragen oder einfach das Teilen ihrer Geschichte ist – jede Unterstützung kann einen Unterschied machen. Wenn jemand von euch Kontakte zu Organisationen hat, die in solchen Situationen helfen können, oder andere Ideen zur Unterstützung, lasst es uns bitte wissen.\n\nWir planen, in den nächsten Tagen ein Treffen zu organisieren, um weitere Schritte zu besprechen und zu sehen, wie wir konkret helfen können. Wer daran teilnehmen möchte, bitte meldet euch, damit wir die Details planen können.\n\nIn solchen Momenten zeigt sich die Stärke unserer Gemeinschaft, indem wir zusammenstehen und diejenigen unterstützen, die uns am meisten brauchen. Lasst uns in Liebe und Solidarität handeln und zeigen, dass wir mehr als nur eine Gemeinde sind – wir sind eine Familie.",
+    "groupVisibility": "intern",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [],
+    "imagesMeta": [],
+    "publicationDate": null,
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-02T13:24:11Z",
+    "lastEditedDate": null,
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-02T13:24:11Z",
+     "createdPerson": {
+      "id": 2812
+     },
+     "modifiedDate": "2026-07-24T13:24:11Z",
+     "modifiedPerson": {
+      "id": 2812
+     }
+    }
+   },
+   {
+    "id": 10,
+    "guid": "bafa95d4-321f-11ef-87ca-86180747f536",
+    "group": {
+     "title": "Lauf-Treff",
+     "domainType": "group",
+     "domainIdentifier": "358",
+     "apiUrl": "https://gemeinde.example/api/groups/358",
+     "frontendUrl": "https://gemeinde.example/groups/358",
+     "imageUrl": "https://gemeinde.example/images/2377/fdcd928e042e1f5da6efe5043aef98b9d51bd94c18cf6f1cfb95897f3527b4a7",
+     "icon": "users",
+     "color": {
+      "key": "orange",
+      "shade": null
+     },
+     "initials": "L",
+     "domainAttributes": {
+      "note": "Wie der Name schon sagt... diese Gruppe gibt's, damit wir uns zum Laufen treffen. Wir motivieren einander, den Hintern hochzukriegen und verbringen Zeit mit anderen Brüdern und Schwestern. Was gibt's Besseres??! :)  \n\nJonny",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "2F6B3ED3-3B44-4AF4-B596-4D677AFF083E"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "actor": {
+     "title": "Jonny Huber",
+     "domainType": "person",
+     "domainIdentifier": "2797",
+     "apiUrl": "https://gemeinde.example/api/persons/2797",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232797/",
+     "imageUrl": "https://gemeinde.example/images/2383/512c2e8f5c0e3c3c6af8cebd529473fa3369e3c9f738ad0f52edd6e5bd14b32f",
+     "icon": "user",
+     "color": null,
+     "initials": "JH",
+     "domainAttributes": {
+      "firstName": "Jonny",
+      "lastName": "Huber",
+      "guid": "ADEC8D77-ED4D-4F9A-A4FA-6FDAF0343AF8",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Ferien sind vorbei - wir gehen wieder laufen!!!",
+    "content": "Ich hoffe, ihr habt euch gut erholt und wart in den Ferien nicht allzu untüchtig. 😋  \nAm Samstagmorgen geht es wieder los. Wir treffen uns um 8 Uhr vor der Turnhalle des Theodor-Heuss-Gymnasiums und laufen ca. um 8:10 Uhr los.\n\nStrecke und Dauer:  \nWir planen, unsere übliche Route durch den Hardwald zu nehmen, die etwa 9 km lang ist. Für die, die eine kürzere oder längere Distanz bevorzugen, gibt es die Möglichkeit, entsprechende Abkürzungen oder Erweiterungen zu nutzen. Wir rechnen damit, dass wir etwa eine Stunde unterwegs sein werden.\n\nWas du mitbringen solltest:  \n- Laufschuhe und bequeme Sportkleidung  \n- Eine Wasserflasche, um unterwegs hydriert zu bleiben 💦  \n- Ggf. eine Laufuhr oder App, um deine Zeit und Distanz zu tracken  \n- Viel Motivation und gute Laune 😊\n\nFür Neulinge:  \nFalls du neu in unserer Laufgruppe bist oder jemanden mitbringen möchtest, herzlich willkommen! Es ist keine Voranmeldung nötig, komm einfach zum Treffpunkt und lauf mit. Wir freuen uns immer über neue Gesichter.\n\nLasst uns gemeinsam wieder durchstarten und die Laufsaison nach den Ferien mit Energie und Spaß beginnen! Egal, ob du deine Ferien auf der Couch oder aktiv verbracht hast, wir nehmen dich mit offenen Armen auf.\n\nLG, Jonny",
+    "groupVisibility": "intern",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [
+     "https://gemeinde.example/images/2428/617cfe148c1276b7813481ea7398d699ca5f5fb788c3c2dc021e009b7a521c22",
+     "https://gemeinde.example/images/2425/207dff9e7aaf90a3b49be5e7b18442549e1bde1644afd640cf9adbf1a4c0ba94",
+     "https://gemeinde.example/images/2422/7a0f2b93868c97629e0450477c8a10952c6bca7bb16173953328d738ac0beb7c"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://gemeinde.example/images/2428/617cfe148c1276b7813481ea7398d699ca5f5fb788c3c2dc021e009b7a521c22",
+      "aspectRatio": 0.99804
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/2425/207dff9e7aaf90a3b49be5e7b18442549e1bde1644afd640cf9adbf1a4c0ba94",
+      "aspectRatio": 1.49986
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/2422/7a0f2b93868c97629e0450477c8a10952c6bca7bb16173953328d738ac0beb7c",
+      "aspectRatio": 0.94118
+     }
+    ],
+    "publicationDate": null,
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-01T13:16:43Z",
+    "lastEditedDate": null,
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-01T13:16:43Z",
+     "createdPerson": {
+      "id": 2797
+     },
+     "modifiedDate": "2026-07-23T13:16:43Z",
+     "modifiedPerson": {
+      "id": 2797
+     }
+    }
+   },
+   {
+    "id": 4,
+    "guid": "bafa9463-321f-11ef-87ca-86180747f536",
+    "group": {
+     "title": "Kleingruppe Bischof",
+     "domainType": "group",
+     "domainIdentifier": "22",
+     "apiUrl": "https://gemeinde.example/api/groups/22",
+     "frontendUrl": "https://gemeinde.example/groups/22",
+     "imageUrl": "https://gemeinde.example/images/2855/b2aee6f3e35a34859a038e3f6a0e1c25259b7dfdc6fc7a2f596042621891035d",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "Wir sind eine bunte Mischung junger Erwachsener, die gerne Zeit miteinander verbringen und voneinander lernen. Unser Ziel ist es, eine unterstützende und ermutigende Gemeinschaft zu schaffen, in der alle Teilnehmer im Glauben wachsen und ihre Beziehung zu Gott vertiefen können.\n\nWir treffen uns jeden Mittwoch um 19 Uhr meist bei uns Bischofs, aber hin und wieder auch bei jemand anderem aus der Kleingruppe. Details dazu findet ihr immer in den Gruppenbeiträgen oder im Gruppen-Chat. 💬\n\nNeben den regelmäßigen Treffen organisieren wir auch gemeinsame Aktivitäten, die uns ermöglichen, unseren Glauben aktiv zu leben. Von sozialen Einsätzen bis hin zu kreativen Projekten – wir suchen stets nach Wegen, wie wir unsere Talente zu SEINER Ehre einsetzen können. \n\nWenn das dein Interesse geweckt hat, melde dich gerne bei einem von uns. Wäre super, wenn wir dich bald mal in unser Runde begrüßen dürften. 🤗",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "intern",
+      "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "actor": {
+     "title": "Jenny Bischof",
+     "domainType": "person",
+     "domainIdentifier": "103",
+     "apiUrl": "https://gemeinde.example/api/persons/103",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23103/",
+     "imageUrl": "https://gemeinde.example/images/2371/0d148ae321f3f469efd5cb0a980517753163d3464cf6e1e0b38208aa3179789e",
+     "icon": "user",
+     "color": null,
+     "initials": "JB",
+     "domainAttributes": {
+      "firstName": "Jenny",
+      "lastName": "Bischof",
+      "guid": "DD027714-CB34-405E-9AF7-D348EF95A83B",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Herzlich Willkommen in unserer Kleingruppe ❤️",
+    "content": "Schön, dass du da bist. Hier sind einige wichtige Infos zum Thema Ansprechpartner, Treffen, usw...\n\nJenny Bischof: Ich stehe dir bei allen Fragen rund um die Kleingruppe zur Verfügung. Du erreichst mich per E-Mail unter jenny.bischof@example.com oder telefonisch unter 0123/4567890.\n\nMarten Bischof: Bei technischen Problemen oder Fragen zur Gruppenkommunikation kannst du dich an Marten wenden. Seine Kontaktdaten sind marten.bischof@example.com, Telefon: 01987/654321.\n\nTreffen:  \nUnsere Gruppentreffen finden jeden Mittwoch um 19:00 Uhr statt. Der Ort wird jeweils eine Woche vorher bekannt gegeben. Zusätzlich organisieren wir gelegentlich spontane Treffen oder Aktivitäten, über die wir dich rechtzeitig informieren.\n\nKommunikation:  \nWir nutzen den ChurchTools-Chat für den schnellen Austausch und zur Planung unserer Treffen. Bitte lass Jenny oder Max deine Handynummer zukommen, wenn du der Gruppe beitreten möchtest. Für ausführlichere Diskussionen und den Austausch von Dokumenten nutzen wir eine E-Mail-Liste.\n\nWas uns wichtig ist:  \nRespektvoller Umgang: Wir legen großen Wert auf eine freundliche und unterstützende Atmosphäre. Jede Meinung ist willkommen, solange sie respektvoll geäußert wird.\n\nAktive Teilnahme: Unsere Gruppe lebt vom Mitmachen. Wir ermutigen alle Mitglieder, sich einzubringen und an den Treffen teilzunehmen.  \nVertraulichkeit: Was in der Gruppe besprochen wird, bleibt in der Gruppe. Wir achten auf die Privatsphäre jedes Einzelnen.\n\nNächste Schritte:  \nBitte sende eine kurze Vorstellung von dir an die Gruppe, damit wir dich besser kennenlernen können. Erzähle uns ein bisschen über deine Interessen und was dich zur Teilnahme an unserer Gruppe motiviert hat.\n\nWir freuen uns darauf, dich persönlich zu treffen und gemeinsam tolle Momente zu erleben. Bei Fragen oder Anregungen zögere nicht, Jenny oder Max zu kontaktieren.\n\nHerzlich Willkommen und bis bald!\n\nDeine Jenny",
+    "groupVisibility": "intern",
+    "visibility": "group_intern",
+    "commentsActive": true,
+    "images": [],
+    "imagesMeta": [],
+    "publicationDate": null,
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-09-30T12:50:03Z",
+    "lastEditedDate": null,
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-09-30T12:50:03Z",
+     "createdPerson": {
+      "id": 103
+     },
+     "modifiedDate": "2026-07-22T12:50:03Z",
+     "modifiedPerson": {
+      "id": 103
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 10
+  }
+ }
+}

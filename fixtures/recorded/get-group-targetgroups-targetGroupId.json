@@ -1,0 +1,17 @@
+{
+ "operation": "get-group-targetgroups-targetGroupId",
+ "request": {
+  "method": "GET",
+  "path": "/group/targetgroups/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "everyone",
+   "nameTranslated": "Jeder",
+   "sortKey": 1
+  }
+ }
+}

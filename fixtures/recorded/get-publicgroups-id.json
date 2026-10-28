@@ -1,0 +1,111 @@
+{
+ "operation": "get-publicgroups-id",
+ "request": {
+  "method": "GET",
+  "path": "/publicgroups/11",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 11,
+   "name": "#0 Gemeindeleitung",
+   "information": {
+    "meetingTime": "",
+    "groupStatusId": 1,
+    "dateOfFoundation": null,
+    "color": "lime",
+    "weekday": null,
+    "groupCategory": null,
+    "ageGroups": [],
+    "targetGroup": null,
+    "note": "",
+    "campus": null,
+    "groupPlaces": [],
+    "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+    "imageAiGenerated": false,
+    "imageAnnotation": null,
+    "imageAnnotationLink": null,
+    "imageDescription": null
+   },
+   "settings": {
+    "allowOtherRegistration": false,
+    "allowSameEmailRegistration": true,
+    "allowSameemailRegistration": true,
+    "allowChildRegistration": true,
+    "allowSpouseRegistration": true,
+    "hideContactLeader": false,
+    "hideLogin": false,
+    "showStreet": false,
+    "emailVerificationMode": "all",
+    "signUpNotificationSent": null
+   },
+   "autoAccept": false,
+   "signUpCountsTowardsSeats": false,
+   "allowWaitinglist": false,
+   "waitinglistMaxPersons": null,
+   "maxMemberCount": null,
+   "currentMemberCount": 5,
+   "requestedSeatsCount": 0,
+   "requestedWaitinglistSeatsCount": 0,
+   "canSignUp": false,
+   "signUpConditions": {
+    "groupIsNotHidden": true,
+    "groupIsActive": true,
+    "groupIsOpenForMembers": false,
+    "groupIsNotFull": true,
+    "groupHasSpaceForRequests": true,
+    "groupAllowsWaitinglist": false,
+    "groupHasSpaceOnWaitinglist": true,
+    "groupHasLeader": true,
+    "atLeastOneLeaderCanCreateNewPerson": true,
+    "endDateNotPassed": true,
+    "signUpRoleSetInGroup": true,
+    "groupIsPublic": false,
+    "canContactLeader": true,
+    "newPersonStationIsSet": false,
+    "newPersonStatusIsSet": false,
+    "newPersonDepartmentIsSet": false,
+    "groupVisibility": "restricted",
+    "canSignUp": false,
+    "canSignUpAsNewPerson": false,
+    "@deprecated": {
+     "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+    },
+    "defaultRoleSetInGroup": true
+   },
+   "signUpHeadline": "Teilnahme beantragen",
+   "showPublicCannotViewGroup": false,
+   "signUpPersons": [
+    {
+     "person": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "status": "IN_GROUP"
+    }
+   ],
+   "@deprecated": {
+    "requestedPlacesCount": "requestedSeatsCount",
+    "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+   },
+   "requestedPlacesCount": 0,
+   "requestedWaitinglistPlacesCount": 0
+  }
+ }
+}

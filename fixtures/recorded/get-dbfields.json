@@ -1,0 +1,3936 @@
+{
+ "operation": "get-dbfields",
+ "request": {
+  "method": "GET",
+  "path": "/dbfields",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 132,
+    "name": "group.visibility",
+    "nameTranslated": "Sichtbarkeit",
+    "shorty": null,
+    "column": "visibility",
+    "key": "visibility",
+    "length": 20,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 9,
+     "name": "fieldtype.radioselect",
+     "internCode": "radioselect",
+     "sortKey": 60
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 0,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 34,
+    "name": "caption",
+    "nameTranslated": "Titel",
+    "shorty": "caption",
+    "column": "bezeichnung",
+    "key": "name",
+    "length": 255,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 16,
+    "name": "date.of.birth",
+    "nameTranslated": "Geburtsdatum",
+    "shorty": "date.of.birth",
+    "column": "geburtsdatum",
+    "key": "birthday",
+    "length": null,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 57,
+    "name": "department",
+    "nameTranslated": "Bereich",
+    "shorty": "department",
+    "column": "bereich_id",
+    "key": "departmentIds",
+    "length": 12,
+    "fieldCategory": {
+     "id": 5,
+     "name": "department",
+     "internCode": "f_dep",
+     "table": "cdb_bereich"
+    },
+    "fieldType": {
+     "id": 7,
+     "name": "fieldtype.multiselect",
+     "internCode": "multiselect",
+     "sortKey": 70
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 32,
+    "name": "glossary.person-status",
+    "nameTranslated": "Personenstatus",
+    "shorty": "glossary.person-status",
+    "column": "status_id",
+    "key": "statusId",
+    "length": 11,
+    "fieldCategory": {
+     "id": 3,
+     "name": "categories",
+     "internCode": "f_category",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 172,
+    "name": "group.field.sign-up-email-required-for-all.name",
+    "nameTranslated": "group.field.sign-up-email-required-for-all.name",
+    "shorty": "group.field.sign-up-email-required-for-all.name",
+    "column": "sign_up_email_required_for_all",
+    "key": "signUpEmailRequiredForAll",
+    "length": null,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "",
+    "securityLevel": 2,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 175,
+    "name": "group.signup.verification.title",
+    "nameTranslated": "group.signup.verification.title",
+    "shorty": "group.signup.verification.title",
+    "column": "verify_email_address",
+    "key": "emailVerificationMode",
+    "length": 16,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "",
+    "securityLevel": 2,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 72,
+    "name": "privacy.policy.agreement.date",
+    "nameTranslated": "Einwilligung erfolgt am",
+    "shorty": "privacy.policy.agreement.date",
+    "column": "privacy_policy_agreement_date",
+    "key": "privacyPolicyAgreementDate",
+    "length": null,
+    "fieldCategory": {
+     "id": 7,
+     "name": "datasecurity",
+     "internCode": "f_datasecurity",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 92,
+    "name": "sign.up.headline",
+    "nameTranslated": "Überschrift der Anmeldung",
+    "shorty": "sign.up.headline",
+    "column": "sign_up_headline",
+    "key": "signUpHeadline",
+    "length": 255,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 125,
+    "name": "sign.up.notification.sent",
+    "nameTranslated": "Anmeldebenachrichtigung wurde gesendet",
+    "shorty": "sign.up.notification.sent",
+    "column": "signup_notification_sent",
+    "key": "signUpNotificationSentDate",
+    "length": 255,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 11,
+     "name": "fieldtype.datetime",
+     "internCode": "datetime",
+     "sortKey": 90
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 128,
+    "name": "sign.up.notification.sent.count",
+    "nameTranslated": "sign.up.notification.sent.count",
+    "shorty": "sign.up.notification.sent.count",
+    "column": "signup_notification_sent_count",
+    "key": "signUpNotificationSentCount",
+    "length": 255,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 6,
+     "name": "fieldtype.number",
+     "internCode": "number",
+     "sortKey": 30
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 1,
+    "name": "title",
+    "nameTranslated": "Titel",
+    "shorty": null,
+    "column": "titel",
+    "key": "title",
+    "length": 30,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": null,
+    "securityLevel": 1,
+    "sortKey": 1,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 17,
+    "name": "birth.name",
+    "nameTranslated": "Geburtsname",
+    "shorty": "birth.name",
+    "column": "geburtsname",
+    "key": "birthName",
+    "length": 30,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 2,
+    "name": "given.name",
+    "nameTranslated": "Vorname",
+    "shorty": null,
+    "column": "vorname",
+    "key": "firstName",
+    "length": 100,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "&nbsp;",
+    "securityLevel": 1,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 169,
+    "name": "group.field.send-default-signup-mail.name",
+    "nameTranslated": "group.field.send-default-signup-mail.name",
+    "shorty": "group.field.send-default-signup-mail.name",
+    "column": "send_default_signup_mail_yn",
+    "key": "sendDefaultSignUpMail",
+    "length": null,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "",
+    "securityLevel": 0,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 68,
+    "name": "group.status",
+    "nameTranslated": "Gruppenstatus",
+    "shorty": "group.status",
+    "column": "groupstatus_id",
+    "key": "groupStatusId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 56,
+    "name": "group.type",
+    "nameTranslated": "Gruppentyp",
+    "shorty": "group.type",
+    "column": "gruppentyp_id",
+    "key": "groupTypeId",
+    "length": 11,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 67,
+    "name": "growpath",
+    "nameTranslated": "Wachstumspfad",
+    "shorty": "growpath",
+    "column": "growpath_id",
+    "key": "growPathId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 6,
+     "name": "growpath",
+     "internCode": "f_growpath",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 51,
+    "name": "maximum.members",
+    "nameTranslated": "Plätze",
+    "shorty": "maximum.members",
+    "column": "max_teilnehmer",
+    "key": "maxMembers",
+    "length": 11,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 6,
+     "name": "fieldtype.number",
+     "internCode": "number",
+     "sortKey": 30
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 73,
+    "name": "privacy.policy.agreement.wherby.long",
+    "nameTranslated": "Einwilligung wodurch",
+    "shorty": "privacy.policy.agreement.wherby",
+    "column": "privacy_policy_agreement_type_id",
+    "key": "privacyPolicyAgreementTypeId",
+    "length": 255,
+    "fieldCategory": {
+     "id": 7,
+     "name": "datasecurity",
+     "internCode": "f_datasecurity",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 33,
+    "name": "station",
+    "nameTranslated": "Standort",
+    "shorty": "station",
+    "column": "station_id",
+    "key": "campusId",
+    "length": 11,
+    "fieldCategory": {
+     "id": 3,
+     "name": "categories",
+     "internCode": "f_category",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 59,
+    "name": "station",
+    "nameTranslated": "Standort",
+    "shorty": "station",
+    "column": "station_id",
+    "key": "campusId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 2,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 18,
+    "name": "place.of.birth",
+    "nameTranslated": "Geburtsort",
+    "shorty": "place.of.birth",
+    "column": "geburtsort",
+    "key": "birthplace",
+    "length": 30,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 3,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 74,
+    "name": "privacy.policy.agreement.who.long",
+    "nameTranslated": "Einwilligung durch wen",
+    "shorty": "privacy.policy.agreement.who",
+    "column": "privacy_policy_agreement_who_id",
+    "key": "privacyPolicyAgreementWhoId",
+    "length": 255,
+    "fieldCategory": {
+     "id": 7,
+     "name": "datasecurity",
+     "internCode": "f_datasecurity",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 3,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 54,
+    "name": "Rufname",
+    "nameTranslated": "Rufname",
+    "shorty": null,
+    "column": "spitzname",
+    "key": "nickname",
+    "length": 30,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "(%)",
+    "securityLevel": 1,
+    "sortKey": 3,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 79,
+    "name": "data.security.date",
+    "nameTranslated": "Vertraulichkeitsvereinbarung akzeptiert am",
+    "shorty": "data.security.date",
+    "column": "acceptedsecurity",
+    "key": "acceptedsecurity",
+    "length": null,
+    "fieldCategory": {
+     "id": 7,
+     "name": "datasecurity",
+     "internCode": "f_datasecurity",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 4,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 19,
+    "name": "profession",
+    "nameTranslated": "Beruf",
+    "shorty": "profession",
+    "column": "beruf",
+    "key": "job",
+    "length": 50,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 4,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 3,
+    "name": "surname",
+    "nameTranslated": "Nachname",
+    "shorty": null,
+    "column": "name",
+    "key": "lastName",
+    "length": 100,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 4,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 20,
+    "name": "nationality",
+    "nameTranslated": "Nationalität",
+    "shorty": "nationality",
+    "column": "nationalitaet_id",
+    "key": "nationalityId",
+    "length": 11,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 5,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 4,
+    "name": "street",
+    "nameTranslated": "Straße",
+    "shorty": null,
+    "column": "strasse",
+    "key": "street",
+    "length": 100,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 5,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 5,
+    "name": "addition",
+    "nameTranslated": "Zusatz",
+    "shorty": null,
+    "column": "zusatz",
+    "key": "addressAddition",
+    "length": 100,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 6,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 39,
+    "name": "date.of.foundation",
+    "nameTranslated": "Gründungsdatum",
+    "shorty": "date.of.foundation",
+    "column": "gruendungsdatum",
+    "key": "dateOfFoundation",
+    "length": null,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 6,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 21,
+    "name": "family.status",
+    "nameTranslated": "Familienstand",
+    "shorty": "family.status",
+    "column": "familienstand_no",
+    "key": "familyStatusId",
+    "length": 11,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 6,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 40,
+    "name": "date.of.completion",
+    "nameTranslated": "Abschlussdatum",
+    "shorty": "date.of.completion",
+    "column": "abschlussdatum",
+    "key": "endDate",
+    "length": null,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 7,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 22,
+    "name": "date.of.marriage",
+    "nameTranslated": "Hochzeitsdatum",
+    "shorty": "date.of.marriage",
+    "column": "hochzeitsdatum",
+    "key": "weddingDate",
+    "length": null,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/><br/>",
+    "securityLevel": 4,
+    "sortKey": 7,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 6,
+    "name": "postalcode",
+    "nameTranslated": "PLZ",
+    "shorty": null,
+    "column": "plz",
+    "key": "zip",
+    "length": 20,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": null,
+    "securityLevel": 2,
+    "sortKey": 7,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 7,
+    "name": "city",
+    "nameTranslated": "Ort",
+    "shorty": null,
+    "column": "ort",
+    "key": "city",
+    "length": 40,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 8,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 65,
+    "name": "day.of.meeting",
+    "nameTranslated": "Wochentag",
+    "shorty": "day.of.meeting",
+    "column": "meetingday_no",
+    "key": "weekday",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 8,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 23,
+    "name": "first.contact",
+    "nameTranslated": "Erstkontakt",
+    "shorty": "first.contact",
+    "column": "erstkontakt",
+    "key": "firstContact",
+    "length": null,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 8,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 41,
+    "name": "time.of.meeting",
+    "nameTranslated": "Startzeit",
+    "shorty": "time.of.meeting",
+    "column": "treffzeit",
+    "key": "meetingTime",
+    "length": 100,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 8,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 8,
+    "name": "country",
+    "nameTranslated": "Land",
+    "shorty": null,
+    "column": "land",
+    "key": "country",
+    "length": 30,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/><br/>",
+    "securityLevel": 2,
+    "sortKey": 9,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 24,
+    "name": "date.of.belonging",
+    "nameTranslated": "Zugehörig seit",
+    "shorty": "date.of.belonging",
+    "column": "zugehoerig",
+    "key": "dateOfBelonging",
+    "length": null,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 9,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 42,
+    "name": "place.of.meeting",
+    "nameTranslated": "Treffpunkt",
+    "shorty": "place.of.meeting",
+    "column": "treffpunkt",
+    "key": "treffpunkt",
+    "length": 50,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 9,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 25,
+    "name": "date.of.entry",
+    "nameTranslated": "Eintrittsdatum",
+    "shorty": "date.of.entry",
+    "column": "eintrittsdatum",
+    "key": "dateOfEntry",
+    "length": null,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 10,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 9,
+    "name": "sex",
+    "nameTranslated": "Geschlecht",
+    "shorty": "sex",
+    "column": "geschlecht_no",
+    "key": "sexId",
+    "length": 11,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 10,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 66,
+    "name": "age.groups",
+    "nameTranslated": "Altersgruppen",
+    "shorty": "age.groups",
+    "column": "agegroup_ids",
+    "key": "ageGroupIds",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 7,
+     "name": "fieldtype.multiselect",
+     "internCode": "multiselect",
+     "sortKey": 70
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 11,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 10,
+    "name": "phone.privat",
+    "nameTranslated": "Telefon privat",
+    "shorty": "ph.privat",
+    "column": "telefonprivat",
+    "key": "phonePrivate",
+    "length": 30,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 11,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 26,
+    "name": "refer.from",
+    "nameTranslated": "Überwiesen von",
+    "shorty": "refer.from",
+    "column": "ueberwiesenvon",
+    "key": "referredBy",
+    "length": 30,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 11,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 44,
+    "name": "target.group",
+    "nameTranslated": "Zielgruppe",
+    "shorty": "target.group",
+    "column": "targetgroup_id",
+    "key": "targetGroupId",
+    "length": 30,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 11,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 27,
+    "name": "date.of.resign",
+    "nameTranslated": "Austrittsdatum",
+    "shorty": "date.of.resign",
+    "column": "austrittsdatum",
+    "key": "dateOfResign",
+    "length": null,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 12,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 45,
+    "name": "description",
+    "nameTranslated": "Beschreibung",
+    "shorty": "description",
+    "column": "notiz",
+    "key": "note",
+    "length": 10000,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 5,
+     "name": "fieldtype.textarea",
+     "internCode": "textarea",
+     "sortKey": 20
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 12,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 69,
+    "name": "groupcategory",
+    "nameTranslated": "Kategorie",
+    "shorty": "groupcategory",
+    "column": "groupcategory_id",
+    "key": "groupCategoryId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 12,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 11,
+    "name": "phone.business",
+    "nameTranslated": "Telefon geschäftl.",
+    "shorty": "ph.business",
+    "column": "telefongeschaeftlich",
+    "key": "phoneWork",
+    "length": 20,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 12,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 12,
+    "name": "phone.mobile",
+    "nameTranslated": "Handy",
+    "shorty": "ph.mobile",
+    "column": "telefonhandy",
+    "key": "mobile",
+    "length": 20,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 13,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 28,
+    "name": "refer.to",
+    "nameTranslated": "Überwiesen nach",
+    "shorty": "refer.to",
+    "column": "ueberwiesennach",
+    "key": "referredTo",
+    "length": 30,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/><br/>",
+    "securityLevel": 4,
+    "sortKey": 13,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 29,
+    "name": "date.of.baptism",
+    "nameTranslated": "Taufdatum",
+    "shorty": "date.of.baptism",
+    "column": "taufdatum",
+    "key": "dateOfBaptism",
+    "length": null,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 14,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 13,
+    "name": "fax",
+    "nameTranslated": "Fax",
+    "shorty": "fax",
+    "column": "fax",
+    "key": "fax",
+    "length": 20,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 14,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 14,
+    "name": "email",
+    "nameTranslated": "E-Mail",
+    "shorty": "email",
+    "column": "email",
+    "key": "email",
+    "length": 50,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": true,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 15,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 30,
+    "name": "place.of.baptism",
+    "nameTranslated": "Taufort",
+    "shorty": "place.of.baptism",
+    "column": "taufort",
+    "key": "placeOfBaptism",
+    "length": 50,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 15,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": true,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 48,
+    "name": "show.in.statistic",
+    "nameTranslated": "In Statistik zeigen",
+    "shorty": "show.in.statistic",
+    "column": "instatistik_yn",
+    "key": "inStatistic",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 15,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 31,
+    "name": "baptism.through",
+    "nameTranslated": "Getauft durch",
+    "shorty": "baptism.through",
+    "column": "getauftdurch",
+    "key": "baptisedBy",
+    "length": 50,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 16,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 15,
+    "name": "cmsuserid",
+    "nameTranslated": "Benutzername",
+    "shorty": "cmsuserid",
+    "column": "cmsuserid",
+    "key": "cmsUserId",
+    "length": 50,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 16,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 49,
+    "name": "maintain.weekly.meeting",
+    "nameTranslated": "Wöchentliche Gruppentreffen erstellen",
+    "shorty": "maintain.weekly.meeting",
+    "column": "treffen_yn",
+    "key": "createWeeklyGroupMeetings",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 16,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 50,
+    "name": "optigem.nr",
+    "nameTranslated": "Optigem-Nr",
+    "shorty": "optigem.nr",
+    "column": "optigem_nr",
+    "key": "optigemId",
+    "length": 10,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 17,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 167,
+    "name": "person.death-date",
+    "nameTranslated": "Sterbedatum",
+    "shorty": "person.death-date",
+    "column": "death_date",
+    "key": "dateOfDeath",
+    "length": null,
+    "fieldCategory": {
+     "id": 2,
+     "name": "information",
+     "internCode": "f_church",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 3,
+     "name": "fieldtype.date",
+     "internCode": "date",
+     "sortKey": 80
+    },
+    "isActive": true,
+    "useAsPlaceholder": true,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 17,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 158,
+    "name": "group.field.signup-closing-date.name",
+    "nameTranslated": "group.field.signup-closing-date.name",
+    "shorty": "group.field.signup-closing-date.name",
+    "column": "signup_closing_date",
+    "key": "signUpClosingDate",
+    "length": null,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 11,
+     "name": "fieldtype.datetime",
+     "internCode": "datetime",
+     "sortKey": 90
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": null,
+    "securityLevel": 5,
+    "sortKey": 18,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 155,
+    "name": "group.field.signup-opening-date.name",
+    "nameTranslated": "group.field.signup-opening-date.name",
+    "shorty": "group.field.signup-opening-date.name",
+    "column": "signup_opening_date",
+    "key": "signUpOpeningDate",
+    "length": null,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 11,
+     "name": "fieldtype.datetime",
+     "internCode": "datetime",
+     "sortKey": 90
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": null,
+    "securityLevel": 5,
+    "sortKey": 18,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 139,
+    "name": "qrcodecheckin.automatic.email",
+    "nameTranslated": "Check-in-Codes automatisch per E-Mail versenden",
+    "shorty": "qrcodecheckin.automatic.email",
+    "column": "qrcodecheckin_automatic_email_yn",
+    "key": "qrCodeCheckinAutomaticEmail",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 18,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 95,
+    "name": "qrcodecheckin.enable",
+    "nameTranslated": "Check-in-Code aktivieren",
+    "shorty": "qrcodecheckin.enable",
+    "column": "qrcodecheckin_yn",
+    "key": "qrCodeCheckin",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 18,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 55,
+    "name": "inform.via.email.about.changes",
+    "nameTranslated": "Per E-Mail über Änderungen informieren",
+    "shorty": "inform.via.email.about.changes",
+    "column": "mail_an_leiter_yn",
+    "key": "informLeader",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 19,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 98,
+    "name": "group.allowspouseregistration",
+    "nameTranslated": "Ehepartner dürfen mit angemeldet werden.",
+    "shorty": null,
+    "column": "allow_spouse_registration",
+    "key": "allowSpouseRegistration",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 20,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 101,
+    "name": "group.allowchildregistration",
+    "nameTranslated": "Eigene Kinder unter 16 Jahren dürfen mit angemeldet werden.",
+    "shorty": null,
+    "column": "allow_child_registration",
+    "key": "allowChildRegistration",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 21,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 104,
+    "name": "group.allowsameemailregistration",
+    "nameTranslated": "Personen mit gleicher E-Mail-Adresse dürfen mit angemeldet werden.",
+    "shorty": null,
+    "column": "allow_sameemail_registration",
+    "key": "allowSameEmailRegistration",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 22,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 107,
+    "name": "group.allowotherregistration",
+    "nameTranslated": "Beliebige weitere Personen dürfen mit angemeldet werden. Das Einverständnis dieser Personen vorausgesetzt.",
+    "shorty": null,
+    "column": "allow_other_registration",
+    "key": "allowOtherRegistration",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 23,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 64,
+    "name": "group.application.needs.approval",
+    "nameTranslated": "Für die Gruppenmitgliedschaft ist eine manuelle Freigabe durch die Leitung der Gruppe notwendig. Neue Gruppenmitglieder erhalten den Status \"angefragt\".",
+    "shorty": "group.application.needs.approval",
+    "column": "direktteilnehmer_yn",
+    "key": "autoAccept",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 5,
+    "sortKey": 25,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 111,
+    "name": "group.allow.waitinglist",
+    "nameTranslated": "Warteliste: Wenn die Gruppe voll ist, weitere Gruppenmitgliedschafts-Anträge erlauben.",
+    "shorty": null,
+    "column": "allow_waitinglist",
+    "key": "allowWaitinglist",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 26,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 114,
+    "name": "group.automatic_move_up",
+    "nameTranslated": "Wenn in der Gruppe Plätze frei werden, automatisiert entsprechend viele freigeben. Gemeinsam angemeldete Personen werden erst freigegeben, wenn entsprechend viele Plätze frei sind.",
+    "shorty": null,
+    "column": "automatic_move_up",
+    "key": "automaticMoveUp",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 27,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 118,
+    "name": "group.max.persons.on.waiting.list",
+    "nameTranslated": "Maximale Anzahl von Personen auf der Warteliste:",
+    "shorty": null,
+    "column": "waitinglist_max_persons",
+    "key": "waitinglistMaxPersons",
+    "length": 11,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 6,
+     "name": "fieldtype.number",
+     "internCode": "number",
+     "sortKey": 30
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 28,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 121,
+    "name": "group.hide.contact.leader",
+    "nameTranslated": "\"Leiter kontaktieren\" ausblenden",
+    "shorty": null,
+    "column": "hide_contact_leader",
+    "key": "hideContactLeader",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 29,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 60,
+    "name": "groupmeeting.template",
+    "nameTranslated": "Vorlage für Gruppentreffen",
+    "shorty": "groupmeeting.template",
+    "column": "gruppentreffen_template_id",
+    "key": "groupMeetingTemplateId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 29,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 124,
+    "name": "group.hide.login",
+    "nameTranslated": "\"Bei ChurchTools einloggen\" ausblenden",
+    "shorty": null,
+    "column": "hide_login",
+    "key": "hideLogin",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 30,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 61,
+    "name": "station",
+    "nameTranslated": "Standort",
+    "shorty": "station",
+    "column": "new_person_station_id",
+    "key": "newPersonCampusId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 30,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 138,
+    "name": "group.show.street",
+    "nameTranslated": "Straße anzeigen",
+    "shorty": null,
+    "column": "show_street",
+    "key": "showStreet",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 31,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 62,
+    "name": "status",
+    "nameTranslated": "Status",
+    "shorty": "status",
+    "column": "new_person_status_id",
+    "key": "newPersonStatusId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 31,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 63,
+    "name": "department",
+    "nameTranslated": "Bereich",
+    "shorty": "department",
+    "column": "new_person_dep_id",
+    "key": "newPersonDepartmentId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 3,
+    "sortKey": 32,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 71,
+    "name": "groupimage",
+    "nameTranslated": "Gruppenbild",
+    "shorty": "groupimage",
+    "column": "groupimage_id",
+    "key": "imageId",
+    "length": 12,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 33,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": false,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 135,
+    "name": "group.field.roleaftersignup.name",
+    "nameTranslated": "Rolle nach Anmeldung",
+    "shorty": "group.field.roleaftersignup.name",
+    "column": "sign_up_override_role_id",
+    "key": "signUpOverrideRoleId",
+    "length": 11,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 100,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 89,
+    "name": "user.system",
+    "nameTranslated": "ChurchTools",
+    "shorty": "user.system",
+    "column": "is_system_user",
+    "key": "isSystemUser",
+    "length": 1,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": false,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 4,
+    "sortKey": 100,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": true,
+    "isNotConfigurable": false,
+    "isBasicInfo": false,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": false
+   },
+   {
+    "id": 164,
+    "name": "geocoding-failed.date",
+    "nameTranslated": "geocoding-failed.date",
+    "shorty": null,
+    "column": "geocoding_failed",
+    "key": "geocodingFailed",
+    "length": null,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 11,
+     "name": "fieldtype.datetime",
+     "internCode": "datetime",
+     "sortKey": 90
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": null,
+    "securityLevel": 1,
+    "sortKey": 150,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 108,
+    "name": "guid",
+    "nameTranslated": "GUID",
+    "shorty": "guid",
+    "column": "guid",
+    "key": "guid",
+    "length": 40,
+    "fieldCategory": {
+     "id": 1,
+     "name": "address",
+     "internCode": "f_address",
+     "table": "cdb_person"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 300,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 115,
+    "name": "guid",
+    "nameTranslated": "GUID",
+    "shorty": "guid",
+    "column": "guid",
+    "key": "guid",
+    "length": 40,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 300,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": true,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 131,
+    "name": "color",
+    "nameTranslated": "Farbe",
+    "shorty": "color",
+    "column": "color",
+    "key": "color",
+    "length": 20,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 1,
+    "sortKey": 400,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": true,
+    "isNotConfigurable": false,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": false
+   },
+   {
+    "id": 142,
+    "name": "Beiträge aktiviert",
+    "nameTranslated": "Beiträge aktiviert",
+    "shorty": null,
+    "column": "posts_enabled",
+    "key": "postsEnabled",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 500,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 145,
+    "name": "***group.default-post-visibility***",
+    "nameTranslated": "***group.default-post-visibility***",
+    "shorty": null,
+    "column": "default_post_visibility",
+    "key": "defaultPostVisibility",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 9,
+     "name": "fieldtype.radioselect",
+     "internCode": "radioselect",
+     "sortKey": 60
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 501,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 148,
+    "name": "***group.default-post-comments-active***",
+    "nameTranslated": "***group.default-post-comments-active***",
+    "shorty": null,
+    "column": "default_post_comments_active",
+    "key": "defaultPostCommentsActive",
+    "length": 1,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 503,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   },
+   {
+    "id": 151,
+    "name": "***group.default-post-placeholder-text***",
+    "nameTranslated": "***group.default-post-placeholder-text***",
+    "shorty": null,
+    "column": "default_post_placeholder_text",
+    "key": "defaultPostPlaceholderText",
+    "length": 500,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 1,
+     "name": "fieldtype.text",
+     "internCode": "text",
+     "sortKey": 10
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 504,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 154,
+    "name": "group.default-post-notification-scope",
+    "nameTranslated": "group.default-post-notification-scope",
+    "shorty": null,
+    "column": "default_post_notification_scope",
+    "key": "defaultPostNotificationScope",
+    "length": 20,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 2,
+     "name": "fieldtype.select",
+     "internCode": "select",
+     "sortKey": 50
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 505,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": true,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": true,
+    "notConfigurable": true
+   },
+   {
+    "id": 161,
+    "name": "Abonnieren von Beiträgen erlauben",
+    "nameTranslated": "Abonnieren von Beiträgen erlauben",
+    "shorty": null,
+    "column": "external_post_subscriptions_enabled",
+    "key": "externalPostSubscriptionsEnabled",
+    "length": null,
+    "fieldCategory": {
+     "id": 4,
+     "name": "group",
+     "internCode": "f_group",
+     "table": "cdb_gruppe"
+    },
+    "fieldType": {
+     "id": 4,
+     "name": "fieldtype.checkbox",
+     "internCode": "checkbox",
+     "sortKey": 40
+    },
+    "isActive": true,
+    "useAsPlaceholder": false,
+    "isNewPersonField": false,
+    "lineEnding": "<br/>",
+    "securityLevel": 2,
+    "sortKey": 520,
+    "deleteOnArchive": false,
+    "isAvailableInRoutines": false,
+    "isNullable": false,
+    "hideInFrontend": false,
+    "isNotConfigurable": true,
+    "isBasicInfo": true,
+    "createdByChurch": false,
+    "@deprecated": {
+     "nullable": "isNullable",
+     "notConfigurable": "isNotConfigurable"
+    },
+    "nullable": false,
+    "notConfigurable": true
+   }
+  ],
+  "meta": {
+   "count": 98
+  }
+ }
+}

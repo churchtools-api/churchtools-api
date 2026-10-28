@@ -1,0 +1,15 @@
+{
+ "operation": "get-groups-groupId-poststatistics",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/poststatistics",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "group_visible": 0,
+   "group_intern": 0
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "operation": "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties",
+ "request": {
+  "method": "GET",
+  "path": "/sync/externalsystems/13/jobconfigs/13/properties",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "externalSystem": {
+    "id": 13,
+    "name": "ctrs-test",
+    "accessHeaderValues": [],
+    "adapter": "churchtools",
+    "jobConfigsCount": 1
+   },
+   "domainType": "person",
+   "properties": {
+    "propertyMappingsMasterToES": [],
+    "propertyMappingsESToMaster": []
+   }
+  }
+ }
+}

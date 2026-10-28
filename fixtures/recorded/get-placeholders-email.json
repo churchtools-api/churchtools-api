@@ -1,0 +1,359 @@
+{
+ "operation": "get-placeholders-email",
+ "request": {
+  "method": "GET",
+  "path": "/placeholders/email",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "name": "Person",
+    "items": [
+     {
+      "name": "Adresse",
+      "items": [
+       {
+        "placeholder": "{{{person.salutationFormal}}}",
+        "label": "Formelle Anrede"
+       },
+       {
+        "placeholder": "{{{person.salutationInformal}}}",
+        "label": "Informelle Anrede"
+       },
+       {
+        "placeholder": "{{{person.title}}}",
+        "label": "Titel"
+       },
+       {
+        "placeholder": "{{{person.firstName}}}",
+        "label": "Vorname"
+       },
+       {
+        "placeholder": "{{{person.lastName}}}",
+        "label": "Nachname"
+       },
+       {
+        "placeholder": "{{{person.street}}}",
+        "label": "Straße"
+       },
+       {
+        "placeholder": "{{{person.addressAddition}}}",
+        "label": "Zusatz"
+       },
+       {
+        "placeholder": "{{{person.zip}}}",
+        "label": "PLZ"
+       },
+       {
+        "placeholder": "{{{person.city}}}",
+        "label": "Ort"
+       },
+       {
+        "placeholder": "{{{person.country}}}",
+        "label": "Land"
+       },
+       {
+        "placeholder": "{{{person.sex}}}",
+        "label": "Geschlecht"
+       },
+       {
+        "placeholder": "{{{person.sexId}}}",
+        "label": "Geschlecht (ID)"
+       },
+       {
+        "placeholder": "{{{person.phonePrivate}}}",
+        "label": "Telefon privat"
+       },
+       {
+        "placeholder": "{{{person.phoneWork}}}",
+        "label": "Telefon geschäftl."
+       },
+       {
+        "placeholder": "{{{person.mobile}}}",
+        "label": "Handy"
+       },
+       {
+        "placeholder": "{{{person.fax}}}",
+        "label": "Fax"
+       },
+       {
+        "placeholder": "{{{person.email}}}",
+        "label": "E-Mail"
+       },
+       {
+        "placeholder": "{{{person.nickname}}}",
+        "label": "Rufname"
+       }
+      ]
+     },
+     {
+      "name": "Information",
+      "items": [
+       {
+        "placeholder": "{{{person.birthday}}}",
+        "label": "Geburtsdatum"
+       },
+       {
+        "placeholder": "{{{person.birthName}}}",
+        "label": "Geburtsname"
+       },
+       {
+        "placeholder": "{{{person.birthplace}}}",
+        "label": "Geburtsort"
+       },
+       {
+        "placeholder": "{{{person.job}}}",
+        "label": "Beruf"
+       },
+       {
+        "placeholder": "{{{person.nationality}}}",
+        "label": "Nationalität"
+       },
+       {
+        "placeholder": "{{{person.nationalityId}}}",
+        "label": "Nationalität (ID)"
+       },
+       {
+        "placeholder": "{{{person.familyStatus}}}",
+        "label": "Familienstand"
+       },
+       {
+        "placeholder": "{{{person.familyStatusId}}}",
+        "label": "Familienstand (ID)"
+       },
+       {
+        "placeholder": "{{{person.weddingDate}}}",
+        "label": "Hochzeitsdatum"
+       },
+       {
+        "placeholder": "{{{person.dateOfDeath}}}",
+        "label": "Sterbedatum"
+       },
+       {
+        "placeholder": "{{{person.id}}}",
+        "label": "Personen-ID"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Beziehungen",
+    "items": [
+     {
+      "name": "Ehepaar",
+      "items": [
+       {
+        "placeholder": "{{{relations.couple.spouse.#1.name}}}",
+        "label": "Name von Ehepartner",
+        "menuLabel": "Name"
+       },
+       {
+        "placeholder": "{{{relations.couple.spouse.#1.firstName}}}",
+        "label": "Vorname von Ehepartner",
+        "menuLabel": "Vorname"
+       },
+       {
+        "placeholder": "{{{relations.couple.spouse.#1.lastName}}}",
+        "label": "Nachname von Ehepartner",
+        "menuLabel": "Nachname"
+       },
+       {
+        "placeholder": "{{#with relations.couple.spouse.#1.person}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}",
+        "label": "Mit Ehepartner:",
+        "menuLabel": "Sonstiges"
+       }
+      ]
+     },
+     {
+      "name": "Elternteil/Kind",
+      "items": [
+       {
+        "name": "Elternteil",
+        "items": [
+         {
+          "name": "Erster",
+          "items": [
+           {
+            "placeholder": "{{{relations.parent-child.parent.#1.name}}}",
+            "label": "Name von Elternteil 1",
+            "menuLabel": "Name"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.parent.#1.firstName}}}",
+            "label": "Vorname von Elternteil 1",
+            "menuLabel": "Vorname"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.parent.#1.lastName}}}",
+            "label": "Nachname von Elternteil 1",
+            "menuLabel": "Nachname"
+           },
+           {
+            "placeholder": "{{#with relations.parent-child.parent.#1.person}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}",
+            "label": "Mit Elternteil 1:",
+            "menuLabel": "Sonstiges"
+           }
+          ]
+         },
+         {
+          "name": "Zweiter",
+          "items": [
+           {
+            "placeholder": "{{{relations.parent-child.parent.#2.name}}}",
+            "label": "Name von Elternteil 2",
+            "menuLabel": "Name"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.parent.#2.firstName}}}",
+            "label": "Vorname von Elternteil 2",
+            "menuLabel": "Vorname"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.parent.#2.lastName}}}",
+            "label": "Nachname von Elternteil 2",
+            "menuLabel": "Nachname"
+           },
+           {
+            "placeholder": "{{#with relations.parent-child.parent.#2.person}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}",
+            "label": "Mit Elternteil 2:",
+            "menuLabel": "Sonstiges"
+           }
+          ]
+         },
+         {
+          "placeholder": "{{#each relations.parent-child.parent.all}}{{#with this}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}{{/each}}",
+          "label": "placeholder.for.each.x",
+          "menuLabel": "Alle"
+         },
+         {
+          "placeholder": "{{{relations.parent-child.parent.quantity}}}",
+          "label": "Anzahl von Elternteil",
+          "menuLabel": "Anzahl"
+         }
+        ]
+       },
+       {
+        "name": "Kind",
+        "items": [
+         {
+          "name": "Erster",
+          "items": [
+           {
+            "placeholder": "{{{relations.parent-child.child.#1.name}}}",
+            "label": "Name von Kind 1",
+            "menuLabel": "Name"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.child.#1.firstName}}}",
+            "label": "Vorname von Kind 1",
+            "menuLabel": "Vorname"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.child.#1.lastName}}}",
+            "label": "Nachname von Kind 1",
+            "menuLabel": "Nachname"
+           },
+           {
+            "placeholder": "{{#with relations.parent-child.child.#1.person}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}",
+            "label": "Mit Kind 1:",
+            "menuLabel": "Sonstiges"
+           }
+          ]
+         },
+         {
+          "name": "Zweiter",
+          "items": [
+           {
+            "placeholder": "{{{relations.parent-child.child.#2.name}}}",
+            "label": "Name von Kind 2",
+            "menuLabel": "Name"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.child.#2.firstName}}}",
+            "label": "Vorname von Kind 2",
+            "menuLabel": "Vorname"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.child.#2.lastName}}}",
+            "label": "Nachname von Kind 2",
+            "menuLabel": "Nachname"
+           },
+           {
+            "placeholder": "{{#with relations.parent-child.child.#2.person}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}",
+            "label": "Mit Kind 2:",
+            "menuLabel": "Sonstiges"
+           }
+          ]
+         },
+         {
+          "name": "Dritter",
+          "items": [
+           {
+            "placeholder": "{{{relations.parent-child.child.#3.name}}}",
+            "label": "Name von Kind 3",
+            "menuLabel": "Name"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.child.#3.firstName}}}",
+            "label": "Vorname von Kind 3",
+            "menuLabel": "Vorname"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.child.#3.lastName}}}",
+            "label": "Nachname von Kind 3",
+            "menuLabel": "Nachname"
+           },
+           {
+            "placeholder": "{{#with relations.parent-child.child.#3.person}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}",
+            "label": "Mit Kind 3:",
+            "menuLabel": "Sonstiges"
+           }
+          ]
+         },
+         {
+          "name": "Letzter",
+          "items": [
+           {
+            "placeholder": "{{{relations.parent-child.child.last.name}}}",
+            "label": "Name von Kind letzter",
+            "menuLabel": "Name"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.child.last.firstName}}}",
+            "label": "Vorname von Kind letzter",
+            "menuLabel": "Vorname"
+           },
+           {
+            "placeholder": "{{{relations.parent-child.child.last.lastName}}}",
+            "label": "Nachname von Kind letzter",
+            "menuLabel": "Nachname"
+           },
+           {
+            "placeholder": "{{#with relations.parent-child.child.last.person}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}",
+            "label": "Mit Kind letzter:",
+            "menuLabel": "Sonstiges"
+           }
+          ]
+         },
+         {
+          "placeholder": "{{#each relations.parent-child.child.all}}{{#with this}} #beliebiger Text, auch Personen-Platzhalter# {{/with}}{{/each}}",
+          "label": "placeholder.for.each.x",
+          "menuLabel": "Alle"
+         },
+         {
+          "placeholder": "{{{relations.parent-child.child.quantity}}}",
+          "label": "Anzahl von Kind",
+          "menuLabel": "Anzahl"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

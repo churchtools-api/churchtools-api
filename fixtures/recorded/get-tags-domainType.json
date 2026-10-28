@@ -1,0 +1,107 @@
+{
+ "operation": "get-tags-domainType",
+ "request": {
+  "method": "GET",
+  "path": "/tags/person",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 10,
+    "name": "Beamer",
+    "description": null,
+    "color": "basic",
+    "count": 5
+   },
+   {
+    "id": 20,
+    "name": "Gesang",
+    "description": null,
+    "color": "basic",
+    "count": 13
+   },
+   {
+    "id": 1,
+    "name": "Gitarre",
+    "description": null,
+    "color": "basic",
+    "count": 9
+   },
+   {
+    "id": 11,
+    "name": "Guitar",
+    "description": null,
+    "color": "basic",
+    "count": 2
+   },
+   {
+    "id": 34,
+    "name": "Kaffeebar Teamleiter",
+    "description": null,
+    "color": "basic",
+    "count": 2
+   },
+   {
+    "id": 23,
+    "name": "Klavier",
+    "description": null,
+    "color": "basic",
+    "count": 4
+   },
+   {
+    "id": 3,
+    "name": "krank",
+    "description": null,
+    "color": "basic",
+    "count": 2
+   },
+   {
+    "id": 28,
+    "name": "Licht",
+    "description": null,
+    "color": "basic",
+    "count": 4
+   },
+   {
+    "id": 17,
+    "name": "LP Leiter",
+    "description": null,
+    "color": "basic",
+    "count": 4
+   },
+   {
+    "id": 31,
+    "name": "Ordner Teamleiter",
+    "description": null,
+    "color": "basic",
+    "count": 3
+   },
+   {
+    "id": 14,
+    "name": "Schlagzeug",
+    "description": null,
+    "color": "basic",
+    "count": 4
+   },
+   {
+    "id": 7,
+    "name": "Technik",
+    "description": null,
+    "color": "basic",
+    "count": 1
+   },
+   {
+    "id": 25,
+    "name": "Ton",
+    "description": null,
+    "color": "basic",
+    "count": 4
+   }
+  ],
+  "meta": {
+   "count": 13
+  }
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "operation": "get-furtherlinks",
+ "request": {
+  "method": "GET",
+  "path": "/furtherlinks",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 25,
+    "name": "ctrs-test",
+    "description": null,
+    "url": "https://example.org",
+    "imageUrl": null,
+    "sortKey": 999
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

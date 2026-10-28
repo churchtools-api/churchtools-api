@@ -1,0 +1,29 @@
+{
+ "operation": "get-events-eventId-facts-factId",
+ "request": {
+  "method": "GET",
+  "path": "/events/1816/facts/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "eventId": 1816,
+   "factId": 1,
+   "value": 85,
+   "meta": {
+    "createdDate": "2024-05-24T10:29:58Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-19T10:46:29Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+   "modifiedPid": 1,
+   "modifiedDate": "2026-10-19T10:46:29Z"
+  }
+ }
+}

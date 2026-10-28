@@ -1,0 +1,64 @@
+{
+ "operation": "get-campuses-id",
+ "request": {
+  "method": "GET",
+  "path": "/campuses/0",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 0,
+   "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+   "name": "Winterhude",
+   "nameTranslated": "Winterhude",
+   "shortName": null,
+   "shorty": "W",
+   "sortKey": 1,
+   "address": {
+    "id": 14,
+    "domainType": "campus",
+    "domainIdentifier": "0",
+    "name": null,
+    "icon": null,
+    "color": null,
+    "street": null,
+    "addition": null,
+    "district": null,
+    "zip": null,
+    "city": null,
+    "country": null,
+    "latitude": null,
+    "longitude": null,
+    "latitudeLoose": null,
+    "longitudeLoose": null,
+    "@deprecated": {
+     "meetingAt": "name",
+     "markerIcon": "icon",
+     "markerColor": "color",
+     "postalcode": "zip",
+     "markerUrl": "@deleted use icon and color instead",
+     "geoLat": "latitude",
+     "geoLng": "longitude"
+    },
+    "meetingAt": null,
+    "markerIcon": null,
+    "markerColor": null,
+    "markerUrl": null,
+    "postalcode": null,
+    "geoLat": null,
+    "geoLng": null
+   },
+   "meta": {
+    "createdDate": "2022-02-14T10:14:16Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2025-09-15T14:17:52Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

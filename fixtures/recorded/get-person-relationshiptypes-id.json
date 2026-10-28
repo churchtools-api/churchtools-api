@@ -1,0 +1,25 @@
+{
+ "operation": "get-person-relationshiptypes-id",
+ "request": {
+  "method": "GET",
+  "path": "/person/relationshiptypes/2",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 2,
+   "name": "relationship.couple",
+   "nameTranslated": "Ehepaar",
+   "securityLevelId": 1,
+   "degreeNameA": "relationship.part.spouse",
+   "degreeNameATranslated": "Ehepartner",
+   "degreeNameB": "relationship.part.spouse",
+   "degreeNameBTranslated": "Ehepartner",
+   "includeInExport": true,
+   "exportTitle": "relationship.couple",
+   "sortKey": 0,
+   "functionKeys": []
+  }
+ }
+}

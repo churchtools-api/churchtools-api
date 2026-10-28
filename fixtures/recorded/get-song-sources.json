@@ -1,0 +1,33 @@
+{
+ "operation": "get-song-sources",
+ "request": {
+  "method": "GET",
+  "path": "/song/sources",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 2,
+    "name": "Unser Liederbuch",
+    "nameTranslated": "Unser Liederbuch",
+    "sortKey": 0,
+    "shorty": "ULB",
+    "meta": {
+     "createdDate": "2024-09-16T15:08:44Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2024-09-16T15:08:44Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

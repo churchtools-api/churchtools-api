@@ -1,0 +1,18 @@
+{
+ "operation": "get-sync-externalsystems-externalSystemId",
+ "request": {
+  "method": "GET",
+  "path": "/sync/externalsystems/13",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 13,
+   "name": "ctrs-test",
+   "accessHeaderValues": [],
+   "adapter": "churchtools",
+   "jobConfigsCount": 1
+  }
+ }
+}

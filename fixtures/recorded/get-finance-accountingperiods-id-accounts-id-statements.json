@@ -1,0 +1,32 @@
+{
+ "operation": "get-finance-accountingperiods-id-accounts-id-statements",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accountingperiods/1/accounts/2/statements",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 10,
+    "name": "ctrs-test-auszug.xml",
+    "identifier": "DE89370400440532013000",
+    "startDate": "2024-01-01",
+    "endDate": "2024-01-02",
+    "startAmount": 100000,
+    "endAmount": 105000,
+    "statistics": {
+     "all": 1,
+     "open": 1,
+     "booked": 0,
+     "ignored": 0
+    },
+    "duplicates": 0
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

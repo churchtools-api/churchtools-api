@@ -1,0 +1,22 @@
+{
+ "operation": "get-groups-id-qrcodecheckin-personId",
+ "request": {
+  "method": "GET",
+  "path": "/groups/895/qrcodecheckin/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "token": "3Len7OD3Pk",
+   "personId": 1,
+   "domainType": "group",
+   "domainId": 895,
+   "isQueued": false,
+   "sentDate": "2026-10-28T22:34:51Z",
+   "downloadedDate": null,
+   "usedDate": null,
+   "expiryDate": null
+  }
+ }
+}

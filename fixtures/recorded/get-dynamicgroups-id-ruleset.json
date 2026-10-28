@@ -1,0 +1,39 @@
+{
+ "operation": "get-dynamicgroups-id-ruleset",
+ "request": {
+  "method": "GET",
+  "path": "/dynamicgroups/895/ruleset",
+  "query": [],
+  "body": null
+ },
+ "body": [
+  {
+   "description": "ctrs-test: nur Person 1",
+   "importance": 10,
+   "personIdFieldName": "person.id",
+   "process": {
+    "groupAndQueryResult": {},
+    "groupOnly": {},
+    "queryResultOnly": {}
+   },
+   "query": {
+    "method": "ChurchQuery",
+    "params": {
+     "filter": {
+      "==": [
+       {
+        "var": "person.id"
+       },
+       1
+      ]
+     },
+     "primaryEntityAlias": "person",
+     "responseFields": [
+      "person.id"
+     ]
+    }
+   },
+   "shorty": "T"
+  }
+ ]
+}

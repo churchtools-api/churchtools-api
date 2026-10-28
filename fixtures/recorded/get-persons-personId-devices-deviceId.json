@@ -1,0 +1,41 @@
+{
+ "operation": "get-persons-personId-devices-deviceId",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/devices/ctrs-test-device",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "personId": 1,
+   "deviceId": "ctrs-test-device",
+   "pushId": "ctrs-test-device",
+   "type": "FCM",
+   "appVersion": null,
+   "expirationDate": "2027-01-28T22:34:54Z",
+   "meta": {
+    "createdDate": "2026-10-28T22:34:54Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T22:34:54Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "id": "deviceId",
+    "version": "appVersion",
+    "ttl": "expirationDate",
+    "createdAt": "meta.createdDate",
+    "updatedAt": "meta.modifiedDate"
+   },
+   "id": "ctrs-test-device",
+   "version": null,
+   "ttl": "2027-01-28T23:34:54+01:00",
+   "createdAt": "2026-10-28T23:34:54+01:00",
+   "updatedAt": "2026-10-28T23:34:54+01:00"
+  }
+ }
+}

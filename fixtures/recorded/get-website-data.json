@@ -1,0 +1,22 @@
+{
+ "operation": "get-website-data",
+ "request": {
+  "method": "GET",
+  "path": "/website/data",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "domainType": "staff",
+    "domainId": 1,
+    "additionalId": 1
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

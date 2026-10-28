@@ -1,0 +1,28 @@
+{
+ "operation": "get-finance-taxrates-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/taxrates/2",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 2,
+   "taxTypeId": 1,
+   "rate": 19,
+   "note": "Umsatzsteuer 19%",
+   "accountId": 167,
+   "meta": {
+    "createdDate": "2020-05-13T12:55:22Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2020-05-13T12:55:22Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

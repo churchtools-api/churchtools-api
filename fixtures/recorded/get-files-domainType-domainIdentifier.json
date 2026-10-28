@@ -1,0 +1,12 @@
+{
+ "operation": "get-files-domainType-domainIdentifier",
+ "request": {
+  "method": "GET",
+  "path": "/files/person/3322",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": []
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "operation": "get-sync-executions",
+ "request": {
+  "method": "GET",
+  "path": "/sync/executions",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0,
+   "pagination": {
+    "total": 0,
+    "limit": 10,
+    "current": 1,
+    "lastPage": 0
+   }
+  }
+ }
+}

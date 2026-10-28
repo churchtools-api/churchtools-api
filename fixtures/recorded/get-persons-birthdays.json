@@ -1,0 +1,1582 @@
+{
+ "operation": "get-persons-birthdays",
+ "request": {
+  "method": "GET",
+  "path": "/persons/birthdays",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1962-10-27",
+    "anniversary": "2026-10-27",
+    "age": 64,
+    "person": {
+     "title": "Sven Johnston",
+     "domainType": "person",
+     "domainIdentifier": "69",
+     "apiUrl": "https://gemeinde.example/api/persons/69",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2369/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "SJ",
+     "domainAttributes": {
+      "firstName": "Sven",
+      "lastName": "Johnston",
+      "guid": "EB30881F-3925-4656-942C-8DD9A7FEEA50",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1962-10-27"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1984-10-27",
+    "anniversary": "2026-10-27",
+    "age": 42,
+    "person": {
+     "title": "Lina Lohmann",
+     "domainType": "person",
+     "domainIdentifier": "1250",
+     "apiUrl": "https://gemeinde.example/api/persons/1250",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231250/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "LL",
+     "domainAttributes": {
+      "firstName": "Lina",
+      "lastName": "Lohmann",
+      "guid": "BF77B752-F3EB-49E5-8D4F-7F9263AFD75F",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1984-10-27"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2009-10-28",
+    "anniversary": "2026-10-28",
+    "age": 17,
+    "person": {
+     "title": "Wanda Janßen",
+     "domainType": "person",
+     "domainIdentifier": "1256",
+     "apiUrl": "https://gemeinde.example/api/persons/1256",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231256/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "WJ",
+     "domainAttributes": {
+      "firstName": "Wanda",
+      "lastName": "Janßen",
+      "guid": "2CD52A39-CB48-480F-90F4-DF9198679B94",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2009-10-28"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1993-10-29",
+    "anniversary": "2026-10-29",
+    "age": 33,
+    "person": {
+     "title": "Klaus-Peter Buck",
+     "domainType": "person",
+     "domainIdentifier": "1253",
+     "apiUrl": "https://gemeinde.example/api/persons/1253",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231253/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "KB",
+     "domainAttributes": {
+      "firstName": "Klaus-Peter",
+      "lastName": "Buck",
+      "guid": "2F6BC8A4-26DE-4004-BC02-39EE49A36EB4",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1993-10-29"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2006-10-30",
+    "anniversary": "2026-10-30",
+    "age": 20,
+    "person": {
+     "title": "Rene Eckert",
+     "domainType": "person",
+     "domainIdentifier": "1259",
+     "apiUrl": "https://gemeinde.example/api/persons/1259",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231259/",
+     "imageUrl": "https://gemeinde.example/images/1178/9fdafd5848267aae1031341e3aa7093a6a8f4a82f7d74289ffedddc3ba6595a1",
+     "icon": "user",
+     "color": null,
+     "initials": "RE",
+     "domainAttributes": {
+      "firstName": "Rene",
+      "lastName": "Eckert",
+      "guid": "39E0310D-98AE-49F7-9F2E-4A80AED2C47D",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2006-10-30"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2020-10-31",
+    "anniversary": "2026-10-31",
+    "age": 6,
+    "person": {
+     "title": "Kristin Buchholz",
+     "domainType": "person",
+     "domainIdentifier": "1262",
+     "apiUrl": "https://gemeinde.example/api/persons/1262",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231262/",
+     "imageUrl": "https://gemeinde.example/images/2125/ea55dea99be0d8e79cf33e20635dbba278281ff0bd8898d59194ba12341ba53d",
+     "icon": "user",
+     "color": null,
+     "initials": "KB",
+     "domainAttributes": {
+      "firstName": "Kristin",
+      "lastName": "Buchholz",
+      "guid": "A00C11B9-4A01-4DD5-A24D-24E606559F18",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2020-10-31"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1977-10-31",
+    "anniversary": "2026-10-31",
+    "age": 49,
+    "person": {
+     "title": "Friedhelm Paul",
+     "domainType": "person",
+     "domainIdentifier": "1265",
+     "apiUrl": "https://gemeinde.example/api/persons/1265",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231265/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "FP",
+     "domainAttributes": {
+      "firstName": "Friedhelm",
+      "lastName": "Paul",
+      "guid": "CCAA1058-FA29-4A3E-B4CC-3D1294A7BBCD",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1977-10-31"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1999-11-01",
+    "anniversary": "2026-11-01",
+    "age": 27,
+    "person": {
+     "title": "Carl Ruppert",
+     "domainType": "person",
+     "domainIdentifier": "159",
+     "apiUrl": "https://gemeinde.example/api/persons/159",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23159/",
+     "imageUrl": "https://gemeinde.example/images/1220/286b4a2cd64f56d10fb3f8e23254d0961cc87b00692b2c14edd52d4162b2200f",
+     "icon": "user",
+     "color": null,
+     "initials": "CR",
+     "domainAttributes": {
+      "firstName": "Carl",
+      "lastName": "Ruppert",
+      "guid": "D9EAB582-AF65-4235-B1CE-47B761932F52",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1999-11-01"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2013-11-02",
+    "anniversary": "2026-11-02",
+    "age": 13,
+    "person": {
+     "title": "Mathias Geiger",
+     "domainType": "person",
+     "domainIdentifier": "1271",
+     "apiUrl": "https://gemeinde.example/api/persons/1271",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231271/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "MG",
+     "domainAttributes": {
+      "firstName": "Mathias",
+      "lastName": "Geiger",
+      "guid": "C2FCC929-6E5B-4CBC-B6AD-13B7A7399781",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2013-11-02"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1940-11-02",
+    "anniversary": "2026-11-02",
+    "age": 86,
+    "person": {
+     "title": "Adrian Häcker",
+     "domainType": "person",
+     "domainIdentifier": "25",
+     "apiUrl": "https://gemeinde.example/api/persons/25",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2325/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "AH",
+     "domainAttributes": {
+      "firstName": "Adrian",
+      "lastName": "Häcker",
+      "guid": "9FCFC678-2FFB-49C4-9269-70EB968B7F83",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1940-11-02"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2003-11-02",
+    "anniversary": "2026-11-02",
+    "age": 23,
+    "person": {
+     "title": "Emilia Straub",
+     "domainType": "person",
+     "domainIdentifier": "1268",
+     "apiUrl": "https://gemeinde.example/api/persons/1268",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231268/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "ES",
+     "domainAttributes": {
+      "firstName": "Emilia",
+      "lastName": "Straub",
+      "guid": "D1AA9864-4582-48B4-BF90-03447E830740",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2003-11-02"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1985-11-03",
+    "anniversary": "2026-11-03",
+    "age": 41,
+    "person": {
+     "title": "Dominic Böttner",
+     "domainType": "person",
+     "domainIdentifier": "189",
+     "apiUrl": "https://gemeinde.example/api/persons/189",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23189/",
+     "imageUrl": "https://gemeinde.example/images/540/ff47322fb1a5efc5d6bf6d0c908c2d6c612a519eb92e62d7c7680706528ce692",
+     "icon": "user",
+     "color": null,
+     "initials": "DB",
+     "domainAttributes": {
+      "firstName": "Dominic",
+      "lastName": "Böttner",
+      "guid": "8D7E7CAE-0FB2-418B-AA12-D9F89A923625",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1985-11-03"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2002-11-04",
+    "anniversary": "2026-11-04",
+    "age": 24,
+    "person": {
+     "title": "Rosi Hübner",
+     "domainType": "person",
+     "domainIdentifier": "1274",
+     "apiUrl": "https://gemeinde.example/api/persons/1274",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231274/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "RH",
+     "domainAttributes": {
+      "firstName": "Rosi",
+      "lastName": "Hübner",
+      "guid": "0B965F99-12B5-4862-8087-B44CA05754B9",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2002-11-04"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1998-11-04",
+    "anniversary": "2026-11-04",
+    "age": 28,
+    "person": {
+     "title": "Werner Swanson",
+     "domainType": "person",
+     "domainIdentifier": "34",
+     "apiUrl": "https://gemeinde.example/api/persons/34",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2334/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "WS",
+     "domainAttributes": {
+      "firstName": "Werner",
+      "lastName": "Swanson",
+      "guid": "410BDB5B-1AD9-4341-8046-736E6476AB62",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1998-11-04"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2000-11-05",
+    "anniversary": "2026-11-05",
+    "age": 26,
+    "person": {
+     "title": "Phillipp Becker",
+     "domainType": "person",
+     "domainIdentifier": "183",
+     "apiUrl": "https://gemeinde.example/api/persons/183",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23183/",
+     "imageUrl": "https://gemeinde.example/images/499/5de19256f390ef1b0a62d38879923f13d12f8d05fa88b58913d7495b43576d89",
+     "icon": "user",
+     "color": null,
+     "initials": "PB",
+     "domainAttributes": {
+      "firstName": "Phillipp",
+      "lastName": "Becker",
+      "guid": "806937E8-43E6-40F4-967D-CAF296E93EFA",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2000-11-05"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1995-11-05",
+    "anniversary": "2026-11-05",
+    "age": 31,
+    "person": {
+     "title": "Leoni Curtis",
+     "domainType": "person",
+     "domainIdentifier": "29",
+     "apiUrl": "https://gemeinde.example/api/persons/29",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2329/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "LC",
+     "domainAttributes": {
+      "firstName": "Leoni",
+      "lastName": "Curtis",
+      "guid": "E01BAE14-922F-40DA-AE8D-727002115D9A",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1995-11-05"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2010-11-05",
+    "anniversary": "2026-11-05",
+    "age": 16,
+    "person": {
+     "title": "Gerold Seeger",
+     "domainType": "person",
+     "domainIdentifier": "1277",
+     "apiUrl": "https://gemeinde.example/api/persons/1277",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231277/",
+     "imageUrl": "https://gemeinde.example/images/2140/27293fd609c74de52bac7ef9f87a9101553d288791de69daf53461ed5283c3d5",
+     "icon": "user",
+     "color": null,
+     "initials": "GS",
+     "domainAttributes": {
+      "firstName": "Gerold",
+      "lastName": "Seeger",
+      "guid": "6C5C69A3-2601-4DC1-BD94-D22D588004CD",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2010-11-05"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2007-11-06",
+    "anniversary": "2026-11-06",
+    "age": 19,
+    "person": {
+     "title": "Karin Pfeiffer",
+     "domainType": "person",
+     "domainIdentifier": "1280",
+     "apiUrl": "https://gemeinde.example/api/persons/1280",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231280/",
+     "imageUrl": "https://gemeinde.example/images/2557/3957cdb2dd2c2b853030a9a902e197e9aa4c014cff4fb4f459b8a4a2f9c9c526",
+     "icon": "user",
+     "color": null,
+     "initials": "KP",
+     "domainAttributes": {
+      "firstName": "Karin",
+      "lastName": "Pfeiffer",
+      "guid": "8C5AD760-8FD0-4FBC-8B82-5FDE7B681AFC",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2007-11-06"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1993-11-06",
+    "anniversary": "2026-11-06",
+    "age": 33,
+    "person": {
+     "title": "Fiona Scherer",
+     "domainType": "person",
+     "domainIdentifier": "158",
+     "apiUrl": "https://gemeinde.example/api/persons/158",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23158/",
+     "imageUrl": "https://gemeinde.example/images/2149/8eb49c6333955bf74fdefb0ff9ee467ddfa4b9cdd2ec04d693ddb55540e60f16",
+     "icon": "user",
+     "color": null,
+     "initials": "FS",
+     "domainAttributes": {
+      "firstName": "Fiona",
+      "lastName": "Scherer",
+      "guid": "39E3FA3B-B818-49D6-80A6-3B155505532D",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1993-11-06"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1991-11-07",
+    "anniversary": "2026-11-07",
+    "age": 35,
+    "person": {
+     "title": "Otto Kolb",
+     "domainType": "person",
+     "domainIdentifier": "1283",
+     "apiUrl": "https://gemeinde.example/api/persons/1283",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231283/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "OK",
+     "domainAttributes": {
+      "firstName": "Otto",
+      "lastName": "Kolb",
+      "guid": "6F988EB4-8D76-426B-A2BE-987F6617C390",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1991-11-07"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1979-11-08",
+    "anniversary": "2026-11-08",
+    "age": 47,
+    "person": {
+     "title": "Grete Pieper",
+     "domainType": "person",
+     "domainIdentifier": "1286",
+     "apiUrl": "https://gemeinde.example/api/persons/1286",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231286/",
+     "imageUrl": "https://gemeinde.example/images/1520/8202e9f2b96ea65fcd84d442cd5ca36861bc3ee7b42310248901bc0f0f3492cc",
+     "icon": "user",
+     "color": null,
+     "initials": "GP",
+     "domainAttributes": {
+      "firstName": "Grete",
+      "lastName": "Pieper",
+      "guid": "84F04986-6FE4-42F3-83C0-48B8D56801DC",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1979-11-08"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1986-11-09",
+    "anniversary": "2026-11-09",
+    "age": 40,
+    "person": {
+     "title": "Alexander Benz",
+     "domainType": "person",
+     "domainIdentifier": "1289",
+     "apiUrl": "https://gemeinde.example/api/persons/1289",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231289/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "AB",
+     "domainAttributes": {
+      "firstName": "Alexander",
+      "lastName": "Benz",
+      "guid": "AAE0F627-9089-4790-84AA-2B1874D9D36C",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1986-11-09"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2022-11-10",
+    "anniversary": "2026-11-10",
+    "age": 4,
+    "person": {
+     "title": "Manuela Brandl",
+     "domainType": "person",
+     "domainIdentifier": "1292",
+     "apiUrl": "https://gemeinde.example/api/persons/1292",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231292/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "MB",
+     "domainAttributes": {
+      "firstName": "Manuela",
+      "lastName": "Brandl",
+      "guid": "6370B82A-153E-4D6A-B44D-149B5BEF2D80",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2022-11-10"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2005-11-11",
+    "anniversary": "2026-11-11",
+    "age": 21,
+    "person": {
+     "title": "Annette Siegmann",
+     "domainType": "person",
+     "domainIdentifier": "8",
+     "apiUrl": "https://gemeinde.example/api/persons/8",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%238/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "AS",
+     "domainAttributes": {
+      "firstName": "Annette",
+      "lastName": "Siegmann",
+      "guid": "928E99AD-CF82-4A46-9784-27AB8E7F7138",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2005-11-11"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2013-11-11",
+    "anniversary": "2026-11-11",
+    "age": 13,
+    "person": {
+     "title": "Mechthild Urban",
+     "domainType": "person",
+     "domainIdentifier": "1298",
+     "apiUrl": "https://gemeinde.example/api/persons/1298",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231298/",
+     "imageUrl": "https://gemeinde.example/images/2152/7a197c2dff6d9803e44c480455f5da10dd3a3f7abbc8070c0c1411f95a78beb5",
+     "icon": "user",
+     "color": null,
+     "initials": "MU",
+     "domainAttributes": {
+      "firstName": "Mechthild",
+      "lastName": "Urban",
+      "guid": "2F3B37DE-D5F8-4EEB-BF37-B58645B9F18D",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2013-11-11"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2021-11-12",
+    "anniversary": "2026-11-12",
+    "age": 5,
+    "person": {
+     "title": "Guiseppe Ahrens",
+     "domainType": "person",
+     "domainIdentifier": "1301",
+     "apiUrl": "https://gemeinde.example/api/persons/1301",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231301/",
+     "imageUrl": "https://gemeinde.example/images/2137/dab96d6e24dd3d89253852909be9c9825a107b8d6044d8f27d171813f436c44a",
+     "icon": "user",
+     "color": null,
+     "initials": "GA",
+     "domainAttributes": {
+      "firstName": "Guiseppe",
+      "lastName": "Ahrens",
+      "guid": "61D749A6-D384-410B-9068-7C7569B5C083",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2021-11-12"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1966-11-12",
+    "anniversary": "2026-11-12",
+    "age": 60,
+    "person": {
+     "title": "Kimberly Seibel",
+     "domainType": "person",
+     "domainIdentifier": "78",
+     "apiUrl": "https://gemeinde.example/api/persons/78",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2378/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "KS",
+     "domainAttributes": {
+      "firstName": "Kimberly",
+      "lastName": "Seibel",
+      "guid": "64323AA6-8877-4816-B56D-79E7A0761E43",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1966-11-12"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1961-11-13",
+    "anniversary": "2026-11-13",
+    "age": 65,
+    "person": {
+     "title": "Jasper Lohse",
+     "domainType": "person",
+     "domainIdentifier": "42",
+     "apiUrl": "https://gemeinde.example/api/persons/42",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2342/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "JL",
+     "domainAttributes": {
+      "firstName": "Jasper",
+      "lastName": "Lohse",
+      "guid": "49A2EB60-178F-4B17-937A-85677116DE99",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1961-11-13"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1978-11-14",
+    "anniversary": "2026-11-14",
+    "age": 48,
+    "person": {
+     "title": "Janet Geißler",
+     "domainType": "person",
+     "domainIdentifier": "1304",
+     "apiUrl": "https://gemeinde.example/api/persons/1304",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231304/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "JG",
+     "domainAttributes": {
+      "firstName": "Janet",
+      "lastName": "Geißler",
+      "guid": "FC56258C-DA63-4997-9E62-3CC8F0749189",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1978-11-14"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2013-11-14",
+    "anniversary": "2026-11-14",
+    "age": 13,
+    "person": {
+     "title": "Hugo Scharf",
+     "domainType": "person",
+     "domainIdentifier": "1307",
+     "apiUrl": "https://gemeinde.example/api/persons/1307",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231307/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "HS",
+     "domainAttributes": {
+      "firstName": "Hugo",
+      "lastName": "Scharf",
+      "guid": "0B1EB9F3-F1A4-4A4B-9E00-250BE980CF89",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2013-11-14"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2003-11-15",
+    "anniversary": "2026-11-15",
+    "age": 23,
+    "person": {
+     "title": "Hugo Hartmann",
+     "domainType": "person",
+     "domainIdentifier": "1295",
+     "apiUrl": "https://gemeinde.example/api/persons/1295",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231295/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "HH",
+     "domainAttributes": {
+      "firstName": "Hugo",
+      "lastName": "Hartmann",
+      "guid": "88118F19-6C22-4602-BEC3-86AEE8ED81E0",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2003-11-15"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1959-11-16",
+    "anniversary": "2026-11-16",
+    "age": 67,
+    "person": {
+     "title": "Matthias Fletcher",
+     "domainType": "person",
+     "domainIdentifier": "156",
+     "apiUrl": "https://gemeinde.example/api/persons/156",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23156/",
+     "imageUrl": "https://gemeinde.example/images/1358/ec5784fd8d05a0d6622fab74dcc00381170f108a5654d947a8257fd6f3114bdb",
+     "icon": "user",
+     "color": null,
+     "initials": "MF",
+     "domainAttributes": {
+      "firstName": "Matthias",
+      "lastName": "Fletcher",
+      "guid": "BDBC9A9F-E85F-4A34-8CCA-0172B2B1A31B",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1959-11-16"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1974-11-16",
+    "anniversary": "2026-11-16",
+    "age": 52,
+    "person": {
+     "title": "Rosemarie Runge",
+     "domainType": "person",
+     "domainIdentifier": "1310",
+     "apiUrl": "https://gemeinde.example/api/persons/1310",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231310/",
+     "imageUrl": "https://gemeinde.example/images/2146/3e574a48c9976713daa6f9461bdcbccf5ffac16bffa634af420c822724833c35",
+     "icon": "user",
+     "color": null,
+     "initials": "RR",
+     "domainAttributes": {
+      "firstName": "Rosemarie",
+      "lastName": "Runge",
+      "guid": "DE96932D-C7CD-4CD7-AD4A-6FF0DE9EFC1C",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1974-11-16"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2004-11-16",
+    "anniversary": "2026-11-16",
+    "age": 22,
+    "person": {
+     "title": "Hans Tooly",
+     "domainType": "person",
+     "domainIdentifier": "255",
+     "apiUrl": "https://gemeinde.example/api/persons/255",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23255/",
+     "imageUrl": "https://gemeinde.example/images/2179/84214297047cd4924af835aa909e2fcf8f39ca87cbd90b66fba0fd4fb1deb111",
+     "icon": "user",
+     "color": null,
+     "initials": "HT",
+     "domainAttributes": {
+      "firstName": "Hans",
+      "lastName": "Tooly",
+      "guid": "2C511BC3-857D-4B1D-A111-BFEE29761755",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2004-11-16"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2020-11-17",
+    "anniversary": "2026-11-17",
+    "age": 6,
+    "person": {
+     "title": "Bertram Wulf",
+     "domainType": "person",
+     "domainIdentifier": "1313",
+     "apiUrl": "https://gemeinde.example/api/persons/1313",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231313/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "BW",
+     "domainAttributes": {
+      "firstName": "Bertram",
+      "lastName": "Wulf",
+      "guid": "34390A02-5E66-45FC-A2B5-89A31361095A",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2020-11-17"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1982-11-18",
+    "anniversary": "2026-11-18",
+    "age": 44,
+    "person": {
+     "title": "Mathilde Brückner",
+     "domainType": "person",
+     "domainIdentifier": "1316",
+     "apiUrl": "https://gemeinde.example/api/persons/1316",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231316/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "MB",
+     "domainAttributes": {
+      "firstName": "Mathilde",
+      "lastName": "Brückner",
+      "guid": "6D624DD8-0930-470C-8D4F-43D06CB33DBC",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1982-11-18"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1991-11-18",
+    "anniversary": "2026-11-18",
+    "age": 35,
+    "person": {
+     "title": "Ole Sonne",
+     "domainType": "person",
+     "domainIdentifier": "144",
+     "apiUrl": "https://gemeinde.example/api/persons/144",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23144/",
+     "imageUrl": "https://gemeinde.example/images/1289/98c4c6ea1e3db59ba90b0c0b7c6a4b1abe17ea95bac8af65b3e3397e8ba4c4eb",
+     "icon": "user",
+     "color": null,
+     "initials": "OS",
+     "domainAttributes": {
+      "firstName": "Ole",
+      "lastName": "Sonne",
+      "guid": "3E3C166C-C1D1-4498-81F0-A8DDF5870E5A",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1991-11-18"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1988-11-19",
+    "anniversary": "2026-11-19",
+    "age": 38,
+    "person": {
+     "title": "Domenico Janßen",
+     "domainType": "person",
+     "domainIdentifier": "1319",
+     "apiUrl": "https://gemeinde.example/api/persons/1319",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231319/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "DJ",
+     "domainAttributes": {
+      "firstName": "Domenico",
+      "lastName": "Janßen",
+      "guid": "FEB1B11E-BDB0-4E24-BA8B-94DD9301734D",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1988-11-19"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2005-11-19",
+    "anniversary": "2026-11-19",
+    "age": 21,
+    "person": {
+     "title": "Regina Vogel",
+     "domainType": "person",
+     "domainIdentifier": "1322",
+     "apiUrl": "https://gemeinde.example/api/persons/1322",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231322/",
+     "imageUrl": "https://gemeinde.example/images/1424/35481c16489bd35b64965acc532e06201e35d55b510a2c20dc076fe5fdbcc46f",
+     "icon": "user",
+     "color": null,
+     "initials": "RV",
+     "domainAttributes": {
+      "firstName": "Regina",
+      "lastName": "Vogel",
+      "guid": "2E8DC699-A463-4ABA-BB33-0751B2535425",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2005-11-19"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1988-11-19",
+    "anniversary": "2026-11-19",
+    "age": 38,
+    "person": {
+     "title": "Phillip Winkler",
+     "domainType": "person",
+     "domainIdentifier": "26",
+     "apiUrl": "https://gemeinde.example/api/persons/26",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2326/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "PW",
+     "domainAttributes": {
+      "firstName": "Phillip",
+      "lastName": "Winkler",
+      "guid": "666CD677-70B4-4235-823D-42EE8DC6103D",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1988-11-19"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1985-11-20",
+    "anniversary": "2026-11-20",
+    "age": 41,
+    "person": {
+     "title": "Sascha Leonhardt",
+     "domainType": "person",
+     "domainIdentifier": "79",
+     "apiUrl": "https://gemeinde.example/api/persons/79",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2379/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "SL",
+     "domainAttributes": {
+      "firstName": "Sascha",
+      "lastName": "Leonhardt",
+      "guid": "0A719B41-0024-4B4B-8A87-8924E23E7F40",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1985-11-20"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1968-11-20",
+    "anniversary": "2026-11-20",
+    "age": 58,
+    "person": {
+     "title": "Quentin Wedemeyer",
+     "domainType": "person",
+     "domainIdentifier": "164",
+     "apiUrl": "https://gemeinde.example/api/persons/164",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23164/",
+     "imageUrl": "https://gemeinde.example/images/1349/a76e0454c454e4ce2f8725432613ee20632f77f290751602f013f7b42b2474d1",
+     "icon": "user",
+     "color": null,
+     "initials": "QW",
+     "domainAttributes": {
+      "firstName": "Quentin",
+      "lastName": "Wedemeyer",
+      "guid": "1CEA9AD6-8CC0-4435-9DC2-71539BFE552C",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1968-11-20"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1989-11-21",
+    "anniversary": "2026-11-21",
+    "age": 37,
+    "person": {
+     "title": "Sophie Kraus",
+     "domainType": "person",
+     "domainIdentifier": "1328",
+     "apiUrl": "https://gemeinde.example/api/persons/1328",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231328/",
+     "imageUrl": "https://gemeinde.example/images/1457/f6cc3880e011ef2ffb0258aad19bb68cc9bc10164dd8c876ff7109eac1ccd09e",
+     "icon": "user",
+     "color": null,
+     "initials": "SK",
+     "domainAttributes": {
+      "firstName": "Sophie",
+      "lastName": "Kraus",
+      "guid": "24C0CBD2-F9B4-4404-8A61-E78D7E9B5DB2",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1989-11-21"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1984-11-21",
+    "anniversary": "2026-11-21",
+    "age": 42,
+    "person": {
+     "title": "Peter Tooly",
+     "domainType": "person",
+     "domainIdentifier": "235",
+     "apiUrl": "https://gemeinde.example/api/persons/235",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23235/",
+     "imageUrl": "https://gemeinde.example/images/2182/5a7d3bc782adc4a451257ac8ce708e5a707b088e6ed8c88cd2cf23db140c89d3",
+     "icon": "user",
+     "color": null,
+     "initials": "PT",
+     "domainAttributes": {
+      "firstName": "Peter",
+      "lastName": "Tooly",
+      "guid": "0D6404B1-B712-43EB-89EF-2E7602BF6D46",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1984-11-21"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1993-11-21",
+    "anniversary": "2026-11-21",
+    "age": 33,
+    "person": {
+     "title": "Chantalle Weiland",
+     "domainType": "person",
+     "domainIdentifier": "12",
+     "apiUrl": "https://gemeinde.example/api/persons/12",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2312/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "CW",
+     "domainAttributes": {
+      "firstName": "Chantalle",
+      "lastName": "Weiland",
+      "guid": "B9A0ED64-43D9-463E-A965-EF2F546059C8",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1993-11-21"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1999-11-22",
+    "anniversary": "2026-11-22",
+    "age": 27,
+    "person": {
+     "title": "Karoline Arndt",
+     "domainType": "person",
+     "domainIdentifier": "154",
+     "apiUrl": "https://gemeinde.example/api/persons/154",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23154/",
+     "imageUrl": "https://gemeinde.example/images/466/67b2f6ee1873c8ef28f2439f1eed44eb1bdca4f31f154998a9f909dac888b25e",
+     "icon": "user",
+     "color": null,
+     "initials": "KA",
+     "domainAttributes": {
+      "firstName": "Karoline",
+      "lastName": "Arndt",
+      "guid": "20EC7BBF-106C-428C-A2D9-C86B46683681",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1999-11-22"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2018-11-22",
+    "anniversary": "2026-11-22",
+    "age": 8,
+    "person": {
+     "title": "Nico Berger",
+     "domainType": "person",
+     "domainIdentifier": "1325",
+     "apiUrl": "https://gemeinde.example/api/persons/1325",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231325/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "NB",
+     "domainAttributes": {
+      "firstName": "Nico",
+      "lastName": "Berger",
+      "guid": "319FC22C-2294-466E-BB36-182A11D4C470",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2018-11-22"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1994-11-22",
+    "anniversary": "2026-11-22",
+    "age": 32,
+    "person": {
+     "title": "Freddy Finanziskus",
+     "domainType": "person",
+     "domainIdentifier": "340",
+     "apiUrl": "https://gemeinde.example/api/persons/340",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23340/",
+     "imageUrl": "https://gemeinde.example/images/754/001ebe5b00e763d4fa0d4d16d2c400c828f058be9266985dd61e60f082b171b0",
+     "icon": "user",
+     "color": null,
+     "initials": "FF",
+     "domainAttributes": {
+      "firstName": "Freddy",
+      "lastName": "Finanziskus",
+      "guid": "42028CB8-2D7A-4B19-B06B-4658ACDA8202",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1994-11-22"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2018-11-23",
+    "anniversary": "2026-11-23",
+    "age": 8,
+    "person": {
+     "title": "Heinz-Joachim Bock",
+     "domainType": "person",
+     "domainIdentifier": "1331",
+     "apiUrl": "https://gemeinde.example/api/persons/1331",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231331/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "HB",
+     "domainAttributes": {
+      "firstName": "Heinz-Joachim",
+      "lastName": "Bock",
+      "guid": "85C17C38-D26F-4E12-BCE7-504F4C7E0F12",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2018-11-23"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2003-11-24",
+    "anniversary": "2026-11-24",
+    "age": 23,
+    "person": {
+     "title": "Maike Fahr",
+     "domainType": "person",
+     "domainIdentifier": "148",
+     "apiUrl": "https://gemeinde.example/api/persons/148",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23148/",
+     "imageUrl": "https://gemeinde.example/images/2143/0cec2dcead80cadef25b7b105450b4a36a6da8cb1ec2b42c1279f9b5abe7144b",
+     "icon": "user",
+     "color": null,
+     "initials": "MF",
+     "domainAttributes": {
+      "firstName": "Maike",
+      "lastName": "Fahr",
+      "guid": "E0C1ACAC-D647-4F2C-A450-D1A2B521B361",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2003-11-24"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1998-11-24",
+    "anniversary": "2026-11-24",
+    "age": 28,
+    "person": {
+     "title": "Bianka Funke",
+     "domainType": "person",
+     "domainIdentifier": "1334",
+     "apiUrl": "https://gemeinde.example/api/persons/1334",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231334/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "BF",
+     "domainAttributes": {
+      "firstName": "Bianka",
+      "lastName": "Funke",
+      "guid": "2D18956D-525E-4728-B358-6CBCFD7498E1",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1998-11-24"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1991-11-24",
+    "anniversary": "2026-11-24",
+    "age": 35,
+    "person": {
+     "title": "Jeremy Renate",
+     "domainType": "person",
+     "domainIdentifier": "84",
+     "apiUrl": "https://gemeinde.example/api/persons/84",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2384/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "JR",
+     "domainAttributes": {
+      "firstName": "Jeremy",
+      "lastName": "Renate",
+      "guid": "20E64F4D-C64B-4BB1-8F88-EB389D55B1A6",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1991-11-24"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2006-11-25",
+    "anniversary": "2026-11-25",
+    "age": 20,
+    "person": {
+     "title": "Hans-Heinrich Steffen",
+     "domainType": "person",
+     "domainIdentifier": "1337",
+     "apiUrl": "https://gemeinde.example/api/persons/1337",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231337/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "HS",
+     "domainAttributes": {
+      "firstName": "Hans-Heinrich",
+      "lastName": "Steffen",
+      "guid": "3865E092-EC25-4C9D-B92F-896C40F1F693",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2006-11-25"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2021-11-26",
+    "anniversary": "2026-11-26",
+    "age": 5,
+    "person": {
+     "title": "Miroslav Bergmann",
+     "domainType": "person",
+     "domainIdentifier": "1343",
+     "apiUrl": "https://gemeinde.example/api/persons/1343",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231343/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "MB",
+     "domainAttributes": {
+      "firstName": "Miroslav",
+      "lastName": "Bergmann",
+      "guid": "10333152-67C3-40D9-86D8-A9BABB559C4F",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2021-11-26"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2007-11-26",
+    "anniversary": "2026-11-26",
+    "age": 19,
+    "person": {
+     "title": "Astrid Braun",
+     "domainType": "person",
+     "domainIdentifier": "1340",
+     "apiUrl": "https://gemeinde.example/api/persons/1340",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231340/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "AB",
+     "domainAttributes": {
+      "firstName": "Astrid",
+      "lastName": "Braun",
+      "guid": "3EF19486-162C-4781-A46D-DA574B588597",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2007-11-26"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1942-11-26",
+    "anniversary": "2026-11-26",
+    "age": 84,
+    "person": {
+     "title": "Angelika Kelley",
+     "domainType": "person",
+     "domainIdentifier": "24",
+     "apiUrl": "https://gemeinde.example/api/persons/24",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2324/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "AK",
+     "domainAttributes": {
+      "firstName": "Angelika",
+      "lastName": "Kelley",
+      "guid": "8266A935-6D37-4307-90E4-58EEF05573DC",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1942-11-26"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1996-11-27",
+    "anniversary": "2026-11-27",
+    "age": 30,
+    "person": {
+     "title": "Norbert Kommian",
+     "domainType": "person",
+     "domainIdentifier": "3",
+     "apiUrl": "https://gemeinde.example/api/persons/3",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%233/",
+     "imageUrl": "https://gemeinde.example/images/2176/ed53499669d0e83ef7fcf4dd1b0a08cbeb773ced9e2e22292f6904953a6a2154",
+     "icon": "user",
+     "color": null,
+     "initials": "NK",
+     "domainAttributes": {
+      "firstName": "Norbert",
+      "lastName": "Kommian",
+      "guid": "EDF2B7EA-1508-4374-BCC8-F5C4CE04998B",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1996-11-27"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1940-11-27",
+    "anniversary": "2026-11-27",
+    "age": 86,
+    "person": {
+     "title": "Melvin Saur",
+     "domainType": "person",
+     "domainIdentifier": "45",
+     "apiUrl": "https://gemeinde.example/api/persons/45",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2345/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "MS",
+     "domainAttributes": {
+      "firstName": "Melvin",
+      "lastName": "Saur",
+      "guid": "1467F399-73EE-4144-9881-B91A7C56E7B8",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1940-11-27"
+   }
+  ],
+  "meta": {
+   "count": 58
+  }
+ }
+}

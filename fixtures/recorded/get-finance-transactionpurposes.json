@@ -1,0 +1,190 @@
+{
+ "operation": "get-finance-transactionpurposes",
+ "request": {
+  "method": "GET",
+  "path": "/finance/transactionpurposes",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Ausgaben Jugend",
+    "costCenterId": 10,
+    "purposeAccountId": 728,
+    "accountIds": [
+     545,
+     859
+    ],
+    "sortKey": 10,
+    "isIncome": false,
+    "meta": {
+     "createdDate": "2020-12-17T17:53:26Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-12-17T17:53:26Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 9,
+    "name": "Ausgaben Jugend",
+    "costCenterId": 30,
+    "purposeAccountId": 1158,
+    "accountIds": [
+     975,
+     1290
+    ],
+    "sortKey": 10,
+    "isIncome": false,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 5,
+    "name": "Einnahmen Jugendfreizeit",
+    "costCenterId": 23,
+    "purposeAccountId": 728,
+    "accountIds": [
+     545,
+     859
+    ],
+    "sortKey": 10,
+    "isIncome": true,
+    "meta": {
+     "createdDate": "2022-10-27T07:52:36Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2022-10-27T07:52:36Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 12,
+    "name": "Einnahmen Jugendfreizeit",
+    "costCenterId": 33,
+    "purposeAccountId": 1158,
+    "accountIds": [
+     975,
+     1290
+    ],
+    "sortKey": 10,
+    "isIncome": true,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 8,
+    "name": "Ausgabe Jugendfreizeit",
+    "costCenterId": 23,
+    "purposeAccountId": 728,
+    "accountIds": [
+     545,
+     859
+    ],
+    "sortKey": 20,
+    "isIncome": false,
+    "meta": {
+     "createdDate": "2022-10-27T07:53:14Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2022-10-27T07:53:14Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 15,
+    "name": "Ausgabe Jugendfreizeit",
+    "costCenterId": 33,
+    "purposeAccountId": 1158,
+    "accountIds": [
+     975,
+     1290
+    ],
+    "sortKey": 20,
+    "isIncome": false,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 4,
+    "name": "Kollekte",
+    "costCenterId": 10,
+    "purposeAccountId": 830,
+    "accountIds": [
+     859
+    ],
+    "sortKey": 20,
+    "isIncome": true,
+    "meta": {
+     "createdDate": "2020-12-17T17:55:10Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-12-17T17:56:27Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 18,
+    "name": "Kollekte",
+    "costCenterId": 30,
+    "purposeAccountId": 1260,
+    "accountIds": [
+     1290
+    ],
+    "sortKey": 20,
+    "isIncome": true,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 8
+  }
+ }
+}

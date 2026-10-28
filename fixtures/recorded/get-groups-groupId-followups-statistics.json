@@ -1,0 +1,18 @@
+{
+ "operation": "get-groups-groupId-followups-statistics",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/followups/statistics",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "countDueToday": 0,
+   "countDueAfterToday": 0,
+   "countDueBeforeToday": 0,
+   "countDueUnspecified": 0,
+   "countDone": 0
+  }
+ }
+}

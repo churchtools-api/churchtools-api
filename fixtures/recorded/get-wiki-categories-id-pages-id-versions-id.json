@@ -1,0 +1,80 @@
+{
+ "operation": "get-wiki-categories-id-pages-id-versions-id",
+ "request": {
+  "method": "GET",
+  "path": "/wiki/categories/9/pages/A3124166-5818-4A3F-A5EC-0CBCB0744824/versions/6",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "guid": "A3124166-5818-4A3F-A5EC-0CBCB0744824",
+   "wikiCategory": {
+    "id": 9,
+    "name": "Willkommen 👋🏼",
+    "nameTranslated": "Willkommen 👋🏼",
+    "sortKey": 0,
+    "campusId": null,
+    "inMenu": true,
+    "fileAccessWithoutPermission": false,
+    "permissions": {}
+   },
+   "title": "main",
+   "version": 6,
+   "text": "**Wie schön, dass du da bist!** Ganz gleich, ob du gerade erst von uns gehört hast, schon ein paar Sonntage dabei bist oder einen neuen geistlichen Ort suchst: Du bist herzlich willkommen.\n\n![](/images/3144/6f20b919dd9e1be7fc7ebe80bbe44df0496ae74278736b1067dba22bdfaf25f6?fit=max\\&fm=jpeg\\&h=0\\&w=940)\n\n> Kirche ist für uns kein Gebäude, sondern eine Gemeinschaft von Menschen, die Jesus kennenlernen, miteinander wachsen und Hoffnung weitergeben.\n\nDu musst hier nicht ~~sofort alles verstehen~~ schon alles kennen. Komm einfach an, stell deine Fragen und geh deinen nächsten Schritt in deinem Tempo.\n\n***\n\n## **Dein erster Sonntag bei uns**\n\nUnser Gottesdienst beginnt **sonntags um 10:30 Uhr**. Ab 10:00 Uhr ist das Café geöffnet – ideal, um in Ruhe anzukommen und erste Menschen kennenzulernen.\n\n* Dich erwartet moderne Musik, eine alltagsnahe Predigt und Zeit für Begegnung.\n* Für Kinder gibt es parallel ein altersgerechtes Programm.\n* Du darfst dich beteiligen, mitsingen oder einfach erst einmal zuschauen.\n* Nach dem Gottesdienst bleiben viele noch auf einen Kaffee da.\n\nDu brauchst keine besondere Kleidung, kein Vorwissen und keine perfekte Lebensgeschichte.\n\n#### Unser Monatslied: [I Am Thine O Lord](https://template.church.tools/?q=churchservice\\&ctmd_layout=compact-card#SongView/searchStandard:true/searchEntry:%2344/)\n\n[I Am Thine O Lord](https://template.church.tools/?q=churchservice\\&ctmd_layout=mention#SongView/searchStandard:true/searchEntry:%2344/) ist unser aktuelles Monatslied! Hör dich schon einmal ein und sing beim nächsten Gottesdienst mit. Klicke einfach auf das Lied, um in ChurchTools den Liedtext, Noten und weitere verfügbare Dateien anzusehen:\n\n[I Am Thine O Lord](https://template.church.tools/?q=churchservice\\&ctmd_layout=large-card#SongView/searchStandard:true/searchEntry:%2344/)\n\n## **Drei gute nächste Schritte**\n\n1. Sag kurz *Hallo*. Über die [Kontaktkarte](https://template.church.tools/groups/109?ctmd_layout=mention) kannst du uns mitteilen, was dich interessiert oder wobei wir dir helfen dürfen.\n2. Lern uns persönlich kennen. Beim nächsten Newcomer-Lunch erzählen wir, wer wir sind, was uns wichtig ist und wie du Teil der Gemeinschaft werden kannst.\n\n   [Untergruppen von NEWCOMER LUNCH](https://template.church.tools/groups/732/hierarchy/children?ctmd_layout=large-card)\n3. Finde Menschen für deinen Alltag. Kleingruppen sind der beste Ort für ehrliche Gespräche, Gebet, gemeinsames Essen und neue Freundschaften.\n\n<br />\n\n## Gemeinschaft, die zu dir passt\n\nGlaube wächst am besten gemeinsam. Deshalb gibt es bei ChuToo verschiedene Kleingruppen und Angebote. Manche treffen sich wöchentlich, andere alle zwei Wochen – zuhause, in Gemeinderäumen oder unterwegs.\n\n[Untergruppen von Finde deine Kleingruppe](https://template.church.tools/groups/168/hierarchy/children?ctmd_layout=visual-card)\n\n## **Menschen, die für dich da sind**\n\nArmin Adendorf begleitet den Newcomer-Lunch und hilft dir gerne bei deinen ersten Schritten. Auch unsere Gemeindeleitung ist ansprechbar, wenn du Fragen zur Gemeinde, zum Glauben oder zu unserer Ausrichtung hast.\n\nUnsere [#0 Gemeindeleitung](https://template.church.tools/groups/11?ctmd_layout=mention)\n\n#### Unsere Gemeindeleitung besteht aus\n\n[Alle Mitglieder von #0 Gemeindeleitung](https://template.church.tools/groups/11/members?ctmd_layout=visual-card)\n\n## Was uns wichtig ist\n\nWir wünschen uns eine Gemeinde, in der Menschen Gott begegnen, echte Gemeinschaft erleben und ihre Begabungen entdecken können.\n\n* **Jesus im Mittelpunkt:** Wir orientieren uns an der Bibel und rechnen mit Gottes Wirken heute.\n* **Echt statt perfekt:** Zweifel, Fragen und unfertige Geschichten dürfen Raum haben.\n* **Gemeinsam unterwegs:** Niemand muss Glauben oder Leben allein bewältigen.\n* **Für unsere Stadt:** Wir möchten Hoffnung praktisch und großzügig weitergeben.\n\nMehr über die [Vision von ChuToo](https://template.church.tools/wiki/0/main?ctmd_layout=mention)\n\n## **ChurchTools hilft dir beim Ankommen**\n\nChurchTools bündelt die wichtigsten Informationen unserer Gemeinde. Über die Bereiche Gruppen, Wiki und Kalender findest du schnell, was für dich relevant ist.\n\n| Du möchtest …                 | Dein nächster Schritt                                                                                       |\n| :---------------------------- | :---------------------------------------------------------------------------------------------------------- |\n| mit jemandem sprechen         | [Kontaktkarte](https://template.church.tools/groups/109?ctmd_layout=mention)                                |\n| eine Kleingruppe finden       | [Finde deine Kleingruppe](https://template.church.tools/groups/168?ctmd_layout=mention)                     |\n| Neuigkeiten erhalten          | [Gemeinde-News](https://template.church.tools/groups/24?ctmd_layout=mention)                                |\n| Ansprechpersonen kennenlernen | [Personen der Gemeinde](https://template.church.tools/wiki/8/Personen%20der%20Gemeinde?ctmd_layout=mention) |\n\nWenn du einmal nicht weiterweißt, helfen dir diese beiden Wege meistens schon:\n\n```\nStartseite → Gruppen → Finde deine Kleingruppe\nStartseite → Wiki → Willkommen bei ChuToo\n```\n\n***\n\n## **Häufige Fragen**\n\n### **Kann ich erst einmal unverbindlich kommen?**\n\nUnbedingt. Du kannst den Gottesdienst besuchen, ohne dich anzumelden oder irgendwo Mitglied zu werden. Schau dich in Ruhe um und entscheide danach, ob du wiederkommen möchtest.\n\n### **Muss ich schon Christ sein?**\n\nNein. ChuToo ist ein Ort für Menschen mit festem Glauben, mit vielen Fragen und für alle, die einfach neugierig sind.\n\n#### **Wenn du noch keinen ChurchTools-Zugang hast**\n\nSprich uns nach dem Gottesdienst an oder nutze die Kontaktkarte. Wir helfen dir beim Einstieg und erklären dir, welche Bereiche für dich freigeschaltet werden können.\n\n##### Unser Tipp\n\nBeginne nicht mit allen Funktionen auf einmal. Dein erster guter Schritt ist: Kontakt aufnehmen, Menschen kennenlernen und wiederkommen. Alles Weitere ergibt sich unterwegs.\n\n> Wir freuen uns darauf, dich kennenzulernen. Willkommen bei ChuToo – willkommen zuhause.\n\n## **Seiten, die dich interessieren könnten**\n\n[Personen der Gemeinde](https://template.church.tools/wiki/8/Personen%20der%20Gemeinde?ctmd_layout=large-card)",
+   "isMarkdown": true,
+   "onStartpage": false,
+   "redirectTo": null,
+   "permissions": {
+    "canEdit": true,
+    "canDelete": true
+   },
+   "meta": {
+    "createdDate": "2026-08-17T09:47:57Z",
+    "createdPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "modifiedDate": "2026-08-17T09:47:57Z",
+    "modifiedPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   },
+   "@deprecated": {
+    "identifier": "guid"
+   },
+   "identifier": "A3124166-5818-4A3F-A5EC-0CBCB0744824"
+  }
+ }
+}

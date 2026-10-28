@@ -1,0 +1,583 @@
+{
+ "operation": "get-registrationconfig-id",
+ "request": {
+  "method": "GET",
+  "path": "/registrationconfig/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "guid": "DCA9CA34-B7A7-11EF-8B8E-86180747F536",
+   "isActive": true,
+   "isComplete": true,
+   "showButton": true,
+   "minimumAge": 16,
+   "campuses": [
+    {
+     "campusId": 0,
+     "campus": {
+      "id": 0,
+      "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+      "profileType": "campus",
+      "name": "Winterhude",
+      "nameTranslated": "Winterhude",
+      "shortName": null,
+      "shorty": "W",
+      "slug": null,
+      "finderUrl": "https://find.church.tools/",
+      "sortKey": 1,
+      "isPublished": false,
+      "description": null,
+      "association": null,
+      "website": null,
+      "email": null,
+      "phone": null,
+      "denomination": {
+       "name": "denomination.free.evangelical",
+       "nameTranslated": "Ev.-freikirchlich",
+       "key": "FREE_EVANGELICAL"
+      },
+      "address": {
+       "id": 14,
+       "domainType": "campus",
+       "domainIdentifier": "0",
+       "name": null,
+       "icon": null,
+       "color": null,
+       "street": null,
+       "addition": null,
+       "district": null,
+       "zip": null,
+       "city": null,
+       "country": null,
+       "latitude": null,
+       "longitude": null,
+       "latitudeLoose": null,
+       "longitudeLoose": null,
+       "@deprecated": {
+        "meetingAt": "name",
+        "markerIcon": "icon",
+        "markerColor": "color",
+        "postalcode": "zip",
+        "markerUrl": "@deleted use icon and color instead",
+        "geoLat": "latitude",
+        "geoLng": "longitude"
+       },
+       "meetingAt": null,
+       "markerIcon": null,
+       "markerColor": null,
+       "markerUrl": null,
+       "postalcode": null,
+       "geoLat": null,
+       "geoLng": null
+      },
+      "groups": [],
+      "logo": {
+       "title": "91093dd905567059f64766bb4a8c3780387dd229ef5181a0754b6081bcfea6ec.png",
+       "domainType": "file",
+       "domainIdentifier": "2357",
+       "apiUrl": "https://gemeinde.example/api/files/profile_logo/2357",
+       "frontendUrl": "https://gemeinde.example/?q=public/filedownload&id=2357&filename=d6cbe77394da2d56987b8c3e7c0197530acd9fb0d154669ca3c3b94e9ec8f2b9",
+       "imageUrl": "https://gemeinde.example/images/2357/44be806dc3fc39fa96846dc063d6811d020df222c8e77ced7f9e2df128a89412",
+       "icon": "file",
+       "color": null,
+       "initials": null,
+       "domainAttributes": {},
+       "infos": []
+      },
+      "banner": {
+       "title": "akira-hojo-_86u_Y0oAaM-unsplash.jpg",
+       "domainType": "file",
+       "domainIdentifier": "2369",
+       "apiUrl": "https://gemeinde.example/api/files/profile_banner/2369",
+       "frontendUrl": "https://gemeinde.example/?q=public/filedownload&id=2369&filename=b2a4c84a002f6ac6d913e45adf720c8d2b16ca508336647ad4fcfedde2e8b9f4",
+       "imageUrl": "https://gemeinde.example/images/2369/c49700de0c1da8d2855b947366ec02db8d9fda7f729265ab73201878f0c26cfd",
+       "icon": "file",
+       "color": null,
+       "initials": null,
+       "domainAttributes": {},
+       "infos": []
+      },
+      "socialMedia": {},
+      "tags": [
+       {
+        "name": "active",
+        "nameTranslated": "aktiv",
+        "key": "ACTIVE"
+       }
+      ],
+      "services": [],
+      "visitors": 0,
+      "serviceBanner_new": null,
+      "signUpGroup": null,
+      "gallery": [],
+      "teamTitle": null,
+      "team": [],
+      "meta": {
+       "createdDate": "2022-02-14T10:14:16Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2025-09-15T14:17:52Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "serviceBanner": "serviceBanner_new"
+      },
+      "serviceBanner": null
+     },
+     "groupIds": [
+      346
+     ]
+    },
+    {
+     "campusId": 1,
+     "campus": {
+      "id": 1,
+      "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+      "profileType": "campus",
+      "name": "Hafencity",
+      "nameTranslated": "Hafencity",
+      "shortName": null,
+      "shorty": "HC",
+      "slug": null,
+      "finderUrl": "https://find.church.tools/",
+      "sortKey": 2,
+      "isPublished": false,
+      "description": null,
+      "association": {
+       "id": 34,
+       "name": "Bund Evangelisch-Freikirchlicher Gemeinden",
+       "key": "Baptisten",
+       "abbreviation": "BEFG",
+       "country": "DE"
+      },
+      "website": null,
+      "email": null,
+      "phone": null,
+      "denomination": {
+       "name": "denomination.free.evangelical",
+       "nameTranslated": "Ev.-freikirchlich",
+       "key": "FREE_EVANGELICAL"
+      },
+      "address": {
+       "id": 17,
+       "domainType": "campus",
+       "domainIdentifier": "1",
+       "name": null,
+       "icon": null,
+       "color": null,
+       "street": null,
+       "addition": null,
+       "district": null,
+       "zip": null,
+       "city": null,
+       "country": null,
+       "latitude": null,
+       "longitude": null,
+       "latitudeLoose": null,
+       "longitudeLoose": null,
+       "@deprecated": {
+        "meetingAt": "name",
+        "markerIcon": "icon",
+        "markerColor": "color",
+        "postalcode": "zip",
+        "markerUrl": "@deleted use icon and color instead",
+        "geoLat": "latitude",
+        "geoLng": "longitude"
+       },
+       "meetingAt": null,
+       "markerIcon": null,
+       "markerColor": null,
+       "markerUrl": null,
+       "postalcode": null,
+       "geoLat": null,
+       "geoLng": null
+      },
+      "groups": [],
+      "logo": {
+       "title": "91093dd905567059f64766bb4a8c3780387dd229ef5181a0754b6081bcfea6ec.png",
+       "domainType": "file",
+       "domainIdentifier": "2366",
+       "apiUrl": "https://gemeinde.example/api/files/profile_logo/2366",
+       "frontendUrl": "https://gemeinde.example/?q=public/filedownload&id=2366&filename=d6cbe77394da2d56987b8c3e7c0197530acd9fb0d154669ca3c3b94e9ec8f2b9",
+       "imageUrl": "https://gemeinde.example/images/2366/e0ce473234ec7fa389c1ee9a0d7dff2bfd671708b9cdf8386805167b57673613",
+       "icon": "file",
+       "color": null,
+       "initials": null,
+       "domainAttributes": {},
+       "infos": []
+      },
+      "banner": {
+       "title": "akira-hojo-_86u_Y0oAaM-unsplash.jpg",
+       "domainType": "file",
+       "domainIdentifier": "2363",
+       "apiUrl": "https://gemeinde.example/api/files/profile_banner/2363",
+       "frontendUrl": "https://gemeinde.example/?q=public/filedownload&id=2363&filename=b2a4c84a002f6ac6d913e45adf720c8d2b16ca508336647ad4fcfedde2e8b9f4",
+       "imageUrl": "https://gemeinde.example/images/2363/c1ac9810add6118c076f05dc902c01a41d4db2d6ae773ce522db8b08cc5ff839",
+       "icon": "file",
+       "color": null,
+       "initials": null,
+       "domainAttributes": {},
+       "infos": []
+      },
+      "socialMedia": {},
+      "tags": [],
+      "services": [],
+      "visitors": 0,
+      "serviceBanner_new": null,
+      "signUpGroup": null,
+      "gallery": [],
+      "teamTitle": null,
+      "team": [],
+      "meta": {
+       "createdDate": "2022-02-14T10:14:16Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2025-09-15T14:18:12Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "serviceBanner": "serviceBanner_new"
+      },
+      "serviceBanner": null
+     },
+     "groupIds": [
+      346
+     ]
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": 12,
+     "isRequired": false,
+     "field": {
+      "id": 12,
+      "name": "phone.mobile",
+      "nameTranslated": "Handy",
+      "shorty": "ph.mobile",
+      "column": "telefonhandy",
+      "key": "mobile",
+      "length": 20,
+      "fieldCategory": {
+       "id": 1,
+       "name": "address",
+       "internCode": "f_address",
+       "table": "cdb_person"
+      },
+      "fieldType": {
+       "id": 1,
+       "name": "fieldtype.text",
+       "internCode": "text",
+       "sortKey": 10
+      },
+      "isActive": true,
+      "useAsPlaceholder": true,
+      "isNewPersonField": false,
+      "lineEnding": "<br/>",
+      "securityLevel": 2,
+      "sortKey": 13,
+      "deleteOnArchive": false,
+      "isAvailableInRoutines": false,
+      "isNullable": false,
+      "hideInFrontend": false,
+      "isNotConfigurable": false,
+      "isBasicInfo": false,
+      "createdByChurch": false,
+      "@deprecated": {
+       "nullable": "isNullable",
+       "notConfigurable": "isNotConfigurable"
+      },
+      "nullable": false,
+      "notConfigurable": false,
+      "options": []
+     }
+    },
+    {
+     "fieldId": 4,
+     "isRequired": false,
+     "field": {
+      "id": 4,
+      "name": "street",
+      "nameTranslated": "Straße",
+      "shorty": null,
+      "column": "strasse",
+      "key": "street",
+      "length": 100,
+      "fieldCategory": {
+       "id": 1,
+       "name": "address",
+       "internCode": "f_address",
+       "table": "cdb_person"
+      },
+      "fieldType": {
+       "id": 1,
+       "name": "fieldtype.text",
+       "internCode": "text",
+       "sortKey": 10
+      },
+      "isActive": true,
+      "useAsPlaceholder": true,
+      "isNewPersonField": true,
+      "lineEnding": "<br/>",
+      "securityLevel": 3,
+      "sortKey": 5,
+      "deleteOnArchive": false,
+      "isAvailableInRoutines": false,
+      "isNullable": true,
+      "hideInFrontend": false,
+      "isNotConfigurable": false,
+      "isBasicInfo": false,
+      "createdByChurch": false,
+      "@deprecated": {
+       "nullable": "isNullable",
+       "notConfigurable": "isNotConfigurable"
+      },
+      "nullable": true,
+      "notConfigurable": false,
+      "options": []
+     }
+    },
+    {
+     "fieldId": 6,
+     "isRequired": false,
+     "field": {
+      "id": 6,
+      "name": "postalcode",
+      "nameTranslated": "PLZ",
+      "shorty": null,
+      "column": "plz",
+      "key": "zip",
+      "length": 20,
+      "fieldCategory": {
+       "id": 1,
+       "name": "address",
+       "internCode": "f_address",
+       "table": "cdb_person"
+      },
+      "fieldType": {
+       "id": 1,
+       "name": "fieldtype.text",
+       "internCode": "text",
+       "sortKey": 10
+      },
+      "isActive": true,
+      "useAsPlaceholder": true,
+      "isNewPersonField": true,
+      "lineEnding": null,
+      "securityLevel": 2,
+      "sortKey": 7,
+      "deleteOnArchive": false,
+      "isAvailableInRoutines": false,
+      "isNullable": false,
+      "hideInFrontend": false,
+      "isNotConfigurable": false,
+      "isBasicInfo": false,
+      "createdByChurch": false,
+      "@deprecated": {
+       "nullable": "isNullable",
+       "notConfigurable": "isNotConfigurable"
+      },
+      "nullable": false,
+      "notConfigurable": false,
+      "options": []
+     }
+    },
+    {
+     "fieldId": 7,
+     "isRequired": false,
+     "field": {
+      "id": 7,
+      "name": "city",
+      "nameTranslated": "Ort",
+      "shorty": null,
+      "column": "ort",
+      "key": "city",
+      "length": 40,
+      "fieldCategory": {
+       "id": 1,
+       "name": "address",
+       "internCode": "f_address",
+       "table": "cdb_person"
+      },
+      "fieldType": {
+       "id": 1,
+       "name": "fieldtype.text",
+       "internCode": "text",
+       "sortKey": 10
+      },
+      "isActive": true,
+      "useAsPlaceholder": true,
+      "isNewPersonField": true,
+      "lineEnding": "<br/>",
+      "securityLevel": 2,
+      "sortKey": 8,
+      "deleteOnArchive": false,
+      "isAvailableInRoutines": false,
+      "isNullable": false,
+      "hideInFrontend": false,
+      "isNotConfigurable": false,
+      "isBasicInfo": false,
+      "createdByChurch": false,
+      "@deprecated": {
+       "nullable": "isNullable",
+       "notConfigurable": "isNotConfigurable"
+      },
+      "nullable": false,
+      "notConfigurable": false,
+      "options": []
+     }
+    },
+    {
+     "fieldId": 9,
+     "isRequired": false,
+     "field": {
+      "id": 9,
+      "name": "sex",
+      "nameTranslated": "Geschlecht",
+      "shorty": "sex",
+      "column": "geschlecht_no",
+      "key": "sexId",
+      "length": 11,
+      "fieldCategory": {
+       "id": 1,
+       "name": "address",
+       "internCode": "f_address",
+       "table": "cdb_person"
+      },
+      "fieldType": {
+       "id": 2,
+       "name": "fieldtype.select",
+       "internCode": "select",
+       "sortKey": 50
+      },
+      "isActive": true,
+      "useAsPlaceholder": true,
+      "isNewPersonField": true,
+      "lineEnding": "<br/>",
+      "securityLevel": 2,
+      "sortKey": 10,
+      "deleteOnArchive": false,
+      "isAvailableInRoutines": false,
+      "isNullable": true,
+      "hideInFrontend": false,
+      "isNotConfigurable": false,
+      "isBasicInfo": false,
+      "createdByChurch": false,
+      "@deprecated": {
+       "nullable": "isNullable",
+       "notConfigurable": "isNotConfigurable"
+      },
+      "nullable": true,
+      "notConfigurable": false,
+      "options": [
+       {
+        "id": 0,
+        "name": "sex.unknown",
+        "sortKey": 0,
+        "salutation_formal": null,
+        "salutation_informal": "salutation.informal.unknown"
+       },
+       {
+        "id": 1,
+        "name": "sex.male",
+        "sortKey": 0,
+        "salutation_formal": "salutation.formal.male",
+        "salutation_informal": "salutation.informal.male"
+       },
+       {
+        "id": 2,
+        "name": "sex.female",
+        "sortKey": 0,
+        "salutation_formal": "salutation.formal.female",
+        "salutation_informal": "salutation.informal.female"
+       },
+       {
+        "id": 3,
+        "name": "sex.diverse",
+        "sortKey": 0,
+        "salutation_formal": null,
+        "salutation_informal": null
+       }
+      ]
+     }
+    },
+    {
+     "fieldId": 16,
+     "isRequired": false,
+     "field": {
+      "id": 16,
+      "name": "date.of.birth",
+      "nameTranslated": "Geburtsdatum",
+      "shorty": "date.of.birth",
+      "column": "geburtsdatum",
+      "key": "birthday",
+      "length": null,
+      "fieldCategory": {
+       "id": 2,
+       "name": "information",
+       "internCode": "f_church",
+       "table": "cdb_person"
+      },
+      "fieldType": {
+       "id": 3,
+       "name": "fieldtype.date",
+       "internCode": "date",
+       "sortKey": 80
+      },
+      "isActive": true,
+      "useAsPlaceholder": true,
+      "isNewPersonField": true,
+      "lineEnding": "<br/>",
+      "securityLevel": 2,
+      "sortKey": 1,
+      "deleteOnArchive": false,
+      "isAvailableInRoutines": false,
+      "isNullable": true,
+      "hideInFrontend": false,
+      "isNotConfigurable": false,
+      "isBasicInfo": false,
+      "createdByChurch": false,
+      "@deprecated": {
+       "nullable": "isNullable",
+       "notConfigurable": "isNotConfigurable"
+      },
+      "nullable": true,
+      "notConfigurable": false,
+      "options": []
+     }
+    }
+   ],
+   "statusId": 0,
+   "departmentIds": [
+    1
+   ],
+   "tagsForNewPersons": [
+    "neue Person"
+   ],
+   "tagsForExistingPersons": [],
+   "blacklist": [],
+   "meta": {
+    "createdDate": "2024-10-15T11:30:30Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2026-01-20T10:42:03Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "tags": [
+    "neue Person"
+   ],
+   "@deprecated": "tags (now: tagsForNewPersons)"
+  }
+ }
+}

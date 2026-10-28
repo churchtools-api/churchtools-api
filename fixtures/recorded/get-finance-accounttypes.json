@@ -1,0 +1,67 @@
+{
+ "operation": "get-finance-accounttypes",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accounttypes",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Aktiva",
+    "isBalanceAccount": true,
+    "balanceType": "assets",
+    "sortKey": 1,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 2,
+    "name": "Passiva",
+    "isBalanceAccount": true,
+    "balanceType": "liabilities",
+    "sortKey": 2,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 3,
+    "name": "Gewinn- und Verlustrechnung",
+    "isBalanceAccount": false,
+    "balanceType": null,
+    "sortKey": 3,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 3
+  }
+ }
+}

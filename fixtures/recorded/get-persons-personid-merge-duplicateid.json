@@ -1,0 +1,123 @@
+{
+ "operation": "get-persons-personid-merge-duplicateid",
+ "request": {
+  "method": "GET",
+  "path": "/persons/32/merge/228",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "personDiff": [
+    {
+     "name": "street",
+     "old": "Alsterdofer Str. 34",
+     "new": "Eppendorfer Baum 33",
+     "printDiff": true,
+     "key": "street"
+    },
+    {
+     "name": "zip",
+     "old": "22299",
+     "new": "20249",
+     "printDiff": true,
+     "key": "zip"
+    },
+    {
+     "name": "country",
+     "old": "",
+     "new": "Deutschland",
+     "printDiff": true,
+     "key": "country"
+    },
+    {
+     "name": "email",
+     "old": "yannik.gebhard@example.com",
+     "new": "",
+     "printDiff": true,
+     "key": "email"
+    },
+    {
+     "name": "guid",
+     "old": "63A3824A-036D-45F2-AD66-392371D7AC29",
+     "new": "A2E85D36-7B9D-49D2-83F5-CFB8BF12B428",
+     "printDiff": true,
+     "key": "guid"
+    },
+    {
+     "name": "birthday",
+     "old": {
+      "date": "1963-04-28 00:00:00.000000",
+      "timezone_type": 3,
+      "timezone": "Europe/Berlin"
+     },
+     "new": null,
+     "printDiff": true,
+     "key": "birthday"
+    },
+    {
+     "name": "birthName",
+     "old": " ",
+     "new": "",
+     "printDiff": true,
+     "key": "birthName"
+    },
+    {
+     "name": "birthplace",
+     "old": " ",
+     "new": "",
+     "printDiff": true,
+     "key": "birthplace"
+    },
+    {
+     "name": "firstContact",
+     "old": {
+      "date": "2018-02-06 00:00:00.000000",
+      "timezone_type": 3,
+      "timezone": "Europe/Berlin"
+     },
+     "new": {
+      "date": "2018-04-28 00:00:00.000000",
+      "timezone_type": 3,
+      "timezone": "Europe/Berlin"
+     },
+     "printDiff": true,
+     "key": "firstContact"
+    }
+   ],
+   "groupsDiff": {
+    "old": [
+     {
+      "id": 355,
+      "title": "Gebetsanliegen",
+      "type": "Verteiler",
+      "role": "Empfänger",
+      "roleId": 29,
+      "groupMemberStatus": "active"
+     },
+     {
+      "id": 24,
+      "title": "Gemeinde-News",
+      "type": "Verteiler",
+      "role": "Empfänger",
+      "roleId": 29,
+      "groupMemberStatus": "active"
+     }
+    ],
+    "new": [
+     {
+      "id": 24,
+      "title": "Gemeinde-News",
+      "type": "Verteiler",
+      "role": "Empfänger",
+      "roleId": 29,
+      "groupMemberStatus": "active"
+     }
+    ],
+    "both": [
+     24
+    ]
+   }
+  }
+ }
+}

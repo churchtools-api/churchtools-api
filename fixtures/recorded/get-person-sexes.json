@@ -1,0 +1,96 @@
+{
+ "operation": "get-person-sexes",
+ "request": {
+  "method": "GET",
+  "path": "/person/sexes",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 3,
+    "name": "sex.diverse",
+    "nameTranslated": "divers",
+    "sortKey": 0,
+    "salutationFormal": null,
+    "salutationFormalTranslated": "",
+    "salutationInformal": null,
+    "salutationInformalTranslated": "",
+    "meta": {
+     "createdDate": "2026-03-16T13:13:45Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-03-16T13:13:45Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 2,
+    "name": "sex.female",
+    "nameTranslated": "weiblich",
+    "sortKey": 0,
+    "salutationFormal": "salutation.formal.female",
+    "salutationFormalTranslated": "Frau",
+    "salutationInformal": "salutation.informal.female",
+    "salutationInformalTranslated": "Liebe",
+    "meta": {
+     "createdDate": "2026-03-16T13:13:45Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-03-16T13:13:45Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 1,
+    "name": "sex.male",
+    "nameTranslated": "männlich",
+    "sortKey": 0,
+    "salutationFormal": "salutation.formal.male",
+    "salutationFormalTranslated": "Herr",
+    "salutationInformal": "salutation.informal.male",
+    "salutationInformalTranslated": "Lieber",
+    "meta": {
+     "createdDate": "2026-03-16T13:13:45Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-03-16T13:13:45Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 0,
+    "name": "sex.unknown",
+    "nameTranslated": "unbekannt",
+    "sortKey": 0,
+    "salutationFormal": null,
+    "salutationFormalTranslated": "",
+    "salutationInformal": "salutation.informal.unknown",
+    "salutationInformalTranslated": "Liebe/r",
+    "meta": {
+     "createdDate": "2026-03-16T13:13:45Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-03-16T13:13:45Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

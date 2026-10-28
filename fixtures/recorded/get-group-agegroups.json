@@ -1,0 +1,96 @@
+{
+ "operation": "get-group-agegroups",
+ "request": {
+  "method": "GET",
+  "path": "/group/agegroups",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 9,
+    "name": "0-2",
+    "nameTranslated": "0-2",
+    "sortKey": 0,
+    "start": 0,
+    "end": 2
+   },
+   {
+    "id": 10,
+    "name": "3-5",
+    "nameTranslated": "3-5",
+    "sortKey": 3,
+    "start": 3,
+    "end": 5
+   },
+   {
+    "id": 11,
+    "name": "6-9",
+    "nameTranslated": "6-9",
+    "sortKey": 6,
+    "start": 6,
+    "end": 9
+   },
+   {
+    "id": 1,
+    "name": "10-12",
+    "nameTranslated": "10-12",
+    "sortKey": 10,
+    "start": 10,
+    "end": 12
+   },
+   {
+    "id": 2,
+    "name": "13-19",
+    "nameTranslated": "13-19",
+    "sortKey": 13,
+    "start": 13,
+    "end": 19
+   },
+   {
+    "id": 4,
+    "name": "20er",
+    "nameTranslated": "20er",
+    "sortKey": 20,
+    "start": 20,
+    "end": 29
+   },
+   {
+    "id": 5,
+    "name": "30er",
+    "nameTranslated": "30er",
+    "sortKey": 30,
+    "start": 30,
+    "end": 39
+   },
+   {
+    "id": 6,
+    "name": "40er",
+    "nameTranslated": "40er",
+    "sortKey": 40,
+    "start": 40,
+    "end": 49
+   },
+   {
+    "id": 7,
+    "name": "50er",
+    "nameTranslated": "50er",
+    "sortKey": 50,
+    "start": 50,
+    "end": 59
+   },
+   {
+    "id": 8,
+    "name": "60+",
+    "nameTranslated": "60+",
+    "sortKey": 60,
+    "start": 60,
+    "end": 120
+   }
+  ],
+  "meta": {
+   "count": 10
+  }
+ }
+}

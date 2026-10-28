@@ -1,0 +1,40 @@
+{
+ "operation": "get-person-commentviewers",
+ "request": {
+  "method": "GET",
+  "path": "/person/commentviewers",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 0,
+    "name": "Leiter",
+    "nameTranslated": "Leiter",
+    "sortKey": 0
+   },
+   {
+    "id": 1,
+    "name": "Gemeindeleitung",
+    "nameTranslated": "Gemeindeleitung",
+    "sortKey": 1
+   },
+   {
+    "id": 2,
+    "name": "followup",
+    "nameTranslated": "Follow-up",
+    "sortKey": 2
+   },
+   {
+    "id": 3,
+    "name": "Admin",
+    "nameTranslated": "Admin",
+    "sortKey": 3
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

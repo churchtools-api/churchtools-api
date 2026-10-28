@@ -1,0 +1,16 @@
+{
+ "operation": "get-persons-personId-information",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/information",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "status": 200,
+  "message": "PDF wurde erfolgreich erstellt.",
+  "data": {
+   "pdfLink": "https://gemeinde.example/?q=public/filedownload&id=3337&filename=652bf8398102f59041a16623a633d357b1a589e8252663761cd2fe3041caec88"
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "operation": "get-jobs",
+ "request": {
+  "method": "GET",
+  "path": "/jobs",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "operation": "get-facts-id",
+ "request": {
+  "method": "GET",
+  "path": "/facts/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "Besucher",
+   "nameTranslated": "Besucher",
+   "sortKey": 1,
+   "type": "number",
+   "@deprecated": "fieldType (now: type)",
+   "fieldType": "number",
+   "unit": null
+  }
+ }
+}

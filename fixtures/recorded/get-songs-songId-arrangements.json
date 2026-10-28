@@ -1,0 +1,65 @@
+{
+ "operation": "get-songs-songId-arrangements",
+ "request": {
+  "method": "GET",
+  "path": "/songs/41/arrangements",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 59,
+    "name": "Standard-Arrangement",
+    "isDefault": true,
+    "sourceId": null,
+    "source": null,
+    "sourceReference": null,
+    "key": "G",
+    "beat": "4/4",
+    "tempo": 100,
+    "duration": null,
+    "description": null,
+    "links": [],
+    "files": [
+     {
+      "domainType": "song_arrangement",
+      "domainId": "59",
+      "name": "A new Sound.sng",
+      "filename": "0daa7f5b9653b04d012bd6e851e7764cf450af8a46c5b1e8e2367e5c4ac162e1",
+      "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=404&filename=0daa7f5b9653b04d012bd6e851e7764cf450af8a46c5b1e8e2367e5c4ac162e1",
+      "meta": {
+       "modifiedDate": "2019-02-19T15:21:52Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      }
+     }
+    ],
+    "meta": {
+     "createdDate": "2020-09-16T09:59:29Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-09-16T09:59:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "bpm": "tempo",
+     "keyOfArrangement": "key",
+     "note": "description",
+     "sourceName": "source.name"
+    },
+    "bpm": "100",
+    "keyOfArrangement": "G",
+    "note": "",
+    "sourceName": null
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

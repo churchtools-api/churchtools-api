@@ -1,0 +1,15 @@
+{
+ "operation": "get-groups-groupId-members-routines",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/members/routines",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "operation": "get-captcha",
+ "request": {
+  "method": "GET",
+  "path": "/captcha",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "parameters": {
+   "algorithm": "SHA-256",
+   "nonce": "05c07b26cb414db415a7dc424a78e659",
+   "salt": "9775bda151191d153e5ea792234fd507",
+   "cost": 1,
+   "keyLength": 32,
+   "keyPrefix": "3aec8dd71c386c7c8686ed48983ea3d7",
+   "keySignature": "5034da14cc6ca2968a7c6ddf4bcc60c1905e25a874cf510b8936cd438a57ae0b",
+   "memoryCost": null,
+   "parallelism": null,
+   "expiresAt": 1793230510,
+   "data": null
+  },
+  "signature": "de39d2a86a523246d3a96a78011df3ace1bf7c9b9a621d7d29e354f57fd6f069"
+ }
+}

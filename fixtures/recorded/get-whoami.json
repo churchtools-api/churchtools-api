@@ -1,0 +1,101 @@
+{
+ "operation": "get-whoami",
+ "request": {
+  "method": "GET",
+  "path": "/whoami",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+   "securityLevelForPerson": 99999,
+   "editSecurityLevelForPerson": 99999,
+   "title": "",
+   "firstName": "Armin",
+   "lastName": "Adendorf",
+   "nickname": "",
+   "job": "Pastor",
+   "street": "Alfredstr. 9",
+   "addressAddition": "",
+   "zip": "22087",
+   "city": "Hamburg",
+   "country": "Deutschland",
+   "latitude": 53.5593252,
+   "longitude": 10.0316524,
+   "latitudeLoose": 53.5598,
+   "longitudeLoose": 10.0324,
+   "phonePrivate": "",
+   "phoneWork": "",
+   "mobile": "0172 1223882",
+   "fax": "",
+   "birthName": "",
+   "birthday": "1991-05-01",
+   "birthplace": "",
+   "age": 35,
+   "isDead": false,
+   "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+   "familyImageUrl": "",
+   "sexId": 0,
+   "email": "armin@example.com",
+   "emails": [
+    {
+     "email": "armin@example.com",
+     "isDefault": true,
+     "contactLabelId": 2
+    }
+   ],
+   "cmsUserId": "churchtools",
+   "optigemId": "888920",
+   "privacyPolicyAgreement": {
+    "date": "2018-12-18",
+    "typeId": 2,
+    "whoId": 1
+   },
+   "privacyPolicyAgreementDate": "2018-12-18",
+   "privacyPolicyAgreementTypeId": 2,
+   "privacyPolicyAgreementWhoId": 1,
+   "nationalityId": 0,
+   "familyStatusId": 0,
+   "weddingDate": null,
+   "campusId": 0,
+   "statusId": 3,
+   "departmentIds": [
+    1
+   ],
+   "firstContact": "2015-02-14",
+   "dateOfBelonging": null,
+   "dateOfDeath": null,
+   "dateOfEntry": null,
+   "dateOfResign": null,
+   "dateOfBaptism": null,
+   "placeOfBaptism": "",
+   "baptisedBy": "",
+   "referredBy": "",
+   "referredTo": "",
+   "growPathId": 6,
+   "canChat": true,
+   "invitationStatus": "accepted",
+   "chatActive": true,
+   "isArchived": false,
+   "visibility": "visible",
+   "acceptedsecurity": "2018-02-08",
+   "lastLogin": "2026-10-28T22:36:56Z",
+   "lastEditedDate": "2026-10-26T21:42:54Z",
+   "meta": {
+    "createdDate": "2015-02-14T17:35:41Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2026-10-26T21:42:54Z",
+    "modifiedPerson": {
+     "id": -1
+    }
+   }
+  },
+  "meta": {
+   "simulatingUserId": null
+  }
+ }
+}

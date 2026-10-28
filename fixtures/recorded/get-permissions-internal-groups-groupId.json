@@ -1,0 +1,79 @@
+{
+ "operation": "get-permissions-internal-groups-groupId",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/internal/groups/11",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "churchdb": {
+    "+see group": 1,
+    "+edit group infos": false,
+    "+edit group basic settings": false,
+    "+admin group member fields": false,
+    "+edit group hierarchy": false,
+    "+create group": 0,
+    "+see hidden group": false,
+    "+see group tags": false,
+    "+see persons": 1,
+    "+edit person fields of group members": 0,
+    "+see group member fields": 1,
+    "+edit group member fields": 0,
+    "+see own group member fields": 0,
+    "+edit own group member fields": 0,
+    "+edit basic group memberships": false,
+    "+add person": false,
+    "+remove from group": false,
+    "+exit group": false,
+    "+invite person": false,
+    "+export group members": false,
+    "+mail group members": false,
+    "+see tags": false,
+    "+admin routines": false,
+    "+admin followup": false,
+    "+do followup": false,
+    "+admin meetings": false,
+    "+do group meeting": false,
+    "+create notes": false,
+    "+view history": false,
+    "+admin group chat": false,
+    "+get emails": false,
+    "+admin posts": false,
+    "+create post group intern": true,
+    "+create post group visible": true,
+    "+edit persons": false,
+    "+edit own groupmemberfields": 0,
+    "+see groupmemberfields": 1,
+    "+admin group fields": false,
+    "+edit group fields": 0,
+    "+edit group memberships": false,
+    "+edit groupmemberstatus": false,
+    "+create posts": true
+   },
+   "churchservice": {
+    "+view service": true,
+    "+entry free": false,
+    "+entry all": false,
+    "+edit service": false,
+    "+admin service": false,
+    "+see workload": false,
+    "+see history": false,
+    "+see reason": false,
+    "+attach file": true,
+    "+edit info": false,
+    "+edit event": false,
+    "+edit agenda": false,
+    "+view absence": false,
+    "+start event chat": false
+   },
+   "finance": {
+    "+see cost center budgets": false,
+    "+see cost centers": false,
+    "+see donators in cost centers": false,
+    "+allow posting": false
+   }
+  }
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "operation": "get-groups-groupId-meetings-meetingId-members",
+ "request": {
+  "method": "GET",
+  "path": "/groups/895/meetings/1057/members",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "member": {
+     "id": 2587,
+     "personId": 1,
+     "group": {
+      "title": "ctrs-test Seed-Gruppe b5896e",
+      "domainType": "group",
+      "domainIdentifier": "895",
+      "apiUrl": "https://gemeinde.example/api/groups/895",
+      "frontendUrl": "https://gemeinde.example/groups/895",
+      "imageUrl": null,
+      "icon": "users",
+      "color": {
+       "key": "sky",
+       "shade": null
+      },
+      "initials": "C",
+      "domainAttributes": {
+       "note": "",
+       "groupStatusId": 1,
+       "groupTypeId": 1,
+       "campusId": null,
+       "visibility": "restricted",
+       "guid": "B73449DE-DD28-4DE7-89F5-F2CFE55A3C6D"
+      },
+      "infos": [
+       "Kleingruppe"
+      ]
+     },
+     "person": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "groupTypeRoleId": 9,
+     "roleChangedDate": "2026-10-28T22:34:52Z",
+     "groupMemberStatus": "active",
+     "statusChangedDate": "2026-10-28T22:34:50Z",
+     "memberStartDate": "2026-10-28",
+     "registeredBy": null,
+     "waitinglistPosition": null,
+     "comment": null,
+     "memberEndDate": null,
+     "@deprecated": {
+      "personId": "person.domainIdentifier"
+     }
+    },
+    "personId": 1,
+    "isCheckedIn": false,
+    "status": "unsure"
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

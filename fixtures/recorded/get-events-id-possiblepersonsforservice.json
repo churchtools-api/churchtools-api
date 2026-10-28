@@ -1,0 +1,32 @@
+{
+ "operation": "get-events-id-possiblepersonsforservice",
+ "request": {
+  "method": "GET",
+  "path": "/events/1/possiblepersonsforservice",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "personId": 7,
+    "fullName": "Malte Wilkerson"
+   },
+   {
+    "personId": 93,
+    "fullName": "Joel Thieme"
+   },
+   {
+    "personId": 108,
+    "fullName": "Jens Atkins"
+   },
+   {
+    "personId": 235,
+    "fullName": "Peter Tooly"
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

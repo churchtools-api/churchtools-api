@@ -1,0 +1,205 @@
+{
+ "operation": "get-groups-groupId",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 11,
+   "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304",
+   "name": "#0 Gemeindeleitung",
+   "securityLevelForGroup": 5,
+   "meta": {
+    "createdDate": "2018-02-07T23:00:00Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2025-01-20T16:18:27Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "modifiedDate": "meta.modifiedDate",
+    "modifiedPerson": "meta.modifiedPid",
+    "information.maxMembers": "settings.maxMembers"
+   },
+   "modifiedDate": "2025-01-20T16:18:27Z",
+   "modifiedPerson": {
+    "id": 1
+   },
+   "followUp": {
+    "reminder": true
+   },
+   "permissions": {
+    "useChat": true,
+    "startChat": true
+   },
+   "information": {
+    "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+    "imageAnnotation": "",
+    "imageAiGenerated": false,
+    "imageAnnotationLink": "",
+    "imageDescription": "",
+    "groupHomepageUrl": "https://gemeinde.example/grouphomepage/1kPxtmtspn9U6JJalPcyy8VZkxCqcegB",
+    "groupStatusId": 1,
+    "groupTypeId": 2,
+    "dateOfFoundation": null,
+    "endDate": null,
+    "meetingTime": "",
+    "weekday": null,
+    "groupCategoryId": null,
+    "ageGroupIds": [],
+    "targetGroupId": null,
+    "maxMembers": null,
+    "note": "",
+    "campusId": null,
+    "chatStatus": "NOT_STARTED",
+    "color": "lime",
+    "signUpOverrideRoleId": null
+   },
+   "settings": {
+    "isHidden": false,
+    "isOpenForMembers": false,
+    "signUpOpeningDate": null,
+    "signUpClosingDate": null,
+    "signUpHeadline": null,
+    "signUpNotificationSentDate": null,
+    "signUpOverrideRoleId": null,
+    "allowSpouseRegistration": true,
+    "allowChildRegistration": true,
+    "allowSameEmailRegistration": true,
+    "allowOtherRegistration": false,
+    "signUpEmailRequiredForAll": true,
+    "emailVerificationMode": "all",
+    "sendDefaultSignUpMail": true,
+    "autoAccept": false,
+    "allowWaitinglist": false,
+    "waitinglistMaxPersons": null,
+    "automaticMoveUp": false,
+    "isPublic": false,
+    "visibility": "restricted",
+    "inStatistic": false,
+    "groupMeeting": {
+     "autoCreate": false,
+     "templateId": null
+    },
+    "qrCodeCheckin": false,
+    "qrCodeCheckinAutomaticEmail": true,
+    "chatHistoryVisible": false,
+    "informLeader": true,
+    "newMember": {
+     "campusId": null,
+     "statusId": null,
+     "departmentId": null
+    },
+    "postsEnabled": true,
+    "defaultPostVisibility": "group_visible",
+    "defaultPostCommentsActive": true,
+    "defaultPostPlaceholderText": null,
+    "defaultPostNotificationScope": null,
+    "externalPostSubscriptionsEnabled": true,
+    "showStreet": false,
+    "appointmentId": null,
+    "appointmentStartDate": null,
+    "maxMembers": null,
+    "statusesCountedTowardsSeats": [
+     "active"
+    ],
+    "dynamicGroupRuleSet": null,
+    "dynamicGroupStatus": null,
+    "dynamicGroupUpdateStarted": null,
+    "dynamicGroupUpdateFinished": null
+   },
+   "roles": [
+    {
+     "id": 72,
+     "groupTypeId": 2,
+     "name": "Leiter",
+     "nameTranslated": "Leiter",
+     "shorty": "L",
+     "sortKey": 1,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 6,
+     "isLeader": true,
+     "groupTypeRoleId": 16,
+     "forceTwoFactorAuth": false,
+     "isActive": true,
+     "canReadChat": true,
+     "canWriteChat": true,
+     "receiveQRCode": true,
+     "countsTowardsSeats": false,
+     "htmlTemplateIds": null
+    },
+    {
+     "id": 73,
+     "groupTypeId": 2,
+     "name": "Co-Leiter",
+     "nameTranslated": "Co-Leiter",
+     "shorty": "CoL",
+     "sortKey": 2,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 6,
+     "isLeader": true,
+     "groupTypeRoleId": 17,
+     "forceTwoFactorAuth": false,
+     "isActive": true,
+     "canReadChat": true,
+     "canWriteChat": true,
+     "receiveQRCode": true,
+     "countsTowardsSeats": false,
+     "htmlTemplateIds": null
+    },
+    {
+     "id": 75,
+     "groupTypeId": 2,
+     "name": "Organisator",
+     "nameTranslated": "Organisator",
+     "shorty": "O",
+     "sortKey": 4,
+     "type": "participant",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 6,
+     "isLeader": false,
+     "groupTypeRoleId": 19,
+     "forceTwoFactorAuth": false,
+     "isActive": true,
+     "canReadChat": true,
+     "canWriteChat": true,
+     "receiveQRCode": true,
+     "countsTowardsSeats": false,
+     "htmlTemplateIds": null
+    },
+    {
+     "id": 71,
+     "groupTypeId": 2,
+     "name": "Mitarbeiter",
+     "nameTranslated": "Mitarbeiter",
+     "shorty": "Mia",
+     "sortKey": 5,
+     "type": "participant",
+     "isDefault": true,
+     "isHidden": false,
+     "growPathId": 6,
+     "isLeader": false,
+     "groupTypeRoleId": 15,
+     "forceTwoFactorAuth": false,
+     "isActive": true,
+     "canReadChat": true,
+     "canWriteChat": true,
+     "receiveQRCode": true,
+     "countsTowardsSeats": true,
+     "htmlTemplateIds": null
+    }
+   ]
+  }
+ }
+}

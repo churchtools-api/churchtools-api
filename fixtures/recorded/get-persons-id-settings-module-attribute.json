@@ -1,0 +1,16 @@
+{
+ "operation": "get-persons-id-settings-module-attribute",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/settings/churchauth/listMaxRowsAuthAutoView",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "module": "churchauth",
+   "attribute": "listMaxRowsAuthAutoView",
+   "value": "50"
+  }
+ }
+}

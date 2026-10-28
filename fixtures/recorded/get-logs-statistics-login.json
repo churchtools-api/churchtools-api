@@ -1,0 +1,45 @@
+{
+ "operation": "get-logs-statistics-login",
+ "request": {
+  "method": "GET",
+  "path": "/logs/statistics/login",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "totalLogins": 4692,
+    "lastLogin": "2026-10-28T22:36:03Z",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": null,
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   }
+  ],
+  "meta": {
+   "count": 1,
+   "pagination": {
+    "total": 1,
+    "limit": 10,
+    "current": 1,
+    "lastPage": 1
+   }
+  }
+ }
+}

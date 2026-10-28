@@ -1,0 +1,1739 @@
+{
+ "operation": "get-finance-templates-export",
+ "request": {
+  "method": "GET",
+  "path": "/finance/templates/export",
+  "query": [
+   [
+    "accounting_period_id",
+    "1"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "taxTypes": [
+    {
+     "name": "Umsatzsteuer",
+     "sortKey": 10
+    },
+    {
+     "name": "Vorsteuer",
+     "sortKey": 20
+    }
+   ],
+   "taxRates": [
+    {
+     "taxType": "Umsatzsteuer",
+     "rate": 19,
+     "note": "Umsatzsteuer 19%",
+     "account": "Mehrwertsteuer (Umsatzsteuer) 19%"
+    },
+    {
+     "taxType": "Vorsteuer",
+     "rate": 19,
+     "note": "Vorsteuer 19%",
+     "account": "Vorsteuer 19%"
+    },
+    {
+     "taxType": "Vorsteuer",
+     "rate": 7,
+     "note": "Vorsteuer 7%",
+     "account": "Vorsteuer 7%"
+    },
+    {
+     "taxType": "Umsatzsteuer",
+     "rate": 7,
+     "note": "Umsatzsteuer 7%",
+     "account": "Mehrwertsteuer (Umsatzsteuer) 7%"
+    }
+   ],
+   "cashDiscounts": [
+    {
+     "rate": 2,
+     "note": "ctrs-test",
+     "account": "Grundstücke"
+    }
+   ],
+   "accounts": [
+    {
+     "number": "0050",
+     "name": "Grundstücke",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0110",
+     "name": "Kirchengebäude",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0120",
+     "name": "Gemeindesaal (Versammlungen)",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0130",
+     "name": "Pastorei (Gemeindebüro)",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0140",
+     "name": "Wohnung (Dienstwohnung) ",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0150",
+     "name": "Sonstige Gebäude",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0160",
+     "name": "Außenanlagen",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0180",
+     "name": "Hof- und Wegebefestigungen",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0190",
+     "name": "Gebäude im Bau",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0210",
+     "name": "Maschinen",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0220",
+     "name": "Sonstige Vorrichtungen",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0310",
+     "name": "Fahrzeuge",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0410",
+     "name": "Ausstattung der Kirche",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0420",
+     "name": "Ausstattung des Gemeindesaals",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0430",
+     "name": "Ausstattung der Pastorei",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0440",
+     "name": "Ausstattung der Dienstwohnung",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0450",
+     "name": "Sonstige Einrichtungsgegenstände",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0460",
+     "name": "Heizungsanlage",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0470",
+     "name": "Musikinstrumente",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0480",
+     "name": "Kleininventar (150 EUR-1.000 EUR)",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0490",
+     "name": "Andere Anschaffungen",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0510",
+     "name": "Gewährte Darlehen",
+     "accountGroup": "Forderungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0520",
+     "name": "Andere langfristige Forderungen",
+     "accountGroup": "Sachanlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0610",
+     "name": "Erhaltene Darlehen",
+     "accountGroup": "Verb. gegen Banken",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0620",
+     "name": "Erhaltene Hypotheken",
+     "accountGroup": "Verb. gegen Banken",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0630",
+     "name": "Erhaltene Kredite",
+     "accountGroup": "Verb. gegen Banken",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0640",
+     "name": "Darlehen von Gemeindemitgliedern",
+     "accountGroup": "Verb. gegen Private",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0650",
+     "name": "Sonstige erhaltene Darlehen",
+     "accountGroup": "Verb. gegen Sonstige",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0800",
+     "name": "Kapital",
+     "accountGroup": "Gez. Kapital, Einlagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0840",
+     "name": "Gesetzliche Rücklagen",
+     "accountGroup": "Rücklagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0850",
+     "name": "Satzungsgemäße Rücklagen",
+     "accountGroup": "Rücklagen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0860",
+     "name": "Gewinnvortrag",
+     "accountGroup": "Vortrag",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "0900",
+     "name": "Abgrenzungsposten",
+     "accountGroup": "Abgrenzungsposten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1000",
+     "name": "Kasse I",
+     "accountGroup": "Bank- und Kassenbestände",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "1010",
+     "name": "Kasse II",
+     "accountGroup": "Bank- und Kassenbestände",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "1060",
+     "name": "Garagen",
+     "accountGroup": "Immobilien u. Grundstücke",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1210",
+     "name": "Sparkasse",
+     "accountGroup": "Bank- und Kassenbestände",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1220",
+     "name": "Bank Gemeinde",
+     "accountGroup": "Bank- und Kassenbestände",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1230",
+     "name": "Bank 2",
+     "accountGroup": "Bank- und Kassenbestände",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1250",
+     "name": "Festgeldkonto 1",
+     "accountGroup": "Bank- und Kassenbestände",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1260",
+     "name": "Festgeldkonto 2",
+     "accountGroup": "Bank- und Kassenbestände",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1360",
+     "name": "Geldtransit",
+     "accountGroup": "Bank- und Kassenbestände",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1500",
+     "name": "Sonstige Forderungen (Kurzfristige)",
+     "accountGroup": "Forderungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1515",
+     "name": "Ausgeliehene Gelder",
+     "accountGroup": "Forderungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1520",
+     "name": "Gehaltsvorschüsse ",
+     "accountGroup": "Forderungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "1570",
+     "name": "Vorsteuer 19%",
+     "accountGroup": "Steuern",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1571",
+     "name": "Vorsteuer 7%",
+     "accountGroup": "Steuern",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1590",
+     "name": "Durchlaufende Posten",
+     "accountGroup": "sonstige Verbindlichkeiten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1591",
+     "name": "Durchlaufende Spenden (z.B. Patenschaften)",
+     "accountGroup": "sonstige Verbindlichkeiten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1592",
+     "name": "Durchlaufende Opfergelder",
+     "accountGroup": "sonstige Verbindlichkeiten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1593",
+     "name": "Sonstige durchlaufende Posten",
+     "accountGroup": "sonstige Verbindlichkeiten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1700",
+     "name": "Sonst. Verbindlichkeiten (Kurzfristig)",
+     "accountGroup": "sonstige Verbindlichkeiten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1741",
+     "name": "Verbindlichkeiten Finanzamt",
+     "accountGroup": "sonstige Verbindlichkeiten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1742",
+     "name": "Verbindlichkeiten Krankenkassen",
+     "accountGroup": "sonstige Verbindlichkeiten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1743",
+     "name": "Verbindlichkeiten Berufsgenossenschaft",
+     "accountGroup": "sonstige Verbindlichkeiten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1770",
+     "name": "Mehrwertsteuer (Umsatzsteuer) 19%",
+     "accountGroup": "Steuern",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1771",
+     "name": "Mehrwertsteuer (Umsatzsteuer) 7%",
+     "accountGroup": "Steuern",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1780",
+     "name": "Umsatzsteuer-Vorauszahlungen",
+     "accountGroup": "Abgrenzung Steuern",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "1790",
+     "name": "Umsatzsteuer für Vorjahre",
+     "accountGroup": "Abgrenzung Steuern",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2000",
+     "name": "Außerordentliche Aufwendungen",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2110",
+     "name": "Zinsen für kurzfr. Verbindlichkeiten",
+     "accountGroup": "Zinsaufwand",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2120",
+     "name": "Zinsen für langfr. Verbindlichkeiten",
+     "accountGroup": "Zinsaufwand",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2200",
+     "name": "Körperschaftssteuer",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2210",
+     "name": "Kapitalertragssteuer",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2220",
+     "name": "Vermögenssteuer",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2350",
+     "name": "Haus- u. Grundsteueraufwendungen allgem.",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2351",
+     "name": "Aufwendungen Kirchengebäude",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2352",
+     "name": "Aufwendungen Gemeindesaal",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2353",
+     "name": "Aufwendungen Pastorei (z.B. Reparaturen)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2354",
+     "name": "Aufwendungen Dienstwohnung",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2500",
+     "name": "Außerordentliche Erträge",
+     "accountGroup": "sonstige Erträge",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2650",
+     "name": "Zinserträge",
+     "accountGroup": "sonstige Erträge",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2750",
+     "name": "Haus- u. Grundsteuer-Erträge allgem.",
+     "accountGroup": "Erträge auf Vermietungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2751",
+     "name": "Erträge Kirchengebäude (Miete v. Fremden)",
+     "accountGroup": "Erträge auf Vermietungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2752",
+     "name": "Erträge Gemeindesaal (Miete von Fremden)",
+     "accountGroup": "Erträge auf Vermietungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "2753",
+     "name": "Erträge Pastorei (Miete von Fremden)",
+     "accountGroup": "Erträge auf Vermietungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4100",
+     "name": "Personalkosten (Gehälter etc.)",
+     "accountGroup": "Löhne und Gehälter",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4130",
+     "name": "Gesetzliche soziale Aufwendungen",
+     "accountGroup": "soziale Aufwendungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4140",
+     "name": "Freiwillige soziale Aufwendungen",
+     "accountGroup": "soziale Aufwendungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4150",
+     "name": "Erstattete Fahrtkosten (Km-Geld)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4160",
+     "name": "Sonst. Erstattungen (z.B. Telefon)",
+     "accountGroup": "soziale Aufwendungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4170",
+     "name": "Vermögenswirksame Leistungen",
+     "accountGroup": "soziale Aufwendungen",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4180",
+     "name": "BFDler / Praktikanten",
+     "accountGroup": "Löhne und Gehälter",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4190",
+     "name": "Aushilfslöhne",
+     "accountGroup": "Löhne und Gehälter",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4210",
+     "name": "Miete / Pacht(ausgaben)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4220",
+     "name": "Wasser",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4230",
+     "name": "Heizung (Gas, Öl)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4240",
+     "name": "Strom",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4250",
+     "name": "Reinigungskosten",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4260",
+     "name": "Instandhaltungen der gemieteten Räume",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4280",
+     "name": "Kirchenschmuck",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4290",
+     "name": "Sonstige Raumkosten",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4360",
+     "name": "Versicherungen (z.B. Haftpflicht)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4380",
+     "name": "Beiträge (z.B. GEMA, BFP, etc.)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4390",
+     "name": "Sonst. Abgaben (z.B. Standgebühren)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4400",
+     "name": "Chorarbeit",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4401",
+     "name": "Sonntagsschule",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4402",
+     "name": "Jungschararbeit",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4403",
+     "name": "Teenagerarbeit",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4404",
+     "name": "Jugendarbeit",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4405",
+     "name": "Seniorenarbeit",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4406",
+     "name": "Frauenarbeit",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4407",
+     "name": "Mission (Innen- und Außenmission)",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4408",
+     "name": "Gemeindeaktivitäten",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4409",
+     "name": "Kleine Anschaffungen f. eigene Gemeinde",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4410",
+     "name": "Geschenke für besondere Anlässe",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4411",
+     "name": "Andere Ausgaben (selbst benennen 1)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4412",
+     "name": "Andere Ausgaben (selbst benennen 2)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4420",
+     "name": "Spenden allgemein",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4421",
+     "name": "Spenden f. Aufgaben des Gemeindebundes",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4422",
+     "name": "Spenden für (selbst benennen 1)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4423",
+     "name": "Spenden für (selbst benennen 2)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4430",
+     "name": "Gewährte Unterstützungen allgemein",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4431",
+     "name": "Unterstützungen für (selbst benennen 1)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4432",
+     "name": "Unterstützungen für (selbst benennen 2)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4433",
+     "name": "Sonstige Unterstützungen",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4500",
+     "name": "Fahrzeugkosten (wenn das Auto auf den Namen d. Gemeinde zugelassen ist)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4610",
+     "name": "Repräsentationskosten",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4611",
+     "name": "Werbung und Anzeigen",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4612",
+     "name": "Gemeindebrief",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4660",
+     "name": "Reisekosten, Tagungen, etc.",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4780",
+     "name": "Fremde Pastoren",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4782",
+     "name": "Fremde Musiker",
+     "accountGroup": "Aufwendungen Gemeindearbeit",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4800",
+     "name": "Reparaturen an Maschinen",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4801",
+     "name": "Reparaturen am Inventar",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4802",
+     "name": "Hausmeisterbedarf (Werkzeug)",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4900",
+     "name": "Sonstige Kosten",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4910",
+     "name": "Porto",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "4920",
+     "name": "Telefon / Fax",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4930",
+     "name": "Bürobedarf",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4940",
+     "name": "Fachliteratur",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4950",
+     "name": "Rechts- und Beratungskosten",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": true
+    },
+    {
+     "number": "4970",
+     "name": "Nebenkosten des Geldverkehrs",
+     "accountGroup": "Aufwendungen allgem.",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8001",
+     "name": "Kollekten",
+     "accountGroup": "Erlöse aus Spenden und Kollekten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8002",
+     "name": "Gemeindebeitrag",
+     "accountGroup": "Erlöse aus Spenden und Kollekten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8003",
+     "name": "Einnahmen aus (selbst benennen 1)",
+     "accountGroup": "Erlöse aus Spenden und Kollekten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8004",
+     "name": "Einnahmen aus (selbst benennen 2)",
+     "accountGroup": "Erlöse aus Spenden und Kollekten",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8010",
+     "name": "Spendeneinnahmen",
+     "accountGroup": "Erlöse aus Spenden und Kollekten",
+     "isDonationAccount": true,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8011",
+     "name": "Spendeneinnahmen für (selbst benennen 1)",
+     "accountGroup": "Erlöse aus Spenden und Kollekten",
+     "isDonationAccount": true,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8012",
+     "name": "Spendeneinnahmen für (selbst benennen 2)",
+     "accountGroup": "Erlöse aus Spenden und Kollekten",
+     "isDonationAccount": true,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8510",
+     "name": "Mieteinnahme für Dienstwohnung",
+     "accountGroup": "Sonstige Erlöse",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "8520",
+     "name": "Einnahme Nebenkosten f. Dienstwohnung",
+     "accountGroup": "Sonstige Erlöse",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    },
+    {
+     "number": "9000",
+     "name": "Saldovortragskonten",
+     "accountGroup": "Vortrag",
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": true,
+     "taxRate": null,
+     "budget": null,
+     "isMandatoryEubp": false
+    }
+   ],
+   "accountGroups": [
+    {
+     "name": "Immobilien u. Grundstücke",
+     "accountClass": "Anlagevermögen",
+     "isCashAssetAccount": false,
+     "sortKey": 1
+    },
+    {
+     "name": "Sachanlagen",
+     "accountClass": "Anlagevermögen",
+     "isCashAssetAccount": false,
+     "sortKey": 2
+    },
+    {
+     "name": "Forderungen",
+     "accountClass": "Umlaufvermögen",
+     "isCashAssetAccount": false,
+     "sortKey": 3
+    },
+    {
+     "name": "Verb. gegen Banken",
+     "accountClass": "Verbindlichkeiten",
+     "isCashAssetAccount": false,
+     "sortKey": 4
+    },
+    {
+     "name": "Verb. gegen Private",
+     "accountClass": "Verbindlichkeiten",
+     "isCashAssetAccount": false,
+     "sortKey": 5
+    },
+    {
+     "name": "Verb. gegen Sonstige",
+     "accountClass": "Verbindlichkeiten",
+     "isCashAssetAccount": false,
+     "sortKey": 6
+    },
+    {
+     "name": "Gez. Kapital, Einlagen",
+     "accountClass": "Eigenkapital",
+     "isCashAssetAccount": false,
+     "sortKey": 7
+    },
+    {
+     "name": "Rücklagen",
+     "accountClass": "Eigenkapital",
+     "isCashAssetAccount": false,
+     "sortKey": 8
+    },
+    {
+     "name": "Vortrag",
+     "accountClass": "Eigenkapital",
+     "isCashAssetAccount": false,
+     "sortKey": 9
+    },
+    {
+     "name": "Abgrenzungsposten",
+     "accountClass": "Eigenkapital",
+     "isCashAssetAccount": false,
+     "sortKey": 10
+    },
+    {
+     "name": "Bank- und Kassenbestände",
+     "accountClass": "Umlaufvermögen",
+     "isCashAssetAccount": true,
+     "sortKey": 11
+    },
+    {
+     "name": "Steuern",
+     "accountClass": "Steuern",
+     "isCashAssetAccount": false,
+     "sortKey": 13
+    },
+    {
+     "name": "sonstige Verbindlichkeiten",
+     "accountClass": "Verbindlichkeiten",
+     "isCashAssetAccount": false,
+     "sortKey": 14
+    },
+    {
+     "name": "Abgrenzung Steuern",
+     "accountClass": "Steuern",
+     "isCashAssetAccount": false,
+     "sortKey": 15
+    },
+    {
+     "name": "Zinsaufwand",
+     "accountClass": "sonstige Aufwendungen",
+     "isCashAssetAccount": false,
+     "sortKey": 17
+    },
+    {
+     "name": "sonstige Erträge",
+     "accountClass": "Betr. Erträge",
+     "isCashAssetAccount": false,
+     "sortKey": 19
+    },
+    {
+     "name": "Erträge auf Vermietungen",
+     "accountClass": "Betr. Erträge",
+     "isCashAssetAccount": false,
+     "sortKey": 20
+    },
+    {
+     "name": "Löhne und Gehälter",
+     "accountClass": "Personalaufwand",
+     "isCashAssetAccount": false,
+     "sortKey": 21
+    },
+    {
+     "name": "soziale Aufwendungen",
+     "accountClass": "Personalaufwand",
+     "isCashAssetAccount": false,
+     "sortKey": 22
+    },
+    {
+     "name": "Aufwendungen allgem.",
+     "accountClass": "Betr. Aufwendungen",
+     "isCashAssetAccount": false,
+     "sortKey": 23
+    },
+    {
+     "name": "Aufwendungen Gemeindearbeit",
+     "accountClass": "Betr. Aufwendungen",
+     "isCashAssetAccount": false,
+     "sortKey": 24
+    },
+    {
+     "name": "Erlöse aus Spenden und Kollekten",
+     "accountClass": "Umsatzerlöse",
+     "isCashAssetAccount": false,
+     "sortKey": 25
+    },
+    {
+     "name": "Sonstige Erlöse",
+     "accountClass": "Umsatzerlöse",
+     "isCashAssetAccount": false,
+     "sortKey": 26
+    }
+   ],
+   "accountClasses": [
+    {
+     "name": "Anlagevermögen",
+     "accountType": "Aktiva",
+     "includeProfitLoss": false,
+     "sortKey": 1
+    },
+    {
+     "name": "Umlaufvermögen",
+     "accountType": "Aktiva",
+     "includeProfitLoss": false,
+     "sortKey": 2
+    },
+    {
+     "name": "Verbindlichkeiten",
+     "accountType": "Passiva",
+     "includeProfitLoss": false,
+     "sortKey": 3
+    },
+    {
+     "name": "Eigenkapital",
+     "accountType": "Passiva",
+     "includeProfitLoss": true,
+     "sortKey": 4
+    },
+    {
+     "name": "Steuern",
+     "accountType": "Passiva",
+     "includeProfitLoss": false,
+     "sortKey": 5
+    },
+    {
+     "name": "Betr. Erträge",
+     "accountType": "Gewinn- und Verlustrechnung",
+     "includeProfitLoss": false,
+     "sortKey": 6
+    },
+    {
+     "name": "Umsatzerlöse",
+     "accountType": "Gewinn- und Verlustrechnung",
+     "includeProfitLoss": false,
+     "sortKey": 7
+    },
+    {
+     "name": "Betr. Aufwendungen",
+     "accountType": "Gewinn- und Verlustrechnung",
+     "includeProfitLoss": false,
+     "sortKey": 8
+    },
+    {
+     "name": "sonstige Aufwendungen",
+     "accountType": "Gewinn- und Verlustrechnung",
+     "includeProfitLoss": false,
+     "sortKey": 9
+    },
+    {
+     "name": "Personalaufwand",
+     "accountType": "Gewinn- und Verlustrechnung",
+     "includeProfitLoss": false,
+     "sortKey": 10
+    }
+   ],
+   "accountTypes": [
+    {
+     "name": "Aktiva",
+     "balanceType": "assets",
+     "sortKey": 1
+    },
+    {
+     "name": "Passiva",
+     "balanceType": "liabilities",
+     "sortKey": 2
+    },
+    {
+     "name": "Gewinn- und Verlustrechnung",
+     "balanceType": null,
+     "sortKey": 3
+    }
+   ],
+   "costCenters": [
+    {
+     "number": "1",
+     "name": "Allgemein",
+     "budget": null
+    },
+    {
+     "number": "200100",
+     "name": "Technik",
+     "budget": 450000
+    },
+    {
+     "number": "200200",
+     "name": "Jugend",
+     "budget": 340000
+    },
+    {
+     "number": "200300",
+     "name": "Kinder Kirche",
+     "budget": 320000
+    },
+    {
+     "number": "200800",
+     "name": "Personalkosten",
+     "budget": 3000000
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "operation": "get-finance-cashdiscounts-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/cashdiscounts/13",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 13,
+   "rate": 2,
+   "note": "ctrs-test",
+   "accountId": 2,
+   "meta": {
+    "createdDate": "2026-10-28T22:34:55Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T22:34:55Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

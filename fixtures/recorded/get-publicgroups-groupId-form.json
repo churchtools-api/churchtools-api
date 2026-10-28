@@ -1,0 +1,301 @@
+{
+ "operation": "get-publicgroups-groupId-form",
+ "request": {
+  "method": "GET",
+  "path": "/publicgroups/898/form",
+  "query": [
+   [
+    "token",
+    "<redacted>"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "token": "<redacted>",
+   "group": {
+    "id": 898,
+    "name": "ctrs-test Anmeldung 3833db",
+    "information": {
+     "meetingTime": null,
+     "groupStatusId": 1,
+     "dateOfFoundation": null,
+     "color": "sky",
+     "weekday": null,
+     "groupCategory": null,
+     "ageGroups": [],
+     "targetGroup": null,
+     "note": "",
+     "campus": null,
+     "groupPlaces": [],
+     "imageUrl": null,
+     "imageAiGenerated": null,
+     "imageAnnotation": null,
+     "imageAnnotationLink": null,
+     "imageDescription": null
+    },
+    "settings": {
+     "allowOtherRegistration": false,
+     "allowSameEmailRegistration": true,
+     "allowSameemailRegistration": true,
+     "allowChildRegistration": true,
+     "allowSpouseRegistration": true,
+     "hideContactLeader": false,
+     "hideLogin": false,
+     "showStreet": false,
+     "emailVerificationMode": "all",
+     "signUpNotificationSent": null
+    },
+    "autoAccept": true,
+    "signUpCountsTowardsSeats": true,
+    "allowWaitinglist": false,
+    "waitinglistMaxPersons": null,
+    "maxMemberCount": null,
+    "currentMemberCount": 0,
+    "requestedSeatsCount": 0,
+    "requestedWaitinglistSeatsCount": 0,
+    "canSignUp": false,
+    "signUpConditions": {
+     "groupIsNotHidden": true,
+     "groupIsActive": true,
+     "groupIsOpenForMembers": true,
+     "groupIsNotFull": true,
+     "groupHasSpaceForRequests": true,
+     "groupAllowsWaitinglist": false,
+     "groupHasSpaceOnWaitinglist": true,
+     "groupHasLeader": false,
+     "atLeastOneLeaderCanCreateNewPerson": true,
+     "endDateNotPassed": true,
+     "signUpRoleSetInGroup": false,
+     "groupIsPublic": true,
+     "canContactLeader": false,
+     "newPersonStationIsSet": false,
+     "newPersonStatusIsSet": false,
+     "newPersonDepartmentIsSet": false,
+     "groupVisibility": "public",
+     "canSignUp": false,
+     "canSignUpAsNewPerson": false,
+     "@deprecated": {
+      "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+     },
+     "defaultRoleSetInGroup": false
+    },
+    "signUpHeadline": "Zu Kleingruppe anmelden",
+    "showPublicCannotViewGroup": false,
+    "@deprecated": {
+     "requestedPlacesCount": "requestedSeatsCount",
+     "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+    },
+    "requestedPlacesCount": 0,
+    "requestedWaitinglistPlacesCount": 0
+   },
+   "form": [
+    {
+     "id": 14,
+     "name": "email",
+     "label": "E-Mail",
+     "fieldTypeCode": "text",
+     "type": "person",
+     "options": null,
+     "default": null,
+     "sortKey": -1,
+     "mandatory": true,
+     "length": 50,
+     "readonly": false
+    }
+   ],
+   "addSpouseForm": [
+    {
+     "id": 2,
+     "name": "firstName",
+     "label": "Vorname",
+     "fieldTypeCode": "text",
+     "type": "person",
+     "options": null,
+     "default": null,
+     "sortKey": -3,
+     "mandatory": true,
+     "length": 100,
+     "readonly": false
+    },
+    {
+     "id": 3,
+     "name": "lastName",
+     "label": "Nachname",
+     "fieldTypeCode": "text",
+     "type": "person",
+     "options": null,
+     "default": null,
+     "sortKey": -2,
+     "mandatory": true,
+     "length": 100,
+     "readonly": false
+    },
+    {
+     "id": 14,
+     "name": "email",
+     "label": "E-Mail",
+     "fieldTypeCode": "text",
+     "type": "person",
+     "options": null,
+     "default": null,
+     "sortKey": -1,
+     "mandatory": true,
+     "length": 50,
+     "readonly": false
+    },
+    {
+     "id": 0,
+     "name": "relation",
+     "label": null,
+     "fieldTypeCode": "hidden",
+     "type": "relation",
+     "options": null,
+     "default": "spouse",
+     "sortKey": 0,
+     "mandatory": true
+    }
+   ],
+   "addChildForm": [
+    {
+     "id": 2,
+     "name": "firstName",
+     "label": "Vorname",
+     "fieldTypeCode": "text",
+     "type": "person",
+     "options": null,
+     "default": null,
+     "sortKey": -3,
+     "mandatory": true,
+     "length": 100,
+     "readonly": false
+    },
+    {
+     "id": 3,
+     "name": "lastName",
+     "label": "Nachname",
+     "fieldTypeCode": "text",
+     "type": "person",
+     "options": null,
+     "default": null,
+     "sortKey": -2,
+     "mandatory": true,
+     "length": 100,
+     "readonly": false
+    },
+    {
+     "id": 14,
+     "name": "email",
+     "label": "E-Mail",
+     "fieldTypeCode": "text",
+     "type": "person",
+     "options": null,
+     "default": null,
+     "sortKey": -1,
+     "mandatory": true,
+     "length": 50,
+     "readonly": false
+    },
+    {
+     "id": 16,
+     "name": "birthday",
+     "label": "Geburtsdatum",
+     "fieldTypeCode": "date",
+     "type": "person",
+     "options": null,
+     "default": null,
+     "sortKey": 0,
+     "mandatory": true,
+     "length": null,
+     "readonly": false
+    },
+    {
+     "id": 0,
+     "name": "relation",
+     "label": null,
+     "fieldTypeCode": "hidden",
+     "type": "relation",
+     "options": null,
+     "default": "child",
+     "sortKey": 0,
+     "mandatory": true
+    }
+   ],
+   "addOtherForm": null,
+   "acceptPrivacyForSelfForm": [
+    {
+     "id": 0,
+     "name": "privacyForSelf",
+     "label": "Hiermit willige ich nach Art. 7 DS-GVO ein, dass meine Daten für Gemeinde-interne Zwecke in der Plattform ChurchTools gespeichert und elektronisch verarbeitet werden.",
+     "fieldTypeCode": "checkbox",
+     "type": "privacyForSelf",
+     "options": null,
+     "default": false,
+     "sortKey": 9223372036854775807,
+     "mandatory": true
+    }
+   ],
+   "acceptPrivacyForOtherForm": [
+    {
+     "id": 0,
+     "name": "privacyForOther",
+     "label": "Die weiteren Personen haben nach Art. 7 DS-GVO eingewilligt, dass ich ihre Daten für Gemeinde-interne Zwecke an die Plattform ChurchTools weitergebe, damit sie dort gespeichert und elektronisch verarbeitet werden können.",
+     "fieldTypeCode": "checkbox",
+     "type": "privacyForOther",
+     "options": null,
+     "default": false,
+     "sortKey": 9223372036854775807,
+     "mandatory": true
+    }
+   ],
+   "acceptPrivacyForChildForm": [
+    {
+     "id": 0,
+     "name": "privacyForChild",
+     "label": "Hiermit willige ich nach Art. 7 und Art. 8 DS-GVO ein, dass die Daten meiner oben ausgewählten Kinder für Gemeinde-interne Zwecke in der Plattform ChurchTools gespeichert und elektronisch verarbeitet werden.",
+     "fieldTypeCode": "checkbox",
+     "type": "privacyForChild",
+     "options": null,
+     "default": false,
+     "sortKey": 9223372036854775807,
+     "mandatory": true
+    }
+   ],
+   "email": null,
+   "requesterId": 1,
+   "signUpPersons": [
+    {
+     "status": "NOT_CLICKED",
+     "person": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "hasAcceptedPrivacy": true,
+     "relationType": null,
+     "formData": [
+      {
+       "name": "email",
+       "value": "armin@example.com"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "operation": "get-finance-clients-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/clients/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "ChuToo Church",
+   "street": "Bostelreihe 9",
+   "postalCode": "22083",
+   "city": "Hamburg",
+   "phone": "040 12345",
+   "email": null,
+   "datevConsultantNumber": null,
+   "datevClientNumber": null,
+   "eubpBusinessNumber": "12345671",
+   "eubpBusinessName": "ctrs-test GmbH",
+   "treasurerId": 340,
+   "treasurer": {
+    "title": "Freddy Finanziskus",
+    "domainType": "person",
+    "domainIdentifier": "340",
+    "apiUrl": "https://gemeinde.example/api/persons/340",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23340/",
+    "imageUrl": "https://gemeinde.example/images/754/001ebe5b00e763d4fa0d4d16d2c400c828f058be9266985dd61e60f082b171b0",
+    "icon": "user",
+    "color": null,
+    "initials": "FF",
+    "domainAttributes": {
+     "firstName": "Freddy",
+     "lastName": "Finanziskus",
+     "guid": "42028CB8-2D7A-4B19-B06B-4658ACDA8202",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": []
+   },
+   "sortKey": 10,
+   "meta": {
+    "createdDate": "2019-08-08T18:09:41Z",
+    "createdPerson": {
+     "id": -1
+    },
+    "modifiedDate": "2026-10-28T22:34:57Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

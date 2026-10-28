@@ -1,0 +1,468 @@
+{
+ "operation": "get-finance-transactions",
+ "request": {
+  "method": "GET",
+  "path": "/finance/transactions",
+  "query": [
+   [
+    "accounting_period_id",
+    "1"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 401,
+    "documentDate": "2024-12-22",
+    "documentNumber": "2016",
+    "transactionDate": "2025-09-18",
+    "accountId": 230,
+    "contraAccountId": 113,
+    "amount": 284900,
+    "note": "Gehalt Pastor Tim",
+    "costCenterId": 29,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2025-09-18T00:15:02Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-18T00:15:02Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 331,
+    "documentDate": "2024-12-06",
+    "documentNumber": "2030",
+    "transactionDate": "2023-09-13",
+    "accountId": 263,
+    "contraAccountId": 113,
+    "amount": 18000,
+    "note": "Strom",
+    "costCenterId": 1,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2023-09-13T13:55:28Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2023-09-13T13:55:28Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 398,
+    "documentDate": "2024-11-20",
+    "documentNumber": "2015",
+    "transactionDate": "2025-09-18",
+    "accountId": 230,
+    "contraAccountId": 113,
+    "amount": 340100,
+    "note": "Gehalt Pastor Tim",
+    "costCenterId": 29,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2025-09-18T00:15:02Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-18T00:15:02Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 328,
+    "documentDate": "2024-11-06",
+    "documentNumber": "2030",
+    "transactionDate": "2023-09-13",
+    "accountId": 263,
+    "contraAccountId": 113,
+    "amount": 18000,
+    "note": "Strom",
+    "costCenterId": 1,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2023-09-13T13:55:28Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2023-09-13T13:55:28Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 395,
+    "documentDate": "2024-10-20",
+    "documentNumber": "2014",
+    "transactionDate": "2025-09-18",
+    "accountId": 230,
+    "contraAccountId": 113,
+    "amount": 284900,
+    "note": "Gehalt Pastor Tim",
+    "costCenterId": 29,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2025-09-18T00:15:02Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-18T00:15:02Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 325,
+    "documentDate": "2024-10-06",
+    "documentNumber": "2030",
+    "transactionDate": "2023-09-13",
+    "accountId": 263,
+    "contraAccountId": 113,
+    "amount": 18000,
+    "note": "Strom",
+    "costCenterId": 1,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2023-09-13T13:55:28Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2023-09-13T13:55:28Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 392,
+    "documentDate": "2024-09-22",
+    "documentNumber": "2013",
+    "transactionDate": "2025-09-18",
+    "accountId": 230,
+    "contraAccountId": 113,
+    "amount": 284900,
+    "note": "Gehalt Pastor Tim",
+    "costCenterId": 29,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2025-09-18T00:15:02Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-18T00:15:02Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 322,
+    "documentDate": "2024-09-06",
+    "documentNumber": "2030",
+    "transactionDate": "2023-09-13",
+    "accountId": 263,
+    "contraAccountId": 113,
+    "amount": 18000,
+    "note": "Strom",
+    "costCenterId": 1,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2023-09-13T13:55:28Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2023-09-13T13:55:28Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 389,
+    "documentDate": "2024-08-20",
+    "documentNumber": "2012",
+    "transactionDate": "2025-09-18",
+    "accountId": 230,
+    "contraAccountId": 113,
+    "amount": 284900,
+    "note": "Gehalt Pastor Tim",
+    "costCenterId": 29,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2025-09-18T00:15:02Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-18T00:15:02Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   },
+   {
+    "id": 319,
+    "documentDate": "2024-08-06",
+    "documentNumber": "2030",
+    "transactionDate": "2023-09-13",
+    "accountId": 263,
+    "contraAccountId": 113,
+    "amount": 18000,
+    "note": "Strom",
+    "costCenterId": 1,
+    "contraCostCenterId": null,
+    "donatorId": null,
+    "donator": null,
+    "donatorSpouseId": null,
+    "donatorSpouse": null,
+    "splitTransactionId": null,
+    "taxRateId": null,
+    "taxTransactionId": null,
+    "taxBaseId": null,
+    "stornoTransactionId": null,
+    "stornoBaseId": null,
+    "cashDiscountId": null,
+    "cashDiscountAmount": null,
+    "isImmutable": false,
+    "isWaiverOfReimbursementOfExpenses": false,
+    "isSynced": false,
+    "meta": {
+     "createdDate": "2023-09-13T13:55:28Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2023-09-13T13:55:28Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "permissions": {
+     "canEdit": true
+    },
+    "@deprecated": {
+     "donatorId": "donator",
+     "donatorSpouseId": "donatorSpouse"
+    }
+   }
+  ],
+  "meta": {
+   "count": 10,
+   "all": 41,
+   "pagination": {
+    "total": 41,
+    "limit": 10,
+    "current": 1,
+    "lastPage": 5
+   }
+  }
+ }
+}

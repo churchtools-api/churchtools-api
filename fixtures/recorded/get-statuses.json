@@ -1,0 +1,60 @@
+{
+ "operation": "get-statuses",
+ "request": {
+  "method": "GET",
+  "path": "/statuses",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 0,
+    "name": "status.potential",
+    "nameTranslated": "Interessent",
+    "sortKey": 10,
+    "shorty": "status.potential.shortcut",
+    "shortyTranslated": "I",
+    "isMember": false,
+    "isSearchable": true,
+    "securityLevelId": 1
+   },
+   {
+    "id": 1,
+    "name": "status.friend",
+    "nameTranslated": "Freund",
+    "sortKey": 20,
+    "shorty": "status.friend.shortcut",
+    "shortyTranslated": "F",
+    "isMember": false,
+    "isSearchable": true,
+    "securityLevelId": 1
+   },
+   {
+    "id": 3,
+    "name": "status.member",
+    "nameTranslated": "Mitglied",
+    "sortKey": 30,
+    "shorty": "status.member.shortcut",
+    "shortyTranslated": "M",
+    "isMember": true,
+    "isSearchable": true,
+    "securityLevelId": 1
+   },
+   {
+    "id": 4,
+    "name": "status.delete",
+    "nameTranslated": "Zu löschen",
+    "sortKey": 100,
+    "shorty": "status.delete.shortcut",
+    "shortyTranslated": "X",
+    "isMember": false,
+    "isSearchable": false,
+    "securityLevelId": 1
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

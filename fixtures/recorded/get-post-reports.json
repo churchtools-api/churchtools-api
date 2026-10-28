@@ -1,0 +1,20 @@
+{
+ "operation": "get-post-reports",
+ "request": {
+  "method": "GET",
+  "path": "/post/reports",
+  "query": [
+   [
+    "domain_type",
+    "post"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

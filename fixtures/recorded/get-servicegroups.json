@@ -1,0 +1,216 @@
+{
+ "operation": "get-servicegroups",
+ "request": {
+  "method": "GET",
+  "path": "/servicegroups",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Programm",
+    "nameTranslated": "Programm",
+    "sortKey": 10,
+    "description": null,
+    "campusId": null,
+    "viewAll": true,
+    "onlyVisibleInCampusFilter": false,
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 3,
+    "name": "Technik",
+    "nameTranslated": "Technik",
+    "sortKey": 30,
+    "description": null,
+    "campusId": null,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": false,
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 4,
+    "name": "Musik",
+    "nameTranslated": "Musik",
+    "sortKey": 40,
+    "description": null,
+    "campusId": null,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": false,
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 5,
+    "name": "Welcome Team",
+    "nameTranslated": "Welcome Team",
+    "sortKey": 50,
+    "description": null,
+    "campusId": null,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": false,
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 11,
+    "name": "Kaffeebar",
+    "nameTranslated": "Kaffeebar",
+    "sortKey": 60,
+    "description": null,
+    "campusId": null,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": false,
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 10,
+    "name": "Kindergottesdienst",
+    "nameTranslated": "Kindergottesdienst",
+    "sortKey": 70,
+    "description": null,
+    "campusId": null,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": false,
+    "meta": {
+     "createdDate": "2025-12-06T11:23:38Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2025-12-06T11:23:38Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 6,
+    "name": "Büchertisch",
+    "nameTranslated": "Büchertisch",
+    "sortKey": 80,
+    "description": null,
+    "campusId": null,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": false,
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 7,
+    "name": "Fahrdienste",
+    "nameTranslated": "Fahrdienste",
+    "sortKey": 90,
+    "description": null,
+    "campusId": null,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": false,
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 8,
+    "name": "Jungschar",
+    "nameTranslated": "Jungschar",
+    "sortKey": 100,
+    "description": null,
+    "campusId": 0,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": true,
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 9,
+    "name": "Instandhaltung",
+    "nameTranslated": "Instandhaltung",
+    "sortKey": 200,
+    "description": null,
+    "campusId": null,
+    "viewAll": false,
+    "onlyVisibleInCampusFilter": true,
+    "meta": {
+     "createdDate": "2026-09-30T14:20:18Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:18Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 10
+  }
+ }
+}

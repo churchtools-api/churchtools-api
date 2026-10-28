@@ -1,0 +1,96 @@
+{
+ "operation": "get-groups-groupId-grouphomepage",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/grouphomepage",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 25,
+   "parentGroup": 11,
+   "name": "#0 Gemeindeleitung",
+   "isEnabled": false,
+   "showLeaders": false,
+   "showGroupImages": false,
+   "showMap": false,
+   "showFilters": true,
+   "titleMode": "none",
+   "customTitle": null,
+   "descriptionMode": "none",
+   "customDescription": null,
+   "description": "",
+   "defaultView": "tile",
+   "orderBy": "name",
+   "orderDirection": "ASC",
+   "isCollapsed": false,
+   "depth": 99999,
+   "randomUrl": "1kPxtmtspn9U6JJalPcyy8VZkxCqcegB",
+   "filters": [
+    {
+     "type": "weekday",
+     "show": true
+    },
+    {
+     "type": "targetgroups",
+     "show": true
+    },
+    {
+     "type": "agegroups",
+     "show": true
+    },
+    {
+     "type": "groupcategory",
+     "show": true
+    },
+    {
+     "type": "campus",
+     "show": true
+    }
+   ],
+   "meta": {
+    "createdDate": "2020-12-07T16:21:37Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2025-01-20T16:18:27Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "groups": [],
+   "@deprecated": {
+    "showLeader": "showLeaders",
+    "showFilter": "showFilters",
+    "sortBy": "orderBy",
+    "filter": "filters"
+   },
+   "sortBy": "name",
+   "showLeader": false,
+   "showFilter": true,
+   "filter": [
+    {
+     "type": "weekday",
+     "show": true
+    },
+    {
+     "type": "targetgroups",
+     "show": true
+    },
+    {
+     "type": "agegroups",
+     "show": true
+    },
+    {
+     "type": "groupcategory",
+     "show": true
+    },
+    {
+     "type": "campus",
+     "show": true
+    }
+   ]
+  }
+ }
+}

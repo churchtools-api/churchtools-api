@@ -1,0 +1,100 @@
+{
+ "operation": "get-groups-id-roles",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/roles",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 72,
+    "groupTypeId": 2,
+    "name": "Leiter",
+    "nameTranslated": "Leiter",
+    "shorty": "L",
+    "sortKey": 1,
+    "type": "leader",
+    "isDefault": false,
+    "isHidden": false,
+    "growPathId": 6,
+    "isLeader": true,
+    "groupTypeRoleId": 16,
+    "forceTwoFactorAuth": false,
+    "isActive": true,
+    "canReadChat": true,
+    "canWriteChat": true,
+    "receiveQRCode": true,
+    "countsTowardsSeats": false,
+    "htmlTemplateIds": null
+   },
+   {
+    "id": 73,
+    "groupTypeId": 2,
+    "name": "Co-Leiter",
+    "nameTranslated": "Co-Leiter",
+    "shorty": "CoL",
+    "sortKey": 2,
+    "type": "leader",
+    "isDefault": false,
+    "isHidden": false,
+    "growPathId": 6,
+    "isLeader": true,
+    "groupTypeRoleId": 17,
+    "forceTwoFactorAuth": false,
+    "isActive": true,
+    "canReadChat": true,
+    "canWriteChat": true,
+    "receiveQRCode": true,
+    "countsTowardsSeats": false,
+    "htmlTemplateIds": null
+   },
+   {
+    "id": 75,
+    "groupTypeId": 2,
+    "name": "Organisator",
+    "nameTranslated": "Organisator",
+    "shorty": "O",
+    "sortKey": 4,
+    "type": "participant",
+    "isDefault": false,
+    "isHidden": false,
+    "growPathId": 6,
+    "isLeader": false,
+    "groupTypeRoleId": 19,
+    "forceTwoFactorAuth": false,
+    "isActive": true,
+    "canReadChat": true,
+    "canWriteChat": true,
+    "receiveQRCode": true,
+    "countsTowardsSeats": false,
+    "htmlTemplateIds": null
+   },
+   {
+    "id": 71,
+    "groupTypeId": 2,
+    "name": "Mitarbeiter",
+    "nameTranslated": "Mitarbeiter",
+    "shorty": "Mia",
+    "sortKey": 5,
+    "type": "participant",
+    "isDefault": true,
+    "isHidden": false,
+    "growPathId": 6,
+    "isLeader": false,
+    "groupTypeRoleId": 15,
+    "forceTwoFactorAuth": false,
+    "isActive": true,
+    "canReadChat": true,
+    "canWriteChat": true,
+    "receiveQRCode": true,
+    "countsTowardsSeats": true,
+    "htmlTemplateIds": null
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

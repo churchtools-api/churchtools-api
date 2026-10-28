@@ -1,0 +1,114 @@
+{
+ "operation": "get-languages",
+ "request": {
+  "method": "GET",
+  "path": "/languages",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "code": "de",
+    "name": "Deutsch",
+    "isActive": true,
+    "sortKey": 1
+   },
+   {
+    "id": 2,
+    "code": "en",
+    "name": "English",
+    "isActive": true,
+    "sortKey": 2
+   },
+   {
+    "id": 3,
+    "code": "fr",
+    "name": "Français",
+    "isActive": true,
+    "sortKey": 3
+   },
+   {
+    "id": 4,
+    "code": "es",
+    "name": "Español",
+    "isActive": true,
+    "sortKey": 4
+   },
+   {
+    "id": 5,
+    "code": "tw",
+    "name": "繁體中文",
+    "isActive": true,
+    "sortKey": 5
+   },
+   {
+    "id": 6,
+    "code": "cn",
+    "name": "简体中文",
+    "isActive": true,
+    "sortKey": 6
+   },
+   {
+    "id": 7,
+    "code": "fa",
+    "name": "فارسی",
+    "isActive": true,
+    "sortKey": 7
+   },
+   {
+    "id": 9,
+    "code": "pt",
+    "name": "Português",
+    "isActive": true,
+    "sortKey": 8
+   },
+   {
+    "id": 8,
+    "code": "ru",
+    "name": "Русский",
+    "isActive": true,
+    "sortKey": 8
+   },
+   {
+    "id": 10,
+    "code": "nl",
+    "name": "Nederlands",
+    "isActive": true,
+    "sortKey": 14
+   },
+   {
+    "id": 12,
+    "code": "pl",
+    "name": "Polski",
+    "isActive": true,
+    "sortKey": 15
+   },
+   {
+    "id": 14,
+    "code": "it",
+    "name": "Italiano",
+    "isActive": true,
+    "sortKey": 16
+   },
+   {
+    "id": 17,
+    "code": "fi",
+    "name": "Suomi",
+    "isActive": true,
+    "sortKey": 17
+   },
+   {
+    "id": 22,
+    "code": "sv",
+    "name": "Svenska",
+    "isActive": true,
+    "sortKey": 18
+   }
+  ],
+  "meta": {
+   "count": 14
+  }
+ }
+}

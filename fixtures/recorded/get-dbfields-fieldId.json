@@ -1,0 +1,51 @@
+{
+ "operation": "get-dbfields-fieldId",
+ "request": {
+  "method": "GET",
+  "path": "/dbfields/132",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 132,
+   "name": "group.visibility",
+   "nameTranslated": "Sichtbarkeit",
+   "shorty": null,
+   "column": "visibility",
+   "key": "visibility",
+   "length": 20,
+   "fieldCategory": {
+    "id": 4,
+    "name": "group",
+    "internCode": "f_group",
+    "table": "cdb_gruppe"
+   },
+   "fieldType": {
+    "id": 9,
+    "name": "fieldtype.radioselect",
+    "internCode": "radioselect",
+    "sortKey": 60
+   },
+   "isActive": true,
+   "useAsPlaceholder": false,
+   "isNewPersonField": false,
+   "lineEnding": "<br/>",
+   "securityLevel": 1,
+   "sortKey": 0,
+   "deleteOnArchive": false,
+   "isAvailableInRoutines": false,
+   "isNullable": false,
+   "hideInFrontend": true,
+   "isNotConfigurable": true,
+   "isBasicInfo": true,
+   "createdByChurch": false,
+   "@deprecated": {
+    "nullable": "isNullable",
+    "notConfigurable": "isNotConfigurable"
+   },
+   "nullable": false,
+   "notConfigurable": true
+  }
+ }
+}

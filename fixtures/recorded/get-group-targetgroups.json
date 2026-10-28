@@ -1,0 +1,46 @@
+{
+ "operation": "get-group-targetgroups",
+ "request": {
+  "method": "GET",
+  "path": "/group/targetgroups",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "everyone",
+    "nameTranslated": "Jeder",
+    "sortKey": 1
+   },
+   {
+    "id": 2,
+    "name": "men",
+    "nameTranslated": "Männer",
+    "sortKey": 2
+   },
+   {
+    "id": 3,
+    "name": "women",
+    "nameTranslated": "Frauen",
+    "sortKey": 3
+   },
+   {
+    "id": 4,
+    "name": "singles",
+    "nameTranslated": "Singles",
+    "sortKey": 4
+   },
+   {
+    "id": 5,
+    "name": "students",
+    "nameTranslated": "Studenten",
+    "sortKey": 5
+   }
+  ],
+  "meta": {
+   "count": 5
+  }
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "operation": "get-followups-followUpId",
+ "request": {
+  "method": "GET",
+  "path": "/followups/4",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 4,
+   "personId": 12,
+   "groupId": 99,
+   "membershipId": 58,
+   "title": "Zweite Aufforderung",
+   "description": "",
+   "icon": "handshake",
+   "color": "yellow",
+   "origin": "migration",
+   "successGroupId": 99,
+   "successGroupOfGroupTypeId": null,
+   "successRoleId": 41,
+   "successGroupMemberStatus": "active",
+   "ownerId": null,
+   "dueDate": "2019-01-23",
+   "effectiveDueDate": "2019-01-23",
+   "doneDate": null,
+   "meta": {
+    "createdDate": "2025-12-11T12:59:37Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2025-12-11T12:59:37Z",
+    "modifiedPerson": {
+     "id": -4
+    }
+   }
+  }
+ }
+}

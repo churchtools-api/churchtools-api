@@ -1,0 +1,15 @@
+{
+ "operation": "get-groups-optins",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/optins",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "newsletter": [],
+   "persons": []
+  }
+ }
+}

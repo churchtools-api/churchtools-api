@@ -1,0 +1,15 @@
+{
+ "operation": "get-chat",
+ "request": {
+  "method": "GET",
+  "path": "/chat",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

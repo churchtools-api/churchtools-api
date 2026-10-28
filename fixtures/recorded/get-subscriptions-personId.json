@@ -1,0 +1,645 @@
+{
+ "operation": "get-subscriptions-personId",
+ "request": {
+  "method": "GET",
+  "path": "/subscriptions/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "personId": 1,
+    "subject": "post_summary",
+    "subjectIdentifier": "0",
+    "isActive": true,
+    "options": {
+     "filter": "all",
+     "weekdays": [
+      6
+     ]
+    },
+    "origin": "post-summary-default",
+    "hint": "subscription.default-active.hint",
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": "subscription.default-active.hint"
+   },
+   {
+    "personId": 1,
+    "subject": "post",
+    "subjectIdentifier": "22",
+    "isActive": true,
+    "options": null,
+    "origin": "default",
+    "hint": null,
+    "isExplicit": true,
+    "meta": {
+     "createdDate": "2024-02-29T15:44:32Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2024-02-29T15:44:32Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "post",
+    "subjectIdentifier": "42",
+    "isActive": true,
+    "options": null,
+    "origin": "default",
+    "hint": null,
+    "isExplicit": true,
+    "meta": {
+     "createdDate": "2026-08-17T10:05:47Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-17T10:05:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "post",
+    "subjectIdentifier": "51",
+    "isActive": true,
+    "options": null,
+    "origin": "default",
+    "hint": null,
+    "isExplicit": true,
+    "meta": {
+     "createdDate": "2026-08-17T11:40:18Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-17T11:40:18Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "group",
+    "subjectIdentifier": "346",
+    "isActive": true,
+    "options": null,
+    "origin": "group-settings",
+    "hint": "subscription.default-active.hint",
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": "subscription.default-active.hint"
+   },
+   {
+    "personId": 1,
+    "subject": "public_channel",
+    "subjectIdentifier": "31A28266-3153-4CD5-B9A8-A050303842A3",
+    "isActive": false,
+    "options": null,
+    "origin": "default",
+    "hint": null,
+    "isExplicit": true,
+    "meta": {
+     "createdDate": "2025-09-15T13:45:56Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-15T13:48:13Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "public_channel",
+    "subjectIdentifier": "E8F65EDB-35E2-406D-8B4C-BDA6CC20708C",
+    "isActive": false,
+    "options": null,
+    "origin": "default",
+    "hint": null,
+    "isExplicit": true,
+    "meta": {
+     "createdDate": "2025-09-15T13:45:35Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-15T13:45:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "public_channel",
+    "subjectIdentifier": "EDE57571-841E-4711-BF56-7AD56BA2AFC2",
+    "isActive": true,
+    "options": null,
+    "origin": "default",
+    "hint": null,
+    "isExplicit": true,
+    "meta": {
+     "createdDate": "2025-09-18T00:20:02Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-18T00:22:22Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequest",
+    "subjectIdentifier": "root",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequest",
+    "subjectIdentifier": "created",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequest",
+    "subjectIdentifier": "updated",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequest",
+    "subjectIdentifier": "deleted",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequest",
+    "subjectIdentifier": "accepted",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequest",
+    "subjectIdentifier": "declined",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequest",
+    "subjectIdentifier": "tentative",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequest",
+    "subjectIdentifier": "reminder",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": "meeting-request.reminder.delivery-time-hint",
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": "meeting-request.reminder.delivery-time-hint"
+   },
+   {
+    "personId": 1,
+    "subject": "servicerequest",
+    "subjectIdentifier": "root",
+    "isActive": true,
+    "options": null,
+    "origin": "servicerequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "servicerequest",
+    "subjectIdentifier": "created",
+    "isActive": true,
+    "options": null,
+    "origin": "servicerequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "servicerequest",
+    "subjectIdentifier": "assigned",
+    "isActive": true,
+    "options": null,
+    "origin": "servicerequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "servicerequest",
+    "subjectIdentifier": "unassigned",
+    "isActive": true,
+    "options": null,
+    "origin": "servicerequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "servicerequest",
+    "subjectIdentifier": "accepted",
+    "isActive": true,
+    "options": null,
+    "origin": "servicerequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "servicerequest",
+    "subjectIdentifier": "declined",
+    "isActive": true,
+    "options": null,
+    "origin": "servicerequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "servicerequest",
+    "subjectIdentifier": "reminder",
+    "isActive": true,
+    "options": null,
+    "origin": "servicerequests-default",
+    "hint": "service.reminder.delivery-time-hint",
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": "service.reminder.delivery-time-hint"
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "2",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "3",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "4",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "7",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "8",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "5",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "9",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "10",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "12",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "13",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "14",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "11",
+    "isActive": false,
+    "options": null,
+    "origin": "resource-permission",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "resource",
+    "subjectIdentifier": "root",
+    "isActive": true,
+    "options": null,
+    "origin": "resource-root-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "meetingrequests",
+    "subjectIdentifier": "0",
+    "isActive": true,
+    "options": null,
+    "origin": "meetingrequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   },
+   {
+    "personId": 1,
+    "subject": "servicerequests",
+    "subjectIdentifier": "0",
+    "isActive": true,
+    "options": null,
+    "origin": "servicerequests-default",
+    "hint": null,
+    "isExplicit": false,
+    "meta": null,
+    "@deprecated": {
+     "originHint": "hint"
+    },
+    "originHint": null
+   }
+  ],
+  "meta": {
+   "count": 38
+  }
+ }
+}

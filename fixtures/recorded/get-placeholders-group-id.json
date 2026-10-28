@@ -1,0 +1,110 @@
+{
+ "operation": "get-placeholders-group-id",
+ "request": {
+  "method": "GET",
+  "path": "/placeholders/group/11",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "name": "Gruppe",
+    "items": [
+     {
+      "placeholder": "{{{group.name}}}",
+      "label": "Gruppenname"
+     },
+     {
+      "placeholder": "{{{group.meetingday}}}",
+      "label": "Wochentag"
+     },
+     {
+      "placeholder": "{{{group.meetingtime}}}",
+      "label": "Startzeit"
+     },
+     {
+      "placeholder": "{{{group.meetingplace}}}",
+      "label": "Treffpunkt"
+     },
+     {
+      "placeholder": "{{{grouptype.name}}}",
+      "label": "Gruppentyp"
+     },
+     {
+      "placeholder": "{{{group.id}}}",
+      "label": "Gruppen-ID"
+     }
+    ]
+   },
+   {
+    "name": "Gruppenmitgliedschaft",
+    "items": [
+     {
+      "name": "Angemeldet von",
+      "items": [
+       {
+        "placeholder": "{{{groupMember.registeredBy}}}",
+        "label": "Angemeldet von (Name)",
+        "menuLabel": "Name"
+       },
+       {
+        "placeholder": "{{{groupMember.registeredBy-firstName}}}",
+        "label": "Angemeldet von (Vorname)",
+        "menuLabel": "Vorname"
+       },
+       {
+        "placeholder": "{{{groupMember.registeredBy-lastName}}}",
+        "label": "Angemeldet von (Nachname)",
+        "menuLabel": "Nachname"
+       },
+       {
+        "placeholder": "{{{groupMember.registeredBy-email}}}",
+        "label": "Angemeldet von (E-Mail)",
+        "menuLabel": "E-Mail"
+       },
+       {
+        "placeholder": "{{{groupMember.registeredBy-id}}}",
+        "label": "Angemeldet von (ID)",
+        "menuLabel": "Personen-ID"
+       }
+      ]
+     },
+     {
+      "name": "Gruppenmitgliedsfelder",
+      "items": [
+       {
+        "placeholder": "{{{groupMemberField.zustaendigkeit}}}",
+        "label": "Zuständigkeit"
+       }
+      ]
+     },
+     {
+      "placeholder": "{{{groupMember.role}}}",
+      "label": "Rolle"
+     },
+     {
+      "placeholder": "{{{groupMember.status}}}",
+      "label": "Gruppenmitgliedsstatus"
+     },
+     {
+      "placeholder": "{{{groupMember.startDate}}}",
+      "label": "Gruppeneintrittsdatum"
+     },
+     {
+      "placeholder": "{{{groupMember.endDate}}}",
+      "label": "Geplanter Gruppenaustritt"
+     },
+     {
+      "placeholder": "{{{groupMember.waitinglistPosition}}}",
+      "label": "Wartelistenplatz"
+     },
+     {
+      "placeholder": "{{{groupMember.checkInCodeQr}}}",
+      "label": "Check-in-Code (QR-Code)"
+     }
+    ]
+   }
+  ]
+ }
+}

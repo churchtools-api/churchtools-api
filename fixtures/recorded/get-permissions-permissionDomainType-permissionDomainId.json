@@ -1,0 +1,68 @@
+{
+ "operation": "get-permissions-permissionDomainType-permissionDomainId",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/person/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "domainType": "person",
+    "domainId": 1,
+    "authId": 404,
+    "dataId": 56,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1,
+    "authId": 404,
+    "dataId": 59,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1,
+    "authId": 404,
+    "dataId": 62,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2024-03-18T10:16:35Z",
+     "modifiedPid": 1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1,
+    "authId": 404,
+    "dataId": 65,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2024-03-18T10:17:09Z",
+     "modifiedPid": 1
+    }
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

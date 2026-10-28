@@ -1,0 +1,1079 @@
+{
+ "operation": "get-persons-id-settings",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/settings",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "module": "churchauth",
+    "attribute": "listMaxRowsAuthAutoView",
+    "value": "50"
+   },
+   {
+    "module": "churchauth",
+    "attribute": "listMaxRowsAuthView",
+    "value": "200"
+   },
+   {
+    "module": "churchcal",
+    "attribute": "category_id",
+    "value": "2"
+   },
+   {
+    "module": "churchcal",
+    "attribute": "filterGemeindekalendar",
+    "value": "[101,102,103,131,156,159,162,165]"
+   },
+   {
+    "module": "churchcal",
+    "attribute": "filterGruppenKalender",
+    "value": "[104,151,154]"
+   },
+   {
+    "module": "churchcal",
+    "attribute": "filterPersonalKalender",
+    "value": "[1,2,5,149]"
+   },
+   {
+    "module": "churchcal",
+    "attribute": "inform_me",
+    "value": "1"
+   },
+   {
+    "module": "churchcal",
+    "attribute": "showTooltip",
+    "value": "1"
+   },
+   {
+    "module": "churchcal",
+    "attribute": "viewName",
+    "value": "month"
+   },
+   {
+    "module": "churchcheckin",
+    "attribute": "category_id",
+    "value": "2"
+   },
+   {
+    "module": "churchcheckin",
+    "attribute": "distrikt_id",
+    "value": "39"
+   },
+   {
+    "module": "churchcheckin",
+    "attribute": "event_datum",
+    "value": ""
+   },
+   {
+    "module": "churchcheckin",
+    "attribute": "fav-menu",
+    "value": "1"
+   },
+   {
+    "module": "churchcheckin",
+    "attribute": "group_id",
+    "value": ""
+   },
+   {
+    "module": "churchcheckin",
+    "attribute": "sortnames",
+    "value": "1"
+   },
+   {
+    "module": "churchcheckin",
+    "attribute": "starthelpReaded",
+    "value": "true"
+   },
+   {
+    "module": "churchcheckin",
+    "attribute": "viewCheckin",
+    "value": "0"
+   },
+   {
+    "module": "churchcore",
+    "attribute": "devices",
+    "value": []
+   },
+   {
+    "module": "churchcore",
+    "attribute": "hasMatrixUser",
+    "value": "true"
+   },
+   {
+    "module": "churchcore",
+    "attribute": "hidden-hints",
+    "value": [
+     "wikiIntro",
+     "groupsOnboardingPopup"
+    ]
+   },
+   {
+    "module": "churchcore",
+    "attribute": "language",
+    "value": "de"
+   },
+   {
+    "module": "churchcore",
+    "attribute": "last_log_view",
+    "value": "2026-10-28 23:36:03"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "automaticActivateFollowupOverdue",
+    "value": "0"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "churchdbInitView",
+    "value": "PersonView"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "exportTemplate[Adresse]",
+    "value": {
+     "f_vorname": "true",
+     "f_name": "true",
+     "f_strasse": "true",
+     "f_plz": "true",
+     "f_ort": "true",
+     "f_land": "true",
+     "f_geschlecht_no": "true",
+     "f_telefonprivat": "true",
+     "f_telefongeschaeftlich": "true",
+     "f_telefonhandy": "true",
+     "f_email": "true",
+     "f_status_id": "true",
+     "f_station_id": "true",
+     "f_privacy_policy_agreement_date": "true",
+     "f_privacy_policy_agreement_type_id": "true",
+     "f_privacy_policy_agreement_who_id": "true",
+     "f_acceptedsecurity": "true",
+     "id": "Adresse",
+     "bezeichnung": "Adresse"
+    }
+   },
+   {
+    "module": "churchdb",
+    "attribute": "exportTemplate[Alles]",
+    "value": {
+     "f_titel": "true",
+     "f_vorname": "true",
+     "f_spitzname": "true",
+     "f_name": "true",
+     "f_strasse": "true",
+     "f_zusatz": "true",
+     "f_plz": "true",
+     "f_ort": "true",
+     "f_land": "true",
+     "f_geschlecht_no": "true",
+     "f_telefonprivat": "true",
+     "f_telefongeschaeftlich": "true",
+     "f_telefonhandy": "true",
+     "f_fax": "true",
+     "f_email": "true",
+     "f_cmsuserid": "true",
+     "f_GEV": "true",
+     "f_schuleintritt": "true",
+     "f_geburtsdatum": "true",
+     "f_geburtsname": "true",
+     "f_geburtsort": "true",
+     "f_beruf": "true",
+     "f_nationalitaet_id": "true",
+     "f_familienstand_no": "true",
+     "f_hochzeitsdatum": "true",
+     "f_erstkontakt": "true",
+     "f_zugehoerig": "true",
+     "f_eintrittsdatum": "true",
+     "f_ueberwiesenvon": "true",
+     "f_austrittsdatum": "true",
+     "f_ueberwiesennach": "true",
+     "f_taufdatum": "true",
+     "f_taufort": "true",
+     "f_getauftdurch": "true",
+     "f_status_id": "true",
+     "f_station_id": "true",
+     "f_Datenfreigaben": "true",
+     "f_privacy_policy_agreement_date": "true",
+     "f_privacy_policy_agreement_type_id": "true",
+     "f_privacy_policy_agreement_who_id": "true",
+     "f_acceptedsecurity": "true",
+     "f_bereich_id": "true",
+     "f_grouptype_id_1": "true",
+     "f_grouptype_id_2": "true",
+     "f_grouptype_id_3": "true",
+     "f_grouptype_id_4": "true",
+     "f_grouptype_id_5": "true",
+     "id": "Alles",
+     "bezeichnung": "Alles"
+    }
+   },
+   {
+    "module": "churchdb",
+    "attribute": "exportTemplate[E-Mail]",
+    "value": {
+     "f_vorname": "true",
+     "f_name": "true",
+     "f_email": "true",
+     "f_id": "true",
+     "id": "E-Mail",
+     "bezeichnung": "E-Mail"
+    }
+   },
+   {
+    "module": "churchdb",
+    "attribute": "exportTemplate[Test-Export]",
+    "value": {
+     "f_titel": "true",
+     "f_vorname": "true",
+     "f_name": "true",
+     "f_zusatz": "true",
+     "id": "Test-Export",
+     "bezeichnung": "Test-Export"
+    }
+   },
+   {
+    "module": "churchdb",
+    "attribute": "fav-menu",
+    "value": "1"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "favorite-groups",
+    "value": [
+     37,
+     7
+    ]
+   },
+   {
+    "module": "churchdb",
+    "attribute": "filterGroupStation",
+    "value": "[1]"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "hideSimulateQuestion",
+    "value": "1"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "last_mailviewer_view",
+    "value": "2025-07-18 19:46:33"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "listMaxRowsGroupView",
+    "value": "200"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "listMaxRowsPersonView",
+    "value": "200"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "mailerBcc",
+    "value": "1"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "mailerSeparator",
+    "value": "0"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "mailerType",
+    "value": "2"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "myFilter[Junge Mütter]",
+    "value": {
+     "filterStatus": "[]",
+     "filterGeschlecht": "2",
+     "ageFrom": "20",
+     "ageTo": "50",
+     "filterRelations": "k_1"
+    }
+   },
+   {
+    "module": "churchdb",
+    "attribute": "myFilter[Neu im Dienst]",
+    "value": {
+     "filterOr": "true",
+     "filterOn 1": "true",
+     "filterFilter 1": "0",
+     "filterTyp 1": "2",
+     "filterGruppe 1": "15",
+     "filterUntergruppen 1": "0",
+     "filterGroupSubOperator 1-1": "0",
+     "filterGroupField 1-1": "0",
+     "filterGroupSubFilter 1-1": "1",
+     "filterGroupFieldValue 1-1": "-1",
+     "filterGroupDateOrRange 1-1": "2",
+     "filterGroupDateType1 1-1": "2",
+     "filterGroupDateOption1 1-1": "2",
+     "filterGroupDateValue1 1-1": "2019-02-01",
+     "filterGroupDateRangeValue1 1-1": "30",
+     "filterGroupDateRangeType1 1-1": "1",
+     "filterGroupDatePrecision1 1-1": "1",
+     "filterGroupDateType2 1-1": "1",
+     "filterGroupDateOption2 1-1": "1",
+     "filterGroupDateRangeValue2 1-1": "7",
+     "filterGroupDateRangeType2 1-1": "1",
+     "filterGroupDatePrecision2 1-1": "1",
+     "filterGroupDateType3 1-1": "1",
+     "filterGroupDateOption3 1-1": "2",
+     "filterGroupDateValue3 1-1": "2019-02-15",
+     "filterGroupDateRangeValue3 1-1": "60",
+     "filterGroupDateRangeType3 1-1": "1",
+     "filterGroupDatePrecision3 1-1": "3",
+     "filterGroupSubOperator 1-2": "0",
+     "filterGroupField 1-2": "0",
+     "filterGroupSubFilter 1-2": "0",
+     "filterGroupFieldValue 1-2": "-1",
+     "filterGroupDateOrRange 1-2": "2",
+     "filterGroupDateType1 1-2": "2",
+     "filterGroupDateOption1 1-2": "1",
+     "filterGroupDateValue1 1-2": "2019-02-15",
+     "filterGroupDateRangeValue1 1-2": "30",
+     "filterGroupDateRangeType1 1-2": "1",
+     "filterGroupDatePrecision1 1-2": "1",
+     "filterGroupDateType2 1-2": "1",
+     "filterGroupDateOption2 1-2": "1",
+     "filterGroupDateRangeValue2 1-2": "7",
+     "filterGroupDateRangeType2 1-2": "1",
+     "filterGroupDatePrecision2 1-2": "1",
+     "filterGroupDateType3 1-2": "1",
+     "filterGroupDateOption3 1-2": "1",
+     "filterGroupDateValue3 1-2": "2019-02-15",
+     "filterGroupDateRangeValue3 1-2": "7",
+     "filterGroupDateRangeType3 1-2": "1",
+     "filterGroupDatePrecision3 1-2": "1",
+     "filterOn 2": "true",
+     "filterFilter 2": "0",
+     "filterTyp 2": "2",
+     "filterGruppe 2": "39",
+     "filterUntergruppen 2": "0",
+     "filterGroupSubOperator 2-1": "0",
+     "filterGroupField 2-1": "0",
+     "filterGroupSubFilter 2-1": "1",
+     "filterGroupFieldValue 2-1": "-1",
+     "filterGroupDateOrRange 2-1": "2",
+     "filterGroupDateType1 2-1": "2",
+     "filterGroupDateOption1 2-1": "2",
+     "filterGroupDateValue1 2-1": "2019-02-01",
+     "filterGroupDateRangeValue1 2-1": "30",
+     "filterGroupDateRangeType1 2-1": "1",
+     "filterGroupDatePrecision1 2-1": "1",
+     "filterGroupDateType2 2-1": "1",
+     "filterGroupDateOption2 2-1": "1",
+     "filterGroupDateRangeValue2 2-1": "7",
+     "filterGroupDateRangeType2 2-1": "1",
+     "filterGroupDatePrecision2 2-1": "1",
+     "filterGroupDateType3 2-1": "1",
+     "filterGroupDateOption3 2-1": "2",
+     "filterGroupDateValue3 2-1": "2019-02-15",
+     "filterGroupDateRangeValue3 2-1": "60",
+     "filterGroupDateRangeType3 2-1": "1",
+     "filterGroupDatePrecision3 2-1": "3",
+     "filterGroupSubOperator 2-2": "0",
+     "filterGroupField 2-2": "0",
+     "filterGroupSubFilter 2-2": "0",
+     "filterGroupFieldValue 2-2": "-1",
+     "filterGroupDateOrRange 2-2": "2",
+     "filterGroupDateType1 2-2": "2",
+     "filterGroupDateOption1 2-2": "1",
+     "filterGroupDateValue1 2-2": "2019-02-15",
+     "filterGroupDateRangeValue1 2-2": "30",
+     "filterGroupDateRangeType1 2-2": "1",
+     "filterGroupDatePrecision1 2-2": "1",
+     "filterGroupDateType2 2-2": "1",
+     "filterGroupDateOption2 2-2": "1",
+     "filterGroupDateRangeValue2 2-2": "7",
+     "filterGroupDateRangeType2 2-2": "1",
+     "filterGroupDatePrecision2 2-2": "1",
+     "filterGroupDateType3 2-2": "1",
+     "filterGroupDateOption3 2-2": "1",
+     "filterGroupDateValue3 2-2": "2019-02-15",
+     "filterGroupDateRangeValue3 2-2": "7",
+     "filterGroupDateRangeType3 2-2": "1",
+     "filterGroupDatePrecision3 2-2": "1"
+    }
+   },
+   {
+    "module": "churchdb",
+    "attribute": "newPersonBereich",
+    "value": "1"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "newPersonStation",
+    "value": "0"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "newPersonStatus",
+    "value": "0"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "selectedGroupType",
+    "value": "1"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "sendBCCMail",
+    "value": "1"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "showOnlyActiveGroups",
+    "value": "1"
+   },
+   {
+    "module": "churchdb",
+    "attribute": "signature",
+    "value": "<p>Hallo {{person.nickname}},</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>Mit freundlichen Gr&uuml;&szlig;en</p>\n<p>Armin Adendorf</p>\n<p>&nbsp;</p>"
+   },
+   {
+    "module": "churchfinance",
+    "attribute": "filterYear",
+    "value": "2017"
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_absenceofnextdays",
+    "value": {
+     "col": "2",
+     "sortkey": "5"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_birthday",
+    "value": {
+     "col": "1",
+     "sortkey": "1"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_churchtools_blog_widget",
+    "value": {
+     "col": "3",
+     "sortkey": "2"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_currentbookings",
+    "value": {
+     "col": "3",
+     "sortkey": "2",
+     "hide": "true"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_currenteventstuff",
+    "value": {
+     "col": "2",
+     "sortkey": "6"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_factoflastdays",
+    "value": {
+     "col": "2",
+     "sortkey": "4"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_importantwiki",
+    "value": {
+     "col": "3",
+     "sortkey": "5"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_managemymembership",
+    "value": {
+     "col": "1",
+     "sortkey": "2"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_nextservices",
+    "value": {
+     "col": "2",
+     "sortkey": "3"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_pendingbookingrequests",
+    "value": {
+     "col": "3",
+     "sortkey": "1"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_pendingservicerequests",
+    "value": {
+     "col": "2",
+     "sortkey": "2"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_rss_widget",
+    "value": {
+     "col": "3",
+     "sortkey": "1"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_todos",
+    "value": {
+     "col": "2",
+     "sortkey": "2"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_upcomingdatesofgroupcals",
+    "value": {
+     "col": "2",
+     "sortkey": "7"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_whoisonline",
+    "value": {
+     "col": "1",
+     "sortkey": "3"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "block_yournextmeetings",
+    "value": {
+     "col": "2",
+     "sortkey": "6"
+    }
+   },
+   {
+    "module": "churchhome",
+    "attribute": "hiddenStartpageWidgets",
+    "value": [
+     "public-relations",
+     "managemymembership",
+     "importantwiki",
+     "currenteventstuff"
+    ]
+   },
+   {
+    "module": "churchhome",
+    "attribute": "startpageWidgets",
+    "value": [
+     {
+      "h": 325,
+      "maxW": 1,
+      "id": "latest-posts",
+      "x": 0,
+      "y": 0
+     },
+     {
+      "h": 173,
+      "maxW": 1,
+      "id": "pendingservicerequests",
+      "x": 1,
+      "y": 0
+     },
+     {
+      "h": 518,
+      "maxW": 1,
+      "id": "birthdays-next",
+      "x": 2,
+      "y": 0
+     },
+     {
+      "h": 217,
+      "maxW": 1,
+      "id": "todos",
+      "x": 1,
+      "y": 173
+     },
+     {
+      "h": 634,
+      "maxW": 1,
+      "id": "upcomingdatesofgroupcals",
+      "x": 0,
+      "y": 325
+     },
+     {
+      "h": 433,
+      "maxW": 1,
+      "id": "churchtools-news",
+      "x": 1,
+      "y": 390
+     },
+     {
+      "h": 291,
+      "maxW": 1,
+      "id": "currentbookings",
+      "x": 3,
+      "y": -163
+     },
+     {
+      "h": 226,
+      "maxW": 1,
+      "id": "pendingbookingrequests",
+      "x": 3,
+      "y": 549
+     },
+     {
+      "h": 608,
+      "maxW": 1,
+      "id": "factoflastdays",
+      "x": 0,
+      "y": 959
+     }
+    ]
+   },
+   {
+    "module": "churchreport",
+    "attribute": "filter[1]",
+    "value": {
+     "Abfrage_nbsp_": "1",
+     "Bericht_nbsp_": "1",
+     "_station_id": ""
+    }
+   },
+   {
+    "module": "churchreport",
+    "attribute": "filter[3]",
+    "value": {
+     "Abfrage_nbsp_": "2",
+     "Bericht_nbsp_": "3",
+     "_station_id": "0",
+     "_gruppentyp_id": "2"
+    }
+   },
+   {
+    "module": "churchreport",
+    "attribute": "filter[5]",
+    "value": {
+     "Abfrage_nbsp_": "4",
+     "Bericht_nbsp_": "5",
+     "_station_id": "0"
+    }
+   },
+   {
+    "module": "churchreport",
+    "attribute": "filter[6]",
+    "value": {
+     "Abfrage_nbsp_": "5",
+     "Bericht_nbsp_": "6",
+     "_gruppentyp_id": "2",
+     "_station_id": ""
+    }
+   },
+   {
+    "module": "churchreport",
+    "attribute": "filter[7]",
+    "value": {
+     "Abfrage_nbsp_": "6",
+     "Bericht_nbsp_": "7",
+     "_station_id": "0"
+    }
+   },
+   {
+    "module": "churchresource",
+    "attribute": "fav-menu",
+    "value": "1"
+   },
+   {
+    "module": "churchresource",
+    "attribute": "filterRessourcentyp",
+    "value": "-1"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "agendaExportSettings",
+    "value": "{\"program\":\"songbeamer\",\"exportSongs\":true,\"withCategory\":true,\"appendArrangement\":false}"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "currentAgenda",
+    "value": "368"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "fav-menu",
+    "value": "1"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "filterCategory",
+    "value": "[2]"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "informLeader",
+    "value": "1"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "lastVisited",
+    "value": "2026-10-15 18:29"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "listMaxRowsListView",
+    "value": "25"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "listViewTableHeight",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "printerViewSettings",
+    "value": {
+     "showDuration": "true",
+     "fontsize": "medium",
+     "servicegroupColumns": [
+      "3",
+      "4",
+      "1"
+     ],
+     "servicegroupHeader": [
+      "3",
+      "4",
+      "1"
+     ]
+    }
+   },
+   {
+    "module": "churchservice",
+    "attribute": "remindMe",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "rosterICalSecret",
+    "value": "<redacted>"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "searchStandard",
+    "value": "true"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "selectedAbsentPersons",
+    "value": {
+     "93": {
+      "lastUsed": "2023-06-10 10:16",
+      "bezeichnung": "Joel Thieme",
+      "id": "93"
+     },
+     "133": {
+      "lastUsed": "2018-11-30 12:54",
+      "bezeichnung": "Lennart Peter (Lenni) Baldauf",
+      "id": "133"
+     },
+     "151": {
+      "lastUsed": "2019-03-05 11:43",
+      "bezeichnung": "Felicitas Peter",
+      "id": "151"
+     },
+     "165": {
+      "lastUsed": "2023-06-10 10:16",
+      "bezeichnung": "Arne Frei",
+      "id": "165"
+     },
+     "267": {
+      "lastUsed": "2019-02-21 20:33",
+      "bezeichnung": "Willi Gurke",
+      "id": "267"
+     }
+    }
+   },
+   {
+    "module": "churchservice",
+    "attribute": "sendBCCMail",
+    "value": "1"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup_agenda10",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup_agenda11",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup_agenda4",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup_agenda5",
+    "value": "1"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup_agenda6",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup_agenda7",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup_agenda8",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup_agenda9",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup3",
+    "value": "1"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup5",
+    "value": "1"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup6",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup7",
+    "value": "0"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup8",
+    "value": "1"
+   },
+   {
+    "module": "churchservice",
+    "attribute": "viewgroup9",
+    "value": "0"
+   },
+   {
+    "module": "churchwiki",
+    "attribute": "fav-menu",
+    "value": "1"
+   },
+   {
+    "module": "finance",
+    "attribute": "selected-accounting-period",
+    "value": [
+     {
+      "clientId": 1,
+      "selectedAccountingPeriodId": 6
+     }
+    ]
+   },
+   {
+    "module": "finance",
+    "attribute": "selected-client",
+    "value": "1"
+   },
+   {
+    "module": "finance",
+    "attribute": "selected-donation-receipt-attachment-template",
+    "value": "14"
+   },
+   {
+    "module": "finance",
+    "attribute": "selected-donation-receipt-letter-template",
+    "value": "11"
+   },
+   {
+    "module": "finance",
+    "attribute": "statements-booking-number-template",
+    "value": {
+     "6-1293": "{{Jahr}}-{{Monat}}"
+    }
+   },
+   {
+    "module": "finance",
+    "attribute": "statements-document-number-type",
+    "value": {
+     "6-1293": "documentNumberAutomatic"
+    }
+   },
+   {
+    "module": "finance",
+    "attribute": "transaction-mode",
+    "value": "expert"
+   },
+   {
+    "module": "global",
+    "attribute": "recent-groups",
+    "value": [
+     168,
+     744,
+     8,
+     352,
+     358,
+     22,
+     732,
+     7,
+     548,
+     585
+    ]
+   },
+   {
+    "module": "global",
+    "attribute": "recent-persons",
+    "value": [
+     2806,
+     467,
+     1,
+     2841,
+     680,
+     2809,
+     2812,
+     449,
+     108,
+     1280
+    ]
+   },
+   {
+    "module": "global",
+    "attribute": "recent-searches",
+    "value": [
+     {
+      "domainType": "group",
+      "domainIdentifier": "64"
+     },
+     {
+      "domainType": "group",
+      "domainIdentifier": "346"
+     },
+     {
+      "domainType": "group",
+      "domainIdentifier": "349"
+     },
+     {
+      "domainType": "group",
+      "domainIdentifier": "343"
+     },
+     {
+      "domainType": "person",
+      "domainIdentifier": "2803"
+     },
+     {
+      "domainType": "person",
+      "domainIdentifier": "680"
+     },
+     {
+      "domainType": "person",
+      "domainIdentifier": "1280"
+     },
+     {
+      "domainType": "person",
+      "domainIdentifier": "2806"
+     },
+     {
+      "domainType": "person",
+      "domainIdentifier": "2818"
+     },
+     {
+      "domainType": "person",
+      "domainIdentifier": "2815"
+     }
+    ]
+   },
+   {
+    "module": "global",
+    "attribute": "recent-wiki_pages",
+    "value": [
+     {
+      "domainType": "wiki_page",
+      "domainIdentifier": "235B5B80-779E-4790-95B4-D069FAE64C41"
+     },
+     {
+      "domainType": "wiki_page",
+      "domainIdentifier": "F0391F01-1E39-40EF-A529-91CC580C3BD0"
+     }
+    ]
+   },
+   {
+    "module": "global",
+    "attribute": "seletedSimluatePersons",
+    "value": {
+     "1": {
+      "lastUsed": "2018-09-18 8:48",
+      "bezeichnung": "Simon Rühl",
+      "id": "1"
+     },
+     "83": {
+      "lastUsed": "2018-09-11 21:37",
+      "bezeichnung": "Jill Bennett",
+      "id": "83"
+     },
+     "89": {
+      "lastUsed": "2018-09-13 9:57",
+      "bezeichnung": "Ruth Beck",
+      "id": "89"
+     },
+     "108": {
+      "lastUsed": "2018-09-27 19:56",
+      "bezeichnung": "Jens Atkins",
+      "id": "108"
+     }
+    }
+   },
+   {
+    "module": "global",
+    "attribute": "simulatedPersons",
+    "value": [
+     108,
+     89,
+     154,
+     157,
+     953
+    ]
+   },
+   {
+    "module": "post",
+    "attribute": "hidden-posts",
+    "value": []
+   }
+  ],
+  "meta": {
+   "count": 116
+  }
+ }
+}

@@ -1,0 +1,185 @@
+{
+ "operation": "get-persons-personId-posts",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/posts",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 51,
+    "guid": "89C8187F-7A5A-4209-A5AE-6A2DF8B76DF3",
+    "group": {
+     "title": "Ankündigungen",
+     "domainType": "group",
+     "domainIdentifier": "346",
+     "apiUrl": "https://gemeinde.example/api/groups/346",
+     "frontendUrl": "https://gemeinde.example/groups/346",
+     "imageUrl": "https://gemeinde.example/images/2389/dea95f1adc57154139d42ded9fba51783f95e534831f7aa80063055f81699d28",
+     "icon": "users",
+     "color": {
+      "key": "violet",
+      "shade": null
+     },
+     "initials": "A",
+     "domainAttributes": {
+      "note": "Diese Gruppe ist deine zentrale Anlaufstelle für alle offiziellen Mitteilungen unserer Kirchengemeinde. Hier bekommst du schnell und unkompliziert Infos über bevorstehende Veranstaltungen, wichtige Neuigkeiten und alles, was unsere Gemeinde angeht. Perfekt, um immer auf dem Laufenden zu sein und aktiv am Gemeindeleben teilzunehmen.\n\nWenn du Fragen oder Anmerkungen zu einem Beitrag hast, kannst du darauf kommentieren. Oder du reagierst mit einem Emoji - auch gut. :) Nur kurz der Hinweis, dass andere dadurch deinen Namen und dein Profilbild sehen können.  \n\nUm nichts zu verpassen, aktiviere am besten auf deinem Smartphone die Benachrichtigungen für diese Gruppe. So wirst du immer sofort informiert, wenn es wichtige Updates gibt. \n\nPS: Der Gemeindebrief erscheint weiterhin jeden Monat und fasst nochmal alle wichtigen Informationen zusammen.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "actor": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Gemeindefreizeit 2026: Jetzt anmelden ✅",
+    "content": "**Herzliche Einladung!** Wir freuen uns, euch ganz persönlich zu unserer Gemeindefreizeit 2026 einzuladen. Drei Tage Zeit für Gemeinschaft, Gottes Gegenwart, gute Gespräche, Inspiration und Abstand vom Alltag.\n\nOb jung oder alt, allein oder mit der ganzen Familie: jede und jeder ist herzlich willkommen.\n\n***\n\n# **Wann & Wo?**\n\nFreitag, 6. – Sonntag, 8. November 2026\n\n[Im Monbachtal 1, 75378 Bad Liebenzell](https://maps.app.goo.gl/CV69NJqNYgJUUGn27)\n\n***\n\n# **Was euch erwartet**\n\n* Impulse und Austausch in kleinen Gruppen\n* Lobpreis und Anbetung\n* Zeit zum Wandern, Spielen und Durchatmen\n* Leckeres Essen und viel Raum für Begegnung\n\n**Ihr könnt euch jetzt schon zu den Workshops anmelden:**\n\n[Untergruppen von Gemeindefreizeit 2026](https://template.church.tools/groups/744/hierarchy/children?ctmd_layout=visual-card)\n\n<br />\n\n# **🛏️ Zimmeroptionen & Preise**\n\n| Zimmertyp                  | Preis p.P. | Kinder (bis 12 Jahre) |\n| :------------------------- | :--------- | :-------------------- |\n| Einzelzimmer               | 145 €      | -/-                   |\n| Doppelzimmer               | 115 €      | 60 €                  |\n| Mehrbettzimmer (3–4 Pers.) | 95 €       | 50 €                  |\n\n<br />\n\n```\nIm Preis enthalten: Übernachtung, Vollpension und das gesamte Programm.\n```\n\n***\n\n# **Jetzt anmelden**\n\n*Die Plätze sind begrenzt* – meldet euch am besten gleich an!\n\n[Gemeindefreizeit 2026](https://template.church.tools/groups/744?ctmd_layout=signup)\n\n> **Wir freuen uns auf eine gesegnete gemeinsame Zeit mit euch!**\n\n<br />\n\n## Fragen?\n\nBei Fragen oder Anmerkungen meldet euch bitte bei [Karin Messerschmidt](https://template.church.tools/?q=churchdb\\&ctmd_layout=mention#PersonView/searchEntry:%232812/)",
+    "groupVisibility": "public",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [
+     "https://gemeinde.example/images/3213/33dacd2d0c3f4c1632b4d3cd57d24acb649083b8cc5c86db401def13e7f48904"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://gemeinde.example/images/3213/33dacd2d0c3f4c1632b4d3cd57d24acb649083b8cc5c86db401def13e7f48904",
+      "aspectRatio": 2
+     }
+    ],
+    "publicationDate": "2026-08-17T11:40:18Z",
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-26T13:05:18Z",
+    "lastEditedDate": "2026-08-17T12:05:18Z",
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-26T13:05:18Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-17T12:05:18Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 42,
+    "guid": "39E5AD8A-B988-48BD-836A-47A3ABFFD9B3",
+    "group": {
+     "title": "Sportangebote",
+     "domainType": "group",
+     "domainIdentifier": "352",
+     "apiUrl": "https://gemeinde.example/api/groups/352",
+     "frontendUrl": "https://gemeinde.example/groups/352",
+     "imageUrl": "https://gemeinde.example/images/2401/8cf51fac93ccf1086bff3721562d024cac798be3c40a937c26ccf27a7c814a7f",
+     "icon": "users",
+     "color": {
+      "key": "teal",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "Dies ist der perfekte Ort für alle in unserer Kirchengemeinde, die sich gerne bewegen, neue Sportarten ausprobieren möchten oder einfach nur nach Gleichgesinnten suchen, um gemeinsam aktiv zu sein. Egal, ob du regelmäßig Sport treibst oder gerade erst anfängst, hier bist du genau richtig.\n\nIn dieser Gruppe kannst du alles rund um Sport posten: Ob du bouldern gehst, eine Wanderung planst oder einfach nur jemanden suchst, der mit dir joggen geht – lass es uns wissen! Es ist eine tolle Gelegenheit, aktiv zu bleiben, Spaß zu haben und gleichzeitig neue Leute aus der Gemeinde kennen zu lernen.\n\nUnsere Gruppe hat das Motto \"Jeder darf mitmachen\". Also egal welches Fitnesslevel, Alter oder Interesse du hast, fühle dich herzlich eingeladen, teilzunehmen. Wenn du Lust hast, mitzumachen, poste einfach, was du vorhast, oder schließe dich den Aktivitäten anderer an.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "actor": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "title": "Wir starten sportlich in das neue Schuljahr",
+    "content": "***Als Gemeinde wollen wir Alltag teilen und gemeinschaftlich gestalten***: Das geht super bei gemeinsamen Mahlzeiten und auch beim Sport. 💪🏼😉\n\nSchau doch mal, ob bei folgenden offenen Angeboten etwas passendes für dich dabei ist, meld dich gerne an oder komm spontan dazu und bring gerne Freunde mit:\n\n<br />\n\n[Untergruppen von Sportangebote](https://template.church.tools/groups/352/hierarchy/children?ctmd_layout=large-card)\n\n<br />\n\n## Fragen? Sprich uns gerne an:\n\n[Admin von Sportangebote](https://template.church.tools/groups/352/members/30?ctmd_layout=visual-card)",
+    "groupVisibility": "intern",
+    "visibility": "group_visible",
+    "commentsActive": true,
+    "images": [
+     "https://gemeinde.example/images/3189/c36c957df2bf9e90a1e84de6b3065db65376b9c5338597e596eb641f53dd63db",
+     "https://gemeinde.example/images/3186/c18a0b6b56ff4d74042e85a2235cee72e69c856f1fd510d283acb23976377eb7"
+    ],
+    "imagesMeta": [
+     {
+      "imageUrl": "https://gemeinde.example/images/3189/c36c957df2bf9e90a1e84de6b3065db65376b9c5338597e596eb641f53dd63db",
+      "aspectRatio": 1.5
+     },
+     {
+      "imageUrl": "https://gemeinde.example/images/3186/c18a0b6b56ff4d74042e85a2235cee72e69c856f1fd510d283acb23976377eb7",
+      "aspectRatio": 0.66667
+     }
+    ],
+    "publicationDate": "2026-08-17T10:05:47Z",
+    "expirationDate": null,
+    "expirationPid": null,
+    "expirationPerson": null,
+    "publishedDate": "2026-10-26T12:32:35Z",
+    "lastEditedDate": "2026-08-17T11:32:35Z",
+    "isBanned": false,
+    "meta": {
+     "createdDate": "2026-10-26T12:32:35Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-17T11:32:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 2,
+   "pagination": {
+    "total": 2,
+    "limit": 10,
+    "current": 1,
+    "lastPage": 1
+   }
+  }
+ }
+}

@@ -1,0 +1,332 @@
+{
+ "operation": "get-search",
+ "request": {
+  "method": "GET",
+  "path": "/search",
+  "query": [
+   [
+    "query",
+    "Go"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "title": "#1 Bereich Gottesdienst",
+    "type": "domainObject",
+    "domainType": "group",
+    "domainIdentifier": "10",
+    "icon": "users",
+    "apiUrl": "https://gemeinde.example/api/groups/10",
+    "frontendUrl": "https://gemeinde.example/groups/10",
+    "imageUrl": "https://gemeinde.example/images/742/ef00677bb6104e1b4a577590b723f32be0eafe56a62ed44b7b22b0e294ee79f3",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "BF91810C-B934-4167-AD2C-DB513ED111BF"
+    },
+    "infos": [
+     "Team"
+    ],
+    "color": {
+     "key": "lime",
+     "shade": null
+    },
+    "initials": "1"
+   },
+   {
+    "title": "Egon Erdmann",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "845",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/845",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23845/",
+    "imageUrl": null,
+    "domainAttributes": {
+     "firstName": "Egon",
+     "lastName": "Erdmann",
+     "guid": "5302C193-79B0-47BF-9828-8773A3357B33",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "EE"
+   },
+   {
+    "title": "Geschenk Gottes 🎁",
+    "type": "domainObject",
+    "domainType": "group",
+    "domainIdentifier": "750",
+    "icon": "users",
+    "apiUrl": "https://gemeinde.example/api/groups/750",
+    "frontendUrl": "https://gemeinde.example/groups/750",
+    "imageUrl": "https://gemeinde.example/images/3201/d9db34b0dfe36e96e91a390dfbdcdff3f931251ea50bf55196213ad6fbe2d2ec",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 3,
+     "campusId": null,
+     "visibility": "public",
+     "guid": "DF15549E-3AFB-4BD9-8F7F-C6CD01200408"
+    },
+    "infos": [
+     "Veranstaltung"
+    ],
+    "color": {
+     "key": "amber",
+     "shade": null
+    },
+    "initials": "G"
+   },
+   {
+    "title": "Gottedienstleitung",
+    "type": "domainObject",
+    "domainType": "group",
+    "domainIdentifier": "133",
+    "icon": "users",
+    "apiUrl": "https://gemeinde.example/api/groups/133",
+    "frontendUrl": "https://gemeinde.example/groups/133",
+    "imageUrl": "https://gemeinde.example/images/706/54322c88c493319dd993b956fbb3ecd5b2070cf0f96a8733fd0748270d6e2822",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "74C6AFDB-C397-4AF2-BF45-45BD57C661A6"
+    },
+    "infos": [
+     "Team"
+    ],
+    "color": {
+     "key": "lime",
+     "shade": null
+    },
+    "initials": "G"
+   },
+   {
+    "title": "Gottes Stimme 💬",
+    "type": "domainObject",
+    "domainType": "group",
+    "domainIdentifier": "756",
+    "icon": "users",
+    "apiUrl": "https://gemeinde.example/api/groups/756",
+    "frontendUrl": "https://gemeinde.example/groups/756",
+    "imageUrl": "https://gemeinde.example/images/3207/29577ce1e3e45b7e2bb485fbb0cb3593378bf40cd2f434705b1acbba656b9fac",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 3,
+     "campusId": null,
+     "visibility": "public",
+     "guid": "2BA8310D-EE90-4FCC-BB89-E0ADF26C9F21"
+    },
+    "infos": [
+     "Veranstaltung"
+    ],
+    "color": {
+     "key": "amber",
+     "shade": null
+    },
+    "initials": "G"
+   },
+   {
+    "title": "Gottlieb Buschmann",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "92",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/92",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2392/",
+    "imageUrl": "https://gemeinde.example/images/573/7c642e4d064b3277150f738aca03ad31a90e93391fa23615800466e0584a60ea",
+    "domainAttributes": {
+     "firstName": "Gottlieb",
+     "lastName": "Buschmann",
+     "guid": "5BEC48EC-8DCC-4613-8B07-C066E08999D3",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "GB"
+   },
+   {
+    "title": "Hermann-Josef Sonntag",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "569",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/569",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23569/",
+    "imageUrl": "https://gemeinde.example/images/1890/bf97de33d70f79fc0891307256899efb9f1c98b8765eec4c091c61e25c77b78d",
+    "domainAttributes": {
+     "firstName": "Hermann-Josef",
+     "lastName": "Sonntag",
+     "guid": "ECAEFCB9-E69B-4DD9-8ED8-37A26CFD88FF",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "HS"
+   },
+   {
+    "title": "Hugo Hartmann",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "1295",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/1295",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231295/",
+    "imageUrl": null,
+    "domainAttributes": {
+     "firstName": "Hugo",
+     "lastName": "Hartmann",
+     "guid": "88118F19-6C22-4602-BEC3-86AEE8ED81E0",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "HH"
+   },
+   {
+    "title": "Hugo Scharf",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "1307",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/1307",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231307/",
+    "imageUrl": null,
+    "domainAttributes": {
+     "firstName": "Hugo",
+     "lastName": "Scharf",
+     "guid": "0B1EB9F3-F1A4-4A4B-9E00-250BE980CF89",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "HS"
+   },
+   {
+    "title": "Ingolf Völker",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "617",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/617",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23617/",
+    "imageUrl": "https://gemeinde.example/images/1238/004fdacf0bb72358bb0587047e7097727a679c0aef13b043f631a2271ea58a69",
+    "domainAttributes": {
+     "firstName": "Ingolf",
+     "lastName": "Völker",
+     "guid": "6A2902F1-1F98-495E-820C-C6D3C68A630C",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "IV"
+   },
+   {
+    "title": "Irmgard Gordon",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "74",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/74",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2374/",
+    "imageUrl": "https://gemeinde.example/images/1782/3fc760a0ca00770abf28a38302f8ce7613a75429ea79428b78aedb8bb04e5316",
+    "domainAttributes": {
+     "firstName": "Irmgard",
+     "lastName": "Gordon",
+     "guid": "6255244C-7B6A-470B-93E5-E97248D8A486",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "IG"
+   },
+   {
+    "title": "Live-Gottesdienste",
+    "type": "domainObject",
+    "domainType": "group",
+    "domainIdentifier": "186",
+    "icon": "users",
+    "apiUrl": "https://gemeinde.example/api/groups/186",
+    "frontendUrl": "https://gemeinde.example/groups/186",
+    "imageUrl": null,
+    "domainAttributes": {
+     "note": "Es finden wieder **Gottesdienst vor Ort** statt!   \nWir freuen uns schon sehr euch wieder zu sehen und gemeinsam mit euch in einem Raum Gott zu begegnen!   \nIm Zuge der aktuellen Hygiene- und Sicherheitsmaßnahmen sind die Plätze auf rund 100 begrenzt und Du musst Dir ein Ticket im Vorfeld reservieren.",
+     "groupStatusId": 2,
+     "groupTypeId": 3,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "CFF8ED79-77A1-4DB7-AB56-91D540200A5E"
+    },
+    "infos": [
+     "Veranstaltung",
+     "Entwurf"
+    ],
+    "color": {
+     "key": "amber",
+     "shade": null
+    },
+    "initials": "L"
+   },
+   {
+    "title": "Margot Moser",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "548",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/548",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23548/",
+    "imageUrl": "https://gemeinde.example/images/1923/f2aef155936af9707aeb14ce07174ee06055a08e61c2d8f9d7eb37df00a5f76e",
+    "domainAttributes": {
+     "firstName": "Margot",
+     "lastName": "Moser",
+     "guid": "7B7F7F13-ED5D-436D-9933-7FC74FAE5179",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "MM"
+   },
+   {
+    "title": "Phillip Goldmann",
+    "type": "domainObject",
+    "domainType": "person",
+    "domainIdentifier": "120",
+    "icon": "user",
+    "apiUrl": "https://gemeinde.example/api/persons/120",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23120/",
+    "imageUrl": "https://gemeinde.example/images/1674/897a5b80bf02c6db959b08c698eea94fe4a8adb9493550226c5ab2d530a0fe35",
+    "domainAttributes": {
+     "firstName": "Phillip",
+     "lastName": "Goldmann",
+     "guid": "2F4382E1-18C6-4E01-B624-565E5EF77CF1",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": [],
+    "color": null,
+    "initials": "PG"
+   }
+  ],
+  "meta": {
+   "count": 14
+  }
+ }
+}

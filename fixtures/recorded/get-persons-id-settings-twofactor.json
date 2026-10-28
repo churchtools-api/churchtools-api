@@ -1,0 +1,16 @@
+{
+ "operation": "get-persons-id-settings-twofactor",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/settings/twofactor",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "module": "churchcore",
+   "attribute": "twoFactorEnabled",
+   "value": false
+  }
+ }
+}

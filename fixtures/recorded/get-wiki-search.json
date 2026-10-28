@@ -1,0 +1,59 @@
+{
+ "operation": "get-wiki-search",
+ "request": {
+  "method": "GET",
+  "path": "/wiki/search",
+  "query": [
+   [
+    "query",
+    "Go"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "title": "Personen der Gemeinde",
+    "type": "domainObject",
+    "domainType": "wiki_page",
+    "domainIdentifier": "235B5B80-779E-4790-95B4-D069FAE64C41",
+    "icon": "file",
+    "initials": null,
+    "color": null,
+    "apiUrl": "https://gemeinde.example/api/wiki/categories/8/pages/235B5B80-779E-4790-95B4-D069FAE64C41/versions/11",
+    "frontendUrl": "https://gemeinde.example/wiki/8/Personen%20der%20Gemeinde",
+    "imageUrl": null,
+    "domainAttributes": {
+     "wikiCategoryId": 8
+    },
+    "infos": [
+     "Deine ChurchTools Demo"
+    ],
+    "preview": "**Wie können die unterschiedlichen Nutzer mit Churchtools arbeiten?** **1. Kirchenleitung** - [Jens Atkins](/?q=churchdb#/PersonView/searchEntry:%23108/) ist der Pastor der Kirche.\n- [Stefan Brinkmann](/?q=churchdb#/PersonView/searchEntry:%23176/) ist einer der Ältesten. **2. Go**ttesdienste **Gottesdienstmanager** - [Ruth Beck](/?q=churchdb#/PersonView/searchEntry:%2389/) ist die Bereichsleiterin für den Bereich Gottesdienste. Sie Managet alles rund um den Gottesdienst. **Gottesdienstanmeldung** - [Birgitta Anders](/?q=churchdb#/PersonView/searchEntry:%23902/) ist in der Kirche für di…"
+   },
+   {
+    "title": "Willkommen 👋🏼",
+    "type": "domainObject",
+    "domainType": "wiki_page",
+    "domainIdentifier": "A3124166-5818-4A3F-A5EC-0CBCB0744824",
+    "icon": "file",
+    "initials": null,
+    "color": null,
+    "apiUrl": "https://gemeinde.example/api/wiki/categories/9/pages/A3124166-5818-4A3F-A5EC-0CBCB0744824/versions/6",
+    "frontendUrl": "https://gemeinde.example/wiki/9/main",
+    "imageUrl": null,
+    "domainAttributes": {
+     "wikiCategoryId": 9
+    },
+    "infos": [
+     "Willkommen 👋🏼"
+    ],
+    "preview": "> …ffnung weitergeben. Du musst hier nicht sofort alles verstehen schon alles kennen. Komm einfach an, stell deine Fragen und geh deinen nächsten Schritt in deinem Tempo. | **Dein erster Sonntag bei uns** Unser **Go**ttesdienst beginnt **sonntags um 10:30 Uhr**. Ab 10:00 Uhr ist das Café geöffnet – ideal, um in Ruhe anzukommen und erste Menschen kennenzulernen. - Dich erwartet moderne Musik, eine alltagsnahe Predigt und …"
+   }
+  ],
+  "meta": {
+   "count": 2
+  }
+ }
+}

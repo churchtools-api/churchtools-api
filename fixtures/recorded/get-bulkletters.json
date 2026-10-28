@@ -1,0 +1,50 @@
+{
+ "operation": "get-bulkletters",
+ "request": {
+  "method": "GET",
+  "path": "/bulkletters",
+  "query": [],
+  "body": null
+ },
+ "body": [
+  {
+   "id": 42,
+   "name": "Gemeindebrief Oktober 2020",
+   "htmlTemplateId": 2,
+   "groupId": 0,
+   "content": "<p>Hallo <span class=\"nickname\" contenteditable=\"false\">[Spitzname]</span>,</p>\n<p>&nbsp;</p>\n<p>ich hoffe das es dir gut geht!</p>\n<p>&nbsp;</p>\n<p>LG Norbert</p>",
+   "status": "DONE",
+   "fileId": 1163,
+   "url": "?q=public/filedownload&id=1163&filename=f736632c89304839512eba3e537bd858928a3bbb73977faa31820a6f57071b35",
+   "created": "2020-11-20 17:08:27",
+   "created_pid": "1",
+   "updated": "2020-11-20 17:08:28"
+  },
+  {
+   "id": 39,
+   "name": "Gemeindebrief November 2020",
+   "htmlTemplateId": 2,
+   "groupId": 0,
+   "content": "<p>Hallo <span class=\"nickname\" contenteditable=\"false\">[Spitzname]</span>,</p>\n<p>&nbsp;</p>\n<p>Sch&ouml;n das esdich gibt!</p>\n<p>&nbsp;</p>\n<p>MfG</p>\n<p>&nbsp;</p>",
+   "status": "DONE",
+   "fileId": 1160,
+   "url": "?q=public/filedownload&id=1160&filename=ae2ba6518215a7727d3faed80b4b29f934747340202f913f7e892b9b2e9bba3a",
+   "created": "2020-11-20 17:03:31",
+   "created_pid": "1",
+   "updated": "2020-11-20 17:03:32"
+  },
+  {
+   "id": 36,
+   "name": "Gemeindebrief",
+   "htmlTemplateId": 2,
+   "groupId": 0,
+   "content": "<p>Hallo <span class=\"nickname\" contenteditable=\"false\">[Spitzname]</span>,</p>\n<p>&nbsp;</p>\n<p>Dies ist ein Test!</p>\n<p>&nbsp;</p>\n<p>MFG</p>\n<p>&nbsp;</p>",
+   "status": "DONE",
+   "fileId": 1157,
+   "url": "?q=public/filedownload&id=1157&filename=c9c212de1f12057fe17d4b7cb10c316fb20a7f9982539c6695c81ec80fb15339",
+   "created": "2020-11-20 16:55:18",
+   "created_pid": "1",
+   "updated": "2020-11-20 16:55:19"
+  }
+ ]
+}

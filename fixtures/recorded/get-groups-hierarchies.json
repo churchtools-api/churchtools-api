@@ -1,0 +1,2662 @@
+{
+ "operation": "get-groups-hierarchies",
+ "request": {
+  "method": "GET",
+  "path": "/groups/hierarchies",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "groupId": 171,
+    "group": {
+     "title": "Unsere Seminare",
+     "domainType": "group",
+     "domainIdentifier": "171",
+     "apiUrl": "https://gemeinde.example/api/groups/171",
+     "frontendUrl": "https://gemeinde.example/groups/171",
+     "imageUrl": "https://gemeinde.example/images/2312/392938b637ad5e6318bd31af702627d6bb66a0021dc318f2ef2af13ff927cbd3",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "U",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "7E85A689-C8D7-47E0-9ABD-3F64252243B5"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     6,
+     183
+    ],
+    "children": [
+     174,
+     177,
+     180
+    ]
+   },
+   {
+    "groupId": 6,
+    "group": {
+     "title": "Predigtteam",
+     "domainType": "group",
+     "domainIdentifier": "6",
+     "apiUrl": "https://gemeinde.example/api/groups/6",
+     "frontendUrl": "https://gemeinde.example/groups/6",
+     "imageUrl": "https://gemeinde.example/images/700/918bc1ca14ca4069669537f2b03bf0cfc53aada7bf29f96b7b40b623cf8f6914",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "P",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "8192304F-AF31-474F-9DDA-F86CE460725E"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     10
+    ],
+    "children": [
+     171
+    ]
+   },
+   {
+    "groupId": 642,
+    "group": {
+     "title": "Vorlage Technikseminar",
+     "domainType": "group",
+     "domainIdentifier": "642",
+     "apiUrl": "https://gemeinde.example/api/groups/642",
+     "frontendUrl": "https://gemeinde.example/groups/642",
+     "imageUrl": "https://gemeinde.example/images/3030/06a0ea905c850bdcf8783f3f31d6901e6e4fa92766c676d14b4a25388acc8ee3",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "V",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 2,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "A3E779B7-AB99-4C05-853A-F88414C913AB"
+     },
+     "infos": [
+      "Veranstaltung",
+      "Entwurf"
+     ]
+    },
+    "parents": [
+     7
+    ],
+    "children": []
+   },
+   {
+    "groupId": 7,
+    "group": {
+     "title": "Technik",
+     "domainType": "group",
+     "domainIdentifier": "7",
+     "apiUrl": "https://gemeinde.example/api/groups/7",
+     "frontendUrl": "https://gemeinde.example/groups/7",
+     "imageUrl": "https://gemeinde.example/images/720/30305361b1f895af1ca4089e0c855233a9301812a493d43a7a592b4cb5c19d57",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "T",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     10
+    ],
+    "children": [
+     642
+    ]
+   },
+   {
+    "groupId": 14,
+    "group": {
+     "title": "Löwen (10-12)",
+     "domainType": "group",
+     "domainIdentifier": "14",
+     "apiUrl": "https://gemeinde.example/api/groups/14",
+     "frontendUrl": "https://gemeinde.example/groups/14",
+     "imageUrl": "https://gemeinde.example/images/679/1131b536c09009cf654ec090884627da35e8194308a42913657a7782ce6c99a7",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "L",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "782A37D9-77D1-43D7-9BE5-7F46E784CDC4"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     8
+    ],
+    "children": []
+   },
+   {
+    "groupId": 8,
+    "group": {
+     "title": "Kinderkirche",
+     "domainType": "group",
+     "domainIdentifier": "8",
+     "apiUrl": "https://gemeinde.example/api/groups/8",
+     "frontendUrl": "https://gemeinde.example/groups/8",
+     "imageUrl": "https://gemeinde.example/images/2906/63a53822634e6abc9bbf3b08066dc94bf0b60372c57926f55124760069163672",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "B672A315-EF25-49A9-B347-90555EBB5E4C"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     10,
+     39
+    ],
+    "children": [
+     14,
+     64,
+     142,
+     148
+    ]
+   },
+   {
+    "groupId": 64,
+    "group": {
+     "title": "Krabbelhasen (0-2)",
+     "domainType": "group",
+     "domainIdentifier": "64",
+     "apiUrl": "https://gemeinde.example/api/groups/64",
+     "frontendUrl": "https://gemeinde.example/groups/64",
+     "imageUrl": "https://gemeinde.example/images/675/9f2836bd3e7e87e9f57421d7fa8b2f377e7aea7ec8700883237f8c9e42af5417",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "5891925F-54A5-4A95-8AEA-7CC13CCE0F7B"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     8
+    ],
+    "children": []
+   },
+   {
+    "groupId": 142,
+    "group": {
+     "title": "Raupen (3-5)",
+     "domainType": "group",
+     "domainIdentifier": "142",
+     "apiUrl": "https://gemeinde.example/api/groups/142",
+     "frontendUrl": "https://gemeinde.example/groups/142",
+     "imageUrl": "https://gemeinde.example/images/669/2b238365603052cb47540b0f26b2f42b7b9ae6188e1397b249542c85c9b0f3a0",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "R",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "6E15EB2A-FBAD-459C-98C2-B237595B07EE"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     8
+    ],
+    "children": []
+   },
+   {
+    "groupId": 148,
+    "group": {
+     "title": "Schmetterlinge (6-9)",
+     "domainType": "group",
+     "domainIdentifier": "148",
+     "apiUrl": "https://gemeinde.example/api/groups/148",
+     "frontendUrl": "https://gemeinde.example/groups/148",
+     "imageUrl": "https://gemeinde.example/images/672/fd26557781953265905b78e22f3d74e3727d57edc833ace77aa047b59f192cfe",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "486ACB49-4AC8-44C6-84C6-C5CB53E1FEB3"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     8
+    ],
+    "children": []
+   },
+   {
+    "groupId": 10,
+    "group": {
+     "title": "#1 Bereich Gottesdienst",
+     "domainType": "group",
+     "domainIdentifier": "10",
+     "apiUrl": "https://gemeinde.example/api/groups/10",
+     "frontendUrl": "https://gemeinde.example/groups/10",
+     "imageUrl": "https://gemeinde.example/images/742/ef00677bb6104e1b4a577590b723f32be0eafe56a62ed44b7b22b0e294ee79f3",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "BF91810C-B934-4167-AD2C-DB513ED111BF"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": [
+     6,
+     7,
+     8,
+     28,
+     133,
+     162,
+     165,
+     343
+    ]
+   },
+   {
+    "groupId": 28,
+    "group": {
+     "title": "Lobpreis",
+     "domainType": "group",
+     "domainIdentifier": "28",
+     "apiUrl": "https://gemeinde.example/api/groups/28",
+     "frontendUrl": "https://gemeinde.example/groups/28",
+     "imageUrl": "https://gemeinde.example/images/2909/bc6260e5c4a21d857357c21f98891ab93e12b1315565c52e4315c5525f2b231d",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "L",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "CC70A570-B251-47D7-A0B8-309A8ADB58A8"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     10
+    ],
+    "children": [
+     9,
+     27
+    ]
+   },
+   {
+    "groupId": 133,
+    "group": {
+     "title": "Gottedienstleitung",
+     "domainType": "group",
+     "domainIdentifier": "133",
+     "apiUrl": "https://gemeinde.example/api/groups/133",
+     "frontendUrl": "https://gemeinde.example/groups/133",
+     "imageUrl": "https://gemeinde.example/images/706/54322c88c493319dd993b956fbb3ecd5b2070cf0f96a8733fd0748270d6e2822",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "74C6AFDB-C397-4AF2-BF45-45BD57C661A6"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     10
+    ],
+    "children": []
+   },
+   {
+    "groupId": 162,
+    "group": {
+     "title": "Ordner",
+     "domainType": "group",
+     "domainIdentifier": "162",
+     "apiUrl": "https://gemeinde.example/api/groups/162",
+     "frontendUrl": "https://gemeinde.example/groups/162",
+     "imageUrl": null,
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "O",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "064B115B-6B50-4FEA-B389-298B62CA9E73"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     10
+    ],
+    "children": []
+   },
+   {
+    "groupId": 165,
+    "group": {
+     "title": "Kaffeebar",
+     "domainType": "group",
+     "domainIdentifier": "165",
+     "apiUrl": "https://gemeinde.example/api/groups/165",
+     "frontendUrl": "https://gemeinde.example/groups/165",
+     "imageUrl": "https://gemeinde.example/images/1014/39d725ade7fd4ea6501f66d0dea94de91ff13d96deb785295f7f4c400f39bc68",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "B29881E2-F20C-489A-A97D-F35F27E95433"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     10
+    ],
+    "children": []
+   },
+   {
+    "groupId": 343,
+    "group": {
+     "title": "Deko-Team",
+     "domainType": "group",
+     "domainIdentifier": "343",
+     "apiUrl": "https://gemeinde.example/api/groups/343",
+     "frontendUrl": "https://gemeinde.example/groups/343",
+     "imageUrl": "https://gemeinde.example/images/2392/ad2ba94e4d17829a50d93a5c637936f481feee76c997c299e94a16c175c3a3ee",
+     "icon": "users",
+     "color": {
+      "key": "pink",
+      "shade": null
+     },
+     "initials": "D",
+     "domainAttributes": {
+      "note": "Wir sind eine kreative und dynamische Gruppe, die sich jeden Sonntag um 10 Uhr trifft, um den Gottesdienst-Saal in einen einladenden und inspirierenden Raum zu verwandeln. Unsere Mission ist es, durch unsere Dekorationen eine Atmosphäre zu schaffen, die die Gemeinde erhebt und den Geist des Gottesdienstes widerspiegelt.\n\nAls Mitglied des Deko-Teams hast du die einzigartige Gelegenheit, deine kreativen Fähigkeiten einzubringen und gleichzeitig ein tieferes Gemeinschaftsgefühl innerhalb unserer Kirchengemeinde zu fördern. Egal, ob du ein Auge für Design hast, gerne mit deinen Händen arbeitest oder einfach nur Teil eines Teams sein möchtest, das einen positiven Unterschied macht, wir brauchen dich!",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": 0,
+      "visibility": "intern",
+      "guid": "F4E5DD1E-1893-422E-9F0E-11E70C982E30"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     10
+    ],
+    "children": []
+   },
+   {
+    "groupId": 11,
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [],
+    "children": [
+     10,
+     15,
+     39,
+     99,
+     136,
+     154,
+     158,
+     183,
+     208,
+     211
+    ]
+   },
+   {
+    "groupId": 15,
+    "group": {
+     "title": "#1 Bereich Kleingruppen",
+     "domainType": "group",
+     "domainIdentifier": "15",
+     "apiUrl": "https://gemeinde.example/api/groups/15",
+     "frontendUrl": "https://gemeinde.example/groups/15",
+     "imageUrl": "https://gemeinde.example/images/2846/d38bad5ab956db0ab0957c3c24f4b112037bc752cadc5beb89da73a98dcdfdf3",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "FD459EFF-1709-4833-8D3D-D9D31E4F4FE1"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": [
+     26,
+     127,
+     168
+    ]
+   },
+   {
+    "groupId": 39,
+    "group": {
+     "title": "#1 Bereich Kinder",
+     "domainType": "group",
+     "domainIdentifier": "39",
+     "apiUrl": "https://gemeinde.example/api/groups/39",
+     "frontendUrl": "https://gemeinde.example/groups/39",
+     "imageUrl": "https://gemeinde.example/images/2843/864000d092d5028a70e2b586cdf57f2b3d9ea7f065970b3830315e8525f0c22d",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "652BADC9-82F7-44A2-B180-C45B184F7D9B"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": [
+     8,
+     31,
+     32
+    ]
+   },
+   {
+    "groupId": 99,
+    "group": {
+     "title": "Datenschutz",
+     "domainType": "group",
+     "domainIdentifier": "99",
+     "apiUrl": "https://gemeinde.example/api/groups/99",
+     "frontendUrl": "https://gemeinde.example/groups/99",
+     "imageUrl": "https://gemeinde.example/images/2897/e699135e1b1b9ec757895209e097e47d681d5ac152dfadf01e253f38d982d912",
+     "icon": "users",
+     "color": {
+      "key": "orange",
+      "shade": null
+     },
+     "initials": "D",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 6,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "DA6E1B1E-2C62-4DFD-A2BE-B3534E0C7473"
+     },
+     "infos": [
+      "Prozesse"
+     ]
+    },
+    "parents": [
+     11,
+     158
+    ],
+    "children": []
+   },
+   {
+    "groupId": 136,
+    "group": {
+     "title": "#1 Bereich Jugend",
+     "domainType": "group",
+     "domainIdentifier": "136",
+     "apiUrl": "https://gemeinde.example/api/groups/136",
+     "frontendUrl": "https://gemeinde.example/groups/136",
+     "imageUrl": "https://gemeinde.example/images/2840/3103aba9436c00ce9cec06de2e87ae80f3e9a98ac36e1a711e7daa861f63ed78",
+     "icon": "users",
+     "color": {
+      "key": "black",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "408D1309-6577-4DD0-A0E9-318705F2AB51"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": [
+     34,
+     37
+    ]
+   },
+   {
+    "groupId": 154,
+    "group": {
+     "title": "Finanzverwaltung",
+     "domainType": "group",
+     "domainIdentifier": "154",
+     "apiUrl": "https://gemeinde.example/api/groups/154",
+     "frontendUrl": "https://gemeinde.example/groups/154",
+     "imageUrl": "https://gemeinde.example/images/2370/78c9137467693155ebeb4c68f60f251f04ea4ec0192779fa044f331aa3aae5e4",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "F",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "ABD55CF8-A7EC-4CFA-9526-421F653F333D"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": []
+   },
+   {
+    "groupId": 158,
+    "group": {
+     "title": "#1 Bereich Verwaltung",
+     "domainType": "group",
+     "domainIdentifier": "158",
+     "apiUrl": "https://gemeinde.example/api/groups/158",
+     "frontendUrl": "https://gemeinde.example/groups/158",
+     "imageUrl": "https://gemeinde.example/images/2596/83eec716a4963225400f9c9a2888e892af9ec4f70aa324ffbb561844fb4eca35",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "932F0D17-C8D3-43F3-A81A-6921B3DB889E"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": [
+     21,
+     35,
+     59,
+     99,
+     103
+    ]
+   },
+   {
+    "groupId": 183,
+    "group": {
+     "title": "Alle Angebote",
+     "domainType": "group",
+     "domainIdentifier": "183",
+     "apiUrl": "https://gemeinde.example/api/groups/183",
+     "frontendUrl": "https://gemeinde.example/groups/183",
+     "imageUrl": "https://gemeinde.example/images/2309/4cb95bbcec7c0c0a7d3d03111a22accca3466e2cf7568559e1d75cbb72fe91cf",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "A",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "81EFD0F9-EE84-41D9-B3C5-00F375AAF2B8"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": [
+     168,
+     171,
+     359
+    ]
+   },
+   {
+    "groupId": 208,
+    "group": {
+     "title": "CT Admin",
+     "domainType": "group",
+     "domainIdentifier": "208",
+     "apiUrl": "https://gemeinde.example/api/groups/208",
+     "frontendUrl": "https://gemeinde.example/groups/208",
+     "imageUrl": "https://gemeinde.example/images/2599/5afec8583d81a4fd8aca0daa1aa2530ecb86225f16ebb5a3577333269d623ac4",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "C",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "7F236EA1-0CA7-4340-B472-93AD2590E497"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": []
+   },
+   {
+    "groupId": 211,
+    "group": {
+     "title": "Öffentlichkeitsarbeit",
+     "domainType": "group",
+     "domainIdentifier": "211",
+     "apiUrl": "https://gemeinde.example/api/groups/211",
+     "frontendUrl": "https://gemeinde.example/groups/211",
+     "imageUrl": "https://gemeinde.example/images/2918/416ee65d8bca029ae048c626727c2eec5da29313900a86584a0235a7dc8dc95e",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "Ö",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "C3D58A9C-D0AF-4A25-BE85-BA6A3BD4386A"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     11
+    ],
+    "children": []
+   },
+   {
+    "groupId": 26,
+    "group": {
+     "title": "Kleingruppe Nord",
+     "domainType": "group",
+     "domainIdentifier": "26",
+     "apiUrl": "https://gemeinde.example/api/groups/26",
+     "frontendUrl": "https://gemeinde.example/groups/26",
+     "imageUrl": "https://gemeinde.example/images/286/3664bcef55add836f79b46f123f17747fcd524c9e47171509b36a3a57ec8042b",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "675917A3-31A9-4A96-8DFB-444ED0DC9BFD"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     15
+    ],
+    "children": [
+     13,
+     16,
+     22,
+     203
+    ]
+   },
+   {
+    "groupId": 127,
+    "group": {
+     "title": "Kleingruppe Süd",
+     "domainType": "group",
+     "domainIdentifier": "127",
+     "apiUrl": "https://gemeinde.example/api/groups/127",
+     "frontendUrl": "https://gemeinde.example/groups/127",
+     "imageUrl": "https://gemeinde.example/images/286/3664bcef55add836f79b46f123f17747fcd524c9e47171509b36a3a57ec8042b",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": 1,
+      "visibility": "restricted",
+      "guid": "4526266D-6154-4A92-9E43-73153885837A"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     15
+    ],
+    "children": [
+     17,
+     29,
+     132
+    ]
+   },
+   {
+    "groupId": 168,
+    "group": {
+     "title": "Finde deine Kleingruppe",
+     "domainType": "group",
+     "domainIdentifier": "168",
+     "apiUrl": "https://gemeinde.example/api/groups/168",
+     "frontendUrl": "https://gemeinde.example/groups/168",
+     "imageUrl": "https://gemeinde.example/images/3228/e2b26015632acb2724fa3e302f3e63406aebcfa9c98c9a52a6b60507b685f851",
+     "icon": "users",
+     "color": {
+      "key": "red",
+      "shade": null
+     },
+     "initials": "F",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 6,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "DF7DCF17-90AD-4B17-9730-29FEDE4EC636"
+     },
+     "infos": [
+      "Prozesse"
+     ]
+    },
+    "parents": [
+     15,
+     183
+    ],
+    "children": [
+     13,
+     16,
+     17,
+     22,
+     29,
+     132,
+     203
+    ]
+   },
+   {
+    "groupId": 13,
+    "group": {
+     "title": "Kleingruppe Beck",
+     "domainType": "group",
+     "domainIdentifier": "13",
+     "apiUrl": "https://gemeinde.example/api/groups/13",
+     "frontendUrl": "https://gemeinde.example/groups/13",
+     "imageUrl": "https://gemeinde.example/images/3216/f5883e92f8aef52f2091125cd865aa00c0fd7f1b18f99305e87b2f06c66d1a12",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "Wir sind toll!",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "public",
+      "guid": "048BA439-8320-4615-8B1C-AE33459D2A60"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     26,
+     168
+    ],
+    "children": []
+   },
+   {
+    "groupId": 16,
+    "group": {
+     "title": "Kleingruppe Brooks",
+     "domainType": "group",
+     "domainIdentifier": "16",
+     "apiUrl": "https://gemeinde.example/api/groups/16",
+     "frontendUrl": "https://gemeinde.example/groups/16",
+     "imageUrl": "https://gemeinde.example/images/2852/28e1ff7e8d9f7d481bacac2230c48ae0c4e772f8ff8a6599218e9b5aa5cbcf16",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "public",
+      "guid": "5B986A79-6560-4834-8B03-2182786E977E"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     26,
+     168
+    ],
+    "children": []
+   },
+   {
+    "groupId": 22,
+    "group": {
+     "title": "Kleingruppe Bischof",
+     "domainType": "group",
+     "domainIdentifier": "22",
+     "apiUrl": "https://gemeinde.example/api/groups/22",
+     "frontendUrl": "https://gemeinde.example/groups/22",
+     "imageUrl": "https://gemeinde.example/images/2855/b2aee6f3e35a34859a038e3f6a0e1c25259b7dfdc6fc7a2f596042621891035d",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "Wir sind eine bunte Mischung junger Erwachsener, die gerne Zeit miteinander verbringen und voneinander lernen. Unser Ziel ist es, eine unterstützende und ermutigende Gemeinschaft zu schaffen, in der alle Teilnehmer im Glauben wachsen und ihre Beziehung zu Gott vertiefen können.\n\nWir treffen uns jeden Mittwoch um 19 Uhr meist bei uns Bischofs, aber hin und wieder auch bei jemand anderem aus der Kleingruppe. Details dazu findet ihr immer in den Gruppenbeiträgen oder im Gruppen-Chat. 💬\n\nNeben den regelmäßigen Treffen organisieren wir auch gemeinsame Aktivitäten, die uns ermöglichen, unseren Glauben aktiv zu leben. Von sozialen Einsätzen bis hin zu kreativen Projekten – wir suchen stets nach Wegen, wie wir unsere Talente zu SEINER Ehre einsetzen können. \n\nWenn das dein Interesse geweckt hat, melde dich gerne bei einem von uns. Wäre super, wenn wir dich bald mal in unser Runde begrüßen dürften. 🤗",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "intern",
+      "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     26,
+     168
+    ],
+    "children": []
+   },
+   {
+    "groupId": 203,
+    "group": {
+     "title": "Kleingruppe Adendorf",
+     "domainType": "group",
+     "domainIdentifier": "203",
+     "apiUrl": "https://gemeinde.example/api/groups/203",
+     "frontendUrl": "https://gemeinde.example/groups/203",
+     "imageUrl": "https://gemeinde.example/images/3219/581277b8df1e6b7b7fdb079affa375fa63a36c77e1fc0c9f4c117e3bef447aff",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "public",
+      "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     26,
+     168
+    ],
+    "children": []
+   },
+   {
+    "groupId": 9,
+    "group": {
+     "title": "Lobpreisteam A",
+     "domainType": "group",
+     "domainIdentifier": "9",
+     "apiUrl": "https://gemeinde.example/api/groups/9",
+     "frontendUrl": "https://gemeinde.example/groups/9",
+     "imageUrl": "https://gemeinde.example/images/2912/7223a6d539fd2dac8a96c6ff59107daa960227b5201c1df40007af52eb633caf",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "L",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "339113E6-8D83-4E5A-ADFB-8F8213EA596E"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     28
+    ],
+    "children": []
+   },
+   {
+    "groupId": 27,
+    "group": {
+     "title": "Lobpreisteam B",
+     "domainType": "group",
+     "domainIdentifier": "27",
+     "apiUrl": "https://gemeinde.example/api/groups/27",
+     "frontendUrl": "https://gemeinde.example/groups/27",
+     "imageUrl": "https://gemeinde.example/images/2915/8f070832ade3494d479c9150e7f968277f793c24f49d55b07e6fc6f656a4e9f6",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "L",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "4D1CD7C0-7F4E-4C8D-8D47-25C9110F4051"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     28
+    ],
+    "children": []
+   },
+   {
+    "groupId": 31,
+    "group": {
+     "title": "Kids Camp",
+     "domainType": "group",
+     "domainIdentifier": "31",
+     "apiUrl": "https://gemeinde.example/api/groups/31",
+     "frontendUrl": "https://gemeinde.example/groups/31",
+     "imageUrl": "https://gemeinde.example/images/666/a00420006003039f7ec904d33f6704745c67acb0b8ed556873f1e61479dd78bb",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "Das Kids-Camp findet dieses Jahr auf der Insel Borkum statt.",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "0083B274-212B-454F-B2A6-0DF5D6301529"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     32,
+     39
+    ],
+    "children": []
+   },
+   {
+    "groupId": 32,
+    "group": {
+     "title": "Ranger",
+     "domainType": "group",
+     "domainIdentifier": "32",
+     "apiUrl": "https://gemeinde.example/api/groups/32",
+     "frontendUrl": "https://gemeinde.example/groups/32",
+     "imageUrl": "https://gemeinde.example/images/2921/849680316b6adc1e4d9c37218360ef273b0d51b55b30f392b8b8bc0c14438903",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "R",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "B0F95AFF-1635-4ED5-9E95-C6A6528BC0E6"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     39
+    ],
+    "children": [
+     31
+    ]
+   },
+   {
+    "groupId": 213,
+    "group": {
+     "title": "Schlüssel Kirchengebäude Zentrale",
+     "domainType": "group",
+     "domainIdentifier": "213",
+     "apiUrl": "https://gemeinde.example/api/groups/213",
+     "frontendUrl": "https://gemeinde.example/groups/213",
+     "imageUrl": "https://gemeinde.example/images/2593/f9dec79a0c20c086cae38af65e801e6720e6f8d39caee555bfec654550904fad",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "000399BB-8358-4ADB-A784-C5A03C0C1288"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     59
+    ],
+    "children": [
+     225,
+     237,
+     255,
+     258,
+     261
+    ]
+   },
+   {
+    "groupId": 59,
+    "group": {
+     "title": "Raum und Schlüsselverwaltung",
+     "domainType": "group",
+     "domainIdentifier": "59",
+     "apiUrl": "https://gemeinde.example/api/groups/59",
+     "frontendUrl": "https://gemeinde.example/groups/59",
+     "imageUrl": "https://gemeinde.example/images/2584/882738adcf81c7130211a5251ba2a8092d798343de36c51b91951b2769db42d7",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "R",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "4682D5AB-E353-4B5B-AF9D-C4F085FD1ABA"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     158
+    ],
+    "children": [
+     213,
+     216,
+     219
+    ]
+   },
+   {
+    "groupId": 216,
+    "group": {
+     "title": "Schlüssel Kirchengebäude Süd-Gründung",
+     "domainType": "group",
+     "domainIdentifier": "216",
+     "apiUrl": "https://gemeinde.example/api/groups/216",
+     "frontendUrl": "https://gemeinde.example/groups/216",
+     "imageUrl": "https://gemeinde.example/images/2590/9e2ec47c9f949b5eb088942c810edbe0b475623d535c4d973ad8bd3e813ff684",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 1,
+      "visibility": "restricted",
+      "guid": "1E7EE027-4DC2-41B1-9A38-E02CB1E6859A"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     59
+    ],
+    "children": [
+     228,
+     231,
+     264,
+     267,
+     270
+    ]
+   },
+   {
+    "groupId": 219,
+    "group": {
+     "title": "Schlüssel Bürogebäude Zentrale",
+     "domainType": "group",
+     "domainIdentifier": "219",
+     "apiUrl": "https://gemeinde.example/api/groups/219",
+     "frontendUrl": "https://gemeinde.example/groups/219",
+     "imageUrl": "https://gemeinde.example/images/2587/13d2d02f60612a7fa2e3a3f134c53a8e71c03a376ac555bb7effe593abe16e90",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "8256F23A-7C4B-4A6F-929F-5035B7F3F365"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     59
+    ],
+    "children": [
+     222,
+     234,
+     240,
+     243,
+     246,
+     249,
+     252
+    ]
+   },
+   {
+    "groupId": 17,
+    "group": {
+     "title": "Kleingruppe Lippert",
+     "domainType": "group",
+     "domainIdentifier": "17",
+     "apiUrl": "https://gemeinde.example/api/groups/17",
+     "frontendUrl": "https://gemeinde.example/groups/17",
+     "imageUrl": "https://gemeinde.example/images/1155/b44495c333a9765186de519150aa58129476bebc7dcd8ad79826c91106693cf9",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 1,
+      "visibility": "public",
+      "guid": "0FCD91BF-4326-40C6-B215-868E64AC9E8F"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     127,
+     168
+    ],
+    "children": []
+   },
+   {
+    "groupId": 29,
+    "group": {
+     "title": "Kleingruppe Landherr",
+     "domainType": "group",
+     "domainIdentifier": "29",
+     "apiUrl": "https://gemeinde.example/api/groups/29",
+     "frontendUrl": "https://gemeinde.example/groups/29",
+     "imageUrl": "https://gemeinde.example/images/1152/0a395beb60c2ca3de208857f9f0d1e8580a05d257121f907795e86eb8f6b688f",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 1,
+      "visibility": "public",
+      "guid": "E51E8AA0-32D4-458F-82CD-D683B39A69FC"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     127,
+     168
+    ],
+    "children": []
+   },
+   {
+    "groupId": 132,
+    "group": {
+     "title": "Kleingruppe Gerner",
+     "domainType": "group",
+     "domainIdentifier": "132",
+     "apiUrl": "https://gemeinde.example/api/groups/132",
+     "frontendUrl": "https://gemeinde.example/groups/132",
+     "imageUrl": "https://gemeinde.example/images/3225/20587780c3cc8d2ab11d5e374e80eb7782acdfaf3a8ac08ba6558c1fcaa2e55c",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 1,
+      "visibility": "public",
+      "guid": "E75EC335-A2A9-4AD5-9BEC-AD0A0FDC8998"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "parents": [
+     127,
+     168
+    ],
+    "children": []
+   },
+   {
+    "groupId": 34,
+    "group": {
+     "title": "Konfi-Unterricht",
+     "domainType": "group",
+     "domainIdentifier": "34",
+     "apiUrl": "https://gemeinde.example/api/groups/34",
+     "frontendUrl": "https://gemeinde.example/groups/34",
+     "imageUrl": "https://gemeinde.example/images/2861/1e9c156f898f5caf22a09d0d9d678274ac8b922012562ceaaa384cca6bea5997",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "942E2E06-07E2-4540-B137-8FEBD22DED48"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     136
+    ],
+    "children": []
+   },
+   {
+    "groupId": 37,
+    "group": {
+     "title": "Jugend fährt nach Rom",
+     "domainType": "group",
+     "domainIdentifier": "37",
+     "apiUrl": "https://gemeinde.example/api/groups/37",
+     "frontendUrl": "https://gemeinde.example/groups/37",
+     "imageUrl": "https://gemeinde.example/images/125/ac554937a9dbedea38df868ba65ff50ec47386cc6773c5c4a1f7be0cde84abb1",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "J",
+     "domainAttributes": {
+      "note": "\"Jugend fährt nach Rom\" ist eine aufregende und unvergessliche Jugendfreizeit, die sich an junge Menschen im Alter von 14 bis 18 Jahren richtet und sie auf eine Reise in die ewige Stadt Rom mitnimmt.\n\nDie Jugendlichen werden die Möglichkeit haben, die reiche Geschichte und Kultur Roms hautnah zu erleben, indem sie historische Sehenswürdigkeiten wie das Kolosseum, das Forum Romanum und den Petersdom besuchen. Neben diesen kulturellen Höhepunkten wird die Freizeit auch Raum für gemeinschaftliches Erleben und Freizeitaktivitäten bieten, wie zum Beispiel gemeinsames Essen, abendliche Lagerfeuer und sportliche Aktivitäten.\n\nWährend der Freizeit werden die Teilnehmer in gemütlichen Unterkünften untergebracht sein und von erfahrenen Betreuern begleitet, die sich um ihr Wohl kümmern und ihnen bei Fragen und Anliegen zur Seite stehen.\n\n\"Jugend fährt nach Rom\" verspricht eine einzigartige Erfahrung zu sein, die die Jugendlichen in ihren Erinnerungen für immer begleiten wird.",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     136
+    ],
+    "children": []
+   },
+   {
+    "groupId": 21,
+    "group": {
+     "title": "Hausmeister",
+     "domainType": "group",
+     "domainIdentifier": "21",
+     "apiUrl": "https://gemeinde.example/api/groups/21",
+     "frontendUrl": "https://gemeinde.example/groups/21",
+     "imageUrl": "https://gemeinde.example/images/2903/e15ea912088256fe8d36c3f60d826efcb2e610a76081cacfc33ab358e1ad3483",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "H",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "9FA1AE1E-C37A-43BE-B175-094BCB324D31"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     158
+    ],
+    "children": []
+   },
+   {
+    "groupId": 35,
+    "group": {
+     "title": "Buchladen",
+     "domainType": "group",
+     "domainIdentifier": "35",
+     "apiUrl": "https://gemeinde.example/api/groups/35",
+     "frontendUrl": "https://gemeinde.example/groups/35",
+     "imageUrl": "https://gemeinde.example/images/732/767f8c87720b495da25ac5bbdf4c2a92b44e654d9dcd481dc82568219ddcd9e9",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "B",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "8240FCEC-A8AE-4283-B40A-962338250624"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     158
+    ],
+    "children": []
+   },
+   {
+    "groupId": 103,
+    "group": {
+     "title": "Cleaning",
+     "domainType": "group",
+     "domainIdentifier": "103",
+     "apiUrl": "https://gemeinde.example/api/groups/103",
+     "frontendUrl": "https://gemeinde.example/groups/103",
+     "imageUrl": "https://gemeinde.example/images/2849/3dd835d90c5ab870ccb453d08ec97a20fb842c6e3f99cd59eecd457ab4da6e2b",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "C",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "A21A7A42-F6D0-4A0E-93AF-DC548513C326"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "parents": [
+     158
+    ],
+    "children": []
+   },
+   {
+    "groupId": 174,
+    "group": {
+     "title": "Beziehungsweise",
+     "domainType": "group",
+     "domainIdentifier": "174",
+     "apiUrl": "https://gemeinde.example/api/groups/174",
+     "frontendUrl": "https://gemeinde.example/groups/174",
+     "imageUrl": "https://gemeinde.example/images/1143/9de4311710ffc7c1f79a724dbc5b463a9c8bc3f57e31e022a9ebdad12a8dac7f",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "B",
+     "domainAttributes": {
+      "note": "**Was erwartet EUCH?**\n\nJede Partnerschaft hat ihre eigene Art und Weise.  \nEs geht immer bei mir selbst los.   \nWer bin ich, wie bin ich, wo komme ich her und wo will ich hin.  \nDann gehts vom Du zum Wir.  \nWas sind deine unbewußten Beziehungsmuster?\n\nWie können wir uns statt zu bekämpfen ergänzen?\n\nDies und vieles mehr werden wir in diesem Seminar behandeln.\n\nMelde dich hier gleich an.",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     171
+    ],
+    "children": []
+   },
+   {
+    "groupId": 177,
+    "group": {
+     "title": "Wie lerne ich mit Freuden beten?",
+     "domainType": "group",
+     "domainIdentifier": "177",
+     "apiUrl": "https://gemeinde.example/api/groups/177",
+     "frontendUrl": "https://gemeinde.example/groups/177",
+     "imageUrl": "https://gemeinde.example/images/1146/01fcce70d47fac161b4addeaf97f787bb014f59b8977f4fefae7dcb96fa5792f",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "W",
+     "domainAttributes": {
+      "note": "### Wie lerne ich mit Freuden beten?\n\nBist du neugierig, wie das Gebet dein Leben bereichern kann? In unserem Seminar \"Wie lerne ich mit Freuden beten?\" laden wir dich ein, die Kraft des Gebets neu zu entdecken und Freude im Gespräch mit Gott zu erleben. Egal, ob du 13 oder 99 Jahre alt bist, diese Veranstaltung bietet dir einen Raum, um zu lernen, dich auszutauschen und in einer unterstützenden Gemeinschaft zu wachsen. Komme zu uns in die Chutoo Church und lass uns gemeinsam die Freude am Gebet entfalten!",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     171
+    ],
+    "children": []
+   },
+   {
+    "groupId": 180,
+    "group": {
+     "title": "Wie setze ich ChurchTools für mein Team optimal ein?",
+     "domainType": "group",
+     "domainIdentifier": "180",
+     "apiUrl": "https://gemeinde.example/api/groups/180",
+     "frontendUrl": "https://gemeinde.example/groups/180",
+     "imageUrl": "https://gemeinde.example/images/1149/b6e2ce06db76c0b09bebc1b8683bef130d272cde2f3ef26b51d68c46ab01d713",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "W",
+     "domainAttributes": {
+      "note": "## Wie setze ich ChurchTools für mein Team optimal ein?\n\nDu bist Teil eines Teams in deiner Gemeinde und möchtest ChurchTools optimal nutzen? Dann ist dieses Seminar genau das Richtige für dich. Jeden Freitag um 19:30 Uhr treffen wir uns in der Chutoo Church, um gemeinsam die Möglichkeiten von ChurchTools zu erkunden. Egal, ob du 13 oder 99 Jahre alt bist, hier bist du willkommen. Lass uns zusammen lernen, wie wir diese Plattform effektiver einsetzen können, um unsere Gemeinschaft zu stärken und Projekte effizienter zu gestalten. Sei dabei und bring deine Fragen und Ideen mit!",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     171
+    ],
+    "children": []
+   },
+   {
+    "groupId": 359,
+    "group": {
+     "title": "#1. Vorlage Mitarbeiter Party #",
+     "domainType": "group",
+     "domainIdentifier": "359",
+     "apiUrl": "https://gemeinde.example/api/groups/359",
+     "frontendUrl": "https://gemeinde.example/groups/359",
+     "imageUrl": "https://gemeinde.example/images/2570/44a3b31cde64b5b570fb270af1dc1fd02cc1c660a4d73f2aaa8c181524fe7d63",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "# Mitarbeiter Party \n\nHey du! Komm vorbei zur Mitarbeiter Party im Stadtpark. Wir werden gemeinsam Gott loben, feiern und internationales Essen sowie leckere Getränke genießen. Freu dich auf eine tolle Zeit voller Gemeinschaft und Spaß! Wir sehen uns dort! 🎉🙌🍲🥤",
+      "groupStatusId": 2,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "AF702E40-7C1C-4835-AB7E-603BC1A36150"
+     },
+     "infos": [
+      "Veranstaltung",
+      "Entwurf"
+     ]
+    },
+    "parents": [
+     183
+    ],
+    "children": []
+   },
+   {
+    "groupId": 225,
+    "group": {
+     "title": "Schlüssel Kirchengebäude Generalschlüssel (200)",
+     "domainType": "group",
+     "domainIdentifier": "225",
+     "apiUrl": "https://gemeinde.example/api/groups/225",
+     "frontendUrl": "https://gemeinde.example/groups/225",
+     "imageUrl": null,
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "04577B00-6C8B-4045-BDDB-3247E45479DE"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     213
+    ],
+    "children": []
+   },
+   {
+    "groupId": 237,
+    "group": {
+     "title": "Schlüssel Kirchengebäude Eingangstüren (210)",
+     "domainType": "group",
+     "domainIdentifier": "237",
+     "apiUrl": "https://gemeinde.example/api/groups/237",
+     "frontendUrl": "https://gemeinde.example/groups/237",
+     "imageUrl": "https://gemeinde.example/images/2894/0c270b4ddefd5f0ac790d7291edd58552be4ab77904d14376abf37803a991dda",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "98CF9623-CF23-4097-98B9-9E1710810686"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     213
+    ],
+    "children": []
+   },
+   {
+    "groupId": 255,
+    "group": {
+     "title": "Schlüssel Kirchengebäude Nebenräume (220)",
+     "domainType": "group",
+     "domainIdentifier": "255",
+     "apiUrl": "https://gemeinde.example/api/groups/255",
+     "frontendUrl": "https://gemeinde.example/groups/255",
+     "imageUrl": null,
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "6DCD705C-0E8F-4292-8C93-BC110A0D2D71"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     213
+    ],
+    "children": []
+   },
+   {
+    "groupId": 258,
+    "group": {
+     "title": "Schlüssel Kirchengebäude Technik (230)",
+     "domainType": "group",
+     "domainIdentifier": "258",
+     "apiUrl": "https://gemeinde.example/api/groups/258",
+     "frontendUrl": "https://gemeinde.example/groups/258",
+     "imageUrl": null,
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "9AEDD4D6-AC24-41B9-8386-8E52297D1453"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     213
+    ],
+    "children": []
+   },
+   {
+    "groupId": 261,
+    "group": {
+     "title": "Schlüssel Kirchengebäude Kaffeebar (240)",
+     "domainType": "group",
+     "domainIdentifier": "261",
+     "apiUrl": "https://gemeinde.example/api/groups/261",
+     "frontendUrl": "https://gemeinde.example/groups/261",
+     "imageUrl": null,
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "7DB78082-483B-4D7E-96D3-56A609B9FE81"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     213
+    ],
+    "children": []
+   },
+   {
+    "groupId": 228,
+    "group": {
+     "title": "Schlüssel Generalschlüssel (300)",
+     "domainType": "group",
+     "domainIdentifier": "228",
+     "apiUrl": "https://gemeinde.example/api/groups/228",
+     "frontendUrl": "https://gemeinde.example/groups/228",
+     "imageUrl": "https://gemeinde.example/images/2888/c5ec25961ebae3607219ff4cfd020eccd3c911aeace00b04991d9c144d474872",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 1,
+      "visibility": "restricted",
+      "guid": "A780740D-D6C1-4558-83CE-68A8ADF3380A"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     216
+    ],
+    "children": []
+   },
+   {
+    "groupId": 231,
+    "group": {
+     "title": "Schlüssel Eingangstüren (310)",
+     "domainType": "group",
+     "domainIdentifier": "231",
+     "apiUrl": "https://gemeinde.example/api/groups/231",
+     "frontendUrl": "https://gemeinde.example/groups/231",
+     "imageUrl": "https://gemeinde.example/images/2885/79b98f9a91e41cab340266c3af860ac25f76054629dc11231317ebd2580b4a44",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 1,
+      "visibility": "restricted",
+      "guid": "C754E259-BAA6-45BE-B554-966D7CBCA7E3"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     216
+    ],
+    "children": []
+   },
+   {
+    "groupId": 264,
+    "group": {
+     "title": "Schlüssel Kaffeebar (340)",
+     "domainType": "group",
+     "domainIdentifier": "264",
+     "apiUrl": "https://gemeinde.example/api/groups/264",
+     "frontendUrl": "https://gemeinde.example/groups/264",
+     "imageUrl": "https://gemeinde.example/images/2891/9fda2d4800166f69a4e30ff7e12f76066380588362fa13f4b25e94abe00c44f1",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 1,
+      "visibility": "restricted",
+      "guid": "39196884-F90B-4D37-AF69-6DD27146F5EA"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     216
+    ],
+    "children": []
+   },
+   {
+    "groupId": 267,
+    "group": {
+     "title": "Schlüssel Nebenräume (320)",
+     "domainType": "group",
+     "domainIdentifier": "267",
+     "apiUrl": "https://gemeinde.example/api/groups/267",
+     "frontendUrl": "https://gemeinde.example/groups/267",
+     "imageUrl": null,
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 1,
+      "visibility": "restricted",
+      "guid": "51290A37-5226-4B64-A9DC-EC1D2F6A477A"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     216
+    ],
+    "children": []
+   },
+   {
+    "groupId": 270,
+    "group": {
+     "title": "Schlüssel Technik (330)",
+     "domainType": "group",
+     "domainIdentifier": "270",
+     "apiUrl": "https://gemeinde.example/api/groups/270",
+     "frontendUrl": "https://gemeinde.example/groups/270",
+     "imageUrl": null,
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 1,
+      "visibility": "restricted",
+      "guid": "57ABA181-C493-4B25-9A31-7736816A075E"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     216
+    ],
+    "children": []
+   },
+   {
+    "groupId": 222,
+    "group": {
+     "title": "Schlüssel Büro Generalschlüssel (100)",
+     "domainType": "group",
+     "domainIdentifier": "222",
+     "apiUrl": "https://gemeinde.example/api/groups/222",
+     "frontendUrl": "https://gemeinde.example/groups/222",
+     "imageUrl": "https://gemeinde.example/images/2882/afb56e40dd4e115d69b684b2812cf74809ce89be6038bb2b4623ced8939ffb40",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "10925B44-560F-41FF-8C2D-A580E622A693"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     219
+    ],
+    "children": []
+   },
+   {
+    "groupId": 234,
+    "group": {
+     "title": "Schlüssel Büro Eingangstüren (110)",
+     "domainType": "group",
+     "domainIdentifier": "234",
+     "apiUrl": "https://gemeinde.example/api/groups/234",
+     "frontendUrl": "https://gemeinde.example/groups/234",
+     "imageUrl": "https://gemeinde.example/images/2879/ac03572467e4e2cc9ca902fdc9bfcd64b98b1db386a702676e36523a023e292b",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "D5578784-CF50-4FE0-96F9-B1ABEA1ECF07"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     219
+    ],
+    "children": []
+   },
+   {
+    "groupId": 240,
+    "group": {
+     "title": "Schlüssel Büro 1-17 (130)",
+     "domainType": "group",
+     "domainIdentifier": "240",
+     "apiUrl": "https://gemeinde.example/api/groups/240",
+     "frontendUrl": "https://gemeinde.example/groups/240",
+     "imageUrl": "https://gemeinde.example/images/2864/8ecfdb136a42a2daa73fe11e1ee3e9b48e4032928e23526d3ca77df0693a344b",
+     "icon": "users",
+     "color": {
+      "key": "red",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "4F5C6E13-F288-4BDA-950B-928201F5428D"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     219
+    ],
+    "children": []
+   },
+   {
+    "groupId": 243,
+    "group": {
+     "title": "Schlüssel Büro 1-4 (131)",
+     "domainType": "group",
+     "domainIdentifier": "243",
+     "apiUrl": "https://gemeinde.example/api/groups/243",
+     "frontendUrl": "https://gemeinde.example/groups/243",
+     "imageUrl": "https://gemeinde.example/images/2867/f99b4f25b56bec6dfb73b7953863cdd258d233fe232c7fcec751b6b6c7aadd8d",
+     "icon": "users",
+     "color": {
+      "key": "yellow",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "6AD98DF6-DCF9-482B-9B05-028395D2AD27"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     219
+    ],
+    "children": []
+   },
+   {
+    "groupId": 246,
+    "group": {
+     "title": "Schlüssel Büro 5-8 (132)",
+     "domainType": "group",
+     "domainIdentifier": "246",
+     "apiUrl": "https://gemeinde.example/api/groups/246",
+     "frontendUrl": "https://gemeinde.example/groups/246",
+     "imageUrl": "https://gemeinde.example/images/2873/e015fdb5d8699182154c18ae3ddafa57202be251a04378e22cfbece8d317ef6f",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "31BD26FE-CF4B-44F3-A128-3EE3AFB5E27A"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     219
+    ],
+    "children": []
+   },
+   {
+    "groupId": 249,
+    "group": {
+     "title": "Schlüssel Büro 9-12 (133)",
+     "domainType": "group",
+     "domainIdentifier": "249",
+     "apiUrl": "https://gemeinde.example/api/groups/249",
+     "frontendUrl": "https://gemeinde.example/groups/249",
+     "imageUrl": "https://gemeinde.example/images/2876/325ec7fb7ac0508bef54931f5be216683b4bc472d59a8fdc7e99d757dc09b71f",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "3E1768B6-4B5D-4254-838D-90B9C4BED2BA"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     219
+    ],
+    "children": []
+   },
+   {
+    "groupId": 252,
+    "group": {
+     "title": "Schlüssel Büro 13-17 (134)",
+     "domainType": "group",
+     "domainIdentifier": "252",
+     "apiUrl": "https://gemeinde.example/api/groups/252",
+     "frontendUrl": "https://gemeinde.example/groups/252",
+     "imageUrl": "https://gemeinde.example/images/2870/fad2d2eec21f327f5d3889db634d9300b955fffc7c245c20b077a9dd1dbe2755",
+     "icon": "users",
+     "color": {
+      "key": "fuchsia",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 5,
+      "campusId": 0,
+      "visibility": "restricted",
+      "guid": "994F1BE3-B26F-46AE-843E-D8F1F024C1D2"
+     },
+     "infos": [
+      "Schlüssel"
+     ]
+    },
+    "parents": [
+     219
+    ],
+    "children": []
+   },
+   {
+    "groupId": 358,
+    "group": {
+     "title": "Lauf-Treff",
+     "domainType": "group",
+     "domainIdentifier": "358",
+     "apiUrl": "https://gemeinde.example/api/groups/358",
+     "frontendUrl": "https://gemeinde.example/groups/358",
+     "imageUrl": "https://gemeinde.example/images/2377/fdcd928e042e1f5da6efe5043aef98b9d51bd94c18cf6f1cfb95897f3527b4a7",
+     "icon": "users",
+     "color": {
+      "key": "orange",
+      "shade": null
+     },
+     "initials": "L",
+     "domainAttributes": {
+      "note": "Wie der Name schon sagt... diese Gruppe gibt's, damit wir uns zum Laufen treffen. Wir motivieren einander, den Hintern hochzukriegen und verbringen Zeit mit anderen Brüdern und Schwestern. Was gibt's Besseres??! :)  \n\nJonny",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "2F6B3ED3-3B44-4AF4-B596-4D677AFF083E"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     352
+    ],
+    "children": []
+   },
+   {
+    "groupId": 352,
+    "group": {
+     "title": "Sportangebote",
+     "domainType": "group",
+     "domainIdentifier": "352",
+     "apiUrl": "https://gemeinde.example/api/groups/352",
+     "frontendUrl": "https://gemeinde.example/groups/352",
+     "imageUrl": "https://gemeinde.example/images/2401/8cf51fac93ccf1086bff3721562d024cac798be3c40a937c26ccf27a7c814a7f",
+     "icon": "users",
+     "color": {
+      "key": "teal",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "Dies ist der perfekte Ort für alle in unserer Kirchengemeinde, die sich gerne bewegen, neue Sportarten ausprobieren möchten oder einfach nur nach Gleichgesinnten suchen, um gemeinsam aktiv zu sein. Egal, ob du regelmäßig Sport treibst oder gerade erst anfängst, hier bist du genau richtig.\n\nIn dieser Gruppe kannst du alles rund um Sport posten: Ob du bouldern gehst, eine Wanderung planst oder einfach nur jemanden suchst, der mit dir joggen geht – lass es uns wissen! Es ist eine tolle Gelegenheit, aktiv zu bleiben, Spaß zu haben und gleichzeitig neue Leute aus der Gemeinde kennen zu lernen.\n\nUnsere Gruppe hat das Motto \"Jeder darf mitmachen\". Also egal welches Fitnesslevel, Alter oder Interesse du hast, fühle dich herzlich eingeladen, teilzunehmen. Wenn du Lust hast, mitzumachen, poste einfach, was du vorhast, oder schließe dich den Aktivitäten anderer an.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "parents": [],
+    "children": [
+     358,
+     738,
+     741
+    ]
+   },
+   {
+    "groupId": 738,
+    "group": {
+     "title": "Spikeball",
+     "domainType": "group",
+     "domainIdentifier": "738",
+     "apiUrl": "https://gemeinde.example/api/groups/738",
+     "frontendUrl": "https://gemeinde.example/groups/738",
+     "imageUrl": "https://gemeinde.example/images/3171/cdd7d60c3905cd4f5bf03aceaa5bbdac9bda7cfab293640cb4669af97358b6e9",
+     "icon": "users",
+     "color": {
+      "key": "yellow",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "F3CB9ED1-5FAF-41CF-80BE-E721632DEA39"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     352
+    ],
+    "children": []
+   },
+   {
+    "groupId": 741,
+    "group": {
+     "title": "Volleyball",
+     "domainType": "group",
+     "domainIdentifier": "741",
+     "apiUrl": "https://gemeinde.example/api/groups/741",
+     "frontendUrl": "https://gemeinde.example/groups/741",
+     "imageUrl": "https://gemeinde.example/images/3174/d126d03dc92422345392c9390813dc5f26572aea33502720c7fabd444f77056d",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "V",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "FB3862D2-0D2F-494B-BF2C-106BAF7A5004"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     352
+    ],
+    "children": []
+   },
+   {
+    "groupId": 747,
+    "group": {
+     "title": "Dankbar leben 🙏🏼",
+     "domainType": "group",
+     "domainIdentifier": "747",
+     "apiUrl": "https://gemeinde.example/api/groups/747",
+     "frontendUrl": "https://gemeinde.example/groups/747",
+     "imageUrl": "https://gemeinde.example/images/3198/77d5651b2506c55df724b1062067cc81c624f6e2c201ed379fef4010c8eb7b3e",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "D",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "7BE8C7C1-C984-4AA2-9E5D-B8305DED1482"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     744
+    ],
+    "children": []
+   },
+   {
+    "groupId": 744,
+    "group": {
+     "title": "Gemeindefreizeit 2026",
+     "domainType": "group",
+     "domainIdentifier": "744",
+     "apiUrl": "https://gemeinde.example/api/groups/744",
+     "frontendUrl": "https://gemeinde.example/groups/744",
+     "imageUrl": "https://gemeinde.example/images/3195/ab63bec68d88026be95edd17e5dcda9d082e9a7b8ce97125b1a7801614572f76",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "8CEC0DDD-3BB3-4427-B46F-C39571E246AA"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [],
+    "children": [
+     747,
+     750,
+     753,
+     756,
+     759
+    ]
+   },
+   {
+    "groupId": 750,
+    "group": {
+     "title": "Geschenk Gottes 🎁",
+     "domainType": "group",
+     "domainIdentifier": "750",
+     "apiUrl": "https://gemeinde.example/api/groups/750",
+     "frontendUrl": "https://gemeinde.example/groups/750",
+     "imageUrl": "https://gemeinde.example/images/3201/d9db34b0dfe36e96e91a390dfbdcdff3f931251ea50bf55196213ad6fbe2d2ec",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "DF15549E-3AFB-4BD9-8F7F-C6CD01200408"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     744
+    ],
+    "children": []
+   },
+   {
+    "groupId": 753,
+    "group": {
+     "title": "Glaube heute 🤗",
+     "domainType": "group",
+     "domainIdentifier": "753",
+     "apiUrl": "https://gemeinde.example/api/groups/753",
+     "frontendUrl": "https://gemeinde.example/groups/753",
+     "imageUrl": "https://gemeinde.example/images/3204/1a07238492c99446cf9dc55b1fb793e671a4cc9d18d5283a507dedba31e7e248",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "1DFBCAFE-010A-42A0-9641-C741C7A31219"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     744
+    ],
+    "children": []
+   },
+   {
+    "groupId": 756,
+    "group": {
+     "title": "Gottes Stimme 💬",
+     "domainType": "group",
+     "domainIdentifier": "756",
+     "apiUrl": "https://gemeinde.example/api/groups/756",
+     "frontendUrl": "https://gemeinde.example/groups/756",
+     "imageUrl": "https://gemeinde.example/images/3207/29577ce1e3e45b7e2bb485fbb0cb3593378bf40cd2f434705b1acbba656b9fac",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "2BA8310D-EE90-4FCC-BB89-E0ADF26C9F21"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     744
+    ],
+    "children": []
+   },
+   {
+    "groupId": 759,
+    "group": {
+     "title": "Worship Mindset 🎶",
+     "domainType": "group",
+     "domainIdentifier": "759",
+     "apiUrl": "https://gemeinde.example/api/groups/759",
+     "frontendUrl": "https://gemeinde.example/groups/759",
+     "imageUrl": "https://gemeinde.example/images/3210/7e068051fbdc2ed89a903c957f67d353638df06fffe9d1baf3801f11003b06ac",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "W",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "60A92C78-458D-4830-80F6-31701C1DE94A"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "parents": [
+     744
+    ],
+    "children": []
+   }
+  ],
+  "meta": {
+   "count": 79
+  }
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "operation": "get-permissions-internal-groups-groupId-auths-authId-persons",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/internal/groups/11/auths/10122/persons",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "authId": 10122,
+   "selections": [
+    {
+     "dataId": null,
+     "personIds": [
+      103,
+      108
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,376 @@
+{
+ "operation": "get-calendars",
+ "request": {
+  "method": "GET",
+  "path": "/calendars",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 49,
+    "name": "Fußball-Kalender",
+    "nameTranslated": "Fußball-Kalender",
+    "sortKey": 0,
+    "type": "personal",
+    "color": "black",
+    "randomUrl": "",
+    "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-10-28T02:37:27Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": false,
+    "isPrivate": true
+   },
+   {
+    "id": 59,
+    "name": "Gesamt Kirche",
+    "nameTranslated": "Gesamt Kirche",
+    "sortKey": 0,
+    "type": "church",
+    "color": "#000000",
+    "randomUrl": "",
+    "iCalSourceUrl": "",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   },
+   {
+    "id": 2,
+    "name": "Kirche Zentale",
+    "nameTranslated": "Kirche Zentale",
+    "sortKey": 1,
+    "type": "church",
+    "color": "#f83a22",
+    "randomUrl": "",
+    "iCalSourceUrl": "",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": 0,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   },
+   {
+    "id": 56,
+    "name": "Kirche Süd",
+    "nameTranslated": "Kirche Süd",
+    "sortKey": 10,
+    "type": "church",
+    "color": "#16a765",
+    "randomUrl": "",
+    "iCalSourceUrl": null,
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": 1,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   },
+   {
+    "id": 4,
+    "name": "Gemeindeleitung",
+    "nameTranslated": "Gemeindeleitung",
+    "sortKey": 11,
+    "type": "group",
+    "color": "#D8F781",
+    "randomUrl": "",
+    "iCalSourceUrl": null,
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": false,
+    "isPrivate": false
+   },
+   {
+    "id": 3,
+    "name": "Jugend",
+    "nameTranslated": "Jugend",
+    "sortKey": 20,
+    "type": "church",
+    "color": "#16a765",
+    "randomUrl": "",
+    "iCalSourceUrl": "",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": 0,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   },
+   {
+    "id": 51,
+    "name": "Kleingruppen",
+    "nameTranslated": "Kleingruppen",
+    "sortKey": 20,
+    "type": "group",
+    "color": "#c2c2c2",
+    "randomUrl": "",
+    "iCalSourceUrl": "",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": false,
+    "isPrivate": false
+   },
+   {
+    "id": 1,
+    "name": "Sonstige Veranstaltung",
+    "nameTranslated": "Sonstige Veranstaltung",
+    "sortKey": 30,
+    "type": "church",
+    "color": "#92e1c0",
+    "randomUrl": "",
+    "iCalSourceUrl": "",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   },
+   {
+    "id": 54,
+    "name": "Lobpreis",
+    "nameTranslated": "Lobpreis",
+    "sortKey": 30,
+    "type": "group",
+    "color": "#ff7537",
+    "randomUrl": "",
+    "iCalSourceUrl": "",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": false,
+    "isPrivate": false
+   },
+   {
+    "id": 62,
+    "name": "Ferien",
+    "nameTranslated": "Ferien",
+    "sortKey": 100,
+    "type": "church",
+    "color": "#ac725e",
+    "randomUrl": "",
+    "iCalSourceUrl": "http://i.cal.to/ical/77/nrw/ferien/8e540bcc.fad80fda-684fceb0.ics",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-10-28T02:37:27Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   },
+   {
+    "id": 65,
+    "name": "Feiertage",
+    "nameTranslated": "Feiertage",
+    "sortKey": 101,
+    "type": "church",
+    "color": "#ac725e",
+    "randomUrl": "",
+    "iCalSourceUrl": "http://i.cal.to/ical/61/nrw/feiertage/8e540bcc.fad80fda-53f74a12.ics",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-10-28T02:37:27Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   },
+   {
+    "id": 31,
+    "name": "Planungskalender",
+    "nameTranslated": "Planungskalender",
+    "sortKey": 110,
+    "type": "church",
+    "color": "#cd74e6",
+    "randomUrl": "",
+    "iCalSourceUrl": "",
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2025-06-16T08:28:33Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-14T15:28:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   }
+  ],
+  "meta": {
+   "count": 12
+  }
+ }
+}

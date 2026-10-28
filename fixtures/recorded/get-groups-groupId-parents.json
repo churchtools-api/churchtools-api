@@ -1,0 +1,16 @@
+{
+ "operation": "get-groups-groupId-parents",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/parents",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0,
+   "groupStatusIds": []
+  }
+ }
+}

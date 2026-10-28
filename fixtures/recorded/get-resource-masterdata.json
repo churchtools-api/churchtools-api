@@ -1,0 +1,478 @@
+{
+ "operation": "get-resource-masterdata",
+ "request": {
+  "method": "GET",
+  "path": "/resource/masterdata",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "resourceTypes": [
+    {
+     "id": 2,
+     "name": "resource.type.room",
+     "nameTranslated": "Raum",
+     "sortKey": 10,
+     "namePlural": "resource.type.rooms",
+     "namePluralTranslated": "Räume",
+     "campusId": 0,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-05-21T07:01:53Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 1,
+     "name": "resource.type.item",
+     "nameTranslated": "Gegenstand",
+     "sortKey": 20,
+     "namePlural": "resource.type.items",
+     "namePluralTranslated": "Gegenstände",
+     "campusId": 0,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-05-21T07:01:53Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 3,
+     "name": "Fahrzeug",
+     "nameTranslated": "Fahrzeug",
+     "sortKey": 30,
+     "namePlural": "Fahrzeuge",
+     "namePluralTranslated": "Fahrzeuge",
+     "campusId": 0,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-05-21T07:01:53Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 4,
+     "name": "Raum Süd",
+     "nameTranslated": "Raum Süd",
+     "sortKey": 40,
+     "namePlural": "Räume Süd",
+     "namePluralTranslated": "Räume Süd",
+     "campusId": 1,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-05-21T07:01:53Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 5,
+     "name": "Gegenstand Süd",
+     "nameTranslated": "Gegenstand Süd",
+     "sortKey": 50,
+     "namePlural": "Gegenstände Süd",
+     "namePluralTranslated": "Gegenstände Süd",
+     "campusId": 1,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-05-21T07:01:53Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    }
+   ],
+   "resources": [
+    {
+     "id": 10,
+     "name": "Bus",
+     "nameTranslated": "Bus",
+     "sortKey": 0,
+     "resourceTypeId": 3,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 12,
+     "name": "Kapelle",
+     "nameTranslated": "Kapelle",
+     "sortKey": 0,
+     "resourceTypeId": 4,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 3,
+     "name": "Saal",
+     "nameTranslated": "Saal",
+     "sortKey": 1,
+     "resourceTypeId": 2,
+     "location": "Ort (Standard)",
+     "iCalLocation": "Ortsangabe für iCal",
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 8,
+     "name": "Jugendraum",
+     "nameTranslated": "Jugendraum",
+     "sortKey": 2,
+     "resourceTypeId": 2,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 5,
+     "name": "Kinderraum klein",
+     "nameTranslated": "Kinderraum klein",
+     "sortKey": 3,
+     "resourceTypeId": 2,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 9,
+     "name": "Kinderraum groß",
+     "nameTranslated": "Kinderraum groß",
+     "sortKey": 4,
+     "resourceTypeId": 2,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 4,
+     "name": "Küche",
+     "nameTranslated": "Küche",
+     "sortKey": 5,
+     "resourceTypeId": 2,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 11,
+     "name": "Beamer",
+     "nameTranslated": "Beamer",
+     "sortKey": 10,
+     "resourceTypeId": 5,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": true,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 13,
+     "name": "Kinderraum",
+     "nameTranslated": "Kinderraum",
+     "sortKey": 10,
+     "resourceTypeId": 4,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 14,
+     "name": "Küche",
+     "nameTranslated": "Küche",
+     "sortKey": 20,
+     "resourceTypeId": 4,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 2,
+     "name": "Beamer",
+     "nameTranslated": "Beamer",
+     "sortKey": 100,
+     "resourceTypeId": 1,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": true,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [
+      288
+     ],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    {
+     "id": 7,
+     "name": "Soundanlage",
+     "nameTranslated": "Soundanlage",
+     "sortKey": 101,
+     "resourceTypeId": 1,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    }
+   ]
+  },
+  "meta": {
+   "resourceTypes": 5,
+   "resources": 12
+  }
+ }
+}

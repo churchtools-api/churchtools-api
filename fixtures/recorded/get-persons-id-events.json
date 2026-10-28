@@ -1,0 +1,503 @@
+{
+ "operation": "get-persons-id-events",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/events",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1986,
+    "guid": "A96B76E6-F98E-4132-8293-61945AAED267",
+    "name": "Gebetsabend",
+    "description": "",
+    "appointmentId": 699024,
+    "startDate": "2026-11-10T18:00:00Z",
+    "endDate": "2026-11-10T19:00:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": true,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Zentale",
+     "domainType": "calendar",
+     "domainIdentifier": "2",
+     "apiUrl": "https://gemeinde.example/api/calendar/2",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": [],
+    "eventServices": [
+     {
+      "id": 33875,
+      "personId": 1,
+      "person": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Armin Adendorf",
+      "serviceId": 6,
+      "serviceName": "Ton",
+      "index": null,
+      "isValid": true,
+      "isAccepted": false,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1986,
+       "name": "Gebetsabend",
+       "startDate": "2026-11-10T18:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-22T19:53:16Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-19T00:18:30Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": false,
+      "counter": 0,
+      "requestedDate": "2026-08-19T00:18:30Z"
+     },
+     {
+      "id": 31980,
+      "personId": 7,
+      "person": {
+       "title": "Malte Wilkerson",
+       "domainType": "person",
+       "domainIdentifier": "7",
+       "apiUrl": "https://gemeinde.example/api/persons/7",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%237/",
+       "imageUrl": "https://gemeinde.example/images/1244/9b2bbb1505a519320966bc2c3fecda52fdba6b232d07246ddb599af543cae52a",
+       "icon": "user",
+       "color": null,
+       "initials": "MW",
+       "domainAttributes": {
+        "firstName": "Malte",
+        "lastName": "Wilkerson",
+        "guid": "702AFC45-CEB5-4073-AD89-5AB9B3AFB2A6",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Malte Wilkerson",
+      "serviceId": 1,
+      "serviceName": "Predigt",
+      "index": null,
+      "isValid": true,
+      "isAccepted": false,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1986,
+       "name": "Gebetsabend",
+       "startDate": "2026-11-10T18:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-26T17:50:38Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": false,
+      "counter": 0,
+      "requestedDate": "2026-08-20T00:15:57Z"
+     },
+     {
+      "id": 31983,
+      "personId": 319,
+      "person": {
+       "title": "Hans Beck",
+       "domainType": "person",
+       "domainIdentifier": "319",
+       "apiUrl": "https://gemeinde.example/api/persons/319",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23319/",
+       "imageUrl": "https://gemeinde.example/images/484/27ce8969bf2fc6a7be2dc75c153f9361cf0e7ab361fca3a166a0ba503f8ea6cc",
+       "icon": "user",
+       "color": null,
+       "initials": "HB",
+       "domainAttributes": {
+        "firstName": "Hans",
+        "lastName": "Beck",
+        "guid": "1FAFE921-F31A-4133-AC3B-97BA8B79B70D",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Hans Beck",
+      "serviceId": 2,
+      "serviceName": "Lobpreisleitung",
+      "index": null,
+      "isValid": true,
+      "isAccepted": false,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1986,
+       "name": "Gebetsabend",
+       "startDate": "2026-11-10T18:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-26T17:50:38Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-01-22T10:44:24Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": false,
+      "counter": 0,
+      "requestedDate": "2026-01-22T10:44:24Z"
+     },
+     {
+      "id": 31986,
+      "personId": 205,
+      "person": {
+       "title": "Paul Fritsche",
+       "domainType": "person",
+       "domainIdentifier": "205",
+       "apiUrl": "https://gemeinde.example/api/persons/205",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23205/",
+       "imageUrl": "https://gemeinde.example/images/1343/9db967f075d7afb4f92a119bdb0a6843b38c16fef08595ecdf6d7257a6e41790",
+       "icon": "user",
+       "color": null,
+       "initials": "PF",
+       "domainAttributes": {
+        "firstName": "Paul",
+        "lastName": "Fritsche",
+        "guid": "32EC99CB-5A11-4CBD-8B7C-7EEFF91779BA",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Paul Fritsche",
+      "serviceId": 3,
+      "serviceName": "Leitung",
+      "index": null,
+      "isValid": true,
+      "isAccepted": false,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1986,
+       "name": "Gebetsabend",
+       "startDate": "2026-11-10T18:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-26T17:50:38Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": false,
+      "counter": 0,
+      "requestedDate": "2026-08-20T00:15:57Z"
+     },
+     {
+      "id": 31992,
+      "personId": 175,
+      "person": {
+       "title": "Clara Hepp",
+       "domainType": "person",
+       "domainIdentifier": "175",
+       "apiUrl": "https://gemeinde.example/api/persons/175",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23175/",
+       "imageUrl": "https://gemeinde.example/images/2155/a046b38302ccf5088b7c6c299f84308bde76e5ab121d627698fed5ac1ab0e490",
+       "icon": "user",
+       "color": null,
+       "initials": "CH",
+       "domainAttributes": {
+        "firstName": "Clara",
+        "lastName": "Hepp",
+        "guid": "5B11143A-A15A-4107-AE90-429E4F493A6B",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Clara Hepp",
+      "serviceId": 12,
+      "serviceName": "Ordner",
+      "index": null,
+      "isValid": true,
+      "isAccepted": false,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1986,
+       "name": "Gebetsabend",
+       "startDate": "2026-11-10T18:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-26T17:50:38Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": false,
+      "counter": 0,
+      "requestedDate": "2026-08-20T00:15:57Z"
+     },
+     {
+      "id": 31995,
+      "personId": 161,
+      "person": {
+       "title": "Kalif Boutou",
+       "domainType": "person",
+       "domainIdentifier": "161",
+       "apiUrl": "https://gemeinde.example/api/persons/161",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23161/",
+       "imageUrl": "https://gemeinde.example/images/588/25c7e9a431dcf62b4d1fe08a77727151c85688789a39efbd421e72274c07d997",
+       "icon": "user",
+       "color": null,
+       "initials": "KB",
+       "domainAttributes": {
+        "firstName": "Kalif",
+        "lastName": "Boutou",
+        "guid": "E5A6E96B-8E9F-4525-8487-D4F26C57E854",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Kalif Boutou",
+      "serviceId": 88,
+      "serviceName": "Ordner Teamleiter",
+      "index": null,
+      "isValid": true,
+      "isAccepted": false,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1986,
+       "name": "Gebetsabend",
+       "startDate": "2026-11-10T18:00:00Z"
+      },
+      "allowChat": false,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-26T17:50:38Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": false,
+      "counter": 0,
+      "requestedDate": "2026-08-20T00:15:57Z"
+     }
+    ]
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

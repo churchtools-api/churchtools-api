@@ -1,0 +1,28 @@
+{
+ "operation": "get-sync-adapters",
+ "request": {
+  "method": "GET",
+  "path": "/sync/adapters",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "churchtools",
+    "url": "https://sync-adapter-churchtools.ct-srv.de",
+    "token": "**********"
+   },
+   {
+    "id": 2,
+    "name": "optigem",
+    "url": "https://sync-adapter-optigem.ct-srv.de",
+    "token": "**********"
+   }
+  ],
+  "meta": {
+   "count": 2
+  }
+ }
+}

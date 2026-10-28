@@ -1,0 +1,118 @@
+{
+ "operation": "get-person-growpaths",
+ "request": {
+  "method": "GET",
+  "path": "/person/growpaths",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Willkommen",
+    "nameTranslated": "Willkommen",
+    "sortKey": 1,
+    "color": "gray",
+    "meta": {
+     "createdDate": "2026-02-19T12:28:14Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-02-19T12:28:14Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 2,
+    "name": "Helfer",
+    "nameTranslated": "Helfer",
+    "sortKey": 2,
+    "color": "green",
+    "meta": {
+     "createdDate": "2026-02-19T12:28:14Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-02-19T12:28:14Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 3,
+    "name": "Mitarbeiter",
+    "nameTranslated": "Mitarbeiter",
+    "sortKey": 3,
+    "color": "blue",
+    "meta": {
+     "createdDate": "2026-02-19T12:28:14Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-02-19T12:28:14Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 4,
+    "name": "Leiten (Gruppe)",
+    "nameTranslated": "Leiten (Gruppe)",
+    "sortKey": 4,
+    "color": "yellow",
+    "meta": {
+     "createdDate": "2026-02-19T12:28:14Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-02-19T12:28:14Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 5,
+    "name": "Leiten (Bereich)",
+    "nameTranslated": "Leiten (Bereich)",
+    "sortKey": 5,
+    "color": "orange",
+    "meta": {
+     "createdDate": "2026-02-19T12:28:14Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-02-19T12:28:14Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   {
+    "id": 6,
+    "name": "Leiten (Vorstand)",
+    "nameTranslated": "Leiten (Vorstand)",
+    "sortKey": 6,
+    "color": "red",
+    "meta": {
+     "createdDate": "2026-02-19T12:28:14Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-02-19T12:28:14Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 6
+  }
+ }
+}

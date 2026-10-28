@@ -1,0 +1,57 @@
+{
+ "operation": "get-finance-eubp-submissions-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/eubp/submissions/13",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 13,
+   "clientId": 1,
+   "yearFrom": 2024,
+   "yearTo": 2024,
+   "companyName": "ctrs-test GmbH",
+   "companyNumber": "12345671",
+   "transmissionReason": 1,
+   "periods": [
+    {
+     "id": 13,
+     "submissionId": 13,
+     "clientId": 1,
+     "year": 2024,
+     "accountingPeriodId": 1,
+     "hasData": true,
+     "fileNumber": null,
+     "isLast": true,
+     "additionalAccounts": [],
+     "transmittedAccountIds": null
+    }
+   ],
+   "status": "draft",
+   "clientRequestId": null,
+   "serverMessageId": null,
+   "extraStatusCode": null,
+   "extraStatusMessage": null,
+   "drvStatusCode": null,
+   "drvStatusMessage": null,
+   "sentDate": null,
+   "fileId": null,
+   "downloadUrl": null,
+   "title": null,
+   "referenceDate": null,
+   "deliveryDate": null,
+   "meta": {
+    "createdDate": "2026-10-28T22:34:57Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T22:34:57Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

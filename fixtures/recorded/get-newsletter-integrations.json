@@ -1,0 +1,15 @@
+{
+ "operation": "get-newsletter-integrations",
+ "request": {
+  "method": "GET",
+  "path": "/newsletter-integrations",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

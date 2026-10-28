@@ -1,0 +1,17 @@
+{
+ "operation": "get-sync-adapters-id",
+ "request": {
+  "method": "GET",
+  "path": "/sync/adapters/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "churchtools",
+   "url": "https://sync-adapter-churchtools.ct-srv.de",
+   "token": "**********"
+  }
+ }
+}

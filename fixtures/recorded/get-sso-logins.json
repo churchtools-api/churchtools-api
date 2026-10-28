@@ -1,0 +1,15 @@
+{
+ "operation": "get-sso-logins",
+ "request": {
+  "method": "GET",
+  "path": "/sso-logins",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

@@ -1,0 +1,5666 @@
+{
+ "operation": "get-finance-masterdata",
+ "request": {
+  "method": "GET",
+  "path": "/finance/masterdata",
+  "query": [
+   [
+    "accounting_period_id",
+    "1"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "clients": [
+    {
+     "id": 1,
+     "name": "ChuToo Church",
+     "street": "Bostelreihe 9",
+     "postalCode": "22083",
+     "city": "Hamburg",
+     "phone": "040 12345",
+     "email": null,
+     "datevConsultantNumber": null,
+     "datevClientNumber": null,
+     "eubpBusinessNumber": "12345671",
+     "eubpBusinessName": "ctrs-test GmbH",
+     "treasurerId": 340,
+     "treasurer": {
+      "title": "Freddy Finanziskus",
+      "domainType": "person",
+      "domainIdentifier": "340",
+      "apiUrl": "https://gemeinde.example/api/persons/340",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23340/",
+      "imageUrl": "https://gemeinde.example/images/754/001ebe5b00e763d4fa0d4d16d2c400c828f058be9266985dd61e60f082b171b0",
+      "icon": "user",
+      "color": null,
+      "initials": "FF",
+      "domainAttributes": {
+       "firstName": "Freddy",
+       "lastName": "Finanziskus",
+       "guid": "42028CB8-2D7A-4B19-B06B-4658ACDA8202",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "sortKey": 10,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2026-10-28T22:34:57Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    }
+   ],
+   "accountingPeriods": [
+    {
+     "id": 1,
+     "startDate": "2024-01-01",
+     "endDate": "2024-12-31",
+     "isClosed": false,
+     "incrementDocumentNumber": true,
+     "clientId": 1,
+     "donationReceiptsCreated": null,
+     "permissions": {
+      "canUseExpertMode": true,
+      "edit accounting period": true,
+      "view accounting period": true
+     },
+     "meta": {
+      "createdDate": "2022-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2025-09-18T00:08:47Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    },
+    {
+     "id": 5,
+     "startDate": "2025-01-01",
+     "endDate": "2025-12-31",
+     "isClosed": false,
+     "incrementDocumentNumber": true,
+     "clientId": 1,
+     "donationReceiptsCreated": null,
+     "permissions": {
+      "canUseExpertMode": true,
+      "edit accounting period": true,
+      "view accounting period": true
+     },
+     "meta": {
+      "createdDate": "2023-05-13T12:57:43Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-05-06T09:08:20Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    },
+    {
+     "id": 6,
+     "startDate": "2026-01-01",
+     "endDate": "2026-12-31",
+     "isClosed": false,
+     "incrementDocumentNumber": true,
+     "clientId": 1,
+     "donationReceiptsCreated": null,
+     "permissions": {
+      "canUseExpertMode": true,
+      "edit accounting period": true,
+      "view accounting period": true
+     },
+     "meta": {
+      "createdDate": "2026-04-26T15:30:33Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-04-26T15:30:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    }
+   ],
+   "accountTypes": [
+    {
+     "id": 1,
+     "name": "Aktiva",
+     "isBalanceAccount": true,
+     "balanceType": "assets",
+     "sortKey": 1,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 2,
+     "name": "Passiva",
+     "isBalanceAccount": true,
+     "balanceType": "liabilities",
+     "sortKey": 2,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 3,
+     "name": "Gewinn- und Verlustrechnung",
+     "isBalanceAccount": false,
+     "balanceType": null,
+     "sortKey": 3,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    }
+   ],
+   "accountClasses": [
+    {
+     "id": 1,
+     "name": "Anlagevermögen",
+     "accountTypeId": 1,
+     "includeProfitLoss": false,
+     "sortKey": 1,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 2,
+     "name": "Umlaufvermögen",
+     "accountTypeId": 1,
+     "includeProfitLoss": false,
+     "sortKey": 2,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 3,
+     "name": "Verbindlichkeiten",
+     "accountTypeId": 2,
+     "includeProfitLoss": false,
+     "sortKey": 3,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 4,
+     "name": "Eigenkapital",
+     "accountTypeId": 2,
+     "includeProfitLoss": true,
+     "sortKey": 4,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 5,
+     "name": "Steuern",
+     "accountTypeId": 2,
+     "includeProfitLoss": false,
+     "sortKey": 5,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 8,
+     "name": "Betr. Erträge",
+     "accountTypeId": 3,
+     "includeProfitLoss": false,
+     "sortKey": 6,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 10,
+     "name": "Umsatzerlöse",
+     "accountTypeId": 3,
+     "includeProfitLoss": false,
+     "sortKey": 7,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 6,
+     "name": "Betr. Aufwendungen",
+     "accountTypeId": 3,
+     "includeProfitLoss": false,
+     "sortKey": 8,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 7,
+     "name": "sonstige Aufwendungen",
+     "accountTypeId": 3,
+     "includeProfitLoss": false,
+     "sortKey": 9,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 9,
+     "name": "Personalaufwand",
+     "accountTypeId": 3,
+     "includeProfitLoss": false,
+     "sortKey": 10,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    }
+   ],
+   "accountGroups": [
+    {
+     "id": 1,
+     "name": "Immobilien u. Grundstücke",
+     "accountClassId": 1,
+     "isCashAssetAccount": false,
+     "sortKey": 1,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 2,
+     "name": "Sachanlagen",
+     "accountClassId": 1,
+     "isCashAssetAccount": false,
+     "sortKey": 2,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 3,
+     "name": "Forderungen",
+     "accountClassId": 2,
+     "isCashAssetAccount": false,
+     "sortKey": 3,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 4,
+     "name": "Verb. gegen Banken",
+     "accountClassId": 3,
+     "isCashAssetAccount": false,
+     "sortKey": 4,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 5,
+     "name": "Verb. gegen Private",
+     "accountClassId": 3,
+     "isCashAssetAccount": false,
+     "sortKey": 5,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 6,
+     "name": "Verb. gegen Sonstige",
+     "accountClassId": 3,
+     "isCashAssetAccount": false,
+     "sortKey": 6,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 7,
+     "name": "Gez. Kapital, Einlagen",
+     "accountClassId": 4,
+     "isCashAssetAccount": false,
+     "sortKey": 7,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 8,
+     "name": "Rücklagen",
+     "accountClassId": 4,
+     "isCashAssetAccount": false,
+     "sortKey": 8,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 9,
+     "name": "Vortrag",
+     "accountClassId": 4,
+     "isCashAssetAccount": false,
+     "sortKey": 9,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 10,
+     "name": "Abgrenzungsposten",
+     "accountClassId": 4,
+     "isCashAssetAccount": false,
+     "sortKey": 10,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 11,
+     "name": "Bank- und Kassenbestände",
+     "accountClassId": 2,
+     "isCashAssetAccount": true,
+     "sortKey": 11,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 13,
+     "name": "Steuern",
+     "accountClassId": 5,
+     "isCashAssetAccount": false,
+     "sortKey": 13,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 14,
+     "name": "sonstige Verbindlichkeiten",
+     "accountClassId": 3,
+     "isCashAssetAccount": false,
+     "sortKey": 14,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 15,
+     "name": "Abgrenzung Steuern",
+     "accountClassId": 5,
+     "isCashAssetAccount": false,
+     "sortKey": 15,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 17,
+     "name": "Zinsaufwand",
+     "accountClassId": 7,
+     "isCashAssetAccount": false,
+     "sortKey": 17,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 19,
+     "name": "sonstige Erträge",
+     "accountClassId": 8,
+     "isCashAssetAccount": false,
+     "sortKey": 19,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 20,
+     "name": "Erträge auf Vermietungen",
+     "accountClassId": 8,
+     "isCashAssetAccount": false,
+     "sortKey": 20,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 21,
+     "name": "Löhne und Gehälter",
+     "accountClassId": 9,
+     "isCashAssetAccount": false,
+     "sortKey": 21,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 22,
+     "name": "soziale Aufwendungen",
+     "accountClassId": 9,
+     "isCashAssetAccount": false,
+     "sortKey": 22,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 23,
+     "name": "Aufwendungen allgem.",
+     "accountClassId": 6,
+     "isCashAssetAccount": false,
+     "sortKey": 23,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 24,
+     "name": "Aufwendungen Gemeindearbeit",
+     "accountClassId": 6,
+     "isCashAssetAccount": false,
+     "sortKey": 24,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 25,
+     "name": "Erlöse aus Spenden und Kollekten",
+     "accountClassId": 10,
+     "isCashAssetAccount": false,
+     "sortKey": 25,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 26,
+     "name": "Sonstige Erlöse",
+     "accountClassId": 10,
+     "isCashAssetAccount": false,
+     "sortKey": 26,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    }
+   ],
+   "accounts": [
+    {
+     "id": 2,
+     "number": "0050",
+     "name": "Grundstücke",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": "DE89370400440532013000",
+     "balance": -3000,
+     "budget": null,
+     "budgetBalance": 3000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-28T22:31:37Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 5,
+     "number": "0110",
+     "name": "Kirchengebäude",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 1000,
+     "budget": null,
+     "budgetBalance": -1000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 8,
+     "number": "0120",
+     "name": "Gemeindesaal (Versammlungen)",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 2000,
+     "budget": null,
+     "budgetBalance": -2000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 11,
+     "number": "0130",
+     "name": "Pastorei (Gemeindebüro)",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 14,
+     "number": "0140",
+     "name": "Wohnung (Dienstwohnung) ",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 17,
+     "number": "0150",
+     "name": "Sonstige Gebäude",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 23,
+     "number": "0160",
+     "name": "Außenanlagen",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 26,
+     "number": "0180",
+     "name": "Hof- und Wegebefestigungen",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 29,
+     "number": "0190",
+     "name": "Gebäude im Bau",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 32,
+     "number": "0210",
+     "name": "Maschinen",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 35,
+     "number": "0220",
+     "name": "Sonstige Vorrichtungen",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 38,
+     "number": "0310",
+     "name": "Fahrzeuge",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 41,
+     "number": "0410",
+     "name": "Ausstattung der Kirche",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 44,
+     "number": "0420",
+     "name": "Ausstattung des Gemeindesaals",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 47,
+     "number": "0430",
+     "name": "Ausstattung der Pastorei",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 50,
+     "number": "0440",
+     "name": "Ausstattung der Dienstwohnung",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 53,
+     "number": "0450",
+     "name": "Sonstige Einrichtungsgegenstände",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 56,
+     "number": "0460",
+     "name": "Heizungsanlage",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 59,
+     "number": "0470",
+     "name": "Musikinstrumente",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 542000,
+     "budget": null,
+     "budgetBalance": -542000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 62,
+     "number": "0480",
+     "name": "Kleininventar (150 EUR-1.000 EUR)",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 65,
+     "number": "0490",
+     "name": "Andere Anschaffungen",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 68,
+     "number": "0510",
+     "name": "Gewährte Darlehen",
+     "annotation": null,
+     "accountGroupId": 3,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 71,
+     "number": "0520",
+     "name": "Andere langfristige Forderungen",
+     "annotation": null,
+     "accountGroupId": 2,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 77,
+     "number": "0610",
+     "name": "Erhaltene Darlehen",
+     "annotation": null,
+     "accountGroupId": 4,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 80,
+     "number": "0620",
+     "name": "Erhaltene Hypotheken",
+     "annotation": null,
+     "accountGroupId": 4,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 83,
+     "number": "0630",
+     "name": "Erhaltene Kredite",
+     "annotation": null,
+     "accountGroupId": 4,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 86,
+     "number": "0640",
+     "name": "Darlehen von Gemeindemitgliedern",
+     "annotation": null,
+     "accountGroupId": 5,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 89,
+     "number": "0650",
+     "name": "Sonstige erhaltene Darlehen",
+     "annotation": null,
+     "accountGroupId": 6,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 92,
+     "number": "0800",
+     "name": "Kapital",
+     "annotation": null,
+     "accountGroupId": 7,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 95,
+     "number": "0840",
+     "name": "Gesetzliche Rücklagen",
+     "annotation": null,
+     "accountGroupId": 8,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 98,
+     "number": "0850",
+     "name": "Satzungsgemäße Rücklagen",
+     "annotation": null,
+     "accountGroupId": 8,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 101,
+     "number": "0860",
+     "name": "Gewinnvortrag",
+     "annotation": null,
+     "accountGroupId": 9,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 104,
+     "number": "0900",
+     "name": "Abgrenzungsposten",
+     "annotation": null,
+     "accountGroupId": 10,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 74,
+     "number": "1000",
+     "name": "Kasse I",
+     "annotation": null,
+     "accountGroupId": 11,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 107,
+     "number": "1010",
+     "name": "Kasse II",
+     "annotation": null,
+     "accountGroupId": 11,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": -25000,
+     "budget": null,
+     "budgetBalance": 25000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 20,
+     "number": "1060",
+     "name": "Garagen",
+     "annotation": null,
+     "accountGroupId": 1,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 110,
+     "number": "1210",
+     "name": "Sparkasse",
+     "annotation": null,
+     "accountGroupId": 11,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 113,
+     "number": "1220",
+     "name": "Bank Gemeinde",
+     "annotation": null,
+     "accountGroupId": 11,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": -1891000,
+     "budget": null,
+     "budgetBalance": 1891000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2023-09-13T13:52:28Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 116,
+     "number": "1230",
+     "name": "Bank 2",
+     "annotation": null,
+     "accountGroupId": 11,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 208000,
+     "budget": null,
+     "budgetBalance": -208000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 119,
+     "number": "1250",
+     "name": "Festgeldkonto 1",
+     "annotation": null,
+     "accountGroupId": 11,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 122,
+     "number": "1260",
+     "name": "Festgeldkonto 2",
+     "annotation": null,
+     "accountGroupId": 11,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 125,
+     "number": "1360",
+     "name": "Geldtransit",
+     "annotation": null,
+     "accountGroupId": 11,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 128,
+     "number": "1500",
+     "name": "Sonstige Forderungen (Kurzfristige)",
+     "annotation": null,
+     "accountGroupId": 3,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 131,
+     "number": "1515",
+     "name": "Ausgeliehene Gelder",
+     "annotation": null,
+     "accountGroupId": 3,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 134,
+     "number": "1520",
+     "name": "Gehaltsvorschüsse ",
+     "annotation": null,
+     "accountGroupId": 3,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 137,
+     "number": "1570",
+     "name": "Vorsteuer 19%",
+     "annotation": null,
+     "accountGroupId": 13,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 140,
+     "number": "1571",
+     "name": "Vorsteuer 7%",
+     "annotation": null,
+     "accountGroupId": 13,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 143,
+     "number": "1590",
+     "name": "Durchlaufende Posten",
+     "annotation": null,
+     "accountGroupId": 14,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 146,
+     "number": "1591",
+     "name": "Durchlaufende Spenden (z.B. Patenschaften)",
+     "annotation": null,
+     "accountGroupId": 14,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 149,
+     "number": "1592",
+     "name": "Durchlaufende Opfergelder",
+     "annotation": null,
+     "accountGroupId": 14,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 152,
+     "number": "1593",
+     "name": "Sonstige durchlaufende Posten",
+     "annotation": null,
+     "accountGroupId": 14,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 155,
+     "number": "1700",
+     "name": "Sonst. Verbindlichkeiten (Kurzfristig)",
+     "annotation": null,
+     "accountGroupId": 14,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 158,
+     "number": "1741",
+     "name": "Verbindlichkeiten Finanzamt",
+     "annotation": null,
+     "accountGroupId": 14,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 161,
+     "number": "1742",
+     "name": "Verbindlichkeiten Krankenkassen",
+     "annotation": null,
+     "accountGroupId": 14,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 164,
+     "number": "1743",
+     "name": "Verbindlichkeiten Berufsgenossenschaft",
+     "annotation": null,
+     "accountGroupId": 14,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 167,
+     "number": "1770",
+     "name": "Mehrwertsteuer (Umsatzsteuer) 19%",
+     "annotation": null,
+     "accountGroupId": 13,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 170,
+     "number": "1771",
+     "name": "Mehrwertsteuer (Umsatzsteuer) 7%",
+     "annotation": null,
+     "accountGroupId": 13,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 173,
+     "number": "1780",
+     "name": "Umsatzsteuer-Vorauszahlungen",
+     "annotation": null,
+     "accountGroupId": 15,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 176,
+     "number": "1790",
+     "name": "Umsatzsteuer für Vorjahre",
+     "annotation": null,
+     "accountGroupId": 15,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 179,
+     "number": "2000",
+     "name": "Außerordentliche Aufwendungen",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 182,
+     "number": "2110",
+     "name": "Zinsen für kurzfr. Verbindlichkeiten",
+     "annotation": null,
+     "accountGroupId": 17,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 185,
+     "number": "2120",
+     "name": "Zinsen für langfr. Verbindlichkeiten",
+     "annotation": null,
+     "accountGroupId": 17,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 188,
+     "number": "2200",
+     "name": "Körperschaftssteuer",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 191,
+     "number": "2210",
+     "name": "Kapitalertragssteuer",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 194,
+     "number": "2220",
+     "name": "Vermögenssteuer",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 197,
+     "number": "2350",
+     "name": "Haus- u. Grundsteueraufwendungen allgem.",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 200,
+     "number": "2351",
+     "name": "Aufwendungen Kirchengebäude",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 203,
+     "number": "2352",
+     "name": "Aufwendungen Gemeindesaal",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 206,
+     "number": "2353",
+     "name": "Aufwendungen Pastorei (z.B. Reparaturen)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 209,
+     "number": "2354",
+     "name": "Aufwendungen Dienstwohnung",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 212,
+     "number": "2500",
+     "name": "Außerordentliche Erträge",
+     "annotation": null,
+     "accountGroupId": 19,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 215,
+     "number": "2650",
+     "name": "Zinserträge",
+     "annotation": null,
+     "accountGroupId": 19,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 218,
+     "number": "2750",
+     "name": "Haus- u. Grundsteuer-Erträge allgem.",
+     "annotation": null,
+     "accountGroupId": 20,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 221,
+     "number": "2751",
+     "name": "Erträge Kirchengebäude (Miete v. Fremden)",
+     "annotation": null,
+     "accountGroupId": 20,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:21Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:21Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 224,
+     "number": "2752",
+     "name": "Erträge Gemeindesaal (Miete von Fremden)",
+     "annotation": null,
+     "accountGroupId": 20,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 227,
+     "number": "2753",
+     "name": "Erträge Pastorei (Miete von Fremden)",
+     "annotation": null,
+     "accountGroupId": 20,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 230,
+     "number": "4100",
+     "name": "Personalkosten (Gehälter etc.)",
+     "annotation": null,
+     "accountGroupId": 21,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": -3474000,
+     "budget": null,
+     "budgetBalance": -3474000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 233,
+     "number": "4130",
+     "name": "Gesetzliche soziale Aufwendungen",
+     "annotation": null,
+     "accountGroupId": 22,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 236,
+     "number": "4140",
+     "name": "Freiwillige soziale Aufwendungen",
+     "annotation": null,
+     "accountGroupId": 22,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 239,
+     "number": "4150",
+     "name": "Erstattete Fahrtkosten (Km-Geld)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 242,
+     "number": "4160",
+     "name": "Sonst. Erstattungen (z.B. Telefon)",
+     "annotation": null,
+     "accountGroupId": 22,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 245,
+     "number": "4170",
+     "name": "Vermögenswirksame Leistungen",
+     "annotation": null,
+     "accountGroupId": 22,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 248,
+     "number": "4180",
+     "name": "BFDler / Praktikanten",
+     "annotation": null,
+     "accountGroupId": 21,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 251,
+     "number": "4190",
+     "name": "Aushilfslöhne",
+     "annotation": null,
+     "accountGroupId": 21,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 254,
+     "number": "4210",
+     "name": "Miete / Pacht(ausgaben)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 257,
+     "number": "4220",
+     "name": "Wasser",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 260,
+     "number": "4230",
+     "name": "Heizung (Gas, Öl)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 263,
+     "number": "4240",
+     "name": "Strom",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": -216000,
+     "budget": null,
+     "budgetBalance": -216000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 266,
+     "number": "4250",
+     "name": "Reinigungskosten",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 269,
+     "number": "4260",
+     "name": "Instandhaltungen der gemieteten Räume",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 272,
+     "number": "4280",
+     "name": "Kirchenschmuck",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 275,
+     "number": "4290",
+     "name": "Sonstige Raumkosten",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 278,
+     "number": "4360",
+     "name": "Versicherungen (z.B. Haftpflicht)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 281,
+     "number": "4380",
+     "name": "Beiträge (z.B. GEMA, BFP, etc.)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 284,
+     "number": "4390",
+     "name": "Sonst. Abgaben (z.B. Standgebühren)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 287,
+     "number": "4400",
+     "name": "Chorarbeit",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 290,
+     "number": "4401",
+     "name": "Sonntagsschule",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 293,
+     "number": "4402",
+     "name": "Jungschararbeit",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 296,
+     "number": "4403",
+     "name": "Teenagerarbeit",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 299,
+     "number": "4404",
+     "name": "Jugendarbeit",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": -70000,
+     "budget": null,
+     "budgetBalance": -70000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 302,
+     "number": "4405",
+     "name": "Seniorenarbeit",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 305,
+     "number": "4406",
+     "name": "Frauenarbeit",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 308,
+     "number": "4407",
+     "name": "Mission (Innen- und Außenmission)",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 311,
+     "number": "4408",
+     "name": "Gemeindeaktivitäten",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 314,
+     "number": "4409",
+     "name": "Kleine Anschaffungen f. eigene Gemeinde",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 317,
+     "number": "4410",
+     "name": "Geschenke für besondere Anlässe",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 320,
+     "number": "4411",
+     "name": "Andere Ausgaben (selbst benennen 1)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 323,
+     "number": "4412",
+     "name": "Andere Ausgaben (selbst benennen 2)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 326,
+     "number": "4420",
+     "name": "Spenden allgemein",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 329,
+     "number": "4421",
+     "name": "Spenden f. Aufgaben des Gemeindebundes",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 332,
+     "number": "4422",
+     "name": "Spenden für (selbst benennen 1)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 335,
+     "number": "4423",
+     "name": "Spenden für (selbst benennen 2)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 338,
+     "number": "4430",
+     "name": "Gewährte Unterstützungen allgemein",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 341,
+     "number": "4431",
+     "name": "Unterstützungen für (selbst benennen 1)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 344,
+     "number": "4432",
+     "name": "Unterstützungen für (selbst benennen 2)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 347,
+     "number": "4433",
+     "name": "Sonstige Unterstützungen",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 350,
+     "number": "4500",
+     "name": "Fahrzeugkosten (wenn das Auto auf den Namen d. Gemeinde zugelassen ist)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 353,
+     "number": "4610",
+     "name": "Repräsentationskosten",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 356,
+     "number": "4611",
+     "name": "Werbung und Anzeigen",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 359,
+     "number": "4612",
+     "name": "Gemeindebrief",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 362,
+     "number": "4660",
+     "name": "Reisekosten, Tagungen, etc.",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 365,
+     "number": "4780",
+     "name": "Fremde Pastoren",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 368,
+     "number": "4782",
+     "name": "Fremde Musiker",
+     "annotation": null,
+     "accountGroupId": 24,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 371,
+     "number": "4800",
+     "name": "Reparaturen an Maschinen",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 374,
+     "number": "4801",
+     "name": "Reparaturen am Inventar",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 377,
+     "number": "4802",
+     "name": "Hausmeisterbedarf (Werkzeug)",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 380,
+     "number": "4900",
+     "name": "Sonstige Kosten",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 383,
+     "number": "4910",
+     "name": "Porto",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 386,
+     "number": "4920",
+     "name": "Telefon / Fax",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 389,
+     "number": "4930",
+     "name": "Bürobedarf",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 392,
+     "number": "4940",
+     "name": "Fachliteratur",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 395,
+     "number": "4950",
+     "name": "Rechts- und Beratungskosten",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": true,
+     "isMandatoryEubpLocked": true,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 398,
+     "number": "4970",
+     "name": "Nebenkosten des Geldverkehrs",
+     "annotation": null,
+     "accountGroupId": 23,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 401,
+     "number": "8001",
+     "name": "Kollekten",
+     "annotation": null,
+     "accountGroupId": 25,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 404,
+     "number": "8002",
+     "name": "Gemeindebeitrag",
+     "annotation": null,
+     "accountGroupId": 25,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 407,
+     "number": "8003",
+     "name": "Einnahmen aus (selbst benennen 1)",
+     "annotation": null,
+     "accountGroupId": 25,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 410,
+     "number": "8004",
+     "name": "Einnahmen aus (selbst benennen 2)",
+     "annotation": null,
+     "accountGroupId": 25,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 413,
+     "number": "8010",
+     "name": "Spendeneinnahmen",
+     "annotation": null,
+     "accountGroupId": 25,
+     "accountingPeriodId": 1,
+     "isDonationAccount": true,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 2594000,
+     "budget": null,
+     "budgetBalance": 2594000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 416,
+     "number": "8011",
+     "name": "Spendeneinnahmen für (selbst benennen 1)",
+     "annotation": null,
+     "accountGroupId": 25,
+     "accountingPeriodId": 1,
+     "isDonationAccount": true,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 419,
+     "number": "8012",
+     "name": "Spendeneinnahmen für (selbst benennen 2)",
+     "annotation": null,
+     "accountGroupId": 25,
+     "accountingPeriodId": 1,
+     "isDonationAccount": true,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 422,
+     "number": "8510",
+     "name": "Mieteinnahme für Dienstwohnung",
+     "annotation": null,
+     "accountGroupId": 26,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 425,
+     "number": "8520",
+     "name": "Einnahme Nebenkosten f. Dienstwohnung",
+     "annotation": null,
+     "accountGroupId": 26,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": false,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    },
+    {
+     "id": 428,
+     "number": "9000",
+     "name": "Saldovortragskonten",
+     "annotation": null,
+     "accountGroupId": 9,
+     "accountingPeriodId": 1,
+     "isDonationAccount": false,
+     "isOpeningBalanceAccount": true,
+     "taxRateId": null,
+     "identifier": null,
+     "balance": 0,
+     "budget": null,
+     "budgetBalance": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": 0,
+     "isMandatoryEubp": false,
+     "isMandatoryEubpLocked": false,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "allowPosting": true
+     }
+    }
+   ],
+   "cashDiscounts": [
+    {
+     "id": 13,
+     "rate": 2,
+     "note": "ctrs-test",
+     "accountId": 2,
+     "meta": {
+      "createdDate": "2026-10-28T22:34:55Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-28T22:34:55Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    }
+   ],
+   "taxRates": [
+    {
+     "id": 2,
+     "taxTypeId": 1,
+     "rate": 19,
+     "note": "Umsatzsteuer 19%",
+     "accountId": 167,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    },
+    {
+     "id": 5,
+     "taxTypeId": 2,
+     "rate": 19,
+     "note": "Vorsteuer 19%",
+     "accountId": 137,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    },
+    {
+     "id": 8,
+     "taxTypeId": 2,
+     "rate": 7,
+     "note": "Vorsteuer 7%",
+     "accountId": 140,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    },
+    {
+     "id": 11,
+     "taxTypeId": 1,
+     "rate": 7,
+     "note": "Umsatzsteuer 7%",
+     "accountId": 170,
+     "meta": {
+      "createdDate": "2020-05-13T12:55:22Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T12:55:22Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    }
+   ],
+   "taxTypes": [
+    {
+     "id": 1,
+     "name": "Umsatzsteuer",
+     "sortKey": 10,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    },
+    {
+     "id": 2,
+     "name": "Vorsteuer",
+     "sortKey": 20,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": -1
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     }
+    }
+   ],
+   "transactionPurposes": [],
+   "costCenters": [
+    {
+     "id": 1,
+     "number": "1",
+     "name": "Allgemein",
+     "annotation": null,
+     "budget": null,
+     "budgetBalance": null,
+     "budgetSpent": -2086000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": null,
+     "accountingPeriodId": 1,
+     "meta": {
+      "createdDate": "2019-08-08T18:09:41Z",
+      "createdPerson": {
+       "id": 2147483647
+      },
+      "modifiedDate": "2019-08-08T18:09:41Z",
+      "modifiedPerson": {
+       "id": 2147483647
+      }
+     },
+     "group": null
+    },
+    {
+     "id": 16,
+     "number": "200100",
+     "name": "Technik",
+     "annotation": null,
+     "budget": 450000,
+     "budgetBalance": 20000,
+     "budgetSpent": 430000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": null,
+     "accountingPeriodId": 1,
+     "meta": {
+      "createdDate": "2020-05-13T15:04:23Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T15:04:23Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "group": {
+      "title": "Technik",
+      "domainType": "group",
+      "domainIdentifier": "7",
+      "apiUrl": "https://gemeinde.example/api/groups/7",
+      "frontendUrl": "https://gemeinde.example/groups/7",
+      "imageUrl": "https://gemeinde.example/images/720/30305361b1f895af1ca4089e0c855233a9301812a493d43a7a592b4cb5c19d57",
+      "icon": "users",
+      "color": {
+       "key": "lime",
+       "shade": null
+      },
+      "initials": "T",
+      "domainAttributes": {
+       "note": "",
+       "groupStatusId": 1,
+       "groupTypeId": 2,
+       "campusId": null,
+       "visibility": "intern",
+       "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+      },
+      "infos": [
+       "Team"
+      ]
+     }
+    },
+    {
+     "id": 19,
+     "number": "200200",
+     "name": "Jugend",
+     "annotation": null,
+     "budget": 340000,
+     "budgetBalance": 450000,
+     "budgetSpent": -110000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": null,
+     "accountingPeriodId": 1,
+     "meta": {
+      "createdDate": "2020-05-13T15:04:53Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T15:04:53Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "group": {
+      "title": "#1 Bereich Jugend",
+      "domainType": "group",
+      "domainIdentifier": "136",
+      "apiUrl": "https://gemeinde.example/api/groups/136",
+      "frontendUrl": "https://gemeinde.example/groups/136",
+      "imageUrl": "https://gemeinde.example/images/2840/3103aba9436c00ce9cec06de2e87ae80f3e9a98ac36e1a711e7daa861f63ed78",
+      "icon": "users",
+      "color": {
+       "key": "black",
+       "shade": null
+      },
+      "initials": "1",
+      "domainAttributes": {
+       "note": "",
+       "groupStatusId": 1,
+       "groupTypeId": 2,
+       "campusId": null,
+       "visibility": "restricted",
+       "guid": "408D1309-6577-4DD0-A0E9-318705F2AB51"
+      },
+      "infos": [
+       "Team"
+      ]
+     }
+    },
+    {
+     "id": 22,
+     "number": "200300",
+     "name": "Kinder Kirche",
+     "annotation": null,
+     "budget": 320000,
+     "budgetBalance": 320000,
+     "budgetSpent": 0,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": null,
+     "accountingPeriodId": 1,
+     "meta": {
+      "createdDate": "2020-05-13T15:06:09Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2020-05-13T15:06:09Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "group": {
+      "title": "#1 Bereich Kinder",
+      "domainType": "group",
+      "domainIdentifier": "39",
+      "apiUrl": "https://gemeinde.example/api/groups/39",
+      "frontendUrl": "https://gemeinde.example/groups/39",
+      "imageUrl": "https://gemeinde.example/images/2843/864000d092d5028a70e2b586cdf57f2b3d9ea7f065970b3830315e8525f0c22d",
+      "icon": "users",
+      "color": {
+       "key": "gray",
+       "shade": null
+      },
+      "initials": "1",
+      "domainAttributes": {
+       "note": "",
+       "groupStatusId": 1,
+       "groupTypeId": 2,
+       "campusId": null,
+       "visibility": "restricted",
+       "guid": "652BADC9-82F7-44A2-B180-C45B184F7D9B"
+      },
+      "infos": [
+       "Team"
+      ]
+     }
+    },
+    {
+     "id": 29,
+     "number": "200800",
+     "name": "Personalkosten",
+     "annotation": null,
+     "budget": 3000000,
+     "budgetBalance": -474000,
+     "budgetSpent": 3474000,
+     "budgetLastPeriod": null,
+     "budgetBalanceLastPeriod": null,
+     "accountingPeriodId": 1,
+     "meta": {
+      "createdDate": "2025-09-18T00:09:06Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2025-09-18T00:15:48Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "group": null
+    }
+   ]
+  },
+  "meta": {
+   "clientsCount": 1,
+   "accountingPeriodCount": 3,
+   "accountsCount": 143,
+   "accountTypesCount": 3,
+   "accountClassesCount": 10,
+   "accountGroupsCount": 23,
+   "cashDiscountsCount": 1,
+   "costCentersCount": 5,
+   "taxRatesCount": 4,
+   "taxTypesCount": 2,
+   "transactionPurposesCount": 0,
+   "allowedClients": 10
+  },
+  "permissions": {
+   "editMasterData": true,
+   "canViewDonators": true,
+   "canViewTransactions": true,
+   "canViewAllTransactions": true,
+   "canViewBudgets": true,
+   "canViewReports": true
+  }
+ }
+}

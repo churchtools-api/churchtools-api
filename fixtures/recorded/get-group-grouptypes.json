@@ -1,0 +1,166 @@
+{
+ "operation": "get-group-grouptypes",
+ "request": {
+  "method": "GET",
+  "path": "/group/grouptypes",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Kleingruppe",
+    "nameTranslated": "Kleingruppe",
+    "sortKey": 10,
+    "namePlural": "Kleingruppen",
+    "namePluralTranslated": "Kleingruppen",
+    "color": "sky",
+    "shorty": "KG",
+    "description": null,
+    "isLeaderNecessary": true,
+    "availableForNewPerson": true,
+    "permissionDepth": 999,
+    "postsEnabled": true,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-04-14T10:50:49Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 2,
+    "name": "Team",
+    "nameTranslated": "Team",
+    "sortKey": 20,
+    "namePlural": "Teams",
+    "namePluralTranslated": "Teams",
+    "color": "lime",
+    "shorty": "T",
+    "description": null,
+    "isLeaderNecessary": false,
+    "availableForNewPerson": true,
+    "permissionDepth": 1,
+    "postsEnabled": true,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-09-15T15:22:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 3,
+    "name": "Veranstaltung",
+    "nameTranslated": "Veranstaltung",
+    "sortKey": 30,
+    "namePlural": "Veranstaltungen",
+    "namePluralTranslated": "Veranstaltungen",
+    "color": "amber",
+    "shorty": "VA",
+    "description": null,
+    "isLeaderNecessary": false,
+    "availableForNewPerson": true,
+    "permissionDepth": 1,
+    "postsEnabled": true,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-04-14T10:50:49Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 4,
+    "name": "Verteiler",
+    "nameTranslated": "Verteiler",
+    "sortKey": 40,
+    "namePlural": "Verteiler",
+    "namePluralTranslated": "Verteiler",
+    "color": "teal",
+    "shorty": "VT",
+    "description": null,
+    "isLeaderNecessary": false,
+    "availableForNewPerson": true,
+    "permissionDepth": 4,
+    "postsEnabled": true,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-04-14T10:50:49Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 5,
+    "name": "Schlüssel",
+    "nameTranslated": "Schlüssel",
+    "sortKey": 50,
+    "namePlural": "Schlüssel",
+    "namePluralTranslated": "Schlüssel",
+    "color": "fuchsia",
+    "shorty": "SL",
+    "description": null,
+    "isLeaderNecessary": false,
+    "availableForNewPerson": false,
+    "permissionDepth": 0,
+    "postsEnabled": false,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-04-14T10:50:49Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 6,
+    "name": "Prozesse",
+    "nameTranslated": "Prozesse",
+    "sortKey": 60,
+    "namePlural": "Prozesse",
+    "namePluralTranslated": "Prozesse",
+    "color": "red",
+    "shorty": "Pr",
+    "description": null,
+    "isLeaderNecessary": false,
+    "availableForNewPerson": true,
+    "permissionDepth": 0,
+    "postsEnabled": true,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-08-17T10:28:37Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 6
+  }
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "operation": "get-finance-accountingperiods-id-accounts-statements",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accountingperiods/1/accounts/statements",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "accountId": 2,
+    "open": 1
+   }
+  ]
+ }
+}

@@ -1,0 +1,86 @@
+{
+ "operation": "get-persons-id-servicerequests-id",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/servicerequests/30587",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 30587,
+   "personId": 1,
+   "person": {
+    "title": "Armin Adendorf",
+    "domainType": "person",
+    "domainIdentifier": "1",
+    "apiUrl": "https://gemeinde.example/api/persons/1",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+    "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+    "icon": "user",
+    "color": null,
+    "initials": "AA",
+    "domainAttributes": {
+     "firstName": "Armin",
+     "lastName": "Adendorf",
+     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": []
+   },
+   "name": "Armin Adendorf",
+   "serviceId": 6,
+   "serviceName": "Ton",
+   "index": null,
+   "isValid": true,
+   "isAccepted": true,
+   "comment": null,
+   "requesterPersonId": 1,
+   "requesterPerson": {
+    "title": "Armin Adendorf",
+    "domainType": "person",
+    "domainIdentifier": "1",
+    "apiUrl": "https://gemeinde.example/api/persons/1",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+    "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+    "icon": "user",
+    "color": null,
+    "initials": "AA",
+    "domainAttributes": {
+     "firstName": "Armin",
+     "lastName": "Adendorf",
+     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": []
+   },
+   "event": {
+    "id": 1878,
+    "name": "Gebetsabend",
+    "startDate": "2025-08-05T17:00:00Z"
+   },
+   "allowChat": true,
+   "permissions": null,
+   "meta": {
+    "createdDate": "2026-01-18T11:25:57Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-01-23T10:47:35Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "agreed": "isAccepted",
+    "counter": "index",
+    "requestedDate": "meta.modifiedDate"
+   },
+   "agreed": true,
+   "counter": 0,
+   "requestedDate": "2026-01-23T10:47:35Z"
+  }
+ }
+}

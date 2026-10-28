@@ -1,0 +1,195 @@
+"""Offline tests against a local fake ChurchTools server."""
+
+from __future__ import annotations
+
+import datetime as dt
+import json
+import threading
+import time
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import parse_qs, urlsplit
+
+import pytest
+
+import churchtools_rs as ct
+
+
+def person(id: int, first_name: str) -> dict:
+    return {
+        "id": id,
+        "guid": f"guid-{id}",
+        "firstName": first_name,
+        "lastName": "X",
+        "securityLevelForPerson": 1,
+        "editSecurityLevelForPerson": 1,
+    }
+
+
+class FakeServer(BaseHTTPRequestHandler):
+    requests: list[dict] = []
+    busy_calls = 0
+
+    def log_message(self, *args) -> None:
+        pass
+
+    def _reply(self, status: int, payload) -> None:
+        body = json.dumps(payload).encode()
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _handle(self, method: str) -> None:
+        url = urlsplit(self.path)
+        length = int(self.headers.get("Content-Length") or 0)
+        raw = self.rfile.read(length) if length else b""
+        content_type = self.headers.get("Content-Type") or ""
+        body = json.loads(raw) if raw and content_type.startswith("application/json") else raw or None
+        query = parse_qs(url.query)
+        FakeServer.requests.append(
+            {
+                "method": method,
+                "path": url.path,
+                "query": query,
+                "body": body,
+                "content_type": content_type,
+                "auth": self.headers.get("Authorization"),
+            }
+        )
+        if url.path == "/api/persons" and method == "GET":
+            page = int(query["page"][0])
+            persons = [person(page * 10 + i, f"P{page}{i}") for i in range(2)]
+            self._reply(200, {"data": persons, "meta": {"count": 2, "pagination": {"current": page, "lastPage": 3, "limit": 2, "total": 6}}})
+        elif url.path == "/api/persons/7":
+            self._reply(200, {"data": {**person(7, "Anna"), "birthday": "1990-05-17", "customField": 7}})
+        elif url.path == "/api/groups/404":
+            self._reply(404, {"message": "Group not found", "translatedMessage": "Gruppe nicht gefunden", "messageKey": "group.not_found", "args": [], "errors": []})
+        elif url.path == "/api/persons" and method == "POST":
+            self._reply(201, {"data": person(5, body["firstName"])})
+        elif url.path == "/api/files/person/7" and method == "POST":
+            self._reply(200, {"data": []})
+        elif url.path == "/api/groups/7/meetings" and method == "POST":
+            self._reply(400, {"message": "There are validation errors", "errors": [
+                {"fieldId": "startDate", "message": "Bitte das Datum in folgendem Format eingeben", "args": {}}]})
+        elif url.path == "/api/busy":
+            FakeServer.busy_calls += 1
+            if FakeServer.busy_calls == 1:
+                self.send_response(429)
+                self.send_header("Retry-After", "1")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+            else:
+                self._reply(200, {"data": {"build": "1", "version": "3.138.0"}})
+        else:
+            self._reply(500, {"message": "unexpected"})
+
+    def do_GET(self) -> None:
+        self._handle("GET")
+
+    def do_POST(self) -> None:
+        self._handle("POST")
+
+
+@pytest.fixture
+def client():
+    server = HTTPServer(("127.0.0.1", 0), FakeServer)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    FakeServer.requests = []
+    FakeServer.busy_calls = 0
+    yield ct.Client(f"http://127.0.0.1:{server.server_port}", token="secret")
+    server.shutdown()
+
+
+def test_pagination_fetches_all_pages_lazily(client):
+    persons = client.persons.list(limit=2, ids=[1, 2])
+    assert FakeServer.requests == []  # nothing sent before iterating
+
+    first = persons.first()
+    assert first is not None and first.first_name == "P10"
+    assert len(FakeServer.requests) == 1
+
+    FakeServer.requests.clear()
+    assert [p.id for p in persons] == [10, 11, 20, 21, 30, 31]
+    assert [r["query"]["page"] for r in FakeServer.requests] == [["1"], ["2"], ["3"]]
+    assert FakeServer.requests[0]["query"]["ids[]"] == ["1", "2"]
+    assert FakeServer.requests[0]["auth"] == "Login secret"
+
+
+def test_typed_fields_and_unknown_fields(client):
+    person = client.persons.get(7)
+    assert isinstance(person, ct.models.Person)
+    assert person.first_name == "Anna"
+    assert person.birthday == dt.date(1990, 5, 17)
+    assert person.model_extra == {"customField": 7}
+
+
+def test_api_errors_map_to_exceptions(client):
+    with pytest.raises(ct.NotFound) as info:
+        client.groups.get(404)
+    assert info.value.status == 404
+    assert info.value.message_key == "group.not_found"
+    assert info.value.translated_message == "Gruppe nicht gefunden"
+
+
+def test_body_omits_unset_and_uses_api_names(client):
+    person = client.persons.create(
+        department_ids=[1], first_name="Ben", birthday=None, extra_body={"customField": "x"}, force=True
+    )
+    assert person.id == 5
+    request = FakeServer.requests[-1]
+    # birthday=None is sent as null, unset fields are left out
+    assert request["body"] == {"departmentIds": [1], "firstName": "Ben", "birthday": None, "customField": "x"}
+    assert request["query"] == {"force": ["true"]}
+
+
+def test_query_values_are_formatted(client):
+    events = client.events.list(from_=dt.date(2026, 11, 1), canceled=True)
+    with pytest.raises(ct.ServerError):
+        events.to_list()
+    query = FakeServer.requests[-1]["query"]
+    assert query == {"from": ["2026-11-01"], "canceled": ["true"], "page": ["1"]}
+
+
+def test_transport_error():
+    with pytest.raises(ct.TransportError):
+        ct.Client("http://127.0.0.1:1", timeout=2).persons.get(1)
+
+
+def test_upload_sends_multipart(client):
+    client.files.create("person", 7, files=[ct.Upload("brief.txt", b"Hallo Gemeinde")], sort_key=3)
+    request = FakeServer.requests[-1]
+    assert request["content_type"].startswith("multipart/form-data; boundary=")
+    assert b'name="files[]"; filename="brief.txt"' in request["body"]
+    assert b"Content-Type: text/plain" in request["body"]
+    assert b"Hallo Gemeinde" in request["body"]
+    assert b'name="sortKey"' in request["body"]
+
+
+def test_datetimes_are_sent_as_utc_with_z(client):
+    berlin = dt.timezone(dt.timedelta(hours=1))
+    with pytest.raises(ct.BadRequest) as info:
+        client.groups.meetings.create(7, start_date=dt.datetime(2026, 11, 1, 10, 30, 15, 123456, tzinfo=berlin))
+    assert FakeServer.requests[-1]["body"] == {"startDate": "2026-11-01T09:30:15Z"}
+    # field errors of the server are part of the message
+    assert "startDate: Bitte das Datum" in str(info.value)
+
+
+def test_too_many_requests_is_retried(client):
+    start = time.monotonic()
+    assert client._core.request("GET", "/busy", []) == b'{"data": {"build": "1", "version": "3.138.0"}}'
+    assert FakeServer.busy_calls == 2
+    assert time.monotonic() - start >= 1.0  # waited for Retry-After
+
+
+def test_min_interval_spaces_requests():
+    server = HTTPServer(("127.0.0.1", 0), FakeServer)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    client = ct.Client(f"http://127.0.0.1:{server.server_port}", min_interval=0.2)
+    start = time.monotonic()
+    for _ in range(3):
+        client.persons.get(7)
+    assert time.monotonic() - start >= 0.4
+    server.shutdown()
+

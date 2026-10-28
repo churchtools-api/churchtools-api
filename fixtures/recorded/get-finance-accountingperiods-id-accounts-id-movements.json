@@ -1,0 +1,94 @@
+{
+ "operation": "get-finance-accountingperiods-id-accounts-id-movements",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accountingperiods/1/accounts/2/movements",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 25,
+    "documentDate": "2024-01-02",
+    "valuta": "2024-01-02",
+    "isDebit": false,
+    "isDonation": false,
+    "amount": 5000,
+    "identifier": "",
+    "purpose": "Spende ctrs-test",
+    "personName": "",
+    "transactionCode": "PMNT RCDT ESCT",
+    "description": "Spende ctrs-test",
+    "state": "open",
+    "numberInStatement": 0,
+    "suggestions": [
+     {
+      "id": 178,
+      "name": "accountId",
+      "splitKey": null,
+      "value": "2",
+      "userOverwrite": false,
+      "confidence": 100,
+      "reason": "import"
+     },
+     {
+      "id": 181,
+      "name": "amount",
+      "splitKey": null,
+      "value": "5000",
+      "userOverwrite": false,
+      "confidence": 100,
+      "reason": "import"
+     },
+     {
+      "id": 184,
+      "name": "note",
+      "splitKey": null,
+      "value": "Spende ctrs-test",
+      "userOverwrite": false,
+      "confidence": 90,
+      "reason": "import"
+     },
+     {
+      "id": 187,
+      "name": "documentDate",
+      "splitKey": null,
+      "value": "2024-01-02",
+      "userOverwrite": false,
+      "confidence": 100,
+      "reason": "import"
+     },
+     {
+      "id": 190,
+      "name": "bills",
+      "splitKey": null,
+      "value": "",
+      "userOverwrite": true,
+      "confidence": 0,
+      "reason": "import"
+     },
+     {
+      "id": 193,
+      "name": "isDonation",
+      "splitKey": null,
+      "value": "1",
+      "userOverwrite": false,
+      "confidence": 80,
+      "reason": "purpose_analysis"
+     }
+    ],
+    "transactionId": null
+   }
+  ],
+  "meta": {
+   "count": 1,
+   "pagination": {
+    "total": 1,
+    "limit": 100,
+    "current": 1,
+    "lastPage": 1
+   }
+  }
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "operation": "get-info",
+ "request": {
+  "method": "GET",
+  "path": "/info",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "build": "32935",
+  "version": "3.138.0",
+  "siteName": "ChuToo Church",
+  "shortName": "CTC",
+  "address": {
+   "id": 2,
+   "domainType": "church",
+   "domainIdentifier": "2",
+   "name": "ChuToo Church",
+   "icon": null,
+   "color": null,
+   "street": "Jungfernstieg 10",
+   "addition": null,
+   "district": null,
+   "zip": "20354",
+   "city": "Hamburg",
+   "country": "DE",
+   "latitude": null,
+   "longitude": null,
+   "latitudeLoose": null,
+   "longitudeLoose": null,
+   "@deprecated": {
+    "meetingAt": "name",
+    "markerIcon": "icon",
+    "markerColor": "color",
+    "postalcode": "zip",
+    "markerUrl": "@deleted use icon and color instead",
+    "geoLat": "latitude",
+    "geoLng": "longitude"
+   },
+   "meetingAt": "ChuToo Church",
+   "markerIcon": null,
+   "markerColor": null,
+   "markerUrl": null,
+   "postalcode": "20354",
+   "geoLat": null,
+   "geoLng": null
+  }
+ }
+}

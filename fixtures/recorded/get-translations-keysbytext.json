@@ -1,0 +1,22 @@
+{
+ "operation": "get-translations-keysbytext",
+ "request": {
+  "method": "GET",
+  "path": "/translations/keysbytext",
+  "query": [
+   [
+    "query",
+    "Go"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [
+   []
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

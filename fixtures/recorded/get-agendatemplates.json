@@ -1,0 +1,3121 @@
+{
+ "operation": "get-agendatemplates",
+ "request": {
+  "method": "GET",
+  "path": "/agendatemplates",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 2,
+    "name": "Gottesdienst mit Lobpreis nach Predigt",
+    "series": null,
+    "isLocked": false,
+    "eventStartPosition": 1,
+    "calendarId": 2,
+    "total": 7,
+    "meta": {
+     "createdDate": "-0001-11-29T23:06:32Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "-0001-11-29T23:06:32Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    },
+    "@deprecated": {
+     "isFinal": "isLocked"
+    },
+    "isFinal": false,
+    "items": [
+     {
+      "id": 13,
+      "title": "Countdown",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2023-02-14T12:31:48Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2023-12-26T12:31:48Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 0,
+      "note": "",
+      "responsible": {
+       "text": "[Video]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 14,
+      "title": "Opener Song",
+      "type": "song",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2023-02-14T12:33:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2023-12-26T12:33:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 1,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 1,
+       "arrangementId": 1,
+       "title": "Halleluja",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "C",
+       "bpm": 120,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 15,
+      "title": "Begrüßung",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2023-04-25T14:55:57Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2024-03-05T15:55:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 2,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 16,
+      "title": "Predigt",
+      "type": "text",
+      "duration": 1800,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2023-04-25T14:55:57Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2024-03-05T15:55:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 3,
+      "note": "",
+      "responsible": {
+       "text": "[Predigt]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 18,
+      "title": "Lobpreisteil",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2023-04-27T07:43:47Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2024-03-07T08:43:47Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 4,
+      "calculatedDuration": 600
+     },
+     {
+      "id": 19,
+      "title": "Der Song \"Höher\" wurde gelöscht",
+      "type": "text",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2023-04-27T07:43:47Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2024-03-07T08:43:47Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 5,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 22,
+      "title": "",
+      "type": "song",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2023-04-27T09:57:49Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2024-03-07T10:57:49Z",
+       "modifiedPerson": {
+        "id": 4
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 6,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 1,
+       "arrangementId": 1,
+       "title": "Halleluja",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "C",
+       "bpm": 120,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 17,
+      "title": "Segen",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2023-04-25T14:55:57Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2024-03-05T15:55:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 7,
+      "note": "",
+      "responsible": {
+       "text": "[Predigt]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     }
+    ]
+   },
+   {
+    "id": 82,
+    "name": "Gottesdienst Standard",
+    "series": null,
+    "isLocked": false,
+    "eventStartPosition": 4,
+    "calendarId": 2,
+    "total": 20,
+    "meta": {
+     "createdDate": "2025-07-18T21:37:17Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-18T21:37:17Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    },
+    "@deprecated": {
+     "isFinal": "isLocked"
+    },
+    "isFinal": false,
+    "items": [
+     {
+      "id": 769,
+      "title": "Soundcheck + Probe",
+      "type": "text",
+      "duration": 5400,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-12-12T22:37:17Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-23T21:37:17Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 0,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung], [Ton]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 772,
+      "title": "Mitarbeiter-Gebet",
+      "type": "text",
+      "duration": 600,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 1,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 778,
+      "title": "Einlass",
+      "type": "text",
+      "duration": 900,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 2,
+      "note": "",
+      "responsible": {
+       "text": "[Ordner]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Musik im Hintergrund"
+       },
+       {
+        "serviceGroupId": 5,
+        "note": "Türen bitte aufmachen"
+       }
+      ]
+     },
+     {
+      "id": 775,
+      "title": "Countdown",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-11-28T09:57:00Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:57:00Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 3,
+      "note": "",
+      "responsible": {
+       "text": "[Beamer]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Bitte rechtzeitig starten!"
+       }
+      ]
+     },
+     {
+      "id": 757,
+      "title": "Einstiegslied",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:40:14Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:40:14Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 4,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Alle Instrumente und Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 1048,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T11:06:23Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T10:06:23Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 5,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 763,
+      "title": "Begrüßung",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 6,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 1,
+        "note": "Willkommen \nheißen!"
+       },
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 760,
+      "title": "Lobpreis",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:50Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:50Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 7,
+      "calculatedDuration": 1200
+     },
+     {
+      "id": 766,
+      "title": "Lobpreis",
+      "type": "text",
+      "duration": 1200,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 8,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1057,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T11:06:23Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T10:06:23Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 9,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1058,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-03T11:00:27Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-14T10:00:27Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 10,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 1,
+       "arrangementId": 1,
+       "title": "Halleluja",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "C",
+       "bpm": 120,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1061,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-03T11:00:27Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-14T10:00:27Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 11,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 44,
+       "arrangementId": 62,
+       "title": "I Am Thine O Lord",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "G",
+       "bpm": null,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 784,
+      "title": "Predigt",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:44Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:44Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 12,
+      "calculatedDuration": 2100
+     },
+     {
+      "id": 781,
+      "title": "Predigt",
+      "type": "text",
+      "duration": 1800,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 13,
+      "note": "",
+      "responsible": {
+       "text": "[Predigt]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 787,
+      "title": "Lied",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 14,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1054,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T11:06:23Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T10:06:23Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 15,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 805,
+      "title": "SCHLUSSTEIL",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:53Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:53Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 16,
+      "calculatedDuration": 960
+     },
+     {
+      "id": 790,
+      "title": "Überleitung zur Kollekte",
+      "type": "text",
+      "duration": 180,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:18Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:18Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 17,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 793,
+      "title": "Kollekte",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:19Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:19Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 18,
+      "note": "",
+      "responsible": {
+       "text": "[Ordner]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 5,
+        "note": "Kollekte einsammeln"
+       }
+      ]
+     },
+     {
+      "id": 796,
+      "title": "Ansagen",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:23Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:23Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 19,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 799,
+      "title": "Begrüßung Gäste/Erstbesucher",
+      "type": "text",
+      "duration": 240,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:31Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:31Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 20,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 5,
+        "note": "Taschen verteilen"
+       }
+      ]
+     },
+     {
+      "id": 802,
+      "title": "Segen",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 21,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 811,
+      "title": "Nachspielzeit",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 22,
+      "calculatedDuration": 1800
+     },
+     {
+      "id": 808,
+      "title": "Kaffeebar",
+      "type": "text",
+      "duration": 1800,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:11Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:11Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 23,
+      "note": "",
+      "responsible": {
+       "text": "[Kaffeebar Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Musik im Hintergrund"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": 95,
+    "name": "Jugendgottesdienst",
+    "series": null,
+    "isLocked": false,
+    "eventStartPosition": 4,
+    "calendarId": 3,
+    "total": 18,
+    "meta": {
+     "createdDate": "2025-07-18T21:37:51Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-18T21:37:51Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    },
+    "@deprecated": {
+     "isFinal": "isLocked"
+    },
+    "isFinal": false,
+    "items": [
+     {
+      "id": 1076,
+      "title": "Soundcheck + Probe",
+      "type": "text",
+      "duration": 5400,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-12-12T22:37:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-23T21:37:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 0,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung], [Ton]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1079,
+      "title": "Mitarbeiter-Gebet",
+      "type": "text",
+      "duration": 600,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 1,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1085,
+      "title": "Einlass",
+      "type": "text",
+      "duration": 900,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 2,
+      "note": "",
+      "responsible": {
+       "text": "[Ordner]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Musik im Hintergrund"
+       },
+       {
+        "serviceGroupId": 5,
+        "note": "Türen bitte aufmachen"
+       }
+      ]
+     },
+     {
+      "id": 1082,
+      "title": "Countdown",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-11-28T09:57:00Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:57:00Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 3,
+      "note": "",
+      "responsible": {
+       "text": "[Beamer]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Bitte rechtzeitig starten!"
+       }
+      ]
+     },
+     {
+      "id": 1070,
+      "title": "Begrüßung",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 4,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 1,
+        "note": "Willkommen \nheißen!"
+       },
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 1067,
+      "title": "Lobpreis",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:50Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:50Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 5,
+      "calculatedDuration": 1500
+     },
+     {
+      "id": 1073,
+      "title": "Lobpreis",
+      "type": "text",
+      "duration": 1200,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 6,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Alle Instrumente und Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 1127,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T11:06:23Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T10:06:23Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 7,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1130,
+      "title": "",
+      "type": "song",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-03T11:02:02Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-14T10:02:02Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 8,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 1,
+       "arrangementId": 1,
+       "title": "Halleluja",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "C",
+       "bpm": 120,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1133,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-03T11:02:02Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-14T10:02:02Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 9,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 44,
+       "arrangementId": 62,
+       "title": "I Am Thine O Lord",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "G",
+       "bpm": null,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1091,
+      "title": "Predigt",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:44Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:44Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 10,
+      "calculatedDuration": 2100
+     },
+     {
+      "id": 1088,
+      "title": "Predigt",
+      "type": "text",
+      "duration": 1800,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 11,
+      "note": "",
+      "responsible": {
+       "text": "[Predigt]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 1094,
+      "title": "Lied",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 12,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1124,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T11:06:23Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T10:06:23Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 13,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1112,
+      "title": "SCHLUSSTEIL",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:53Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:53Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 14,
+      "calculatedDuration": 960
+     },
+     {
+      "id": 1097,
+      "title": "Überleitung zur Kollekte",
+      "type": "text",
+      "duration": 180,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:18Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:18Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 15,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1100,
+      "title": "Kollekte",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:19Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:19Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 16,
+      "note": "",
+      "responsible": {
+       "text": "[Ordner]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 5,
+        "note": "Kollekte einsammeln"
+       }
+      ]
+     },
+     {
+      "id": 1103,
+      "title": "Ansagen",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:23Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:23Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 17,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1106,
+      "title": "Begrüßung Gäste/Erstbesucher",
+      "type": "text",
+      "duration": 240,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:31Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:31Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 18,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 5,
+        "note": "Taschen verteilen"
+       }
+      ]
+     },
+     {
+      "id": 1109,
+      "title": "Segen",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 19,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1118,
+      "title": "Nachspielzeit",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 20,
+      "calculatedDuration": 1800
+     },
+     {
+      "id": 1115,
+      "title": "JugendCafe",
+      "type": "text",
+      "duration": 1800,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:11Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:11Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 21,
+      "note": "",
+      "responsible": {
+       "text": "[Kaffeebar Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Musik im Hintergrund"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": 113,
+    "name": "Gebetsabend",
+    "series": null,
+    "isLocked": false,
+    "eventStartPosition": 2,
+    "calendarId": 2,
+    "total": 12,
+    "meta": {
+     "createdDate": "2025-07-18T21:36:01Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-07-18T21:36:01Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    },
+    "@deprecated": {
+     "isFinal": "isLocked"
+    },
+    "isFinal": false,
+    "items": [
+     {
+      "id": 1478,
+      "title": "Soundcheck",
+      "type": "text",
+      "duration": 1800,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-12-12T22:36:01Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-23T21:36:01Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 0,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung], [Ton]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1484,
+      "title": "Countdown",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-11-28T09:57:00Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:57:00Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 1,
+      "note": "",
+      "responsible": {
+       "text": "[Beamer]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Bitte rechtzeitig starten!"
+       }
+      ]
+     },
+     {
+      "id": 1472,
+      "title": "Begrüßung",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 2,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 1,
+        "note": "Willkommen \nheißen!"
+       },
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 1469,
+      "title": "Lobpreis",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:50Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:50Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 3,
+      "calculatedDuration": 1200
+     },
+     {
+      "id": 1475,
+      "title": "Lobpreis",
+      "type": "text",
+      "duration": 1200,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 4,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1529,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T11:06:23Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T10:06:23Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 5,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1532,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-03T11:00:27Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-14T10:00:27Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 6,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 1,
+       "arrangementId": 1,
+       "title": "Halleluja",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "C",
+       "bpm": 120,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1535,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-03T11:00:27Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-14T10:00:27Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 7,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 44,
+       "arrangementId": 62,
+       "title": "I Am Thine O Lord",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "G",
+       "bpm": null,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 1493,
+      "title": "Input",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:44Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:44Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 8,
+      "calculatedDuration": 900
+     },
+     {
+      "id": 1490,
+      "title": "Input zum Gebet",
+      "type": "text",
+      "duration": 600,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 9,
+      "note": "",
+      "responsible": {
+       "text": "[Predigt]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 1496,
+      "title": "Gebetsblock I",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 10,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1538,
+      "title": "Gebetsblock II",
+      "type": "text",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-03T11:18:39Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-14T10:18:39Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 11,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1541,
+      "title": "Gebetsblock III",
+      "type": "text",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-03T11:18:39Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-14T10:18:39Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 12,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 1514,
+      "title": "SCHLUSSTEIL",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:55:53Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:55:53Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 13,
+      "calculatedDuration": 120
+     },
+     {
+      "id": 1511,
+      "title": "Segen",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-11-28T09:56:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-09T08:56:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 14,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     }
+    ]
+   },
+   {
+    "id": 356,
+    "name": "Gottesdienst",
+    "series": null,
+    "isLocked": false,
+    "eventStartPosition": 4,
+    "calendarId": 56,
+    "total": 20,
+    "meta": {
+     "createdDate": "2025-07-18T21:36:22Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-07-18T21:36:22Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isFinal": "isLocked"
+    },
+    "isFinal": false,
+    "items": [
+     {
+      "id": 5717,
+      "title": "Soundcheck + Probe",
+      "type": "text",
+      "duration": 5400,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-12-12T22:36:22Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-23T21:36:22Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 0,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung], [Ton]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 5720,
+      "title": "Mitarbeiter-Gebet",
+      "type": "text",
+      "duration": 600,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 1,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 5726,
+      "title": "Einlass",
+      "type": "text",
+      "duration": 900,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 2,
+      "note": "",
+      "responsible": {
+       "text": "[Ordner]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Musik im Hintergrund"
+       },
+       {
+        "serviceGroupId": 5,
+        "note": "Türen bitte aufmachen"
+       }
+      ]
+     },
+     {
+      "id": 5723,
+      "title": "Countdown",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": true,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 3,
+      "note": "",
+      "responsible": {
+       "text": "[Beamer]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Bitte rechtzeitig starten!"
+       }
+      ]
+     },
+     {
+      "id": 5705,
+      "title": "Einstiegslied",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 4,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Alle Instrumente und Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 5762,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:05Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:05Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 5,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 5711,
+      "title": "Begrüßung",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 6,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 1,
+        "note": "Willkommen \nheißen!"
+       },
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 5708,
+      "title": "Lobpreis",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 7,
+      "calculatedDuration": 1200
+     },
+     {
+      "id": 5714,
+      "title": "Lobpreis",
+      "type": "text",
+      "duration": 1200,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 8,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 5768,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:05Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:05Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 9,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 5771,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:05Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:05Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 10,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 1,
+       "arrangementId": 1,
+       "title": "Halleluja",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "C",
+       "bpm": 120,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 5774,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:05Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:05Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 11,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 44,
+       "arrangementId": 62,
+       "title": "I Am Thine O Lord",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "G",
+       "bpm": null,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 5732,
+      "title": "Predigt",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 12,
+      "calculatedDuration": 2100
+     },
+     {
+      "id": 5729,
+      "title": "Predigt",
+      "type": "text",
+      "duration": 1800,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 13,
+      "note": "",
+      "responsible": {
+       "text": "[Predigt]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 5735,
+      "title": "Lied",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 14,
+      "note": "",
+      "responsible": {
+       "text": "[Lobpreisleitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 5765,
+      "title": "",
+      "type": "song",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:05Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:05Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 15,
+      "note": "",
+      "responsible": {
+       "text": "",
+       "persons": []
+      },
+      "serviceGroupNotes": [],
+      "song": {
+       "songId": 19,
+       "arrangementId": 22,
+       "title": "Mein Lied!",
+       "arrangement": "Standard-Arrangement",
+       "category": "Aktive Songs",
+       "key": "D",
+       "bpm": 55,
+       "isDefault": true
+      }
+     },
+     {
+      "id": 5753,
+      "title": "SCHLUSSTEIL",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 16,
+      "calculatedDuration": 960
+     },
+     {
+      "id": 5738,
+      "title": "Überleitung zur Kollekte",
+      "type": "text",
+      "duration": 180,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 17,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Sprecher Mikrofone an!"
+       }
+      ]
+     },
+     {
+      "id": 5741,
+      "title": "Kollekte",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 18,
+      "note": "",
+      "responsible": {
+       "text": "[Ordner]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 5,
+        "note": "Kollekte einsammeln"
+       }
+      ]
+     },
+     {
+      "id": 5744,
+      "title": "Ansagen",
+      "type": "text",
+      "duration": 300,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 19,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 5747,
+      "title": "Begrüßung Gäste/Erstbesucher",
+      "type": "text",
+      "duration": 240,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 20,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 5,
+        "note": "Taschen verteilen"
+       }
+      ]
+     },
+     {
+      "id": 5750,
+      "title": "Segen",
+      "type": "text",
+      "duration": 120,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 21,
+      "note": "",
+      "responsible": {
+       "text": "[Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": []
+     },
+     {
+      "id": 5759,
+      "title": "Nachspielzeit",
+      "type": "header",
+      "duration": 0,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 22,
+      "calculatedDuration": 1800
+     },
+     {
+      "id": 5756,
+      "title": "Kaffeebar",
+      "type": "text",
+      "duration": 1800,
+      "start": null,
+      "startTimes": {},
+      "isBeforeEvent": false,
+      "meta": {
+       "createdDate": "2025-12-09T12:11:04Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-20T11:11:04Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "position": null
+      },
+      "position": 23,
+      "note": "",
+      "responsible": {
+       "text": "[Kaffeebar Leitung]",
+       "persons": []
+      },
+      "serviceGroupNotes": [
+       {
+        "serviceGroupId": 3,
+        "note": "Musik im Hintergrund"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "meta": {
+   "count": 5
+  }
+ }
+}

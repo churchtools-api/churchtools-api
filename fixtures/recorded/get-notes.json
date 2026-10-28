@@ -1,0 +1,190 @@
+{
+ "operation": "get-notes",
+ "request": {
+  "method": "GET",
+  "path": "/notes/person/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 140,
+    "domainType": "person",
+    "domainId": 1,
+    "securityLevelId": null,
+    "commentViewerId": 0,
+    "text": "FollowUp 'Datenschutz' wurde abgebrochen.<br/>",
+    "links": {
+     "person": {
+      "domainType": "person",
+      "domainId": 1,
+      "securityLevelId": null,
+      "commentViewerId": 0
+     }
+    },
+    "meta": {
+     "createdDate": "2019-03-05T10:37:02Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2019-03-05T10:37:02Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    }
+   },
+   {
+    "id": 101,
+    "domainType": "person",
+    "domainId": 1,
+    "securityLevelId": null,
+    "commentViewerId": 0,
+    "text": "Followup \"Datenschutz\" erfolgreich, nun Step 2 mit insg. 56 Tagen Differenz (+0)<br/>",
+    "links": {
+     "person": {
+      "domainType": "person",
+      "domainId": 1,
+      "securityLevelId": null,
+      "commentViewerId": 0
+     }
+    },
+    "meta": {
+     "createdDate": "2019-02-12T17:59:44Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2019-02-12T17:59:44Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    }
+   },
+   {
+    "id": 98,
+    "domainType": "person",
+    "domainId": 1,
+    "securityLevelId": null,
+    "commentViewerId": 0,
+    "text": "Followup \"Datenschutz\" erfolgreich, nun Step 2 mit insg. 56 Tagen Differenz (+56)<br/>",
+    "links": {
+     "person": {
+      "domainType": "person",
+      "domainId": 1,
+      "securityLevelId": null,
+      "commentViewerId": 0
+     }
+    },
+    "meta": {
+     "createdDate": "2019-02-12T14:58:08Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2019-02-12T14:58:08Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 3
+  }
+ }
+}

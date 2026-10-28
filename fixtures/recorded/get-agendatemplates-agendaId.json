@@ -1,0 +1,283 @@
+{
+ "operation": "get-agendatemplates-agendaId",
+ "request": {
+  "method": "GET",
+  "path": "/agendatemplates/2",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 2,
+   "name": "Gottesdienst mit Lobpreis nach Predigt",
+   "series": null,
+   "isLocked": false,
+   "eventStartPosition": 1,
+   "calendarId": 2,
+   "total": 7,
+   "meta": {
+    "createdDate": "-0001-11-29T23:06:32Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "-0001-11-29T23:06:32Z",
+    "modifiedPerson": {
+     "id": -4
+    }
+   },
+   "@deprecated": {
+    "isFinal": "isLocked"
+   },
+   "isFinal": false,
+   "items": [
+    {
+     "id": 13,
+     "title": "Countdown",
+     "type": "text",
+     "duration": 300,
+     "start": null,
+     "startTimes": {},
+     "isBeforeEvent": true,
+     "meta": {
+      "createdDate": "2023-02-14T12:31:48Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2023-12-26T12:31:48Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 0,
+     "note": "",
+     "responsible": {
+      "text": "[Video]",
+      "persons": []
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 14,
+     "title": "Opener Song",
+     "type": "song",
+     "duration": 300,
+     "start": null,
+     "startTimes": {},
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2023-02-14T12:33:04Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2023-12-26T12:33:04Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 1,
+     "note": "",
+     "responsible": {
+      "text": "",
+      "persons": []
+     },
+     "serviceGroupNotes": [],
+     "song": {
+      "songId": 1,
+      "arrangementId": 1,
+      "title": "Halleluja",
+      "arrangement": "Standard-Arrangement",
+      "category": "Aktive Songs",
+      "key": "C",
+      "bpm": 120,
+      "isDefault": true
+     }
+    },
+    {
+     "id": 15,
+     "title": "Begrüßung",
+     "type": "text",
+     "duration": 300,
+     "start": null,
+     "startTimes": {},
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2023-04-25T14:55:57Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2024-03-05T15:55:57Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 2,
+     "note": "",
+     "responsible": {
+      "text": "[Leitung]",
+      "persons": []
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 16,
+     "title": "Predigt",
+     "type": "text",
+     "duration": 1800,
+     "start": null,
+     "startTimes": {},
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2023-04-25T14:55:57Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2024-03-05T15:55:57Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 3,
+     "note": "",
+     "responsible": {
+      "text": "[Predigt]",
+      "persons": []
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 18,
+     "title": "Lobpreisteil",
+     "type": "header",
+     "duration": 0,
+     "start": null,
+     "startTimes": {},
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2023-04-27T07:43:47Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2024-03-07T08:43:47Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 4,
+     "calculatedDuration": 600
+    },
+    {
+     "id": 19,
+     "title": "Der Song \"Höher\" wurde gelöscht",
+     "type": "text",
+     "duration": 0,
+     "start": null,
+     "startTimes": {},
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2023-04-27T07:43:47Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2024-03-07T08:43:47Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 5,
+     "note": "",
+     "responsible": {
+      "text": "",
+      "persons": []
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 22,
+     "title": "",
+     "type": "song",
+     "duration": 300,
+     "start": null,
+     "startTimes": {},
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2023-04-27T09:57:49Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2024-03-07T10:57:49Z",
+      "modifiedPerson": {
+       "id": 4
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 6,
+     "note": "",
+     "responsible": {
+      "text": "",
+      "persons": []
+     },
+     "serviceGroupNotes": [],
+     "song": {
+      "songId": 1,
+      "arrangementId": 1,
+      "title": "Halleluja",
+      "arrangement": "Standard-Arrangement",
+      "category": "Aktive Songs",
+      "key": "C",
+      "bpm": 120,
+      "isDefault": true
+     }
+    },
+    {
+     "id": 17,
+     "title": "Segen",
+     "type": "text",
+     "duration": 300,
+     "start": null,
+     "startTimes": {},
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2023-04-25T14:55:57Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2024-03-05T15:55:57Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 7,
+     "note": "",
+     "responsible": {
+      "text": "[Predigt]",
+      "persons": []
+     },
+     "serviceGroupNotes": []
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "operation": "get-routines-routineId",
+ "request": {
+  "method": "GET",
+  "path": "/routines/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "domainType": "group_membership",
+   "name": "E-Mail senden",
+   "description": null,
+   "isEnabled": true,
+   "priority": 0,
+   "steps": [
+    {
+     "id": 1,
+     "routineId": 1,
+     "isEnabled": true,
+     "actionKey": "send-member-email",
+     "actionData": {
+      "emailId": 12,
+      "senderId": null,
+      "sender": null,
+      "templateId": null,
+      "templateName": null,
+      "subject": "Bitte DSVGO bestätigen",
+      "body": "Du, mach mal!",
+      "attachmentIds": []
+     }
+    }
+   ]
+  }
+ }
+}

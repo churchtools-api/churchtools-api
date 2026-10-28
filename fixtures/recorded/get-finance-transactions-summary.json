@@ -1,0 +1,66 @@
+{
+ "operation": "get-finance-transactions-summary",
+ "request": {
+  "method": "GET",
+  "path": "/finance/transactions/summary",
+  "query": [
+   [
+    "accounting_period_id",
+    "1"
+   ],
+   [
+    "account_ids[]",
+    "2"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "type": "credit-debit",
+   "periods": {
+    "startDate": {
+     "thisYear": "2024-01-01",
+     "lastYear": "2023-01-01"
+    },
+    "endDate": {
+     "thisYear": "2024-12-31",
+     "lastYear": "2023-12-31"
+    }
+   },
+   "summary": {
+    "sum": {
+     "thisYear": -3000,
+     "lastYear": null
+    },
+    "credit": {
+     "thisYear": 3000,
+     "lastYear": null
+    },
+    "debit": {
+     "thisYear": 0,
+     "lastYear": null
+    },
+    "accounts": [
+     {
+      "id": 2,
+      "name": "Grundstücke",
+      "number": "0050",
+      "credit": {
+       "thisYear": 3000,
+       "lastYear": null
+      },
+      "debit": {
+       "thisYear": 0,
+       "lastYear": null
+      },
+      "balance": {
+       "thisYear": -3000,
+       "lastYear": null
+      }
+     }
+    ]
+   }
+  }
+ }
+}

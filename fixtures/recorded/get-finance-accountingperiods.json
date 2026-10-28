@@ -1,0 +1,88 @@
+{
+ "operation": "get-finance-accountingperiods",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accountingperiods",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
+    "isClosed": false,
+    "incrementDocumentNumber": true,
+    "clientId": 1,
+    "donationReceiptsCreated": null,
+    "permissions": {
+     "canUseExpertMode": true,
+     "edit accounting period": true,
+     "view accounting period": true
+    },
+    "meta": {
+     "createdDate": "2022-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2025-09-18T00:08:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 5,
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "isClosed": false,
+    "incrementDocumentNumber": true,
+    "clientId": 1,
+    "donationReceiptsCreated": null,
+    "permissions": {
+     "canUseExpertMode": true,
+     "edit accounting period": true,
+     "view accounting period": true
+    },
+    "meta": {
+     "createdDate": "2023-05-13T12:57:43Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-05-06T09:08:20Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 6,
+    "startDate": "2026-01-01",
+    "endDate": "2026-12-31",
+    "isClosed": false,
+    "incrementDocumentNumber": true,
+    "clientId": 1,
+    "donationReceiptsCreated": null,
+    "permissions": {
+     "canUseExpertMode": true,
+     "edit accounting period": true,
+     "view accounting period": true
+    },
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 3
+  }
+ }
+}

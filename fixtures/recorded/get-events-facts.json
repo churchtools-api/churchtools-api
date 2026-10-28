@@ -1,0 +1,203 @@
+{
+ "operation": "get-events-facts",
+ "request": {
+  "method": "GET",
+  "path": "/events/facts",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "eventId": 1816,
+    "factId": 1,
+    "value": 85,
+    "meta": {
+     "createdDate": "2024-05-24T10:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1816,
+    "factId": 2,
+    "value": 0,
+    "meta": {
+     "createdDate": "2024-05-24T10:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1816,
+    "factId": 3,
+    "value": 13,
+    "meta": {
+     "createdDate": "2024-05-24T10:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1816,
+    "factId": 4,
+    "value": 106.2,
+    "meta": {
+     "createdDate": "2024-05-24T10:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1771,
+    "factId": 1,
+    "value": 10,
+    "meta": {
+     "createdDate": "2024-05-24T10:25:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1771,
+    "factId": 2,
+    "value": 0,
+    "meta": {
+     "createdDate": "2024-05-24T10:25:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1771,
+    "factId": 3,
+    "value": 0,
+    "meta": {
+     "createdDate": "2024-05-24T10:25:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1771,
+    "factId": 4,
+    "value": 0,
+    "meta": {
+     "createdDate": "2024-05-24T10:25:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1744,
+    "factId": 1,
+    "value": 231,
+    "meta": {
+     "createdDate": "2024-05-24T10:23:38Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   },
+   {
+    "eventId": 1744,
+    "factId": 2,
+    "value": 11.14,
+    "meta": {
+     "createdDate": "2024-05-24T10:23:38Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-19T10:46:29Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": "modifiedPid (now: meta.modifiedPerson.id), modifiedDate (now: meta.modifiedDate)",
+    "modifiedPid": 1,
+    "modifiedDate": "2026-10-19T10:46:29Z"
+   }
+  ],
+  "meta": {
+   "count": 10,
+   "all": 656,
+   "pagination": {
+    "total": 656,
+    "limit": 10,
+    "current": 1,
+    "lastPage": 66
+   }
+  }
+ }
+}

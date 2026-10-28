@@ -1,0 +1,33 @@
+{
+ "operation": "get-persons-id-privacypolicy",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/privacypolicy",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "minimumAge": 16,
+   "owner": {
+    "id": 1,
+    "firstName": "Armin",
+    "lastName": "Adendorf",
+    "image": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+    "age": 35,
+    "editBirthday": false,
+    "accepted": true,
+    "acceptedDate": "2018-12-18",
+    "acceptedType": "privacy.policy.agreement.type.selfconfirmation",
+    "acceptedWho": 1,
+    "allowedToAccept": true
+   },
+   "typeId": 2,
+   "whoId": 1,
+   "showBanner": false,
+   "text": "",
+   "textRelations": "",
+   "relationships": []
+  }
+ }
+}

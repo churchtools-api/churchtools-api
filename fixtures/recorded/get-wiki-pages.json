@@ -1,0 +1,702 @@
+{
+ "operation": "get-wiki-pages",
+ "request": {
+  "method": "GET",
+  "path": "/wiki/pages",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "guid": "19A21028-51E5-4894-9886-9388D955BDD5",
+    "wikiCategory": {
+     "id": 8,
+     "name": "Deine ChurchTools Demo",
+     "nameTranslated": "Deine ChurchTools Demo",
+     "sortKey": 1,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "main",
+    "version": 13,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2026-05-06T15:50:21Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2026-05-06T15:50:21Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "19A21028-51E5-4894-9886-9388D955BDD5"
+   },
+   {
+    "guid": "DB727683-D38D-E5F6-E016-97AEEF049C16",
+    "wikiCategory": {
+     "id": 3,
+     "name": "Gemeindeleitung",
+     "nameTranslated": "Gemeindeleitung",
+     "sortKey": 40,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "main",
+    "version": 4,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2021-08-16T14:46:08Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2021-08-16T14:46:08Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "DB727683-D38D-E5F6-E016-97AEEF049C16"
+   },
+   {
+    "guid": "A03EE258-E8A3-46C4-9F78-C00F39A1F432",
+    "wikiCategory": {
+     "id": 1,
+     "name": "Technik",
+     "nameTranslated": "Technik",
+     "sortKey": 20,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "Heizungsregelung",
+    "version": 1,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2021-08-16T14:45:00Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2021-08-16T14:45:00Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "A03EE258-E8A3-46C4-9F78-C00F39A1F432"
+   },
+   {
+    "guid": "FCAF0A1F-FA9A-42F4-9EF7-1CFC15704CE3",
+    "wikiCategory": {
+     "id": 1,
+     "name": "Technik",
+     "nameTranslated": "Technik",
+     "sortKey": 20,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "Lichtpult",
+    "version": 3,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2026-01-20T13:16:20Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2026-01-20T13:16:20Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "FCAF0A1F-FA9A-42F4-9EF7-1CFC15704CE3"
+   },
+   {
+    "guid": "7BFCB91B-0216-AD8B-DF63-A697BAB6930D",
+    "wikiCategory": {
+     "id": 1,
+     "name": "Technik",
+     "nameTranslated": "Technik",
+     "sortKey": 20,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "Mischpult-Kanäle",
+    "version": 5,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2021-08-16T14:44:21Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2021-08-16T14:44:21Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "7BFCB91B-0216-AD8B-DF63-A697BAB6930D"
+   },
+   {
+    "guid": "BA4DF7C2-FC35-48C6-B069-CED2F86540B8",
+    "wikiCategory": {
+     "id": 2,
+     "name": "Musik",
+     "nameTranslated": "Musik",
+     "sortKey": 30,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "main",
+    "version": 10,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2021-08-16T14:45:22Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2021-08-16T14:45:22Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "BA4DF7C2-FC35-48C6-B069-CED2F86540B8"
+   },
+   {
+    "guid": "235B5B80-779E-4790-95B4-D069FAE64C41",
+    "wikiCategory": {
+     "id": 8,
+     "name": "Deine ChurchTools Demo",
+     "nameTranslated": "Deine ChurchTools Demo",
+     "sortKey": 1,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "Personen der Gemeinde",
+    "version": 11,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2023-03-30T11:45:18Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2023-03-30T11:45:18Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "235B5B80-779E-4790-95B4-D069FAE64C41"
+   },
+   {
+    "guid": "38488A01-DD0F-4129-B013-72710AFBD8C8",
+    "wikiCategory": {
+     "id": 2,
+     "name": "Musik",
+     "nameTranslated": "Musik",
+     "sortKey": 30,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "Suche Gitarre 08.02.2018",
+    "version": 2,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2021-08-16T14:45:50Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2021-08-16T14:45:50Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "38488A01-DD0F-4129-B013-72710AFBD8C8"
+   },
+   {
+    "guid": "F0391F01-1E39-40EF-A529-91CC580C3BD0",
+    "wikiCategory": {
+     "id": 1,
+     "name": "Technik",
+     "nameTranslated": "Technik",
+     "sortKey": 20,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "main",
+    "version": 25,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2026-08-28T11:47:51Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2026-08-28T11:47:51Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "F0391F01-1E39-40EF-A529-91CC580C3BD0"
+   },
+   {
+    "guid": "A7E507B5-9A1D-4DDE-850E-DA7D990856BA",
+    "wikiCategory": {
+     "id": 0,
+     "name": "Vision von ChuToo",
+     "nameTranslated": "Vision von ChuToo",
+     "sortKey": 10,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "main",
+    "version": 14,
+    "isMarkdown": true,
+    "onStartpage": true,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2023-02-24T14:22:23Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2023-02-24T14:22:23Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "A7E507B5-9A1D-4DDE-850E-DA7D990856BA"
+   }
+  ],
+  "meta": {
+   "count": 10,
+   "pagination": {
+    "total": 12,
+    "limit": 10,
+    "current": 1,
+    "lastPage": 2
+   }
+  }
+ }
+}

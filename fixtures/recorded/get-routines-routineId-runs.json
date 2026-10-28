@@ -1,0 +1,36 @@
+{
+ "operation": "get-routines-routineId-runs",
+ "request": {
+  "method": "GET",
+  "path": "/routines/1/runs",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "domainType": "group_membership",
+    "domainId": 58,
+    "routineId": 1,
+    "routineStepId": 52,
+    "status": "waiting",
+    "errorCode": null,
+    "errorMessage": null,
+    "meta": {
+     "createdDate": "2025-12-11T12:59:37Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-12-11T12:59:37Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

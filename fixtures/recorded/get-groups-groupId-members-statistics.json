@@ -1,0 +1,20 @@
+{
+ "operation": "get-groups-groupId-members-statistics",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/members/statistics",
+  "query": [
+   [
+    "group_type_role_ids[]",
+    "16"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

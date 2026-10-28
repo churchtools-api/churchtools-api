@@ -1,0 +1,44 @@
+{
+ "operation": "get-publicgroups-groupId-possiblerequesters",
+ "request": {
+  "method": "GET",
+  "path": "/publicgroups/898/possiblerequesters",
+  "query": [
+   [
+    "token",
+    "<redacted>"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "possibleRequesters": [
+    {
+     "person": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "status": "NOT_CLICKED"
+    }
+   ],
+   "email": null,
+   "groupName": "ctrs-test Anmeldung 3833db"
+  }
+ }
+}

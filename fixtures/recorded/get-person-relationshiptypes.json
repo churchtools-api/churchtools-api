@@ -1,0 +1,78 @@
+{
+ "operation": "get-person-relationshiptypes",
+ "request": {
+  "method": "GET",
+  "path": "/person/relationshiptypes",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 2,
+    "name": "relationship.couple",
+    "nameTranslated": "Ehepaar",
+    "securityLevelId": 1,
+    "degreeNameA": "relationship.part.spouse",
+    "degreeNameATranslated": "Ehepartner",
+    "degreeNameB": "relationship.part.spouse",
+    "degreeNameBTranslated": "Ehepartner",
+    "includeInExport": true,
+    "exportTitle": "relationship.couple",
+    "sortKey": 0,
+    "functionKeys": []
+   },
+   {
+    "id": 1,
+    "name": "relationship.parent-child",
+    "nameTranslated": "Elternteil/Kind",
+    "securityLevelId": 1,
+    "degreeNameA": "relationship.part.parent",
+    "degreeNameATranslated": "Elternteil",
+    "degreeNameB": "relationship.part.child",
+    "degreeNameBTranslated": "Kind",
+    "includeInExport": false,
+    "exportTitle": "",
+    "sortKey": 10,
+    "functionKeys": []
+   },
+   {
+    "id": 3,
+    "name": "noduplicate.name",
+    "nameTranslated": "Keine Dublette",
+    "securityLevelId": 5,
+    "degreeNameA": "duplicatecheck.notconfuse",
+    "degreeNameATranslated": "nicht verwechseln mit",
+    "degreeNameB": "duplicatecheck.notconfuse",
+    "degreeNameBTranslated": "nicht verwechseln mit",
+    "includeInExport": false,
+    "exportTitle": null,
+    "sortKey": 99,
+    "functionKeys": [
+     "noduplicate",
+     "nodelete"
+    ]
+   },
+   {
+    "id": 6,
+    "name": "duplicatecheck.name",
+    "nameTranslated": "Dublette",
+    "securityLevelId": 5,
+    "degreeNameA": "duplicatecheck.original",
+    "degreeNameATranslated": "Original",
+    "degreeNameB": "duplicatecheck.duplicate",
+    "degreeNameBTranslated": "Duplikat",
+    "includeInExport": false,
+    "exportTitle": null,
+    "sortKey": 100,
+    "functionKeys": [
+     "openduplicate",
+     "nodelete"
+    ]
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

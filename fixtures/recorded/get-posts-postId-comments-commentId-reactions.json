@@ -1,0 +1,49 @@
+{
+ "operation": "get-posts-postId-comments-commentId-reactions",
+ "request": {
+  "method": "GET",
+  "path": "/posts/51/comments/109/reactions",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "commentId": 109,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "emoji": "👍",
+    "meta": {
+     "createdDate": "2026-10-28T22:34:55Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-28T22:34:55Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

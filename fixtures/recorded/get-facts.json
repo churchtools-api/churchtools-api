@@ -1,0 +1,56 @@
+{
+ "operation": "get-facts",
+ "request": {
+  "method": "GET",
+  "path": "/facts",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Besucher",
+    "nameTranslated": "Besucher",
+    "sortKey": 1,
+    "type": "number",
+    "@deprecated": "fieldType (now: type)",
+    "fieldType": "number",
+    "unit": null
+   },
+   {
+    "id": 3,
+    "name": "Erstbesucher",
+    "nameTranslated": "Erstbesucher",
+    "sortKey": 5,
+    "type": "number",
+    "@deprecated": "fieldType (now: type)",
+    "fieldType": "number",
+    "unit": null
+   },
+   {
+    "id": 2,
+    "name": "Kollekte Klingelbeutel",
+    "nameTranslated": "Kollekte Klingelbeutel",
+    "sortKey": 10,
+    "type": "number",
+    "@deprecated": "fieldType (now: type)",
+    "fieldType": "number",
+    "unit": null
+   },
+   {
+    "id": 4,
+    "name": "Kollekte Ausgang",
+    "nameTranslated": "Kollekte Ausgang",
+    "sortKey": 15,
+    "type": "number",
+    "@deprecated": "fieldType (now: type)",
+    "fieldType": "number",
+    "unit": null
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

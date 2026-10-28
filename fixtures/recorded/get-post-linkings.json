@@ -1,0 +1,53 @@
+{
+ "operation": "get-post-linkings",
+ "request": {
+  "method": "GET",
+  "path": "/post/linkings",
+  "query": [
+   [
+    "post_ids[]",
+    "51"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "postGuid": "89C8187F-7A5A-4209-A5AE-6A2DF8B76DF3",
+    "postId": 51,
+    "linkings": [
+     {
+      "linkingType": "opengraph",
+      "url": "https://maps.app.goo.gl/CV69NJqNYgJUUGn27",
+      "fetchStatus": "success",
+      "data": {
+       "type": "",
+       "url": "",
+       "title": "Google Maps",
+       "description": "Find local businesses, view maps and get driving directions in Google Maps.",
+       "determiner": "",
+       "siteName": "Google Maps",
+       "locale": "",
+       "localesAlternate": null,
+       "images": [
+        {
+         "url": "https://maps.google.com/maps/api/staticmap?center=48.7984261%2C8.7290212&zoom=18&size=900x900&language=en&sensor=false&key=<redacted>&signature=<redacted>",
+         "secureUrl": "",
+         "type": "",
+         "width": 900,
+         "height": 900
+        }
+       ],
+       "audios": [],
+       "videos": []
+      }
+     }
+    ]
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

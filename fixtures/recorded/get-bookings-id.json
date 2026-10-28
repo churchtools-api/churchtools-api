@@ -1,0 +1,120 @@
+{
+ "operation": "get-bookings-id",
+ "request": {
+  "method": "GET",
+  "path": "/bookings/297",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "booking": {
+    "id": 297,
+    "title": "Jugendgottesdienst",
+    "subtitle": "",
+    "resourceId": 8,
+    "statusId": 2,
+    "quantity": 1,
+    "description": "",
+    "appointment": {
+     "id": 550257,
+     "title": "Jugendgottesdienst",
+     "calendarId": 3
+    },
+    "onBehalfOfPid": null,
+    "answeredPid": null,
+    "answeredDate": null,
+    "showInCal": false,
+    "version": 0,
+    "startDate": "2026-09-11T16:00:00Z",
+    "endDate": "2026-09-11T21:00:00Z",
+    "allDay": false,
+    "repeatId": 7,
+    "repeatFrequency": 1,
+    "repeatUntil": "2026-10-22",
+    "repeatOption": null,
+    "additionals": [],
+    "exceptions": [],
+    "meta": {
+     "createdDate": "2027-12-07T16:40:51Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-21T19:50:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "caption": "title",
+     "location": "subtitle",
+     "note": "description",
+     "appointmentId": "appointment",
+     "resource": "resourceId"
+    },
+    "caption": "Jugendgottesdienst",
+    "location": "",
+    "resource": {
+     "id": 8,
+     "name": "Jugendraum",
+     "nameTranslated": "Jugendraum",
+     "sortKey": 2,
+     "resourceTypeId": 2,
+     "location": null,
+     "iCalLocation": null,
+     "description": null,
+     "isAutoAccept": false,
+     "needsAppointment": false,
+     "isVirtual": false,
+     "quantity": 1,
+     "adminIds": [],
+     "randomString": null,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-07-14T15:28:30Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     },
+     "@deprecated": {
+      "doesRequireCalEntry": "needsAppointment"
+     },
+     "doesRequireCalEntry": false
+    },
+    "note": "",
+    "appointmentId": 550257,
+    "isAnonymized": false
+   },
+   "additionalInfos": [],
+   "calculatedDates": {
+    "2026-09-11": {
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z"
+    },
+    "2026-09-18": {
+     "startDate": "2026-09-18T16:00:00Z",
+     "endDate": "2026-09-18T21:00:00Z"
+    },
+    "2026-09-25": {
+     "startDate": "2026-09-25T16:00:00Z",
+     "endDate": "2026-09-25T21:00:00Z"
+    },
+    "2026-10-02": {
+     "startDate": "2026-10-02T16:00:00Z",
+     "endDate": "2026-10-02T21:00:00Z"
+    },
+    "2026-10-09": {
+     "startDate": "2026-10-09T16:00:00Z",
+     "endDate": "2026-10-09T21:00:00Z"
+    },
+    "2026-10-16": {
+     "startDate": "2026-10-16T16:00:00Z",
+     "endDate": "2026-10-16T21:00:00Z"
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "operation": "get-departments",
+ "request": {
+  "method": "GET",
+  "path": "/departments",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Gemeindeliste",
+    "nameTranslated": "Gemeindeliste",
+    "sortKey": 1,
+    "shorty": "G",
+    "@deprecated": {
+     "short": "shorty"
+    },
+    "short": "G"
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

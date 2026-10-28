@@ -1,0 +1,43 @@
+{
+ "operation": "get-finance-accounts-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accounts/2",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 2,
+   "number": "0050",
+   "name": "Grundstücke",
+   "annotation": null,
+   "accountGroupId": 1,
+   "accountingPeriodId": 1,
+   "isDonationAccount": false,
+   "isOpeningBalanceAccount": false,
+   "taxRateId": null,
+   "identifier": "DE89370400440532013000",
+   "balance": -3000,
+   "budget": null,
+   "budgetBalance": 3000,
+   "budgetLastPeriod": null,
+   "budgetBalanceLastPeriod": 0,
+   "isMandatoryEubp": false,
+   "isMandatoryEubpLocked": false,
+   "meta": {
+    "createdDate": "2020-05-13T12:55:21Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T22:31:37Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "permissions": {
+    "allowPosting": true
+   }
+  }
+ }
+}

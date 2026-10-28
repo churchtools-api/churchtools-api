@@ -1,0 +1,332 @@
+{
+ "operation": "get-logs",
+ "request": {
+  "method": "GET",
+  "path": "/logs",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 497458,
+    "level": 2,
+    "date": "2026-10-28T22:36:03Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497455,
+    "level": 2,
+    "date": "2026-10-28T22:36:02Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497452,
+    "level": 2,
+    "date": "2026-10-28T22:36:02Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497449,
+    "level": 2,
+    "date": "2026-10-28T22:36:02Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497446,
+    "level": 2,
+    "date": "2026-10-28T22:36:02Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497443,
+    "level": 2,
+    "date": "2026-10-28T22:36:01Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497440,
+    "level": 2,
+    "date": "2026-10-28T22:36:01Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497437,
+    "level": 2,
+    "date": "2026-10-28T22:36:01Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497434,
+    "level": 2,
+    "date": "2026-10-28T22:36:01Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   },
+   {
+    "id": 497431,
+    "level": 2,
+    "date": "2026-10-28T22:36:00Z",
+    "personId": 1,
+    "personName": "Armin Adendorf",
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "simulatePersonId": null,
+    "simulatePerson": null,
+    "domainType": "login",
+    "domainId": -1,
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   }
+  ],
+  "meta": {
+   "count": 10,
+   "pagination": {
+    "total": 74195,
+    "limit": 10,
+    "current": 1,
+    "lastPage": 7420
+   }
+  }
+ }
+}

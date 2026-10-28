@@ -1,0 +1,12 @@
+{
+ "operation": "get-groups-id-qrcodecheckin",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/qrcodecheckin",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": []
+ }
+}

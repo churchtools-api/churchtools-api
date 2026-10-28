@@ -1,0 +1,15 @@
+{
+ "operation": "get-finance-accountingperiods-id-userrules",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accountingperiods/1/userrules",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

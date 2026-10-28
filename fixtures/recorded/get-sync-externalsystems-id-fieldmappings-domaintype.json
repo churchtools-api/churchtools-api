@@ -1,0 +1,26 @@
+{
+ "operation": "get-sync-externalsystems-id-fieldmappings-domaintype",
+ "request": {
+  "method": "GET",
+  "path": "/sync/externalsystems/13/fieldmappings/person",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": null,
+   "externalSystem": {
+    "id": 13,
+    "name": "ctrs-test",
+    "accessHeaderValues": [],
+    "adapter": "churchtools",
+    "jobConfigsCount": 1
+   },
+   "domainType": "person",
+   "entries": {
+    "propertyMappingsMasterToES": [],
+    "propertyMappingsESToMaster": []
+   }
+  }
+ }
+}

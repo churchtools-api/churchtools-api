@@ -1,0 +1,17 @@
+{
+ "operation": "get-finance-transactions-nextdocumentnumber",
+ "request": {
+  "method": "GET",
+  "path": "/finance/transactions/nextdocumentnumber",
+  "query": [
+   [
+    "accounting_period_id",
+    "1"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": "ctrs-test-3bf7"
+ }
+}

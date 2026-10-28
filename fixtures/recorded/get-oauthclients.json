@@ -1,0 +1,15 @@
+{
+ "operation": "get-oauthclients",
+ "request": {
+  "method": "GET",
+  "path": "/oauthclients",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

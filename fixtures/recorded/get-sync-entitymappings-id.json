@@ -1,0 +1,31 @@
+{
+ "operation": "get-sync-entitymappings-id",
+ "request": {
+  "method": "GET",
+  "path": "/sync/entitymappings/10",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 10,
+   "domainType": "person",
+   "domainId": "1",
+   "sourceId": 13,
+   "sourceEntityId": "ctrs-test-1",
+   "status": "synced",
+   "scope": null,
+   "lastSyncedDate": null,
+   "meta": {
+    "createdDate": "2026-10-28T22:35:00Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T22:35:00Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

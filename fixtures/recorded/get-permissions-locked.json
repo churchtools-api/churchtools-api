@@ -1,0 +1,15 @@
+{
+ "operation": "get-permissions-locked",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/locked",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "permissions": [],
+   "isCurrentUserAuthorizedPerson": true
+  }
+ }
+}

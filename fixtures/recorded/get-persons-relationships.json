@@ -1,0 +1,946 @@
+{
+ "operation": "get-persons-relationships",
+ "request": {
+  "method": "GET",
+  "path": "/persons/relationships",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 7,
+    "personAId": 170,
+    "personBId": 103,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 170,
+    "relativeId": 103,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 7,
+    "personAId": 170,
+    "personBId": 103,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 103,
+    "relativeId": 170,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 5,
+    "personAId": 173,
+    "personBId": 189,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 173,
+    "relativeId": 189,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 5,
+    "personAId": 173,
+    "personBId": 189,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 189,
+    "relativeId": 173,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 52,
+    "personAId": 319,
+    "personBId": 89,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 319,
+    "relativeId": 89,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 63,
+    "personAId": 392,
+    "personBId": 319,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 319,
+    "relativeId": 392,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 72,
+    "personAId": 319,
+    "personBId": 893,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 319,
+    "relativeId": 893,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 55,
+    "personAId": 319,
+    "personBId": 313,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 319,
+    "relativeId": 313,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 52,
+    "personAId": 319,
+    "personBId": 89,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 89,
+    "relativeId": 319,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 69,
+    "personAId": 89,
+    "personBId": 893,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 89,
+    "relativeId": 893,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 58,
+    "personAId": 89,
+    "personBId": 313,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 89,
+    "relativeId": 313,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 25,
+    "personAId": 177,
+    "personBId": 6,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 177,
+    "relativeId": 6,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 25,
+    "personAId": 177,
+    "personBId": 6,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 6,
+    "relativeId": 177,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 75,
+    "personAId": 210,
+    "personBId": 183,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 210,
+    "relativeId": 183,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 75,
+    "personAId": 210,
+    "personBId": 183,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 183,
+    "relativeId": 210,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 2,
+    "personAId": 225,
+    "personBId": 226,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 225,
+    "relativeId": 226,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 2,
+    "personAId": 225,
+    "personBId": 226,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 226,
+    "relativeId": 225,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 63,
+    "personAId": 392,
+    "personBId": 319,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 392,
+    "relativeId": 319,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 66,
+    "personAId": 392,
+    "personBId": 1403,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 392,
+    "relativeId": 1403,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 66,
+    "personAId": 392,
+    "personBId": 1403,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 1403,
+    "relativeId": 392,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 60,
+    "personAId": 1433,
+    "personBId": 707,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 1433,
+    "relativeId": 707,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 60,
+    "personAId": 1433,
+    "personBId": 707,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 707,
+    "relativeId": 1433,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 72,
+    "personAId": 319,
+    "personBId": 893,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 893,
+    "relativeId": 319,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 69,
+    "personAId": 89,
+    "personBId": 893,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 893,
+    "relativeId": 89,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 6,
+    "personAId": 83,
+    "personBId": 39,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 83,
+    "relativeId": 39,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 31,
+    "personAId": 83,
+    "personBId": 307,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 83,
+    "relativeId": 307,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.child"
+   },
+   {
+    "id": 6,
+    "personAId": 83,
+    "personBId": 39,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 39,
+    "relativeId": 83,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 31,
+    "personAId": 83,
+    "personBId": 307,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 307,
+    "relativeId": 83,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 58,
+    "personAId": 89,
+    "personBId": 313,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 313,
+    "relativeId": 89,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 55,
+    "personAId": 319,
+    "personBId": 313,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 313,
+    "relativeId": 319,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   }
+  ],
+  "meta": {
+   "count": 30
+  }
+ }
+}

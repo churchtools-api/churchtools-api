@@ -1,0 +1,186 @@
+{
+ "operation": "get-finance-accountclasses",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accountclasses",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Anlagevermögen",
+    "accountTypeId": 1,
+    "includeProfitLoss": false,
+    "sortKey": 1,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 2,
+    "name": "Umlaufvermögen",
+    "accountTypeId": 1,
+    "includeProfitLoss": false,
+    "sortKey": 2,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 3,
+    "name": "Verbindlichkeiten",
+    "accountTypeId": 2,
+    "includeProfitLoss": false,
+    "sortKey": 3,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 4,
+    "name": "Eigenkapital",
+    "accountTypeId": 2,
+    "includeProfitLoss": true,
+    "sortKey": 4,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 5,
+    "name": "Steuern",
+    "accountTypeId": 2,
+    "includeProfitLoss": false,
+    "sortKey": 5,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 8,
+    "name": "Betr. Erträge",
+    "accountTypeId": 3,
+    "includeProfitLoss": false,
+    "sortKey": 6,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 10,
+    "name": "Umsatzerlöse",
+    "accountTypeId": 3,
+    "includeProfitLoss": false,
+    "sortKey": 7,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 6,
+    "name": "Betr. Aufwendungen",
+    "accountTypeId": 3,
+    "includeProfitLoss": false,
+    "sortKey": 8,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 7,
+    "name": "sonstige Aufwendungen",
+    "accountTypeId": 3,
+    "includeProfitLoss": false,
+    "sortKey": 9,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 9,
+    "name": "Personalaufwand",
+    "accountTypeId": 3,
+    "includeProfitLoss": false,
+    "sortKey": 10,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 10
+  }
+ }
+}

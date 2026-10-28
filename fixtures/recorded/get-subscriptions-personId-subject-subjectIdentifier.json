@@ -1,0 +1,31 @@
+{
+ "operation": "get-subscriptions-personId-subject-subjectIdentifier",
+ "request": {
+  "method": "GET",
+  "path": "/subscriptions/1/post_summary/0",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "personId": 1,
+   "subject": "post_summary",
+   "subjectIdentifier": "0",
+   "isActive": true,
+   "options": {
+    "filter": "all",
+    "weekdays": [
+     6
+    ]
+   },
+   "origin": "post-summary-default",
+   "hint": "subscription.default-active.hint",
+   "isExplicit": false,
+   "meta": null,
+   "@deprecated": {
+    "originHint": "hint"
+   },
+   "originHint": "subscription.default-active.hint"
+  }
+ }
+}

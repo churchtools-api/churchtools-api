@@ -1,0 +1,23 @@
+{
+ "operation": "get-groups-groupId-memberids",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/memberids",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   108,
+   103,
+   1,
+   170,
+   176,
+   340,
+   346
+  ],
+  "meta": {
+   "count": 7
+  }
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "operation": "get-group-memberstatus",
+ "request": {
+  "method": "GET",
+  "path": "/group/memberstatus",
+  "query": [],
+  "body": null
+ },
+ "body": [
+  {
+   "id": "active",
+   "name": "Aktiv"
+  },
+  {
+   "id": "requested",
+   "name": "Angefragt"
+  },
+  {
+   "id": "to_delete",
+   "name": "Zu löschen"
+  },
+  {
+   "id": "waiting",
+   "name": "Auf Warteliste"
+  }
+ ]
+}

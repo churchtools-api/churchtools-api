@@ -1,0 +1,1616 @@
+{
+ "operation": "get-groups-members",
+ "request": {
+  "method": "GET",
+  "path": "/groups/members",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "personId": 1,
+    "groupId": 7,
+    "groupTypeRoleId": 17,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-09-15T15:31:14Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 10,
+    "groupTypeRoleId": 16,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 11,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 22,
+    "groupTypeRoleId": 11,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 24,
+    "groupTypeRoleId": 30,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 37,
+    "groupTypeRoleId": 23,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 109,
+    "groupTypeRoleId": 40,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 154,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 203,
+    "groupTypeRoleId": 9,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 206,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 208,
+    "groupTypeRoleId": 16,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 213,
+    "groupTypeRoleId": 36,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 219,
+    "groupTypeRoleId": 36,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 234,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 237,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 255,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 258,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 346,
+    "groupTypeRoleId": 30,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 349,
+    "groupTypeRoleId": 30,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 352,
+    "groupTypeRoleId": 30,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 1,
+    "groupId": 355,
+    "groupTypeRoleId": 30,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 3,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 3,
+    "groupId": 26,
+    "groupTypeRoleId": 16,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 3,
+    "groupId": 206,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 3,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 3,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 4,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 4,
+    "groupId": 206,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 4,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 4,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 6,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 6,
+    "groupId": 206,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 7,
+    "groupId": 6,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 7,
+    "groupId": 10,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 7,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 7,
+    "groupId": 206,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 7,
+    "groupId": 234,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 7,
+    "groupId": 255,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 7,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 7,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 8,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 8,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 9,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 9,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 10,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 10,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 10,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 11,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 11,
+    "groupId": 162,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 11,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 12,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 12,
+    "groupId": 99,
+    "groupTypeRoleId": 41,
+    "groupMemberStatus": "requested",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 13,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 14,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 15,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 15,
+    "groupId": 37,
+    "groupTypeRoleId": 43,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 15,
+    "groupId": 208,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 15,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 15,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 16,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 16,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 17,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 18,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 19,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 19,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 20,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 20,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 21,
+    "groupId": 17,
+    "groupTypeRoleId": 8,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 21,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 22,
+    "groupId": 21,
+    "groupTypeRoleId": 16,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 22,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 23,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 23,
+    "groupId": 142,
+    "groupTypeRoleId": 9,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 23,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 23,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 24,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 25,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 26,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 27,
+    "groupId": 16,
+    "groupTypeRoleId": 8,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 27,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 28,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 28,
+    "groupId": 99,
+    "groupTypeRoleId": 41,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 29,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 29,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 30,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 31,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 31,
+    "groupId": 29,
+    "groupTypeRoleId": 9,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 31,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 31,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 32,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 32,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 33,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 33,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 34,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 34,
+    "groupId": 103,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 34,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 35,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 36,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 37,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 37,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 38,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 39,
+    "groupId": 17,
+    "groupTypeRoleId": 8,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 39,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 39,
+    "groupId": 37,
+    "groupTypeRoleId": 22,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 40,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 40,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 41,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 42,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 43,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 44,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 44,
+    "groupId": 148,
+    "groupTypeRoleId": 9,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 44,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 45,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 46,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 46,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 47,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 48,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 49,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 49,
+    "groupId": 180,
+    "groupTypeRoleId": 23,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 49,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 50,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 50,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 51,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 51,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 51,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 52,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 53,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 53,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 54,
+    "groupId": 7,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 54,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 54,
+    "groupId": 237,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 54,
+    "groupId": 258,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 54,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 55,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 55,
+    "groupId": 27,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 56,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 58,
+    "groupId": 7,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 58,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 58,
+    "groupId": 237,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 58,
+    "groupId": 258,
+    "groupTypeRoleId": 37,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 59,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 59,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 60,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 60,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 60,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 61,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 61,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 62,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 62,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 63,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 63,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 63,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 64,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 64,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 65,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 66,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 66,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 66,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 66,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 67,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 67,
+    "groupId": 132,
+    "groupTypeRoleId": 9,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 67,
+    "groupId": 142,
+    "groupTypeRoleId": 10,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-09-30T16:28:53Z",
+    "deleted": false
+   },
+   {
+    "personId": 67,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 67,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 68,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 69,
+    "groupId": 13,
+    "groupTypeRoleId": 8,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 69,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 70,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 71,
+    "groupId": 17,
+    "groupTypeRoleId": 9,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 71,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 72,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 73,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 74,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 74,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 75,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 76,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 76,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 76,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 77,
+    "groupId": 17,
+    "groupTypeRoleId": 8,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 77,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 77,
+    "groupId": 39,
+    "groupTypeRoleId": 16,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 77,
+    "groupId": 352,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 78,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 78,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 79,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 80,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 81,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 82,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 82,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 83,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 83,
+    "groupId": 27,
+    "groupTypeRoleId": 15,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 83,
+    "groupId": 206,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 83,
+    "groupId": 346,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 84,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 84,
+    "groupId": 349,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 84,
+    "groupId": 355,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 85,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 86,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 87,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   },
+   {
+    "personId": 88,
+    "groupId": 24,
+    "groupTypeRoleId": 29,
+    "groupMemberStatus": "active",
+    "lastChange": "2025-02-17T12:08:36Z",
+    "deleted": false
+   }
+  ],
+  "meta": {
+   "count": 1323
+  }
+ }
+}

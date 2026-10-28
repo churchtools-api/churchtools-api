@@ -1,0 +1,35 @@
+{
+ "operation": "get-finance-accountingperiods-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accountingperiods/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "startDate": "2024-01-01",
+   "endDate": "2024-12-31",
+   "isClosed": false,
+   "incrementDocumentNumber": true,
+   "clientId": 1,
+   "donationReceiptsCreated": null,
+   "permissions": {
+    "canUseExpertMode": true,
+    "edit accounting period": true,
+    "view accounting period": true
+   },
+   "meta": {
+    "createdDate": "2022-08-08T18:09:41Z",
+    "createdPerson": {
+     "id": -1
+    },
+    "modifiedDate": "2025-09-18T00:08:47Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

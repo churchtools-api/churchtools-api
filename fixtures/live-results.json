@@ -1,0 +1,3168 @@
+{
+ "delete-addresses-domainType-domainIdentifier-addressId": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/addresses/group/904/523"
+ },
+ "delete-agendatemplates-agendaId": {
+  "outcome": "ok",
+  "scenario": "test_agenda_template",
+  "path": "/agendatemplates/382"
+ },
+ "delete-agendatemplates-agendaId-items-itemId": {
+  "outcome": "ok",
+  "scenario": "test_agenda_template",
+  "path": "/agendatemplates/382/items/6088"
+ },
+ "delete-bookings": {
+  "outcome": "ok",
+  "scenario": "test_resource_booking",
+  "path": "/bookings/436"
+ },
+ "delete-calendars-appointments-templates-id": {
+  "outcome": "ok",
+  "scenario": "test_appointment_template",
+  "path": "/calendars/appointments/templates/31"
+ },
+ "delete-calendars-calendarId": {
+  "outcome": "ok",
+  "scenario": "test_appointment_lifecycle",
+  "path": "/calendars/91"
+ },
+ "delete-calendars-calendarId-appointments-appointmentId": {
+  "outcome": "ok",
+  "scenario": "test_appointment_lifecycle",
+  "path": "/calendars/91/appointments/1665598"
+ },
+ "delete-campuses-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[campuses]",
+  "path": "/campuses/22"
+ },
+ "delete-contactlabels-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[contactlabels]",
+  "path": "/contactlabels/25"
+ },
+ "delete-events-id-agenda-items-id": {
+  "outcome": "ok",
+  "scenario": "test_event_agenda",
+  "path": "/events/1816/agenda/items/6091"
+ },
+ "delete-facts-id": {
+  "outcome": "ok",
+  "scenario": "test_facts",
+  "path": "/facts/19"
+ },
+ "delete-followups-followUpId": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/followups/34"
+ },
+ "delete-furtherlinks-furtherLinkId": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[furtherlinks]",
+  "path": "/furtherlinks/28"
+ },
+ "delete-group-agegroups-ageGroupId": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.agegroups]",
+  "path": "/group/agegroups/31"
+ },
+ "delete-group-groupcategories-groupCategoryId": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.groupcategories]",
+  "path": "/group/groupcategories/25"
+ },
+ "delete-group-grouptypes-groupTypeId": {
+  "outcome": "ok",
+  "scenario": "test_group_type_with_role",
+  "path": "/group/grouptypes/19"
+ },
+ "delete-group-meetingtemplates-meetingTemplateId": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[group.meetingtemplates]",
+  "path": "/group/meetingtemplates/13"
+ },
+ "delete-group-roles-roleId": {
+  "outcome": "ok",
+  "scenario": "test_group_type_with_role",
+  "path": "/group/roles/85"
+ },
+ "delete-group-targetgroups-targetGroupId": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.targetgroups]",
+  "path": "/group/targetgroups/25"
+ },
+ "delete-groups-groupId": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups/901"
+ },
+ "delete-groups-groupId-grouphomepage": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/grouphomepage"
+ },
+ "delete-groups-groupId-meetings-meetingId": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups/901/meetings/1060"
+ },
+ "delete-groups-groupId-meetings-meetingId-members-memberId": {
+  "outcome": "ok",
+  "scenario": "test_meeting_attendance",
+  "path": "/groups/916/meetings/1063/members/1"
+ },
+ "delete-groups-groupId-memberfields-group-groupMemberFieldId": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/memberfields/group/766"
+ },
+ "delete-groups-groupId-members-personId": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups/901/members/1"
+ },
+ "delete-groups-groupId-parents-parentGroupId": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/parents/907"
+ },
+ "delete-htmltemplates-templateId": {
+  "outcome": "ok",
+  "scenario": "test_html_template",
+  "path": "/htmltemplates/52"
+ },
+ "delete-notes-domainType-domainId-id": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/notes/person/2914/238"
+ },
+ "delete-notes-noteId": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/notes/241"
+ },
+ "delete-oauthclients-identifier": {
+  "outcome": "ok",
+  "scenario": "test_oauth_client",
+  "path": "/oauthclients/318dbe9b1804d0c36e9d16374170180806f56441beaa569e2e90c762304fb444"
+ },
+ "delete-person-commentviewers-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.commentviewers]",
+  "path": "/person/commentviewers/28"
+ },
+ "delete-person-growpaths-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.growpaths]",
+  "path": "/person/growpaths/28"
+ },
+ "delete-person-relationshiptypes-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.relationshiptypes]",
+  "path": "/person/relationshiptypes/22"
+ },
+ "delete-person-sexes-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.sexes]",
+  "path": "/person/sexes/28"
+ },
+ "delete-persons-id": {
+  "outcome": "ok",
+  "scenario": "test_person_lifecycle",
+  "path": "/persons/2911"
+ },
+ "delete-persons-id-privacypolicy": {
+  "outcome": "ok",
+  "scenario": "test_person_agreements",
+  "path": "/persons/2920/privacypolicy"
+ },
+ "delete-persons-personId-absences-id": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/persons/2914/absences/97"
+ },
+ "delete-persons-personId-confidentialityagreement": {
+  "outcome": "ok",
+  "scenario": "test_person_agreements",
+  "path": "/persons/2920/confidentialityagreement"
+ },
+ "delete-persons-personId-relationships-relationshipId": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/persons/1/relationships/100"
+ },
+ "delete-post-hidden-domaintype-domainid": {
+  "outcome": "ok",
+  "scenario": "test_post_reactions",
+  "path": "/post/hidden/post/85"
+ },
+ "delete-posts-postId": {
+  "outcome": "ok",
+  "scenario": "test_post_with_comment",
+  "path": "/posts/82"
+ },
+ "delete-posts-postId-comments-commentId": {
+  "outcome": "ok",
+  "scenario": "test_post_with_comment",
+  "path": "/posts/82/comments/112"
+ },
+ "delete-posts-postId-comments-commentId-reactions-emoji": {
+  "outcome": "ok",
+  "scenario": "test_post_reactions",
+  "path": "/posts/85/comments/115/reactions/%F0%9F%91%8D"
+ },
+ "delete-posts-postId-reactions-emoji-persons-personId": {
+  "outcome": "ok",
+  "scenario": "test_post_reactions",
+  "path": "/posts/85/reactions/%F0%9F%99%8F/persons/1"
+ },
+ "delete-resources-resourceId": {
+  "outcome": "ok",
+  "scenario": "test_resource_booking",
+  "path": "/resources/46"
+ },
+ "delete-resourcetypes-resourceTypeId": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[resourcetypes]",
+  "path": "/resourcetypes/19"
+ },
+ "delete-servicegroups-id": {
+  "outcome": "ok",
+  "scenario": "test_services",
+  "path": "/servicegroups/31"
+ },
+ "delete-services-id": {
+  "outcome": "ok",
+  "scenario": "test_services",
+  "path": "/services/118"
+ },
+ "delete-song-categories-id": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[song.categories]",
+  "path": "/song/categories/16"
+ },
+ "delete-song-sources-id": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[song.sources]",
+  "path": "/song/sources/16"
+ },
+ "delete-songs-songId": {
+  "outcome": "ok",
+  "scenario": "test_song_with_arrangement",
+  "path": "/songs/91"
+ },
+ "delete-songs-songId-arrangements-arrangementId": {
+  "outcome": "ok",
+  "scenario": "test_song_with_arrangement",
+  "path": "/songs/91/arrangements/121"
+ },
+ "delete-statuses-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[statuses]",
+  "path": "/statuses/37"
+ },
+ "delete-tags-domainType-domainId-tagId": {
+  "outcome": "ok",
+  "scenario": "test_tags",
+  "path": "/tags/person/1/82"
+ },
+ "delete-tags-tagId": {
+  "outcome": "ok",
+  "scenario": "test_tags",
+  "path": "/tags/82"
+ },
+ "delete-wiki-categories-id": {
+  "outcome": "ok",
+  "scenario": "test_wiki",
+  "path": "/wiki/categories/31"
+ },
+ "delete-wiki-categories-id-pages-identifier": {
+  "outcome": "ok",
+  "scenario": "test_wiki",
+  "path": "/wiki/categories/31/pages/7A6891E2-6B8C-426C-B364-E893923113DE"
+ },
+ "get-addresses-domainType-domainIdentifier": {
+  "outcome": "ok",
+  "call": "addresses.get('group', 11)",
+  "undocumented": {}
+ },
+ "get-addresses-search": {
+  "outcome": "ok",
+  "call": "addresses.list_search(query='Go')",
+  "undocumented": {}
+ },
+ "get-agendatemplates": {
+  "outcome": "ok",
+  "call": "agendatemplates.list()",
+  "undocumented": {}
+ },
+ "get-agendatemplates-agendaId": {
+  "outcome": "ok",
+  "call": "agendatemplates.get(2)",
+  "undocumented": {}
+ },
+ "get-bookings": {
+  "outcome": "ok",
+  "call": "bookings.list(resource_ids=[10, 12, 3, 8, 5])",
+  "undocumented": {
+   "BookingBase": [
+    "@deprecated"
+   ],
+   "BookingCalculatedWithIncludes": [
+    "@deprecated"
+   ],
+   "BookingCalculatedWithIncludesBase": [
+    "@deprecated"
+   ],
+   "BookingCalculatedWithIncludesBaseResource": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-bookings-id": {
+  "outcome": "ok",
+  "call": "bookings.get(297)",
+  "undocumented": {
+   "BookingBase": [
+    "@deprecated"
+   ],
+   "BookingCalculatedWithIncludesBaseResource": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-bulkletters": {
+  "outcome": "ok",
+  "call": "bulkletters.list()",
+  "undocumented": {}
+ },
+ "get-bulkletters-id": {
+  "outcome": "ok",
+  "call": "bulkletters.get(42)",
+  "undocumented": {}
+ },
+ "get-bulkletters-id-persons": {
+  "outcome": "ok",
+  "call": "bulkletters.list_persons(42)",
+  "undocumented": {}
+ },
+ "get-calendars": {
+  "outcome": "ok",
+  "call": "calendars.list()",
+  "undocumented": {}
+ },
+ "get-calendars-appointments": {
+  "outcome": "ok",
+  "call": "calendars.appointments.list(calendar_ids=[49, 59, 2, 56, 4, 3, 51, 1, 54, 62, 65, 31])",
+  "undocumented": {
+   "AppointmentBase": [
+    "@deprecated"
+   ],
+   "AppointmentOccurrenceList": [
+    "@deprecated"
+   ],
+   "AppointmentOccurrenceListBase": [
+    "@deprecated"
+   ],
+   "Image": [
+    "aiGenerated",
+    "annotation",
+    "annotationLink",
+    "description",
+    "imageMetadata"
+   ]
+  }
+ },
+ "get-calendars-appointments-appointmentId-startDate": {
+  "outcome": "ok",
+  "call": "calendars.appointments.get_occurrence(1665407, '2026-10-10')",
+  "undocumented": {
+   "AppointmentBase": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-calendars-appointments-templates": {
+  "outcome": "ok",
+  "call": "calendars.appointments.templates.list()",
+  "undocumented": {
+   "AppointmentTemplate": [
+    "@deprecated",
+    "comment",
+    "note",
+    "repeatFrequence"
+   ]
+  }
+ },
+ "get-calendars-appointments-templates-id": {
+  "outcome": "ok",
+  "call": "calendars.appointments.templates.get(4)",
+  "undocumented": {
+   "AppointmentTemplate": [
+    "@deprecated",
+    "comment",
+    "note",
+    "repeatFrequence"
+   ]
+  }
+ },
+ "get-calendars-calendarId": {
+  "outcome": "ok",
+  "call": "calendars.get(49)",
+  "undocumented": {}
+ },
+ "get-calendars-calendarId-appointments": {
+  "outcome": "ok",
+  "call": "calendars.appointments.list_in_calendar(49)",
+  "undocumented": {
+   "AppointmentBase": [
+    "@deprecated"
+   ],
+   "AppointmentOccurrenceList": [
+    "@deprecated"
+   ],
+   "AppointmentOccurrenceListBase": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-calendars-calendarId-appointments-appointmentId": {
+  "outcome": "ok",
+  "call": "calendars.appointments.get(49, 1665407)",
+  "undocumented": {
+   "AppointmentBase": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-calendars-calendarId-appointments-appointmentId-ical": {
+  "outcome": "expected-error",
+  "reason": "Serverfehler 'is no valid URI' bei jedem getesteten Termin",
+  "call": "calendars.appointments.get_ical(49, 1665407)",
+  "status": 500,
+  "message": "HTTP 500: 'InvalidArgumentException: A server error occurred' (?:  is no valid URI)",
+  "request": {
+   "method": "GET",
+   "path": "/calendars/49/appointments/1665407/ical",
+   "query": [],
+   "body": null
+  }
+ },
+ "get-calendars-calendarId-appointments-appointmentId-meetingrequests": {
+  "outcome": "ok",
+  "call": "calendars.appointments.meetingrequests.list(49, 1665407)",
+  "undocumented": {}
+ },
+ "get-calendars-calendarId-appointments-appointmentId-startDate": {
+  "outcome": "ok",
+  "call": "calendars.appointments.get_occurrence_in_calendar(49, 1665407, '2026-10-10')",
+  "undocumented": {
+   "AppointmentBase": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-calendars-calendarId-meetingrequest-candidates": {
+  "outcome": "ok",
+  "call": "calendars.meetingrequest.list_candidates(49)",
+  "undocumented": {}
+ },
+ "get-calendars-calendarId-meetingrequestpersons": {
+  "outcome": "ok",
+  "call": "calendars.list_meetingrequestpersons(49)",
+  "undocumented": {}
+ },
+ "get-campuses": {
+  "outcome": "ok",
+  "call": "campuses.list()",
+  "undocumented": {}
+ },
+ "get-campuses-id": {
+  "outcome": "ok",
+  "call": "campuses.get(0)",
+  "undocumented": {}
+ },
+ "get-captcha": {
+  "outcome": "ok",
+  "call": "captcha.get()",
+  "undocumented": {
+   "GetCaptchaResponseParameters": [
+    "data",
+    "memoryCost",
+    "parallelism"
+   ]
+  }
+ },
+ "get-chat": {
+  "outcome": "ok",
+  "call": "chat.list()",
+  "undocumented": {}
+ },
+ "get-churchquery-metadata": {
+  "outcome": "ok",
+  "call": "churchquery.get_metadata(entity_to_search_for='person')",
+  "undocumented": {}
+ },
+ "get-config": {
+  "outcome": "ok",
+  "call": "config.get()",
+  "undocumented": {
+   "GetConfigResponse": [
+    "ccp_url",
+    "feature_charset",
+    "feature_markdown"
+   ]
+  }
+ },
+ "get-contactlabels": {
+  "outcome": "ok",
+  "call": "contactlabels.list()",
+  "undocumented": {}
+ },
+ "get-contactlabels-id": {
+  "outcome": "ok",
+  "call": "contactlabels.get(2)",
+  "undocumented": {}
+ },
+ "get-csrftoken": {
+  "outcome": "ok",
+  "call": "csrftoken.get()",
+  "undocumented": {}
+ },
+ "get-dbfields": {
+  "outcome": "ok",
+  "call": "dbfields.list()",
+  "undocumented": {}
+ },
+ "get-dbfields-fieldId": {
+  "outcome": "ok",
+  "call": "dbfields.get(132)",
+  "undocumented": {}
+ },
+ "get-dbfields-fieldId-options": {
+  "outcome": "ok",
+  "call": "dbfields.options.list(132)",
+  "undocumented": {}
+ },
+ "get-dbfields-fieldId-options-metadata": {
+  "outcome": "expected-error",
+  "reason": "PHP-TypeError in DbFieldOptionsService (quote_identifier(null)) bei Feld 132",
+  "call": "dbfields.options.list_metadata(132)",
+  "status": 500,
+  "message": "HTTP 500: 'A server error occurred' (?: quote_identifier(): Argument #1 ($identifier) must be of type string, null given, called in /opt/churchtools_application/versions/churchtools-3.138.0/system/src/Domain/DoctrineDBField/DbFieldOptionsService.php on line 99)",
+  "request": {
+   "method": "GET",
+   "path": "/dbfields/132/options/metadata",
+   "query": [],
+   "body": null
+  }
+ },
+ "get-dbfieldtypes": {
+  "outcome": "ok",
+  "call": "dbfieldtypes.list()",
+  "undocumented": {}
+ },
+ "get-departments": {
+  "outcome": "ok",
+  "call": "departments.list()",
+  "undocumented": {}
+ },
+ "get-domainobjects": {
+  "outcome": "ok",
+  "call": "domainobjects.list(domain_types=['person'], domain_identifiers=['1'])",
+  "undocumented": {
+   "ResolvedDomainObject": [
+    "domainAttributes",
+    "domainIdentifier",
+    "domainType",
+    "frontendUrl",
+    "icon",
+    "title"
+   ]
+  }
+ },
+ "get-dynamicgroups": {
+  "outcome": "ok",
+  "call": "dynamicgroups.list()",
+  "undocumented": {}
+ },
+ "get-dynamicgroups-id-ruleset": {
+  "outcome": "ok",
+  "call": "dynamicgroups.list_ruleset(895)",
+  "undocumented": {}
+ },
+ "get-dynamicgroups-id-status": {
+  "outcome": "ok",
+  "call": "dynamicgroups.get_status(895)",
+  "undocumented": {}
+ },
+ "get-evangelischetermine-eventtypes": {
+  "outcome": "expected-error",
+  "reason": "SoapFault: evangelische-termine.de nicht eingerichtet (500 statt 4xx)",
+  "call": "evangelischetermine.list_eventtypes()",
+  "status": 500,
+  "message": "HTTP 500: 'SoapFault: A server error occurred' (?: EvangelischeTermineSoapClient: Service not enabled)",
+  "request": {
+   "method": "GET",
+   "path": "/evangelischetermine/eventtypes",
+   "query": [],
+   "body": null
+  }
+ },
+ "get-event-masterdata": {
+  "outcome": "ok",
+  "call": "event.get_masterdata()",
+  "undocumented": {}
+ },
+ "get-events": {
+  "outcome": "ok",
+  "call": "events.list()",
+  "undocumented": {}
+ },
+ "get-events-eventId-facts": {
+  "outcome": "ok",
+  "call": "events.facts.list(1816)",
+  "undocumented": {}
+ },
+ "get-events-eventId-facts-factId": {
+  "outcome": "ok",
+  "call": "events.facts.get(1816, 1)",
+  "undocumented": {}
+ },
+ "get-events-eventId-services-serviceId-possiblepersons": {
+  "outcome": "ok",
+  "call": "events.services.list_possiblepersons(1816, 1)",
+  "undocumented": {}
+ },
+ "get-events-facts": {
+  "outcome": "ok",
+  "call": "events.facts.list_all()",
+  "undocumented": {}
+ },
+ "get-events-ical": {
+  "outcome": "ok",
+  "call": "events.get_ical(person_id=1)",
+  "undocumented": {}
+ },
+ "get-events-id": {
+  "outcome": "ok",
+  "call": "events.get(1816)",
+  "undocumented": {}
+ },
+ "get-events-id-agenda": {
+  "outcome": "ok",
+  "call": "events.agenda.get(1816)",
+  "undocumented": {}
+ },
+ "get-events-id-agenda-songs": {
+  "outcome": "ok",
+  "call": "events.agenda.list_songs(1816)",
+  "undocumented": {}
+ },
+ "get-events-id-possiblepersonsforservice": {
+  "outcome": "ok",
+  "call": "events.list_possiblepersonsforservice(1)",
+  "undocumented": {}
+ },
+ "get-eventtemplates": {
+  "outcome": "ok",
+  "call": "eventtemplates.list()",
+  "undocumented": {
+   "EventTemplate": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-externallogins": {
+  "outcome": "ok",
+  "call": "externallogins.list()",
+  "undocumented": {}
+ },
+ "get-externallogins-externalLoginId-saml-login": {
+  "outcome": "expected-error",
+  "reason": "Test-Anbieter hat keine Identity-Provider-Metadaten",
+  "call": "externallogins.saml.get_login(25)",
+  "status": 404,
+  "message": "HTTP 404: b'SAML-Anmeldung ist nicht verf\\xc3\\xbcgbar.'",
+  "request": {
+   "method": "GET",
+   "path": "/externallogins/25/saml/login",
+   "query": [],
+   "body": null
+  }
+ },
+ "get-externallogins-externalLoginId-saml-metadata": {
+  "outcome": "ok",
+  "call": "externallogins.saml.get_metadata(25)",
+  "undocumented": {}
+ },
+ "get-externallogins-externalLoginId-saml-sls": {
+  "outcome": "skipped",
+  "reason": "leitet den Browser zum Identity-Provider um; über die API nichts zu prüfen"
+ },
+ "get-externallogins-id": {
+  "outcome": "ok",
+  "call": "externallogins.get(28)",
+  "undocumented": {}
+ },
+ "get-externallogins-id-oidc-callback": {
+  "outcome": "expected-error",
+  "reason": "Callback ohne laufenden OIDC-Login",
+  "call": "externallogins.oidc.callback_for(28, state='unknown-state')",
+  "status": 401,
+  "message": "HTTP 401: b'Die OIDC-Anmeldung ist fehlgeschlagen. Diagnose-ID: [598fdd20a50f6190]'",
+  "request": {
+   "method": "GET",
+   "path": "/externallogins/28/oidc/callback",
+   "query": [
+    [
+     "state",
+     "unknown-state"
+    ]
+   ],
+   "body": null
+  }
+ },
+ "get-externallogins-id-oidc-start": {
+  "outcome": "expected-error",
+  "reason": "Test-Anbieter ist versteckt und hat keinen echten OIDC-Client",
+  "call": "externallogins.oidc.get_start(28)",
+  "status": 404,
+  "message": "HTTP 404: b'Die OIDC-Anmeldung ist derzeit nicht verf\\xc3\\xbcgbar. Diagnose-ID: [d45737ccf0b40029]'",
+  "request": {
+   "method": "GET",
+   "path": "/externallogins/28/oidc/start",
+   "query": [],
+   "body": null
+  }
+ },
+ "get-externallogins-id-oidc-test-state": {
+  "outcome": "ok",
+  "call": "externallogins.oidc.test.get(28, 'unknown-state')",
+  "undocumented": {}
+ },
+ "get-externallogins-id-saml-test-state": {
+  "outcome": "ok",
+  "call": "externallogins.saml.test.get(25, 'unknown-state')",
+  "undocumented": {}
+ },
+ "get-externallogins-oidc-callback": {
+  "outcome": "expected-error",
+  "reason": "Callback ohne laufenden OIDC-Login",
+  "call": "externallogins.oidc.callback(state='opaque-session-bound-state')",
+  "status": 401,
+  "message": "HTTP 401: b'Die OIDC-Anmeldung ist fehlgeschlagen. Diagnose-ID: [8e82e4d1f0dbd572]'",
+  "request": {
+   "method": "GET",
+   "path": "/externallogins/oidc/callback",
+   "query": [
+    [
+     "state",
+     "opaque-session-bound-state"
+    ]
+   ],
+   "body": null
+  }
+ },
+ "get-externalposts": {
+  "outcome": "ok",
+  "call": "externalposts.list()",
+  "undocumented": {}
+ },
+ "get-externalposts-instances-guid-channels-guid-posts-guid": {
+  "outcome": "unresolved",
+  "reason": "no value for path parameter instanceGuid"
+ },
+ "get-facts": {
+  "outcome": "ok",
+  "call": "facts.list()",
+  "undocumented": {}
+ },
+ "get-facts-id": {
+  "outcome": "ok",
+  "call": "facts.get(1)",
+  "undocumented": {}
+ },
+ "get-fields": {
+  "outcome": "ok",
+  "call": "fields.list()",
+  "undocumented": {}
+ },
+ "get-files-domainType": {
+  "outcome": "ok",
+  "call": "files.list_for_type('person')",
+  "undocumented": {}
+ },
+ "get-files-domainType-domainIdentifier": {
+  "outcome": "ok",
+  "call": "files.list('person', 3322)",
+  "undocumented": {}
+ },
+ "get-files-id-meta": {
+  "outcome": "ok",
+  "call": "files.get_meta(2277)",
+  "undocumented": {}
+ },
+ "get-files-id-metadata": {
+  "outcome": "ok",
+  "call": "files.get_metadata(2277)",
+  "undocumented": {
+   "LegacyFileMetadata": [
+    "blob_missing_since"
+   ]
+  }
+ },
+ "get-finance-accountclasses": {
+  "outcome": "ok",
+  "call": "finance.accountclasses.list()",
+  "undocumented": {}
+ },
+ "get-finance-accountclasses-id": {
+  "outcome": "ok",
+  "call": "finance.accountclasses.get(1)",
+  "undocumented": {}
+ },
+ "get-finance-accountgroups": {
+  "outcome": "ok",
+  "call": "finance.accountgroups.list()",
+  "undocumented": {}
+ },
+ "get-finance-accountgroups-id": {
+  "outcome": "ok",
+  "call": "finance.accountgroups.get(1)",
+  "undocumented": {}
+ },
+ "get-finance-accountingperiods": {
+  "outcome": "ok",
+  "call": "finance.accountingperiods.list()",
+  "undocumented": {}
+ },
+ "get-finance-accountingperiods-id": {
+  "outcome": "ok",
+  "call": "finance.accountingperiods.get(1)",
+  "undocumented": {}
+ },
+ "get-finance-accountingperiods-id-accounts-id-movements": {
+  "outcome": "ok",
+  "call": "finance.accountingperiods.accounts.list_movements(1, 2)",
+  "undocumented": {}
+ },
+ "get-finance-accountingperiods-id-accounts-id-statements": {
+  "outcome": "ok",
+  "call": "finance.accountingperiods.accounts.statements.list(1, 2)",
+  "undocumented": {}
+ },
+ "get-finance-accountingperiods-id-accounts-id-statements-id-movements": {
+  "outcome": "ok",
+  "call": "finance.accountingperiods.accounts.statements.movements.list(1, 2, 10)",
+  "undocumented": {}
+ },
+ "get-finance-accountingperiods-id-accounts-statements": {
+  "outcome": "ok",
+  "call": "finance.accountingperiods.accounts.list_statements(1)",
+  "undocumented": {}
+ },
+ "get-finance-accountingperiods-id-bills": {
+  "outcome": "ok",
+  "call": "finance.accountingperiods.list_bills(1)",
+  "undocumented": {}
+ },
+ "get-finance-accountingperiods-id-userrules": {
+  "outcome": "ok",
+  "call": "finance.accountingperiods.list_userrules(1)",
+  "undocumented": {}
+ },
+ "get-finance-accounts": {
+  "outcome": "ok",
+  "call": "finance.accounts.list()",
+  "undocumented": {}
+ },
+ "get-finance-accounts-csv": {
+  "outcome": "ok",
+  "call": "finance.accounts.get_csv(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-accounts-export": {
+  "outcome": "ok",
+  "call": "finance.accounts.get_export(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-accounts-id": {
+  "outcome": "ok",
+  "call": "finance.accounts.get(2)",
+  "undocumented": {}
+ },
+ "get-finance-accounttypes": {
+  "outcome": "ok",
+  "call": "finance.accounttypes.list()",
+  "undocumented": {}
+ },
+ "get-finance-accounttypes-id": {
+  "outcome": "ok",
+  "call": "finance.accounttypes.get(1)",
+  "undocumented": {}
+ },
+ "get-finance-bills-id": {
+  "outcome": "ok",
+  "call": "finance.bills.get(4)",
+  "undocumented": {}
+ },
+ "get-finance-cashdiscounts": {
+  "outcome": "ok",
+  "call": "finance.cashdiscounts.list()",
+  "undocumented": {}
+ },
+ "get-finance-cashdiscounts-id": {
+  "outcome": "ok",
+  "call": "finance.cashdiscounts.get(13)",
+  "undocumented": {}
+ },
+ "get-finance-clients": {
+  "outcome": "ok",
+  "call": "finance.clients.list()",
+  "undocumented": {}
+ },
+ "get-finance-clients-id": {
+  "outcome": "ok",
+  "call": "finance.clients.get(1)",
+  "undocumented": {}
+ },
+ "get-finance-costcenters": {
+  "outcome": "ok",
+  "call": "finance.costcenters.list()",
+  "undocumented": {}
+ },
+ "get-finance-costcenters-export": {
+  "outcome": "ok",
+  "call": "finance.costcenters.get_export(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-costcenters-id": {
+  "outcome": "ok",
+  "call": "finance.costcenters.get(1)",
+  "undocumented": {}
+ },
+ "get-finance-donators": {
+  "outcome": "ok",
+  "call": "finance.donators.list(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-donators-donatorCoupleId": {
+  "outcome": "unresolved",
+  "reason": "no value for path parameter donatorCoupleId"
+ },
+ "get-finance-donators-receipts": {
+  "outcome": "expected-error",
+  "reason": "noch keine Zuwendungsbestätigungen für die Buchungsperiode erstellt",
+  "call": "finance.donators.get_receipts(accounting_period_id=1)",
+  "status": 400,
+  "message": "HTTP 400: 'Donation receipts have not yet been created for accounting period 1'",
+  "request": {
+   "method": "GET",
+   "path": "/finance/donators/receipts",
+   "query": [
+    [
+     "accounting_period_id",
+     "1"
+    ]
+   ],
+   "body": null
+  }
+ },
+ "get-finance-eubp-health": {
+  "outcome": "ok",
+  "call": "finance.eubp.get_health()",
+  "undocumented": {}
+ },
+ "get-finance-eubp-submissions": {
+  "outcome": "ok",
+  "call": "finance.eubp.submissions.list()",
+  "undocumented": {}
+ },
+ "get-finance-eubp-submissions-id": {
+  "outcome": "ok",
+  "call": "finance.eubp.submissions.get(13)",
+  "undocumented": {}
+ },
+ "get-finance-eubp-submissions-id-accounts": {
+  "outcome": "ok",
+  "call": "finance.eubp.submissions.list_accounts(13)",
+  "undocumented": {}
+ },
+ "get-finance-eubp-submissions-id-preview": {
+  "outcome": "ok",
+  "call": "finance.eubp.submissions.get_preview(13)",
+  "undocumented": {}
+ },
+ "get-finance-masterdata": {
+  "outcome": "ok",
+  "call": "finance.get_masterdata(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-splittransactions-id": {
+  "outcome": "ok",
+  "call": "finance.splittransactions.get(13)",
+  "undocumented": {}
+ },
+ "get-finance-taxrates": {
+  "outcome": "ok",
+  "call": "finance.taxrates.list()",
+  "undocumented": {}
+ },
+ "get-finance-taxrates-id": {
+  "outcome": "ok",
+  "call": "finance.taxrates.get(2)",
+  "undocumented": {}
+ },
+ "get-finance-taxtypes": {
+  "outcome": "ok",
+  "call": "finance.taxtypes.list()",
+  "undocumented": {}
+ },
+ "get-finance-taxtypes-id": {
+  "outcome": "ok",
+  "call": "finance.taxtypes.get(1)",
+  "undocumented": {}
+ },
+ "get-finance-templates": {
+  "outcome": "ok",
+  "call": "finance.templates.list()",
+  "undocumented": {}
+ },
+ "get-finance-templates-export": {
+  "outcome": "ok",
+  "call": "finance.templates.get_export(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-transactionpurposes": {
+  "outcome": "ok",
+  "call": "finance.transactionpurposes.list()",
+  "undocumented": {}
+ },
+ "get-finance-transactionpurposes-id": {
+  "outcome": "ok",
+  "call": "finance.transactionpurposes.get(1)",
+  "undocumented": {}
+ },
+ "get-finance-transactions": {
+  "outcome": "ok",
+  "call": "finance.transactions.list(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-transactions-csv": {
+  "outcome": "ok",
+  "call": "finance.transactions.get_csv(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-transactions-datevexport": {
+  "outcome": "ok",
+  "call": "finance.transactions.get_datevexport(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-transactions-documentnumberavailable": {
+  "outcome": "ok",
+  "call": "finance.transactions.get_documentnumberavailable(accounting_period_id=1, document_number='2024-001')",
+  "undocumented": {}
+ },
+ "get-finance-transactions-export": {
+  "outcome": "ok",
+  "call": "finance.transactions.get_export(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-transactions-id": {
+  "outcome": "ok",
+  "call": "finance.transactions.get(401)",
+  "undocumented": {}
+ },
+ "get-finance-transactions-ids": {
+  "outcome": "ok",
+  "call": "finance.transactions.get_ids()",
+  "undocumented": {}
+ },
+ "get-finance-transactions-nextdocumentnumber": {
+  "outcome": "ok",
+  "call": "finance.transactions.get_nextdocumentnumber(accounting_period_id=1)",
+  "undocumented": {}
+ },
+ "get-finance-transactions-summary": {
+  "outcome": "ok",
+  "call": "finance.transactions.get_summary(accounting_period_id=1, account_ids=[2])",
+  "undocumented": {}
+ },
+ "get-followups": {
+  "outcome": "ok",
+  "call": "followups.list()",
+  "undocumented": {}
+ },
+ "get-followups-followUpId": {
+  "outcome": "ok",
+  "call": "followups.get(4)",
+  "undocumented": {}
+ },
+ "get-furtherlinks": {
+  "outcome": "ok",
+  "call": "furtherlinks.list()",
+  "undocumented": {}
+ },
+ "get-furtherlinks-furtherLinkId": {
+  "outcome": "ok",
+  "call": "furtherlinks.get(25)",
+  "undocumented": {}
+ },
+ "get-group-agegroups": {
+  "outcome": "ok",
+  "call": "group.agegroups.list()",
+  "undocumented": {}
+ },
+ "get-group-agegroups-ageGroupId": {
+  "outcome": "ok",
+  "call": "group.agegroups.get(9)",
+  "undocumented": {}
+ },
+ "get-group-groupcategories": {
+  "outcome": "ok",
+  "call": "group.groupcategories.list()",
+  "undocumented": {}
+ },
+ "get-group-groupcategories-groupCategoryId": {
+  "outcome": "ok",
+  "call": "group.groupcategories.get(2)",
+  "undocumented": {}
+ },
+ "get-group-grouptypes": {
+  "outcome": "ok",
+  "call": "group.grouptypes.list()",
+  "undocumented": {}
+ },
+ "get-group-grouptypes-groupTypeId": {
+  "outcome": "ok",
+  "call": "group.grouptypes.get(1)",
+  "undocumented": {}
+ },
+ "get-group-meetingtemplates": {
+  "outcome": "ok",
+  "call": "group.meetingtemplates.list()",
+  "undocumented": {}
+ },
+ "get-group-meetingtemplates-meetingTemplateId": {
+  "outcome": "ok",
+  "call": "group.meetingtemplates.get(2)",
+  "undocumented": {}
+ },
+ "get-group-memberstatus": {
+  "outcome": "ok",
+  "call": "group.list_memberstatus()",
+  "undocumented": {}
+ },
+ "get-group-roles": {
+  "outcome": "ok",
+  "call": "group.roles.list()",
+  "undocumented": {}
+ },
+ "get-group-roles-roleId": {
+  "outcome": "ok",
+  "call": "group.roles.get(16)",
+  "undocumented": {}
+ },
+ "get-group-targetgroups": {
+  "outcome": "ok",
+  "call": "group.targetgroups.list()",
+  "undocumented": {}
+ },
+ "get-group-targetgroups-targetGroupId": {
+  "outcome": "ok",
+  "call": "group.targetgroups.get(1)",
+  "undocumented": {}
+ },
+ "get-grouphomepages": {
+  "outcome": "ok",
+  "call": "grouphomepages.list()",
+  "undocumented": {}
+ },
+ "get-grouphomepages-hash": {
+  "outcome": "ok",
+  "call": "grouphomepages.get('seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr')",
+  "undocumented": {}
+ },
+ "get-groups": {
+  "outcome": "ok",
+  "call": "groups.list()",
+  "undocumented": {}
+ },
+ "get-groups-absences": {
+  "outcome": "ok",
+  "call": "groups.list_absences(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId": {
+  "outcome": "ok",
+  "call": "groups.get(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-children": {
+  "outcome": "ok",
+  "call": "groups.list_children(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-documents-htmlTemplateId": {
+  "outcome": "ok",
+  "call": "groups.documents.get(895, 49)",
+  "undocumented": {},
+  "undocumented_response": "%PDF-1.4\n%����\n1 0 obj\n<</Title (gemeinde.example/sites/default/files/tmp/fBMjDkfYI9.html)\n/Creator (Mozilla/5.0 \\(X11; Linux x86_64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) HeadlessChrome/155.0.0.0 Safari/537.36)\n/Producer (Skia/PDF m155)\n/CreationDate (D:20261028223550+00'00')\n/ModDat"
+ },
+ "get-groups-groupId-documenttemplates": {
+  "outcome": "ok",
+  "call": "groups.list_documenttemplates(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-followups": {
+  "outcome": "ok",
+  "call": "groups.followups.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-followups-statistics": {
+  "outcome": "ok",
+  "call": "groups.followups.get_statistics(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-grouphomepage": {
+  "outcome": "ok",
+  "call": "groups.get_grouphomepage(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-meetings-export": {
+  "outcome": "ok",
+  "call": "groups.meetings.get_export(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-meetings-meetingId": {
+  "outcome": "ok",
+  "call": "groups.meetings.get(895, 1057)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-meetings-meetingId-members": {
+  "outcome": "ok",
+  "call": "groups.meetings.members.list(895, 1057)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-memberfields": {
+  "outcome": "ok",
+  "call": "groups.memberfields.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-memberids": {
+  "outcome": "ok",
+  "call": "groups.list_memberids(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-memberpreview": {
+  "outcome": "ok",
+  "call": "groups.list_memberpreview(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-members-export": {
+  "outcome": "ok",
+  "call": "groups.members.get_export(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-members-history": {
+  "outcome": "ok",
+  "call": "groups.members.list_history(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-members-personId": {
+  "outcome": "ok",
+  "call": "groups.members.get(11, 108)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-members-personId-followups": {
+  "outcome": "ok",
+  "call": "groups.members.followups.list(11, 108)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-members-personId-meetings": {
+  "outcome": "ok",
+  "call": "groups.members.list_meetings(11, 108)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-members-routines": {
+  "outcome": "ok",
+  "call": "groups.members.routines.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-members-statistics": {
+  "outcome": "ok",
+  "call": "groups.members.list_statistics(11, group_type_role_ids=[16])",
+  "undocumented": {}
+ },
+ "get-groups-groupId-newsletter-integrations": {
+  "outcome": "ok",
+  "call": "groups.newsletter_integrations.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-parents": {
+  "outcome": "ok",
+  "call": "groups.parents.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-posts": {
+  "outcome": "ok",
+  "call": "groups.list_posts(11)",
+  "undocumented": {}
+ },
+ "get-groups-groupId-poststatistics": {
+  "outcome": "ok",
+  "call": "groups.get_poststatistics(11)",
+  "undocumented": {}
+ },
+ "get-groups-grouped": {
+  "outcome": "ok",
+  "call": "groups.get_grouped(group_by='ageGroup')",
+  "undocumented": {}
+ },
+ "get-groups-hierarchies": {
+  "outcome": "ok",
+  "call": "groups.list_hierarchies()",
+  "undocumented": {}
+ },
+ "get-groups-id-meetings": {
+  "outcome": "ok",
+  "call": "groups.meetings.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-id-members": {
+  "outcome": "ok",
+  "call": "groups.members.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-id-members-id-documents-id": {
+  "outcome": "ok",
+  "call": "groups.members.documents.get(895, 1, 49)",
+  "undocumented": {},
+  "undocumented_response": "%PDF-1.4\n%����\n1 0 obj\n<</Title (gemeinde.example/sites/default/files/tmp/4GFqxE8SfP.html)\n/Creator (Mozilla/5.0 \\(X11; Linux x86_64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) HeadlessChrome/155.0.0.0 Safari/537.36)\n/Producer (Skia/PDF m155)\n/CreationDate (D:20261028223554+00'00')\n/ModDat"
+ },
+ "get-groups-id-members-id-followups-statistics": {
+  "outcome": "ok",
+  "call": "groups.members.followups.get_statistics(11, 108)",
+  "undocumented": {}
+ },
+ "get-groups-id-qrcodecheckin": {
+  "outcome": "ok",
+  "call": "groups.qrcodecheckin.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-id-qrcodecheckin-personId": {
+  "outcome": "ok",
+  "call": "groups.qrcodecheckin.get(895, 1)",
+  "undocumented": {}
+ },
+ "get-groups-id-qrcodecheckin-personId-pdf": {
+  "outcome": "ok",
+  "call": "groups.qrcodecheckin.get_pdf(895, 1)",
+  "undocumented": {}
+ },
+ "get-groups-id-roles": {
+  "outcome": "ok",
+  "call": "groups.roles.list(11)",
+  "undocumented": {}
+ },
+ "get-groups-id-statistics": {
+  "outcome": "ok",
+  "call": "groups.get_statistics(11)",
+  "undocumented": {}
+ },
+ "get-groups-id-wiki-categories-pages": {
+  "outcome": "ok",
+  "call": "groups.wiki.categories.list_pages(11)",
+  "undocumented": {}
+ },
+ "get-groups-ids": {
+  "outcome": "ok",
+  "call": "groups.list_ids()",
+  "undocumented": {}
+ },
+ "get-groups-members": {
+  "outcome": "ok",
+  "call": "groups.list_members()",
+  "undocumented": {}
+ },
+ "get-groups-optins": {
+  "outcome": "ok",
+  "call": "groups.get_optins(11)",
+  "undocumented": {}
+ },
+ "get-history": {
+  "outcome": "ok",
+  "call": "history.list(domain_types=['person'], domain_identifiers=['1'])",
+  "undocumented": {}
+ },
+ "get-htmltemplates": {
+  "outcome": "ok",
+  "call": "htmltemplates.list(domain_type='bulkletter')",
+  "undocumented": {}
+ },
+ "get-htmltemplates-templateId": {
+  "outcome": "ok",
+  "call": "htmltemplates.get(2)",
+  "undocumented": {}
+ },
+ "get-htmltemplates-templateId-export": {
+  "outcome": "ok",
+  "call": "htmltemplates.get_export(2)",
+  "undocumented": {}
+ },
+ "get-htmltemplates-templateId-html": {
+  "outcome": "ok",
+  "call": "htmltemplates.get_html(2)",
+  "undocumented": {}
+ },
+ "get-htmltemplates-templateId-mjml": {
+  "outcome": "ok",
+  "call": "htmltemplates.get_mjml(2)",
+  "undocumented": {}
+ },
+ "get-images-fileId-hash": {
+  "outcome": "expected-error",
+  "reason": "Bilder liegen unter /images/…, nicht unter /api/images/…; die Spec führt die Route fälschlich in der API",
+  "call": "images.get(2277, '7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404')",
+  "status": 404,
+  "message": "HTTP 404: 'Not found.'",
+  "request": {
+   "method": "GET",
+   "path": "/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+   "query": [],
+   "body": null
+  }
+ },
+ "get-images-fileId-hash-queryParams": {
+  "outcome": "expected-error",
+  "reason": "wie GET /images/{fileId}/{hash}",
+  "call": "images.get_with_params(2277, '7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404', 'w=100')",
+  "status": 404,
+  "message": "HTTP 404: 'Not found.'",
+  "request": {
+   "method": "GET",
+   "path": "/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404/w%3D100",
+   "query": [],
+   "body": null
+  }
+ },
+ "get-info": {
+  "outcome": "ok",
+  "call": "info.get()",
+  "undocumented": {}
+ },
+ "get-joblog": {
+  "outcome": "ok",
+  "call": "joblog.list(guid='d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged')",
+  "undocumented": {}
+ },
+ "get-jobs": {
+  "outcome": "ok",
+  "call": "jobs.list()",
+  "undocumented": {}
+ },
+ "get-languages": {
+  "outcome": "ok",
+  "call": "languages.list()",
+  "undocumented": {}
+ },
+ "get-license-fetch": {
+  "outcome": "ok",
+  "call": "license.get_fetch()",
+  "undocumented": {}
+ },
+ "get-logs": {
+  "outcome": "ok",
+  "call": "logs.list()",
+  "undocumented": {}
+ },
+ "get-logs-id": {
+  "outcome": "ok",
+  "call": "logs.get(497464)",
+  "undocumented": {}
+ },
+ "get-logs-statistics-login": {
+  "outcome": "ok",
+  "call": "logs.statistics.list_login()",
+  "undocumented": {}
+ },
+ "get-masterdata-person": {
+  "outcome": "ok",
+  "call": "masterdata.get_person()",
+  "undocumented": {}
+ },
+ "get-menu": {
+  "outcome": "ok",
+  "call": "menu.get()",
+  "undocumented": {
+   "GetMenuResponseHelpSecondaryItem": [
+    "key"
+   ]
+  }
+ },
+ "get-newsletter-integrations": {
+  "outcome": "ok",
+  "call": "newsletter_integrations.list()",
+  "undocumented": {}
+ },
+ "get-notes": {
+  "outcome": "ok",
+  "call": "notes.get('person', 1)",
+  "undocumented": {}
+ },
+ "get-oauthclients": {
+  "outcome": "ok",
+  "call": "oauthclients.list()",
+  "undocumented": {}
+ },
+ "get-permissions-assignment-targets": {
+  "outcome": "ok",
+  "call": "permissions.list_assignment_targets()",
+  "undocumented": {
+   "PermissionAssignmentTarget": [
+    "group",
+    "groupType",
+    "role"
+   ]
+  }
+ },
+ "get-permissions-definitions": {
+  "outcome": "ok",
+  "call": "permissions.get_definitions()",
+  "undocumented": {}
+ },
+ "get-permissions-global": {
+  "outcome": "ok",
+  "call": "permissions.global_.get()",
+  "undocumented": {}
+ },
+ "get-permissions-global-auths-authId-assignment-summary": {
+  "outcome": "ok",
+  "call": "permissions.global_.auths.get_assignment_summary(1)",
+  "undocumented": {}
+ },
+ "get-permissions-global-auths-authId-persons": {
+  "outcome": "ok",
+  "call": "permissions.global_.auths.get_persons(1)",
+  "undocumented": {}
+ },
+ "get-permissions-global-person-summary": {
+  "outcome": "ok",
+  "call": "permissions.global_.get_person_summary()",
+  "undocumented": {}
+ },
+ "get-permissions-internal-events-eventId": {
+  "outcome": "ok",
+  "call": "permissions.internal.events.get(1816)",
+  "undocumented": {}
+ },
+ "get-permissions-internal-groups": {
+  "outcome": "ok",
+  "call": "permissions.internal.groups.list()",
+  "undocumented": {}
+ },
+ "get-permissions-internal-groups-groupId": {
+  "outcome": "ok",
+  "call": "permissions.internal.groups.get(11)",
+  "undocumented": {}
+ },
+ "get-permissions-internal-groups-groupId-auths-authId-persons": {
+  "outcome": "ok",
+  "call": "permissions.internal.groups.auths.get_persons(11, 10122)",
+  "undocumented": {}
+ },
+ "get-permissions-internal-persons-id": {
+  "outcome": "ok",
+  "call": "permissions.internal.persons.get(1)",
+  "undocumented": {}
+ },
+ "get-permissions-locked": {
+  "outcome": "ok",
+  "call": "permissions.get_locked()",
+  "undocumented": {}
+ },
+ "get-permissions-origins-global-persons-personId": {
+  "outcome": "ok",
+  "call": "permissions.origins.global_.persons.get(1)",
+  "undocumented": {}
+ },
+ "get-permissions-origins-internal-persons-personId": {
+  "outcome": "ok",
+  "call": "permissions.origins.internal.persons.get(1)",
+  "undocumented": {}
+ },
+ "get-permissions-permissionDomainType": {
+  "outcome": "ok",
+  "call": "permissions.list_for_type('person')",
+  "undocumented": {}
+ },
+ "get-permissions-permissionDomainType-permissionDomainId": {
+  "outcome": "ok",
+  "call": "permissions.list('person', 1)",
+  "undocumented": {}
+ },
+ "get-person-commentviewers": {
+  "outcome": "ok",
+  "call": "person.commentviewers.list()",
+  "undocumented": {}
+ },
+ "get-person-commentviewers-id": {
+  "outcome": "ok",
+  "call": "person.commentviewers.get(0)",
+  "undocumented": {}
+ },
+ "get-person-growpaths": {
+  "outcome": "ok",
+  "call": "person.growpaths.list()",
+  "undocumented": {}
+ },
+ "get-person-growpaths-id": {
+  "outcome": "ok",
+  "call": "person.growpaths.get(1)",
+  "undocumented": {}
+ },
+ "get-person-masterdata": {
+  "outcome": "ok",
+  "call": "person.get_masterdata()",
+  "undocumented": {}
+ },
+ "get-person-relationshiptypes": {
+  "outcome": "ok",
+  "call": "person.relationshiptypes.list()",
+  "undocumented": {}
+ },
+ "get-person-relationshiptypes-id": {
+  "outcome": "ok",
+  "call": "person.relationshiptypes.get(2)",
+  "undocumented": {}
+ },
+ "get-person-sexes": {
+  "outcome": "ok",
+  "call": "person.sexes.list()",
+  "undocumented": {}
+ },
+ "get-person-sexes-id": {
+  "outcome": "ok",
+  "call": "person.sexes.get(3)",
+  "undocumented": {}
+ },
+ "get-persons": {
+  "outcome": "ok",
+  "call": "persons.list()",
+  "undocumented": {}
+ },
+ "get-persons-birthdays": {
+  "outcome": "ok",
+  "call": "persons.list_birthdays()",
+  "undocumented": {}
+ },
+ "get-persons-duplicates": {
+  "outcome": "ok",
+  "call": "persons.list_duplicates()",
+  "undocumented": {}
+ },
+ "get-persons-id": {
+  "outcome": "ok",
+  "call": "persons.get(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-events": {
+  "outcome": "ok",
+  "call": "persons.events.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-events-id-services": {
+  "outcome": "ok",
+  "call": "persons.events.services.list(1, 1986)",
+  "undocumented": {}
+ },
+ "get-persons-id-events-id-services-id-exchangerequests": {
+  "outcome": "ok",
+  "call": "persons.events.services.exchangerequests.list(1, 1986, 33875)",
+  "undocumented": {}
+ },
+ "get-persons-id-events-id-services-id-exchangerequests-candidates": {
+  "outcome": "ok",
+  "call": "persons.events.services.exchangerequests.list_candidates(1, 1986, 33875)",
+  "undocumented": {
+   "ServiceExchangePerson": [
+    "addressAddition",
+    "baptisedBy",
+    "birthName",
+    "birthday",
+    "birthplace",
+    "campusId",
+    "canChat",
+    "castHelper",
+    "city",
+    "cmsUserId",
+    "country",
+    "createdPid",
+    "customFields",
+    "dateOfBaptism",
+    "dateOfBelonging",
+    "dateOfEntry",
+    "dateOfResign",
+    "departmentIds",
+    "email",
+    "emails",
+    "familyImageKey",
+    "familyImageUrl",
+    "familyStatusId",
+    "fax",
+    "firstContact",
+    "firstLogin",
+    "growPathId",
+    "imageKey",
+    "isActive",
+    "isSystemUser",
+    "job",
+    "kids",
+    "lastLogin",
+    "latitude",
+    "latitudeLoose",
+    "loginString",
+    "longitude",
+    "longitudeLoose",
+    "mobile",
+    "modifiedPid",
+    "nationalityId",
+    "nickname",
+    "optigemId",
+    "parents",
+    "password",
+    "phonePrivate",
+    "phoneWork",
+    "placeOfBaptism",
+    "privacyPolicyAgreementDate",
+    "privacyPolicyAgreementTypeId",
+    "privacyPolicyAgreementWhoId",
+    "receivingEmail",
+    "referredBy",
+    "referredTo",
+    "sexId",
+    "sortNameDynamicProperty",
+    "spouse",
+    "statusId",
+    "street",
+    "title",
+    "visibility",
+    "weddingDate",
+    "zip"
+   ]
+  }
+ },
+ "get-persons-id-exchangerequests": {
+  "outcome": "ok",
+  "call": "persons.exchangerequests.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-external-logins": {
+  "outcome": "ok",
+  "call": "persons.external_logins.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-groups": {
+  "outcome": "ok",
+  "call": "persons.list_groups(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-loginstring": {
+  "outcome": "ok",
+  "call": "persons.get_loginstring(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-logintoken": {
+  "outcome": "ok",
+  "call": "persons.get_logintoken(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-privacypolicy": {
+  "outcome": "ok",
+  "call": "persons.get_privacypolicy(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-servicerequests": {
+  "outcome": "ok",
+  "call": "persons.servicerequests.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-servicerequests-id": {
+  "outcome": "ok",
+  "call": "persons.servicerequests.get(1, 30587)",
+  "undocumented": {}
+ },
+ "get-persons-id-settings": {
+  "outcome": "ok",
+  "call": "persons.settings.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-settings-module": {
+  "outcome": "ok",
+  "call": "persons.settings.get_module(1, 'churchauth')",
+  "undocumented": {}
+ },
+ "get-persons-id-settings-module-attribute": {
+  "outcome": "ok",
+  "call": "persons.settings.get(1, 'churchauth', 'listMaxRowsAuthAutoView')",
+  "undocumented": {}
+ },
+ "get-persons-id-settings-twofactor": {
+  "outcome": "ok",
+  "call": "persons.settings.twofactor.get(1)",
+  "undocumented": {}
+ },
+ "get-persons-id-settings-twofactor-force": {
+  "outcome": "ok",
+  "call": "persons.settings.twofactor.get_force(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-absences": {
+  "outcome": "ok",
+  "call": "persons.absences.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-absences-id": {
+  "outcome": "ok",
+  "call": "persons.absences.get(1, 94)",
+  "undocumented": {}
+ },
+ "get-persons-personId-devices": {
+  "outcome": "ok",
+  "call": "persons.devices.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-devices-deviceId": {
+  "outcome": "ok",
+  "call": "persons.devices.get(1, 'ctrs-test-device')",
+  "undocumented": {}
+ },
+ "get-persons-personId-followups": {
+  "outcome": "ok",
+  "call": "persons.followups.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-followups-statistics": {
+  "outcome": "ok",
+  "call": "persons.followups.get_statistics(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-information": {
+  "outcome": "ok",
+  "call": "persons.get_information(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-openmeetingrequests": {
+  "outcome": "ok",
+  "call": "persons.list_openmeetingrequests(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-posts": {
+  "outcome": "ok",
+  "call": "persons.list_posts(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-poststatistics": {
+  "outcome": "ok",
+  "call": "persons.get_poststatistics(1)",
+  "undocumented": {}
+ },
+ "get-persons-personId-relationships": {
+  "outcome": "ok",
+  "call": "persons.relationships.list(1)",
+  "undocumented": {}
+ },
+ "get-persons-personid-merge-duplicateid": {
+  "outcome": "ok",
+  "call": "persons.merge.get(32, 228)",
+  "undocumented": {}
+ },
+ "get-persons-relationships": {
+  "outcome": "ok",
+  "call": "persons.list_relationships()",
+  "undocumented": {}
+ },
+ "get-persons-search_old": {
+  "outcome": "ok",
+  "call": "persons.list_search_old()",
+  "undocumented": {}
+ },
+ "get-placeholders-email": {
+  "outcome": "ok",
+  "call": "placeholders.list_email()",
+  "undocumented": {}
+ },
+ "get-placeholders-group-id": {
+  "outcome": "ok",
+  "call": "placeholders.group.get(11)",
+  "undocumented": {}
+ },
+ "get-pollfornews": {
+  "outcome": "ok",
+  "call": "pollfornews.list(domain_types=['person'], since=datetime.datetime(2026, 10, 21, 22, 34, 48, tzinfo=datetime.timezone.utc))",
+  "undocumented": {}
+ },
+ "get-post-groups": {
+  "outcome": "ok",
+  "call": "post.list_groups()",
+  "undocumented": {}
+ },
+ "get-post-hidden": {
+  "outcome": "ok",
+  "call": "post.hidden.list()",
+  "undocumented": {}
+ },
+ "get-post-linkings": {
+  "outcome": "ok",
+  "call": "post.get_linkings(post_ids=[51])",
+  "undocumented": {}
+ },
+ "get-post-reports": {
+  "outcome": "ok",
+  "call": "post.reports.list(domain_type='post')",
+  "undocumented": {}
+ },
+ "get-post-search": {
+  "outcome": "ok",
+  "call": "post.list_search()",
+  "undocumented": {}
+ },
+ "get-posts": {
+  "outcome": "ok",
+  "call": "posts.list()",
+  "undocumented": {
+   "PostInstance": [
+    "shortName"
+   ]
+  }
+ },
+ "get-posts-postId": {
+  "outcome": "ok",
+  "call": "posts.get(51)",
+  "undocumented": {}
+ },
+ "get-posts-postId-comments": {
+  "outcome": "ok",
+  "call": "posts.comments.list(51)",
+  "undocumented": {}
+ },
+ "get-posts-postId-comments-commentId-reactions": {
+  "outcome": "ok",
+  "call": "posts.comments.reactions.list(51, 109)",
+  "undocumented": {}
+ },
+ "get-posts-postId-reactions": {
+  "outcome": "ok",
+  "call": "posts.reactions.list(51)",
+  "undocumented": {}
+ },
+ "get-pr-masterdata": {
+  "outcome": "ok",
+  "call": "pr.get_masterdata()",
+  "undocumented": {}
+ },
+ "get-printers": {
+  "outcome": "ok",
+  "call": "printers.list()",
+  "undocumented": {}
+ },
+ "get-profiles": {
+  "outcome": "ok",
+  "call": "profiles.list()",
+  "undocumented": {}
+ },
+ "get-profiles-church": {
+  "outcome": "ok",
+  "call": "profiles.get_church()",
+  "undocumented": {}
+ },
+ "get-profiles-slugcheck-slug": {
+  "outcome": "ok",
+  "call": "profiles.slugcheck.get('ctrs-test-slug', guid='00000000-0000-0000-0000-000000000000')",
+  "undocumented": {},
+  "undocumented_response": "success"
+ },
+ "get-publicgroups-groupId-form": {
+  "outcome": "ok",
+  "call": "publicgroups.get_form(898, token='<redacted>')",
+  "undocumented": {}
+ },
+ "get-publicgroups-groupId-possiblerequesters": {
+  "outcome": "ok",
+  "call": "publicgroups.get_possiblerequesters(898, token='<redacted>')",
+  "undocumented": {}
+ },
+ "get-publicgroups-id": {
+  "outcome": "ok",
+  "call": "publicgroups.get(11)",
+  "undocumented": {}
+ },
+ "get-publicgroups-id-hash": {
+  "outcome": "ok",
+  "call": "publicgroups.get_with_hash(26, 'seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr')",
+  "undocumented": {}
+ },
+ "get-publicgroups-id-signoutdata": {
+  "outcome": "ok",
+  "call": "publicgroups.get_signoutdata(11)",
+  "undocumented": {}
+ },
+ "get-publicgroups-signup-confirm-confirmationToken": {
+  "outcome": "unresolved",
+  "reason": "no value for path parameter confirmationToken"
+ },
+ "get-queues-queue-jobgroups-jobGroup": {
+  "outcome": "ok",
+  "call": "queues.jobgroups.get('default', 'default')",
+  "undocumented": {}
+ },
+ "get-registrationconfig-id": {
+  "outcome": "ok",
+  "call": "registrationconfig.get(1)",
+  "undocumented": {
+   "DbFieldOption": [
+    "salutation_formal",
+    "salutation_informal"
+   ]
+  }
+ },
+ "get-repeatcalculation": {
+  "outcome": "ok",
+  "call": "repeatcalculation.list(end_date='2026-09-20T09:30:00Z', start_date='2026-09-20T08:00:00Z')",
+  "undocumented": {}
+ },
+ "get-resource-masterdata": {
+  "outcome": "ok",
+  "call": "resource.get_masterdata()",
+  "undocumented": {
+   "Resource": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-resources": {
+  "outcome": "ok",
+  "call": "resources.list()",
+  "undocumented": {
+   "Resource": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-resources-resourceId": {
+  "outcome": "ok",
+  "call": "resources.get(10)",
+  "undocumented": {
+   "Resource": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-resources-resourceId-statistics": {
+  "outcome": "ok",
+  "call": "resources.get_statistics(10)",
+  "undocumented": {}
+ },
+ "get-resourcetypes": {
+  "outcome": "ok",
+  "call": "resourcetypes.list()",
+  "undocumented": {}
+ },
+ "get-resourcetypes-resourceTypeId": {
+  "outcome": "ok",
+  "call": "resourcetypes.get(2)",
+  "undocumented": {}
+ },
+ "get-routines": {
+  "outcome": "ok",
+  "call": "routines.list()",
+  "undocumented": {
+   "RoutineStepRepeatActionData": [
+    "addSignOutUrl",
+    "attachmentIds",
+    "body",
+    "color",
+    "continuationType",
+    "description",
+    "duration",
+    "emailId",
+    "icon",
+    "origin",
+    "sender",
+    "senderId",
+    "specId",
+    "subject",
+    "successGroupId",
+    "successGroupMemberStatus",
+    "successGroupOfGroupTypeId",
+    "successRoleId",
+    "templateId",
+    "templateName",
+    "title"
+   ],
+   "RoutineStepWithoutRepeat": [
+    "actionData",
+    "actionKey",
+    "isEnabled"
+   ]
+  }
+ },
+ "get-routines-routineId": {
+  "outcome": "ok",
+  "call": "routines.get(1)",
+  "undocumented": {
+   "RoutineStepRepeatActionData": [
+    "attachmentIds",
+    "body",
+    "emailId",
+    "sender",
+    "senderId",
+    "subject",
+    "templateId",
+    "templateName"
+   ]
+  }
+ },
+ "get-routines-routineId-runs": {
+  "outcome": "ok",
+  "call": "routines.runs.list(1)",
+  "undocumented": {}
+ },
+ "get-saml-login": {
+  "outcome": "expected-error",
+  "reason": "SAML ist nicht eingerichtet",
+  "call": "saml.get_login()",
+  "status": 404,
+  "message": "HTTP 404: b'SAML-Anmeldung ist nicht verf\\xc3\\xbcgbar.'",
+  "request": {
+   "method": "GET",
+   "path": "/saml/login",
+   "query": [],
+   "body": null
+  }
+ },
+ "get-saml-metadata": {
+  "outcome": "ok",
+  "call": "saml.get_metadata()",
+  "undocumented": {}
+ },
+ "get-search": {
+  "outcome": "ok",
+  "call": "search.list(query='Go')",
+  "undocumented": {
+   "GetSearchDataItem": [
+    "apiUrl",
+    "color",
+    "domainAttributes",
+    "domainIdentifier",
+    "domainType",
+    "frontendUrl",
+    "icon",
+    "imageUrl",
+    "infos",
+    "initials",
+    "title"
+   ]
+  }
+ },
+ "get-securitylevels": {
+  "outcome": "ok",
+  "call": "securitylevels.list()",
+  "undocumented": {}
+ },
+ "get-securitylevels-id": {
+  "outcome": "ok",
+  "call": "securitylevels.get(1)",
+  "undocumented": {}
+ },
+ "get-servicegroups": {
+  "outcome": "ok",
+  "call": "servicegroups.list()",
+  "undocumented": {}
+ },
+ "get-servicegroups-id": {
+  "outcome": "ok",
+  "call": "servicegroups.get(1)",
+  "undocumented": {}
+ },
+ "get-services": {
+  "outcome": "ok",
+  "call": "services.list()",
+  "undocumented": {}
+ },
+ "get-services-id": {
+  "outcome": "ok",
+  "call": "services.get(1)",
+  "undocumented": {}
+ },
+ "get-song-categories": {
+  "outcome": "ok",
+  "call": "song.categories.list()",
+  "undocumented": {}
+ },
+ "get-song-categories-id": {
+  "outcome": "ok",
+  "call": "song.categories.get(0)",
+  "undocumented": {}
+ },
+ "get-song-sources": {
+  "outcome": "ok",
+  "call": "song.sources.list()",
+  "undocumented": {}
+ },
+ "get-song-sources-id": {
+  "outcome": "ok",
+  "call": "song.sources.get(2)",
+  "undocumented": {}
+ },
+ "get-songs": {
+  "outcome": "ok",
+  "call": "songs.list()",
+  "undocumented": {}
+ },
+ "get-songs-songId": {
+  "outcome": "ok",
+  "call": "songs.get(41)",
+  "undocumented": {}
+ },
+ "get-songs-songId-arrangements": {
+  "outcome": "ok",
+  "call": "songs.arrangements.list(41)",
+  "undocumented": {}
+ },
+ "get-songs-songId-arrangements-arrangementId": {
+  "outcome": "ok",
+  "call": "songs.arrangements.get(41, 59)",
+  "undocumented": {}
+ },
+ "get-sso-logins": {
+  "outcome": "ok",
+  "call": "sso_logins.list()",
+  "undocumented": {}
+ },
+ "get-startpage": {
+  "outcome": "ok",
+  "call": "startpage.list()",
+  "undocumented": {
+   "WidgetActionDataEvent": [
+    "personId",
+    "serviceRequestId"
+   ],
+   "WidgetDate": [
+    "groupings"
+   ],
+   "WidgetDateItem": [
+    "groupingKeys"
+   ],
+   "WidgetDetail": [
+    "groupings"
+   ],
+   "WidgetDomainObject": [
+    "groupings"
+   ],
+   "WidgetDomainObjectItem": [
+    "groupingKeys"
+   ],
+   "WidgetHidden": [
+    "groupings",
+    "items"
+   ],
+   "WidgetPost": [
+    "groupings"
+   ],
+   "WidgetPostItem": [
+    "groupingKeys"
+   ]
+  }
+ },
+ "get-statuses": {
+  "outcome": "ok",
+  "call": "statuses.list()",
+  "undocumented": {}
+ },
+ "get-statuses-id": {
+  "outcome": "ok",
+  "call": "statuses.get(0)",
+  "undocumented": {}
+ },
+ "get-subscriptions-personId": {
+  "outcome": "ok",
+  "call": "subscriptions.list(1)",
+  "undocumented": {
+   "SubscriptionGroup": [
+    "@deprecated"
+   ],
+   "SubscriptionPostSummary": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-subscriptions-personId-subject": {
+  "outcome": "ok",
+  "call": "subscriptions.list_for_subject(1, 'post_summary')",
+  "undocumented": {
+   "SubscriptionPostSummary": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-subscriptions-personId-subject-subjectIdentifier": {
+  "outcome": "ok",
+  "call": "subscriptions.get(1, 'post_summary', '0')",
+  "undocumented": {
+   "SubscriptionPostSummary": [
+    "@deprecated"
+   ]
+  }
+ },
+ "get-sync-adapters": {
+  "outcome": "ok",
+  "call": "sync.adapters.list()",
+  "undocumented": {}
+ },
+ "get-sync-adapters-id": {
+  "outcome": "ok",
+  "call": "sync.adapters.get(1)",
+  "undocumented": {}
+ },
+ "get-sync-adapters-proxy": {
+  "outcome": "ok",
+  "call": "sync.adapters.proxy.get('churchtools', 'health')",
+  "undocumented": {},
+  "undocumented_response": "success"
+ },
+ "get-sync-conflicts": {
+  "outcome": "ok",
+  "call": "sync.conflicts.list()",
+  "undocumented": {}
+ },
+ "get-sync-conflicts-id": {
+  "outcome": "unresolved",
+  "reason": "GET /sync/conflicts returned no items"
+ },
+ "get-sync-entitymappings": {
+  "outcome": "ok",
+  "call": "sync.entitymappings.list()",
+  "undocumented": {}
+ },
+ "get-sync-entitymappings-id": {
+  "outcome": "ok",
+  "call": "sync.entitymappings.get(10)",
+  "undocumented": {}
+ },
+ "get-sync-executions": {
+  "outcome": "ok",
+  "call": "sync.list_executions()",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.list()",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems-externalSystemId": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.get(13)",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems-externalSystemId-adapterproxy-uri": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.adapterproxy.get(13, 'health')",
+  "undocumented": {},
+  "undocumented_response": "success"
+ },
+ "get-sync-externalsystems-externalSystemId-fieldmappings": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.fieldmappings.list(13)",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems-externalSystemId-jobconfigs-jobId": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.jobconfigs.get(13, 13)",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-executions-executionId": {
+  "outcome": "unresolved",
+  "reason": "no value for path parameter executionId"
+ },
+ "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.jobconfigs.get_filter(13, 13)",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.jobconfigs.get_properties(13, 13)",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems-id-fieldmappings-domaintype": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.fieldmappings.get(13, 'person')",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.fieldmappings.get_nosuggestions(13, 'person')",
+  "undocumented": {}
+ },
+ "get-sync-externalsystems-id-jobconfigs": {
+  "outcome": "ok",
+  "call": "sync.externalsystems.jobconfigs.list(13)",
+  "undocumented": {}
+ },
+ "get-sync-jobconfigs": {
+  "outcome": "ok",
+  "call": "sync.list_jobconfigs()",
+  "undocumented": {}
+ },
+ "get-sync-logs": {
+  "outcome": "ok",
+  "call": "sync.list_logs()",
+  "undocumented": {}
+ },
+ "get-tags-domainType": {
+  "outcome": "ok",
+  "call": "tags.list('person')",
+  "undocumented": {}
+ },
+ "get-tags-domainType-domainId": {
+  "outcome": "ok",
+  "call": "tags.list_for_object('person', 10)",
+  "undocumented": {}
+ },
+ "get-tags-tagId": {
+  "outcome": "ok",
+  "call": "tags.get(10)",
+  "undocumented": {}
+ },
+ "get-translations": {
+  "outcome": "ok",
+  "call": "translations.list()",
+  "undocumented": {}
+ },
+ "get-translations-keysbytext": {
+  "outcome": "ok",
+  "call": "translations.list_keysbytext(query='Go')",
+  "undocumented": {}
+ },
+ "get-website-data": {
+  "outcome": "ok",
+  "call": "website.data.list()",
+  "undocumented": {}
+ },
+ "get-website-starttest": {
+  "outcome": "ok",
+  "call": "website.get_starttest()",
+  "undocumented": {}
+ },
+ "get-whoami": {
+  "outcome": "ok",
+  "call": "whoami.get()",
+  "undocumented": {}
+ },
+ "get-widgets-blog": {
+  "outcome": "ok",
+  "call": "widgets.get_blog()",
+  "undocumented": {}
+ },
+ "get-widgets-rss": {
+  "outcome": "ok",
+  "call": "widgets.get_rss()",
+  "undocumented": {}
+ },
+ "get-wiki-categories": {
+  "outcome": "ok",
+  "call": "wiki.categories.list()",
+  "undocumented": {}
+ },
+ "get-wiki-categories-id-pages": {
+  "outcome": "ok",
+  "call": "wiki.categories.pages.list(9)",
+  "undocumented": {}
+ },
+ "get-wiki-categories-id-pages-id-versions-id": {
+  "outcome": "ok",
+  "call": "wiki.categories.pages.versions.get(9, 'A3124166-5818-4A3F-A5EC-0CBCB0744824', 6)",
+  "undocumented": {}
+ },
+ "get-wiki-categories-id-pages-identifier": {
+  "outcome": "ok",
+  "call": "wiki.categories.pages.get(9, 'A3124166-5818-4A3F-A5EC-0CBCB0744824')",
+  "undocumented": {}
+ },
+ "get-wiki-categories-id-pages-identifier-versions": {
+  "outcome": "ok",
+  "call": "wiki.categories.pages.versions.list(9, 'A3124166-5818-4A3F-A5EC-0CBCB0744824')",
+  "undocumented": {}
+ },
+ "get-wiki-pages": {
+  "outcome": "ok",
+  "call": "wiki.list_pages()",
+  "undocumented": {}
+ },
+ "get-wiki-search": {
+  "outcome": "ok",
+  "call": "wiki.list_search(query='Go')",
+  "undocumented": {}
+ },
+ "patch-groups-groupId-memberfields-group-groupMemberFieldId": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/memberfields/group/766"
+ },
+ "patch-groups-groupId-members-personId": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups/901/members/1"
+ },
+ "patch-groups-id": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups/901"
+ },
+ "patch-htmltemplates-templateId": {
+  "outcome": "ok",
+  "scenario": "test_html_template",
+  "path": "/htmltemplates/52"
+ },
+ "patch-persons-id": {
+  "outcome": "ok",
+  "scenario": "test_person_lifecycle",
+  "path": "/persons/2911"
+ },
+ "patch-posts-postId": {
+  "outcome": "ok",
+  "scenario": "test_post_with_comment",
+  "path": "/posts/82"
+ },
+ "patch-songs-songId-arrangements-arrangementId-default": {
+  "outcome": "ok",
+  "scenario": "test_song_default_arrangement",
+  "path": "/songs/94/arrangements/127/default"
+ },
+ "patch-statuses-id": {
+  "outcome": "ok",
+  "scenario": "test_status_patch",
+  "path": "/statuses/40"
+ },
+ "patch-wiki-categories-id-pages-identifier": {
+  "outcome": "ok",
+  "scenario": "test_wiki",
+  "path": "/wiki/categories/31/pages/7A6891E2-6B8C-426C-B364-E893923113DE"
+ },
+ "post-addresses-domainType-domainIdentifier": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/addresses/group/904"
+ },
+ "post-agendatemplates": {
+  "outcome": "ok",
+  "scenario": "test_agenda_template",
+  "path": "/agendatemplates"
+ },
+ "post-agendatemplates-agendaId-items": {
+  "outcome": "ok",
+  "scenario": "test_agenda_template",
+  "path": "/agendatemplates/382/items"
+ },
+ "post-bookings": {
+  "outcome": "ok",
+  "scenario": "test_resource_booking",
+  "path": "/bookings"
+ },
+ "post-bookings-conflicts": {
+  "outcome": "ok",
+  "scenario": "test_booking_conflicts",
+  "path": "/bookings/conflicts"
+ },
+ "post-bookings-id-conflicts": {
+  "outcome": "ok",
+  "scenario": "test_booking_conflicts",
+  "path": "/bookings/439/conflicts"
+ },
+ "post-calendars": {
+  "outcome": "ok",
+  "scenario": "test_appointment_lifecycle",
+  "path": "/calendars"
+ },
+ "post-calendars-appointments-templates": {
+  "outcome": "ok",
+  "scenario": "test_appointment_template",
+  "path": "/calendars/appointments/templates"
+ },
+ "post-calendars-calendarId-appointments": {
+  "outcome": "ok",
+  "scenario": "test_appointment_lifecycle",
+  "path": "/calendars/91/appointments"
+ },
+ "post-calendars-calendarId-appointments-appointmentId-changeimpact": {
+  "outcome": "ok",
+  "scenario": "test_appointment_change_impact",
+  "path": "/calendars/94/appointments/1665601/changeimpact"
+ },
+ "post-campuses": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[campuses]",
+  "path": "/campuses"
+ },
+ "post-contactlabels": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[contactlabels]",
+  "path": "/contactlabels"
+ },
+ "post-domainobjects": {
+  "outcome": "ok",
+  "scenario": "test_lookups",
+  "path": "/domainobjects"
+ },
+ "post-emails-preview": {
+  "outcome": "ok",
+  "scenario": "test_lookups",
+  "path": "/emails/preview"
+ },
+ "post-events-id-agenda-items": {
+  "outcome": "ok",
+  "scenario": "test_event_agenda",
+  "path": "/events/1816/agenda/items"
+ },
+ "post-events-id-agenda-items-id-hide": {
+  "outcome": "ok",
+  "scenario": "test_event_agenda",
+  "path": "/events/1816/agenda/items/6091/hide"
+ },
+ "post-events-id-agenda-items-id-unhide": {
+  "outcome": "ok",
+  "scenario": "test_event_agenda",
+  "path": "/events/1816/agenda/items/6091/unhide"
+ },
+ "post-events-id-agenda-lock": {
+  "outcome": "ok",
+  "scenario": "test_event_agenda",
+  "path": "/events/1816/agenda/lock"
+ },
+ "post-events-id-agenda-unlock": {
+  "outcome": "ok",
+  "scenario": "test_event_agenda",
+  "path": "/events/1816/agenda/unlock"
+ },
+ "post-facts": {
+  "outcome": "ok",
+  "scenario": "test_facts",
+  "path": "/facts"
+ },
+ "post-followups-followUpId-complete": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/followups/34/complete"
+ },
+ "post-followups-followUpId-dismiss": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/followups/34/dismiss"
+ },
+ "post-followups-followUpId-notes": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/followups/34/notes"
+ },
+ "post-followups-followUpId-postpone": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/followups/34/postpone"
+ },
+ "post-followups-followUpId-reset": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/followups/34/reset"
+ },
+ "post-furtherlinks": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[furtherlinks]",
+  "path": "/furtherlinks"
+ },
+ "post-group-agegroups": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.agegroups]",
+  "path": "/group/agegroups"
+ },
+ "post-group-groupcategories": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.groupcategories]",
+  "path": "/group/groupcategories"
+ },
+ "post-group-grouptypes": {
+  "outcome": "ok",
+  "scenario": "test_group_type_with_role",
+  "path": "/group/grouptypes"
+ },
+ "post-group-meetingtemplates": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[group.meetingtemplates]",
+  "path": "/group/meetingtemplates"
+ },
+ "post-group-roles": {
+  "outcome": "ok",
+  "scenario": "test_group_type_with_role",
+  "path": "/group/roles"
+ },
+ "post-group-targetgroups": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.targetgroups]",
+  "path": "/group/targetgroups"
+ },
+ "post-groups": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups"
+ },
+ "post-groups-export": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/export"
+ },
+ "post-groups-groupId-meetings-meetingId-members-missing": {
+  "outcome": "ok",
+  "scenario": "test_meeting_attendance",
+  "path": "/groups/916/meetings/1063/members/missing"
+ },
+ "post-groups-groupId-meetings-meetingId-members-reset": {
+  "outcome": "ok",
+  "scenario": "test_meeting_attendance",
+  "path": "/groups/916/meetings/1063/members/reset"
+ },
+ "post-groups-groupId-memberfields-group": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/memberfields/group"
+ },
+ "post-groups-id-duplicate": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/duplicate"
+ },
+ "post-groups-id-meetings": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups/901/meetings"
+ },
+ "post-groups-id-members-export": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/members/export"
+ },
+ "post-groups-id-members-id-followups": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/groups/913/members/2917/followups"
+ },
+ "post-htmltemplates": {
+  "outcome": "ok",
+  "scenario": "test_html_template",
+  "path": "/htmltemplates"
+ },
+ "post-labels-totals": {
+  "outcome": "ok",
+  "scenario": "test_lookups",
+  "path": "/labels/totals"
+ },
+ "post-markdown-check": {
+  "outcome": "ok",
+  "scenario": "test_lookups",
+  "path": "/markdown/check"
+ },
+ "post-notes-domainType-domainId": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/notes/person/2914"
+ },
+ "post-oauthclients": {
+  "outcome": "ok",
+  "scenario": "test_oauth_client",
+  "path": "/oauthclients"
+ },
+ "post-person-commentviewers": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.commentviewers]",
+  "path": "/person/commentviewers"
+ },
+ "post-person-growpaths": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.growpaths]",
+  "path": "/person/growpaths"
+ },
+ "post-person-relationshiptypes": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.relationshiptypes]",
+  "path": "/person/relationshiptypes"
+ },
+ "post-person-sexes": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.sexes]",
+  "path": "/person/sexes"
+ },
+ "post-persons": {
+  "outcome": "ok",
+  "scenario": "test_person_lifecycle",
+  "path": "/persons"
+ },
+ "post-persons-personId-absences": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/persons/2914/absences"
+ },
+ "post-persons-personId-archive": {
+  "outcome": "ok",
+  "scenario": "test_person_lifecycle",
+  "path": "/persons/2911/archive"
+ },
+ "post-persons-personId-followups": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/persons/2917/followups"
+ },
+ "post-persons-personId-relationships": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/persons/1/relationships"
+ },
+ "post-persons-properties": {
+  "outcome": "ok",
+  "scenario": "test_lookups",
+  "path": "/persons/properties"
+ },
+ "post-posts": {
+  "outcome": "ok",
+  "scenario": "test_post_with_comment",
+  "path": "/posts"
+ },
+ "post-posts-postId-comments": {
+  "outcome": "ok",
+  "scenario": "test_post_with_comment",
+  "path": "/posts/82/comments"
+ },
+ "post-repeatcalculation": {
+  "outcome": "ok",
+  "scenario": "test_lookups",
+  "path": "/repeatcalculation"
+ },
+ "post-resources": {
+  "outcome": "ok",
+  "scenario": "test_resource_booking",
+  "path": "/resources"
+ },
+ "post-resourcetypes": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[resourcetypes]",
+  "path": "/resourcetypes"
+ },
+ "post-servicegroups": {
+  "outcome": "ok",
+  "scenario": "test_services",
+  "path": "/servicegroups"
+ },
+ "post-services": {
+  "outcome": "ok",
+  "scenario": "test_services",
+  "path": "/services"
+ },
+ "post-song-categories": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[song.categories]",
+  "path": "/song/categories"
+ },
+ "post-song-sources": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[song.sources]",
+  "path": "/song/sources"
+ },
+ "post-songs": {
+  "outcome": "ok",
+  "scenario": "test_song_with_arrangement",
+  "path": "/songs"
+ },
+ "post-songs-songId-arrangements": {
+  "outcome": "ok",
+  "scenario": "test_song_with_arrangement",
+  "path": "/songs/91/arrangements"
+ },
+ "post-statuses": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[statuses]",
+  "path": "/statuses"
+ },
+ "post-tags-domainType": {
+  "outcome": "ok",
+  "scenario": "test_tags",
+  "path": "/tags/person"
+ },
+ "post-tags-domainType-domainId": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/tags/group/904"
+ },
+ "post-wiki-categories": {
+  "outcome": "ok",
+  "scenario": "test_wiki",
+  "path": "/wiki/categories"
+ },
+ "post-wiki-categories-id-pages": {
+  "outcome": "ok",
+  "scenario": "test_wiki",
+  "path": "/wiki/categories/31/pages"
+ },
+ "put-addresses-domainType-domainIdentifier-addressId": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/addresses/group/904/523"
+ },
+ "put-agendatemplates-agendaId": {
+  "outcome": "ok",
+  "scenario": "test_agenda_template",
+  "path": "/agendatemplates/382"
+ },
+ "put-agendatemplates-agendaId-items-itemId": {
+  "outcome": "ok",
+  "scenario": "test_agenda_template",
+  "path": "/agendatemplates/382/items/6088"
+ },
+ "put-bookings-id": {
+  "outcome": "ok",
+  "scenario": "test_booking_conflicts",
+  "path": "/bookings/439"
+ },
+ "put-calendars-appointments-templates-id": {
+  "outcome": "ok",
+  "scenario": "test_appointment_template",
+  "path": "/calendars/appointments/templates/31"
+ },
+ "put-calendars-calendarId": {
+  "outcome": "ok",
+  "scenario": "test_appointment_lifecycle",
+  "path": "/calendars/91"
+ },
+ "put-calendars-calendarId-appointments-appointmentId": {
+  "outcome": "ok",
+  "scenario": "test_appointment_lifecycle",
+  "path": "/calendars/91/appointments/1665598"
+ },
+ "put-campuses-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[campuses]",
+  "path": "/campuses/22"
+ },
+ "put-contactlabels-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[contactlabels]",
+  "path": "/contactlabels/25"
+ },
+ "put-events-id-agenda-items-id": {
+  "outcome": "ok",
+  "scenario": "test_event_agenda",
+  "path": "/events/1816/agenda/items/6091"
+ },
+ "put-facts-id": {
+  "outcome": "ok",
+  "scenario": "test_facts",
+  "path": "/facts/19"
+ },
+ "put-followups-followUpId": {
+  "outcome": "ok",
+  "scenario": "test_follow_up",
+  "path": "/followups/34"
+ },
+ "put-furtherlinks-furtherLinkId": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[furtherlinks]",
+  "path": "/furtherlinks/28"
+ },
+ "put-group-agegroups-ageGroupId": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.agegroups]",
+  "path": "/group/agegroups/31"
+ },
+ "put-group-groupcategories-groupCategoryId": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.groupcategories]",
+  "path": "/group/groupcategories/25"
+ },
+ "put-group-grouptypes-groupTypeId": {
+  "outcome": "ok",
+  "scenario": "test_group_type_with_role",
+  "path": "/group/grouptypes/19"
+ },
+ "put-group-meetingtemplates-meetingTemplateId": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[group.meetingtemplates]",
+  "path": "/group/meetingtemplates/13"
+ },
+ "put-group-roles-roleId": {
+  "outcome": "ok",
+  "scenario": "test_group_type_with_role",
+  "path": "/group/roles/85"
+ },
+ "put-group-targetgroups-targetGroupId": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[group.targetgroups]",
+  "path": "/group/targetgroups/25"
+ },
+ "put-groups-groupId-grouphomepage": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/grouphomepage"
+ },
+ "put-groups-groupId-meetings-meetingId": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups/901/meetings/1060"
+ },
+ "put-groups-groupId-memberfields-group-groupMemberFieldId": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/memberfields/group/766"
+ },
+ "put-groups-groupId-members-personId": {
+  "outcome": "ok",
+  "scenario": "test_group_lifecycle",
+  "path": "/groups/901/members/1"
+ },
+ "put-groups-groupId-parents-parentGroupId": {
+  "outcome": "ok",
+  "scenario": "test_group_extras",
+  "path": "/groups/904/parents/907"
+ },
+ "put-notes-domainType-domainId-id": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/notes/person/2914/238"
+ },
+ "put-oauthclients-identifier": {
+  "outcome": "ok",
+  "scenario": "test_oauth_client",
+  "path": "/oauthclients/318dbe9b1804d0c36e9d16374170180806f56441beaa569e2e90c762304fb444"
+ },
+ "put-person-commentviewers-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.commentviewers]",
+  "path": "/person/commentviewers/28"
+ },
+ "put-person-growpaths-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.growpaths]",
+  "path": "/person/growpaths/28"
+ },
+ "put-person-relationshiptypes-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.relationshiptypes]",
+  "path": "/person/relationshiptypes/22"
+ },
+ "put-person-sexes-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[person.sexes]",
+  "path": "/person/sexes/28"
+ },
+ "put-persons-id-privacypolicy": {
+  "outcome": "ok",
+  "scenario": "test_person_agreements",
+  "path": "/persons/2920/privacypolicy"
+ },
+ "put-persons-id-settings-module-attribute": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/persons/1/settings/churchdb/signature"
+ },
+ "put-persons-personId-absences-id": {
+  "outcome": "ok",
+  "scenario": "test_person_details",
+  "path": "/persons/2914/absences/97"
+ },
+ "put-persons-personId-confidentialityagreement": {
+  "outcome": "expected-error",
+  "reason": "nur die Person selbst kann annehmen, ein Admin nur widerrufen",
+  "scenario": "test_person_agreements",
+  "path": "/persons/2920/confidentialityagreement"
+ },
+ "put-posts-postId-comments-commentId-reactions": {
+  "outcome": "ok",
+  "scenario": "test_post_reactions",
+  "path": "/posts/85/comments/115/reactions"
+ },
+ "put-posts-postId-expire": {
+  "outcome": "ok",
+  "scenario": "test_post_reactions",
+  "path": "/posts/85/expire"
+ },
+ "put-posts-postId-hidden-domainType": {
+  "outcome": "ok",
+  "scenario": "test_post_reactions",
+  "path": "/posts/85/hidden/post"
+ },
+ "put-posts-postId-reactions-emoji-persons-personId": {
+  "outcome": "ok",
+  "scenario": "test_post_reactions",
+  "path": "/posts/85/reactions/%F0%9F%99%8F/persons/1"
+ },
+ "put-resources-resourceId": {
+  "outcome": "ok",
+  "scenario": "test_resource_booking",
+  "path": "/resources/46"
+ },
+ "put-resourcetypes-resourceTypeId": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[resourcetypes]",
+  "path": "/resourcetypes/19"
+ },
+ "put-servicegroups-id": {
+  "outcome": "ok",
+  "scenario": "test_services",
+  "path": "/servicegroups/31"
+ },
+ "put-services-id": {
+  "outcome": "ok",
+  "scenario": "test_services",
+  "path": "/services/118"
+ },
+ "put-song-categories-id": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[song.categories]",
+  "path": "/song/categories/16"
+ },
+ "put-song-sources-id": {
+  "outcome": "ok",
+  "scenario": "test_more_masterdata[song.sources]",
+  "path": "/song/sources/16"
+ },
+ "put-songs-songId": {
+  "outcome": "ok",
+  "scenario": "test_song_with_arrangement",
+  "path": "/songs/91"
+ },
+ "put-songs-songId-arrangements-arrangementId": {
+  "outcome": "ok",
+  "scenario": "test_song_with_arrangement",
+  "path": "/songs/91/arrangements/121"
+ },
+ "put-statuses-id": {
+  "outcome": "ok",
+  "scenario": "test_masterdata_lifecycle[statuses]",
+  "path": "/statuses/37"
+ },
+ "put-tags-domainType-domainId-tagId": {
+  "outcome": "ok",
+  "scenario": "test_tags",
+  "path": "/tags/person/1/82"
+ },
+ "put-tags-tagId": {
+  "outcome": "ok",
+  "scenario": "test_tags",
+  "path": "/tags/82"
+ },
+ "put-wiki-categories-id": {
+  "outcome": "ok",
+  "scenario": "test_wiki",
+  "path": "/wiki/categories/31"
+ }
+}

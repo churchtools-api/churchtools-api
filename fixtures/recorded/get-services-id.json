@@ -1,0 +1,50 @@
+{
+ "operation": "get-services-id",
+ "request": {
+  "method": "GET",
+  "path": "/services/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "Predigt",
+   "nameTranslated": "Predigt",
+   "sortKey": 0,
+   "description": null,
+   "serviceGroupId": 1,
+   "standard": true,
+   "hidePersonName": false,
+   "calTextTemplate": "",
+   "allowDecline": true,
+   "allowExchange": true,
+   "allowCommentOnConfirmation": false,
+   "allowControlLiveAgenda": false,
+   "allowChat": true,
+   "sendReminderMails": true,
+   "sendServiceRequestEmails": true,
+   "onlyAssignFromGroups": false,
+   "groupIds": [
+    6
+   ],
+   "tagIds": [],
+   "meta": {
+    "createdDate": "2025-12-06T11:23:38Z",
+    "createdPerson": {
+     "id": -5
+    },
+    "modifiedDate": "2025-12-06T11:23:38Z",
+    "modifiedPerson": {
+     "id": -5
+    }
+   },
+   "@deprecated": {
+    "commentOnConfirmation": "allowCommentOnConfirmation",
+    "comment": "description"
+   },
+   "commentOnConfirmation": false,
+   "comment": ""
+  }
+ }
+}

@@ -1,0 +1,96 @@
+{
+ "operation": "get-calendars-appointments-appointmentId-startDate",
+ "request": {
+  "method": "GET",
+  "path": "/calendars/appointments/1665407/2026-10-10",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "appointment": {
+    "base": {
+     "id": 1665407,
+     "title": "FC Augsburg - Bayern München (2:2)",
+     "subtitle": "WWK Arena, Augsburg",
+     "address": null,
+     "version": 0,
+     "calendar": {
+      "id": 49,
+      "name": "Fußball-Kalender",
+      "nameTranslated": "Fußball-Kalender",
+      "sortKey": 0,
+      "type": "personal",
+      "color": "black",
+      "randomUrl": "",
+      "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
+      "syncToEvTermine": false,
+      "evTermineEventTypeId": null,
+      "campusId": null,
+      "eventTemplateId": null,
+      "meta": {
+       "createdDate": "2025-06-16T08:28:33Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2026-10-28T02:37:27Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "isPublic": "type",
+       "isPrivate": "type"
+      },
+      "isPublic": false,
+      "isPrivate": true
+     },
+     "description": "1. Bundesliga, 5. Spieltag",
+     "image": null,
+     "link": "",
+     "isInternal": false,
+     "startDate": "2026-10-10T13:30:00Z",
+     "endDate": "2026-10-10T15:30:00Z",
+     "allDay": false,
+     "repeatId": 0,
+     "repeatFrequency": null,
+     "repeatUntil": null,
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "signup": null,
+     "onBehalfOfPid": null,
+     "meta": {
+      "createdDate": "2026-10-27T01:36:07Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2026-10-27T01:36:07Z",
+      "modifiedPerson": {
+       "id": -1
+      }
+     },
+     "@deprecated": {
+      "additions": "additionals",
+      "caption": "title",
+      "note": "subtitle",
+      "information": "description"
+     },
+     "caption": "FC Augsburg - Bayern München (2:2)",
+     "note": "WWK Arena, Augsburg",
+     "information": "1. Bundesliga, 5. Spieltag",
+     "additions": []
+    },
+    "calculated": {
+     "startDate": "2026-10-10T13:30:00Z",
+     "endDate": "2026-10-10T15:30:00Z",
+     "iCalUid": "rt7bctfeuilvvgbcmnajn3gil0@google.com"
+    }
+   },
+   "event": null,
+   "group": null,
+   "bookings": [],
+   "meetingRequests": []
+  }
+ }
+}

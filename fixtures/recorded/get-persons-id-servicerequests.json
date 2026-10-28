@@ -1,0 +1,3466 @@
+{
+ "operation": "get-persons-id-servicerequests",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/servicerequests",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 30587,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1878,
+     "name": "Gebetsabend",
+     "startDate": "2025-08-05T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30233,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1909,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-08-08T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29267,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1910,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-08-15T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27173,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1912,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-08-29T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30605,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1881,
+     "name": "Gebetsabend",
+     "startDate": "2025-09-16T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30269,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1915,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-09-19T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29303,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1916,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-09-26T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27209,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1918,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-10-10T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30623,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1884,
+     "name": "Gebetsabend",
+     "startDate": "2025-10-28T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30305,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1921,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-10-31T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29339,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1922,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-11-07T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27245,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1924,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-11-21T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30641,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1887,
+     "name": "Gebetsabend",
+     "startDate": "2025-12-09T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30341,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1927,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-12-12T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29375,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1928,
+     "name": "Jugendgottesdienst",
+     "startDate": "2025-12-19T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27281,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1930,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-01-02T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30659,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1890,
+     "name": "Gebetsabend",
+     "startDate": "2026-01-20T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30377,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1933,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-01-23T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29411,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1934,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-01-30T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27317,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1936,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-02-13T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30677,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1893,
+     "name": "Gebetsabend",
+     "startDate": "2026-03-03T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30413,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1939,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-03-06T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29447,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1940,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-03-13T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27353,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1942,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-03-27T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30695,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1896,
+     "name": "Gebetsabend",
+     "startDate": "2026-04-14T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30449,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1945,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-04-17T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29483,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1946,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-04-24T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27389,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1948,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-05-08T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30713,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1899,
+     "name": "Gebetsabend",
+     "startDate": "2026-05-26T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30485,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1951,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-05-29T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29519,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1952,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-06-05T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27425,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1954,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-06-19T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30731,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1902,
+     "name": "Gebetsabend",
+     "startDate": "2026-07-07T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30521,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1957,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-07-10T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29555,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1958,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-07-17T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27461,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1960,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-07-31T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 30749,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1905,
+     "name": "Gebetsabend",
+     "startDate": "2026-08-18T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 30557,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1963,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-08-21T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 29591,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1964,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-08-28T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 27497,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1966,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-09-11T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:48:43Z"
+   },
+   {
+    "id": 22339,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1765,
+     "name": "Gebetsabend",
+     "startDate": "2026-09-29T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:25:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:47:35Z"
+   },
+   {
+    "id": 22759,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1804,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-10-02T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-23T10:48:19Z"
+   },
+   {
+    "id": 22789,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1807,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-10-09T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-01-18T11:46:47Z"
+   },
+   {
+    "id": 22867,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 8,
+    "serviceName": "Beamer",
+    "index": null,
+    "isValid": true,
+    "isAccepted": true,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1813,
+     "name": "Jugendgottesdienst",
+     "startDate": "2026-10-23T17:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-18T11:29:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-19T00:18:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": true,
+    "counter": 0,
+    "requestedDate": "2026-08-19T00:18:30Z"
+   },
+   {
+    "id": 33877,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": false,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1744,
+     "name": "Gottesdienst",
+     "startDate": "2026-10-25T09:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-06-28T17:23:37Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-19T00:18:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": false,
+    "counter": 0,
+    "requestedDate": "2026-08-19T00:18:30Z"
+   },
+   {
+    "id": 33875,
+    "personId": 1,
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "name": "Armin Adendorf",
+    "serviceId": 6,
+    "serviceName": "Ton",
+    "index": null,
+    "isValid": true,
+    "isAccepted": false,
+    "comment": null,
+    "requesterPersonId": 1,
+    "requesterPerson": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "event": {
+     "id": 1986,
+     "name": "Gebetsabend",
+     "startDate": "2026-11-10T18:00:00Z"
+    },
+    "allowChat": true,
+    "permissions": null,
+    "meta": {
+     "createdDate": "2026-01-22T19:53:16Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-19T00:18:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "agreed": "isAccepted",
+     "counter": "index",
+     "requestedDate": "meta.modifiedDate"
+    },
+    "agreed": false,
+    "counter": 0,
+    "requestedDate": "2026-08-19T00:18:30Z"
+   }
+  ],
+  "meta": {
+   "count": 46
+  }
+ }
+}

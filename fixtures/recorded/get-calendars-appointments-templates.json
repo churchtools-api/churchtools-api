@@ -1,0 +1,169 @@
+{
+ "operation": "get-calendars-appointments-templates",
+ "request": {
+  "method": "GET",
+  "path": "/calendars/appointments/templates",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 4,
+    "calendarId": 3,
+    "meta": {
+     "createdDate": "2018-08-17T07:07:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2018-08-17T07:07:57Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "title": "Youth",
+    "comment": "",
+    "startTime": "19:00",
+    "duration": 10800,
+    "allDay": false,
+    "note": "",
+    "link": "",
+    "isInternal": false,
+    "categoryId": "3",
+    "repeatId": 0,
+    "repeatFrequence": null,
+    "repeatOptionId": null,
+    "repeatDuration": null,
+    "subtitle": "",
+    "description": "",
+    "repeatFrequency": null,
+    "@deprecated": {
+     "categoryId": "calendarId",
+     "comment": "subtitle",
+     "note": "description",
+     "repeatFrequence": "repeatFrequency",
+     "address.meetingAt": "address.name"
+    }
+   },
+   {
+    "id": 7,
+    "calendarId": 4,
+    "meta": {
+     "createdDate": "2018-08-17T07:08:08Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2018-08-17T07:08:08Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "title": "Gebet",
+    "comment": "",
+    "startTime": "7:00",
+    "duration": 5400,
+    "allDay": false,
+    "note": "",
+    "link": "",
+    "isInternal": false,
+    "categoryId": "4",
+    "repeatId": 0,
+    "repeatFrequence": null,
+    "repeatOptionId": null,
+    "repeatDuration": null,
+    "subtitle": "",
+    "description": "",
+    "repeatFrequency": null,
+    "@deprecated": {
+     "categoryId": "calendarId",
+     "comment": "subtitle",
+     "note": "description",
+     "repeatFrequence": "repeatFrequency",
+     "address.meetingAt": "address.name"
+    }
+   },
+   {
+    "id": 17,
+    "calendarId": 2,
+    "meta": {
+     "createdDate": "2020-09-16T11:05:46Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-08-31T13:06:49Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "categoryId": "2",
+    "title": "Gottesdienst",
+    "startTime": "10:00",
+    "duration": 5400,
+    "comment": "",
+    "allDay": false,
+    "note": "",
+    "link": "",
+    "isInternal": false,
+    "repeatId": 0,
+    "repeatFrequence": null,
+    "repeatOptionId": null,
+    "repeatDuration": null,
+    "events": [
+     {
+      "eventTemplate": "7"
+     }
+    ],
+    "bookings": [
+     {
+      "id": -8,
+      "resource_id": "3",
+      "minpre": "150",
+      "minpost": "60",
+      "status_id": 1
+     },
+     {
+      "id": -9,
+      "resource_id": "8",
+      "minpre": "90",
+      "minpost": "60",
+      "status_id": 1
+     },
+     {
+      "id": -10,
+      "resource_id": "5",
+      "minpre": "90",
+      "minpost": "60",
+      "status_id": 1
+     },
+     {
+      "id": -11,
+      "resource_id": "4",
+      "minpre": "90",
+      "minpost": "60",
+      "status_id": 1
+     },
+     {
+      "id": -12,
+      "resource_id": "9",
+      "minpre": "90",
+      "minpost": "60",
+      "status_id": 1
+     }
+    ],
+    "subtitle": "",
+    "description": "",
+    "repeatFrequency": null,
+    "@deprecated": {
+     "categoryId": "calendarId",
+     "comment": "subtitle",
+     "note": "description",
+     "repeatFrequence": "repeatFrequency",
+     "address.meetingAt": "address.name"
+    }
+   }
+  ],
+  "meta": {
+   "count": 3
+  }
+ }
+}

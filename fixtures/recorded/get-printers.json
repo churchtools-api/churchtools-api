@@ -1,0 +1,32 @@
+{
+ "operation": "get-printers",
+ "request": {
+  "method": "GET",
+  "path": "/printers",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 4,
+    "title": "Brother MFC-J5620DW Printer",
+    "location": "DESKTOP-H6DBF8L",
+    "active": false,
+    "meta": {
+     "createdDate": "2018-10-19T11:00:32Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2018-10-19T11:00:32Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

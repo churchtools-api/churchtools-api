@@ -1,0 +1,15 @@
+{
+ "operation": "get-joblog",
+ "request": {
+  "method": "GET",
+  "path": "/joblog",
+  "query": [
+   [
+    "guid",
+    "d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged"
+   ]
+  ],
+  "body": null
+ },
+ "body": []
+}

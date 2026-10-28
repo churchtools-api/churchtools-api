@@ -1,0 +1,15 @@
+{
+ "operation": "get-groups-groupId-members-personId-followups",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/members/108/followups",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

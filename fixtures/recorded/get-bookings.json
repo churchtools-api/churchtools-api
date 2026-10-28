@@ -1,0 +1,7685 @@
+{
+ "operation": "get-bookings",
+ "request": {
+  "method": "GET",
+  "path": "/bookings",
+  "query": [
+   [
+    "resource_ids[]",
+    "10"
+   ],
+   [
+    "resource_ids[]",
+    "12"
+   ],
+   [
+    "resource_ids[]",
+    "3"
+   ],
+   [
+    "resource_ids[]",
+    "8"
+   ],
+   [
+    "resource_ids[]",
+    "5"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "booking": {
+     "base": {
+      "id": 297,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-02T16:00:00Z",
+      "endDate": "2026-10-02T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 297,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-02T16:00:00Z",
+     "endDate": "2026-10-02T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 298,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-02T16:00:00Z",
+      "endDate": "2026-10-02T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 298,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-02T16:00:00Z",
+     "endDate": "2026-10-02T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 303,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 10,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 10,
+       "name": "Bus",
+       "nameTranslated": "Bus",
+       "sortKey": 0,
+       "resourceTypeId": 3,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-02T16:00:00Z",
+      "endDate": "2026-10-02T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 303,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 10,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 10,
+      "name": "Bus",
+      "nameTranslated": "Bus",
+      "sortKey": 0,
+      "resourceTypeId": 3,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-02T16:00:00Z",
+     "endDate": "2026-10-02T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 290,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T05:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-04T05:30:00Z",
+      "endDate": "2026-10-04T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 290,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T05:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-04T05:30:00Z",
+     "endDate": "2026-10-04T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 291,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T06:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-04T06:30:00Z",
+      "endDate": "2026-10-04T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 291,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T06:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-04T06:30:00Z",
+     "endDate": "2026-10-04T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 292,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T06:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-04T06:30:00Z",
+      "endDate": "2026-10-04T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 292,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T06:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-04T06:30:00Z",
+     "endDate": "2026-10-04T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 4,
+      "title": "Band 4HisKingdom",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 1,
+      "startDate": "2025-04-29T16:30:00Z",
+      "endDate": "2025-04-29T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-06",
+      "repeatOption": 0,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:01:22Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band 4HisKingdom",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-06T16:30:00Z",
+      "endDate": "2026-10-06T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 4,
+     "title": "Band 4HisKingdom",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 1,
+     "startDate": "2025-04-29T16:30:00Z",
+     "endDate": "2025-04-29T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-06",
+     "repeatOption": 0,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:01:22Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band 4HisKingdom",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-06T16:30:00Z",
+     "endDate": "2026-10-06T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 5,
+      "title": "Band SeekHisGrace",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 1,
+      "startDate": "2025-05-01T16:30:00Z",
+      "endDate": "2025-05-01T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-08",
+      "repeatOption": 0,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:04:51Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band SeekHisGrace",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-08T16:30:00Z",
+      "endDate": "2026-10-08T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 5,
+     "title": "Band SeekHisGrace",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 1,
+     "startDate": "2025-05-01T16:30:00Z",
+     "endDate": "2025-05-01T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-08",
+     "repeatOption": 0,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:04:51Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band SeekHisGrace",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-08T16:30:00Z",
+     "endDate": "2026-10-08T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 6,
+      "title": "Band: Call them loud",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2025-05-01T16:30:00Z",
+      "endDate": "2025-05-01T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-08",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:05:58Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 4
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band: Call them loud",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-08T16:30:00Z",
+      "endDate": "2026-10-08T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 6,
+     "title": "Band: Call them loud",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2025-05-01T16:30:00Z",
+     "endDate": "2025-05-01T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-08",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:05:58Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 4
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band: Call them loud",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-08T16:30:00Z",
+     "endDate": "2026-10-08T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 297,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-09T16:00:00Z",
+      "endDate": "2026-10-09T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 297,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-09T16:00:00Z",
+     "endDate": "2026-10-09T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 298,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-09T16:00:00Z",
+      "endDate": "2026-10-09T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 298,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-09T16:00:00Z",
+     "endDate": "2026-10-09T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 303,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 10,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 10,
+       "name": "Bus",
+       "nameTranslated": "Bus",
+       "sortKey": 0,
+       "resourceTypeId": 3,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-09T16:00:00Z",
+      "endDate": "2026-10-09T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 303,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 10,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 10,
+      "name": "Bus",
+      "nameTranslated": "Bus",
+      "sortKey": 0,
+      "resourceTypeId": 3,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-09T16:00:00Z",
+     "endDate": "2026-10-09T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 290,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T05:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-11T05:30:00Z",
+      "endDate": "2026-10-11T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 290,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T05:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-11T05:30:00Z",
+     "endDate": "2026-10-11T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 291,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T06:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-11T06:30:00Z",
+      "endDate": "2026-10-11T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 291,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T06:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-11T06:30:00Z",
+     "endDate": "2026-10-11T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 292,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T06:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-11T06:30:00Z",
+      "endDate": "2026-10-11T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 292,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T06:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-11T06:30:00Z",
+     "endDate": "2026-10-11T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 295,
+      "title": "Gebetsabend",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550256,
+       "title": "Gebetsabend",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-15T16:00:00Z",
+      "endDate": "2026-09-15T19:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 2,
+      "repeatUntil": "2027-11-02",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:36:47Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2027-12-07T16:36:47Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gebetsabend",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550256,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-13T16:00:00Z",
+      "endDate": "2026-10-13T19:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 295,
+     "title": "Gebetsabend",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550256,
+      "title": "Gebetsabend",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-15T16:00:00Z",
+     "endDate": "2026-09-15T19:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 2,
+     "repeatUntil": "2027-11-02",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:36:47Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2027-12-07T16:36:47Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gebetsabend",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550256,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-13T16:00:00Z",
+     "endDate": "2026-10-13T19:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 4,
+      "title": "Band 4HisKingdom",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 1,
+      "startDate": "2025-04-29T16:30:00Z",
+      "endDate": "2025-04-29T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-06",
+      "repeatOption": 0,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:01:22Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band 4HisKingdom",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-13T16:30:00Z",
+      "endDate": "2026-10-13T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 4,
+     "title": "Band 4HisKingdom",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 1,
+     "startDate": "2025-04-29T16:30:00Z",
+     "endDate": "2025-04-29T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-06",
+     "repeatOption": 0,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:01:22Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band 4HisKingdom",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-13T16:30:00Z",
+     "endDate": "2026-10-13T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 5,
+      "title": "Band SeekHisGrace",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 1,
+      "startDate": "2025-05-01T16:30:00Z",
+      "endDate": "2025-05-01T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-08",
+      "repeatOption": 0,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:04:51Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band SeekHisGrace",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-15T16:30:00Z",
+      "endDate": "2026-10-15T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 5,
+     "title": "Band SeekHisGrace",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 1,
+     "startDate": "2025-05-01T16:30:00Z",
+     "endDate": "2025-05-01T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-08",
+     "repeatOption": 0,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:04:51Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band SeekHisGrace",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-15T16:30:00Z",
+     "endDate": "2026-10-15T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 6,
+      "title": "Band: Call them loud",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2025-05-01T16:30:00Z",
+      "endDate": "2025-05-01T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-08",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:05:58Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 4
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band: Call them loud",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-15T16:30:00Z",
+      "endDate": "2026-10-15T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 6,
+     "title": "Band: Call them loud",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2025-05-01T16:30:00Z",
+     "endDate": "2025-05-01T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-08",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:05:58Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 4
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band: Call them loud",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-15T16:30:00Z",
+     "endDate": "2026-10-15T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 297,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-16T16:00:00Z",
+      "endDate": "2026-10-16T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 297,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-16T16:00:00Z",
+     "endDate": "2026-10-16T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 298,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-16T16:00:00Z",
+      "endDate": "2026-10-16T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 298,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-16T16:00:00Z",
+     "endDate": "2026-10-16T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 303,
+      "title": "Jugendgottesdienst",
+      "subtitle": "",
+      "resourceId": 10,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550257,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-11T16:00:00Z",
+      "endDate": "2026-09-11T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-22",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:40:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": "",
+      "resource": {
+       "id": 10,
+       "name": "Bus",
+       "nameTranslated": "Bus",
+       "sortKey": 0,
+       "resourceTypeId": 3,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550257,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-16T16:00:00Z",
+      "endDate": "2026-10-16T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 303,
+     "title": "Jugendgottesdienst",
+     "subtitle": "",
+     "resourceId": 10,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550257,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-11T16:00:00Z",
+     "endDate": "2026-09-11T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-22",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:40:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": "",
+     "resource": {
+      "id": 10,
+      "name": "Bus",
+      "nameTranslated": "Bus",
+      "sortKey": 0,
+      "resourceTypeId": 3,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550257,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-16T16:00:00Z",
+     "endDate": "2026-10-16T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 290,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T05:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-18T05:30:00Z",
+      "endDate": "2026-10-18T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 290,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T05:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-18T05:30:00Z",
+     "endDate": "2026-10-18T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 291,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T06:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-18T06:30:00Z",
+      "endDate": "2026-10-18T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 291,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T06:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-18T06:30:00Z",
+     "endDate": "2026-10-18T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 292,
+      "title": "Gottesdienst",
+      "subtitle": "",
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550255,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-13T06:30:00Z",
+      "endDate": "2026-09-13T10:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2026-10-24",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:28:08Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": "",
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550255,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-18T06:30:00Z",
+      "endDate": "2026-10-18T10:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 292,
+     "title": "Gottesdienst",
+     "subtitle": "",
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550255,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-13T06:30:00Z",
+     "endDate": "2026-09-13T10:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2026-10-24",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:28:08Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": "",
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550255,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-18T06:30:00Z",
+     "endDate": "2026-10-18T10:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 4,
+      "title": "Band 4HisKingdom",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 1,
+      "startDate": "2025-04-29T16:30:00Z",
+      "endDate": "2025-04-29T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-06",
+      "repeatOption": 0,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:01:22Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band 4HisKingdom",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-20T16:30:00Z",
+      "endDate": "2026-10-20T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 4,
+     "title": "Band 4HisKingdom",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 1,
+     "startDate": "2025-04-29T16:30:00Z",
+     "endDate": "2025-04-29T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-06",
+     "repeatOption": 0,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:01:22Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band 4HisKingdom",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-20T16:30:00Z",
+     "endDate": "2026-10-20T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 5,
+      "title": "Band SeekHisGrace",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 1,
+      "startDate": "2025-05-01T16:30:00Z",
+      "endDate": "2025-05-01T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-08",
+      "repeatOption": 0,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:04:51Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band SeekHisGrace",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-22T16:30:00Z",
+      "endDate": "2026-10-22T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 5,
+     "title": "Band SeekHisGrace",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 1,
+     "startDate": "2025-05-01T16:30:00Z",
+     "endDate": "2025-05-01T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-08",
+     "repeatOption": 0,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:04:51Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band SeekHisGrace",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-22T16:30:00Z",
+     "endDate": "2026-10-22T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 6,
+      "title": "Band: Call them loud",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2025-05-01T16:30:00Z",
+      "endDate": "2025-05-01T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-08",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:05:58Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 4
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band: Call them loud",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-22T16:30:00Z",
+      "endDate": "2026-10-22T20:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 6,
+     "title": "Band: Call them loud",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2025-05-01T16:30:00Z",
+     "endDate": "2025-05-01T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-08",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:05:58Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 4
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band: Call them loud",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-22T16:30:00Z",
+     "endDate": "2026-10-22T20:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 391,
+      "title": "Jugendgottesdienst",
+      "subtitle": null,
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437334,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-29",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:50:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": null,
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437334,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 391,
+     "title": "Jugendgottesdienst",
+     "subtitle": null,
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437334,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-29",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:50:33Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": null,
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437334,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 394,
+      "title": "Jugendgottesdienst",
+      "subtitle": null,
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437334,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-29",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:50:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": null,
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437334,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 394,
+     "title": "Jugendgottesdienst",
+     "subtitle": null,
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437334,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-29",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:50:33Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": null,
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437334,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 409,
+      "title": "Jugendgottesdienst",
+      "subtitle": null,
+      "resourceId": 10,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437334,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-29",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:50:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": null,
+      "resource": {
+       "id": 10,
+       "name": "Bus",
+       "nameTranslated": "Bus",
+       "sortKey": 0,
+       "resourceTypeId": 3,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437334,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 409,
+     "title": "Jugendgottesdienst",
+     "subtitle": null,
+     "resourceId": 10,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437334,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-29",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:50:33Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": null,
+     "resource": {
+      "id": 10,
+      "name": "Bus",
+      "nameTranslated": "Bus",
+      "sortKey": 0,
+      "resourceTypeId": 3,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437334,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 376,
+      "title": "Gottesdienst",
+      "subtitle": null,
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437331,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-25T06:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-31",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:49:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": null,
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437331,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-25T06:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 376,
+     "title": "Gottesdienst",
+     "subtitle": null,
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437331,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-25T06:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-31",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:49:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": null,
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437331,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-25T06:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 379,
+      "title": "Gottesdienst",
+      "subtitle": null,
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437331,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-25T07:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-31",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:49:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": null,
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437331,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-25T07:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 379,
+     "title": "Gottesdienst",
+     "subtitle": null,
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437331,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-25T07:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-31",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:49:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": null,
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437331,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-25T07:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 382,
+      "title": "Gottesdienst",
+      "subtitle": null,
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437331,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-25T07:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-31",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:49:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": null,
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437331,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-25T07:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 382,
+     "title": "Gottesdienst",
+     "subtitle": null,
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437331,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-25T07:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-31",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:49:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": null,
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437331,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-25T07:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 295,
+      "title": "Gebetsabend",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": {
+       "id": 550256,
+       "title": "Gebetsabend",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-09-15T16:00:00Z",
+      "endDate": "2026-09-15T19:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 2,
+      "repeatUntil": "2027-11-02",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2027-12-07T16:36:47Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2027-12-07T16:36:47Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gebetsabend",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": 550256,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-27T17:00:00Z",
+      "endDate": "2026-10-27T20:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 295,
+     "title": "Gebetsabend",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": {
+      "id": 550256,
+      "title": "Gebetsabend",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-09-15T16:00:00Z",
+     "endDate": "2026-09-15T19:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 2,
+     "repeatUntil": "2027-11-02",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2027-12-07T16:36:47Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2027-12-07T16:36:47Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gebetsabend",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": 550256,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-27T17:00:00Z",
+     "endDate": "2026-10-27T20:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 4,
+      "title": "Band 4HisKingdom",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 1,
+      "startDate": "2025-04-29T16:30:00Z",
+      "endDate": "2025-04-29T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-06",
+      "repeatOption": 0,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:01:22Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band 4HisKingdom",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-27T17:30:00Z",
+      "endDate": "2026-10-27T21:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 4,
+     "title": "Band 4HisKingdom",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 1,
+     "startDate": "2025-04-29T16:30:00Z",
+     "endDate": "2025-04-29T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-06",
+     "repeatOption": 0,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:01:22Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band 4HisKingdom",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-27T17:30:00Z",
+     "endDate": "2026-10-27T21:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 5,
+      "title": "Band SeekHisGrace",
+      "subtitle": "",
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 1,
+      "startDate": "2025-05-01T16:30:00Z",
+      "endDate": "2025-05-01T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-08",
+      "repeatOption": 0,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:04:51Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band SeekHisGrace",
+      "location": "",
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-29T17:30:00Z",
+      "endDate": "2026-10-29T21:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 5,
+     "title": "Band SeekHisGrace",
+     "subtitle": "",
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 1,
+     "startDate": "2025-05-01T16:30:00Z",
+     "endDate": "2025-05-01T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-08",
+     "repeatOption": 0,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:04:51Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band SeekHisGrace",
+     "location": "",
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-29T17:30:00Z",
+     "endDate": "2026-10-29T21:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 6,
+      "title": "Band: Call them loud",
+      "subtitle": "",
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": "",
+      "appointment": null,
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2025-05-01T16:30:00Z",
+      "endDate": "2025-05-01T20:15:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-05-08",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2025-04-24T08:05:58Z",
+       "createdPerson": {
+        "id": 4
+       },
+       "modifiedDate": "2026-10-19T07:21:33Z",
+       "modifiedPerson": {
+        "id": 4
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Band: Call them loud",
+      "location": "",
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": "",
+      "appointmentId": null,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-29T17:30:00Z",
+      "endDate": "2026-10-29T21:15:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 6,
+     "title": "Band: Call them loud",
+     "subtitle": "",
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": "",
+     "appointment": null,
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2025-05-01T16:30:00Z",
+     "endDate": "2025-05-01T20:15:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-05-08",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2025-04-24T08:05:58Z",
+      "createdPerson": {
+       "id": 4
+      },
+      "modifiedDate": "2026-10-19T07:21:33Z",
+      "modifiedPerson": {
+       "id": 4
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Band: Call them loud",
+     "location": "",
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": "",
+     "appointmentId": null,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-29T17:30:00Z",
+     "endDate": "2026-10-29T21:15:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 391,
+      "title": "Jugendgottesdienst",
+      "subtitle": null,
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437334,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-29",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:50:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": null,
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437334,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-30T17:00:00Z",
+      "endDate": "2026-10-30T22:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 391,
+     "title": "Jugendgottesdienst",
+     "subtitle": null,
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437334,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-29",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:50:33Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": null,
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437334,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-30T17:00:00Z",
+     "endDate": "2026-10-30T22:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 394,
+      "title": "Jugendgottesdienst",
+      "subtitle": null,
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437334,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-29",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:50:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": null,
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437334,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-30T17:00:00Z",
+      "endDate": "2026-10-30T22:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 394,
+     "title": "Jugendgottesdienst",
+     "subtitle": null,
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437334,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-29",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:50:33Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": null,
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437334,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-30T17:00:00Z",
+     "endDate": "2026-10-30T22:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 409,
+      "title": "Jugendgottesdienst",
+      "subtitle": null,
+      "resourceId": 10,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437334,
+       "title": "Jugendgottesdienst",
+       "calendarId": 3
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-23T16:00:00Z",
+      "endDate": "2026-10-23T21:00:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-29",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:50:33Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:50:33Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Jugendgottesdienst",
+      "location": null,
+      "resource": {
+       "id": 10,
+       "name": "Bus",
+       "nameTranslated": "Bus",
+       "sortKey": 0,
+       "resourceTypeId": 3,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437334,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-10-30T17:00:00Z",
+      "endDate": "2026-10-30T22:00:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 409,
+     "title": "Jugendgottesdienst",
+     "subtitle": null,
+     "resourceId": 10,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437334,
+      "title": "Jugendgottesdienst",
+      "calendarId": 3
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-23T16:00:00Z",
+     "endDate": "2026-10-23T21:00:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-29",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:50:33Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:50:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Jugendgottesdienst",
+     "location": null,
+     "resource": {
+      "id": 10,
+      "name": "Bus",
+      "nameTranslated": "Bus",
+      "sortKey": 0,
+      "resourceTypeId": 3,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437334,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-10-30T17:00:00Z",
+     "endDate": "2026-10-30T22:00:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 376,
+      "title": "Gottesdienst",
+      "subtitle": null,
+      "resourceId": 3,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437331,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-25T06:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-31",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:49:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": null,
+      "resource": {
+       "id": 3,
+       "name": "Saal",
+       "nameTranslated": "Saal",
+       "sortKey": 1,
+       "resourceTypeId": 2,
+       "location": "Ort (Standard)",
+       "iCalLocation": "Ortsangabe für iCal",
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437331,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-11-01T06:30:00Z",
+      "endDate": "2026-11-01T11:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 376,
+     "title": "Gottesdienst",
+     "subtitle": null,
+     "resourceId": 3,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437331,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-25T06:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-31",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:49:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": null,
+     "resource": {
+      "id": 3,
+      "name": "Saal",
+      "nameTranslated": "Saal",
+      "sortKey": 1,
+      "resourceTypeId": 2,
+      "location": "Ort (Standard)",
+      "iCalLocation": "Ortsangabe für iCal",
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437331,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-11-01T06:30:00Z",
+     "endDate": "2026-11-01T11:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 379,
+      "title": "Gottesdienst",
+      "subtitle": null,
+      "resourceId": 8,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437331,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-25T07:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-31",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:49:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": null,
+      "resource": {
+       "id": 8,
+       "name": "Jugendraum",
+       "nameTranslated": "Jugendraum",
+       "sortKey": 2,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437331,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-11-01T07:30:00Z",
+      "endDate": "2026-11-01T11:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 379,
+     "title": "Gottesdienst",
+     "subtitle": null,
+     "resourceId": 8,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437331,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-25T07:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-31",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:49:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": null,
+     "resource": {
+      "id": 8,
+      "name": "Jugendraum",
+      "nameTranslated": "Jugendraum",
+      "sortKey": 2,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437331,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-11-01T07:30:00Z",
+     "endDate": "2026-11-01T11:30:00Z"
+    }
+   },
+   {
+    "booking": {
+     "base": {
+      "id": 382,
+      "title": "Gottesdienst",
+      "subtitle": null,
+      "resourceId": 5,
+      "statusId": 2,
+      "quantity": 1,
+      "description": null,
+      "appointment": {
+       "id": 1437331,
+       "title": "Gottesdienst",
+       "calendarId": 2
+      },
+      "onBehalfOfPid": null,
+      "answeredPid": null,
+      "answeredDate": null,
+      "showInCal": false,
+      "version": 0,
+      "startDate": "2026-10-25T07:30:00Z",
+      "endDate": "2026-10-25T11:30:00Z",
+      "allDay": false,
+      "repeatId": 7,
+      "repeatFrequency": 1,
+      "repeatUntil": "2027-10-31",
+      "repeatOption": null,
+      "additionals": [],
+      "exceptions": [],
+      "meta": {
+       "createdDate": "2026-10-21T19:49:51Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-21T19:49:51Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "caption": "title",
+       "location": "subtitle",
+       "note": "description",
+       "appointmentId": "appointment",
+       "resource": "resourceId"
+      },
+      "caption": "Gottesdienst",
+      "location": null,
+      "resource": {
+       "id": 5,
+       "name": "Kinderraum klein",
+       "nameTranslated": "Kinderraum klein",
+       "sortKey": 3,
+       "resourceTypeId": 2,
+       "location": null,
+       "iCalLocation": null,
+       "description": null,
+       "isAutoAccept": false,
+       "needsAppointment": false,
+       "isVirtual": false,
+       "quantity": 1,
+       "adminIds": [],
+       "randomString": null,
+       "meta": {
+        "createdDate": "2025-04-14T10:50:49Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-07-14T15:28:30Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       },
+       "@deprecated": {
+        "doesRequireCalEntry": "needsAppointment"
+       },
+       "doesRequireCalEntry": false
+      },
+      "note": null,
+      "appointmentId": 1437331,
+      "isAnonymized": false
+     },
+     "calculated": {
+      "startDate": "2026-11-01T07:30:00Z",
+      "endDate": "2026-11-01T11:30:00Z"
+     }
+    },
+    "@deprecated": {
+     "base": "booking.base",
+     "calculated": "booking.calculated"
+    },
+    "base": {
+     "id": 382,
+     "title": "Gottesdienst",
+     "subtitle": null,
+     "resourceId": 5,
+     "statusId": 2,
+     "quantity": 1,
+     "description": null,
+     "appointment": {
+      "id": 1437331,
+      "title": "Gottesdienst",
+      "calendarId": 2
+     },
+     "onBehalfOfPid": null,
+     "answeredPid": null,
+     "answeredDate": null,
+     "showInCal": false,
+     "version": 0,
+     "startDate": "2026-10-25T07:30:00Z",
+     "endDate": "2026-10-25T11:30:00Z",
+     "allDay": false,
+     "repeatId": 7,
+     "repeatFrequency": 1,
+     "repeatUntil": "2027-10-31",
+     "repeatOption": null,
+     "additionals": [],
+     "exceptions": [],
+     "meta": {
+      "createdDate": "2026-10-21T19:49:51Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T19:49:51Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "caption": "title",
+      "location": "subtitle",
+      "note": "description",
+      "appointmentId": "appointment",
+      "resource": "resourceId"
+     },
+     "caption": "Gottesdienst",
+     "location": null,
+     "resource": {
+      "id": 5,
+      "name": "Kinderraum klein",
+      "nameTranslated": "Kinderraum klein",
+      "sortKey": 3,
+      "resourceTypeId": 2,
+      "location": null,
+      "iCalLocation": null,
+      "description": null,
+      "isAutoAccept": false,
+      "needsAppointment": false,
+      "isVirtual": false,
+      "quantity": 1,
+      "adminIds": [],
+      "randomString": null,
+      "meta": {
+       "createdDate": "2025-04-14T10:50:49Z",
+       "createdPerson": {
+        "id": -4
+       },
+       "modifiedDate": "2025-07-14T15:28:30Z",
+       "modifiedPerson": {
+        "id": -4
+       }
+      },
+      "@deprecated": {
+       "doesRequireCalEntry": "needsAppointment"
+      },
+      "doesRequireCalEntry": false
+     },
+     "note": null,
+     "appointmentId": 1437331,
+     "isAnonymized": false
+    },
+    "calculated": {
+     "startDate": "2026-11-01T07:30:00Z",
+     "endDate": "2026-11-01T11:30:00Z"
+    }
+   }
+  ],
+  "meta": {
+   "count": 44
+  }
+ }
+}

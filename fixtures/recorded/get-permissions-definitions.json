@@ -1,0 +1,5075 @@
+{
+ "operation": "get-permissions-definitions",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/definitions",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "modules": [
+    {
+     "key": "churchcore",
+     "name": "churchcore",
+     "permissions": [
+      {
+       "authId": 1,
+       "key": "administer settings",
+       "name": "System-Einstellungen verwalten",
+       "description": "System-Einstellungen verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 10,
+       "key": "edit public profiles",
+       "name": "Öffentliche Profile verwalten",
+       "description": "Öffentliche Profile verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 11,
+       "key": "view website",
+       "name": "Übersicht sehen",
+       "description": "Übersicht sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 12,
+       "key": "edit website staff",
+       "name": "Benutzer verwalten",
+       "description": "Benutzer verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 13,
+       "key": "edit website releases",
+       "name": "Freigaben verwalten",
+       "description": "Freigaben verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 2,
+       "key": "administer persons",
+       "name": "Berechtigungen verwalten",
+       "description": "Berechtigungen verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 3,
+       "key": "view logfile",
+       "name": "Log einsehen",
+       "description": "Log einsehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 9,
+       "key": "edit languages",
+       "name": "Übersetzungen verwalten",
+       "description": "Übersetzungen verwalten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Deutsch",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Englisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Französisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Spanisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Chinesisch (Traditionell)",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "Chinesisch (Vereinfacht)",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Persisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Russisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Portugiesisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "Niederländisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 12,
+         "name": "Polnisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 14,
+         "name": "Italienisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 17,
+         "name": "Finnisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 22,
+         "name": "Schwedisch",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 5,
+       "key": "edit translations masterdata",
+       "name": "Sprachen verwalten",
+       "description": "Sprachen verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 7,
+       "key": "simulate persons",
+       "name": "Personen simulieren, Passwort ändern und Zugang sperren",
+       "description": "Personen simulieren, Passwort ändern und Zugang sperren",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 6,
+       "key": "invite persons",
+       "name": "Personen zu ChurchTools einladen",
+       "description": "Personen zu ChurchTools einladen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 16,
+       "key": "administer church html templates",
+       "name": "Gemeinde-HTML-Vorlagen verwalten",
+       "description": "Gemeinde-HTML-Vorlagen verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 17,
+       "key": "use church html templates",
+       "name": "Gemeinde-HTML-Vorlagen verwenden",
+       "description": "Gemeinde-HTML-Vorlagen verwenden",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 2,
+         "name": "Standardvorlage",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Test A4",
+         "kind": "value"
+        },
+        {
+         "dataId": 17,
+         "name": "ChurchTools Logo oben rechts",
+         "kind": "value"
+        },
+        {
+         "dataId": 18,
+         "name": "Standard Anschreiben",
+         "kind": "value"
+        },
+        {
+         "dataId": 22,
+         "name": "Standard Anhang",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "ctrs-test Bescheinigung",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 19,
+       "key": "view links",
+       "name": "Einträge im Links-Widget sehen",
+       "description": "Einträge im Links-Widget sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 25,
+         "name": "ctrs-test",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 18,
+       "key": "login to external system",
+       "name": "Bei Drittsystem via ChurchTools-Benutzerkonto einloggen",
+       "description": "Bei Drittsystem via ChurchTools-Benutzerkonto einloggen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "post",
+     "name": "Beiträge",
+     "permissions": [
+      {
+       "authId": 1201,
+       "key": "moderate posts",
+       "name": "Beiträge moderieren",
+       "description": "Beiträge moderieren",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "churchdb",
+     "name": "Personen",
+     "permissions": [
+      {
+       "authId": 101,
+       "key": "view",
+       "name": "\"Personen\" sehen",
+       "description": "\"Personen\" sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 124,
+       "key": "view station",
+       "name": "Standort sehen",
+       "description": "Standort sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 0,
+         "name": "Winterhude",
+         "kind": "value"
+        },
+        {
+         "dataId": 1,
+         "name": "Hafencity",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 133,
+       "key": "view persons from campus",
+       "name": "Personen eines Standorts sehen",
+       "description": "Personen eines Standorts sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 0,
+         "name": "Winterhude",
+         "kind": "value"
+        },
+        {
+         "dataId": 1,
+         "name": "Hafencity",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 102,
+       "key": "view alldata",
+       "name": "Personen eines Bereiches sehen",
+       "description": "Personen eines Bereiches sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Gemeindeliste",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 125,
+       "key": "security level person",
+       "name": "Personendaten sehen - bis zum gewählten Sicherheitslevel",
+       "description": "Personendaten sehen - bis zum gewählten Sicherheitslevel",
+       "valueType": "maximum",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Stufe 1 (Namen)",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Stufe 2 (Allg. Info)",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Stufe 3 (Kontakt-Details)",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Stufe 4 (Leiter-Details)",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Stufe 5 (Administration)",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 131,
+       "key": "security level view own data",
+       "name": "Eigene Personendaten sehen - bis zum gewählten Sicherheitslevel",
+       "description": "Eigene Personendaten sehen - bis zum gewählten Sicherheitslevel",
+       "valueType": "maximum",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Stufe 1 (Namen)",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Stufe 2 (Allg. Info)",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Stufe 3 (Kontakt-Details)",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Stufe 4 (Leiter-Details)",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Stufe 5 (Administration)",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 132,
+       "key": "security level edit own data",
+       "name": "Eigene Personendaten bearbeiten - bis zum gewählten Sicherheitslevel",
+       "description": "Eigene Personendaten bearbeiten - bis zum gewählten Sicherheitslevel",
+       "valueType": "maximum",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Stufe 1 (Namen)",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Stufe 2 (Allg. Info)",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Stufe 3 (Kontakt-Details)",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Stufe 4 (Leiter-Details)",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Stufe 5 (Administration)",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 119,
+       "key": "create person",
+       "name": "Personen erstellen",
+       "description": "Personen erstellen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 111,
+       "key": "write access",
+       "name": "Personen bearbeiten",
+       "description": "Personen bearbeiten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 129,
+       "key": "delete persons",
+       "name": "Personen löschen",
+       "description": "Personen löschen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 134,
+       "key": "view hidden persons",
+       "name": "Auch versteckte Personen sehen",
+       "description": "Auch versteckte Personen sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 135,
+       "key": "edit person visibility",
+       "name": "Personensichtbarkeit bearbeiten (verstecken, sichtbar machen)",
+       "description": "Personensichtbarkeit bearbeiten (verstecken, sichtbar machen)",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 118,
+       "key": "push/pull archive",
+       "name": "Personen archivieren",
+       "description": "Personen archivieren",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 116,
+       "key": "view archive",
+       "name": "Personenarchiv sehen",
+       "description": "Personenarchiv sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 106,
+       "key": "view statistics",
+       "name": "Personenstatistik sehen",
+       "description": "Personenstatistik sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 107,
+       "key": "view person tags",
+       "name": "Personen-Tags sehen",
+       "description": "Personen-Tags sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 113,
+       "key": "view comments",
+       "name": "Personen-Kommentare sehen",
+       "description": "Personen-Kommentare sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 0,
+         "name": "Leiter",
+         "kind": "value"
+        },
+        {
+         "dataId": 1,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Follow-up",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Admin",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 112,
+       "key": "export data",
+       "name": "Personendaten exportieren",
+       "description": "Personendaten exportieren",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 128,
+       "key": "edit bulkletter",
+       "name": "Serienbriefe erstellen",
+       "description": "Serienbriefe erstellen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 130,
+       "key": "create print labels",
+       "name": "Etiketten erstellen",
+       "description": "Etiketten erstellen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 117,
+       "key": "send sms",
+       "name": "SMS-Schnittstelle verwenden",
+       "description": "SMS-Schnittstelle verwenden",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 108,
+       "key": "view person history",
+       "name": "Personenhistorie sehen",
+       "description": "Personenhistorie sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 109,
+       "key": "edit relations",
+       "name": "Beziehungen bearbeiten",
+       "description": "Beziehungen bearbeiten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 122,
+       "key": "view memberliste",
+       "name": "Mitgliederliste sehen",
+       "description": "Mitgliederliste sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 120,
+       "key": "complex filter",
+       "name": "\"Weitere Filter\" verwenden",
+       "description": "\"Weitere Filter\" verwenden",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 127,
+       "key": "administer global filters",
+       "name": "Globale Filter verwalten",
+       "description": "Globale Filter verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 199,
+       "key": "edit masterdata",
+       "name": "Stammdaten bearbeiten",
+       "description": "Stammdaten bearbeiten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "churchgroup",
+     "name": "Gruppen",
+     "permissions": [
+      {
+       "authId": 1101,
+       "key": "view",
+       "name": "\"Gruppen\" sehen",
+       "description": "\"Gruppen\" sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 1104,
+       "key": "view group",
+       "name": "Gruppe inkl. ihrer Gruppenmitglieder sehen",
+       "description": "Gruppe inkl. ihrer Gruppenmitglieder sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 6,
+         "name": "Predigtteam",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Technik",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Kinderkirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Lobpreisteam A",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "#1 Bereich Gottesdienst",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "#0 Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 13,
+         "name": "Kleingruppe Beck",
+         "kind": "value"
+        },
+        {
+         "dataId": 14,
+         "name": "Löwen (10-12)",
+         "kind": "value"
+        },
+        {
+         "dataId": 15,
+         "name": "#1 Bereich Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 16,
+         "name": "Kleingruppe Brooks",
+         "kind": "value"
+        },
+        {
+         "dataId": 17,
+         "name": "Kleingruppe Lippert",
+         "kind": "value"
+        },
+        {
+         "dataId": 21,
+         "name": "Hausmeister",
+         "kind": "value"
+        },
+        {
+         "dataId": 22,
+         "name": "Kleingruppe Bischof",
+         "kind": "value"
+        },
+        {
+         "dataId": 24,
+         "name": "Gemeinde-News",
+         "kind": "value"
+        },
+        {
+         "dataId": 26,
+         "name": "Kleingruppe Nord",
+         "kind": "value"
+        },
+        {
+         "dataId": 27,
+         "name": "Lobpreisteam B",
+         "kind": "value"
+        },
+        {
+         "dataId": 28,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 29,
+         "name": "Kleingruppe Landherr",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Kids Camp",
+         "kind": "value"
+        },
+        {
+         "dataId": 32,
+         "name": "Ranger",
+         "kind": "value"
+        },
+        {
+         "dataId": 34,
+         "name": "Konfi-Unterricht",
+         "kind": "value"
+        },
+        {
+         "dataId": 35,
+         "name": "Buchladen",
+         "kind": "value"
+        },
+        {
+         "dataId": 37,
+         "name": "Jugend fährt nach Rom",
+         "kind": "value"
+        },
+        {
+         "dataId": 38,
+         "name": "Newsletter",
+         "kind": "value"
+        },
+        {
+         "dataId": 39,
+         "name": "#1 Bereich Kinder",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Raum und Schlüsselverwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 64,
+         "name": "Krabbelhasen (0-2)",
+         "kind": "value"
+        },
+        {
+         "dataId": 99,
+         "name": "Datenschutz",
+         "kind": "value"
+        },
+        {
+         "dataId": 103,
+         "name": "Cleaning",
+         "kind": "value"
+        },
+        {
+         "dataId": 109,
+         "name": "Kontaktkarte",
+         "kind": "value"
+        },
+        {
+         "dataId": 127,
+         "name": "Kleingruppe Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 132,
+         "name": "Kleingruppe Gerner",
+         "kind": "value"
+        },
+        {
+         "dataId": 133,
+         "name": "Gottedienstleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 136,
+         "name": "#1 Bereich Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 142,
+         "name": "Raupen (3-5)",
+         "kind": "value"
+        },
+        {
+         "dataId": 148,
+         "name": "Schmetterlinge (6-9)",
+         "kind": "value"
+        },
+        {
+         "dataId": 154,
+         "name": "Finanzverwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 158,
+         "name": "#1 Bereich Verwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 162,
+         "name": "Ordner",
+         "kind": "value"
+        },
+        {
+         "dataId": 165,
+         "name": "Kaffeebar",
+         "kind": "value"
+        },
+        {
+         "dataId": 168,
+         "name": "Finde deine Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 171,
+         "name": "Unsere Seminare",
+         "kind": "value"
+        },
+        {
+         "dataId": 174,
+         "name": "Beziehungsweise",
+         "kind": "value"
+        },
+        {
+         "dataId": 177,
+         "name": "Wie lerne ich mit Freuden beten?",
+         "kind": "value"
+        },
+        {
+         "dataId": 180,
+         "name": "Wie setze ich ChurchTools für mein Team optimal ein?",
+         "kind": "value"
+        },
+        {
+         "dataId": 183,
+         "name": "Alle Angebote",
+         "kind": "value"
+        },
+        {
+         "dataId": 186,
+         "name": "Live-Gottesdienste",
+         "kind": "value"
+        },
+        {
+         "dataId": 203,
+         "name": "Kleingruppe Adendorf",
+         "kind": "value"
+        },
+        {
+         "dataId": 206,
+         "name": "Mitglieder",
+         "kind": "value"
+        },
+        {
+         "dataId": 208,
+         "name": "CT Admin",
+         "kind": "value"
+        },
+        {
+         "dataId": 211,
+         "name": "Öffentlichkeitsarbeit",
+         "kind": "value"
+        },
+        {
+         "dataId": 213,
+         "name": "Schlüssel Kirchengebäude Zentrale",
+         "kind": "value"
+        },
+        {
+         "dataId": 216,
+         "name": "Schlüssel Kirchengebäude Süd-Gründung",
+         "kind": "value"
+        },
+        {
+         "dataId": 219,
+         "name": "Schlüssel Bürogebäude Zentrale",
+         "kind": "value"
+        },
+        {
+         "dataId": 222,
+         "name": "Schlüssel Büro Generalschlüssel (100)",
+         "kind": "value"
+        },
+        {
+         "dataId": 225,
+         "name": "Schlüssel Kirchengebäude Generalschlüssel (200)",
+         "kind": "value"
+        },
+        {
+         "dataId": 228,
+         "name": "Schlüssel Generalschlüssel (300)",
+         "kind": "value"
+        },
+        {
+         "dataId": 231,
+         "name": "Schlüssel Eingangstüren (310)",
+         "kind": "value"
+        },
+        {
+         "dataId": 234,
+         "name": "Schlüssel Büro Eingangstüren (110)",
+         "kind": "value"
+        },
+        {
+         "dataId": 237,
+         "name": "Schlüssel Kirchengebäude Eingangstüren (210)",
+         "kind": "value"
+        },
+        {
+         "dataId": 240,
+         "name": "Schlüssel Büro 1-17 (130)",
+         "kind": "value"
+        },
+        {
+         "dataId": 243,
+         "name": "Schlüssel Büro 1-4 (131)",
+         "kind": "value"
+        },
+        {
+         "dataId": 246,
+         "name": "Schlüssel Büro 5-8 (132)",
+         "kind": "value"
+        },
+        {
+         "dataId": 249,
+         "name": "Schlüssel Büro 9-12 (133)",
+         "kind": "value"
+        },
+        {
+         "dataId": 252,
+         "name": "Schlüssel Büro 13-17 (134)",
+         "kind": "value"
+        },
+        {
+         "dataId": 255,
+         "name": "Schlüssel Kirchengebäude Nebenräume (220)",
+         "kind": "value"
+        },
+        {
+         "dataId": 258,
+         "name": "Schlüssel Kirchengebäude Technik (230)",
+         "kind": "value"
+        },
+        {
+         "dataId": 261,
+         "name": "Schlüssel Kirchengebäude Kaffeebar (240)",
+         "kind": "value"
+        },
+        {
+         "dataId": 264,
+         "name": "Schlüssel Kaffeebar (340)",
+         "kind": "value"
+        },
+        {
+         "dataId": 267,
+         "name": "Schlüssel Nebenräume (320)",
+         "kind": "value"
+        },
+        {
+         "dataId": 270,
+         "name": "Schlüssel Technik (330)",
+         "kind": "value"
+        },
+        {
+         "dataId": 343,
+         "name": "Deko-Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 346,
+         "name": "Ankündigungen",
+         "kind": "value"
+        },
+        {
+         "dataId": 349,
+         "name": "Suche/Biete",
+         "kind": "value"
+        },
+        {
+         "dataId": 352,
+         "name": "Sportangebote",
+         "kind": "value"
+        },
+        {
+         "dataId": 355,
+         "name": "Gebetsanliegen",
+         "kind": "value"
+        },
+        {
+         "dataId": 358,
+         "name": "Lauf-Treff",
+         "kind": "value"
+        },
+        {
+         "dataId": 359,
+         "name": "#1. Vorlage Mitarbeiter Party #",
+         "kind": "value"
+        },
+        {
+         "dataId": 548,
+         "name": "#Newcomer-Lunch am",
+         "kind": "value"
+        },
+        {
+         "dataId": 554,
+         "name": "Neu in der Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 642,
+         "name": "Vorlage Technikseminar",
+         "kind": "value"
+        },
+        {
+         "dataId": 732,
+         "name": "NEWCOMER LUNCH",
+         "kind": "value"
+        },
+        {
+         "dataId": 738,
+         "name": "Spikeball",
+         "kind": "value"
+        },
+        {
+         "dataId": 741,
+         "name": "Volleyball",
+         "kind": "value"
+        },
+        {
+         "dataId": 744,
+         "name": "Gemeindefreizeit 2026",
+         "kind": "value"
+        },
+        {
+         "dataId": 747,
+         "name": "Dankbar leben 🙏🏼",
+         "kind": "value"
+        },
+        {
+         "dataId": 750,
+         "name": "Geschenk Gottes 🎁",
+         "kind": "value"
+        },
+        {
+         "dataId": 753,
+         "name": "Glaube heute 🤗",
+         "kind": "value"
+        },
+        {
+         "dataId": 756,
+         "name": "Gottes Stimme 💬",
+         "kind": "value"
+        },
+        {
+         "dataId": 759,
+         "name": "Worship Mindset 🎶",
+         "kind": "value"
+        },
+        {
+         "dataId": 781,
+         "name": "#Newcomer-Lunch – 25.10.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 790,
+         "name": "#Newcomer-Lunch – 18.10.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 793,
+         "name": "#Newcomer-Lunch – 22.11.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 794,
+         "name": "#Newcomer-Lunch – 01.11.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 895,
+         "name": "ctrs-test Seed-Gruppe b5896e",
+         "kind": "value"
+        },
+        {
+         "dataId": 898,
+         "name": "ctrs-test Anmeldung 3833db",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1105,
+       "key": "edit group",
+       "name": "Gruppe bearbeiten",
+       "description": "Gruppe bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 6,
+         "name": "Predigtteam",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Technik",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Kinderkirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Lobpreisteam A",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "#1 Bereich Gottesdienst",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "#0 Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 13,
+         "name": "Kleingruppe Beck",
+         "kind": "value"
+        },
+        {
+         "dataId": 14,
+         "name": "Löwen (10-12)",
+         "kind": "value"
+        },
+        {
+         "dataId": 15,
+         "name": "#1 Bereich Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 16,
+         "name": "Kleingruppe Brooks",
+         "kind": "value"
+        },
+        {
+         "dataId": 17,
+         "name": "Kleingruppe Lippert",
+         "kind": "value"
+        },
+        {
+         "dataId": 21,
+         "name": "Hausmeister",
+         "kind": "value"
+        },
+        {
+         "dataId": 22,
+         "name": "Kleingruppe Bischof",
+         "kind": "value"
+        },
+        {
+         "dataId": 24,
+         "name": "Gemeinde-News",
+         "kind": "value"
+        },
+        {
+         "dataId": 26,
+         "name": "Kleingruppe Nord",
+         "kind": "value"
+        },
+        {
+         "dataId": 27,
+         "name": "Lobpreisteam B",
+         "kind": "value"
+        },
+        {
+         "dataId": 28,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 29,
+         "name": "Kleingruppe Landherr",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Kids Camp",
+         "kind": "value"
+        },
+        {
+         "dataId": 32,
+         "name": "Ranger",
+         "kind": "value"
+        },
+        {
+         "dataId": 34,
+         "name": "Konfi-Unterricht",
+         "kind": "value"
+        },
+        {
+         "dataId": 35,
+         "name": "Buchladen",
+         "kind": "value"
+        },
+        {
+         "dataId": 37,
+         "name": "Jugend fährt nach Rom",
+         "kind": "value"
+        },
+        {
+         "dataId": 38,
+         "name": "Newsletter",
+         "kind": "value"
+        },
+        {
+         "dataId": 39,
+         "name": "#1 Bereich Kinder",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Raum und Schlüsselverwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 64,
+         "name": "Krabbelhasen (0-2)",
+         "kind": "value"
+        },
+        {
+         "dataId": 99,
+         "name": "Datenschutz",
+         "kind": "value"
+        },
+        {
+         "dataId": 103,
+         "name": "Cleaning",
+         "kind": "value"
+        },
+        {
+         "dataId": 109,
+         "name": "Kontaktkarte",
+         "kind": "value"
+        },
+        {
+         "dataId": 127,
+         "name": "Kleingruppe Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 132,
+         "name": "Kleingruppe Gerner",
+         "kind": "value"
+        },
+        {
+         "dataId": 133,
+         "name": "Gottedienstleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 136,
+         "name": "#1 Bereich Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 142,
+         "name": "Raupen (3-5)",
+         "kind": "value"
+        },
+        {
+         "dataId": 148,
+         "name": "Schmetterlinge (6-9)",
+         "kind": "value"
+        },
+        {
+         "dataId": 154,
+         "name": "Finanzverwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 158,
+         "name": "#1 Bereich Verwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 162,
+         "name": "Ordner",
+         "kind": "value"
+        },
+        {
+         "dataId": 165,
+         "name": "Kaffeebar",
+         "kind": "value"
+        },
+        {
+         "dataId": 168,
+         "name": "Finde deine Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 171,
+         "name": "Unsere Seminare",
+         "kind": "value"
+        },
+        {
+         "dataId": 174,
+         "name": "Beziehungsweise",
+         "kind": "value"
+        },
+        {
+         "dataId": 177,
+         "name": "Wie lerne ich mit Freuden beten?",
+         "kind": "value"
+        },
+        {
+         "dataId": 180,
+         "name": "Wie setze ich ChurchTools für mein Team optimal ein?",
+         "kind": "value"
+        },
+        {
+         "dataId": 183,
+         "name": "Alle Angebote",
+         "kind": "value"
+        },
+        {
+         "dataId": 186,
+         "name": "Live-Gottesdienste",
+         "kind": "value"
+        },
+        {
+         "dataId": 203,
+         "name": "Kleingruppe Adendorf",
+         "kind": "value"
+        },
+        {
+         "dataId": 206,
+         "name": "Mitglieder",
+         "kind": "value"
+        },
+        {
+         "dataId": 208,
+         "name": "CT Admin",
+         "kind": "value"
+        },
+        {
+         "dataId": 211,
+         "name": "Öffentlichkeitsarbeit",
+         "kind": "value"
+        },
+        {
+         "dataId": 213,
+         "name": "Schlüssel Kirchengebäude Zentrale",
+         "kind": "value"
+        },
+        {
+         "dataId": 216,
+         "name": "Schlüssel Kirchengebäude Süd-Gründung",
+         "kind": "value"
+        },
+        {
+         "dataId": 219,
+         "name": "Schlüssel Bürogebäude Zentrale",
+         "kind": "value"
+        },
+        {
+         "dataId": 222,
+         "name": "Schlüssel Büro Generalschlüssel (100)",
+         "kind": "value"
+        },
+        {
+         "dataId": 225,
+         "name": "Schlüssel Kirchengebäude Generalschlüssel (200)",
+         "kind": "value"
+        },
+        {
+         "dataId": 228,
+         "name": "Schlüssel Generalschlüssel (300)",
+         "kind": "value"
+        },
+        {
+         "dataId": 231,
+         "name": "Schlüssel Eingangstüren (310)",
+         "kind": "value"
+        },
+        {
+         "dataId": 234,
+         "name": "Schlüssel Büro Eingangstüren (110)",
+         "kind": "value"
+        },
+        {
+         "dataId": 237,
+         "name": "Schlüssel Kirchengebäude Eingangstüren (210)",
+         "kind": "value"
+        },
+        {
+         "dataId": 240,
+         "name": "Schlüssel Büro 1-17 (130)",
+         "kind": "value"
+        },
+        {
+         "dataId": 243,
+         "name": "Schlüssel Büro 1-4 (131)",
+         "kind": "value"
+        },
+        {
+         "dataId": 246,
+         "name": "Schlüssel Büro 5-8 (132)",
+         "kind": "value"
+        },
+        {
+         "dataId": 249,
+         "name": "Schlüssel Büro 9-12 (133)",
+         "kind": "value"
+        },
+        {
+         "dataId": 252,
+         "name": "Schlüssel Büro 13-17 (134)",
+         "kind": "value"
+        },
+        {
+         "dataId": 255,
+         "name": "Schlüssel Kirchengebäude Nebenräume (220)",
+         "kind": "value"
+        },
+        {
+         "dataId": 258,
+         "name": "Schlüssel Kirchengebäude Technik (230)",
+         "kind": "value"
+        },
+        {
+         "dataId": 261,
+         "name": "Schlüssel Kirchengebäude Kaffeebar (240)",
+         "kind": "value"
+        },
+        {
+         "dataId": 264,
+         "name": "Schlüssel Kaffeebar (340)",
+         "kind": "value"
+        },
+        {
+         "dataId": 267,
+         "name": "Schlüssel Nebenräume (320)",
+         "kind": "value"
+        },
+        {
+         "dataId": 270,
+         "name": "Schlüssel Technik (330)",
+         "kind": "value"
+        },
+        {
+         "dataId": 343,
+         "name": "Deko-Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 346,
+         "name": "Ankündigungen",
+         "kind": "value"
+        },
+        {
+         "dataId": 349,
+         "name": "Suche/Biete",
+         "kind": "value"
+        },
+        {
+         "dataId": 352,
+         "name": "Sportangebote",
+         "kind": "value"
+        },
+        {
+         "dataId": 355,
+         "name": "Gebetsanliegen",
+         "kind": "value"
+        },
+        {
+         "dataId": 358,
+         "name": "Lauf-Treff",
+         "kind": "value"
+        },
+        {
+         "dataId": 359,
+         "name": "#1. Vorlage Mitarbeiter Party #",
+         "kind": "value"
+        },
+        {
+         "dataId": 548,
+         "name": "#Newcomer-Lunch am",
+         "kind": "value"
+        },
+        {
+         "dataId": 554,
+         "name": "Neu in der Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 642,
+         "name": "Vorlage Technikseminar",
+         "kind": "value"
+        },
+        {
+         "dataId": 732,
+         "name": "NEWCOMER LUNCH",
+         "kind": "value"
+        },
+        {
+         "dataId": 738,
+         "name": "Spikeball",
+         "kind": "value"
+        },
+        {
+         "dataId": 741,
+         "name": "Volleyball",
+         "kind": "value"
+        },
+        {
+         "dataId": 744,
+         "name": "Gemeindefreizeit 2026",
+         "kind": "value"
+        },
+        {
+         "dataId": 747,
+         "name": "Dankbar leben 🙏🏼",
+         "kind": "value"
+        },
+        {
+         "dataId": 750,
+         "name": "Geschenk Gottes 🎁",
+         "kind": "value"
+        },
+        {
+         "dataId": 753,
+         "name": "Glaube heute 🤗",
+         "kind": "value"
+        },
+        {
+         "dataId": 756,
+         "name": "Gottes Stimme 💬",
+         "kind": "value"
+        },
+        {
+         "dataId": 759,
+         "name": "Worship Mindset 🎶",
+         "kind": "value"
+        },
+        {
+         "dataId": 781,
+         "name": "#Newcomer-Lunch – 25.10.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 790,
+         "name": "#Newcomer-Lunch – 18.10.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 793,
+         "name": "#Newcomer-Lunch – 22.11.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 794,
+         "name": "#Newcomer-Lunch – 01.11.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 895,
+         "name": "ctrs-test Seed-Gruppe b5896e",
+         "kind": "value"
+        },
+        {
+         "dataId": 898,
+         "name": "ctrs-test Anmeldung 3833db",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1106,
+       "key": "delete group",
+       "name": "Gruppe löschen",
+       "description": "Gruppe löschen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 6,
+         "name": "Predigtteam",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Technik",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Kinderkirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Lobpreisteam A",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "#1 Bereich Gottesdienst",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "#0 Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 13,
+         "name": "Kleingruppe Beck",
+         "kind": "value"
+        },
+        {
+         "dataId": 14,
+         "name": "Löwen (10-12)",
+         "kind": "value"
+        },
+        {
+         "dataId": 15,
+         "name": "#1 Bereich Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 16,
+         "name": "Kleingruppe Brooks",
+         "kind": "value"
+        },
+        {
+         "dataId": 17,
+         "name": "Kleingruppe Lippert",
+         "kind": "value"
+        },
+        {
+         "dataId": 21,
+         "name": "Hausmeister",
+         "kind": "value"
+        },
+        {
+         "dataId": 22,
+         "name": "Kleingruppe Bischof",
+         "kind": "value"
+        },
+        {
+         "dataId": 24,
+         "name": "Gemeinde-News",
+         "kind": "value"
+        },
+        {
+         "dataId": 26,
+         "name": "Kleingruppe Nord",
+         "kind": "value"
+        },
+        {
+         "dataId": 27,
+         "name": "Lobpreisteam B",
+         "kind": "value"
+        },
+        {
+         "dataId": 28,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 29,
+         "name": "Kleingruppe Landherr",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Kids Camp",
+         "kind": "value"
+        },
+        {
+         "dataId": 32,
+         "name": "Ranger",
+         "kind": "value"
+        },
+        {
+         "dataId": 34,
+         "name": "Konfi-Unterricht",
+         "kind": "value"
+        },
+        {
+         "dataId": 35,
+         "name": "Buchladen",
+         "kind": "value"
+        },
+        {
+         "dataId": 37,
+         "name": "Jugend fährt nach Rom",
+         "kind": "value"
+        },
+        {
+         "dataId": 38,
+         "name": "Newsletter",
+         "kind": "value"
+        },
+        {
+         "dataId": 39,
+         "name": "#1 Bereich Kinder",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Raum und Schlüsselverwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 64,
+         "name": "Krabbelhasen (0-2)",
+         "kind": "value"
+        },
+        {
+         "dataId": 99,
+         "name": "Datenschutz",
+         "kind": "value"
+        },
+        {
+         "dataId": 103,
+         "name": "Cleaning",
+         "kind": "value"
+        },
+        {
+         "dataId": 109,
+         "name": "Kontaktkarte",
+         "kind": "value"
+        },
+        {
+         "dataId": 127,
+         "name": "Kleingruppe Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 132,
+         "name": "Kleingruppe Gerner",
+         "kind": "value"
+        },
+        {
+         "dataId": 133,
+         "name": "Gottedienstleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 136,
+         "name": "#1 Bereich Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 142,
+         "name": "Raupen (3-5)",
+         "kind": "value"
+        },
+        {
+         "dataId": 148,
+         "name": "Schmetterlinge (6-9)",
+         "kind": "value"
+        },
+        {
+         "dataId": 154,
+         "name": "Finanzverwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 158,
+         "name": "#1 Bereich Verwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 162,
+         "name": "Ordner",
+         "kind": "value"
+        },
+        {
+         "dataId": 165,
+         "name": "Kaffeebar",
+         "kind": "value"
+        },
+        {
+         "dataId": 168,
+         "name": "Finde deine Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 171,
+         "name": "Unsere Seminare",
+         "kind": "value"
+        },
+        {
+         "dataId": 174,
+         "name": "Beziehungsweise",
+         "kind": "value"
+        },
+        {
+         "dataId": 177,
+         "name": "Wie lerne ich mit Freuden beten?",
+         "kind": "value"
+        },
+        {
+         "dataId": 180,
+         "name": "Wie setze ich ChurchTools für mein Team optimal ein?",
+         "kind": "value"
+        },
+        {
+         "dataId": 183,
+         "name": "Alle Angebote",
+         "kind": "value"
+        },
+        {
+         "dataId": 186,
+         "name": "Live-Gottesdienste",
+         "kind": "value"
+        },
+        {
+         "dataId": 203,
+         "name": "Kleingruppe Adendorf",
+         "kind": "value"
+        },
+        {
+         "dataId": 206,
+         "name": "Mitglieder",
+         "kind": "value"
+        },
+        {
+         "dataId": 208,
+         "name": "CT Admin",
+         "kind": "value"
+        },
+        {
+         "dataId": 211,
+         "name": "Öffentlichkeitsarbeit",
+         "kind": "value"
+        },
+        {
+         "dataId": 213,
+         "name": "Schlüssel Kirchengebäude Zentrale",
+         "kind": "value"
+        },
+        {
+         "dataId": 216,
+         "name": "Schlüssel Kirchengebäude Süd-Gründung",
+         "kind": "value"
+        },
+        {
+         "dataId": 219,
+         "name": "Schlüssel Bürogebäude Zentrale",
+         "kind": "value"
+        },
+        {
+         "dataId": 222,
+         "name": "Schlüssel Büro Generalschlüssel (100)",
+         "kind": "value"
+        },
+        {
+         "dataId": 225,
+         "name": "Schlüssel Kirchengebäude Generalschlüssel (200)",
+         "kind": "value"
+        },
+        {
+         "dataId": 228,
+         "name": "Schlüssel Generalschlüssel (300)",
+         "kind": "value"
+        },
+        {
+         "dataId": 231,
+         "name": "Schlüssel Eingangstüren (310)",
+         "kind": "value"
+        },
+        {
+         "dataId": 234,
+         "name": "Schlüssel Büro Eingangstüren (110)",
+         "kind": "value"
+        },
+        {
+         "dataId": 237,
+         "name": "Schlüssel Kirchengebäude Eingangstüren (210)",
+         "kind": "value"
+        },
+        {
+         "dataId": 240,
+         "name": "Schlüssel Büro 1-17 (130)",
+         "kind": "value"
+        },
+        {
+         "dataId": 243,
+         "name": "Schlüssel Büro 1-4 (131)",
+         "kind": "value"
+        },
+        {
+         "dataId": 246,
+         "name": "Schlüssel Büro 5-8 (132)",
+         "kind": "value"
+        },
+        {
+         "dataId": 249,
+         "name": "Schlüssel Büro 9-12 (133)",
+         "kind": "value"
+        },
+        {
+         "dataId": 252,
+         "name": "Schlüssel Büro 13-17 (134)",
+         "kind": "value"
+        },
+        {
+         "dataId": 255,
+         "name": "Schlüssel Kirchengebäude Nebenräume (220)",
+         "kind": "value"
+        },
+        {
+         "dataId": 258,
+         "name": "Schlüssel Kirchengebäude Technik (230)",
+         "kind": "value"
+        },
+        {
+         "dataId": 261,
+         "name": "Schlüssel Kirchengebäude Kaffeebar (240)",
+         "kind": "value"
+        },
+        {
+         "dataId": 264,
+         "name": "Schlüssel Kaffeebar (340)",
+         "kind": "value"
+        },
+        {
+         "dataId": 267,
+         "name": "Schlüssel Nebenräume (320)",
+         "kind": "value"
+        },
+        {
+         "dataId": 270,
+         "name": "Schlüssel Technik (330)",
+         "kind": "value"
+        },
+        {
+         "dataId": 343,
+         "name": "Deko-Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 346,
+         "name": "Ankündigungen",
+         "kind": "value"
+        },
+        {
+         "dataId": 349,
+         "name": "Suche/Biete",
+         "kind": "value"
+        },
+        {
+         "dataId": 352,
+         "name": "Sportangebote",
+         "kind": "value"
+        },
+        {
+         "dataId": 355,
+         "name": "Gebetsanliegen",
+         "kind": "value"
+        },
+        {
+         "dataId": 358,
+         "name": "Lauf-Treff",
+         "kind": "value"
+        },
+        {
+         "dataId": 359,
+         "name": "#1. Vorlage Mitarbeiter Party #",
+         "kind": "value"
+        },
+        {
+         "dataId": 548,
+         "name": "#Newcomer-Lunch am",
+         "kind": "value"
+        },
+        {
+         "dataId": 554,
+         "name": "Neu in der Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 642,
+         "name": "Vorlage Technikseminar",
+         "kind": "value"
+        },
+        {
+         "dataId": 732,
+         "name": "NEWCOMER LUNCH",
+         "kind": "value"
+        },
+        {
+         "dataId": 738,
+         "name": "Spikeball",
+         "kind": "value"
+        },
+        {
+         "dataId": 741,
+         "name": "Volleyball",
+         "kind": "value"
+        },
+        {
+         "dataId": 744,
+         "name": "Gemeindefreizeit 2026",
+         "kind": "value"
+        },
+        {
+         "dataId": 747,
+         "name": "Dankbar leben 🙏🏼",
+         "kind": "value"
+        },
+        {
+         "dataId": 750,
+         "name": "Geschenk Gottes 🎁",
+         "kind": "value"
+        },
+        {
+         "dataId": 753,
+         "name": "Glaube heute 🤗",
+         "kind": "value"
+        },
+        {
+         "dataId": 756,
+         "name": "Gottes Stimme 💬",
+         "kind": "value"
+        },
+        {
+         "dataId": 759,
+         "name": "Worship Mindset 🎶",
+         "kind": "value"
+        },
+        {
+         "dataId": 781,
+         "name": "#Newcomer-Lunch – 25.10.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 790,
+         "name": "#Newcomer-Lunch – 18.10.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 793,
+         "name": "#Newcomer-Lunch – 22.11.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 794,
+         "name": "#Newcomer-Lunch – 01.11.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 895,
+         "name": "ctrs-test Seed-Gruppe b5896e",
+         "kind": "value"
+        },
+        {
+         "dataId": 898,
+         "name": "ctrs-test Anmeldung 3833db",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1107,
+       "key": "create groups of grouptype",
+       "name": "Gruppen eines Gruppentyps erstellen",
+       "description": "Gruppen eines Gruppentyps erstellen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Verteiler",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Schlüssel",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "Prozesse",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1108,
+       "key": "view groups of grouptype",
+       "name": "Gruppen eines Gruppentyps sehen - außer versteckte",
+       "description": "Gruppen eines Gruppentyps sehen - außer versteckte",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Verteiler",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Schlüssel",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "Prozesse",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1109,
+       "key": "edit groups of grouptype",
+       "name": "Gruppen eines Gruppentyps bearbeiten - außer versteckte",
+       "description": "Gruppen eines Gruppentyps bearbeiten - außer versteckte",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Verteiler",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Schlüssel",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "Prozesse",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1110,
+       "key": "delete groups of grouptype",
+       "name": "Gruppen eines Gruppentyps löschen - außer versteckte",
+       "description": "Gruppen eines Gruppentyps löschen - außer versteckte",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Verteiler",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Schlüssel",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "Prozesse",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1111,
+       "key": "edit group memberships of grouptype",
+       "name": "Gruppenmitgliedschaften von Gruppen eines Gruppentyps bearbeiten",
+       "description": "Gruppenmitgliedschaften von Gruppen eines Gruppentyps bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Verteiler",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Schlüssel",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "Prozesse",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1112,
+       "key": "edit group memberships of group",
+       "name": "Gruppenmitgliedschaften einer Gruppe bearbeiten",
+       "description": "Gruppenmitgliedschaften einer Gruppe bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 6,
+         "name": "Predigtteam",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Technik",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Kinderkirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Lobpreisteam A",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "#1 Bereich Gottesdienst",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "#0 Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 13,
+         "name": "Kleingruppe Beck",
+         "kind": "value"
+        },
+        {
+         "dataId": 14,
+         "name": "Löwen (10-12)",
+         "kind": "value"
+        },
+        {
+         "dataId": 15,
+         "name": "#1 Bereich Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 16,
+         "name": "Kleingruppe Brooks",
+         "kind": "value"
+        },
+        {
+         "dataId": 17,
+         "name": "Kleingruppe Lippert",
+         "kind": "value"
+        },
+        {
+         "dataId": 21,
+         "name": "Hausmeister",
+         "kind": "value"
+        },
+        {
+         "dataId": 22,
+         "name": "Kleingruppe Bischof",
+         "kind": "value"
+        },
+        {
+         "dataId": 24,
+         "name": "Gemeinde-News",
+         "kind": "value"
+        },
+        {
+         "dataId": 26,
+         "name": "Kleingruppe Nord",
+         "kind": "value"
+        },
+        {
+         "dataId": 27,
+         "name": "Lobpreisteam B",
+         "kind": "value"
+        },
+        {
+         "dataId": 28,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 29,
+         "name": "Kleingruppe Landherr",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Kids Camp",
+         "kind": "value"
+        },
+        {
+         "dataId": 32,
+         "name": "Ranger",
+         "kind": "value"
+        },
+        {
+         "dataId": 34,
+         "name": "Konfi-Unterricht",
+         "kind": "value"
+        },
+        {
+         "dataId": 35,
+         "name": "Buchladen",
+         "kind": "value"
+        },
+        {
+         "dataId": 37,
+         "name": "Jugend fährt nach Rom",
+         "kind": "value"
+        },
+        {
+         "dataId": 38,
+         "name": "Newsletter",
+         "kind": "value"
+        },
+        {
+         "dataId": 39,
+         "name": "#1 Bereich Kinder",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Raum und Schlüsselverwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 64,
+         "name": "Krabbelhasen (0-2)",
+         "kind": "value"
+        },
+        {
+         "dataId": 99,
+         "name": "Datenschutz",
+         "kind": "value"
+        },
+        {
+         "dataId": 103,
+         "name": "Cleaning",
+         "kind": "value"
+        },
+        {
+         "dataId": 109,
+         "name": "Kontaktkarte",
+         "kind": "value"
+        },
+        {
+         "dataId": 127,
+         "name": "Kleingruppe Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 132,
+         "name": "Kleingruppe Gerner",
+         "kind": "value"
+        },
+        {
+         "dataId": 133,
+         "name": "Gottedienstleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 136,
+         "name": "#1 Bereich Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 142,
+         "name": "Raupen (3-5)",
+         "kind": "value"
+        },
+        {
+         "dataId": 148,
+         "name": "Schmetterlinge (6-9)",
+         "kind": "value"
+        },
+        {
+         "dataId": 154,
+         "name": "Finanzverwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 158,
+         "name": "#1 Bereich Verwaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 162,
+         "name": "Ordner",
+         "kind": "value"
+        },
+        {
+         "dataId": 165,
+         "name": "Kaffeebar",
+         "kind": "value"
+        },
+        {
+         "dataId": 168,
+         "name": "Finde deine Kleingruppe",
+         "kind": "value"
+        },
+        {
+         "dataId": 171,
+         "name": "Unsere Seminare",
+         "kind": "value"
+        },
+        {
+         "dataId": 174,
+         "name": "Beziehungsweise",
+         "kind": "value"
+        },
+        {
+         "dataId": 177,
+         "name": "Wie lerne ich mit Freuden beten?",
+         "kind": "value"
+        },
+        {
+         "dataId": 180,
+         "name": "Wie setze ich ChurchTools für mein Team optimal ein?",
+         "kind": "value"
+        },
+        {
+         "dataId": 183,
+         "name": "Alle Angebote",
+         "kind": "value"
+        },
+        {
+         "dataId": 186,
+         "name": "Live-Gottesdienste",
+         "kind": "value"
+        },
+        {
+         "dataId": 203,
+         "name": "Kleingruppe Adendorf",
+         "kind": "value"
+        },
+        {
+         "dataId": 206,
+         "name": "Mitglieder",
+         "kind": "value"
+        },
+        {
+         "dataId": 208,
+         "name": "CT Admin",
+         "kind": "value"
+        },
+        {
+         "dataId": 211,
+         "name": "Öffentlichkeitsarbeit",
+         "kind": "value"
+        },
+        {
+         "dataId": 213,
+         "name": "Schlüssel Kirchengebäude Zentrale",
+         "kind": "value"
+        },
+        {
+         "dataId": 216,
+         "name": "Schlüssel Kirchengebäude Süd-Gründung",
+         "kind": "value"
+        },
+        {
+         "dataId": 219,
+         "name": "Schlüssel Bürogebäude Zentrale",
+         "kind": "value"
+        },
+        {
+         "dataId": 222,
+         "name": "Schlüssel Büro Generalschlüssel (100)",
+         "kind": "value"
+        },
+        {
+         "dataId": 225,
+         "name": "Schlüssel Kirchengebäude Generalschlüssel (200)",
+         "kind": "value"
+        },
+        {
+         "dataId": 228,
+         "name": "Schlüssel Generalschlüssel (300)",
+         "kind": "value"
+        },
+        {
+         "dataId": 231,
+         "name": "Schlüssel Eingangstüren (310)",
+         "kind": "value"
+        },
+        {
+         "dataId": 234,
+         "name": "Schlüssel Büro Eingangstüren (110)",
+         "kind": "value"
+        },
+        {
+         "dataId": 237,
+         "name": "Schlüssel Kirchengebäude Eingangstüren (210)",
+         "kind": "value"
+        },
+        {
+         "dataId": 240,
+         "name": "Schlüssel Büro 1-17 (130)",
+         "kind": "value"
+        },
+        {
+         "dataId": 243,
+         "name": "Schlüssel Büro 1-4 (131)",
+         "kind": "value"
+        },
+        {
+         "dataId": 246,
+         "name": "Schlüssel Büro 5-8 (132)",
+         "kind": "value"
+        },
+        {
+         "dataId": 249,
+         "name": "Schlüssel Büro 9-12 (133)",
+         "kind": "value"
+        },
+        {
+         "dataId": 252,
+         "name": "Schlüssel Büro 13-17 (134)",
+         "kind": "value"
+        },
+        {
+         "dataId": 255,
+         "name": "Schlüssel Kirchengebäude Nebenräume (220)",
+         "kind": "value"
+        },
+        {
+         "dataId": 258,
+         "name": "Schlüssel Kirchengebäude Technik (230)",
+         "kind": "value"
+        },
+        {
+         "dataId": 261,
+         "name": "Schlüssel Kirchengebäude Kaffeebar (240)",
+         "kind": "value"
+        },
+        {
+         "dataId": 264,
+         "name": "Schlüssel Kaffeebar (340)",
+         "kind": "value"
+        },
+        {
+         "dataId": 267,
+         "name": "Schlüssel Nebenräume (320)",
+         "kind": "value"
+        },
+        {
+         "dataId": 270,
+         "name": "Schlüssel Technik (330)",
+         "kind": "value"
+        },
+        {
+         "dataId": 343,
+         "name": "Deko-Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 346,
+         "name": "Ankündigungen",
+         "kind": "value"
+        },
+        {
+         "dataId": 349,
+         "name": "Suche/Biete",
+         "kind": "value"
+        },
+        {
+         "dataId": 352,
+         "name": "Sportangebote",
+         "kind": "value"
+        },
+        {
+         "dataId": 355,
+         "name": "Gebetsanliegen",
+         "kind": "value"
+        },
+        {
+         "dataId": 358,
+         "name": "Lauf-Treff",
+         "kind": "value"
+        },
+        {
+         "dataId": 359,
+         "name": "#1. Vorlage Mitarbeiter Party #",
+         "kind": "value"
+        },
+        {
+         "dataId": 548,
+         "name": "#Newcomer-Lunch am",
+         "kind": "value"
+        },
+        {
+         "dataId": 554,
+         "name": "Neu in der Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 642,
+         "name": "Vorlage Technikseminar",
+         "kind": "value"
+        },
+        {
+         "dataId": 732,
+         "name": "NEWCOMER LUNCH",
+         "kind": "value"
+        },
+        {
+         "dataId": 738,
+         "name": "Spikeball",
+         "kind": "value"
+        },
+        {
+         "dataId": 741,
+         "name": "Volleyball",
+         "kind": "value"
+        },
+        {
+         "dataId": 744,
+         "name": "Gemeindefreizeit 2026",
+         "kind": "value"
+        },
+        {
+         "dataId": 747,
+         "name": "Dankbar leben 🙏🏼",
+         "kind": "value"
+        },
+        {
+         "dataId": 750,
+         "name": "Geschenk Gottes 🎁",
+         "kind": "value"
+        },
+        {
+         "dataId": 753,
+         "name": "Glaube heute 🤗",
+         "kind": "value"
+        },
+        {
+         "dataId": 756,
+         "name": "Gottes Stimme 💬",
+         "kind": "value"
+        },
+        {
+         "dataId": 759,
+         "name": "Worship Mindset 🎶",
+         "kind": "value"
+        },
+        {
+         "dataId": 781,
+         "name": "#Newcomer-Lunch – 25.10.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 790,
+         "name": "#Newcomer-Lunch – 18.10.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 793,
+         "name": "#Newcomer-Lunch – 22.11.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 794,
+         "name": "#Newcomer-Lunch – 01.11.2026, 13:00",
+         "kind": "value"
+        },
+        {
+         "dataId": 895,
+         "name": "ctrs-test Seed-Gruppe b5896e",
+         "kind": "value"
+        },
+        {
+         "dataId": 898,
+         "name": "ctrs-test Anmeldung 3833db",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1113,
+       "key": "administer groups",
+       "name": "Gruppen verwalten - d. h. erstellen, bearbeiten, löschen und mehr",
+       "description": "Gruppen verwalten - d. h. erstellen, bearbeiten, löschen und mehr",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 1114,
+       "key": "security level group",
+       "name": "Gruppeninfos sehen - bis zum gewählten Sicherheitslevel",
+       "description": "Gruppeninfos sehen - bis zum gewählten Sicherheitslevel",
+       "valueType": "maximum",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Stufe 1 (Namen)",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Stufe 2 (Allg. Info)",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Stufe 3 (Kontakt-Details)",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Stufe 4 (Leiter-Details)",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Stufe 5 (Administration)",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 1102,
+       "key": "view group history",
+       "name": "Historie der Gruppenmitglieder sehen",
+       "description": "Historie der Gruppenmitglieder sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 1103,
+       "key": "view group tags",
+       "name": "Gruppen-Tags sehen",
+       "description": "Gruppen-Tags sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 1115,
+       "key": "administer global views",
+       "name": "Globale gespeicherte Ansichten verwalten",
+       "description": "Globale gespeicherte Ansichten verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 1116,
+       "key": "edit masterdata",
+       "name": "Moduleinstellungen verwalten",
+       "description": "Moduleinstellungen verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "churchcal",
+     "name": "Kalender",
+     "permissions": [
+      {
+       "authId": 401,
+       "key": "view",
+       "name": "\"Kalender\" sehen",
+       "description": "\"Kalender\" sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 403,
+       "key": "view category",
+       "name": "Einzelnen Kalender sehen",
+       "description": "Einzelnen Kalender sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Sonstige Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kirche Zentale",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Planungskalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "Fußball-Kalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 51,
+         "name": "Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 54,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 56,
+         "name": "Kirche Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Gesamt Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 62,
+         "name": "Ferien",
+         "kind": "value"
+        },
+        {
+         "dataId": 65,
+         "name": "Feiertage",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 404,
+       "key": "edit category",
+       "name": "In einzelnen Kalendern Termine erstellen, bearbeiten etc.",
+       "description": "In einzelnen Kalendern Termine erstellen, bearbeiten etc.",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Sonstige Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kirche Zentale",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Planungskalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "Fußball-Kalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 51,
+         "name": "Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 54,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 56,
+         "name": "Kirche Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Gesamt Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 62,
+         "name": "Ferien",
+         "kind": "value"
+        },
+        {
+         "dataId": 65,
+         "name": "Feiertage",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 410,
+       "key": "edit calendar entry template",
+       "name": "In einzelnen Kalendern Terminvorlagen erstellen, bearbeiten etc.",
+       "description": "In einzelnen Kalendern Terminvorlagen erstellen, bearbeiten etc.",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Sonstige Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kirche Zentale",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Planungskalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "Fußball-Kalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 51,
+         "name": "Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 54,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 56,
+         "name": "Kirche Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Gesamt Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 62,
+         "name": "Ferien",
+         "kind": "value"
+        },
+        {
+         "dataId": 65,
+         "name": "Feiertage",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 409,
+       "key": "assistance mode",
+       "name": "Im Auftrag eines anderen Buchungen durchführen",
+       "description": "Im Auftrag eines anderen Buchungen durchführen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 407,
+       "key": "create personal category",
+       "name": "Persönlichen Kalender erstellen",
+       "description": "Persönlichen Kalender erstellen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 406,
+       "key": "admin personal category",
+       "name": "Persönliche Kalender verwalten",
+       "description": "Persönliche Kalender verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 408,
+       "key": "create group category",
+       "name": "Gruppenkalender erstellen",
+       "description": "Gruppenkalender erstellen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 405,
+       "key": "admin group category",
+       "name": "Gruppenkalender verwalten",
+       "description": "Gruppenkalender verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 402,
+       "key": "admin church category",
+       "name": "Gemeindekalender verwalten",
+       "description": "Gemeindekalender verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 411,
+       "key": "admin appointment tags",
+       "name": "Termin-Tags verwalten",
+       "description": "Termin-Tags verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "churchservice",
+     "name": "Events",
+     "permissions": [
+      {
+       "authId": 301,
+       "key": "view",
+       "name": "\"Events\" sehen",
+       "description": "\"Events\" sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 304,
+       "key": "view servicegroup",
+       "name": "Dienste einzelner Dienstkategorien sehen",
+       "description": "Dienste einzelner Dienstkategorien sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Programm",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Technik",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Musik",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Welcome Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "Büchertisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Fahrdienste",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Jungschar",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Instandhaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "Kindergottesdienst",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "Kaffeebar",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 305,
+       "key": "edit servicegroup",
+       "name": "Dienste einzelner Dienstkategorien bearbeiten",
+       "description": "Dienste einzelner Dienstkategorien bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Programm",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Technik",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Musik",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Welcome Team",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "Büchertisch",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Fahrdienste",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Jungschar",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Instandhaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "Kindergottesdienst",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "Kaffeebar",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 302,
+       "key": "view history",
+       "name": "Historie der Anfragen anschauen",
+       "description": "Historie der Anfragen anschauen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 306,
+       "key": "view events",
+       "name": "Events von einzelnen Kalendern sehen",
+       "description": "Events von einzelnen Kalendern sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Sonstige Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kirche Zentale",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Planungskalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "Fußball-Kalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 51,
+         "name": "Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 54,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 56,
+         "name": "Kirche Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Gesamt Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 62,
+         "name": "Ferien",
+         "kind": "value"
+        },
+        {
+         "dataId": 65,
+         "name": "Feiertage",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 303,
+       "key": "edit events",
+       "name": "Events erstellen, bearbeiten, löschen",
+       "description": "Events erstellen, bearbeiten, löschen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Sonstige Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kirche Zentale",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Planungskalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "Fußball-Kalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 51,
+         "name": "Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 54,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 56,
+         "name": "Kirche Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Gesamt Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 62,
+         "name": "Ferien",
+         "kind": "value"
+        },
+        {
+         "dataId": 65,
+         "name": "Feiertage",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 309,
+       "key": "edit template",
+       "name": "Eventvorlagen bearbeiten",
+       "description": "Eventvorlagen bearbeiten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 307,
+       "key": "manage absent",
+       "name": "Abwesenheiten für alle Personen sehen und pflegen",
+       "description": "Abwesenheiten für alle Personen sehen und pflegen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 321,
+       "key": "view fact",
+       "name": "Fakten sehen",
+       "description": "Fakten sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Besucher",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kollekte Klingelbeutel",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Erstbesucher",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Kollekte Ausgang",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 308,
+       "key": "edit fact",
+       "name": "Fakten bearbeiten",
+       "description": "Fakten bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Besucher",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kollekte Klingelbeutel",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Erstbesucher",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Kollekte Ausgang",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 322,
+       "key": "export facts",
+       "name": "Fakten exportieren",
+       "description": "Fakten exportieren",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 331,
+       "key": "view agenda",
+       "name": "Ablaufpläne für einzelne Kalender sehen",
+       "description": "Ablaufpläne für einzelne Kalender sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Sonstige Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kirche Zentale",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Planungskalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "Fußball-Kalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 51,
+         "name": "Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 54,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 56,
+         "name": "Kirche Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Gesamt Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 62,
+         "name": "Ferien",
+         "kind": "value"
+        },
+        {
+         "dataId": 65,
+         "name": "Feiertage",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 332,
+       "key": "edit agenda",
+       "name": "Ablaufpläne für einzelne Kalender bearbeiten",
+       "description": "Ablaufpläne für einzelne Kalender bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Sonstige Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kirche Zentale",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Planungskalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "Fußball-Kalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 51,
+         "name": "Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 54,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 56,
+         "name": "Kirche Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Gesamt Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 62,
+         "name": "Ferien",
+         "kind": "value"
+        },
+        {
+         "dataId": 65,
+         "name": "Feiertage",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 333,
+       "key": "edit agenda templates",
+       "name": "Ablaufplanvorlagen für einzelne Kalender bearbeiten",
+       "description": "Ablaufplanvorlagen für einzelne Kalender bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "Sonstige Veranstaltung",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Kirche Zentale",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Jugend",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 31,
+         "name": "Planungskalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 49,
+         "name": "Fußball-Kalender",
+         "kind": "value"
+        },
+        {
+         "dataId": 51,
+         "name": "Kleingruppen",
+         "kind": "value"
+        },
+        {
+         "dataId": 54,
+         "name": "Lobpreis",
+         "kind": "value"
+        },
+        {
+         "dataId": 56,
+         "name": "Kirche Süd",
+         "kind": "value"
+        },
+        {
+         "dataId": 59,
+         "name": "Gesamt Kirche",
+         "kind": "value"
+        },
+        {
+         "dataId": 62,
+         "name": "Ferien",
+         "kind": "value"
+        },
+        {
+         "dataId": 65,
+         "name": "Feiertage",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 313,
+       "key": "view songcategory",
+       "name": "Einzelne Song-Kategorien sehen",
+       "description": "Einzelne Song-Kategorien sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 0,
+         "name": "Aktive Songs",
+         "kind": "value"
+        },
+        {
+         "dataId": 1,
+         "name": "Inaktive Songs",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 312,
+       "key": "edit songcategory",
+       "name": "Songs bearbeiten und Dateien hochladen",
+       "description": "Songs bearbeiten und Dateien hochladen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 0,
+         "name": "Aktive Songs",
+         "kind": "value"
+        },
+        {
+         "dataId": 1,
+         "name": "Inaktive Songs",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 314,
+       "key": "view song statistics",
+       "name": "Song-Statistik sehen",
+       "description": "Song-Statistik sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 341,
+       "key": "use ccli",
+       "name": "Darf CCLI in \"Events\" verwenden",
+       "description": "Darf CCLI in \"Events\" verwenden",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 399,
+       "key": "edit masterdata",
+       "name": "Stammdaten bearbeiten",
+       "description": "Stammdaten bearbeiten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "churchresource",
+     "name": "Ressourcen",
+     "permissions": [
+      {
+       "authId": 201,
+       "key": "view",
+       "name": "\"Ressourcen\" sehen",
+       "description": "\"Ressourcen\" sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 205,
+       "key": "view resource",
+       "name": "Ressource sehen",
+       "description": "Ressource sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 2,
+         "name": "Beamer",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Saal",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Küche",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Kinderraum klein",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Soundanlage",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Jugendraum",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Kinderraum groß",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "Bus",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "Beamer",
+         "kind": "value"
+        },
+        {
+         "dataId": 12,
+         "name": "Kapelle",
+         "kind": "value"
+        },
+        {
+         "dataId": 13,
+         "name": "Kinderraum",
+         "kind": "value"
+        },
+        {
+         "dataId": 14,
+         "name": "Küche",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 206,
+       "key": "create bookings",
+       "name": "Eigene Buchungsanfragen erstellen",
+       "description": "Eigene Buchungsanfragen erstellen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 2,
+         "name": "Beamer",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Saal",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Küche",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Kinderraum klein",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Soundanlage",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Jugendraum",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Kinderraum groß",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "Bus",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "Beamer",
+         "kind": "value"
+        },
+        {
+         "dataId": 12,
+         "name": "Kapelle",
+         "kind": "value"
+        },
+        {
+         "dataId": 13,
+         "name": "Kinderraum",
+         "kind": "value"
+        },
+        {
+         "dataId": 14,
+         "name": "Küche",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 204,
+       "key": "create virtual bookings",
+       "name": "Anfragen für Ressourcen mit Mehrfachbuchung erstellen",
+       "description": "Anfragen für Ressourcen mit Mehrfachbuchung erstellen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 202,
+       "key": "administer bookings",
+       "name": "Buchungen verwalten",
+       "description": "Buchungen verwalten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 2,
+         "name": "Beamer",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Saal",
+         "kind": "value"
+        },
+        {
+         "dataId": 4,
+         "name": "Küche",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "Kinderraum klein",
+         "kind": "value"
+        },
+        {
+         "dataId": 7,
+         "name": "Soundanlage",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Jugendraum",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Kinderraum groß",
+         "kind": "value"
+        },
+        {
+         "dataId": 10,
+         "name": "Bus",
+         "kind": "value"
+        },
+        {
+         "dataId": 11,
+         "name": "Beamer",
+         "kind": "value"
+        },
+        {
+         "dataId": 12,
+         "name": "Kapelle",
+         "kind": "value"
+        },
+        {
+         "dataId": 13,
+         "name": "Kinderraum",
+         "kind": "value"
+        },
+        {
+         "dataId": 14,
+         "name": "Küche",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 203,
+       "key": "assistance mode",
+       "name": "Im Auftrag eines anderen Buchungen durchführen",
+       "description": "Im Auftrag eines anderen Buchungen durchführen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 299,
+       "key": "edit masterdata",
+       "name": "Stammdaten bearbeiten",
+       "description": "Stammdaten bearbeiten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "churchcheckin",
+     "name": "Check-in",
+     "permissions": [
+      {
+       "authId": 601,
+       "key": "view",
+       "name": "\"Check-in\" sehen",
+       "description": "\"Check-in\" sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 602,
+       "key": "create person",
+       "name": "Personen erstellen",
+       "description": "Personen erstellen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 699,
+       "key": "edit masterdata",
+       "name": "Drucker verwalten",
+       "description": "Drucker verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "churchwiki",
+     "name": "Wiki",
+     "permissions": [
+      {
+       "authId": 501,
+       "key": "view",
+       "name": "\"Wiki\" sehen",
+       "description": "\"Wiki\" sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 502,
+       "key": "view category",
+       "name": "Einzelne Wiki-Kategorien sehen",
+       "description": "Einzelne Wiki-Kategorien sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 0,
+         "name": "Vision von ChuToo",
+         "kind": "value"
+        },
+        {
+         "dataId": 1,
+         "name": "Technik",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Musik",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Deine ChurchTools Demo",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Willkommen 👋🏼",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 503,
+       "key": "edit category",
+       "name": "Einzelne Wiki-Kategorien bearbeiten",
+       "description": "Einzelne Wiki-Kategorien bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 0,
+         "name": "Vision von ChuToo",
+         "kind": "value"
+        },
+        {
+         "dataId": 1,
+         "name": "Technik",
+         "kind": "value"
+        },
+        {
+         "dataId": 2,
+         "name": "Musik",
+         "kind": "value"
+        },
+        {
+         "dataId": 3,
+         "name": "Gemeindeleitung",
+         "kind": "value"
+        },
+        {
+         "dataId": 8,
+         "name": "Deine ChurchTools Demo",
+         "kind": "value"
+        },
+        {
+         "dataId": 9,
+         "name": "Willkommen 👋🏼",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 599,
+       "key": "edit masterdata",
+       "name": "Stammdaten bearbeiten",
+       "description": "Stammdaten bearbeiten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "finance",
+     "name": "Finanzen",
+     "permissions": [
+      {
+       "authId": 901,
+       "key": "view",
+       "name": "Finanzen sehen",
+       "description": "Finanzen sehen",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      },
+      {
+       "authId": 902,
+       "key": "view accounting period",
+       "name": "Buchungsjahre und Mandanten sehen",
+       "description": "Buchungsjahre und Mandanten sehen",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "1",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "5",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "6",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 903,
+       "key": "edit accounting period",
+       "name": "Buchungen für Buchungsjahr und Mandant erstellen und bearbeiten",
+       "description": "Buchungen für Buchungsjahr und Mandant erstellen und bearbeiten",
+       "valueType": "multiple",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": [
+        {
+         "dataId": -1,
+         "name": "Alle",
+         "kind": "all"
+        },
+        {
+         "dataId": 1,
+         "name": "1",
+         "kind": "value"
+        },
+        {
+         "dataId": 5,
+         "name": "5",
+         "kind": "value"
+        },
+        {
+         "dataId": 6,
+         "name": "6",
+         "kind": "value"
+        }
+       ]
+      },
+      {
+       "authId": 999,
+       "key": "edit masterdata",
+       "name": "Stammdaten bearbeiten",
+       "description": "Stammdaten bearbeiten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    },
+    {
+     "key": "churchsync",
+     "name": "Sync",
+     "permissions": [
+      {
+       "authId": 1001,
+       "key": "view",
+       "name": "Sync sehen und verwalten",
+       "description": "Sync sehen und verwalten",
+       "valueType": "boolean",
+       "assignmentDomains": [
+        "status",
+        "group_type_role",
+        "group_role",
+        "person"
+       ],
+       "selections": []
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

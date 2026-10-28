@@ -1,0 +1,220 @@
+{
+ "operation": "get-finance-taxrates",
+ "request": {
+  "method": "GET",
+  "path": "/finance/taxrates",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 2,
+    "taxTypeId": 1,
+    "rate": 19,
+    "note": "Umsatzsteuer 19%",
+    "accountId": 167,
+    "meta": {
+     "createdDate": "2020-05-13T12:55:22Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T12:55:22Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 5,
+    "taxTypeId": 2,
+    "rate": 19,
+    "note": "Vorsteuer 19%",
+    "accountId": 137,
+    "meta": {
+     "createdDate": "2020-05-13T12:55:22Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T12:55:22Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 8,
+    "taxTypeId": 2,
+    "rate": 7,
+    "note": "Vorsteuer 7%",
+    "accountId": 140,
+    "meta": {
+     "createdDate": "2020-05-13T12:55:22Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T12:55:22Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 11,
+    "taxTypeId": 1,
+    "rate": 7,
+    "note": "Umsatzsteuer 7%",
+    "accountId": 170,
+    "meta": {
+     "createdDate": "2020-05-13T12:55:22Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T12:55:22Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 14,
+    "taxTypeId": 1,
+    "rate": 19,
+    "note": "Umsatzsteuer 19%",
+    "accountId": 596,
+    "meta": {
+     "createdDate": "2020-05-13T12:58:01Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T12:58:01Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 17,
+    "taxTypeId": 2,
+    "rate": 19,
+    "note": "Vorsteuer 19%",
+    "accountId": 566,
+    "meta": {
+     "createdDate": "2020-05-13T12:58:01Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T12:58:01Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 20,
+    "taxTypeId": 2,
+    "rate": 7,
+    "note": "Vorsteuer 7%",
+    "accountId": 569,
+    "meta": {
+     "createdDate": "2020-05-13T12:58:01Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T12:58:01Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 23,
+    "taxTypeId": 1,
+    "rate": 7,
+    "note": "Umsatzsteuer 7%",
+    "accountId": 599,
+    "meta": {
+     "createdDate": "2020-05-13T12:58:01Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T12:58:01Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 24,
+    "taxTypeId": 2,
+    "rate": 19,
+    "note": "Vorsteuer 19%",
+    "accountId": 996,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 27,
+    "taxTypeId": 2,
+    "rate": 7,
+    "note": "Vorsteuer 7%",
+    "accountId": 999,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 30,
+    "taxTypeId": 1,
+    "rate": 19,
+    "note": "Umsatzsteuer 19%",
+    "accountId": 1026,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 33,
+    "taxTypeId": 1,
+    "rate": 7,
+    "note": "Umsatzsteuer 7%",
+    "accountId": 1029,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 12
+  }
+ }
+}

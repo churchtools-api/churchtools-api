@@ -1,0 +1,506 @@
+{
+ "operation": "get-groups-id-members",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/members",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 314,
+    "personId": 108,
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "person": {
+     "title": "Jens Atkins",
+     "domainType": "person",
+     "domainIdentifier": "108",
+     "apiUrl": "https://gemeinde.example/api/persons/108",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23108/",
+     "imageUrl": "https://gemeinde.example/images/469/ab89d1ca28be7800e55ad3fb5582a091de91febeaba37bffbe576b69ecd1fc2b",
+     "icon": "user",
+     "color": null,
+     "initials": "JA",
+     "domainAttributes": {
+      "firstName": "Jens",
+      "lastName": "Atkins",
+      "guid": "23D6B287-DF26-437E-A2EC-93938FECF50C",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 16,
+    "roleChangedDate": "2019-03-04T23:00:00Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2019-03-04T23:00:00Z",
+    "memberStartDate": "2019-03-05",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [
+     {
+      "id": 7,
+      "name": "Zuständigkeit",
+      "value": "",
+      "sortKey": 0
+     }
+    ],
+    "personFields": []
+   },
+   {
+    "id": 291,
+    "personId": 103,
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "person": {
+     "title": "Jenny Bischof",
+     "domainType": "person",
+     "domainIdentifier": "103",
+     "apiUrl": "https://gemeinde.example/api/persons/103",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23103/",
+     "imageUrl": "https://gemeinde.example/images/2371/0d148ae321f3f469efd5cb0a980517753163d3464cf6e1e0b38208aa3179789e",
+     "icon": "user",
+     "color": null,
+     "initials": "JB",
+     "domainAttributes": {
+      "firstName": "Jenny",
+      "lastName": "Bischof",
+      "guid": "DD027714-CB34-405E-9AF7-D348EF95A83B",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 17,
+    "roleChangedDate": "2020-12-17T16:02:20Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2019-01-23T23:00:00Z",
+    "memberStartDate": "2019-01-24",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [
+     {
+      "id": 7,
+      "name": "Zuständigkeit",
+      "value": "",
+      "sortKey": 0
+     }
+    ],
+    "personFields": []
+   },
+   {
+    "id": 3,
+    "personId": 1,
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 15,
+    "roleChangedDate": "2024-01-24T13:37:54Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2024-01-24T13:37:54Z",
+    "memberStartDate": "2024-01-24",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [
+     {
+      "id": 7,
+      "name": "Zuständigkeit",
+      "value": "",
+      "sortKey": 0
+     }
+    ],
+    "personFields": []
+   },
+   {
+    "id": 589,
+    "personId": 170,
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "person": {
+     "title": "Marten Bischof",
+     "domainType": "person",
+     "domainIdentifier": "170",
+     "apiUrl": "https://gemeinde.example/api/persons/170",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23170/",
+     "imageUrl": "https://gemeinde.example/images/2374/a6ef47a39b2e512d02b865a80c3747206d3e3e814e50fd1a16bffe6ee618da8d",
+     "icon": "user",
+     "color": null,
+     "initials": "MB",
+     "domainAttributes": {
+      "firstName": "Marten",
+      "lastName": "Bischof",
+      "guid": "FE2742A8-AB37-42D5-B6B6-EA0E3D8CCFE6",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 15,
+    "roleChangedDate": "2021-10-27T11:00:31Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2021-10-27T11:00:31Z",
+    "memberStartDate": "2021-10-27",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [
+     {
+      "id": 7,
+      "name": "Zuständigkeit",
+      "value": "",
+      "sortKey": 0
+     }
+    ],
+    "personFields": []
+   },
+   {
+    "id": 624,
+    "personId": 176,
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "person": {
+     "title": "Stefan Brinkmann",
+     "domainType": "person",
+     "domainIdentifier": "176",
+     "apiUrl": "https://gemeinde.example/api/persons/176",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23176/",
+     "imageUrl": "https://gemeinde.example/images/585/f41c4797530b4697f10605a608de9f97da1f9ac1c435e6d8df9261494fc087a8",
+     "icon": "user",
+     "color": null,
+     "initials": "SB",
+     "domainAttributes": {
+      "firstName": "Stefan",
+      "lastName": "Brinkmann",
+      "guid": "1F650792-823F-4293-A052-88EF3B503594",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 15,
+    "roleChangedDate": "2018-02-07T23:00:00Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2018-02-07T23:00:00Z",
+    "memberStartDate": "2018-02-08",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [
+     {
+      "id": 7,
+      "name": "Zuständigkeit",
+      "value": "Hauskreise, Kinder",
+      "sortKey": 0
+     }
+    ],
+    "personFields": []
+   },
+   {
+    "id": 869,
+    "personId": 340,
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "person": {
+     "title": "Freddy Finanziskus",
+     "domainType": "person",
+     "domainIdentifier": "340",
+     "apiUrl": "https://gemeinde.example/api/persons/340",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23340/",
+     "imageUrl": "https://gemeinde.example/images/754/001ebe5b00e763d4fa0d4d16d2c400c828f058be9266985dd61e60f082b171b0",
+     "icon": "user",
+     "color": null,
+     "initials": "FF",
+     "domainAttributes": {
+      "firstName": "Freddy",
+      "lastName": "Finanziskus",
+      "guid": "42028CB8-2D7A-4B19-B06B-4658ACDA8202",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 15,
+    "roleChangedDate": "2019-03-14T23:00:00Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2019-03-14T23:00:00Z",
+    "memberStartDate": "2019-03-15",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [
+     {
+      "id": 7,
+      "name": "Zuständigkeit",
+      "value": "",
+      "sortKey": 0
+     }
+    ],
+    "personFields": []
+   },
+   {
+    "id": 879,
+    "personId": 346,
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "person": {
+     "title": "Simone Gerlach",
+     "domainType": "person",
+     "domainIdentifier": "346",
+     "apiUrl": "https://gemeinde.example/api/persons/346",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23346/",
+     "imageUrl": "https://gemeinde.example/images/2191/3e60f9fb9179ee13d1aff81f3eac98ef93474aacc534a6bdc617d5ce04fc5387",
+     "icon": "user",
+     "color": null,
+     "initials": "SG",
+     "domainAttributes": {
+      "firstName": "Simone",
+      "lastName": "Gerlach",
+      "guid": "66C39DBB-6AB4-4A47-B67A-D6D282CEE10B",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 15,
+    "roleChangedDate": "2019-03-27T23:00:00Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2019-03-27T23:00:00Z",
+    "memberStartDate": "2019-03-28",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [
+     {
+      "id": 7,
+      "name": "Zuständigkeit",
+      "value": "",
+      "sortKey": 0
+     }
+    ],
+    "personFields": []
+   }
+  ],
+  "meta": {
+   "count": 7,
+   "all": 7,
+   "pagination": {
+    "total": 7,
+    "limit": 10,
+    "current": 1,
+    "lastPage": 1
+   }
+  }
+ }
+}

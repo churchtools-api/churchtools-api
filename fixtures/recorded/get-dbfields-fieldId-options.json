@@ -1,0 +1,15 @@
+{
+ "operation": "get-dbfields-fieldId-options",
+ "request": {
+  "method": "GET",
+  "path": "/dbfields/132/options",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

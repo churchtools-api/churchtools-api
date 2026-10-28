@@ -1,0 +1,28 @@
+{
+ "operation": "get-person-growpaths-id",
+ "request": {
+  "method": "GET",
+  "path": "/person/growpaths/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "Willkommen",
+   "nameTranslated": "Willkommen",
+   "sortKey": 1,
+   "color": "gray",
+   "meta": {
+    "createdDate": "2026-02-19T12:28:14Z",
+    "createdPerson": {
+     "id": -5
+    },
+    "modifiedDate": "2026-02-19T12:28:14Z",
+    "modifiedPerson": {
+     "id": -5
+    }
+   }
+  }
+ }
+}

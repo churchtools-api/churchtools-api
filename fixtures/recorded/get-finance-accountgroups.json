@@ -1,0 +1,407 @@
+{
+ "operation": "get-finance-accountgroups",
+ "request": {
+  "method": "GET",
+  "path": "/finance/accountgroups",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Immobilien u. Grundstücke",
+    "accountClassId": 1,
+    "isCashAssetAccount": false,
+    "sortKey": 1,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 2,
+    "name": "Sachanlagen",
+    "accountClassId": 1,
+    "isCashAssetAccount": false,
+    "sortKey": 2,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 3,
+    "name": "Forderungen",
+    "accountClassId": 2,
+    "isCashAssetAccount": false,
+    "sortKey": 3,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 4,
+    "name": "Verb. gegen Banken",
+    "accountClassId": 3,
+    "isCashAssetAccount": false,
+    "sortKey": 4,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 5,
+    "name": "Verb. gegen Private",
+    "accountClassId": 3,
+    "isCashAssetAccount": false,
+    "sortKey": 5,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 6,
+    "name": "Verb. gegen Sonstige",
+    "accountClassId": 3,
+    "isCashAssetAccount": false,
+    "sortKey": 6,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 7,
+    "name": "Gez. Kapital, Einlagen",
+    "accountClassId": 4,
+    "isCashAssetAccount": false,
+    "sortKey": 7,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 8,
+    "name": "Rücklagen",
+    "accountClassId": 4,
+    "isCashAssetAccount": false,
+    "sortKey": 8,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 9,
+    "name": "Vortrag",
+    "accountClassId": 4,
+    "isCashAssetAccount": false,
+    "sortKey": 9,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 10,
+    "name": "Abgrenzungsposten",
+    "accountClassId": 4,
+    "isCashAssetAccount": false,
+    "sortKey": 10,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 11,
+    "name": "Bank- und Kassenbestände",
+    "accountClassId": 2,
+    "isCashAssetAccount": true,
+    "sortKey": 11,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 13,
+    "name": "Steuern",
+    "accountClassId": 5,
+    "isCashAssetAccount": false,
+    "sortKey": 13,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 14,
+    "name": "sonstige Verbindlichkeiten",
+    "accountClassId": 3,
+    "isCashAssetAccount": false,
+    "sortKey": 14,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 15,
+    "name": "Abgrenzung Steuern",
+    "accountClassId": 5,
+    "isCashAssetAccount": false,
+    "sortKey": 15,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 17,
+    "name": "Zinsaufwand",
+    "accountClassId": 7,
+    "isCashAssetAccount": false,
+    "sortKey": 17,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 19,
+    "name": "sonstige Erträge",
+    "accountClassId": 8,
+    "isCashAssetAccount": false,
+    "sortKey": 19,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 20,
+    "name": "Erträge auf Vermietungen",
+    "accountClassId": 8,
+    "isCashAssetAccount": false,
+    "sortKey": 20,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 21,
+    "name": "Löhne und Gehälter",
+    "accountClassId": 9,
+    "isCashAssetAccount": false,
+    "sortKey": 21,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 22,
+    "name": "soziale Aufwendungen",
+    "accountClassId": 9,
+    "isCashAssetAccount": false,
+    "sortKey": 22,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 23,
+    "name": "Aufwendungen allgem.",
+    "accountClassId": 6,
+    "isCashAssetAccount": false,
+    "sortKey": 23,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 24,
+    "name": "Aufwendungen Gemeindearbeit",
+    "accountClassId": 6,
+    "isCashAssetAccount": false,
+    "sortKey": 24,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 25,
+    "name": "Erlöse aus Spenden und Kollekten",
+    "accountClassId": 10,
+    "isCashAssetAccount": false,
+    "sortKey": 25,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   },
+   {
+    "id": 26,
+    "name": "Sonstige Erlöse",
+    "accountClassId": 10,
+    "isCashAssetAccount": false,
+    "sortKey": 26,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": -1
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": -1
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 23
+  }
+ }
+}

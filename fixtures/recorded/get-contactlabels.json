@@ -1,0 +1,30 @@
+{
+ "operation": "get-contactlabels",
+ "request": {
+  "method": "GET",
+  "path": "/contactlabels",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 2,
+    "name": "contact.label.private",
+    "nameTranslated": "Privat",
+    "sortKey": 10,
+    "isDefault": true
+   },
+   {
+    "id": 5,
+    "name": "contact.label.business",
+    "nameTranslated": "Arbeit",
+    "sortKey": 20,
+    "isDefault": false
+   }
+  ],
+  "meta": {
+   "count": 2
+  }
+ }
+}

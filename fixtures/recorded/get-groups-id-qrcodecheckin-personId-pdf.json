@@ -1,0 +1,14 @@
+{
+ "operation": "get-groups-id-qrcodecheckin-personId-pdf",
+ "request": {
+  "method": "GET",
+  "path": "/groups/895/qrcodecheckin/1/pdf",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "url": "https://gemeinde.example/sites/default/files/downloader/ticket-3Len7OD3Pk-Armin_Adendorf-ctrs-test_Seed-Gruppe_b5896e.pdf"
+  }
+ }
+}

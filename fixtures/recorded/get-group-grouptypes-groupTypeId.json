@@ -1,0 +1,36 @@
+{
+ "operation": "get-group-grouptypes-groupTypeId",
+ "request": {
+  "method": "GET",
+  "path": "/group/grouptypes/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "Kleingruppe",
+   "nameTranslated": "Kleingruppe",
+   "sortKey": 10,
+   "namePlural": "Kleingruppen",
+   "namePluralTranslated": "Kleingruppen",
+   "color": "sky",
+   "shorty": "KG",
+   "description": null,
+   "isLeaderNecessary": true,
+   "availableForNewPerson": true,
+   "permissionDepth": 999,
+   "postsEnabled": true,
+   "meta": {
+    "createdDate": "2025-04-14T10:50:49Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2025-04-14T10:50:49Z",
+    "modifiedPerson": {
+     "id": -4
+    }
+   }
+  }
+ }
+}

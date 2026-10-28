@@ -1,0 +1,15 @@
+{
+ "operation": "get-queues-queue-jobgroups-jobGroup",
+ "request": {
+  "method": "GET",
+  "path": "/queues/default/jobgroups/default",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

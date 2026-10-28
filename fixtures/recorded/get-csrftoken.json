@@ -1,0 +1,12 @@
+{
+ "operation": "get-csrftoken",
+ "request": {
+  "method": "GET",
+  "path": "/csrftoken",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": null
+ }
+}

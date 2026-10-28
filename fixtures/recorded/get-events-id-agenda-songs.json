@@ -1,0 +1,309 @@
+{
+ "operation": "get-events-id-agenda-songs",
+ "request": {
+  "method": "GET",
+  "path": "/events/1816/agenda/songs",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "Halleluja",
+    "category": {
+     "id": 0,
+     "name": "Aktive Songs",
+     "nameTranslated": "Aktive Songs",
+     "sortKey": 0,
+     "campusId": null,
+     "meta": {
+      "createdDate": "2026-09-30T14:20:19Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-09-30T14:20:19Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    "author": "",
+    "copyright": "",
+    "ccli": "",
+    "shouldPractice": false,
+    "arrangements": [
+     {
+      "id": 1,
+      "name": "Standard-Arrangement",
+      "isDefault": true,
+      "sourceId": null,
+      "source": null,
+      "sourceReference": null,
+      "key": "C",
+      "beat": "4/4",
+      "tempo": 120,
+      "duration": null,
+      "description": null,
+      "links": [],
+      "files": [],
+      "meta": {
+       "createdDate": "2020-09-16T10:19:01Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2020-09-16T10:19:01Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "bpm": "tempo",
+       "keyOfArrangement": "key",
+       "note": "description",
+       "sourceName": "source.name"
+      },
+      "bpm": "120",
+      "keyOfArrangement": "C",
+      "note": "",
+      "sourceName": null
+     },
+     {
+      "id": 16,
+      "name": "Neues Arrangement",
+      "isDefault": false,
+      "sourceId": null,
+      "source": null,
+      "sourceReference": null,
+      "key": null,
+      "beat": null,
+      "tempo": null,
+      "duration": null,
+      "description": null,
+      "links": [],
+      "files": [],
+      "meta": {
+       "createdDate": "2018-02-08T16:04:55Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2018-02-08T16:04:55Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "bpm": "tempo",
+       "keyOfArrangement": "key",
+       "note": "description",
+       "sourceName": "source.name"
+      },
+      "bpm": null,
+      "keyOfArrangement": null,
+      "note": "",
+      "sourceName": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2018-02-06T15:55:57Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2018-02-06T15:55:57Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "note": null,
+     "arrangements": null
+    },
+    "note": ""
+   },
+   {
+    "id": 44,
+    "name": "I Am Thine O Lord",
+    "category": {
+     "id": 0,
+     "name": "Aktive Songs",
+     "nameTranslated": "Aktive Songs",
+     "sortKey": 0,
+     "campusId": null,
+     "meta": {
+      "createdDate": "2026-09-30T14:20:19Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-09-30T14:20:19Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    "author": "William Howard Doane",
+    "copyright": "",
+    "ccli": "",
+    "shouldPractice": false,
+    "arrangements": [
+     {
+      "id": 62,
+      "name": "Standard-Arrangement",
+      "isDefault": true,
+      "sourceId": null,
+      "source": null,
+      "sourceReference": null,
+      "key": "G",
+      "beat": "4/4",
+      "tempo": null,
+      "duration": null,
+      "description": null,
+      "links": [],
+      "files": [
+       {
+        "domainType": "song_arrangement",
+        "domainId": "62",
+        "name": "I Am Thine O Lord.sng",
+        "filename": "e1579c3fec9c286d0632c757d63832a71dbd9ffa85753da2ed99fc19421f84c3",
+        "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=407&filename=e1579c3fec9c286d0632c757d63832a71dbd9ffa85753da2ed99fc19421f84c3",
+        "meta": {
+         "modifiedDate": "2019-02-19T15:22:18Z",
+         "modifiedPerson": {
+          "id": 1
+         }
+        }
+       },
+       {
+        "domainType": "song_arrangement",
+        "domainId": "62",
+        "name": "408.pdf",
+        "filename": "70546304114dba713da963ea9dccad1b72025870484629ae060b1edf9eff8416",
+        "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=1037&filename=70546304114dba713da963ea9dccad1b72025870484629ae060b1edf9eff8416",
+        "meta": {
+         "modifiedDate": "2020-09-16T09:55:01Z",
+         "modifiedPerson": {
+          "id": 1
+         }
+        }
+       }
+      ],
+      "meta": {
+       "createdDate": "2020-09-16T09:59:02Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2020-09-16T09:59:02Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "bpm": "tempo",
+       "keyOfArrangement": "key",
+       "note": "description",
+       "sourceName": "source.name"
+      },
+      "bpm": null,
+      "keyOfArrangement": "G",
+      "note": "",
+      "sourceName": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2020-09-16T09:58:27Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-09-16T09:58:27Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "note": null,
+     "arrangements": null
+    },
+    "note": ""
+   },
+   {
+    "id": 19,
+    "name": "Mein Lied!",
+    "category": {
+     "id": 0,
+     "name": "Aktive Songs",
+     "nameTranslated": "Aktive Songs",
+     "sortKey": 0,
+     "campusId": null,
+     "meta": {
+      "createdDate": "2026-09-30T14:20:19Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-09-30T14:20:19Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    "author": "Ich",
+    "copyright": "Ich",
+    "ccli": "keine",
+    "shouldPractice": false,
+    "arrangements": [
+     {
+      "id": 22,
+      "name": "Standard-Arrangement",
+      "isDefault": true,
+      "sourceId": null,
+      "source": null,
+      "sourceReference": null,
+      "key": "D",
+      "beat": "4/4",
+      "tempo": 55,
+      "duration": null,
+      "description": null,
+      "links": [],
+      "files": [],
+      "meta": {
+       "createdDate": "2018-02-09T09:18:09Z",
+       "createdPerson": {
+        "id": 3
+       },
+       "modifiedDate": "2018-02-09T09:18:09Z",
+       "modifiedPerson": {
+        "id": 3
+       }
+      },
+      "@deprecated": {
+       "bpm": "tempo",
+       "keyOfArrangement": "key",
+       "note": "description",
+       "sourceName": "source.name"
+      },
+      "bpm": "55",
+      "keyOfArrangement": "D",
+      "note": "",
+      "sourceName": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2018-10-17T09:42:09Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2018-10-17T09:42:09Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "note": null,
+     "arrangements": null
+    },
+    "note": ""
+   }
+  ],
+  "meta": {
+   "count": 3
+  }
+ }
+}

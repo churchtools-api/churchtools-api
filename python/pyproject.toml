@@ -1,0 +1,22 @@
+[build-system]
+requires = ["maturin>=1.8,<2"]
+build-backend = "maturin"
+
+[project]
+name = "churchtools-rs"
+description = "Synchronous ChurchTools REST API client with a Rust core and Pydantic models"
+requires-python = ">=3.10"
+dependencies = ["pydantic>=2.11"]
+dynamic = ["version"]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+]
+
+[tool.maturin]
+module-name = "churchtools_rs._core"
+python-packages = ["churchtools_rs"]
+features = ["pyo3/extension-module"]
+
+[dependency-groups]
+dev = ["maturin>=1.8,<2", "pytest>=8", "mypy>=1.15"]

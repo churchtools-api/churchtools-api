@@ -1,0 +1,18 @@
+{
+ "operation": "get-persons-personId-followups-statistics",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/followups/statistics",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "countDueToday": 0,
+   "countDueAfterToday": 0,
+   "countDueBeforeToday": 0,
+   "countDueUnspecified": 0,
+   "countDone": 0
+  }
+ }
+}

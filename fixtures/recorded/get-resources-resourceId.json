@@ -1,0 +1,41 @@
+{
+ "operation": "get-resources-resourceId",
+ "request": {
+  "method": "GET",
+  "path": "/resources/10",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 10,
+   "name": "Bus",
+   "nameTranslated": "Bus",
+   "sortKey": 0,
+   "resourceTypeId": 3,
+   "location": null,
+   "iCalLocation": null,
+   "description": null,
+   "isAutoAccept": false,
+   "needsAppointment": false,
+   "isVirtual": false,
+   "quantity": 1,
+   "adminIds": [],
+   "randomString": null,
+   "meta": {
+    "createdDate": "2025-04-14T10:50:49Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2025-07-14T15:28:30Z",
+    "modifiedPerson": {
+     "id": -4
+    }
+   },
+   "@deprecated": {
+    "doesRequireCalEntry": "needsAppointment"
+   },
+   "doesRequireCalEntry": false
+  }
+ }
+}

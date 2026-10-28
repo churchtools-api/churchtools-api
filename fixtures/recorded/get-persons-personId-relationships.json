@@ -1,0 +1,15 @@
+{
+ "operation": "get-persons-personId-relationships",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/relationships",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

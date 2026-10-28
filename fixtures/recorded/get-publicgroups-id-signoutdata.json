@@ -1,0 +1,82 @@
+{
+ "operation": "get-publicgroups-id-signoutdata",
+ "request": {
+  "method": "GET",
+  "path": "/publicgroups/11/signoutdata",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "token": null,
+   "requester": {
+    "title": "Armin Adendorf",
+    "domainType": "person",
+    "domainIdentifier": "1",
+    "apiUrl": "https://gemeinde.example/api/persons/1",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+    "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+    "icon": "user",
+    "color": null,
+    "initials": "AA",
+    "domainAttributes": {
+     "firstName": "Armin",
+     "lastName": "Adendorf",
+     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": []
+   },
+   "requesterEmail": "armin@example.com",
+   "group": {
+    "title": "#0 Gemeindeleitung",
+    "domainType": "group",
+    "domainIdentifier": "11",
+    "apiUrl": "https://gemeinde.example/api/groups/11",
+    "frontendUrl": "https://gemeinde.example/groups/11",
+    "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+    "icon": "users",
+    "color": {
+     "key": "lime",
+     "shade": null
+    },
+    "initials": "0",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   "selfSignOutPersons": [],
+   "leaderSignOutPersons": [
+    {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    }
+   ],
+   "groupHasAutoAccept": false
+  }
+ }
+}

@@ -1,0 +1,826 @@
+{
+ "operation": "get-post-groups",
+ "request": {
+  "method": "GET",
+  "path": "/post/groups",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "group": {
+     "title": "Ankündigungen",
+     "domainType": "group",
+     "domainIdentifier": "346",
+     "apiUrl": "https://gemeinde.example/api/groups/346",
+     "frontendUrl": "https://gemeinde.example/groups/346",
+     "imageUrl": "https://gemeinde.example/images/2389/dea95f1adc57154139d42ded9fba51783f95e534831f7aa80063055f81699d28",
+     "icon": "users",
+     "color": {
+      "key": "violet",
+      "shade": null
+     },
+     "initials": "A",
+     "domainAttributes": {
+      "note": "Diese Gruppe ist deine zentrale Anlaufstelle für alle offiziellen Mitteilungen unserer Kirchengemeinde. Hier bekommst du schnell und unkompliziert Infos über bevorstehende Veranstaltungen, wichtige Neuigkeiten und alles, was unsere Gemeinde angeht. Perfekt, um immer auf dem Laufenden zu sein und aktiv am Gemeindeleben teilzunehmen.\n\nWenn du Fragen oder Anmerkungen zu einem Beitrag hast, kannst du darauf kommentieren. Oder du reagierst mit einem Emoji - auch gut. :) Nur kurz der Hinweis, dass andere dadurch deinen Namen und dein Profilbild sehen können.  \n\nUm nichts zu verpassen, aktiviere am besten auf deinem Smartphone die Benachrichtigungen für diese Gruppe. So wirst du immer sofort informiert, wenn es wichtige Updates gibt. \n\nPS: Der Gemeindebrief erscheint weiterhin jeden Monat und fasst nochmal alle wichtigen Informationen zusammen.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Admin"
+   },
+   {
+    "group": {
+     "title": "Sportangebote",
+     "domainType": "group",
+     "domainIdentifier": "352",
+     "apiUrl": "https://gemeinde.example/api/groups/352",
+     "frontendUrl": "https://gemeinde.example/groups/352",
+     "imageUrl": "https://gemeinde.example/images/2401/8cf51fac93ccf1086bff3721562d024cac798be3c40a937c26ccf27a7c814a7f",
+     "icon": "users",
+     "color": {
+      "key": "teal",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "Dies ist der perfekte Ort für alle in unserer Kirchengemeinde, die sich gerne bewegen, neue Sportarten ausprobieren möchten oder einfach nur nach Gleichgesinnten suchen, um gemeinsam aktiv zu sein. Egal, ob du regelmäßig Sport treibst oder gerade erst anfängst, hier bist du genau richtig.\n\nIn dieser Gruppe kannst du alles rund um Sport posten: Ob du bouldern gehst, eine Wanderung planst oder einfach nur jemanden suchst, der mit dir joggen geht – lass es uns wissen! Es ist eine tolle Gelegenheit, aktiv zu bleiben, Spaß zu haben und gleichzeitig neue Leute aus der Gemeinde kennen zu lernen.\n\nUnsere Gruppe hat das Motto \"Jeder darf mitmachen\". Also egal welches Fitnesslevel, Alter oder Interesse du hast, fühle dich herzlich eingeladen, teilzunehmen. Wenn du Lust hast, mitzumachen, poste einfach, was du vorhast, oder schließe dich den Aktivitäten anderer an.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": true,
+    "favoriteGroup": false,
+    "roleName": "Admin"
+   },
+   {
+    "group": {
+     "title": "Gebetsanliegen",
+     "domainType": "group",
+     "domainIdentifier": "355",
+     "apiUrl": "https://gemeinde.example/api/groups/355",
+     "frontendUrl": "https://gemeinde.example/groups/355",
+     "imageUrl": "https://gemeinde.example/images/2386/1580eda99f777f7fbce186f1a8664f001daaaa19b12075f24792f644f9963d1a",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "Herzlich willkommen in der \"Gebetsanliegen\"-Gruppe!\n\nHier geht es darum, zusammenzukommen und zu beten. Egal, was dir auf dem Herzen liegt; ob es was Persönliches ist oder du für jemand anderen oder etwas Größeres beten möchtest, hier ist der richtige Platz dafür. Diese Gruppe ist für jeden offen! Egal, ob du Gebetsunterstützung suchst oder einfach nur für andere beten möchtest, du bist hier goldrichtig.\n\nWenn du etwas Persönliches von jemand anderem teilen möchtest, dann frag die betroffene Person bitte vorher, ob es für sie ok ist, dass du ihr Thema in der Gruppe teilst. \n\nWir glauben fest daran, dass Gebete wirklich etwas bewegen können. Also egal ob du Trost suchst, Unterstützung brauchst oder einfach nur deine Gedanken teilen möchtest - nur Mut dazu.\n\nMach mit, bring dich ein und lass uns gemeinsam durch unsere Gebete etwas bewegen.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "44CA0294-0769-4F30-8B75-114985E01DD7"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": true,
+    "favoriteGroup": false,
+    "roleName": "Admin"
+   },
+   {
+    "group": {
+     "title": "Suche/Biete",
+     "domainType": "group",
+     "domainIdentifier": "349",
+     "apiUrl": "https://gemeinde.example/api/groups/349",
+     "frontendUrl": "https://gemeinde.example/groups/349",
+     "imageUrl": "https://gemeinde.example/images/2398/7724e96078f1d65123a50cac802fe4cca4543919311b46585bd97f774a4a422b",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "S",
+     "domainAttributes": {
+      "note": "### Willkommen in der Gruppe \"Suche/Biete\"!  \nIn unserer Gemeinschaft steht das Teilen im Mittelpunkt. Hier kann jeder beitreten, um Dinge zu verkaufen, zu verschenken oder spezifische Gesuche zu posten. Ob du nach einem seltenen Buch suchst, ein altes Fahrrad loswerden möchtest oder handgemachte Kunstwerke anbieten willst – bei uns findest du ein offenes Ohr und vielleicht sogar genau das, was du brauchst!\n\n### Regeln für das Posten  \n- **Klarheit ist König:** Gib eine genaue Beschreibung dessen, was du anbietest oder suchst, inklusive Zustand, Preis (falls zum Verkauf) oder ob es zu verschenken ist. Für jeden Artikel mindestens 1 Foto hinzufügen.   \n- **Respektvoller Umgang:** Behandle alle Mitglieder mit Respekt. Unhöfliches Verhalten wird nicht toleriert.  \n- **Fairness:** Der Erste, der sich meldet und ernsthaftes Interesse zeigt, hat Vorrang, den Artikel zu erhalten. Bitte halte dich an deine Zusagen.\n\nVereinbart Details privat: Sobald sich ein Interessent gefunden hat, klärt alle weiteren Details wie Übergabe oder Bezahlung über den Chat.",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "8F3D1663-D4A3-4028-9826-513C7764392C"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": true,
+    "favoriteGroup": false,
+    "roleName": "Admin"
+   },
+   {
+    "group": {
+     "title": "Jugend fährt nach Rom",
+     "domainType": "group",
+     "domainIdentifier": "37",
+     "apiUrl": "https://gemeinde.example/api/groups/37",
+     "frontendUrl": "https://gemeinde.example/groups/37",
+     "imageUrl": "https://gemeinde.example/images/125/ac554937a9dbedea38df868ba65ff50ec47386cc6773c5c4a1f7be0cde84abb1",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "J",
+     "domainAttributes": {
+      "note": "\"Jugend fährt nach Rom\" ist eine aufregende und unvergessliche Jugendfreizeit, die sich an junge Menschen im Alter von 14 bis 18 Jahren richtet und sie auf eine Reise in die ewige Stadt Rom mitnimmt.\n\nDie Jugendlichen werden die Möglichkeit haben, die reiche Geschichte und Kultur Roms hautnah zu erleben, indem sie historische Sehenswürdigkeiten wie das Kolosseum, das Forum Romanum und den Petersdom besuchen. Neben diesen kulturellen Höhepunkten wird die Freizeit auch Raum für gemeinschaftliches Erleben und Freizeitaktivitäten bieten, wie zum Beispiel gemeinsames Essen, abendliche Lagerfeuer und sportliche Aktivitäten.\n\nWährend der Freizeit werden die Teilnehmer in gemütlichen Unterkünften untergebracht sein und von erfahrenen Betreuern begleitet, die sich um ihr Wohl kümmern und ihnen bei Fragen und Anliegen zur Seite stehen.\n\n\"Jugend fährt nach Rom\" verspricht eine einzigartige Erfahrung zu sein, die die Jugendlichen in ihren Erinnerungen für immer begleiten wird.",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": true,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "Technik",
+     "domainType": "group",
+     "domainIdentifier": "7",
+     "apiUrl": "https://gemeinde.example/api/groups/7",
+     "frontendUrl": "https://gemeinde.example/groups/7",
+     "imageUrl": "https://gemeinde.example/images/720/30305361b1f895af1ca4089e0c855233a9301812a493d43a7a592b4cb5c19d57",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "T",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": true,
+    "roleName": "Co-Leiter"
+   },
+   {
+    "group": {
+     "title": "ctrs-test Seed-Gruppe b5896e",
+     "domainType": "group",
+     "domainIdentifier": "895",
+     "apiUrl": "https://gemeinde.example/api/groups/895",
+     "frontendUrl": "https://gemeinde.example/groups/895",
+     "imageUrl": null,
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "C",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "B73449DE-DD28-4DE7-89F5-F2CFE55A3C6D"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "#Newcomer-Lunch – 01.11.2026, 13:00",
+     "domainType": "group",
+     "domainIdentifier": "794",
+     "apiUrl": "https://gemeinde.example/api/groups/794",
+     "frontendUrl": "https://gemeinde.example/groups/794",
+     "imageUrl": "https://gemeinde.example/images/3275/d42edb080870a2bbe93900fe1b2028d66be0af4584aad3af81754712a9cc8fb0",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "N",
+     "domainAttributes": {
+      "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "D45B9085-83F6-477F-90E7-DDC37C4293CA"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "#Newcomer-Lunch – 22.11.2026, 13:00",
+     "domainType": "group",
+     "domainIdentifier": "793",
+     "apiUrl": "https://gemeinde.example/api/groups/793",
+     "frontendUrl": "https://gemeinde.example/groups/793",
+     "imageUrl": "https://gemeinde.example/images/3274/d24965881e0b2ac3aaf16b63728ad6578ecc2f0180221c029e0ff5229498451c",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "N",
+     "domainAttributes": {
+      "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "47DE5083-2E65-4BFF-99F4-F36364C6E6DC"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "#Newcomer-Lunch – 18.10.2026, 13:00",
+     "domainType": "group",
+     "domainIdentifier": "790",
+     "apiUrl": "https://gemeinde.example/api/groups/790",
+     "frontendUrl": "https://gemeinde.example/groups/790",
+     "imageUrl": "https://gemeinde.example/images/3271/adf39b99a8a0e61c2ec2fe73f960bf92172bd65cc5e3a1a63e0e6c657125ae96",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "N",
+     "domainAttributes": {
+      "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
+      "groupStatusId": 4,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "BFA351F5-72BA-4573-8B5A-AB80495F617E"
+     },
+     "infos": [
+      "Veranstaltung",
+      "Beendet"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "#Newcomer-Lunch – 25.10.2026, 13:00",
+     "domainType": "group",
+     "domainIdentifier": "781",
+     "apiUrl": "https://gemeinde.example/api/groups/781",
+     "frontendUrl": "https://gemeinde.example/groups/781",
+     "imageUrl": "https://gemeinde.example/images/3256/99f8835dd4cf83a50e521040cd6ad0864d44adf1288cf1971ea63a6cecb128ec",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "N",
+     "domainAttributes": {
+      "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
+      "groupStatusId": 4,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "BB1EF170-1AD5-45B9-A28E-07774FCA1000"
+     },
+     "infos": [
+      "Veranstaltung",
+      "Beendet"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "Vorlage Technikseminar",
+     "domainType": "group",
+     "domainIdentifier": "642",
+     "apiUrl": "https://gemeinde.example/api/groups/642",
+     "frontendUrl": "https://gemeinde.example/groups/642",
+     "imageUrl": "https://gemeinde.example/images/3030/06a0ea905c850bdcf8783f3f31d6901e6e4fa92766c676d14b4a25388acc8ee3",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "V",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 2,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "A3E779B7-AB99-4C05-853A-F88414C913AB"
+     },
+     "infos": [
+      "Veranstaltung",
+      "Entwurf"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "Neu in der Kirche",
+     "domainType": "group",
+     "domainIdentifier": "554",
+     "apiUrl": "https://gemeinde.example/api/groups/554",
+     "frontendUrl": "https://gemeinde.example/groups/554",
+     "imageUrl": "https://gemeinde.example/images/2900/dba4c0a0a0e263e141ec37cd383da4bfaa3d60fd4398db13af7cf3c16c90cc2b",
+     "icon": "users",
+     "color": {
+      "key": "orange",
+      "shade": null
+     },
+     "initials": "N",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 6,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "01EEAA55-EFD8-4A1D-B6E3-B0642B96FD98"
+     },
+     "infos": [
+      "Prozesse"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Verwalter"
+   },
+   {
+    "group": {
+     "title": "#0 Gemeindeleitung",
+     "domainType": "group",
+     "domainIdentifier": "11",
+     "apiUrl": "https://gemeinde.example/api/groups/11",
+     "frontendUrl": "https://gemeinde.example/groups/11",
+     "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "0",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Mitarbeiter"
+   },
+   {
+    "group": {
+     "title": "Finanzverwaltung",
+     "domainType": "group",
+     "domainIdentifier": "154",
+     "apiUrl": "https://gemeinde.example/api/groups/154",
+     "frontendUrl": "https://gemeinde.example/groups/154",
+     "imageUrl": "https://gemeinde.example/images/2370/78c9137467693155ebeb4c68f60f251f04ea4ec0192779fa044f331aa3aae5e4",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "F",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "ABD55CF8-A7EC-4CFA-9526-421F653F333D"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Mitarbeiter"
+   },
+   {
+    "group": {
+     "title": "CT Admin",
+     "domainType": "group",
+     "domainIdentifier": "208",
+     "apiUrl": "https://gemeinde.example/api/groups/208",
+     "frontendUrl": "https://gemeinde.example/groups/208",
+     "imageUrl": "https://gemeinde.example/images/2599/5afec8583d81a4fd8aca0daa1aa2530ecb86225f16ebb5a3577333269d623ac4",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "C",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "7F236EA1-0CA7-4340-B472-93AD2590E497"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "Kleingruppe Adendorf",
+     "domainType": "group",
+     "domainIdentifier": "203",
+     "apiUrl": "https://gemeinde.example/api/groups/203",
+     "frontendUrl": "https://gemeinde.example/groups/203",
+     "imageUrl": "https://gemeinde.example/images/3219/581277b8df1e6b7b7fdb079affa375fa63a36c77e1fc0c9f4c117e3bef447aff",
+     "icon": "users",
+     "color": {
+      "key": "sky",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 1,
+      "campusId": 0,
+      "visibility": "public",
+      "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+     },
+     "infos": [
+      "Kleingruppe"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "#1 Bereich Gottesdienst",
+     "domainType": "group",
+     "domainIdentifier": "10",
+     "apiUrl": "https://gemeinde.example/api/groups/10",
+     "frontendUrl": "https://gemeinde.example/groups/10",
+     "imageUrl": "https://gemeinde.example/images/742/ef00677bb6104e1b4a577590b723f32be0eafe56a62ed44b7b22b0e294ee79f3",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "BF91810C-B934-4167-AD2C-DB513ED111BF"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Leiter"
+   },
+   {
+    "group": {
+     "title": "Kontaktkarte",
+     "domainType": "group",
+     "domainIdentifier": "109",
+     "apiUrl": "https://gemeinde.example/api/groups/109",
+     "frontendUrl": "https://gemeinde.example/groups/109",
+     "imageUrl": "https://gemeinde.example/images/2353/1cc9f3fefa255efb6247bf26e8d01f0f426d9bb21fa4b9a15c5e928011914b4f",
+     "icon": "users",
+     "color": {
+      "key": "red",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 6,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "65772CE4-E4B3-423B-9DE5-FAA5A9574E76"
+     },
+     "infos": [
+      "Prozesse"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Verwalter"
+   },
+   {
+    "group": {
+     "title": "Gemeinde-News",
+     "domainType": "group",
+     "domainIdentifier": "24",
+     "apiUrl": "https://gemeinde.example/api/groups/24",
+     "frontendUrl": "https://gemeinde.example/groups/24",
+     "imageUrl": "https://gemeinde.example/images/2342/ca8b7061b19d1eb664fde7639ab41d865668485a0f575cdd2bc3b476cf379f3a",
+     "icon": "users",
+     "color": {
+      "key": "teal",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 4,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "6F7E4800-D31A-44D2-ABCA-42726B74400E"
+     },
+     "infos": [
+      "Verteiler"
+     ]
+    },
+    "type": "postPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": "Admin"
+   },
+   {
+    "group": {
+     "title": "#1. Vorlage Mitarbeiter Party #",
+     "domainType": "group",
+     "domainIdentifier": "359",
+     "apiUrl": "https://gemeinde.example/api/groups/359",
+     "frontendUrl": "https://gemeinde.example/groups/359",
+     "imageUrl": "https://gemeinde.example/images/2570/44a3b31cde64b5b570fb270af1dc1fd02cc1c660a4d73f2aaa8c181524fe7d63",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "# Mitarbeiter Party \n\nHey du! Komm vorbei zur Mitarbeiter Party im Stadtpark. Wir werden gemeinsam Gott loben, feiern und internationales Essen sowie leckere Getränke genießen. Freu dich auf eine tolle Zeit voller Gemeinschaft und Spaß! Wir sehen uns dort! 🎉🙌🍲🥤",
+      "groupStatusId": 2,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "AF702E40-7C1C-4835-AB7E-603BC1A36150"
+     },
+     "infos": [
+      "Veranstaltung",
+      "Entwurf"
+     ]
+    },
+    "type": "signupAndPostPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": null
+   },
+   {
+    "group": {
+     "title": "Deko-Team",
+     "domainType": "group",
+     "domainIdentifier": "343",
+     "apiUrl": "https://gemeinde.example/api/groups/343",
+     "frontendUrl": "https://gemeinde.example/groups/343",
+     "imageUrl": "https://gemeinde.example/images/2392/ad2ba94e4d17829a50d93a5c637936f481feee76c997c299e94a16c175c3a3ee",
+     "icon": "users",
+     "color": {
+      "key": "pink",
+      "shade": null
+     },
+     "initials": "D",
+     "domainAttributes": {
+      "note": "Wir sind eine kreative und dynamische Gruppe, die sich jeden Sonntag um 10 Uhr trifft, um den Gottesdienst-Saal in einen einladenden und inspirierenden Raum zu verwandeln. Unsere Mission ist es, durch unsere Dekorationen eine Atmosphäre zu schaffen, die die Gemeinde erhebt und den Geist des Gottesdienstes widerspiegelt.\n\nAls Mitglied des Deko-Teams hast du die einzigartige Gelegenheit, deine kreativen Fähigkeiten einzubringen und gleichzeitig ein tieferes Gemeinschaftsgefühl innerhalb unserer Kirchengemeinde zu fördern. Egal, ob du ein Auge für Design hast, gerne mit deinen Händen arbeitest oder einfach nur Teil eines Teams sein möchtest, das einen positiven Unterschied macht, wir brauchen dich!",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": 0,
+      "visibility": "intern",
+      "guid": "F4E5DD1E-1893-422E-9F0E-11E70C982E30"
+     },
+     "infos": [
+      "Team"
+     ]
+    },
+    "type": "signupAndPostPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": null
+   },
+   {
+    "group": {
+     "title": "Gemeindefreizeit 2026",
+     "domainType": "group",
+     "domainIdentifier": "744",
+     "apiUrl": "https://gemeinde.example/api/groups/744",
+     "frontendUrl": "https://gemeinde.example/groups/744",
+     "imageUrl": "https://gemeinde.example/images/3195/ab63bec68d88026be95edd17e5dcda9d082e9a7b8ce97125b1a7801614572f76",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "8CEC0DDD-3BB3-4427-B46F-C39571E246AA"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "type": "signupAndPostPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": null
+   },
+   {
+    "group": {
+     "title": "Glaube heute 🤗",
+     "domainType": "group",
+     "domainIdentifier": "753",
+     "apiUrl": "https://gemeinde.example/api/groups/753",
+     "frontendUrl": "https://gemeinde.example/groups/753",
+     "imageUrl": "https://gemeinde.example/images/3204/1a07238492c99446cf9dc55b1fb793e671a4cc9d18d5283a507dedba31e7e248",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "1DFBCAFE-010A-42A0-9641-C741C7A31219"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "type": "signupAndPostPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": null
+   },
+   {
+    "group": {
+     "title": "Gottes Stimme 💬",
+     "domainType": "group",
+     "domainIdentifier": "756",
+     "apiUrl": "https://gemeinde.example/api/groups/756",
+     "frontendUrl": "https://gemeinde.example/groups/756",
+     "imageUrl": "https://gemeinde.example/images/3207/29577ce1e3e45b7e2bb485fbb0cb3593378bf40cd2f434705b1acbba656b9fac",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "G",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "2BA8310D-EE90-4FCC-BB89-E0ADF26C9F21"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "type": "signupAndPostPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": null
+   },
+   {
+    "group": {
+     "title": "Worship Mindset 🎶",
+     "domainType": "group",
+     "domainIdentifier": "759",
+     "apiUrl": "https://gemeinde.example/api/groups/759",
+     "frontendUrl": "https://gemeinde.example/groups/759",
+     "imageUrl": "https://gemeinde.example/images/3210/7e068051fbdc2ed89a903c957f67d353638df06fffe9d1baf3801f11003b06ac",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "W",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "60A92C78-458D-4830-80F6-31701C1DE94A"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    },
+    "type": "signupAndPostPossible",
+    "featuredGroup": false,
+    "favoriteGroup": false,
+    "roleName": null
+   }
+  ],
+  "meta": {
+   "count": 26
+  }
+ }
+}

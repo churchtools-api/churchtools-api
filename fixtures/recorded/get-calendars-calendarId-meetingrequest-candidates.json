@@ -1,0 +1,224 @@
+{
+ "operation": "get-calendars-calendarId-meetingrequest-candidates",
+ "request": {
+  "method": "GET",
+  "path": "/calendars/49/meetingrequest/candidates",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "person": {
+     "title": "ChurchSync ChurchSync",
+     "domainType": "person",
+     "domainIdentifier": "249",
+     "apiUrl": "https://gemeinde.example/api/persons/249",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23249/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "CC",
+     "domainAttributes": {
+      "firstName": "ChurchSync",
+      "lastName": "ChurchSync",
+      "guid": "DC092CDB-2222-432B-AD24-DF0216371534",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "type": "person",
+    "hasEmail": false,
+    "groupName": null,
+    "groupTypeName": null,
+    "personStatusName": null
+   },
+   {
+    "person": {
+     "title": "Malte Wilkerson",
+     "domainType": "person",
+     "domainIdentifier": "7",
+     "apiUrl": "https://gemeinde.example/api/persons/7",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%237/",
+     "imageUrl": "https://gemeinde.example/images/1244/9b2bbb1505a519320966bc2c3fecda52fdba6b232d07246ddb599af543cae52a",
+     "icon": "user",
+     "color": null,
+     "initials": "MW",
+     "domainAttributes": {
+      "firstName": "Malte",
+      "lastName": "Wilkerson",
+      "guid": "702AFC45-CEB5-4073-AD89-5AB9B3AFB2A6",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "type": "groupMember",
+    "hasEmail": true,
+    "groupName": "#1 Bereich Gottesdienst",
+    "groupTypeName": null,
+    "personStatusName": null
+   },
+   {
+    "person": {
+     "title": "Joel Thieme",
+     "domainType": "person",
+     "domainIdentifier": "93",
+     "apiUrl": "https://gemeinde.example/api/persons/93",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2393/",
+     "imageUrl": "https://gemeinde.example/images/1379/e833481f01b26a9fba55ba77a86848479cfa7c868140cc4a26170e7230c99b8d",
+     "icon": "user",
+     "color": null,
+     "initials": "JT",
+     "domainAttributes": {
+      "firstName": "Joel",
+      "lastName": "Thieme",
+      "guid": "21B57349-107A-48D0-9C82-5A4CE0208BA7",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "type": "groupMember",
+    "hasEmail": true,
+    "groupName": "#1 Bereich Gottesdienst",
+    "groupTypeName": null,
+    "personStatusName": null
+   },
+   {
+    "person": {
+     "title": "Helga Weiß",
+     "domainType": "person",
+     "domainIdentifier": "2818",
+     "apiUrl": "https://gemeinde.example/api/persons/2818",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232818/",
+     "imageUrl": "https://gemeinde.example/images/2533/2dc1b240027e52cefd83863c4ed72edc9659848b52a782ebbb970f5e5f272964",
+     "icon": "user",
+     "color": null,
+     "initials": "HW",
+     "domainAttributes": {
+      "firstName": "Helga",
+      "lastName": "Weiß",
+      "guid": "4F12C6CE-FED1-45D3-8323-069200E09ABC",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "type": "groupMember",
+    "hasEmail": false,
+    "groupName": "#1 Bereich Gottesdienst",
+    "groupTypeName": null,
+    "personStatusName": null
+   },
+   {
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "type": "groupMember",
+    "hasEmail": true,
+    "groupName": "#1 Bereich Gottesdienst",
+    "groupTypeName": null,
+    "personStatusName": null
+   },
+   {
+    "person": {
+     "title": "Ruth Beck",
+     "domainType": "person",
+     "domainIdentifier": "89",
+     "apiUrl": "https://gemeinde.example/api/persons/89",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2389/",
+     "imageUrl": "https://gemeinde.example/images/481/2e80ad8f7c3f3bc28f22965fcbaa1929beef4f61fe6cc0b3d78084e4ae964e71",
+     "icon": "user",
+     "color": null,
+     "initials": "RB",
+     "domainAttributes": {
+      "firstName": "Ruth",
+      "lastName": "Beck",
+      "guid": "9CF316C8-E17D-497F-A942-24A5AE03C183",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "type": "groupMember",
+    "hasEmail": true,
+    "groupName": "#1 Bereich Gottesdienst",
+    "groupTypeName": null,
+    "personStatusName": null
+   },
+   {
+    "person": {
+     "title": "Carlotta Peter",
+     "domainType": "person",
+     "domainIdentifier": "15",
+     "apiUrl": "https://gemeinde.example/api/persons/15",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2315/",
+     "imageUrl": "https://gemeinde.example/images/1725/63de50e0daaa83a85537902c0ab1fb3d620c24ef70c8c7a2b85058b1adf45309",
+     "icon": "user",
+     "color": null,
+     "initials": "CP",
+     "domainAttributes": {
+      "firstName": "Carlotta",
+      "lastName": "Peter",
+      "guid": "C0700987-5C75-461D-AF03-4E31A042ED8E",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "type": "groupMember",
+    "hasEmail": true,
+    "groupName": "CT Admin",
+    "groupTypeName": null,
+    "personStatusName": null
+   },
+   {
+    "person": {
+     "title": "Armin Adendorf",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+     "icon": "user",
+     "color": null,
+     "initials": "AA",
+     "domainAttributes": {
+      "firstName": "Armin",
+      "lastName": "Adendorf",
+      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "type": "groupMember",
+    "hasEmail": true,
+    "groupName": "CT Admin",
+    "groupTypeName": null,
+    "personStatusName": null
+   }
+  ],
+  "meta": {
+   "count": 8
+  }
+ }
+}

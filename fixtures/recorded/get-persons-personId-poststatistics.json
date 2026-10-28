@@ -1,0 +1,19 @@
+{
+ "operation": "get-persons-personId-poststatistics",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/poststatistics",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "countPublicationFuture": 0,
+   "countExpirationFuture": 0,
+   "countExpirationPast": 0,
+   "countPublished": 2,
+   "countBanned": 0,
+   "total": 2
+  }
+ }
+}

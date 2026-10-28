@@ -1,0 +1,486 @@
+{
+ "operation": "get-routines",
+ "request": {
+  "method": "GET",
+  "path": "/routines",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "domainType": "group_membership",
+    "name": "E-Mail senden",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 1,
+      "routineId": 1,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 12,
+       "senderId": null,
+       "sender": null,
+       "templateId": null,
+       "templateName": null,
+       "subject": "Bitte DSVGO bestätigen",
+       "body": "Du, mach mal!",
+       "attachmentIds": []
+      }
+     }
+    ]
+   },
+   {
+    "id": 7,
+    "domainType": "group_membership",
+    "name": "E-Mail senden",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 7,
+      "routineId": 7,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 17,
+       "addSignOutUrl": true,
+       "senderId": 1,
+       "sender": {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "templateId": null,
+       "templateName": null,
+       "subject": "Newcomer-Lunch",
+       "body": "<p>Hallo {{{person.nickname}}},</p>\n<p>sch&ouml;n, dass du dich zu unserem {{{group.name}}} angemeldet hast!</p>\n<p>Wir freuen uns, dich direkt nach dem Gottesdienst zum gemeinsamen Mittagessen zu begr&uuml;&szlig;en. Dich erwartet gutes Essen, entspannte Atmosph&auml;re und die M&ouml;glichkeit, Menschen aus unserer Gemeinde kennenzulernen.</p>\n<p>Falls sich bei dir noch etwas &auml;ndern sollte oder du Fragen hast, melde dich gern bei mir. Einfach auf die Mail antworten oder mich &uuml;ber unsere Gemeinde-App anchatten.</p>\n<p>Bis bald &ndash; wir freuen uns auf dich!</p>\n<p>Herzliche Gr&uuml;&szlig;e</p>\n<p>Dein Armin und Team&nbsp;</p>",
+       "attachmentIds": []
+      }
+     }
+    ]
+   },
+   {
+    "id": 46,
+    "domainType": "group_membership",
+    "name": "Datenschutz",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 46,
+      "routineId": 46,
+      "isEnabled": true,
+      "actionKey": "special:repeat",
+      "actionData": {
+       "count": null
+      },
+      "children": [
+       {
+        "id": 49,
+        "routineId": 46,
+        "isEnabled": true,
+        "actionKey": "create-follow-up",
+        "actionData": {
+         "specId": 1,
+         "continuationType": "when-completed",
+         "duration": {
+          "numDays": 0
+         },
+         "title": "Erstaufforderung",
+         "description": "",
+         "icon": "handshake",
+         "color": "yellow",
+         "origin": "migration",
+         "successGroupId": null,
+         "successGroupOfGroupTypeId": null,
+         "successRoleId": null,
+         "successGroupMemberStatus": null
+        }
+       },
+       {
+        "id": 52,
+        "routineId": 46,
+        "isEnabled": true,
+        "actionKey": "create-follow-up",
+        "actionData": {
+         "specId": 4,
+         "continuationType": "when-completed",
+         "duration": {
+          "numDays": 8
+         },
+         "title": "Zweite Aufforderung",
+         "description": "",
+         "icon": "handshake",
+         "color": "yellow",
+         "origin": "migration",
+         "successGroupId": 99,
+         "successGroupOfGroupTypeId": null,
+         "successRoleId": 41,
+         "successGroupMemberStatus": "active"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": 49,
+    "domainType": "group_membership",
+    "name": "Datenschutz",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 55,
+      "routineId": 49,
+      "isEnabled": true,
+      "actionKey": "create-follow-up",
+      "actionData": {
+       "specId": 7,
+       "continuationType": "when-completed",
+       "duration": {
+        "numDays": 0
+       },
+       "title": "Erstaufforderung",
+       "description": "",
+       "icon": "handshake",
+       "color": "yellow",
+       "origin": "migration",
+       "successGroupId": null,
+       "successGroupOfGroupTypeId": null,
+       "successRoleId": null,
+       "successGroupMemberStatus": null
+      }
+     },
+     {
+      "id": 58,
+      "routineId": 49,
+      "isEnabled": true,
+      "actionKey": "create-follow-up",
+      "actionData": {
+       "specId": 10,
+       "continuationType": "when-completed",
+       "duration": {
+        "numDays": 8
+       },
+       "title": "Zweite Aufforderung",
+       "description": "",
+       "icon": "handshake",
+       "color": "yellow",
+       "origin": "migration",
+       "successGroupId": 99,
+       "successGroupOfGroupTypeId": null,
+       "successRoleId": 41,
+       "successGroupMemberStatus": "active"
+      }
+     },
+     {
+      "id": 61,
+      "routineId": 49,
+      "isEnabled": true,
+      "actionKey": "remove-member",
+      "actionData": null
+     }
+    ]
+   },
+   {
+    "id": 65,
+    "domainType": "group_membership",
+    "name": "Kleingruppenvermittlung",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 77,
+      "routineId": 65,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 65,
+       "addSignOutUrl": false,
+       "senderId": null,
+       "sender": null,
+       "templateId": null,
+       "templateName": null,
+       "subject": "Finde deine Kleingruppe",
+       "body": "<p>Hallo {{{person.firstName}}},</p>\n<p>Kirche ist mehr als sonntags für eine Stunde im gleichen Raum zu sitzen. Kirche bedeutet, gemeinsam aus der Gnade Gottes zu leben, Schritte im Glauben zu gehen, einander in allen Lebenslagen beizustehen und andere herzlich in dieser Gemeinschaft willkommen zu heißen.</p>\n<p>Kleingruppen sind Kirchen im kleinen Kreis. Hier kann echte Gemeinschaft entstehen: Freundschaft, persönliche Gespräche, gemeinsames Nachdenken über die Bibel, Gebet und Ermutigung, Glauben im Alltag leben.</p>\n<p>Wenn du dir wünschst, im Glauben gemeinsam unterwegs zu sein und Teil einer solchen Gemeinschaft zu werden, bist du herzlich eingeladen, dich einer unserer Kleingruppen anzuschließen.</p>\n<p>Auf dieser Seite findest du unser Kleingruppen-Angebot: [GRUPPENHOMEPAGE EINFüGEN]</p>",
+       "attachmentIds": []
+      }
+     },
+     {
+      "id": 83,
+      "routineId": 65,
+      "isEnabled": true,
+      "actionKey": "create-follow-up",
+      "actionData": {
+       "specId": 11,
+       "continuationType": "when-completed",
+       "duration": {
+        "numDays": 0
+       },
+       "title": "Kleingruppe finden: Interessent anrufen",
+       "description": "Die Person hat sich vor einer Woche gemeldet, da sie Interesse an einer Kleingruppe hat. Hilf ihr, eine Kleingruppe zu finden. Leitfragen:\n\n1. Frage nach, ob die Person bereits eine Kleingruppe gefunden hat:\n  - Wenn ja, entferne die Person aus der Gruppe. \n  - Wenn nein, frage die Person, welche Art von Kleingruppe sie sucht.\n2. Empfehle der Person mögliche Kleingruppen, die zu ihr passen könnten. \n3. Wenn Interesse an einer bestimmten Kleingruppe besteht, stelle den Kontakt zur Gruppenleitung her.\n\nDokumentiere das Ergebnis. In einem Monat wird automatisch ein neues Follow-up erstellt.",
+       "icon": "phone",
+       "color": "indigo",
+       "origin": "routine",
+       "successGroupId": null,
+       "successGroupOfGroupTypeId": null,
+       "successRoleId": null,
+       "successGroupMemberStatus": null
+      }
+     },
+     {
+      "id": 86,
+      "routineId": 65,
+      "isEnabled": true,
+      "actionKey": "special:repeat",
+      "actionData": {
+       "count": null
+      },
+      "children": [
+       {
+        "id": 89,
+        "routineId": 65,
+        "isEnabled": true,
+        "actionKey": "special:wait",
+        "actionData": {
+         "duration": {
+          "numDays": 30
+         }
+        }
+       },
+       {
+        "id": 92,
+        "routineId": 65,
+        "isEnabled": true,
+        "actionKey": "create-follow-up",
+        "actionData": {
+         "specId": 14,
+         "continuationType": "when-completed",
+         "duration": {
+          "numDays": 0
+         },
+         "title": "Kleingruppe finden: Interessent angekommen?",
+         "description": "Die Person hat sich vor über einem Monat gemeldet, da sie Interesse an einer Kleingruppe hatte. Frage nach, ob es inzwischen geklappt hat. Leitfragen:\n\n1. Frage nach, ob die Person bereits eine Kleingruppe gefunden hat:\n  - Wenn ja, entferne die Person aus der Gruppe. \n  - Wenn nein, frage die Person, welche zusätzlichen Erwartungen sie an eine Kleingruppe hat. \n2. Empfehle der Person weitere Kleingruppen, die zu ihr passen könnten. \n3. Wenn Interesse an einer bestimmten Kleingruppe besteht, stelle den Kontakt zur Gruppenleitung her.\n\nDokumentiere das Ergebnis. In einem Monat wird automatisch ein neues Follow-up erstellt.",
+         "icon": "heart",
+         "color": "red",
+         "origin": "routine",
+         "successGroupId": null,
+         "successGroupOfGroupTypeId": null,
+         "successRoleId": null,
+         "successGroupMemberStatus": null
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": 154,
+    "domainType": "group_membership",
+    "name": "E-Mail senden",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 181,
+      "routineId": 154,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 154,
+       "addSignOutUrl": true,
+       "senderId": 1,
+       "sender": {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "templateId": null,
+       "templateName": null,
+       "subject": "Newcomer-Lunch",
+       "body": "<p>Hallo {{{person.nickname}}},</p>\n<p>sch&ouml;n, dass du dich zu unserem {{{group.name}}} angemeldet hast!</p>\n<p>Wir freuen uns, dich direkt nach dem Gottesdienst zum gemeinsamen Mittagessen zu begr&uuml;&szlig;en. Dich erwartet gutes Essen, entspannte Atmosph&auml;re und die M&ouml;glichkeit, Menschen aus unserer Gemeinde kennenzulernen.</p>\n<p>Falls sich bei dir noch etwas &auml;ndern sollte oder du Fragen hast, melde dich gern bei mir. Einfach auf die Mail antworten oder mich &uuml;ber unsere Gemeinde-App anchatten.</p>\n<p>Bis bald &ndash; wir freuen uns auf dich!</p>\n<p>Herzliche Gr&uuml;&szlig;e</p>\n<p>Dein Armin und Team&nbsp;</p>",
+       "attachmentIds": []
+      }
+     }
+    ]
+   },
+   {
+    "id": 163,
+    "domainType": "group_membership",
+    "name": "E-Mail senden",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 190,
+      "routineId": 163,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 163,
+       "addSignOutUrl": true,
+       "senderId": 1,
+       "sender": {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "templateId": null,
+       "templateName": null,
+       "subject": "Newcomer-Lunch",
+       "body": "<p>Hallo {{{person.nickname}}},</p>\n<p>sch&ouml;n, dass du dich zu unserem {{{group.name}}} angemeldet hast!</p>\n<p>Wir freuen uns, dich direkt nach dem Gottesdienst zum gemeinsamen Mittagessen zu begr&uuml;&szlig;en. Dich erwartet gutes Essen, entspannte Atmosph&auml;re und die M&ouml;glichkeit, Menschen aus unserer Gemeinde kennenzulernen.</p>\n<p>Falls sich bei dir noch etwas &auml;ndern sollte oder du Fragen hast, melde dich gern bei mir. Einfach auf die Mail antworten oder mich &uuml;ber unsere Gemeinde-App anchatten.</p>\n<p>Bis bald &ndash; wir freuen uns auf dich!</p>\n<p>Herzliche Gr&uuml;&szlig;e</p>\n<p>Dein Armin und Team&nbsp;</p>",
+       "attachmentIds": []
+      }
+     }
+    ]
+   },
+   {
+    "id": 166,
+    "domainType": "group_membership",
+    "name": "E-Mail senden",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 193,
+      "routineId": 166,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 166,
+       "addSignOutUrl": true,
+       "senderId": 1,
+       "sender": {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "templateId": null,
+       "templateName": null,
+       "subject": "Newcomer-Lunch",
+       "body": "<p>Hallo {{{person.nickname}}},</p>\n<p>sch&ouml;n, dass du dich zu unserem {{{group.name}}} angemeldet hast!</p>\n<p>Wir freuen uns, dich direkt nach dem Gottesdienst zum gemeinsamen Mittagessen zu begr&uuml;&szlig;en. Dich erwartet gutes Essen, entspannte Atmosph&auml;re und die M&ouml;glichkeit, Menschen aus unserer Gemeinde kennenzulernen.</p>\n<p>Falls sich bei dir noch etwas &auml;ndern sollte oder du Fragen hast, melde dich gern bei mir. Einfach auf die Mail antworten oder mich &uuml;ber unsere Gemeinde-App anchatten.</p>\n<p>Bis bald &ndash; wir freuen uns auf dich!</p>\n<p>Herzliche Gr&uuml;&szlig;e</p>\n<p>Dein Armin und Team&nbsp;</p>",
+       "attachmentIds": []
+      }
+     }
+    ]
+   },
+   {
+    "id": 167,
+    "domainType": "group_membership",
+    "name": "E-Mail senden",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 194,
+      "routineId": 167,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 167,
+       "addSignOutUrl": true,
+       "senderId": 1,
+       "sender": {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "templateId": null,
+       "templateName": null,
+       "subject": "Newcomer-Lunch",
+       "body": "<p>Hallo {{{person.nickname}}},</p>\n<p>sch&ouml;n, dass du dich zu unserem {{{group.name}}} angemeldet hast!</p>\n<p>Wir freuen uns, dich direkt nach dem Gottesdienst zum gemeinsamen Mittagessen zu begr&uuml;&szlig;en. Dich erwartet gutes Essen, entspannte Atmosph&auml;re und die M&ouml;glichkeit, Menschen aus unserer Gemeinde kennenzulernen.</p>\n<p>Falls sich bei dir noch etwas &auml;ndern sollte oder du Fragen hast, melde dich gern bei mir. Einfach auf die Mail antworten oder mich &uuml;ber unsere Gemeinde-App anchatten.</p>\n<p>Bis bald &ndash; wir freuen uns auf dich!</p>\n<p>Herzliche Gr&uuml;&szlig;e</p>\n<p>Dein Armin und Team&nbsp;</p>",
+       "attachmentIds": []
+      }
+     }
+    ]
+   }
+  ],
+  "meta": {
+   "count": 9
+  }
+ }
+}

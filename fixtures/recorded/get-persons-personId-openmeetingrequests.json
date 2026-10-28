@@ -1,0 +1,15 @@
+{
+ "operation": "get-persons-personId-openmeetingrequests",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/openmeetingrequests",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

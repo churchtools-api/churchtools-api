@@ -1,0 +1,56 @@
+{
+ "operation": "get-finance-templates",
+ "request": {
+  "method": "GET",
+  "path": "/finance/templates",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 3109,
+    "name": "SKR 03",
+    "filename": "0d2507252af1da05fe40b4d4929f442dd864d83d440d4f982be9525d3d3b5376",
+    "url": "https://gemeinde.example/?q=public/filedownload&id=3109&filename=0d2507252af1da05fe40b4d4929f442dd864d83d440d4f982be9525d3d3b5376",
+    "relativeUrl": "?q=public/filedownload&id=3109&filename=0d2507252af1da05fe40b4d4929f442dd864d83d440d4f982be9525d3d3b5376",
+    "size": null,
+    "domainIdentifier": "skr03",
+    "domainType": "finance_template",
+    "securityLevelId": null,
+    "counts": {
+     "accountTypes": 3,
+     "accountClasses": 10,
+     "accountGroups": 23,
+     "accounts": 143,
+     "taxTypes": 2,
+     "taxRates": 4,
+     "costCenters": 0
+    }
+   },
+   {
+    "id": 3112,
+    "name": "SKR 42",
+    "filename": "f043593eea910b92753415c6586f1e8c2f8f3c6d648864db0db2661826486e09",
+    "url": "https://gemeinde.example/?q=public/filedownload&id=3112&filename=f043593eea910b92753415c6586f1e8c2f8f3c6d648864db0db2661826486e09",
+    "relativeUrl": "?q=public/filedownload&id=3112&filename=f043593eea910b92753415c6586f1e8c2f8f3c6d648864db0db2661826486e09",
+    "size": null,
+    "domainIdentifier": "skr42",
+    "domainType": "finance_template",
+    "securityLevelId": null,
+    "counts": {
+     "accountTypes": 3,
+     "accountClasses": 10,
+     "accountGroups": 30,
+     "accounts": 340,
+     "taxTypes": 2,
+     "taxRates": 4,
+     "costCenters": 24
+    }
+   }
+  ],
+  "meta": {
+   "count": 2
+  }
+ }
+}

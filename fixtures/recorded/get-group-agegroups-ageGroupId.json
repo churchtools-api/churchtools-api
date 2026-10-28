@@ -1,0 +1,19 @@
+{
+ "operation": "get-group-agegroups-ageGroupId",
+ "request": {
+  "method": "GET",
+  "path": "/group/agegroups/9",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 9,
+   "name": "0-2",
+   "nameTranslated": "0-2",
+   "sortKey": 0,
+   "start": 0,
+   "end": 2
+  }
+ }
+}

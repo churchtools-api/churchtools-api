@@ -1,0 +1,30 @@
+{
+ "operation": "get-resourcetypes-resourceTypeId",
+ "request": {
+  "method": "GET",
+  "path": "/resourcetypes/2",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 2,
+   "name": "resource.type.room",
+   "nameTranslated": "Raum",
+   "sortKey": 10,
+   "namePlural": "resource.type.rooms",
+   "namePluralTranslated": "Räume",
+   "campusId": 0,
+   "meta": {
+    "createdDate": "2025-04-14T10:50:49Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2025-05-21T07:01:53Z",
+    "modifiedPerson": {
+     "id": -4
+    }
+   }
+  }
+ }
+}

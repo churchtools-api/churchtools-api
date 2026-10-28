@@ -1,0 +1,18 @@
+{
+ "operation": "get-tags-tagId",
+ "request": {
+  "method": "GET",
+  "path": "/tags/10",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 10,
+   "name": "Beamer",
+   "description": null,
+   "color": "basic",
+   "count": 1
+  }
+ }
+}

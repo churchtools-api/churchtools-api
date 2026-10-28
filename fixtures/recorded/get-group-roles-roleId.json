@@ -1,0 +1,24 @@
+{
+ "operation": "get-group-roles-roleId",
+ "request": {
+  "method": "GET",
+  "path": "/group/roles/16",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 16,
+   "groupTypeId": 2,
+   "name": "Leiter",
+   "nameTranslated": "Leiter",
+   "shorty": "L",
+   "sortKey": 1,
+   "type": "leader",
+   "isDefault": false,
+   "isHidden": false,
+   "growPathId": 4,
+   "isLeader": true
+  }
+ }
+}

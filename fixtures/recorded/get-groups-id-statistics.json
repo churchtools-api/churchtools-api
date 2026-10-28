@@ -1,0 +1,34 @@
+{
+ "operation": "get-groups-id-statistics",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/statistics",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "unfiltered": {
+    "allPlaces": 7,
+    "freePlaces": null,
+    "takenPlaces": 5,
+    "requestedPlaces": 0,
+    "waitinglistPlaces": 0
+   },
+   "members": {
+    "15:active": {
+     "key": "15:active",
+     "count": 5
+    },
+    "16:active": {
+     "key": "16:active",
+     "count": 1
+    },
+    "17:active": {
+     "key": "17:active",
+     "count": 1
+    }
+   }
+  }
+ }
+}

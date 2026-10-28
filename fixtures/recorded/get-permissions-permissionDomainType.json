@@ -1,0 +1,2616 @@
+{
+ "operation": "get-permissions-permissionDomainType",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/person",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "domainType": "person",
+    "domainId": 1,
+    "authId": 404,
+    "dataId": 56,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1,
+    "authId": 404,
+    "dataId": 59,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 1,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 2,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 3,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 5,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 6,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 7,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 9,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 10,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 11,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 12,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 13,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 101,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 102,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 1108,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 106,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 107,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 108,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 109,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 1111,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 111,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 112,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 113,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 1113,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 1104,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 116,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 117,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 118,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 119,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 120,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 122,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 124,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 125,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 1114,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 127,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 128,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 129,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 130,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 199,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 201,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 202,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 203,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 204,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 205,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 206,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 299,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 301,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 302,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 303,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 304,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 305,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 306,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 307,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 308,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 309,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 312,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 313,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 314,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 321,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 322,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 331,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 332,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 333,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 341,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 399,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 401,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 402,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 403,
+    "dataId": 1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 403,
+    "dataId": 2,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 403,
+    "dataId": 3,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 403,
+    "dataId": 31,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 403,
+    "dataId": 49,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 403,
+    "dataId": 56,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 403,
+    "dataId": 59,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 404,
+    "dataId": 1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 404,
+    "dataId": 2,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 404,
+    "dataId": 3,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 404,
+    "dataId": 31,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 404,
+    "dataId": 49,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 404,
+    "dataId": 56,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 404,
+    "dataId": 59,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 405,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 406,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 407,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 408,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 409,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 410,
+    "dataId": 1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 410,
+    "dataId": 2,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 410,
+    "dataId": 3,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 410,
+    "dataId": 31,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 410,
+    "dataId": 49,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 410,
+    "dataId": 56,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 410,
+    "dataId": 59,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 501,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 502,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 503,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 599,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 601,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 602,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 249,
+    "authId": 699,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 353,
+    "authId": 101,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 353,
+    "authId": 102,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 353,
+    "authId": 1108,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 353,
+    "authId": 301,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 353,
+    "authId": 304,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 353,
+    "authId": 306,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 1,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 2,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 3,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 5,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 6,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 7,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 9,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 11,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 12,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 13,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 101,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 102,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 1108,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 106,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 107,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 108,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 109,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 1111,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 111,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 112,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 113,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 1113,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 1104,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 116,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 117,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 118,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 119,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 120,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 122,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 124,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 125,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 1114,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 127,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 128,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 129,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 130,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 131,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 132,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 199,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 201,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 202,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 203,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 204,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 205,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 206,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 299,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 301,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 302,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 303,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 304,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 305,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 306,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 307,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 308,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 309,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 312,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 313,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 314,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 321,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 322,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 331,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 332,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 333,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 341,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 399,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 401,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 402,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 403,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 404,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 405,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 406,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 407,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 408,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 409,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 410,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 501,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 502,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 503,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 599,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 601,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 602,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 699,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 1001,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10101,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10102,
+    "dataId": -1,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10103,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10104,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10105,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10107,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10108,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10109,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   },
+   {
+    "domainType": "person",
+    "domainId": 1447,
+    "authId": 10110,
+    "dataId": null,
+    "isInherited": false,
+    "type": "grant",
+    "reason": null,
+    "meta": {
+     "modifiedDate": "2023-11-13T14:10:52Z",
+     "modifiedPid": -1
+    }
+   }
+  ],
+  "meta": {
+   "count": 308
+  }
+ }
+}

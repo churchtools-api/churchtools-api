@@ -1,0 +1,10 @@
+{
+ "operation": "get-website-starttest",
+ "request": {
+  "method": "GET",
+  "path": "/website/starttest",
+  "query": [],
+  "body": null
+ },
+ "body": {}
+}

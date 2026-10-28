@@ -1,0 +1,2767 @@
+{
+ "operation": "get-churchquery-metadata",
+ "request": {
+  "method": "GET",
+  "path": "/churchquery/metadata",
+  "query": [
+   [
+    "entity_to_search_for",
+    "person"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "entities": [
+    {
+     "key": "Churchtools\\Domain\\Person\\Device\\Device",
+     "nameTranslated": "Gerät",
+     "prefix": "device",
+     "icon": "tablet",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "personId": {
+       "key": "personId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "deviceId": {
+       "key": "deviceId",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "pushId": {
+       "key": "pushId",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "type": {
+       "key": "type",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "appVersion": {
+       "key": "appVersion",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "expirationDate": {
+       "key": "expirationDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\DoctrinePerson\\DoctrinePerson",
+     "nameTranslated": "Person",
+     "prefix": "person",
+     "icon": "user",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "query",
+      "api": "/search?query={query}&domain_types[]=person",
+      "get-api": "/persons",
+      "get-api-param-name": "ids[]"
+     },
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": "ID",
+       "type": "integer"
+      },
+      "lastLogin": {
+       "key": "lastLogin",
+       "nameTranslated": "Letzter Login",
+       "type": "datetime"
+      },
+      "firstLogin": {
+       "key": "firstLogin",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "latitude": {
+       "key": "latitude",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "longitude": {
+       "key": "longitude",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "latitudeLoose": {
+       "key": "latitudeLoose",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "longitudeLoose": {
+       "key": "longitudeLoose",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "growPathId": {
+       "key": "growPathId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "isActive": {
+       "key": "isActive",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "isArchived": {
+       "key": "isArchived",
+       "nameTranslated": "Archiviert",
+       "type": "boolean"
+      },
+      "visibility": {
+       "key": "visibility",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "dateOfDeath": {
+       "key": "dateOfDeath",
+       "nameTranslated": "Sterbedatum",
+       "type": "date"
+      },
+      "lastEditedDate": {
+       "key": "lastEditedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "title": {
+       "key": "title",
+       "nameTranslated": "Titel",
+       "type": "string"
+      },
+      "firstName": {
+       "key": "firstName",
+       "nameTranslated": "Vorname",
+       "type": "string"
+      },
+      "lastName": {
+       "key": "lastName",
+       "nameTranslated": "Nachname",
+       "type": "string"
+      },
+      "street": {
+       "key": "street",
+       "nameTranslated": "Straße",
+       "type": "string"
+      },
+      "addressAddition": {
+       "key": "addressAddition",
+       "nameTranslated": "Zusatz",
+       "type": "string"
+      },
+      "zip": {
+       "key": "zip",
+       "nameTranslated": "PLZ",
+       "type": "string"
+      },
+      "city": {
+       "key": "city",
+       "nameTranslated": "Ort",
+       "type": "string"
+      },
+      "country": {
+       "key": "country",
+       "nameTranslated": "Land",
+       "type": "string"
+      },
+      "sexId": {
+       "key": "sexId",
+       "nameTranslated": "Geschlecht",
+       "type": "idReference",
+       "references": "sexIdEntity"
+      },
+      "phonePrivate": {
+       "key": "phonePrivate",
+       "nameTranslated": "Telefon privat",
+       "type": "string"
+      },
+      "phoneWork": {
+       "key": "phoneWork",
+       "nameTranslated": "Telefon geschäftl.",
+       "type": "string"
+      },
+      "mobile": {
+       "key": "mobile",
+       "nameTranslated": "Handy",
+       "type": "string"
+      },
+      "fax": {
+       "key": "fax",
+       "nameTranslated": "Fax",
+       "type": "string"
+      },
+      "email": {
+       "key": "email",
+       "nameTranslated": "E-Mail",
+       "type": "string"
+      },
+      "cmsUserId": {
+       "key": "cmsUserId",
+       "nameTranslated": "Benutzername",
+       "type": "string"
+      },
+      "optigemId": {
+       "key": "optigemId",
+       "nameTranslated": "Optigem-Nr",
+       "type": "string"
+      },
+      "nickname": {
+       "key": "nickname",
+       "nameTranslated": "Rufname",
+       "type": "string"
+      },
+      "birthday": {
+       "key": "birthday",
+       "nameTranslated": "Geburtsdatum",
+       "type": "date"
+      },
+      "birthName": {
+       "key": "birthName",
+       "nameTranslated": "Geburtsname",
+       "type": "string"
+      },
+      "birthplace": {
+       "key": "birthplace",
+       "nameTranslated": "Geburtsort",
+       "type": "string"
+      },
+      "job": {
+       "key": "job",
+       "nameTranslated": "Beruf",
+       "type": "string"
+      },
+      "nationalityId": {
+       "key": "nationalityId",
+       "nameTranslated": "Nationalität",
+       "type": "idReference",
+       "references": "nationalityIdEntity"
+      },
+      "familyStatusId": {
+       "key": "familyStatusId",
+       "nameTranslated": "Familienstand",
+       "type": "idReference",
+       "references": "familyStatusIdEntity"
+      },
+      "weddingDate": {
+       "key": "weddingDate",
+       "nameTranslated": "Hochzeitsdatum",
+       "type": "date"
+      },
+      "firstContact": {
+       "key": "firstContact",
+       "nameTranslated": "Erstkontakt",
+       "type": "date"
+      },
+      "dateOfBelonging": {
+       "key": "dateOfBelonging",
+       "nameTranslated": "Zugehörig seit",
+       "type": "date"
+      },
+      "dateOfEntry": {
+       "key": "dateOfEntry",
+       "nameTranslated": "Eintrittsdatum",
+       "type": "date"
+      },
+      "referredBy": {
+       "key": "referredBy",
+       "nameTranslated": "Überwiesen von",
+       "type": "string"
+      },
+      "dateOfResign": {
+       "key": "dateOfResign",
+       "nameTranslated": "Austrittsdatum",
+       "type": "date"
+      },
+      "referredTo": {
+       "key": "referredTo",
+       "nameTranslated": "Überwiesen nach",
+       "type": "string"
+      },
+      "dateOfBaptism": {
+       "key": "dateOfBaptism",
+       "nameTranslated": "Taufdatum",
+       "type": "date"
+      },
+      "placeOfBaptism": {
+       "key": "placeOfBaptism",
+       "nameTranslated": "Taufort",
+       "type": "string"
+      },
+      "baptisedBy": {
+       "key": "baptisedBy",
+       "nameTranslated": "Getauft durch",
+       "type": "string"
+      },
+      "statusId": {
+       "key": "statusId",
+       "nameTranslated": "Personenstatus",
+       "type": "idReference",
+       "references": "statusIdEntity"
+      },
+      "campusId": {
+       "key": "campusId",
+       "nameTranslated": "Standort",
+       "type": "idReference",
+       "references": "campusIdEntity"
+      },
+      "privacyPolicyAgreementDate": {
+       "key": "privacyPolicyAgreementDate",
+       "nameTranslated": "Einwilligung erfolgt am",
+       "type": "date"
+      },
+      "privacyPolicyAgreementTypeId": {
+       "key": "privacyPolicyAgreementTypeId",
+       "nameTranslated": "Einwilligung wodurch",
+       "type": "idReference",
+       "references": "privacyPolicyAgreementTypeIdEntity"
+      },
+      "privacyPolicyAgreementWhoId": {
+       "key": "privacyPolicyAgreementWhoId",
+       "nameTranslated": "Einwilligung durch wen",
+       "type": "idReference",
+       "references": "privacyPolicyAgreementWhoIdEntity"
+      },
+      "acceptedsecurity": {
+       "key": "acceptedsecurity",
+       "nameTranslated": "Vertraulichkeitsvereinbarung akzeptiert am",
+       "type": "date"
+      },
+      "emails": {
+       "key": "emails",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "personemail"
+      },
+      "departments": {
+       "key": "departments",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "avatar": {
+       "key": "avatar",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "file"
+      },
+      "familyAvatar": {
+       "key": "familyAvatar",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "file"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Group\\Models\\Group",
+     "nameTranslated": "Gruppe",
+     "prefix": "ctgroup",
+     "icon": "users",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "query",
+      "api": "/search?query={query}&domain_types[]=group",
+      "get-api": "/groups?group_status_ids[]=1&group_status_ids[]=2&group_status_ids[]=3&group_status_ids[]=4",
+      "get-api-param-name": "ids[]"
+     },
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": "Titel",
+       "type": "string"
+      },
+      "appointmentId": {
+       "key": "appointmentId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "startDate": {
+       "key": "startDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "dynamicGroupRuleSet": {
+       "key": "dynamicGroupRuleSet",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "dynamicGroupUpdateFinished": {
+       "key": "dynamicGroupUpdateFinished",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "dynamicGroupUpdateStarted": {
+       "key": "dynamicGroupUpdateStarted",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "dynamicGroupStatus": {
+       "key": "dynamicGroupStatus",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "groupStatusId": {
+       "key": "groupStatusId",
+       "nameTranslated": "Gruppenstatus",
+       "type": "idReference",
+       "references": "groupStatusIdEntity"
+      },
+      "groupTypeId": {
+       "key": "groupTypeId",
+       "nameTranslated": "Gruppentyp",
+       "type": "idReference",
+       "references": "groupTypeIdEntity"
+      },
+      "dateOfFoundation": {
+       "key": "dateOfFoundation",
+       "nameTranslated": "Gründungsdatum",
+       "type": "date"
+      },
+      "endDate": {
+       "key": "endDate",
+       "nameTranslated": "Abschlussdatum",
+       "type": "date"
+      },
+      "meetingTime": {
+       "key": "meetingTime",
+       "nameTranslated": "Startzeit",
+       "type": "string"
+      },
+      "weekday": {
+       "key": "weekday",
+       "nameTranslated": "Wochentag",
+       "type": "idReference",
+       "references": "weekdayEntity"
+      },
+      "groupCategoryId": {
+       "key": "groupCategoryId",
+       "nameTranslated": "Kategorie",
+       "type": "idReference",
+       "references": "groupCategoryIdEntity"
+      },
+      "ageGroupIds": {
+       "key": "ageGroupIds",
+       "nameTranslated": "Altersgruppen",
+       "type": "idReference",
+       "references": "ageGroupIdsEntity"
+      },
+      "targetGroupId": {
+       "key": "targetGroupId",
+       "nameTranslated": "Zielgruppe",
+       "type": "idReference",
+       "references": "targetGroupIdEntity"
+      },
+      "note": {
+       "key": "note",
+       "nameTranslated": "Beschreibung",
+       "type": "string"
+      },
+      "campusId": {
+       "key": "campusId",
+       "nameTranslated": "Standort",
+       "type": "idReference",
+       "references": "campusIdEntity"
+      },
+      "autoAccept": {
+       "key": "autoAccept",
+       "nameTranslated": "Für die Gruppenmitgliedschaft ist eine manuelle Freigabe durch die Leitung der Gruppe notwendig. Neue Gruppenmitglieder erhalten den Status \"angefragt\".",
+       "type": "boolean"
+      },
+      "allowWaitinglist": {
+       "key": "allowWaitinglist",
+       "nameTranslated": "Warteliste: Wenn die Gruppe voll ist, weitere Gruppenmitgliedschafts-Anträge erlauben.",
+       "type": "boolean"
+      },
+      "maxMembers": {
+       "key": "maxMembers",
+       "nameTranslated": "Plätze",
+       "type": "integer"
+      },
+      "statusesCountedTowardsSeats": {
+       "key": "statusesCountedTowardsSeats",
+       "nameTranslated": null,
+       "type": "json"
+      },
+      "waitinglistMaxPersons": {
+       "key": "waitinglistMaxPersons",
+       "nameTranslated": "Maximale Anzahl von Personen auf der Warteliste:",
+       "type": "integer"
+      },
+      "automaticMoveUp": {
+       "key": "automaticMoveUp",
+       "nameTranslated": "Wenn in der Gruppe Plätze frei werden, automatisiert entsprechend viele freigeben. Gemeinsam angemeldete Personen werden erst freigegeben, wenn entsprechend viele Plätze frei sind.",
+       "type": "boolean"
+      },
+      "createWeeklyGroupMeetings": {
+       "key": "createWeeklyGroupMeetings",
+       "nameTranslated": "Wöchentliche Gruppentreffen erstellen",
+       "type": "boolean"
+      },
+      "inStatistic": {
+       "key": "inStatistic",
+       "nameTranslated": "In Statistik zeigen",
+       "type": "boolean"
+      },
+      "informLeader": {
+       "key": "informLeader",
+       "nameTranslated": "Per E-Mail über Änderungen informieren",
+       "type": "boolean"
+      },
+      "groupMeetingTemplateId": {
+       "key": "groupMeetingTemplateId",
+       "nameTranslated": "Vorlage für Gruppentreffen",
+       "type": "idReference",
+       "references": "groupMeetingTemplateIdEntity"
+      },
+      "qrCodeCheckin": {
+       "key": "qrCodeCheckin",
+       "nameTranslated": "Check-in-Code aktivieren",
+       "type": "boolean"
+      },
+      "qrCodeCheckinAutomaticEmail": {
+       "key": "qrCodeCheckinAutomaticEmail",
+       "nameTranslated": "Check-in-Codes automatisch per E-Mail versenden",
+       "type": "boolean"
+      },
+      "chatHistoryVisible": {
+       "key": "chatHistoryVisible",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "allowSpouseRegistration": {
+       "key": "allowSpouseRegistration",
+       "nameTranslated": "Ehepartner dürfen mit angemeldet werden.",
+       "type": "boolean"
+      },
+      "allowChildRegistration": {
+       "key": "allowChildRegistration",
+       "nameTranslated": "Eigene Kinder unter 16 Jahren dürfen mit angemeldet werden.",
+       "type": "boolean"
+      },
+      "allowSameEmailRegistration": {
+       "key": "allowSameEmailRegistration",
+       "nameTranslated": "Personen mit gleicher E-Mail-Adresse dürfen mit angemeldet werden.",
+       "type": "boolean"
+      },
+      "allowOtherRegistration": {
+       "key": "allowOtherRegistration",
+       "nameTranslated": "Beliebige weitere Personen dürfen mit angemeldet werden. Das Einverständnis dieser Personen vorausgesetzt.",
+       "type": "boolean"
+      },
+      "hideContactLeader": {
+       "key": "hideContactLeader",
+       "nameTranslated": "\"Leiter kontaktieren\" ausblenden",
+       "type": "boolean"
+      },
+      "hideLogin": {
+       "key": "hideLogin",
+       "nameTranslated": "\"Bei ChurchTools einloggen\" ausblenden",
+       "type": "boolean"
+      },
+      "signUpHeadline": {
+       "key": "signUpHeadline",
+       "nameTranslated": "Überschrift der Anmeldung",
+       "type": "string"
+      },
+      "signUpOverrideRoleId": {
+       "key": "signUpOverrideRoleId",
+       "nameTranslated": "Rolle nach Anmeldung",
+       "type": "idReference",
+       "references": "signUpOverrideRoleIdEntity"
+      },
+      "sendDefaultSignUpMail": {
+       "key": "sendDefaultSignUpMail",
+       "nameTranslated": "Standard-E-Mail senden",
+       "type": "boolean"
+      },
+      "postsEnabled": {
+       "key": "postsEnabled",
+       "nameTranslated": "Beiträge aktiviert",
+       "type": "boolean"
+      },
+      "followUpReminder": {
+       "key": "followUpReminder",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "imageId": {
+       "key": "imageId",
+       "nameTranslated": "Gruppenbild",
+       "type": "string"
+      },
+      "groupMeetings": {
+       "key": "groupMeetings",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "groupHomepage": {
+       "key": "groupHomepage",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "day": {
+       "key": "day",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Group\\GroupType\\GroupType",
+     "nameTranslated": "Gruppentyp",
+     "prefix": "grouptype",
+     "icon": "layer-group",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "all",
+      "api": "/group/grouptypes"
+     },
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "namePlural": {
+       "key": "namePlural",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "color": {
+       "key": "color",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "shorty": {
+       "key": "shorty",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "description": {
+       "key": "description",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "isLeaderNecessary": {
+       "key": "isLeaderNecessary",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "availableForNewPerson": {
+       "key": "availableForNewPerson",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "permissionDepth": {
+       "key": "permissionDepth",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "postsEnabled": {
+       "key": "postsEnabled",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "roles": {
+       "key": "roles",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "role"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Group\\Member\\MemberField\\DoctrineGroupMemberFieldData",
+     "nameTranslated": null,
+     "prefix": "groupmemberfieldvalue",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "groupMembershipId": {
+       "key": "groupMembershipId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "groupMemberFieldId": {
+       "key": "groupMemberFieldId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "value": {
+       "key": "value",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Group\\Member\\MemberField\\GroupMemberFieldOption",
+     "nameTranslated": null,
+     "prefix": "groupmemberfieldoption",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "fieldId": {
+       "key": "fieldId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "value": {
+       "key": "value",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Group\\Member\\MemberField\\GroupMemberField",
+     "nameTranslated": "Gruppenmitgliedschaft",
+     "prefix": "groupmemberfield",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "groupId": {
+       "key": "groupId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "referenceName": {
+       "key": "referenceName",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "note": {
+       "key": "note",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "nameInSignupForm": {
+       "key": "nameInSignupForm",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "noteInSignupForm": {
+       "key": "noteInSignupForm",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "requiredInRegistrationForm": {
+       "key": "requiredInRegistrationForm",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "securityLevel": {
+       "key": "securityLevel",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "defaultValue": {
+       "key": "defaultValue",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "options": {
+       "key": "options",
+       "nameTranslated": null,
+       "type": "ct_simple_array"
+      },
+      "useInRegistrationForm": {
+       "key": "useInRegistrationForm",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "fieldType": {
+       "key": "fieldType",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "fieldtype"
+      },
+      "fieldOptions": {
+       "key": "fieldOptions",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "groupmemberfieldoption"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\DoctrineDBField\\DoctrineFieldType",
+     "nameTranslated": null,
+     "prefix": "fieldtype",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": false,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "internCode": {
+       "key": "internCode",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\DoctrineGroup\\Member\\DoctrineGroupMember",
+     "nameTranslated": "Gruppenmitgliedschaft",
+     "prefix": "groupmember",
+     "icon": "users",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "groupId": {
+       "key": "groupId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "roleChangedDate": {
+       "key": "roleChangedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "groupMemberStatus": {
+       "key": "groupMemberStatus",
+       "nameTranslated": "Gruppenmitgliedsstatus",
+       "type": "select",
+       "options": [
+        {
+         "id": "active",
+         "name": "Aktiv"
+        },
+        {
+         "id": "requested",
+         "name": "Angefragt"
+        },
+        {
+         "id": "to_delete",
+         "name": "Zu löschen"
+        },
+        {
+         "id": "waiting",
+         "name": "Auf Warteliste"
+        }
+       ]
+      },
+      "statusChangedDate": {
+       "key": "statusChangedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "memberStartDate": {
+       "key": "memberStartDate",
+       "nameTranslated": "Gruppeneintrittsdatum",
+       "type": "datetime"
+      },
+      "memberEndDate": {
+       "key": "memberEndDate",
+       "nameTranslated": "Enddatum",
+       "type": "datetime"
+      },
+      "comment": {
+       "key": "comment",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "waitingListPosition": {
+       "key": "waitingListPosition",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "origin": {
+       "key": "origin",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "person": {
+       "key": "person",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "person"
+      },
+      "role": {
+       "key": "role",
+       "nameTranslated": "Rolle",
+       "type": "reference",
+       "references": "role"
+      },
+      "registeredBy": {
+       "key": "registeredBy",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "person"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Person\\Relationship\\DoctrineRelationship",
+     "nameTranslated": null,
+     "prefix": "relationship",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "personAId": {
+       "key": "personAId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "personBId": {
+       "key": "personBId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "relationshipType": {
+       "key": "relationshipType",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "relationshiptype"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Person\\Relationship\\RelationshipType",
+     "nameTranslated": null,
+     "prefix": "relationshiptype",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "securityLevelId": {
+       "key": "securityLevelId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "degreeNameA": {
+       "key": "degreeNameA",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "degreeNameB": {
+       "key": "degreeNameB",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "includeInExport": {
+       "key": "includeInExport",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "exportTitle": {
+       "key": "exportTitle",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "functionKeys": {
+       "key": "functionKeys",
+       "nameTranslated": null,
+       "type": "ct_simple_array"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Group\\Role\\Role",
+     "nameTranslated": "Rolle",
+     "prefix": "role",
+     "icon": "id-badge",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "all",
+      "api": "/group/roles"
+     },
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": "Name",
+       "type": "string"
+      },
+      "shorty": {
+       "key": "shorty",
+       "nameTranslated": "Kürzel",
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": "Sortierung",
+       "type": "integer"
+      },
+      "type": {
+       "key": "type",
+       "nameTranslated": "Typ",
+       "type": "select",
+       "options": [
+        {
+         "id": "leader",
+         "name": "Leitung"
+        },
+        {
+         "id": "participant",
+         "name": "Teilnahme"
+        }
+       ]
+      },
+      "isDefault": {
+       "key": "isDefault",
+       "nameTranslated": "Standard",
+       "type": "boolean"
+      },
+      "isHidden": {
+       "key": "isHidden",
+       "nameTranslated": "Versteckt",
+       "type": "boolean"
+      },
+      "growPathId": {
+       "key": "growPathId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "groupType": {
+       "key": "groupType",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "grouptype"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Person\\DoctrinePersonEmail",
+     "nameTranslated": null,
+     "prefix": "personemail",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": false,
+     "primaryKey": [
+      "person",
+      "contactLabel",
+      "email"
+     ],
+     "data": null,
+     "fields": {
+      "email": {
+       "key": "email",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "isDefault": {
+       "key": "isDefault",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "person": {
+       "key": "person",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "person"
+      },
+      "contactLabel": {
+       "key": "contactLabel",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "contactlabel"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\File\\FileEntity",
+     "nameTranslated": null,
+     "prefix": "file",
+     "icon": "file",
+     "hasRelationToEntityToSearchFor": false,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "aiGenerated": {
+       "key": "aiGenerated",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\ContactLabel\\ContactLabel",
+     "nameTranslated": null,
+     "prefix": "contactlabel",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "all",
+      "api": "/contactlabels"
+     },
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "isDefault": {
+       "key": "isDefault",
+       "nameTranslated": null,
+       "type": "boolean"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Group\\GroupStatus\\GroupStatus",
+     "nameTranslated": null,
+     "prefix": "groupstatus",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "groups": {
+       "key": "groups",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "ctgroup"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Translation\\Translation",
+     "nameTranslated": null,
+     "prefix": "translation",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": false,
+     "primaryKey": [
+      "key",
+      "language"
+     ],
+     "data": null,
+     "fields": {
+      "translation": {
+       "key": "translation",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "updatedByChurch": {
+       "key": "updatedByChurch",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "needsCheck": {
+       "key": "needsCheck",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "deleted": {
+       "key": "deleted",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "updated": {
+       "key": "updated",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "key": {
+       "key": "key",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "translationkey"
+      },
+      "language": {
+       "key": "language",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "language"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Translation\\TranslationKey",
+     "nameTranslated": null,
+     "prefix": "translationkey",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": false,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "key": {
+       "key": "key",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "module": {
+       "key": "module",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "updated": {
+       "key": "updated",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdByChurch": {
+       "key": "createdByChurch",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "deleted": {
+       "key": "deleted",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "translations": {
+       "key": "translations",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "translation"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Language\\Language",
+     "nameTranslated": null,
+     "prefix": "language",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": false,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "code": {
+       "key": "code",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "isActive": {
+       "key": "isActive",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "translations": {
+       "key": "translations",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "translation"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Person\\Status\\Status",
+     "nameTranslated": null,
+     "prefix": "status",
+     "icon": "circle-user",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "sortKey": {
+       "key": "sortKey",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "shorty": {
+       "key": "shorty",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "isMember": {
+       "key": "isMember",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "isSearchable": {
+       "key": "isSearchable",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "securityLevelId": {
+       "key": "securityLevelId",
+       "nameTranslated": null,
+       "type": "integer"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Finance\\Transaction\\Transaction",
+     "nameTranslated": null,
+     "prefix": "transaction",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "documentDate": {
+       "key": "documentDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "documentNumber": {
+       "key": "documentNumber",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "amount": {
+       "key": "amount",
+       "nameTranslated": null,
+       "type": "ct_bigint"
+      },
+      "note": {
+       "key": "note",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "isImmutable": {
+       "key": "isImmutable",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "donatorId": {
+       "key": "donatorId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "donatorSpouseId": {
+       "key": "donatorSpouseId",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "isWaiverOfReimbursementOfExpenses": {
+       "key": "isWaiverOfReimbursementOfExpenses",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "cashDiscountAmount": {
+       "key": "cashDiscountAmount",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "isSynced": {
+       "key": "isSynced",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "documentNumberMainText": {
+       "key": "documentNumberMainText",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "documentNumberMainNumberSuffix": {
+       "key": "documentNumberMainNumberSuffix",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "documentNumberSplitIndex": {
+       "key": "documentNumberSplitIndex",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "documentNumberIsStorno": {
+       "key": "documentNumberIsStorno",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "account": {
+       "key": "account",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "account"
+      },
+      "contraAccount": {
+       "key": "contraAccount",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "account"
+      },
+      "costCenter": {
+       "key": "costCenter",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "costcenter"
+      },
+      "contraCostCenter": {
+       "key": "contraCostCenter",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "costcenter"
+      },
+      "splitParent": {
+       "key": "splitParent",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "taxRate": {
+       "key": "taxRate",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "taxTransaction": {
+       "key": "taxTransaction",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "transaction"
+      },
+      "taxBase": {
+       "key": "taxBase",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "transaction"
+      },
+      "stornoBase": {
+       "key": "stornoBase",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "transaction"
+      },
+      "stornoTransaction": {
+       "key": "stornoTransaction",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "transaction"
+      },
+      "cashDiscount": {
+       "key": "cashDiscount",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Finance\\CostCenter\\CostCenter",
+     "nameTranslated": null,
+     "prefix": "costcenter",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "number": {
+       "key": "number",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "annotation": {
+       "key": "annotation",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "budget": {
+       "key": "budget",
+       "nameTranslated": null,
+       "type": "ct_bigint"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "accountingPeriod": {
+       "key": "accountingPeriod",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "accountingperiod"
+      },
+      "group": {
+       "key": "group",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "ctgroup"
+      },
+      "transactionPurposes": {
+       "key": "transactionPurposes",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "transactions": {
+       "key": "transactions",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "transaction"
+      },
+      "contraTransactions": {
+       "key": "contraTransactions",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "transaction"
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Finance\\Account\\Account",
+     "nameTranslated": null,
+     "prefix": "account",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": false,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "number": {
+       "key": "number",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "name": {
+       "key": "name",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "annotation": {
+       "key": "annotation",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "isDonationAccount": {
+       "key": "isDonationAccount",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "isOpeningBalanceAccount": {
+       "key": "isOpeningBalanceAccount",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "identifier": {
+       "key": "identifier",
+       "nameTranslated": null,
+       "type": "string"
+      },
+      "budget": {
+       "key": "budget",
+       "nameTranslated": null,
+       "type": "ct_bigint"
+      },
+      "isMandatoryEubp": {
+       "key": "isMandatoryEubp",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "isMandatoryEubpLocked": {
+       "key": "isMandatoryEubpLocked",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "accountGroup": {
+       "key": "accountGroup",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "accountingPeriod": {
+       "key": "accountingPeriod",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "accountingperiod"
+      },
+      "taxRate": {
+       "key": "taxRate",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "transactionPurposesSingle": {
+       "key": "transactionPurposesSingle",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "transactionPurposesMany": {
+       "key": "transactionPurposesMany",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "transactions": {
+       "key": "transactions",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "transaction"
+      },
+      "contraTransactions": {
+       "key": "contraTransactions",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "transaction"
+      },
+      "incomingTaxRates": {
+       "key": "incomingTaxRates",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "cashDiscounts": {
+       "key": "cashDiscounts",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      }
+     }
+    },
+    {
+     "key": "Churchtools\\Domain\\Finance\\AccountingPeriod\\AccountingPeriod",
+     "nameTranslated": null,
+     "prefix": "accountingperiod",
+     "icon": "circle",
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": null,
+     "fields": {
+      "id": {
+       "key": "id",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "startDate": {
+       "key": "startDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "endDate": {
+       "key": "endDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "isClosed": {
+       "key": "isClosed",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "incrementDocumentNumber": {
+       "key": "incrementDocumentNumber",
+       "nameTranslated": null,
+       "type": "boolean"
+      },
+      "donationReceiptsCreated": {
+       "key": "donationReceiptsCreated",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdDate": {
+       "key": "createdDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "createdPid": {
+       "key": "createdPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "modifiedDate": {
+       "key": "modifiedDate",
+       "nameTranslated": null,
+       "type": "datetime"
+      },
+      "modifiedPid": {
+       "key": "modifiedPid",
+       "nameTranslated": null,
+       "type": "integer"
+      },
+      "client": {
+       "key": "client",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": null
+      },
+      "costCenters": {
+       "key": "costCenters",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "costcenter"
+      },
+      "accounts": {
+       "key": "accounts",
+       "nameTranslated": null,
+       "type": "reference",
+       "references": "account"
+      }
+     }
+    },
+    {
+     "key": "sexIdEntity",
+     "nameTranslated": "Geschlecht",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "nationalityIdEntity",
+     "nameTranslated": "Nationalität",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "familyStatusIdEntity",
+     "nameTranslated": "Familienstand",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "statusIdEntity",
+     "nameTranslated": "Personenstatus",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "campusIdEntity",
+     "nameTranslated": "Standort",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "privacyPolicyAgreementTypeIdEntity",
+     "nameTranslated": "Einwilligung wodurch",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "privacyPolicyAgreementWhoIdEntity",
+     "nameTranslated": "Einwilligung durch wen",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "groupStatusIdEntity",
+     "nameTranslated": "Gruppenstatus",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "groupTypeIdEntity",
+     "nameTranslated": "Gruppentyp",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "weekdayEntity",
+     "nameTranslated": "Wochentag",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "groupCategoryIdEntity",
+     "nameTranslated": "Kategorie",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "ageGroupIdsEntity",
+     "nameTranslated": "Altersgruppen",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "targetGroupIdEntity",
+     "nameTranslated": "Zielgruppe",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "campusIdEntity",
+     "nameTranslated": "Standort",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "groupMeetingTemplateIdEntity",
+     "nameTranslated": "Vorlage für Gruppentreffen",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    },
+    {
+     "key": "signUpOverrideRoleIdEntity",
+     "nameTranslated": "Rolle nach Anmeldung",
+     "prefix": null,
+     "icon": null,
+     "hasRelationToEntityToSearchFor": true,
+     "primaryKey": [
+      "id"
+     ],
+     "data": {
+      "type": "dbField",
+      "api": "/fields"
+     },
+     "fields": null
+    }
+   ],
+   "operators": {
+    "!": {
+     "key": "!",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "!!": {
+     "key": "!!",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "true": {
+     "key": "true",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "false": {
+     "key": "false",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "isnull": {
+     "key": "isnull",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "isnotnull": {
+     "key": "isnotnull",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "t": {
+     "key": "t",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "var": {
+     "key": "var",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "dterm": {
+     "key": "dterm",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Unary Operators"
+    },
+    "and": {
+     "key": "and",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Binary Operators"
+    },
+    "or": {
+     "key": "or",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Binary Operators"
+    },
+    "any": {
+     "key": "any",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Binary Operators"
+    },
+    "oneof": {
+     "key": "oneof",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Binary Operators"
+    },
+    "oneofs": {
+     "key": "oneofs",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Binary Operators"
+    },
+    "partof": {
+     "key": "partof",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Binary Operators"
+    },
+    "==": {
+     "key": "==",
+     "nameTranslated": "ist",
+     "icon": "equals",
+     "chapter": "Comparison Operators"
+    },
+    "!==": {
+     "key": "!==",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Comparison Operators"
+    },
+    "<": {
+     "key": "<",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Comparison Operators"
+    },
+    "<=": {
+     "key": "<=",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Comparison Operators"
+    },
+    ">": {
+     "key": ">",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Comparison Operators"
+    },
+    ">=": {
+     "key": ">=",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Comparison Operators"
+    },
+    "between": {
+     "key": "between",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Comparison Operators"
+    },
+    "concat": {
+     "key": "concat",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Multi-Argument Operators"
+    },
+    "concatWs": {
+     "key": "concatWs",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Multi-Argument Operators"
+    },
+    "coalesce": {
+     "key": "coalesce",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Multi-Argument Operators"
+    },
+    "case": {
+     "key": "case",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Case When Operator"
+    },
+    "if": {
+     "key": "if",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Case When Operator"
+    },
+    "invitation-status": {
+     "key": "invitation-status",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Person Related Operators"
+    },
+    "person--group": {
+     "key": "person--group",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Person Related Operators"
+    },
+    "subgroups": {
+     "key": "subgroups",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Group Related Operators"
+    },
+    "count": {
+     "key": "count",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Aggregate Operators"
+    },
+    "groupconcat": {
+     "key": "groupconcat",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Aggregate Operators"
+    },
+    "max": {
+     "key": "max",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Aggregate Operators"
+    },
+    "min": {
+     "key": "min",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Aggregate Operators"
+    },
+    "sum": {
+     "key": "sum",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Aggregate Operators"
+    },
+    "ct_date": {
+     "key": "ct_date",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Date Functions"
+    },
+    "dateTimeDiff": {
+     "key": "dateTimeDiff",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Date Functions"
+    },
+    "dateTimeAdd": {
+     "key": "dateTimeAdd",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Date Functions"
+    },
+    "nextAnniversary": {
+     "key": "nextAnniversary",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Date Functions"
+    },
+    "dateFormat": {
+     "key": "dateFormat",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Date Functions"
+    },
+    "isJubilee": {
+     "key": "isJubilee",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Date Functions"
+    },
+    "isDateBetween": {
+     "key": "isDateBetween",
+     "nameTranslated": null,
+     "icon": null,
+     "chapter": "Date Functions"
+    }
+   },
+   "fieldTypes": {
+    "integer": {
+     "key": "integer",
+     "icon": "hashtag",
+     "operators": [
+      "==",
+      ">=",
+      "<=",
+      "isnull",
+      "isnotnull"
+     ]
+    },
+    "string": {
+     "key": "string",
+     "icon": "text",
+     "operators": [
+      "==",
+      "!==",
+      "partof",
+      "<=",
+      ">=",
+      "isnull",
+      "isnotnull"
+     ]
+    },
+    "text": {
+     "key": "text",
+     "icon": "align-left",
+     "operators": [
+      "==",
+      "!==",
+      "partof",
+      "isnull",
+      "isnotnull"
+     ]
+    },
+    "boolean": {
+     "key": "boolean",
+     "icon": "check",
+     "operators": [
+      "=="
+     ]
+    },
+    "date": {
+     "key": "date",
+     "icon": "calendar-alt",
+     "operators": [
+      "==",
+      "!==",
+      ">",
+      ">=",
+      "<",
+      "<=",
+      "isnull",
+      "isnotnull"
+     ]
+    },
+    "datetime": {
+     "key": "datetime",
+     "icon": "calendar-clock",
+     "operators": [
+      "==",
+      "!==",
+      ">",
+      ">=",
+      "<",
+      "<=",
+      "isnull",
+      "isnotnull"
+     ]
+    },
+    "carbon": {
+     "key": "carbon",
+     "icon": "c",
+     "operators": [
+      "==",
+      "!==",
+      ">",
+      ">=",
+      "<",
+      "<=",
+      "isnull",
+      "isnotnull"
+     ]
+    },
+    "json": {
+     "key": "json",
+     "icon": "brackets-curly",
+     "operators": [
+      "partof"
+     ]
+    },
+    "select": {
+     "key": "select",
+     "icon": "circle-chevron-down",
+     "operators": [
+      "==",
+      "!==",
+      "oneof"
+     ]
+    },
+    "reference": {
+     "key": "reference",
+     "icon": "arrow-right-arrow-left",
+     "operators": [
+      "==",
+      "!==",
+      "oneof"
+     ]
+    },
+    "idReference": {
+     "key": "idReference",
+     "icon": "table-list",
+     "operators": [
+      "==",
+      "!==",
+      "oneof"
+     ]
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "operation": "get-securitylevels-id",
+ "request": {
+  "method": "GET",
+  "path": "/securitylevels/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "id": 1,
+  "name": "Stufe 1 (Namen)",
+  "sortkey": 1,
+  "sortKey": 1
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "operation": "get-publicgroups-id-hash",
+ "request": {
+  "method": "GET",
+  "path": "/publicgroups/26/seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 26,
+   "name": "Kleingruppe Nord",
+   "information": {
+    "meetingTime": "",
+    "groupStatusId": 1,
+    "dateOfFoundation": null,
+    "color": "lime",
+    "weekday": null,
+    "groupCategory": null,
+    "ageGroups": [],
+    "targetGroup": null,
+    "note": "",
+    "campus": null,
+    "groupPlaces": [],
+    "leader": [
+     {
+      "title": "Norbert Kommian",
+      "domainType": "person",
+      "domainIdentifier": "3",
+      "apiUrl": "https://gemeinde.example/api/persons/3",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%233/",
+      "imageUrl": "https://gemeinde.example/images/2176/ed53499669d0e83ef7fcf4dd1b0a08cbeb773ced9e2e22292f6904953a6a2154",
+      "icon": "user",
+      "color": null,
+      "initials": "NK",
+      "domainAttributes": {
+       "firstName": "Norbert",
+       "lastName": "Kommian",
+       "guid": "EDF2B7EA-1508-4374-BCC8-F5C4CE04998B",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    ]
+   },
+   "settings": {
+    "allowOtherRegistration": false,
+    "allowSameEmailRegistration": true,
+    "allowSameemailRegistration": true,
+    "allowChildRegistration": true,
+    "allowSpouseRegistration": true,
+    "hideContactLeader": false,
+    "hideLogin": false,
+    "showStreet": false,
+    "emailVerificationMode": "all",
+    "signUpNotificationSent": null
+   },
+   "autoAccept": false,
+   "signUpCountsTowardsSeats": false,
+   "allowWaitinglist": false,
+   "waitinglistMaxPersons": null,
+   "maxMemberCount": null,
+   "currentMemberCount": 1,
+   "requestedSeatsCount": 0,
+   "requestedWaitinglistSeatsCount": 0,
+   "canSignUp": false,
+   "signUpConditions": {
+    "groupIsNotHidden": true,
+    "groupIsActive": true,
+    "groupIsOpenForMembers": false,
+    "groupIsNotFull": true,
+    "groupHasSpaceForRequests": true,
+    "groupAllowsWaitinglist": false,
+    "groupHasSpaceOnWaitinglist": true,
+    "groupHasLeader": true,
+    "atLeastOneLeaderCanCreateNewPerson": true,
+    "endDateNotPassed": true,
+    "signUpRoleSetInGroup": true,
+    "groupIsPublic": false,
+    "canContactLeader": true,
+    "newPersonStationIsSet": false,
+    "newPersonStatusIsSet": false,
+    "newPersonDepartmentIsSet": false,
+    "groupVisibility": "restricted",
+    "canSignUp": false,
+    "canSignUpAsNewPerson": false,
+    "@deprecated": {
+     "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+    },
+    "defaultRoleSetInGroup": true
+   },
+   "signUpHeadline": "Teilnahme beantragen",
+   "showPublicCannotViewGroup": false,
+   "children": [
+    13,
+    16,
+    22,
+    203
+   ],
+   "signUpPersons": [
+    {
+     "person": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "status": "NOT_CLICKED"
+    }
+   ],
+   "@deprecated": {
+    "requestedPlacesCount": "requestedSeatsCount",
+    "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+   },
+   "requestedPlacesCount": 0,
+   "requestedWaitinglistPlacesCount": 0
+  }
+ }
+}

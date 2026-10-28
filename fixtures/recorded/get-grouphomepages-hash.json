@@ -1,0 +1,2321 @@
+{
+ "operation": "get-grouphomepages-hash",
+ "request": {
+  "method": "GET",
+  "path": "/grouphomepages/seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "parentGroup": 15,
+   "name": "#1 Bereich Kleingruppen",
+   "isEnabled": true,
+   "showLeaders": true,
+   "showGroupImages": false,
+   "showMap": true,
+   "showFilters": true,
+   "titleMode": "none",
+   "customTitle": null,
+   "descriptionMode": "none",
+   "customDescription": null,
+   "description": "",
+   "defaultView": "tile",
+   "orderBy": "name",
+   "orderDirection": "ASC",
+   "isCollapsed": false,
+   "depth": 99999,
+   "randomUrl": "seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr",
+   "filters": [
+    {
+     "type": "weekday",
+     "show": false,
+     "options": [
+      {
+       "id": 1,
+       "name": "monday",
+       "nameTranslated": "Montag",
+       "sortKey": 0
+      },
+      {
+       "id": 2,
+       "name": "tuesday",
+       "nameTranslated": "Dienstag",
+       "sortKey": 1
+      },
+      {
+       "id": 3,
+       "name": "wednesday",
+       "nameTranslated": "Mittwoch",
+       "sortKey": 2
+      },
+      {
+       "id": 4,
+       "name": "thursday",
+       "nameTranslated": "Donnerstag",
+       "sortKey": 3
+      },
+      {
+       "id": 5,
+       "name": "friday",
+       "nameTranslated": "Freitag",
+       "sortKey": 4
+      },
+      {
+       "id": 6,
+       "name": "saturday",
+       "nameTranslated": "Samstag",
+       "sortKey": 5
+      },
+      {
+       "id": 0,
+       "name": "sunday",
+       "nameTranslated": "Sonntag",
+       "sortKey": 6
+      }
+     ]
+    },
+    {
+     "type": "targetgroups",
+     "show": false,
+     "options": [
+      {
+       "id": 1,
+       "name": "everyone",
+       "nameTranslated": "Jeder",
+       "sortKey": 1
+      },
+      {
+       "id": 2,
+       "name": "men",
+       "nameTranslated": "Männer",
+       "sortKey": 2
+      },
+      {
+       "id": 3,
+       "name": "women",
+       "nameTranslated": "Frauen",
+       "sortKey": 3
+      },
+      {
+       "id": 4,
+       "name": "singles",
+       "nameTranslated": "Singles",
+       "sortKey": 4
+      },
+      {
+       "id": 5,
+       "name": "students",
+       "nameTranslated": "Studenten",
+       "sortKey": 5
+      }
+     ]
+    },
+    {
+     "type": "agegroups",
+     "show": false,
+     "options": [
+      {
+       "id": 9,
+       "name": "0-2",
+       "nameTranslated": "0-2",
+       "sortKey": 0,
+       "start": 0,
+       "end": 2
+      },
+      {
+       "id": 10,
+       "name": "3-5",
+       "nameTranslated": "3-5",
+       "sortKey": 3,
+       "start": 3,
+       "end": 5
+      },
+      {
+       "id": 11,
+       "name": "6-9",
+       "nameTranslated": "6-9",
+       "sortKey": 6,
+       "start": 6,
+       "end": 9
+      },
+      {
+       "id": 1,
+       "name": "10-12",
+       "nameTranslated": "10-12",
+       "sortKey": 10,
+       "start": 10,
+       "end": 12
+      },
+      {
+       "id": 2,
+       "name": "13-19",
+       "nameTranslated": "13-19",
+       "sortKey": 13,
+       "start": 13,
+       "end": 19
+      },
+      {
+       "id": 4,
+       "name": "20er",
+       "nameTranslated": "20er",
+       "sortKey": 20,
+       "start": 20,
+       "end": 29
+      },
+      {
+       "id": 5,
+       "name": "30er",
+       "nameTranslated": "30er",
+       "sortKey": 30,
+       "start": 30,
+       "end": 39
+      },
+      {
+       "id": 6,
+       "name": "40er",
+       "nameTranslated": "40er",
+       "sortKey": 40,
+       "start": 40,
+       "end": 49
+      },
+      {
+       "id": 7,
+       "name": "50er",
+       "nameTranslated": "50er",
+       "sortKey": 50,
+       "start": 50,
+       "end": 59
+      },
+      {
+       "id": 8,
+       "name": "60+",
+       "nameTranslated": "60+",
+       "sortKey": 60,
+       "start": 60,
+       "end": 120
+      }
+     ]
+    },
+    {
+     "type": "groupcategory",
+     "show": false,
+     "options": [
+      {
+       "id": 2,
+       "name": "Kleingruppe",
+       "nameTranslated": "Kleingruppe",
+       "sortKey": 10,
+       "description": null,
+       "color": "violet",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      {
+       "id": 3,
+       "name": "Seminar",
+       "nameTranslated": "Seminar",
+       "sortKey": 20,
+       "description": null,
+       "color": "emerald",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      {
+       "id": 1,
+       "name": "Sportangebot",
+       "nameTranslated": "Sportangebot",
+       "sortKey": 30,
+       "description": null,
+       "color": "orange",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      }
+     ]
+    },
+    {
+     "type": "campus",
+     "show": false,
+     "options": [
+      {
+       "id": 2,
+       "guid": "DD401739-A659-4C3D-B425-05A6518F2F5F",
+       "name": "ChuToo Church",
+       "nameTranslated": "ChuToo Church",
+       "shortName": "CTC",
+       "shorty": "C",
+       "sortKey": 0,
+       "address": {
+        "id": 2,
+        "domainType": "church",
+        "domainIdentifier": "2",
+        "name": "ChuToo Church",
+        "icon": null,
+        "color": null,
+        "street": "Jungfernstieg 10",
+        "addition": null,
+        "district": null,
+        "zip": "20354",
+        "city": "Hamburg",
+        "country": "DE",
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "ChuToo Church",
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": "20354",
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2022-08-23T12:42:24Z",
+        "modifiedPerson": {
+         "id": 235
+        }
+       }
+      },
+      {
+       "id": 0,
+       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "name": "Winterhude",
+       "nameTranslated": "Winterhude",
+       "shortName": null,
+       "shorty": "W",
+       "sortKey": 1,
+       "address": {
+        "id": 14,
+        "domainType": "campus",
+        "domainIdentifier": "0",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:17:52Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      },
+      {
+       "id": 1,
+       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "name": "Hafencity",
+       "nameTranslated": "Hafencity",
+       "shortName": null,
+       "shorty": "HC",
+       "sortKey": 2,
+       "address": {
+        "id": 17,
+        "domainType": "campus",
+        "domainIdentifier": "1",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:18:12Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "meta": {
+    "createdDate": "2018-02-08T16:18:52Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2018-02-08T16:19:45Z",
+    "modifiedPerson": {
+     "id": -4
+    }
+   },
+   "groups": [
+    {
+     "id": 168,
+     "name": "Finde deine Kleingruppe",
+     "information": {
+      "meetingTime": "",
+      "groupStatusId": 1,
+      "dateOfFoundation": null,
+      "color": "red",
+      "weekday": null,
+      "groupCategory": null,
+      "ageGroups": [],
+      "targetGroup": null,
+      "note": "",
+      "campus": null,
+      "groupPlaces": [],
+      "leader": [
+       {
+        "title": "Sarah Meisner",
+        "domainType": "person",
+        "domainIdentifier": "2806",
+        "apiUrl": "https://gemeinde.example/api/persons/2806",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232806/",
+        "imageUrl": "https://gemeinde.example/images/2404/2b16d5857f1809bf24b19a4b5f17333a62a8aa5d0c85e80437d8174bd1fa4e28",
+        "icon": "user",
+        "color": null,
+        "initials": "SM",
+        "domainAttributes": {
+         "firstName": "Sarah",
+         "lastName": "Meisner",
+         "guid": "400C6EC6-C094-4F1C-BA7B-3EF10093EFFD",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       {
+        "title": "Karin Messerschmidt",
+        "domainType": "person",
+        "domainIdentifier": "2812",
+        "apiUrl": "https://gemeinde.example/api/persons/2812",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232812/",
+        "imageUrl": "https://gemeinde.example/images/2410/fd0ce517efcd8eee5196289846713a7317fe5933a383647ae6d4f3c5753d8fdb",
+        "icon": "user",
+        "color": null,
+        "initials": "KM",
+        "domainAttributes": {
+         "firstName": "Karin",
+         "lastName": "Messerschmidt",
+         "guid": "1E3A0461-3E37-4A77-A4B7-920747B23312",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      ]
+     },
+     "settings": {
+      "allowOtherRegistration": false,
+      "allowSameEmailRegistration": false,
+      "allowSameemailRegistration": false,
+      "allowChildRegistration": false,
+      "allowSpouseRegistration": true,
+      "hideContactLeader": false,
+      "hideLogin": false,
+      "showStreet": false,
+      "emailVerificationMode": "all",
+      "signUpNotificationSent": null
+     },
+     "autoAccept": false,
+     "signUpCountsTowardsSeats": false,
+     "allowWaitinglist": false,
+     "waitinglistMaxPersons": null,
+     "maxMemberCount": null,
+     "currentMemberCount": 0,
+     "requestedSeatsCount": 0,
+     "requestedWaitinglistSeatsCount": 0,
+     "canSignUp": true,
+     "signUpConditions": {
+      "groupIsNotHidden": true,
+      "groupIsActive": true,
+      "groupIsOpenForMembers": true,
+      "groupIsNotFull": true,
+      "groupHasSpaceForRequests": true,
+      "groupAllowsWaitinglist": false,
+      "groupHasSpaceOnWaitinglist": true,
+      "groupHasLeader": true,
+      "atLeastOneLeaderCanCreateNewPerson": true,
+      "endDateNotPassed": true,
+      "signUpRoleSetInGroup": true,
+      "groupIsPublic": true,
+      "canContactLeader": true,
+      "newPersonStationIsSet": true,
+      "newPersonStatusIsSet": true,
+      "newPersonDepartmentIsSet": true,
+      "groupVisibility": "public",
+      "canSignUp": true,
+      "canSignUpAsNewPerson": true,
+      "@deprecated": {
+       "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+      },
+      "defaultRoleSetInGroup": true
+     },
+     "signUpHeadline": "Teilnahme beantragen",
+     "showPublicCannotViewGroup": false,
+     "children": [
+      13,
+      16,
+      17,
+      22,
+      29,
+      132,
+      203
+     ],
+     "@deprecated": {
+      "requestedPlacesCount": "requestedSeatsCount",
+      "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+     },
+     "requestedPlacesCount": 0,
+     "requestedWaitinglistPlacesCount": 0
+    },
+    {
+     "id": 203,
+     "name": "Kleingruppe Adendorf",
+     "information": {
+      "meetingTime": "19:00",
+      "groupStatusId": 1,
+      "dateOfFoundation": null,
+      "color": "sky",
+      "weekday": {
+       "id": 3,
+       "name": "wednesday",
+       "nameTranslated": "Mittwoch",
+       "sortKey": 2
+      },
+      "groupCategory": {
+       "id": 2,
+       "name": "Kleingruppe",
+       "nameTranslated": "Kleingruppe",
+       "sortKey": 10,
+       "description": null,
+       "color": "violet",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      "ageGroups": [
+       {
+        "id": 5,
+        "name": "30er",
+        "nameTranslated": "30er",
+        "sortKey": 30,
+        "start": 30,
+        "end": 39
+       },
+       {
+        "id": 6,
+        "name": "40er",
+        "nameTranslated": "40er",
+        "sortKey": 40,
+        "start": 40,
+        "end": 49
+       },
+       {
+        "id": 7,
+        "name": "50er",
+        "nameTranslated": "50er",
+        "sortKey": 50,
+        "start": 50,
+        "end": 59
+       },
+       {
+        "id": 8,
+        "name": "60+",
+        "nameTranslated": "60+",
+        "sortKey": 60,
+        "start": 60,
+        "end": 120
+       }
+      ],
+      "targetGroup": {
+       "id": 1,
+       "name": "everyone",
+       "nameTranslated": "Jeder",
+       "sortKey": 1
+      },
+      "note": "",
+      "campus": {
+       "id": 0,
+       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "name": "Winterhude",
+       "nameTranslated": "Winterhude",
+       "shortName": null,
+       "shorty": "W",
+       "sortKey": 1,
+       "address": {
+        "id": 14,
+        "domainType": "campus",
+        "domainIdentifier": "0",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:17:52Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      },
+      "groupPlaces": [
+       {
+        "id": 245,
+        "domainType": "group",
+        "domainIdentifier": "203",
+        "name": "Jenny Bischof",
+        "icon": "house",
+        "color": "green",
+        "district": "",
+        "zip": "20148",
+        "city": "Hamburg",
+        "country": null,
+        "latitudeLoose": "53.5679",
+        "longitudeLoose": "9.9982",
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "Jenny Bischof",
+        "markerIcon": "house",
+        "markerColor": "green",
+        "markerUrl": "system/churchcore/images/gruppe_gruen.png",
+        "postalcode": "20148"
+       }
+      ],
+      "leader": [
+       {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      ]
+     },
+     "settings": {
+      "allowOtherRegistration": false,
+      "allowSameEmailRegistration": true,
+      "allowSameemailRegistration": true,
+      "allowChildRegistration": true,
+      "allowSpouseRegistration": true,
+      "hideContactLeader": false,
+      "hideLogin": false,
+      "showStreet": false,
+      "emailVerificationMode": "all",
+      "signUpNotificationSent": null
+     },
+     "autoAccept": false,
+     "signUpCountsTowardsSeats": false,
+     "allowWaitinglist": false,
+     "waitinglistMaxPersons": null,
+     "maxMemberCount": 14,
+     "currentMemberCount": 5,
+     "requestedSeatsCount": 0,
+     "requestedWaitinglistSeatsCount": 0,
+     "canSignUp": true,
+     "signUpConditions": {
+      "groupIsNotHidden": true,
+      "groupIsActive": true,
+      "groupIsOpenForMembers": true,
+      "groupIsNotFull": true,
+      "groupHasSpaceForRequests": true,
+      "groupAllowsWaitinglist": false,
+      "groupHasSpaceOnWaitinglist": true,
+      "groupHasLeader": true,
+      "atLeastOneLeaderCanCreateNewPerson": true,
+      "endDateNotPassed": true,
+      "signUpRoleSetInGroup": true,
+      "groupIsPublic": true,
+      "canContactLeader": true,
+      "newPersonStationIsSet": true,
+      "newPersonStatusIsSet": true,
+      "newPersonDepartmentIsSet": true,
+      "groupVisibility": "public",
+      "canSignUp": true,
+      "canSignUpAsNewPerson": true,
+      "@deprecated": {
+       "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+      },
+      "defaultRoleSetInGroup": true
+     },
+     "signUpHeadline": "Teilnahme beantragen",
+     "showPublicCannotViewGroup": false,
+     "children": [],
+     "@deprecated": {
+      "requestedPlacesCount": "requestedSeatsCount",
+      "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+     },
+     "requestedPlacesCount": 0,
+     "requestedWaitinglistPlacesCount": 0
+    },
+    {
+     "id": 13,
+     "name": "Kleingruppe Beck",
+     "information": {
+      "meetingTime": "19:00",
+      "groupStatusId": 1,
+      "dateOfFoundation": null,
+      "color": "gray",
+      "weekday": {
+       "id": 2,
+       "name": "tuesday",
+       "nameTranslated": "Dienstag",
+       "sortKey": 1
+      },
+      "groupCategory": {
+       "id": 2,
+       "name": "Kleingruppe",
+       "nameTranslated": "Kleingruppe",
+       "sortKey": 10,
+       "description": null,
+       "color": "violet",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      "ageGroups": [
+       {
+        "id": 4,
+        "name": "20er",
+        "nameTranslated": "20er",
+        "sortKey": 20,
+        "start": 20,
+        "end": 29
+       },
+       {
+        "id": 5,
+        "name": "30er",
+        "nameTranslated": "30er",
+        "sortKey": 30,
+        "start": 30,
+        "end": 39
+       }
+      ],
+      "targetGroup": {
+       "id": 2,
+       "name": "men",
+       "nameTranslated": "Männer",
+       "sortKey": 2
+      },
+      "note": "Wir sind toll!",
+      "campus": {
+       "id": 0,
+       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "name": "Winterhude",
+       "nameTranslated": "Winterhude",
+       "shortName": null,
+       "shorty": "W",
+       "sortKey": 1,
+       "address": {
+        "id": 14,
+        "domainType": "campus",
+        "domainIdentifier": "0",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:17:52Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      },
+      "groupPlaces": [
+       {
+        "id": 215,
+        "domainType": "group",
+        "domainIdentifier": "13",
+        "name": "Karl Andrews",
+        "icon": "house",
+        "color": "green",
+        "district": "",
+        "zip": "22087",
+        "city": "Hamburg",
+        "country": null,
+        "latitudeLoose": "53.5762",
+        "longitudeLoose": "10.017",
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "Karl Andrews",
+        "markerIcon": "house",
+        "markerColor": "green",
+        "markerUrl": "system/churchcore/images/gruppe_gruen.png",
+        "postalcode": "22087"
+       },
+       {
+        "id": 218,
+        "domainType": "group",
+        "domainIdentifier": "13",
+        "name": "Simone Gerlach",
+        "icon": "house",
+        "color": "green",
+        "district": "",
+        "zip": "20095",
+        "city": "Hamburg",
+        "country": null,
+        "latitudeLoose": "53.5501",
+        "longitudeLoose": "9.9981",
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "Simone Gerlach",
+        "markerIcon": "house",
+        "markerColor": "green",
+        "markerUrl": "system/churchcore/images/gruppe_gruen.png",
+        "postalcode": "20095"
+       }
+      ],
+      "leader": [
+       {
+        "title": "Karl Andrews",
+        "domainType": "person",
+        "domainIdentifier": "188",
+        "apiUrl": "https://gemeinde.example/api/persons/188",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23188/",
+        "imageUrl": "https://gemeinde.example/images/463/24e1b16d2c842d1d5bd5d640ebe472ba9be97f702f22764f0c16e2e0cf0417be",
+        "icon": "user",
+        "color": null,
+        "initials": "KA",
+        "domainAttributes": {
+         "firstName": "Karl",
+         "lastName": "Andrews",
+         "guid": "7F472E8A-F882-47AF-9282-74EE6B9DD306",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      ]
+     },
+     "settings": {
+      "allowOtherRegistration": false,
+      "allowSameEmailRegistration": true,
+      "allowSameemailRegistration": true,
+      "allowChildRegistration": true,
+      "allowSpouseRegistration": true,
+      "hideContactLeader": false,
+      "hideLogin": false,
+      "showStreet": false,
+      "emailVerificationMode": "all",
+      "signUpNotificationSent": null
+     },
+     "autoAccept": false,
+     "signUpCountsTowardsSeats": false,
+     "allowWaitinglist": false,
+     "waitinglistMaxPersons": null,
+     "maxMemberCount": 12,
+     "currentMemberCount": 3,
+     "requestedSeatsCount": 1,
+     "requestedWaitinglistSeatsCount": 0,
+     "canSignUp": true,
+     "signUpConditions": {
+      "groupIsNotHidden": true,
+      "groupIsActive": true,
+      "groupIsOpenForMembers": true,
+      "groupIsNotFull": true,
+      "groupHasSpaceForRequests": true,
+      "groupAllowsWaitinglist": false,
+      "groupHasSpaceOnWaitinglist": true,
+      "groupHasLeader": true,
+      "atLeastOneLeaderCanCreateNewPerson": true,
+      "endDateNotPassed": true,
+      "signUpRoleSetInGroup": true,
+      "groupIsPublic": true,
+      "canContactLeader": false,
+      "newPersonStationIsSet": true,
+      "newPersonStatusIsSet": true,
+      "newPersonDepartmentIsSet": true,
+      "groupVisibility": "public",
+      "canSignUp": true,
+      "canSignUpAsNewPerson": false,
+      "@deprecated": {
+       "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+      },
+      "defaultRoleSetInGroup": true
+     },
+     "signUpHeadline": "Teilnahme beantragen",
+     "showPublicCannotViewGroup": false,
+     "children": [],
+     "@deprecated": {
+      "requestedPlacesCount": "requestedSeatsCount",
+      "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+     },
+     "requestedPlacesCount": 1,
+     "requestedWaitinglistPlacesCount": 0
+    },
+    {
+     "id": 16,
+     "name": "Kleingruppe Brooks",
+     "information": {
+      "meetingTime": "19:30",
+      "groupStatusId": 1,
+      "dateOfFoundation": null,
+      "color": "gray",
+      "weekday": {
+       "id": 2,
+       "name": "tuesday",
+       "nameTranslated": "Dienstag",
+       "sortKey": 1
+      },
+      "groupCategory": {
+       "id": 2,
+       "name": "Kleingruppe",
+       "nameTranslated": "Kleingruppe",
+       "sortKey": 10,
+       "description": null,
+       "color": "violet",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      "ageGroups": [
+       {
+        "id": 4,
+        "name": "20er",
+        "nameTranslated": "20er",
+        "sortKey": 20,
+        "start": 20,
+        "end": 29
+       },
+       {
+        "id": 5,
+        "name": "30er",
+        "nameTranslated": "30er",
+        "sortKey": 30,
+        "start": 30,
+        "end": 39
+       }
+      ],
+      "targetGroup": {
+       "id": 1,
+       "name": "everyone",
+       "nameTranslated": "Jeder",
+       "sortKey": 1
+      },
+      "note": "",
+      "campus": {
+       "id": 0,
+       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "name": "Winterhude",
+       "nameTranslated": "Winterhude",
+       "shortName": null,
+       "shorty": "W",
+       "sortKey": 1,
+       "address": {
+        "id": 14,
+        "domainType": "campus",
+        "domainIdentifier": "0",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:17:52Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      },
+      "groupPlaces": [
+       {
+        "id": 224,
+        "domainType": "group",
+        "domainIdentifier": "16",
+        "name": "Lennart (Lenni) Baldauf",
+        "icon": "house",
+        "color": "green",
+        "district": "",
+        "zip": "22085",
+        "city": "Hamburg",
+        "country": null,
+        "latitudeLoose": "53.5795",
+        "longitudeLoose": "10.019",
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "Lennart (Lenni) Baldauf",
+        "markerIcon": "house",
+        "markerColor": "green",
+        "markerUrl": "system/churchcore/images/gruppe_gruen.png",
+        "postalcode": "22085"
+       }
+      ],
+      "leader": [
+       {
+        "title": "Lennart Baldauf",
+        "domainType": "person",
+        "domainIdentifier": "133",
+        "apiUrl": "https://gemeinde.example/api/persons/133",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23133/",
+        "imageUrl": "https://gemeinde.example/images/514/6f83dadf44cf94a71fdb93d3f34858c37183d89abee6f60dedca838759dfb60c",
+        "icon": "user",
+        "color": null,
+        "initials": "LB",
+        "domainAttributes": {
+         "firstName": "Lennart",
+         "lastName": "Baldauf",
+         "guid": "68554A70-0735-4174-833B-4F3F0A9BA861",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       {
+        "title": "Hans Tooly",
+        "domainType": "person",
+        "domainIdentifier": "255",
+        "apiUrl": "https://gemeinde.example/api/persons/255",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23255/",
+        "imageUrl": "https://gemeinde.example/images/2179/84214297047cd4924af835aa909e2fcf8f39ca87cbd90b66fba0fd4fb1deb111",
+        "icon": "user",
+        "color": null,
+        "initials": "HT",
+        "domainAttributes": {
+         "firstName": "Hans",
+         "lastName": "Tooly",
+         "guid": "2C511BC3-857D-4B1D-A111-BFEE29761755",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      ]
+     },
+     "settings": {
+      "allowOtherRegistration": false,
+      "allowSameEmailRegistration": true,
+      "allowSameemailRegistration": true,
+      "allowChildRegistration": true,
+      "allowSpouseRegistration": true,
+      "hideContactLeader": false,
+      "hideLogin": false,
+      "showStreet": false,
+      "emailVerificationMode": "all",
+      "signUpNotificationSent": null
+     },
+     "autoAccept": false,
+     "signUpCountsTowardsSeats": false,
+     "allowWaitinglist": false,
+     "waitinglistMaxPersons": null,
+     "maxMemberCount": 4,
+     "currentMemberCount": 5,
+     "requestedSeatsCount": 0,
+     "requestedWaitinglistSeatsCount": 0,
+     "canSignUp": false,
+     "signUpConditions": {
+      "groupIsNotHidden": true,
+      "groupIsActive": true,
+      "groupIsOpenForMembers": true,
+      "groupIsNotFull": false,
+      "groupHasSpaceForRequests": false,
+      "groupAllowsWaitinglist": false,
+      "groupHasSpaceOnWaitinglist": true,
+      "groupHasLeader": true,
+      "atLeastOneLeaderCanCreateNewPerson": true,
+      "endDateNotPassed": true,
+      "signUpRoleSetInGroup": true,
+      "groupIsPublic": true,
+      "canContactLeader": true,
+      "newPersonStationIsSet": true,
+      "newPersonStatusIsSet": true,
+      "newPersonDepartmentIsSet": true,
+      "groupVisibility": "public",
+      "canSignUp": false,
+      "canSignUpAsNewPerson": false,
+      "@deprecated": {
+       "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+      },
+      "defaultRoleSetInGroup": true
+     },
+     "signUpHeadline": "Teilnahme beantragen",
+     "showPublicCannotViewGroup": false,
+     "children": [],
+     "@deprecated": {
+      "requestedPlacesCount": "requestedSeatsCount",
+      "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+     },
+     "requestedPlacesCount": 0,
+     "requestedWaitinglistPlacesCount": 0
+    },
+    {
+     "id": 132,
+     "name": "Kleingruppe Gerner",
+     "information": {
+      "meetingTime": "19:30",
+      "groupStatusId": 1,
+      "dateOfFoundation": null,
+      "color": "sky",
+      "weekday": {
+       "id": 3,
+       "name": "wednesday",
+       "nameTranslated": "Mittwoch",
+       "sortKey": 2
+      },
+      "groupCategory": {
+       "id": 2,
+       "name": "Kleingruppe",
+       "nameTranslated": "Kleingruppe",
+       "sortKey": 10,
+       "description": null,
+       "color": "violet",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      "ageGroups": [
+       {
+        "id": 4,
+        "name": "20er",
+        "nameTranslated": "20er",
+        "sortKey": 20,
+        "start": 20,
+        "end": 29
+       },
+       {
+        "id": 5,
+        "name": "30er",
+        "nameTranslated": "30er",
+        "sortKey": 30,
+        "start": 30,
+        "end": 39
+       }
+      ],
+      "targetGroup": {
+       "id": 3,
+       "name": "women",
+       "nameTranslated": "Frauen",
+       "sortKey": 3
+      },
+      "note": "",
+      "campus": {
+       "id": 1,
+       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "name": "Hafencity",
+       "nameTranslated": "Hafencity",
+       "shortName": null,
+       "shorty": "HC",
+       "sortKey": 2,
+       "address": {
+        "id": 17,
+        "domainType": "campus",
+        "domainIdentifier": "1",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:18:12Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      },
+      "groupPlaces": [
+       {
+        "id": 227,
+        "domainType": "group",
+        "domainIdentifier": "132",
+        "name": "Oskar Gerner",
+        "icon": "house",
+        "color": "green",
+        "district": "",
+        "zip": "22307",
+        "city": "Hamburg",
+        "country": null,
+        "latitudeLoose": "53.5927",
+        "longitudeLoose": "10.0341",
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "Oskar Gerner",
+        "markerIcon": "house",
+        "markerColor": "green",
+        "markerUrl": "system/churchcore/images/gruppe_gruen.png",
+        "postalcode": "22307"
+       }
+      ],
+      "leader": [
+       {
+        "title": "Finnja George",
+        "domainType": "person",
+        "domainIdentifier": "67",
+        "apiUrl": "https://gemeinde.example/api/persons/67",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2367/",
+        "imageUrl": "https://gemeinde.example/images/1905/b5e6af9c477ffc4b99a8b19e40eba13cf983e272f91976905e2ef0b48b5f45b7",
+        "icon": "user",
+        "color": null,
+        "initials": "FG",
+        "domainAttributes": {
+         "firstName": "Finnja",
+         "lastName": "George",
+         "guid": "97AAA819-C212-4C4E-B8BB-984E2627224E",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      ]
+     },
+     "settings": {
+      "allowOtherRegistration": false,
+      "allowSameEmailRegistration": true,
+      "allowSameemailRegistration": true,
+      "allowChildRegistration": true,
+      "allowSpouseRegistration": true,
+      "hideContactLeader": false,
+      "hideLogin": false,
+      "showStreet": false,
+      "emailVerificationMode": "all",
+      "signUpNotificationSent": null
+     },
+     "autoAccept": false,
+     "signUpCountsTowardsSeats": false,
+     "allowWaitinglist": false,
+     "waitinglistMaxPersons": null,
+     "maxMemberCount": 10,
+     "currentMemberCount": 4,
+     "requestedSeatsCount": 0,
+     "requestedWaitinglistSeatsCount": 0,
+     "canSignUp": true,
+     "signUpConditions": {
+      "groupIsNotHidden": true,
+      "groupIsActive": true,
+      "groupIsOpenForMembers": true,
+      "groupIsNotFull": true,
+      "groupHasSpaceForRequests": true,
+      "groupAllowsWaitinglist": false,
+      "groupHasSpaceOnWaitinglist": true,
+      "groupHasLeader": true,
+      "atLeastOneLeaderCanCreateNewPerson": true,
+      "endDateNotPassed": true,
+      "signUpRoleSetInGroup": true,
+      "groupIsPublic": true,
+      "canContactLeader": true,
+      "newPersonStationIsSet": false,
+      "newPersonStatusIsSet": false,
+      "newPersonDepartmentIsSet": false,
+      "groupVisibility": "public",
+      "canSignUp": true,
+      "canSignUpAsNewPerson": true,
+      "@deprecated": {
+       "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+      },
+      "defaultRoleSetInGroup": true
+     },
+     "signUpHeadline": "Teilnahme beantragen",
+     "showPublicCannotViewGroup": false,
+     "children": [],
+     "@deprecated": {
+      "requestedPlacesCount": "requestedSeatsCount",
+      "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+     },
+     "requestedPlacesCount": 0,
+     "requestedWaitinglistPlacesCount": 0
+    },
+    {
+     "id": 29,
+     "name": "Kleingruppe Landherr",
+     "information": {
+      "meetingTime": "20:00",
+      "groupStatusId": 1,
+      "dateOfFoundation": null,
+      "color": "sky",
+      "weekday": {
+       "id": 4,
+       "name": "thursday",
+       "nameTranslated": "Donnerstag",
+       "sortKey": 3
+      },
+      "groupCategory": {
+       "id": 2,
+       "name": "Kleingruppe",
+       "nameTranslated": "Kleingruppe",
+       "sortKey": 10,
+       "description": null,
+       "color": "violet",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      "ageGroups": [],
+      "targetGroup": {
+       "id": 1,
+       "name": "everyone",
+       "nameTranslated": "Jeder",
+       "sortKey": 1
+      },
+      "note": "",
+      "campus": {
+       "id": 1,
+       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "name": "Hafencity",
+       "nameTranslated": "Hafencity",
+       "shortName": null,
+       "shorty": "HC",
+       "sortKey": 2,
+       "address": {
+        "id": 17,
+        "domainType": "campus",
+        "domainIdentifier": "1",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:18:12Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      },
+      "groupPlaces": [
+       {
+        "id": 230,
+        "domainType": "group",
+        "domainIdentifier": "29",
+        "name": "Jan Landherr",
+        "icon": "house",
+        "color": "green",
+        "district": "",
+        "zip": "20251",
+        "city": "Hamburg",
+        "country": null,
+        "latitudeLoose": "53.5924",
+        "longitudeLoose": "9.987",
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "Jan Landherr",
+        "markerIcon": "house",
+        "markerColor": "green",
+        "markerUrl": "system/churchcore/images/gruppe_gruen.png",
+        "postalcode": "20251"
+       }
+      ],
+      "leader": [
+       {
+        "title": "Jan Landherr",
+        "domainType": "person",
+        "domainIdentifier": "31",
+        "apiUrl": "https://gemeinde.example/api/persons/31",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2331/",
+        "imageUrl": "https://gemeinde.example/images/1872/301aef070e32047e13516a3f1f345e9352390993ff7c19224ffc863843c98767",
+        "icon": "user",
+        "color": null,
+        "initials": "JL",
+        "domainAttributes": {
+         "firstName": "Jan",
+         "lastName": "Landherr",
+         "guid": "E1AA566F-63A1-427D-B495-B1626914EF21",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      ]
+     },
+     "settings": {
+      "allowOtherRegistration": false,
+      "allowSameEmailRegistration": true,
+      "allowSameemailRegistration": true,
+      "allowChildRegistration": true,
+      "allowSpouseRegistration": true,
+      "hideContactLeader": false,
+      "hideLogin": false,
+      "showStreet": false,
+      "emailVerificationMode": "all",
+      "signUpNotificationSent": null
+     },
+     "autoAccept": false,
+     "signUpCountsTowardsSeats": false,
+     "allowWaitinglist": false,
+     "waitinglistMaxPersons": null,
+     "maxMemberCount": 10,
+     "currentMemberCount": 5,
+     "requestedSeatsCount": 0,
+     "requestedWaitinglistSeatsCount": 0,
+     "canSignUp": true,
+     "signUpConditions": {
+      "groupIsNotHidden": true,
+      "groupIsActive": true,
+      "groupIsOpenForMembers": true,
+      "groupIsNotFull": true,
+      "groupHasSpaceForRequests": true,
+      "groupAllowsWaitinglist": false,
+      "groupHasSpaceOnWaitinglist": true,
+      "groupHasLeader": true,
+      "atLeastOneLeaderCanCreateNewPerson": true,
+      "endDateNotPassed": true,
+      "signUpRoleSetInGroup": true,
+      "groupIsPublic": true,
+      "canContactLeader": true,
+      "newPersonStationIsSet": false,
+      "newPersonStatusIsSet": false,
+      "newPersonDepartmentIsSet": false,
+      "groupVisibility": "public",
+      "canSignUp": true,
+      "canSignUpAsNewPerson": true,
+      "@deprecated": {
+       "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+      },
+      "defaultRoleSetInGroup": true
+     },
+     "signUpHeadline": "Teilnahme beantragen",
+     "showPublicCannotViewGroup": false,
+     "children": [],
+     "@deprecated": {
+      "requestedPlacesCount": "requestedSeatsCount",
+      "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+     },
+     "requestedPlacesCount": 0,
+     "requestedWaitinglistPlacesCount": 0
+    },
+    {
+     "id": 17,
+     "name": "Kleingruppe Lippert",
+     "information": {
+      "meetingTime": "20:00",
+      "groupStatusId": 1,
+      "dateOfFoundation": null,
+      "color": "sky",
+      "weekday": {
+       "id": 5,
+       "name": "friday",
+       "nameTranslated": "Freitag",
+       "sortKey": 4
+      },
+      "groupCategory": {
+       "id": 2,
+       "name": "Kleingruppe",
+       "nameTranslated": "Kleingruppe",
+       "sortKey": 10,
+       "description": null,
+       "color": "violet",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      "ageGroups": [
+       {
+        "id": 7,
+        "name": "50er",
+        "nameTranslated": "50er",
+        "sortKey": 50,
+        "start": 50,
+        "end": 59
+       },
+       {
+        "id": 8,
+        "name": "60+",
+        "nameTranslated": "60+",
+        "sortKey": 60,
+        "start": 60,
+        "end": 120
+       }
+      ],
+      "targetGroup": {
+       "id": 1,
+       "name": "everyone",
+       "nameTranslated": "Jeder",
+       "sortKey": 1
+      },
+      "note": "",
+      "campus": {
+       "id": 1,
+       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "name": "Hafencity",
+       "nameTranslated": "Hafencity",
+       "shortName": null,
+       "shorty": "HC",
+       "sortKey": 2,
+       "address": {
+        "id": 17,
+        "domainType": "campus",
+        "domainIdentifier": "1",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:18:12Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      },
+      "groupPlaces": [
+       {
+        "id": 233,
+        "domainType": "group",
+        "domainIdentifier": "17",
+        "name": "Marten Lippert",
+        "icon": "house",
+        "color": "green",
+        "district": "",
+        "zip": "22089",
+        "city": "Hamburg",
+        "country": null,
+        "latitudeLoose": "53.5703",
+        "longitudeLoose": "10.0573",
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "Marten Lippert",
+        "markerIcon": "house",
+        "markerColor": "green",
+        "markerUrl": "system/churchcore/images/gruppe_gruen.png",
+        "postalcode": "22089"
+       }
+      ],
+      "leader": [
+       {
+        "title": "Marten Lippert",
+        "domainType": "person",
+        "domainIdentifier": "71",
+        "apiUrl": "https://gemeinde.example/api/persons/71",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2371/",
+        "imageUrl": "https://gemeinde.example/images/1984/a940354d49c7a3e4c8fbf2c7080b38548f6fbe16fd5597a0cccc40eaea6a637f",
+        "icon": "user",
+        "color": null,
+        "initials": "ML",
+        "domainAttributes": {
+         "firstName": "Marten",
+         "lastName": "Lippert",
+         "guid": "2915D5AD-6967-4C5E-8362-D498899BCA37",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      ]
+     },
+     "settings": {
+      "allowOtherRegistration": false,
+      "allowSameEmailRegistration": true,
+      "allowSameemailRegistration": true,
+      "allowChildRegistration": true,
+      "allowSpouseRegistration": true,
+      "hideContactLeader": false,
+      "hideLogin": false,
+      "showStreet": false,
+      "emailVerificationMode": "all",
+      "signUpNotificationSent": null
+     },
+     "autoAccept": false,
+     "signUpCountsTowardsSeats": false,
+     "allowWaitinglist": false,
+     "waitinglistMaxPersons": null,
+     "maxMemberCount": 12,
+     "currentMemberCount": 8,
+     "requestedSeatsCount": 0,
+     "requestedWaitinglistSeatsCount": 0,
+     "canSignUp": true,
+     "signUpConditions": {
+      "groupIsNotHidden": true,
+      "groupIsActive": true,
+      "groupIsOpenForMembers": true,
+      "groupIsNotFull": true,
+      "groupHasSpaceForRequests": true,
+      "groupAllowsWaitinglist": false,
+      "groupHasSpaceOnWaitinglist": true,
+      "groupHasLeader": true,
+      "atLeastOneLeaderCanCreateNewPerson": true,
+      "endDateNotPassed": true,
+      "signUpRoleSetInGroup": true,
+      "groupIsPublic": true,
+      "canContactLeader": true,
+      "newPersonStationIsSet": false,
+      "newPersonStatusIsSet": false,
+      "newPersonDepartmentIsSet": false,
+      "groupVisibility": "public",
+      "canSignUp": true,
+      "canSignUpAsNewPerson": true,
+      "@deprecated": {
+       "defaultRoleSetInGroup": "signUpRoleSetInGroup"
+      },
+      "defaultRoleSetInGroup": true
+     },
+     "signUpHeadline": "Teilnahme beantragen",
+     "showPublicCannotViewGroup": false,
+     "children": [],
+     "@deprecated": {
+      "requestedPlacesCount": "requestedSeatsCount",
+      "requestedWaitinglistPlacesCount": "requestedWaitinglistSeatsCount"
+     },
+     "requestedPlacesCount": 0,
+     "requestedWaitinglistPlacesCount": 0
+    }
+   ],
+   "@deprecated": {
+    "showLeader": "showLeaders",
+    "showFilter": "showFilters",
+    "sortBy": "orderBy",
+    "filter": "filters"
+   },
+   "sortBy": "name",
+   "showLeader": true,
+   "showFilter": true,
+   "filter": [
+    {
+     "type": "weekday",
+     "show": false,
+     "options": [
+      {
+       "id": 1,
+       "name": "monday",
+       "nameTranslated": "Montag",
+       "sortKey": 0
+      },
+      {
+       "id": 2,
+       "name": "tuesday",
+       "nameTranslated": "Dienstag",
+       "sortKey": 1
+      },
+      {
+       "id": 3,
+       "name": "wednesday",
+       "nameTranslated": "Mittwoch",
+       "sortKey": 2
+      },
+      {
+       "id": 4,
+       "name": "thursday",
+       "nameTranslated": "Donnerstag",
+       "sortKey": 3
+      },
+      {
+       "id": 5,
+       "name": "friday",
+       "nameTranslated": "Freitag",
+       "sortKey": 4
+      },
+      {
+       "id": 6,
+       "name": "saturday",
+       "nameTranslated": "Samstag",
+       "sortKey": 5
+      },
+      {
+       "id": 0,
+       "name": "sunday",
+       "nameTranslated": "Sonntag",
+       "sortKey": 6
+      }
+     ]
+    },
+    {
+     "type": "targetgroups",
+     "show": false,
+     "options": [
+      {
+       "id": 1,
+       "name": "everyone",
+       "nameTranslated": "Jeder",
+       "sortKey": 1
+      },
+      {
+       "id": 2,
+       "name": "men",
+       "nameTranslated": "Männer",
+       "sortKey": 2
+      },
+      {
+       "id": 3,
+       "name": "women",
+       "nameTranslated": "Frauen",
+       "sortKey": 3
+      },
+      {
+       "id": 4,
+       "name": "singles",
+       "nameTranslated": "Singles",
+       "sortKey": 4
+      },
+      {
+       "id": 5,
+       "name": "students",
+       "nameTranslated": "Studenten",
+       "sortKey": 5
+      }
+     ]
+    },
+    {
+     "type": "agegroups",
+     "show": false,
+     "options": [
+      {
+       "id": 9,
+       "name": "0-2",
+       "nameTranslated": "0-2",
+       "sortKey": 0,
+       "start": 0,
+       "end": 2
+      },
+      {
+       "id": 10,
+       "name": "3-5",
+       "nameTranslated": "3-5",
+       "sortKey": 3,
+       "start": 3,
+       "end": 5
+      },
+      {
+       "id": 11,
+       "name": "6-9",
+       "nameTranslated": "6-9",
+       "sortKey": 6,
+       "start": 6,
+       "end": 9
+      },
+      {
+       "id": 1,
+       "name": "10-12",
+       "nameTranslated": "10-12",
+       "sortKey": 10,
+       "start": 10,
+       "end": 12
+      },
+      {
+       "id": 2,
+       "name": "13-19",
+       "nameTranslated": "13-19",
+       "sortKey": 13,
+       "start": 13,
+       "end": 19
+      },
+      {
+       "id": 4,
+       "name": "20er",
+       "nameTranslated": "20er",
+       "sortKey": 20,
+       "start": 20,
+       "end": 29
+      },
+      {
+       "id": 5,
+       "name": "30er",
+       "nameTranslated": "30er",
+       "sortKey": 30,
+       "start": 30,
+       "end": 39
+      },
+      {
+       "id": 6,
+       "name": "40er",
+       "nameTranslated": "40er",
+       "sortKey": 40,
+       "start": 40,
+       "end": 49
+      },
+      {
+       "id": 7,
+       "name": "50er",
+       "nameTranslated": "50er",
+       "sortKey": 50,
+       "start": 50,
+       "end": 59
+      },
+      {
+       "id": 8,
+       "name": "60+",
+       "nameTranslated": "60+",
+       "sortKey": 60,
+       "start": 60,
+       "end": 120
+      }
+     ]
+    },
+    {
+     "type": "groupcategory",
+     "show": false,
+     "options": [
+      {
+       "id": 2,
+       "name": "Kleingruppe",
+       "nameTranslated": "Kleingruppe",
+       "sortKey": 10,
+       "description": null,
+       "color": "violet",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      {
+       "id": 3,
+       "name": "Seminar",
+       "nameTranslated": "Seminar",
+       "sortKey": 20,
+       "description": null,
+       "color": "emerald",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      },
+      {
+       "id": 1,
+       "name": "Sportangebot",
+       "nameTranslated": "Sportangebot",
+       "sortKey": 30,
+       "description": null,
+       "color": "orange",
+       "meta": {
+        "createdDate": "2024-11-11T09:08:30Z",
+        "createdPerson": {
+         "id": -4
+        },
+        "modifiedDate": "2025-03-17T15:21:50Z",
+        "modifiedPerson": {
+         "id": -4
+        }
+       }
+      }
+     ]
+    },
+    {
+     "type": "campus",
+     "show": false,
+     "options": [
+      {
+       "id": 2,
+       "guid": "DD401739-A659-4C3D-B425-05A6518F2F5F",
+       "name": "ChuToo Church",
+       "nameTranslated": "ChuToo Church",
+       "shortName": "CTC",
+       "shorty": "C",
+       "sortKey": 0,
+       "address": {
+        "id": 2,
+        "domainType": "church",
+        "domainIdentifier": "2",
+        "name": "ChuToo Church",
+        "icon": null,
+        "color": null,
+        "street": "Jungfernstieg 10",
+        "addition": null,
+        "district": null,
+        "zip": "20354",
+        "city": "Hamburg",
+        "country": "DE",
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": "ChuToo Church",
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": "20354",
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2022-08-23T12:42:24Z",
+        "modifiedPerson": {
+         "id": 235
+        }
+       }
+      },
+      {
+       "id": 0,
+       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "name": "Winterhude",
+       "nameTranslated": "Winterhude",
+       "shortName": null,
+       "shorty": "W",
+       "sortKey": 1,
+       "address": {
+        "id": 14,
+        "domainType": "campus",
+        "domainIdentifier": "0",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:17:52Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      },
+      {
+       "id": 1,
+       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "name": "Hafencity",
+       "nameTranslated": "Hafencity",
+       "shortName": null,
+       "shorty": "HC",
+       "sortKey": 2,
+       "address": {
+        "id": 17,
+        "domainType": "campus",
+        "domainIdentifier": "1",
+        "name": null,
+        "icon": null,
+        "color": null,
+        "street": null,
+        "addition": null,
+        "district": null,
+        "zip": null,
+        "city": null,
+        "country": null,
+        "latitude": null,
+        "longitude": null,
+        "latitudeLoose": null,
+        "longitudeLoose": null,
+        "@deprecated": {
+         "meetingAt": "name",
+         "markerIcon": "icon",
+         "markerColor": "color",
+         "postalcode": "zip",
+         "markerUrl": "@deleted use icon and color instead",
+         "geoLat": "latitude",
+         "geoLng": "longitude"
+        },
+        "meetingAt": null,
+        "markerIcon": null,
+        "markerColor": null,
+        "markerUrl": null,
+        "postalcode": null,
+        "geoLat": null,
+        "geoLng": null
+       },
+       "meta": {
+        "createdDate": "2022-02-14T10:14:16Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2025-09-15T14:18:12Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

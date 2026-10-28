@@ -1,0 +1,317 @@
+{
+ "operation": "get-eventtemplates",
+ "request": {
+  "method": "GET",
+  "path": "/eventtemplates",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 0,
+    "templateName": "Standard",
+    "calendarId": 2,
+    "eventName": "Gottesdienst",
+    "description": "",
+    "hour": 11,
+    "minute": 0,
+    "durationInSeconds": 5400,
+    "adminIds": [
+     ""
+    ],
+    "sortKey": 0,
+    "facts": {
+     "1": "",
+     "2": "",
+     "3": "",
+     "4": ""
+    },
+    "services": [
+     {
+      "serviceId": 1,
+      "count": 1
+     },
+     {
+      "serviceId": 2,
+      "count": 1
+     },
+     {
+      "serviceId": 3,
+      "count": 1
+     },
+     {
+      "serviceId": 6,
+      "count": 1
+     },
+     {
+      "serviceId": 7,
+      "count": 1
+     },
+     {
+      "serviceId": 8,
+      "count": 1
+     },
+     {
+      "serviceId": 9,
+      "count": 2
+     },
+     {
+      "serviceId": 10,
+      "count": 1
+     },
+     {
+      "serviceId": 12,
+      "count": 3
+     },
+     {
+      "serviceId": 88,
+      "count": 1
+     }
+    ],
+    "@deprecated": {
+     "note": "description"
+    },
+    "note": ""
+   },
+   {
+    "id": 5,
+    "templateName": "Jungschar",
+    "calendarId": 3,
+    "eventName": "Pfadfinder/Jungschar",
+    "description": "",
+    "hour": 15,
+    "minute": 0,
+    "durationInSeconds": 5400,
+    "adminIds": [
+     ""
+    ],
+    "sortKey": 0,
+    "facts": null,
+    "services": [
+     {
+      "serviceId": 25,
+      "count": 2
+     },
+     {
+      "serviceId": 29,
+      "count": 2
+     }
+    ],
+    "@deprecated": {
+     "note": "description"
+    },
+    "note": ""
+   },
+   {
+    "id": 6,
+    "templateName": "Jugendgottesdienst",
+    "calendarId": 3,
+    "eventName": "Jugendgottesdienst",
+    "description": "",
+    "hour": 11,
+    "minute": 0,
+    "durationInSeconds": 5400,
+    "adminIds": [
+     ""
+    ],
+    "sortKey": 0,
+    "facts": {
+     "1": "",
+     "2": "",
+     "3": "",
+     "4": ""
+    },
+    "services": [
+     {
+      "serviceId": 1,
+      "count": 1
+     },
+     {
+      "serviceId": 2,
+      "count": 1
+     },
+     {
+      "serviceId": 3,
+      "count": 1
+     },
+     {
+      "serviceId": 6,
+      "count": 1
+     },
+     {
+      "serviceId": 7,
+      "count": 1
+     },
+     {
+      "serviceId": 8,
+      "count": 1
+     },
+     {
+      "serviceId": 9,
+      "count": 2
+     },
+     {
+      "serviceId": 10,
+      "count": 1
+     },
+     {
+      "serviceId": 12,
+      "count": 2
+     },
+     {
+      "serviceId": 88,
+      "count": 1
+     }
+    ],
+    "@deprecated": {
+     "note": "description"
+    },
+    "note": ""
+   },
+   {
+    "id": 7,
+    "templateName": "Gottesdienst",
+    "calendarId": 2,
+    "eventName": "Gottesdienst",
+    "description": "",
+    "hour": 10,
+    "minute": 0,
+    "durationInSeconds": 5400,
+    "adminIds": [
+     ""
+    ],
+    "sortKey": 0,
+    "facts": {
+     "1": "",
+     "2": "",
+     "3": "",
+     "4": ""
+    },
+    "services": [
+     {
+      "serviceId": 1,
+      "count": 1
+     },
+     {
+      "serviceId": 2,
+      "count": 1
+     },
+     {
+      "serviceId": 3,
+      "count": 1
+     },
+     {
+      "serviceId": 6,
+      "count": 1
+     },
+     {
+      "serviceId": 7,
+      "count": 1
+     },
+     {
+      "serviceId": 8,
+      "count": 1
+     },
+     {
+      "serviceId": 9,
+      "count": 2
+     },
+     {
+      "serviceId": 10,
+      "count": 1
+     },
+     {
+      "serviceId": 12,
+      "count": 3
+     },
+     {
+      "serviceId": 64,
+      "count": 1
+     },
+     {
+      "serviceId": 70,
+      "count": 1
+     },
+     {
+      "serviceId": 76,
+      "count": 1
+     },
+     {
+      "serviceId": 82,
+      "count": 1
+     },
+     {
+      "serviceId": 84,
+      "count": 1
+     },
+     {
+      "serviceId": 87,
+      "count": 2
+     },
+     {
+      "serviceId": 88,
+      "count": 1
+     }
+    ],
+    "@deprecated": {
+     "note": "description"
+    },
+    "note": ""
+   },
+   {
+    "id": 8,
+    "templateName": "Gebetsabend",
+    "calendarId": 2,
+    "eventName": "Gebetsabend",
+    "description": "",
+    "hour": 11,
+    "minute": 0,
+    "durationInSeconds": 5400,
+    "adminIds": [
+     ""
+    ],
+    "sortKey": 0,
+    "facts": {
+     "1": "",
+     "2": "",
+     "3": "",
+     "4": ""
+    },
+    "services": [
+     {
+      "serviceId": 1,
+      "count": 1
+     },
+     {
+      "serviceId": 2,
+      "count": 1
+     },
+     {
+      "serviceId": 3,
+      "count": 1
+     },
+     {
+      "serviceId": 6,
+      "count": 1
+     },
+     {
+      "serviceId": 12,
+      "count": 1
+     },
+     {
+      "serviceId": 88,
+      "count": 1
+     }
+    ],
+    "@deprecated": {
+     "note": "description"
+    },
+    "note": ""
+   }
+  ],
+  "meta": {
+   "count": 5
+  }
+ }
+}

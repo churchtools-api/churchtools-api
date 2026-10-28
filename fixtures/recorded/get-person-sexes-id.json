@@ -1,0 +1,31 @@
+{
+ "operation": "get-person-sexes-id",
+ "request": {
+  "method": "GET",
+  "path": "/person/sexes/3",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 3,
+   "name": "sex.diverse",
+   "nameTranslated": "divers",
+   "sortKey": 0,
+   "salutationFormal": null,
+   "salutationFormalTranslated": "",
+   "salutationInformal": null,
+   "salutationInformalTranslated": "",
+   "meta": {
+    "createdDate": "2026-03-16T13:13:45Z",
+    "createdPerson": {
+     "id": -5
+    },
+    "modifiedDate": "2026-03-16T13:13:45Z",
+    "modifiedPerson": {
+     "id": -5
+    }
+   }
+  }
+ }
+}

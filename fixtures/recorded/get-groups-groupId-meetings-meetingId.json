@@ -1,0 +1,46 @@
+{
+ "operation": "get-groups-groupId-meetings-meetingId",
+ "request": {
+  "method": "GET",
+  "path": "/groups/895/meetings/1057",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1057,
+   "groupId": 895,
+   "startDate": "2026-10-28T22:34:50Z",
+   "isCompleted": false,
+   "isCanceled": false,
+   "hasEditingStarted": false,
+   "numGuests": null,
+   "comment": null,
+   "pollResult": null,
+   "statistics": {
+    "present": 0,
+    "absent": 0,
+    "unsure": 1,
+    "not-in-group": 0
+   },
+   "meta": {
+    "createdDate": "2026-10-28T22:34:50Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T22:34:50Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "dateFrom": "startDate",
+    "dateTo": "endDate",
+    "endDate": "@removed"
+   },
+   "dateFrom": "2026-10-28T22:34:50Z",
+   "dateTo": "2026-10-28T22:34:50Z",
+   "endDate": "2026-10-28T22:34:50Z"
+  }
+ }
+}

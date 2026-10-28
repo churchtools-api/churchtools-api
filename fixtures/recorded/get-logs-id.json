@@ -1,0 +1,24 @@
+{
+ "operation": "get-logs-id",
+ "request": {
+  "method": "GET",
+  "path": "/logs/497464",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 497464,
+   "level": 2,
+   "date": "2026-10-28T22:36:03Z",
+   "personId": 1,
+   "personName": "Armin Adendorf",
+   "person": null,
+   "simulatePersonId": null,
+   "simulatePerson": null,
+   "domainType": "login",
+   "domainId": -1,
+   "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+  }
+ }
+}

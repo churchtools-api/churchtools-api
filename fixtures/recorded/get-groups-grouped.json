@@ -1,0 +1,1056 @@
+{
+ "operation": "get-groups-grouped",
+ "request": {
+  "method": "GET",
+  "path": "/groups/grouped",
+  "query": [
+   [
+    "group_by",
+    "ageGroup"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "groupedBy": "ageGroup",
+   "groupedGroups": {
+    "1": {
+     "key": "1",
+     "groupPreviews": [
+      {
+       "title": "Kids Camp",
+       "domainType": "group",
+       "domainIdentifier": "31",
+       "apiUrl": "https://gemeinde.example/api/groups/31",
+       "frontendUrl": "https://gemeinde.example/groups/31",
+       "imageUrl": "https://gemeinde.example/images/666/a00420006003039f7ec904d33f6704745c67acb0b8ed556873f1e61479dd78bb",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "Das Kids-Camp findet dieses Jahr auf der Insel Borkum statt.",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "0083B274-212B-454F-B2A6-0DF5D6301529"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Löwen (10-12)",
+       "domainType": "group",
+       "domainIdentifier": "14",
+       "apiUrl": "https://gemeinde.example/api/groups/14",
+       "frontendUrl": "https://gemeinde.example/groups/14",
+       "imageUrl": "https://gemeinde.example/images/679/1131b536c09009cf654ec090884627da35e8194308a42913657a7782ce6c99a7",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "L",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "restricted",
+        "guid": "782A37D9-77D1-43D7-9BE5-7F46E784CDC4"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      }
+     ],
+     "all": 2
+    },
+    "2": {
+     "key": "2",
+     "groupPreviews": [
+      {
+       "title": "Jugend fährt nach Rom",
+       "domainType": "group",
+       "domainIdentifier": "37",
+       "apiUrl": "https://gemeinde.example/api/groups/37",
+       "frontendUrl": "https://gemeinde.example/groups/37",
+       "imageUrl": "https://gemeinde.example/images/125/ac554937a9dbedea38df868ba65ff50ec47386cc6773c5c4a1f7be0cde84abb1",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "J",
+       "domainAttributes": {
+        "note": "\"Jugend fährt nach Rom\" ist eine aufregende und unvergessliche Jugendfreizeit, die sich an junge Menschen im Alter von 14 bis 18 Jahren richtet und sie auf eine Reise in die ewige Stadt Rom mitnimmt.\n\nDie Jugendlichen werden die Möglichkeit haben, die reiche Geschichte und Kultur Roms hautnah zu erleben, indem sie historische Sehenswürdigkeiten wie das Kolosseum, das Forum Romanum und den Petersdom besuchen. Neben diesen kulturellen Höhepunkten wird die Freizeit auch Raum für gemeinschaftliches Erleben und Freizeitaktivitäten bieten, wie zum Beispiel gemeinsames Essen, abendliche Lagerfeuer und sportliche Aktivitäten.\n\nWährend der Freizeit werden die Teilnehmer in gemütlichen Unterkünften untergebracht sein und von erfahrenen Betreuern begleitet, die sich um ihr Wohl kümmern und ihnen bei Fragen und Anliegen zur Seite stehen.\n\n\"Jugend fährt nach Rom\" verspricht eine einzigartige Erfahrung zu sein, die die Jugendlichen in ihren Erinnerungen für immer begleiten wird.",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Kids Camp",
+       "domainType": "group",
+       "domainIdentifier": "31",
+       "apiUrl": "https://gemeinde.example/api/groups/31",
+       "frontendUrl": "https://gemeinde.example/groups/31",
+       "imageUrl": "https://gemeinde.example/images/666/a00420006003039f7ec904d33f6704745c67acb0b8ed556873f1e61479dd78bb",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "Das Kids-Camp findet dieses Jahr auf der Insel Borkum statt.",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "0083B274-212B-454F-B2A6-0DF5D6301529"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Konfi-Unterricht",
+       "domainType": "group",
+       "domainIdentifier": "34",
+       "apiUrl": "https://gemeinde.example/api/groups/34",
+       "frontendUrl": "https://gemeinde.example/groups/34",
+       "imageUrl": "https://gemeinde.example/images/2861/1e9c156f898f5caf22a09d0d9d678274ac8b922012562ceaaa384cca6bea5997",
+       "icon": "users",
+       "color": {
+        "key": "gray",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "942E2E06-07E2-4540-B137-8FEBD22DED48"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Wie lerne ich mit Freuden beten?",
+       "domainType": "group",
+       "domainIdentifier": "177",
+       "apiUrl": "https://gemeinde.example/api/groups/177",
+       "frontendUrl": "https://gemeinde.example/groups/177",
+       "imageUrl": "https://gemeinde.example/images/1146/01fcce70d47fac161b4addeaf97f787bb014f59b8977f4fefae7dcb96fa5792f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "### Wie lerne ich mit Freuden beten?\n\nBist du neugierig, wie das Gebet dein Leben bereichern kann? In unserem Seminar \"Wie lerne ich mit Freuden beten?\" laden wir dich ein, die Kraft des Gebets neu zu entdecken und Freude im Gespräch mit Gott zu erleben. Egal, ob du 13 oder 99 Jahre alt bist, diese Veranstaltung bietet dir einen Raum, um zu lernen, dich auszutauschen und in einer unterstützenden Gemeinschaft zu wachsen. Komme zu uns in die Chutoo Church und lass uns gemeinsam die Freude am Gebet entfalten!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Wie setze ich ChurchTools für mein Team optimal ein?",
+       "domainType": "group",
+       "domainIdentifier": "180",
+       "apiUrl": "https://gemeinde.example/api/groups/180",
+       "frontendUrl": "https://gemeinde.example/groups/180",
+       "imageUrl": "https://gemeinde.example/images/1149/b6e2ce06db76c0b09bebc1b8683bef130d272cde2f3ef26b51d68c46ab01d713",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "## Wie setze ich ChurchTools für mein Team optimal ein?\n\nDu bist Teil eines Teams in deiner Gemeinde und möchtest ChurchTools optimal nutzen? Dann ist dieses Seminar genau das Richtige für dich. Jeden Freitag um 19:30 Uhr treffen wir uns in der Chutoo Church, um gemeinsam die Möglichkeiten von ChurchTools zu erkunden. Egal, ob du 13 oder 99 Jahre alt bist, hier bist du willkommen. Lass uns zusammen lernen, wie wir diese Plattform effektiver einsetzen können, um unsere Gemeinschaft zu stärken und Projekte effizienter zu gestalten. Sei dabei und bring deine Fragen und Ideen mit!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      }
+     ],
+     "all": 5
+    },
+    "4": {
+     "key": "4",
+     "groupPreviews": [
+      {
+       "title": "Beziehungsweise",
+       "domainType": "group",
+       "domainIdentifier": "174",
+       "apiUrl": "https://gemeinde.example/api/groups/174",
+       "frontendUrl": "https://gemeinde.example/groups/174",
+       "imageUrl": "https://gemeinde.example/images/1143/9de4311710ffc7c1f79a724dbc5b463a9c8bc3f57e31e022a9ebdad12a8dac7f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "B",
+       "domainAttributes": {
+        "note": "**Was erwartet EUCH?**\n\nJede Partnerschaft hat ihre eigene Art und Weise.  \nEs geht immer bei mir selbst los.   \nWer bin ich, wie bin ich, wo komme ich her und wo will ich hin.  \nDann gehts vom Du zum Wir.  \nWas sind deine unbewußten Beziehungsmuster?\n\nWie können wir uns statt zu bekämpfen ergänzen?\n\nDies und vieles mehr werden wir in diesem Seminar behandeln.\n\nMelde dich hier gleich an.",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Jugend fährt nach Rom",
+       "domainType": "group",
+       "domainIdentifier": "37",
+       "apiUrl": "https://gemeinde.example/api/groups/37",
+       "frontendUrl": "https://gemeinde.example/groups/37",
+       "imageUrl": "https://gemeinde.example/images/125/ac554937a9dbedea38df868ba65ff50ec47386cc6773c5c4a1f7be0cde84abb1",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "J",
+       "domainAttributes": {
+        "note": "\"Jugend fährt nach Rom\" ist eine aufregende und unvergessliche Jugendfreizeit, die sich an junge Menschen im Alter von 14 bis 18 Jahren richtet und sie auf eine Reise in die ewige Stadt Rom mitnimmt.\n\nDie Jugendlichen werden die Möglichkeit haben, die reiche Geschichte und Kultur Roms hautnah zu erleben, indem sie historische Sehenswürdigkeiten wie das Kolosseum, das Forum Romanum und den Petersdom besuchen. Neben diesen kulturellen Höhepunkten wird die Freizeit auch Raum für gemeinschaftliches Erleben und Freizeitaktivitäten bieten, wie zum Beispiel gemeinsames Essen, abendliche Lagerfeuer und sportliche Aktivitäten.\n\nWährend der Freizeit werden die Teilnehmer in gemütlichen Unterkünften untergebracht sein und von erfahrenen Betreuern begleitet, die sich um ihr Wohl kümmern und ihnen bei Fragen und Anliegen zur Seite stehen.\n\n\"Jugend fährt nach Rom\" verspricht eine einzigartige Erfahrung zu sein, die die Jugendlichen in ihren Erinnerungen für immer begleiten wird.",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Kleingruppe Beck",
+       "domainType": "group",
+       "domainIdentifier": "13",
+       "apiUrl": "https://gemeinde.example/api/groups/13",
+       "frontendUrl": "https://gemeinde.example/groups/13",
+       "imageUrl": "https://gemeinde.example/images/3216/f5883e92f8aef52f2091125cd865aa00c0fd7f1b18f99305e87b2f06c66d1a12",
+       "icon": "users",
+       "color": {
+        "key": "gray",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "Wir sind toll!",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "public",
+        "guid": "048BA439-8320-4615-8B1C-AE33459D2A60"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Bischof",
+       "domainType": "group",
+       "domainIdentifier": "22",
+       "apiUrl": "https://gemeinde.example/api/groups/22",
+       "frontendUrl": "https://gemeinde.example/groups/22",
+       "imageUrl": "https://gemeinde.example/images/2855/b2aee6f3e35a34859a038e3f6a0e1c25259b7dfdc6fc7a2f596042621891035d",
+       "icon": "users",
+       "color": {
+        "key": "gray",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "Wir sind eine bunte Mischung junger Erwachsener, die gerne Zeit miteinander verbringen und voneinander lernen. Unser Ziel ist es, eine unterstützende und ermutigende Gemeinschaft zu schaffen, in der alle Teilnehmer im Glauben wachsen und ihre Beziehung zu Gott vertiefen können.\n\nWir treffen uns jeden Mittwoch um 19 Uhr meist bei uns Bischofs, aber hin und wieder auch bei jemand anderem aus der Kleingruppe. Details dazu findet ihr immer in den Gruppenbeiträgen oder im Gruppen-Chat. 💬\n\nNeben den regelmäßigen Treffen organisieren wir auch gemeinsame Aktivitäten, die uns ermöglichen, unseren Glauben aktiv zu leben. Von sozialen Einsätzen bis hin zu kreativen Projekten – wir suchen stets nach Wegen, wie wir unsere Talente zu SEINER Ehre einsetzen können. \n\nWenn das dein Interesse geweckt hat, melde dich gerne bei einem von uns. Wäre super, wenn wir dich bald mal in unser Runde begrüßen dürften. 🤗",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "intern",
+        "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Brooks",
+       "domainType": "group",
+       "domainIdentifier": "16",
+       "apiUrl": "https://gemeinde.example/api/groups/16",
+       "frontendUrl": "https://gemeinde.example/groups/16",
+       "imageUrl": "https://gemeinde.example/images/2852/28e1ff7e8d9f7d481bacac2230c48ae0c4e772f8ff8a6599218e9b5aa5cbcf16",
+       "icon": "users",
+       "color": {
+        "key": "gray",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "public",
+        "guid": "5B986A79-6560-4834-8B03-2182786E977E"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Gerner",
+       "domainType": "group",
+       "domainIdentifier": "132",
+       "apiUrl": "https://gemeinde.example/api/groups/132",
+       "frontendUrl": "https://gemeinde.example/groups/132",
+       "imageUrl": "https://gemeinde.example/images/3225/20587780c3cc8d2ab11d5e374e80eb7782acdfaf3a8ac08ba6558c1fcaa2e55c",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 1,
+        "visibility": "public",
+        "guid": "E75EC335-A2A9-4AD5-9BEC-AD0A0FDC8998"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Wie lerne ich mit Freuden beten?",
+       "domainType": "group",
+       "domainIdentifier": "177",
+       "apiUrl": "https://gemeinde.example/api/groups/177",
+       "frontendUrl": "https://gemeinde.example/groups/177",
+       "imageUrl": "https://gemeinde.example/images/1146/01fcce70d47fac161b4addeaf97f787bb014f59b8977f4fefae7dcb96fa5792f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "### Wie lerne ich mit Freuden beten?\n\nBist du neugierig, wie das Gebet dein Leben bereichern kann? In unserem Seminar \"Wie lerne ich mit Freuden beten?\" laden wir dich ein, die Kraft des Gebets neu zu entdecken und Freude im Gespräch mit Gott zu erleben. Egal, ob du 13 oder 99 Jahre alt bist, diese Veranstaltung bietet dir einen Raum, um zu lernen, dich auszutauschen und in einer unterstützenden Gemeinschaft zu wachsen. Komme zu uns in die Chutoo Church und lass uns gemeinsam die Freude am Gebet entfalten!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Wie setze ich ChurchTools für mein Team optimal ein?",
+       "domainType": "group",
+       "domainIdentifier": "180",
+       "apiUrl": "https://gemeinde.example/api/groups/180",
+       "frontendUrl": "https://gemeinde.example/groups/180",
+       "imageUrl": "https://gemeinde.example/images/1149/b6e2ce06db76c0b09bebc1b8683bef130d272cde2f3ef26b51d68c46ab01d713",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "## Wie setze ich ChurchTools für mein Team optimal ein?\n\nDu bist Teil eines Teams in deiner Gemeinde und möchtest ChurchTools optimal nutzen? Dann ist dieses Seminar genau das Richtige für dich. Jeden Freitag um 19:30 Uhr treffen wir uns in der Chutoo Church, um gemeinsam die Möglichkeiten von ChurchTools zu erkunden. Egal, ob du 13 oder 99 Jahre alt bist, hier bist du willkommen. Lass uns zusammen lernen, wie wir diese Plattform effektiver einsetzen können, um unsere Gemeinschaft zu stärken und Projekte effizienter zu gestalten. Sei dabei und bring deine Fragen und Ideen mit!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      }
+     ],
+     "all": 8
+    },
+    "5": {
+     "key": "5",
+     "groupPreviews": [
+      {
+       "title": "Beziehungsweise",
+       "domainType": "group",
+       "domainIdentifier": "174",
+       "apiUrl": "https://gemeinde.example/api/groups/174",
+       "frontendUrl": "https://gemeinde.example/groups/174",
+       "imageUrl": "https://gemeinde.example/images/1143/9de4311710ffc7c1f79a724dbc5b463a9c8bc3f57e31e022a9ebdad12a8dac7f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "B",
+       "domainAttributes": {
+        "note": "**Was erwartet EUCH?**\n\nJede Partnerschaft hat ihre eigene Art und Weise.  \nEs geht immer bei mir selbst los.   \nWer bin ich, wie bin ich, wo komme ich her und wo will ich hin.  \nDann gehts vom Du zum Wir.  \nWas sind deine unbewußten Beziehungsmuster?\n\nWie können wir uns statt zu bekämpfen ergänzen?\n\nDies und vieles mehr werden wir in diesem Seminar behandeln.\n\nMelde dich hier gleich an.",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Kleingruppe Adendorf",
+       "domainType": "group",
+       "domainIdentifier": "203",
+       "apiUrl": "https://gemeinde.example/api/groups/203",
+       "frontendUrl": "https://gemeinde.example/groups/203",
+       "imageUrl": "https://gemeinde.example/images/3219/581277b8df1e6b7b7fdb079affa375fa63a36c77e1fc0c9f4c117e3bef447aff",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "public",
+        "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Beck",
+       "domainType": "group",
+       "domainIdentifier": "13",
+       "apiUrl": "https://gemeinde.example/api/groups/13",
+       "frontendUrl": "https://gemeinde.example/groups/13",
+       "imageUrl": "https://gemeinde.example/images/3216/f5883e92f8aef52f2091125cd865aa00c0fd7f1b18f99305e87b2f06c66d1a12",
+       "icon": "users",
+       "color": {
+        "key": "gray",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "Wir sind toll!",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "public",
+        "guid": "048BA439-8320-4615-8B1C-AE33459D2A60"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Bischof",
+       "domainType": "group",
+       "domainIdentifier": "22",
+       "apiUrl": "https://gemeinde.example/api/groups/22",
+       "frontendUrl": "https://gemeinde.example/groups/22",
+       "imageUrl": "https://gemeinde.example/images/2855/b2aee6f3e35a34859a038e3f6a0e1c25259b7dfdc6fc7a2f596042621891035d",
+       "icon": "users",
+       "color": {
+        "key": "gray",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "Wir sind eine bunte Mischung junger Erwachsener, die gerne Zeit miteinander verbringen und voneinander lernen. Unser Ziel ist es, eine unterstützende und ermutigende Gemeinschaft zu schaffen, in der alle Teilnehmer im Glauben wachsen und ihre Beziehung zu Gott vertiefen können.\n\nWir treffen uns jeden Mittwoch um 19 Uhr meist bei uns Bischofs, aber hin und wieder auch bei jemand anderem aus der Kleingruppe. Details dazu findet ihr immer in den Gruppenbeiträgen oder im Gruppen-Chat. 💬\n\nNeben den regelmäßigen Treffen organisieren wir auch gemeinsame Aktivitäten, die uns ermöglichen, unseren Glauben aktiv zu leben. Von sozialen Einsätzen bis hin zu kreativen Projekten – wir suchen stets nach Wegen, wie wir unsere Talente zu SEINER Ehre einsetzen können. \n\nWenn das dein Interesse geweckt hat, melde dich gerne bei einem von uns. Wäre super, wenn wir dich bald mal in unser Runde begrüßen dürften. 🤗",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "intern",
+        "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Brooks",
+       "domainType": "group",
+       "domainIdentifier": "16",
+       "apiUrl": "https://gemeinde.example/api/groups/16",
+       "frontendUrl": "https://gemeinde.example/groups/16",
+       "imageUrl": "https://gemeinde.example/images/2852/28e1ff7e8d9f7d481bacac2230c48ae0c4e772f8ff8a6599218e9b5aa5cbcf16",
+       "icon": "users",
+       "color": {
+        "key": "gray",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "public",
+        "guid": "5B986A79-6560-4834-8B03-2182786E977E"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Gerner",
+       "domainType": "group",
+       "domainIdentifier": "132",
+       "apiUrl": "https://gemeinde.example/api/groups/132",
+       "frontendUrl": "https://gemeinde.example/groups/132",
+       "imageUrl": "https://gemeinde.example/images/3225/20587780c3cc8d2ab11d5e374e80eb7782acdfaf3a8ac08ba6558c1fcaa2e55c",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 1,
+        "visibility": "public",
+        "guid": "E75EC335-A2A9-4AD5-9BEC-AD0A0FDC8998"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Wie lerne ich mit Freuden beten?",
+       "domainType": "group",
+       "domainIdentifier": "177",
+       "apiUrl": "https://gemeinde.example/api/groups/177",
+       "frontendUrl": "https://gemeinde.example/groups/177",
+       "imageUrl": "https://gemeinde.example/images/1146/01fcce70d47fac161b4addeaf97f787bb014f59b8977f4fefae7dcb96fa5792f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "### Wie lerne ich mit Freuden beten?\n\nBist du neugierig, wie das Gebet dein Leben bereichern kann? In unserem Seminar \"Wie lerne ich mit Freuden beten?\" laden wir dich ein, die Kraft des Gebets neu zu entdecken und Freude im Gespräch mit Gott zu erleben. Egal, ob du 13 oder 99 Jahre alt bist, diese Veranstaltung bietet dir einen Raum, um zu lernen, dich auszutauschen und in einer unterstützenden Gemeinschaft zu wachsen. Komme zu uns in die Chutoo Church und lass uns gemeinsam die Freude am Gebet entfalten!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Wie setze ich ChurchTools für mein Team optimal ein?",
+       "domainType": "group",
+       "domainIdentifier": "180",
+       "apiUrl": "https://gemeinde.example/api/groups/180",
+       "frontendUrl": "https://gemeinde.example/groups/180",
+       "imageUrl": "https://gemeinde.example/images/1149/b6e2ce06db76c0b09bebc1b8683bef130d272cde2f3ef26b51d68c46ab01d713",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "## Wie setze ich ChurchTools für mein Team optimal ein?\n\nDu bist Teil eines Teams in deiner Gemeinde und möchtest ChurchTools optimal nutzen? Dann ist dieses Seminar genau das Richtige für dich. Jeden Freitag um 19:30 Uhr treffen wir uns in der Chutoo Church, um gemeinsam die Möglichkeiten von ChurchTools zu erkunden. Egal, ob du 13 oder 99 Jahre alt bist, hier bist du willkommen. Lass uns zusammen lernen, wie wir diese Plattform effektiver einsetzen können, um unsere Gemeinschaft zu stärken und Projekte effizienter zu gestalten. Sei dabei und bring deine Fragen und Ideen mit!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      }
+     ],
+     "all": 8
+    },
+    "6": {
+     "key": "6",
+     "groupPreviews": [
+      {
+       "title": "Beziehungsweise",
+       "domainType": "group",
+       "domainIdentifier": "174",
+       "apiUrl": "https://gemeinde.example/api/groups/174",
+       "frontendUrl": "https://gemeinde.example/groups/174",
+       "imageUrl": "https://gemeinde.example/images/1143/9de4311710ffc7c1f79a724dbc5b463a9c8bc3f57e31e022a9ebdad12a8dac7f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "B",
+       "domainAttributes": {
+        "note": "**Was erwartet EUCH?**\n\nJede Partnerschaft hat ihre eigene Art und Weise.  \nEs geht immer bei mir selbst los.   \nWer bin ich, wie bin ich, wo komme ich her und wo will ich hin.  \nDann gehts vom Du zum Wir.  \nWas sind deine unbewußten Beziehungsmuster?\n\nWie können wir uns statt zu bekämpfen ergänzen?\n\nDies und vieles mehr werden wir in diesem Seminar behandeln.\n\nMelde dich hier gleich an.",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Datenschutz",
+       "domainType": "group",
+       "domainIdentifier": "99",
+       "apiUrl": "https://gemeinde.example/api/groups/99",
+       "frontendUrl": "https://gemeinde.example/groups/99",
+       "imageUrl": "https://gemeinde.example/images/2897/e699135e1b1b9ec757895209e097e47d681d5ac152dfadf01e253f38d982d912",
+       "icon": "users",
+       "color": {
+        "key": "orange",
+        "shade": null
+       },
+       "initials": "D",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 6,
+        "campusId": null,
+        "visibility": "restricted",
+        "guid": "DA6E1B1E-2C62-4DFD-A2BE-B3534E0C7473"
+       },
+       "infos": [
+        "Prozesse"
+       ]
+      },
+      {
+       "title": "Kleingruppe Adendorf",
+       "domainType": "group",
+       "domainIdentifier": "203",
+       "apiUrl": "https://gemeinde.example/api/groups/203",
+       "frontendUrl": "https://gemeinde.example/groups/203",
+       "imageUrl": "https://gemeinde.example/images/3219/581277b8df1e6b7b7fdb079affa375fa63a36c77e1fc0c9f4c117e3bef447aff",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "public",
+        "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Wie lerne ich mit Freuden beten?",
+       "domainType": "group",
+       "domainIdentifier": "177",
+       "apiUrl": "https://gemeinde.example/api/groups/177",
+       "frontendUrl": "https://gemeinde.example/groups/177",
+       "imageUrl": "https://gemeinde.example/images/1146/01fcce70d47fac161b4addeaf97f787bb014f59b8977f4fefae7dcb96fa5792f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "### Wie lerne ich mit Freuden beten?\n\nBist du neugierig, wie das Gebet dein Leben bereichern kann? In unserem Seminar \"Wie lerne ich mit Freuden beten?\" laden wir dich ein, die Kraft des Gebets neu zu entdecken und Freude im Gespräch mit Gott zu erleben. Egal, ob du 13 oder 99 Jahre alt bist, diese Veranstaltung bietet dir einen Raum, um zu lernen, dich auszutauschen und in einer unterstützenden Gemeinschaft zu wachsen. Komme zu uns in die Chutoo Church und lass uns gemeinsam die Freude am Gebet entfalten!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Wie setze ich ChurchTools für mein Team optimal ein?",
+       "domainType": "group",
+       "domainIdentifier": "180",
+       "apiUrl": "https://gemeinde.example/api/groups/180",
+       "frontendUrl": "https://gemeinde.example/groups/180",
+       "imageUrl": "https://gemeinde.example/images/1149/b6e2ce06db76c0b09bebc1b8683bef130d272cde2f3ef26b51d68c46ab01d713",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "## Wie setze ich ChurchTools für mein Team optimal ein?\n\nDu bist Teil eines Teams in deiner Gemeinde und möchtest ChurchTools optimal nutzen? Dann ist dieses Seminar genau das Richtige für dich. Jeden Freitag um 19:30 Uhr treffen wir uns in der Chutoo Church, um gemeinsam die Möglichkeiten von ChurchTools zu erkunden. Egal, ob du 13 oder 99 Jahre alt bist, hier bist du willkommen. Lass uns zusammen lernen, wie wir diese Plattform effektiver einsetzen können, um unsere Gemeinschaft zu stärken und Projekte effizienter zu gestalten. Sei dabei und bring deine Fragen und Ideen mit!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      }
+     ],
+     "all": 5
+    },
+    "7": {
+     "key": "7",
+     "groupPreviews": [
+      {
+       "title": "Beziehungsweise",
+       "domainType": "group",
+       "domainIdentifier": "174",
+       "apiUrl": "https://gemeinde.example/api/groups/174",
+       "frontendUrl": "https://gemeinde.example/groups/174",
+       "imageUrl": "https://gemeinde.example/images/1143/9de4311710ffc7c1f79a724dbc5b463a9c8bc3f57e31e022a9ebdad12a8dac7f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "B",
+       "domainAttributes": {
+        "note": "**Was erwartet EUCH?**\n\nJede Partnerschaft hat ihre eigene Art und Weise.  \nEs geht immer bei mir selbst los.   \nWer bin ich, wie bin ich, wo komme ich her und wo will ich hin.  \nDann gehts vom Du zum Wir.  \nWas sind deine unbewußten Beziehungsmuster?\n\nWie können wir uns statt zu bekämpfen ergänzen?\n\nDies und vieles mehr werden wir in diesem Seminar behandeln.\n\nMelde dich hier gleich an.",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Kleingruppe Adendorf",
+       "domainType": "group",
+       "domainIdentifier": "203",
+       "apiUrl": "https://gemeinde.example/api/groups/203",
+       "frontendUrl": "https://gemeinde.example/groups/203",
+       "imageUrl": "https://gemeinde.example/images/3219/581277b8df1e6b7b7fdb079affa375fa63a36c77e1fc0c9f4c117e3bef447aff",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "public",
+        "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Lippert",
+       "domainType": "group",
+       "domainIdentifier": "17",
+       "apiUrl": "https://gemeinde.example/api/groups/17",
+       "frontendUrl": "https://gemeinde.example/groups/17",
+       "imageUrl": "https://gemeinde.example/images/1155/b44495c333a9765186de519150aa58129476bebc7dcd8ad79826c91106693cf9",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 1,
+        "visibility": "public",
+        "guid": "0FCD91BF-4326-40C6-B215-868E64AC9E8F"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Wie lerne ich mit Freuden beten?",
+       "domainType": "group",
+       "domainIdentifier": "177",
+       "apiUrl": "https://gemeinde.example/api/groups/177",
+       "frontendUrl": "https://gemeinde.example/groups/177",
+       "imageUrl": "https://gemeinde.example/images/1146/01fcce70d47fac161b4addeaf97f787bb014f59b8977f4fefae7dcb96fa5792f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "### Wie lerne ich mit Freuden beten?\n\nBist du neugierig, wie das Gebet dein Leben bereichern kann? In unserem Seminar \"Wie lerne ich mit Freuden beten?\" laden wir dich ein, die Kraft des Gebets neu zu entdecken und Freude im Gespräch mit Gott zu erleben. Egal, ob du 13 oder 99 Jahre alt bist, diese Veranstaltung bietet dir einen Raum, um zu lernen, dich auszutauschen und in einer unterstützenden Gemeinschaft zu wachsen. Komme zu uns in die Chutoo Church und lass uns gemeinsam die Freude am Gebet entfalten!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      },
+      {
+       "title": "Wie setze ich ChurchTools für mein Team optimal ein?",
+       "domainType": "group",
+       "domainIdentifier": "180",
+       "apiUrl": "https://gemeinde.example/api/groups/180",
+       "frontendUrl": "https://gemeinde.example/groups/180",
+       "imageUrl": "https://gemeinde.example/images/1149/b6e2ce06db76c0b09bebc1b8683bef130d272cde2f3ef26b51d68c46ab01d713",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "## Wie setze ich ChurchTools für mein Team optimal ein?\n\nDu bist Teil eines Teams in deiner Gemeinde und möchtest ChurchTools optimal nutzen? Dann ist dieses Seminar genau das Richtige für dich. Jeden Freitag um 19:30 Uhr treffen wir uns in der Chutoo Church, um gemeinsam die Möglichkeiten von ChurchTools zu erkunden. Egal, ob du 13 oder 99 Jahre alt bist, hier bist du willkommen. Lass uns zusammen lernen, wie wir diese Plattform effektiver einsetzen können, um unsere Gemeinschaft zu stärken und Projekte effizienter zu gestalten. Sei dabei und bring deine Fragen und Ideen mit!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      }
+     ],
+     "all": 5
+    },
+    "8": {
+     "key": "8",
+     "groupPreviews": [
+      {
+       "title": "Kleingruppe Adendorf",
+       "domainType": "group",
+       "domainIdentifier": "203",
+       "apiUrl": "https://gemeinde.example/api/groups/203",
+       "frontendUrl": "https://gemeinde.example/groups/203",
+       "imageUrl": "https://gemeinde.example/images/3219/581277b8df1e6b7b7fdb079affa375fa63a36c77e1fc0c9f4c117e3bef447aff",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "public",
+        "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Kleingruppe Lippert",
+       "domainType": "group",
+       "domainIdentifier": "17",
+       "apiUrl": "https://gemeinde.example/api/groups/17",
+       "frontendUrl": "https://gemeinde.example/groups/17",
+       "imageUrl": "https://gemeinde.example/images/1155/b44495c333a9765186de519150aa58129476bebc7dcd8ad79826c91106693cf9",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 1,
+        "visibility": "public",
+        "guid": "0FCD91BF-4326-40C6-B215-868E64AC9E8F"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      },
+      {
+       "title": "Wie lerne ich mit Freuden beten?",
+       "domainType": "group",
+       "domainIdentifier": "177",
+       "apiUrl": "https://gemeinde.example/api/groups/177",
+       "frontendUrl": "https://gemeinde.example/groups/177",
+       "imageUrl": "https://gemeinde.example/images/1146/01fcce70d47fac161b4addeaf97f787bb014f59b8977f4fefae7dcb96fa5792f",
+       "icon": "users",
+       "color": {
+        "key": "amber",
+        "shade": null
+       },
+       "initials": "W",
+       "domainAttributes": {
+        "note": "### Wie lerne ich mit Freuden beten?\n\nBist du neugierig, wie das Gebet dein Leben bereichern kann? In unserem Seminar \"Wie lerne ich mit Freuden beten?\" laden wir dich ein, die Kraft des Gebets neu zu entdecken und Freude im Gespräch mit Gott zu erleben. Egal, ob du 13 oder 99 Jahre alt bist, diese Veranstaltung bietet dir einen Raum, um zu lernen, dich auszutauschen und in einer unterstützenden Gemeinschaft zu wachsen. Komme zu uns in die Chutoo Church und lass uns gemeinsam die Freude am Gebet entfalten!",
+        "groupStatusId": 1,
+        "groupTypeId": 3,
+        "campusId": null,
+        "visibility": "public",
+        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+       },
+       "infos": [
+        "Veranstaltung"
+       ]
+      }
+     ],
+     "all": 3
+    },
+    "9": {
+     "key": "9",
+     "groupPreviews": [
+      {
+       "title": "Krabbelhasen (0-2)",
+       "domainType": "group",
+       "domainIdentifier": "64",
+       "apiUrl": "https://gemeinde.example/api/groups/64",
+       "frontendUrl": "https://gemeinde.example/groups/64",
+       "imageUrl": "https://gemeinde.example/images/675/9f2836bd3e7e87e9f57421d7fa8b2f377e7aea7ec8700883237f8c9e42af5417",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "K",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "restricted",
+        "guid": "5891925F-54A5-4A95-8AEA-7CC13CCE0F7B"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      }
+     ],
+     "all": 1
+    },
+    "10": {
+     "key": "10",
+     "groupPreviews": [
+      {
+       "title": "Raupen (3-5)",
+       "domainType": "group",
+       "domainIdentifier": "142",
+       "apiUrl": "https://gemeinde.example/api/groups/142",
+       "frontendUrl": "https://gemeinde.example/groups/142",
+       "imageUrl": "https://gemeinde.example/images/669/2b238365603052cb47540b0f26b2f42b7b9ae6188e1397b249542c85c9b0f3a0",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "R",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "restricted",
+        "guid": "6E15EB2A-FBAD-459C-98C2-B237595B07EE"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      }
+     ],
+     "all": 1
+    },
+    "11": {
+     "key": "11",
+     "groupPreviews": [
+      {
+       "title": "Schmetterlinge (6-9)",
+       "domainType": "group",
+       "domainIdentifier": "148",
+       "apiUrl": "https://gemeinde.example/api/groups/148",
+       "frontendUrl": "https://gemeinde.example/groups/148",
+       "imageUrl": "https://gemeinde.example/images/672/fd26557781953265905b78e22f3d74e3727d57edc833ace77aa047b59f192cfe",
+       "icon": "users",
+       "color": {
+        "key": "sky",
+        "shade": null
+       },
+       "initials": "S",
+       "domainAttributes": {
+        "note": "",
+        "groupStatusId": 1,
+        "groupTypeId": 1,
+        "campusId": 0,
+        "visibility": "restricted",
+        "guid": "486ACB49-4AC8-44C6-84C6-C5CB53E1FEB3"
+       },
+       "infos": [
+        "Kleingruppe"
+       ]
+      }
+     ],
+     "all": 1
+    }
+   }
+  }
+ }
+}

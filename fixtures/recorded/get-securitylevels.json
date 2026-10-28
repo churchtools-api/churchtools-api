@@ -1,0 +1,46 @@
+{
+ "operation": "get-securitylevels",
+ "request": {
+  "method": "GET",
+  "path": "/securitylevels",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "meta": {
+   "count": 5
+  },
+  "data": [
+   {
+    "id": 1,
+    "name": "Stufe 1 (Namen)",
+    "sortkey": 1,
+    "sortKey": 1
+   },
+   {
+    "id": 2,
+    "name": "Stufe 2 (Allg. Info)",
+    "sortkey": 2,
+    "sortKey": 2
+   },
+   {
+    "id": 3,
+    "name": "Stufe 3 (Kontakt-Details)",
+    "sortkey": 3,
+    "sortKey": 3
+   },
+   {
+    "id": 4,
+    "name": "Stufe 4 (Leiter-Details)",
+    "sortkey": 4,
+    "sortKey": 4
+   },
+   {
+    "id": 5,
+    "name": "Stufe 5 (Administration)",
+    "sortkey": 5,
+    "sortKey": 5
+   }
+  ]
+ }
+}

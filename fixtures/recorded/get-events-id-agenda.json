@@ -1,0 +1,1173 @@
+{
+ "operation": "get-events-id-agenda",
+ "request": {
+  "method": "GET",
+  "path": "/events/1816/agenda",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 122,
+   "name": "30.10.2026, 19:00 – Jugendgottesdienst",
+   "series": null,
+   "isLocked": false,
+   "eventStartPosition": 4,
+   "calendarId": 3,
+   "total": 18,
+   "meta": {
+    "createdDate": "-0001-11-29T23:06:32Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2026-10-28T21:54:43Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "isFinal": "isLocked"
+   },
+   "isFinal": false,
+   "items": [
+    {
+     "id": 1685,
+     "title": "Soundcheck + Probe",
+     "type": "text",
+     "duration": 5400,
+     "start": "2026-10-30T16:00:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T16:00:00Z"
+     },
+     "isBeforeEvent": true,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:40Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:40Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 0,
+     "note": "",
+     "responsible": {
+      "text": "[Lobpreisleitung] & [Ton]",
+      "persons": [
+       {
+        "service": "[Lobpreisleitung]",
+        "accepted": true,
+        "person": {
+         "title": "Marten Bischof",
+         "domainType": "person",
+         "domainIdentifier": "170",
+         "apiUrl": "https://gemeinde.example/api/persons/170",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23170/",
+         "imageUrl": "https://gemeinde.example/images/2374/a6ef47a39b2e512d02b865a80c3747206d3e3e814e50fd1a16bffe6ee618da8d",
+         "icon": "user",
+         "color": null,
+         "initials": "MB",
+         "domainAttributes": {
+          "firstName": "Marten",
+          "lastName": "Bischof",
+          "guid": "FE2742A8-AB37-42D5-B6B6-EA0E3D8CCFE6",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       },
+       {
+        "service": "[Ton]",
+        "accepted": true,
+        "person": {
+         "title": "Karl Andrews",
+         "domainType": "person",
+         "domainIdentifier": "188",
+         "apiUrl": "https://gemeinde.example/api/persons/188",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23188/",
+         "imageUrl": "https://gemeinde.example/images/463/24e1b16d2c842d1d5bd5d640ebe472ba9be97f702f22764f0c16e2e0cf0417be",
+         "icon": "user",
+         "color": null,
+         "initials": "KA",
+         "domainAttributes": {
+          "firstName": "Karl",
+          "lastName": "Andrews",
+          "guid": "7F472E8A-F882-47AF-9282-74EE6B9DD306",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 1688,
+     "title": "Mitarbeiter-Gebet",
+     "type": "text",
+     "duration": 600,
+     "start": "2026-10-30T17:30:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T17:30:00Z"
+     },
+     "isBeforeEvent": true,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:40Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:40Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 1,
+     "note": "",
+     "responsible": {
+      "text": "[Leitung]",
+      "persons": [
+       {
+        "service": "[Leitung]",
+        "accepted": true,
+        "person": {
+         "title": "Dieter Freitag",
+         "domainType": "person",
+         "domainIdentifier": "261",
+         "apiUrl": "https://gemeinde.example/api/persons/261",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23261/",
+         "imageUrl": "https://gemeinde.example/images/2173/4eff914733d1a1737e2b779fcdfcae6fb32f2cf3b27f9ec373a43a21b20d5538",
+         "icon": "user",
+         "color": null,
+         "initials": "DF",
+         "domainAttributes": {
+          "firstName": "Dieter",
+          "lastName": "Freitag",
+          "guid": "40D286F8-7144-41DB-A6A4-91EB90CB6E33",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 1694,
+     "title": "Einlass",
+     "type": "text",
+     "duration": 900,
+     "start": "2026-10-30T17:40:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T17:40:00Z"
+     },
+     "isBeforeEvent": true,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:40Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:40Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 2,
+     "note": "",
+     "responsible": {
+      "text": "[Ordner]",
+      "persons": [
+       {
+        "service": "[Ordner]",
+        "accepted": true,
+        "person": {
+         "title": "Kuno Brenner",
+         "domainType": "person",
+         "domainIdentifier": "581",
+         "apiUrl": "https://gemeinde.example/api/persons/581",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23581/",
+         "imageUrl": "https://gemeinde.example/images/1857/da9af39fa7ef504564bd52a9e2f7d1ad482a1bc45f8c01533e12f82b14193496",
+         "icon": "user",
+         "color": null,
+         "initials": "KB",
+         "domainAttributes": {
+          "firstName": "Kuno",
+          "lastName": "Brenner",
+          "guid": "C5BD0A74-6554-40D1-8954-6C963A52CBF6",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       },
+       {
+        "service": "[Ordner]",
+        "accepted": true,
+        "person": {
+         "title": "Clara Hepp",
+         "domainType": "person",
+         "domainIdentifier": "175",
+         "apiUrl": "https://gemeinde.example/api/persons/175",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23175/",
+         "imageUrl": "https://gemeinde.example/images/2155/a046b38302ccf5088b7c6c299f84308bde76e5ab121d627698fed5ac1ab0e490",
+         "icon": "user",
+         "color": null,
+         "initials": "CH",
+         "domainAttributes": {
+          "firstName": "Clara",
+          "lastName": "Hepp",
+          "guid": "5B11143A-A15A-4107-AE90-429E4F493A6B",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": [
+      {
+       "serviceGroupId": 3,
+       "note": "Musik im Hintergrund"
+      },
+      {
+       "serviceGroupId": 5,
+       "note": "Türen bitte aufmachen"
+      }
+     ]
+    },
+    {
+     "id": 1691,
+     "title": "Countdown",
+     "type": "text",
+     "duration": 300,
+     "start": "2026-10-30T17:55:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T17:55:00Z"
+     },
+     "isBeforeEvent": true,
+     "meta": {
+      "createdDate": "2025-12-05T09:57:00Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:57:00Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 3,
+     "note": "",
+     "responsible": {
+      "text": "[Beamer]",
+      "persons": [
+       {
+        "service": "[Beamer]",
+        "accepted": true,
+        "person": {
+         "title": "Felicitas Peter",
+         "domainType": "person",
+         "domainIdentifier": "151",
+         "apiUrl": "https://gemeinde.example/api/persons/151",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23151/",
+         "imageUrl": "https://gemeinde.example/images/2055/1295886147ee560774af813a884ae942c7d95f1703f0f13e89329122addfb7bc",
+         "icon": "user",
+         "color": null,
+         "initials": "FP",
+         "domainAttributes": {
+          "firstName": "Felicitas",
+          "lastName": "Peter",
+          "guid": "A73CD572-A468-4DFE-96C1-923185B1F55A",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": [
+      {
+       "serviceGroupId": 3,
+       "note": "Bitte rechtzeitig Starten!"
+      }
+     ]
+    },
+    {
+     "id": 1679,
+     "title": "Begrüßung",
+     "type": "text",
+     "duration": 120,
+     "start": "2026-10-30T18:00:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:00:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:40Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:40Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 4,
+     "note": "",
+     "responsible": {
+      "text": "[Leitung]",
+      "persons": [
+       {
+        "service": "[Leitung]",
+        "accepted": true,
+        "person": {
+         "title": "Dieter Freitag",
+         "domainType": "person",
+         "domainIdentifier": "261",
+         "apiUrl": "https://gemeinde.example/api/persons/261",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23261/",
+         "imageUrl": "https://gemeinde.example/images/2173/4eff914733d1a1737e2b779fcdfcae6fb32f2cf3b27f9ec373a43a21b20d5538",
+         "icon": "user",
+         "color": null,
+         "initials": "DF",
+         "domainAttributes": {
+          "firstName": "Dieter",
+          "lastName": "Freitag",
+          "guid": "40D286F8-7144-41DB-A6A4-91EB90CB6E33",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": [
+      {
+       "serviceGroupId": 1,
+       "note": "Willkommen \nheißen!"
+      },
+      {
+       "serviceGroupId": 3,
+       "note": "Sprecher Mikrofone an!"
+      }
+     ]
+    },
+    {
+     "id": 1676,
+     "title": "Lobpreis",
+     "type": "header",
+     "duration": 0,
+     "start": "2026-10-30T18:02:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:02:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:50Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:50Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 5,
+     "calculatedDuration": 1500
+    },
+    {
+     "id": 1682,
+     "title": "Lobpreis",
+     "type": "text",
+     "duration": 1200,
+     "start": "2026-10-30T18:02:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:02:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:40Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:40Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 6,
+     "note": "",
+     "responsible": {
+      "text": "[Lobpreisleitung]",
+      "persons": [
+       {
+        "service": "[Lobpreisleitung]",
+        "accepted": true,
+        "person": {
+         "title": "Marten Bischof",
+         "domainType": "person",
+         "domainIdentifier": "170",
+         "apiUrl": "https://gemeinde.example/api/persons/170",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23170/",
+         "imageUrl": "https://gemeinde.example/images/2374/a6ef47a39b2e512d02b865a80c3747206d3e3e814e50fd1a16bffe6ee618da8d",
+         "icon": "user",
+         "color": null,
+         "initials": "MB",
+         "domainAttributes": {
+          "firstName": "Marten",
+          "lastName": "Bischof",
+          "guid": "FE2742A8-AB37-42D5-B6B6-EA0E3D8CCFE6",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": [
+      {
+       "serviceGroupId": 3,
+       "note": "Alle Instrumente und Mikrofone an!"
+      }
+     ]
+    },
+    {
+     "id": 1733,
+     "title": "",
+     "type": "song",
+     "duration": 0,
+     "start": "2026-10-30T18:22:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:22:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T11:06:23Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T10:06:23Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 7,
+     "note": "",
+     "responsible": {
+      "text": "",
+      "persons": []
+     },
+     "serviceGroupNotes": [],
+     "song": {
+      "songId": 19,
+      "arrangementId": 22,
+      "title": "Mein Lied!",
+      "arrangement": "Standard-Arrangement",
+      "category": "Aktive Songs",
+      "key": "D",
+      "bpm": 55,
+      "isDefault": true
+     }
+    },
+    {
+     "id": 1736,
+     "title": "",
+     "type": "song",
+     "duration": 300,
+     "start": "2026-10-30T18:22:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:22:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-10T11:02:02Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T10:02:02Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 8,
+     "note": "",
+     "responsible": {
+      "text": "",
+      "persons": []
+     },
+     "serviceGroupNotes": [],
+     "song": {
+      "songId": 1,
+      "arrangementId": 1,
+      "title": "Halleluja",
+      "arrangement": "Standard-Arrangement",
+      "category": "Aktive Songs",
+      "key": "C",
+      "bpm": 120,
+      "isDefault": true
+     }
+    },
+    {
+     "id": 1739,
+     "title": "",
+     "type": "song",
+     "duration": 0,
+     "start": "2026-10-30T18:27:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:27:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-10T11:02:02Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-21T10:02:02Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 9,
+     "note": "",
+     "responsible": {
+      "text": "",
+      "persons": []
+     },
+     "serviceGroupNotes": [],
+     "song": {
+      "songId": 44,
+      "arrangementId": 62,
+      "title": "I Am Thine O Lord",
+      "arrangement": "Standard-Arrangement",
+      "category": "Aktive Songs",
+      "key": "G",
+      "bpm": null,
+      "isDefault": true
+     }
+    },
+    {
+     "id": 1700,
+     "title": "Predigt",
+     "type": "header",
+     "duration": 0,
+     "start": "2026-10-30T18:27:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:27:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:44Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:44Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 10,
+     "calculatedDuration": 2100
+    },
+    {
+     "id": 1697,
+     "title": "Predigt",
+     "type": "text",
+     "duration": 1800,
+     "start": "2026-10-30T18:27:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:27:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:40Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:40Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 11,
+     "note": "",
+     "responsible": {
+      "text": "[Predigt]",
+      "persons": [
+       {
+        "service": "[Predigt]",
+        "accepted": true,
+        "person": {
+         "title": "Peter Tooly",
+         "domainType": "person",
+         "domainIdentifier": "235",
+         "apiUrl": "https://gemeinde.example/api/persons/235",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23235/",
+         "imageUrl": "https://gemeinde.example/images/2182/5a7d3bc782adc4a451257ac8ce708e5a707b088e6ed8c88cd2cf23db140c89d3",
+         "icon": "user",
+         "color": null,
+         "initials": "PT",
+         "domainAttributes": {
+          "firstName": "Peter",
+          "lastName": "Tooly",
+          "guid": "0D6404B1-B712-43EB-89EF-2E7602BF6D46",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": [
+      {
+       "serviceGroupId": 3,
+       "note": "Sprecher Mikrofone an!"
+      }
+     ]
+    },
+    {
+     "id": 1703,
+     "title": "Lied",
+     "type": "text",
+     "duration": 300,
+     "start": "2026-10-30T18:57:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T18:57:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:40Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:40Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 12,
+     "note": "",
+     "responsible": {
+      "text": "[Lobpreisleitung]",
+      "persons": [
+       {
+        "service": "[Lobpreisleitung]",
+        "accepted": true,
+        "person": {
+         "title": "Marten Bischof",
+         "domainType": "person",
+         "domainIdentifier": "170",
+         "apiUrl": "https://gemeinde.example/api/persons/170",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23170/",
+         "imageUrl": "https://gemeinde.example/images/2374/a6ef47a39b2e512d02b865a80c3747206d3e3e814e50fd1a16bffe6ee618da8d",
+         "icon": "user",
+         "color": null,
+         "initials": "MB",
+         "domainAttributes": {
+          "firstName": "Marten",
+          "lastName": "Bischof",
+          "guid": "FE2742A8-AB37-42D5-B6B6-EA0E3D8CCFE6",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 1730,
+     "title": "",
+     "type": "song",
+     "duration": 0,
+     "start": "2026-10-30T19:02:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:02:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T11:06:23Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T10:06:23Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 13,
+     "note": "",
+     "responsible": {
+      "text": "",
+      "persons": []
+     },
+     "serviceGroupNotes": [],
+     "song": {
+      "songId": 19,
+      "arrangementId": 22,
+      "title": "Mein Lied!",
+      "arrangement": "Standard-Arrangement",
+      "category": "Aktive Songs",
+      "key": "D",
+      "bpm": 55,
+      "isDefault": true
+     }
+    },
+    {
+     "id": 1721,
+     "title": "SCHLUSSTEIL",
+     "type": "header",
+     "duration": 0,
+     "start": "2026-10-30T19:02:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:02:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:53Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:53Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 14,
+     "calculatedDuration": 960
+    },
+    {
+     "id": 1706,
+     "title": "Überleitung zur Kollekte",
+     "type": "text",
+     "duration": 180,
+     "start": "2026-10-30T19:02:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:02:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:56:18Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:56:18Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 15,
+     "note": "",
+     "responsible": {
+      "text": "[Leitung]",
+      "persons": [
+       {
+        "service": "[Leitung]",
+        "accepted": true,
+        "person": {
+         "title": "Dieter Freitag",
+         "domainType": "person",
+         "domainIdentifier": "261",
+         "apiUrl": "https://gemeinde.example/api/persons/261",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23261/",
+         "imageUrl": "https://gemeinde.example/images/2173/4eff914733d1a1737e2b779fcdfcae6fb32f2cf3b27f9ec373a43a21b20d5538",
+         "icon": "user",
+         "color": null,
+         "initials": "DF",
+         "domainAttributes": {
+          "firstName": "Dieter",
+          "lastName": "Freitag",
+          "guid": "40D286F8-7144-41DB-A6A4-91EB90CB6E33",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 1709,
+     "title": "Kollekte",
+     "type": "text",
+     "duration": 120,
+     "start": "2026-10-30T19:05:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:05:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:56:19Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:56:19Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 16,
+     "note": "",
+     "responsible": {
+      "text": "[Ordner]",
+      "persons": [
+       {
+        "service": "[Ordner]",
+        "accepted": true,
+        "person": {
+         "title": "Kuno Brenner",
+         "domainType": "person",
+         "domainIdentifier": "581",
+         "apiUrl": "https://gemeinde.example/api/persons/581",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23581/",
+         "imageUrl": "https://gemeinde.example/images/1857/da9af39fa7ef504564bd52a9e2f7d1ad482a1bc45f8c01533e12f82b14193496",
+         "icon": "user",
+         "color": null,
+         "initials": "KB",
+         "domainAttributes": {
+          "firstName": "Kuno",
+          "lastName": "Brenner",
+          "guid": "C5BD0A74-6554-40D1-8954-6C963A52CBF6",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       },
+       {
+        "service": "[Ordner]",
+        "accepted": true,
+        "person": {
+         "title": "Clara Hepp",
+         "domainType": "person",
+         "domainIdentifier": "175",
+         "apiUrl": "https://gemeinde.example/api/persons/175",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23175/",
+         "imageUrl": "https://gemeinde.example/images/2155/a046b38302ccf5088b7c6c299f84308bde76e5ab121d627698fed5ac1ab0e490",
+         "icon": "user",
+         "color": null,
+         "initials": "CH",
+         "domainAttributes": {
+          "firstName": "Clara",
+          "lastName": "Hepp",
+          "guid": "5B11143A-A15A-4107-AE90-429E4F493A6B",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": [
+      {
+       "serviceGroupId": 5,
+       "note": "Kollekte einsammeln"
+      }
+     ]
+    },
+    {
+     "id": 1712,
+     "title": "Ansagen",
+     "type": "text",
+     "duration": 300,
+     "start": "2026-10-30T19:07:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:07:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:56:23Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:56:23Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 17,
+     "note": "",
+     "responsible": {
+      "text": "[Leitung]",
+      "persons": [
+       {
+        "service": "[Leitung]",
+        "accepted": true,
+        "person": {
+         "title": "Dieter Freitag",
+         "domainType": "person",
+         "domainIdentifier": "261",
+         "apiUrl": "https://gemeinde.example/api/persons/261",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23261/",
+         "imageUrl": "https://gemeinde.example/images/2173/4eff914733d1a1737e2b779fcdfcae6fb32f2cf3b27f9ec373a43a21b20d5538",
+         "icon": "user",
+         "color": null,
+         "initials": "DF",
+         "domainAttributes": {
+          "firstName": "Dieter",
+          "lastName": "Freitag",
+          "guid": "40D286F8-7144-41DB-A6A4-91EB90CB6E33",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 1715,
+     "title": "Begrüßung Gäste/Erstbesucher",
+     "type": "text",
+     "duration": 240,
+     "start": "2026-10-30T19:12:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:12:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:56:31Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:56:31Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 18,
+     "note": "",
+     "responsible": {
+      "text": "[Leitung]",
+      "persons": [
+       {
+        "service": "[Leitung]",
+        "accepted": true,
+        "person": {
+         "title": "Dieter Freitag",
+         "domainType": "person",
+         "domainIdentifier": "261",
+         "apiUrl": "https://gemeinde.example/api/persons/261",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23261/",
+         "imageUrl": "https://gemeinde.example/images/2173/4eff914733d1a1737e2b779fcdfcae6fb32f2cf3b27f9ec373a43a21b20d5538",
+         "icon": "user",
+         "color": null,
+         "initials": "DF",
+         "domainAttributes": {
+          "firstName": "Dieter",
+          "lastName": "Freitag",
+          "guid": "40D286F8-7144-41DB-A6A4-91EB90CB6E33",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": [
+      {
+       "serviceGroupId": 5,
+       "note": "Taschen verteilen"
+      }
+     ]
+    },
+    {
+     "id": 1718,
+     "title": "Segen",
+     "type": "text",
+     "duration": 120,
+     "start": "2026-10-30T19:16:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:16:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:56:33Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:56:33Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 19,
+     "note": "",
+     "responsible": {
+      "text": "[Leitung]",
+      "persons": [
+       {
+        "service": "[Leitung]",
+        "accepted": true,
+        "person": {
+         "title": "Dieter Freitag",
+         "domainType": "person",
+         "domainIdentifier": "261",
+         "apiUrl": "https://gemeinde.example/api/persons/261",
+         "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23261/",
+         "imageUrl": "https://gemeinde.example/images/2173/4eff914733d1a1737e2b779fcdfcae6fb32f2cf3b27f9ec373a43a21b20d5538",
+         "icon": "user",
+         "color": null,
+         "initials": "DF",
+         "domainAttributes": {
+          "firstName": "Dieter",
+          "lastName": "Freitag",
+          "guid": "40D286F8-7144-41DB-A6A4-91EB90CB6E33",
+          "dateOfDeath": null,
+          "isArchived": false
+         },
+         "infos": []
+        }
+       }
+      ]
+     },
+     "serviceGroupNotes": []
+    },
+    {
+     "id": 1727,
+     "title": "Nachspielzeit",
+     "type": "header",
+     "duration": 0,
+     "start": "2026-10-30T19:18:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:18:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:55:40Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:55:40Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 20,
+     "calculatedDuration": 1800
+    },
+    {
+     "id": 1724,
+     "title": "JugendCafe",
+     "type": "text",
+     "duration": 1800,
+     "start": "2026-10-30T19:18:00Z",
+     "startTimes": {
+      "1816": "2026-10-30T19:18:00Z"
+     },
+     "isBeforeEvent": false,
+     "meta": {
+      "createdDate": "2025-12-05T09:56:11Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-16T08:56:11Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "position": null
+     },
+     "position": 21,
+     "note": "",
+     "responsible": {
+      "text": "[Kaffeebar Leitung]",
+      "persons": [
+       {
+        "service": "[Kaffeebar Leitung]?",
+        "accepted": false,
+        "person": null
+       }
+      ]
+     },
+     "serviceGroupNotes": [
+      {
+       "serviceGroupId": 3,
+       "note": "Musik im Hintergrund"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

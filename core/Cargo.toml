@@ -1,0 +1,17 @@
+[package]
+name = "churchtools-core"
+description = "Synchronous ChurchTools REST API client"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+chrono = { version = "0.4.45", features = ["serde"] }
+percent-encoding = "2.3.2"
+reqwest = { version = "0.13", default-features = false, features = ["blocking", "rustls", "json", "query", "cookies", "multipart"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+thiserror = "2.0.21"
+
+[dev-dependencies]
+serde_path_to_error = "0.1.20"

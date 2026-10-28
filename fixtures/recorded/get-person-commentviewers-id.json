@@ -1,0 +1,17 @@
+{
+ "operation": "get-person-commentviewers-id",
+ "request": {
+  "method": "GET",
+  "path": "/person/commentviewers/0",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 0,
+   "name": "Leiter",
+   "nameTranslated": "Leiter",
+   "sortKey": 0
+  }
+ }
+}

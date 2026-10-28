@@ -1,0 +1,55 @@
+{
+ "operation": "get-finance-transactions-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/transactions/401",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 401,
+   "documentDate": "2024-12-22",
+   "documentNumber": "2016",
+   "transactionDate": "2025-09-18",
+   "accountId": 230,
+   "contraAccountId": 113,
+   "amount": 284900,
+   "note": "Gehalt Pastor Tim",
+   "costCenterId": 29,
+   "contraCostCenterId": null,
+   "donatorId": null,
+   "donator": null,
+   "donatorSpouseId": null,
+   "donatorSpouse": null,
+   "splitTransactionId": null,
+   "taxRateId": null,
+   "taxTransactionId": null,
+   "taxBaseId": null,
+   "stornoTransactionId": null,
+   "stornoBaseId": null,
+   "cashDiscountId": null,
+   "cashDiscountAmount": null,
+   "isImmutable": false,
+   "isWaiverOfReimbursementOfExpenses": false,
+   "isSynced": false,
+   "meta": {
+    "createdDate": "2025-09-18T00:15:02Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2025-09-18T00:15:02Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "permissions": {
+    "canEdit": true
+   },
+   "@deprecated": {
+    "donatorId": "donator",
+    "donatorSpouseId": "donatorSpouse"
+   }
+  }
+ }
+}

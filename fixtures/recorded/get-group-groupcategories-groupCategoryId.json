@@ -1,0 +1,29 @@
+{
+ "operation": "get-group-groupcategories-groupCategoryId",
+ "request": {
+  "method": "GET",
+  "path": "/group/groupcategories/2",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 2,
+   "name": "Kleingruppe",
+   "nameTranslated": "Kleingruppe",
+   "sortKey": 10,
+   "description": null,
+   "color": "violet",
+   "meta": {
+    "createdDate": "2024-11-11T09:08:30Z",
+    "createdPerson": {
+     "id": -4
+    },
+    "modifiedDate": "2025-03-17T15:21:50Z",
+    "modifiedPerson": {
+     "id": -4
+    }
+   }
+  }
+ }
+}

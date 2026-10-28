@@ -1,0 +1,31 @@
+{
+ "operation": "get-servicegroups-id",
+ "request": {
+  "method": "GET",
+  "path": "/servicegroups/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "Programm",
+   "nameTranslated": "Programm",
+   "sortKey": 10,
+   "description": null,
+   "campusId": null,
+   "viewAll": true,
+   "onlyVisibleInCampusFilter": false,
+   "meta": {
+    "createdDate": "2025-12-06T11:23:38Z",
+    "createdPerson": {
+     "id": -5
+    },
+    "modifiedDate": "2025-12-06T11:23:38Z",
+    "modifiedPerson": {
+     "id": -5
+    }
+   }
+  }
+ }
+}

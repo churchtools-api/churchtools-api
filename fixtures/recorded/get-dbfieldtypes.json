@@ -1,0 +1,76 @@
+{
+ "operation": "get-dbfieldtypes",
+ "request": {
+  "method": "GET",
+  "path": "/dbfieldtypes",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "name": "fieldtype.text",
+    "internCode": "text",
+    "sortKey": 10
+   },
+   {
+    "id": 5,
+    "name": "fieldtype.textarea",
+    "internCode": "textarea",
+    "sortKey": 20
+   },
+   {
+    "id": 6,
+    "name": "fieldtype.number",
+    "internCode": "number",
+    "sortKey": 30
+   },
+   {
+    "id": 4,
+    "name": "fieldtype.checkbox",
+    "internCode": "checkbox",
+    "sortKey": 40
+   },
+   {
+    "id": 2,
+    "name": "fieldtype.select",
+    "internCode": "select",
+    "sortKey": 50
+   },
+   {
+    "id": 9,
+    "name": "fieldtype.radioselect",
+    "internCode": "radioselect",
+    "sortKey": 60
+   },
+   {
+    "id": 7,
+    "name": "fieldtype.multiselect",
+    "internCode": "multiselect",
+    "sortKey": 70
+   },
+   {
+    "id": 3,
+    "name": "fieldtype.date",
+    "internCode": "date",
+    "sortKey": 80
+   },
+   {
+    "id": 11,
+    "name": "fieldtype.datetime",
+    "internCode": "datetime",
+    "sortKey": 90
+   },
+   {
+    "id": 8,
+    "name": "fieldtype.api.name",
+    "internCode": "api",
+    "sortKey": 100
+   }
+  ],
+  "meta": {
+   "count": 10
+  }
+ }
+}

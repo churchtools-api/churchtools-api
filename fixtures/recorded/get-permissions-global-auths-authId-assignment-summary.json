@@ -1,0 +1,41 @@
+{
+ "operation": "get-permissions-global-auths-authId-assignment-summary",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/global/auths/1/assignment-summary",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "authId": 1,
+   "dataId": null,
+   "effectivePersonCount": 6,
+   "assignments": {
+    "statuses": [],
+    "groupTypes": [],
+    "groups": [
+     {
+      "groupId": 208,
+      "groupRoleIds": [
+       2509,
+       2512
+      ],
+      "personCount": 2
+     }
+    ],
+    "persons": [
+     {
+      "personId": 249
+     },
+     {
+      "personId": 1447
+     },
+     {
+      "personId": 2793
+     }
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "operation": "get-groups-groupId-newsletter-integrations",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/newsletter-integrations",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

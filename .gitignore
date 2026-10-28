@@ -1,0 +1,5 @@
+/target
+/codegen/.cache/
+.venv/
+__pycache__/
+*.so

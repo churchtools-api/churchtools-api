@@ -1,0 +1,97 @@
+{
+ "operation": "get-wiki-categories",
+ "request": {
+  "method": "GET",
+  "path": "/wiki/categories",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 9,
+    "name": "Willkommen 👋🏼",
+    "nameTranslated": "Willkommen 👋🏼",
+    "sortKey": 0,
+    "campusId": null,
+    "inMenu": true,
+    "fileAccessWithoutPermission": false,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    }
+   },
+   {
+    "id": 8,
+    "name": "Deine ChurchTools Demo",
+    "nameTranslated": "Deine ChurchTools Demo",
+    "sortKey": 1,
+    "campusId": null,
+    "inMenu": true,
+    "fileAccessWithoutPermission": false,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    }
+   },
+   {
+    "id": 0,
+    "name": "Vision von ChuToo",
+    "nameTranslated": "Vision von ChuToo",
+    "sortKey": 10,
+    "campusId": null,
+    "inMenu": true,
+    "fileAccessWithoutPermission": false,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    }
+   },
+   {
+    "id": 1,
+    "name": "Technik",
+    "nameTranslated": "Technik",
+    "sortKey": 20,
+    "campusId": null,
+    "inMenu": true,
+    "fileAccessWithoutPermission": false,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    }
+   },
+   {
+    "id": 2,
+    "name": "Musik",
+    "nameTranslated": "Musik",
+    "sortKey": 30,
+    "campusId": null,
+    "inMenu": true,
+    "fileAccessWithoutPermission": false,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    }
+   },
+   {
+    "id": 3,
+    "name": "Gemeindeleitung",
+    "nameTranslated": "Gemeindeleitung",
+    "sortKey": 40,
+    "campusId": null,
+    "inMenu": true,
+    "fileAccessWithoutPermission": false,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    }
+   }
+  ],
+  "meta": {
+   "count": 6
+  },
+  "permissions": {
+   "editMasterData": true
+  }
+ }
+}

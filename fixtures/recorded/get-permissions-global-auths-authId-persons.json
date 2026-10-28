@@ -1,0 +1,27 @@
+{
+ "operation": "get-permissions-global-auths-authId-persons",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/global/auths/1/persons",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "authId": 1,
+   "selections": [
+    {
+     "dataId": null,
+     "personIds": [
+      1,
+      15,
+      249,
+      284,
+      1447,
+      2793
+     ]
+    }
+   ]
+  }
+ }
+}

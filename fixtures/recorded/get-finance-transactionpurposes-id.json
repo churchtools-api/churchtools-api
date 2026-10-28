@@ -1,0 +1,33 @@
+{
+ "operation": "get-finance-transactionpurposes-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/transactionpurposes/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "Ausgaben Jugend",
+   "costCenterId": 10,
+   "purposeAccountId": 728,
+   "accountIds": [
+    545,
+    859
+   ],
+   "sortKey": 10,
+   "isIncome": false,
+   "meta": {
+    "createdDate": "2020-12-17T17:53:26Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2020-12-17T17:53:26Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

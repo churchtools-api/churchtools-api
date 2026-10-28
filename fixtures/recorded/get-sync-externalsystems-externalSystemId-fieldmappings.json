@@ -1,0 +1,15 @@
+{
+ "operation": "get-sync-externalsystems-externalSystemId-fieldmappings",
+ "request": {
+  "method": "GET",
+  "path": "/sync/externalsystems/13/fieldmappings",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

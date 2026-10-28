@@ -1,0 +1,16 @@
+{
+ "operation": "get-finance-eubp-health",
+ "request": {
+  "method": "GET",
+  "path": "/finance/eubp/health",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "extraServiceAvailable": true,
+   "extraServiceUrl": "https://extra-service.ct-srv.de",
+   "environment": "mock"
+  }
+ }
+}

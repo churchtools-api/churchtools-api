@@ -1,0 +1,111 @@
+{
+ "operation": "get-resourcetypes",
+ "request": {
+  "method": "GET",
+  "path": "/resourcetypes",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 2,
+    "name": "resource.type.room",
+    "nameTranslated": "Raum",
+    "sortKey": 10,
+    "namePlural": "resource.type.rooms",
+    "namePluralTranslated": "Räume",
+    "campusId": 0,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-05-21T07:01:53Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 1,
+    "name": "resource.type.item",
+    "nameTranslated": "Gegenstand",
+    "sortKey": 20,
+    "namePlural": "resource.type.items",
+    "namePluralTranslated": "Gegenstände",
+    "campusId": 0,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-05-21T07:01:53Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 3,
+    "name": "Fahrzeug",
+    "nameTranslated": "Fahrzeug",
+    "sortKey": 30,
+    "namePlural": "Fahrzeuge",
+    "namePluralTranslated": "Fahrzeuge",
+    "campusId": 0,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-05-21T07:01:53Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 4,
+    "name": "Raum Süd",
+    "nameTranslated": "Raum Süd",
+    "sortKey": 40,
+    "namePlural": "Räume Süd",
+    "namePluralTranslated": "Räume Süd",
+    "campusId": 1,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-05-21T07:01:53Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 5,
+    "name": "Gegenstand Süd",
+    "nameTranslated": "Gegenstand Süd",
+    "sortKey": 50,
+    "namePlural": "Gegenstände Süd",
+    "namePluralTranslated": "Gegenstände Süd",
+    "campusId": 1,
+    "meta": {
+     "createdDate": "2025-04-14T10:50:49Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-05-21T07:01:53Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 5
+  }
+ }
+}

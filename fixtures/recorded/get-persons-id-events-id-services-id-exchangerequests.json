@@ -1,0 +1,15 @@
+{
+ "operation": "get-persons-id-events-id-services-id-exchangerequests",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/events/1986/services/33875/exchangerequests",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

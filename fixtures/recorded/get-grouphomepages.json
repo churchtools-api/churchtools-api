@@ -1,0 +1,222 @@
+{
+ "operation": "get-grouphomepages",
+ "request": {
+  "method": "GET",
+  "path": "/grouphomepages",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "title": "#1 Bereich Kleingruppen",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "1",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "1",
+    "domainAttributes": {
+     "childGroupIds": [
+      26,
+      13,
+      16,
+      22,
+      203,
+      127,
+      17,
+      29,
+      132,
+      168,
+      13,
+      16,
+      17,
+      22,
+      29,
+      132,
+      203
+     ],
+     "parentGroupId": 15
+    },
+    "infos": []
+   },
+   {
+    "title": "Kleingruppe Nord",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "2",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/XSNfpKRirheeYbddbCvgbwX3nDrrYrU4",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/XSNfpKRirheeYbddbCvgbwX3nDrrYrU4",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "K",
+    "domainAttributes": {
+     "childGroupIds": [
+      13,
+      16,
+      22,
+      203
+     ],
+     "parentGroupId": 26
+    },
+    "infos": []
+   },
+   {
+    "title": "Ranger",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "3",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/ctZP68Ryo8aFF0OfKUw1XFAQKgjx3r7R",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/ctZP68Ryo8aFF0OfKUw1XFAQKgjx3r7R",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "R",
+    "domainAttributes": {
+     "childGroupIds": [
+      31
+     ],
+     "parentGroupId": 32
+    },
+    "infos": []
+   },
+   {
+    "title": "#1 Bereich Kinder",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "4",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/cubuUUYsTCCC070EbLnBHK9eQ3YPEHTB",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/cubuUUYsTCCC070EbLnBHK9eQ3YPEHTB",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "1",
+    "domainAttributes": {
+     "childGroupIds": [
+      8,
+      14,
+      64,
+      142,
+      148,
+      31,
+      32,
+      31
+     ],
+     "parentGroupId": 39
+    },
+    "infos": []
+   },
+   {
+    "title": "Kleingruppe Beck",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "8",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/6oasIhfmGt6uuLEPvgPnA52uFyYGWaCp",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/6oasIhfmGt6uuLEPvgPnA52uFyYGWaCp",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "K",
+    "domainAttributes": {
+     "childGroupIds": [],
+     "parentGroupId": 13
+    },
+    "infos": []
+   },
+   {
+    "title": "#1 Bereich Jugend",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "11",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/o7xaF0VyCaAMMwyPD7Sf1JyaEAmErayx",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/o7xaF0VyCaAMMwyPD7Sf1JyaEAmErayx",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "1",
+    "domainAttributes": {
+     "childGroupIds": [
+      34,
+      37
+     ],
+     "parentGroupId": 136
+    },
+    "infos": []
+   },
+   {
+    "title": "Finde deine Kleingruppe",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "12",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/EBETdES12VIWHbDxpEtY4qBN1j6BnS7X",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/EBETdES12VIWHbDxpEtY4qBN1j6BnS7X",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "F",
+    "domainAttributes": {
+     "childGroupIds": [
+      13,
+      16,
+      17,
+      22,
+      29,
+      132,
+      203
+     ],
+     "parentGroupId": 168
+    },
+    "infos": []
+   },
+   {
+    "title": "Unsere Seminare",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "15",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/gnxZhKrIqRSZjo9rmfMHaGFMsXMaf2U2",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/gnxZhKrIqRSZjo9rmfMHaGFMsXMaf2U2",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "U",
+    "domainAttributes": {
+     "childGroupIds": [
+      174,
+      177,
+      180
+     ],
+     "parentGroupId": 171
+    },
+    "infos": []
+   },
+   {
+    "title": "Alle Angebote",
+    "domainType": "grouphomepage",
+    "domainIdentifier": "18",
+    "apiUrl": "https://gemeinde.example/api/grouphomepages/mOVYPF9Lu7A9ciVEI9aygj9SSrmHLdP7",
+    "frontendUrl": "https://gemeinde.example/grouphomepage/mOVYPF9Lu7A9ciVEI9aygj9SSrmHLdP7",
+    "imageUrl": null,
+    "icon": "globe",
+    "color": null,
+    "initials": "A",
+    "domainAttributes": {
+     "childGroupIds": [
+      168,
+      13,
+      16,
+      17,
+      22,
+      29,
+      132,
+      203,
+      171,
+      174,
+      177,
+      180
+     ],
+     "parentGroupId": 183
+    },
+    "infos": []
+   }
+  ],
+  "meta": {
+   "count": 9
+  }
+ }
+}

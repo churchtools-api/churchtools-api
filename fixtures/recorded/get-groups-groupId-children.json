@@ -1,0 +1,272 @@
+{
+ "operation": "get-groups-groupId-children",
+ "request": {
+  "method": "GET",
+  "path": "/groups/11/children",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "title": "#1 Bereich Gottesdienst",
+    "domainType": "group",
+    "domainIdentifier": "10",
+    "apiUrl": "https://gemeinde.example/api/groups/10",
+    "frontendUrl": "https://gemeinde.example/groups/10",
+    "imageUrl": "https://gemeinde.example/images/742/ef00677bb6104e1b4a577590b723f32be0eafe56a62ed44b7b22b0e294ee79f3",
+    "icon": "users",
+    "color": {
+     "key": "lime",
+     "shade": null
+    },
+    "initials": "1",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "BF91810C-B934-4167-AD2C-DB513ED111BF"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   {
+    "title": "#1 Bereich Jugend",
+    "domainType": "group",
+    "domainIdentifier": "136",
+    "apiUrl": "https://gemeinde.example/api/groups/136",
+    "frontendUrl": "https://gemeinde.example/groups/136",
+    "imageUrl": "https://gemeinde.example/images/2840/3103aba9436c00ce9cec06de2e87ae80f3e9a98ac36e1a711e7daa861f63ed78",
+    "icon": "users",
+    "color": {
+     "key": "black",
+     "shade": null
+    },
+    "initials": "1",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "408D1309-6577-4DD0-A0E9-318705F2AB51"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   {
+    "title": "#1 Bereich Kinder",
+    "domainType": "group",
+    "domainIdentifier": "39",
+    "apiUrl": "https://gemeinde.example/api/groups/39",
+    "frontendUrl": "https://gemeinde.example/groups/39",
+    "imageUrl": "https://gemeinde.example/images/2843/864000d092d5028a70e2b586cdf57f2b3d9ea7f065970b3830315e8525f0c22d",
+    "icon": "users",
+    "color": {
+     "key": "gray",
+     "shade": null
+    },
+    "initials": "1",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "652BADC9-82F7-44A2-B180-C45B184F7D9B"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   {
+    "title": "#1 Bereich Kleingruppen",
+    "domainType": "group",
+    "domainIdentifier": "15",
+    "apiUrl": "https://gemeinde.example/api/groups/15",
+    "frontendUrl": "https://gemeinde.example/groups/15",
+    "imageUrl": "https://gemeinde.example/images/2846/d38bad5ab956db0ab0957c3c24f4b112037bc752cadc5beb89da73a98dcdfdf3",
+    "icon": "users",
+    "color": {
+     "key": "lime",
+     "shade": null
+    },
+    "initials": "1",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "FD459EFF-1709-4833-8D3D-D9D31E4F4FE1"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   {
+    "title": "#1 Bereich Verwaltung",
+    "domainType": "group",
+    "domainIdentifier": "158",
+    "apiUrl": "https://gemeinde.example/api/groups/158",
+    "frontendUrl": "https://gemeinde.example/groups/158",
+    "imageUrl": "https://gemeinde.example/images/2596/83eec716a4963225400f9c9a2888e892af9ec4f70aa324ffbb561844fb4eca35",
+    "icon": "users",
+    "color": {
+     "key": "gray",
+     "shade": null
+    },
+    "initials": "1",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "932F0D17-C8D3-43F3-A81A-6921B3DB889E"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   {
+    "title": "Alle Angebote",
+    "domainType": "group",
+    "domainIdentifier": "183",
+    "apiUrl": "https://gemeinde.example/api/groups/183",
+    "frontendUrl": "https://gemeinde.example/groups/183",
+    "imageUrl": "https://gemeinde.example/images/2309/4cb95bbcec7c0c0a7d3d03111a22accca3466e2cf7568559e1d75cbb72fe91cf",
+    "icon": "users",
+    "color": {
+     "key": "lime",
+     "shade": null
+    },
+    "initials": "A",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "81EFD0F9-EE84-41D9-B3C5-00F375AAF2B8"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   {
+    "title": "CT Admin",
+    "domainType": "group",
+    "domainIdentifier": "208",
+    "apiUrl": "https://gemeinde.example/api/groups/208",
+    "frontendUrl": "https://gemeinde.example/groups/208",
+    "imageUrl": "https://gemeinde.example/images/2599/5afec8583d81a4fd8aca0daa1aa2530ecb86225f16ebb5a3577333269d623ac4",
+    "icon": "users",
+    "color": {
+     "key": "gray",
+     "shade": null
+    },
+    "initials": "C",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "7F236EA1-0CA7-4340-B472-93AD2590E497"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   {
+    "title": "Datenschutz",
+    "domainType": "group",
+    "domainIdentifier": "99",
+    "apiUrl": "https://gemeinde.example/api/groups/99",
+    "frontendUrl": "https://gemeinde.example/groups/99",
+    "imageUrl": "https://gemeinde.example/images/2897/e699135e1b1b9ec757895209e097e47d681d5ac152dfadf01e253f38d982d912",
+    "icon": "users",
+    "color": {
+     "key": "orange",
+     "shade": null
+    },
+    "initials": "D",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 6,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "DA6E1B1E-2C62-4DFD-A2BE-B3534E0C7473"
+    },
+    "infos": [
+     "Prozesse"
+    ]
+   },
+   {
+    "title": "Finanzverwaltung",
+    "domainType": "group",
+    "domainIdentifier": "154",
+    "apiUrl": "https://gemeinde.example/api/groups/154",
+    "frontendUrl": "https://gemeinde.example/groups/154",
+    "imageUrl": "https://gemeinde.example/images/2370/78c9137467693155ebeb4c68f60f251f04ea4ec0192779fa044f331aa3aae5e4",
+    "icon": "users",
+    "color": {
+     "key": "gray",
+     "shade": null
+    },
+    "initials": "F",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "ABD55CF8-A7EC-4CFA-9526-421F653F333D"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   {
+    "title": "Öffentlichkeitsarbeit",
+    "domainType": "group",
+    "domainIdentifier": "211",
+    "apiUrl": "https://gemeinde.example/api/groups/211",
+    "frontendUrl": "https://gemeinde.example/groups/211",
+    "imageUrl": "https://gemeinde.example/images/2918/416ee65d8bca029ae048c626727c2eec5da29313900a86584a0235a7dc8dc95e",
+    "icon": "users",
+    "color": {
+     "key": "lime",
+     "shade": null
+    },
+    "initials": "Ö",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "C3D58A9C-D0AF-4A25-BE85-BA6A3BD4386A"
+    },
+    "infos": [
+     "Team"
+    ]
+   }
+  ],
+  "meta": {
+   "count": 10,
+   "groupStatusIds": {
+    "1": {
+     "key": "1",
+     "count": 10
+    }
+   }
+  }
+ }
+}

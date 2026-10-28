@@ -1,0 +1,56 @@
+{
+ "operation": "get-files-id-meta",
+ "request": {
+  "method": "GET",
+  "path": "/files/2277/meta",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 2277,
+   "domainType": "avatar",
+   "domainId": "1",
+   "name": "intern.church.tools.jpeg",
+   "filename": "e506915aef806b9134c34762b6a90095d2c1ef52aee1840bc32140c712424112",
+   "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=2277&filename=e506915aef806b9134c34762b6a90095d2c1ef52aee1840bc32140c712424112",
+   "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+   "relativeUrl": "?q=public/filedownload&id=2277&filename=e506915aef806b9134c34762b6a90095d2c1ef52aee1840bc32140c712424112",
+   "showOnlyWhenEditable": false,
+   "securityLevelId": null,
+   "description": null,
+   "annotation": null,
+   "annotationLink": null,
+   "aiGenerated": false,
+   "imageOption": {
+    "crop": {
+     "top": 0,
+     "left": 0,
+     "bottom": 0,
+     "right": 0
+    },
+    "focus": {
+     "x": 0.44375,
+     "y": 0.425
+    }
+   },
+   "imageMetadata": {
+    "aspectRatio": 1.5,
+    "width": 2160,
+    "height": 1440
+   },
+   "type": "file",
+   "size": 933898,
+   "meta": {
+    "createdDate": "2021-04-14T18:14:30Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2021-04-14T18:14:30Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

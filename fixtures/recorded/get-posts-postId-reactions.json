@@ -1,0 +1,15 @@
+{
+ "operation": "get-posts-postId-reactions",
+ "request": {
+  "method": "GET",
+  "path": "/posts/51/reactions",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

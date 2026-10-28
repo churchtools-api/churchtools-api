@@ -1,0 +1,30 @@
+{
+ "operation": "get-htmltemplates-templateId",
+ "request": {
+  "method": "GET",
+  "path": "/htmltemplates/2",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 2,
+   "domainType": "bulkletter",
+   "name": "Standardvorlage",
+   "owner": null,
+   "isGlobal": true,
+   "htmlFileId": 1161,
+   "mjmlFileId": 3134,
+   "meta": {
+    "createdDate": "2025-01-20T16:18:27Z",
+    "createdPerson": {
+     "id": -1
+    },
+    "modifiedDate": "2026-08-14T13:28:48Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

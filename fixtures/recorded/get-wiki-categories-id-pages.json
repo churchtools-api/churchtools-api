@@ -1,0 +1,84 @@
+{
+ "operation": "get-wiki-categories-id-pages",
+ "request": {
+  "method": "GET",
+  "path": "/wiki/categories/9/pages",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "guid": "A3124166-5818-4A3F-A5EC-0CBCB0744824",
+    "wikiCategory": {
+     "id": 9,
+     "name": "Willkommen 👋🏼",
+     "nameTranslated": "Willkommen 👋🏼",
+     "sortKey": 0,
+     "campusId": null,
+     "inMenu": true,
+     "fileAccessWithoutPermission": false,
+     "permissions": {}
+    },
+    "title": "main",
+    "version": 6,
+    "isMarkdown": true,
+    "onStartpage": false,
+    "redirectTo": null,
+    "permissions": {
+     "canEdit": true,
+     "canDelete": true
+    },
+    "meta": {
+     "createdDate": "2026-08-17T09:47:57Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2026-08-17T09:47:57Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    },
+    "@deprecated": {
+     "identifier": "guid"
+    },
+    "identifier": "A3124166-5818-4A3F-A5EC-0CBCB0744824"
+   }
+  ],
+  "meta": {
+   "count": 1
+  }
+ }
+}

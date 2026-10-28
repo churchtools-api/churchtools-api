@@ -1,0 +1,26 @@
+{
+ "operation": "get-finance-taxtypes-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/taxtypes/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 1,
+   "name": "Umsatzsteuer",
+   "sortKey": 10,
+   "meta": {
+    "createdDate": "2019-08-08T18:09:41Z",
+    "createdPerson": {
+     "id": -1
+    },
+    "modifiedDate": "2019-08-08T18:09:41Z",
+    "modifiedPerson": {
+     "id": -1
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,22 @@
+{
+ "operation": "get-statuses-id",
+ "request": {
+  "method": "GET",
+  "path": "/statuses/0",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 0,
+   "name": "status.potential",
+   "nameTranslated": "Interessent",
+   "sortKey": 10,
+   "shorty": "status.potential.shortcut",
+   "shortyTranslated": "I",
+   "isMember": false,
+   "isSearchable": true,
+   "securityLevelId": 1
+  }
+ }
+}

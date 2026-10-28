@@ -1,0 +1,118 @@
+{
+ "operation": "get-finance-splittransactions-id",
+ "request": {
+  "method": "GET",
+  "path": "/finance/splittransactions/13",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 13,
+   "documentDate": "2024-01-01",
+   "documentNumber": "ctrs-test-3bf6",
+   "amount": 3000,
+   "note": "ctrs-test",
+   "splitChildren": [
+    {
+     "id": 829,
+     "documentDate": "2024-01-01",
+     "documentNumber": "ctrs-test-3bf6-1",
+     "transactionDate": "2026-10-28",
+     "accountId": 5,
+     "contraAccountId": 2,
+     "amount": 1000,
+     "note": "Teil 1",
+     "costCenterId": null,
+     "contraCostCenterId": null,
+     "donatorId": null,
+     "donator": null,
+     "donatorSpouseId": null,
+     "donatorSpouse": null,
+     "splitTransactionId": 13,
+     "taxRateId": null,
+     "taxTransactionId": null,
+     "taxBaseId": null,
+     "stornoTransactionId": null,
+     "stornoBaseId": null,
+     "cashDiscountId": null,
+     "cashDiscountAmount": null,
+     "isImmutable": false,
+     "isWaiverOfReimbursementOfExpenses": false,
+     "isSynced": false,
+     "meta": {
+      "createdDate": "2026-10-28T22:34:56Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-28T22:34:56Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "canEdit": true
+     },
+     "@deprecated": {
+      "donatorId": "donator",
+      "donatorSpouseId": "donatorSpouse"
+     }
+    },
+    {
+     "id": 832,
+     "documentDate": "2024-01-01",
+     "documentNumber": "ctrs-test-3bf6-2",
+     "transactionDate": "2026-10-28",
+     "accountId": 8,
+     "contraAccountId": 2,
+     "amount": 2000,
+     "note": "Teil 2",
+     "costCenterId": null,
+     "contraCostCenterId": null,
+     "donatorId": null,
+     "donator": null,
+     "donatorSpouseId": null,
+     "donatorSpouse": null,
+     "splitTransactionId": 13,
+     "taxRateId": null,
+     "taxTransactionId": null,
+     "taxBaseId": null,
+     "stornoTransactionId": null,
+     "stornoBaseId": null,
+     "cashDiscountId": null,
+     "cashDiscountAmount": null,
+     "isImmutable": false,
+     "isWaiverOfReimbursementOfExpenses": false,
+     "isSynced": false,
+     "meta": {
+      "createdDate": "2026-10-28T22:34:56Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-10-28T22:34:56Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "permissions": {
+      "canEdit": true
+     },
+     "@deprecated": {
+      "donatorId": "donator",
+      "donatorSpouseId": "donatorSpouse"
+     }
+    }
+   ],
+   "meta": {
+    "createdDate": "2026-10-28T22:34:56Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T22:34:56Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

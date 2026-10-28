@@ -1,0 +1,12 @@
+{
+ "operation": "get-persons-id-logintoken",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/logintoken",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": "<redacted>"
+ }
+}

@@ -1,0 +1,156 @@
+{
+ "operation": "get-finance-eubp-submissions-id-accounts",
+ "request": {
+  "method": "GET",
+  "path": "/finance/eubp/submissions/13/accounts",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "key": "0050|Grundstücke",
+    "number": "0050",
+    "name": "Grundstücke",
+    "accountGroupName": "Immobilien u. Grundstücke",
+    "isDonationAccount": false,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "0110|Kirchengebäude",
+    "number": "0110",
+    "name": "Kirchengebäude",
+    "accountGroupName": "Immobilien u. Grundstücke",
+    "isDonationAccount": false,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "0120|Gemeindesaal (Versammlungen)",
+    "number": "0120",
+    "name": "Gemeindesaal (Versammlungen)",
+    "accountGroupName": "Immobilien u. Grundstücke",
+    "isDonationAccount": false,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "0470|Musikinstrumente",
+    "number": "0470",
+    "name": "Musikinstrumente",
+    "accountGroupName": "Sachanlagen",
+    "isDonationAccount": false,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "1010|Kasse II",
+    "number": "1010",
+    "name": "Kasse II",
+    "accountGroupName": "Bank- und Kassenbestände",
+    "isDonationAccount": false,
+    "mandatory": true,
+    "transmitted": false,
+    "selected": true,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "1220|Bank Gemeinde",
+    "number": "1220",
+    "name": "Bank Gemeinde",
+    "accountGroupName": "Bank- und Kassenbestände",
+    "isDonationAccount": false,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "1230|Bank 2",
+    "number": "1230",
+    "name": "Bank 2",
+    "accountGroupName": "Bank- und Kassenbestände",
+    "isDonationAccount": false,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "4100|Personalkosten (Gehälter etc.)",
+    "number": "4100",
+    "name": "Personalkosten (Gehälter etc.)",
+    "accountGroupName": "Löhne und Gehälter",
+    "isDonationAccount": false,
+    "mandatory": true,
+    "transmitted": false,
+    "selected": true,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "4240|Strom",
+    "number": "4240",
+    "name": "Strom",
+    "accountGroupName": "Aufwendungen allgem.",
+    "isDonationAccount": false,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "4404|Jugendarbeit",
+    "number": "4404",
+    "name": "Jugendarbeit",
+    "accountGroupName": "Aufwendungen Gemeindearbeit",
+    "isDonationAccount": false,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   },
+   {
+    "key": "8010|Spendeneinnahmen",
+    "number": "8010",
+    "name": "Spendeneinnahmen",
+    "accountGroupName": "Erlöse aus Spenden und Kollekten",
+    "isDonationAccount": true,
+    "mandatory": false,
+    "transmitted": false,
+    "selected": false,
+    "years": [
+     2024
+    ]
+   }
+  ]
+ }
+}

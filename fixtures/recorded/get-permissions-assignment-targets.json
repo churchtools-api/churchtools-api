@@ -1,0 +1,379 @@
+{
+ "operation": "get-permissions-assignment-targets",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/assignment-targets",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "domainType": "status",
+    "domainId": 4,
+    "label": "status.delete"
+   },
+   {
+    "domainType": "status",
+    "domainId": 1,
+    "label": "status.friend"
+   },
+   {
+    "domainType": "status",
+    "domainId": 3,
+    "label": "status.member"
+   },
+   {
+    "domainType": "status",
+    "domainId": 0,
+    "label": "status.potential"
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 30,
+    "label": "Admin in Verteiler",
+    "groupType": {
+     "id": 4,
+     "name": "Verteiler"
+    },
+    "role": {
+     "id": 30,
+     "name": "Admin"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 37,
+    "label": "Besitzer in Schlüssel",
+    "groupType": {
+     "id": 5,
+     "name": "Schlüssel"
+    },
+    "role": {
+     "id": 37,
+     "name": "Besitzer"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 10,
+    "label": "Co-Leiter in Kleingruppe",
+    "groupType": {
+     "id": 1,
+     "name": "Kleingruppe"
+    },
+    "role": {
+     "id": 10,
+     "name": "Co-Leiter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 17,
+    "label": "Co-Leiter in Team",
+    "groupType": {
+     "id": 2,
+     "name": "Team"
+    },
+    "role": {
+     "id": 17,
+     "name": "Co-Leiter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 24,
+    "label": "Co-Leiter in Veranstaltung",
+    "groupType": {
+     "id": 3,
+     "name": "Veranstaltung"
+    },
+    "role": {
+     "id": 24,
+     "name": "Co-Leiter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 11,
+    "label": "Coach in Kleingruppe",
+    "groupType": {
+     "id": 1,
+     "name": "Kleingruppe"
+    },
+    "role": {
+     "id": 11,
+     "name": "Coach"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 29,
+    "label": "Empfänger in Verteiler",
+    "groupType": {
+     "id": 4,
+     "name": "Verteiler"
+    },
+    "role": {
+     "id": 29,
+     "name": "Empfänger"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 9,
+    "label": "Leiter in Kleingruppe",
+    "groupType": {
+     "id": 1,
+     "name": "Kleingruppe"
+    },
+    "role": {
+     "id": 9,
+     "name": "Leiter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 16,
+    "label": "Leiter in Team",
+    "groupType": {
+     "id": 2,
+     "name": "Team"
+    },
+    "role": {
+     "id": 16,
+     "name": "Leiter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 23,
+    "label": "Leiter in Veranstaltung",
+    "groupType": {
+     "id": 3,
+     "name": "Veranstaltung"
+    },
+    "role": {
+     "id": 23,
+     "name": "Leiter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 15,
+    "label": "Mitarbeiter in Team",
+    "groupType": {
+     "id": 2,
+     "name": "Team"
+    },
+    "role": {
+     "id": 15,
+     "name": "Mitarbeiter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 43,
+    "label": "Mitarbeiter in Veranstaltung",
+    "groupType": {
+     "id": 3,
+     "name": "Veranstaltung"
+    },
+    "role": {
+     "id": 43,
+     "name": "Mitarbeiter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 19,
+    "label": "Organisator in Team",
+    "groupType": {
+     "id": 2,
+     "name": "Team"
+    },
+    "role": {
+     "id": 19,
+     "name": "Organisator"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 26,
+    "label": "Organisator in Veranstaltung",
+    "groupType": {
+     "id": 3,
+     "name": "Veranstaltung"
+    },
+    "role": {
+     "id": 26,
+     "name": "Organisator"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 8,
+    "label": "Teilnehmer in Kleingruppe",
+    "groupType": {
+     "id": 1,
+     "name": "Kleingruppe"
+    },
+    "role": {
+     "id": 8,
+     "name": "Teilnehmer"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 42,
+    "label": "Teilnehmer in Prozesse",
+    "groupType": {
+     "id": 6,
+     "name": "Prozesse"
+    },
+    "role": {
+     "id": 42,
+     "name": "Teilnehmer"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 22,
+    "label": "Teilnehmer in Veranstaltung",
+    "groupType": {
+     "id": 3,
+     "name": "Veranstaltung"
+    },
+    "role": {
+     "id": 22,
+     "name": "Teilnehmer"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 40,
+    "label": "Verwalter in Prozesse",
+    "groupType": {
+     "id": 6,
+     "name": "Prozesse"
+    },
+    "role": {
+     "id": 40,
+     "name": "Verwalter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 36,
+    "label": "Verwalter in Schlüssel",
+    "groupType": {
+     "id": 5,
+     "name": "Schlüssel"
+    },
+    "role": {
+     "id": 36,
+     "name": "Verwalter"
+    }
+   },
+   {
+    "domainType": "group_type_role",
+    "domainId": 41,
+    "label": "Zugesagt in Prozesse",
+    "groupType": {
+     "id": 6,
+     "name": "Prozesse"
+    },
+    "role": {
+     "id": 41,
+     "name": "Zugesagt"
+    }
+   },
+   {
+    "domainType": "group_role",
+    "domainId": 9778,
+    "label": "Admin in Ankündigungen",
+    "group": {
+     "id": 346,
+     "name": "Ankündigungen"
+    },
+    "role": {
+     "id": 30,
+     "name": "Admin"
+    }
+   },
+   {
+    "domainType": "group_role",
+    "domainId": 9805,
+    "label": "Admin in Gebetsanliegen",
+    "group": {
+     "id": 355,
+     "name": "Gebetsanliegen"
+    },
+    "role": {
+     "id": 30,
+     "name": "Admin"
+    }
+   },
+   {
+    "domainType": "group_role",
+    "domainId": 245,
+    "label": "Admin in Gemeinde-News",
+    "group": {
+     "id": 24,
+     "name": "Gemeinde-News"
+    },
+    "role": {
+     "id": 30,
+     "name": "Admin"
+    }
+   },
+   {
+    "domainType": "group_role",
+    "domainId": 2507,
+    "label": "Admin in Mitglieder",
+    "group": {
+     "id": 206,
+     "name": "Mitglieder"
+    },
+    "role": {
+     "id": 30,
+     "name": "Admin"
+    }
+   },
+   {
+    "domainType": "group_role",
+    "domainId": 444,
+    "label": "Admin in Newsletter",
+    "group": {
+     "id": 38,
+     "name": "Newsletter"
+    },
+    "role": {
+     "id": 30,
+     "name": "Admin"
+    }
+   },
+   {
+    "domainType": "group_role",
+    "domainId": 9796,
+    "label": "Admin in Sportangebote",
+    "group": {
+     "id": 352,
+     "name": "Sportangebote"
+    },
+    "role": {
+     "id": 30,
+     "name": "Admin"
+    }
+   }
+  ],
+  "meta": {
+   "pagination": {
+    "current": 1,
+    "limit": 30,
+    "total": 1004,
+    "lastPage": 34
+   }
+  }
+ }
+}

@@ -1,0 +1,765 @@
+{
+ "operation": "get-finance-costcenters",
+ "request": {
+  "method": "GET",
+  "path": "/finance/costcenters",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 1,
+    "number": "1",
+    "name": "Allgemein",
+    "annotation": null,
+    "budget": null,
+    "budgetBalance": null,
+    "budgetSpent": -2086000,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": null,
+    "accountingPeriodId": 1,
+    "meta": {
+     "createdDate": "2019-08-08T18:09:41Z",
+     "createdPerson": {
+      "id": 2147483647
+     },
+     "modifiedDate": "2019-08-08T18:09:41Z",
+     "modifiedPerson": {
+      "id": 2147483647
+     }
+    },
+    "group": null
+   },
+   {
+    "id": 16,
+    "number": "200100",
+    "name": "Technik",
+    "annotation": null,
+    "budget": 450000,
+    "budgetBalance": 20000,
+    "budgetSpent": 430000,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": null,
+    "accountingPeriodId": 1,
+    "meta": {
+     "createdDate": "2020-05-13T15:04:23Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T15:04:23Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "Technik",
+     "domainType": "group",
+     "domainIdentifier": "7",
+     "apiUrl": "https://gemeinde.example/api/groups/7",
+     "frontendUrl": "https://gemeinde.example/groups/7",
+     "imageUrl": "https://gemeinde.example/images/720/30305361b1f895af1ca4089e0c855233a9301812a493d43a7a592b4cb5c19d57",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "T",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 19,
+    "number": "200200",
+    "name": "Jugend",
+    "annotation": null,
+    "budget": 340000,
+    "budgetBalance": 450000,
+    "budgetSpent": -110000,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": null,
+    "accountingPeriodId": 1,
+    "meta": {
+     "createdDate": "2020-05-13T15:04:53Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T15:04:53Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "#1 Bereich Jugend",
+     "domainType": "group",
+     "domainIdentifier": "136",
+     "apiUrl": "https://gemeinde.example/api/groups/136",
+     "frontendUrl": "https://gemeinde.example/groups/136",
+     "imageUrl": "https://gemeinde.example/images/2840/3103aba9436c00ce9cec06de2e87ae80f3e9a98ac36e1a711e7daa861f63ed78",
+     "icon": "users",
+     "color": {
+      "key": "black",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "408D1309-6577-4DD0-A0E9-318705F2AB51"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 22,
+    "number": "200300",
+    "name": "Kinder Kirche",
+    "annotation": null,
+    "budget": 320000,
+    "budgetBalance": 320000,
+    "budgetSpent": 0,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": null,
+    "accountingPeriodId": 1,
+    "meta": {
+     "createdDate": "2020-05-13T15:06:09Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T15:06:09Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "#1 Bereich Kinder",
+     "domainType": "group",
+     "domainIdentifier": "39",
+     "apiUrl": "https://gemeinde.example/api/groups/39",
+     "frontendUrl": "https://gemeinde.example/groups/39",
+     "imageUrl": "https://gemeinde.example/images/2843/864000d092d5028a70e2b586cdf57f2b3d9ea7f065970b3830315e8525f0c22d",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "652BADC9-82F7-44A2-B180-C45B184F7D9B"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 29,
+    "number": "200800",
+    "name": "Personalkosten",
+    "annotation": null,
+    "budget": 3000000,
+    "budgetBalance": -474000,
+    "budgetSpent": 3474000,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": null,
+    "accountingPeriodId": 1,
+    "meta": {
+     "createdDate": "2025-09-18T00:09:06Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-18T00:15:48Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": null
+   },
+   {
+    "id": 5,
+    "number": "1",
+    "name": "Allgemein",
+    "annotation": null,
+    "budget": null,
+    "budgetBalance": null,
+    "budgetSpent": -5279472,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": null,
+    "accountingPeriodId": 5,
+    "meta": {
+     "createdDate": "2020-05-13T12:57:43Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2023-09-13T13:43:46Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": null
+   },
+   {
+    "id": 7,
+    "number": "200100",
+    "name": "Technik",
+    "annotation": null,
+    "budget": 500000,
+    "budgetBalance": 203500,
+    "budgetSpent": 296500,
+    "budgetLastPeriod": 450000,
+    "budgetBalanceLastPeriod": 20000,
+    "accountingPeriodId": 5,
+    "meta": {
+     "createdDate": "2020-05-13T14:10:30Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T14:10:30Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "Technik",
+     "domainType": "group",
+     "domainIdentifier": "7",
+     "apiUrl": "https://gemeinde.example/api/groups/7",
+     "frontendUrl": "https://gemeinde.example/groups/7",
+     "imageUrl": "https://gemeinde.example/images/720/30305361b1f895af1ca4089e0c855233a9301812a493d43a7a592b4cb5c19d57",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "T",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 10,
+    "number": "200200",
+    "name": "Jugend",
+    "annotation": null,
+    "budget": 400000,
+    "budgetBalance": 34096,
+    "budgetSpent": 365904,
+    "budgetLastPeriod": 340000,
+    "budgetBalanceLastPeriod": 450000,
+    "accountingPeriodId": 5,
+    "meta": {
+     "createdDate": "2020-05-13T14:10:58Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2020-05-13T14:10:58Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "#1 Bereich Jugend",
+     "domainType": "group",
+     "domainIdentifier": "136",
+     "apiUrl": "https://gemeinde.example/api/groups/136",
+     "frontendUrl": "https://gemeinde.example/groups/136",
+     "imageUrl": "https://gemeinde.example/images/2840/3103aba9436c00ce9cec06de2e87ae80f3e9a98ac36e1a711e7daa861f63ed78",
+     "icon": "users",
+     "color": {
+      "key": "black",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "408D1309-6577-4DD0-A0E9-318705F2AB51"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 23,
+    "number": "200210",
+    "name": "Jugendfreizeiten",
+    "annotation": null,
+    "budget": 100000,
+    "budgetBalance": -128000,
+    "budgetSpent": 228000,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": 0,
+    "accountingPeriodId": 5,
+    "meta": {
+     "createdDate": "2022-10-27T07:36:03Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2022-10-28T14:39:18Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "Jugend fährt nach Rom",
+     "domainType": "group",
+     "domainIdentifier": "37",
+     "apiUrl": "https://gemeinde.example/api/groups/37",
+     "frontendUrl": "https://gemeinde.example/groups/37",
+     "imageUrl": "https://gemeinde.example/images/125/ac554937a9dbedea38df868ba65ff50ec47386cc6773c5c4a1f7be0cde84abb1",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "J",
+     "domainAttributes": {
+      "note": "\"Jugend fährt nach Rom\" ist eine aufregende und unvergessliche Jugendfreizeit, die sich an junge Menschen im Alter von 14 bis 18 Jahren richtet und sie auf eine Reise in die ewige Stadt Rom mitnimmt.\n\nDie Jugendlichen werden die Möglichkeit haben, die reiche Geschichte und Kultur Roms hautnah zu erleben, indem sie historische Sehenswürdigkeiten wie das Kolosseum, das Forum Romanum und den Petersdom besuchen. Neben diesen kulturellen Höhepunkten wird die Freizeit auch Raum für gemeinschaftliches Erleben und Freizeitaktivitäten bieten, wie zum Beispiel gemeinsames Essen, abendliche Lagerfeuer und sportliche Aktivitäten.\n\nWährend der Freizeit werden die Teilnehmer in gemütlichen Unterkünften untergebracht sein und von erfahrenen Betreuern begleitet, die sich um ihr Wohl kümmern und ihnen bei Fragen und Anliegen zur Seite stehen.\n\n\"Jugend fährt nach Rom\" verspricht eine einzigartige Erfahrung zu sein, die die Jugendlichen in ihren Erinnerungen für immer begleiten wird.",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    }
+   },
+   {
+    "id": 13,
+    "number": "200300",
+    "name": "Kinder Kirche",
+    "annotation": null,
+    "budget": 400000,
+    "budgetBalance": 140100,
+    "budgetSpent": 259900,
+    "budgetLastPeriod": 320000,
+    "budgetBalanceLastPeriod": 320000,
+    "accountingPeriodId": 5,
+    "meta": {
+     "createdDate": "2020-05-13T14:11:25Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2021-10-27T10:56:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "Kinderkirche",
+     "domainType": "group",
+     "domainIdentifier": "8",
+     "apiUrl": "https://gemeinde.example/api/groups/8",
+     "frontendUrl": "https://gemeinde.example/groups/8",
+     "imageUrl": "https://gemeinde.example/images/2906/63a53822634e6abc9bbf3b08066dc94bf0b60372c57926f55124760069163672",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "B672A315-EF25-49A9-B347-90555EBB5E4C"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 26,
+    "number": "200800",
+    "name": "Personalkosten",
+    "annotation": null,
+    "budget": 5000000,
+    "budgetBalance": 1394500,
+    "budgetSpent": 3605500,
+    "budgetLastPeriod": 3000000,
+    "budgetBalanceLastPeriod": -474000,
+    "accountingPeriodId": 5,
+    "meta": {
+     "createdDate": "2025-09-18T00:02:56Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2025-09-18T00:03:04Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": null
+   },
+   {
+    "id": 36,
+    "number": "1",
+    "name": "Allgemein",
+    "annotation": null,
+    "budget": null,
+    "budgetBalance": null,
+    "budgetSpent": -3845000,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": null,
+    "accountingPeriodId": 6,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": null
+   },
+   {
+    "id": 39,
+    "number": "200100",
+    "name": "Technik",
+    "annotation": null,
+    "budget": 500000,
+    "budgetBalance": 202102,
+    "budgetSpent": 297898,
+    "budgetLastPeriod": 500000,
+    "budgetBalanceLastPeriod": 203500,
+    "accountingPeriodId": 6,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "Technik",
+     "domainType": "group",
+     "domainIdentifier": "7",
+     "apiUrl": "https://gemeinde.example/api/groups/7",
+     "frontendUrl": "https://gemeinde.example/groups/7",
+     "imageUrl": "https://gemeinde.example/images/720/30305361b1f895af1ca4089e0c855233a9301812a493d43a7a592b4cb5c19d57",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "T",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 30,
+    "number": "200200",
+    "name": "Jugend",
+    "annotation": null,
+    "budget": 400000,
+    "budgetBalance": 34096,
+    "budgetSpent": 365904,
+    "budgetLastPeriod": 400000,
+    "budgetBalanceLastPeriod": 34096,
+    "accountingPeriodId": 6,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "#1 Bereich Jugend",
+     "domainType": "group",
+     "domainIdentifier": "136",
+     "apiUrl": "https://gemeinde.example/api/groups/136",
+     "frontendUrl": "https://gemeinde.example/groups/136",
+     "imageUrl": "https://gemeinde.example/images/2840/3103aba9436c00ce9cec06de2e87ae80f3e9a98ac36e1a711e7daa861f63ed78",
+     "icon": "users",
+     "color": {
+      "key": "black",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "408D1309-6577-4DD0-A0E9-318705F2AB51"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 33,
+    "number": "200210",
+    "name": "Jugendfreizeiten",
+    "annotation": null,
+    "budget": 100000,
+    "budgetBalance": -128000,
+    "budgetSpent": 228000,
+    "budgetLastPeriod": 100000,
+    "budgetBalanceLastPeriod": -128000,
+    "accountingPeriodId": 6,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "Jugend fährt nach Rom",
+     "domainType": "group",
+     "domainIdentifier": "37",
+     "apiUrl": "https://gemeinde.example/api/groups/37",
+     "frontendUrl": "https://gemeinde.example/groups/37",
+     "imageUrl": "https://gemeinde.example/images/125/ac554937a9dbedea38df868ba65ff50ec47386cc6773c5c4a1f7be0cde84abb1",
+     "icon": "users",
+     "color": {
+      "key": "amber",
+      "shade": null
+     },
+     "initials": "J",
+     "domainAttributes": {
+      "note": "\"Jugend fährt nach Rom\" ist eine aufregende und unvergessliche Jugendfreizeit, die sich an junge Menschen im Alter von 14 bis 18 Jahren richtet und sie auf eine Reise in die ewige Stadt Rom mitnimmt.\n\nDie Jugendlichen werden die Möglichkeit haben, die reiche Geschichte und Kultur Roms hautnah zu erleben, indem sie historische Sehenswürdigkeiten wie das Kolosseum, das Forum Romanum und den Petersdom besuchen. Neben diesen kulturellen Höhepunkten wird die Freizeit auch Raum für gemeinschaftliches Erleben und Freizeitaktivitäten bieten, wie zum Beispiel gemeinsames Essen, abendliche Lagerfeuer und sportliche Aktivitäten.\n\nWährend der Freizeit werden die Teilnehmer in gemütlichen Unterkünften untergebracht sein und von erfahrenen Betreuern begleitet, die sich um ihr Wohl kümmern und ihnen bei Fragen und Anliegen zur Seite stehen.\n\n\"Jugend fährt nach Rom\" verspricht eine einzigartige Erfahrung zu sein, die die Jugendlichen in ihren Erinnerungen für immer begleiten wird.",
+      "groupStatusId": 1,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+     },
+     "infos": [
+      "Veranstaltung"
+     ]
+    }
+   },
+   {
+    "id": 42,
+    "number": "200300",
+    "name": "Kinder Kirche",
+    "annotation": null,
+    "budget": 400000,
+    "budgetBalance": 140100,
+    "budgetSpent": 259900,
+    "budgetLastPeriod": 400000,
+    "budgetBalanceLastPeriod": 140100,
+    "accountingPeriodId": 6,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "Kinderkirche",
+     "domainType": "group",
+     "domainIdentifier": "8",
+     "apiUrl": "https://gemeinde.example/api/groups/8",
+     "frontendUrl": "https://gemeinde.example/groups/8",
+     "imageUrl": "https://gemeinde.example/images/2906/63a53822634e6abc9bbf3b08066dc94bf0b60372c57926f55124760069163672",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "B672A315-EF25-49A9-B347-90555EBB5E4C"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 48,
+    "number": "200400",
+    "name": "Kaffeebar",
+    "annotation": null,
+    "budget": 200000,
+    "budgetBalance": 160000,
+    "budgetSpent": 40000,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": 0,
+    "accountingPeriodId": 6,
+    "meta": {
+     "createdDate": "2026-04-28T11:22:22Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-28T11:22:22Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "Kaffeebar",
+     "domainType": "group",
+     "domainIdentifier": "165",
+     "apiUrl": "https://gemeinde.example/api/groups/165",
+     "frontendUrl": "https://gemeinde.example/groups/165",
+     "imageUrl": "https://gemeinde.example/images/1014/39d725ade7fd4ea6501f66d0dea94de91ff13d96deb785295f7f4c400f39bc68",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "K",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "intern",
+      "guid": "B29881E2-F20C-489A-A97D-F35F27E95433"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 51,
+    "number": "200500",
+    "name": "Kleingruppen",
+    "annotation": null,
+    "budget": 250000,
+    "budgetBalance": 240000,
+    "budgetSpent": 10000,
+    "budgetLastPeriod": null,
+    "budgetBalanceLastPeriod": 0,
+    "accountingPeriodId": 6,
+    "meta": {
+     "createdDate": "2026-04-28T11:22:40Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-28T11:22:40Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": {
+     "title": "#1 Bereich Kleingruppen",
+     "domainType": "group",
+     "domainIdentifier": "15",
+     "apiUrl": "https://gemeinde.example/api/groups/15",
+     "frontendUrl": "https://gemeinde.example/groups/15",
+     "imageUrl": "https://gemeinde.example/images/2846/d38bad5ab956db0ab0957c3c24f4b112037bc752cadc5beb89da73a98dcdfdf3",
+     "icon": "users",
+     "color": {
+      "key": "lime",
+      "shade": null
+     },
+     "initials": "1",
+     "domainAttributes": {
+      "note": "",
+      "groupStatusId": 1,
+      "groupTypeId": 2,
+      "campusId": null,
+      "visibility": "restricted",
+      "guid": "FD459EFF-1709-4833-8D3D-D9D31E4F4FE1"
+     },
+     "infos": [
+      "Team"
+     ]
+    }
+   },
+   {
+    "id": 45,
+    "number": "200800",
+    "name": "Personalkosten",
+    "annotation": null,
+    "budget": 5000000,
+    "budgetBalance": 1394500,
+    "budgetSpent": 3605500,
+    "budgetLastPeriod": 5000000,
+    "budgetBalanceLastPeriod": 1394500,
+    "accountingPeriodId": 6,
+    "meta": {
+     "createdDate": "2026-04-26T15:30:33Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-04-26T15:30:33Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "group": null
+   }
+  ],
+  "meta": {
+   "count": 19
+  }
+ }
+}

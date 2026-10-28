@@ -1,0 +1,1168 @@
+{
+ "operation": "get-person-masterdata",
+ "request": {
+  "method": "GET",
+  "path": "/person/masterdata",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "roles": [
+    {
+     "id": 16,
+     "groupTypeId": 2,
+     "name": "Leiter",
+     "nameTranslated": "Leiter",
+     "shorty": "L",
+     "sortKey": 1,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 4,
+     "isLeader": true
+    },
+    {
+     "id": 17,
+     "groupTypeId": 2,
+     "name": "Co-Leiter",
+     "nameTranslated": "Co-Leiter",
+     "shorty": "CoL",
+     "sortKey": 2,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 4,
+     "isLeader": true
+    },
+    {
+     "id": 40,
+     "groupTypeId": 6,
+     "name": "Verwalter",
+     "nameTranslated": "Verwalter",
+     "shorty": "V",
+     "sortKey": 10,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": true
+    },
+    {
+     "id": 9,
+     "groupTypeId": 1,
+     "name": "Leiter",
+     "nameTranslated": "Leiter",
+     "shorty": "L",
+     "sortKey": 10,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 4,
+     "isLeader": true
+    },
+    {
+     "id": 36,
+     "groupTypeId": 5,
+     "name": "Verwalter",
+     "nameTranslated": "Verwalter",
+     "shorty": "V",
+     "sortKey": 10,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": true
+    },
+    {
+     "id": 30,
+     "groupTypeId": 4,
+     "name": "Admin",
+     "nameTranslated": "Admin",
+     "shorty": "A",
+     "sortKey": 10,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": true
+    },
+    {
+     "id": 23,
+     "groupTypeId": 3,
+     "name": "Leiter",
+     "nameTranslated": "Leiter",
+     "shorty": "L",
+     "sortKey": 10,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 4,
+     "isLeader": true
+    },
+    {
+     "id": 24,
+     "groupTypeId": 3,
+     "name": "Co-Leiter",
+     "nameTranslated": "Co-Leiter",
+     "shorty": "CoL",
+     "sortKey": 20,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 4,
+     "isLeader": true
+    },
+    {
+     "id": 10,
+     "groupTypeId": 1,
+     "name": "Co-Leiter",
+     "nameTranslated": "Co-Leiter",
+     "shorty": "CoL",
+     "sortKey": 20,
+     "type": "leader",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 4,
+     "isLeader": true
+    },
+    {
+     "id": 19,
+     "groupTypeId": 2,
+     "name": "Organisator",
+     "nameTranslated": "Organisator",
+     "shorty": "O",
+     "sortKey": 4,
+     "type": "participant",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 3,
+     "isLeader": false
+    },
+    {
+     "id": 15,
+     "groupTypeId": 2,
+     "name": "Mitarbeiter",
+     "nameTranslated": "Mitarbeiter",
+     "shorty": "Mia",
+     "sortKey": 5,
+     "type": "participant",
+     "isDefault": true,
+     "isHidden": false,
+     "growPathId": 3,
+     "isLeader": false
+    },
+    {
+     "id": 29,
+     "groupTypeId": 4,
+     "name": "Empfänger",
+     "nameTranslated": "Empfänger",
+     "shorty": "E",
+     "sortKey": 20,
+     "type": "participant",
+     "isDefault": true,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": false
+    },
+    {
+     "id": 37,
+     "groupTypeId": 5,
+     "name": "Besitzer",
+     "nameTranslated": "Besitzer",
+     "shorty": "B",
+     "sortKey": 20,
+     "type": "participant",
+     "isDefault": true,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": false
+    },
+    {
+     "id": 41,
+     "groupTypeId": 6,
+     "name": "Zugesagt",
+     "nameTranslated": "Zugesagt",
+     "shorty": "Z",
+     "sortKey": 30,
+     "type": "participant",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": false
+    },
+    {
+     "id": 26,
+     "groupTypeId": 3,
+     "name": "Organisator",
+     "nameTranslated": "Organisator",
+     "shorty": "O",
+     "sortKey": 30,
+     "type": "participant",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": false
+    },
+    {
+     "id": 11,
+     "groupTypeId": 1,
+     "name": "Coach",
+     "nameTranslated": "Coach",
+     "shorty": "Coa",
+     "sortKey": 30,
+     "type": "participant",
+     "isDefault": false,
+     "isHidden": true,
+     "growPathId": null,
+     "isLeader": false
+    },
+    {
+     "id": 42,
+     "groupTypeId": 6,
+     "name": "Teilnehmer",
+     "nameTranslated": "Teilnehmer",
+     "shorty": "T",
+     "sortKey": 40,
+     "type": "participant",
+     "isDefault": true,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": false
+    },
+    {
+     "id": 43,
+     "groupTypeId": 3,
+     "name": "Mitarbeiter",
+     "nameTranslated": "Mitarbeiter",
+     "shorty": "M",
+     "sortKey": 40,
+     "type": "participant",
+     "isDefault": false,
+     "isHidden": false,
+     "growPathId": 3,
+     "isLeader": false
+    },
+    {
+     "id": 22,
+     "groupTypeId": 3,
+     "name": "Teilnehmer",
+     "nameTranslated": "Teilnehmer",
+     "shorty": "T",
+     "sortKey": 50,
+     "type": "participant",
+     "isDefault": true,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": false
+    },
+    {
+     "id": 8,
+     "groupTypeId": 1,
+     "name": "Teilnehmer",
+     "nameTranslated": "Teilnehmer",
+     "shorty": "T",
+     "sortKey": 50,
+     "type": "participant",
+     "isDefault": true,
+     "isHidden": false,
+     "growPathId": null,
+     "isLeader": false
+    }
+   ],
+   "ageGroups": [
+    {
+     "id": 1,
+     "name": "10-12",
+     "nameTranslated": "10-12",
+     "sortKey": 10,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "id": 2,
+     "name": "13-19",
+     "nameTranslated": "13-19",
+     "sortKey": 13,
+     "start": 13,
+     "end": 19
+    },
+    {
+     "id": 4,
+     "name": "20er",
+     "nameTranslated": "20er",
+     "sortKey": 20,
+     "start": 20,
+     "end": 29
+    },
+    {
+     "id": 5,
+     "name": "30er",
+     "nameTranslated": "30er",
+     "sortKey": 30,
+     "start": 30,
+     "end": 39
+    },
+    {
+     "id": 6,
+     "name": "40er",
+     "nameTranslated": "40er",
+     "sortKey": 40,
+     "start": 40,
+     "end": 49
+    },
+    {
+     "id": 7,
+     "name": "50er",
+     "nameTranslated": "50er",
+     "sortKey": 50,
+     "start": 50,
+     "end": 59
+    },
+    {
+     "id": 8,
+     "name": "60+",
+     "nameTranslated": "60+",
+     "sortKey": 60,
+     "start": 60,
+     "end": 120
+    },
+    {
+     "id": 9,
+     "name": "0-2",
+     "nameTranslated": "0-2",
+     "sortKey": 0,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "id": 10,
+     "name": "3-5",
+     "nameTranslated": "3-5",
+     "sortKey": 3,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "id": 11,
+     "name": "6-9",
+     "nameTranslated": "6-9",
+     "sortKey": 6,
+     "start": 6,
+     "end": 9
+    }
+   ],
+   "targetGroups": [
+    {
+     "id": 1,
+     "name": "everyone",
+     "nameTranslated": "Jeder",
+     "sortKey": 1
+    },
+    {
+     "id": 2,
+     "name": "men",
+     "nameTranslated": "Männer",
+     "sortKey": 2
+    },
+    {
+     "id": 3,
+     "name": "women",
+     "nameTranslated": "Frauen",
+     "sortKey": 3
+    },
+    {
+     "id": 4,
+     "name": "singles",
+     "nameTranslated": "Singles",
+     "sortKey": 4
+    },
+    {
+     "id": 5,
+     "name": "students",
+     "nameTranslated": "Studenten",
+     "sortKey": 5
+    }
+   ],
+   "groupTypes": [
+    {
+     "id": 1,
+     "name": "Kleingruppe",
+     "nameTranslated": "Kleingruppe",
+     "sortKey": 10,
+     "namePlural": "Kleingruppen",
+     "namePluralTranslated": "Kleingruppen",
+     "color": "sky",
+     "shorty": "KG",
+     "description": null,
+     "isLeaderNecessary": true,
+     "availableForNewPerson": true,
+     "permissionDepth": 999,
+     "postsEnabled": true,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-04-14T10:50:49Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 2,
+     "name": "Team",
+     "nameTranslated": "Team",
+     "sortKey": 20,
+     "namePlural": "Teams",
+     "namePluralTranslated": "Teams",
+     "color": "lime",
+     "shorty": "T",
+     "description": null,
+     "isLeaderNecessary": false,
+     "availableForNewPerson": true,
+     "permissionDepth": 1,
+     "postsEnabled": true,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-09-15T15:22:47Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    },
+    {
+     "id": 3,
+     "name": "Veranstaltung",
+     "nameTranslated": "Veranstaltung",
+     "sortKey": 30,
+     "namePlural": "Veranstaltungen",
+     "namePluralTranslated": "Veranstaltungen",
+     "color": "amber",
+     "shorty": "VA",
+     "description": null,
+     "isLeaderNecessary": false,
+     "availableForNewPerson": true,
+     "permissionDepth": 1,
+     "postsEnabled": true,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-04-14T10:50:49Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 4,
+     "name": "Verteiler",
+     "nameTranslated": "Verteiler",
+     "sortKey": 40,
+     "namePlural": "Verteiler",
+     "namePluralTranslated": "Verteiler",
+     "color": "teal",
+     "shorty": "VT",
+     "description": null,
+     "isLeaderNecessary": false,
+     "availableForNewPerson": true,
+     "permissionDepth": 4,
+     "postsEnabled": true,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-04-14T10:50:49Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 5,
+     "name": "Schlüssel",
+     "nameTranslated": "Schlüssel",
+     "sortKey": 50,
+     "namePlural": "Schlüssel",
+     "namePluralTranslated": "Schlüssel",
+     "color": "fuchsia",
+     "shorty": "SL",
+     "description": null,
+     "isLeaderNecessary": false,
+     "availableForNewPerson": false,
+     "permissionDepth": 0,
+     "postsEnabled": false,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-04-14T10:50:49Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 6,
+     "name": "Prozesse",
+     "nameTranslated": "Prozesse",
+     "sortKey": 60,
+     "namePlural": "Prozesse",
+     "namePluralTranslated": "Prozesse",
+     "color": "red",
+     "shorty": "Pr",
+     "description": null,
+     "isLeaderNecessary": false,
+     "availableForNewPerson": true,
+     "permissionDepth": 0,
+     "postsEnabled": true,
+     "meta": {
+      "createdDate": "2025-04-14T10:50:49Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2026-08-17T10:28:37Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    }
+   ],
+   "groupCategories": [
+    {
+     "id": 2,
+     "name": "Kleingruppe",
+     "nameTranslated": "Kleingruppe",
+     "sortKey": 10,
+     "description": null,
+     "color": "violet",
+     "meta": {
+      "createdDate": "2024-11-11T09:08:30Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-03-17T15:21:50Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 3,
+     "name": "Seminar",
+     "nameTranslated": "Seminar",
+     "sortKey": 20,
+     "description": null,
+     "color": "emerald",
+     "meta": {
+      "createdDate": "2024-11-11T09:08:30Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-03-17T15:21:50Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 1,
+     "name": "Sportangebot",
+     "nameTranslated": "Sportangebot",
+     "sortKey": 30,
+     "description": null,
+     "color": "orange",
+     "meta": {
+      "createdDate": "2024-11-11T09:08:30Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-03-17T15:21:50Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    }
+   ],
+   "groupStatuses": [
+    {
+     "id": 1,
+     "name": "active",
+     "nameTranslated": "Aktiv",
+     "sortKey": 10
+    },
+    {
+     "id": 2,
+     "name": "pending",
+     "nameTranslated": "Entwurf",
+     "sortKey": 20
+    },
+    {
+     "id": 3,
+     "name": "archived",
+     "nameTranslated": "Archiviert",
+     "sortKey": 40
+    },
+    {
+     "id": 4,
+     "name": "finished",
+     "nameTranslated": "Beendet",
+     "sortKey": 30
+    }
+   ],
+   "departments": [
+    {
+     "id": 1,
+     "name": "Gemeindeliste",
+     "nameTranslated": "Gemeindeliste",
+     "sortKey": 1,
+     "shorty": "G",
+     "@deprecated": {
+      "short": "shorty"
+     },
+     "short": "G"
+    }
+   ],
+   "statuses": [
+    {
+     "id": 0,
+     "name": "status.potential",
+     "nameTranslated": "Interessent",
+     "sortKey": 10,
+     "shorty": "status.potential.shortcut",
+     "shortyTranslated": "I",
+     "isMember": false,
+     "isSearchable": true,
+     "securityLevelId": 1
+    },
+    {
+     "id": 1,
+     "name": "status.friend",
+     "nameTranslated": "Freund",
+     "sortKey": 20,
+     "shorty": "status.friend.shortcut",
+     "shortyTranslated": "F",
+     "isMember": false,
+     "isSearchable": true,
+     "securityLevelId": 1
+    },
+    {
+     "id": 3,
+     "name": "status.member",
+     "nameTranslated": "Mitglied",
+     "sortKey": 30,
+     "shorty": "status.member.shortcut",
+     "shortyTranslated": "M",
+     "isMember": true,
+     "isSearchable": true,
+     "securityLevelId": 1
+    },
+    {
+     "id": 4,
+     "name": "status.delete",
+     "nameTranslated": "Zu löschen",
+     "sortKey": 100,
+     "shorty": "status.delete.shortcut",
+     "shortyTranslated": "X",
+     "isMember": false,
+     "isSearchable": false,
+     "securityLevelId": 1
+    }
+   ],
+   "campuses": [
+    {
+     "id": 0,
+     "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+     "name": "Winterhude",
+     "nameTranslated": "Winterhude",
+     "shortName": null,
+     "shorty": "W",
+     "sortKey": 1,
+     "address": {
+      "id": 14,
+      "domainType": "campus",
+      "domainIdentifier": "0",
+      "name": null,
+      "icon": null,
+      "color": null,
+      "street": null,
+      "addition": null,
+      "district": null,
+      "zip": null,
+      "city": null,
+      "country": null,
+      "latitude": null,
+      "longitude": null,
+      "latitudeLoose": null,
+      "longitudeLoose": null,
+      "@deprecated": {
+       "meetingAt": "name",
+       "markerIcon": "icon",
+       "markerColor": "color",
+       "postalcode": "zip",
+       "markerUrl": "@deleted use icon and color instead",
+       "geoLat": "latitude",
+       "geoLng": "longitude"
+      },
+      "meetingAt": null,
+      "markerIcon": null,
+      "markerColor": null,
+      "markerUrl": null,
+      "postalcode": null,
+      "geoLat": null,
+      "geoLng": null
+     },
+     "meta": {
+      "createdDate": "2022-02-14T10:14:16Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2025-09-15T14:17:52Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    },
+    {
+     "id": 1,
+     "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+     "name": "Hafencity",
+     "nameTranslated": "Hafencity",
+     "shortName": null,
+     "shorty": "HC",
+     "sortKey": 2,
+     "address": {
+      "id": 17,
+      "domainType": "campus",
+      "domainIdentifier": "1",
+      "name": null,
+      "icon": null,
+      "color": null,
+      "street": null,
+      "addition": null,
+      "district": null,
+      "zip": null,
+      "city": null,
+      "country": null,
+      "latitude": null,
+      "longitude": null,
+      "latitudeLoose": null,
+      "longitudeLoose": null,
+      "@deprecated": {
+       "meetingAt": "name",
+       "markerIcon": "icon",
+       "markerColor": "color",
+       "postalcode": "zip",
+       "markerUrl": "@deleted use icon and color instead",
+       "geoLat": "latitude",
+       "geoLng": "longitude"
+      },
+      "meetingAt": null,
+      "markerIcon": null,
+      "markerColor": null,
+      "markerUrl": null,
+      "postalcode": null,
+      "geoLat": null,
+      "geoLng": null
+     },
+     "meta": {
+      "createdDate": "2022-02-14T10:14:16Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2025-09-15T14:18:12Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     }
+    }
+   ],
+   "sexes": [
+    {
+     "id": 0,
+     "name": "sex.unknown",
+     "nameTranslated": "unbekannt",
+     "sortKey": 0,
+     "salutationFormal": null,
+     "salutationFormalTranslated": "",
+     "salutationInformal": "salutation.informal.unknown",
+     "salutationInformalTranslated": "Liebe/r",
+     "meta": {
+      "createdDate": "2026-03-16T13:13:45Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-03-16T13:13:45Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    {
+     "id": 1,
+     "name": "sex.male",
+     "nameTranslated": "männlich",
+     "sortKey": 0,
+     "salutationFormal": "salutation.formal.male",
+     "salutationFormalTranslated": "Herr",
+     "salutationInformal": "salutation.informal.male",
+     "salutationInformalTranslated": "Lieber",
+     "meta": {
+      "createdDate": "2026-03-16T13:13:45Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-03-16T13:13:45Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    {
+     "id": 2,
+     "name": "sex.female",
+     "nameTranslated": "weiblich",
+     "sortKey": 0,
+     "salutationFormal": "salutation.formal.female",
+     "salutationFormalTranslated": "Frau",
+     "salutationInformal": "salutation.informal.female",
+     "salutationInformalTranslated": "Liebe",
+     "meta": {
+      "createdDate": "2026-03-16T13:13:45Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-03-16T13:13:45Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    {
+     "id": 3,
+     "name": "sex.diverse",
+     "nameTranslated": "divers",
+     "sortKey": 0,
+     "salutationFormal": null,
+     "salutationFormalTranslated": "",
+     "salutationInformal": null,
+     "salutationInformalTranslated": "",
+     "meta": {
+      "createdDate": "2026-03-16T13:13:45Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-03-16T13:13:45Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    }
+   ],
+   "commentViewers": [
+    {
+     "id": 0,
+     "name": "Leiter",
+     "nameTranslated": "Leiter",
+     "sortKey": 0
+    },
+    {
+     "id": 1,
+     "name": "Gemeindeleitung",
+     "nameTranslated": "Gemeindeleitung",
+     "sortKey": 1
+    },
+    {
+     "id": 2,
+     "name": "followup",
+     "nameTranslated": "Follow-up",
+     "sortKey": 2
+    },
+    {
+     "id": 3,
+     "name": "Admin",
+     "nameTranslated": "Admin",
+     "sortKey": 3
+    }
+   ],
+   "contactLabels": [
+    {
+     "id": 2,
+     "name": "contact.label.private",
+     "nameTranslated": "Privat",
+     "sortKey": 10,
+     "isDefault": true
+    },
+    {
+     "id": 5,
+     "name": "contact.label.business",
+     "nameTranslated": "Arbeit",
+     "sortKey": 20,
+     "isDefault": false
+    }
+   ],
+   "growPaths": [
+    {
+     "id": 1,
+     "name": "Willkommen",
+     "nameTranslated": "Willkommen",
+     "sortKey": 1,
+     "color": "gray",
+     "meta": {
+      "createdDate": "2026-02-19T12:28:14Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-02-19T12:28:14Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    {
+     "id": 2,
+     "name": "Helfer",
+     "nameTranslated": "Helfer",
+     "sortKey": 2,
+     "color": "green",
+     "meta": {
+      "createdDate": "2026-02-19T12:28:14Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-02-19T12:28:14Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    {
+     "id": 3,
+     "name": "Mitarbeiter",
+     "nameTranslated": "Mitarbeiter",
+     "sortKey": 3,
+     "color": "blue",
+     "meta": {
+      "createdDate": "2026-02-19T12:28:14Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-02-19T12:28:14Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    {
+     "id": 4,
+     "name": "Leiten (Gruppe)",
+     "nameTranslated": "Leiten (Gruppe)",
+     "sortKey": 4,
+     "color": "yellow",
+     "meta": {
+      "createdDate": "2026-02-19T12:28:14Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-02-19T12:28:14Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    {
+     "id": 5,
+     "name": "Leiten (Bereich)",
+     "nameTranslated": "Leiten (Bereich)",
+     "sortKey": 5,
+     "color": "orange",
+     "meta": {
+      "createdDate": "2026-02-19T12:28:14Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-02-19T12:28:14Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    },
+    {
+     "id": 6,
+     "name": "Leiten (Vorstand)",
+     "nameTranslated": "Leiten (Vorstand)",
+     "sortKey": 6,
+     "color": "red",
+     "meta": {
+      "createdDate": "2026-02-19T12:28:14Z",
+      "createdPerson": {
+       "id": -5
+      },
+      "modifiedDate": "2026-02-19T12:28:14Z",
+      "modifiedPerson": {
+       "id": -5
+      }
+     }
+    }
+   ],
+   "groupMeetingTemplates": [
+    {
+     "id": 1,
+     "name": "Lowlights / Highlights",
+     "template": [
+      {
+       "type": "textarea",
+       "label": "Gab es eher schwierige Momente?"
+      },
+      {
+       "type": "textarea",
+       "label": "Gab es besonders erwähnenswerte Momente?"
+      },
+      {
+       "type": "textarea",
+       "label": "Sonstige Infos zum Treffen"
+      }
+     ],
+     "meta": {
+      "createdDate": "2025-05-21T07:01:53Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-05-21T07:01:53Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    },
+    {
+     "id": 2,
+     "name": "Gemeinschaft, Gebet, Gottes Wort",
+     "template": [
+      {
+       "type": "color",
+       "label": "Wie war die Gemeinschaft?"
+      },
+      {
+       "type": "color",
+       "label": "Wie war die Gebetszeit?"
+      },
+      {
+       "type": "color",
+       "label": "Wie wurde das Wort Gottes aufgenommen?"
+      },
+      {
+       "type": "textarea",
+       "label": "Gab es besonders erwähnenswerte Momente?"
+      },
+      {
+       "type": "textarea",
+       "label": "Sonstige Infos zum Treffen"
+      },
+      {
+       "type": "textarea",
+       "label": "Fragen an den Coach"
+      }
+     ],
+     "meta": {
+      "createdDate": "2025-05-21T07:01:53Z",
+      "createdPerson": {
+       "id": -4
+      },
+      "modifiedDate": "2025-05-21T07:01:53Z",
+      "modifiedPerson": {
+       "id": -4
+      }
+     }
+    }
+   ],
+   "relationshipTypes": [
+    {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    {
+     "id": 3,
+     "name": "noduplicate.name",
+     "nameTranslated": "Keine Dublette",
+     "securityLevelId": 5,
+     "degreeNameA": "duplicatecheck.notconfuse",
+     "degreeNameATranslated": "nicht verwechseln mit",
+     "degreeNameB": "duplicatecheck.notconfuse",
+     "degreeNameBTranslated": "nicht verwechseln mit",
+     "includeInExport": false,
+     "exportTitle": null,
+     "sortKey": 99,
+     "functionKeys": [
+      "noduplicate",
+      "nodelete"
+     ]
+    },
+    {
+     "id": 6,
+     "name": "duplicatecheck.name",
+     "nameTranslated": "Dublette",
+     "securityLevelId": 5,
+     "degreeNameA": "duplicatecheck.original",
+     "degreeNameATranslated": "Original",
+     "degreeNameB": "duplicatecheck.duplicate",
+     "degreeNameBTranslated": "Duplikat",
+     "includeInExport": false,
+     "exportTitle": null,
+     "sortKey": 100,
+     "functionKeys": [
+      "openduplicate",
+      "nodelete"
+     ]
+    }
+   ]
+  },
+  "meta": {
+   "roles": 20,
+   "ageGroups": 10,
+   "targetGroups": 5,
+   "groupTypes": 6,
+   "groupCategories": 3,
+   "groupStatuses": 4,
+   "departments": 1,
+   "statuses": 4,
+   "campuses": 2,
+   "sexes": 4,
+   "commentViewers": 4,
+   "contactLabels": 2,
+   "growPaths": 6,
+   "groupMeetingTemplates": 2
+  }
+ }
+}

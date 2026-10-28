@@ -1,0 +1,70 @@
+{
+ "operation": "get-group-groupcategories",
+ "request": {
+  "method": "GET",
+  "path": "/group/groupcategories",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 2,
+    "name": "Kleingruppe",
+    "nameTranslated": "Kleingruppe",
+    "sortKey": 10,
+    "description": null,
+    "color": "violet",
+    "meta": {
+     "createdDate": "2024-11-11T09:08:30Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-03-17T15:21:50Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 3,
+    "name": "Seminar",
+    "nameTranslated": "Seminar",
+    "sortKey": 20,
+    "description": null,
+    "color": "emerald",
+    "meta": {
+     "createdDate": "2024-11-11T09:08:30Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-03-17T15:21:50Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 1,
+    "name": "Sportangebot",
+    "nameTranslated": "Sportangebot",
+    "sortKey": 30,
+    "description": null,
+    "color": "orange",
+    "meta": {
+     "createdDate": "2024-11-11T09:08:30Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-03-17T15:21:50Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 3
+  }
+ }
+}

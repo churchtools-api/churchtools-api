@@ -1,0 +1,82 @@
+{
+ "operation": "get-pollfornews",
+ "request": {
+  "method": "GET",
+  "path": "/pollfornews",
+  "query": [
+   [
+    "domain_types[]",
+    "person"
+   ],
+   [
+    "since",
+    "2026-10-21T22:34:48Z"
+   ]
+  ],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "domainType": "person",
+    "domainId": 1,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 188,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 2794,
+    "personId": -4
+   },
+   {
+    "domainType": "person",
+    "domainId": 2848,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 2863,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 2869,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 2878,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 2884,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 2893,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 2899,
+    "personId": 1
+   },
+   {
+    "domainType": "person",
+    "domainId": 2905,
+    "personId": 1
+   }
+  ],
+  "meta": {
+   "count": 11,
+   "lastPollDate": "2026-10-28T22:36:25Z",
+   "userId": 1
+  }
+ }
+}

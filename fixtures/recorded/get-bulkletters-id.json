@@ -1,0 +1,22 @@
+{
+ "operation": "get-bulkletters-id",
+ "request": {
+  "method": "GET",
+  "path": "/bulkletters/42",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "id": 42,
+  "name": "Gemeindebrief Oktober 2020",
+  "htmlTemplateId": 2,
+  "groupId": 0,
+  "content": "<p>Hallo <span class=\"nickname\" contenteditable=\"false\">[Spitzname]</span>,</p>\n<p>&nbsp;</p>\n<p>ich hoffe das es dir gut geht!</p>\n<p>&nbsp;</p>\n<p>LG Norbert</p>",
+  "status": "DONE",
+  "fileId": 1163,
+  "url": "?q=public/filedownload&id=1163&filename=f736632c89304839512eba3e537bd858928a3bbb73977faa31820a6f57071b35",
+  "created": "2020-11-20 17:08:27",
+  "created_pid": "1",
+  "updated": "2020-11-20 17:08:28"
+ }
+}

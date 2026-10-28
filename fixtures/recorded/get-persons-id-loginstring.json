@@ -1,0 +1,13 @@
+{
+ "operation": "get-persons-id-loginstring",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/loginstring",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "loginString": "<redacted>",
+  "personId": 1
+ }
+}

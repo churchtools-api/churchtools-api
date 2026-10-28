@@ -1,0 +1,284 @@
+{
+ "operation": "get-menu",
+ "request": {
+  "method": "GET",
+  "path": "/menu",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "modules": [
+   {
+    "href": "/posts",
+    "label": "module.post.name"
+   },
+   {
+    "href": "?q=churchdb",
+    "label": "module.db.name"
+   },
+   {
+    "href": "/groups",
+    "label": "module.group.name"
+   },
+   {
+    "href": "?q=churchcal",
+    "label": "module.cal.name"
+   },
+   {
+    "href": "?q=churchservice",
+    "label": "module.cs.name"
+   },
+   {
+    "href": "?q=churchresource",
+    "label": "module.rc.name"
+   },
+   {
+    "href": "?q=churchcheckin",
+    "label": "module.checkin.name"
+   },
+   {
+    "href": "/wiki",
+    "label": "module.wiki.name"
+   },
+   {
+    "href": "?q=finance",
+    "label": "module.finance.name"
+   },
+   {
+    "href": "/sync",
+    "label": "module.sync.name"
+   }
+  ],
+  "admin": {
+   "primary": [
+    {
+     "href": "/settings",
+     "label": "System-Einstellungen",
+     "icon": "fas fa-cog"
+    }
+   ],
+   "secondary": [
+    {
+     "href": "/pr",
+     "label": "Öffentlichkeitsarbeit",
+     "icon": "fas fa-globe"
+    },
+    {
+     "href": "?q=churchauth",
+     "label": "Rechteverwaltung",
+     "icon": "fas fa-key"
+    },
+    {
+     "href": "?q=churchcore/logviewer",
+     "label": "Log",
+     "icon": "fas fa-history"
+    },
+    {
+     "href": "?q=churchtranslate",
+     "label": "Übersetzungen",
+     "icon": "fas fa-language"
+    },
+    {
+     "href": "/settings/system/datasecurity/support-access",
+     "label": "Support-Zugriff",
+     "icon": "fas fa-life-ring"
+    }
+   ],
+   "actions": [
+    {
+     "label": "Benutzer simulieren",
+     "icon": "fas fa-user-secret",
+     "key": "simulatePerson"
+    },
+    {
+     "href": "?q=cron&adminmenu=true",
+     "label": "Geplante Aufgaben ausführen",
+     "icon": "fas fa-clock"
+    }
+   ]
+  },
+  "help": {
+   "primary": [
+    {
+     "label": "Admin kontaktieren",
+     "icon": "fas fa-envelope",
+     "key": "contactAdmin"
+    },
+    {
+     "href": "https://gemeinde.example",
+     "label": "Website",
+     "icon": "fas fa-desktop",
+     "external": true
+    }
+   ],
+   "secondary": [
+    {
+     "href": "/datasecurity",
+     "label": "Vertraulichkeitserklärung",
+     "icon": "fas fa-badge-check",
+     "external": true
+    },
+    {
+     "href": "/dataprivacy",
+     "label": "Datenschutzerklärung und Hinweise zum Widerrufsrecht",
+     "icon": "fas fa-file-shield",
+     "external": true
+    }
+   ],
+   "tertiary": [
+    {
+     "key": "action.admin-welcome.open",
+     "label": "Willkommen bei ChurchTools",
+     "icon": "fas fa-hand-wave"
+    },
+    {
+     "href": "?q=about",
+     "label": "Über ChurchTools",
+     "icon": "fas fa-info-circle"
+    },
+    {
+     "href": "https://churchtools.academy/de/help?mtm_campaign=ChurchTools%20Fragezeichen&mtm_source=fragezeichen&mtm_medium=browser",
+     "external": true,
+     "label": "Hilfe",
+     "icon": "fas fa-question-circle"
+    },
+    {
+     "href": "https://www.church.tools/de/tutorials",
+     "external": true,
+     "label": "Tutorials",
+     "icon": "fas fa-video"
+    },
+    {
+     "href": "https://forum.church.tools/category/25/deutsch",
+     "external": true,
+     "label": "Forum",
+     "icon": "fas fa-bullhorn"
+    },
+    {
+     "href": "https://contact.church.tools/feedback?language=de&ct-link=https://gemeinde.example/&Vorname=Armin&Name=Adendorf&Email=armin@example.com",
+     "external": true,
+     "label": "Feedback",
+     "icon": "fas fa-comment-alt"
+    },
+    {
+     "href": "https://blog.church.tools",
+     "external": true,
+     "label": "Blog",
+     "icon": "fas fa-rss"
+    }
+   ],
+   "actions": [
+    {
+     "key": "changeLanguage",
+     "label": "Sprache: Deutsch",
+     "icon": "fas fa-language"
+    }
+   ]
+  },
+  "personal": {
+   "primary": [
+    {
+     "href": "?q=profile",
+     "label": "Mein Profil",
+     "icon": "fas fa-user"
+    }
+   ],
+   "secondary": [
+    {
+     "href": "?q=churchdb/mailviewer",
+     "label": "Gesendete Nachrichten",
+     "icon": "fas fa-envelope"
+    },
+    {
+     "href": "?q=webchat",
+     "label": "Chat",
+     "icon": "fas fa-comments"
+    },
+    {
+     "href": "?q=app",
+     "label": "App",
+     "icon": "fas fa-mobile"
+    }
+   ],
+   "actions": [
+    {
+     "href": "?q=logout",
+     "label": "Ausloggen",
+     "icon": "fas fa-sign-out-alt"
+    }
+   ]
+  },
+  "family": [],
+  "logo": "https://gemeinde.example/images/613/91093dd905567059f64766bb4a8c3780387dd229ef5181a0754b6081bcfea6ec",
+  "user": {
+   "id": 1,
+   "firstname": "Armin",
+   "lastname": "Adendorf",
+   "image": "e506915aef806b9134c34762b6a90095d2c1ef52aee1840bc32140c712424112",
+   "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+   "imageId": "2277",
+   "hasAdminRights": true,
+   "loggedIn": true
+  },
+  "siteName": "CTC",
+  "simulate": false,
+  "stations": [
+   {
+    "id": "0",
+    "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+    "bezeichnung": "Winterhude",
+    "short_name": null,
+    "kuerzel": "W",
+    "slug": null,
+    "sortkey": "1",
+    "profile_type": "campus",
+    "is_published": "0",
+    "description": null,
+    "website": null,
+    "email": null,
+    "phone": null,
+    "denomination": "denomination.free.evangelical",
+    "association_id": null,
+    "address_id": "14",
+    "social_media": null,
+    "tags": "[\"active\"]",
+    "visitors": "0",
+    "sign_up_group_id": null,
+    "team_title": null,
+    "created_date": "2022-02-14 11:14:16",
+    "created_pid": "1",
+    "modified_date": "2025-09-15 16:17:52",
+    "modified_pid": "1"
+   },
+   {
+    "id": "1",
+    "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+    "bezeichnung": "Hafencity",
+    "short_name": null,
+    "kuerzel": "HC",
+    "slug": null,
+    "sortkey": "2",
+    "profile_type": "campus",
+    "is_published": "0",
+    "description": null,
+    "website": null,
+    "email": null,
+    "phone": null,
+    "denomination": "denomination.free.evangelical",
+    "association_id": "34",
+    "address_id": "17",
+    "social_media": null,
+    "tags": null,
+    "visitors": "0",
+    "sign_up_group_id": null,
+    "team_title": null,
+    "created_date": "2022-02-14 11:14:16",
+    "created_pid": "1",
+    "modified_date": "2025-09-15 16:18:12",
+    "modified_pid": "1"
+   }
+  ],
+  "stationsCount": "2",
+  "currentStation": null
+ }
+}

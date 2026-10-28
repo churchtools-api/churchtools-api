@@ -1,0 +1,15 @@
+{
+ "operation": "get-dynamicgroups",
+ "request": {
+  "method": "GET",
+  "path": "/dynamicgroups",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

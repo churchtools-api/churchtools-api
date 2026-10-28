@@ -1,0 +1,52 @@
+{
+ "operation": "get-persons-duplicates",
+ "request": {
+  "method": "GET",
+  "path": "/persons/duplicates",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "meta": {
+   "count": 3,
+   "counts_marked": [],
+   "evaluations": 0,
+   "memory_used": "6,389 kbytes",
+   "duration": 0.009348154067993164
+  },
+  "data": [
+   {
+    "relationshipTypeId": null,
+    "relationships": [
+     {
+      "key": "32:228",
+      "p1": {
+       "id": 32
+      },
+      "p2": {
+       "id": 228
+      }
+     },
+     {
+      "key": "533:1277",
+      "p1": {
+       "id": 533
+      },
+      "p2": {
+       "id": 1277
+      }
+     },
+     {
+      "key": "623:1235",
+      "p1": {
+       "id": 623
+      },
+      "p2": {
+       "id": 1235
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

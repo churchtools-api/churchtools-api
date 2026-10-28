@@ -1,0 +1,32 @@
+{
+ "operation": "get-externallogins-id",
+ "request": {
+  "method": "GET",
+  "path": "/externallogins/28",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "id": 28,
+   "type": "oidc",
+   "name": "ctrs-test OIDC",
+   "newPersonDepartmentId": null,
+   "newPersonStatusId": null,
+   "newPersonCampusId": null,
+   "createNewPerson": false,
+   "matchingMode": "auto_match",
+   "updateDataOnLogin": false,
+   "hasRegistration": false,
+   "isVisible": false,
+   "config": {
+    "clientId": "ctrs-test",
+    "issuer": "https://accounts.google.com",
+    "allowedConnections": []
+   },
+   "logoUrl": "https://accounts.google.com/favicon.ico",
+   "primaryLogin": false,
+   "subtitle": null
+  }
+ }
+}

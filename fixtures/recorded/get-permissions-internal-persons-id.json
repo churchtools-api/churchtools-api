@@ -1,0 +1,24 @@
+{
+ "operation": "get-permissions-internal-persons-id",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/internal/persons/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "churchdb": {
+    "+see persons": 3,
+    "+edit person fields of group members": 3,
+    "+invite person": true,
+    "+see tags": true,
+    "+do followup": true,
+    "+edit persons": true
+   },
+   "churchservice": {
+    "+see workload": true
+   }
+  }
+ }
+}

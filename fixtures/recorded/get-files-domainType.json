@@ -1,0 +1,137 @@
+{
+ "operation": "get-files-domainType",
+ "request": {
+  "method": "GET",
+  "path": "/files/person",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 3322,
+    "domainType": "person",
+    "domainId": "1",
+    "name": "ctrs-test.txt",
+    "filename": "9bfdffcee66c62a0e33708ff52e4f48dcbc77b4cddf7782cc29ebee159e51d17",
+    "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3322&filename=9bfdffcee66c62a0e33708ff52e4f48dcbc77b4cddf7782cc29ebee159e51d17",
+    "imageUrl": null,
+    "relativeUrl": "?q=public/filedownload&id=3322&filename=9bfdffcee66c62a0e33708ff52e4f48dcbc77b4cddf7782cc29ebee159e51d17",
+    "showOnlyWhenEditable": false,
+    "securityLevelId": 0,
+    "description": null,
+    "annotation": null,
+    "annotationLink": null,
+    "aiGenerated": false,
+    "imageOption": null,
+    "imageMetadata": null,
+    "type": "file",
+    "size": 28,
+    "meta": {
+     "createdDate": "2026-10-28T22:34:53Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2026-10-28T22:34:53Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    }
+   },
+   {
+    "id": 3325,
+    "domainType": "person",
+    "domainId": "1",
+    "name": "ctrs-test-beleg.txt",
+    "filename": "5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
+    "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3325&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
+    "imageUrl": null,
+    "relativeUrl": "?q=public/filedownload&id=3325&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
+    "showOnlyWhenEditable": false,
+    "securityLevelId": 0,
+    "description": null,
+    "annotation": null,
+    "annotationLink": null,
+    "aiGenerated": false,
+    "imageOption": null,
+    "imageMetadata": null,
+    "type": "file",
+    "size": 8,
+    "meta": {
+     "createdDate": "2026-10-28T22:34:56Z",
+     "createdPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "modifiedDate": "2026-10-28T22:34:56Z",
+     "modifiedPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     }
+    }
+   }
+  ]
+ }
+}

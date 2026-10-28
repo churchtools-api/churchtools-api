@@ -1,0 +1,6202 @@
+{
+ "operation": "get-permissions-origins-global-persons-personId",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/origins/global/persons/1",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "personId": 1,
+   "permissions": [
+    {
+     "authId": 1,
+     "module": "churchcore",
+     "auth": "administer settings",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 10,
+     "module": "churchcore",
+     "auth": "edit public profiles",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 11,
+     "module": "churchcore",
+     "auth": "view website",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 12,
+     "module": "churchcore",
+     "auth": "edit website staff",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 13,
+     "module": "churchcore",
+     "auth": "edit website releases",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 2,
+     "module": "churchcore",
+     "auth": "administer persons",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 3,
+     "module": "churchcore",
+     "auth": "view logfile",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 9,
+     "module": "churchcore",
+     "auth": "edit languages",
+     "effectiveValue": [
+      6,
+      1,
+      2,
+      4,
+      7,
+      17,
+      3,
+      14,
+      10,
+      12,
+      9,
+      8,
+      22,
+      5
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        6,
+        1,
+        2,
+        4,
+        7,
+        17,
+        3,
+        14,
+        10,
+        12,
+        9,
+        8,
+        22,
+        5
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        6,
+        1,
+        2,
+        4,
+        7,
+        17,
+        3,
+        14,
+        10,
+        12,
+        9,
+        8,
+        22,
+        5
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 5,
+     "module": "churchcore",
+     "auth": "edit translations masterdata",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 7,
+     "module": "churchcore",
+     "auth": "simulate persons",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 6,
+     "module": "churchcore",
+     "auth": "invite persons",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 16,
+     "module": "churchcore",
+     "auth": "administer church html templates",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 17,
+     "module": "churchcore",
+     "auth": "use church html templates",
+     "effectiveValue": [
+      2,
+      5,
+      18,
+      22,
+      17,
+      49
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        2,
+        5,
+        18,
+        22,
+        17,
+        49
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 19,
+     "module": "churchcore",
+     "auth": "view links",
+     "effectiveValue": [
+      25
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        25
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1201,
+     "module": "post",
+     "auth": "moderate posts",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 101,
+     "module": "churchdb",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 7,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 17,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 10,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 11,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 154,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 206,
+       "groupRoleId": 2504,
+       "groupTypeRoleId": 29,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 208,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 124,
+     "module": "churchdb",
+     "auth": "view station",
+     "effectiveValue": [
+      0,
+      1
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 133,
+     "module": "churchdb",
+     "auth": "view persons from campus",
+     "effectiveValue": [
+      0,
+      1
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 102,
+     "module": "churchdb",
+     "auth": "view alldata",
+     "effectiveValue": [
+      1
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 125,
+     "module": "churchdb",
+     "auth": "security level person",
+     "effectiveValue": 99999,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": 1,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": 99999,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": 4,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": 4,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": 1,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": 99999,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": 1,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 131,
+     "module": "churchdb",
+     "auth": "security level view own data",
+     "effectiveValue": 99999,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": 2,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": 99999,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": 99999,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 132,
+     "module": "churchdb",
+     "auth": "security level edit own data",
+     "effectiveValue": 99999,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": 2,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": 99999,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": 99999,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 119,
+     "module": "churchdb",
+     "auth": "create person",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 111,
+     "module": "churchdb",
+     "auth": "write access",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 129,
+     "module": "churchdb",
+     "auth": "delete persons",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 118,
+     "module": "churchdb",
+     "auth": "push/pull archive",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 116,
+     "module": "churchdb",
+     "auth": "view archive",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 106,
+     "module": "churchdb",
+     "auth": "view statistics",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 107,
+     "module": "churchdb",
+     "auth": "view person tags",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 113,
+     "module": "churchdb",
+     "auth": "view comments",
+     "effectiveValue": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        0
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 112,
+     "module": "churchdb",
+     "auth": "export data",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 128,
+     "module": "churchdb",
+     "auth": "edit bulkletter",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 130,
+     "module": "churchdb",
+     "auth": "create print labels",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 117,
+     "module": "churchdb",
+     "auth": "send sms",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 108,
+     "module": "churchdb",
+     "auth": "view person history",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 109,
+     "module": "churchdb",
+     "auth": "edit relations",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 122,
+     "module": "churchdb",
+     "auth": "view memberliste",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 120,
+     "module": "churchdb",
+     "auth": "complex filter",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 127,
+     "module": "churchdb",
+     "auth": "administer global filters",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 199,
+     "module": "churchdb",
+     "auth": "edit masterdata",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1101,
+     "module": "churchgroup",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 7,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 17,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 10,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 11,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 154,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 206,
+       "groupRoleId": 2504,
+       "groupTypeRoleId": 29,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 208,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1104,
+     "module": "churchgroup",
+     "auth": "view group",
+     "effectiveValue": [
+      168,
+      11,
+      13,
+      14,
+      16,
+      17,
+      22,
+      29,
+      64,
+      132,
+      142,
+      148,
+      203,
+      895,
+      898,
+      6,
+      7,
+      8,
+      9,
+      10,
+      15,
+      21,
+      26,
+      27,
+      28,
+      32,
+      35,
+      39,
+      59,
+      103,
+      127,
+      133,
+      136,
+      154,
+      158,
+      162,
+      165,
+      171,
+      183,
+      208,
+      211,
+      343,
+      31,
+      34,
+      37,
+      174,
+      177,
+      180,
+      186,
+      358,
+      359,
+      548,
+      642,
+      738,
+      741,
+      744,
+      747,
+      750,
+      753,
+      756,
+      759,
+      781,
+      790,
+      793,
+      794,
+      24,
+      38,
+      206,
+      346,
+      349,
+      352,
+      355,
+      213,
+      216,
+      219,
+      222,
+      225,
+      228,
+      231,
+      234,
+      237,
+      240,
+      243,
+      246,
+      249,
+      252,
+      255,
+      258,
+      261,
+      264,
+      267,
+      270,
+      99,
+      109,
+      554,
+      732
+     ],
+     "origins": [
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        168,
+        11,
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1105,
+     "module": "churchgroup",
+     "auth": "edit group",
+     "effectiveValue": [
+      13,
+      14,
+      16,
+      17,
+      22,
+      29,
+      64,
+      132,
+      142,
+      148,
+      203,
+      895,
+      898,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      15,
+      21,
+      26,
+      27,
+      28,
+      32,
+      35,
+      39,
+      59,
+      103,
+      127,
+      133,
+      136,
+      154,
+      158,
+      162,
+      165,
+      171,
+      183,
+      208,
+      211,
+      343,
+      31,
+      34,
+      37,
+      174,
+      177,
+      180,
+      186,
+      358,
+      359,
+      548,
+      642,
+      738,
+      741,
+      744,
+      747,
+      750,
+      753,
+      756,
+      759,
+      781,
+      790,
+      793,
+      794,
+      24,
+      38,
+      206,
+      346,
+      349,
+      352,
+      355,
+      213,
+      216,
+      219,
+      222,
+      225,
+      228,
+      231,
+      234,
+      237,
+      240,
+      243,
+      246,
+      249,
+      252,
+      255,
+      258,
+      261,
+      264,
+      267,
+      270,
+      99,
+      109,
+      168,
+      554,
+      732
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1106,
+     "module": "churchgroup",
+     "auth": "delete group",
+     "effectiveValue": [
+      13,
+      14,
+      16,
+      17,
+      22,
+      29,
+      64,
+      132,
+      142,
+      148,
+      203,
+      895,
+      898,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      15,
+      21,
+      26,
+      27,
+      28,
+      32,
+      35,
+      39,
+      59,
+      103,
+      127,
+      133,
+      136,
+      154,
+      158,
+      162,
+      165,
+      171,
+      183,
+      208,
+      211,
+      343,
+      31,
+      34,
+      37,
+      174,
+      177,
+      180,
+      186,
+      358,
+      359,
+      548,
+      642,
+      738,
+      741,
+      744,
+      747,
+      750,
+      753,
+      756,
+      759,
+      781,
+      790,
+      793,
+      794,
+      24,
+      38,
+      206,
+      346,
+      349,
+      352,
+      355,
+      213,
+      216,
+      219,
+      222,
+      225,
+      228,
+      231,
+      234,
+      237,
+      240,
+      243,
+      246,
+      249,
+      252,
+      255,
+      258,
+      261,
+      264,
+      267,
+      270,
+      99,
+      109,
+      168,
+      554,
+      732
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1107,
+     "module": "churchgroup",
+     "auth": "create groups of grouptype",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1108,
+     "module": "churchgroup",
+     "auth": "view groups of grouptype",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1109,
+     "module": "churchgroup",
+     "auth": "edit groups of grouptype",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1110,
+     "module": "churchgroup",
+     "auth": "delete groups of grouptype",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1111,
+     "module": "churchgroup",
+     "auth": "edit group memberships of grouptype",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1112,
+     "module": "churchgroup",
+     "auth": "edit group memberships of group",
+     "effectiveValue": [
+      13,
+      14,
+      16,
+      17,
+      22,
+      29,
+      64,
+      132,
+      142,
+      148,
+      203,
+      895,
+      898,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      15,
+      21,
+      26,
+      27,
+      28,
+      32,
+      35,
+      39,
+      59,
+      103,
+      127,
+      133,
+      136,
+      154,
+      158,
+      162,
+      165,
+      171,
+      183,
+      208,
+      211,
+      343,
+      31,
+      34,
+      37,
+      174,
+      177,
+      180,
+      186,
+      358,
+      359,
+      548,
+      642,
+      738,
+      741,
+      744,
+      747,
+      750,
+      753,
+      756,
+      759,
+      781,
+      790,
+      793,
+      794,
+      24,
+      38,
+      206,
+      346,
+      349,
+      352,
+      355,
+      213,
+      216,
+      219,
+      222,
+      225,
+      228,
+      231,
+      234,
+      237,
+      240,
+      243,
+      246,
+      249,
+      252,
+      255,
+      258,
+      261,
+      264,
+      267,
+      270,
+      99,
+      109,
+      168,
+      554,
+      732
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        13,
+        14,
+        16,
+        17,
+        22,
+        29,
+        64,
+        132,
+        142,
+        148,
+        203,
+        895,
+        898,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        21,
+        26,
+        27,
+        28,
+        32,
+        35,
+        39,
+        59,
+        103,
+        127,
+        133,
+        136,
+        154,
+        158,
+        162,
+        165,
+        171,
+        183,
+        208,
+        211,
+        343,
+        31,
+        34,
+        37,
+        174,
+        177,
+        180,
+        186,
+        358,
+        359,
+        548,
+        642,
+        738,
+        741,
+        744,
+        747,
+        750,
+        753,
+        756,
+        759,
+        781,
+        790,
+        793,
+        794,
+        24,
+        38,
+        206,
+        346,
+        349,
+        352,
+        355,
+        213,
+        216,
+        219,
+        222,
+        225,
+        228,
+        231,
+        234,
+        237,
+        240,
+        243,
+        246,
+        249,
+        252,
+        255,
+        258,
+        261,
+        264,
+        267,
+        270,
+        99,
+        109,
+        168,
+        554,
+        732
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1113,
+     "module": "churchgroup",
+     "auth": "administer groups",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1114,
+     "module": "churchgroup",
+     "auth": "security level group",
+     "effectiveValue": 99999,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": 99999,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": 99999,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1102,
+     "module": "churchgroup",
+     "auth": "view group history",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1103,
+     "module": "churchgroup",
+     "auth": "view group tags",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1115,
+     "module": "churchgroup",
+     "auth": "administer global views",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1116,
+     "module": "churchgroup",
+     "auth": "edit masterdata",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 401,
+     "module": "churchcal",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "publicUser",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 403,
+     "module": "churchcal",
+     "auth": "view category",
+     "effectiveValue": [
+      51,
+      31,
+      1,
+      2,
+      3,
+      54,
+      4,
+      56,
+      59,
+      49,
+      62,
+      65
+     ],
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": [
+        31,
+        1,
+        2,
+        3
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "publicUser",
+       "value": [
+        2,
+        3
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        31,
+        1,
+        2,
+        3,
+        54
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        31,
+        1,
+        2,
+        3,
+        4,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": [
+        51
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        51,
+        31,
+        1,
+        2,
+        3,
+        54,
+        4,
+        56,
+        59,
+        49,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": [
+        51
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 404,
+     "module": "churchcal",
+     "auth": "edit category",
+     "effectiveValue": [
+      31,
+      1,
+      2,
+      3,
+      49,
+      56,
+      59,
+      4,
+      62,
+      65,
+      54,
+      51
+     ],
+     "origins": [
+      {
+       "type": "person",
+       "personId": 1,
+       "value": [
+        56,
+        59,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        31,
+        1,
+        2,
+        3,
+        49,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        31,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        31,
+        1,
+        2,
+        3,
+        49,
+        56,
+        59,
+        4,
+        54,
+        62,
+        65,
+        51
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 410,
+     "module": "churchcal",
+     "auth": "edit calendar entry template",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      31,
+      49,
+      56,
+      59,
+      4,
+      51,
+      54,
+      62,
+      65
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        49,
+        56,
+        59,
+        4,
+        51,
+        54,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        49,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        49,
+        56,
+        59,
+        4,
+        51,
+        54,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 409,
+     "module": "churchcal",
+     "auth": "assistance mode",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 407,
+     "module": "churchcal",
+     "auth": "create personal category",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 406,
+     "module": "churchcal",
+     "auth": "admin personal category",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 408,
+     "module": "churchcal",
+     "auth": "create group category",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 405,
+     "module": "churchcal",
+     "auth": "admin group category",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 402,
+     "module": "churchcal",
+     "auth": "admin church category",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 411,
+     "module": "churchcal",
+     "auth": "admin appointment tags",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 301,
+     "module": "churchservice",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 7,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 17,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 10,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 11,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 154,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 208,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 304,
+     "module": "churchservice",
+     "auth": "view servicegroup",
+     "effectiveValue": [
+      1,
+      3,
+      4,
+      10,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        3,
+        4,
+        10,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        3,
+        4,
+        10,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        3,
+        4,
+        10,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        3,
+        4,
+        10,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 305,
+     "module": "churchservice",
+     "auth": "edit servicegroup",
+     "effectiveValue": [
+      1,
+      3,
+      10,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        3,
+        10,
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        3,
+        10,
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        3,
+        10,
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 302,
+     "module": "churchservice",
+     "auth": "view history",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 306,
+     "module": "churchservice",
+     "auth": "view events",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      56,
+      59,
+      31,
+      4,
+      49,
+      51,
+      54,
+      62,
+      65
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59,
+        31,
+        4,
+        49,
+        51,
+        54,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 7,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 17,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 10,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 11,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 154,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59,
+        31,
+        4,
+        49,
+        51,
+        54,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 208,
+       "groupTypeId": 2,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 303,
+     "module": "churchservice",
+     "auth": "edit events",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      31,
+      4,
+      49,
+      51,
+      54,
+      56,
+      59,
+      62,
+      65
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        4,
+        49,
+        51,
+        54,
+        56,
+        59,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        4,
+        49,
+        51,
+        54,
+        56,
+        59,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 309,
+     "module": "churchservice",
+     "auth": "edit template",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 307,
+     "module": "churchservice",
+     "auth": "manage absent",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 321,
+     "module": "churchservice",
+     "auth": "view fact",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 308,
+     "module": "churchservice",
+     "auth": "edit fact",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 322,
+     "module": "churchservice",
+     "auth": "export facts",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 331,
+     "module": "churchservice",
+     "auth": "view agenda",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      31,
+      56,
+      59,
+      4,
+      49,
+      51,
+      54,
+      62,
+      65
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        56,
+        59,
+        4,
+        49,
+        51,
+        54,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        56,
+        59,
+        4,
+        49,
+        51,
+        54,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 332,
+     "module": "churchservice",
+     "auth": "edit agenda",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      31,
+      56,
+      59,
+      4,
+      49,
+      51,
+      54,
+      62,
+      65
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        56,
+        59,
+        4,
+        49,
+        51,
+        54,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        2,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        56,
+        59,
+        4,
+        49,
+        51,
+        54,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 333,
+     "module": "churchservice",
+     "auth": "edit agenda templates",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      31,
+      4,
+      49,
+      51,
+      54,
+      56,
+      59,
+      62,
+      65
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        4,
+        49,
+        51,
+        54,
+        56,
+        59,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        2,
+        3,
+        31,
+        4,
+        49,
+        51,
+        54,
+        56,
+        59,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 313,
+     "module": "churchservice",
+     "auth": "view songcategory",
+     "effectiveValue": [
+      0,
+      1
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 312,
+     "module": "churchservice",
+     "auth": "edit songcategory",
+     "effectiveValue": [
+      0,
+      1
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        0,
+        1
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 314,
+     "module": "churchservice",
+     "auth": "view song statistics",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 341,
+     "module": "churchservice",
+     "auth": "use ccli",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 399,
+     "module": "churchservice",
+     "auth": "edit masterdata",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 201,
+     "module": "churchresource",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 205,
+     "module": "churchresource",
+     "auth": "view resource",
+     "effectiveValue": [
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      10
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        10
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        10
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        10
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        10
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 206,
+     "module": "churchresource",
+     "auth": "create bookings",
+     "effectiveValue": [
+      2,
+      5,
+      8,
+      9,
+      3,
+      4,
+      7,
+      11,
+      12,
+      13,
+      14,
+      10
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        2,
+        5,
+        8,
+        9,
+        3,
+        4,
+        7,
+        11,
+        12,
+        13,
+        14,
+        10
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        2,
+        5,
+        8,
+        9,
+        3,
+        4,
+        7,
+        11,
+        12,
+        13,
+        14,
+        10
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        2,
+        5,
+        8,
+        9,
+        3,
+        4,
+        7,
+        11,
+        12,
+        13,
+        14,
+        10
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": [
+        2,
+        5,
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        2,
+        5,
+        8,
+        9,
+        3,
+        4,
+        7,
+        11,
+        12,
+        13,
+        14,
+        10
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": [
+        2,
+        5,
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 204,
+     "module": "churchresource",
+     "auth": "create virtual bookings",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 202,
+     "module": "churchresource",
+     "auth": "administer bookings",
+     "effectiveValue": [
+      2,
+      3,
+      4,
+      7,
+      8,
+      5,
+      9,
+      10,
+      12,
+      13,
+      14,
+      11
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        2,
+        3,
+        4,
+        7,
+        8,
+        5,
+        9,
+        10,
+        12,
+        13,
+        14,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        2,
+        3,
+        4,
+        7,
+        8,
+        5,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        2,
+        3,
+        4,
+        7,
+        8,
+        5,
+        9,
+        10,
+        12,
+        13,
+        14,
+        11
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 203,
+     "module": "churchresource",
+     "auth": "assistance mode",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 299,
+     "module": "churchresource",
+     "auth": "edit masterdata",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 601,
+     "module": "churchcheckin",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 895,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 602,
+     "module": "churchcheckin",
+     "auth": "create person",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 699,
+     "module": "churchcheckin",
+     "auth": "edit masterdata",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 501,
+     "module": "churchwiki",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "publicUser",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 7,
+       "groupRoleId": 45,
+       "groupTypeRoleId": 17,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 502,
+     "module": "churchwiki",
+     "auth": "view category",
+     "effectiveValue": [
+      1,
+      3,
+      0,
+      8,
+      9,
+      2
+     ],
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": [
+        0,
+        8
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "publicUser",
+       "value": [
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        3,
+        2,
+        0,
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 7,
+       "groupRoleId": 45,
+       "groupTypeRoleId": 17,
+       "inherited": false,
+       "value": [
+        1
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        3
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        3,
+        2,
+        0,
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 503,
+     "module": "churchwiki",
+     "auth": "edit category",
+     "effectiveValue": [
+      0,
+      3,
+      1,
+      2,
+      8,
+      9
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        0,
+        3,
+        2,
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        0,
+        3
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        0,
+        3,
+        2,
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 599,
+     "module": "churchwiki",
+     "auth": "edit masterdata",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 901,
+     "module": "finance",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 902,
+     "module": "finance",
+     "auth": "view accounting period",
+     "effectiveValue": [
+      1,
+      5,
+      6
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        5
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 903,
+     "module": "finance",
+     "auth": "edit accounting period",
+     "effectiveValue": [
+      1,
+      5,
+      6
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        1,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        1,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        1,
+        5,
+        6
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 999,
+     "module": "finance",
+     "auth": "edit masterdata",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    },
+    {
+     "authId": 1001,
+     "module": "churchsync",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": true,
+       "revokedByGroupRoleId": null
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,1123 @@
+{
+ "operation": "get-events-eventId-services-serviceId-possiblepersons",
+ "request": {
+  "method": "GET",
+  "path": "/events/1816/services/1/possiblepersons",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "person": {
+     "title": "Jens Atkins",
+     "domainType": "person",
+     "domainIdentifier": "108",
+     "apiUrl": "https://gemeinde.example/api/persons/108",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23108/",
+     "imageUrl": "https://gemeinde.example/images/469/ab89d1ca28be7800e55ad3fb5582a091de91febeaba37bffbe576b69ecd1fc2b",
+     "icon": "user",
+     "color": null,
+     "initials": "JA",
+     "domainAttributes": {
+      "firstName": "Jens",
+      "lastName": "Atkins",
+      "guid": "23D6B287-DF26-437E-A2EC-93938FECF50C",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "scoreHints": [
+     {
+      "score": -6,
+      "reason": "month.utilization.multiplier.2026-11",
+      "nameTranslated": "3 Dienste im November"
+     },
+     {
+      "score": -50,
+      "reason": "next.service.near",
+      "nameTranslated": "Hat demnächst einen Dienst"
+     },
+     {
+      "score": -250,
+      "reason": "service.same-day",
+      "nameTranslated": "Heute bereits eingeteilt"
+     }
+    ],
+    "score": -306,
+    "monthlyUtilization": {
+     "2026-06": 0,
+     "2026-07": 0,
+     "2026-08": 0,
+     "2026-09": 0,
+     "2026-10": 0,
+     "2026-11": 3,
+     "2026-12": 0
+    },
+    "lastService": null,
+    "nextService": {
+     "event": {
+      "title": "Gottesdienst · 1. November um 10:00",
+      "domainType": "event",
+      "domainIdentifier": "1990",
+      "apiUrl": "https://gemeinde.example/api/events/1990",
+      "frontendUrl": "https://gemeinde.example/?q=churchservice#ListView/searchEntry:%231990/",
+      "imageUrl": null,
+      "icon": "calendar-day",
+      "color": null,
+      "initials": null,
+      "domainAttributes": {
+       "startDate": "2026-11-01T09:00:00Z"
+      },
+      "infos": []
+     },
+     "eventService": {
+      "id": 33900,
+      "personId": 108,
+      "person": {
+       "title": "Jens Atkins",
+       "domainType": "person",
+       "domainIdentifier": "108",
+       "apiUrl": "https://gemeinde.example/api/persons/108",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23108/",
+       "imageUrl": "https://gemeinde.example/images/469/ab89d1ca28be7800e55ad3fb5582a091de91febeaba37bffbe576b69ecd1fc2b",
+       "icon": "user",
+       "color": null,
+       "initials": "JA",
+       "domainAttributes": {
+        "firstName": "Jens",
+        "lastName": "Atkins",
+        "guid": "23D6B287-DF26-437E-A2EC-93938FECF50C",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Jens Atkins",
+      "serviceId": 1,
+      "serviceName": "Predigt",
+      "index": null,
+      "isValid": true,
+      "isAccepted": true,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1990,
+       "name": "Gottesdienst",
+       "startDate": "2026-11-01T09:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-10-27T14:55:40Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-27T14:55:40Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": true,
+      "counter": 0,
+      "requestedDate": "2026-10-27T14:55:40Z"
+     }
+    },
+    "serviceGroupPreferences": null,
+    "absences": [],
+    "serviceOnSameDay": true,
+    "servicesOnSameDay": [
+     {
+      "event": {
+       "title": "Jugendgottesdienst · 30. Oktober um 19:00",
+       "domainType": "event",
+       "domainIdentifier": "1816",
+       "apiUrl": "https://gemeinde.example/api/events/1816",
+       "frontendUrl": "https://gemeinde.example/?q=churchservice#ListView/searchEntry:%231816/",
+       "imageUrl": null,
+       "icon": "calendar-day",
+       "color": null,
+       "initials": null,
+       "domainAttributes": {
+        "startDate": "2026-10-30T18:00:00Z"
+       },
+       "infos": []
+      },
+      "eventService": {
+       "id": 22906,
+       "personId": 108,
+       "person": {
+        "title": "Jens Atkins",
+        "domainType": "person",
+        "domainIdentifier": "108",
+        "apiUrl": "https://gemeinde.example/api/persons/108",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23108/",
+        "imageUrl": "https://gemeinde.example/images/469/ab89d1ca28be7800e55ad3fb5582a091de91febeaba37bffbe576b69ecd1fc2b",
+        "icon": "user",
+        "color": null,
+        "initials": "JA",
+        "domainAttributes": {
+         "firstName": "Jens",
+         "lastName": "Atkins",
+         "guid": "23D6B287-DF26-437E-A2EC-93938FECF50C",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "name": "Jens Atkins",
+       "serviceId": 9,
+       "serviceName": "Gesang",
+       "index": 2,
+       "isValid": true,
+       "isAccepted": true,
+       "comment": null,
+       "requesterPersonId": 1,
+       "requesterPerson": {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "event": {
+        "id": 1816,
+        "name": "Jugendgottesdienst",
+        "startDate": "2026-10-30T18:00:00Z"
+       },
+       "allowChat": true,
+       "permissions": null,
+       "meta": {
+        "createdDate": "2026-01-18T11:29:58Z",
+        "createdPerson": {
+         "id": 1
+        },
+        "modifiedDate": "2026-08-18T00:17:00Z",
+        "modifiedPerson": {
+         "id": 1
+        }
+       },
+       "@deprecated": {
+        "agreed": "isAccepted",
+        "counter": "index",
+        "requestedDate": "meta.modifiedDate"
+       },
+       "agreed": true,
+       "counter": 2,
+       "requestedDate": "2026-08-18T00:17:00Z"
+      }
+     }
+    ],
+    "servicesPreviouslyDeclined": [],
+    "partnerServices": false,
+    "connectedGroups": [
+     {
+      "title": "Predigtteam",
+      "domainType": "group",
+      "domainIdentifier": "6",
+      "apiUrl": "https://gemeinde.example/api/groups/6",
+      "frontendUrl": "https://gemeinde.example/groups/6",
+      "imageUrl": "https://gemeinde.example/images/700/918bc1ca14ca4069669537f2b03bf0cfc53aada7bf29f96b7b40b623cf8f6914",
+      "icon": "users",
+      "color": {
+       "key": "lime",
+       "shade": null
+      },
+      "initials": "P",
+      "domainAttributes": {
+       "note": "",
+       "groupStatusId": 1,
+       "groupTypeId": 2,
+       "campusId": null,
+       "visibility": "restricted",
+       "guid": "8192304F-AF31-474F-9DDA-F86CE460725E"
+      },
+      "infos": [
+       "Team"
+      ]
+     }
+    ]
+   },
+   {
+    "person": {
+     "title": "Joel Thieme",
+     "domainType": "person",
+     "domainIdentifier": "93",
+     "apiUrl": "https://gemeinde.example/api/persons/93",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2393/",
+     "imageUrl": "https://gemeinde.example/images/1379/e833481f01b26a9fba55ba77a86848479cfa7c868140cc4a26170e7230c99b8d",
+     "icon": "user",
+     "color": null,
+     "initials": "JT",
+     "domainAttributes": {
+      "firstName": "Joel",
+      "lastName": "Thieme",
+      "guid": "21B57349-107A-48D0-9C82-5A4CE0208BA7",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "scoreHints": [
+     {
+      "score": -15,
+      "reason": "month.utilization.multiplier.2026-10",
+      "nameTranslated": "5 Dienste im Oktober"
+     },
+     {
+      "score": -6,
+      "reason": "month.utilization.multiplier.2026-09",
+      "nameTranslated": "3 Dienste im September"
+     },
+     {
+      "score": -4,
+      "reason": "month.utilization.multiplier.2026-08",
+      "nameTranslated": "4 Dienste im August"
+     },
+     {
+      "score": -2,
+      "reason": "month.utilization.multiplier.2026-11",
+      "nameTranslated": "1 Dienst im November"
+     },
+     {
+      "score": -50,
+      "reason": "last.service.near",
+      "nameTranslated": "Hatte gerade erst Dienst"
+     },
+     {
+      "score": -10,
+      "reason": "next.service.near",
+      "nameTranslated": "Hat demnächst einen Dienst"
+     }
+    ],
+    "score": -87,
+    "monthlyUtilization": {
+     "2026-06": 3,
+     "2026-07": 4,
+     "2026-08": 4,
+     "2026-09": 3,
+     "2026-10": 5,
+     "2026-11": 1,
+     "2026-12": 0
+    },
+    "lastService": {
+     "event": {
+      "title": "Gebetsabend · 27. Oktober um 19:00",
+      "domainType": "event",
+      "domainIdentifier": "1771",
+      "apiUrl": "https://gemeinde.example/api/events/1771",
+      "frontendUrl": "https://gemeinde.example/?q=churchservice#ListView/searchEntry:%231771/",
+      "imageUrl": null,
+      "icon": "calendar-day",
+      "color": null,
+      "initials": null,
+      "domainAttributes": {
+       "startDate": "2026-10-27T18:00:00Z"
+      },
+      "infos": []
+     },
+     "eventService": {
+      "id": 22366,
+      "personId": 93,
+      "person": {
+       "title": "Joel Thieme",
+       "domainType": "person",
+       "domainIdentifier": "93",
+       "apiUrl": "https://gemeinde.example/api/persons/93",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2393/",
+       "imageUrl": "https://gemeinde.example/images/1379/e833481f01b26a9fba55ba77a86848479cfa7c868140cc4a26170e7230c99b8d",
+       "icon": "user",
+       "color": null,
+       "initials": "JT",
+       "domainAttributes": {
+        "firstName": "Joel",
+        "lastName": "Thieme",
+        "guid": "21B57349-107A-48D0-9C82-5A4CE0208BA7",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Joel Thieme",
+      "serviceId": 1,
+      "serviceName": "Predigt",
+      "index": null,
+      "isValid": true,
+      "isAccepted": true,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1771,
+       "name": "Gebetsabend",
+       "startDate": "2026-10-27T18:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-18T11:25:58Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": true,
+      "counter": 0,
+      "requestedDate": "2026-08-20T00:15:57Z"
+     }
+    },
+    "nextService": {
+     "event": {
+      "title": "Jugendgottesdienst · 6. November um 19:00",
+      "domainType": "event",
+      "domainIdentifier": "1974",
+      "apiUrl": "https://gemeinde.example/api/events/1974",
+      "frontendUrl": "https://gemeinde.example/?q=churchservice#ListView/searchEntry:%231974/",
+      "imageUrl": null,
+      "icon": "calendar-day",
+      "color": null,
+      "initials": null,
+      "domainAttributes": {
+       "startDate": "2026-11-06T18:00:00Z"
+      },
+      "infos": []
+     },
+     "eventService": {
+      "id": 31836,
+      "personId": 93,
+      "person": {
+       "title": "Joel Thieme",
+       "domainType": "person",
+       "domainIdentifier": "93",
+       "apiUrl": "https://gemeinde.example/api/persons/93",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2393/",
+       "imageUrl": "https://gemeinde.example/images/1379/e833481f01b26a9fba55ba77a86848479cfa7c868140cc4a26170e7230c99b8d",
+       "icon": "user",
+       "color": null,
+       "initials": "JT",
+       "domainAttributes": {
+        "firstName": "Joel",
+        "lastName": "Thieme",
+        "guid": "21B57349-107A-48D0-9C82-5A4CE0208BA7",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Joel Thieme",
+      "serviceId": 1,
+      "serviceName": "Predigt",
+      "index": null,
+      "isValid": true,
+      "isAccepted": false,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1974,
+       "name": "Jugendgottesdienst",
+       "startDate": "2026-11-06T18:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-26T17:49:31Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": false,
+      "counter": 0,
+      "requestedDate": "2026-08-20T00:15:57Z"
+     }
+    },
+    "serviceGroupPreferences": null,
+    "absences": [],
+    "serviceOnSameDay": false,
+    "servicesOnSameDay": [],
+    "servicesPreviouslyDeclined": [],
+    "partnerServices": false,
+    "connectedGroups": [
+     {
+      "title": "Predigtteam",
+      "domainType": "group",
+      "domainIdentifier": "6",
+      "apiUrl": "https://gemeinde.example/api/groups/6",
+      "frontendUrl": "https://gemeinde.example/groups/6",
+      "imageUrl": "https://gemeinde.example/images/700/918bc1ca14ca4069669537f2b03bf0cfc53aada7bf29f96b7b40b623cf8f6914",
+      "icon": "users",
+      "color": {
+       "key": "lime",
+       "shade": null
+      },
+      "initials": "P",
+      "domainAttributes": {
+       "note": "",
+       "groupStatusId": 1,
+       "groupTypeId": 2,
+       "campusId": null,
+       "visibility": "restricted",
+       "guid": "8192304F-AF31-474F-9DDA-F86CE460725E"
+      },
+      "infos": [
+       "Team"
+      ]
+     }
+    ]
+   },
+   {
+    "person": {
+     "title": "Peter Tooly",
+     "domainType": "person",
+     "domainIdentifier": "235",
+     "apiUrl": "https://gemeinde.example/api/persons/235",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23235/",
+     "imageUrl": "https://gemeinde.example/images/2182/5a7d3bc782adc4a451257ac8ce708e5a707b088e6ed8c88cd2cf23db140c89d3",
+     "icon": "user",
+     "color": null,
+     "initials": "PT",
+     "domainAttributes": {
+      "firstName": "Peter",
+      "lastName": "Tooly",
+      "guid": "0D6404B1-B712-43EB-89EF-2E7602BF6D46",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "scoreHints": [
+     {
+      "score": -12,
+      "reason": "month.utilization.multiplier.2026-10",
+      "nameTranslated": "4 Dienste im Oktober"
+     },
+     {
+      "score": -8,
+      "reason": "month.utilization.multiplier.2026-09",
+      "nameTranslated": "4 Dienste im September"
+     },
+     {
+      "score": -3,
+      "reason": "month.utilization.multiplier.2026-08",
+      "nameTranslated": "3 Dienste im August"
+     },
+     {
+      "score": -2,
+      "reason": "month.utilization.multiplier.2026-11",
+      "nameTranslated": "1 Dienst im November"
+     },
+     {
+      "score": -10,
+      "reason": "last.service.near",
+      "nameTranslated": "Hatte gerade erst Dienst"
+     },
+     {
+      "score": -10,
+      "reason": "next.service.near",
+      "nameTranslated": "Hat demnächst einen Dienst"
+     }
+    ],
+    "score": -45,
+    "monthlyUtilization": {
+     "2026-06": 3,
+     "2026-07": 4,
+     "2026-08": 3,
+     "2026-09": 4,
+     "2026-10": 4,
+     "2026-11": 1,
+     "2026-12": 0
+    },
+    "lastService": {
+     "event": {
+      "title": "Jugendgottesdienst · 23. Oktober um 19:00",
+      "domainType": "event",
+      "domainIdentifier": "1813",
+      "apiUrl": "https://gemeinde.example/api/events/1813",
+      "frontendUrl": "https://gemeinde.example/?q=churchservice#ListView/searchEntry:%231813/",
+      "imageUrl": null,
+      "icon": "calendar-day",
+      "color": null,
+      "initials": null,
+      "domainAttributes": {
+       "startDate": "2026-10-23T17:00:00Z"
+      },
+      "infos": []
+     },
+     "eventService": {
+      "id": 22852,
+      "personId": 235,
+      "person": {
+       "title": "Peter Tooly",
+       "domainType": "person",
+       "domainIdentifier": "235",
+       "apiUrl": "https://gemeinde.example/api/persons/235",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23235/",
+       "imageUrl": "https://gemeinde.example/images/2182/5a7d3bc782adc4a451257ac8ce708e5a707b088e6ed8c88cd2cf23db140c89d3",
+       "icon": "user",
+       "color": null,
+       "initials": "PT",
+       "domainAttributes": {
+        "firstName": "Peter",
+        "lastName": "Tooly",
+        "guid": "0D6404B1-B712-43EB-89EF-2E7602BF6D46",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Peter Tooly",
+      "serviceId": 1,
+      "serviceName": "Predigt",
+      "index": null,
+      "isValid": true,
+      "isAccepted": true,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1813,
+       "name": "Jugendgottesdienst",
+       "startDate": "2026-10-23T17:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-18T11:29:58Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-01-18T11:48:39Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": true,
+      "counter": 0,
+      "requestedDate": "2026-01-18T11:48:39Z"
+     }
+    },
+    "nextService": {
+     "event": {
+      "title": "Gottesdienst · 8. November um 10:00",
+      "domainType": "event",
+      "domainIdentifier": "1993",
+      "apiUrl": "https://gemeinde.example/api/events/1993",
+      "frontendUrl": "https://gemeinde.example/?q=churchservice#ListView/searchEntry:%231993/",
+      "imageUrl": null,
+      "icon": "calendar-day",
+      "color": null,
+      "initials": null,
+      "domainAttributes": {
+       "startDate": "2026-11-08T09:00:00Z"
+      },
+      "infos": []
+     },
+     "eventService": {
+      "id": 33947,
+      "personId": 235,
+      "person": {
+       "title": "Peter Tooly",
+       "domainType": "person",
+       "domainIdentifier": "235",
+       "apiUrl": "https://gemeinde.example/api/persons/235",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23235/",
+       "imageUrl": "https://gemeinde.example/images/2182/5a7d3bc782adc4a451257ac8ce708e5a707b088e6ed8c88cd2cf23db140c89d3",
+       "icon": "user",
+       "color": null,
+       "initials": "PT",
+       "domainAttributes": {
+        "firstName": "Peter",
+        "lastName": "Tooly",
+        "guid": "0D6404B1-B712-43EB-89EF-2E7602BF6D46",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Peter Tooly",
+      "serviceId": 1,
+      "serviceName": "Predigt",
+      "index": null,
+      "isValid": true,
+      "isAccepted": true,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1993,
+       "name": "Gottesdienst",
+       "startDate": "2026-11-08T09:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-10-27T20:05:59Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-10-27T20:05:59Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": true,
+      "counter": 0,
+      "requestedDate": "2026-10-27T20:05:59Z"
+     }
+    },
+    "serviceGroupPreferences": null,
+    "absences": [],
+    "serviceOnSameDay": false,
+    "servicesOnSameDay": [],
+    "servicesPreviouslyDeclined": [],
+    "partnerServices": false,
+    "connectedGroups": [
+     {
+      "title": "Predigtteam",
+      "domainType": "group",
+      "domainIdentifier": "6",
+      "apiUrl": "https://gemeinde.example/api/groups/6",
+      "frontendUrl": "https://gemeinde.example/groups/6",
+      "imageUrl": "https://gemeinde.example/images/700/918bc1ca14ca4069669537f2b03bf0cfc53aada7bf29f96b7b40b623cf8f6914",
+      "icon": "users",
+      "color": {
+       "key": "lime",
+       "shade": null
+      },
+      "initials": "P",
+      "domainAttributes": {
+       "note": "",
+       "groupStatusId": 1,
+       "groupTypeId": 2,
+       "campusId": null,
+       "visibility": "restricted",
+       "guid": "8192304F-AF31-474F-9DDA-F86CE460725E"
+      },
+      "infos": [
+       "Team"
+      ]
+     }
+    ]
+   },
+   {
+    "person": {
+     "title": "Malte Wilkerson",
+     "domainType": "person",
+     "domainIdentifier": "7",
+     "apiUrl": "https://gemeinde.example/api/persons/7",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%237/",
+     "imageUrl": "https://gemeinde.example/images/1244/9b2bbb1505a519320966bc2c3fecda52fdba6b232d07246ddb599af543cae52a",
+     "icon": "user",
+     "color": null,
+     "initials": "MW",
+     "domainAttributes": {
+      "firstName": "Malte",
+      "lastName": "Wilkerson",
+      "guid": "702AFC45-CEB5-4073-AD89-5AB9B3AFB2A6",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "scoreHints": [
+     {
+      "score": -9,
+      "reason": "month.utilization.multiplier.2026-10",
+      "nameTranslated": "3 Dienste im Oktober"
+     },
+     {
+      "score": -8,
+      "reason": "month.utilization.multiplier.2026-09",
+      "nameTranslated": "4 Dienste im September"
+     },
+     {
+      "score": -4,
+      "reason": "month.utilization.multiplier.2026-08",
+      "nameTranslated": "4 Dienste im August"
+     },
+     {
+      "score": -2,
+      "reason": "month.utilization.multiplier.2026-11",
+      "nameTranslated": "1 Dienst im November"
+     },
+     {
+      "score": -50,
+      "reason": "last.service.near",
+      "nameTranslated": "Hatte gerade erst Dienst"
+     },
+     {
+      "score": -10,
+      "reason": "next.service.near",
+      "nameTranslated": "Hat demnächst einen Dienst"
+     }
+    ],
+    "score": -83,
+    "monthlyUtilization": {
+     "2026-06": 4,
+     "2026-07": 3,
+     "2026-08": 4,
+     "2026-09": 4,
+     "2026-10": 3,
+     "2026-11": 1,
+     "2026-12": 0
+    },
+    "lastService": {
+     "event": {
+      "title": "Gottesdienst · 25. Oktober um 10:00",
+      "domainType": "event",
+      "domainIdentifier": "1744",
+      "apiUrl": "https://gemeinde.example/api/events/1744",
+      "frontendUrl": "https://gemeinde.example/?q=churchservice#ListView/searchEntry:%231744/",
+      "imageUrl": null,
+      "icon": "calendar-day",
+      "color": null,
+      "initials": null,
+      "domainAttributes": {
+       "startDate": "2026-10-25T09:00:00Z"
+      },
+      "infos": []
+     },
+     "eventService": {
+      "id": 22120,
+      "personId": 7,
+      "person": {
+       "title": "Malte Wilkerson",
+       "domainType": "person",
+       "domainIdentifier": "7",
+       "apiUrl": "https://gemeinde.example/api/persons/7",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%237/",
+       "imageUrl": "https://gemeinde.example/images/1244/9b2bbb1505a519320966bc2c3fecda52fdba6b232d07246ddb599af543cae52a",
+       "icon": "user",
+       "color": null,
+       "initials": "MW",
+       "domainAttributes": {
+        "firstName": "Malte",
+        "lastName": "Wilkerson",
+        "guid": "702AFC45-CEB5-4073-AD89-5AB9B3AFB2A6",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Malte Wilkerson",
+      "serviceId": 1,
+      "serviceName": "Predigt",
+      "index": null,
+      "isValid": true,
+      "isAccepted": true,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1744,
+       "name": "Gottesdienst",
+       "startDate": "2026-10-25T09:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-18T11:23:38Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": true,
+      "counter": 0,
+      "requestedDate": "2026-08-20T00:15:57Z"
+     }
+    },
+    "nextService": {
+     "event": {
+      "title": "Gebetsabend · 10. November um 19:00",
+      "domainType": "event",
+      "domainIdentifier": "1986",
+      "apiUrl": "https://gemeinde.example/api/events/1986",
+      "frontendUrl": "https://gemeinde.example/?q=churchservice#ListView/searchEntry:%231986/",
+      "imageUrl": null,
+      "icon": "calendar-day",
+      "color": null,
+      "initials": null,
+      "domainAttributes": {
+       "startDate": "2026-11-10T18:00:00Z"
+      },
+      "infos": []
+     },
+     "eventService": {
+      "id": 31980,
+      "personId": 7,
+      "person": {
+       "title": "Malte Wilkerson",
+       "domainType": "person",
+       "domainIdentifier": "7",
+       "apiUrl": "https://gemeinde.example/api/persons/7",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%237/",
+       "imageUrl": "https://gemeinde.example/images/1244/9b2bbb1505a519320966bc2c3fecda52fdba6b232d07246ddb599af543cae52a",
+       "icon": "user",
+       "color": null,
+       "initials": "MW",
+       "domainAttributes": {
+        "firstName": "Malte",
+        "lastName": "Wilkerson",
+        "guid": "702AFC45-CEB5-4073-AD89-5AB9B3AFB2A6",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "name": "Malte Wilkerson",
+      "serviceId": 1,
+      "serviceName": "Predigt",
+      "index": null,
+      "isValid": true,
+      "isAccepted": false,
+      "comment": null,
+      "requesterPersonId": 1,
+      "requesterPerson": {
+       "title": "Armin Adendorf",
+       "domainType": "person",
+       "domainIdentifier": "1",
+       "apiUrl": "https://gemeinde.example/api/persons/1",
+       "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+       "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+       "icon": "user",
+       "color": null,
+       "initials": "AA",
+       "domainAttributes": {
+        "firstName": "Armin",
+        "lastName": "Adendorf",
+        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "dateOfDeath": null,
+        "isArchived": false
+       },
+       "infos": []
+      },
+      "event": {
+       "id": 1986,
+       "name": "Gebetsabend",
+       "startDate": "2026-11-10T18:00:00Z"
+      },
+      "allowChat": true,
+      "permissions": null,
+      "meta": {
+       "createdDate": "2026-01-26T17:50:38Z",
+       "createdPerson": {
+        "id": 1
+       },
+       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedPerson": {
+        "id": 1
+       }
+      },
+      "@deprecated": {
+       "agreed": "isAccepted",
+       "counter": "index",
+       "requestedDate": "meta.modifiedDate"
+      },
+      "agreed": false,
+      "counter": 0,
+      "requestedDate": "2026-08-20T00:15:57Z"
+     }
+    },
+    "serviceGroupPreferences": null,
+    "absences": [],
+    "serviceOnSameDay": false,
+    "servicesOnSameDay": [],
+    "servicesPreviouslyDeclined": [],
+    "partnerServices": false,
+    "connectedGroups": [
+     {
+      "title": "Predigtteam",
+      "domainType": "group",
+      "domainIdentifier": "6",
+      "apiUrl": "https://gemeinde.example/api/groups/6",
+      "frontendUrl": "https://gemeinde.example/groups/6",
+      "imageUrl": "https://gemeinde.example/images/700/918bc1ca14ca4069669537f2b03bf0cfc53aada7bf29f96b7b40b623cf8f6914",
+      "icon": "users",
+      "color": {
+       "key": "lime",
+       "shade": null
+      },
+      "initials": "P",
+      "domainAttributes": {
+       "note": "",
+       "groupStatusId": 1,
+       "groupTypeId": 2,
+       "campusId": null,
+       "visibility": "restricted",
+       "guid": "8192304F-AF31-474F-9DDA-F86CE460725E"
+      },
+      "infos": [
+       "Team"
+      ]
+     }
+    ]
+   }
+  ],
+  "meta": {
+   "count": 4
+  }
+ }
+}

@@ -1,0 +1,84 @@
+{
+ "operation": "get-group-meetingtemplates",
+ "request": {
+  "method": "GET",
+  "path": "/group/meetingtemplates",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": [
+   {
+    "id": 2,
+    "name": "Gemeinschaft, Gebet, Gottes Wort",
+    "template": [
+     {
+      "type": "color",
+      "label": "Wie war die Gemeinschaft?"
+     },
+     {
+      "type": "color",
+      "label": "Wie war die Gebetszeit?"
+     },
+     {
+      "type": "color",
+      "label": "Wie wurde das Wort Gottes aufgenommen?"
+     },
+     {
+      "type": "textarea",
+      "label": "Gab es besonders erwähnenswerte Momente?"
+     },
+     {
+      "type": "textarea",
+      "label": "Sonstige Infos zum Treffen"
+     },
+     {
+      "type": "textarea",
+      "label": "Fragen an den Coach"
+     }
+    ],
+    "meta": {
+     "createdDate": "2025-05-21T07:01:53Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-05-21T07:01:53Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 1,
+    "name": "Lowlights / Highlights",
+    "template": [
+     {
+      "type": "textarea",
+      "label": "Gab es eher schwierige Momente?"
+     },
+     {
+      "type": "textarea",
+      "label": "Gab es besonders erwähnenswerte Momente?"
+     },
+     {
+      "type": "textarea",
+      "label": "Sonstige Infos zum Treffen"
+     }
+    ],
+    "meta": {
+     "createdDate": "2025-05-21T07:01:53Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2025-05-21T07:01:53Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   }
+  ],
+  "meta": {
+   "count": 2
+  }
+ }
+}
