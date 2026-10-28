@@ -21,6 +21,9 @@ mod error;
 mod generated;
 mod lenient;
 mod query;
+#[cfg(feature = "replay")]
+#[doc(hidden)]
+pub mod replay;
 
 pub use chrono;
 pub use client::{Client, Pages, Query, Upload, decode, decode_data, encode_path_segment};

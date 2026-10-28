@@ -1,0 +1,25 @@
+{
+ "operation": "put-facts-id",
+ "request": {
+  "method": "PUT",
+  "path": "/facts/22",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Fakt 5c1f93 neu",
+   "type": "number",
+   "unit": "Pers."
+  }
+ },
+ "body": {
+  "data": {
+   "id": 22,
+   "name": "ctrs-test Fakt 5c1f93 neu",
+   "nameTranslated": "ctrs-test Fakt 5c1f93 neu",
+   "sortKey": 0,
+   "type": "number",
+   "@deprecated": "fieldType (now: type)",
+   "fieldType": "number",
+   "unit": "Pers."
+  }
+ }
+}

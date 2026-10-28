@@ -1,0 +1,39 @@
+{
+ "operation": "post-group-meetingtemplates",
+ "request": {
+  "method": "POST",
+  "path": "/group/meetingtemplates",
+  "query": [],
+  "body": {
+   "name": "ctrs-test meetingtemplates e27d23",
+   "template": [
+    {
+     "label": "Thema",
+     "type": "input"
+    }
+   ]
+  }
+ },
+ "body": {
+  "data": {
+   "id": 16,
+   "name": "ctrs-test meetingtemplates e27d23",
+   "template": [
+    {
+     "label": "Thema",
+     "type": "input"
+    }
+   ],
+   "meta": {
+    "createdDate": "2026-10-28T23:34:48Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:48Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

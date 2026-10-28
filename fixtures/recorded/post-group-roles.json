@@ -1,0 +1,33 @@
+{
+ "operation": "post-group-roles",
+ "request": {
+  "method": "POST",
+  "path": "/group/roles",
+  "query": [],
+  "body": {
+   "groupTypeId": 22,
+   "growPathId": null,
+   "isDefault": false,
+   "isHidden": false,
+   "name": "ctrs-test Rolle fc562f",
+   "shorty": "TR",
+   "sortKey": 99,
+   "type": "participant"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 94,
+   "groupTypeId": 22,
+   "name": "ctrs-test Rolle fc562f",
+   "nameTranslated": "ctrs-test Rolle fc562f",
+   "shorty": "TR",
+   "sortKey": 99,
+   "type": "participant",
+   "isDefault": false,
+   "isHidden": false,
+   "growPathId": null,
+   "isLeader": false
+  }
+ }
+}

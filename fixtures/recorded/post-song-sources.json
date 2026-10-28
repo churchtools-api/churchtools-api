@@ -1,0 +1,30 @@
+{
+ "operation": "post-song-sources",
+ "request": {
+  "method": "POST",
+  "path": "/song/sources",
+  "query": [],
+  "body": {
+   "name": "ctrs-test sources c83c60"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 19,
+   "name": "ctrs-test sources c83c60",
+   "nameTranslated": "ctrs-test sources c83c60",
+   "sortKey": 0,
+   "shorty": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:43Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:43Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "operation": "post-group-groupcategories",
+ "request": {
+  "method": "POST",
+  "path": "/group/groupcategories",
+  "query": [],
+  "body": {
+   "color": "red",
+   "name": "ctrs-test groupcategories 5bb5f5",
+   "sortKey": 999
+  }
+ },
+ "body": {
+  "data": {
+   "id": 28,
+   "name": "ctrs-test groupcategories 5bb5f5",
+   "nameTranslated": "ctrs-test groupcategories 5bb5f5",
+   "sortKey": 999,
+   "description": null,
+   "color": "red",
+   "meta": {
+    "createdDate": "2026-10-28T23:34:40Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:40Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

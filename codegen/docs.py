@@ -425,8 +425,8 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
         )
         body = []
         for op in items:
-            example = ex.example_for(schemas, op)
-            checks.append((f"{op.method.upper()} {op.path}", example))
+            example = g.EXAMPLES.get(op.op_id) or ex.example_for(schemas, op)
+            checks.append((op.op_id, example))
             body.append(op_html(op, example))
         ref.append(
             f'<section class="tag" id="{tid}"><div class="tag-head"><h3>{esc(tag)}</h3>'

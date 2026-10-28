@@ -1,0 +1,89 @@
+{
+ "operation": "post-repeatcalculation",
+ "request": {
+  "method": "POST",
+  "path": "/repeatcalculation",
+  "query": [],
+  "body": {
+   "endDate": "2026-10-29",
+   "repeatFrequency": 1,
+   "repeatId": 7,
+   "repeatUntil": "2026-11-19",
+   "startDate": "2026-10-29"
+  }
+ },
+ "body": [
+  {
+   "base": {
+    "id": -1,
+    "startDate": "2026-10-29",
+    "endDate": "2026-10-29",
+    "allDay": true,
+    "repeatId": 7,
+    "repeatFrequency": 1,
+    "repeatUntil": "2026-11-19",
+    "repeatOption": null,
+    "additions": [],
+    "exceptions": []
+   },
+   "calculated": {
+    "startDate": "2026-10-29",
+    "endDate": "2026-10-29"
+   }
+  },
+  {
+   "base": {
+    "id": -1,
+    "startDate": "2026-10-29",
+    "endDate": "2026-10-29",
+    "allDay": true,
+    "repeatId": 7,
+    "repeatFrequency": 1,
+    "repeatUntil": "2026-11-19",
+    "repeatOption": null,
+    "additions": [],
+    "exceptions": []
+   },
+   "calculated": {
+    "startDate": "2026-11-05",
+    "endDate": "2026-11-05"
+   }
+  },
+  {
+   "base": {
+    "id": -1,
+    "startDate": "2026-10-29",
+    "endDate": "2026-10-29",
+    "allDay": true,
+    "repeatId": 7,
+    "repeatFrequency": 1,
+    "repeatUntil": "2026-11-19",
+    "repeatOption": null,
+    "additions": [],
+    "exceptions": []
+   },
+   "calculated": {
+    "startDate": "2026-11-12",
+    "endDate": "2026-11-12"
+   }
+  },
+  {
+   "base": {
+    "id": -1,
+    "startDate": "2026-10-29",
+    "endDate": "2026-10-29",
+    "allDay": true,
+    "repeatId": 7,
+    "repeatFrequency": 1,
+    "repeatUntil": "2026-11-19",
+    "repeatOption": null,
+    "additions": [],
+    "exceptions": []
+   },
+   "calculated": {
+    "startDate": "2026-11-19",
+    "endDate": "2026-11-19"
+   }
+  }
+ ]
+}

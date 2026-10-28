@@ -1,0 +1,49 @@
+{
+ "operation": "put-songs-songId-arrangements-arrangementId",
+ "request": {
+  "method": "PUT",
+  "path": "/songs/100/arrangements/133",
+  "query": [],
+  "body": {
+   "key": "A",
+   "name": "Gitarre (Capo 2)"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 133,
+   "name": "Gitarre (Capo 2)",
+   "isDefault": true,
+   "sourceId": null,
+   "source": null,
+   "sourceReference": null,
+   "key": "A",
+   "beat": null,
+   "tempo": null,
+   "duration": null,
+   "description": null,
+   "links": [],
+   "files": [],
+   "meta": {
+    "createdDate": "2026-10-28T23:34:18Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:19Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "bpm": "tempo",
+    "keyOfArrangement": "key",
+    "note": "description",
+    "sourceName": "source.name"
+   },
+   "bpm": null,
+   "keyOfArrangement": "A",
+   "note": "",
+   "sourceName": null
+  }
+ }
+}

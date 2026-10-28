@@ -1,0 +1,30 @@
+{
+ "operation": "post-person-relationshiptypes",
+ "request": {
+  "method": "POST",
+  "path": "/person/relationshiptypes",
+  "query": [],
+  "body": {
+   "degreeNameA": "Pate",
+   "degreeNameB": "Patenkind",
+   "name": "ctrs-test relationshiptypes a2c4d5",
+   "securityLevelId": 1
+  }
+ },
+ "body": {
+  "data": {
+   "id": 25,
+   "name": "ctrs-test relationshiptypes a2c4d5",
+   "nameTranslated": "ctrs-test relationshiptypes a2c4d5",
+   "securityLevelId": 1,
+   "degreeNameA": "Pate",
+   "degreeNameATranslated": "Pate",
+   "degreeNameB": "Patenkind",
+   "degreeNameBTranslated": "Patenkind",
+   "includeInExport": false,
+   "exportTitle": null,
+   "sortKey": 0,
+   "functionKeys": []
+  }
+ }
+}

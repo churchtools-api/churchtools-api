@@ -1,0 +1,45 @@
+{
+ "operation": "put-resources-resourceId",
+ "request": {
+  "method": "PUT",
+  "path": "/resources/52",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Raum 1e8649 neu",
+   "resourceTypeId": 2,
+   "sortKey": 998
+  }
+ },
+ "body": {
+  "data": {
+   "id": 52,
+   "name": "ctrs-test Raum 1e8649 neu",
+   "nameTranslated": "ctrs-test Raum 1e8649 neu",
+   "sortKey": 998,
+   "resourceTypeId": 2,
+   "location": null,
+   "iCalLocation": null,
+   "description": null,
+   "isAutoAccept": false,
+   "needsAppointment": false,
+   "isVirtual": false,
+   "quantity": 1,
+   "adminIds": [],
+   "randomString": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:13Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:14Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "doesRequireCalEntry": "needsAppointment"
+   },
+   "doesRequireCalEntry": false
+  }
+ }
+}

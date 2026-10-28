@@ -1,0 +1,78 @@
+{
+ "operation": "patch-groups-groupId-members-personId",
+ "request": {
+  "method": "PATCH",
+  "path": "/groups/919/members/1",
+  "query": [],
+  "body": {
+   "comment": "geändert"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 2599,
+   "personId": 1,
+   "group": {
+    "title": "ctrs-test Gruppe 810a87",
+    "domainType": "group",
+    "domainIdentifier": "919",
+    "apiUrl": "https://gemeinde.example/api/groups/919",
+    "frontendUrl": "https://gemeinde.example/groups/919",
+    "imageUrl": null,
+    "icon": "users",
+    "color": {
+     "key": "sky",
+     "shade": null
+    },
+    "initials": "C",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 1,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "1C5CEAE5-0EB6-4837-BDF8-AEB110ADCE67"
+    },
+    "infos": [
+     "Kleingruppe"
+    ]
+   },
+   "person": {
+    "title": "Armin Adendorf",
+    "domainType": "person",
+    "domainIdentifier": "1",
+    "apiUrl": "https://gemeinde.example/api/persons/1",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+    "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+    "icon": "user",
+    "color": null,
+    "initials": "AA",
+    "domainAttributes": {
+     "firstName": "Armin",
+     "lastName": "Adendorf",
+     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": []
+   },
+   "groupTypeRoleId": 8,
+   "roleChangedDate": "2026-10-28T23:34:06Z",
+   "groupMemberStatus": "active",
+   "statusChangedDate": "2026-10-28T23:34:06Z",
+   "memberStartDate": "2026-10-29",
+   "registeredBy": null,
+   "waitinglistPosition": null,
+   "comment": "geändert",
+   "memberEndDate": null,
+   "@deprecated": {
+    "personId": "person.domainIdentifier"
+   },
+   "fields": [],
+   "personFields": []
+  },
+  "meta": {
+   "growPathId": 6
+  }
+ }
+}

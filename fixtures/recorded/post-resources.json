@@ -1,0 +1,45 @@
+{
+ "operation": "post-resources",
+ "request": {
+  "method": "POST",
+  "path": "/resources",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Raum 7fa428",
+   "resourceTypeId": 2,
+   "sortKey": 999
+  }
+ },
+ "body": {
+  "data": {
+   "id": 55,
+   "name": "ctrs-test Raum 7fa428",
+   "nameTranslated": "ctrs-test Raum 7fa428",
+   "sortKey": 999,
+   "resourceTypeId": 2,
+   "location": null,
+   "iCalLocation": null,
+   "description": null,
+   "isAutoAccept": false,
+   "needsAppointment": false,
+   "isVirtual": false,
+   "quantity": 1,
+   "adminIds": [],
+   "randomString": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:35:25Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:25Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "doesRequireCalEntry": "needsAppointment"
+   },
+   "doesRequireCalEntry": false
+  }
+ }
+}

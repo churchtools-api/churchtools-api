@@ -1,0 +1,39 @@
+{
+ "operation": "post-groups-groupId-memberfields-group",
+ "request": {
+  "method": "POST",
+  "path": "/groups/922/memberfields/group",
+  "query": [],
+  "body": {
+   "fieldTypeCode": "text",
+   "name": "T-Shirt-Größe",
+   "requiredInRegistrationForm": false,
+   "securityLevel": 1,
+   "useInRegistrationForm": false
+  }
+ },
+ "body": {
+  "data": {
+   "id": 769,
+   "groupId": 922,
+   "name": "T-Shirt-Größe",
+   "referenceName": "t-shirt-groesse",
+   "note": null,
+   "sortKey": 0,
+   "fieldTypeCode": "text",
+   "fieldTypeId": 1,
+   "securityLevel": 1,
+   "defaultValue": null,
+   "maxLength": 4000,
+   "options": [],
+   "useInRegistrationForm": false,
+   "requiredInRegistrationForm": false,
+   "nameInSignupForm": null,
+   "noteInSignupForm": null,
+   "@deprecated": {
+    "fieldName": "name"
+   },
+   "fieldName": "T-Shirt-Größe"
+  }
+ }
+}

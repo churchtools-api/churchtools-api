@@ -1,0 +1,30 @@
+{
+ "operation": "put-song-categories-id",
+ "request": {
+  "method": "PUT",
+  "path": "/song/categories/19",
+  "query": [],
+  "body": {
+   "name": "ctrs-test categories dcd4c4 neu"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 19,
+   "name": "ctrs-test categories dcd4c4 neu",
+   "nameTranslated": "ctrs-test categories dcd4c4 neu",
+   "sortKey": 0,
+   "campusId": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:41Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:42Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "operation": "patch-posts-postId",
+ "request": {
+  "method": "PATCH",
+  "path": "/posts/88",
+  "query": [],
+  "body": {
+   "title": "ctrs-test Beitrag 39ef00 neu"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 88,
+   "guid": "8549CF19-E6DA-4529-A89A-51F2E0851643",
+   "group": {
+    "title": "#0 Gemeindeleitung",
+    "domainType": "group",
+    "domainIdentifier": "11",
+    "apiUrl": "https://gemeinde.example/api/groups/11",
+    "frontendUrl": "https://gemeinde.example/groups/11",
+    "imageUrl": "https://gemeinde.example/images/739/762622a9f773be71160b1a049e5d35383e38fba574981da15e516b3f38a69514",
+    "icon": "users",
+    "color": {
+     "key": "lime",
+     "shade": null
+    },
+    "initials": "0",
+    "domainAttributes": {
+     "note": "",
+     "groupStatusId": 1,
+     "groupTypeId": 2,
+     "campusId": null,
+     "visibility": "restricted",
+     "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+    },
+    "infos": [
+     "Team"
+    ]
+   },
+   "actor": {
+    "title": "Armin Adendorf",
+    "domainType": "person",
+    "domainIdentifier": "1",
+    "apiUrl": "https://gemeinde.example/api/persons/1",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+    "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+    "icon": "user",
+    "color": null,
+    "initials": "AA",
+    "domainAttributes": {
+     "firstName": "Armin",
+     "lastName": "Adendorf",
+     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "dateOfDeath": null,
+     "isArchived": false
+    },
+    "infos": []
+   },
+   "title": "ctrs-test Beitrag 39ef00 neu",
+   "content": "Inhalt",
+   "groupVisibility": "restricted",
+   "visibility": "group_intern",
+   "commentsActive": true,
+   "images": [],
+   "imagesMeta": [],
+   "publicationDate": null,
+   "expirationDate": null,
+   "expirationPid": null,
+   "expirationPerson": null,
+   "publishedDate": "2026-10-28T23:34:22Z",
+   "lastEditedDate": "2026-10-28T23:34:23Z",
+   "isBanned": false,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:22Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:23Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

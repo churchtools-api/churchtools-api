@@ -1,0 +1,20 @@
+{
+ "operation": "put-tags-tagId",
+ "request": {
+  "method": "PUT",
+  "path": "/tags/88",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Tag 69e017 neu"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 88,
+   "name": "ctrs-test Tag 69e017 neu",
+   "description": null,
+   "color": "basic",
+   "count": 1
+  }
+ }
+}

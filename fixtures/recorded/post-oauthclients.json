@@ -1,0 +1,25 @@
+{
+ "operation": "post-oauthclients",
+ "request": {
+  "method": "POST",
+  "path": "/oauthclients",
+  "query": [],
+  "body": {
+   "name": "ctrs-test OAuth b14b67",
+   "redirectUri": "https://example.org/callback"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 19,
+   "identifier": "6398647334b9ffbfcf8ff929d7117da7a36598060365e43eda2703ed19a2d806",
+   "name": "ctrs-test OAuth b14b67",
+   "redirectUri": [
+    "https://example.org/callback"
+   ],
+   "isConfidential": true,
+   "logoUrl": null,
+   "clientSecret": "<redacted>"
+  }
+ }
+}

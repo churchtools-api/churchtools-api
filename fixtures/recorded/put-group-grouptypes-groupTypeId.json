@@ -1,0 +1,46 @@
+{
+ "operation": "put-group-grouptypes-groupTypeId",
+ "request": {
+  "method": "PUT",
+  "path": "/group/grouptypes/22",
+  "query": [],
+  "body": {
+   "availableForNewPerson": false,
+   "color": "lime",
+   "isLeaderNecessary": false,
+   "name": "test GT f5a88c 2",
+   "namePlural": "Testgruppen",
+   "permissionDepth": 1,
+   "postsEnabled": false,
+   "shorty": "TG",
+   "sortKey": 998
+  }
+ },
+ "body": {
+  "data": {
+   "id": 22,
+   "name": "test GT f5a88c 2",
+   "nameTranslated": "test GT f5a88c 2",
+   "sortKey": 998,
+   "namePlural": "Testgruppen",
+   "namePluralTranslated": "Testgruppen",
+   "color": "lime",
+   "shorty": "TG",
+   "description": null,
+   "isLeaderNecessary": false,
+   "availableForNewPerson": false,
+   "permissionDepth": 1,
+   "postsEnabled": false,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:50Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:51Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

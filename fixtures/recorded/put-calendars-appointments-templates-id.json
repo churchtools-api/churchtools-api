@@ -1,0 +1,45 @@
+{
+ "operation": "put-calendars-appointments-templates-id",
+ "request": {
+  "method": "PUT",
+  "path": "/calendars/appointments/templates/34",
+  "query": [],
+  "body": {
+   "calendarId": 49,
+   "duration": 5400,
+   "startTime": "10:30",
+   "title": "Gottesdienst (Test)"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 34,
+   "calendarId": 49,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:56Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:57Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "title": "Gottesdienst (Test)",
+   "startTime": "10:30",
+   "duration": 5400,
+   "subtitle": null,
+   "description": null,
+   "categoryId": 49,
+   "repeatFrequency": null,
+   "repeatId": 0,
+   "@deprecated": {
+    "categoryId": "calendarId",
+    "comment": "subtitle",
+    "note": "description",
+    "repeatFrequence": "repeatFrequency",
+    "address.meetingAt": "address.name"
+   }
+  }
+ }
+}

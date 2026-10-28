@@ -1,0 +1,30 @@
+{
+ "operation": "put-song-sources-id",
+ "request": {
+  "method": "PUT",
+  "path": "/song/sources/19",
+  "query": [],
+  "body": {
+   "name": "ctrs-test sources c83c60 neu"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 19,
+   "name": "ctrs-test sources c83c60 neu",
+   "nameTranslated": "ctrs-test sources c83c60 neu",
+   "sortKey": 0,
+   "shorty": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:43Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:44Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

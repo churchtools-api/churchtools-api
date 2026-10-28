@@ -1,0 +1,55 @@
+{
+ "operation": "post-songs",
+ "request": {
+  "method": "POST",
+  "path": "/songs",
+  "query": [],
+  "body": {
+   "categoryId": 0,
+   "name": "ctrs-test Lied ec9a45"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 106,
+   "name": "ctrs-test Lied ec9a45",
+   "category": {
+    "id": 0,
+    "name": "Aktive Songs",
+    "nameTranslated": "Aktive Songs",
+    "sortKey": 0,
+    "campusId": null,
+    "meta": {
+     "createdDate": "2026-09-30T14:20:19Z",
+     "createdPerson": {
+      "id": -5
+     },
+     "modifiedDate": "2026-09-30T14:20:19Z",
+     "modifiedPerson": {
+      "id": -5
+     }
+    }
+   },
+   "author": null,
+   "copyright": null,
+   "ccli": null,
+   "shouldPractice": false,
+   "arrangements": [],
+   "meta": {
+    "createdDate": "2026-10-28T23:35:24Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:24Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "note": null,
+    "arrangements": null
+   },
+   "note": ""
+  }
+ }
+}

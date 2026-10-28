@@ -1,0 +1,26 @@
+{
+ "operation": "put-statuses-id",
+ "request": {
+  "method": "PUT",
+  "path": "/statuses/43",
+  "query": [],
+  "body": {
+   "name": "ctrs-test statuses 259468 neu",
+   "securityLevelId": 1,
+   "shorty": "T2"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 43,
+   "name": "ctrs-test statuses 259468 neu",
+   "nameTranslated": "ctrs-test statuses 259468 neu",
+   "sortKey": 0,
+   "shorty": "T2",
+   "shortyTranslated": "T2",
+   "isMember": false,
+   "isSearchable": false,
+   "securityLevelId": 1
+  }
+ }
+}

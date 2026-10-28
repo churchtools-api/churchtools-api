@@ -1,0 +1,47 @@
+{
+ "operation": "post-persons-personId-relationships",
+ "request": {
+  "method": "POST",
+  "path": "/persons/1/relationships",
+  "query": [],
+  "body": {
+   "otherPersonId": 2926,
+   "relationshipTypeId": 1
+  }
+ },
+ "body": {
+  "data": {
+   "id": 103,
+   "personAId": 1,
+   "personBId": 2926,
+   "relationshipType": {
+    "id": 1,
+    "name": "relationship.parent-child",
+    "nameTranslated": "Elternteil/Kind",
+    "securityLevelId": 1,
+    "degreeNameA": "relationship.part.parent",
+    "degreeNameATranslated": "Elternteil",
+    "degreeNameB": "relationship.part.child",
+    "degreeNameBTranslated": "Kind",
+    "includeInExport": false,
+    "exportTitle": "",
+    "sortKey": 10,
+    "functionKeys": []
+   },
+   "meta": {
+    "createdDate": "2026-10-28T23:34:01Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:01Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "date": "meta.createdDate"
+   },
+   "date": "2026-10-29"
+  }
+ }
+}

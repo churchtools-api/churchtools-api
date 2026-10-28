@@ -1,0 +1,40 @@
+{
+ "operation": "put-events-id-agenda-items-id",
+ "request": {
+  "method": "PUT",
+  "path": "/events/1816/agenda/items/6097",
+  "query": [],
+  "body": {
+   "title": "ctrs-test 2",
+   "type": "header"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 6097,
+   "title": "ctrs-test 2",
+   "type": "header",
+   "duration": 0,
+   "start": "2026-10-30T19:48:00Z",
+   "startTimes": {
+    "1816": "2026-10-30T19:48:00Z"
+   },
+   "isBeforeEvent": false,
+   "meta": {
+    "createdDate": "2026-10-28T23:35:29Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:30Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "position": null
+   },
+   "position": 22,
+   "calculatedDuration": 0
+  }
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "operation": "post-calendars",
+ "request": {
+  "method": "POST",
+  "path": "/calendars",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Kalender 049652",
+   "sortKey": 999,
+   "type": "church"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 100,
+   "name": "ctrs-test Kalender 049652",
+   "nameTranslated": "ctrs-test Kalender 049652",
+   "sortKey": 999,
+   "type": "church",
+   "color": null,
+   "randomUrl": "WhPZPTwGGkPwMl1HTrYrMcSr3PhZPYFQ",
+   "iCalSourceUrl": null,
+   "syncToEvTermine": false,
+   "evTermineEventTypeId": null,
+   "campusId": null,
+   "eventTemplateId": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:35:28Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:28Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "isPublic": "type",
+    "isPrivate": "type"
+   },
+   "isPublic": true,
+   "isPrivate": false
+  }
+ }
+}

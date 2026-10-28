@@ -1,0 +1,25 @@
+{
+ "operation": "post-furtherlinks",
+ "request": {
+  "method": "POST",
+  "path": "/furtherlinks",
+  "query": [],
+  "body": {
+   "description": null,
+   "imageUrl": null,
+   "name": "ctrs-test furtherlinks 8ba7e5",
+   "sortKey": 999,
+   "url": "https://example.org"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 31,
+   "name": "ctrs-test furtherlinks 8ba7e5",
+   "description": null,
+   "url": "https://example.org",
+   "imageUrl": null,
+   "sortKey": 999
+  }
+ }
+}

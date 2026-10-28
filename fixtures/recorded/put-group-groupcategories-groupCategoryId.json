@@ -1,0 +1,33 @@
+{
+ "operation": "put-group-groupcategories-groupCategoryId",
+ "request": {
+  "method": "PUT",
+  "path": "/group/groupcategories/28",
+  "query": [],
+  "body": {
+   "color": "blue",
+   "name": "ctrs-test groupcategories 5bb5f5 neu",
+   "sortKey": 998
+  }
+ },
+ "body": {
+  "data": {
+   "id": 28,
+   "name": "ctrs-test groupcategories 5bb5f5 neu",
+   "nameTranslated": "ctrs-test groupcategories 5bb5f5 neu",
+   "sortKey": 998,
+   "description": null,
+   "color": "blue",
+   "meta": {
+    "createdDate": "2026-10-28T23:34:40Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:41Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

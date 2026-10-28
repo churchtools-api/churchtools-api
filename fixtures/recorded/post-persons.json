@@ -1,0 +1,109 @@
+{
+ "operation": "post-persons",
+ "request": {
+  "method": "POST",
+  "path": "/persons",
+  "query": [
+   [
+    "force",
+    "true"
+   ]
+  ],
+  "body": {
+   "birthday": "1990-05-17",
+   "campusId": 0,
+   "departmentIds": [
+    1
+   ],
+   "firstName": "ctrs-test",
+   "lastName": "Vereinbarung",
+   "privacyPolicyAgreementDate": "2026-10-29",
+   "privacyPolicyAgreementTypeId": 1,
+   "privacyPolicyAgreementWhoId": 1,
+   "statusId": 0
+  }
+ },
+ "body": {
+  "data": {
+   "id": 2932,
+   "guid": "6CA42198-8F39-4804-882E-7DBE7A2D23F9",
+   "securityLevelForPerson": 99999,
+   "editSecurityLevelForPerson": 99999,
+   "title": "",
+   "firstName": "ctrs-test",
+   "lastName": "Vereinbarung",
+   "nickname": "",
+   "job": "",
+   "street": "",
+   "addressAddition": "",
+   "zip": "",
+   "city": "",
+   "country": "",
+   "latitude": null,
+   "longitude": null,
+   "latitudeLoose": null,
+   "longitudeLoose": null,
+   "phonePrivate": "",
+   "phoneWork": "",
+   "mobile": "",
+   "fax": "",
+   "birthName": "",
+   "birthday": "1990-05-17",
+   "birthplace": "",
+   "age": 36,
+   "isDead": false,
+   "imageUrl": null,
+   "familyImageUrl": "",
+   "sexId": null,
+   "email": "",
+   "emails": [],
+   "cmsUserId": "",
+   "optigemId": "",
+   "privacyPolicyAgreement": {
+    "date": "2026-10-29",
+    "typeId": 1,
+    "whoId": 1
+   },
+   "privacyPolicyAgreementDate": "2026-10-29",
+   "privacyPolicyAgreementTypeId": 1,
+   "privacyPolicyAgreementWhoId": 1,
+   "nationalityId": null,
+   "familyStatusId": null,
+   "weddingDate": null,
+   "campusId": 0,
+   "statusId": 0,
+   "departmentIds": [
+    1
+   ],
+   "firstContact": "2026-10-29",
+   "dateOfBelonging": null,
+   "dateOfDeath": null,
+   "dateOfEntry": null,
+   "dateOfResign": null,
+   "dateOfBaptism": null,
+   "placeOfBaptism": "",
+   "baptisedBy": "",
+   "referredBy": "",
+   "referredTo": "",
+   "growPathId": null,
+   "canChat": false,
+   "invitationStatus": "not_invited",
+   "chatActive": true,
+   "isArchived": false,
+   "visibility": "visible",
+   "acceptedsecurity": null,
+   "lastLogin": null,
+   "lastEditedDate": "2026-10-28T23:35:14Z",
+   "meta": {
+    "createdDate": "2026-10-28T23:35:14Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:14Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

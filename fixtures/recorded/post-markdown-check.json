@@ -1,0 +1,18 @@
+{
+ "operation": "post-markdown-check",
+ "request": {
+  "method": "POST",
+  "path": "/markdown/check",
+  "query": [],
+  "body": {
+   "inputScope": "description",
+   "markdown": "**fett** und _kursiv_"
+  }
+ },
+ "body": {
+  "data": {
+   "isValid": true,
+   "reason": []
+  }
+ }
+}

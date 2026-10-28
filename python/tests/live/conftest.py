@@ -66,7 +66,19 @@ class Recorder:
             raise
         self.log.append((method, path, 200, self.context))
         self.last_body = data
+        self._record_scenario_call(method, path)
         return data
+
+    def _record_scenario_call(self, method: str, path: str) -> None:
+        """Write scenarios record their responses too, so their examples can be replayed.
+
+        Reads are only recorded here if the read tests have nothing for them yet.
+        """
+        if not self.context:
+            return
+        op = operation_for(method, path)
+        if op is not None and (method != "GET" or not (RECORDED / f"{op}.json").exists()):
+            record(op, self)
 
     def request_multipart(
         self,
@@ -85,6 +97,7 @@ class Recorder:
             raise
         self.log.append((method, path, 200, self.context))
         self.last_body = data
+        self._record_scenario_call(method, path)
         return data
 
     def pages(self, path: str, query: list[tuple[str, str]]) -> _t.Iterator[bytes]:

@@ -1,0 +1,16 @@
+{
+ "operation": "put-groups-groupId-grouphomepage",
+ "request": {
+  "method": "PUT",
+  "path": "/groups/922/grouphomepage",
+  "query": [],
+  "body": {
+   "isEnabled": true,
+   "showFilters": false,
+   "showGroupImages": false,
+   "showLeaders": true,
+   "showMap": false
+  }
+ },
+ "body": {}
+}

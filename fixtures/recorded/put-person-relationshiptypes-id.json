@@ -1,0 +1,30 @@
+{
+ "operation": "put-person-relationshiptypes-id",
+ "request": {
+  "method": "PUT",
+  "path": "/person/relationshiptypes/25",
+  "query": [],
+  "body": {
+   "degreeNameA": "Patin",
+   "degreeNameB": "Patenkind",
+   "name": "ctrs-test relationshiptypes a2c4d5 neu",
+   "securityLevelId": 1
+  }
+ },
+ "body": {
+  "data": {
+   "id": 25,
+   "name": "ctrs-test relationshiptypes a2c4d5 neu",
+   "nameTranslated": "ctrs-test relationshiptypes a2c4d5 neu",
+   "securityLevelId": 1,
+   "degreeNameA": "Patin",
+   "degreeNameATranslated": "Patin",
+   "degreeNameB": "Patenkind",
+   "degreeNameBTranslated": "Patenkind",
+   "includeInExport": false,
+   "exportTitle": null,
+   "sortKey": 0,
+   "functionKeys": []
+  }
+ }
+}

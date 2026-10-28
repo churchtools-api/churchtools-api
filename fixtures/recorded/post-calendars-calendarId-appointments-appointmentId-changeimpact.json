@@ -1,0 +1,18 @@
+{
+ "operation": "post-calendars-calendarId-appointments-appointmentId-changeimpact",
+ "request": {
+  "method": "POST",
+  "path": "/calendars/100/appointments/1665607/changeimpact",
+  "query": [],
+  "body": {
+   "endDate": "2026-11-05T00:00:00Z",
+   "startDate": "2026-11-04T23:00:00Z"
+  }
+ },
+ "body": {
+  "data": [],
+  "meta": {
+   "count": 0
+  }
+ }
+}

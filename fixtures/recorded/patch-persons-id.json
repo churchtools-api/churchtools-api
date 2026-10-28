@@ -1,0 +1,101 @@
+{
+ "operation": "patch-persons-id",
+ "request": {
+  "method": "PATCH",
+  "path": "/persons/2923",
+  "query": [],
+  "body": {
+   "city": "Teststadt",
+   "nickname": "Testi"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 2923,
+   "guid": "4908C0DD-F3A8-45C3-8A0C-CEBD2509E7A2",
+   "securityLevelForPerson": 99999,
+   "editSecurityLevelForPerson": 99999,
+   "title": "",
+   "firstName": "ctrs-test",
+   "lastName": "30ed603b",
+   "nickname": "Testi",
+   "job": "",
+   "street": "",
+   "addressAddition": "",
+   "zip": "",
+   "city": "Teststadt",
+   "country": "",
+   "latitude": null,
+   "longitude": null,
+   "latitudeLoose": null,
+   "longitudeLoose": null,
+   "phonePrivate": "",
+   "phoneWork": "",
+   "mobile": "",
+   "fax": "",
+   "birthName": "",
+   "birthday": null,
+   "birthplace": "",
+   "age": null,
+   "isDead": false,
+   "imageUrl": null,
+   "familyImageUrl": "",
+   "sexId": null,
+   "email": "295e3d44@example.invalid",
+   "emails": [
+    {
+     "email": "295e3d44@example.invalid",
+     "isDefault": true,
+     "contactLabelId": 2
+    }
+   ],
+   "cmsUserId": "",
+   "optigemId": "",
+   "privacyPolicyAgreement": {
+    "date": "2026-10-29",
+    "typeId": 1,
+    "whoId": 1
+   },
+   "privacyPolicyAgreementDate": "2026-10-29",
+   "privacyPolicyAgreementTypeId": 1,
+   "privacyPolicyAgreementWhoId": 1,
+   "nationalityId": null,
+   "familyStatusId": null,
+   "weddingDate": null,
+   "campusId": 0,
+   "statusId": 0,
+   "departmentIds": [
+    1
+   ],
+   "firstContact": "2026-10-29",
+   "dateOfBelonging": null,
+   "dateOfDeath": null,
+   "dateOfEntry": null,
+   "dateOfResign": null,
+   "dateOfBaptism": null,
+   "placeOfBaptism": "",
+   "baptisedBy": "",
+   "referredBy": "",
+   "referredTo": "",
+   "growPathId": null,
+   "canChat": false,
+   "invitationStatus": "not_invited",
+   "chatActive": true,
+   "isArchived": false,
+   "visibility": "visible",
+   "acceptedsecurity": null,
+   "lastLogin": null,
+   "lastEditedDate": "2026-10-28T23:33:56Z",
+   "meta": {
+    "createdDate": "2026-10-28T23:33:55Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:33:56Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

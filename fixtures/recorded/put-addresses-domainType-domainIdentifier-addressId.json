@@ -1,0 +1,48 @@
+{
+ "operation": "put-addresses-domainType-domainIdentifier-addressId",
+ "request": {
+  "method": "PUT",
+  "path": "/addresses/group/922/526",
+  "query": [],
+  "body": {
+   "city": "Hamburg-Mitte",
+   "name": "Gemeindehaus"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 526,
+   "domainType": "group",
+   "domainIdentifier": "922",
+   "name": "Gemeindehaus",
+   "icon": null,
+   "color": null,
+   "street": null,
+   "addition": null,
+   "district": null,
+   "zip": null,
+   "city": "Hamburg-Mitte",
+   "country": null,
+   "latitude": null,
+   "longitude": null,
+   "latitudeLoose": null,
+   "longitudeLoose": null,
+   "@deprecated": {
+    "meetingAt": "name",
+    "markerIcon": "icon",
+    "markerColor": "color",
+    "postalcode": "zip",
+    "markerUrl": "@deleted use icon and color instead",
+    "geoLat": "latitude",
+    "geoLng": "longitude"
+   },
+   "meetingAt": "Gemeindehaus",
+   "markerIcon": null,
+   "markerColor": null,
+   "markerUrl": null,
+   "postalcode": null,
+   "geoLat": null,
+   "geoLng": null
+  }
+ }
+}

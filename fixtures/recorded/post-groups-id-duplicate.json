@@ -1,0 +1,124 @@
+{
+ "operation": "post-groups-id-duplicate",
+ "request": {
+  "method": "POST",
+  "path": "/groups/922/duplicate",
+  "query": [
+   [
+    "newName",
+    "ctrs-test Gruppe 125339 Kopie"
+   ]
+  ],
+  "body": {}
+ },
+ "body": {
+  "data": {
+   "id": 928,
+   "guid": "D0515F7A-B883-4208-A9FD-78DE71D7C1A4",
+   "name": "ctrs-test Gruppe 125339 Kopie",
+   "securityLevelForGroup": 5,
+   "meta": {
+    "createdDate": "2026-10-28T23:35:04Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:04Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "modifiedDate": "meta.modifiedDate",
+    "modifiedPerson": "meta.modifiedPid",
+    "information.maxMembers": "settings.maxMembers"
+   },
+   "modifiedDate": "2026-10-28T23:35:04Z",
+   "modifiedPerson": {
+    "id": 1
+   },
+   "followUp": {
+    "reminder": true
+   },
+   "permissions": {
+    "useChat": false,
+    "startChat": true
+   },
+   "information": {
+    "imageUrl": "",
+    "imageAnnotation": "",
+    "imageAiGenerated": false,
+    "imageAnnotationLink": "",
+    "imageDescription": "",
+    "groupHomepageUrl": null,
+    "groupStatusId": 2,
+    "groupTypeId": 1,
+    "dateOfFoundation": null,
+    "endDate": null,
+    "meetingTime": null,
+    "weekday": null,
+    "groupCategoryId": null,
+    "ageGroupIds": [],
+    "targetGroupId": null,
+    "maxMembers": null,
+    "note": "",
+    "campusId": null,
+    "chatStatus": "NOT_STARTED",
+    "color": "sky",
+    "signUpOverrideRoleId": null
+   },
+   "settings": {
+    "isHidden": false,
+    "isOpenForMembers": false,
+    "signUpOpeningDate": null,
+    "signUpClosingDate": null,
+    "signUpHeadline": null,
+    "signUpNotificationSentDate": null,
+    "signUpOverrideRoleId": null,
+    "allowSpouseRegistration": true,
+    "allowChildRegistration": true,
+    "allowSameEmailRegistration": true,
+    "allowOtherRegistration": false,
+    "signUpEmailRequiredForAll": true,
+    "emailVerificationMode": "all",
+    "sendDefaultSignUpMail": true,
+    "autoAccept": true,
+    "allowWaitinglist": false,
+    "waitinglistMaxPersons": null,
+    "automaticMoveUp": false,
+    "isPublic": false,
+    "visibility": "restricted",
+    "inStatistic": false,
+    "groupMeeting": {
+     "autoCreate": false,
+     "templateId": null
+    },
+    "qrCodeCheckin": false,
+    "qrCodeCheckinAutomaticEmail": true,
+    "chatHistoryVisible": false,
+    "informLeader": false,
+    "newMember": {
+     "campusId": null,
+     "statusId": null,
+     "departmentId": null
+    },
+    "postsEnabled": true,
+    "defaultPostVisibility": "group_visible",
+    "defaultPostCommentsActive": true,
+    "defaultPostPlaceholderText": null,
+    "defaultPostNotificationScope": null,
+    "externalPostSubscriptionsEnabled": true,
+    "showStreet": false,
+    "appointmentId": null,
+    "appointmentStartDate": null,
+    "maxMembers": null,
+    "statusesCountedTowardsSeats": [
+     "active"
+    ],
+    "dynamicGroupRuleSet": null,
+    "dynamicGroupStatus": null,
+    "dynamicGroupUpdateStarted": null,
+    "dynamicGroupUpdateFinished": null
+   }
+  }
+ }
+}

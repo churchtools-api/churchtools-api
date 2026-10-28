@@ -1,0 +1,25 @@
+{
+ "operation": "put-furtherlinks-furtherLinkId",
+ "request": {
+  "method": "PUT",
+  "path": "/furtherlinks/31",
+  "query": [],
+  "body": {
+   "description": "Beschreibung",
+   "imageUrl": null,
+   "name": "ctrs-test furtherlinks 8ba7e5 neu",
+   "sortKey": 998,
+   "url": "https://example.org/neu"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 31,
+   "name": "ctrs-test furtherlinks 8ba7e5 neu",
+   "description": "Beschreibung",
+   "url": "https://example.org/neu",
+   "imageUrl": null,
+   "sortKey": 998
+  }
+ }
+}

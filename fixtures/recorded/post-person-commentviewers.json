@@ -1,0 +1,19 @@
+{
+ "operation": "post-person-commentviewers",
+ "request": {
+  "method": "POST",
+  "path": "/person/commentviewers",
+  "query": [],
+  "body": {
+   "name": "ctrs-test commentviewers 9deb2b"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 31,
+   "name": "ctrs-test commentviewers 9deb2b",
+   "nameTranslated": "ctrs-test commentviewers 9deb2b",
+   "sortKey": 0
+  }
+ }
+}

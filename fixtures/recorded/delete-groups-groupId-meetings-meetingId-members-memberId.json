@@ -1,0 +1,44 @@
+{
+ "operation": "delete-groups-groupId-meetings-meetingId-members-memberId",
+ "request": {
+  "method": "DELETE",
+  "path": "/groups/934/meetings/1069/members/1",
+  "query": [],
+  "body": {}
+ },
+ "body": {
+  "id": 1069,
+  "groupId": 934,
+  "startDate": "2026-10-27T23:00:00Z",
+  "isCompleted": false,
+  "isCanceled": false,
+  "hasEditingStarted": false,
+  "numGuests": null,
+  "comment": null,
+  "pollResult": null,
+  "statistics": {
+   "present": 0,
+   "absent": 1,
+   "unsure": 0,
+   "not-in-group": 0
+  },
+  "meta": {
+   "createdDate": "2026-10-28T23:35:12Z",
+   "createdPerson": {
+    "id": 1
+   },
+   "modifiedDate": "2026-10-28T23:35:12Z",
+   "modifiedPerson": {
+    "id": 1
+   }
+  },
+  "@deprecated": {
+   "dateFrom": "startDate",
+   "dateTo": "endDate",
+   "endDate": "@removed"
+  },
+  "dateFrom": "2026-10-27T23:00:00Z",
+  "dateTo": "2026-10-27T23:00:00Z",
+  "endDate": "2026-10-27T23:00:00Z"
+ }
+}

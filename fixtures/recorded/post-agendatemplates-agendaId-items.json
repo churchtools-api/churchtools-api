@@ -1,0 +1,38 @@
+{
+ "operation": "post-agendatemplates-agendaId-items",
+ "request": {
+  "method": "POST",
+  "path": "/agendatemplates/385/items",
+  "query": [],
+  "body": {
+   "title": "Begrüßung",
+   "type": "header"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 6094,
+   "title": "Begrüßung",
+   "type": "header",
+   "duration": 0,
+   "start": null,
+   "startTimes": {},
+   "isBeforeEvent": false,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:58Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:58Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "position": null
+   },
+   "position": 0,
+   "calculatedDuration": 0
+  }
+ }
+}

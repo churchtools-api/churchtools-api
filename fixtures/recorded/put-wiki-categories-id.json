@@ -1,0 +1,26 @@
+{
+ "operation": "put-wiki-categories-id",
+ "request": {
+  "method": "PUT",
+  "path": "/wiki/categories/34",
+  "query": [],
+  "body": {
+   "fileAccessWithoutPermission": false,
+   "inMenu": false,
+   "name": "ctrs-test Wiki fddfac neu",
+   "sortKey": 998
+  }
+ },
+ "body": {
+  "data": {
+   "id": 34,
+   "name": "ctrs-test Wiki fddfac neu",
+   "nameTranslated": "ctrs-test Wiki fddfac neu",
+   "sortKey": 998,
+   "campusId": null,
+   "inMenu": false,
+   "fileAccessWithoutPermission": false,
+   "permissions": {}
+  }
+ }
+}

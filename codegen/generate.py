@@ -72,6 +72,12 @@ RESULT_FIXES: dict[str, dict[str, _t.Any]] = {
     "post-persons-personId-relationships": {"type": "GetPersonsRelationshipsDataItem"},
 }
 
+# Filled by main(): the documentation example of every operation (examples.Example)
+# and the operations with a recorded response (fixtures/recorded), so examples can
+# go into doc comments and run as doctests.
+EXAMPLES: dict[str, _t.Any] = {}
+RECORDED: set[str] = set()
+
 # operationId -> (resource chain, method name) for cases the naming rules get wrong.
 NAME_OVERRIDES: dict[str, tuple[str, str]] = {
     # Appointments are addressed with or without a calendar and as series or occurrence.
@@ -879,6 +885,9 @@ def python_method(op: Op) -> list[str]:
             first, *rest = d.splitlines() or [""]
             doc_lines.append(f"    {name}: {first}")
             doc_lines += [f"        {r}" for r in rest]
+    example = EXAMPLES.get(op.op_id)
+    if example is not None:
+        doc_lines += ["", "Example::", ""] + [f"    {line}" if line else "" for line in example.python.splitlines()]
 
     out = [f"    def {op.name}("]
     out += [f"        {p}," for p in params]
@@ -1087,6 +1096,33 @@ def write_rust_api(ops: list[Op], header: str, out: Path) -> None:
     out.write_text("\n".join(lines))
 
 
+def rust_doctest(op: Op) -> list[str]:
+    """The documentation example as a doctest: run against the recorded response if
+    there is one (`replay` feature), otherwise only compiled."""
+    example = EXAMPLES.get(op.op_id)
+    if example is None:
+        return []
+    runs = op.op_id in RECORDED and op.upload is None
+    client = (
+        f'# let client = churchtools_core::replay::client("{op.op_id}");'
+        if runs
+        else '# let client = Client::new("https://meinegemeinde.church.tools", None)?;'
+    )
+    return [
+        "",
+        "# Example",
+        "",
+        "```" if runs else "```no_run",
+        "# use churchtools_core::*;",
+        "# fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {",
+        client,
+        *example.rust.splitlines(),
+        "# Ok(())",
+        "# }",
+        "```",
+    ]
+
+
 def rust_method(op: Op) -> tuple[list[str], list[str]]:
     args = ["&self"]
     path_fmt = op.path
@@ -1166,13 +1202,15 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
     doc = [op.summary or op.op_id, "", f"`{op.method.upper()} {op.path}`"]
     if op.doc and op.doc != op.summary:
         doc += ["", op.doc]
+    example_doc = rust_doctest(op)
     lines = []
     name = rust_ident(op.name)
     options = "form" if form_struct else "query" if query_struct else None
     if options and not any(p.required for p in query_params):
         # All filters optional: `list()` for the common case, `list_with(&query)` for filters.
         simple_args = [a for a in args if not a.startswith(f"{options}:")]
-        lines += rust_doc("\n".join(doc + ["", f"Use [`Self::{op.name}_with`] to pass query parameters."]), "    ")
+        lines += rust_doc("\n".join(doc + ["", f"Use [`Self::{op.name}_with`] to pass query parameters."] + example_doc), "    ")
+        example_doc = []  # the example stays on the short variant
         if op.deprecated:
             lines.append("    #[deprecated]")
         lines.append(f"    pub fn {name}({', '.join(simple_args)}) -> Result<{rt}> {{")
@@ -1185,7 +1223,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
         lines.append("    }\n")
         name = f"{op.name}_with"
         doc = doc[:1] + ["", f"Like [`Self::{op.name}`], with {'form fields' if options == 'form' else 'query parameters'}."] + doc[1:]
-    lines += rust_doc("\n".join(doc), "    ")
+    lines += rust_doc("\n".join(doc + example_doc), "    ")
     if op.deprecated:
         lines.append("    #[deprecated]")
     lines.append(f"    pub fn {name}({', '.join(args)}) -> Result<{rt}> {{")
@@ -1279,6 +1317,11 @@ def main() -> int:
         for p in problems:
             print("  " + p, file=sys.stderr)
         return 1
+
+    import examples as ex
+
+    EXAMPLES.update({op.op_id: ex.example_for(schemas, op) for op in ops})
+    RECORDED.update(p.stem for p in (ROOT / "fixtures" / "recorded").glob("*.json"))
 
     py_pkg = ROOT / "python" / "churchtools_rs"
     rs_gen = ROOT / "core" / "src" / "generated"

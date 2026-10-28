@@ -1,0 +1,25 @@
+{
+ "operation": "post-facts",
+ "request": {
+  "method": "POST",
+  "path": "/facts",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Fakt 5c1f93",
+   "type": "number",
+   "unit": "Pers."
+  }
+ },
+ "body": {
+  "data": {
+   "id": 22,
+   "name": "ctrs-test Fakt 5c1f93",
+   "nameTranslated": "ctrs-test Fakt 5c1f93",
+   "sortKey": 0,
+   "type": "number",
+   "@deprecated": "fieldType (now: type)",
+   "fieldType": "number",
+   "unit": "Pers."
+  }
+ }
+}

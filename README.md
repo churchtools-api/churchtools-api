@@ -76,13 +76,25 @@ Die Python-Seite verwendet die Rust-Structs nicht. Rust liefert die rohen JSON-B
 python3 codegen/generate.py              # lädt die Spec (Cache in codegen/.cache), generiert Code, Doku und Tests
 python3 codegen/generate.py --refresh    # Spec neu herunterladen
 
-cargo test --workspace                   # Unit-Tests, Replay aller aufgezeichneten Antworten, Doku-Beispiele
+cargo test --workspace                   # Unit-Tests, Replay, Doku-Beispiele (Doctests); ohne Netz
 cd python
 uv venv && uv pip install maturin pydantic pytest mypy
 maturin develop                          # baut _core und installiert das Paket editierbar
-pytest tests                             # offline: Fake-Server + Replay der aufgezeichneten Antworten
+pytest tests                             # ohne Netz: Fake-Server, Replay, alle Doku-Beispiele ausgeführt
 mypy --strict churchtools_rs tests       # inkl. aller Python-Beispiele der Doku
 ```
+
+### Doku-Beispiele werden ausgeführt
+
+Jedes Beispiel steht nur einmal im Generator (`codegen/examples.py`, `codegen/guide.py`). Daraus entstehen die
+Doku-Seite und die Tests:
+
+- **Rust:** Jede generierte Methode trägt ihr Beispiel als Doctest im `///`-Kommentar; RustRover zeigt es beim
+  Überfahren an. `cargo test --doc` führt es gegen die aufgezeichnete Antwort aus (`replay`-Feature, nur für die
+  eigenen Tests) oder kompiliert es nur (`no_run`), wenn es keine Aufzeichnung gibt.
+- **Python:** Das Beispiel steht im Docstring. `tests/test_doc_examples.py` führt alle Beispiele gegen einen lokalen
+  Replay-Server aus (`tests/replay.py`); `mypy --strict` prüft zusätzlich alle Beispiele statisch.
+- Beispiele aus Einstieg, Grundlagen und Projekten laufen genauso, außer sie sprechen bewusst einen festen Server an.
 
 ### Tests gegen eine echte Instanz
 
@@ -100,7 +112,7 @@ cargo test -p churchtools-core --test live -- --ignored   # Login, Rate-Limit un
 - `tests/live/test_read.py` ruft jeden GET-Endpunkt einmal über die generierte API auf. Die IDs dafür sucht ein
   Resolver über die passende Listen-Route (`resolve.py`).
 - `tests/live/test_write*.py` sind Szenarien wie „Person anlegen, ändern, archivieren, löschen“. Jedes räumt hinterher auf.
-- Erfolgreiche Antworten landen in `fixtures/recorded/`. Daraus werden **Offline-Unit-Tests**: `tests/test_recorded.py`
+- Erfolgreiche Antworten landen in `fixtures/recorded/`, aus den Szenarien auch die der Schreib-Endpunkte. Daraus werden **Offline-Unit-Tests**: `tests/test_recorded.py`
   validiert sie mit Pydantic, `core/tests/recorded.rs` dekodiert sie in die Rust-Typen. Beide laufen ohne Netz.
 - `tests/live/seed.py` legt vor dem Lesetest Daten an, die eine frische Demo nicht hat (Treffen, Tickets, Kontoauszug,
   Sync-Verbindung, …), und entfernt sie danach wieder.

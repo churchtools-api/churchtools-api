@@ -1,0 +1,20 @@
+{
+ "operation": "post-tags-domainType",
+ "request": {
+  "method": "POST",
+  "path": "/tags/person",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Tag 69e017"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 88,
+   "name": "ctrs-test Tag 69e017",
+   "description": null,
+   "color": "basic",
+   "count": 0
+  }
+ }
+}

@@ -1,0 +1,22 @@
+{
+ "operation": "post-contactlabels",
+ "request": {
+  "method": "POST",
+  "path": "/contactlabels",
+  "query": [],
+  "body": {
+   "isDefault": false,
+   "name": "ctrs-test contactlabels 49d854",
+   "sortKey": 999
+  }
+ },
+ "body": {
+  "data": {
+   "id": 28,
+   "name": "ctrs-test contactlabels 49d854",
+   "nameTranslated": "ctrs-test contactlabels 49d854",
+   "sortKey": 999,
+   "isDefault": false
+  }
+ }
+}

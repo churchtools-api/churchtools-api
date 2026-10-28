@@ -1,0 +1,34 @@
+{
+ "operation": "post-resourcetypes",
+ "request": {
+  "method": "POST",
+  "path": "/resourcetypes",
+  "query": [],
+  "body": {
+   "name": "ctrs-test resourcetypes fa93a7",
+   "namePlural": "Testräume",
+   "sortKey": 999
+  }
+ },
+ "body": {
+  "data": {
+   "id": 22,
+   "name": "ctrs-test resourcetypes fa93a7",
+   "nameTranslated": "ctrs-test resourcetypes fa93a7",
+   "sortKey": 999,
+   "namePlural": "Testräume",
+   "namePluralTranslated": "Testräume",
+   "campusId": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:45Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:45Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

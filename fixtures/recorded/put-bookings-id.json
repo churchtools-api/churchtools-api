@@ -1,0 +1,94 @@
+{
+ "operation": "put-bookings-id",
+ "request": {
+  "method": "PUT",
+  "path": "/bookings/445",
+  "query": [],
+  "body": {
+   "endDate": "2026-11-03T01:00:00Z",
+   "startDate": "2026-11-02T23:00:00Z",
+   "resourceId": 55,
+   "showInCal": false,
+   "statusId": 2,
+   "title": "verlängert"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 445,
+   "title": "verlängert",
+   "subtitle": null,
+   "resourceId": 55,
+   "statusId": 2,
+   "quantity": 1,
+   "description": null,
+   "appointment": null,
+   "onBehalfOfPid": null,
+   "answeredPid": 1,
+   "answeredDate": "2026-10-28T23:35:25Z",
+   "showInCal": false,
+   "version": 1,
+   "startDate": "2026-11-02T23:00:00Z",
+   "endDate": "2026-11-03T01:00:00Z",
+   "allDay": false,
+   "repeatId": 0,
+   "repeatFrequency": null,
+   "repeatUntil": null,
+   "repeatOption": null,
+   "additionals": [],
+   "exceptions": [],
+   "meta": {
+    "createdDate": "2026-10-28T23:35:25Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:26Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "caption": "title",
+    "location": "subtitle",
+    "note": "description",
+    "appointmentId": "appointment",
+    "resource": "resourceId"
+   },
+   "caption": "verlängert",
+   "location": null,
+   "resource": {
+    "id": 55,
+    "name": "ctrs-test Raum 7fa428",
+    "nameTranslated": "ctrs-test Raum 7fa428",
+    "sortKey": 999,
+    "resourceTypeId": 2,
+    "location": null,
+    "iCalLocation": null,
+    "description": null,
+    "isAutoAccept": false,
+    "needsAppointment": false,
+    "isVirtual": false,
+    "quantity": 1,
+    "adminIds": [],
+    "randomString": null,
+    "meta": {
+     "createdDate": "2026-10-28T23:35:25Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-28T23:35:25Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "doesRequireCalEntry": "needsAppointment"
+    },
+    "doesRequireCalEntry": false
+   },
+   "note": null,
+   "appointmentId": null,
+   "isAnonymized": false
+  }
+ }
+}

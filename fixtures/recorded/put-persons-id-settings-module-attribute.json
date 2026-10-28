@@ -1,0 +1,18 @@
+{
+ "operation": "put-persons-id-settings-module-attribute",
+ "request": {
+  "method": "PUT",
+  "path": "/persons/1/settings/churchdb/signature",
+  "query": [],
+  "body": {
+   "value": "Viele Grüße (ctrs-test)"
+  }
+ },
+ "body": {
+  "data": {
+   "module": "churchdb",
+   "attribute": "signature",
+   "value": "Viele Grüße (ctrs-test)"
+  }
+ }
+}

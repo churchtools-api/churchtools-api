@@ -1,0 +1,26 @@
+{
+ "operation": "post-wiki-categories",
+ "request": {
+  "method": "POST",
+  "path": "/wiki/categories",
+  "query": [],
+  "body": {
+   "fileAccessWithoutPermission": false,
+   "inMenu": false,
+   "name": "ctrs-test Wiki fddfac",
+   "sortKey": 999
+  }
+ },
+ "body": {
+  "data": {
+   "id": 34,
+   "name": "ctrs-test Wiki fddfac",
+   "nameTranslated": "ctrs-test Wiki fddfac",
+   "sortKey": 999,
+   "campusId": null,
+   "inMenu": false,
+   "fileAccessWithoutPermission": false,
+   "permissions": {}
+  }
+ }
+}

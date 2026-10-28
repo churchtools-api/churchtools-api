@@ -6566,6 +6566,8 @@ print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span>
             <li><b>getestet, Fehler der API:</b> Der Aufruf scheitert auch auf der Testinstanz, mit bekannter Ursache,
             meist einem Fehler in ChurchTools.</li>
           </ul>
+          <p>Die Beispiele auf dieser Seite sind Teil der Tests: Alle werden kompiliert bzw. typgeprüft, und die
+          Beispiele zu getesteten Endpunkten laufen gegen die aufgezeichneten Antworten der Testinstanz.</p>
           <p>Ohne Sternchen heißt: Der Aufruf lief erfolgreich, und die Antwort passte zu den Typen in Python und Rust.
           Das garantiert nicht jede Kombination von Parametern. Details stehen im Testbericht (<code>docs/testbericht.md</code>).</p>
           <div class="table-wrap"><table><thead><tr><th>Methode</th><th>getestet</th><th>getestet, Fehler der API</th><th>keine Testdaten</th><th>kein Testszenario</th><th>Test fehlgeschlagen</th><th>gesamt</th></tr></thead><tbody><tr><td>GET</td><td>348</td><td>11</td><td>6</td><td>–</td><td>–</td><td>365</td></tr><tr><td>POST</td><td>72</td><td>–</td><td>–</td><td>144</td><td>–</td><td>216</td></tr><tr><td>PUT</td><td>49</td><td>1</td><td>–</td><td>68</td><td>–</td><td>118</td></tr><tr><td>PATCH</td><td>9</td><td>–</td><td>–</td><td>15</td><td>–</td><td>24</td></tr><tr><td>DELETE</td><td>57</td><td>–</td><td>–</td><td>69</td><td>–</td><td>126</td></tr></tbody></table></div>

@@ -1,0 +1,25 @@
+{
+ "operation": "post-labels-totals",
+ "request": {
+  "method": "POST",
+  "path": "/labels/totals",
+  "query": [],
+  "body": {
+   "personIds": [
+    1
+   ]
+  }
+ },
+ "body": {
+  "data": {
+   "ignoreAddress": {
+    "totalLabels": 1,
+    "combinedLabels": 1
+   },
+   "onlyCompleteAddress": {
+    "totalLabels": 1,
+    "combinedLabels": 1
+   }
+  }
+ }
+}

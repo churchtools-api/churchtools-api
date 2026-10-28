@@ -1,0 +1,43 @@
+{
+ "operation": "put-followups-followUpId",
+ "request": {
+  "method": "PUT",
+  "path": "/followups/40",
+  "query": [],
+  "body": {
+   "description": "Anruf nach dem Gottesdienst",
+   "title": "Nachfragen"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 40,
+   "personId": 2929,
+   "groupId": null,
+   "membershipId": null,
+   "title": "Nachfragen",
+   "description": "Anruf nach dem Gottesdienst",
+   "icon": "handshake",
+   "color": "yellow",
+   "origin": "default",
+   "successGroupId": null,
+   "successGroupOfGroupTypeId": null,
+   "successRoleId": null,
+   "successGroupMemberStatus": null,
+   "ownerId": 1,
+   "dueDate": null,
+   "effectiveDueDate": null,
+   "doneDate": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:35:06Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:06Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

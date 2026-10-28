@@ -1,0 +1,88 @@
+{
+ "operation": "post-calendars-calendarId-appointments",
+ "request": {
+  "method": "POST",
+  "path": "/calendars/100/appointments",
+  "query": [],
+  "body": {
+   "endDate": "2026-11-04T00:00:00Z",
+   "startDate": "2026-11-03T23:00:00Z",
+   "isInternal": false,
+   "title": "ctrs-test Termin 3d36b2"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 1665607,
+   "title": "ctrs-test Termin 3d36b2",
+   "subtitle": null,
+   "address": null,
+   "version": 0,
+   "calendar": {
+    "id": 100,
+    "name": "ctrs-test Kalender 049652",
+    "nameTranslated": "ctrs-test Kalender 049652",
+    "sortKey": 999,
+    "type": "church",
+    "color": null,
+    "randomUrl": "WhPZPTwGGkPwMl1HTrYrMcSr3PhZPYFQ",
+    "iCalSourceUrl": null,
+    "syncToEvTermine": false,
+    "evTermineEventTypeId": null,
+    "campusId": null,
+    "eventTemplateId": null,
+    "meta": {
+     "createdDate": "2026-10-28T23:35:27Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-28T23:35:27Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    },
+    "@deprecated": {
+     "isPublic": "type",
+     "isPrivate": "type"
+    },
+    "isPublic": true,
+    "isPrivate": false
+   },
+   "description": null,
+   "image": null,
+   "link": null,
+   "isInternal": false,
+   "startDate": "2026-11-03T23:00:00Z",
+   "endDate": "2026-11-04T00:00:00Z",
+   "allDay": false,
+   "repeatId": 0,
+   "repeatFrequency": null,
+   "repeatUntil": null,
+   "repeatOption": null,
+   "additionals": [],
+   "exceptions": [],
+   "signup": null,
+   "onBehalfOfPid": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:35:28Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:28Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "additions": "additionals",
+    "caption": "title",
+    "note": "subtitle",
+    "information": "description"
+   },
+   "caption": "ctrs-test Termin 3d36b2",
+   "note": null,
+   "information": null,
+   "additions": []
+  }
+ }
+}

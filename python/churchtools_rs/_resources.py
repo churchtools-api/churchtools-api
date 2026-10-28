@@ -38,6 +38,17 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
             statement_id: ID of the statement the movement belongs to.
             movement_id: ID of the movement to update.
             state: Target movement state. Returning from booked to another state does not undo or delete the existing transaction.
+
+        Example::
+
+            result = client.finance.accountingperiods.accounts.statements.movements.create(
+                1,
+                42,
+                7,
+                123,
+                state="beispiel",
+            )
+            print(result)
         """
         return _t.cast(_t.Union[models.Transaction, _t.List[_t.Any]], self._call('POST', f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/statements/{_seg(statement_id)}/movements/{_seg(movement_id)}", [], _body({'state': state}, extra_body), _t.Union[models.Transaction, _t.List[_t.Any]], envelope=True))
 
@@ -67,6 +78,11 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
             state: Restrict to a stored movement state.
             query: Substring search across purpose, account identifier and person name.
             include: Additional suggestion details; use the PHP array syntax include[]=bills.
+
+        Example::
+
+            for movement in client.finance.accountingperiods.accounts.statements.movements.list(1, 42, 7):
+                print(movement.id)
         """
         return Paginator(self._core, f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/statements/{_seg(statement_id)}/movements", _query([('limit', limit), ('state', state), ('query', query), ('include[]', include)]), models.StatementMovement)
 
@@ -93,6 +109,16 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
             statement_id: Identifier in the movement URL; authorization uses the movement’s actual accounting period.
             movement_id: Identifier in the movement URL; authorization uses the movement’s actual accounting period.
             suggestions: Incremental changes. Omitted suggestions are retained; an empty array changes nothing.
+
+        Example::
+
+            client.finance.accountingperiods.accounts.statements.movements.patch_suggestions(
+                1,
+                7,
+                7,
+                7,
+                suggestions=[ct.models.MovementSuggestionUpdate.model_validate({"name": "costCenterId", "value": "8"})],
+            )
         """
         self._raw('PATCH', f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/statements/{_seg(statement_id)}/movements/{_seg(movement_id)}/suggestions", [], _body({'suggestions': suggestions}, extra_body))
 
@@ -117,6 +143,10 @@ class EventsAgendaItemsServicegroupsResource(Resource):
             event_id: ID of Event
             item_id: ID of agenda item
             service_group_id: ID of a service group
+
+        Example::
+
+            client.events.agenda.items.servicegroups.delete(42, 123, 13)
         """
         self._raw('DELETE', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}/servicegroups/{_seg(service_group_id)}", [], None)
 
@@ -141,6 +171,15 @@ class EventsAgendaItemsServicegroupsResource(Resource):
             item_id: ID of agenda item
             service_group_id: ID of a service group
             note: Note text for the service group.
+
+        Example::
+
+            client.events.agenda.items.servicegroups.update(
+                42,
+                123,
+                13,
+                note="Remember to bring the sheet music",
+            )
         """
         self._raw('PUT', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}/servicegroups/{_seg(service_group_id)}", [], _body({'note': note}, extra_body))
 
@@ -165,6 +204,11 @@ class ExternalpostsInstancesChannelsPostsResource(Resource):
             instance_guid: the guid of the instance to which the post belongs
             channel_guid: the guid of the channel to which the post belongs
             post_guid: the guid of the post
+
+        Example::
+
+            post = client.externalposts.instances.channels.posts.get("beispiel", "beispiel", "beispiel")
+            print(post.title)
         """
         return _t.cast(models.Post, self._call('GET', f"/externalposts/instances/{_seg(instance_guid)}/channels/{_seg(channel_guid)}/posts/{_seg(post_guid)}", [], None, models.Post, envelope=True))
 
@@ -191,6 +235,11 @@ class FinanceAccountingperiodsAccountsStatementsResource(Resource):
         Args:
             id: ID of Entity
             account_id: Finance account whose imported statements are returned.
+
+        Example::
+
+            for statement in client.finance.accountingperiods.accounts.statements.list(1, 5):
+                print(statement.name)
         """
         return _t.cast(_t.List[models.AccountStatement], self._call('GET', f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/statements", [], None, _t.List[models.AccountStatement], envelope=True))
 
@@ -217,6 +266,11 @@ class FinanceEubpSubmissionsPeriodsResource(Resource):
             id: ID of Entity
             period_id: ID of the submission period
             account_ids: Complete additional-account selection for this submission-period row. Duplicates are deduplicated; unknown IDs are ignored. [] removes additional selections.
+
+        Example::
+
+            result = client.finance.eubp.submissions.periods.update_accounts(1, 1, account_ids=[10, 11])
+            print(result.id)
         """
         return _t.cast(models.EubpSubmissionPeriod, self._call('PUT', f"/finance/eubp/submissions/{_seg(id)}/periods/{_seg(period_id)}/accounts", [], _body({'accountIds': account_ids}, extra_body), models.EubpSubmissionPeriod, envelope=True))
 
@@ -245,6 +299,12 @@ class FinanceReportsStatementAccountsResource(Resource):
             end_date: Last document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
             format: PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
             start_date: First document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
+
+        Example::
+
+            data = client.finance.reports.statement.accounts.create(21, end_date=dt.date(2026, 12, 31))
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', f"/finance/reports/statement/accounts/{_seg(account_id)}", [], _body({'endDate': end_date, 'format': format, 'startDate': start_date}, extra_body))
 
@@ -277,6 +337,12 @@ class FinanceReportsStatementCostcentersResource(Resource):
             start_date: First document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
             include_rebookings: Include transactions classified as internal rebookings in the cost-center report.
             type_: Legacy alias for format.
+
+        Example::
+
+            data = client.finance.reports.statement.costcenters.create(21, end_date=dt.date(2026, 12, 31))
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', f"/finance/reports/statement/costcenters/{_seg(cost_center_id)}", [], _body({'endDate': end_date, 'format': format, 'startDate': start_date, 'includeRebookings': include_rebookings, 'type': type_}, extra_body))
 
@@ -302,6 +368,11 @@ class PermissionsInternalGroupsAuthsResource(Resource):
             group_id: ID of group
             auth_id: Numeric permission key from the internal authorization table
             data_id: For group-internal permissions with selection values, this parameter is required: a configured ID selects one value and -1 expands into all current configured IDs, in ascending order. It does not select only unrestricted grants as in the global endpoint. Omit it for boolean permissions.
+
+        Example::
+
+            person = client.permissions.internal.groups.auths.get_persons(42, 125)
+            print(person.auth_id)
         """
         return _t.cast(models.PermissionPersons, self._call('GET', f"/permissions/internal/groups/{_seg(group_id)}/auths/{_seg(auth_id)}/persons", _query([('data_id', data_id)]), None, models.PermissionPersons, envelope=True))
 
@@ -322,6 +393,11 @@ class PermissionsOriginsGlobalPersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            person = client.permissions.origins.global_.persons.get(42)
+            print(person.person_id)
         """
         return _t.cast(models.GetPermissionsOriginsGlobalPersonsPersonIdData, self._call('GET', f"/permissions/origins/global/persons/{_seg(person_id)}", [], None, models.GetPermissionsOriginsGlobalPersonsPersonIdData, envelope=True))
 
@@ -345,6 +421,11 @@ class PermissionsOriginsInternalPersonsResource(Resource):
         Args:
             person_id: ID of person
             group_ids: Target group IDs to inspect. Omission includes all targets; an empty array returns no groups. Duplicate IDs are collapsed and unknown IDs are omitted.
+
+        Example::
+
+            person = client.permissions.origins.internal.persons.get(42)
+            print(person.person_id)
         """
         return _t.cast(models.GetPermissionsOriginsInternalPersonsPersonIdData, self._call('GET', f"/permissions/origins/internal/persons/{_seg(person_id)}", _query([('group_ids[]', group_ids)]), None, models.GetPermissionsOriginsInternalPersonsPersonIdData, envelope=True))
 
@@ -373,6 +454,16 @@ class PersonsEventsServicesExchangerequestsResource(Resource):
             event_id: ID of Event
             service_id: ID of a concrete event-service assignment, exposed as `serviceId` on legacy routes
             requested_service_id: Target assignment to exchange with. Use eventServiceId from the candidates endpoint. ID of a concrete event-service assignment (service request), not the reusable service master-data ID from /services.
+
+        Example::
+
+            result = client.persons.events.services.exchangerequests.create(
+                42,
+                42,
+                42,
+                requested_service_id=42,
+            )
+            print(result.id)
         """
         return _t.cast(models.ServiceExchangeRequest, self._call('POST', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services/{_seg(service_id)}/exchangerequests", [], _body({'requestedServiceId': requested_service_id}, extra_body), models.ServiceExchangeRequest, envelope=True))
 
@@ -398,6 +489,10 @@ class PersonsEventsServicesExchangerequestsResource(Resource):
             service_id: ID of a concrete event-service assignment, exposed as `serviceId` on legacy routes
             request_id: ID of a service exchange request
             hard_delete: Permanently remove the request instead of changing its status to `CANCELLED`.
+
+        Example::
+
+            client.persons.events.services.exchangerequests.delete(42, 42, 42, 42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services/{_seg(service_id)}/exchangerequests/{_seg(request_id)}", _query([('hardDelete', hard_delete)]), None)
 
@@ -421,6 +516,11 @@ class PersonsEventsServicesExchangerequestsResource(Resource):
             event_id: ID of Event
             service_id: ID of a concrete event-service assignment, exposed as `serviceId` on legacy routes
             incoming: `false` selects exchanges initiated from this assignment; `true` selects exchanges targeting it.
+
+        Example::
+
+            for exchangerequest in client.persons.events.services.exchangerequests.list(42, 42, 42):
+                print(exchangerequest.id)
         """
         return _t.cast(_t.List[models.ServiceExchangeRequest], self._call('GET', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services/{_seg(service_id)}/exchangerequests", _query([('incoming', incoming)]), None, _t.List[models.ServiceExchangeRequest], envelope=True))
 
@@ -441,6 +541,11 @@ class PersonsEventsServicesExchangerequestsResource(Resource):
             person_id: ID of person
             event_id: ID of Event
             service_id: ID of a concrete event-service assignment, exposed as `serviceId` on legacy routes
+
+        Example::
+
+            for candidate in client.persons.events.services.exchangerequests.list_candidates(42, 42, 42):
+                print(candidate.event_date)
         """
         return _t.cast(_t.List[models.ServiceExchangeCandidate], self._call('GET', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services/{_seg(service_id)}/exchangerequests/candidates", [], None, _t.List[models.ServiceExchangeCandidate], envelope=True))
 
@@ -465,6 +570,11 @@ class SyncExternalsystemsJobconfigsExecutionsResource(Resource):
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
             execution_id: Background execution identifier from `/sync/executions`.
+
+        Example::
+
+            execution = client.sync.externalsystems.jobconfigs.executions.get(1, 1, "run-123")
+            print(execution.domain_type)
         """
         return _t.cast(models.SyncExecutionDetails, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/executions/{_seg(execution_id)}", [], None, models.SyncExecutionDetails, envelope=True))
 
@@ -489,6 +599,11 @@ class WikiCategoriesPagesVersionsResource(Resource):
             wiki_category_id: ID of WikiCategory
             identifier: GUID of the wiki page. (For backwards compatibility reasons, the page title is accepted too, but no longer recommended for use.)
             version: Requested revision; 0 selects the latest revision for legacy compatibility.
+
+        Example::
+
+            version = client.wiki.categories.pages.versions.get(42, "main", 1)
+            print(version.title)
         """
         return _t.cast(models.WikiPage, self._call('GET', f"/wiki/categories/{_seg(wiki_category_id)}/pages/{_seg(identifier)}/versions/{_seg(version)}", [], None, models.WikiPage, envelope=True))
 
@@ -507,6 +622,11 @@ class WikiCategoriesPagesVersionsResource(Resource):
         Args:
             wiki_category_id: ID of WikiCategory
             identifier: GUID of the wiki page. (For backwards compatibility reasons, the page title is accepted too, but no longer recommended for use.)
+
+        Example::
+
+            for version in client.wiki.categories.pages.versions.list(42, "main"):
+                print(version.title)
         """
         return _t.cast(_t.List[models.WikiPage], self._call('GET', f"/wiki/categories/{_seg(wiki_category_id)}/pages/{_seg(identifier)}/versions", [], None, _t.List[models.WikiPage], envelope=True))
 
@@ -531,6 +651,10 @@ class AgendatemplatesItemsServicegroupsResource(Resource):
             agenda_id: ID of agenda
             item_id: ID of agenda item
             service_group_id: ID of a service group
+
+        Example::
+
+            client.agendatemplates.items.servicegroups.delete(35, 123, 13)
         """
         self._raw('DELETE', f"/agendatemplates/{_seg(agenda_id)}/items/{_seg(item_id)}/servicegroups/{_seg(service_group_id)}", [], None)
 
@@ -555,6 +679,15 @@ class AgendatemplatesItemsServicegroupsResource(Resource):
             item_id: ID of agenda item
             service_group_id: ID of a service group
             note: Note text for the service group.
+
+        Example::
+
+            client.agendatemplates.items.servicegroups.update(
+                35,
+                123,
+                13,
+                note="Remember to bring the sheet music",
+            )
         """
         self._raw('PUT', f"/agendatemplates/{_seg(agenda_id)}/items/{_seg(item_id)}/servicegroups/{_seg(service_group_id)}", [], _body({'note': note}, extra_body))
 
@@ -581,6 +714,10 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
             appointment_id: ID of appointment
             meeting_request_id: ID of meeting request
             answer: Answer to the meeting request
+
+        Example::
+
+            client.calendars.appointments.meetingrequests.answer(42, 4, 19, "accept")
         """
         self._raw('POST', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests/{_seg(meeting_request_id)}/{_seg(answer)}", [], None)
 
@@ -603,6 +740,11 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
             calendar_id: ID of Calendar
             appointment_id: ID of appointment
             invitee_id: ID of the person to invite.
+
+        Example::
+
+            result = client.calendars.appointments.meetingrequests.create(42, 4, invitee_id=42)
+            print(result.id)
         """
         return _t.cast(models.MeetingRequest, self._call('POST', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests", [], _body({'inviteeId': invitee_id}, extra_body), models.MeetingRequest, envelope=False))
 
@@ -623,6 +765,10 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
             calendar_id: ID of Calendar
             appointment_id: ID of appointment
             meeting_request_id: ID of meeting request
+
+        Example::
+
+            client.calendars.appointments.meetingrequests.delete(42, 4, 19)
         """
         self._raw('DELETE', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests/{_seg(meeting_request_id)}", [], None)
 
@@ -641,6 +787,11 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
         Args:
             calendar_id: ID of Calendar
             appointment_id: ID of appointment
+
+        Example::
+
+            for meetingrequest in client.calendars.appointments.meetingrequests.list(42, 4):
+                print(meetingrequest.id)
         """
         return _t.cast(_t.List[models.MeetingRequest], self._call('GET', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests", [], None, _t.List[models.MeetingRequest], envelope=True))
 
@@ -667,6 +818,10 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
             appointment_id: ID of appointment
             meeting_request_id: ID of meeting request
             answer: Answer accepted by meeting-request response endpoints.
+
+        Example::
+
+            client.calendars.appointments.meetingrequests.update(42, 4, 19, answer="accept")
         """
         self._raw('PUT', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests/{_seg(meeting_request_id)}", [], _body({'answer': answer}, extra_body))
 
@@ -726,6 +881,16 @@ class CalendarsAppointmentsTemplatesResource(Resource):
             tags: Existing appointment-tag IDs saved in the template.
             template_group_id: Group used as a template for registration groups.
             title: Title proposed for appointments created from this template.
+
+        Example::
+
+            result = client.calendars.appointments.templates.create(
+                calendar_id=1,
+                duration=3600,
+                start_time="10:00",
+                title="Service",
+            )
+            print(result.title)
         """
         return _t.cast(models.AppointmentTemplateWritten, self._call('POST', "/calendars/appointments/templates", [], _body({'address': address, 'allDay': all_day, 'bookings': bookings, 'calendarId': calendar_id, 'daysArchiveGroupNo': days_archive_group_no, 'daysForwardNo': days_forward_no, 'description': description, 'duration': duration, 'events': events, 'grouptypeId': grouptype_id, 'isInternal': is_internal, 'link': link, 'onBehalfOfPid': on_behalf_of_pid, 'repeatDuration': repeat_duration, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOptionId': repeat_option_id, 'startTime': start_time, 'subtitle': subtitle, 'tags': tags, 'templateGroupId': template_group_id, 'title': title}, extra_body), models.AppointmentTemplateWritten, envelope=True))
 
@@ -742,6 +907,10 @@ class CalendarsAppointmentsTemplatesResource(Resource):
 
         Args:
             template_id: ID of appointment template
+
+        Example::
+
+            client.calendars.appointments.templates.delete(1)
         """
         self._raw('DELETE', f"/calendars/appointments/templates/{_seg(template_id)}", [], None)
 
@@ -758,6 +927,11 @@ class CalendarsAppointmentsTemplatesResource(Resource):
 
         Args:
             template_id: ID of appointment template
+
+        Example::
+
+            template = client.calendars.appointments.templates.get(1)
+            print(template.title)
         """
         return _t.cast(models.AppointmentTemplate, self._call('GET', f"/calendars/appointments/templates/{_seg(template_id)}", [], None, models.AppointmentTemplate, envelope=True))
 
@@ -770,6 +944,11 @@ class CalendarsAppointmentsTemplatesResource(Resource):
         `GET /calendars/appointments/templates`
 
         Returns all saved appointment templates and their reusable defaults.
+
+        Example::
+
+            for template in client.calendars.appointments.templates.list():
+                print(template.title)
         """
         return _t.cast(_t.List[models.AppointmentTemplate], self._call('GET', "/calendars/appointments/templates", [], None, _t.List[models.AppointmentTemplate], envelope=True))
 
@@ -827,6 +1006,17 @@ class CalendarsAppointmentsTemplatesResource(Resource):
             tags: Existing appointment-tag IDs saved in the template.
             template_group_id: Group used as a template for registration groups.
             title: Title proposed for appointments created from this template.
+
+        Example::
+
+            result = client.calendars.appointments.templates.update(
+                1,
+                calendar_id=1,
+                duration=3600,
+                start_time="10:00",
+                title="Service",
+            )
+            print(result.title)
         """
         return _t.cast(models.AppointmentTemplateWritten, self._call('PUT', f"/calendars/appointments/templates/{_seg(template_id)}", [], _body({'address': address, 'allDay': all_day, 'bookings': bookings, 'calendarId': calendar_id, 'daysArchiveGroupNo': days_archive_group_no, 'daysForwardNo': days_forward_no, 'description': description, 'duration': duration, 'events': events, 'grouptypeId': grouptype_id, 'isInternal': is_internal, 'link': link, 'onBehalfOfPid': on_behalf_of_pid, 'repeatDuration': repeat_duration, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOptionId': repeat_option_id, 'startTime': start_time, 'subtitle': subtitle, 'tags': tags, 'templateGroupId': template_group_id, 'title': title}, extra_body), models.AppointmentTemplateWritten, envelope=True))
 
@@ -859,6 +1049,14 @@ class EventsAgendaItemsResource(Resource):
             before_id: Place the item before this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             after_id: Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             sort_key: Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+
+        Example::
+
+            result = client.events.agenda.items.create(
+                42,
+                body=ct.models.AgendaItemInputHeader.model_validate({"type": "beispiel"}),
+            )
+            print(result)
         """
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('POST', f"/events/{_seg(event_id)}/agenda/items", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
@@ -877,6 +1075,10 @@ class EventsAgendaItemsResource(Resource):
         Args:
             event_id: ID of Event
             item_id: ID of agenda item
+
+        Example::
+
+            client.events.agenda.items.delete(42, 123)
         """
         self._raw('DELETE', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}", [], None)
 
@@ -895,6 +1097,10 @@ class EventsAgendaItemsResource(Resource):
         Args:
             event_id: ID of Event
             item_id: ID of agenda item
+
+        Example::
+
+            client.events.agenda.items.hide(42, 123)
         """
         self._raw('POST', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}/hide", [], None)
 
@@ -913,6 +1119,10 @@ class EventsAgendaItemsResource(Resource):
         Args:
             event_id: ID of Event
             item_id: ID of agenda item
+
+        Example::
+
+            client.events.agenda.items.unhide(42, 123)
         """
         self._raw('POST', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}/unhide", [], None)
 
@@ -939,6 +1149,15 @@ class EventsAgendaItemsResource(Resource):
             before_id: Place the item before this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             after_id: Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             sort_key: Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+
+        Example::
+
+            result = client.events.agenda.items.update(
+                42,
+                123,
+                body=ct.models.AgendaItemInputHeader.model_validate({"type": "beispiel"}),
+            )
+            print(result)
         """
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('PUT', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
@@ -956,6 +1175,11 @@ class ExternalloginsOidcTestResource(Resource):
         `POST /externallogins/{externalLoginId}/oidc/test`
 
         Starts an OIDC Authorization Code test using the stored provider configuration. Requires "churchcore administer settings" permission. Hidden OIDC providers can be tested. Returns a URL to open in the same browser session and an opaque state for polling; preserve the session cookie through the provider callback. The pending flow expires after 600 seconds and shares the session limit of ten pending authorizations. This performs issuer discovery and token validation but does not create or link a person or establish a new ChurchTools login. Errors during authorization preparation are returned as data.status=error with HTTP 200; provider lookup errors occur before that conversion.
+
+        Example::
+
+            result = client.externallogins.oidc.test.create(7)
+            print(result)
         """
         return _t.cast(_t.Union[models.ExternalLoginOidcTestStart, models.ExternalLoginOidcTestError], self._call('POST', f"/externallogins/{_seg(external_login_id)}/oidc/test", [], None, _t.Union[models.ExternalLoginOidcTestStart, models.ExternalLoginOidcTestError], envelope=True))
 
@@ -973,6 +1197,11 @@ class ExternalloginsOidcTestResource(Resource):
 
         Args:
             state: Opaque state returned when the OIDC login test was started.
+
+        Example::
+
+            test = client.externallogins.oidc.test.get(7, "opaque-session-bound-state")
+            print(test.error_code)
         """
         return _t.cast(models.ExternalLoginOidcTestResult, self._call('GET', f"/externallogins/{_seg(external_login_id)}/oidc/test/{_seg(state)}", [], None, models.ExternalLoginOidcTestResult, envelope=True))
 
@@ -995,6 +1224,11 @@ class ExternalloginsSamlMetadataResource(Resource):
 
         Args:
             xml: XML document with EntityDescriptor or EntitiesDescriptor root in the SAML metadata namespace. Trimmed UTF-8 input is limited to 1,048,576 bytes. DOCTYPE and ENTITY declarations are rejected.
+
+        Example::
+
+            metadata = client.externallogins.saml.metadata.parse(xml="beispiel")
+            print(metadata)
         """
         return _t.cast(models.PostExternalloginsSamlMetadataParseData, self._call('POST', "/externallogins/saml/metadata/parse", [], _body({'xml': xml}, extra_body), models.PostExternalloginsSamlMetadataParseData, envelope=True))
 
@@ -1012,6 +1246,11 @@ class ExternalloginsSamlTestResource(Resource):
         `POST /externallogins/{externalLoginId}/saml/test`
 
         Starts a SAML round-trip test for the stored provider configuration. Requires "churchcore administer settings" permission; hidden SAML providers can be tested. Open data.url in the same browser session, then poll using data.state. At most five tests are retained per session; older entries are evicted. Tests and completed results expire 600 seconds after creation. The callback validates the SAML response and returns claim-name/mapping diagnostics without creating or linking a ChurchTools person or establishing a new ChurchTools login. A successful test does not guarantee that required identity attributes have usable values or that person matching would succeed. Configuration/URL-generation failures are not converted into an error result by this endpoint.
+
+        Example::
+
+            result = client.externallogins.saml.test.create(7)
+            print(result.expires_at)
         """
         return _t.cast(models.ExternalLoginSamlTestStart, self._call('POST', f"/externallogins/{_seg(external_login_id)}/saml/test", [], None, models.ExternalLoginSamlTestStart, envelope=True))
 
@@ -1029,6 +1268,11 @@ class ExternalloginsSamlTestResource(Resource):
 
         Args:
             state: Opaque state returned when the SAML login test was started.
+
+        Example::
+
+            test = client.externallogins.saml.test.get(7, "beispiel")
+            print(test.status)
         """
         return _t.cast(models.ExternalLoginSamlTestResult, self._call('GET', f"/externallogins/{_seg(external_login_id)}/saml/test/{_seg(state)}", [], None, models.ExternalLoginSamlTestResult, envelope=True))
 
@@ -1061,6 +1305,10 @@ class FinanceAccountingperiodsAccountsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.finance.accountingperiods.accounts.delete(1)
         """
         self._raw('DELETE', f"/finance/accountingperiods/{_seg(id)}/accounts", [], None)
 
@@ -1088,6 +1336,11 @@ class FinanceAccountingperiodsAccountsResource(Resource):
             state: Restrict to a stored movement state.
             query: Substring search across purpose, account identifier and person name.
             include: Additional suggestion details; use the PHP array syntax include[]=bills.
+
+        Example::
+
+            for movement in client.finance.accountingperiods.accounts.list_movements(1, 42):
+                print(movement.id)
         """
         return Paginator(self._core, f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/movements", _query([('limit', limit), ('state', state), ('query', query), ('include[]', include)]), models.StatementMovement)
 
@@ -1104,6 +1357,11 @@ class FinanceAccountingperiodsAccountsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            for statement in client.finance.accountingperiods.accounts.list_statements(1):
+                print(statement.account_id)
         """
         return _t.cast(_t.List[models.AccountStatementStatistics], self._call('GET', f"/finance/accountingperiods/{_seg(id)}/accounts/statements", [], None, _t.List[models.AccountStatementStatistics], envelope=True))
 
@@ -1127,6 +1385,14 @@ class FinanceAccountingperiodsStatementsResource(Resource):
         Args:
             id: ID of Entity
             files: Files to upload.
+
+        Example::
+
+            result = client.finance.accountingperiods.statements.create(
+                1,
+                files=[ct.Upload.from_path("kontoauszug.xml")],
+            )
+            print(result.duplicates)
         """
         return _t.cast(models.AccountStatementPreview, self._call('POST', f"/finance/accountingperiods/{_seg(id)}/statements", [], None, models.AccountStatementPreview, envelope=True, upload=('files[]', [], files)))
 
@@ -1145,6 +1411,10 @@ class FinanceAccountingperiodsStatementsResource(Resource):
         Args:
             id: ID of Entity
             statement_id: ID of the statement
+
+        Example::
+
+            client.finance.accountingperiods.statements.delete(1, 1)
         """
         self._raw('DELETE', f"/finance/accountingperiods/{_seg(id)}/statements/{_seg(statement_id)}", [], None)
 
@@ -1163,6 +1433,10 @@ class FinanceAccountingperiodsStatementsResource(Resource):
         Args:
             id: ID of Entity
             statement_id: ID of the statement to generate suggestions for.
+
+        Example::
+
+            client.finance.accountingperiods.statements.suggestions(1, 7)
         """
         self._raw('POST', f"/finance/accountingperiods/{_seg(id)}/statements/{_seg(statement_id)}/suggestions", [], None)
 
@@ -1185,6 +1459,10 @@ class FinanceAccountingperiodsStatementsResource(Resource):
             id: ID of Entity
             statement_id: ID of the statement
             name: Stored as supplied; whitespace and an empty string are accepted.
+
+        Example::
+
+            client.finance.accountingperiods.statements.update(1, 1, name="September 2026")
         """
         self._raw('PUT', f"/finance/accountingperiods/{_seg(id)}/statements/{_seg(statement_id)}", [], _body({'name': name}, extra_body))
 
@@ -1209,6 +1487,11 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            submission = client.finance.eubp.submissions.cancel(1)
+            print(submission.title)
         """
         return _t.cast(models.EubpSubmission, self._call('POST', f"/finance/eubp/submissions/{_seg(id)}/cancel", [], None, models.EubpSubmission, envelope=True))
 
@@ -1243,6 +1526,16 @@ class FinanceEubpSubmissionsResource(Resource):
             transmission_reason: Reason for transmission (1=audit, 2=software change, 3=provider change)
             year_from: Start year of the delivery period
             year_to: End year of the delivery period
+
+        Example::
+
+            result = client.finance.eubp.submissions.create(
+                client_id=1,
+                transmission_reason=1,
+                year_from=2020,
+                year_to=2023,
+            )
+            print(result.title)
         """
         return _t.cast(models.EubpSubmission, self._call('POST', "/finance/eubp/submissions", [], _body({'additionalAccountsPerYear': additional_accounts_per_year, 'affectedClientIds': affected_client_ids, 'clientId': client_id, 'deliveryDate': delivery_date, 'referenceDate': reference_date, 'title': title, 'transmissionReason': transmission_reason, 'yearFrom': year_from, 'yearTo': year_to}, extra_body), models.EubpSubmission, envelope=True))
 
@@ -1259,6 +1552,10 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.finance.eubp.submissions.delete(1)
         """
         self._raw('DELETE', f"/finance/eubp/submissions/{_seg(id)}", [], None)
 
@@ -1275,6 +1572,11 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            submission = client.finance.eubp.submissions.fetch_status(1)
+            print(submission.title)
         """
         return _t.cast(models.EubpSubmission, self._call('POST', f"/finance/eubp/submissions/{_seg(id)}/fetch-status", [], None, models.EubpSubmission, envelope=True))
 
@@ -1293,6 +1595,11 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            submission = client.finance.eubp.submissions.finish(1)
+            print(submission.title)
         """
         return _t.cast(models.EubpSubmission, self._call('POST', f"/finance/eubp/submissions/{_seg(id)}/finish", [], _body(body), models.EubpSubmission, envelope=True))
 
@@ -1309,6 +1616,11 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            submission = client.finance.eubp.submissions.generate(1)
+            print(submission.download_url)
         """
         return _t.cast(models.PostFinanceEubpSubmissionsIdGenerateData, self._call('POST', f"/finance/eubp/submissions/{_seg(id)}/generate", [], None, models.PostFinanceEubpSubmissionsIdGenerateData, envelope=True))
 
@@ -1325,6 +1637,11 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            submission = client.finance.eubp.submissions.get(1)
+            print(submission.title)
         """
         return _t.cast(models.EubpSubmission, self._call('GET', f"/finance/eubp/submissions/{_seg(id)}", [], None, models.EubpSubmission, envelope=True))
 
@@ -1341,6 +1658,11 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            preview = client.finance.eubp.submissions.get_preview(1)
+            print(preview)
         """
         return _t.cast(models.EubpSubmissionPreview, self._call('GET', f"/finance/eubp/submissions/{_seg(id)}/preview", [], None, models.EubpSubmissionPreview, envelope=True))
 
@@ -1358,6 +1680,11 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             client_id: Filter by client ID
+
+        Example::
+
+            for submission in client.finance.eubp.submissions.list():
+                print(submission.title)
         """
         return _t.cast(_t.List[models.EubpSubmission], self._call('GET', "/finance/eubp/submissions", _query([('client_id', client_id)]), None, _t.List[models.EubpSubmission], envelope=True))
 
@@ -1377,6 +1704,11 @@ class FinanceEubpSubmissionsResource(Resource):
         Args:
             id: ID of Entity
             client_id: Optional finance client ID to return accounts only for this client.
+
+        Example::
+
+            for account in client.finance.eubp.submissions.list_accounts(1):
+                print(account.name)
         """
         return _t.cast(_t.List[models.EubpUnifiedAccount], self._call('GET', f"/finance/eubp/submissions/{_seg(id)}/accounts", _query([('client_id', client_id)]), None, _t.List[models.EubpUnifiedAccount], envelope=True))
 
@@ -1395,6 +1727,11 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            submission = client.finance.eubp.submissions.reopen(1)
+            print(submission.title)
         """
         return _t.cast(models.EubpSubmission, self._call('POST', f"/finance/eubp/submissions/{_seg(id)}/reopen", [], _body(body), models.EubpSubmission, envelope=True))
 
@@ -1411,6 +1748,10 @@ class FinanceEubpSubmissionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.finance.eubp.submissions.send(1)
         """
         self._raw('POST', f"/finance/eubp/submissions/{_seg(id)}/send", [], None)
 
@@ -1433,6 +1774,11 @@ class FinanceEubpSubmissionsResource(Resource):
             id: ID of Entity
             account_keys: Complete selection by exact keys from the unified account list. [] clears optional selections; mandatory/transmitted accounts remain effectively selected.
             client_id: Restrict the update to one affected client; omitted/null applies to all clients. A non-participating client results in no changes.
+
+        Example::
+
+            for submission in client.finance.eubp.submissions.update_accounts(1, account_keys=["1200|Bank"]):
+                print(submission.name)
         """
         return _t.cast(_t.List[models.EubpUnifiedAccount], self._call('PUT', f"/finance/eubp/submissions/{_seg(id)}/accounts", [], _body({'accountKeys': account_keys, 'clientId': client_id}, extra_body), _t.List[models.EubpUnifiedAccount], envelope=True))
 
@@ -1472,6 +1818,11 @@ class GroupsMeetingsMembersResource(Resource):
             meeting_id: ID of a meeting belonging to the group in the URL.
             member_id: Person ID from the attendance list, not a membership or attendance-record ID.
             status: Attendance state after revoking the check-in.
+
+        Example::
+
+            member = client.groups.meetings.members.delete(42, 120, 17, status="absent")
+            print(member.id)
         """
         return _t.cast(models.GroupMeeting, self._call('DELETE', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}/members/{_seg(member_id)}", [], _body({'status': status}, extra_body), models.GroupMeeting, envelope=False))
 
@@ -1494,6 +1845,11 @@ class GroupsMeetingsMembersResource(Resource):
         Args:
             group_id: ID of group
             meeting_id: ID of a meeting belonging to the group in the URL.
+
+        Example::
+
+            for member in client.groups.meetings.members.list(42, 120):
+                print(member.is_checked_in)
         """
         return _t.cast(_t.List[models.GroupMeetingMember], self._call('GET', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}/members", [], None, _t.List[models.GroupMeetingMember], envelope=True))
 
@@ -1516,6 +1872,10 @@ class GroupsMeetingsMembersResource(Resource):
             group_id: ID of group
             meeting_id: ID of a meeting belonging to the group in the URL.
             status: Attendance state to assign to currently unsure records.
+
+        Example::
+
+            client.groups.meetings.members.missing(42, 120, status="absent")
         """
         self._raw('POST', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}/members/missing", [], _body({'status': status}, extra_body))
 
@@ -1534,6 +1894,10 @@ class GroupsMeetingsMembersResource(Resource):
         Args:
             group_id: ID of group
             meeting_id: ID of a meeting belonging to the group in the URL.
+
+        Example::
+
+            client.groups.meetings.members.reset(42, 120)
         """
         self._raw('POST', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}/members/reset", [], None)
 
@@ -1580,6 +1944,18 @@ class GroupsMemberfieldsGroupResource(Resource):
             security_level: Security level required to see and edit this field.
             sort_key: Sort order among group member fields. Defaults to 0.
             use_in_registration_form: Whether this field is shown in the signup form.
+
+        Example::
+
+            result = client.groups.memberfields.group.create(
+                42,
+                field_type_code="text",
+                name="T-Shirt size",
+                required_in_registration_form=False,
+                security_level=1,
+                use_in_registration_form=True,
+            )
+            print(result.name)
         """
         return _t.cast(models.GroupMemberFieldGroup, self._call('POST', f"/groups/{_seg(group_id)}/memberfields/group", [], _body({'defaultValue': default_value, 'fieldTypeCode': field_type_code, 'name': name, 'nameInSignupForm': name_in_signup_form, 'note': note, 'noteInSignupForm': note_in_signup_form, 'options': options, 'referenceName': reference_name, 'requiredInRegistrationForm': required_in_registration_form, 'securityLevel': security_level, 'sortKey': sort_key, 'useInRegistrationForm': use_in_registration_form}, extra_body), models.GroupMemberFieldGroup, envelope=True))
 
@@ -1598,6 +1974,10 @@ class GroupsMemberfieldsGroupResource(Resource):
         Args:
             group_id: ID of group
             group_member_field_id: ID of the group member field.
+
+        Example::
+
+            client.groups.memberfields.group.delete(42, 42)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/memberfields/group/{_seg(group_member_field_id)}", [], None)
 
@@ -1640,6 +2020,11 @@ class GroupsMemberfieldsGroupResource(Resource):
             security_level: Security level required to see and edit this field.
             sort_key: Sort order among group member fields. Defaults to 0.
             use_in_registration_form: Whether this field is shown in the signup form.
+
+        Example::
+
+            result = client.groups.memberfields.group.patch(42, 42, name="T-Shirt size")
+            print(result.name)
         """
         return _t.cast(models.GroupMemberFieldGroup, self._call('PATCH', f"/groups/{_seg(group_id)}/memberfields/group/{_seg(group_member_field_id)}", [], _body({'defaultValue': default_value, 'name': name, 'nameInSignupForm': name_in_signup_form, 'note': note, 'noteInSignupForm': note_in_signup_form, 'options': options, 'referenceName': reference_name, 'requiredInRegistrationForm': required_in_registration_form, 'securityLevel': security_level, 'sortKey': sort_key, 'useInRegistrationForm': use_in_registration_form}, extra_body), models.GroupMemberFieldGroup, envelope=True))
 
@@ -1682,6 +2067,19 @@ class GroupsMemberfieldsGroupResource(Resource):
             security_level: Security level required to see and edit this field.
             sort_key: Sort order; omission resets it to zero.
             use_in_registration_form: Whether this field is shown in the signup form.
+
+        Example::
+
+            result = client.groups.memberfields.group.update(
+                42,
+                42,
+                name="T-Shirt size",
+                reference_name="t-shirt-size",
+                required_in_registration_form=False,
+                security_level=1,
+                use_in_registration_form=True,
+            )
+            print(result.name)
         """
         return _t.cast(models.GroupMemberFieldGroup, self._call('PUT', f"/groups/{_seg(group_id)}/memberfields/group/{_seg(group_member_field_id)}", [], _body({'defaultValue': default_value, 'name': name, 'nameInSignupForm': name_in_signup_form, 'note': note, 'noteInSignupForm': note_in_signup_form, 'options': options, 'referenceName': reference_name, 'requiredInRegistrationForm': required_in_registration_form, 'securityLevel': security_level, 'sortKey': sort_key, 'useInRegistrationForm': use_in_registration_form}, extra_body), models.GroupMemberFieldGroup, envelope=True))
 
@@ -1704,6 +2102,10 @@ class GroupsMemberfieldsPersonResource(Resource):
         Args:
             group_id: ID of group
             field_id: ID of the underlying global person field (dbField.id), not the group-field configuration row ID.
+
+        Example::
+
+            client.groups.memberfields.person.delete(42, 200)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/memberfields/person/{_seg(field_id)}", [], None)
 
@@ -1728,6 +2130,16 @@ class GroupsMemberfieldsPersonResource(Resource):
             field_id: ID of the underlying global person field (dbField.id), not the group-field configuration row ID.
             required_in_registration_form: Whether the person field is required in this group’s signup form.
             sort_key: Display order among this group’s person and membership fields. Required on both create and update.
+
+        Example::
+
+            result = client.groups.memberfields.person.update(
+                42,
+                200,
+                required_in_registration_form=False,
+                sort_key=20,
+            )
+            print(result.id)
         """
         return _t.cast(models.GroupMemberFieldPerson, self._call('PUT', f"/groups/{_seg(group_id)}/memberfields/person/{_seg(field_id)}", [], _body({'requiredInRegistrationForm': required_in_registration_form, 'sortKey': sort_key}, extra_body), models.GroupMemberFieldPerson, envelope=True))
 
@@ -1751,6 +2163,10 @@ class GroupsMembersDocumentsResource(Resource):
         Args:
             group_id: ID of group
             html_template_id: ID of an HTML template
+
+        Example::
+
+            client.groups.members.documents.get(42, 42, 2)
         """
         self._raw('GET', f"/groups/{_seg(group_id)}/members/{_seg(member_id)}/documents/{_seg(html_template_id)}", [], None)
 
@@ -1796,6 +2212,11 @@ class GroupsMembersFollowupsResource(Resource):
             success_group_member_status: Membership status assigned in the selected success group; null uses the default active status.
             success_group_of_group_type_id: Optional group-type restriction for selecting a destination group on completion.
             success_role_id: Role assigned in the selected success group; null uses the membership service default.
+
+        Example::
+
+            result = client.groups.members.followups.create(42, 42, title="Call Peter")
+            print(result.title)
         """
         return _t.cast(models.FollowUp2, self._call('POST', f"/groups/{_seg(group_id)}/members/{_seg(person_id)}/followups", [], _body({'color': color, 'description': description, 'dueDate': due_date, 'effectiveDueDate': effective_due_date, 'icon': icon, 'ownerId': owner_id, 'successGroupId': success_group_id, 'successGroupMemberStatus': success_group_member_status, 'successGroupOfGroupTypeId': success_group_of_group_type_id, 'successRoleId': success_role_id, 'title': title}, extra_body), models.FollowUp2, envelope=True))
 
@@ -1814,6 +2235,11 @@ class GroupsMembersFollowupsResource(Resource):
         Args:
             group_id: ID of group
             person_id: ID of person
+
+        Example::
+
+            statistic = client.groups.members.followups.get_statistics(42, 42)
+            print(statistic.count_done)
         """
         return _t.cast(models.FollowUpStatistics, self._call('GET', f"/groups/{_seg(group_id)}/members/{_seg(person_id)}/followups/statistics", [], None, models.FollowUpStatistics, envelope=True))
 
@@ -1837,6 +2263,11 @@ class GroupsMembersFollowupsResource(Resource):
             person_id: ID of person
             filter: Repeat to select any of the listed states; omitted/empty includes all states.
             limit: Maximum results in this page.
+
+        Example::
+
+            for followup in client.groups.members.followups.list(42, 42):
+                print(followup.title)
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/members/{_seg(person_id)}/followups", _query([('filter[]', filter), ('limit', limit)]), models.FollowUp2)
 
@@ -1861,6 +2292,10 @@ class GroupsMembersRoutinesResource(Resource):
             group_id: ID of group
             role_id: Group-type role ID, not the ID of a group-role configuration row.
             group_member_status: Status of a group membership
+
+        Example::
+
+            client.groups.members.routines.delete(42, 12, "active")
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/members/routines/{_seg(role_id)}/{_seg(group_member_status)}", [], None)
 
@@ -1877,6 +2312,11 @@ class GroupsMembersRoutinesResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            for routine in client.groups.members.routines.list(42):
+                print(routine.id)
         """
         return _t.cast(_t.List[models.GroupMembershipRoutine], self._call('GET', f"/groups/{_seg(group_id)}/members/routines", [], None, _t.List[models.GroupMembershipRoutine], envelope=True))
 
@@ -1901,6 +2341,11 @@ class GroupsMembersRoutinesResource(Resource):
             role_id: Group-type role ID, not the ID of a group-role configuration row.
             group_member_status: Status of a group membership
             routine_id: ID of an existing routine with no steps. Needed when creating a binding; ignored if a binding already exists for this path.
+
+        Example::
+
+            result = client.groups.members.routines.update(42, 12, "active", routine_id=5)
+            print(result.id)
         """
         return _t.cast(models.GroupMembershipRoutine, self._call('PUT', f"/groups/{_seg(group_id)}/members/routines/{_seg(role_id)}/{_seg(group_member_status)}", [], _body({'routineId': routine_id}, extra_body), models.GroupMembershipRoutine, envelope=True))
 
@@ -1924,6 +2369,11 @@ class GroupsWikiCategoriesResource(Resource):
         Args:
             group_id: ID of group
             limit: Maximum amount of pages returned per wiki category.
+
+        Example::
+
+            for page in client.groups.wiki.categories.list_pages(42):
+                print(page.total)
         """
         return _t.cast(_t.List[models.GroupWikiCategoryPagesItem], self._call('GET', f"/groups/{_seg(group_id)}/wiki/categories/pages", _query([('limit', limit)]), None, _t.List[models.GroupWikiCategoryPagesItem], envelope=True))
 
@@ -1946,6 +2396,11 @@ class LoginTwofactorSetupResource(Resource):
 
         Args:
             code: Six-digit current authenticator code. Send it as a string to preserve leading zeroes. A code already accepted recently for this person cannot be reused.
+
+        Example::
+
+            setup = client.login.twofactor.setup.activate(code="012345")
+            print(setup.redirect_to)
         """
         return _t.cast(models.PostLoginTwofactorSetupActivateData, self._call('POST', "/login/twofactor/setup/activate", [], _body({'code': code}, extra_body), models.PostLoginTwofactorSetupActivateData, envelope=True))
 
@@ -1958,6 +2413,11 @@ class LoginTwofactorSetupResource(Resource):
         `POST /login/twofactor/setup`
 
         Starts authenticator enrollment for the person in a pending twoFactorSetup login session. Use the same cookies as the password step. Creates and stores a new secret and sets the enabled flag to false. Returns the secret and its QR-code image as a data URI. Repeating this request replaces the previous secret and invalidates its QR code, so do not use it as a read-only setup-status request. Submit a code generated from this secret to POST /login/twofactor/setup/activate. A missing or unsuitable pending session returns 400. Shares the login rate limit.
+
+        Example::
+
+            result = client.login.twofactor.setup.create()
+            print(result.qrcode)
         """
         return _t.cast(models.TwoFactorSetupSecret, self._call('POST', "/login/twofactor/setup", [], None, models.TwoFactorSetupSecret, envelope=True))
 
@@ -1981,6 +2441,11 @@ class PermissionsGlobalAuthsResource(Resource):
         Args:
             auth_id: Numeric permission key from the internal authorization table
             data_id: Required for a permission with selectable values, and forbidden for a boolean permission. Supply a configured selection ID, or -1 for genuinely unrestricted access to all current and future values. This differs from the internal permission endpoint, where -1 expands into separate configured selections.
+
+        Example::
+
+            assignment_summary = client.permissions.global_.auths.get_assignment_summary(125)
+            print(assignment_summary.auth_id)
         """
         return _t.cast(models.PermissionAssignmentSummary, self._call('GET', f"/permissions/global/auths/{_seg(auth_id)}/assignment-summary", _query([('data_id', data_id)]), None, models.PermissionAssignmentSummary, envelope=True))
 
@@ -2006,6 +2471,11 @@ class PermissionsGlobalAuthsResource(Resource):
             page: One-based page. Providing page, limit or include=origins enables pagination; otherwise all matching IDs are returned. Defaults to 1 when pagination is enabled.
             limit: Page size, 1–100. Providing it enables pagination; page defaults to 1. When pagination is enabled by page or include, this defaults to 50.
             include: Add origins for each person on the page. This also enables pagination with defaults page=1 and limit=50.
+
+        Example::
+
+            person = client.permissions.global_.auths.get_persons(125)
+            print(person.auth_id)
         """
         return _t.cast(models.PermissionPersons, self._call('GET', f"/permissions/global/auths/{_seg(auth_id)}/persons", _query([('data_id', data_id), ('page', page), ('limit', limit), ('include', include)]), None, models.PermissionPersons, envelope=True))
 
@@ -2026,6 +2496,11 @@ class PermissionsInternalEventsResource(Resource):
 
         Args:
             event_id: ID of Event
+
+        Example::
+
+            event = client.permissions.internal.events.get(42)
+            print(event)
         """
         return _t.cast(models.InternalEventPermissions, self._call('GET', f"/permissions/internal/events/{_seg(event_id)}", [], None, models.InternalEventPermissions, envelope=True))
 
@@ -2050,6 +2525,11 @@ class PermissionsInternalGroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            group = client.permissions.internal.groups.get(42)
+            print(group)
         """
         return _t.cast(models.InternalGroupPermissions, self._call('GET', f"/permissions/internal/groups/{_seg(group_id)}", [], None, models.InternalGroupPermissions, envelope=True))
 
@@ -2062,6 +2542,11 @@ class PermissionsInternalGroupsResource(Resource):
         `GET /permissions/internal/groups`
 
         Calculates the authenticated user’s group-internal permissions from active memberships, role assignments and inheritance through the group hierarchy. Returns an unpaginated map keyed by target group ID, or [] when there are no calculated groups. Values are grouped by active module, including false/0 defaults for registered keys without grants. This is an internal-permission calculation, not a list of visible groups or a complete authorization decision: global grants and object policies are separate. No permission-administration grant is required. The legacy +create posts flag is derived only by the single-group endpoint, not here.
+
+        Example::
+
+            result = client.permissions.internal.groups.list()
+            print(result)
         """
         return _t.cast(_t.Union[StrMap[models.InternalGroupPermissions], _t.List[models.InternalGroupPermissions]], self._call('GET', "/permissions/internal/groups", [], None, _t.Union[StrMap[models.InternalGroupPermissions], _t.List[models.InternalGroupPermissions]], envelope=True))
 
@@ -2082,6 +2567,11 @@ class PermissionsInternalPersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            person = client.permissions.internal.persons.get(42)
+            print(person)
         """
         return _t.cast(models.InternalPersonPermissions, self._call('GET', f"/permissions/internal/persons/{_seg(person_id)}", [], None, models.InternalPersonPermissions, envelope=True))
 
@@ -2124,6 +2614,11 @@ class PersonsEventsServicesResource(Resource):
         Args:
             person_id: ID of person
             event_id: ID of Event
+
+        Example::
+
+            for service in client.persons.events.services.list(42, 42):
+                print(service.name)
         """
         return _t.cast(_t.List[models.ServiceRequest], self._call('GET', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services", [], None, _t.List[models.ServiceRequest], envelope=True))
 
@@ -2150,6 +2645,15 @@ class PersonsSettingsTwofactorResource(Resource):
             person_id: ID of person
             password: Account password; preserve spaces exactly.
             username: Login name or email address.
+
+        Example::
+
+            result = client.persons.settings.twofactor.create(
+                42,
+                password="example-password",
+                username="alex@example.org",
+            )
+            print(result.qrcode)
         """
         return _t.cast(models.TwoFactorSetupSecret, self._call('POST', f"/persons/{_seg(person_id)}/settings/twofactor", [], _body({'password': password, 'username': username}, extra_body), models.TwoFactorSetupSecret, envelope=True))
 
@@ -2166,6 +2670,10 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.settings.twofactor.delete(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/settings/twofactor", [], None)
 
@@ -2182,6 +2690,11 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            twofactor = client.persons.settings.twofactor.get(42)
+            print(twofactor.attribute)
         """
         return _t.cast(models.PersonTwoFactorEnabled, self._call('GET', f"/persons/{_seg(person_id)}/settings/twofactor", [], None, models.PersonTwoFactorEnabled, envelope=True))
 
@@ -2198,6 +2711,11 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            force = client.persons.settings.twofactor.get_force(42)
+            print(force.attribute)
         """
         return _t.cast(models.PersonTwoFactorForce, self._call('GET', f"/persons/{_seg(person_id)}/settings/twofactor/force", [], None, models.PersonTwoFactorForce, envelope=True))
 
@@ -2214,6 +2732,11 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            result = client.persons.settings.twofactor.update(42)
+            print(result.attribute)
         """
         return _t.cast(models.PersonTwoFactorEnabled, self._call('PUT', f"/persons/{_seg(person_id)}/settings/twofactor", [], None, models.PersonTwoFactorEnabled, envelope=True))
 
@@ -2234,6 +2757,11 @@ class PersonsSettingsTwofactorResource(Resource):
         Args:
             person_id: ID of person
             value: Whether the person must configure two-factor authentication.
+
+        Example::
+
+            result = client.persons.settings.twofactor.update_force(42, value=True)
+            print(result.attribute)
         """
         return _t.cast(models.PersonTwoFactorForce, self._call('PUT', f"/persons/{_seg(person_id)}/settings/twofactor/force", [], _body({'value': value}, extra_body), models.PersonTwoFactorForce, envelope=True))
 
@@ -2258,6 +2786,10 @@ class PostsCommentsReactionsResource(Resource):
             post_id: ID of post
             comment_id: ID of the post comment.
             emoji: Emoji used as reaction.
+
+        Example::
+
+            client.posts.comments.reactions.delete(42, 42, "beispiel")
         """
         self._raw('DELETE', f"/posts/{_seg(post_id)}/comments/{_seg(comment_id)}/reactions/{_seg(emoji)}", [], None)
 
@@ -2276,6 +2808,11 @@ class PostsCommentsReactionsResource(Resource):
         Args:
             post_id: ID of post
             comment_id: ID of the post comment.
+
+        Example::
+
+            for reaction in client.posts.comments.reactions.list(42, 42):
+                print(reaction.comment_id)
         """
         return _t.cast(_t.List[models.PostCommentReaction], self._call('GET', f"/posts/{_seg(post_id)}/comments/{_seg(comment_id)}/reactions", [], None, _t.List[models.PostCommentReaction], envelope=True))
 
@@ -2297,6 +2834,11 @@ class PostsCommentsReactionsResource(Resource):
         Args:
             post_id: ID of post
             comment_id: ID of the post comment.
+
+        Example::
+
+            result = client.posts.comments.reactions.update(42, 42, emoji="beispiel")
+            print(result.comment_id)
         """
         return _t.cast(models.PostCommentReaction, self._call('PUT', f"/posts/{_seg(post_id)}/comments/{_seg(comment_id)}/reactions", [], _body({'emoji': emoji}, extra_body), models.PostCommentReaction, envelope=True))
 
@@ -2319,6 +2861,10 @@ class PostsReactionsPersonsResource(Resource):
 
         Args:
             post_id: ID of post
+
+        Example::
+
+            client.posts.reactions.persons.delete(42, "beispiel", "beispiel")
         """
         self._raw('DELETE', f"/posts/{_seg(post_id)}/reactions/{_seg(emoji)}/persons/{_seg(person_id)}", [], None)
 
@@ -2337,6 +2883,11 @@ class PostsReactionsPersonsResource(Resource):
 
         Args:
             post_id: ID of post
+
+        Example::
+
+            result = client.posts.reactions.persons.update(42, "beispiel", "beispiel")
+            print(result.emoji)
         """
         return _t.cast(models.PostReaction, self._call('PUT', f"/posts/{_seg(post_id)}/reactions/{_seg(emoji)}/persons/{_seg(person_id)}", [], None, models.PostReaction, envelope=True))
 
@@ -2359,6 +2910,11 @@ class PublicgroupsSignupConfirmResource(Resource):
 
         Args:
             confirmation_token: Secret confirmation token from the signup email.
+
+        Example::
+
+            result = client.publicgroups.signup.confirm.create("beispiel", body={})
+            print(result.group_homepage_hash)
         """
         return _t.cast(models.PostPublicgroupsSignupConfirmConfirmationTokenData, self._call('POST', f"/publicgroups/signup/confirm/{_seg(confirmation_token)}", [], _body(body), models.PostPublicgroupsSignupConfirmConfirmationTokenData, envelope=True))
 
@@ -2375,6 +2931,12 @@ class PublicgroupsSignupConfirmResource(Resource):
 
         Args:
             confirmation_token: Secret confirmation token from the signup email.
+
+        Example::
+
+            data = client.publicgroups.signup.confirm.get("beispiel")
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', f"/publicgroups/signup/confirm/{_seg(confirmation_token)}", [], None)
 
@@ -2401,6 +2963,11 @@ class RoutinesRunsBulkResource(Resource):
             routine_id: ID of a routine
             run_action: Run transition; some actions may immediately continue execution.
             run_ids: Run IDs processed sequentially. Duplicates are not rejected.
+
+        Example::
+
+            for bulk in client.routines.runs.bulk.create(9, "beispiel", run_ids=[42]):
+                print(bulk.id)
         """
         return _t.cast(_t.List[models.RoutineRun], self._call('POST', f"/routines/{_seg(routine_id)}/runs/bulk/{_seg(run_action)}", [], _body({'runIds': run_ids}, extra_body), _t.List[models.RoutineRun], envelope=True))
 
@@ -2429,6 +2996,11 @@ class SongsArrangementsFilesResource(Resource):
             arrangement_id: ID of arrangement
             file_id: ID of the file
             transpose_interval: Pitch shift in semitones: up1 through up6 raise the pitch by one to six semitones, down1 through down6 lower it. For example, up2 moves C to D. Zero and shifts beyond six semitones are not accepted.
+
+        Example::
+
+            file = client.songs.arrangements.files.transpose(42, 42, 42, transpose_interval="up2")
+            print(file.id)
         """
         return _t.cast(models.ArrangementFileTranspose, self._call('POST', f"/songs/{_seg(song_id)}/arrangements/{_seg(arrangement_id)}/files/{_seg(file_id)}/transpose", [], _body({'transpose-interval': transpose_interval}, extra_body), models.ArrangementFileTranspose, envelope=False))
 
@@ -2451,6 +3023,10 @@ class SyncAdaptersProxyResource(Resource):
         Args:
             adapter_name: Registered adapter name; custom adapters are supported.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.adapters.proxy.create("churchtools", "adapter/info")
         """
         self._raw('POST', f"/sync/adapters/{_seg(adapter_name)}/proxy/{_seg(uri)}", [], None)
 
@@ -2469,6 +3045,10 @@ class SyncAdaptersProxyResource(Resource):
         Args:
             adapter_name: Registered adapter name; custom adapters are supported.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.adapters.proxy.delete("churchtools", "adapter/info")
         """
         self._raw('DELETE', f"/sync/adapters/{_seg(adapter_name)}/proxy/{_seg(uri)}", [], None)
 
@@ -2487,6 +3067,10 @@ class SyncAdaptersProxyResource(Resource):
         Args:
             adapter_name: Registered adapter name; custom adapters are supported.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.adapters.proxy.get("churchtools", "adapter/info")
         """
         self._raw('GET', f"/sync/adapters/{_seg(adapter_name)}/proxy/{_seg(uri)}", [], None)
 
@@ -2505,6 +3089,10 @@ class SyncAdaptersProxyResource(Resource):
         Args:
             adapter_name: Registered adapter name; custom adapters are supported.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.adapters.proxy.patch("churchtools", "adapter/info")
         """
         self._raw('PATCH', f"/sync/adapters/{_seg(adapter_name)}/proxy/{_seg(uri)}", [], None)
 
@@ -2523,6 +3111,10 @@ class SyncAdaptersProxyResource(Resource):
         Args:
             adapter_name: Registered adapter name; custom adapters are supported.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.adapters.proxy.update("churchtools", "adapter/info")
         """
         self._raw('PUT', f"/sync/adapters/{_seg(adapter_name)}/proxy/{_seg(uri)}", [], None)
 
@@ -2545,6 +3137,10 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.externalsystems.adapterproxy.create(1, "adapter/info")
         """
         self._raw('POST', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -2563,6 +3159,10 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.externalsystems.adapterproxy.delete(1, "adapter/info")
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -2581,6 +3181,10 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.externalsystems.adapterproxy.get(1, "adapter/info")
         """
         self._raw('GET', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -2599,6 +3203,10 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.externalsystems.adapterproxy.patch(1, "adapter/info")
         """
         self._raw('PATCH', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -2617,6 +3225,10 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             uri: Adapter-relative route below `/api/`, including any nested path segments.
+
+        Example::
+
+            client.sync.externalsystems.adapterproxy.update(1, "adapter/info")
         """
         self._raw('PUT', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -2639,6 +3251,10 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             domain_type: Entity domain for this field mapping. The adapter must support it.
+
+        Example::
+
+            client.sync.externalsystems.fieldmappings.delete(1, "status")
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings/{_seg(domain_type)}", [], None)
 
@@ -2657,6 +3273,11 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             domain_type: Entity domain for this field mapping. The adapter must support it.
+
+        Example::
+
+            fieldmapping = client.sync.externalsystems.fieldmappings.get(1, "status")
+            print(fieldmapping.id)
         """
         return _t.cast(models.FieldMapping, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings/{_seg(domain_type)}", [], None, models.FieldMapping, envelope=True))
 
@@ -2675,6 +3296,11 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             domain_type: Entity domain for this field mapping. The adapter must support it.
+
+        Example::
+
+            result = client.sync.externalsystems.fieldmappings.get_nosuggestions(1, "status")
+            print(result)
         """
         return _t.cast(_t.Union[models.GetSyncExternalsystemsIdFieldmappingsDomaintypeNosuggestionsDataVariant1, _t.List[_t.Any]], self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings/{_seg(domain_type)}/nosuggestions", [], None, _t.Union[models.GetSyncExternalsystemsIdFieldmappingsDomaintypeNosuggestionsDataVariant1, _t.List[_t.Any]], envelope=True))
 
@@ -2691,6 +3317,11 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
 
         Args:
             external_system_id: ID of a configured external connection.
+
+        Example::
+
+            for fieldmapping in client.sync.externalsystems.fieldmappings.list(1):
+                print(fieldmapping.id)
         """
         return _t.cast(_t.List[models.FieldMapping], self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings", [], None, _t.List[models.FieldMapping], envelope=True))
 
@@ -2713,6 +3344,16 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             domain_type: Entity domain for this field mapping. The adapter must support it.
+
+        Example::
+
+            result = client.sync.externalsystems.fieldmappings.update(
+                1,
+                "status",
+                property_mappings_es_to_master=[ct.models.SyncFieldMappingEntryCreate.model_validate({"from": "firstName", "fromFilter": "", "others": {}, "to": "firstName", "toFilter": "", "valueMapping": {}})],
+                property_mappings_master_to_es=[ct.models.SyncFieldMappingEntryCreate.model_validate({"from": "firstName", "fromFilter": "", "others": {}, "to": "firstName", "toFilter": "", "valueMapping": {}})],
+            )
+            print(result.id)
         """
         return _t.cast(models.FieldMapping, self._call('PUT', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings/{_seg(domain_type)}", [], _body({'propertyMappingsESToMaster': property_mappings_es_to_master, 'propertyMappingsMasterToES': property_mappings_master_to_es}, extra_body), models.FieldMapping, envelope=True))
 
@@ -2763,6 +3404,16 @@ class SyncExternalsystemsJobconfigsResource(Resource):
             name: Job display name.
             update_behavior: Whether records may be created or updated.
             update_data: Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+
+        Example::
+
+            result = client.sync.externalsystems.jobconfigs.create(
+                1,
+                auto_schedule_enabled=False,
+                domain_type="person",
+                name="Synchronize people",
+            )
+            print(result.name)
         """
         return _t.cast(models.JobConfigurationReturn, self._call('POST', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs", [], _body({'autoScheduleEnabled': auto_schedule_enabled, 'createBehaviorES': create_behavior_es, 'createBehaviorMaster': create_behavior_master, 'createDefaultsES': create_defaults_es, 'createDefaultsMaster': create_defaults_master, 'deleteBehaviorES': delete_behavior_es, 'deleteBehaviorMaster': delete_behavior_master, 'domainType': domain_type, 'linkBehavior': link_behavior, 'linkData': link_data, 'name': name, 'updateBehavior': update_behavior, 'updateData': update_data}, extra_body), models.JobConfigurationReturn, envelope=True))
 
@@ -2781,6 +3432,10 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
+
+        Example::
+
+            client.sync.externalsystems.jobconfigs.delete(1, 1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}", [], None)
 
@@ -2799,6 +3454,10 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
+
+        Example::
+
+            client.sync.externalsystems.jobconfigs.delete_filter(1, 1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/filter", [], None)
 
@@ -2817,6 +3476,10 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
+
+        Example::
+
+            client.sync.externalsystems.jobconfigs.delete_properties(1, 1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/properties", [], None)
 
@@ -2835,6 +3498,11 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
+
+        Example::
+
+            for jobconfig in client.sync.externalsystems.jobconfigs.get(1, 1):
+                print(jobconfig.name)
         """
         return _t.cast(_t.List[models.JobConfigurationReturn], self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}", [], None, _t.List[models.JobConfigurationReturn], envelope=True))
 
@@ -2853,6 +3521,11 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
+
+        Example::
+
+            filter = client.sync.externalsystems.jobconfigs.get_filter(1, 1)
+            print(filter)
         """
         return _t.cast(models.SyncJobFilters, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/filter", [], None, models.SyncJobFilters, envelope=True))
 
@@ -2871,6 +3544,11 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
+
+        Example::
+
+            property = client.sync.externalsystems.jobconfigs.get_properties(1, 1)
+            print(property.domain_type)
         """
         return _t.cast(models.SyncJobProperties, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/properties", [], None, models.SyncJobProperties, envelope=True))
 
@@ -2887,6 +3565,11 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Args:
             external_system_id: ID of a configured external connection.
+
+        Example::
+
+            for jobconfig in client.sync.externalsystems.jobconfigs.list(1):
+                print(jobconfig.name)
         """
         return _t.cast(_t.List[models.JobConfigurationReturn], self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs", [], None, _t.List[models.JobConfigurationReturn], envelope=True))
 
@@ -2911,6 +3594,10 @@ class SyncExternalsystemsJobconfigsResource(Resource):
             job_id: Numeric job configuration ID, distinct from an execution ID.
             is_dry_run: Schedule a dry run; the worker is instructed not to change synchronized records.
             is_validation_only: Schedule configuration validation only.
+
+        Example::
+
+            client.sync.externalsystems.jobconfigs.start(1, 1, is_dry_run=True)
         """
         self._raw('POST', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/start", [], _body({'isDryRun': is_dry_run, 'isValidationOnly': is_validation_only}, extra_body))
 
@@ -2959,6 +3646,18 @@ class SyncExternalsystemsJobconfigsResource(Resource):
             update_behavior: Whether records may be created or updated.
             update_data: Which side supplies data: the most recently updated record, ChurchTools, or the external system.
             id: Existing job configuration ID.
+
+        Example::
+
+            result = client.sync.externalsystems.jobconfigs.update(
+                1,
+                1,
+                auto_schedule_enabled=False,
+                domain_type="person",
+                name="Synchronize people",
+                id=1,
+            )
+            print(result.name)
         """
         return _t.cast(models.JobConfigurationReturn, self._call('PUT', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}", [], _body({'autoScheduleEnabled': auto_schedule_enabled, 'createBehaviorES': create_behavior_es, 'createBehaviorMaster': create_behavior_master, 'createDefaultsES': create_defaults_es, 'createDefaultsMaster': create_defaults_master, 'deleteBehaviorES': delete_behavior_es, 'deleteBehaviorMaster': delete_behavior_master, 'domainType': domain_type, 'linkBehavior': link_behavior, 'linkData': link_data, 'name': name, 'updateBehavior': update_behavior, 'updateData': update_data, 'id': id}, extra_body), models.JobConfigurationReturn, envelope=True))
 
@@ -2981,6 +3680,16 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
+
+        Example::
+
+            result = client.sync.externalsystems.jobconfigs.update_filter(
+                1,
+                1,
+                es=[ct.models.SyncJobFilterCreate.model_validate({"field": "statusId", "system": "master", "values": {}})],
+                master=[ct.models.SyncJobFilterCreate.model_validate({"field": "statusId", "system": "master", "values": {}})],
+            )
+            print(result)
         """
         return _t.cast(models.SyncJobFilters, self._call('PUT', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/filter", [], _body({'es': es, 'master': master}, extra_body), models.SyncJobFilters, envelope=True))
 
@@ -3003,6 +3712,16 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             job_id: Numeric job configuration ID, distinct from an execution ID.
+
+        Example::
+
+            result = client.sync.externalsystems.jobconfigs.update_properties(
+                1,
+                1,
+                property_mappings_es_to_master=[ct.models.SyncJobPropertyCreate.model_validate({"fieldMappingId": 1, "from": "firstName", "fromFilter": "", "system": "master", "to": "firstName", "toFilter": ""})],
+                property_mappings_master_to_es=[ct.models.SyncJobPropertyCreate.model_validate({"fieldMappingId": 1, "from": "firstName", "fromFilter": "", "system": "master", "to": "firstName", "toFilter": ""})],
+            )
+            print(result.domain_type)
         """
         return _t.cast(models.SyncJobProperties, self._call('PUT', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/properties", [], _body({'propertyMappingsESToMaster': property_mappings_es_to_master, 'propertyMappingsMasterToES': property_mappings_master_to_es}, extra_body), models.SyncJobProperties, envelope=True))
 
@@ -3037,6 +3756,11 @@ class WikiCategoriesPagesResource(Resource):
             on_startpage: Whether this page is marked for display on the wiki start page.
             text: Trimmed Markdown or legacy HTML according to isMarkdown. Omitted, null or blank content is stored as null and read back as an empty string.
             title: Trimmed unique page title; Unicode ellipsis is normalized to three periods.
+
+        Example::
+
+            result = client.wiki.categories.pages.create(42, title="My new wiki page")
+            print(result.title)
         """
         return _t.cast(models.WikiPage, self._call('POST', f"/wiki/categories/{_seg(wiki_category_id)}/pages", [], _body({'isMarkdown': is_markdown, 'onStartpage': on_startpage, 'text': text, 'title': title}, extra_body), models.WikiPage, envelope=True))
 
@@ -3055,6 +3779,10 @@ class WikiCategoriesPagesResource(Resource):
         Args:
             wiki_category_id: ID of WikiCategory
             identifier: GUID of the wiki page. Titles are not accepted for this operation.
+
+        Example::
+
+            client.wiki.categories.pages.delete(42, "681F54E3-2EB7-40A4-84F0-EFF8E8F05727")
         """
         self._raw('DELETE', f"/wiki/categories/{_seg(wiki_category_id)}/pages/{_seg(identifier)}", [], None)
 
@@ -3076,6 +3804,11 @@ class WikiCategoriesPagesResource(Resource):
             wiki_category_id: ID of WikiCategory
             identifier: GUID of the wiki page. (For backwards compatibility reasons, the page title is accepted too, but no longer recommended for use.)
             version: Revision number; omission or 0 selects the latest revision. A nonexistent nonzero revision returns 404.
+
+        Example::
+
+            page = client.wiki.categories.pages.get(42, "main")
+            print(page.title)
         """
         return _t.cast(models.WikiPage, self._call('GET', f"/wiki/categories/{_seg(wiki_category_id)}/pages/{_seg(identifier)}", _query([('version', version)]), None, models.WikiPage, envelope=True))
 
@@ -3092,6 +3825,11 @@ class WikiCategoriesPagesResource(Resource):
 
         Args:
             wiki_category_id: ID of WikiCategory
+
+        Example::
+
+            for page in client.wiki.categories.pages.list(42):
+                print(page.title)
         """
         return _t.cast(_t.List[models.SimpleWikiPage], self._call('GET', f"/wiki/categories/{_seg(wiki_category_id)}/pages", [], None, _t.List[models.SimpleWikiPage], envelope=True))
 
@@ -3116,6 +3854,15 @@ class WikiCategoriesPagesResource(Resource):
             wiki_category_id: ID of WikiCategory
             identifier: GUID of the wiki page. Titles are not accepted for this operation.
             text: Trimmed replacement content. A different stored value creates a new version; null or blank clears the text. Omission leaves it unchanged.
+
+        Example::
+
+            result = client.wiki.categories.pages.patch(
+                42,
+                "681F54E3-2EB7-40A4-84F0-EFF8E8F05727",
+                is_markdown=True,
+            )
+            print(result.title)
         """
         return _t.cast(models.WikiPage, self._call('PATCH', f"/wiki/categories/{_seg(wiki_category_id)}/pages/{_seg(identifier)}", [], _body({'isMarkdown': is_markdown, 'onStartpage': on_startpage, 'text': text}, extra_body), models.WikiPage, envelope=True))
 
@@ -3148,6 +3895,14 @@ class AgendatemplatesItemsResource(Resource):
             before_id: Place the item before this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             after_id: Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             sort_key: Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+
+        Example::
+
+            result = client.agendatemplates.items.create(
+                35,
+                body=ct.models.AgendaItemInputHeader.model_validate({"type": "beispiel"}),
+            )
+            print(result)
         """
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('POST', f"/agendatemplates/{_seg(agenda_id)}/items", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
@@ -3166,6 +3921,10 @@ class AgendatemplatesItemsResource(Resource):
         Args:
             agenda_id: ID of agenda
             item_id: ID of agenda item
+
+        Example::
+
+            client.agendatemplates.items.delete(35, 123)
         """
         self._raw('DELETE', f"/agendatemplates/{_seg(agenda_id)}/items/{_seg(item_id)}", [], None)
 
@@ -3192,6 +3951,15 @@ class AgendatemplatesItemsResource(Resource):
             before_id: Place the item before this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             after_id: Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             sort_key: Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+
+        Example::
+
+            result = client.agendatemplates.items.update(
+                35,
+                123,
+                body=ct.models.AgendaItemInputHeader.model_validate({"type": "beispiel"}),
+            )
+            print(result)
         """
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('PUT', f"/agendatemplates/{_seg(agenda_id)}/items/{_seg(item_id)}", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
@@ -3239,6 +4007,16 @@ class CalendarsAppointmentsResource(Resource):
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
             split_date: Optional local date at which the series would be split.
             split_until_end: When splitting, use true for this and future occurrences or false for this occurrence only.
+
+        Example::
+
+            for appointment in client.calendars.appointments.changeimpact(
+                42,
+                4,
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            ):
+                print(appointment)
         """
         return _t.cast(_t.List[_t.Union[models.AppointmentEventChangeImpact, models.AppointmentEventServiceChangeImpact, models.AppointmentBookingChangeImpact]], self._call('POST', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/changeimpact", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'splitDate': split_date, 'splitUntilEnd': split_until_end}, extra_body), _t.List[_t.Union[models.AppointmentEventChangeImpact, models.AppointmentEventServiceChangeImpact, models.AppointmentBookingChangeImpact]], envelope=True))
 
@@ -3294,6 +4072,17 @@ class CalendarsAppointmentsResource(Resource):
             on_behalf_of_pid: Person ID on whose behalf the appointment is created. This person is also used as inviter for meeting requests.
             signup: Configure groups used to collect registrations for individual appointment occurrences. These are separate ChurchTools groups, not meeting invitations or service-planning events.
             tags: Appointment tags to add, as IDs, names or objects containing id.
+
+        Example::
+
+            result = client.calendars.appointments.create(
+                42,
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+                is_internal=True,
+                title="Sunday service",
+            )
+            print(result.title)
         """
         return _t.cast(models.AppointmentBase, self._call('POST', f"/calendars/{_seg(calendar_id)}/appointments", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'address': address, 'bookings': bookings, 'description': description, 'events': events, 'informOwner': inform_owner, 'isInternal': is_internal, 'link': link, 'meetingrequests': meetingrequests, 'onBehalfOfPid': on_behalf_of_pid, 'signup': signup, 'subtitle': subtitle, 'tags': tags, 'title': title}, extra_body), models.AppointmentBase, envelope=True))
 
@@ -3312,6 +4101,10 @@ class CalendarsAppointmentsResource(Resource):
         Args:
             calendar_id: ID of Calendar
             appointment_id: ID of appointment
+
+        Example::
+
+            client.calendars.appointments.delete(42, 4)
         """
         self._raw('DELETE', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}", [], None)
 
@@ -3333,6 +4126,11 @@ class CalendarsAppointmentsResource(Resource):
             calendar_id: ID of Calendar
             appointment_id: ID of appointment
             include: Additional series data: event, group, bookings and titleSuffix enrich calculatedDates; tags enriches additionalInfos.
+
+        Example::
+
+            appointment = client.calendars.appointments.get(42, 4)
+            print(appointment)
         """
         return _t.cast(models.AppointmentCalculated, self._call('GET', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}", _query([('include[]', include)]), None, models.AppointmentCalculated, envelope=True))
 
@@ -3351,6 +4149,12 @@ class CalendarsAppointmentsResource(Resource):
         Args:
             calendar_id: ID of Calendar
             appointment_id: ID of appointment
+
+        Example::
+
+            data = client.calendars.appointments.get_ical(42, 4)
+            with open("ergebnis.ics", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/ical", [], None)
 
@@ -3372,6 +4176,11 @@ class CalendarsAppointmentsResource(Resource):
             appointment_id: ID of appointment
             start_date: Local start date (YYYY-MM-DD) of the occurrence, not its UTC timestamp or the base date of the series.
             include: Additional data for this occurrence. Meeting requests belong to the whole appointment/series.
+
+        Example::
+
+            occurrence = client.calendars.appointments.get_occurrence(4, dt.date(2026, 9, 20))
+            print(occurrence.title_suffix)
         """
         return _t.cast(models.AppointmentOccurrence, self._call('GET', f"/calendars/appointments/{_seg(appointment_id)}/{_seg(start_date)}", _query([('include[]', include)]), None, models.AppointmentOccurrence, envelope=True))
 
@@ -3395,6 +4204,11 @@ class CalendarsAppointmentsResource(Resource):
             appointment_id: ID of appointment
             start_date: Local start date (YYYY-MM-DD) of the occurrence, not its UTC timestamp or the base date of the series.
             include: Additional data for this occurrence. Meeting requests belong to the whole appointment/series.
+
+        Example::
+
+            occurrence_in_calendar = client.calendars.appointments.get_occurrence_in_calendar(42, 4, dt.date(2026, 9, 20))
+            print(occurrence_in_calendar.title_suffix)
         """
         return _t.cast(models.AppointmentOccurrence, self._call('GET', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/{_seg(start_date)}", _query([('include[]', include)]), None, models.AppointmentOccurrence, envelope=True))
 
@@ -3420,6 +4234,11 @@ class CalendarsAppointmentsResource(Resource):
             to: Last requested calendar date. Defaults to the last day of the current month and must be on or after from.
             query: Search appointment titles for the supplied text.
             include: Additional data requested for each calculated occurrence.
+
+        Example::
+
+            for appointment in client.calendars.appointments.list(calendar_ids=[2, 3]):
+                print(appointment.title_suffix)
         """
         return _t.cast(_t.List[models.AppointmentOccurrenceList], self._call('GET', "/calendars/appointments", _query([('calendar_ids[]', calendar_ids), ('from', from_), ('to', to), ('query', query), ('include[]', include)]), None, _t.List[models.AppointmentOccurrenceList], envelope=True))
 
@@ -3445,6 +4264,11 @@ class CalendarsAppointmentsResource(Resource):
             to: Last requested calendar date. Defaults to the last day of the current month and must be on or after from.
             query: Search appointment titles for the supplied text.
             include: Additional data requested for each calculated occurrence.
+
+        Example::
+
+            for in_calendar in client.calendars.appointments.list_in_calendar(42):
+                print(in_calendar.title_suffix)
         """
         return _t.cast(_t.List[models.AppointmentOccurrenceList], self._call('GET', f"/calendars/{_seg(calendar_id)}/appointments", _query([('from', from_), ('to', to), ('query', query), ('include[]', include)]), None, _t.List[models.AppointmentOccurrenceList], envelope=True))
 
@@ -3508,6 +4332,20 @@ class CalendarsAppointmentsResource(Resource):
             bookings_to_delete: IDs of existing appointment bookings to delete. These are booking IDs, not resource IDs. In a split request, the selected scope is removed from these bookings and not recreated for the new appointment.
             split_date: Local date identifying the original occurrence or start of the split segment.
             split_until_end: true cuts the original series off on the day before splitDate; false adds an exception for splitDate only. Supply the complete recurrence of the new part in either case.
+
+        Example::
+
+            appointment = client.calendars.appointments.split(
+                42,
+                4,
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+                is_internal=True,
+                title="Sunday service",
+                split_date=dt.date(2026, 10, 4),
+                split_until_end=True,
+            )
+            print(appointment.title)
         """
         return _t.cast(models.AppointmentBase, self._call('POST', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'address': address, 'bookings': bookings, 'description': description, 'events': events, 'informOwner': inform_owner, 'isInternal': is_internal, 'link': link, 'meetingrequests': meetingrequests, 'onBehalfOfPid': on_behalf_of_pid, 'signup': signup, 'subtitle': subtitle, 'tags': tags, 'title': title, 'bookingsToDelete': bookings_to_delete, 'splitDate': split_date, 'splitUntilEnd': split_until_end}, extra_body), models.AppointmentBase, envelope=True))
 
@@ -3567,6 +4405,18 @@ class CalendarsAppointmentsResource(Resource):
             signup: Configure groups used to collect registrations for individual appointment occurrences. These are separate ChurchTools groups, not meeting invitations or service-planning events.
             tags: Appointment tags to add, as IDs, names or objects containing id.
             bookings_to_delete: IDs of existing appointment bookings to delete. These are booking IDs, not resource IDs. In a split request, the selected scope is removed from these bookings and not recreated for the new appointment.
+
+        Example::
+
+            result = client.calendars.appointments.update(
+                42,
+                4,
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+                is_internal=True,
+                title="Sunday service",
+            )
+            print(result.title)
         """
         return _t.cast(models.AppointmentBase, self._call('PUT', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'address': address, 'bookings': bookings, 'description': description, 'events': events, 'informOwner': inform_owner, 'isInternal': is_internal, 'link': link, 'meetingrequests': meetingrequests, 'onBehalfOfPid': on_behalf_of_pid, 'signup': signup, 'subtitle': subtitle, 'tags': tags, 'title': title, 'bookingsToDelete': bookings_to_delete}, extra_body), models.AppointmentBase, envelope=True))
 
@@ -3590,6 +4440,11 @@ class CalendarsMeetingrequestResource(Resource):
         Args:
             calendar_id: ID of Calendar
             appointment_id: Include persons already invited to this appointment
+
+        Example::
+
+            for candidate in client.calendars.meetingrequest.list_candidates(42):
+                print(candidate.group_name)
         """
         return _t.cast(_t.List[models.MeetingRequestCandidate], self._call('GET', f"/calendars/{_seg(calendar_id)}/meetingrequest/candidates", _query([('appointmentId', appointment_id)]), None, _t.List[models.MeetingRequestCandidate], envelope=True))
 
@@ -3612,6 +4467,10 @@ class ChurchqueryDebugResource(Resource):
 
         Args:
             type_: type of export
+
+        Example::
+
+            client.churchquery.debug.export(body="beispiel")
         """
         self._raw('POST', "/churchquery/debug/export", _query([('type', type_)]), _body(body))
 
@@ -3638,6 +4497,11 @@ class DbfieldsOptionsResource(Resource):
             field_id: Database-field definition ID returned by GET /dbfields.
             name: Common option label. Custom selection-table labels contain 1–30 characters.
             sort_key: Display order, required for custom selection tables and any metadata exposing a non-auto-increment `sortKey` column.
+
+        Example::
+
+            result = client.dbfields.options.create(200, name="Vegetarian")
+            print(result.name)
         """
         return _t.cast(models.DbFieldOption, self._call('POST', f"/dbfields/{_seg(field_id)}/options", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.DbFieldOption, envelope=True))
 
@@ -3659,6 +4523,10 @@ class DbfieldsOptionsResource(Resource):
             field_id: Database-field definition ID returned by GET /dbfields.
             option_id: Option row ID in this field’s backing table.
             dry_run: If true, the deletion is only simulated and the option is not deleted. The response describes whether the option can be deleted.
+
+        Example::
+
+            client.dbfields.options.delete(200, 3)
         """
         self._raw('DELETE', f"/dbfields/{_seg(field_id)}/options/{_seg(option_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -3675,6 +4543,11 @@ class DbfieldsOptionsResource(Resource):
 
         Args:
             field_id: Database-field definition ID returned by GET /dbfields.
+
+        Example::
+
+            for option in client.dbfields.options.list(200):
+                print(option.name)
         """
         return _t.cast(_t.List[models.DbFieldOption], self._call('GET', f"/dbfields/{_seg(field_id)}/options", [], None, _t.List[models.DbFieldOption], envelope=True))
 
@@ -3691,6 +4564,11 @@ class DbfieldsOptionsResource(Resource):
 
         Args:
             field_id: Database-field definition ID returned by GET /dbfields.
+
+        Example::
+
+            for metadata in client.dbfields.options.list_metadata(200):
+                print(metadata.name)
         """
         return _t.cast(_t.List[models.DbFieldOptionColumn], self._call('GET', f"/dbfields/{_seg(field_id)}/options/metadata", [], None, _t.List[models.DbFieldOptionColumn], envelope=True))
 
@@ -3715,6 +4593,11 @@ class DbfieldsOptionsResource(Resource):
             option_id: Option row ID in this field’s backing table.
             name: Common option label. Custom selection-table labels contain 1–30 characters.
             sort_key: Display order, required for custom selection tables and any metadata exposing a non-auto-increment `sortKey` column.
+
+        Example::
+
+            result = client.dbfields.options.update(200, 3, name="Vegetarian")
+            print(result.name)
         """
         return _t.cast(models.DbFieldOption, self._call('PUT', f"/dbfields/{_seg(field_id)}/options/{_seg(option_id)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.DbFieldOption, envelope=True))
 
@@ -3739,6 +4622,10 @@ class EventsAgendaResource(Resource):
 
         Args:
             event_id: ID of Event
+
+        Example::
+
+            client.events.agenda.delete(42)
         """
         self._raw('DELETE', f"/events/{_seg(event_id)}/agenda", [], None)
 
@@ -3765,6 +4652,17 @@ class EventsAgendaResource(Resource):
             append_arrangement: Append the selected arrangement name to exported song captions and generated fallback file names. Existing attached files retain their file names.
             export_songs: Include available song files for the target software. The first matching file of the selected arrangement is used. For SongBeamer, the song's default arrangement can provide a fallback `.sng` file. When disabled, song references point to files expected in the presenter library. No song-file conversion is performed.
             with_category: For `SONG_BEAMER` with `exportSongs`=`false`, prefix generated song file references with the song category as a directory. Has no effect with embedded song files or for either ProPresenter format.
+
+        Example::
+
+            agenda = client.events.agenda.export(
+                42,
+                format="SONG_BEAMER",
+                append_arrangement=True,
+                export_songs=True,
+                with_category=False,
+            )
+            print(agenda.url)
         """
         return _t.cast(models.AgendaExport, self._call('POST', f"/events/{_seg(event_id)}/agenda/export", _query([('format', format)]), _body({'appendArrangement': append_arrangement, 'exportSongs': export_songs, 'withCategory': with_category}, extra_body), models.AgendaExport, envelope=True))
 
@@ -3781,6 +4679,11 @@ class EventsAgendaResource(Resource):
 
         Args:
             event_id: ID of Event
+
+        Example::
+
+            agenda = client.events.agenda.get(42)
+            print(agenda.name)
         """
         return _t.cast(models.Agenda, self._call('GET', f"/events/{_seg(event_id)}/agenda", [], None, models.Agenda, envelope=True))
 
@@ -3800,6 +4703,11 @@ class EventsAgendaResource(Resource):
         Args:
             event_id: ID of Event
             event_id_2: Source event ID. Its agenda is shared with the target event in the path; the two event IDs must differ.
+
+        Example::
+
+            agenda = client.events.agenda.integrate(42, event_id_2=1337)
+            print(agenda.name)
         """
         return _t.cast(models.Agenda, self._call('POST', f"/events/{_seg(event_id)}/agenda/integrate", _query([('event_id', event_id_2)]), None, models.Agenda, envelope=True))
 
@@ -3816,6 +4724,11 @@ class EventsAgendaResource(Resource):
 
         Args:
             event_id: ID of Event
+
+        Example::
+
+            for song in client.events.agenda.list_songs(42):
+                print(song.name)
         """
         return _t.cast(_t.List[models.Song], self._call('GET', f"/events/{_seg(event_id)}/agenda/songs", [], None, _t.List[models.Song], envelope=True))
 
@@ -3832,6 +4745,10 @@ class EventsAgendaResource(Resource):
 
         Args:
             event_id: ID of Event
+
+        Example::
+
+            client.events.agenda.lock(42)
         """
         self._raw('POST', f"/events/{_seg(event_id)}/agenda/lock", [], None)
 
@@ -3848,6 +4765,10 @@ class EventsAgendaResource(Resource):
 
         Args:
             event_id: ID of Event
+
+        Example::
+
+            client.events.agenda.unlock(42)
         """
         self._raw('POST', f"/events/{_seg(event_id)}/agenda/unlock", [], None)
 
@@ -3870,6 +4791,11 @@ class EventsAgendaResource(Resource):
             event_id: ID of Event
             template_id: Agenda template to copy. Replaces the target items with copies and supplies fallback metadata values. Mutually exclusive with `event_id` and the items body field.
             event_id_2: Event whose agenda should be copied. Must differ from the target event ID. Replaces target items with copies and supplies fallback metadata values. Mutually exclusive with `template_id` and the items body field.
+
+        Example::
+
+            result = client.events.agenda.update(42)
+            print(result.name)
         """
         return _t.cast(models.Agenda, self._call('PUT', f"/events/{_seg(event_id)}/agenda", _query([('template_id', template_id), ('event_id', event_id_2)]), _body(body), models.Agenda, envelope=True))
 
@@ -3898,6 +4824,11 @@ class EventsEventservicesResource(Resource):
             event_id: ID of Event
             service_id: ID of a concrete event-service assignment, exposed as `serviceId` on legacy routes
             comment: Optional response comment.
+
+        Example::
+
+            eventservice = client.events.eventservices.delete(42, 42, comment="beispiel")
+            print(eventservice.name)
         """
         return _t.cast(models.ServiceRequest, self._call('DELETE', f"/events/{_seg(event_id)}/eventservices/{_seg(service_id)}", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -3932,6 +4863,11 @@ class EventsEventservicesResource(Resource):
             is_accepted: true creates a confirmed assignment; false creates an assignment awaiting confirmation. false does not decline it.
             name: Name of an external assignee without a person record.
             person_id: Existing person to assign. Supply exactly one non-`null` value: `personId` or name.
+
+        Example::
+
+            result = client.events.eventservices.update(42, 42, name="Guest musician")
+            print(result.name)
         """
         return _t.cast(models.ServiceRequest, self._call('PUT', f"/events/{_seg(event_id)}/eventservices/{_seg(service_id)}", [], _body({'agreed': agreed, 'comment': comment, 'inform_person': inform_person, 'isAccepted': is_accepted, 'name': name, 'personId': person_id}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -3954,6 +4890,13 @@ class EventsEventservicesResource(Resource):
         Args:
             event_id: ID of Event
             services: Desired counts for the listed services only. An empty array makes no changes. Supply each `serviceId` once: entries are processed against the initial slot snapshot, so repeated IDs do not represent successive updates.
+
+        Example::
+
+            client.events.eventservices.update_all(
+                42,
+                services=[ct.models.EventServiceCountUpdate.model_validate({"count": 3, "serviceId": 2})],
+            )
         """
         self._raw('PUT', f"/events/{_seg(event_id)}/eventservices", [], _body({'services': services}, extra_body))
 
@@ -3976,6 +4919,10 @@ class EventsFactsResource(Resource):
         Args:
             event_id: ID of Event
             fact_id: ID of the reusable fact definition from /facts, not a separate event-fact record ID.
+
+        Example::
+
+            client.events.facts.delete(42, 1)
         """
         self._raw('DELETE', f"/events/{_seg(event_id)}/facts/{_seg(fact_id)}", [], None)
 
@@ -4000,6 +4947,12 @@ class EventsFactsResource(Resource):
             calendar_ids: Calendars containing the appointments linked to the service-planning events. Only events visible to the current user are exported.
             from_: Inclusive lower bound for the event start date in the installation’s timezone.
             to: Exclusive upper bound for the event start date in the installation’s timezone. Must be later than from when both are supplied.
+
+        Example::
+
+            data = client.events.facts.export(calendar_ids=[42])
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', "/events/facts/export", _query([('format', format)]), _body({'calendar_ids': calendar_ids, 'from': from_, 'to': to}, extra_body))
 
@@ -4018,6 +4971,11 @@ class EventsFactsResource(Resource):
         Args:
             event_id: ID of Event
             fact_id: ID of the reusable fact definition from /facts, not a separate event-fact record ID.
+
+        Example::
+
+            fact = client.events.facts.get(42, 1)
+            print(fact.deprecated)
         """
         return _t.cast(models.EventFact, self._call('GET', f"/events/{_seg(event_id)}/facts/{_seg(fact_id)}", [], None, models.EventFact, envelope=True))
 
@@ -4034,6 +4992,11 @@ class EventsFactsResource(Resource):
 
         Args:
             event_id: ID of Event
+
+        Example::
+
+            for fact in client.events.facts.list(42):
+                print(fact.deprecated)
         """
         return _t.cast(_t.List[models.EventFact], self._call('GET', f"/events/{_seg(event_id)}/facts", [], None, _t.List[models.EventFact], envelope=True))
 
@@ -4059,6 +5022,11 @@ class EventsFactsResource(Resource):
             event_id: Restrict to these service-planning event IDs. An empty list does not restrict events.
             fact_id: Restrict to these fact definitions, intersected with the definitions the user may view or edit. An empty list uses all visible definitions.
             limit: Number of results per page.
+
+        Example::
+
+            for all in client.events.facts.list_all():
+                print(all.deprecated)
         """
         return Paginator(self._core, "/events/facts", _query([('from', from_), ('to', to), ('event_id[]', event_id), ('fact_id[]', fact_id), ('limit', limit)]), models.EventFact)
 
@@ -4081,6 +5049,11 @@ class EventsFactsResource(Resource):
             event_id: ID of Event
             fact_id: ID of the reusable fact definition from /facts, not a separate event-fact record ID.
             value: For numeric facts, prefer a JSON number. For select facts, send the configured option text from /facts/{id}.
+
+        Example::
+
+            result = client.events.facts.update(42, 1, value=1.5)
+            print(result.deprecated)
         """
         return _t.cast(models.EventFact, self._call('PUT', f"/events/{_seg(event_id)}/facts/{_seg(fact_id)}", [], _body({'value': value}, extra_body), models.EventFact, envelope=True))
 
@@ -4107,6 +5080,11 @@ class EventsServicerequestsResource(Resource):
             event_id: ID of Event
             request_id: ID of a service request
             comment: Optional response comment.
+
+        Example::
+
+            servicerequest = client.events.servicerequests.accept(42, 42, comment="beispiel")
+            print(servicerequest.name)
         """
         return _t.cast(models.ServiceRequest, self._call('POST', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}/accept", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -4129,6 +5107,11 @@ class EventsServicerequestsResource(Resource):
             event_id: ID of Event
             request_id: ID of a service request
             comment: Optional response comment.
+
+        Example::
+
+            servicerequest = client.events.servicerequests.decline(42, 42, comment="beispiel")
+            print(servicerequest.name)
         """
         return _t.cast(models.ServiceRequest, self._call('POST', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}/decline", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -4151,6 +5134,11 @@ class EventsServicerequestsResource(Resource):
             event_id: ID of Event
             request_id: ID of a service request
             person_id: ID of the person assigned to the record being undone. Must be the current user.
+
+        Example::
+
+            servicerequest = client.events.servicerequests.undo(42, 42, person_id=42)
+            print(servicerequest.name)
         """
         return _t.cast(models.ServiceRequestUndoResult, self._call('POST', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}/undo", [], _body({'personId': person_id}, extra_body), models.ServiceRequestUndoResult, envelope=True))
 
@@ -4183,6 +5171,11 @@ class EventsServicerequestsResource(Resource):
             is_accepted: true creates a confirmed assignment; false creates an assignment awaiting confirmation. false does not decline it.
             name: Name of an external assignee without a person record.
             person_id: Existing person to assign. Supply exactly one non-`null` value: `personId` or name.
+
+        Example::
+
+            result = client.events.servicerequests.update(42, 42, name="Guest musician")
+            print(result.name)
         """
         return _t.cast(models.ServiceRequest, self._call('PUT', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}", [], _body({'agreed': agreed, 'comment': comment, 'inform_person': inform_person, 'isAccepted': is_accepted, 'name': name, 'personId': person_id}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -4203,6 +5196,13 @@ class EventsServicerequestsResource(Resource):
         Args:
             event_id: ID of Event
             services: Desired counts for the listed services only. An empty array makes no changes. Supply each `serviceId` once: entries are processed against the initial slot snapshot, so repeated IDs do not represent successive updates.
+
+        Example::
+
+            client.events.servicerequests.update_all(
+                42,
+                services=[ct.models.EventServiceCountUpdate.model_validate({"count": 3, "serviceId": 2})],
+            )
         """
         self._raw('PUT', f"/events/{_seg(event_id)}/servicerequests", [], _body({'services': services}, extra_body))
 
@@ -4225,6 +5225,11 @@ class EventsServicesResource(Resource):
         Args:
             event_id: ID of Event
             service_id: ID of a reusable service role from /services
+
+        Example::
+
+            for possibleperson in client.events.services.list_possiblepersons(42, 2):
+                print(possibleperson.partner_services)
         """
         return _t.cast(_t.List[models.PossibleEventPerson], self._call('GET', f"/events/{_seg(event_id)}/services/{_seg(service_id)}/possiblepersons", [], None, _t.List[models.PossibleEventPerson], envelope=True))
 
@@ -4252,6 +5257,16 @@ class ExternalloginsLinkResource(Resource):
             link_token: Opaque, session-bound linking token from the account-linking redirect. Expires 600 seconds after creation.
             password: Password for that account; does not replace the second-factor step.
             username: Username or email address verified by the configured ChurchTools credential authentication, including legacy LDAP when configured.
+
+        Example::
+
+            result = client.externallogins.link.create(
+                7,
+                link_token="opaque-session-bound-link-token",
+                password="beispiel",
+                username="alex@example.org",
+            )
+            print(result.location)
         """
         return _t.cast(models.ExternalLoginLinkResult, self._call('POST', f"/externallogins/{_seg(external_login_id)}/link", [], _body({'linkToken': link_token, 'password': password, 'username': username}, extra_body), models.ExternalLoginLinkResult, envelope=True))
 
@@ -4271,6 +5286,14 @@ class ExternalloginsLinkResource(Resource):
 
         Args:
             link_token: Opaque, session-bound linking token from the account-linking redirect. Expires 600 seconds after creation.
+
+        Example::
+
+            result = client.externallogins.link.create_person(
+                7,
+                link_token="opaque-session-bound-link-token",
+            )
+            print(result.location)
         """
         return _t.cast(models.ExternalLoginLinkResult, self._call('POST', f"/externallogins/{_seg(external_login_id)}/link/create-person", [], _body({'linkToken': link_token}, extra_body), models.ExternalLoginLinkResult, envelope=True))
 
@@ -4291,6 +5314,10 @@ class ExternalloginsOidcResource(Resource):
         `POST /externallogins/oidc/backchannel-logout`
 
         Accepts an OIDC Back-Channel Logout token signed by a configured provider. No browser session, CSRF token or API authentication is required. Issuer, audience, signature, lifetime, event and session/subject claims are checked. Matching local OIDC sessions are rejected on their next request. Repeated valid tokens and tokens without a matching local session succeed. Local password sessions remain unaffected. Responses have Cache-Control: no-store.
+
+        Example::
+
+            client.externallogins.oidc.backchannel_logout()
         """
         self._raw('POST', "/externallogins/oidc/backchannel-logout", [], None)
 
@@ -4312,6 +5339,12 @@ class ExternalloginsOidcResource(Resource):
             state: Opaque state created by the matching OIDC start request.
             code: Authorization code returned by the OIDC provider.
             error: OIDC authorization error returned instead of a code.
+
+        Example::
+
+            data = client.externallogins.oidc.callback(state="opaque-session-bound-state")
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', "/externallogins/oidc/callback", _query([('state', state), ('code', code), ('error', error)]), None)
 
@@ -4334,6 +5367,12 @@ class ExternalloginsOidcResource(Resource):
             state: Opaque state created by the matching OIDC start request.
             code: Authorization code returned by the OIDC provider.
             error: OIDC authorization error returned instead of a code.
+
+        Example::
+
+            data = client.externallogins.oidc.callback_for(7, state="opaque-session-bound-state")
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', f"/externallogins/{_seg(external_login_id)}/oidc/callback", _query([('state', state), ('code', code), ('error', error)]), None)
 
@@ -4352,6 +5391,11 @@ class ExternalloginsOidcResource(Resource):
 
         Args:
             redirect: Absolute same-origin URL within the ChurchTools base path to open after login. Invalid, external or relative targets are ignored and fall back to the installation root.
+
+        Example::
+
+            start = client.externallogins.oidc.get_start(7)
+            print(start.expires_at)
         """
         return _t.cast(models.ExternalLoginAuthorizationStart, self._call('GET', f"/externallogins/{_seg(external_login_id)}/oidc/start", _query([('redirect', redirect)]), None, models.ExternalLoginAuthorizationStart, envelope=True))
 
@@ -4374,6 +5418,12 @@ class ExternalloginsSamlResource(Resource):
         `POST /externallogins/{externalLoginId}/saml/acs`
 
         Public assertion-consumer callback for the identity provider’s form POST. Validates the SAML response and maps the external identity to a ChurchTools person. Successful login redirects to the stored destination or the installation landing page; identities needing account linking are redirected into that flow instead. Normal login requires a visible provider. Administrator test flows can use hidden providers and return a small HTML page that closes the popup, without logging the tested identity in. Test failures can also return that 200 HTML page: read the separate test-result endpoint for the outcome. A pending administrator test with missing RelayState also returns the popup page. Normal failures return 401 as localized text or an HTML error page, never the usual JSON error envelope.
+
+        Example::
+
+            data = client.externallogins.saml.acs(7)
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', f"/externallogins/{_seg(external_login_id)}/saml/acs", [], None)
 
@@ -4400,6 +5450,10 @@ class ExternalloginsSamlResource(Resource):
             relay_state: Opaque state echoed when responding to a logout request.
             sig_alg: URI of the redirect-binding signature algorithm.
             signature: Base64-encoded redirect-binding signature.
+
+        Example::
+
+            client.externallogins.saml.create_sls(7)
         """
         self._raw('POST', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -4426,6 +5480,10 @@ class ExternalloginsSamlResource(Resource):
             relay_state: Opaque state echoed when responding to a logout request.
             sig_alg: URI of the redirect-binding signature algorithm.
             signature: Base64-encoded redirect-binding signature.
+
+        Example::
+
+            client.externallogins.saml.delete_sls(7)
         """
         self._raw('DELETE', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -4444,6 +5502,10 @@ class ExternalloginsSamlResource(Resource):
 
         Args:
             redirect: Absolute same-origin destination after successful login.
+
+        Example::
+
+            client.externallogins.saml.get_login(7)
         """
         self._raw('GET', f"/externallogins/{_seg(external_login_id)}/saml/login", _query([('redirect', redirect)]), None)
 
@@ -4457,6 +5519,12 @@ class ExternalloginsSamlResource(Resource):
         `GET /externallogins/{externalLoginId}/saml/metadata`
 
         Returns the XML metadata that an identity-provider administrator uses to configure ChurchTools as a SAML service provider. The entity ID, assertion-consumer URL and logout URL refer to this external-login provider. This endpoint is public and also works for a hidden provider, allowing setup before enabling login. Any provider/configuration/metadata-generation failure is returned as 404 with localized text, not a JSON error envelope.
+
+        Example::
+
+            data = client.externallogins.saml.get_metadata(7)
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', f"/externallogins/{_seg(external_login_id)}/saml/metadata", [], None)
 
@@ -4483,6 +5551,10 @@ class ExternalloginsSamlResource(Resource):
             relay_state: Opaque state echoed when responding to a logout request.
             sig_alg: URI of the redirect-binding signature algorithm.
             signature: Base64-encoded redirect-binding signature.
+
+        Example::
+
+            client.externallogins.saml.get_sls(7)
         """
         self._raw('GET', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -4509,6 +5581,10 @@ class ExternalloginsSamlResource(Resource):
             relay_state: Opaque state echoed when responding to a logout request.
             sig_alg: URI of the redirect-binding signature algorithm.
             signature: Base64-encoded redirect-binding signature.
+
+        Example::
+
+            client.externallogins.saml.patch_sls(7)
         """
         self._raw('PATCH', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -4535,6 +5611,10 @@ class ExternalloginsSamlResource(Resource):
             relay_state: Opaque state echoed when responding to a logout request.
             sig_alg: URI of the redirect-binding signature algorithm.
             signature: Base64-encoded redirect-binding signature.
+
+        Example::
+
+            client.externallogins.saml.update_sls(7)
         """
         self._raw('PUT', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -4571,6 +5651,11 @@ class FinanceAccountclassesResource(Resource):
             include_profit_loss: Adds the profit-and-loss total to this class in reports. At most one account class in the installation may enable this flag; it is not restricted by account type. Omitted values default to false, including on update.
             name: Unique account-class name. The controller does not trim the name or enforce a length limit.
             sort_key: Sort order of the account class.
+
+        Example::
+
+            result = client.finance.accountclasses.create(account_type_id=3, name="Anlagevermögen")
+            print(result.name)
         """
         return _t.cast(models.AccountClass, self._call('POST', "/finance/accountclasses", [], _body({'accountTypeId': account_type_id, 'includeProfitLoss': include_profit_loss, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountClass, envelope=True))
 
@@ -4590,6 +5675,10 @@ class FinanceAccountclassesResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.accountclasses.delete(1)
         """
         self._raw('DELETE', f"/finance/accountclasses/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -4606,6 +5695,11 @@ class FinanceAccountclassesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            accountclass = client.finance.accountclasses.get(1)
+            print(accountclass.name)
         """
         return _t.cast(models.AccountClass, self._call('GET', f"/finance/accountclasses/{_seg(id)}", [], None, models.AccountClass, envelope=True))
 
@@ -4618,6 +5712,11 @@ class FinanceAccountclassesResource(Resource):
         `GET /finance/accountclasses`
 
         Account classes group account groups within one account type. The hierarchy is account type → account class → account group → account. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
+
+        Example::
+
+            for accountclass in client.finance.accountclasses.list():
+                print(accountclass.name)
         """
         return _t.cast(_t.List[models.AccountClass], self._call('GET', "/finance/accountclasses", [], None, _t.List[models.AccountClass], envelope=True))
 
@@ -4644,6 +5743,11 @@ class FinanceAccountclassesResource(Resource):
             include_profit_loss: Adds the profit-and-loss total to this class in reports. At most one account class in the installation may enable this flag; it is not restricted by account type. Omitted values default to false, including on update.
             name: Unique account-class name. The controller does not trim the name or enforce a length limit.
             sort_key: Sort order of the account class.
+
+        Example::
+
+            result = client.finance.accountclasses.update(1, account_type_id=3, name="Anlagevermögen")
+            print(result.name)
         """
         return _t.cast(models.AccountClass, self._call('PUT', f"/finance/accountclasses/{_seg(id)}", [], _body({'accountTypeId': account_type_id, 'includeProfitLoss': include_profit_loss, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountClass, envelope=True))
 
@@ -4672,6 +5776,15 @@ class FinanceAccountgroupsResource(Resource):
             is_cash_asset_account: Whether accounts in this group represent cash or bank assets.
             name: Unique account-group name, trimmed before storage. Supply a nonblank name.
             sort_key: Ascending display order. Omission resets it to 0, including on update.
+
+        Example::
+
+            result = client.finance.accountgroups.create(
+                account_class_id=2,
+                is_cash_asset_account=False,
+                name="Sachanlagen",
+            )
+            print(result.name)
         """
         return _t.cast(models.AccountGroup, self._call('POST', "/finance/accountgroups", [], _body({'accountClassId': account_class_id, 'isCashAssetAccount': is_cash_asset_account, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountGroup, envelope=True))
 
@@ -4691,6 +5804,10 @@ class FinanceAccountgroupsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.accountgroups.delete(1)
         """
         self._raw('DELETE', f"/finance/accountgroups/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -4707,6 +5824,11 @@ class FinanceAccountgroupsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            accountgroup = client.finance.accountgroups.get(1)
+            print(accountgroup.name)
         """
         return _t.cast(models.AccountGroup, self._call('GET', f"/finance/accountgroups/{_seg(id)}", [], None, models.AccountGroup, envelope=True))
 
@@ -4719,6 +5841,11 @@ class FinanceAccountgroupsResource(Resource):
         `GET /finance/accountgroups`
 
         Account groups collect individual ledger accounts within one account class. isCashAssetAccount identifies groups of cash or bank accounts. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
+
+        Example::
+
+            for accountgroup in client.finance.accountgroups.list():
+                print(accountgroup.name)
         """
         return _t.cast(_t.List[models.AccountGroup], self._call('GET', "/finance/accountgroups", [], None, _t.List[models.AccountGroup], envelope=True))
 
@@ -4745,6 +5872,16 @@ class FinanceAccountgroupsResource(Resource):
             is_cash_asset_account: Whether accounts in this group represent cash or bank assets.
             name: Unique account-group name, trimmed before storage. Supply a nonblank name.
             sort_key: Ascending display order. Omission resets it to 0, including on update.
+
+        Example::
+
+            result = client.finance.accountgroups.update(
+                1,
+                account_class_id=2,
+                is_cash_asset_account=False,
+                name="Sachanlagen",
+            )
+            print(result.name)
         """
         return _t.cast(models.AccountGroup, self._call('PUT', f"/finance/accountgroups/{_seg(id)}", [], _body({'accountClassId': account_class_id, 'isCashAssetAccount': is_cash_asset_account, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountGroup, envelope=True))
 
@@ -4784,6 +5921,17 @@ class FinanceAccountingperiodsResource(Resource):
             start_date: First date of the period. Used to match the previous period by subtracting exactly one year.
             balances: Optional opening-balance transfer. Both an openingBalanceAccount and a nonempty from list are needed to start a transfer. The previous period must have the same client and a start date exactly one year earlier.
             copy_master_data: Copy the previous period’s accounts, cost centers and related finance master data. The previous period is matched by client and a start date exactly one year earlier. Without a match, an empty period is created. Ordinary transactions are not copied. The current copy implementation retains the previous incrementDocumentNumber setting.
+
+        Example::
+
+            result = client.finance.accountingperiods.create(
+                client_id=1,
+                end_date=dt.date(2026, 12, 31),
+                increment_document_number=True,
+                is_closed=False,
+                start_date=dt.date(2026, 1, 1),
+            )
+            print(result.id)
         """
         return _t.cast(models.AccountingPeriod, self._call('POST', "/finance/accountingperiods", [], _body({'clientId': client_id, 'endDate': end_date, 'incrementDocumentNumber': increment_document_number, 'isClosed': is_closed, 'startDate': start_date, 'balances': balances, 'copyMasterData': copy_master_data}, extra_body), models.AccountingPeriod, envelope=True))
 
@@ -4803,6 +5951,10 @@ class FinanceAccountingperiodsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.accountingperiods.delete(1)
         """
         self._raw('DELETE', f"/finance/accountingperiods/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -4819,6 +5971,10 @@ class FinanceAccountingperiodsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.finance.accountingperiods.delete_taxrates(1)
         """
         self._raw('DELETE', f"/finance/accountingperiods/{_seg(id)}/taxrates", [], None)
 
@@ -4835,6 +5991,11 @@ class FinanceAccountingperiodsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            accountingperiod = client.finance.accountingperiods.get(1)
+            print(accountingperiod.id)
         """
         return _t.cast(models.AccountingPeriod, self._call('GET', f"/finance/accountingperiods/{_seg(id)}", [], None, models.AccountingPeriod, envelope=True))
 
@@ -4847,6 +6008,11 @@ class FinanceAccountingperiodsResource(Resource):
         `GET /finance/accountingperiods`
 
         An accounting period is the date range for one finance client’s books, usually a financial year. Accounts and cost centers belong to a period. Closing a period prevents ordinary account and transaction changes; it is separate from making individual transactions immutable. Returns an unpaginated list of periods visible through global finance permissions or group-internal cost-center rights, ordered by startDate ascending. Finance master-data editors can see all periods. meta.count is the number returned.
+
+        Example::
+
+            for accountingperiod in client.finance.accountingperiods.list():
+                print(accountingperiod.id)
         """
         return _t.cast(_t.List[models.AccountingPeriod], self._call('GET', "/finance/accountingperiods", [], None, _t.List[models.AccountingPeriod], envelope=True))
 
@@ -4870,6 +6036,11 @@ class FinanceAccountingperiodsResource(Resource):
             limit: Maximum documents per page.
             order_by: Enable sorting by submission date, with bill ID as a tie-breaker.
             order_direction: Direction used when order_by is supplied.
+
+        Example::
+
+            for bill in client.finance.accountingperiods.list_bills(1):
+                print(bill.id)
         """
         return Paginator(self._core, f"/finance/accountingperiods/{_seg(id)}/bills", _query([('limit', limit), ('order_by', order_by), ('order_direction', order_direction)]), models.Bill)
 
@@ -4886,6 +6057,11 @@ class FinanceAccountingperiodsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            for userrule in client.finance.accountingperiods.list_userrules(1):
+                print(userrule.id)
         """
         return _t.cast(_t.List[models.UserRule], self._call('GET', f"/finance/accountingperiods/{_seg(id)}/userrules", [], None, _t.List[models.UserRule], envelope=True))
 
@@ -4918,6 +6094,18 @@ class FinanceAccountingperiodsResource(Resource):
             start_date: First date of the period. Used to match the previous period by subtracting exactly one year.
             balances: Optional opening-balance transfer. Both an openingBalanceAccount and a nonempty from list are needed to start a transfer. The previous period must have the same client and a start date exactly one year earlier.
             set_immutability: When isClosed=true, make currently mutable transactions in the period immutable. Ignored when isClosed=false. Reopening the period does not undo transaction immutability.
+
+        Example::
+
+            result = client.finance.accountingperiods.update(
+                1,
+                client_id=1,
+                end_date=dt.date(2026, 12, 31),
+                increment_document_number=True,
+                is_closed=False,
+                start_date=dt.date(2026, 1, 1),
+            )
+            print(result.id)
         """
         return _t.cast(models.AccountingPeriod, self._call('PUT', f"/finance/accountingperiods/{_seg(id)}", [], _body({'clientId': client_id, 'endDate': end_date, 'incrementDocumentNumber': increment_document_number, 'isClosed': is_closed, 'startDate': start_date, 'balances': balances, 'setImmutability': set_immutability}, extra_body), models.AccountingPeriod, envelope=True))
 
@@ -4938,6 +6126,14 @@ class FinanceAccountingperiodsResource(Resource):
         Args:
             id: ID of Entity
             rules: All rules to retain. An empty array removes every rule for this period.
+
+        Example::
+
+            for accountingperiod in client.finance.accountingperiods.update_userrules(
+                1,
+                rules=[ct.models.UserRuleCreate.model_validate({"accountIds": [5], "allAccounts": False, "isIncome": True, "operator": "contains", "searchString": "Donation", "searchType": "purpose", "sortKey": 0, "suggestionType": "costCenterId", "suggestionValue": "8"})],
+            ):
+                print(accountingperiod.id)
         """
         return _t.cast(_t.List[models.UserRule], self._call('PUT', f"/finance/accountingperiods/{_seg(id)}/userrules", [], _body({'rules': rules}, extra_body), _t.List[models.UserRule], envelope=True))
 
@@ -4956,6 +6152,13 @@ class FinanceAccountsResource(Resource):
         `POST /finance/accounts/bulkcreate`
 
         Imports a JSON array of account definitions. Requires finance “edit masterdata”. Existing accounts are matched by account number and accounting period and updated; other entries are created. Optional fields use the same false/null defaults as single creation, also when replacing existing accounts. Repeated raw period/number pairs in the request collapse to the last entry. Returns HTTP 200 and meta.count for the processed entries. Every affected period must be open. The bulk path does not apply the single-update donation-account protection.
+
+        Example::
+
+            for account in client.finance.accounts.bulkcreate(
+                body=[ct.models.AccountCreate.model_validate({"accountGroupId": 4, "name": "Donations", "number": "8200", "accountingPeriodId": 5})],
+            ):
+                print(account.name)
         """
         return _t.cast(_t.List[models.Account], self._call('POST', "/finance/accounts/bulkcreate", [], _body(body), _t.List[models.Account], envelope=True))
 
@@ -4996,6 +6199,16 @@ class FinanceAccountsResource(Resource):
             tax_rate_id: Optional default tax rate from /finance/taxrates. Omitted or null clears it.
             accounting_period_id: Existing, open accounting period. Required for creation and cannot be changed by PUT.
             is_mandatory_eubp_locked: Initial euBP lock. When already locked, later updates force isMandatoryEubp to true. PUT validates but does not change this lock.
+
+        Example::
+
+            result = client.finance.accounts.create(
+                account_group_id=4,
+                name="Donations",
+                number="8200",
+                accounting_period_id=5,
+            )
+            print(result.name)
         """
         return _t.cast(models.Account, self._call('POST', "/finance/accounts", [], _body({'accountGroupId': account_group_id, 'annotation': annotation, 'budget': budget, 'identifier': identifier, 'isDonationAccount': is_donation_account, 'isMandatoryEubp': is_mandatory_eubp, 'isOpeningBalanceAccount': is_opening_balance_account, 'name': name, 'number': number, 'taxRateId': tax_rate_id, 'accountingPeriodId': accounting_period_id, 'isMandatoryEubpLocked': is_mandatory_eubp_locked}, extra_body), models.Account, envelope=True))
 
@@ -5015,6 +6228,10 @@ class FinanceAccountsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.accounts.delete(1)
         """
         self._raw('DELETE', f"/finance/accounts/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -5039,6 +6256,12 @@ class FinanceAccountsResource(Resource):
             template_id: Finance-template file ID. Takes precedence over year and clientId; account rows are read from the template.
             with_clients: Prepend client and booking-year columns. With templateId, these cells are left blank.
             year: Calendar year of the accounting-period start date. Without year or templateId, the workbook contains headings and instructions but no accounts.
+
+        Example::
+
+            data = client.finance.accounts.exporttemplate(client_id=1)
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', "/finance/accounts/exporttemplate", [], _body({'clientId': client_id, 'templateId': template_id, 'withClients': with_clients, 'year': year}, extra_body))
 
@@ -5055,6 +6278,11 @@ class FinanceAccountsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            account = client.finance.accounts.get(1)
+            print(account.name)
         """
         return _t.cast(models.Account, self._call('GET', f"/finance/accounts/{_seg(id)}", [], None, models.Account, envelope=True))
 
@@ -5072,6 +6300,12 @@ class FinanceAccountsResource(Resource):
 
         Args:
             accounting_period_id: Accounting period to export.
+
+        Example::
+
+            data = client.finance.accounts.get_csv(accounting_period_id=1)
+            with open("ergebnis.csv", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', "/finance/accounts/csv", _query([('accounting_period_id', accounting_period_id)]), None)
 
@@ -5093,6 +6327,12 @@ class FinanceAccountsResource(Resource):
             accounting_period_id: Accounting period to export.
             format: Download format. Only CSV and XLSX generators are registered.
             type_: Compatibility alias for format.
+
+        Example::
+
+            data = client.finance.accounts.get_export(accounting_period_id=1)
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', "/finance/accounts/export", _query([('accounting_period_id', accounting_period_id), ('format', format), ('type', type_)]), None)
 
@@ -5112,6 +6352,11 @@ class FinanceAccountsResource(Resource):
         Args:
             accounting_period_id: One accounting period or an array of period IDs. Use accounting_period_id[]=1&accounting_period_id[]=2 for multiple periods. Omit to search all visible periods.
             calculate_balance: Calculate current balances and budgets from the previous period. False skips these calculations; returned zero or null values do not indicate calculated balances.
+
+        Example::
+
+            for account in client.finance.accounts.list():
+                print(account.name)
         """
         return _t.cast(_t.List[models.Account], self._call('GET', "/finance/accounts", _query([('accounting_period_id', accounting_period_id), ('calculate_balance', calculate_balance)]), None, _t.List[models.Account], envelope=True))
 
@@ -5150,6 +6395,11 @@ class FinanceAccountsResource(Resource):
             name: Trimmed, nonblank account name. Creation checks uniqueness within the accounting period.
             number: Trimmed account number. The value 9999 is reserved for the profit-and-loss total in reports. On creation, number must be unique within the accounting period.
             tax_rate_id: Optional default tax rate from /finance/taxrates. Omitted or null clears it.
+
+        Example::
+
+            result = client.finance.accounts.update(1, account_group_id=4, name="Donations", number="8200")
+            print(result.name)
         """
         return _t.cast(models.Account, self._call('PUT', f"/finance/accounts/{_seg(id)}", [], _body({'accountGroupId': account_group_id, 'annotation': annotation, 'budget': budget, 'identifier': identifier, 'isDonationAccount': is_donation_account, 'isMandatoryEubp': is_mandatory_eubp, 'isOpeningBalanceAccount': is_opening_balance_account, 'name': name, 'number': number, 'taxRateId': tax_rate_id}, extra_body), models.Account, envelope=True))
 
@@ -5176,6 +6426,11 @@ class FinanceAccounttypesResource(Resource):
             balance_type: Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
             name: Unique account-type name. The controller does not trim the name or enforce a length limit.
             sort_key: Ascending display order. Omission resets it to 0, including on update.
+
+        Example::
+
+            result = client.finance.accounttypes.create(name="Aktiva")
+            print(result.name)
         """
         return _t.cast(models.AccountType, self._call('POST', "/finance/accounttypes", [], _body({'balanceType': balance_type, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountType, envelope=True))
 
@@ -5195,6 +6450,10 @@ class FinanceAccounttypesResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.accounttypes.delete(1)
         """
         self._raw('DELETE', f"/finance/accounttypes/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -5211,6 +6470,11 @@ class FinanceAccounttypesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            accounttype = client.finance.accounttypes.get(1)
+            print(accounttype.name)
         """
         return _t.cast(models.AccountType, self._call('GET', f"/finance/accounttypes/{_seg(id)}", [], None, models.AccountType, envelope=True))
 
@@ -5223,6 +6487,11 @@ class FinanceAccounttypesResource(Resource):
         `GET /finance/accounttypes`
 
         Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
+
+        Example::
+
+            for accounttype in client.finance.accounttypes.list():
+                print(accounttype.name)
         """
         return _t.cast(_t.List[models.AccountType], self._call('GET', "/finance/accounttypes", [], None, _t.List[models.AccountType], envelope=True))
 
@@ -5247,6 +6516,11 @@ class FinanceAccounttypesResource(Resource):
             balance_type: Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
             name: Unique account-type name. The controller does not trim the name or enforce a length limit.
             sort_key: Ascending display order. Omission resets it to 0, including on update.
+
+        Example::
+
+            result = client.finance.accounttypes.update(1, name="Aktiva")
+            print(result.name)
         """
         return _t.cast(models.AccountType, self._call('PUT', f"/finance/accounttypes/{_seg(id)}", [], _body({'balanceType': balance_type, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountType, envelope=True))
 
@@ -5265,6 +6539,13 @@ class FinanceBillsResource(Resource):
         `POST /finance/bills`
 
         Registers an existing uploaded file as a supporting document. Exactly one booking link is required. The linked transaction, all split components, or the account movement behind a suggestion must belong to accountingPeriodId. Ordinary and split transactions must be mutable and pass booking authorization. The submitting person must be visible. Returns the stored bill including file download metadata.
+
+        Example::
+
+            result = client.finance.bills.create(
+                body=ct.models.BillCreateWithTransaction.model_validate({"accountingPeriodId": 1, "fileId": 21, "submittedDate": "2026-09-14", "submittedPid": 42, "transactionId": 12}),
+            )
+            print(result.id)
         """
         return _t.cast(models.Bill, self._call('POST', "/finance/bills", [], _body(body), models.Bill, envelope=True))
 
@@ -5284,6 +6565,10 @@ class FinanceBillsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.bills.delete(1)
         """
         self._raw('DELETE', f"/finance/bills/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -5300,6 +6585,11 @@ class FinanceBillsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            bill = client.finance.bills.get(1)
+            print(bill.id)
         """
         return _t.cast(models.Bill, self._call('GET', f"/finance/bills/{_seg(id)}", [], None, models.Bill, envelope=True))
 
@@ -5330,6 +6620,11 @@ class FinanceBillsResource(Resource):
             submitted_pid: Person who submitted the document. Must exist and be visible to the caller.
             transaction_id: Linked ordinary transaction.
             transaction_suggestion_id: Linked booking suggestion from an account statement.
+
+        Example::
+
+            result = client.finance.bills.update(1, submitted_date=dt.date(2026, 9, 14), submitted_pid=42)
+            print(result.id)
         """
         return _t.cast(models.Bill, self._call('PUT', f"/finance/bills/{_seg(id)}", [], _body({'filename': filename, 'splitTransactionId': split_transaction_id, 'submittedDate': submitted_date, 'submittedPid': submitted_pid, 'transactionId': transaction_id, 'transactionSuggestionId': transaction_suggestion_id}, extra_body), models.Bill, envelope=True))
 
@@ -5356,6 +6651,11 @@ class FinanceCashdiscountsResource(Resource):
             account_id: ID of the existing ledger account receiving this amount. It also determines the accounting period.
             note: Trimmed description. Supply a nonblank value because the stored model requires a string.
             rate: Whole percentage points: 2 means 2%. This endpoint currently accepts only integers and does not validate a percentage range.
+
+        Example::
+
+            result = client.finance.cashdiscounts.create(account_id=5, note="Skonto 2%", rate=2)
+            print(result.id)
         """
         return _t.cast(models.CashDiscount, self._call('POST', "/finance/cashdiscounts", [], _body({'accountId': account_id, 'note': note, 'rate': rate}, extra_body), models.CashDiscount, envelope=True))
 
@@ -5375,6 +6675,10 @@ class FinanceCashdiscountsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.cashdiscounts.delete(1)
         """
         self._raw('DELETE', f"/finance/cashdiscounts/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -5391,6 +6695,11 @@ class FinanceCashdiscountsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            cashdiscount = client.finance.cashdiscounts.get(1)
+            print(cashdiscount.id)
         """
         return _t.cast(models.CashDiscount, self._call('GET', f"/finance/cashdiscounts/{_seg(id)}", [], None, models.CashDiscount, envelope=True))
 
@@ -5408,6 +6717,11 @@ class FinanceCashdiscountsResource(Resource):
 
         Args:
             accounting_period_id: Only return entries linked to accounts in this accounting period. Omit to return all periods.
+
+        Example::
+
+            for cashdiscount in client.finance.cashdiscounts.list():
+                print(cashdiscount.id)
         """
         return _t.cast(_t.List[models.CashDiscount], self._call('GET', "/finance/cashdiscounts", _query([('accounting_period_id', accounting_period_id)]), None, _t.List[models.CashDiscount], envelope=True))
 
@@ -5432,6 +6746,11 @@ class FinanceCashdiscountsResource(Resource):
             account_id: ID of the existing ledger account receiving this amount. It also determines the accounting period.
             note: Trimmed description. Supply a nonblank value because the stored model requires a string.
             rate: Whole percentage points: 2 means 2%. This endpoint currently accepts only integers and does not validate a percentage range.
+
+        Example::
+
+            result = client.finance.cashdiscounts.update(1, account_id=5, note="Skonto 2%", rate=2)
+            print(result.id)
         """
         return _t.cast(models.CashDiscount, self._call('PUT', f"/finance/cashdiscounts/{_seg(id)}", [], _body({'accountId': account_id, 'note': note, 'rate': rate}, extra_body), models.CashDiscount, envelope=True))
 
@@ -5476,6 +6795,11 @@ class FinanceClientsResource(Resource):
             sort_key: Ascending display order. Required for creation and update.
             street: Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
             treasurer_id: Optional person ID of the treasurer. Omitted or null clears the assignment.
+
+        Example::
+
+            result = client.finance.clients.create(name="Example congregation", sort_key=0)
+            print(result.name)
         """
         return _t.cast(models.Client, self._call('POST', "/finance/clients", [], _body({'city': city, 'datevClientNumber': datev_client_number, 'datevConsultantNumber': datev_consultant_number, 'email': email, 'eubpBusinessName': eubp_business_name, 'eubpBusinessNumber': eubp_business_number, 'name': name, 'phone': phone, 'postalCode': postal_code, 'sortKey': sort_key, 'street': street, 'treasurerId': treasurer_id}, extra_body), models.Client, envelope=True))
 
@@ -5495,6 +6819,10 @@ class FinanceClientsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.clients.delete(1)
         """
         self._raw('DELETE', f"/finance/clients/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -5511,6 +6839,11 @@ class FinanceClientsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            item = client.finance.clients.get(1)
+            print(item.name)
         """
         return _t.cast(models.Client, self._call('GET', f"/finance/clients/{_seg(id)}", [], None, models.Client, envelope=True))
 
@@ -5523,6 +6856,11 @@ class FinanceClientsResource(Resource):
         `GET /finance/clients`
 
         A finance client is the organizational entity whose books are kept separately, for example a congregation or a charitable organization. Each client owns accounting periods, and those periods own its accounts and cost centers. It is unrelated to an OAuth application client. Returns an unpaginated list ordered by sortKey. Users with finance “edit masterdata” see all clients; other callers see clients belonging to their visible accounting periods. meta.count is the number returned. The treasurer is expanded to a person domain object.
+
+        Example::
+
+            for item in client.finance.clients.list():
+                print(item.name)
         """
         return _t.cast(_t.List[models.Client], self._call('GET', "/finance/clients", [], None, _t.List[models.Client], envelope=True))
 
@@ -5565,6 +6903,11 @@ class FinanceClientsResource(Resource):
             sort_key: Ascending display order. Required for creation and update.
             street: Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
             treasurer_id: Optional person ID of the treasurer. Omitted or null clears the assignment.
+
+        Example::
+
+            result = client.finance.clients.update(1, name="Example congregation", sort_key=0)
+            print(result.name)
         """
         return _t.cast(models.Client, self._call('PUT', f"/finance/clients/{_seg(id)}", [], _body({'city': city, 'datevClientNumber': datev_client_number, 'datevConsultantNumber': datev_consultant_number, 'email': email, 'eubpBusinessName': eubp_business_name, 'eubpBusinessNumber': eubp_business_number, 'name': name, 'phone': phone, 'postalCode': postal_code, 'sortKey': sort_key, 'street': street, 'treasurerId': treasurer_id}, extra_body), models.Client, envelope=True))
 
@@ -5584,6 +6927,13 @@ class FinanceCostcentersResource(Resource):
         `POST /finance/costcenters/bulkcreate`
 
         Creates cost centers in one database transaction and returns HTTP 201. Requires finance “edit masterdata”; every target period must exist and be open. Each item uses the creation fields, including optional annotation. The bulk controller does not run the single-create uniqueness constraint. Results contain stored entities without the expanded group property. meta.count is the number created.
+
+        Example::
+
+            for costcenter in client.finance.costcenters.bulkcreate(
+                cost_centers=[ct.models.CostCenterCreate.model_validate({"accountingPeriodId": 1, "name": "Kostenstelle Sonstige", "number": "802"})],
+            ):
+                print(costcenter.name)
         """
         return _t.cast(_t.List[models.CostCenterStored], self._call('POST', "/finance/costcenters/bulkcreate", [], _body({'costCenters': cost_centers}, extra_body), _t.List[models.CostCenterStored], envelope=True))
 
@@ -5612,6 +6962,15 @@ class FinanceCostcentersResource(Resource):
             group_id: Optional linked group. Omitted or null removes the link, including on update.
             name: Trimmed name, unique within the accounting period. Supply a nonblank name when creating.
             number: Trimmed identifier, unique within the accounting period. Leading zeros are preserved; letters are accepted, although list ordering compares the integer value.
+
+        Example::
+
+            result = client.finance.costcenters.create(
+                accounting_period_id=1,
+                name="Kostenstelle Sonstige",
+                number="802",
+            )
+            print(result.name)
         """
         return _t.cast(models.CostCenter, self._call('POST', "/finance/costcenters", [], _body({'accountingPeriodId': accounting_period_id, 'annotation': annotation, 'budget': budget, 'groupId': group_id, 'name': name, 'number': number}, extra_body), models.CostCenter, envelope=True))
 
@@ -5631,6 +6990,10 @@ class FinanceCostcentersResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.costcenters.delete(1)
         """
         self._raw('DELETE', f"/finance/costcenters/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -5647,6 +7010,11 @@ class FinanceCostcentersResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            costcenter = client.finance.costcenters.get(1)
+            print(costcenter.name)
         """
         return _t.cast(models.CostCenter, self._call('GET', f"/finance/costcenters/{_seg(id)}", [], None, models.CostCenter, envelope=True))
 
@@ -5668,6 +7036,12 @@ class FinanceCostcentersResource(Resource):
             accounting_period_id: Accounting period to export.
             format: Download format. Only CSV and XLSX generators are registered.
             type_: Compatibility alias for format.
+
+        Example::
+
+            data = client.finance.costcenters.get_export(accounting_period_id=1)
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', "/finance/costcenters/export", _query([('accounting_period_id', accounting_period_id), ('format', format), ('type', type_)]), None)
 
@@ -5685,6 +7059,11 @@ class FinanceCostcentersResource(Resource):
 
         Args:
             accounting_period_id: Restrict results to this accounting period. The period must also be visible to the caller.
+
+        Example::
+
+            for costcenter in client.finance.costcenters.list():
+                print(costcenter.name)
         """
         return _t.cast(_t.List[models.CostCenter], self._call('GET', "/finance/costcenters", _query([('accounting_period_id', accounting_period_id)]), None, _t.List[models.CostCenter], envelope=True))
 
@@ -5715,6 +7094,11 @@ class FinanceCostcentersResource(Resource):
             group_id: Optional linked group. Omitted or null removes the link, including on update.
             name: Trimmed name. Unlike creation, updating accepts omitted, null or blank names and stores null.
             number: Trimmed identifier, unique within the accounting period. Leading zeros are preserved; letters are accepted, although list ordering compares the integer value.
+
+        Example::
+
+            result = client.finance.costcenters.update(1, accounting_period_id=1, number="802")
+            print(result.name)
         """
         return _t.cast(models.CostCenter, self._call('PUT', f"/finance/costcenters/{_seg(id)}", [], _body({'accountingPeriodId': accounting_period_id, 'annotation': annotation, 'budget': budget, 'groupId': group_id, 'name': name, 'number': number}, extra_body), models.CostCenter, envelope=True))
 
@@ -5740,6 +7124,15 @@ class FinanceDonatorsResource(Resource):
         Args:
             donation_receipt_attachment_template_id: Identifier of an existing attachment template.
             donation_receipt_letter_template_id: Identifier of an existing cover-letter template.
+
+        Example::
+
+            result = client.finance.donators.create_receipts(
+                accounting_period_id=1,
+                donation_receipt_attachment_template_id="beispiel",
+                donation_receipt_letter_template_id="beispiel",
+            )
+            print(result.job_group)
         """
         return _t.cast(models.DonationReceiptJobResult, self._call('POST', "/finance/donators/receipts", [], _body({'accounting_period_id': accounting_period_id, 'donation_receipt_attachment_template_id': donation_receipt_attachment_template_id, 'donation_receipt_letter_template_id': donation_receipt_letter_template_id}, extra_body), models.DonationReceiptJobResult, envelope=True))
 
@@ -5762,6 +7155,11 @@ class FinanceDonatorsResource(Resource):
             donator_couple_id: One person ID (42) or two person IDs joined with a hyphen (42-43). A pair and a single donor are separate receipt recipients.
             accounting_period_id: Accounting period for the requested donor or pair.
             type_: DRAFT creates temporary PDFs, ORIGINAL creates persistent files, and DUPLICATE marks a copy. On reads this parameter chooses watermarking, not which stored record is selected.
+
+        Example::
+
+            result = client.finance.donators.create_receipts_for("42-43", accounting_period_id=1)
+            print(result.accounting_period_id)
         """
         return _t.cast(models.DonationReceipt, self._call('POST', f"/finance/donators/{_seg(donator_couple_id)}/receipts", [], _body({'accounting_period_id': accounting_period_id, 'type': type_}, extra_body), models.DonationReceipt, envelope=True))
 
@@ -5781,6 +7179,10 @@ class FinanceDonatorsResource(Resource):
         Args:
             donator_couple_id: One person ID (42) or two person IDs joined with a hyphen (42-43). A pair and a single donor are separate receipt recipients.
             accounting_period_id: Accounting period for these donation receipts.
+
+        Example::
+
+            client.finance.donators.delete_latest_receipt_for("42-43", accounting_period_id=1)
         """
         self._raw('DELETE', f"/finance/donators/{_seg(donator_couple_id)}/receipts", _query([('accounting_period_id', accounting_period_id)]), None)
 
@@ -5798,6 +7200,10 @@ class FinanceDonatorsResource(Resource):
 
         Args:
             accounting_period_id: Accounting period for these donation receipts.
+
+        Example::
+
+            client.finance.donators.delete_receipts(accounting_period_id=1)
         """
         self._raw('DELETE', "/finance/donators/receipts", _query([('accounting_period_id', accounting_period_id)]), None)
 
@@ -5819,6 +7225,11 @@ class FinanceDonatorsResource(Resource):
             accounting_period_id: Accounting period for these donation receipts.
             mode: Combine letters and attachments separately (twofiles), or interleave them by recipient into one PDF (onefile).
             cleardoublepage: Insert blank pages for duplex printing: all, only cover letters, only attachments, or none. In onefile mode donation_attachment alone has no effect.
+
+        Example::
+
+            receipt = client.finance.donators.get_receipts(accounting_period_id=1)
+            print(receipt.attachments)
         """
         return _t.cast(models.CombinedDonationReceipts, self._call('GET', "/finance/donators/receipts", _query([('accounting_period_id', accounting_period_id), ('mode', mode), ('cleardoublepage', cleardoublepage)]), None, models.CombinedDonationReceipts, envelope=True))
 
@@ -5840,6 +7251,11 @@ class FinanceDonatorsResource(Resource):
             donator_couple_id: One person ID (42) or two person IDs joined with a hyphen (42-43). A pair and a single donor are separate receipt recipients.
             accounting_period_id: Accounting period for these donation receipts.
             type_: Watermark for returned files. Does not select the stored receipt type.
+
+        Example::
+
+            receipts_for = client.finance.donators.get_receipts_for("42-43", accounting_period_id=1)
+            print(receipts_for.accounting_period_id)
         """
         return _t.cast(models.DonationReceipt, self._call('GET', f"/finance/donators/{_seg(donator_couple_id)}/receipts", _query([('accounting_period_id', accounting_period_id), ('type', type_)]), None, models.DonationReceipt, envelope=True))
 
@@ -5867,6 +7283,11 @@ class FinanceDonatorsResource(Resource):
             order_direction: Sort direction; upper- and lower-case values are accepted.
             query: Substring search on the primary first or last name. No minimum length is enforced; SQL LIKE wildcards are not escaped.
             limit: Maximum households per page. No upper bound is enforced.
+
+        Example::
+
+            for donator in client.finance.donators.list(accounting_period_id=1):
+                print(donator.count)
         """
         return Paginator(self._core, "/finance/donators", _query([('accounting_period_id', accounting_period_id), ('only_incomplete', only_incomplete), ('order_by', order_by), ('order_direction', order_direction), ('query', query), ('limit', limit)]), models.Donator)
 
@@ -5887,6 +7308,11 @@ class FinanceEubpResource(Resource):
         `GET /finance/eubp/health`
 
         Checks the configured eXTra integration service and returns its availability, URL and configured environment. A connection failure is represented by extraServiceAvailable=false with HTTP 200. This does not establish that a submission will be accepted by DRV. Requires finance edit masterdata permission.
+
+        Example::
+
+            health = client.finance.eubp.get_health()
+            print(health.environment)
         """
         return _t.cast(models.EubpHealthInfo, self._call('GET', "/finance/eubp/health", [], None, models.EubpHealthInfo, envelope=True))
 
@@ -5925,6 +7351,16 @@ class FinanceReportsResource(Resource):
             show_empty_accounts: Include zero-value accounts according to the selected report’s balance/activity calculation.
             end_date: Last document date to include.
             start_date: First document date to include.
+
+        Example::
+
+            data = client.finance.reports.balance(
+                accounting_period_id=1,
+                end_date=dt.date(2026, 12, 31),
+                start_date=dt.date(2026, 1, 1),
+            )
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', "/finance/reports/balance", [], _body({'accountTypes': account_types, 'accountingPeriodId': accounting_period_id, 'format': format, 'showAccountGroups': show_account_groups, 'showEmptyAccounts': show_empty_accounts, 'endDate': end_date, 'startDate': start_date}, extra_body))
 
@@ -5955,6 +7391,16 @@ class FinanceReportsResource(Resource):
             show_empty_accounts: Include zero-value accounts according to the selected report’s balance/activity calculation.
             end_date: Last document date to include.
             start_date: First document date to include.
+
+        Example::
+
+            data = client.finance.reports.profit_loss(
+                accounting_period_id=1,
+                end_date=dt.date(2026, 12, 31),
+                start_date=dt.date(2026, 1, 1),
+            )
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', "/finance/reports/profit-loss", [], _body({'accountTypes': account_types, 'accountingPeriodId': accounting_period_id, 'format': format, 'showAccountGroups': show_account_groups, 'showEmptyAccounts': show_empty_accounts, 'endDate': end_date, 'startDate': start_date}, extra_body))
 
@@ -5983,6 +7429,12 @@ class FinanceReportsResource(Resource):
             month: Calendar month in the year of the accounting period’s start date. The report includes month totals and cumulative totals from January.
             show_account_groups: Include account-group grouping/columns in the report.
             show_empty_accounts: Include zero-value accounts according to the selected report’s balance/activity calculation.
+
+        Example::
+
+            data = client.finance.reports.sum_balance(accounting_period_id=1, month=9)
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', "/finance/reports/sum-balance", [], _body({'accountTypes': account_types, 'accountingPeriodId': accounting_period_id, 'format': format, 'month': month, 'showAccountGroups': show_account_groups, 'showEmptyAccounts': show_empty_accounts}, extra_body))
 
@@ -6011,6 +7463,12 @@ class FinanceReportsResource(Resource):
             period: Use twelve calendar-month columns or four calendar-quarter columns for the year of the accounting period’s start date.
             show_account_groups: Accepted by the shared validator but ignored by the turnover report.
             show_empty_accounts: Include zero-value accounts according to the selected report’s balance/activity calculation.
+
+        Example::
+
+            data = client.finance.reports.turnover(accounting_period_id=1, period="monthly")
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', "/finance/reports/turnover", [], _body({'accountTypes': account_types, 'accountingPeriodId': accounting_period_id, 'format': format, 'period': period, 'showAccountGroups': show_account_groups, 'showEmptyAccounts': show_empty_accounts}, extra_body))
 
@@ -6043,6 +7501,16 @@ class FinanceSplittransactionsResource(Resource):
             document_number: Parent number. Required unless the period generates numbers; omission or null then generates a number, including on update. Multi-child bookings receive suffixes -1, -2, and so on.
             note: Parent note; trimmed, with an empty result stored as null. For single-child conversion this replaces the child note.
             split_children: Complete replacement list. Existing IDs keep/update rows; omitted previous rows are deleted. Omit id to create a new child.
+
+        Example::
+
+            result = client.finance.splittransactions.create(
+                amount=30000,
+                document_date=dt.date(2026, 9, 14),
+                note="Offering and building fund",
+                split_children=[ct.models.SplitTransactionChildCreate.model_validate({"accountId": 10, "amount": 7812, "contraAccountId": 11, "note": "Building fund"})],
+            )
+            print(result)
         """
         return _t.cast(_t.Optional[models.SplitTransaction], self._call('POST', "/finance/splittransactions", _query([('ignoreDonationConstraint', ignore_donation_constraint)]), _body({'amount': amount, 'documentDate': document_date, 'documentNumber': document_number, 'note': note, 'splitChildren': split_children}, extra_body), _t.Optional[models.SplitTransaction], envelope=True))
 
@@ -6064,6 +7532,10 @@ class FinanceSplittransactionsResource(Resource):
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
             include: Include additional information
+
+        Example::
+
+            client.finance.splittransactions.delete(1)
         """
         self._raw('DELETE', f"/finance/splittransactions/{_seg(id)}", _query([('dry_run', dry_run), ('include[]', include)]), None)
 
@@ -6082,6 +7554,11 @@ class FinanceSplittransactionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            splittransaction = client.finance.splittransactions.duplicate(1)
+            print(splittransaction.id)
         """
         return _t.cast(models.SplitTransaction, self._call('POST', f"/finance/splittransactions/{_seg(id)}/duplicate", [], _body(body), models.SplitTransaction, envelope=True))
 
@@ -6101,6 +7578,11 @@ class FinanceSplittransactionsResource(Resource):
         Args:
             id: ID of Entity
             include: Include additional information
+
+        Example::
+
+            splittransaction = client.finance.splittransactions.get(1)
+            print(splittransaction.id)
         """
         return _t.cast(models.SplitTransaction, self._call('GET', f"/finance/splittransactions/{_seg(id)}", _query([('include[]', include)]), None, models.SplitTransaction, envelope=True))
 
@@ -6133,6 +7615,17 @@ class FinanceSplittransactionsResource(Resource):
             document_number: Parent number. Required unless the period generates numbers; omission or null then generates a number, including on update. Multi-child bookings receive suffixes -1, -2, and so on.
             note: Parent note; trimmed, with an empty result stored as null. For single-child conversion this replaces the child note.
             split_children: Complete replacement list. Existing IDs keep/update rows; omitted previous rows are deleted. Omit id to create a new child.
+
+        Example::
+
+            result = client.finance.splittransactions.update(
+                1,
+                amount=30000,
+                document_date=dt.date(2026, 9, 14),
+                note="Offering and building fund",
+                split_children=[ct.models.SplitTransactionChildCreate.model_validate({"accountId": 10, "amount": 7812, "contraAccountId": 11, "note": "Building fund"})],
+            )
+            print(result)
         """
         return _t.cast(_t.Optional[models.SplitTransaction], self._call('PUT', f"/finance/splittransactions/{_seg(id)}", _query([('ignoreDonationConstraint', ignore_donation_constraint), ('include[]', include)]), _body({'amount': amount, 'documentDate': document_date, 'documentNumber': document_number, 'note': note, 'splitChildren': split_children}, extra_body), _t.Optional[models.SplitTransaction], envelope=True))
 
@@ -6153,6 +7646,11 @@ class FinanceSplittransactionsResource(Resource):
         Args:
             id: ID of Entity
             note: Cancellation reason; trimmed before being added to parent and child notes.
+
+        Example::
+
+            result = client.finance.splittransactions.update_storno(1, note="Incorrect allocation")
+            print(result.id)
         """
         return _t.cast(models.SplitTransaction, self._call('PUT', f"/finance/splittransactions/{_seg(id)}/storno", [], _body({'note': note}, extra_body), models.SplitTransaction, envelope=True))
 
@@ -6181,6 +7679,11 @@ class FinanceTaxratesResource(Resource):
             note: Description, trimmed before storage. Omitted, null or blank clears it.
             rate: Percentage points: 7 means 7%, not 0.07. The API validates a number but does not enforce a percentage range.
             tax_type_id: Existing tax type from /finance/taxtypes.
+
+        Example::
+
+            result = client.finance.taxrates.create(account_id=5, rate=7, tax_type_id=4)
+            print(result.id)
         """
         return _t.cast(models.TaxRate, self._call('POST', "/finance/taxrates", [], _body({'accountId': account_id, 'note': note, 'rate': rate, 'taxTypeId': tax_type_id}, extra_body), models.TaxRate, envelope=True))
 
@@ -6200,6 +7703,10 @@ class FinanceTaxratesResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.taxrates.delete(1)
         """
         self._raw('DELETE', f"/finance/taxrates/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -6216,6 +7723,11 @@ class FinanceTaxratesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            taxrate = client.finance.taxrates.get(1)
+            print(taxrate.id)
         """
         return _t.cast(models.TaxRate, self._call('GET', f"/finance/taxrates/{_seg(id)}", [], None, models.TaxRate, envelope=True))
 
@@ -6233,6 +7745,11 @@ class FinanceTaxratesResource(Resource):
 
         Args:
             accounting_period_id: Only return entries linked to accounts in this accounting period. Omit to return all periods.
+
+        Example::
+
+            for taxrate in client.finance.taxrates.list():
+                print(taxrate.id)
         """
         return _t.cast(_t.List[models.TaxRate], self._call('GET', "/finance/taxrates", _query([('accounting_period_id', accounting_period_id)]), None, _t.List[models.TaxRate], envelope=True))
 
@@ -6259,6 +7776,11 @@ class FinanceTaxratesResource(Resource):
             note: Description, trimmed before storage. Omitted, null or blank clears it.
             rate: Percentage points: 7 means 7%, not 0.07. The API validates a number but does not enforce a percentage range.
             tax_type_id: Existing tax type from /finance/taxtypes.
+
+        Example::
+
+            result = client.finance.taxrates.update(1, account_id=5, rate=7, tax_type_id=4)
+            print(result.id)
         """
         return _t.cast(models.TaxRate, self._call('PUT', f"/finance/taxrates/{_seg(id)}", [], _body({'accountId': account_id, 'note': note, 'rate': rate, 'taxTypeId': tax_type_id}, extra_body), models.TaxRate, envelope=True))
 
@@ -6283,6 +7805,11 @@ class FinanceTaxtypesResource(Resource):
         Args:
             name: Unique name, trimmed before storage. Omitted, null or blank becomes null, including on update.
             sort_key: Ascending display order. Required for creation and update; there is no API default.
+
+        Example::
+
+            result = client.finance.taxtypes.create(sort_key=0)
+            print(result.name)
         """
         return _t.cast(models.TaxType, self._call('POST', "/finance/taxtypes", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.TaxType, envelope=True))
 
@@ -6302,6 +7829,10 @@ class FinanceTaxtypesResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.taxtypes.delete(1)
         """
         self._raw('DELETE', f"/finance/taxtypes/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -6318,6 +7849,11 @@ class FinanceTaxtypesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            taxtype = client.finance.taxtypes.get(1)
+            print(taxtype.name)
         """
         return _t.cast(models.TaxType, self._call('GET', f"/finance/taxtypes/{_seg(id)}", [], None, models.TaxType, envelope=True))
 
@@ -6330,6 +7866,11 @@ class FinanceTaxtypesResource(Resource):
         `GET /finance/taxtypes`
 
         Tax types group tax rates by their accounting purpose, for example input tax or output tax. The percentage and receiving ledger account are configured on each tax rate. Returns an unpaginated list. Results are ordered by sortKey, then name, ascending. meta.count is the number returned.
+
+        Example::
+
+            for taxtype in client.finance.taxtypes.list():
+                print(taxtype.name)
         """
         return _t.cast(_t.List[models.TaxType], self._call('GET', "/finance/taxtypes", [], None, _t.List[models.TaxType], envelope=True))
 
@@ -6352,6 +7893,11 @@ class FinanceTaxtypesResource(Resource):
             id: ID of Entity
             name: Unique name, trimmed before storage. Omitted, null or blank becomes null, including on update.
             sort_key: Ascending display order. Required for creation and update; there is no API default.
+
+        Example::
+
+            result = client.finance.taxtypes.update(1, sort_key=0)
+            print(result.name)
         """
         return _t.cast(models.TaxType, self._call('PUT', f"/finance/taxtypes/{_seg(id)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.TaxType, envelope=True))
 
@@ -6375,6 +7921,10 @@ class FinanceTemplatesResource(Resource):
         Args:
             id: ID of Entity
             accounting_period_id: Existing accounting period visible to the caller.
+
+        Example::
+
+            client.finance.templates.create(1, accounting_period_id=1)
         """
         self._raw('POST', f"/finance/templates/{_seg(id)}", _query([('accounting_period_id', accounting_period_id)]), None)
 
@@ -6392,6 +7942,11 @@ class FinanceTemplatesResource(Resource):
 
         Args:
             accounting_period_id: Existing accounting period visible to the caller.
+
+        Example::
+
+            export = client.finance.templates.get_export(accounting_period_id=1)
+            print(export)
         """
         return _t.cast(models.FinanceTemplateExport, self._call('GET', "/finance/templates/export", _query([('accounting_period_id', accounting_period_id)]), None, models.FinanceTemplateExport, envelope=True))
 
@@ -6404,6 +7959,11 @@ class FinanceTemplatesResource(Resource):
         `GET /finance/templates`
 
         Returns stored finance-template files with per-collection definition counts. The list is unpaginated and has no guaranteed order. meta.count is the number returned. Files are selected by the finance_template domain.
+
+        Example::
+
+            for template in client.finance.templates.list():
+                print(template.name)
         """
         return _t.cast(_t.List[models.FinanceTemplate], self._call('GET', "/finance/templates", [], None, _t.List[models.FinanceTemplate], envelope=True))
 
@@ -6436,6 +7996,17 @@ class FinanceTransactionpurposesResource(Resource):
             name: Trimmed display name. Names are not required to be unique.
             purpose_account_id: Fixed ledger account: the contra account for income, or the account for expenses. Its period must be open.
             sort_key: Ascending display order. Required in creation and update.
+
+        Example::
+
+            result = client.finance.transactionpurposes.create(
+                account_ids=[1, 2],
+                is_income=True,
+                name="Donations for youth work",
+                purpose_account_id=3,
+                sort_key=0,
+            )
+            print(result.name)
         """
         return _t.cast(models.TransactionPurpose, self._call('POST', "/finance/transactionpurposes", [], _body({'accountIds': account_ids, 'costCenterId': cost_center_id, 'isIncome': is_income, 'name': name, 'purposeAccountId': purpose_account_id, 'sortKey': sort_key}, extra_body), models.TransactionPurpose, envelope=True))
 
@@ -6455,6 +8026,10 @@ class FinanceTransactionpurposesResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.transactionpurposes.delete(1)
         """
         self._raw('DELETE', f"/finance/transactionpurposes/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -6471,6 +8046,11 @@ class FinanceTransactionpurposesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            transactionpurpose = client.finance.transactionpurposes.get(1)
+            print(transactionpurpose.name)
         """
         return _t.cast(models.TransactionPurpose, self._call('GET', f"/finance/transactionpurposes/{_seg(id)}", [], None, models.TransactionPurpose, envelope=True))
 
@@ -6483,6 +8063,11 @@ class FinanceTransactionpurposesResource(Resource):
         `GET /finance/transactionpurposes`
 
         A transaction purpose is a reusable preset for simplified bookkeeping. It fixes one ledger account, offers a list of accounts for the other side, and can assign a cost center. isIncome selects an income or expense preset; it is not the free-text note of a bank statement. Requires finance “view”. Returns the complete, unpaginated list across periods, ordered by sortKey and then name ascending. This endpoint does not apply the period/group filtering used by /finance/masterdata. meta.count is the number returned.
+
+        Example::
+
+            for transactionpurpose in client.finance.transactionpurposes.list():
+                print(transactionpurpose.name)
         """
         return _t.cast(_t.List[models.TransactionPurpose], self._call('GET', "/finance/transactionpurposes", [], None, _t.List[models.TransactionPurpose], envelope=True))
 
@@ -6513,6 +8098,18 @@ class FinanceTransactionpurposesResource(Resource):
             name: Trimmed display name. Names are not required to be unique.
             purpose_account_id: Fixed ledger account: the contra account for income, or the account for expenses. Its period must be open.
             sort_key: Ascending display order. Required in creation and update.
+
+        Example::
+
+            result = client.finance.transactionpurposes.update(
+                1,
+                account_ids=[1, 2],
+                is_income=True,
+                name="Donations for youth work",
+                purpose_account_id=3,
+                sort_key=0,
+            )
+            print(result.name)
         """
         return _t.cast(models.TransactionPurpose, self._call('PUT', f"/finance/transactionpurposes/{_seg(id)}", [], _body({'accountIds': account_ids, 'costCenterId': cost_center_id, 'isIncome': is_income, 'name': name, 'purposeAccountId': purpose_account_id, 'sortKey': sort_key}, extra_body), models.TransactionPurpose, envelope=True))
 
@@ -6535,6 +8132,13 @@ class FinanceTransactionsResource(Resource):
 
         Args:
             ignore_donation_constraint: Skip the donor/account constraint. For creation this must be a query parameter; a body-only value does not disable the constraint. Spouse consistency remains enforced.
+
+        Example::
+
+            for transaction in client.finance.transactions.bulkcreate(
+                body=[ct.models.TransactionBulkCreateItem.model_validate({"accountId": 10, "amount": 7812, "contraAccountId": 11, "documentDate": "2019-01-14", "note": "Donation service offering", "documentNumber": "2026-42"})],
+            ):
+                print(transaction.id)
         """
         return _t.cast(_t.List[models.Transaction], self._call('POST', "/finance/transactions/bulkcreate", _query([('ignoreDonationConstraint', ignore_donation_constraint)]), _body(body), _t.List[models.Transaction], envelope=True))
 
@@ -6583,6 +8187,17 @@ class FinanceTransactionsResource(Resource):
             tax_rate_id: Tax rate from the same accounting period. Generates or updates a separate tax booking. On update, omission or null removes the existing tax booking.
             document_number: Document number, required unless automatic numbering is enabled. An explicitly supplied value is used as-is.
             is_synced: Mark this booking as created through a sync.
+
+        Example::
+
+            result = client.finance.transactions.create(
+                account_id=10,
+                amount=7812,
+                contra_account_id=11,
+                document_date=dt.date(2019, 1, 14),
+                note="Donation service offering",
+            )
+            print(result.id)
         """
         return _t.cast(models.Transaction, self._call('POST', "/finance/transactions", _query([('ignoreDonationConstraint', ignore_donation_constraint)]), _body({'accountId': account_id, 'amount': amount, 'cashDiscountAmount': cash_discount_amount, 'cashDiscountId': cash_discount_id, 'contraAccountId': contra_account_id, 'contraCostCenterId': contra_cost_center_id, 'costCenterId': cost_center_id, 'documentDate': document_date, 'donatorId': donator_id, 'donatorSpouseId': donator_spouse_id, 'isWaiverOfReimbursementOfExpenses': is_waiver_of_reimbursement_of_expenses, 'note': note, 'taxRateId': tax_rate_id, 'documentNumber': document_number, 'isSynced': is_synced}, extra_body), models.Transaction, envelope=True))
 
@@ -6604,6 +8219,10 @@ class FinanceTransactionsResource(Resource):
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
             include: Include additional information
+
+        Example::
+
+            client.finance.transactions.delete(1)
         """
         self._raw('DELETE', f"/finance/transactions/{_seg(id)}", _query([('dry_run', dry_run), ('include[]', include)]), None)
 
@@ -6622,6 +8241,11 @@ class FinanceTransactionsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            transaction = client.finance.transactions.duplicate(1)
+            print(transaction.id)
         """
         return _t.cast(models.Transaction, self._call('POST', f"/finance/transactions/{_seg(id)}/duplicate", [], _body(body), models.Transaction, envelope=True))
 
@@ -6641,6 +8265,11 @@ class FinanceTransactionsResource(Resource):
         Args:
             id: ID of Entity
             include: Include additional information
+
+        Example::
+
+            transaction = client.finance.transactions.get(1)
+            print(transaction.id)
         """
         return _t.cast(models.Transaction, self._call('GET', f"/finance/transactions/{_seg(id)}", _query([('include[]', include)]), None, models.Transaction, envelope=True))
 
@@ -6692,6 +8321,12 @@ class FinanceTransactionsResource(Resource):
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
             target: Column layout: default is the human-readable CT export; sage100 uses separate debit/credit account and cost-center numbers plus tax fields. An empty string selects default.
+
+        Example::
+
+            data = client.finance.transactions.get_csv(accounting_period_id=1)
+            with open("ergebnis.csv", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', "/finance/transactions/csv", _query([('accounting_period_id', accounting_period_id), ('created_pid', created_pid), ('cost_center_ids[]', cost_center_ids), ('donator_ids[]', donator_ids), ('include_ids[]', include_ids), ('exclude_ids[]', exclude_ids), ('account_ids[]', account_ids), ('is_donation', is_donation), ('is_income', is_income), ('start_date', start_date), ('end_date', end_date), ('is_immutable', is_immutable), ('order_by', order_by), ('order_direction', order_direction), ('query', query), ('is_waiver_of_reimbursement_of_expenses', is_waiver_of_reimbursement_of_expenses), ('target', target)]), None)
 
@@ -6739,6 +8374,12 @@ class FinanceTransactionsResource(Resource):
             order_direction: Primary sort direction. Prefer uppercase values for consistent secondary sorting.
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
+
+        Example::
+
+            data = client.finance.transactions.get_datevexport(accounting_period_id=1)
+            with open("ergebnis.csv", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', "/finance/transactions/datevexport", _query([('accounting_period_id', accounting_period_id), ('created_pid', created_pid), ('cost_center_ids[]', cost_center_ids), ('donator_ids[]', donator_ids), ('include_ids[]', include_ids), ('exclude_ids[]', exclude_ids), ('account_ids[]', account_ids), ('is_donation', is_donation), ('is_income', is_income), ('start_date', start_date), ('end_date', end_date), ('is_immutable', is_immutable), ('order_by', order_by), ('order_direction', order_direction), ('query', query), ('is_waiver_of_reimbursement_of_expenses', is_waiver_of_reimbursement_of_expenses)]), None)
 
@@ -6758,6 +8399,13 @@ class FinanceTransactionsResource(Resource):
         Args:
             accounting_period_id: ID of accounting period to get master data for
             document_number: Document number to check for availability.
+
+        Example::
+
+            client.finance.transactions.get_documentnumberavailable(
+                accounting_period_id=1,
+                document_number="2024-001",
+            )
         """
         self._raw('GET', "/finance/transactions/documentnumberavailable", _query([('accounting_period_id', accounting_period_id), ('document_number', document_number)]), None)
 
@@ -6811,6 +8459,12 @@ class FinanceTransactionsResource(Resource):
             target: Column layout: default is the human-readable CT export; sage100 uses separate debit/credit account and cost-center numbers plus tax fields. An empty string selects default.
             format: File format.
             type_: Legacy alias for format. Use format for new integrations.
+
+        Example::
+
+            data = client.finance.transactions.get_export(accounting_period_id=1)
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', "/finance/transactions/export", _query([('accounting_period_id', accounting_period_id), ('created_pid', created_pid), ('cost_center_ids[]', cost_center_ids), ('donator_ids[]', donator_ids), ('include_ids[]', include_ids), ('exclude_ids[]', exclude_ids), ('account_ids[]', account_ids), ('is_donation', is_donation), ('is_income', is_income), ('start_date', start_date), ('end_date', end_date), ('is_immutable', is_immutable), ('order_by', order_by), ('order_direction', order_direction), ('query', query), ('is_waiver_of_reimbursement_of_expenses', is_waiver_of_reimbursement_of_expenses), ('target', target), ('format', format), ('type', type_)]), None)
 
@@ -6828,6 +8482,11 @@ class FinanceTransactionsResource(Resource):
 
         Args:
             accounting_period_id: Optional ID of an accounting period. When provided, only the transaction IDs of that period are returned as a flat array.
+
+        Example::
+
+            result = client.finance.transactions.get_ids()
+            print(result)
         """
         return _t.cast(_t.Optional[_t.Union[_t.List[str], StrMap[_t.List[str]]]], self._call('GET', "/finance/transactions/ids", _query([('accounting_period_id', accounting_period_id)]), None, _t.Optional[_t.Union[_t.List[str], StrMap[_t.List[str]]]], envelope=True))
 
@@ -6845,6 +8504,11 @@ class FinanceTransactionsResource(Resource):
 
         Args:
             accounting_period_id: ID of accounting period to get master data for
+
+        Example::
+
+            result = client.finance.transactions.get_nextdocumentnumber(accounting_period_id=1)
+            print(result)
         """
         return _t.cast(str, self._call('GET', "/finance/transactions/nextdocumentnumber", _query([('accounting_period_id', accounting_period_id)]), None, str, envelope=True))
 
@@ -6890,6 +8554,11 @@ class FinanceTransactionsResource(Resource):
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
             calculation_type: Explicit calculation mode, also saved as the current user’s preference. credit-debit uses selected account_ids; costcenter-sum uses cost-center selection; donation-sum uses donor selection.
+
+        Example::
+
+            result = client.finance.transactions.get_summary(accounting_period_id=1)
+            print(result)
         """
         return _t.cast(_t.Union[models.TransactionSummaryCostCenter, models.TransactionSummaryCreditDebit, models.TransactionSummaryDonation], self._call('GET', "/finance/transactions/summary", _query([('accounting_period_id', accounting_period_id), ('created_pid', created_pid), ('cost_center_ids[]', cost_center_ids), ('donator_ids[]', donator_ids), ('account_ids[]', account_ids), ('is_donation', is_donation), ('is_income', is_income), ('start_date', start_date), ('end_date', end_date), ('is_immutable', is_immutable), ('order_by', order_by), ('order_direction', order_direction), ('query', query), ('is_waiver_of_reimbursement_of_expenses', is_waiver_of_reimbursement_of_expenses), ('calculation_type', calculation_type)]), None, _t.Union[models.TransactionSummaryCostCenter, models.TransactionSummaryCreditDebit, models.TransactionSummaryDonation], envelope=True))
 
@@ -6945,6 +8614,11 @@ class FinanceTransactionsResource(Resource):
             include: Include additional information
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
+
+        Example::
+
+            for transaction in client.finance.transactions.list(accounting_period_id=1):
+                print(transaction.id)
         """
         return Paginator(self._core, "/finance/transactions", _query([('accounting_period_id', accounting_period_id), ('created_pid', created_pid), ('cost_center_ids[]', cost_center_ids), ('donator_ids[]', donator_ids), ('include_ids[]', include_ids), ('exclude_ids[]', exclude_ids), ('account_ids[]', account_ids), ('is_donation', is_donation), ('is_income', is_income), ('start_date', start_date), ('end_date', end_date), ('is_immutable', is_immutable), ('exclude_stornos', exclude_stornos), ('exclude_paybacks', exclude_paybacks), ('order_by', order_by), ('order_direction', order_direction), ('limit', limit), ('include[]', include), ('query', query), ('is_waiver_of_reimbursement_of_expenses', is_waiver_of_reimbursement_of_expenses)]), models.Transaction)
 
@@ -6965,6 +8639,14 @@ class FinanceTransactionsResource(Resource):
         Args:
             changeset: Use isImmutable=true to finalize or delete=true to delete. If both are true, finalization takes precedence. No recognized true trigger results in a no-op.
             filters: Scopes to combine with OR. Each scope requires an accountingPeriodId.
+
+        Example::
+
+            result = client.finance.transactions.patch(
+                changeset=ct.models.TransactionBatchUpdateChangeset.model_validate({}),
+                filters=[ct.models.TransactionBatchFilter.model_validate({"accountingPeriodId": 1})],
+            )
+            print(result)
         """
         return _t.cast(_t.Union[models.TransactionBatchResult, _t.List[_t.Any]], self._call('PATCH', "/finance/transactions", [], _body({'changeset': changeset, 'filters': filters}, extra_body), _t.Union[models.TransactionBatchResult, _t.List[_t.Any]], envelope=True))
 
@@ -7017,6 +8699,19 @@ class FinanceTransactionsResource(Resource):
             document_number: Replacement document number; never generated automatically on update.
             ignore_donation_constraint: Skip the normal donation-account/donor constraint. Spouse-consistency checks still apply when assignments change.
             is_immutable: Finalize this booking and its tax booking. This cannot unlock an already immutable booking.
+
+        Example::
+
+            result = client.finance.transactions.update(
+                1,
+                account_id=10,
+                amount=7812,
+                contra_account_id=11,
+                document_date=dt.date(2019, 1, 14),
+                note="Donation service offering",
+                document_number="2026-42",
+            )
+            print(result.id)
         """
         return _t.cast(models.Transaction, self._call('PUT', f"/finance/transactions/{_seg(id)}", _query([('include[]', include)]), _body({'accountId': account_id, 'amount': amount, 'cashDiscountAmount': cash_discount_amount, 'cashDiscountId': cash_discount_id, 'contraAccountId': contra_account_id, 'contraCostCenterId': contra_cost_center_id, 'costCenterId': cost_center_id, 'documentDate': document_date, 'donatorId': donator_id, 'donatorSpouseId': donator_spouse_id, 'isWaiverOfReimbursementOfExpenses': is_waiver_of_reimbursement_of_expenses, 'note': note, 'taxRateId': tax_rate_id, 'documentNumber': document_number, 'ignoreDonationConstraint': ignore_donation_constraint, 'isImmutable': is_immutable}, extra_body), models.Transaction, envelope=True))
 
@@ -7037,6 +8732,10 @@ class FinanceTransactionsResource(Resource):
         Args:
             id: ID of Entity
             note: Reason added to the original booking note in a localized cancellation prefix. A repeated cancellation keeps the existing cancellation note.
+
+        Example::
+
+            client.finance.transactions.update_storno(1, note="Incorrect amount")
         """
         self._raw('PUT', f"/finance/transactions/{_seg(id)}/storno", [], _body({'note': note}, extra_body))
 
@@ -7066,6 +8765,11 @@ class GroupAgegroupsResource(Resource):
             name: Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
             sort_key: Display order. Lower values come first; list endpoints sort equal values by the stored name.
             start: Lower age boundary in years, inclusive.
+
+        Example::
+
+            result = client.group.agegroups.create(end=5, name="3-5", sort_key=3, start=3)
+            print(result.name)
         """
         return _t.cast(models.AgeGroup, self._call('POST', "/group/agegroups", [], _body({'end': end, 'name': name, 'sortKey': sort_key, 'start': start}, extra_body), models.AgeGroup, envelope=True))
 
@@ -7086,6 +8790,10 @@ class GroupAgegroupsResource(Resource):
         Args:
             age_group_id: ID of the age range returned by GET /group/agegroups.
             dry_run: Required; true returns a 409 deletion report without deleting, false performs deletion.
+
+        Example::
+
+            client.group.agegroups.delete(2, dry_run=True)
         """
         self._raw('DELETE', f"/group/agegroups/{_seg(age_group_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -7103,6 +8811,11 @@ class GroupAgegroupsResource(Resource):
 
         Args:
             age_group_id: ID of the age range returned by GET /group/agegroups.
+
+        Example::
+
+            agegroup = client.group.agegroups.get(2)
+            print(agegroup.name)
         """
         return _t.cast(models.AgeGroup, self._call('GET', f"/group/agegroups/{_seg(age_group_id)}", [], None, models.AgeGroup, envelope=True))
 
@@ -7116,6 +8829,11 @@ class GroupAgegroupsResource(Resource):
 
         Returns all age ranges configured in this ChurchTools installation. An age range describes intended participant ages, such as ages 3 to 5. Groups can reference several ranges through information.ageGroupIds. These configured ranges are independent of the calculated ages of current members.
         Requires authentication, but no master-data editing permission. There are no filter or pagination parameters. Results are ordered by sortKey ascending and then by the stored name ascending; meta.count is the number of returned records. IDs and labels are installation-specific; discover them before assigning them to groups.
+
+        Example::
+
+            for agegroup in client.group.agegroups.list():
+                print(agegroup.name)
         """
         return _t.cast(_t.List[models.AgeGroup], self._call('GET', "/group/agegroups", [], None, _t.List[models.AgeGroup], envelope=True))
 
@@ -7143,6 +8861,10 @@ class GroupAgegroupsResource(Resource):
             name: Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
             sort_key: Display order. Lower values come first; list endpoints sort equal values by the stored name.
             start: Lower age boundary in years, inclusive.
+
+        Example::
+
+            client.group.agegroups.update(2, end=5, name="3-5", sort_key=3, start=3)
         """
         self._raw('PUT', f"/group/agegroups/{_seg(age_group_id)}", [], _body({'end': end, 'name': name, 'sortKey': sort_key, 'start': start}, extra_body))
 
@@ -7172,6 +8894,11 @@ class GroupGroupcategoriesResource(Resource):
             description: Optional explanation of the category. Omitted, null or blank input is stored as null, including on update.
             name: Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
             sort_key: Display order. Lower values come first; list endpoints sort equal values by the stored name.
+
+        Example::
+
+            result = client.group.groupcategories.create(color="blue", name="Gottesdienst", sort_key=5)
+            print(result.name)
         """
         return _t.cast(models.GroupCategory, self._call('POST', "/group/groupcategories", [], _body({'color': color, 'description': description, 'name': name, 'sortKey': sort_key}, extra_body), models.GroupCategory, envelope=True))
 
@@ -7192,6 +8919,10 @@ class GroupGroupcategoriesResource(Resource):
         Args:
             group_category_id: ID of the group category returned by GET /group/groupcategories.
             dry_run: Required; true returns a 409 deletion report without deleting, false performs deletion.
+
+        Example::
+
+            client.group.groupcategories.delete(2, dry_run=True)
         """
         self._raw('DELETE', f"/group/groupcategories/{_seg(group_category_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -7209,6 +8940,11 @@ class GroupGroupcategoriesResource(Resource):
 
         Args:
             group_category_id: ID of the group category returned by GET /group/groupcategories.
+
+        Example::
+
+            groupcategory = client.group.groupcategories.get(2)
+            print(groupcategory.name)
         """
         return _t.cast(models.GroupCategory, self._call('GET', f"/group/groupcategories/{_seg(group_category_id)}", [], None, models.GroupCategory, envelope=True))
 
@@ -7222,6 +8958,11 @@ class GroupGroupcategoriesResource(Resource):
 
         Returns all group categories configured in this ChurchTools installation. Categories organize groups by theme, for example worship services or community activities. A group references its category through information.groupCategoryId. Its group type separately defines shared settings and membership roles.
         Requires authentication, but no master-data editing permission. There are no filter or pagination parameters. Results are ordered by sortKey ascending and then by the stored name ascending; meta.count is the number of returned records. IDs and labels are installation-specific; discover them before assigning them to groups.
+
+        Example::
+
+            for groupcategory in client.group.groupcategories.list():
+                print(groupcategory.name)
         """
         return _t.cast(_t.List[models.GroupCategory], self._call('GET', "/group/groupcategories", [], None, _t.List[models.GroupCategory], envelope=True))
 
@@ -7249,6 +8990,11 @@ class GroupGroupcategoriesResource(Resource):
             description: Optional explanation of the category. Omitted, null or blank input is stored as null, including on update.
             name: Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
             sort_key: Display order. Lower values come first; list endpoints sort equal values by the stored name.
+
+        Example::
+
+            result = client.group.groupcategories.update(2, color="blue", name="Gottesdienst", sort_key=5)
+            print(result.name)
         """
         return _t.cast(models.GroupCategory, self._call('PUT', f"/group/groupcategories/{_seg(group_category_id)}", [], _body({'color': color, 'description': description, 'name': name, 'sortKey': sort_key}, extra_body), models.GroupCategory, envelope=True))
 
@@ -7290,6 +9036,21 @@ class GroupGrouptypesResource(Resource):
             posts_enabled: Whether posts are enabled for groups of this type. Access to individual groups and posts still depends on permissions.
             shorty: Short label used to identify this group type in compact displays.
             sort_key: Display order of the group type. Lower values come first; this endpoint sorts equal values by the stored name.
+
+        Example::
+
+            result = client.group.grouptypes.create(
+                available_for_new_person=False,
+                color="blue",
+                is_leader_necessary=False,
+                name="Kleingruppe",
+                name_plural="Kleingruppen",
+                permission_depth=0,
+                posts_enabled=True,
+                shorty="KG",
+                sort_key=2,
+            )
+            print(result.name)
         """
         return _t.cast(models.GroupType, self._call('POST', "/group/grouptypes", [], _body({'availableForNewPerson': available_for_new_person, 'color': color, 'description': description, 'isLeaderNecessary': is_leader_necessary, 'name': name, 'namePlural': name_plural, 'permissionDepth': permission_depth, 'postsEnabled': posts_enabled, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.GroupType, envelope=True))
 
@@ -7310,6 +9071,10 @@ class GroupGrouptypesResource(Resource):
         Args:
             group_type_id: ID of the group type returned by GET /group/grouptypes.
             dry_run: Inspect deletion dependencies without deleting; returns a 409 deletion report.
+
+        Example::
+
+            client.group.grouptypes.delete(2)
         """
         self._raw('DELETE', f"/group/grouptypes/{_seg(group_type_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -7326,6 +9091,11 @@ class GroupGrouptypesResource(Resource):
 
         Args:
             group_type_id: ID of the group type returned by GET /group/grouptypes.
+
+        Example::
+
+            grouptype = client.group.grouptypes.get(2)
+            print(grouptype.name)
         """
         return _t.cast(models.GroupType, self._call('GET', f"/group/grouptypes/{_seg(group_type_id)}", [], None, models.GroupType, envelope=True))
 
@@ -7340,6 +9110,11 @@ class GroupGrouptypesResource(Resource):
         Returns all group types configured in this ChurchTools installation. Group types are shared configuration records (master data), for example "Small group" or "Ministry team". A group is a concrete collection of people, such as "Tuesday evening small group", and references one type through `information.groupTypeId`.
         Each type defines common settings and has its own membership roles, such as leader or participant. Use `GET /group/roles` to retrieve role definitions and match their `groupTypeId` to the type's `id`. Use `GET /groups` to retrieve actual groups; this endpoint does not return groups or their members.
         Requires authentication. No master-data editing permission is required. The response is not paginated and accepts no filters. Results are ordered by `sortKey` ascending, then by the stored `name` ascending. `meta.count` is the number of group types returned. IDs and names are installation-specific; integrations should discover them instead of assuming fixed values.
+
+        Example::
+
+            for grouptype in client.group.grouptypes.list():
+                print(grouptype.name)
         """
         return _t.cast(_t.List[models.GroupType], self._call('GET', "/group/grouptypes", [], None, _t.List[models.GroupType], envelope=True))
 
@@ -7379,6 +9154,22 @@ class GroupGrouptypesResource(Resource):
             posts_enabled: Whether posts are enabled for groups of this type. Access to individual groups and posts still depends on permissions.
             shorty: Short label used to identify this group type in compact displays.
             sort_key: Display order of the group type. Lower values come first; this endpoint sorts equal values by the stored name.
+
+        Example::
+
+            result = client.group.grouptypes.update(
+                2,
+                available_for_new_person=False,
+                color="blue",
+                is_leader_necessary=False,
+                name="Kleingruppe",
+                name_plural="Kleingruppen",
+                permission_depth=0,
+                posts_enabled=True,
+                shorty="KG",
+                sort_key=2,
+            )
+            print(result.name)
         """
         return _t.cast(models.GroupType, self._call('PUT', f"/group/grouptypes/{_seg(group_type_id)}", [], _body({'availableForNewPerson': available_for_new_person, 'color': color, 'description': description, 'isLeaderNecessary': is_leader_necessary, 'name': name, 'namePlural': name_plural, 'permissionDepth': permission_depth, 'postsEnabled': posts_enabled, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.GroupType, envelope=True))
 
@@ -7404,6 +9195,14 @@ class GroupMeetingtemplatesResource(Resource):
         Args:
             name: Name used to select this feedback template in group settings.
             template: Ordered feedback fields and section headings. An empty array defines a form with no fields.
+
+        Example::
+
+            result = client.group.meetingtemplates.create(
+                name="Lowlights / Highlights",
+                template=[ct.models.MeetingTemplateField.model_validate({"label": "Highlights", "type": "color"})],
+            )
+            print(result.name)
         """
         return _t.cast(models.MeetingTemplate, self._call('POST', "/group/meetingtemplates", [], _body({'name': name, 'template': template}, extra_body), models.MeetingTemplate, envelope=True))
 
@@ -7424,6 +9223,10 @@ class GroupMeetingtemplatesResource(Resource):
         Args:
             meeting_template_id: ID of the feedback template returned by GET /group/meetingtemplates.
             dry_run: Required; true returns a 409 deletion report without deleting, false performs deletion.
+
+        Example::
+
+            client.group.meetingtemplates.delete(1, dry_run=True)
         """
         self._raw('DELETE', f"/group/meetingtemplates/{_seg(meeting_template_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -7440,6 +9243,11 @@ class GroupMeetingtemplatesResource(Resource):
 
         Args:
             meeting_template_id: ID of the feedback template returned by GET /group/meetingtemplates.
+
+        Example::
+
+            meetingtemplate = client.group.meetingtemplates.get(1)
+            print(meetingtemplate.name)
         """
         return _t.cast(models.MeetingTemplate, self._call('GET', f"/group/meetingtemplates/{_seg(meeting_template_id)}", [], None, models.MeetingTemplate, envelope=True))
 
@@ -7453,6 +9261,11 @@ class GroupMeetingtemplatesResource(Resource):
 
         Returns all configured group-meeting feedback templates. A template defines an ordered feedback form for group meetings. It is selected through settings.groupMeeting.templateId on a group. Meeting answers are stored separately in pollResult; the template does not schedule meetings or record attendance.
         Requires authentication, but no master-data editing permission. Accepts no filter or pagination parameters. Results are sorted by name ascending. meta.count is the number of returned templates.
+
+        Example::
+
+            for meetingtemplate in client.group.meetingtemplates.list():
+                print(meetingtemplate.name)
         """
         return _t.cast(_t.List[models.MeetingTemplate], self._call('GET', "/group/meetingtemplates", [], None, _t.List[models.MeetingTemplate], envelope=True))
 
@@ -7476,6 +9289,14 @@ class GroupMeetingtemplatesResource(Resource):
             meeting_template_id: ID of the feedback template returned by GET /group/meetingtemplates.
             name: Name used to select this feedback template in group settings.
             template: Ordered feedback fields and section headings. An empty array defines a form with no fields.
+
+        Example::
+
+            client.group.meetingtemplates.update(
+                1,
+                name="Lowlights / Highlights",
+                template=[ct.models.MeetingTemplateField.model_validate({"label": "Highlights", "type": "color"})],
+            )
         """
         self._raw('PUT', f"/group/meetingtemplates/{_seg(meeting_template_id)}", [], _body({'name': name, 'template': template}, extra_body))
 
@@ -7515,6 +9336,20 @@ class GroupRolesResource(Resource):
             shorty: Abbreviated label for the role, used in compact displays.
             sort_key: Display order among roles. Lower values come first.
             type_: Functional classification of the role. Multiple roles with different names can share the same classification.
+
+        Example::
+
+            result = client.group.roles.create(
+                group_type_id=2,
+                grow_path_id=4,
+                is_default=False,
+                is_hidden=False,
+                name="Leiter",
+                shorty="L",
+                sort_key=1,
+                type_="leader",
+            )
+            print(result.name)
         """
         return _t.cast(models.Role, self._call('POST', "/group/roles", [], _body({'groupTypeId': group_type_id, 'growPathId': grow_path_id, 'isDefault': is_default, 'isHidden': is_hidden, 'isLeader': is_leader, 'name': name, 'shorty': shorty, 'sortKey': sort_key, 'type': type_}, extra_body), models.Role, envelope=True))
 
@@ -7535,6 +9370,10 @@ class GroupRolesResource(Resource):
         Args:
             role_id: ID of the group-type role definition returned by GET /group/roles.
             dry_run: Inspect deletion dependencies without deleting; returns a 409 deletion report.
+
+        Example::
+
+            client.group.roles.delete(16)
         """
         self._raw('DELETE', f"/group/roles/{_seg(role_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -7551,6 +9390,11 @@ class GroupRolesResource(Resource):
 
         Args:
             role_id: ID of the group-type role definition returned by GET /group/roles.
+
+        Example::
+
+            role = client.group.roles.get(16)
+            print(role.name)
         """
         return _t.cast(models.Role, self._call('GET', f"/group/roles/{_seg(role_id)}", [], None, models.Role, envelope=True))
 
@@ -7572,6 +9416,11 @@ class GroupRolesResource(Resource):
         Args:
             group_type_id: ID of the group type whose role definitions to return.
             response_format: Choose full role definitions (standard) or compact display references (domainObject).
+
+        Example::
+
+            result = client.group.roles.list()
+            print(result)
         """
         return _t.cast(_t.Union[_t.List[models.Role], _t.List[models.DomainObjectRole]], self._call('GET', "/group/roles", _query([('group_type_id', group_type_id), ('responseFormat', response_format)]), None, _t.Union[_t.List[models.Role], _t.List[models.DomainObjectRole]], envelope=True))
 
@@ -7610,6 +9459,21 @@ class GroupRolesResource(Resource):
             shorty: Abbreviated label for the role, used in compact displays.
             sort_key: Display order among roles. Lower values come first.
             type_: Functional classification of the role. Multiple roles with different names can share the same classification.
+
+        Example::
+
+            result = client.group.roles.update(
+                16,
+                group_type_id=2,
+                grow_path_id=4,
+                is_default=False,
+                is_hidden=False,
+                name="Leiter",
+                shorty="L",
+                sort_key=1,
+                type_="leader",
+            )
+            print(result.name)
         """
         return _t.cast(models.Role, self._call('PUT', f"/group/roles/{_seg(role_id)}", [], _body({'groupTypeId': group_type_id, 'growPathId': grow_path_id, 'isDefault': is_default, 'isHidden': is_hidden, 'isLeader': is_leader, 'name': name, 'shorty': shorty, 'sortKey': sort_key, 'type': type_}, extra_body), models.Role, envelope=True))
 
@@ -7635,6 +9499,11 @@ class GroupTargetgroupsResource(Resource):
         Args:
             name: Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
             sort_key: Display order. Lower values come first; list endpoints sort equal values by the stored name.
+
+        Example::
+
+            result = client.group.targetgroups.create(name="men", sort_key=2)
+            print(result.name)
         """
         return _t.cast(models.TargetGroup, self._call('POST', "/group/targetgroups", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.TargetGroup, envelope=True))
 
@@ -7655,6 +9524,10 @@ class GroupTargetgroupsResource(Resource):
         Args:
             target_group_id: ID of the target audience returned by GET /group/targetgroups.
             dry_run: Required; true returns a 409 deletion report without deleting, false performs deletion.
+
+        Example::
+
+            client.group.targetgroups.delete(2, dry_run=True)
         """
         self._raw('DELETE', f"/group/targetgroups/{_seg(target_group_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -7672,6 +9545,11 @@ class GroupTargetgroupsResource(Resource):
 
         Args:
             target_group_id: ID of the target audience returned by GET /group/targetgroups.
+
+        Example::
+
+            targetgroup = client.group.targetgroups.get(2)
+            print(targetgroup.name)
         """
         return _t.cast(models.TargetGroup, self._call('GET', f"/group/targetgroups/{_seg(target_group_id)}", [], None, models.TargetGroup, envelope=True))
 
@@ -7685,6 +9563,11 @@ class GroupTargetgroupsResource(Resource):
 
         Returns all target audiences configured in this ChurchTools installation. A target audience describes whom a group is intended for, such as families or students. A group references one audience through information.targetGroupId. This endpoint returns audience labels, not people or groups.
         Requires authentication, but no master-data editing permission. There are no filter or pagination parameters. Results are ordered by sortKey ascending and then by the stored name ascending; meta.count is the number of returned records. IDs and labels are installation-specific; discover them before assigning them to groups.
+
+        Example::
+
+            for targetgroup in client.group.targetgroups.list():
+                print(targetgroup.name)
         """
         return _t.cast(_t.List[models.TargetGroup], self._call('GET', "/group/targetgroups", [], None, _t.List[models.TargetGroup], envelope=True))
 
@@ -7708,6 +9591,10 @@ class GroupTargetgroupsResource(Resource):
             target_group_id: ID of the target audience returned by GET /group/targetgroups.
             name: Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
             sort_key: Display order. Lower values come first; list endpoints sort equal values by the stored name.
+
+        Example::
+
+            client.group.targetgroups.update(2, name="men", sort_key=2)
         """
         self._raw('PUT', f"/group/targetgroups/{_seg(target_group_id)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body))
 
@@ -7740,6 +9627,15 @@ class GroupsCheckinResource(Resource):
             group_meeting_id: ID of an existing meeting belonging to the path group.
             printer_id: optional printer ID, if a name tag should be printed out
             token: Optional ticket token for this person and group. The ticket is marked used before attendance is recorded; later failures can leave it used.
+
+        Example::
+
+            result = client.groups.checkin.create(
+                42,
+                42,
+                date=dt.datetime(2022, 10, 19, 12, 0, tzinfo=dt.timezone.utc),
+            )
+            print(result.total_checked_in)
         """
         return _t.cast(models.Checkin, self._call('POST', f"/groups/{_seg(group_id)}/checkin/{_seg(person_id)}", [], _body({'date': date, 'groupMeetingId': group_meeting_id, 'printerId': printer_id, 'token': token}, extra_body), models.Checkin, envelope=True))
 
@@ -7761,6 +9657,10 @@ class GroupsDocumentsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            client.groups.documents.get(42, "beispiel")
         """
         self._raw('GET', f"/groups/{_seg(group_id)}/documents/{_seg(html_template_id)}", [], None)
 
@@ -7781,6 +9681,11 @@ class GroupsFollowupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            statistic = client.groups.followups.get_statistics(42)
+            print(statistic.count_done)
         """
         return _t.cast(models.FollowUpStatistics, self._call('GET', f"/groups/{_seg(group_id)}/followups/statistics", [], None, models.FollowUpStatistics, envelope=True))
 
@@ -7802,6 +9707,11 @@ class GroupsFollowupsResource(Resource):
             group_id: ID of group
             filter: Repeat to select any of the listed states; omitted/empty includes all states.
             limit: Maximum results in this page.
+
+        Example::
+
+            for followup in client.groups.followups.list(42):
+                print(followup.title)
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/followups", _query([('filter[]', filter), ('limit', limit)]), models.FollowUp2)
 
@@ -7830,6 +9740,14 @@ class GroupsMeetingsResource(Resource):
         Args:
             group_id: ID of group
             start_date: Start of the meeting in UTC.
+
+        Example::
+
+            result = client.groups.meetings.create(
+                42,
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            )
+            print(result.id)
         """
         return _t.cast(models.GroupMeeting, self._call('POST', f"/groups/{_seg(group_id)}/meetings", [], _body({'startDate': start_date}, extra_body), models.GroupMeeting, envelope=True))
 
@@ -7848,6 +9766,10 @@ class GroupsMeetingsResource(Resource):
         Args:
             group_id: ID of group
             meeting_id: ID of a meeting belonging to the group in the URL.
+
+        Example::
+
+            client.groups.meetings.delete(42, 120)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}", [], None)
 
@@ -7866,6 +9788,11 @@ class GroupsMeetingsResource(Resource):
         Args:
             group_id: ID of group
             meeting_id: ID of a meeting belonging to the group in the URL.
+
+        Example::
+
+            meeting = client.groups.meetings.get(42, 120)
+            print(meeting.id)
         """
         return _t.cast(models.GroupMeeting, self._call('GET', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}", [], None, models.GroupMeeting, envelope=True))
 
@@ -7901,6 +9828,12 @@ class GroupsMeetingsResource(Resource):
             from_: Inclusive lower start-time boundary. Date or UTC date-time; defaults to yesterday at midnight. start_date is a legacy alias.
             to: Exclusive upper start-time boundary. Date or UTC date-time; defaults to midnight 30 days after today. end_date is a legacy alias.
             direction: Accepted for compatibility; the current date-range export remains ordered oldest first.
+
+        Example::
+
+            data = client.groups.meetings.get_export(42)
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', f"/groups/{_seg(group_id)}/meetings/export", _query([('format', format), ('type', type_), ('is_canceled', is_canceled), ('is_completed', is_completed), ('from', from_), ('to', to), ('direction', direction)]), None)
 
@@ -7938,6 +9871,11 @@ class GroupsMeetingsResource(Resource):
             direction: Enable directional paging strictly before or after from; omit for an unpaginated date range.
             limit: Number of meetings per page in directional mode only.
             include: Include additional information
+
+        Example::
+
+            for meeting in client.groups.meetings.list(42):
+                print(meeting.id)
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/meetings", _query([('is_canceled', is_canceled), ('is_completed', is_completed), ('from', from_), ('to', to), ('direction', direction), ('limit', limit), ('include[]', include)]), models.GroupMeeting)
 
@@ -7974,6 +9912,17 @@ class GroupsMeetingsResource(Resource):
             num_guests: Additional guest headcount entered for the meeting, or null when unspecified. This does not create person or attendance records.
             poll_result: Feedback data to store for this meeting, typically MeetingTemplateField objects with answer values. The endpoint validates the outer array but not individual field contents. Omit or send null to clear.
             start_date: New start timestamp in UTC; dateFrom is a legacy alias.
+
+        Example::
+
+            result = client.groups.meetings.update(
+                42,
+                120,
+                is_canceled=False,
+                is_completed=False,
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            )
+            print(result.id)
         """
         return _t.cast(models.GroupMeeting, self._call('PUT', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}", [], _body({'comment': comment, 'isCanceled': is_canceled, 'isCompleted': is_completed, 'numGuests': num_guests, 'pollResult': poll_result, 'startDate': start_date}, extra_body), models.GroupMeeting, envelope=True))
 
@@ -7999,6 +9948,11 @@ class GroupsMemberfieldsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            for memberfield in client.groups.memberfields.list(42):
+                print(memberfield)
         """
         return _t.cast(_t.List[_t.Union[models.GetGroupsGroupIdMemberfieldsDataItemVariant1, models.GetGroupsGroupIdMemberfieldsDataItemVariant2]], self._call('GET', f"/groups/{_seg(group_id)}/memberfields", [], None, _t.List[_t.Union[models.GetGroupsGroupIdMemberfieldsDataItemVariant1, models.GetGroupsGroupIdMemberfieldsDataItemVariant2]], envelope=True))
 
@@ -8032,6 +9986,12 @@ class GroupsMembersResource(Resource):
             group_id: ID of group
             format: Output format; CSV by default.
             type_: Use `format`
+
+        Example::
+
+            data = client.groups.members.create_export(42)
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', f"/groups/{_seg(group_id)}/members/export", _query([('format', format), ('type', type_)]), _body({'config': config}, extra_body))
 
@@ -8050,6 +10010,10 @@ class GroupsMembersResource(Resource):
         Args:
             group_id: ID of group
             person_id: ID of person
+
+        Example::
+
+            client.groups.members.delete(42, 42)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/members/{_seg(person_id)}", [], None)
 
@@ -8068,6 +10032,11 @@ class GroupsMembersResource(Resource):
         Args:
             group_id: ID of group
             person_id: ID of person
+
+        Example::
+
+            member = client.groups.members.get(42, 42)
+            print(member.id)
         """
         return _t.cast(models.GroupMember, self._call('GET', f"/groups/{_seg(group_id)}/members/{_seg(person_id)}", [], None, models.GroupMember, envelope=True))
 
@@ -8089,6 +10058,12 @@ class GroupsMembersResource(Resource):
             group_id: ID of group
             format: Output format; CSV by default.
             type_: Use `format`
+
+        Example::
+
+            data = client.groups.members.get_export(42)
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', f"/groups/{_seg(group_id)}/members/export", _query([('format', format), ('type', type_)]), None)
 
@@ -8134,6 +10109,11 @@ class GroupsMembersResource(Resource):
             order_directions: Sort directions corresponding by position to orderFields. Supply one direction per sort field. Built-in fields default to ASC when their direction is omitted.
             person_fields: Additional person-field keys to include in each member’s personFields object, for example firstName. Person-field permissions apply; membership-specific fields are returned separately in fields.
             include: Additional member-list data. newsletter and tags add properties to each member; aggregations adds meta.aggregations.fields with numeric group member field aggregates over all filtered members, across all pages.
+
+        Example::
+
+            for member in client.groups.members.list(42):
+                print(member.id)
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/members", _query([('limit', limit), ('role_ids[]', role_ids), ('person_id[]', person_id), ('group_member_statuses[]', group_member_statuses), ('allowed_chat_users_only', allowed_chat_users_only), ('allowed_chat_writers_only', allowed_chat_writers_only), ('query', query), ('comment', comment), ('member_start_date_after', member_start_date_after), ('member_start_date_before', member_start_date_before), ('orderFields[]', order_fields), ('orderDirections[]', order_directions), ('personFields[]', person_fields), ('include[]', include)]), models.GroupMember)
 
@@ -8169,6 +10149,11 @@ class GroupsMembersResource(Resource):
             has_field_changed: Legacy alias used only if new_fields is absent.
             offset_id: Exclusive upper entry-ID boundary; 0 yields an empty list.
             limit: Maximum entries in this batch.
+
+        Example::
+
+            for history in client.groups.members.list_history(42):
+                print(history.id)
         """
         return _t.cast(_t.List[models.GroupMemberHistoryEntry], self._call('GET', f"/groups/{_seg(group_id)}/members/history", _query([('member_id', member_id), ('actor_id', actor_id), ('origin', origin), ('new_role_id', new_role_id), ('new_status', new_status), ('new_fields', new_fields), ('has_field_changed', has_field_changed), ('offset_id', offset_id), ('limit', limit)]), None, _t.List[models.GroupMemberHistoryEntry], envelope=True))
 
@@ -8187,6 +10172,11 @@ class GroupsMembersResource(Resource):
         Args:
             group_id: ID of group
             person_id: ID of person
+
+        Example::
+
+            for meeting in client.groups.members.list_meetings(42, 42):
+                print(meeting.status)
         """
         return _t.cast(_t.List[models.GroupMemberMeeting], self._call('GET', f"/groups/{_seg(group_id)}/members/{_seg(person_id)}/meetings", [], None, _t.List[models.GroupMemberMeeting], envelope=True))
 
@@ -8210,6 +10200,11 @@ class GroupsMembersResource(Resource):
             group_type_role_ids: Group-type role IDs configured for this group; limits the population to these roles.
             person_fields: Keys of person database fields from address, information or church categories. Custom keys depend on the installation.
             group_member_fields: IDs of custom membership field definitions belonging to this group.
+
+        Example::
+
+            for statistic in client.groups.members.list_statistics(42, group_type_role_ids=[8, 9]):
+                print(statistic.field_type)
         """
         return _t.cast(_t.List[models.GroupMemberStatistic], self._call('GET', f"/groups/{_seg(group_id)}/members/statistics", _query([('group_type_role_ids[]', group_type_role_ids), ('personFields[]', person_fields), ('groupMemberFields[]', group_member_fields)]), None, _t.List[models.GroupMemberStatistic], envelope=True))
 
@@ -8248,6 +10243,11 @@ class GroupsMembersResource(Resource):
             member_end_date: End date or null to clear. Must not precede the resulting start date.
             member_start_date: Start date or UTC timestamp, not in the future. If the resulting status is active, an explicitly submitted value must not be null; omission preserves the existing value.
             waitinglist_position: Waiting-list position; 0 selects the next free position, null removes it. Legacy -1 reaches a backend assertion and should be avoided. This PATCH does not automatically change status or shift other positions.
+
+        Example::
+
+            result = client.groups.members.patch(42, 42, comment="Available on weekends.")
+            print(result.id)
         """
         return _t.cast(models.GroupMember, self._call('PATCH', f"/groups/{_seg(group_id)}/members/{_seg(person_id)}", [], _body({'comment': comment, 'fields': fields, 'groupMemberStatus': group_member_status, 'groupTypeRoleId': group_type_role_id, 'ignoreWaitingListFull': ignore_waiting_list_full, 'informLeader': inform_leader, 'memberEndDate': member_end_date, 'memberStartDate': member_start_date, 'waitinglistPosition': waitinglist_position}, extra_body), models.GroupMember, envelope=True))
 
@@ -8290,6 +10290,11 @@ class GroupsMembersResource(Resource):
             member_start_date: Date or UTC timestamp not in the future. Omitted/null defaults to now when a new membership becomes active, otherwise null. Explicit null is rejected if active is explicitly submitted. Legacy updates generally retain an existing start when omitted/null.
             only_add: Reject with 403 if the person already belongs to the group.
             waitinglist_position: 0 selects the next free waiting-list position; a positive value selects that position. Supplied positions set status to waiting and can shift other positions. For creation, null/omission assigns no position. For legacy updates, null/omission preserves it and -1 removes it but also sets status to waiting; -1 on creation reaches an assertion.
+
+        Example::
+
+            result = client.groups.members.update(42, 42, comment="Available on weekends.")
+            print(result.id)
         """
         return _t.cast(models.PutGroupsGroupIdMembersPersonIdData, self._call('PUT', f"/groups/{_seg(group_id)}/members/{_seg(person_id)}", [], _body({'comment': comment, 'fields': fields, 'groupMemberStatus': group_member_status, 'groupTypeRoleId': group_type_role_id, 'ignoreGroupFull': ignore_group_full, 'ignoreWaitingListFull': ignore_waiting_list_full, 'informLeader': inform_leader, 'memberEndDate': member_end_date, 'memberStartDate': member_start_date, 'only_add': only_add, 'waitinglistPosition': waitinglist_position}, extra_body), models.PutGroupsGroupIdMembersPersonIdData, envelope=True))
 
@@ -8322,6 +10327,15 @@ class GroupsNewsletterIntegrationsResource(Resource):
             list_id: Existing provider list ID. The provider/list pair must not already be mapped to any group.
             opt_in_required: Require double opt-in for subscriptions. Providers with doesDoubleOptIn=true handle confirmation; otherwise ChurchTools sends confirmation emails.
             provider: Canonical newsletter provider name. Availability depends on the installation configuration; discover active providers using GET /newsletter-integrations. The backend also accepts case variations but stores the supplied spelling.
+
+        Example::
+
+            result = client.groups.newsletter_integrations.create(
+                42,
+                opt_in_required=True,
+                provider="Mailjet",
+            )
+            print(result.id)
         """
         return _t.cast(models.NewsletterIntegrationGroupMapping, self._call('POST', f"/groups/{_seg(group_id)}/newsletter-integrations", [], _body({'createListName': create_list_name, 'existingMembersHandling': existing_members_handling, 'listId': list_id, 'optInRequired': opt_in_required, 'provider': provider}, extra_body), models.NewsletterIntegrationGroupMapping, envelope=True))
 
@@ -8342,6 +10356,10 @@ class GroupsNewsletterIntegrationsResource(Resource):
             group_id: ID of group
             provider: Provider spelling stored in the mapping returned by GET /groups/{groupId}/newsletter-integrations. Canonical names are MailChimp, Mailjet and CleverReach; legacy/disabled mappings may have other stored names.
             list_id: External list ID from the stored mapping; this is not the ChurchTools mapping record ID.
+
+        Example::
+
+            client.groups.newsletter_integrations.delete(42, "Mailjet", "12345")
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/newsletter-integrations/{_seg(provider)}/{_seg(list_id)}", [], None)
 
@@ -8358,6 +10376,11 @@ class GroupsNewsletterIntegrationsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            for newsletter_integration in client.groups.newsletter_integrations.list(42):
+                print(newsletter_integration.id)
         """
         return _t.cast(_t.List[models.NewsletterIntegrationGroupMapping], self._call('GET', f"/groups/{_seg(group_id)}/newsletter-integrations", [], None, _t.List[models.NewsletterIntegrationGroupMapping], envelope=True))
 
@@ -8382,6 +10405,10 @@ class GroupsNewsletterIntegrationsResource(Resource):
             provider: Provider spelling stored in the mapping returned by GET /groups/{groupId}/newsletter-integrations. Canonical names are MailChimp, Mailjet and CleverReach; legacy/disabled mappings may have other stored names.
             list_id: External list ID from the stored mapping; this is not the ChurchTools mapping record ID.
             person_id: Resend only the pending opt-in for this person.
+
+        Example::
+
+            client.groups.newsletter_integrations.resend_optins(42, "Mailjet", "12345")
         """
         self._raw('POST', f"/groups/{_seg(group_id)}/newsletter-integrations/{_seg(provider)}/{_seg(list_id)}/resend-optins", _query([('person_id', person_id)]), _body(body))
 
@@ -8404,6 +10431,10 @@ class GroupsParentsResource(Resource):
         Args:
             group_id: ID of group
             parent_group_id: ID of the direct parent group. groupId identifies the child.
+
+        Example::
+
+            client.groups.parents.delete(42, 12)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/parents/{_seg(parent_group_id)}", [], None)
 
@@ -8455,6 +10486,11 @@ class GroupsParentsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+
+        Example::
+
+            for parent in client.groups.parents.list("beispiel"):
+                print(parent.title)
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/parents", _query([('limit', limit), ('ids[]', ids), ('campus_ids[]', campus_ids), ('agegroup_ids[]', agegroup_ids), ('group_status_ids[]', group_status_ids), ('group_category_ids[]', group_category_ids), ('target_group_ids[]', target_group_ids), ('weekdays[]', weekdays), ('group_type_ids[]', group_type_ids), ('tag_ids[]', tag_ids), ('is_open_for_members', is_open_for_members), ('without_my_groups', without_my_groups), ('only_my_groups', only_my_groups), ('has_meeting_place', has_meeting_place), ('allow_posts', allow_posts), ('has_posts', has_posts), ('has_active_chat', has_active_chat), ('query', query), ('visibility', visibility)]), models.DomainObjectGroup)
 
@@ -8475,6 +10511,10 @@ class GroupsParentsResource(Resource):
         Args:
             group_id: ID of group
             parent_group_id: ID of the direct parent group. groupId identifies the child.
+
+        Example::
+
+            client.groups.parents.update(42, 12)
         """
         self._raw('PUT', f"/groups/{_seg(group_id)}/parents/{_seg(parent_group_id)}", [], _body(body))
 
@@ -8497,6 +10537,11 @@ class GroupsQrcodecheckinResource(Resource):
         Args:
             group_id: ID of group
             person_id: ID of person
+
+        Example::
+
+            qrcodecheckin = client.groups.qrcodecheckin.get(42, 42)
+            print(qrcodecheckin.domain_id)
         """
         return _t.cast(models.GroupQRCodeCheckin, self._call('GET', f"/groups/{_seg(group_id)}/qrcodecheckin/{_seg(person_id)}", [], None, models.GroupQRCodeCheckin, envelope=True))
 
@@ -8515,6 +10560,11 @@ class GroupsQrcodecheckinResource(Resource):
         Args:
             group_id: ID of group
             person_id: ID of person
+
+        Example::
+
+            pdf = client.groups.qrcodecheckin.get_pdf(42, 42)
+            print(pdf.url)
         """
         return _t.cast(models.GetGroupsIdQrcodecheckinPersonIdPdfData, self._call('GET', f"/groups/{_seg(group_id)}/qrcodecheckin/{_seg(person_id)}/pdf", [], None, models.GetGroupsIdQrcodecheckinPersonIdPdfData, envelope=True))
 
@@ -8531,6 +10581,11 @@ class GroupsQrcodecheckinResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            result = client.groups.qrcodecheckin.list(42)
+            print(result)
         """
         return _t.cast(_t.Optional[_t.List[models.GroupQRCodeCheckin]], self._call('GET', f"/groups/{_seg(group_id)}/qrcodecheckin", [], None, _t.Optional[_t.List[models.GroupQRCodeCheckin]], envelope=True))
 
@@ -8551,6 +10606,11 @@ class GroupsQrcodecheckinResource(Resource):
         Args:
             group_id: ID of group
             person_id: ID of person
+
+        Example::
+
+            qrcodecheckin = client.groups.qrcodecheckin.send(42, 42)
+            print(qrcodecheckin.domain_id)
         """
         return _t.cast(models.GroupQRCodeCheckin, self._call('POST', f"/groups/{_seg(group_id)}/qrcodecheckin/{_seg(person_id)}/send", [], _body(body), models.GroupQRCodeCheckin, envelope=True))
 
@@ -8573,6 +10633,11 @@ class GroupsRolesResource(Resource):
 
         Args:
             group_id: Numeric ID or chat GUID of the group whose role settings to retrieve.
+
+        Example::
+
+            for role in client.groups.roles.list(42):
+                print(role.name)
         """
         return _t.cast(_t.List[models.GroupRole], self._call('GET', f"/groups/{_seg(group_id)}/roles", [], None, _t.List[models.GroupRole], envelope=True))
 
@@ -8611,6 +10676,11 @@ class GroupsRolesResource(Resource):
             html_template_ids: Replace the list of HTML templates available for membership documents in this role. Send an empty array to clear the list; null is not accepted. Newly added templates must support group membership documents.
             is_active: Enable or disable this role in the group. The default role cannot be deactivated. This does not set the membership status of individual people.
             receive_qr_code: Enable check-in QR codes for members in this role.
+
+        Example::
+
+            result = client.groups.roles.patch(42, 1, can_read_chat=True)
+            print(result.name)
         """
         return _t.cast(models.GroupRole, self._call('PATCH', f"/groups/{_seg(group_id)}/roles/{_seg(role_id)}", [], _body({'canReadChat': can_read_chat, 'canWriteChat': can_write_chat, 'countsTowardsSeats': counts_towards_seats, 'forceTwoFactorAuth': force_two_factor_auth, 'growPathId': grow_path_id, 'htmlTemplateIds': html_template_ids, 'isActive': is_active, 'receiveQRCode': receive_qr_code}, extra_body), models.GroupRole, envelope=True))
 
@@ -8650,6 +10720,11 @@ class LogsStatisticsResource(Resource):
         Args:
             order_by: Order the pagination result. Allowed values: `frequent` and `last`
             limit: Number of results per page.
+
+        Example::
+
+            for login in client.logs.statistics.list_login():
+                print(login.last_login)
         """
         return Paginator(self._core, "/logs/statistics/login", _query([('order_by', order_by), ('limit', limit)]), models.GetLogsStatisticsLoginDataItem)
 
@@ -8670,6 +10745,11 @@ class PermissionsGlobalResource(Resource):
         `GET /permissions/global`
 
         Returns effective global permission values for the authenticated user, grouped by active module. No permission-administration grant is required. Includes registered keys even without a grant: boolean flags are false and selection arrays are empty. A maximum-level permission is represented by a one-element array with the effective maximum; unrestricted maximum access uses 99999. Multi-selection grants expand unrestricted access into currently available IDs, so this response cannot distinguish unrestricted access from explicit grants to all current values. Inactive modules are absent; compatibility aliases in churchdb can be null when their source in churchgroup is absent. Use the definitions and origins endpoints for value semantics and assignment provenance. Group-internal permissions and additional object policies are not combined here.
+
+        Example::
+
+            item = client.permissions.global_.get()
+            print(item)
         """
         return _t.cast(models.GlobalPermissions, self._call('GET', "/permissions/global", [], None, models.GlobalPermissions, envelope=True))
 
@@ -8682,6 +10762,11 @@ class PermissionsGlobalResource(Resource):
         `GET /permissions/global/person-summary`
 
         Returns every registered global permission of active modules with per-selection counts across non-archived persons. Requires administer persons in churchcore; this administrative overview has no additional person-visibility filter and does not generally exclude system users. Includes zero-count selections. Boolean permissions have one dataId=null selection. Data-field permissions start with unrestricted dataId=-1, followed by configured IDs in ascending order. Maximum grants count toward every configured level up to the effective maximum; unrestricted counts only include grants covering future values. Preview arrays contain the first three matching person IDs in ascending order. Permissions follow definition order. Counts across selections can overlap. No pagination or full person lists are returned; load /permissions/global/auths/{authId}/persons for one selection.
+
+        Example::
+
+            person_summary = client.permissions.global_.get_person_summary()
+            print(person_summary)
         """
         return _t.cast(models.GetPermissionsGlobalPersonSummaryData, self._call('GET', "/permissions/global/person-summary", [], None, models.GetPermissionsGlobalPersonSummaryData, envelope=True))
 
@@ -8725,6 +10810,11 @@ class PersonCommentviewersResource(Resource):
         Args:
             name: Trimmed display name or translation key, 1–50 characters. No uniqueness constraint is applied.
             sort_key: Nonnegative display sort key; defaults to 0.
+
+        Example::
+
+            result = client.person.commentviewers.create(name="Pastoral team")
+            print(result.name)
         """
         return _t.cast(models.CommentViewer, self._call('POST', "/person/commentviewers", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.CommentViewer, envelope=True))
 
@@ -8744,6 +10834,10 @@ class PersonCommentviewersResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.person.commentviewers.delete(1)
         """
         self._raw('DELETE', f"/person/commentviewers/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -8760,6 +10854,11 @@ class PersonCommentviewersResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            commentviewer = client.person.commentviewers.get(1)
+            print(commentviewer.name)
         """
         return _t.cast(models.CommentViewer, self._call('GET', f"/person/commentviewers/{_seg(id)}", [], None, models.CommentViewer, envelope=True))
 
@@ -8772,6 +10871,11 @@ class PersonCommentviewersResource(Resource):
         `GET /person/commentviewers`
 
         Lists all configured visibility categories for person comments and person-linked notes. A category is not a user group: assign churchdb view comments for its ID to control who may see matching content, subject to the content endpoint’s additional rules. Requires authentication, but no master-data-edit or per-category view-comments permission is checked here. The catalog is unpaginated and includes categories the caller cannot use to read content. Results are sorted by sortKey, then the stored name, both ascending.
+
+        Example::
+
+            for commentviewer in client.person.commentviewers.list():
+                print(commentviewer.name)
         """
         return _t.cast(_t.List[models.CommentViewer], self._call('GET', "/person/commentviewers", [], None, _t.List[models.CommentViewer], envelope=True))
 
@@ -8794,6 +10898,11 @@ class PersonCommentviewersResource(Resource):
             id: ID of Entity
             name: Trimmed display name or translation key, 1–50 characters. No uniqueness constraint is applied.
             sort_key: Optional nonnegative sort key. Omission preserves the existing value. Explicit null passes the validator but fails the integer setter; use omission to retain the value.
+
+        Example::
+
+            result = client.person.commentviewers.update(1, name="Pastoral team")
+            print(result.name)
         """
         return _t.cast(models.CommentViewer, self._call('PUT', f"/person/commentviewers/{_seg(id)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.CommentViewer, envelope=True))
 
@@ -8820,6 +10929,11 @@ class PersonGrowpathsResource(Resource):
             color: Color key accepted by the growth-path validator.
             name: Trimmed stage name or translation key, 1–100 characters. Duplicate names are allowed.
             sort_key: Nonnegative display order and calculation priority; defaults to 0. Larger values take precedence when a person qualifies for several stages.
+
+        Example::
+
+            result = client.person.growpaths.create(color="blue", name="New Believer")
+            print(result.name)
         """
         return _t.cast(models.GrowPath, self._call('POST', "/person/growpaths", [], _body({'color': color, 'name': name, 'sortKey': sort_key}, extra_body), models.GrowPath, envelope=True))
 
@@ -8839,6 +10953,10 @@ class PersonGrowpathsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: Simulate deletion. Returns 409 with a deletion report even when deletion would be allowed. The spelling is dryRun, not the dry_run used by several other master-data endpoints.
+
+        Example::
+
+            client.person.growpaths.delete(1)
         """
         self._raw('DELETE', f"/person/growpaths/{_seg(id)}", _query([('dryRun', dry_run)]), None)
 
@@ -8855,6 +10973,11 @@ class PersonGrowpathsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            growpath = client.person.growpaths.get(1)
+            print(growpath.name)
         """
         return _t.cast(models.GrowPath, self._call('GET', f"/person/growpaths/{_seg(id)}", [], None, models.GrowPath, envelope=True))
 
@@ -8867,6 +10990,11 @@ class PersonGrowpathsResource(Resource):
         `GET /person/growpaths`
 
         Lists the configured growth-path stages, ordered by sortKey and stored name ascending. Requires view in churchdb. Stages are assigned to group-type roles or concrete group roles; ChurchTools derives a person’s stage from active memberships in active or finished groups, using the highest matching stage sortKey. A concrete group-role stage overrides the group-type-role stage for that membership. This endpoint returns the complete unpaginated stage catalog, not people or their progress history. Each stage includes translated display text, color and creation/modification metadata.
+
+        Example::
+
+            for growpath in client.person.growpaths.list():
+                print(growpath.name)
         """
         return _t.cast(_t.List[models.GrowPath], self._call('GET', "/person/growpaths", [], None, _t.List[models.GrowPath], envelope=True))
 
@@ -8891,6 +11019,11 @@ class PersonGrowpathsResource(Resource):
             color: Color key accepted by the growth-path validator.
             name: Trimmed stage name or translation key, 1–100 characters. Duplicate names are allowed.
             sort_key: Nonnegative display order and calculation priority; defaults to 0. Larger values take precedence when a person qualifies for several stages.
+
+        Example::
+
+            result = client.person.growpaths.update(1, color="blue", name="New Believer")
+            print(result.name)
         """
         return _t.cast(models.GrowPath, self._call('PUT', f"/person/growpaths/{_seg(id)}", [], _body({'color': color, 'name': name, 'sortKey': sort_key}, extra_body), models.GrowPath, envelope=True))
 
@@ -8925,6 +11058,15 @@ class PersonRelationshiptypesResource(Resource):
             name: Stored name or translation key. The response derives `nameTranslated` from the side labels when necessary.
             security_level_id: ID of an existing, installation-specific security level for relationships of this type.
             sort_key: Ascending catalog sort key.
+
+        Example::
+
+            result = client.person.relationshiptypes.create(
+                degree_name_a="Parent",
+                degree_name_b="Child",
+                security_level_id=1,
+            )
+            print(result.name)
         """
         return _t.cast(models.RelationshipType, self._call('POST', "/person/relationshiptypes", [], _body({'degreeNameA': degree_name_a, 'degreeNameB': degree_name_b, 'exportTitle': export_title, 'includeInExport': include_in_export, 'name': name, 'securityLevelId': security_level_id, 'sortKey': sort_key}, extra_body), models.RelationshipType, envelope=True))
 
@@ -8944,6 +11086,10 @@ class PersonRelationshiptypesResource(Resource):
         Args:
             id: Relationship-type catalog ID, not the ID of a relationship between two persons.
             dry_run: Preview blockers and relationships that would be deleted. Always returns the deletion report with `409` and does not delete data.
+
+        Example::
+
+            client.person.relationshiptypes.delete(4)
         """
         self._raw('DELETE', f"/person/relationshiptypes/{_seg(id)}", _query([('dryRun', dry_run)]), None)
 
@@ -8960,6 +11106,11 @@ class PersonRelationshiptypesResource(Resource):
 
         Args:
             id: Relationship-type catalog ID, not the ID of a relationship between two persons.
+
+        Example::
+
+            relationshiptype = client.person.relationshiptypes.get(4)
+            print(relationshiptype.name)
         """
         return _t.cast(models.RelationshipType, self._call('GET', f"/person/relationshiptypes/{_seg(id)}", [], None, models.RelationshipType, envelope=True))
 
@@ -8972,6 +11123,11 @@ class PersonRelationshiptypesResource(Resource):
         `GET /person/relationshiptypes`
 
         Lists relationship-type definitions, ordered by `sortKey` and stored name. This is a catalog, not the relationships between individual persons.
+
+        Example::
+
+            for relationshiptype in client.person.relationshiptypes.list():
+                print(relationshiptype.name)
         """
         return _t.cast(_t.List[models.RelationshipType], self._call('GET', "/person/relationshiptypes", [], None, _t.List[models.RelationshipType], envelope=True))
 
@@ -9004,6 +11160,16 @@ class PersonRelationshiptypesResource(Resource):
             name: Stored name or translation key. The response derives `nameTranslated` from the side labels when necessary.
             security_level_id: ID of an existing, installation-specific security level for relationships of this type.
             sort_key: Ascending catalog sort key.
+
+        Example::
+
+            result = client.person.relationshiptypes.update(
+                4,
+                degree_name_a="Parent",
+                degree_name_b="Child",
+                security_level_id=1,
+            )
+            print(result.name)
         """
         return _t.cast(models.RelationshipType, self._call('PUT', f"/person/relationshiptypes/{_seg(id)}", [], _body({'degreeNameA': degree_name_a, 'degreeNameB': degree_name_b, 'exportTitle': export_title, 'includeInExport': include_in_export, 'name': name, 'securityLevelId': security_level_id, 'sortKey': sort_key}, extra_body), models.RelationshipType, envelope=True))
 
@@ -9032,6 +11198,11 @@ class PersonSexesResource(Resource):
             salutation_formal: Stored salutation text or translation key. Omission, null, empty string and whitespace-only input all become null.
             salutation_informal: Stored salutation text or translation key. Omission, null, empty string and whitespace-only input all become null.
             sort_key: Sort order. Omission or null becomes 0.
+
+        Example::
+
+            result = client.person.sexes.create(name="sex.other")
+            print(result.name)
         """
         return _t.cast(models.Sex, self._call('POST', "/person/sexes", [], _body({'name': name, 'salutationFormal': salutation_formal, 'salutationInformal': salutation_informal, 'sortKey': sort_key}, extra_body), models.Sex, envelope=True))
 
@@ -9051,6 +11222,10 @@ class PersonSexesResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.person.sexes.delete(1)
         """
         self._raw('DELETE', f"/person/sexes/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -9067,6 +11242,11 @@ class PersonSexesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            sex = client.person.sexes.get(1)
+            print(sex.name)
         """
         return _t.cast(models.Sex, self._call('GET', f"/person/sexes/{_seg(id)}", [], None, models.Sex, envelope=True))
 
@@ -9079,6 +11259,11 @@ class PersonSexesResource(Resource):
         `GET /person/sexes`
 
         Lists the configured sex catalog used by person records and salutations. Requires view permission for Persons (churchdb). Ordered by sortKey and stored name ascending; localized display text can have a different order. The complete catalog is returned without pagination.
+
+        Example::
+
+            for sex in client.person.sexes.list():
+                print(sex.name)
         """
         return _t.cast(_t.List[models.Sex], self._call('GET', "/person/sexes", [], None, _t.List[models.Sex], envelope=True))
 
@@ -9105,6 +11290,11 @@ class PersonSexesResource(Resource):
             salutation_formal: Stored salutation text or translation key. Omission, null, empty string and whitespace-only input all become null.
             salutation_informal: Stored salutation text or translation key. Omission, null, empty string and whitespace-only input all become null.
             sort_key: Sort order. Omission or null becomes 0.
+
+        Example::
+
+            result = client.person.sexes.update(1, name="sex.other")
+            print(result.name)
         """
         return _t.cast(models.Sex, self._call('PUT', f"/person/sexes/{_seg(id)}", [], _body({'name': name, 'salutationFormal': salutation_formal, 'salutationInformal': salutation_informal, 'sortKey': sort_key}, extra_body), models.Sex, envelope=True))
 
@@ -9139,6 +11329,11 @@ class PersonsAbsencesResource(Resource):
             end_time: Takes precedence over `endDate`.
             start_date: Calendar date (`YYYY-MM-DD`), interpreted at midnight in the application time zone, or a UTC timestamp ending in `Z`. Timestamp values for `startDate` and `endDate` use whole-minute precision.
             start_time: Takes precedence over `startDate`.
+
+        Example::
+
+            result = client.persons.absences.create(42, absence_reason_id=1)
+            print(result.id)
         """
         return _t.cast(models.Absence, self._call('POST', f"/persons/{_seg(person_id)}/absences", [], _body({'absenceReasonId': absence_reason_id, 'comment': comment, 'endDate': end_date, 'endTime': end_time, 'startDate': start_date, 'startTime': start_time}, extra_body), models.Absence, envelope=True))
 
@@ -9160,6 +11355,10 @@ class PersonsAbsencesResource(Resource):
             person_id: ID of person
             id: ID of Entity
             dry_run: Perform the lookup without removing the absence.
+
+        Example::
+
+            client.persons.absences.delete(42, 1)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/absences/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -9178,6 +11377,11 @@ class PersonsAbsencesResource(Resource):
         Args:
             person_id: ID of person
             id: ID of Entity
+
+        Example::
+
+            absence = client.persons.absences.get(42, 1)
+            print(absence.id)
         """
         return _t.cast(models.Absence, self._call('GET', f"/persons/{_seg(person_id)}/absences/{_seg(id)}", [], None, models.Absence, envelope=True))
 
@@ -9201,6 +11405,11 @@ class PersonsAbsencesResource(Resource):
             from_: Start of the overlap window. Defaults to midnight two weeks ago.
             to: End of the overlap window. Defaults to midnight two weeks from today.
             order_direction: Order by absence start.
+
+        Example::
+
+            for absence in client.persons.absences.list(42):
+                print(absence.id)
         """
         return _t.cast(_t.List[models.Absence], self._call('GET', f"/persons/{_seg(person_id)}/absences", _query([('from', from_), ('to', to), ('order_direction', order_direction)]), None, _t.List[models.Absence], envelope=True))
 
@@ -9233,6 +11442,11 @@ class PersonsAbsencesResource(Resource):
             end_time: Takes precedence over `endDate`.
             start_date: Calendar date (`YYYY-MM-DD`), interpreted at midnight in the application time zone, or a UTC timestamp ending in `Z`. Timestamp values for `startDate` and `endDate` use whole-minute precision.
             start_time: Takes precedence over `startDate`.
+
+        Example::
+
+            result = client.persons.absences.update(42, 1, absence_reason_id=1)
+            print(result.id)
         """
         return _t.cast(models.Absence, self._call('PUT', f"/persons/{_seg(person_id)}/absences/{_seg(id)}", [], _body({'absenceReasonId': absence_reason_id, 'comment': comment, 'endDate': end_date, 'endTime': end_time, 'startDate': start_date, 'startTime': start_time}, extra_body), models.Absence, envelope=True))
 
@@ -9254,6 +11468,10 @@ class PersonsDevicesResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.devices.delete(42, "beispiel")
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/devices/{_seg(device_id)}", [], None)
 
@@ -9271,6 +11489,11 @@ class PersonsDevicesResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            device = client.persons.devices.get(42, "beispiel")
+            print(device.app_version)
         """
         return _t.cast(models.Device, self._call('GET', f"/persons/{_seg(person_id)}/devices/{_seg(device_id)}", [], None, models.Device, envelope=True))
 
@@ -9287,6 +11510,11 @@ class PersonsDevicesResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            for device in client.persons.devices.list(42):
+                print(device.app_version)
         """
         return _t.cast(_t.List[models.Device], self._call('GET', f"/persons/{_seg(person_id)}/devices", [], None, _t.List[models.Device], envelope=True))
 
@@ -9314,6 +11542,11 @@ class PersonsDevicesResource(Resource):
             push_id: Trimmed push token. Omission replaces the token with deviceId; null clears it; an empty or whitespace-only string preserves the previous token (null on a new device).
             type_: Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging.
             version: Legacy alias of appVersion; use appVersion. The canonical field takes precedence if both are present.
+
+        Example::
+
+            for device in client.persons.devices.update(42, "beispiel", type_="FCM"):
+                print(device.app_version)
         """
         return _t.cast(_t.List[models.Device], self._call('PUT', f"/persons/{_seg(person_id)}/devices/{_seg(device_id)}", [], _body({'appVersion': app_version, 'pushId': push_id, 'type': type_, 'version': version}, extra_body), _t.List[models.Device], envelope=True))
 
@@ -9341,6 +11574,11 @@ class PersonsEventsResource(Resource):
         Args:
             person_id: ID of person
             from_: Lower bound, strictly after midnight on this date. Defaults to today.
+
+        Example::
+
+            for event in client.persons.events.list(42):
+                print(event.name)
         """
         return _t.cast(_t.List[models.EventReadWithServices], self._call('GET', f"/persons/{_seg(person_id)}/events", _query([('from', from_)]), None, _t.List[models.EventReadWithServices], envelope=True))
 
@@ -9363,6 +11601,11 @@ class PersonsExchangerequestsResource(Resource):
         Args:
             person_id: ID of person
             request_id: ID of a service exchange request
+
+        Example::
+
+            exchangerequest = client.persons.exchangerequests.delete(42, 42)
+            print(exchangerequest.id)
         """
         return _t.cast(models.ServiceExchangeRequest, self._call('DELETE', f"/persons/{_seg(person_id)}/exchangerequests/{_seg(request_id)}", [], None, models.ServiceExchangeRequest, envelope=True))
 
@@ -9382,6 +11625,11 @@ class PersonsExchangerequestsResource(Resource):
         Args:
             person_id: ID of person
             person_is_requester: `false` selects exchanges received by the person; `true` selects exchanges initiated by the person.
+
+        Example::
+
+            for exchangerequest in client.persons.exchangerequests.list(42):
+                print(exchangerequest.id)
         """
         return _t.cast(_t.List[models.ServiceExchangeRequest], self._call('GET', f"/persons/{_seg(person_id)}/exchangerequests", _query([('personIsRequester', person_is_requester)]), None, _t.List[models.ServiceExchangeRequest], envelope=True))
 
@@ -9400,6 +11648,11 @@ class PersonsExchangerequestsResource(Resource):
         Args:
             person_id: ID of person
             request_id: ID of a service exchange request
+
+        Example::
+
+            result = client.persons.exchangerequests.update(42, 42)
+            print(result.id)
         """
         return _t.cast(models.ServiceExchangeRequest, self._call('PUT', f"/persons/{_seg(person_id)}/exchangerequests/{_seg(request_id)}", [], None, models.ServiceExchangeRequest, envelope=True))
 
@@ -9421,6 +11674,10 @@ class PersonsExternalLoginsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.external_logins.delete(42, 7)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/external-logins/{_seg(external_login_id)}", [], None)
 
@@ -9437,6 +11694,11 @@ class PersonsExternalLoginsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            for external_login in client.persons.external_logins.list(42):
+                print(external_login.external_login_id)
         """
         return _t.cast(_t.List[models.ExternalLoginPersonMapping], self._call('GET', f"/persons/{_seg(person_id)}/external-logins", [], None, _t.List[models.ExternalLoginPersonMapping], envelope=True))
 
@@ -9480,6 +11742,11 @@ class PersonsFollowupsResource(Resource):
             success_group_member_status: Membership status assigned in the selected success group; null uses the default active status.
             success_group_of_group_type_id: Optional group-type restriction for selecting a destination group on completion.
             success_role_id: Role assigned in the selected success group; null uses the membership service default.
+
+        Example::
+
+            result = client.persons.followups.create(42, title="Call Peter")
+            print(result.title)
         """
         return _t.cast(models.FollowUp2, self._call('POST', f"/persons/{_seg(person_id)}/followups", [], _body({'color': color, 'description': description, 'dueDate': due_date, 'effectiveDueDate': effective_due_date, 'icon': icon, 'ownerId': owner_id, 'successGroupId': success_group_id, 'successGroupMemberStatus': success_group_member_status, 'successGroupOfGroupTypeId': success_group_of_group_type_id, 'successRoleId': success_role_id, 'title': title}, extra_body), models.FollowUp2, envelope=True))
 
@@ -9496,6 +11763,11 @@ class PersonsFollowupsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            statistic = client.persons.followups.get_statistics(42)
+            print(statistic.count_done)
         """
         return _t.cast(models.FollowUpStatistics, self._call('GET', f"/persons/{_seg(person_id)}/followups/statistics", [], None, models.FollowUpStatistics, envelope=True))
 
@@ -9517,6 +11789,11 @@ class PersonsFollowupsResource(Resource):
             person_id: ID of person
             filter: Repeat to select any of the listed states; omitted/empty includes all states.
             limit: Maximum results in this page.
+
+        Example::
+
+            for followup in client.persons.followups.list(42):
+                print(followup.title)
         """
         return Paginator(self._core, f"/persons/{_seg(person_id)}/followups", _query([('filter[]', filter), ('limit', limit)]), models.FollowUp2)
 
@@ -9541,6 +11818,11 @@ class PersonsMergeResource(Resource):
         Args:
             person_id: id of the original person
             duplicate_id: Id of the doublette person
+
+        Example::
+
+            merge = client.persons.merge.get("beispiel", "100")
+            print(merge)
         """
         return _t.cast(models.PersonMergeInfo, self._call('GET', f"/persons/{_seg(person_id)}/merge/{_seg(duplicate_id)}", [], None, models.PersonMergeInfo, envelope=True))
 
@@ -9623,6 +11905,11 @@ class PersonsMergeResource(Resource):
             emails: Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
             privacy_policy_agreement: This object can be optional or required. Depending on your ChurchTools data security settings.
             visibility: Visibility accepted when creating or updating a person.
+
+        Example::
+
+            result = client.persons.merge.patch("beispiel", "100", title="Hauskreis Nord")
+            print(result.body)
         """
         return _t.cast(models.PatchPersonsPersonidMergeDuplicateidData, self._call('PATCH', f"/persons/{_seg(person_id)}/merge/{_seg(duplicate_id)}", [], _body({'addressAddition': address_addition, 'age': age, 'baptisedBy': baptised_by, 'birthName': birth_name, 'birthday': birthday, 'birthplace': birthplace, 'campusId': campus_id, 'city': city, 'cmsUserId': cms_user_id, 'country': country, 'dateOfBaptism': date_of_baptism, 'dateOfBelonging': date_of_belonging, 'dateOfDeath': date_of_death, 'dateOfEntry': date_of_entry, 'dateOfResign': date_of_resign, 'departmentIds': department_ids, 'email': email, 'emails': emails, 'familyStatusId': family_status_id, 'fax': fax, 'firstContact': first_contact, 'firstName': first_name, 'growPathId': grow_path_id, 'job': job, 'lastName': last_name, 'mobile': mobile, 'nationalityId': nationality_id, 'nickname': nickname, 'optigemId': optigem_id, 'phonePrivate': phone_private, 'phoneWork': phone_work, 'placeOfBaptism': place_of_baptism, 'privacyPolicyAgreement': privacy_policy_agreement, 'referredBy': referred_by, 'referredTo': referred_to, 'sexId': sex_id, 'statusId': status_id, 'street': street, 'title': title, 'visibility': visibility, 'weddingDate': wedding_date, 'zip': zip}, extra_body), models.PatchPersonsPersonidMergeDuplicateidData, envelope=True))
 
@@ -9647,6 +11934,11 @@ class PersonsRelationshipsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            result = client.persons.relationships.create(42, other_person_id=42, relationship_type_id=42)
+            print(result.id)
         """
         return _t.cast(models.GetPersonsRelationshipsDataItem, self._call('POST', f"/persons/{_seg(person_id)}/relationships", [], _body({'otherPersonId': other_person_id, 'relationshipTypeId': relationship_type_id}, extra_body), models.GetPersonsRelationshipsDataItem, envelope=True))
 
@@ -9665,6 +11957,10 @@ class PersonsRelationshipsResource(Resource):
         Args:
             person_id: ID of person
             relationship_id: ID of a person's relationship
+
+        Example::
+
+            client.persons.relationships.delete(42, 18)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/relationships/{_seg(relationship_id)}", [], None)
 
@@ -9681,6 +11977,11 @@ class PersonsRelationshipsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            for relationship in client.persons.relationships.list(42):
+                print(relationship.id)
         """
         return _t.cast(_t.List[models.PersonRelationship], self._call('GET', f"/persons/{_seg(person_id)}/relationships", [], None, _t.List[models.PersonRelationship], envelope=True))
 
@@ -9706,6 +12007,11 @@ class PersonsServicerequestsResource(Resource):
             person_id: ID of person
             request_id: ID of a service request
             comment: Optional decline comment.
+
+        Example::
+
+            servicerequest = client.persons.servicerequests.delete(42, 42)
+            print(servicerequest.name)
         """
         return _t.cast(models.ServiceRequest, self._call('DELETE', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}", _query([('comment', comment)]), None, models.ServiceRequest, envelope=True))
 
@@ -9724,6 +12030,11 @@ class PersonsServicerequestsResource(Resource):
         Args:
             person_id: ID of person
             request_id: ID of a service request
+
+        Example::
+
+            servicerequest = client.persons.servicerequests.get(42, 42)
+            print(servicerequest.name)
         """
         return _t.cast(models.ServiceRequest, self._call('GET', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}", [], None, models.ServiceRequest, envelope=True))
 
@@ -9745,6 +12056,11 @@ class PersonsServicerequestsResource(Resource):
             person_id: ID of person
             only_future: Include only events starting at or after midnight today. Both outstanding and confirmed valid assignments are included.
             get_all_in_future: Legacy alias for only_future.
+
+        Example::
+
+            for servicerequest in client.persons.servicerequests.list(42):
+                print(servicerequest.name)
         """
         return _t.cast(_t.List[models.ServiceRequest], self._call('GET', f"/persons/{_seg(person_id)}/servicerequests", _query([('only_future', only_future), ('getAllInFuture', get_all_in_future)]), None, _t.List[models.ServiceRequest], envelope=True))
 
@@ -9763,6 +12079,11 @@ class PersonsServicerequestsResource(Resource):
         Args:
             person_id: ID of person
             request_id: ID of a service request
+
+        Example::
+
+            servicerequest = client.persons.servicerequests.undo(42, 42)
+            print(servicerequest.name)
         """
         return _t.cast(models.ServiceRequestUndoResult, self._call('POST', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}/undo", [], None, models.ServiceRequestUndoResult, envelope=True))
 
@@ -9791,6 +12112,11 @@ class PersonsServicerequestsResource(Resource):
             comment: Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment. Use the accept or decline action for a response comment.
             inform_person: Accepted for compatibility; this flag does not control notifications in the current implementation. Notifications follow the assignment workflow.
             is_accepted: true creates a confirmed assignment; false creates an assignment awaiting confirmation. false does not decline it.
+
+        Example::
+
+            result = client.persons.servicerequests.update(42, 42, comment="beispiel")
+            print(result.name)
         """
         return _t.cast(models.ServiceRequest, self._call('PUT', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}", [], _body({'agreed': agreed, 'comment': comment, 'inform_person': inform_person, 'isAccepted': is_accepted}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -9819,6 +12145,10 @@ class PersonsSettingsResource(Resource):
             person_id: ID of person
             module: Module name like `churchdb` or `churchservice`
             attribute: Attribute name of setting
+
+        Example::
+
+            client.persons.settings.delete(42, "beispiel", "beispiel")
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/settings/{_seg(module)}/{_seg(attribute)}", [], None)
 
@@ -9839,6 +12169,11 @@ class PersonsSettingsResource(Resource):
             person_id: ID of person
             module: Module name like `churchdb` or `churchservice`
             attribute: Attribute name of setting
+
+        Example::
+
+            setting = client.persons.settings.get(42, "beispiel", "beispiel")
+            print(setting.attribute)
         """
         return _t.cast(models.PersonSetting, self._call('GET', f"/persons/{_seg(person_id)}/settings/{_seg(module)}/{_seg(attribute)}", [], None, models.PersonSetting, envelope=True))
 
@@ -9857,6 +12192,11 @@ class PersonsSettingsResource(Resource):
         Args:
             person_id: ID of person
             module: Module name like `churchdb` or `churchservice`
+
+        Example::
+
+            for module in client.persons.settings.get_module(42, "beispiel"):
+                print(module.attribute)
         """
         return _t.cast(_t.List[models.PersonSetting], self._call('GET', f"/persons/{_seg(person_id)}/settings/{_seg(module)}", [], None, _t.List[models.PersonSetting], envelope=True))
 
@@ -9873,6 +12213,11 @@ class PersonsSettingsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            for setting in client.persons.settings.list(42):
+                print(setting.attribute)
         """
         return _t.cast(_t.List[models.PersonSetting], self._call('GET', f"/persons/{_seg(person_id)}/settings", [], None, _t.List[models.PersonSetting], envelope=True))
 
@@ -9897,6 +12242,16 @@ class PersonsSettingsResource(Resource):
             module: Writable namespace. Only the module/attribute pairs listed in PersonSettingUpdate are accepted.
             attribute: Writable key, paired with the module as listed in PersonSettingUpdate.
             value: Value of the selected setting, using its required type. Calendar filters require a string containing a JSON array, not a JSON array directly.
+
+        Example::
+
+            result = client.persons.settings.update(
+                42,
+                "push",
+                "disableGroupSignUpNotifications",
+                value="beispiel",
+            )
+            print(result.attribute)
         """
         return _t.cast(models.PersonSetting, self._call('PUT', f"/persons/{_seg(person_id)}/settings/{_seg(module)}/{_seg(attribute)}", [], _body({'value': value}, extra_body), models.PersonSetting, envelope=True))
 
@@ -9917,6 +12272,11 @@ class PlaceholdersGroupResource(Resource):
 
         Args:
             id: ID of the group used to build group-specific placeholders
+
+        Example::
+
+            for group in client.placeholders.group.get(11):
+                print(group.name)
         """
         return _t.cast(_t.List[models.PlaceholderMenuGroup], self._call('GET', f"/placeholders/group/{_seg(id)}", [], None, _t.List[models.PlaceholderMenuGroup], envelope=True))
 
@@ -9933,6 +12293,10 @@ class PostHiddenResource(Resource):
         delete-post-hidden-domaintype-domainid
 
         `DELETE /post/hidden/{domainType}/{domainId}`
+
+        Example::
+
+            client.post.hidden.delete("beispiel", 42)
         """
         self._raw('DELETE', f"/post/hidden/{_seg(domain_type)}/{_seg(domain_id)}", [], None)
 
@@ -9943,6 +12307,11 @@ class PostHiddenResource(Resource):
         get-post-hidden
 
         `GET /post/hidden`
+
+        Example::
+
+            for hidden in client.post.hidden.list():
+                print(hidden)
         """
         return _t.cast(_t.List[_t.Union[models.DomainObjectGroup, models.DomainObjectPerson, models.DomainObjectPost]], self._call('GET', "/post/hidden", [], None, _t.List[_t.Union[models.DomainObjectGroup, models.DomainObjectPerson, models.DomainObjectPost]], envelope=True))
 
@@ -9964,6 +12333,11 @@ class PostReportsResource(Resource):
         post-post-reports
 
         `POST /post/reports`
+
+        Example::
+
+            result = client.post.reports.create(domain_id=42, domain_type="beispiel")
+            print(result.comment)
         """
         return _t.cast(models.Report, self._call('POST', "/post/reports", [], _body({'captcha': captcha, 'comment': comment, 'domainId': domain_id, 'domainType': domain_type, 'reporter': reporter}, extra_body), models.Report, envelope=True))
 
@@ -9978,6 +12352,11 @@ class PostReportsResource(Resource):
         get-post-reports
 
         `GET /post/reports`
+
+        Example::
+
+            for report in client.post.reports.list():
+                print(report)
         """
         return _t.cast(_t.List[_t.Union[models.ReportObjectPost, models.ReportObjectPostComment]], self._call('GET', "/post/reports", _query([('domain_type', domain_type), ('domain_id', domain_id), ('status', status)]), None, _t.List[_t.Union[models.ReportObjectPost, models.ReportObjectPostComment]], envelope=True))
 
@@ -9993,6 +12372,14 @@ class PostReportsResource(Resource):
         put-post-reports-answer
 
         `PUT /post/reports/answer`
+
+        Example::
+
+            client.post.reports.update_answer(
+                domain_id=42,
+                domain_type="beispiel",
+                response="beispiel",
+            )
         """
         self._raw('PUT', "/post/reports/answer", [], _body({'domainId': domain_id, 'domainType': domain_type, 'response': response}, extra_body))
 
@@ -10022,6 +12409,11 @@ class PostsCommentsResource(Resource):
 
         Args:
             post_id: ID of post
+
+        Example::
+
+            result = client.posts.comments.create(42, content="beispiel", post_id_2=42)
+            print(result.id)
         """
         return _t.cast(models.PostComment, self._call('POST', f"/posts/{_seg(post_id)}/comments", [], _body({'content': content, 'parentCommentId': parent_comment_id, 'postId': post_id_2}, extra_body), models.PostComment, envelope=True))
 
@@ -10040,6 +12432,10 @@ class PostsCommentsResource(Resource):
         Args:
             post_id: ID of post
             comment_id: ID of the post comment.
+
+        Example::
+
+            client.posts.comments.delete(42, 42)
         """
         self._raw('DELETE', f"/posts/{_seg(post_id)}/comments/{_seg(comment_id)}", [], None)
 
@@ -10056,6 +12452,11 @@ class PostsCommentsResource(Resource):
 
         Args:
             post_id: ID of post
+
+        Example::
+
+            for comment in client.posts.comments.list(42):
+                print(comment.id)
         """
         return _t.cast(_t.List[models.PostComment], self._call('GET', f"/posts/{_seg(post_id)}/comments", [], None, _t.List[models.PostComment], envelope=True))
 
@@ -10078,6 +12479,10 @@ class PostsHiddenResource(Resource):
         Args:
             post_id: ID of post
             domain_type: The type of the domain where the post is hidden. This can be `actor`, `post`, or `group`.
+
+        Example::
+
+            client.posts.hidden.update(42, "beispiel")
         """
         self._raw('PUT', f"/posts/{_seg(post_id)}/hidden/{_seg(domain_type)}", [], None)
 
@@ -10102,6 +12507,11 @@ class PostsReactionsResource(Resource):
 
         Args:
             post_id: ID of post
+
+        Example::
+
+            for reaction in client.posts.reactions.list(42):
+                print(reaction.emoji)
         """
         return _t.cast(_t.List[models.PostReaction], self._call('GET', f"/posts/{_seg(post_id)}/reactions", [], None, _t.List[models.PostReaction], envelope=True))
 
@@ -10153,6 +12563,11 @@ class ProfilesCampusesResource(Resource):
             tags: List of tags.
             visitors: Single integer, which represents a range.
             id2: Campus profile ID. For `/profiles/church`, this is ignored.
+
+        Example::
+
+            result = client.profiles.campuses.update(42, name="Hauskreis Nord")
+            print(result.name)
         """
         return _t.cast(models.Profile, self._call('PUT', f"/profiles/campuses/{_seg(id)}", [], _body({'address': address, 'associationId': association_id, 'denomination': denomination, 'description': description, 'email': email, 'groups': groups, 'isPublished': is_published, 'name': name, 'phone': phone, 'services': services, 'shortName': short_name, 'shorty': shorty, 'signUpGroupId': sign_up_group_id, 'slug': slug, 'socialMedia': social_media, 'sortKey': sort_key, 'tags': tags, 'team': team, 'teamTitle': team_title, 'visitors': visitors, 'website': website, 'id': id2}, extra_body), models.Profile, envelope=True))
 
@@ -10176,6 +12591,10 @@ class ProfilesSlugcheckResource(Resource):
         Args:
             slug: Slug to check
             guid: GUID of the profile currently being edited. If this profile already uses the slug, the slug is considered available.
+
+        Example::
+
+            client.profiles.slugcheck.get("my-church")
         """
         self._raw('GET', f"/profiles/slugcheck/{_seg(slug)}", _query([('guid', guid)]), None)
 
@@ -10207,6 +12626,11 @@ class QueuesJobgroupsResource(Resource):
 
         Args:
             job_group: Limit result to this job group.
+
+        Example::
+
+            for jobgroup in client.queues.jobgroups.get("beispiel", "beispiel"):
+                print(jobgroup.name)
         """
         return _t.cast(_t.List[models.JobGroupStatus], self._call('GET', f"/queues/{_seg(queue)}/jobgroups/{_seg(job_group)}", [], None, _t.List[models.JobGroupStatus], envelope=True))
 
@@ -10241,6 +12665,11 @@ class RoutinesRunsResource(Resource):
             run_action: Run transition; some actions may immediately continue execution.
             current_iteration: Update the current iteration for a special:repeat step
             waiting_since: Update the waiting since date for a special:wait step
+
+        Example::
+
+            result = client.routines.runs.create(9, 16, "beispiel", current_iteration=42)
+            print(result.id)
         """
         return _t.cast(models.RoutineRun, self._call('POST', f"/routines/{_seg(routine_id)}/runs/{_seg(run_id)}/{_seg(run_action)}", [], _body({'currentIteration': current_iteration, 'waitingSince': waiting_since}, extra_body), models.RoutineRun, envelope=True))
 
@@ -10262,6 +12691,11 @@ class RoutinesRunsResource(Resource):
             routine_id: ID of a routine
             include: Include additional information
             with_potential_domain_objects: Append unpersisted candidate runs with null IDs.
+
+        Example::
+
+            for run in client.routines.runs.list(9):
+                print(run.id)
         """
         return _t.cast(_t.List[models.RoutineRun], self._call('GET', f"/routines/{_seg(routine_id)}/runs", _query([('include[]', include), ('with_potential_domain_objects', with_potential_domain_objects)]), None, _t.List[models.RoutineRun], envelope=True))
 
@@ -10287,6 +12721,10 @@ class RoutinesStepsResource(Resource):
         Args:
             action_data: Action-specific data. Omission defaults to an empty PHP array.
             action_key: Registered action key, or special:wait / special:repeat.
+
+        Example::
+
+            client.routines.steps.validate(42, action_key="special:wait")
         """
         self._raw('POST', f"/routines/{_seg(routine_id)}/steps/validate", [], _body({'actionData': action_data, 'actionKey': action_key}, extra_body))
 
@@ -10313,6 +12751,11 @@ class SongCategoriesResource(Resource):
             campus_id: Existing campus ID associated with the category.
             name: Configurable category name.
             sort_key: Display order; lower values come first.
+
+        Example::
+
+            result = client.song.categories.create(name="Worship")
+            print(result.name)
         """
         return _t.cast(models.SongCategory, self._call('POST', "/song/categories", [], _body({'campusId': campus_id, 'name': name, 'sortKey': sort_key}, extra_body), models.SongCategory, envelope=True))
 
@@ -10329,6 +12772,10 @@ class SongCategoriesResource(Resource):
 
         Args:
             song_category_id: ID of the song category
+
+        Example::
+
+            client.song.categories.delete(1)
         """
         self._raw('DELETE', f"/song/categories/{_seg(song_category_id)}", [], None)
 
@@ -10345,6 +12792,11 @@ class SongCategoriesResource(Resource):
 
         Args:
             song_category_id: ID of the song category
+
+        Example::
+
+            category = client.song.categories.get(1)
+            print(category.name)
         """
         return _t.cast(models.SongCategory, self._call('GET', f"/song/categories/{_seg(song_category_id)}", [], None, models.SongCategory, envelope=True))
 
@@ -10357,6 +12809,11 @@ class SongCategoriesResource(Resource):
         `GET /song/categories`
 
         Returns all song categories ordered by sortKey ascending and then name ascending. The list is unpaginated and has no visibility or campus filter.
+
+        Example::
+
+            for category in client.song.categories.list():
+                print(category.name)
         """
         return _t.cast(_t.List[models.SongCategory], self._call('GET', "/song/categories", [], None, _t.List[models.SongCategory], envelope=True))
 
@@ -10381,6 +12838,11 @@ class SongCategoriesResource(Resource):
             campus_id: Existing campus ID associated with the category.
             name: Configurable category name.
             sort_key: Display order; lower values come first.
+
+        Example::
+
+            result = client.song.categories.update(1, name="Worship")
+            print(result.name)
         """
         return _t.cast(models.SongCategory, self._call('PUT', f"/song/categories/{_seg(song_category_id)}", [], _body({'campusId': campus_id, 'name': name, 'sortKey': sort_key}, extra_body), models.SongCategory, envelope=True))
 
@@ -10407,6 +12869,11 @@ class SongSourcesResource(Resource):
             name: Configurable source name.
             shorty: Display abbreviation.
             sort_key: Display order; lower values come first.
+
+        Example::
+
+            result = client.song.sources.create(name="Community hymnal")
+            print(result.name)
         """
         return _t.cast(models.SongSource, self._call('POST', "/song/sources", [], _body({'name': name, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.SongSource, envelope=True))
 
@@ -10423,6 +12890,10 @@ class SongSourcesResource(Resource):
 
         Args:
             song_source_id: ID of the song source
+
+        Example::
+
+            client.song.sources.delete(1)
         """
         self._raw('DELETE', f"/song/sources/{_seg(song_source_id)}", [], None)
 
@@ -10439,6 +12910,11 @@ class SongSourcesResource(Resource):
 
         Args:
             song_source_id: ID of the song source
+
+        Example::
+
+            source = client.song.sources.get(1)
+            print(source.name)
         """
         return _t.cast(models.SongSource, self._call('GET', f"/song/sources/{_seg(song_source_id)}", [], None, models.SongSource, envelope=True))
 
@@ -10451,6 +12927,11 @@ class SongSourcesResource(Resource):
         `GET /song/sources`
 
         Returns all song sources ordered by sortKey ascending and then name ascending. The list is unpaginated and has no visibility or campus filter.
+
+        Example::
+
+            for source in client.song.sources.list():
+                print(source.name)
         """
         return _t.cast(_t.List[models.SongSource], self._call('GET', "/song/sources", [], None, _t.List[models.SongSource], envelope=True))
 
@@ -10475,6 +12956,11 @@ class SongSourcesResource(Resource):
             name: Configurable source name.
             shorty: Display abbreviation.
             sort_key: Display order; lower values come first.
+
+        Example::
+
+            result = client.song.sources.update(1, name="Community hymnal")
+            print(result.name)
         """
         return _t.cast(models.SongSource, self._call('PUT', f"/song/sources/{_seg(song_source_id)}", [], _body({'name': name, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.SongSource, envelope=True))
 
@@ -10521,6 +13007,11 @@ class SongsArrangementsResource(Resource):
             tempo: Tempo in beats per minute.
             file_ids: IDs of existing files to assign to the arrangement.
             is_default: `true` makes this the song's only default arrangement. The first arrangement of a song becomes the default regardless of this value.
+
+        Example::
+
+            result = client.songs.arrangements.create(42, name="Men Voicing")
+            print(result.name)
         """
         return _t.cast(models.Arrangement, self._call('POST', f"/songs/{_seg(song_id)}/arrangements", [], _body({'beat': beat, 'description': description, 'duration': duration, 'key': key, 'name': name, 'sourceId': source_id, 'sourceReference': source_reference, 'tempo': tempo, 'fileIds': file_ids, 'isDefault': is_default}, extra_body), models.Arrangement, envelope=True))
 
@@ -10539,6 +13030,10 @@ class SongsArrangementsResource(Resource):
         Args:
             song_id: ID of song
             arrangement_id: ID of arrangement
+
+        Example::
+
+            client.songs.arrangements.delete(42, 42)
         """
         self._raw('DELETE', f"/songs/{_seg(song_id)}/arrangements/{_seg(arrangement_id)}", [], None)
 
@@ -10557,6 +13052,11 @@ class SongsArrangementsResource(Resource):
         Args:
             song_id: ID of song
             arrangement_id: ID of arrangement
+
+        Example::
+
+            arrangement = client.songs.arrangements.get(42, 42)
+            print(arrangement.name)
         """
         return _t.cast(models.Arrangement, self._call('GET', f"/songs/{_seg(song_id)}/arrangements/{_seg(arrangement_id)}", [], None, models.Arrangement, envelope=True))
 
@@ -10573,6 +13073,11 @@ class SongsArrangementsResource(Resource):
 
         Args:
             song_id: ID of song
+
+        Example::
+
+            for arrangement in client.songs.arrangements.list(42):
+                print(arrangement.name)
         """
         return _t.cast(_t.List[models.Arrangement], self._call('GET', f"/songs/{_seg(song_id)}/arrangements", [], None, _t.List[models.Arrangement], envelope=True))
 
@@ -10591,6 +13096,10 @@ class SongsArrangementsResource(Resource):
         Args:
             song_id: ID of song
             arrangement_id: ID of arrangement
+
+        Example::
+
+            client.songs.arrangements.patch_default(42, 42)
         """
         self._raw('PATCH', f"/songs/{_seg(song_id)}/arrangements/{_seg(arrangement_id)}/default", [], None)
 
@@ -10627,6 +13136,11 @@ class SongsArrangementsResource(Resource):
             source_id: ID of a song source, such as a hymnal or songbook, from GET /song/sources.
             source_reference: Location within the selected source, such as a song number or page. Only used with sourceId.
             tempo: Tempo in beats per minute.
+
+        Example::
+
+            result = client.songs.arrangements.update(42, 42, name="Men Voicing")
+            print(result.name)
         """
         return _t.cast(models.Arrangement, self._call('PUT', f"/songs/{_seg(song_id)}/arrangements/{_seg(arrangement_id)}", [], _body({'beat': beat, 'description': description, 'duration': duration, 'key': key, 'name': name, 'sourceId': source_id, 'sourceReference': source_reference, 'tempo': tempo}, extra_body), models.Arrangement, envelope=True))
 
@@ -10657,6 +13171,15 @@ class SyncAdaptersResource(Resource):
             name: Unique adapter lookup name used by external systems and the proxy.
             token: Authentication token sent to the adapter.
             url: Base URL of the adapter service.
+
+        Example::
+
+            result = client.sync.adapters.create(
+                name="churchtools",
+                token="kfghsjdlkfigblszurglizeifuz4",
+                url="http://localhost:8090",
+            )
+            print(result.name)
         """
         return _t.cast(models.SyncAdapter, self._call('POST', "/sync/adapters", [], _body({'name': name, 'token': token, 'url': url}, extra_body), models.SyncAdapter, envelope=True))
 
@@ -10676,6 +13199,10 @@ class SyncAdaptersResource(Resource):
         Args:
             id: ID of Entity
             dry_run: Return a deletion report without deleting.
+
+        Example::
+
+            client.sync.adapters.delete(1)
         """
         self._raw('DELETE', f"/sync/adapters/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -10692,6 +13219,11 @@ class SyncAdaptersResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            adapter = client.sync.adapters.get(1)
+            print(adapter.name)
         """
         return _t.cast(models.SyncAdapter, self._call('GET', f"/sync/adapters/{_seg(id)}", [], None, models.SyncAdapter, envelope=True))
 
@@ -10704,6 +13236,11 @@ class SyncAdaptersResource(Resource):
         `GET /sync/adapters`
 
         Lists registered adapter services. An adapter translates between the Sync worker and a system-specific API.
+
+        Example::
+
+            for adapter in client.sync.adapters.list():
+                print(adapter.name)
         """
         return _t.cast(_t.List[models.SyncAdapter], self._call('GET', "/sync/adapters", [], None, _t.List[models.SyncAdapter], envelope=True))
 
@@ -10728,6 +13265,16 @@ class SyncAdaptersResource(Resource):
             name: Unique adapter lookup name used by external systems and the proxy.
             token: Authentication token sent to the adapter.
             url: Base URL of the adapter service.
+
+        Example::
+
+            result = client.sync.adapters.update(
+                1,
+                name="churchtools",
+                token="kfghsjdlkfigblszurglizeifuz4",
+                url="http://localhost:8090",
+            )
+            print(result.name)
         """
         return _t.cast(models.SyncAdapter, self._call('PUT', f"/sync/adapters/{_seg(id)}", [], _body({'name': name, 'token': token, 'url': url}, extra_body), models.SyncAdapter, envelope=True))
 
@@ -10755,6 +13302,16 @@ class SyncConflictsResource(Resource):
             entity_mapping_id: Relationship affected by the conflict.
             job_id: Identifier of the sync job run that produced the conflict; not the numeric job configuration ID.
             type_: Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools.
+
+        Example::
+
+            result = client.sync.conflicts.create(
+                data=[ct.models.SyncConflictDataCreate.model_validate({"key": "beispiel", "value": "beispiel"})],
+                entity_mapping_id=1,
+                job_id="7e31c399-91b1-4148-bfdd-6c05b557a25c",
+                type_="create",
+            )
+            print(result.id)
         """
         return _t.cast(models.SyncConflicts, self._call('POST', "/sync/conflicts", [], _body({'data': data, 'entityMappingId': entity_mapping_id, 'jobId': job_id, 'type': type_}, extra_body), models.SyncConflicts, envelope=True))
 
@@ -10771,6 +13328,10 @@ class SyncConflictsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.sync.conflicts.delete(1)
         """
         self._raw('DELETE', f"/sync/conflicts/{_seg(id)}", [], None)
 
@@ -10787,6 +13348,11 @@ class SyncConflictsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            conflict = client.sync.conflicts.get(1)
+            print(conflict.id)
         """
         return _t.cast(models.SyncConflicts, self._call('GET', f"/sync/conflicts/{_seg(id)}", [], None, models.SyncConflicts, envelope=True))
 
@@ -10810,6 +13376,11 @@ class SyncConflictsResource(Resource):
             types: Conflict categories.
             domain_types: Domains of linked entity mappings.
             source_ids: External connection IDs of linked entity mappings.
+
+        Example::
+
+            for conflict in client.sync.conflicts.list():
+                print(conflict.id)
         """
         return Paginator(self._core, "/sync/conflicts", _query([('limit', limit), ('types[]', types), ('domain_types[]', domain_types), ('source_ids[]', source_ids)]), models.SyncConflicts)
 
@@ -10835,6 +13406,17 @@ class SyncConflictsResource(Resource):
             entity_mapping_id: Relationship affected by the conflict.
             job_id: Identifier of the sync job run that produced the conflict; not the numeric job configuration ID.
             type_: Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools.
+
+        Example::
+
+            result = client.sync.conflicts.update(
+                1,
+                data=[ct.models.SyncConflictDataCreate.model_validate({"key": "beispiel", "value": "beispiel"})],
+                entity_mapping_id=1,
+                job_id="7e31c399-91b1-4148-bfdd-6c05b557a25c",
+                type_="create",
+            )
+            print(result.id)
         """
         return _t.cast(models.SyncConflicts, self._call('PUT', f"/sync/conflicts/{_seg(id)}", [], _body({'data': data, 'entityMappingId': entity_mapping_id, 'jobId': job_id, 'type': type_}, extra_body), models.SyncConflicts, envelope=True))
 
@@ -10869,6 +13451,17 @@ class SyncEntitymappingsResource(Resource):
             source_entity_id: ID in the external system.
             source_id: External connection ID (the source system).
             status: State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools.
+
+        Example::
+
+            result = client.sync.entitymappings.create(
+                domain_id="42",
+                domain_type="status",
+                source_entity_id="p-42",
+                source_id=1,
+                status="synced",
+            )
+            print(result.id)
         """
         return _t.cast(models.SyncEntityMapping, self._call('POST', "/sync/entitymappings", [], _body({'domainId': domain_id, 'domainType': domain_type, 'lastSyncedDate': last_synced_date, 'scope': scope, 'sourceEntityId': source_entity_id, 'sourceId': source_id, 'status': status}, extra_body), models.SyncEntityMapping, envelope=True))
 
@@ -10885,6 +13478,10 @@ class SyncEntitymappingsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.sync.entitymappings.delete(1)
         """
         self._raw('DELETE', f"/sync/entitymappings/{_seg(id)}", [], None)
 
@@ -10901,6 +13498,11 @@ class SyncEntitymappingsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            entitymapping = client.sync.entitymappings.get(1)
+            print(entitymapping.id)
         """
         return _t.cast(models.SyncEntityMapping, self._call('GET', f"/sync/entitymappings/{_seg(id)}", [], None, models.SyncEntityMapping, envelope=True))
 
@@ -10928,6 +13530,11 @@ class SyncEntitymappingsResource(Resource):
             source_entity_id: Filter external record IDs.
             source_id: External connection ID as a string.
             scope: Adapter-specific context key.
+
+        Example::
+
+            for entitymapping in client.sync.entitymappings.list():
+                print(entitymapping.id)
         """
         return Paginator(self._core, "/sync/entitymappings", _query([('limit', limit), ('domain_type[]', domain_type), ('domain_id[]', domain_id), ('source_entity_id[]', source_entity_id), ('source_id', source_id), ('scope', scope)]), models.SyncEntityMapping)
 
@@ -10960,6 +13567,18 @@ class SyncEntitymappingsResource(Resource):
             source_entity_id: ID in the external system.
             source_id: External connection ID (the source system).
             status: State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools.
+
+        Example::
+
+            result = client.sync.entitymappings.update(
+                1,
+                domain_id="42",
+                domain_type="status",
+                source_entity_id="p-42",
+                source_id=1,
+                status="synced",
+            )
+            print(result.id)
         """
         return _t.cast(models.SyncEntityMapping, self._call('PUT', f"/sync/entitymappings/{_seg(id)}", [], _body({'domainId': domain_id, 'domainType': domain_type, 'lastSyncedDate': last_synced_date, 'scope': scope, 'sourceEntityId': source_entity_id, 'sourceId': source_id, 'status': status}, extra_body), models.SyncEntityMapping, envelope=True))
 
@@ -10992,6 +13611,15 @@ class SyncExternalsystemsResource(Resource):
             access_header_values: Adapter-specific HTTP header values used to access the external system.
             adapter: Name of a registered adapter from `/sync/adapters`. Custom adapter names are supported.
             name: Display name of the external connection.
+
+        Example::
+
+            result = client.sync.externalsystems.create(
+                access_header_values={},
+                adapter="churchtools",
+                name="Accounting system",
+            )
+            print(result.name)
         """
         return _t.cast(models.ExternalSystem, self._call('POST', "/sync/externalsystems", [], _body({'accessHeaderValues': access_header_values, 'adapter': adapter, 'name': name}, extra_body), models.ExternalSystem, envelope=True))
 
@@ -11008,6 +13636,10 @@ class SyncExternalsystemsResource(Resource):
 
         Args:
             external_system_id: ID of a configured external connection.
+
+        Example::
+
+            client.sync.externalsystems.delete(1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}", [], None)
 
@@ -11024,6 +13656,10 @@ class SyncExternalsystemsResource(Resource):
 
         Args:
             external_system_id: ID of a configured external connection.
+
+        Example::
+
+            client.sync.externalsystems.delete_entitymappings(1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/entitymappings", [], None)
 
@@ -11040,6 +13676,11 @@ class SyncExternalsystemsResource(Resource):
 
         Args:
             external_system_id: ID of a configured external connection.
+
+        Example::
+
+            externalsystem = client.sync.externalsystems.get(1)
+            print(externalsystem.name)
         """
         return _t.cast(models.ExternalSystem, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}", [], None, models.ExternalSystem, envelope=True))
 
@@ -11052,6 +13693,11 @@ class SyncExternalsystemsResource(Resource):
         `GET /sync/externalsystems`
 
         Lists configured connections, including their adapter names and job counts. A connection identifies one external installation or account; several can use the same adapter.
+
+        Example::
+
+            for externalsystem in client.sync.externalsystems.list():
+                print(externalsystem.name)
         """
         return _t.cast(_t.List[models.ExternalSystem], self._call('GET', "/sync/externalsystems", [], None, _t.List[models.ExternalSystem], envelope=True))
 
@@ -11068,6 +13714,10 @@ class SyncExternalsystemsResource(Resource):
 
         Args:
             external_system_id: ID of a configured external connection.
+
+        Example::
+
+            client.sync.externalsystems.test(1)
         """
         self._raw('POST', f"/sync/externalsystems/{_seg(external_system_id)}/test", [], None)
 
@@ -11092,6 +13742,15 @@ class SyncExternalsystemsResource(Resource):
             adapter: Name of a registered adapter from `/sync/adapters`. Custom adapter names are supported.
             name: Display name of the external connection.
             id: Existing connection to base the test on.
+
+        Example::
+
+            result = client.sync.externalsystems.test_settings(
+                access_header_values={},
+                adapter="churchtools",
+                name="Accounting system",
+            )
+            print(result)
         """
         return _t.cast(_t.Union[StrMap[_t.Any], _t.List[_t.Any]], self._call('POST', "/sync/externalsystems/test", [], _body({'accessHeaderValues': access_header_values, 'adapter': adapter, 'name': name, 'id': id}, extra_body), _t.Union[StrMap[_t.Any], _t.List[_t.Any]], envelope=True))
 
@@ -11118,6 +13777,17 @@ class SyncExternalsystemsResource(Resource):
             adapter: Name of a registered adapter from `/sync/adapters`. Custom adapter names are supported.
             name: Display name of the external connection.
             id: Existing external system ID.
+
+        Example::
+
+            result = client.sync.externalsystems.update(
+                1,
+                access_header_values={},
+                adapter="churchtools",
+                name="Accounting system",
+                id=1,
+            )
+            print(result.name)
         """
         return _t.cast(models.ExternalSystem, self._call('PUT', f"/sync/externalsystems/{_seg(external_system_id)}", [], _body({'accessHeaderValues': access_header_values, 'adapter': adapter, 'name': name, 'id': id}, extra_body), models.ExternalSystem, envelope=True))
 
@@ -11140,6 +13810,10 @@ class TranslationsLanguagesResource(Resource):
         Args:
             key_id: Numeric translation-key ID.
             language_id: Numeric language ID from GET /languages.
+
+        Example::
+
+            client.translations.languages.delete(1, 1)
         """
         self._raw('DELETE', f"/translations/{_seg(key_id)}/languages/{_seg(language_id)}", [], None)
 
@@ -11159,6 +13833,11 @@ class WebsiteDataResource(Resource):
         post-website-data
 
         `POST /website/data`
+
+        Example::
+
+            result = client.website.data.create(domain_id=42, domain_type="beispiel")
+            print(result.id)
         """
         return _t.cast(models.WebsiteDataWithoutInclude, self._call('POST', "/website/data", [], _body({'additionalId': additional_id, 'domainId': domain_id, 'domainType': domain_type}, extra_body), models.WebsiteDataWithoutInclude, envelope=True))
 
@@ -11173,6 +13852,10 @@ class WebsiteDataResource(Resource):
 
         Args:
             id: ID of a WebsiteData item
+
+        Example::
+
+            client.website.data.delete(4)
         """
         self._raw('DELETE', f"/website/data/{_seg(id)}", [], None)
 
@@ -11190,6 +13873,11 @@ class WebsiteDataResource(Resource):
 
         Args:
             include: Include additional information
+
+        Example::
+
+            for item in client.website.data.list():
+                print(item)
         """
         return _t.cast(_t.List[_t.Union[models.WebsiteDataStaff, models.WebsiteDataCalendar, models.WebsiteDataPerson, models.WebsiteDataPostsInGroup]], self._call('GET', "/website/data", _query([('include[]', include)]), None, _t.List[_t.Union[models.WebsiteDataStaff, models.WebsiteDataCalendar, models.WebsiteDataPerson, models.WebsiteDataPostsInGroup]], envelope=True))
 
@@ -11224,6 +13912,16 @@ class WikiCategoriesResource(Resource):
             in_menu: Whether the category should appear in navigation menus; it is still returned by the category catalog when false.
             name: Category name; unlike page titles it is not trimmed.
             sort_key: Sort order; negative values are accepted.
+
+        Example::
+
+            result = client.wiki.categories.create(
+                file_access_without_permission=False,
+                in_menu=True,
+                name="Dokumentation",
+                sort_key=10,
+            )
+            print(result.name)
         """
         return _t.cast(models.WikiCategory, self._call('POST', "/wiki/categories", [], _body({'campusId': campus_id, 'fileAccessWithoutPermission': file_access_without_permission, 'inMenu': in_menu, 'name': name, 'sortKey': sort_key}, extra_body), models.WikiCategory, envelope=True))
 
@@ -11240,6 +13938,10 @@ class WikiCategoriesResource(Resource):
 
         Args:
             wiki_category_id: ID of WikiCategory
+
+        Example::
+
+            client.wiki.categories.delete(42)
         """
         self._raw('DELETE', f"/wiki/categories/{_seg(wiki_category_id)}", [], None)
 
@@ -11252,6 +13954,11 @@ class WikiCategoriesResource(Resource):
         `GET /wiki/categories`
 
         Lists wiki categories for which the current user (including a guest) has churchwiki view category permission. Categories organize pages and define their access permissions. Results are sorted by sortKey, then stored name, without pagination. inMenu does not filter this catalog. Each category’s canEdit/canDelete flags describe page operations based on edit category, not permission to rename or delete the category itself. The top-level permissions.editMasterData flag controls category administration. meta.count counts visible categories.
+
+        Example::
+
+            for category in client.wiki.categories.list():
+                print(category.name)
         """
         return _t.cast(_t.List[models.WikiCategory], self._call('GET', "/wiki/categories", [], None, _t.List[models.WikiCategory], envelope=True))
 
@@ -11280,6 +13987,17 @@ class WikiCategoriesResource(Resource):
             in_menu: Whether the category should appear in navigation menus; it is still returned by the category catalog when false.
             name: Category name; unlike page titles it is not trimmed.
             sort_key: Sort order; negative values are accepted.
+
+        Example::
+
+            result = client.wiki.categories.update(
+                42,
+                file_access_without_permission=False,
+                in_menu=True,
+                name="Dokumentation",
+                sort_key=10,
+            )
+            print(result.name)
         """
         return _t.cast(models.WikiCategory, self._call('PUT', f"/wiki/categories/{_seg(wiki_category_id)}", [], _body({'campusId': campus_id, 'fileAccessWithoutPermission': file_access_without_permission, 'inMenu': in_menu, 'name': name, 'sortKey': sort_key}, extra_body), models.WikiCategory, envelope=True))
 
@@ -11304,6 +14022,11 @@ class ActionsResource(Resource):
         Args:
             domain_type: One or more domain types to filter actions by.
             filter: Optional filter criteria to further narrow the returned actions. The structure depends on the domain type.
+
+        Example::
+
+            for action in client.actions.create(domain_type=["group_membership"]):
+                print(action.domain_type)
         """
         return _t.cast(_t.List[models.Action], self._call('POST', "/actions", [], _body({'domain_type': domain_type, 'filter': filter}, extra_body), _t.List[models.Action], envelope=True))
 
@@ -11350,6 +14073,11 @@ class AddressesResource(Resource):
             name: Address name. Whitespace is trimmed; omitted, null or blank clears the value.
             street: Address street. Whitespace is trimmed; omitted, null or blank clears the value.
             zip: Address zip. Whitespace is trimmed; omitted, null or blank clears the value.
+
+        Example::
+
+            result = client.addresses.create("group", "42", name="Retreat Center")
+            print(result.name)
         """
         return _t.cast(models.StoredAddress, self._call('POST', f"/addresses/{_seg(domain_type)}/{_seg(domain_identifier)}", [], _body({'addition': addition, 'city': city, 'color': color, 'country': country, 'district': district, 'icon': icon, 'latitude': latitude, 'longitude': longitude, 'name': name, 'street': street, 'zip': zip}, extra_body), models.StoredAddress, envelope=True))
 
@@ -11370,6 +14098,10 @@ class AddressesResource(Resource):
             domain_type: The domain type of the address. Currently only `group` is supported.
             domain_identifier: Group ID as a string. Whitespace is trimmed.
             address_id: The ID of the address to update or delete.
+
+        Example::
+
+            client.addresses.delete("group", "42", 7)
         """
         self._raw('DELETE', f"/addresses/{_seg(domain_type)}/{_seg(domain_identifier)}/{_seg(address_id)}", [], None)
 
@@ -11388,6 +14120,11 @@ class AddressesResource(Resource):
         Args:
             domain_type: The domain type to retrieve addresses for. Currently only `group` is supported.
             domain_identifier: Group ID as a string. Whitespace is trimmed.
+
+        Example::
+
+            for address in client.addresses.get("group", "42"):
+                print(address.name)
         """
         return _t.cast(_t.List[models.StoredAddress], self._call('GET', f"/addresses/{_seg(domain_type)}/{_seg(domain_identifier)}", [], None, _t.List[models.StoredAddress], envelope=True))
 
@@ -11405,6 +14142,11 @@ class AddressesResource(Resource):
 
         Args:
             query: Search term to look up addresses by (e.g. street, city, person name).
+
+        Example::
+
+            for search in client.addresses.list_search(query="Musterstraße"):
+                print(search)
         """
         return _t.cast(_t.List[models.AddressSearchResult], self._call('GET', "/addresses/search", _query([('query', query)]), None, _t.List[models.AddressSearchResult], envelope=True))
 
@@ -11449,6 +14191,11 @@ class AddressesResource(Resource):
             name: Address name. Whitespace is trimmed; omitted, null or blank clears the value.
             street: Address street. Whitespace is trimmed; omitted, null or blank clears the value.
             zip: Address zip. Whitespace is trimmed; omitted, null or blank clears the value.
+
+        Example::
+
+            result = client.addresses.update("group", "42", 7, name="Retreat Center")
+            print(result.name)
         """
         return _t.cast(models.StoredAddress, self._call('PUT', f"/addresses/{_seg(domain_type)}/{_seg(domain_identifier)}/{_seg(address_id)}", [], _body({'addition': addition, 'city': city, 'color': color, 'country': country, 'district': district, 'icon': icon, 'latitude': latitude, 'longitude': longitude, 'name': name, 'street': street, 'zip': zip}, extra_body), models.StoredAddress, envelope=True))
 
@@ -11485,6 +14232,16 @@ class AgendasResource(Resource):
             subject: Email subject.
             append_agenda_button: Append links for supplied events that have an agenda and for whose calendar the sender has "view agenda" permission.
             files: File IDs to list as links in the message body. Only files associated with one of the supplied events are used. These are links, not binary email attachments.
+
+        Example::
+
+            agenda = client.agendas.send(
+                body="<p>Please review the updated agenda for Sunday.</p>",
+                event_ids=[31, 32],
+                recipients=[40, 41],
+                subject="Updated Sunday agenda",
+            )
+            print(agenda)
         """
         return _t.cast(models.EventMailSendResult, self._call('POST', "/agendas/send", [], _body({'body': body, 'eventIds': event_ids, 'recipients': recipients, 'sendCopyToMe': send_copy_to_me, 'subject': subject, 'appendAgendaButton': append_agenda_button, 'files': files}, extra_body), models.EventMailSendResult, envelope=True))
 
@@ -11519,6 +14276,11 @@ class AgendatemplatesResource(Resource):
             items: Initial template items in their intended order. Items are not linked to any event.
             name: Template name.
             series: Optional free-text series name.
+
+        Example::
+
+            result = client.agendatemplates.create(calendar_id=1, name="Sunday Service Template")
+            print(result.name)
         """
         return _t.cast(models.Agenda, self._call('POST', "/agendatemplates", [], _body({'calendarId': calendar_id, 'eventStartPosition': event_start_position, 'items': items, 'name': name, 'series': series}, extra_body), models.Agenda, envelope=True))
 
@@ -11538,6 +14300,10 @@ class AgendatemplatesResource(Resource):
         Args:
             agenda_id: ID of agenda
             dry_run: Accepted but ignored. Both `false` and `true` execute deletion; this parameter does not provide a dry run.
+
+        Example::
+
+            client.agendatemplates.delete(35)
         """
         self._raw('DELETE', f"/agendatemplates/{_seg(agenda_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -11564,6 +14330,17 @@ class AgendatemplatesResource(Resource):
             append_arrangement: Append the selected arrangement name to exported song captions and generated fallback file names. Existing attached files retain their file names.
             export_songs: Include available song files for the target software. The first matching file of the selected arrangement is used. For SongBeamer, the song's default arrangement can provide a fallback `.sng` file. When disabled, song references point to files expected in the presenter library. No song-file conversion is performed.
             with_category: For `SONG_BEAMER` with `exportSongs`=`false`, prefix generated song file references with the song category as a directory. Has no effect with embedded song files or for either ProPresenter format.
+
+        Example::
+
+            agendatemplate = client.agendatemplates.export(
+                35,
+                format="SONG_BEAMER",
+                append_arrangement=True,
+                export_songs=True,
+                with_category=False,
+            )
+            print(agendatemplate.url)
         """
         return _t.cast(models.AgendaExport, self._call('POST', f"/agendatemplates/{_seg(agenda_id)}/export", _query([('format', format)]), _body({'appendArrangement': append_arrangement, 'exportSongs': export_songs, 'withCategory': with_category}, extra_body), models.AgendaExport, envelope=True))
 
@@ -11580,6 +14357,11 @@ class AgendatemplatesResource(Resource):
 
         Args:
             agenda_id: ID of agenda
+
+        Example::
+
+            agendatemplate = client.agendatemplates.get(35)
+            print(agendatemplate.name)
         """
         return _t.cast(models.Agenda, self._call('GET', f"/agendatemplates/{_seg(agenda_id)}", [], None, models.Agenda, envelope=True))
 
@@ -11592,6 +14374,11 @@ class AgendatemplatesResource(Resource):
         `GET /agendatemplates`
 
         Returns every agenda template visible to the caller, including its items. Visibility requires a super administrator or one of "view agenda", "edit agenda" or "edit agenda templates" for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
+
+        Example::
+
+            for agendatemplate in client.agendatemplates.list():
+                print(agendatemplate.name)
         """
         return _t.cast(_t.List[models.Agenda], self._call('GET', "/agendatemplates", [], None, _t.List[models.Agenda], envelope=True))
 
@@ -11620,6 +14407,11 @@ class AgendatemplatesResource(Resource):
             items: Complete replacement list in the intended order. An empty array deletes all items.
             name: Template name.
             series: Optional free-text series name.
+
+        Example::
+
+            result = client.agendatemplates.update(35, calendar_id=1, name="Sunday Service Template")
+            print(result.name)
         """
         return _t.cast(models.Agenda, self._call('PUT', f"/agendatemplates/{_seg(agenda_id)}", [], _body({'calendarId': calendar_id, 'eventStartPosition': event_start_position, 'items': items, 'name': name, 'series': series}, extra_body), models.Agenda, envelope=True))
 
@@ -11642,6 +14434,11 @@ class BookingsResource(Resource):
         Args:
             booking_id: ID of booking
             answer: Status action. Prefer reject over the legacy cancel alias.
+
+        Example::
+
+            booking = client.bookings.answer(8, "beispiel")
+            print(booking.title)
         """
         return _t.cast(models.BookingBase, self._call('PUT', f"/bookings/{_seg(booking_id)}/{_seg(answer)}", [], None, models.BookingBase, envelope=True))
 
@@ -11688,6 +14485,18 @@ class BookingsResource(Resource):
             status_id: Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
             subtitle: Optional booking subtitle.
             title: Booking title shown in resource planning.
+
+        Example::
+
+            result = client.bookings.create(
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+                resource_id=7,
+                show_in_cal=True,
+                status_id=1,
+                title="Band rehearsal",
+            )
+            print(result.title)
         """
         return _t.cast(models.BookingBase, self._call('POST', "/bookings", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'quantity': quantity, 'description': description, 'onBehalfOfPid': on_behalf_of_pid, 'resourceId': resource_id, 'showInCal': show_in_cal, 'statusId': status_id, 'subtitle': subtitle, 'title': title}, extra_body), models.BookingBase, envelope=True))
 
@@ -11704,6 +14513,10 @@ class BookingsResource(Resource):
 
         Args:
             booking_id: ID of booking
+
+        Example::
+
+            client.bookings.delete(8)
         """
         self._raw('DELETE', f"/bookings/{_seg(booking_id)}", [], None)
 
@@ -11723,6 +14536,11 @@ class BookingsResource(Resource):
         Args:
             booking_id: ID of booking
             include: Optional enrichments. conflicts adds overlapping bookings; involvedPersonsDomainObjects adds person references to the booking base.
+
+        Example::
+
+            booking = client.bookings.get(8)
+            print(booking)
         """
         return _t.cast(models.BookingWithIncludes, self._call('GET', f"/bookings/{_seg(booking_id)}", _query([('include[]', include)]), None, models.BookingWithIncludes, envelope=True))
 
@@ -11752,6 +14570,11 @@ class BookingsResource(Resource):
             status_ids: Booking statuses to include.
             from_: First included local date.
             to: Last included local date, on or after `from`.
+
+        Example::
+
+            for booking in client.bookings.list(resource_ids=[42]):
+                print(booking)
         """
         return _t.cast(_t.List[models.BookingCalculatedWithIncludes], self._call('GET', "/bookings", _query([('include[]', include), ('resource_ids[]', resource_ids), ('query', query), ('person_id', person_id), ('status_ids[]', status_ids), ('from', from_), ('to', to)]), None, _t.List[models.BookingCalculatedWithIncludes], envelope=True))
 
@@ -11786,6 +14609,15 @@ class BookingsResource(Resource):
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
             quantity: Number of resource units reserved by each occurrence.
             resource_id: Resource to reserve, such as a room, vehicle or piece of equipment.
+
+        Example::
+
+            for booking in client.bookings.preview_conflicts(
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+                resource_id=7,
+            ):
+                print(booking.title)
         """
         return _t.cast(_t.List[models.BookingConflict], self._call('POST', "/bookings/conflicts", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'quantity': quantity, 'resourceId': resource_id}, extra_body), _t.List[models.BookingConflict], envelope=True))
 
@@ -11820,6 +14652,15 @@ class BookingsResource(Resource):
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
             quantity: Number of resource units reserved by each occurrence.
+
+        Example::
+
+            for booking in client.bookings.preview_conflicts_for(
+                8,
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            ):
+                print(booking.title)
         """
         return _t.cast(_t.List[models.BookingConflict], self._call('POST', f"/bookings/{_seg(booking_id)}/conflicts", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'quantity': quantity}, extra_body), _t.List[models.BookingConflict], envelope=True))
 
@@ -11872,6 +14713,21 @@ class BookingsResource(Resource):
             title: Booking title shown in resource planning.
             split_date: Local start date of the occurrence to remove or the first date to cut from the series.
             split_until_end: False excludes splitDate only. True truncates the original series before splitDate and removes its additional dates and exceptions on or after that day.
+
+        Example::
+
+            booking = client.bookings.split(
+                8,
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+                resource_id=7,
+                show_in_cal=True,
+                status_id=1,
+                title="Band rehearsal",
+                split_date=dt.date(2026, 9, 20),
+                split_until_end=False,
+            )
+            print(booking.title)
         """
         return _t.cast(models.BookingBase, self._call('POST', f"/bookings/{_seg(booking_id)}", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'quantity': quantity, 'description': description, 'onBehalfOfPid': on_behalf_of_pid, 'resourceId': resource_id, 'showInCal': show_in_cal, 'statusId': status_id, 'subtitle': subtitle, 'title': title, 'splitDate': split_date, 'splitUntilEnd': split_until_end}, extra_body), models.BookingBase, envelope=True))
 
@@ -11890,6 +14746,14 @@ class BookingsResource(Resource):
 
         Args:
             booking_id: ID of booking
+
+        Example::
+
+            result = client.bookings.update(
+                8,
+                body=ct.models.BookingStandaloneUpdate.model_validate({"endDate": "2026-09-20T09:30:00Z", "startDate": "2026-09-20T08:00:00Z", "resourceId": 7, "showInCal": True, "statusId": 1, "title": "Band rehearsal"}),
+            )
+            print(result.title)
         """
         return _t.cast(models.BookingBase, self._call('PUT', f"/bookings/{_seg(booking_id)}", [], _body(body), models.BookingBase, envelope=True))
 
@@ -11920,6 +14784,16 @@ class BulkjobsResource(Resource):
             action_context: Context for action-based operations. Membership actions commonly require `groupId`.
             domain_object_identifiers: Targets to check or queue, in request order. Empty arrays are accepted. Prefer integer IDs for the registered jobs/actions.
             job_data: Payload selected by the domain/key table.
+
+        Example::
+
+            bulkjob = client.bulkjobs.enqueue(
+                "group",
+                "setMaxMembers",
+                domain_object_identifiers=[42],
+                job_data=ct.models.BulkGroupSetMaxMembersUpdate.model_validate({}),
+            )
+            print(bulkjob.job_group)
         """
         return _t.cast(models.BulkJobQueued, self._call('POST', f"/bulkjobs/{_seg(domain_type)}/{_seg(job_key)}/enqueue", [], _body({'actionContext': action_context, 'domainObjectIdentifiers': domain_object_identifiers, 'jobData': job_data}, extra_body), models.BulkJobQueued, envelope=True))
 
@@ -11946,6 +14820,16 @@ class BulkjobsResource(Resource):
             action_context: Context for action-based operations. Membership actions commonly require `groupId`.
             domain_object_identifiers: Targets to check or queue, in request order. Empty arrays are accepted. Prefer integer IDs for the registered jobs/actions.
             job_data: Payload selected by the domain/key table.
+
+        Example::
+
+            bulkjob = client.bulkjobs.infos(
+                "group",
+                "setMaxMembers",
+                domain_object_identifiers=[42],
+                job_data=ct.models.BulkGroupSetMaxMembersUpdate.model_validate({}),
+            )
+            print(bulkjob)
         """
         return _t.cast(models.BulkInfos, self._call('POST', f"/bulkjobs/{_seg(domain_type)}/{_seg(job_key)}/infos", [], _body({'actionContext': action_context, 'domainObjectIdentifiers': domain_object_identifiers, 'jobData': job_data}, extra_body), models.BulkInfos, envelope=True))
 
@@ -11978,6 +14862,17 @@ class BulklettersResource(Resource):
             html_template_id: ID of the HTML template used to render the bulkletter.
             name: Job name. Non-empty; the literal string 0 is rejected by the current validator.
             person_ids: Person IDs to render. Duplicate IDs are resolved through the person lookup; unknown IDs do not create recipient rows.
+
+        Example::
+
+            result = client.bulkletters.create(
+                content="<p>Hello [Spitzname]!</p>",
+                group_by_household=True,
+                html_template_id=39,
+                name="Newsletter April 2025",
+                person_ids=[13, 14],
+            )
+            print(result.id)
         """
         return _t.cast(models.BulkletterCreated, self._call('POST', "/bulkletters", [], _body({'content': content, 'groupByHousehold': group_by_household, 'groupId': group_id, 'htmlTemplateId': html_template_id, 'name': name, 'personIds': person_ids}, extra_body), models.BulkletterCreated, envelope=False))
 
@@ -11994,6 +14889,10 @@ class BulklettersResource(Resource):
 
         Args:
             id: ID of the bulkletter
+
+        Example::
+
+            client.bulkletters.delete(36)
         """
         self._raw('DELETE', f"/bulkletters/{_seg(id)}", [], None)
 
@@ -12008,6 +14907,10 @@ class BulklettersResource(Resource):
         `POST /bulkletters/execute`
 
         Internal worker entry point, normally started automatically after creation. Processes up to ten recipient rows of the first unfinished mail-merge job, then starts another background request while work remains. Operates across creators. It renders separate PDFs and packages them into a ZIP; it does not send mail. A recently active worker causes this request to do no work. Returns 204 regardless of whether processing was skipped or a rendering exception was recorded as job status ERROR; inspect the job status for the result.
+
+        Example::
+
+            client.bulkletters.execute()
         """
         self._raw('POST', "/bulkletters/execute", [], _body(body))
 
@@ -12024,6 +14927,11 @@ class BulklettersResource(Resource):
 
         Args:
             id: ID of the bulkletter
+
+        Example::
+
+            bulkletter = client.bulkletters.get(36)
+            print(bulkletter.name)
         """
         return _t.cast(models.Bulkletter, self._call('GET', f"/bulkletters/{_seg(id)}", [], None, models.Bulkletter, envelope=False))
 
@@ -12036,6 +14944,11 @@ class BulklettersResource(Resource):
         `GET /bulkletters`
 
         Lists the current user’s mail-merge jobs and jobs with created_pid=0. Requires edit bulkletter permission. Returns a bare array without data or meta; no pagination, status filter or ordering is defined.
+
+        Example::
+
+            for bulkletter in client.bulkletters.list():
+                print(bulkletter.name)
         """
         return _t.cast(_t.List[models.Bulkletter], self._call('GET', "/bulkletters", [], None, _t.List[models.Bulkletter], envelope=False))
 
@@ -12052,6 +14965,11 @@ class BulklettersResource(Resource):
 
         Args:
             id: ID of the bulkletter
+
+        Example::
+
+            for person in client.bulkletters.list_persons(36):
+                print(person.name)
         """
         return _t.cast(_t.List[models.BulkletterReceiver], self._call('GET', f"/bulkletters/{_seg(id)}/persons", [], None, _t.List[models.BulkletterReceiver], envelope=True))
 
@@ -12095,6 +15013,11 @@ class CalendarsResource(Resource):
             sort_key: Display order. The calendar list is sorted by this value in ascending order.
             sync_to_ev_termine: Whether the Evangelische Termine integration should synchronize this calendar. This is separate from importing an iCalendar feed.
             type_: Calendar category used by ChurchTools: church for a church calendar, group for a group calendar, personal for a personal calendar. The category determines which administration permissions apply; it does not by itself grant public access or link the calendar to a particular group or person. Access is controlled separately. The type is chosen on creation and cannot be changed by PUT.
+
+        Example::
+
+            result = client.calendars.create(name="Community events", sort_key=10, type_="church")
+            print(result.name)
         """
         return _t.cast(models.Calendar, self._call('POST', "/calendars", [], _body({'campusId': campus_id, 'color': color, 'evTermineEventTypeId': ev_termine_event_type_id, 'eventTemplateId': event_template_id, 'iCalSourceUrl': i_cal_source_url, 'name': name, 'sortKey': sort_key, 'syncToEvTermine': sync_to_ev_termine, 'type': type_}, extra_body), models.Calendar, envelope=True))
 
@@ -12111,6 +15034,10 @@ class CalendarsResource(Resource):
 
         Args:
             calendar_id: ID of Calendar
+
+        Example::
+
+            client.calendars.delete(42)
         """
         self._raw('DELETE', f"/calendars/{_seg(calendar_id)}", [], None)
 
@@ -12127,6 +15054,11 @@ class CalendarsResource(Resource):
 
         Args:
             calendar_id: ID of Calendar
+
+        Example::
+
+            calendar = client.calendars.get(42)
+            print(calendar.name)
         """
         return _t.cast(models.Calendar, self._call('GET', f"/calendars/{_seg(calendar_id)}", [], None, models.Calendar, envelope=True))
 
@@ -12139,6 +15071,11 @@ class CalendarsResource(Resource):
         `GET /calendars`
 
         Returns calendars for which the current user has view-category or edit-category permission, ordered by sortKey ascending.
+
+        Example::
+
+            for calendar in client.calendars.list():
+                print(calendar.name)
         """
         return _t.cast(_t.List[models.Calendar], self._call('GET', "/calendars", [], None, _t.List[models.Calendar], envelope=True))
 
@@ -12160,6 +15097,11 @@ class CalendarsResource(Resource):
         Args:
             calendar_id: ID of Calendar
             appointment_id: Include persons already invited to this appointment
+
+        Example::
+
+            for meetingrequestperson in client.calendars.list_meetingrequestpersons(42):
+                print(meetingrequestperson.group_name)
         """
         return _t.cast(_t.List[models.MeetingRequestCandidate], self._call('GET', f"/calendars/{_seg(calendar_id)}/meetingrequestpersons", _query([('appointmentId', appointment_id)]), None, _t.List[models.MeetingRequestCandidate], envelope=True))
 
@@ -12194,6 +15136,11 @@ class CalendarsResource(Resource):
             name: Calendar display name.
             sort_key: Display order. The calendar list is sorted by this value in ascending order.
             sync_to_ev_termine: Whether the Evangelische Termine integration should synchronize this calendar. This is separate from importing an iCalendar feed.
+
+        Example::
+
+            result = client.calendars.update(42, name="Community events", sort_key=10)
+            print(result.name)
         """
         return _t.cast(models.Calendar, self._call('PUT', f"/calendars/{_seg(calendar_id)}", [], _body({'campusId': campus_id, 'color': color, 'evTermineEventTypeId': ev_termine_event_type_id, 'eventTemplateId': event_template_id, 'iCalSourceUrl': i_cal_source_url, 'name': name, 'sortKey': sort_key, 'syncToEvTermine': sync_to_ev_termine}, extra_body), models.Calendar, envelope=True))
 
@@ -12220,6 +15167,11 @@ class CampusesResource(Resource):
             name: Campus name. Whitespace is trimmed; at least one character must remain.
             shorty: Abbreviation used in compact displays. Whitespace is trimmed. This endpoint requires an explicit value; it does not generate one from the name.
             sort_key: Display-order value for clients that sort campuses. Negative values are accepted. Omitted defaults to zero.
+
+        Example::
+
+            result = client.campuses.create(name="Hamburg Altona", shorty="ALT")
+            print(result.name)
         """
         return _t.cast(models.Campus, self._call('POST', "/campuses", [], _body({'name': name, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.Campus, envelope=True))
 
@@ -12234,6 +15186,10 @@ class CampusesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.campuses.delete(1)
         """
         self._raw('DELETE', f"/campuses/{_seg(id)}", [], None)
 
@@ -12250,6 +15206,11 @@ class CampusesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            campus = client.campuses.get(1)
+            print(campus.name)
         """
         return _t.cast(models.Campus, self._call('GET', f"/campuses/{_seg(id)}", [], None, models.Campus, envelope=True))
 
@@ -12262,6 +15223,11 @@ class CampusesResource(Resource):
         `GET /campuses`
 
         Returns an array of all campuses defined in ChurchTools. Campuses are sorted by its `sortKey` by default.
+
+        Example::
+
+            for campus in client.campuses.list():
+                print(campus.name)
         """
         return _t.cast(_t.List[models.Campus], self._call('GET', "/campuses", [], None, _t.List[models.Campus], envelope=True))
 
@@ -12284,6 +15250,11 @@ class CampusesResource(Resource):
             name: New name. Omitted or null retains the current value.
             shorty: New abbreviation. Omitted or null retains the current value.
             sort_key: New display-order value. Omitted or null retains the current value.
+
+        Example::
+
+            result = client.campuses.update(1, name="Hauskreis Nord")
+            print(result.name)
         """
         return _t.cast(models.Campus, self._call('PUT', f"/campuses/{_seg(id)}", [], _body({'name': name, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.Campus, envelope=True))
 
@@ -12303,6 +15274,11 @@ class CaptchaResource(Resource):
         `POST /captcha`
 
         Verify a captcha solution. Only for testing purposes. Other endpoints that require a captcha take the solution directly. See https://altcha.org/docs/website-integration/ for more information
+
+        Example::
+
+            result = client.captcha.create(solution="beispiel")
+            print(result.is_valid)
         """
         return _t.cast(models.PostCaptchaResponse, self._call('POST', "/captcha", [], _body({'solution': solution}, extra_body), models.PostCaptchaResponse, envelope=False))
 
@@ -12315,6 +15291,11 @@ class CaptchaResource(Resource):
         `GET /captcha`
 
         Get a new challenge to solve. To be used with https://altcha.org/docs/website-integration/
+
+        Example::
+
+            captcha = client.captcha.get()
+            print(captcha.signature)
         """
         return _t.cast(models.GetCaptchaResponse, self._call('GET', "/captcha", [], None, models.GetCaptchaResponse, envelope=False))
 
@@ -12343,6 +15324,16 @@ class ChatResource(Resource):
             guid: Stable ChurchTools chat identifier, not a Matrix room ID.
             prefix: `ctg` identifies a group and `cte` identifies a service-planning event.
             roomname: Display name of the room.
+
+        Example::
+
+            result = client.chat.create(
+                domain_id=9,
+                guid="681F54E3-2EB7-40A4-84F0-EFF8E8F05727",
+                prefix="ctg",
+                roomname="Technical team",
+            )
+            print(result.creator)
         """
         return _t.cast(models.Chat, self._call('POST', "/chat", [], _body({'domainId': domain_id, 'guid': guid, 'prefix': prefix, 'roomname': roomname}, extra_body), models.Chat, envelope=True))
 
@@ -12362,6 +15353,10 @@ class ChatResource(Resource):
         Args:
             guid: GUID for Entity
             nonce: Synchronization token for central chat service callbacks.
+
+        Example::
+
+            client.chat.delete("681F54E3-2EB7-40A4-84F0-EFF8E8F05727")
         """
         self._raw('DELETE', f"/chat/{_seg(guid)}", _query([('nonce', nonce)]), None)
 
@@ -12379,6 +15374,11 @@ class ChatResource(Resource):
 
         Args:
             nonce: Synchronization token for central chat service callbacks.
+
+        Example::
+
+            for chat in client.chat.list():
+                print(chat.creator)
         """
         return _t.cast(_t.List[models.Chat], self._call('GET', "/chat", _query([('nonce', nonce)]), None, _t.List[models.Chat], envelope=True))
 
@@ -12409,6 +15409,11 @@ class ChatResource(Resource):
             prefix: `ctg` identifies a group and `cte` identifies a service-planning event.
             roomname: Display name of the room.
             status: Requested lifecycle status.
+
+        Example::
+
+            result = client.chat.patch("681F54E3-2EB7-40A4-84F0-EFF8E8F05727", creator=1)
+            print(result.creator)
         """
         return _t.cast(models.Chat, self._call('PATCH', f"/chat/{_seg(guid)}", [], _body({'creator': creator, 'domainId': domain_id, 'nonce': nonce, 'prefix': prefix, 'roomname': roomname, 'status': status}, extra_body), models.Chat, envelope=True))
 
@@ -12437,6 +15442,14 @@ class CheckinResource(Resource):
             group: Membership to create before a separate attendance check-in. The group’s default role and normal active membership status are used; the origin is check-in. No meeting attendance or label printing is performed here.
             person: Person fields for creation during check-in admission. Uses the normal new-person field validation, including installation-specific masterdata and custom fields. Unlike ordinary creation, this flow forces duplicate creation and ignores visibility. Optional fields depend on configured field security and new-person settings.
             tag_id: Optional person-tag ID. Omitted/null behaves as 0 and normally adds no tag. Nonexistent IDs are silently ignored; use a tag belonging to the person domain.
+
+        Example::
+
+            result = client.checkin.create_persons(
+                group=ct.models.CheckinMembershipCreate.model_validate({"id": 9, "personFields": {}}),
+                person=ct.models.CheckinPersonDataCreate.model_validate({"campusId": 42, "departmentIds": [42], "firstName": "Alex", "lastName": "Example", "statusId": 42}),
+            )
+            print(result.first_name)
         """
         return _t.cast(models.CheckinPerson, self._call('POST', "/checkin/persons", _query([('without_privacy_policy_agreement', without_privacy_policy_agreement)]), _body({'group': group, 'person': person, 'tagId': tag_id}, extra_body), models.CheckinPerson, envelope=True))
 
@@ -12459,6 +15472,14 @@ class CheckinResource(Resource):
             group: Membership to create before a separate attendance check-in. The group’s default role and normal active membership status are used; the origin is check-in. No meeting attendance or label printing is performed here.
             person_id: Existing person to admit to the group. A current membership causes a conflict instead of being updated.
             tag_id: Optional person-tag ID. Omitted/null behaves as 0 and normally adds no tag. Nonexistent IDs are silently ignored; use a tag belonging to the person domain.
+
+        Example::
+
+            result = client.checkin.update_persons(
+                group=ct.models.CheckinMembershipCreate.model_validate({"id": 9, "personFields": {}}),
+                person_id=42,
+            )
+            print(result.first_name)
         """
         return _t.cast(models.CheckinPerson, self._call('PUT', "/checkin/persons", [], _body({'group': group, 'personId': person_id, 'tagId': tag_id}, extra_body), models.CheckinPerson, envelope=True))
 
@@ -12484,6 +15505,11 @@ class ChurchqueryResource(Resource):
         Args:
             entity_to_search_for: Root entity prefix for which metadata should be generated.
             exclude_field_types: Excludes db-field intern codes from metadata field lists (e.g. `multiselect`).
+
+        Example::
+
+            result = client.churchquery.get_metadata()
+            print(result)
         """
         return _t.cast(_t.Any, self._call('GET', "/churchquery/metadata", _query([('entity_to_search_for', entity_to_search_for), ('exclude_field_types[]', exclude_field_types)]), None, _t.Any, envelope=True))
 
@@ -12503,6 +15529,11 @@ class ConfigResource(Resource):
 
         Args:
             extended: If `true` the response will contain the extended config.
+
+        Example::
+
+            config = client.config.get()
+            print(config.current_config_file)
         """
         return _t.cast(models.GetConfigResponse, self._call('GET', "/config", _query([('extended', extended)]), None, models.GetConfigResponse, envelope=False))
 
@@ -12669,6 +15700,10 @@ class ConfigResource(Resource):
             datasecurity_privacy_agreement_text_for_children: Only in extended config
             impressum_internal: This is a string that can only be true or false.
             support_user_active_since: A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
+
+        Example::
+
+            client.config.update(accept_datasecurity=True)
         """
         self._raw('PUT', "/config", [], _body({'accept_datasecurity': accept_datasecurity, 'access_control_allow_origins': access_control_allow_origins, 'admin_mail': admin_mail, 'admin_message': admin_message, 'ai_description_available_generation_tests': ai_description_available_generation_tests, 'ai_description_generation_count': ai_description_generation_count, 'ai_description_generation_enabled': ai_description_generation_enabled, 'allowaiassistant': allowaiassistant, 'authorized_persons': authorized_persons, 'ccli_auto_reporting_enabled': ccli_auto_reporting_enabled, 'churchcal_active': churchcal_active, 'churchcal_css': churchcal_css, 'churchcal_entries_last_days': churchcal_entries_last_days, 'churchcal_firstdayinweek': churchcal_firstdayinweek, 'churchcal_maincalname': churchcal_maincalname, 'churchcal_name': churchcal_name, 'churchcal_sortcode': churchcal_sortcode, 'churchchat_allow_event_chat': churchchat_allow_event_chat, 'churchchat_allow_group_chat': churchchat_allow_group_chat, 'churchchat_allow_person_chat': churchchat_allow_person_chat, 'churchchat_delete_event_chat_after_x_days': churchchat_delete_event_chat_after_x_days, 'churchchat_invite_ct_event_chat': churchchat_invite_ct_event_chat, 'churchchat_invite_ct_group_chat': churchchat_invite_ct_group_chat, 'churchchat_start_event_chat_before_x_days': churchchat_start_event_chat_before_x_days, 'churchchat_start_event_chat_for_calendars': churchchat_start_event_chat_for_calendars, 'churchcheckin_active': churchcheckin_active, 'churchcheckin_label_child': churchcheckin_label_child, 'churchcheckin_label_parent': churchcheckin_label_parent, 'churchcheckin_label_standard': churchcheckin_label_standard, 'churchcheckin_name': churchcheckin_name, 'churchcheckin_sortcode': churchcheckin_sortcode, 'churchcheckin_tags': churchcheckin_tags, 'churchdb_active': churchdb_active, 'churchdb_archivedeletehistory': churchdb_archivedeletehistory, 'churchdb_birthdaylist_station': churchdb_birthdaylist_station, 'churchdb_birthdaylist_status': churchdb_birthdaylist_status, 'churchdb_cleverreach_connected': churchdb_cleverreach_connected, 'churchdb_emailseparator': churchdb_emailseparator, 'churchdb_groupnotchoosable': churchdb_groupnotchoosable, 'churchdb_home_lat': churchdb_home_lat, 'churchdb_home_lng': churchdb_home_lng, 'churchdb_mailchimp_apikey': churchdb_mailchimp_apikey, 'churchdb_mailchimp_connected': churchdb_mailchimp_connected, 'churchdb_mailjet_apikey': churchdb_mailjet_apikey, 'churchdb_mailjet_apisecret': churchdb_mailjet_apisecret, 'churchdb_mailjet_connected': churchdb_mailjet_connected, 'churchdb_memberlist_station': churchdb_memberlist_station, 'churchdb_memberlist_status': churchdb_memberlist_status, 'churchdb_name': churchdb_name, 'churchdb_sendgroupmails': churchdb_sendgroupmails, 'churchdb_smscmtelecom_apikey': churchdb_smscmtelecom_apikey, 'churchdb_sortcode': churchdb_sortcode, 'churchfinance_active': churchfinance_active, 'churchfinance_name': churchfinance_name, 'churchfinance_sortcode': churchfinance_sortcode, 'churchgroup_active': churchgroup_active, 'churchgroup_name': churchgroup_name, 'churchgroup_sortcode': churchgroup_sortcode, 'churchreport_active': churchreport_active, 'churchreport_name': churchreport_name, 'churchreport_sortcode': churchreport_sortcode, 'churchresource_active': churchresource_active, 'churchresource_anonymize_for_public_user': churchresource_anonymize_for_public_user, 'churchresource_entries_last_days': churchresource_entries_last_days, 'churchresource_name': churchresource_name, 'churchresource_send_emails': churchresource_send_emails, 'churchresource_sortcode': churchresource_sortcode, 'churchservice_active': churchservice_active, 'churchservice_agendashowenumeration': churchservice_agendashowenumeration, 'churchservice_ccli_token': churchservice_ccli_token, 'churchservice_ccli_token_secret': churchservice_ccli_token_secret, 'churchservice_entries_last_days': churchservice_entries_last_days, 'churchservice_invite_persons': churchservice_invite_persons, 'churchservice_name': churchservice_name, 'churchservice_openservice_rememberdays': churchservice_openservice_rememberdays, 'churchservice_reminderhours': churchservice_reminderhours, 'churchservice_songwithcategoryasdir': churchservice_songwithcategoryasdir, 'churchservice_sortcode': churchservice_sortcode, 'churchsync_active': churchsync_active, 'churchsync_name': churchsync_name, 'churchsync_sortcode': churchsync_sortcode, 'churchwiki_active': churchwiki_active, 'churchwiki_name': churchwiki_name, 'churchwiki_sortcode': churchwiki_sortcode, 'cronjob_delay': cronjob_delay, 'data_privacy_text': data_privacy_text, 'datasecurity_banner_enabled': datasecurity_banner_enabled, 'datasecurity_privacy_agreement_text': datasecurity_privacy_agreement_text, 'datasecurity_privacy_agreement_text_for_children': datasecurity_privacy_agreement_text_for_children, 'deactivate_default_login': deactivate_default_login, 'emailServer': email_server, 'evangelische_termine_api_key': evangelische_termine_api_key, 'evangelische_termine_enabled': evangelische_termine_enabled, 'evangelische_termine_name': evangelische_termine_name, 'evangelische_termine_url': evangelische_termine_url, 'evangelische_termine_vid': evangelische_termine_vid, 'feature_sessionless_login': feature_sessionless_login, 'hide_licensetab': hide_licensetab, 'impressum_external': impressum_external, 'impressum_external_link': impressum_external_link, 'impressum_internal': impressum_internal, 'invite_email_text': invite_email_text, 'is_churchtools_blog_widget_active': is_churchtools_blog_widget_active, 'is_churchtools_onboarding_widget_active': is_churchtools_onboarding_widget_active, 'is_pr_widget_active': is_pr_widget_active, 'is_rss_widget_active': is_rss_widget_active, 'ldap_otp_enabled': ldap_otp_enabled, 'login_message': login_message, 'mail_enabled': mail_enabled, 'mail_smtp_args_host': mail_smtp_args_host, 'mail_smtp_args_password': mail_smtp_args_password, 'mail_smtp_args_port': mail_smtp_args_port, 'mail_smtp_args_smtpsecure': mail_smtp_args_smtpsecure, 'mail_smtp_args_username': mail_smtp_args_username, 'matomo_uri': matomo_uri, 'max_uploadfile_size_kb': max_uploadfile_size_kb, 'post_active': post_active, 'post_edit_time_limited': post_edit_time_limited, 'post_email_summary_default_enabled': post_email_summary_default_enabled, 'post_email_summary_default_filter': post_email_summary_default_filter, 'post_email_summary_default_weekdays': post_email_summary_default_weekdays, 'post_featured_groups': post_featured_groups, 'post_inmenu': post_inmenu, 'post_name': post_name, 'post_sortcode': post_sortcode, 'post_wizard_completed': post_wizard_completed, 'post_wizard_groups': post_wizard_groups, 'prevent_export': prevent_export, 'privacy_policy_external': privacy_policy_external, 'privacy_policy_external_link': privacy_policy_external_link, 'privacy_policy_fields_mandatory': privacy_policy_fields_mandatory, 'privacy_policy_fields_mandatory_api': privacy_policy_fields_mandatory_api, 'privacy_policy_internal': privacy_policy_internal, 'rss_widget_link': rss_widget_link, 'send_data_security_mails': send_data_security_mails, 'show_remember_me': show_remember_me, 'site_licensekey': site_licensekey, 'site_logo': site_logo, 'site_mail': site_mail, 'site_name': site_name, 'site_offline': site_offline, 'site_region': site_region, 'site_startpage': site_startpage, 'support-user-active-since': support_user_active_since, 'timezone': timezone, 'welcome': welcome, 'welcome_subtext': welcome_subtext}, extra_body))
 
@@ -12695,6 +15730,11 @@ class ContactlabelsResource(Resource):
             is_default: Whether this label is preferred for new email addresses. Setting `true` unsets an existing default label.
             name: Unique contact-label name.
             sort_key: Display-order value.
+
+        Example::
+
+            result = client.contactlabels.create(is_default=False, name="Private", sort_key=10)
+            print(result.name)
         """
         return _t.cast(models.ContactLabel, self._call('POST', "/contactlabels", [], _body({'isDefault': is_default, 'name': name, 'sortKey': sort_key}, extra_body), models.ContactLabel, envelope=True))
 
@@ -12714,6 +15754,10 @@ class ContactlabelsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.contactlabels.delete(1)
         """
         self._raw('DELETE', f"/contactlabels/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -12730,6 +15774,11 @@ class ContactlabelsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            contactlabel = client.contactlabels.get(1)
+            print(contactlabel.name)
         """
         return _t.cast(models.ContactLabel, self._call('GET', f"/contactlabels/{_seg(id)}", [], None, models.ContactLabel, envelope=True))
 
@@ -12742,6 +15791,11 @@ class ContactlabelsResource(Resource):
         `GET /contactlabels`
 
         Returns all email contact labels, ordered by `sortKey` and then `name`, both ascending. Labels classify addresses such as private and work.
+
+        Example::
+
+            for contactlabel in client.contactlabels.list():
+                print(contactlabel.name)
         """
         return _t.cast(_t.List[models.ContactLabel], self._call('GET', "/contactlabels", [], None, _t.List[models.ContactLabel], envelope=True))
 
@@ -12766,6 +15820,11 @@ class ContactlabelsResource(Resource):
             is_default: Whether this label is preferred for new email addresses. Setting `true` unsets an existing default label.
             name: Unique contact-label name.
             sort_key: Display-order value.
+
+        Example::
+
+            result = client.contactlabels.update(1, is_default=False, name="Private", sort_key=10)
+            print(result.name)
         """
         return _t.cast(models.ContactLabel, self._call('PUT', f"/contactlabels/{_seg(id)}", [], _body({'isDefault': is_default, 'name': name, 'sortKey': sort_key}, extra_body), models.ContactLabel, envelope=True))
 
@@ -12782,6 +15841,11 @@ class CsrftokenResource(Resource):
         `GET /csrftoken`
 
         Returns the CSRF-Token for the current user in the current session. If the session does not exist, null is returned.
+
+        Example::
+
+            result = client.csrftoken.get()
+            print(result)
         """
         return _t.cast(_t.Optional[str], self._call('GET', "/csrftoken", [], None, _t.Optional[str], envelope=True))
 
@@ -12830,6 +15894,20 @@ class DbfieldsResource(Resource):
             sort_key: Display-order value within its category.
             use_as_placeholder: Whether the field may be used as a placeholder.
             field_category_intern_code: Field category: f_address (person address/contact), f_church (person church information), f_category (person categories), f_group (group data), f_dep (departments), f_growpath (person growth-path data), or f_datasecurity (person privacy information). These are category codes, not entity IDs.
+
+        Example::
+
+            result = client.dbfields.create(
+                delete_on_archive=True,
+                is_active=True,
+                is_new_person_field=True,
+                name="Dietary notes",
+                security_level=1,
+                sort_key=50,
+                use_as_placeholder=False,
+                field_category_intern_code="f_address",
+            )
+            print(result.name)
         """
         return _t.cast(models.DbField, self._call('POST', "/dbfields", [], _body({'deleteOnArchive': delete_on_archive, 'isActive': is_active, 'isAvailableInRoutines': is_available_in_routines, 'isNewPersonField': is_new_person_field, 'length': length, 'lineEnding': line_ending, 'name': name, 'securityLevel': security_level, 'shorty': shorty, 'sortKey': sort_key, 'useAsPlaceholder': use_as_placeholder, 'fieldCategoryInternCode': field_category_intern_code}, extra_body), models.DbField, envelope=True))
 
@@ -12846,6 +15924,10 @@ class DbfieldsResource(Resource):
 
         Args:
             field_id: Database-field definition ID returned by GET /dbfields.
+
+        Example::
+
+            client.dbfields.delete(200)
         """
         self._raw('DELETE', f"/dbfields/{_seg(field_id)}", [], None)
 
@@ -12862,6 +15944,11 @@ class DbfieldsResource(Resource):
 
         Args:
             field_id: Database-field definition ID returned by GET /dbfields.
+
+        Example::
+
+            dbfield = client.dbfields.get(200)
+            print(dbfield.name)
         """
         return _t.cast(models.DbField, self._call('GET', f"/dbfields/{_seg(field_id)}", [], None, models.DbField, envelope=True))
 
@@ -12881,6 +15968,11 @@ class DbfieldsResource(Resource):
         Args:
             categories: Limit results to database-field categories.
             include: Expand selection choices for each field.
+
+        Example::
+
+            for dbfield in client.dbfields.list():
+                print(dbfield.name)
         """
         return _t.cast(_t.List[models.DbField], self._call('GET', "/dbfields", _query([('categories[]', categories), ('include[]', include)]), None, _t.List[models.DbField], envelope=True))
 
@@ -12923,6 +16015,18 @@ class DbfieldsResource(Resource):
             sort_key: Display-order value within its category.
             use_as_placeholder: Whether the field may be used as a placeholder.
             field_category_intern_code: Installation-created person fields can move between `f_address`, `f_church`, `f_category` and `f_datasecurity`. Built-in fields and fields in other categories can only keep their existing category.
+
+        Example::
+
+            result = client.dbfields.update(
+                200,
+                delete_on_archive=True,
+                is_new_person_field=True,
+                security_level=1,
+                sort_key=50,
+                use_as_placeholder=False,
+            )
+            print(result.name)
         """
         return _t.cast(models.DbField, self._call('PUT', f"/dbfields/{_seg(field_id)}", [], _body({'deleteOnArchive': delete_on_archive, 'isActive': is_active, 'isAvailableInRoutines': is_available_in_routines, 'isNewPersonField': is_new_person_field, 'length': length, 'lineEnding': line_ending, 'name': name, 'securityLevel': security_level, 'shorty': shorty, 'sortKey': sort_key, 'useAsPlaceholder': use_as_placeholder, 'fieldCategoryInternCode': field_category_intern_code}, extra_body), models.DbField, envelope=True))
 
@@ -12939,6 +16043,11 @@ class DbfieldtypesResource(Resource):
         `GET /dbfieldtypes`
 
         Returns registered database-field types, ordered by sortKey and then name. These types describe the value and input behavior of configurable fields. Names are returned as stored and can be translation keys.
+
+        Example::
+
+            for dbfieldtype in client.dbfieldtypes.list():
+                print(dbfieldtype.name)
         """
         return _t.cast(_t.List[models.DbFieldType], self._call('GET', "/dbfieldtypes", [], None, _t.List[models.DbFieldType], envelope=True))
 
@@ -12955,6 +16064,11 @@ class DepartmentsResource(Resource):
         `GET /departments`
 
         Returns all department definitions, ordered by `sortKey` and then `name`. The caller must be allowed to view `departmentIds` on their current person record. This is a definition list, not a list of persons visible through those departments.
+
+        Example::
+
+            for department in client.departments.list():
+                print(department.name)
         """
         return _t.cast(_t.List[models.Department], self._call('GET', "/departments", [], None, _t.List[models.Department], envelope=True))
 
@@ -12979,6 +16093,14 @@ class DomainobjectsResource(Resource):
         Args:
             domain_identifiers: For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
             domain_types: Object types corresponding to the identifiers at the same indexes.
+
+        Example::
+
+            for domainobject in client.domainobjects.create(
+                domain_identifiers=["42", "7"],
+                domain_types=["person", "group"],
+            ):
+                print(domainobject.api_url)
         """
         return _t.cast(_t.List[models.ResolvedDomainObject], self._call('POST', "/domainobjects", [], _body({'domain_identifiers': domain_identifiers, 'domain_types': domain_types}, extra_body), _t.List[models.ResolvedDomainObject], envelope=True))
 
@@ -12998,6 +16120,14 @@ class DomainobjectsResource(Resource):
         Args:
             domain_types: Registered object types, paired by index with `domain_identifiers[]`.
             domain_identifiers: For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
+
+        Example::
+
+            for domainobject in client.domainobjects.list(
+                domain_types=["person", "group"],
+                domain_identifiers=["42", "7"],
+            ):
+                print(domainobject.api_url)
         """
         return _t.cast(_t.List[models.ResolvedDomainObject], self._call('GET', "/domainobjects", _query([('domain_types[]', domain_types), ('domain_identifiers[]', domain_identifiers)]), None, _t.List[models.ResolvedDomainObject], envelope=True))
 
@@ -13018,6 +16148,10 @@ class DynamicgroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            client.dynamicgroups.delete_ruleset(42)
         """
         self._raw('DELETE', f"/dynamicgroups/{_seg(group_id)}/ruleset", [], None)
 
@@ -13034,6 +16168,11 @@ class DynamicgroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            statu = client.dynamicgroups.get_status(42)
+            print(statu.dynamic_group_status)
         """
         return _t.cast(models.DynamicGroupStatusUpdate, self._call('GET', f"/dynamicgroups/{_seg(group_id)}/status", [], None, models.DynamicGroupStatusUpdate, envelope=False))
 
@@ -13046,6 +16185,11 @@ class DynamicgroupsResource(Resource):
         `GET /dynamicgroups`
 
         Returns IDs of groups whose dynamicGroupStatus is active. A dynamic group is an ordinary ChurchTools group whose memberships can be maintained by a set of query rules. Groups in manual, inactive or none status are excluded, even when a rule set is stored. Conversely, active groups without a valid rule set are included and may fail during refresh. Requires churchcore administer persons. Results are not paginated and no ordering is guaranteed. This preliminary API may change.
+
+        Example::
+
+            for dynamicgroup in client.dynamicgroups.list():
+                print(dynamicgroup)
         """
         return _t.cast(_t.List[int], self._call('GET', "/dynamicgroups", [], None, _t.List[int], envelope=True))
 
@@ -13062,6 +16206,11 @@ class DynamicgroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            for ruleset in client.dynamicgroups.list_ruleset(42):
+                print(ruleset.description)
         """
         return _t.cast(_t.List[models.DynamicGroupRule], self._call('GET', f"/dynamicgroups/{_seg(group_id)}/ruleset", [], None, _t.List[models.DynamicGroupRule], envelope=False))
 
@@ -13078,6 +16227,11 @@ class DynamicgroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            for dynamicgroup in client.dynamicgroups.refresh(42):
+                print(dynamicgroup.created)
         """
         return _t.cast(_t.List[models.DynamicGroupRefreshResult], self._call('POST', f"/dynamicgroups/{_seg(group_id)}/refresh", [], None, _t.List[models.DynamicGroupRefreshResult], envelope=True))
 
@@ -13090,6 +16244,11 @@ class DynamicgroupsResource(Resource):
         `POST /dynamicgroups/refresh`
 
         Synchronously evaluates and applies membership rules for all groups with active dynamicGroupStatus. Requires churchcore administer persons. Manual, inactive and none groups are excluded. Rules run in ascending importance order against the starting membership snapshot; later field updates can override earlier ones, while any deletion action takes precedence. Membership writes run as the system user and can bypass the group size limit. Each group is processed separately; this is not a transaction across groups. At most 500 actual changes are applied per group per run, so inspect unprocessed and runsNeeded and repeat if necessary. A 200 response can contain per-group failures alongside successful statistics. Error entries lack a structured groupId; unexpected Errors can still abort the whole request. This endpoint performs changes immediately and does not support a dry run.
+
+        Example::
+
+            for dynamicgroup in client.dynamicgroups.refresh_all():
+                print(dynamicgroup)
         """
         return _t.cast(_t.List[_t.Union[models.DynamicGroupRefreshResult, models.DynamicGroupRefreshError]], self._call('POST', "/dynamicgroups/refresh", [], None, _t.List[_t.Union[models.DynamicGroupRefreshResult, models.DynamicGroupRefreshError]], envelope=True))
 
@@ -13109,6 +16268,14 @@ class DynamicgroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            result = client.dynamicgroups.update_ruleset(
+                42,
+                dynamic_group_rule_set=[ct.models.DynamicGroupRule.model_validate({"description": "Add selected people to the group.", "importance": 10, "personIdFieldName": "person.id", "process": {"groupAndQueryResult": {}, "groupOnly": {}, "queryResultOnly": {}}, "query": {"method": "beispiel", "params": {}}, "shorty": "selected-people"})],
+            )
+            print(result)
         """
         return _t.cast(models.PutDynamicgroupsIdRulesetResponse, self._call('PUT', f"/dynamicgroups/{_seg(group_id)}/ruleset", [], _body({'dynamicGroupRuleSet': dynamic_group_rule_set}, extra_body), models.PutDynamicgroupsIdRulesetResponse, envelope=False))
 
@@ -13129,6 +16296,11 @@ class DynamicgroupsResource(Resource):
         Args:
             group_id: ID of group
             dynamic_group_status: Controls automatic membership refresh: active participates in scheduled and manual refreshes; manual allows explicit refresh only; inactive blocks both; none disables dynamic-group behavior without deleting stored rules or existing memberships.
+
+        Example::
+
+            result = client.dynamicgroups.update_status(42, dynamic_group_status="manual")
+            print(result.dynamic_group_status)
         """
         return _t.cast(models.DynamicGroupStatusUpdate, self._call('PUT', f"/dynamicgroups/{_seg(group_id)}/status", [], _body({'dynamicGroupStatus': dynamic_group_status}, extra_body), models.DynamicGroupStatusUpdate, envelope=False))
 
@@ -13159,6 +16331,14 @@ class EmailsResource(Resource):
             group_id: Optional visible group providing group and membership placeholders. Template access can also be granted through permission to view this group’s automatic emails.
             automatic_email_id: Accepted legacy parameter. Currently validated but not used in rendering, authorization or statistics.
             person_ids: IDs of the persons for which statistics are calculated
+
+        Example::
+
+            for email in client.emails.placeholderstatistics(
+                content=["Hello {{person.firstName}}"],
+                person_ids=[1, 2],
+            ):
+                print(email.person_id)
         """
         return _t.cast(_t.List[models.EmailPlaceholderStatistics], self._call('POST', "/emails/placeholderstatistics", [], _body({'content': content, 'emailTemplateId': email_template_id, 'groupId': group_id, 'automaticEmailId': automatic_email_id, 'personIds': person_ids}, extra_body), _t.List[models.EmailPlaceholderStatistics], envelope=True))
 
@@ -13187,6 +16367,11 @@ class EmailsResource(Resource):
             person_id: ID of the person used to render person placeholders
             subject: Optional email subject to render with placeholders
             user_id: Optional acting-user context used by placeholder decorators; omit to use the current context. This is distinct from the recipient personId. Context handling currently differs between placeholder types.
+
+        Example::
+
+            email = client.emails.preview(content=["Hello {{person.firstName}}"], person_id=1)
+            print(email.html)
         """
         return _t.cast(models.EmailPreview, self._call('POST', "/emails/preview", [], _body({'content': content, 'emailTemplateId': email_template_id, 'groupId': group_id, 'personId': person_id, 'subject': subject, 'userId': user_id}, extra_body), models.EmailPreview, envelope=False))
 
@@ -13203,6 +16388,10 @@ class EvangelischetermineResource(Resource):
         `DELETE /evangelischetermine`
 
         Queues removal of ChurchTools-published appointments from the configured Evangelische Termine organizer. Local ChurchTools appointments are retained. The background job reads the external JSON event list and deletes remote dates whose external identifier starts with ChurchTools; it does not limit removal to calendars currently selected for synchronization. Requires the churchcore permission "administer settings". HTTP 204 means the deletion job was queued and started in the background, not that remote deletion has completed. If synchronization is disabled, this call returns 204 without queuing a job. It does not disable synchronization, so later synchronization can publish appointments again. There is no dry-run option or returned job identifier.
+
+        Example::
+
+            client.evangelischetermine.delete()
         """
         self._raw('DELETE', "/evangelischetermine", [], None)
 
@@ -13215,6 +16404,11 @@ class EvangelischetermineResource(Resource):
         `GET /evangelischetermine/eventtypes`
 
         Fetches the eventtype parameter values from the configured Evangelische Termine SOAP service. Use the returned keys and labels when selecting an external event classification. ChurchTools forwards the external list without adding pagination or meta. Synchronization must already be enabled and its stored connection settings must work. The controller has no additional settings-administration permission check beyond API authentication.
+
+        Example::
+
+            for eventtype in client.evangelischetermine.list_eventtypes():
+                print(eventtype.key)
         """
         return _t.cast(_t.List[models.EvangelischeTermineEventType], self._call('GET', "/evangelischetermine/eventtypes", [], None, _t.List[models.EvangelischeTermineEventType], envelope=True))
 
@@ -13237,6 +16431,14 @@ class EvangelischetermineResource(Resource):
             api_key: SOAP API key for the organizer. The literal value ***** reuses the API key already stored in ChurchTools. The supplied URL and organizer ID are still used for this check.
             url: Base URL of the Evangelische Termine installation, without /soap or /soap?WSDL. Leading/trailing whitespace and a trailing slash are normalized; a hostname without a scheme uses HTTPS. The client validates the target URL before connecting.
             vid: External organizer identifier (Veranstalter-ID). Send it as a string, even when it contains only digits.
+
+        Example::
+
+            client.evangelischetermine.validatesettings(
+                api_key="*****",
+                url="https://www.evangelische-termine.de",
+                vid="1234",
+            )
         """
         self._raw('POST', "/evangelischetermine/validatesettings", [], _body({'apiKey': api_key, 'url': url, 'vid': vid}, extra_body))
 
@@ -13253,6 +16455,11 @@ class EventResource(Resource):
         `GET /event/masterdata`
 
         Returns six complete reference-data lists for the Event module together with their individual counts in `meta`. All lists are present and unpaginated; receiving a record does not grant permission to use or edit it. Song categories and sources have no guaranteed list order.
+
+        Example::
+
+            masterdata = client.event.get_masterdata()
+            print(masterdata)
         """
         return _t.cast(models.EventMasterData, self._call('GET', "/event/masterdata", [], None, models.EventMasterData, envelope=True))
 
@@ -13287,6 +16494,10 @@ class EventsResource(Resource):
             event_id: ID of Event
             enabled: `true` starts or reactivates the event chat; `false` stops an existing chat.
             trigger_chat_invite_mail: Send invitations to eligible event participants who cannot chat yet. This is independent of enabled: `true` can also send invitations when stopping the chat. Repeated requests can send invitations again.
+
+        Example::
+
+            client.events.chat(42, enabled=True)
         """
         self._raw('POST', f"/events/{_seg(event_id)}/chat", [], _body({'enabled': enabled, 'triggerChatInviteMail': trigger_chat_invite_mail}, extra_body))
 
@@ -13304,6 +16515,11 @@ class EventsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            result = client.events.create_ical(person_id=42)
+            print(result.attribute)
         """
         return _t.cast(models.RosterICalSetting, self._call('POST', "/events/ical", _query([('personId', person_id)]), None, models.RosterICalSetting, envelope=True))
 
@@ -13325,6 +16541,10 @@ class EventsResource(Resource):
             event_id: ID of Event
             dry_run: Check deletion and return a `409` report. Does not suppress the `sendMail` step.
             send_mail: Request event-deletion notifications before the deletion check, including during `dryRun`.
+
+        Example::
+
+            client.events.delete(42)
         """
         self._raw('DELETE', f"/events/{_seg(event_id)}", _query([('dryRun', dry_run), ('sendMail', send_mail)]), None)
 
@@ -13341,6 +16561,11 @@ class EventsResource(Resource):
 
         Args:
             event_id: ID of Event
+
+        Example::
+
+            event = client.events.get(42)
+            print(event.name)
         """
         return _t.cast(models.EventReadWithServices, self._call('GET', f"/events/{_seg(event_id)}", [], None, models.EventReadWithServices, envelope=True))
 
@@ -13358,6 +16583,11 @@ class EventsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            ical = client.events.get_ical(person_id=42)
+            print(ical.attribute)
         """
         return _t.cast(models.RosterICalSetting, self._call('GET', "/events/ical", _query([('personId', person_id)]), None, models.RosterICalSetting, envelope=True))
 
@@ -13385,6 +16615,11 @@ class EventsResource(Resource):
             limit: Results per page in directional mode; ignored in range mode.
             canceled: Include cancelled events in addition to active events.
             include: Comma-separated Fractal includes. event_services includes visible assignments; eventServices is its legacy spelling. The response key follows the selected spelling. Other Fractal syntax is accepted, so this is not a closed enum.
+
+        Example::
+
+            for event in client.events.list():
+                print(event.name)
         """
         return Paginator(self._core, "/events", _query([('from', from_), ('to', to), ('direction', direction), ('limit', limit), ('canceled', canceled), ('include', include)]), models.Event)
 
@@ -13401,6 +16636,11 @@ class EventsResource(Resource):
 
         Args:
             service_id: ID of a reusable service role from /services
+
+        Example::
+
+            for possiblepersonsforservice in client.events.list_possiblepersonsforservice(2):
+                print(possiblepersonsforservice.full_name)
         """
         return _t.cast(_t.List[models.ServiceCandidate], self._call('GET', f"/events/{_seg(service_id)}/possiblepersonsforservice", [], None, _t.List[models.ServiceCandidate], envelope=True))
 
@@ -13431,6 +16671,18 @@ class EventsResource(Resource):
             subject: Email subject.
             append_agenda_button: Append links for supplied events that have an agenda and for whose calendar the sender has "view agenda" permission.
             files: File IDs to list as links in the message body. Only files associated with one of the supplied events are used. These are links, not binary email attachments.
+
+        Example::
+
+            event = client.events.send(
+                body="<p>Please review the updated agenda for Sunday.</p>",
+                event_ids=[31, 32],
+                recipients=[40, 41],
+                subject="Updated Sunday agenda",
+                append_agenda_button=True,
+                files=[42],
+            )
+            print(event)
         """
         return _t.cast(models.EventMailSendResult, self._call('POST', "/events/send", [], _body({'body': body, 'eventIds': event_ids, 'recipients': recipients, 'sendCopyToMe': send_copy_to_me, 'subject': subject, 'appendAgendaButton': append_agenda_button, 'files': files}, extra_body), models.EventMailSendResult, envelope=True))
 
@@ -13459,6 +16711,14 @@ class EventsResource(Resource):
             event_admin_ids: Legacy input alias for `adminIds`.
             is_canceled: Whether the service-planning event is cancelled.
             note: Deprecated alias for `description`.
+
+        Example::
+
+            result = client.events.update(
+                42,
+                description="Sound check starts 30 minutes before the gathering.",
+            )
+            print(result.id)
         """
         return _t.cast(models.EventDetailsUpdateResult, self._call('PUT', f"/events/{_seg(event_id)}", [], _body({'adminIds': admin_ids, 'description': description, 'eventAdminIds': event_admin_ids, 'isCanceled': is_canceled, 'note': note}, extra_body), models.EventDetailsUpdateResult, envelope=True))
 
@@ -13475,6 +16735,11 @@ class EventtemplatesResource(Resource):
         `GET /eventtemplates`
 
         Returns all event templates as an unpaginated list, sorted by `sortKey` ascending. No per-template visibility filter is applied.
+
+        Example::
+
+            for eventtemplate in client.eventtemplates.list():
+                print(eventtemplate.id)
         """
         return _t.cast(_t.List[models.EventTemplate], self._call('GET', "/eventtemplates", [], None, _t.List[models.EventTemplate], envelope=True))
 
@@ -13524,6 +16789,21 @@ class ExternalloginsResource(Resource):
             subtitle: Secondary text on the login choice.
             type_: Configured login protocol.
             update_data_on_login: Whether existing person data is updated from provider data after successful matching.
+
+        Example::
+
+            result = client.externallogins.create(
+                config=ct.models.ExternalLoginOAuthConfig.model_validate({"accessTokenUrl": "https://identity.example.org/accessTokenUrl", "authorizeUrl": "https://identity.example.org/authorizeUrl", "clientId": "churchtools", "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"}),
+                create_new_person=True,
+                has_registration=True,
+                name="Organization login",
+                new_person_campus_id=42,
+                new_person_department_id=42,
+                new_person_status_id=42,
+                type_="oauth",
+                update_data_on_login=True,
+            )
+            print(result.name)
         """
         return _t.cast(models.ExternalLogin, self._call('POST', "/externallogins", [], _body({'config': config, 'createNewPerson': create_new_person, 'hasRegistration': has_registration, 'isVisible': is_visible, 'matchingMode': matching_mode, 'name': name, 'newPersonCampusId': new_person_campus_id, 'newPersonDepartmentId': new_person_department_id, 'newPersonStatusId': new_person_status_id, 'primaryLogin': primary_login, 'subtitle': subtitle, 'type': type_, 'updateDataOnLogin': update_data_on_login}, extra_body), models.ExternalLogin, envelope=True))
 
@@ -13537,6 +16817,10 @@ class ExternalloginsResource(Resource):
         `DELETE /externallogins/{externalLoginId}`
 
         Deletes the provider configuration and its stored person-identity mappings. Requires "churchcore administer settings" permission; deleting a SAML provider also requires the SAML settings feature flag. ChurchTools persons and sessions at the external provider remain.
+
+        Example::
+
+            client.externallogins.delete(7)
         """
         self._raw('DELETE', f"/externallogins/{_seg(external_login_id)}", [], None)
 
@@ -13550,6 +16834,11 @@ class ExternalloginsResource(Resource):
         `GET /externallogins/{externalLoginId}`
 
         Returns one provider configuration. Requires "churchcore administer settings" permission. Hidden providers remain accessible. Client secrets and SAML SP private keys are not included.
+
+        Example::
+
+            externallogin = client.externallogins.get(7)
+            print(externallogin.name)
         """
         return _t.cast(models.ExternalLogin, self._call('GET', f"/externallogins/{_seg(external_login_id)}", [], None, models.ExternalLogin, envelope=True))
 
@@ -13562,6 +16851,11 @@ class ExternalloginsResource(Resource):
         `GET /externallogins`
 
         Returns all external login provider configurations, including hidden providers. Requires "churchcore administer settings" permission. Client secrets and SAML SP private keys are not included.
+
+        Example::
+
+            for externallogin in client.externallogins.list():
+                print(externallogin.name)
         """
         return _t.cast(_t.List[models.ExternalLogin], self._call('GET', "/externallogins", [], None, _t.List[models.ExternalLogin], envelope=True))
 
@@ -13604,6 +16898,22 @@ class ExternalloginsResource(Resource):
             subtitle: Secondary text on the login choice.
             type_: Configured login protocol.
             update_data_on_login: Whether existing person data is updated from provider data after successful matching.
+
+        Example::
+
+            result = client.externallogins.update(
+                7,
+                config=ct.models.ExternalLoginOAuthConfig.model_validate({"accessTokenUrl": "https://identity.example.org/accessTokenUrl", "authorizeUrl": "https://identity.example.org/authorizeUrl", "clientId": "churchtools", "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"}),
+                create_new_person=True,
+                has_registration=True,
+                name="Nextcloud",
+                new_person_campus_id=42,
+                new_person_department_id=42,
+                new_person_status_id=42,
+                type_="oauth",
+                update_data_on_login=True,
+            )
+            print(result.name)
         """
         return _t.cast(models.ExternalLogin, self._call('PUT', f"/externallogins/{_seg(external_login_id)}", [], _body({'config': config, 'createNewPerson': create_new_person, 'hasRegistration': has_registration, 'isVisible': is_visible, 'matchingMode': matching_mode, 'name': name, 'newPersonCampusId': new_person_campus_id, 'newPersonDepartmentId': new_person_department_id, 'newPersonStatusId': new_person_status_id, 'primaryLogin': primary_login, 'subtitle': subtitle, 'type': type_, 'updateDataOnLogin': update_data_on_login}, extra_body), models.ExternalLogin, envelope=True))
 
@@ -13641,6 +16951,11 @@ class ExternalpostsResource(Resource):
             external_instance_guid: If set posts of these instances are returned.
             include: If set, the response will include the specified data.
             limit: Number of results per page.
+
+        Example::
+
+            for externalpost in client.externalposts.list():
+                print(externalpost.title)
         """
         return _t.cast(_t.List[models.Post], self._call('GET', "/externalposts", _query([('before', before), ('last_post_indentifier', last_post_indentifier), ('after', after), ('external_group_guid[]', external_group_guid), ('external_instance_guid[]', external_instance_guid), ('include[]', include), ('limit', limit)]), None, _t.List[models.Post], envelope=True))
 
@@ -13659,6 +16974,13 @@ class FactsResource(Resource):
         `POST /facts`
 
         Creates a reusable metric or selection definition. Values for individual events are managed separately. Requires the "edit masterdata" permission for the service planning domain.
+
+        Example::
+
+            result = client.facts.create(
+                body=ct.models.FactNumberCreate.model_validate({"name": "Attendance", "type": "number", "unit": "people"}),
+            )
+            print(result)
         """
         return _t.cast(_t.Union[models.FactNumber, models.FactSelect], self._call('POST', "/facts", [], _body(body), _t.Union[models.FactNumber, models.FactSelect], envelope=True))
 
@@ -13678,6 +17000,10 @@ class FactsResource(Resource):
         Args:
             id: ID of the fact master data entry.
             dry_run: Inspect deletion references without deleting. Returns `409` with the deletion report, including deletable=`true` when deletion would be allowed.
+
+        Example::
+
+            client.facts.delete(3)
         """
         self._raw('DELETE', f"/facts/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -13694,6 +17020,11 @@ class FactsResource(Resource):
 
         Args:
             id: ID of the fact master data entry.
+
+        Example::
+
+            result = client.facts.get(3)
+            print(result)
         """
         return _t.cast(_t.Union[models.FactNumber, models.FactSelect], self._call('GET', f"/facts/{_seg(id)}", [], None, _t.Union[models.FactNumber, models.FactSelect], envelope=True))
 
@@ -13706,6 +17037,11 @@ class FactsResource(Resource):
         `GET /facts`
 
         A fact definition describes a reusable metric (number) or selection (select), such as attendance or service type. It is separate from the value recorded for an individual event. Returns all definitions, ordered by `sortKey` ascending and then name ascending, without pagination. Definitions are not filtered by permissions to view recorded fact values.
+
+        Example::
+
+            for fact in client.facts.list():
+                print(fact)
         """
         return _t.cast(_t.List[_t.Union[models.FactNumber, models.FactSelect]], self._call('GET', "/facts", [], None, _t.List[_t.Union[models.FactNumber, models.FactSelect]], envelope=True))
 
@@ -13724,6 +17060,14 @@ class FactsResource(Resource):
 
         Args:
             id: ID of the fact master data entry.
+
+        Example::
+
+            result = client.facts.update(
+                3,
+                body=ct.models.FactNumberCreate.model_validate({"name": "Attendance", "type": "number", "unit": "people"}),
+            )
+            print(result)
         """
         return _t.cast(_t.Union[models.FactNumber, models.FactSelect], self._call('PUT', f"/facts/{_seg(id)}", [], _body(body), _t.Union[models.FactNumber, models.FactSelect], envelope=True))
 
@@ -13743,6 +17087,10 @@ class FeatureusageResource(Resource):
         `POST /featureusage`
 
         Send feature usage statistics in bulk.
+
+        Example::
+
+            client.featureusage.create()
         """
         self._raw('POST', "/featureusage", [], _body({'data': data}, extra_body))
 
@@ -13761,6 +17109,11 @@ class FieldsResource(Resource):
         Deprecated.
 
         Returns an array of all fields defined in ChurchTools.
+
+        Example::
+
+            for field in client.fields.list():
+                print(field)
         """
         return _t.cast(_t.List[StrMap[_t.Any]], self._call('GET', "/fields", [], None, _t.List[StrMap[_t.Any]], envelope=True))
 
@@ -13792,6 +17145,11 @@ class FilesResource(Resource):
             image_options: JSON-encoded image crop and focus options.
             securitylevel_id: Security level used by the selected attachment category.
             sort_key: Stored sort key.
+
+        Example::
+
+            for file in client.files.create("beispiel", "42", files=[ct.Upload.from_path("gemeindebrief.pdf")]):
+                print(file.name)
         """
         return _t.cast(_t.List[models.FileUploadResult], self._call('POST', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}", [], None, _t.List[models.FileUploadResult], envelope=True, upload=('files[]', _query([('image_options', image_options), ('securitylevel_id', securitylevel_id), ('sortKey', sort_key)]), files)))
 
@@ -13808,6 +17166,10 @@ class FilesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.files.delete(1)
         """
         self._raw('DELETE', f"/files/{_seg(id)}", [], None)
 
@@ -13826,6 +17188,10 @@ class FilesResource(Resource):
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
             domain_identifier: Identifier of the target within the file category, such as a person ID for `avatar` or a page identifier for `wiki_`.
+
+        Example::
+
+            client.files.delete_for_object("beispiel", "42")
         """
         self._raw('DELETE', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}", [], None)
 
@@ -13842,6 +17208,11 @@ class FilesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            meta = client.files.get_meta(1)
+            print(meta.name)
         """
         return _t.cast(models.CtFile, self._call('GET', f"/files/{_seg(id)}/meta", [], None, models.CtFile, envelope=True))
 
@@ -13860,6 +17231,11 @@ class FilesResource(Resource):
 
         Args:
             file_id: ID of the file
+
+        Example::
+
+            metadata = client.files.get_metadata(42)
+            print(metadata.id)
         """
         return _t.cast(models.LegacyFileMetadata, self._call('GET', f"/files/{_seg(file_id)}/metadata", [], None, models.LegacyFileMetadata, envelope=False))
 
@@ -13886,6 +17262,11 @@ class FilesResource(Resource):
             name: Display name. The URL is used when no name is supplied.
             security_level_id: Attachment security level.
             url: Absolute URL to store.
+
+        Example::
+
+            file = client.files.link("beispiel", "42", url="https://example.org/service-notes")
+            print(file.name)
         """
         return _t.cast(models.CtFile, self._call('POST', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}/link", [], _body({'name': name, 'securityLevelId': security_level_id, 'url': url}, extra_body), models.CtFile, envelope=True))
 
@@ -13904,6 +17285,11 @@ class FilesResource(Resource):
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
             domain_identifier: Identifier of the target within the file category, such as a person ID for `avatar` or a page identifier for `wiki_`.
+
+        Example::
+
+            for file in client.files.list("beispiel", "42"):
+                print(file.name)
         """
         return _t.cast(_t.List[models.CtFile], self._call('GET', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}", [], None, _t.List[models.CtFile], envelope=True))
 
@@ -13920,6 +17306,11 @@ class FilesResource(Resource):
 
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
+
+        Example::
+
+            result = client.files.list_for_type("beispiel")
+            print(result)
         """
         return _t.cast(_t.Union[_t.List[models.CtFile], StrMap[models.CtFile]], self._call('GET', f"/files/{_seg(domain_type)}", [], None, _t.Union[_t.List[models.CtFile], StrMap[models.CtFile]], envelope=True))
 
@@ -13944,6 +17335,10 @@ class FilesResource(Resource):
             name: Display name assigned to every matching file.
             sort_key: Sort key assigned to every matching file.
             copy_to: Target attachment context to which the file is copied.
+
+        Example::
+
+            client.files.patch(1, name="Service notes.pdf")
         """
         self._raw('PATCH', f"/files/{_seg(id)}", [], _body({'name': name, 'sortKey': sort_key, 'copyTo': copy_to}, extra_body))
 
@@ -13968,6 +17363,10 @@ class FilesResource(Resource):
             domain_identifier: Identifier of the target within the file category, such as a person ID for `avatar` or a page identifier for `wiki_`.
             name: Display name assigned to every matching file.
             sort_key: Sort key assigned to every matching file.
+
+        Example::
+
+            client.files.update_for_object("beispiel", "42", name="Service notes.pdf")
         """
         self._raw('PATCH', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body))
 
@@ -14010,6 +17409,11 @@ class FinanceResource(Resource):
 
         Args:
             accounting_period_id: Visible accounting period whose finance definitions are requested.
+
+        Example::
+
+            masterdata = client.finance.get_masterdata(accounting_period_id=1)
+            print(masterdata)
         """
         return _t.cast(models.FinanceMasterData, self._call('GET', "/finance/masterdata", _query([('accounting_period_id', accounting_period_id)]), None, models.FinanceMasterData, envelope=True))
 
@@ -14034,6 +17438,11 @@ class FollowupsResource(Resource):
         Args:
             follow_up_id: ID of Follow-up
             success_group_id: Selected destination group. Must match a configured fixed group and/or group-type restriction. Completion can create or overwrite this person’s membership using the configured role/status defaults.
+
+        Example::
+
+            followup = client.followups.complete(2, success_group_id=42)
+            print(followup.title)
         """
         return _t.cast(models.FollowUp2, self._call('POST', f"/followups/{_seg(follow_up_id)}/complete", [], _body({'successGroupId': success_group_id}, extra_body), models.FollowUp2, envelope=True))
 
@@ -14050,6 +17459,10 @@ class FollowupsResource(Resource):
 
         Args:
             follow_up_id: ID of Follow-up
+
+        Example::
+
+            client.followups.delete(2)
         """
         self._raw('DELETE', f"/followups/{_seg(follow_up_id)}", [], None)
 
@@ -14068,6 +17481,11 @@ class FollowupsResource(Resource):
 
         Args:
             follow_up_id: ID of Follow-up
+
+        Example::
+
+            followup = client.followups.dismiss(2)
+            print(followup.title)
         """
         return _t.cast(models.FollowUp2, self._call('POST', f"/followups/{_seg(follow_up_id)}/dismiss", [], _body(body), models.FollowUp2, envelope=True))
 
@@ -14084,6 +17502,11 @@ class FollowupsResource(Resource):
 
         Args:
             follow_up_id: ID of Follow-up
+
+        Example::
+
+            followup = client.followups.get(2)
+            print(followup.title)
         """
         return _t.cast(models.FollowUp2, self._call('GET', f"/followups/{_seg(follow_up_id)}", [], None, models.FollowUp2, envelope=True))
 
@@ -14103,6 +17526,11 @@ class FollowupsResource(Resource):
         Args:
             filter: Repeat to select any of the listed states. An empty array includes all states.
             limit: Maximum results in this page.
+
+        Example::
+
+            for followup in client.followups.list():
+                print(followup.title)
         """
         return Paginator(self._core, "/followups", _query([('filter[]', filter), ('limit', limit)]), models.FollowUp2)
 
@@ -14127,6 +17555,13 @@ class FollowupsResource(Resource):
             also_apply_to_person: Additionally link the same note to the subject person.
             comment: Note text.
             comment_viewer_id: Visibility category applied only to an additional person link when `also_apply_to_person=true`. Ignored for the follow-up link itself.
+
+        Example::
+
+            client.followups.notes(
+                2,
+                comment="Called Alex; another conversation is planned for next week.",
+            )
         """
         self._raw('POST', f"/followups/{_seg(follow_up_id)}/notes", _query([('also_apply_to_person', also_apply_to_person)]), _body({'comment': comment, 'commentViewerId': comment_viewer_id}, extra_body))
 
@@ -14147,6 +17582,11 @@ class FollowupsResource(Resource):
         Args:
             follow_up_id: ID of Follow-up
             due_date: New effective date, strictly after today in server date handling. The original `dueDate` is retained.
+
+        Example::
+
+            followup = client.followups.postpone(2, due_date=dt.date(2026, 12, 1))
+            print(followup.title)
         """
         return _t.cast(models.FollowUp2, self._call('POST', f"/followups/{_seg(follow_up_id)}/postpone", [], _body({'dueDate': due_date}, extra_body), models.FollowUp2, envelope=True))
 
@@ -14167,6 +17607,11 @@ class FollowupsResource(Resource):
         Args:
             follow_up_id: ID of Follow-up
             due_date: A future date overrides `effectiveDueDate`; otherwise it is restored from the original `dueDate`, which may be past or null.
+
+        Example::
+
+            followup = client.followups.reset(2, due_date=dt.date(2026, 12, 1))
+            print(followup.title)
         """
         return _t.cast(models.FollowUp2, self._call('POST', f"/followups/{_seg(follow_up_id)}/reset", [], _body({'dueDate': due_date}, extra_body), models.FollowUp2, envelope=True))
 
@@ -14185,6 +17630,14 @@ class FollowupsResource(Resource):
 
         Args:
             follow_up_id: ID of Follow-up
+
+        Example::
+
+            result = client.followups.update(
+                2,
+                body=ct.models.FollowUpUpdate.model_validate({"title": "Call Peter"}),
+            )
+            print(result.title)
         """
         return _t.cast(models.FollowUp2, self._call('PUT', f"/followups/{_seg(follow_up_id)}", [], _body(body), models.FollowUp2, envelope=True))
 
@@ -14208,6 +17661,17 @@ class FurtherlinksResource(Resource):
         `POST /furtherlinks`
 
         Create a new further link.
+
+        Example::
+
+            result = client.furtherlinks.create(
+                description="Our church's NextCloud",
+                image_url="beispiel",
+                name="NextCloud",
+                sort_key=1.5,
+                url="beispiel",
+            )
+            print(result.name)
         """
         return _t.cast(models.FurtherLink, self._call('POST', "/furtherlinks", [], _body({'description': description, 'imageUrl': image_url, 'name': name, 'sortKey': sort_key, 'url': url}, extra_body), models.FurtherLink, envelope=True))
 
@@ -14219,6 +17683,10 @@ class FurtherlinksResource(Resource):
         delete-furtherlinks-furtherLinkId
 
         `DELETE /furtherlinks/{furtherLinkId}`
+
+        Example::
+
+            client.furtherlinks.delete(1.5)
         """
         self._raw('DELETE', f"/furtherlinks/{_seg(further_link_id)}", [], None)
 
@@ -14232,6 +17700,11 @@ class FurtherlinksResource(Resource):
         `GET /furtherlinks/{furtherLinkId}`
 
         Get the specified further link.
+
+        Example::
+
+            furtherlink = client.furtherlinks.get(1.5)
+            print(furtherlink.name)
         """
         return _t.cast(models.FurtherLink, self._call('GET', f"/furtherlinks/{_seg(further_link_id)}", [], None, models.FurtherLink, envelope=True))
 
@@ -14244,6 +17717,11 @@ class FurtherlinksResource(Resource):
         `GET /furtherlinks`
 
         Get all further links.
+
+        Example::
+
+            for furtherlink in client.furtherlinks.list():
+                print(furtherlink.name)
         """
         return _t.cast(_t.List[models.FurtherLink], self._call('GET', "/furtherlinks", [], None, _t.List[models.FurtherLink], envelope=True))
 
@@ -14264,6 +17742,18 @@ class FurtherlinksResource(Resource):
         `PUT /furtherlinks/{furtherLinkId}`
 
         Update the specified further link.
+
+        Example::
+
+            result = client.furtherlinks.update(
+                1.5,
+                description="Our church's NextCloud",
+                image_url="beispiel",
+                name="NextCloud",
+                sort_key=1.5,
+                url="beispiel",
+            )
+            print(result.name)
         """
         return _t.cast(models.FurtherLink, self._call('PUT', f"/furtherlinks/{_seg(further_link_id)}", [], _body({'description': description, 'imageUrl': image_url, 'name': name, 'sortKey': sort_key, 'url': url}, extra_body), models.FurtherLink, envelope=True))
 
@@ -14291,6 +17781,11 @@ class GroupResource(Resource):
         Returns the fixed membership-status values with their names translated into the current language. A status describes a person's membership state in a group; their role (for example leader or participant) is a separate property.
         active means an active membership, requested a membership awaiting confirmation, waiting a place on the waiting list, and to_delete a membership pending removal. to_delete is still a stored membership state, not an already deleted record. These values are shared across group types. Use id in API requests and name for display.
         Requires authentication. This endpoint takes no parameters and returns a plain array, without a data wrapper or meta object. It lists possible statuses, not the transitions that a particular user may perform for a particular membership.
+
+        Example::
+
+            for memberstatu in client.group.list_memberstatus():
+                print(memberstatu.name)
         """
         return _t.cast(_t.List[models.GetGroupMemberstatusResponseItem], self._call('GET', "/group/memberstatus", [], None, _t.List[models.GetGroupMemberstatusResponseItem], envelope=False))
 
@@ -14314,6 +17809,11 @@ class GrouphomepagesResource(Resource):
         Args:
             hash: Random hash of the group homepage.
             depth: Optional hierarchy-depth override. 0 gives no descendants, positive values limit levels, negative values currently act as unbounded. Omitted uses the stored depth.
+
+        Example::
+
+            grouphomepage = client.grouphomepages.get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")
+            print(grouphomepage.name)
         """
         return _t.cast(models.GroupHomepage, self._call('GET', f"/grouphomepages/{_seg(hash)}", _query([('depth', depth)]), None, models.GroupHomepage, envelope=True))
 
@@ -14326,6 +17826,11 @@ class GrouphomepagesResource(Resource):
         `GET /grouphomepages`
 
         Public directory of every enabled group homepage as lightweight domain objects. No authentication or per-homepage view permission is required. The random page hashes are intentionally returned in apiUrl/frontendUrl and are not secrets suitable for access control. Entries include the owning parent group ID and hierarchy descendant IDs across all depths; this list does not apply the stored page depth or the detailed page’s public-group eligibility filter. Active, non-hidden hierarchy edges are followed, so child IDs can include internal groups and duplicates through multiple paths. There is no pagination or guaranteed ordering of homepage entries.
+
+        Example::
+
+            for grouphomepage in client.grouphomepages.list():
+                print(grouphomepage.title)
         """
         return _t.cast(_t.List[models.DomainObjectGrouphomepage], self._call('GET', "/grouphomepages", [], None, _t.List[models.DomainObjectGrouphomepage], envelope=True))
 
@@ -14362,6 +17867,10 @@ class GroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            client.groups.chat(42, enabled=True)
         """
         self._raw('POST', f"/groups/{_seg(group_id)}/chat", [], _body({'enabled': enabled, 'triggerChatInviteMail': trigger_chat_invite_mail}, extra_body))
 
@@ -14396,6 +17905,11 @@ class GroupsResource(Resource):
             parent_group_id: Group ID of parent group
             role_id: put yourself in this role
             visibility: The visibility of a group.
+
+        Example::
+
+            result = client.groups.create(group_status_id=1, group_type_id=42, name="Hauskreis Nord")
+            print(result.name)
         """
         return _t.cast(models.Group, self._call('POST', "/groups", [], _body({'campusId': campus_id, 'force': force, 'groupCategoryId': group_category_id, 'groupStatusId': group_status_id, 'groupTypeId': group_type_id, 'name': name, 'parentGroupId': parent_group_id, 'roleId': role_id, 'visibility': visibility}, extra_body), models.Group, envelope=True))
 
@@ -14415,6 +17929,10 @@ class GroupsResource(Resource):
         Args:
             group_id: ID of group
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.groups.delete(42)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}", _query([('dry_run', dry_run)]), None)
 
@@ -14431,6 +17949,10 @@ class GroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            client.groups.delete_grouphomepage(42)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/grouphomepage", [], None)
 
@@ -14465,6 +17987,11 @@ class GroupsResource(Resource):
             copy_permissions_2: Copy group-role permissions and permission inheritance settings. Locked permissions are omitted unless the current user is an authorized person.
             copy_routines_2: Copy membership routines and prepare their potential runs for the new group.
             new_name_2: Name of the copy, trimmed before validation. Required in either the query or JSON body. The validator accepts up to 255 characters, but the stored group name column is limited to 100.
+
+        Example::
+
+            group = client.groups.duplicate(42, copy_members_2=True)
+            print(group.name)
         """
         return _t.cast(models.Group, self._call('POST', f"/groups/{_seg(group_id)}/duplicate", _query([('newName', new_name), ('copyMembers', copy_members), ('copyPermissions', copy_permissions), ('copyRoutines', copy_routines)]), _body({'copyMembers': copy_members_2, 'copyPermissions': copy_permissions_2, 'copyRoutines': copy_routines_2, 'newName': new_name_2}, extra_body), models.Group, envelope=True))
 
@@ -14487,6 +18014,12 @@ class GroupsResource(Resource):
             format: Export file format. Defaults to `csv` when omitted. The response content type depends on the selected format.
             type_: Use `format`
             ids: Group IDs to export. Unknown or invisible IDs are silently omitted; duplicates do not produce duplicate rows. Rows are sorted by group name, not by this array.
+
+        Example::
+
+            data = client.groups.export(ids=[12, 34])
+            with open("ergebnis.xlsx", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', "/groups/export", _query([('format', format), ('type', type_)]), _body({'ids': ids}, extra_body))
 
@@ -14504,6 +18037,11 @@ class GroupsResource(Resource):
         Args:
             group_id: ID of group
             include: Include additional information (currently, 'roles' are included by default but this behaviour is now deprecated)
+
+        Example::
+
+            group = client.groups.get(42)
+            print(group.name)
         """
         return _t.cast(models.Group, self._call('GET', f"/groups/{_seg(group_id)}", _query([('include[]', include)]), None, models.Group, envelope=True))
 
@@ -14523,6 +18061,11 @@ class GroupsResource(Resource):
         Args:
             group_by: Group attribute used to build the response buckets
             limit: Number of results per page.
+
+        Example::
+
+            grouped = client.groups.get_grouped(group_by="beispiel")
+            print(grouped.grouped_by)
         """
         return _t.cast(models.GroupedGroups, self._call('GET', "/groups/grouped", _query([('group_by', group_by), ('limit', limit)]), None, models.GroupedGroups, envelope=True))
 
@@ -14539,6 +18082,11 @@ class GroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            grouphomepage = client.groups.get_grouphomepage(42)
+            print(grouphomepage.name)
         """
         return _t.cast(models.GroupHomepage, self._call('GET', f"/groups/{_seg(group_id)}/grouphomepage", [], None, models.GroupHomepage, envelope=True))
 
@@ -14555,6 +18103,11 @@ class GroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            optin = client.groups.get_optins(42)
+            print(optin)
         """
         return _t.cast(models.NewsletterOptInData, self._call('GET', f"/groups/{_seg(group_id)}/optins", [], None, models.NewsletterOptInData, envelope=True))
 
@@ -14571,6 +18124,11 @@ class GroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            poststatistic = client.groups.get_poststatistics(42)
+            print(poststatistic.group_intern)
         """
         return _t.cast(models.GroupPostStatistics, self._call('GET', f"/groups/{_seg(group_id)}/poststatistics", [], None, models.GroupPostStatistics, envelope=True))
 
@@ -14587,6 +18145,11 @@ class GroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            statistic = client.groups.get_statistics(42)
+            print(statistic)
         """
         return _t.cast(models.GroupStatistics, self._call('GET', f"/groups/{_seg(group_id)}/statistics", [], None, models.GroupStatistics, envelope=True))
 
@@ -14609,6 +18172,10 @@ class GroupsResource(Resource):
             group_id: ID of group
             group_type_id: ID of the target group type.
             role_mapping: Map each old group-type role ID (JSON key) to its target role ID in the new type. Include every role used by memberships, settings and routines. Many-to-one mapping keeps the first mapped role settings and removes obsolete ones; it is rejected with 400 when affected membership routines cannot be merged. Missing mappings are not reliably rejected before migration.
+
+        Example::
+
+            client.groups.grouptype(42, group_type_id=3, role_mapping={})
         """
         self._raw('POST', f"/groups/{_seg(group_id)}/grouptype", [], _body({'groupTypeId': group_type_id, 'roleMapping': role_mapping}, extra_body))
 
@@ -14673,6 +18240,11 @@ class GroupsResource(Resource):
             order_fields: The fields to order by
             order_directions: The order direction ASC or DESC for the order_fields
             include: Include additional information (currently, 'roles' are included by default but this behaviour is now deprecated)
+
+        Example::
+
+            for group in client.groups.list():
+                print(group.name)
         """
         return Paginator(self._core, "/groups", _query([('limit', limit), ('ids[]', ids), ('parent_id', parent_id), ('child_id', child_id), ('campus_ids[]', campus_ids), ('agegroup_ids[]', agegroup_ids), ('group_status_ids[]', group_status_ids), ('group_category_ids[]', group_category_ids), ('target_group_ids[]', target_group_ids), ('weekdays[]', weekdays), ('group_type_ids[]', group_type_ids), ('tag_ids[]', tag_ids), ('is_open_for_members', is_open_for_members), ('without_my_groups', without_my_groups), ('only_my_groups', only_my_groups), ('has_meeting_place', has_meeting_place), ('allow_posts', allow_posts), ('has_posts', has_posts), ('has_active_chat', has_active_chat), ('query', query), ('visibility', visibility), ('order_fields[]', order_fields), ('order_directions[]', order_directions), ('include[]', include)]), models.Group)
 
@@ -14700,6 +18272,11 @@ class GroupsResource(Resource):
             order_direction: Order by absence start.
             from_date: Legacy alias for from.
             to_date: Legacy alias for to.
+
+        Example::
+
+            for absence in client.groups.list_absences(42):
+                print(absence.id)
         """
         return _t.cast(_t.List[models.Absence], self._call('GET', f"/groups/{_seg(group_id)}/absences", _query([('from', from_), ('to', to), ('order_direction', order_direction), ('from_date', from_date), ('to_date', to_date)]), None, _t.List[models.Absence], envelope=True))
 
@@ -14752,6 +18329,11 @@ class GroupsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+
+        Example::
+
+            for children in client.groups.list_children(42):
+                print(children.title)
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/children", _query([('limit', limit), ('ids[]', ids), ('campus_ids[]', campus_ids), ('agegroup_ids[]', agegroup_ids), ('group_status_ids[]', group_status_ids), ('group_category_ids[]', group_category_ids), ('target_group_ids[]', target_group_ids), ('weekdays[]', weekdays), ('group_type_ids[]', group_type_ids), ('tag_ids[]', tag_ids), ('is_open_for_members', is_open_for_members), ('without_my_groups', without_my_groups), ('only_my_groups', only_my_groups), ('has_meeting_place', has_meeting_place), ('allow_posts', allow_posts), ('has_posts', has_posts), ('has_active_chat', has_active_chat), ('query', query), ('visibility', visibility)]), models.DomainObjectGroup)
 
@@ -14768,6 +18350,11 @@ class GroupsResource(Resource):
 
         Args:
             group_id: ID of group
+
+        Example::
+
+            for documenttemplate in client.groups.list_documenttemplates(42):
+                print(documenttemplate.name)
         """
         return _t.cast(_t.List[models.HtmlTemplateInfo], self._call('GET', f"/groups/{_seg(group_id)}/documenttemplates", [], None, _t.List[models.HtmlTemplateInfo], envelope=True))
 
@@ -14820,6 +18407,11 @@ class GroupsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+
+        Example::
+
+            for hierarchy in client.groups.list_hierarchies():
+                print(hierarchy.group_id)
         """
         return Paginator(self._core, "/groups/hierarchies", _query([('limit', limit), ('ids[]', ids), ('campus_ids[]', campus_ids), ('agegroup_ids[]', agegroup_ids), ('group_status_ids[]', group_status_ids), ('group_category_ids[]', group_category_ids), ('target_group_ids[]', target_group_ids), ('weekdays[]', weekdays), ('group_type_ids[]', group_type_ids), ('tag_ids[]', tag_ids), ('is_open_for_members', is_open_for_members), ('without_my_groups', without_my_groups), ('only_my_groups', only_my_groups), ('has_meeting_place', has_meeting_place), ('allow_posts', allow_posts), ('has_posts', has_posts), ('has_active_chat', has_active_chat), ('query', query), ('visibility', visibility)]), models.GroupHierarchy)
 
@@ -14876,6 +18468,11 @@ class GroupsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+
+        Example::
+
+            for id in client.groups.list_ids():
+                print(id)
         """
         return Paginator(self._core, "/groups/ids", _query([('limit', limit), ('ids[]', ids), ('parent_id', parent_id), ('child_id', child_id), ('campus_ids[]', campus_ids), ('agegroup_ids[]', agegroup_ids), ('group_status_ids[]', group_status_ids), ('group_category_ids[]', group_category_ids), ('target_group_ids[]', target_group_ids), ('weekdays[]', weekdays), ('group_type_ids[]', group_type_ids), ('tag_ids[]', tag_ids), ('is_open_for_members', is_open_for_members), ('without_my_groups', without_my_groups), ('only_my_groups', only_my_groups), ('has_meeting_place', has_meeting_place), ('allow_posts', allow_posts), ('has_posts', has_posts), ('has_active_chat', has_active_chat), ('query', query), ('visibility', visibility)]), int)
 
@@ -14911,6 +18508,11 @@ class GroupsResource(Resource):
             comment: Return memberships whose comment contains the supplied text.
             member_start_date_after: Filter by a membership start date strictly after this value. Memberships without a start date do not match. Use YYYY-MM-DD; UTC timestamps are also accepted for compatibility.
             member_start_date_before: Filter by a membership start date strictly before this value. Memberships without a start date do not match. Use YYYY-MM-DD; UTC timestamps are also accepted for compatibility.
+
+        Example::
+
+            for memberid in client.groups.list_memberids(42):
+                print(memberid)
         """
         return _t.cast(_t.List[int], self._call('GET', f"/groups/{_seg(group_id)}/memberids", _query([('role_ids[]', role_ids), ('person_id[]', person_id), ('group_member_statuses[]', group_member_statuses), ('allowed_chat_users_only', allowed_chat_users_only), ('allowed_chat_writers_only', allowed_chat_writers_only), ('query', query), ('comment', comment), ('member_start_date_after', member_start_date_after), ('member_start_date_before', member_start_date_before)]), None, _t.List[int], envelope=True))
 
@@ -14930,6 +18532,11 @@ class GroupsResource(Resource):
         Args:
             group_id: ID of group
             members_per_role: Maximum number of active, visible members returned for each role.
+
+        Example::
+
+            for memberpreview in client.groups.list_memberpreview(42):
+                print(memberpreview)
         """
         return _t.cast(_t.List[models.MemberPreview], self._call('GET', f"/groups/{_seg(group_id)}/memberpreview", _query([('members_per_role', members_per_role)]), None, _t.List[models.MemberPreview], envelope=True))
 
@@ -14949,6 +18556,11 @@ class GroupsResource(Resource):
         Args:
             ids: Array of group ids
             with_deleted: If true, return also deleted group members
+
+        Example::
+
+            for member in client.groups.list_members():
+                print(member.deleted)
         """
         return _t.cast(_t.List[models.GroupMemberShort], self._call('GET', "/groups/members", _query([('ids[]', ids), ('with_deleted', with_deleted)]), None, _t.List[models.GroupMemberShort], envelope=True))
 
@@ -14976,6 +18588,11 @@ class GroupsResource(Resource):
             after: If set, only posts published at or after this date are returned. The date must be in RFC3339 format (Zulu-Date).
             limit: Maximum number of posts in this batch.
             include: Optional comments and reactions. Linkings are already included by default.
+
+        Example::
+
+            for post in client.groups.list_posts(42):
+                print(post.title)
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/posts", _query([('before', before), ('last_post_identifier', last_post_identifier), ('after', after), ('limit', limit), ('include[]', include)]), models.Post)
 
@@ -14998,6 +18615,11 @@ class GroupsResource(Resource):
             group_id: ID of group
             dry_run: Preview the recipient count without sending. Only available before the group has been marked as notified.
             dry_run_2: Preview recipient selection without sending or marking the group as notified. Can also be supplied as a query parameter; use only one location.
+
+        Example::
+
+            group = client.groups.notification(42, dry_run_2=True)
+            print(group.sent_to_count)
         """
         return _t.cast(models.GroupSignUpNotificationResult, self._call('POST', f"/groups/{_seg(group_id)}/notification", _query([('dry_run', dry_run)]), _body({'dry_run': dry_run_2}, extra_body), models.GroupSignUpNotificationResult, envelope=False))
 
@@ -15027,6 +18649,11 @@ class GroupsResource(Resource):
             appointment_id: ID of the appointment this group is linked to. Set to `null` to unlink the group from any appointment.
             start_date: Start date of the appointment occurrence this group is linked to (used together with `appointmentId` for repeating appointments). Set to `null` to clear.
             statuses_counted_towards_seats: Membership statuses that occupy seats when their role counts towards seats. Defaults to active only. An empty array means no membership occupies a seat.
+
+        Example::
+
+            result = client.groups.patch(42, appointment_id=42)
+            print(result.name)
         """
         return _t.cast(models.Group, self._call('PATCH', f"/groups/{_seg(group_id)}", _query([('skip_my_posts_reducing_visibility', skip_my_posts_reducing_visibility), ('deactivate_routines_on_status_finished', deactivate_routines_on_status_finished)]), _body({'appointmentId': appointment_id, 'groupTypeId': group_type_id, 'startDate': start_date, 'statusesCountedTowardsSeats': statuses_counted_towards_seats}, extra_body), models.Group, envelope=True))
 
@@ -15075,6 +18702,18 @@ class GroupsResource(Resource):
             show_leaders: Include leaders in public group details.
             show_map: Enable the map when the global OpenStreetMap setting also permits it.
             title_mode: Header content source. Omission uses group for a new page and preserves the current setting on update.
+
+        Example::
+
+            result = client.groups.update_grouphomepage(
+                42,
+                is_enabled=True,
+                show_filters=True,
+                show_group_images=True,
+                show_leaders=True,
+                show_map=True,
+            )
+            print(result)
         """
         return _t.cast(StrMap[_t.Any], self._call('PUT', f"/groups/{_seg(group_id)}/grouphomepage", [], _body({'customDescription': custom_description, 'customTitle': custom_title, 'defaultView': default_view, 'depth': depth, 'descriptionMode': description_mode, 'filters': filters, 'isCollapsed': is_collapsed, 'isEnabled': is_enabled, 'orderBy': order_by, 'orderDirection': order_direction, 'showFilters': show_filters, 'showGroupImages': show_group_images, 'showLeaders': show_leaders, 'showMap': show_map, 'titleMode': title_mode}, extra_body), StrMap[_t.Any], envelope=False))
 
@@ -15112,6 +18751,11 @@ class HistoryResource(Resource):
             actor_id: Return entries created by this person.
             origin: Return entries with this origin.
             limit: Number of results per page.
+
+        Example::
+
+            for history in client.history.list(domain_types=["beispiel"], domain_identifiers=["beispiel"]):
+                print(history.id)
         """
         return Paginator(self._core, "/history", _query([('domain_types[]', domain_types), ('domain_identifiers[]', domain_identifiers), ('action', action), ('query', query), ('from', from_), ('to', to), ('actor_id', actor_id), ('origin', origin), ('limit', limit)]), models.HistoryEntry)
 
@@ -15144,6 +18788,11 @@ class HtmltemplatesResource(Resource):
             copy_assets_from_id: Copy image asset files from this template ID after creating the new template. Does not copy HTML/MJML or rewrite embedded URLs; omit/null to copy none.
             html: HTML source; omitted/null stores no HTML file. The nonempty string 0 is also treated as absent by the current service.
             mjml: MJML editor source; omitted/null stores no MJML file. This input is not compiled or validated as MJML by this endpoint.
+
+        Example::
+
+            result = client.htmltemplates.create(domain_type="email", name="Welcome email")
+            print(result.name)
         """
         return _t.cast(models.HtmlTemplate, self._call('POST', "/htmltemplates", [], _body({'domainType': domain_type, 'isGlobal': is_global, 'name': name, 'copyAssetsFromId': copy_assets_from_id, 'html': html, 'mjml': mjml}, extra_body), models.HtmlTemplate, envelope=True))
 
@@ -15163,6 +18812,10 @@ class HtmltemplatesResource(Resource):
         Args:
             template_id: ID of an HTML template
             dry_run: True: only return a 409 dependency report. False: perform deletion if no blocker exists. No default is provided by the validator.
+
+        Example::
+
+            client.htmltemplates.delete(2, dry_run=True)
         """
         self._raw('DELETE', f"/htmltemplates/{_seg(template_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -15179,6 +18832,11 @@ class HtmltemplatesResource(Resource):
 
         Args:
             template_id: ID of an HTML template
+
+        Example::
+
+            htmltemplate = client.htmltemplates.get(2)
+            print(htmltemplate.name)
         """
         return _t.cast(models.HtmlTemplate, self._call('GET', f"/htmltemplates/{_seg(template_id)}", [], None, models.HtmlTemplate, envelope=True))
 
@@ -15195,6 +18853,11 @@ class HtmltemplatesResource(Resource):
 
         Args:
             template_id: ID of an HTML template
+
+        Example::
+
+            result = client.htmltemplates.get_export(2)
+            print(result)
         """
         return _t.cast(str, self._call('GET', f"/htmltemplates/{_seg(template_id)}/export", [], None, str, envelope=True))
 
@@ -15211,6 +18874,11 @@ class HtmltemplatesResource(Resource):
 
         Args:
             template_id: ID of an HTML template
+
+        Example::
+
+            result = client.htmltemplates.get_html(2)
+            print(result)
         """
         return _t.cast(_t.Optional[str], self._call('GET', f"/htmltemplates/{_seg(template_id)}/html", [], None, _t.Optional[str], envelope=True))
 
@@ -15227,6 +18895,11 @@ class HtmltemplatesResource(Resource):
 
         Args:
             template_id: ID of an HTML template
+
+        Example::
+
+            result = client.htmltemplates.get_mjml(2)
+            print(result)
         """
         return _t.cast(_t.Optional[str], self._call('GET', f"/htmltemplates/{_seg(template_id)}/mjml", [], None, _t.Optional[str], envelope=True))
 
@@ -15248,6 +18921,11 @@ class HtmltemplatesResource(Resource):
             domain_type: Template purpose. Supply this canonical parameter, or the legacy type alias.
             type_: Legacy alias for domain_type; domain_type wins if both are provided.
             only_own: Filter by the current owner, regardless of private/global visibility.
+
+        Example::
+
+            for htmltemplate in client.htmltemplates.list(domain_type="email"):
+                print(htmltemplate.name)
         """
         return _t.cast(_t.List[models.HtmlTemplate], self._call('GET', "/htmltemplates", _query([('domain_type', domain_type), ('type', type_), ('onlyOwn', only_own)]), None, _t.List[models.HtmlTemplate], envelope=True))
 
@@ -15276,6 +18954,11 @@ class HtmltemplatesResource(Resource):
             is_global: Change shared availability; null/omission preserves it. Membership-document and donation-receipt templates must stay global.
             mjml: Replace MJML source independently; null/omission and the string 0 preserve it. Empty string fails validation.
             name: New trimmed display name; null/omission preserves it. The current service also ignores the otherwise valid name 0.
+
+        Example::
+
+            result = client.htmltemplates.patch(2, name="Updated welcome email")
+            print(result.name)
         """
         return _t.cast(models.HtmlTemplate, self._call('PATCH', f"/htmltemplates/{_seg(template_id)}", [], _body({'html': html, 'htmlFileId': html_file_id, 'isGlobal': is_global, 'mjml': mjml, 'name': name}, extra_body), models.HtmlTemplate, envelope=True))
 
@@ -15295,6 +18978,11 @@ class HtmltemplatesResource(Resource):
         Args:
             template_id: ID of an HTML template
             files: Files to upload.
+
+        Example::
+
+            for htmltemplate in client.htmltemplates.uploadassets(2, files=[ct.Upload.from_path("logo.png")]):
+                print(htmltemplate.name)
         """
         return _t.cast(_t.List[models.HtmlTemplateAssetUpload], self._call('POST', f"/htmltemplates/{_seg(template_id)}/uploadassets", [], None, _t.List[models.HtmlTemplateAssetUpload], envelope=True, upload=('files[]', [], files)))
 
@@ -15332,6 +19020,12 @@ class ImagesResource(Resource):
             fit: Glide fit mode. Raster images use their stored focus point by default.
             fm: Output format. A recognized hash suffix takes precedence.
             p: Comma-separated preset names: `group-homepage`, `group-detail`, `group-list`, `group-tile`, `group-minitile`, `person-detail` and `avatar`. Explicit parameters take precedence over preset values.
+
+        Example::
+
+            data = client.images.get(42, "beispiel")
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', f"/images/{_seg(file_id)}/{_seg(hash)}", _query([('w', w), ('h', h), ('q', q), ('crop', crop), ('fit', fit), ('fm', fm), ('p', p)]), None)
 
@@ -15352,6 +19046,12 @@ class ImagesResource(Resource):
             file_id: ID of the file
             hash: File hash from the image URL. The suffixes `.jpeg`, `.jpg`, `.webp` and `.png` select the output format.
             query_params: URL-encoded image manipulation query string.
+
+        Example::
+
+            data = client.images.get_with_params(42, "beispiel", "fm%3Dwebp%26q%3D80%26w%3D700%26h%3Dauto")
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', f"/images/{_seg(file_id)}/{_seg(hash)}/{_seg(query_params)}", [], None)
 
@@ -15382,6 +19082,11 @@ class ImagesResource(Resource):
             description: Alternative text describing the image for screen readers.
             image_options: Legacy alias for `options`.
             options: JSON-encoded image options. `crop` contains the `top`, `right`, `bottom` and `left` margins relative to the original dimensions. `focus` contains `x` and `y` coordinates relative to the original top-left corner.
+
+        Example::
+
+            result = client.images.patch(1, description="Congregation gathered outside the church.")
+            print(result.name)
         """
         return _t.cast(models.ImageMetadataUpdateResult, self._call('PATCH', f"/images/{_seg(id)}", [], _body({'aiGenerated': ai_generated, 'annotation': annotation, 'annotationLink': annotation_link, 'description': description, 'image_options': image_options, 'options': options}, extra_body), models.ImageMetadataUpdateResult, envelope=True))
 
@@ -15412,6 +19117,11 @@ class ImagesResource(Resource):
             description: Alternative text describing the image for screen readers.
             image_options: Legacy alias for `options`.
             options: JSON-encoded image options. `crop` contains the `top`, `right`, `bottom` and `left` margins relative to the original dimensions. `focus` contains `x` and `y` coordinates relative to the original top-left corner.
+
+        Example::
+
+            result = client.images.update_options(1, description="Congregation gathered outside the church.")
+            print(result.name)
         """
         return _t.cast(models.ImageMetadataUpdateResult, self._call('PUT', f"/images/{_seg(id)}/options", [], _body({'aiGenerated': ai_generated, 'annotation': annotation, 'annotationLink': annotation_link, 'description': description, 'image_options': image_options, 'options': options}, extra_body), models.ImageMetadataUpdateResult, envelope=True))
 
@@ -15428,6 +19138,11 @@ class InfoResource(Resource):
         `GET /info`
 
         The API envoles and dependes on the ChurchTools version. This endpoint provides the build version and CT version.
+
+        Example::
+
+            info = client.info.get()
+            print(info.build)
         """
         return _t.cast(models.GetInfoResponse, self._call('GET', "/info", [], None, models.GetInfoResponse, envelope=False))
 
@@ -15450,6 +19165,11 @@ class InstallationSyncResource(Resource):
 
         Args:
             configuration_token: Compact RS256 JWS containing the configuration.
+
+        Example::
+
+            installation_sync = client.installation_sync.oidc(configuration_token="beispiel")
+            print(installation_sync.external_login_id)
         """
         return _t.cast(models.PostInstallationSyncOidcData, self._call('POST', "/installation-sync/oidc", [], _body({'configurationToken': configuration_token}, extra_body), models.PostInstallationSyncOidcData, envelope=True))
 
@@ -15471,6 +19191,11 @@ class JoblogResource(Resource):
 
         Args:
             guid: Exact job identifier supplied by the job workflow, including any suffix.
+
+        Example::
+
+            for joblog in client.joblog.list(guid="d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged"):
+                print(joblog.element_id)
         """
         return _t.cast(_t.List[models.JobLogEntry], self._call('GET', "/joblog", _query([('guid', guid)]), None, _t.List[models.JobLogEntry], envelope=False))
 
@@ -15506,6 +19231,11 @@ class JobsResource(Resource):
             created_end_date: Inclusive upper date bound.
             modified_start_date: Inclusive lower date bound.
             modified_end_date: Inclusive upper date bound.
+
+        Example::
+
+            for job in client.jobs.list():
+                print(job.name)
         """
         return _t.cast(_t.List[models.Job], self._call('GET', "/jobs", _query([('status[]', status), ('identifier', identifier), ('name', name), ('domain_ids[]', domain_ids), ('created_start_date', created_start_date), ('created_end_date', created_end_date), ('modified_start_date', modified_start_date), ('modified_end_date', modified_end_date)]), None, _t.List[models.Job], envelope=True))
 
@@ -15526,6 +19256,13 @@ class JobsResource(Resource):
         Args:
             identifier: Opaque background-job identifier returned when scheduling; not an integer ID.
             log_message: Log message.
+
+        Example::
+
+            client.jobs.logs(
+                "1a9e9b86-78ee-4c8a-bf58-51e653073a0c",
+                log_message="Processed 25 records.",
+            )
         """
         self._raw('POST', f"/jobs/{_seg(identifier)}/logs", [], _body({'logMessage': log_message}, extra_body))
 
@@ -15548,6 +19285,10 @@ class JobsResource(Resource):
             identifier: Opaque background-job identifier returned when scheduling; not an integer ID.
             manual: Marks the status change as manual.
             status: Stored background-job status. The status-update endpoint accepts all values; the list filter accepts only `IN_PROGRESS`, `DONE`, and `ERROR`.
+
+        Example::
+
+            client.jobs.update_status("1a9e9b86-78ee-4c8a-bf58-51e653073a0c", status="QUEUED")
         """
         self._raw('PUT', f"/jobs/{_seg(identifier)}/status", [], _body({'manual': manual, 'status': status}, extra_body))
 
@@ -15576,6 +19317,11 @@ class LabelsResource(Resource):
             person_ids: Selected person IDs. Prefer an array of integers; legacy comma-separated strings and a single integer are also accepted. Duplicate IDs do not duplicate labels. Empty selection yields no persons; nonexistent or invisible persons are omitted.
             sortpolicy: name sorts by surname/given name; postal by country/postal code/street/name; birthday by month/day/year/name. Birthday sorting forces separate labels. Unrecognized values currently retain initial name order.
             type_: A4 sheet layout: Avery3475 has 24 labels (70×36 mm), Herma4425 has 10 (105×57 mm), Herma4677 has 21 (63.5×38.1 mm).
+
+        Example::
+
+            result = client.labels.create(person_ids=[42], type_="AveryLabels3475")
+            print(result.pdf)
         """
         return _t.cast(models.PostLabelsData, self._call('POST', "/labels", [], _body({'combineSpouses': combine_spouses, 'personIds': person_ids, 'sortpolicy': sortpolicy, 'type': type_}, extra_body), models.PostLabelsData, envelope=True))
 
@@ -15594,6 +19340,11 @@ class LabelsResource(Resource):
 
         Args:
             person_ids: Selected person IDs. Prefer an array of integers; legacy comma-separated strings and a single integer are also accepted. Duplicate IDs do not duplicate labels. Empty selection yields no persons; nonexistent or invisible persons are omitted.
+
+        Example::
+
+            label = client.labels.totals(person_ids=[42])
+            print(label)
         """
         return _t.cast(models.LabelTotals, self._call('POST', "/labels/totals", [], _body({'personIds': person_ids}, extra_body), models.LabelTotals, envelope=True))
 
@@ -15615,6 +19366,11 @@ class LanguagesResource(Resource):
 
         Args:
             only_active: Set to true if only active languages should be returned
+
+        Example::
+
+            for language in client.languages.list():
+                print(language.name)
         """
         return _t.cast(_t.List[models.Language], self._call('GET', "/languages", _query([('only_active', only_active)]), None, _t.List[models.Language], envelope=True))
 
@@ -15631,6 +19387,10 @@ class LicenseResource(Resource):
         `GET /license/fetch`
 
         Fetches and stores the current license information.
+
+        Example::
+
+            client.license.get_fetch()
         """
         self._raw('GET', "/license/fetch", [], None)
 
@@ -15661,6 +19421,11 @@ class LoginResource(Resource):
             password: Account password; preserve spaces exactly.
             username: Login name or email address.
             remember_me: Request persistent browser login.
+
+        Example::
+
+            result = client.login.create(password="example-password", username="alex@example.org")
+            print(result.location)
         """
         return _t.cast(models.LoginResult, self._call('POST', "/login", [], _body({'password': password, 'username': username, 'rememberMe': remember_me}, extra_body), models.LoginResult, envelope=True))
 
@@ -15681,6 +19446,11 @@ class LoginResource(Resource):
         Args:
             password: Account password; preserve spaces exactly.
             username: Login name or email address.
+
+        Example::
+
+            login = client.login.token(password="example-password", username="alex@example.org")
+            print(login.person_id)
         """
         return _t.cast(models.LoginTokenResult, self._call('POST', "/login/token", [], _body({'password': password, 'username': username}, extra_body), models.LoginTokenResult, envelope=True))
 
@@ -15701,6 +19471,11 @@ class LoginResource(Resource):
         Args:
             code: Six-digit current authenticator code. Send it as a string to preserve leading zeroes. A code already accepted recently for this person cannot be reused.
             person_id: Person ID from the password step; must match the pending two-factor session.
+
+        Example::
+
+            login = client.login.totp(code="012345", person_id=42)
+            print(login.redirect_to)
         """
         return _t.cast(models.TwoFactorLoginResult, self._call('POST', "/login/totp", [], _body({'code': code, 'personId': person_id}, extra_body), models.TwoFactorLoginResult, envelope=True))
 
@@ -15717,6 +19492,10 @@ class LogoutResource(Resource):
         `POST /logout`
 
         Deletes the current session cookie, destroys the server-side session and resets the current user to anonymous. Also usable to leave a pending two-factor login. This affects the current session only; it does not revoke persistent login tokens or OAuth tokens. A subsequent request still carrying such an Authorization header may authenticate again. An unauthenticated request without an applicable session may be rejected by authentication middleware.
+
+        Example::
+
+            client.logout.create()
         """
         self._raw('POST', "/logout", [], None)
 
@@ -15741,6 +19520,11 @@ class LogsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            log = client.logs.get(1)
+            print(log.id)
         """
         return _t.cast(models.Log, self._call('GET', f"/logs/{_seg(id)}", [], None, models.Log, envelope=True))
 
@@ -15768,6 +19552,11 @@ class LogsResource(Resource):
             after: Filter log messages after that date. (Use DateTime-Format)
             person_id: Filter by person
             limit: Number of results per page.
+
+        Example::
+
+            for log in client.logs.list():
+                print(log.id)
         """
         return Paginator(self._core, "/logs", _query([('message', message), ('levels[]', levels), ('before', before), ('after', after), ('person_id', person_id), ('limit', limit)]), models.Log)
 
@@ -15793,6 +19582,11 @@ class MarkdownResource(Resource):
             input_scope: Validates the provided Markdown content against the specified scope's rules and restrictions.
                 This ensures the content adheres to the allowed formatting and elements for the given context.
             markdown: The Markdown text to be processed
+
+        Example::
+
+            markdown = client.markdown.check(input_scope="beispiel", markdown="beispiel")
+            print(markdown.is_valid)
         """
         return _t.cast(models.PostMarkdownCheckData, self._call('POST', "/markdown/check", [], _body({'inputScope': input_scope, 'markdown': markdown}, extra_body), models.PostMarkdownCheckData, envelope=True))
 
@@ -15812,6 +19606,13 @@ class MarkdownResource(Resource):
 
         Args:
             options: Global options for all sources
+
+        Example::
+
+            markdown = client.markdown.convert(
+                sources=[ct.models.MarkdownRequestSourcesItem.model_validate({"inputScope": "beispiel", "markdown": "beispiel", "outputFormats": ["beispiel"], "outputScopes": ["beispiel"], "shortName": "Hauskreis Nord"})],
+            )
+            print(markdown.current_config_file)
         """
         return _t.cast(models.Config, self._call('POST', "/markdown/convert", [], _body({'options': options, 'sources': sources}, extra_body), models.Config, envelope=False))
 
@@ -15830,6 +19631,11 @@ class MasterdataResource(Resource):
         Deprecated.
 
         Deprecated alias of `GET /person/masterdata`. Use `/person/masterdata` for new integrations.
+
+        Example::
+
+            person = client.masterdata.get_person()
+            print(person)
         """
         return _t.cast(models.PersonMasterData, self._call('GET', "/masterdata/person", [], None, models.PersonMasterData, envelope=True))
 
@@ -15856,6 +19662,14 @@ class MeetingrequestsResource(Resource):
             ics_content: Raw ICS reply used to compare appointment scope.
             partstat: Participation status supplied by the calendar-mail processor.
             token: Reply token embedded in the invitation. Must exist in the meetingrequest_reply domain and remain valid. It is not consumed by this request.
+
+        Example::
+
+            client.meetingrequests.reply(
+                ics_content="beispiel",
+                partstat="ACCEPTED",
+                token="example-reply-token",
+            )
         """
         self._raw('POST', "/meetingrequests/reply", [], _body({'icsContent': ics_content, 'partstat': partstat, 'token': token}, extra_body))
 
@@ -15870,6 +19684,11 @@ class MenuResource(Resource):
         Get the CT-Menu
 
         `GET /menu`
+
+        Example::
+
+            menu = client.menu.get()
+            print(menu.current_station)
         """
         return _t.cast(models.GetMenuResponse, self._call('GET', "/menu", [], None, models.GetMenuResponse, envelope=False))
 
@@ -15886,6 +19705,11 @@ class NewsletterIntegrationsResource(Resource):
         `GET /newsletter-integrations`
 
         Lists active configured newsletter providers, their capabilities and available remote lists. Requires administer groups in churchgroup; this is not a public endpoint. Queries the providers and marks lists already mapped to any group with isAssigned, including groups outside the caller’s individual visibility. Assigned lists are not removed from the result. A caught provider exception is logged and represented as an empty lists array, with HTTP 200 and no per-provider error field. No providers yields data: [] and meta.count: 0. Results follow provider registration order and are not paginated.
+
+        Example::
+
+            for newsletter_integration in client.newsletter_integrations.list():
+                print(newsletter_integration.can_create_lists)
         """
         return _t.cast(_t.List[models.NewsletterIntegrationOptions], self._call('GET', "/newsletter-integrations", [], None, _t.List[models.NewsletterIntegrationOptions], envelope=True))
 
@@ -15916,6 +19740,11 @@ class NotesResource(Resource):
             comment_viewer_id: Visibility category for person notes. Creating a person note requires permission for this category.
             security_level_id: Group-note security threshold; ignored for list filtering in the other domains. The create handler also accepts legacy string representations.
             text: Note content shared by all links.
+
+        Example::
+
+            result = client.notes.create("group", 35, text="Please follow up next week.")
+            print(result.id)
         """
         return _t.cast(models.Note, self._call('POST', f"/notes/{_seg(domain_type)}/{_seg(domain_id)}", [], _body({'commentViewerId': comment_viewer_id, 'securityLevelId': security_level_id, 'text': text}, extra_body), models.Note, envelope=True))
 
@@ -15932,6 +19761,10 @@ class NotesResource(Resource):
 
         Args:
             note_id: ID of note
+
+        Example::
+
+            client.notes.delete(101)
         """
         self._raw('DELETE', f"/notes/{_seg(note_id)}", [], None)
 
@@ -15952,6 +19785,10 @@ class NotesResource(Resource):
             domain_type: Legacy path context; ignored by this DELETE handler.
             domain_id: Legacy object identifier; ignored by this DELETE handler.
             note_id: ID of note
+
+        Example::
+
+            client.notes.delete_for_object("group", "42", 101)
         """
         self._raw('DELETE', f"/notes/{_seg(domain_type)}/{_seg(domain_id)}/{_seg(note_id)}", [], None)
 
@@ -15970,6 +19807,11 @@ class NotesResource(Resource):
         Args:
             domain_type: Domain types that notes can be used with
             domain_id: the domain id
+
+        Example::
+
+            for note in client.notes.get("group", 35):
+                print(note.id)
         """
         return _t.cast(_t.List[models.Note], self._call('GET', f"/notes/{_seg(domain_type)}/{_seg(domain_id)}", [], None, _t.List[models.Note], envelope=True))
 
@@ -15998,6 +19840,11 @@ class NotesResource(Resource):
             comment_viewer_id: Person-comment visibility category. The update handler does not repeat the category permission check used on create.
             security_level_id: Group-note security level. Unlike create, the update does not accept legacy string representations.
             text: Note content shared by all links.
+
+        Example::
+
+            result = client.notes.update("group", 35, 101, text="Please follow up next week.")
+            print(result.id)
         """
         return _t.cast(models.Note, self._call('PUT', f"/notes/{_seg(domain_type)}/{_seg(domain_id)}/{_seg(note_id)}", [], _body({'commentViewerId': comment_viewer_id, 'securityLevelId': security_level_id, 'text': text}, extra_body), models.Note, envelope=True))
 
@@ -16014,6 +19861,10 @@ class NotificationsResource(Resource):
         `POST /notifications/test`
 
         Sends a localized test push notification to the authenticated person’s registered push-capable devices. No request body or target person is needed. The response has no body. A 201 response does not confirm delivery: it is also returned when no device is registered, Safe Mode suppresses sending, or a handled proxy/network error occurs.
+
+        Example::
+
+            client.notifications.test()
         """
         self._raw('POST', "/notifications/test", [], None)
 
@@ -16031,6 +19882,11 @@ class NpsResource(Resource):
         Save NPS score
 
         `POST /nps`
+
+        Example::
+
+            result = client.nps.create(score=42)
+            print(result.date)
         """
         return _t.cast(models.PostNpsResponse, self._call('POST', "/nps", [], _body({'score': score}, extra_body), models.PostNpsResponse, envelope=False))
 
@@ -16057,6 +19913,14 @@ class OauthclientsResource(Resource):
             is_confidential: true generates a secret for a server application able to keep it private; false creates a public client without a secret. This setting cannot be changed by the update endpoint.
             name: Display name, unique across visible and hidden OAuth clients.
             redirect_uri: Single callback URI stored as the registered redirect entry.
+
+        Example::
+
+            result = client.oauthclients.create(
+                name="Parish website",
+                redirect_uri="https://parish.example.org/oauth/callback",
+            )
+            print(result.name)
         """
         return _t.cast(models.OAuthClientCreated, self._call('POST', "/oauthclients", [], _body({'isConfidential': is_confidential, 'name': name, 'redirectUri': redirect_uri}, extra_body), models.OAuthClientCreated, envelope=True))
 
@@ -16073,6 +19937,10 @@ class OauthclientsResource(Resource):
 
         Args:
             identifier: OAuth client_id, not the internal numeric id. Visible clients only.
+
+        Example::
+
+            client.oauthclients.delete("beispiel")
         """
         self._raw('DELETE', f"/oauthclients/{_seg(identifier)}", [], None)
 
@@ -16085,6 +19953,11 @@ class OauthclientsResource(Resource):
         `GET /oauthclients`
 
         Lists visible OAuth clients registered in this ChurchTools installation, without pagination or an explicit sort order. Requires "churchcore administer settings" permission. Client secrets and hashes are not included.
+
+        Example::
+
+            for oauthclient in client.oauthclients.list():
+                print(oauthclient.name)
         """
         return _t.cast(_t.List[models.OAuthClient], self._call('GET', "/oauthclients", [], None, _t.List[models.OAuthClient], envelope=True))
 
@@ -16109,6 +19982,15 @@ class OauthclientsResource(Resource):
             is_confidential: Legacy compatibility field.
             name: Display name, unique across visible and hidden OAuth clients.
             redirect_uri: Single callback URI stored as the registered redirect entry.
+
+        Example::
+
+            result = client.oauthclients.update(
+                "beispiel",
+                name="Parish website",
+                redirect_uri="https://parish.example.org/oauth/callback",
+            )
+            print(result.name)
         """
         return _t.cast(models.OAuthClient, self._call('PUT', f"/oauthclients/{_seg(identifier)}", [], _body({'isConfidential': is_confidential, 'name': name, 'redirectUri': redirect_uri}, extra_body), models.OAuthClient, envelope=True))
 
@@ -16134,6 +20016,12 @@ class PermissionsResource(Resource):
         `POST /permissions/bulk`
 
         Applies raw permission changes atomically, including changes for different source owners. All entries are validated and authorized against the state before any writes. The authorization and locked-permission rules of the corresponding single-assignment operations apply to each entry. Any failure leaves all assignments unchanged. Duplicate owner/authId/inheritance keys are rejected. Permission caches are invalidated after commit. `save` is additive and an empty dataId list writes a null-data row; `replace` replaces the complete selection and an empty list removes it; `delete` removes exact selections or the whole assignment when no selections are specified. Validation errors identify fields such as `changes.2.authId`.
+
+        Example::
+
+            client.permissions.bulk(
+                changes=[ct.models.PermissionBulkChange.model_validate({"domainId": 7, "domainType": "group_type_role"})],
+            )
         """
         self._raw('POST', "/permissions/bulk", [], _body({'changes': changes}, extra_body))
 
@@ -16160,6 +20048,10 @@ class PermissionsResource(Resource):
             auth_id: Permission ID. status and person require values below 10000. Role domains also accept internal permission IDs. 10127 is obsolete and returns 410.
             data_id: Concrete selections to delete. Omission, null or an empty array removes all selection rows, including the null row. A nonempty array uses exact IDs; -1 only matches the unrestricted row.
             is_inherited: Select inherited-source rows when true, otherwise direct rows. Only role domains allow true.
+
+        Example::
+
+            client.permissions.delete("group_role", 1, auth_id=10130)
         """
         self._raw('DELETE', f"/permissions/{_seg(domain_type)}/{_seg(domain_id)}", [], _body({'authId': auth_id, 'dataId': data_id, 'isInherited': is_inherited}, extra_body))
 
@@ -16177,6 +20069,11 @@ class PermissionsResource(Resource):
 
         Args:
             scope: Permission scope to return
+
+        Example::
+
+            definition = client.permissions.get_definitions()
+            print(definition)
         """
         return _t.cast(models.GetPermissionsDefinitionsData, self._call('GET', "/permissions/definitions", _query([('scope', scope)]), None, models.GetPermissionsDefinitionsData, envelope=True))
 
@@ -16189,6 +20086,11 @@ class PermissionsResource(Resource):
         `GET /permissions/locked`
 
         Lists all stored permission locks, ordered by permission ID and selection ID. Requires administer persons in churchcore, but the caller need not be an authorized contact person. A lock restricts assigning or removing the selected permission across assignment domains; it does not revoke existing grants or disable their use. Only authorized persons may change locked assignments. Locks can refer to global or group-internal permission keys. The response includes whether the current person is on the installation’s authorized-person list. Stored locks are returned without filtering inactive/obsolete definitions, and the result is not paginated.
+
+        Example::
+
+            locked = client.permissions.get_locked()
+            print(locked.is_current_user_authorized_person)
         """
         return _t.cast(models.LockedPermissionState, self._call('GET', "/permissions/locked", [], None, models.LockedPermissionState, envelope=True))
 
@@ -16207,6 +20109,11 @@ class PermissionsResource(Resource):
         Args:
             domain_type: Read domain. status/person select direct assignments; group_type_role/group_role select role assignments. group_type selects all role-template assignments of one group type; group combines the concrete group’s roles with their group-type-role assignments. The combined domains require domainId and are read-only.
             domain_id: ID of the object in the selected permission domain
+
+        Example::
+
+            for permission in client.permissions.list("person", 1):
+                print(permission.auth_id)
         """
         return _t.cast(_t.List[models.Permission], self._call('GET', f"/permissions/{_seg(domain_type)}/{_seg(domain_id)}", [], None, _t.List[models.Permission], envelope=True))
 
@@ -16230,6 +20137,11 @@ class PermissionsResource(Resource):
             domain_types: Restrict categories; omitted or empty selects all categories
             group_id: Restrict to concrete roles of this group, intersected with domainTypes. A nonexistent group or incompatible categories yield an empty list.
             limit: Maximum number of targets per page across all categories
+
+        Example::
+
+            for assignment_target in client.permissions.list_assignment_targets():
+                print(assignment_target.domain_id)
         """
         return Paginator(self._core, "/permissions/assignment-targets", _query([('query', query), ('domainTypes[]', domain_types), ('groupId', group_id), ('limit', limit)]), models.PermissionAssignmentTarget)
 
@@ -16249,6 +20161,11 @@ class PermissionsResource(Resource):
         Args:
             domain_type: Read domain. status/person select direct assignments; group_type_role/group_role select role assignments. group_type selects all role-template assignments of one group type; group combines the concrete group’s roles with their group-type-role assignments. The combined domains require domainId and are read-only.
             domain_id: Optional owner ID for direct domains; required in practice for group and group_type combined views. Prefer the explicit /{domainId} route for these views.
+
+        Example::
+
+            for for_type in client.permissions.list_for_type("person"):
+                print(for_type.auth_id)
         """
         return _t.cast(_t.List[models.Permission], self._call('GET', f"/permissions/{_seg(domain_type)}", _query([('domainId', domain_id)]), None, _t.List[models.Permission], envelope=True))
 
@@ -16279,6 +20196,10 @@ class PermissionsResource(Resource):
             is_inherited: Select inherited-source rows when true, otherwise direct rows. Only role domains allow true.
             reason: Trimmed optional explanation. Empty/whitespace input becomes null. No maximum length is validated by the controller.
             type_: Grant a permission, or revoke a contribution for a concrete group_role. revoke is rejected for all other source domains.
+
+        Example::
+
+            client.permissions.update("group_role", 1, auth_id=10130)
         """
         self._raw('PUT', f"/permissions/{_seg(domain_type)}/{_seg(domain_id)}", [], _body({'authId': auth_id, 'dataId': data_id, 'isInherited': is_inherited, 'reason': reason, 'type': type_}, extra_body))
 
@@ -16299,6 +20220,14 @@ class PermissionsResource(Resource):
         Args:
             add: Locks to add. Duplicates are collapsed and existing rows are retained.
             remove: Exact locks to remove. Missing rows are ignored. Removing -1 does not remove separate concrete-value locks.
+
+        Example::
+
+            result = client.permissions.update_locked(
+                add=[ct.models.LockedPermissionChange.model_validate({"authId": 1})],
+                remove=[ct.models.LockedPermissionChange.model_validate({"authId": 1})],
+            )
+            print(result)
         """
         return _t.cast(models.PutPermissionsLockedData, self._call('PUT', "/permissions/locked", [], _body({'add': add, 'remove': remove}, extra_body), models.PutPermissionsLockedData, envelope=True))
 
@@ -16329,6 +20258,10 @@ class PermissionsResource(Resource):
             is_inherited: Select inherited-source rows when true, otherwise direct rows. Only role domains allow true.
             reason: Optional explanation for the replacement assignment.
             type_: Grant a permission, or revoke a contribution for a concrete group_role. revoke is rejected for all other source domains.
+
+        Example::
+
+            client.permissions.update_replace("group_role", 1, auth_id=10130, data_id=[1, 2])
         """
         self._raw('PUT', f"/permissions/{_seg(domain_type)}/{_seg(domain_id)}/replace", [], _body({'authId': auth_id, 'dataId': data_id, 'isInherited': is_inherited, 'reason': reason, 'type': type_}, extra_body))
 
@@ -16352,6 +20285,11 @@ class PersonResource(Resource):
         `GET /person/masterdata`
 
         Returns complete reference catalogs for People & Groups, including membership roles, group and person classifications, campuses, relationship types and meeting feedback templates. These are reference definitions, not person records or group memberships. Roles are ordered by type and `sortKey`; campuses by `sortKey`.
+
+        Example::
+
+            masterdata = client.person.get_masterdata()
+            print(masterdata)
         """
         return _t.cast(models.PersonMasterData, self._call('GET', "/person/masterdata", [], None, models.PersonMasterData, envelope=True))
 
@@ -16389,6 +20327,10 @@ class PersonsResource(Resource):
         Args:
             person_id: ID of person
             archived: if true the person is archived, if false the archive operation is undone
+
+        Example::
+
+            client.persons.archive(42, archived=True)
         """
         self._raw('POST', f"/persons/{_seg(person_id)}/archive", [], _body({'archived': archived}, extra_body))
 
@@ -16462,6 +20404,11 @@ class PersonsResource(Resource):
             privacy_policy_agreement_who_id: ID of the configured agreement source describing who gave the agreement. This is independent from how the agreement was obtained. Required together with agreement date and type when `privacy_policy_fields_mandatory` is enabled.
             status_id: ID of a person status returned by `GET /person/masterdata`.
             visibility: Visibility accepted when creating or updating a person.
+
+        Example::
+
+            result = client.persons.create(department_ids=[42])
+            print(result.title)
         """
         return _t.cast(models.Person, self._call('POST', "/persons", _query([('force', force), ('without_privacy_policy_agreement', without_privacy_policy_agreement)]), _body({'addressAddition': address_addition, 'baptisedBy': baptised_by, 'birthName': birth_name, 'birthday': birthday, 'birthplace': birthplace, 'campusId': campus_id, 'city': city, 'cmsUserId': cms_user_id, 'country': country, 'dateOfBaptism': date_of_baptism, 'dateOfBelonging': date_of_belonging, 'dateOfDeath': date_of_death, 'dateOfEntry': date_of_entry, 'dateOfResign': date_of_resign, 'departmentIds': department_ids, 'email': email, 'emails': emails, 'familyStatusId': family_status_id, 'fax': fax, 'firstContact': first_contact, 'firstName': first_name, 'growPathId': grow_path_id, 'job': job, 'lastName': last_name, 'mobile': mobile, 'nationalityId': nationality_id, 'nickname': nickname, 'optigemId': optigem_id, 'phonePrivate': phone_private, 'phoneWork': phone_work, 'placeOfBaptism': place_of_baptism, 'privacyPolicyAgreement': privacy_policy_agreement, 'privacyPolicyAgreementDate': privacy_policy_agreement_date, 'privacyPolicyAgreementTypeId': privacy_policy_agreement_type_id, 'privacyPolicyAgreementWhoId': privacy_policy_agreement_who_id, 'referredBy': referred_by, 'referredTo': referred_to, 'sexId': sex_id, 'statusId': status_id, 'street': street, 'title': title, 'visibility': visibility, 'weddingDate': wedding_date, 'zip': zip}, extra_body), models.Person, envelope=True))
 
@@ -16478,6 +20425,10 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.delete(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}", [], None)
 
@@ -16494,6 +20445,10 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.delete_confidentialityagreement(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/confidentialityagreement", [], None)
 
@@ -16510,6 +20465,10 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.delete_logintoken(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/logintoken", [], None)
 
@@ -16526,6 +20485,10 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.delete_privacypolicy(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/privacypolicy", [], None)
 
@@ -16536,6 +20499,10 @@ class PersonsResource(Resource):
         TODO 200
 
         `POST /persons/export`
+
+        Example::
+
+            client.persons.export()
         """
         self._raw('POST', "/persons/export", [], None)
 
@@ -16556,6 +20523,13 @@ class PersonsResource(Resource):
         Args:
             page: Page number to show page in pagination. If empty, start at first page.
             limit: Number of matching persons returned per page.
+
+        Example::
+
+            for person in client.persons.filter(
+                body=ct.models.ProbeInvocation.model_validate({"data": {}, "probe": "probe-person-field"}),
+            ):
+                print(person.title)
         """
         return _t.cast(_t.List[models.Person], self._call('POST', "/persons/filter", _query([('page', page), ('limit', limit)]), _body(body), _t.List[models.Person], envelope=True))
 
@@ -16572,6 +20546,11 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            person = client.persons.get(42)
+            print(person.title)
         """
         return _t.cast(models.Person, self._call('GET', f"/persons/{_seg(person_id)}", [], None, models.Person, envelope=True))
 
@@ -16588,6 +20567,11 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            information = client.persons.get_information(42)
+            print(information.pdf_link)
         """
         return _t.cast(models.PersonInformationExport, self._call('GET', f"/persons/{_seg(person_id)}/information", [], None, models.PersonInformationExport, envelope=True))
 
@@ -16601,6 +20585,11 @@ class PersonsResource(Resource):
         `GET /persons/{personId}/loginstring`
 
         Creates a new one-time login credential valid for 14 days. Only the current person may request their own credential. Each GET creates and stores a fresh credential; treat the response as a secret. Use it as the loginstr parameter of a ChurchTools login link. Simulation creates a credential carrying the simulating user context. The legacy response has top-level loginString and personId fields, without a data envelope.
+
+        Example::
+
+            loginstring = client.persons.get_loginstring("beispiel")
+            print(loginstring.login_string)
         """
         return _t.cast(models.GetPersonsIdLoginstringResponse, self._call('GET', f"/persons/{_seg(person_id)}/loginstring", [], None, models.GetPersonsIdLoginstringResponse, envelope=False))
 
@@ -16617,6 +20606,11 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            result = client.persons.get_logintoken(42)
+            print(result)
         """
         return _t.cast(str, self._call('GET', f"/persons/{_seg(person_id)}/logintoken", [], None, str, envelope=True))
 
@@ -16628,6 +20622,11 @@ class PersonsResource(Resource):
         Returns the post statistics for a person
 
         `GET /persons/{personId}/poststatistics`
+
+        Example::
+
+            poststatistic = client.persons.get_poststatistics("beispiel")
+            print(poststatistic.count_banned)
         """
         return _t.cast(models.PersonPostStatistics, self._call('GET', f"/persons/{_seg(person_id)}/poststatistics", [], None, models.PersonPostStatistics, envelope=True))
 
@@ -16644,6 +20643,11 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            privacypolicy = client.persons.get_privacypolicy(42)
+            print(privacypolicy.minimum_age)
         """
         return _t.cast(models.PersonPrivacyPolicy, self._call('GET', f"/persons/{_seg(person_id)}/privacypolicy", [], None, models.PersonPrivacyPolicy, envelope=True))
 
@@ -16660,6 +20664,10 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.invite(42)
         """
         self._raw('POST', f"/persons/{_seg(person_id)}/invite", [], None)
 
@@ -16709,6 +20717,11 @@ class PersonsResource(Resource):
             email_exact: Filter by an exact email address
             limit: Number of results per page.
             include: Include additional information
+
+        Example::
+
+            for person in client.persons.list():
+                print(person.title)
         """
         return Paginator(self._core, "/persons", _query([('ids[]', ids), ('status_ids[]', status_ids), ('campus_ids[]', campus_ids), ('birthday_before', birthday_before), ('birthday_after', birthday_after), ('is_archived', is_archived), ('is_account_locked', is_account_locked), ('is_system_user', is_system_user), ('firstName', first_name), ('nickName', nick_name), ('lastName', last_name), ('query', query), ('email', email), ('email-exact', email_exact), ('limit', limit), ('include[]', include)]), models.Person)
 
@@ -16747,6 +20760,11 @@ class PersonsResource(Resource):
             group_ids: Filter by group ids
             my_groups: Filter by people in my groups
             status_ids: Filter by status ids
+
+        Example::
+
+            for birthday in client.persons.list_birthdays():
+                print(birthday.deprecated)
         """
         return Paginator(self._core, "/persons/birthdays", _query([('start_date', start_date), ('end_date', end_date), ('direction', direction), ('limit', limit), ('campus_ids[]', campus_ids), ('group_ids[]', group_ids), ('my_groups', my_groups), ('status_ids[]', status_ids)]), models.GetPersonsBirthdaysDataItem)
 
@@ -16770,6 +20788,11 @@ class PersonsResource(Resource):
 
         * `p1` - properties of Person 1
         * `p2` - properties of Person 2
+
+        Example::
+
+            for duplicate in client.persons.list_duplicates():
+                print(duplicate.relationship_type_id)
         """
         return _t.cast(_t.List[models.GetPersonsDuplicatesDataItem], self._call('GET', "/persons/duplicates", _query([('reset_cache', reset_cache)]), None, _t.List[models.GetPersonsDuplicatesDataItem], envelope=True))
 
@@ -16795,6 +20818,11 @@ class PersonsResource(Resource):
             show_inactive_groups: If set groups that have the status 'archived' are shown
             show_to_delete_memberships: If set groups were the user has the group member status 'to_deleted' are shown.
             show_requested_or_waiting_memberships: If set groups were the user has the group member status 'requested' or 'waiting' are shown.
+
+        Example::
+
+            for group in client.persons.list_groups(42):
+                print(group.id)
         """
         return _t.cast(_t.List[models.GroupMember], self._call('GET', f"/persons/{_seg(person_id)}/groups", _query([('show_overdue_groups', show_overdue_groups), ('show_inactive_groups', show_inactive_groups), ('show_to_delete_memberships', show_to_delete_memberships), ('show_requested_or_waiting_memberships', show_requested_or_waiting_memberships)]), None, _t.List[models.GroupMember], envelope=True))
 
@@ -16811,6 +20839,11 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            for openmeetingrequest in client.persons.list_openmeetingrequests(42):
+                print(openmeetingrequest.id)
         """
         return _t.cast(_t.List[models.OpenMeetingRequest], self._call('GET', f"/persons/{_seg(person_id)}/openmeetingrequests", [], None, _t.List[models.OpenMeetingRequest], envelope=True))
 
@@ -16835,6 +20868,11 @@ class PersonsResource(Resource):
             before: If set, only posts created before this date are returned. The date must be in RFC3339 format (Zulu-Date).
             last_post_indentifier: If set, posts created at the "before" date are included in the result, if the guids of the posts are lexically smaller than the last_post_indentifier. Will be ignored if "before" is not set.
             after: If set, only posts created after this date are returned. The date must be in RFC3339 format (Zulu-Date).
+
+        Example::
+
+            for post in client.persons.list_posts("beispiel"):
+                print(post.title)
         """
         return _t.cast(_t.List[models.Post], self._call('GET', f"/persons/{_seg(person_id)}/posts", _query([('filter[]', filter), ('limit', limit), ('before', before), ('last_post_indentifier', last_post_indentifier), ('after', after)]), None, _t.List[models.Post], envelope=True))
 
@@ -16845,6 +20883,11 @@ class PersonsResource(Resource):
         Get all relationships for all persons
 
         `GET /persons/relationships`
+
+        Example::
+
+            for relationship in client.persons.list_relationships():
+                print(relationship.id)
         """
         return _t.cast(_t.List[models.GetPersonsRelationshipsDataItem], self._call('GET', "/persons/relationships", [], None, _t.List[models.GetPersonsRelationshipsDataItem], envelope=True))
 
@@ -16857,6 +20900,11 @@ class PersonsResource(Resource):
         `GET /persons/search_old`
 
         Deprecated.
+
+        Example::
+
+            for search_old in client.persons.list_search_old():
+                print(search_old)
         """
         return _t.cast(_t.List[int], self._call('GET', "/persons/search_old", [], None, _t.List[int], envelope=True))
 
@@ -16921,6 +20969,11 @@ class PersonsResource(Resource):
             emails: Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
             privacy_policy_agreement: This object can be optional or required. Depending on your ChurchTools data security settings.
             visibility: Visibility accepted when creating or updating a person.
+
+        Example::
+
+            result = client.persons.patch(42, title="Hauskreis Nord")
+            print(result.title)
         """
         return _t.cast(models.Person, self._call('PATCH', f"/persons/{_seg(person_id)}", [], _body({'addressAddition': address_addition, 'age': age, 'baptisedBy': baptised_by, 'birthName': birth_name, 'birthday': birthday, 'birthplace': birthplace, 'campusId': campus_id, 'city': city, 'cmsUserId': cms_user_id, 'country': country, 'dateOfBaptism': date_of_baptism, 'dateOfBelonging': date_of_belonging, 'dateOfDeath': date_of_death, 'dateOfEntry': date_of_entry, 'dateOfResign': date_of_resign, 'departmentIds': department_ids, 'email': email, 'emails': emails, 'familyStatusId': family_status_id, 'fax': fax, 'firstContact': first_contact, 'firstName': first_name, 'growPathId': grow_path_id, 'job': job, 'lastName': last_name, 'mobile': mobile, 'nationalityId': nationality_id, 'nickname': nickname, 'optigemId': optigem_id, 'phonePrivate': phone_private, 'phoneWork': phone_work, 'placeOfBaptism': place_of_baptism, 'privacyPolicyAgreement': privacy_policy_agreement, 'referredBy': referred_by, 'referredTo': referred_to, 'sexId': sex_id, 'statusId': status_id, 'street': street, 'title': title, 'visibility': visibility, 'weddingDate': wedding_date, 'zip': zip}, extra_body), models.Person, envelope=True))
 
@@ -16939,6 +20992,11 @@ class PersonsResource(Resource):
 
         Args:
             ids: Person IDs for which properties should be returned
+
+        Example::
+
+            result = client.persons.properties()
+            print(result)
         """
         return _t.cast(StrMap[models.PersonProperties], self._call('POST', "/persons/properties", [], _body({'ids': ids}, extra_body), StrMap[models.PersonProperties], envelope=True))
 
@@ -16955,6 +21013,10 @@ class PersonsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            client.persons.update_confidentialityagreement(42)
         """
         self._raw('PUT', f"/persons/{_seg(person_id)}/confidentialityagreement", [], None)
 
@@ -16979,6 +21041,15 @@ class PersonsResource(Resource):
             new_password: New password satisfying the installation’s length and strength rules.
             new_password_confirm: Must exactly match newPassword.
             old_password: Current password, or an empty string for a password-reset session or initial setup without a password.
+
+        Example::
+
+            client.persons.update_password(
+                42,
+                new_password="ExamplePassword42",
+                new_password_confirm="ExamplePassword42",
+                old_password="PreviousPassword41",
+            )
         """
         self._raw('PUT', f"/persons/{_seg(person_id)}/password", [], _body({'newPassword': new_password, 'newPasswordConfirm': new_password_confirm, 'oldPassword': old_password}, extra_body))
 
@@ -17009,6 +21080,18 @@ class PersonsResource(Resource):
             persons: Child selections; use an empty array when not processing children.
             type_id: Consent-type catalog ID used for own consent; typically the typeId from GET. Child consent always uses self-confirmation (2).
             who_id: Consent-giver catalog ID used for own consent; typically the whoId from GET. Child consent always uses parent (2).
+
+        Example::
+
+            result = client.persons.update_privacypolicy(
+                42,
+                children_accepted=False,
+                own_accepted=True,
+                persons=[ct.models.PersonPrivacyPolicyChildUpdate.model_validate({"accepted": True, "birthday": "2016-05-14", "editBirthday": False, "id": 43})],
+                type_id=2,
+                who_id=1,
+            )
+            print(result)
         """
         return _t.cast(_t.Optional[_t.List[models.PersonPrivacyPolicyChildResult]], self._call('PUT', f"/persons/{_seg(person_id)}/privacypolicy", [], _body({'birthday': birthday, 'childrenAccepted': children_accepted, 'ownAccepted': own_accepted, 'persons': persons, 'typeId': type_id, 'whoId': who_id}, extra_body), _t.Optional[_t.List[models.PersonPrivacyPolicyChildResult]], envelope=True))
 
@@ -17029,6 +21112,11 @@ class PlaceholdersResource(Resource):
         `GET /placeholders/email`
 
         Returns the editor’s available email-template placeholders using an empty person context. No recipient values are rendered. The response data is a recursive menu: groups have name and items, selectable leaves have placeholder and label, optionally menuLabel. Labels are translated. Insert the supplied expression verbatim; ordinary values use triple braces, while block helpers use double braces. The set of fields depends on configuration, so names are not a fixed enum. This object-backed tree has no meta.count envelope.
+
+        Example::
+
+            for email in client.placeholders.list_email():
+                print(email.name)
         """
         return _t.cast(_t.List[models.PlaceholderMenuGroup], self._call('GET', "/placeholders/email", [], None, _t.List[models.PlaceholderMenuGroup], envelope=True))
 
@@ -17052,6 +21140,14 @@ class PollfornewsResource(Resource):
         Args:
             domain_types: Filters for which domain types the changes should be checked.
             since: The date when you last called the API.
+
+        Example::
+
+            for pollfornew in client.pollfornews.list(
+                domain_types=["beispiel"],
+                since=dt.datetime(2022, 10, 19, 12, 0, tzinfo=dt.timezone.utc),
+            ):
+                print(pollfornew.domain_id)
         """
         return _t.cast(_t.List[models.PollForNewsResult], self._call('GET', "/pollfornews", _query([('domain_types[]', domain_types), ('since', since)]), None, _t.List[models.PollForNewsResult], envelope=True))
 
@@ -17076,6 +21172,11 @@ class PostResource(Resource):
 
         Args:
             post_ids: Filters for which posts the linkings should be loaded.
+
+        Example::
+
+            result = client.post.get_linkings()
+            print(result)
         """
         return _t.cast(_t.Any, self._call('GET', "/post/linkings", _query([('post_ids[]', post_ids)]), None, _t.Any, envelope=True))
 
@@ -17086,6 +21187,11 @@ class PostResource(Resource):
         get-post-groups
 
         `GET /post/groups`
+
+        Example::
+
+            for group in client.post.list_groups():
+                print(group.favorite_group)
         """
         return _t.cast(_t.List[models.PossiblePostGroup], self._call('GET', "/post/groups", [], None, _t.List[models.PossiblePostGroup], envelope=True))
 
@@ -17125,6 +21231,11 @@ class PostResource(Resource):
             group_ids: If set, only posts of these groups are returned. If not set, posts of all groups are returned.
             include: If set, the response will include the specified data.
             only_my_groups: If set to true, only posts of groups the user is member of are returned. If not set, posts of all groups are returned.
+
+        Example::
+
+            for search in client.post.list_search():
+                print(search.title)
         """
         return _t.cast(_t.List[models.Post], self._call('GET', "/post/search", _query([('query', query), ('order_by', order_by), ('order_direction', order_direction), ('before', before), ('after', after), ('campus_ids[]', campus_ids), ('actor_ids[]', actor_ids), ('group_visibility', group_visibility), ('post_visibility', post_visibility), ('group_ids[]', group_ids), ('include[]', include), ('only_my_groups', only_my_groups)]), None, _t.List[models.Post], envelope=True))
 
@@ -17157,6 +21268,16 @@ class PostsResource(Resource):
         `POST /posts`
 
         Create a new post. Images must be uploaded previously in a separate request.
+
+        Example::
+
+            result = client.posts.create(
+                content="beispiel",
+                title="Hauskreis Nord",
+                visibility="beispiel",
+                group_id=42,
+            )
+            print(result.title)
         """
         return _t.cast(models.Post, self._call('POST', "/posts", [], _body({'content': content, 'expirationDate': expiration_date, 'publicationDate': publication_date, 'title': title, 'visibility': visibility, 'commentsActive': comments_active, 'groupId': group_id, 'imageIds': image_ids}, extra_body), models.Post, envelope=True))
 
@@ -17176,6 +21297,10 @@ class PostsResource(Resource):
         Args:
             post_id: ID of post
             dry_run: If set to true, the post will not be deleted but the response will contain the result of the deletion.
+
+        Example::
+
+            client.posts.delete(42, dry_run=True)
         """
         self._raw('DELETE', f"/posts/{_seg(post_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -17195,6 +21320,11 @@ class PostsResource(Resource):
         Args:
             post_id: ID of post
             include: If set, the response will include the specified data.
+
+        Example::
+
+            post = client.posts.get(42)
+            print(post.title)
         """
         return _t.cast(models.Post, self._call('GET', f"/posts/{_seg(post_id)}", _query([('include[]', include)]), None, models.Post, envelope=True))
 
@@ -17234,6 +21364,11 @@ class PostsResource(Resource):
             include: If set, the response will include the specified data.
             limit: Number of results per page.
             only_my_groups: If set to true, only posts of groups the user is member of are returned. If not set, posts of all groups are returned.
+
+        Example::
+
+            for post in client.posts.list():
+                print(post.title)
         """
         return _t.cast(_t.List[models.Post], self._call('GET', "/posts", _query([('before', before), ('last_post_identifier', last_post_identifier), ('after', after), ('campus_id', campus_id), ('campus_ids[]', campus_ids), ('actor_ids[]', actor_ids), ('group_visibility', group_visibility), ('post_visibility', post_visibility), ('group_ids[]', group_ids), ('include[]', include), ('limit', limit), ('only_my_groups', only_my_groups)]), None, _t.List[models.Post], envelope=True))
 
@@ -17259,6 +21394,11 @@ class PostsResource(Resource):
 
         Args:
             post_id: ID of post
+
+        Example::
+
+            result = client.posts.patch(42, title="Hauskreis Nord")
+            print(result.title)
         """
         return _t.cast(models.Post, self._call('PATCH', f"/posts/{_seg(post_id)}", [], _body({'commentsActive': comments_active, 'content': content, 'expirationDate': expiration_date, 'imageIds': image_ids, 'publicationDate': publication_date, 'title': title, 'visibility': visibility}, extra_body), models.Post, envelope=True))
 
@@ -17275,6 +21415,10 @@ class PostsResource(Resource):
 
         Args:
             post_id: ID of post
+
+        Example::
+
+            client.posts.update_expire(42)
         """
         self._raw('PUT', f"/posts/{_seg(post_id)}/expire", [], None)
 
@@ -17291,6 +21435,11 @@ class PrResource(Resource):
         `GET /pr/masterdata`
 
         Returns the master data used by the public relations module and public profiles. The response groups each master data collection under `data` and returns the item count for each collection under `meta`.
+
+        Example::
+
+            masterdata = client.pr.get_masterdata()
+            print(masterdata)
         """
         return _t.cast(models.PublicRelationsMasterData, self._call('GET', "/pr/masterdata", [], None, models.PublicRelationsMasterData, envelope=True))
 
@@ -17307,6 +21456,11 @@ class PrintersResource(Resource):
         `GET /printers`
 
         Lists all configured check-in code printers, including inactive printers. active indicates whether a printer is enabled; the endpoint does not check online status or submit a print job. Requires authentication but no additional printer/check-in permission in this handler. Results have no pagination or guaranteed order, and meta.count is the number of returned printers.
+
+        Example::
+
+            for printer in client.printers.list():
+                print(printer.title)
         """
         return _t.cast(_t.List[models.Printer], self._call('GET', "/printers", [], None, _t.List[models.Printer], envelope=True))
 
@@ -17331,6 +21485,11 @@ class ProbesResource(Resource):
         Args:
             domain_type: One or more domain types to filter probes by.
             filter: Optional domain-specific filter criteria.
+
+        Example::
+
+            for probe in client.probes.create(domain_type=["person"]):
+                print(probe.domain_type)
         """
         return _t.cast(_t.List[models.Probe], self._call('POST', "/probes", [], _body({'domain_type': domain_type, 'filter': filter}, extra_body), _t.List[models.Probe], envelope=True))
 
@@ -17352,6 +21511,11 @@ class ProfilesResource(Resource):
         `GET /profiles/church`
 
         Get church profile information.
+
+        Example::
+
+            church = client.profiles.get_church()
+            print(church.name)
         """
         return _t.cast(models.Profile, self._call('GET', "/profiles/church", [], None, models.Profile, envelope=True))
 
@@ -17364,6 +21528,11 @@ class ProfilesResource(Resource):
         `GET /profiles`
 
         This endpoint returns all profiles for logged in users with permissions. All others (incl. public access) will only get published profiles.
+
+        Example::
+
+            for profile in client.profiles.list():
+                print(profile.name)
         """
         return _t.cast(_t.List[models.Profile], self._call('GET', "/profiles", [], None, _t.List[models.Profile], envelope=True))
 
@@ -17409,6 +21578,11 @@ class ProfilesResource(Resource):
             tags: List of tags.
             visitors: Single integer, which represents a range.
             id: Campus profile ID. For `/profiles/church`, this is ignored.
+
+        Example::
+
+            result = client.profiles.update_church(name="Hauskreis Nord")
+            print(result.name)
         """
         return _t.cast(models.Profile, self._call('PUT', "/profiles/church", [], _body({'address': address, 'associationId': association_id, 'denomination': denomination, 'description': description, 'email': email, 'groups': groups, 'isPublished': is_published, 'name': name, 'phone': phone, 'services': services, 'shortName': short_name, 'shorty': shorty, 'signUpGroupId': sign_up_group_id, 'slug': slug, 'socialMedia': social_media, 'sortKey': sort_key, 'tags': tags, 'team': team, 'teamTitle': team_title, 'visitors': visitors, 'website': website, 'id': id}, extra_body), models.Profile, envelope=True))
 
@@ -17436,6 +21610,11 @@ class PublicgroupsResource(Resource):
         Args:
             group_id: ID of group
             hash: Optional group-homepage hash.
+
+        Example::
+
+            publicgroup = client.publicgroups.get(42)
+            print(publicgroup.name)
         """
         return _t.cast(models.PublicGroupDetail, self._call('GET', f"/publicgroups/{_seg(group_id)}", _query([('hash', hash)]), None, models.PublicGroupDetail, envelope=True))
 
@@ -17457,6 +21636,11 @@ class PublicgroupsResource(Resource):
             group_id: ID of group
             token: Sign Up Token
             person_id: Optional requester selection; updates the token’s requester and clicked selection.
+
+        Example::
+
+            form = client.publicgroups.get_form(42, token="beispiel")
+            print(form.email)
         """
         return _t.cast(models.PublicGroupFormResult, self._call('GET', f"/publicgroups/{_seg(group_id)}/form", _query([('token', token), ('personId', person_id)]), None, models.PublicGroupFormResult, envelope=True))
 
@@ -17476,6 +21660,11 @@ class PublicgroupsResource(Resource):
         Args:
             group_id: ID of group
             token: The signup token for the registration
+
+        Example::
+
+            possiblerequester = client.publicgroups.get_possiblerequesters(42, token="beispiel")
+            print(possiblerequester.email)
         """
         return _t.cast(models.PublicGroupPossibleRequesters, self._call('GET', f"/publicgroups/{_seg(group_id)}/possiblerequesters", _query([('token', token)]), None, models.PublicGroupPossibleRequesters, envelope=True))
 
@@ -17495,6 +21684,11 @@ class PublicgroupsResource(Resource):
         Args:
             group_id: ID of group
             token: Optional signup token; omit to use the current user.
+
+        Example::
+
+            signoutdata = client.publicgroups.get_signoutdata(42)
+            print(signoutdata.group_has_auto_accept)
         """
         return _t.cast(models.PublicGroupSignoutData, self._call('GET', f"/publicgroups/{_seg(group_id)}/signoutdata", _query([('token', token)]), None, models.PublicGroupSignoutData, envelope=True))
 
@@ -17513,6 +21707,11 @@ class PublicgroupsResource(Resource):
         Args:
             group_id: ID of group
             hash: Group Homepage Hash
+
+        Example::
+
+            with_hash = client.publicgroups.get_with_hash(42, "beispiel")
+            print(with_hash.name)
         """
         return _t.cast(models.PublicGroupDetail, self._call('GET', f"/publicgroups/{_seg(group_id)}/{_seg(hash)}", [], None, models.PublicGroupDetail, envelope=True))
 
@@ -17539,6 +21738,16 @@ class PublicgroupsResource(Resource):
             message: Message to be sent.
             name: Name of the sender.
             token: Required when normal group signup access is unavailable.
+
+        Example::
+
+            publicgroup = client.publicgroups.mail_to_leaders(
+                42,
+                email="mara@example.org",
+                message="beispiel",
+                name="Hauskreis Nord",
+            )
+            print(publicgroup.success)
         """
         return _t.cast(models.PostPublicgroupsGroupIdMailToLeadersData, self._call('POST', f"/publicgroups/{_seg(group_id)}/mailToLeaders", [], _body({'email': email, 'message': message, 'name': name, 'token': token}, extra_body), models.PostPublicgroupsGroupIdMailToLeadersData, envelope=True))
 
@@ -17561,6 +21770,10 @@ class PublicgroupsResource(Resource):
             group_id: ID of group
             person_ids: Person IDs, not membership IDs. Each person must be the requester or have been registered by the requester, and must be eligible for self sign-out. An empty list is accepted.
             token: Sign-up token belonging to this group and an existing requester. A token for a new, not-yet-created person cannot be used for sign-out.
+
+        Example::
+
+            client.publicgroups.signout(42, person_ids=[42, 43])
         """
         self._raw('POST', f"/publicgroups/{_seg(group_id)}/signout", [], _body({'personIds': person_ids, 'token': token}, extra_body))
 
@@ -17587,6 +21800,15 @@ class PublicgroupsResource(Resource):
             has_accepted_privacy_for_other: Required when any new spouse, child or other-person form is included.
             sign_out_url_template: Url used in the mail sent to the user.
             token: The sign up token.
+
+        Example::
+
+            publicgroup = client.publicgroups.submit_signup(
+                42,
+                forms=[ct.models.PublicGroupSignupCreateFormsItem.model_validate({"form": [{}]})],
+                token="beispiel",
+            )
+            print(publicgroup.group_homepage_hash)
         """
         return _t.cast(models.PostPublicgroupsGroupIdSignupResponse, self._call('POST', f"/publicgroups/{_seg(group_id)}/signup", [], _body({'forms': forms, 'hasAcceptedPrivacyForOther': has_accepted_privacy_for_other, 'signOutUrlTemplate': sign_out_url_template, 'token': token}, extra_body), models.PostPublicgroupsGroupIdSignupResponse, envelope=False))
 
@@ -17616,6 +21838,11 @@ class PublicgroupsResource(Resource):
             group_homepage_hash: The hash of the group homepage. If specified, the user can return to the group homepage after the sign up was successful.
             person_id: Current logged-in person ID; an arbitrary person cannot be selected here.
             sign_up_url_template: Email link template. $groupId and $token are replaced; omission uses the ChurchTools public signup page.
+
+        Example::
+
+            result = client.publicgroups.token(42, email="mara@example.org")
+            print(result)
         """
         return _t.cast(_t.Union[models.PublicGroupToken, models.PostPublicgroupsGroupIdTokenDataVariant2], self._call('POST', f"/publicgroups/{_seg(group_id)}/token", [], _body({'clicked': clicked, 'email': email, 'groupHomepageHash': group_homepage_hash, 'personId': person_id, 'signUpUrlTemplate': sign_up_url_template}, extra_body), _t.Union[models.PublicGroupToken, models.PostPublicgroupsGroupIdTokenDataVariant2], envelope=True))
 
@@ -17637,6 +21864,11 @@ class QueuesResource(Resource):
         `POST /queues/{queue}`
 
         ChurchTools utilizes a queueing system to offload time-intensive or processing-intensive work. Calling this endpoint will start a worker, which grabs pending jobs and processing them. If the queue has still jobs pending the worker starts a new worker to continue the work.
+
+        Example::
+
+            result = client.queues.create("beispiel")
+            print(result.queue)
         """
         return _t.cast(models.PostQueuesQueueData, self._call('POST', f"/queues/{_seg(queue)}", [], None, models.PostQueuesQueueData, envelope=True))
 
@@ -17657,6 +21889,11 @@ class RegistrationconfigResource(Resource):
 
         Args:
             id: Numeric configuration ID or its GUID. Non-administrators can use a numeric ID only when `showButton` is true; the GUID also permits reading a hidden configuration.
+
+        Example::
+
+            registrationconfig = client.registrationconfig.get(42)
+            print(registrationconfig.id)
         """
         return _t.cast(models.RegistrationConfig, self._call('GET', f"/registrationconfig/{_seg(id)}", [], None, models.RegistrationConfig, envelope=True))
 
@@ -17689,6 +21926,11 @@ class RegistrationconfigResource(Resource):
             blacklist: Case-insensitive email patterns; `*` is a wildcard. Replaces the full blacklist.
             fields: Complete replacement of configured person fields.
             tags: Legacy input alias; prefer `tagsForNewPersons`.
+
+        Example::
+
+            result = client.registrationconfig.patch(1, is_active=True)
+            print(result.id)
         """
         return _t.cast(models.RegistrationConfigAdmin, self._call('PATCH', f"/registrationconfig/{_seg(id)}", [], _body({'blacklist': blacklist, 'campuses': campuses, 'departmentIds': department_ids, 'fields': fields, 'isActive': is_active, 'minimumAge': minimum_age, 'showButton': show_button, 'statusId': status_id, 'tags': tags, 'tagsForExistingPersons': tags_for_existing_persons, 'tagsForNewPersons': tags_for_new_persons}, extra_body), models.RegistrationConfigAdmin, envelope=True))
 
@@ -17713,6 +21955,11 @@ class RegistrationsResource(Resource):
         Args:
             registration_guid: GUID of the pending self-registration
             token: Confirmation token from the emailed link.
+
+        Example::
+
+            registration = client.registrations.confirm("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", token="beispiel")
+            print(registration.first_name)
         """
         return _t.cast(models.Registration, self._call('POST', f"/registrations/{_seg(registration_guid)}/confirm", [], _body({'token': token}, extra_body), models.Registration, envelope=True))
 
@@ -17737,6 +21984,14 @@ class RegistrationsResource(Resource):
             form_data: Consent fields plus configured person fields by numeric field ID or modern field name.
             person_id: Eligible existing person to link; without it, a new person is created.
             token: Same token used for email confirmation.
+
+        Example::
+
+            client.registrations.convert(
+                "8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1",
+                form_data=ct.models.RegistrationConvertFormData.model_validate({"acceptDataPrivacy": True}),
+                token="beispiel",
+            )
         """
         self._raw('POST', f"/registrations/{_seg(registration_guid)}/convert", [], _body({'formData': form_data, 'personId': person_id, 'token': token}, extra_body))
 
@@ -17767,6 +22022,17 @@ class RegistrationsResource(Resource):
             last_name: Family name.
             password: Must satisfy the configured password-strength requirements.
             redirect_after_registration: Destination for the client after completion.
+
+        Example::
+
+            result = client.registrations.create(
+                config_id="8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1",
+                email="mara@example.org",
+                first_name="Mara",
+                last_name="Becker",
+                password="beispiel",
+            )
+            print(result)
         """
         return _t.cast(_t.Optional[models.Registration], self._call('POST', "/registrations", [], _body({'configId': config_id, 'email': email, 'firstName': first_name, 'hasMinimumAge': has_minimum_age, 'lastName': last_name, 'password': password, 'redirectAfterRegistration': redirect_after_registration}, extra_body), _t.Optional[models.Registration], envelope=True))
 
@@ -17783,6 +22049,10 @@ class RegistrationsResource(Resource):
 
         Args:
             registration_guid: GUID of the pending self-registration
+
+        Example::
+
+            client.registrations.delete("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1")
         """
         self._raw('DELETE', f"/registrations/{_seg(registration_guid)}", [], None)
 
@@ -17799,6 +22069,10 @@ class RegistrationsResource(Resource):
 
         Args:
             registration_guid: GUID of the pending self-registration
+
+        Example::
+
+            client.registrations.resend("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1")
         """
         self._raw('POST', f"/registrations/{_seg(registration_guid)}/resend", [], None)
 
@@ -17833,6 +22107,14 @@ class RepeatcalculationResource(Resource):
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
+
+        Example::
+
+            for repeatcalculation in client.repeatcalculation.create(
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            ):
+                print(repeatcalculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('POST', "/repeatcalculation", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date}, extra_body), _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -17863,6 +22145,14 @@ class RepeatcalculationResource(Resource):
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
+
+        Example::
+
+            for repeatcalculation in client.repeatcalculation.delete(
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            ):
+                print(repeatcalculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('DELETE', "/repeatcalculation", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date}, extra_body), _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -17894,6 +22184,14 @@ class RepeatcalculationResource(Resource):
             repeat_option: Recurrence input: repeatOption.
             repeat_until: Recurrence input: repeatUntil.
             start_date: Recurrence input: startDate.
+
+        Example::
+
+            for repeatcalculation in client.repeatcalculation.list(
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            ):
+                print(repeatcalculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('GET', "/repeatcalculation", _query([('additionals', additionals), ('endDate', end_date), ('exceptions', exceptions), ('repeatFrequency', repeat_frequency), ('repeatId', repeat_id), ('repeatOption', repeat_option), ('repeatUntil', repeat_until), ('startDate', start_date)]), None, _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -17924,6 +22222,14 @@ class RepeatcalculationResource(Resource):
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
+
+        Example::
+
+            for repeatcalculation in client.repeatcalculation.patch(
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            ):
+                print(repeatcalculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('PATCH', "/repeatcalculation", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date}, extra_body), _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -17954,6 +22260,14 @@ class RepeatcalculationResource(Resource):
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
+
+        Example::
+
+            for repeatcalculation in client.repeatcalculation.update(
+                end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+                start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+            ):
+                print(repeatcalculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('PUT', "/repeatcalculation", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date}, extra_body), _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -17976,6 +22290,11 @@ class ResetPasswordResource(Resource):
 
         Args:
             email_or_username: Stored email address or login name.
+
+        Example::
+
+            result = client.reset_password.create(email_or_username="alex@example.org")
+            print(result)
         """
         return _t.cast(models.PostResetPasswordData, self._call('POST', "/reset-password", [], _body({'emailOrUsername': email_or_username}, extra_body), models.PostResetPasswordData, envelope=True))
 
@@ -17997,6 +22316,11 @@ class ResourceResource(Resource):
 
         Args:
             include: Optional enrichment with person references for resource administrators.
+
+        Example::
+
+            masterdata = client.resource.get_masterdata()
+            print(masterdata)
         """
         return _t.cast(models.ResourceMasterData, self._call('GET', "/resource/masterdata", _query([('include[]', include)]), None, models.ResourceMasterData, envelope=True))
 
@@ -18041,6 +22365,11 @@ class ResourcesResource(Resource):
             resource_type_id: Resource type used to group this resource, such as rooms or vehicles. Resource types are available from `/resourcetypes`.
             sort_key: Sort value for displaying resources.
             needs_appointment: Requires bookings to be linked to a calendar appointment. When true, create bookings through the appointment APIs; `POST /bookings` cannot create independent bookings for this resource.
+
+        Example::
+
+            result = client.resources.create(name="Main Hall", resource_type_id=2, sort_key=1)
+            print(result.name)
         """
         return _t.cast(models.Resource, self._call('POST', "/resources", [], _body({'adminIds': admin_ids, 'description': description, 'iCalLocation': i_cal_location, 'isAutoAccept': is_auto_accept, 'isVirtual': is_virtual, 'location': location, 'name': name, 'quantity': quantity, 'randomString': random_string, 'resourceTypeId': resource_type_id, 'sortKey': sort_key, 'needsAppointment': needs_appointment}, extra_body), models.Resource, envelope=True))
 
@@ -18057,6 +22386,10 @@ class ResourcesResource(Resource):
 
         Args:
             resource_id: ID of the individual resource.
+
+        Example::
+
+            client.resources.delete(7)
         """
         self._raw('DELETE', f"/resources/{_seg(resource_id)}", [], None)
 
@@ -18076,6 +22409,11 @@ class ResourcesResource(Resource):
         Args:
             resource_id: ID of the individual resource.
             include: Optional enrichment with person references for resource administrators.
+
+        Example::
+
+            resource = client.resources.get(7)
+            print(resource.name)
         """
         return _t.cast(models.Resource, self._call('GET', f"/resources/{_seg(resource_id)}", _query([('include[]', include)]), None, models.Resource, envelope=True))
 
@@ -18092,6 +22430,11 @@ class ResourcesResource(Resource):
 
         Args:
             resource_id: ID of the individual resource.
+
+        Example::
+
+            statistic = client.resources.get_statistics(7)
+            print(statistic.num_requested_bookings_in_future)
         """
         return _t.cast(models.ResourceStatistics, self._call('GET', f"/resources/{_seg(resource_id)}/statistics", [], None, models.ResourceStatistics, envelope=True))
 
@@ -18109,6 +22452,11 @@ class ResourcesResource(Resource):
 
         Args:
             include: Optional enrichment with person references for resource administrators.
+
+        Example::
+
+            for resource in client.resources.list():
+                print(resource.name)
         """
         return _t.cast(_t.List[models.Resource], self._call('GET', "/resources", _query([('include[]', include)]), None, _t.List[models.Resource], envelope=True))
 
@@ -18151,6 +22499,11 @@ class ResourcesResource(Resource):
             resource_type_id: Resource type used to group this resource, such as rooms or vehicles. Resource types are available from `/resourcetypes`.
             sort_key: Sort value for displaying resources.
             needs_appointment: Requires bookings to be linked to a calendar appointment. When true, create bookings through the appointment APIs; `POST /bookings` cannot create independent bookings for this resource.
+
+        Example::
+
+            result = client.resources.update(7, name="Main Hall", resource_type_id=2, sort_key=1)
+            print(result.name)
         """
         return _t.cast(models.Resource, self._call('PUT', f"/resources/{_seg(resource_id)}", [], _body({'adminIds': admin_ids, 'description': description, 'iCalLocation': i_cal_location, 'isAutoAccept': is_auto_accept, 'isVirtual': is_virtual, 'location': location, 'name': name, 'quantity': quantity, 'randomString': random_string, 'resourceTypeId': resource_type_id, 'sortKey': sort_key, 'needsAppointment': needs_appointment}, extra_body), models.Resource, envelope=True))
 
@@ -18179,6 +22532,11 @@ class ResourcetypesResource(Resource):
             name: Singular label for one resource of this type.
             name_plural: Plural label for resources of this type.
             sort_key: Sort value for displaying resource types.
+
+        Example::
+
+            result = client.resourcetypes.create(name="Room", name_plural="Rooms", sort_key=1)
+            print(result.name)
         """
         return _t.cast(models.ResourceType, self._call('POST', "/resourcetypes", [], _body({'campusId': campus_id, 'name': name, 'namePlural': name_plural, 'sortKey': sort_key}, extra_body), models.ResourceType, envelope=True))
 
@@ -18195,6 +22553,10 @@ class ResourcetypesResource(Resource):
 
         Args:
             resource_type_id: ID of the resource category.
+
+        Example::
+
+            client.resourcetypes.delete(2)
         """
         self._raw('DELETE', f"/resourcetypes/{_seg(resource_type_id)}", [], None)
 
@@ -18211,6 +22573,11 @@ class ResourcetypesResource(Resource):
 
         Args:
             resource_type_id: ID of the resource category.
+
+        Example::
+
+            resourcetype = client.resourcetypes.get(2)
+            print(resourcetype.name)
         """
         return _t.cast(models.ResourceType, self._call('GET', f"/resourcetypes/{_seg(resource_type_id)}", [], None, models.ResourceType, envelope=True))
 
@@ -18223,6 +22590,11 @@ class ResourcetypesResource(Resource):
         `GET /resourcetypes`
 
         Returns all resource categories, such as rooms or vehicles, without filtering by resource visibility. A type may have no resources visible to the reader.
+
+        Example::
+
+            for resourcetype in client.resourcetypes.list():
+                print(resourcetype.name)
         """
         return _t.cast(_t.List[models.ResourceType], self._call('GET', "/resourcetypes", [], None, _t.List[models.ResourceType], envelope=True))
 
@@ -18249,6 +22621,11 @@ class ResourcetypesResource(Resource):
             name: Singular label for one resource of this type.
             name_plural: Plural label for resources of this type.
             sort_key: Sort value for displaying resource types.
+
+        Example::
+
+            result = client.resourcetypes.update(2, name="Room", name_plural="Rooms", sort_key=1)
+            print(result.name)
         """
         return _t.cast(models.ResourceType, self._call('PUT', f"/resourcetypes/{_seg(resource_type_id)}", [], _body({'campusId': campus_id, 'name': name, 'namePlural': name_plural, 'sortKey': sort_key}, extra_body), models.ResourceType, envelope=True))
 
@@ -18282,6 +22659,15 @@ class RoutinesResource(Resource):
         Args:
             domain_context: Context for the currently supported group_membership domain. Group and role IDs are required by the domain handler.
             name: Trimmed automation name.
+
+        Example::
+
+            result = client.routines.create(
+                domain_context=ct.models.RoutineCreateDomainContext.model_validate({"groupId": 42, "groupTypeRoleId": 42}),
+                domain_type="beispiel",
+                name="Welcome new members",
+            )
+            print(result.name)
         """
         return _t.cast(models.Routine, self._call('POST', "/routines", [], _body({'description': description, 'domainContext': domain_context, 'domainType': domain_type, 'isEnabled': is_enabled, 'name': name, 'priority': priority}, extra_body), models.Routine, envelope=True))
 
@@ -18298,6 +22684,10 @@ class RoutinesResource(Resource):
 
         Args:
             routine_id: ID of a routine
+
+        Example::
+
+            client.routines.delete(9)
         """
         self._raw('DELETE', f"/routines/{_seg(routine_id)}", [], None)
 
@@ -18310,6 +22700,10 @@ class RoutinesResource(Resource):
         `POST /routines/execute`
 
         Triggers the shared routine worker for pending ready runs of enabled routines. Requires authentication; this controller has no additional routine/group authorization check. Processes batches of up to 25 runs and schedules another worker when a batch is full. A recent worker marker or ongoing bulk processing can skip execution while still returning 204. This is a global processing trigger, not a request to execute one selected routine or a completion report.
+
+        Example::
+
+            client.routines.execute()
         """
         self._raw('POST', "/routines/execute", [], None)
 
@@ -18326,6 +22720,11 @@ class RoutinesResource(Resource):
 
         Args:
             routine_id: ID of a routine
+
+        Example::
+
+            routine = client.routines.get(9)
+            print(routine.name)
         """
         return _t.cast(models.Routine, self._call('GET', f"/routines/{_seg(routine_id)}", [], None, models.Routine, envelope=True))
 
@@ -18343,6 +22742,11 @@ class RoutinesResource(Resource):
 
         Args:
             domain_type: Optional domain filter; group_membership is the currently registered handler.
+
+        Example::
+
+            for routine in client.routines.list():
+                print(routine.name)
         """
         return _t.cast(_t.List[models.Routine], self._call('GET', "/routines", _query([('domain_type', domain_type)]), None, _t.List[models.Routine], envelope=True))
 
@@ -18373,6 +22777,11 @@ class RoutinesResource(Resource):
             finish: Source step IDs or run status buckets. not-started materializes potential runs; this is not a list of run IDs.
             restart: Source step IDs or run status buckets. not-started materializes potential runs; this is not a list of run IDs.
             steps: Complete replacement tree; omitted existing steps are removed.
+
+        Example::
+
+            result = client.routines.patch(9, name="Welcome new members")
+            print(result)
         """
         return _t.cast(_t.Optional[models.Routine], self._call('PATCH', f"/routines/{_seg(routine_id)}", _query([('dry_run', dry_run)]), _body({'description': description, 'finish': finish, 'isEnabled': is_enabled, 'name': name, 'priority': priority, 'restart': restart, 'steps': steps}, extra_body), _t.Optional[models.Routine], envelope=True))
 
@@ -18389,6 +22798,12 @@ class SamlResource(Resource):
         `POST /saml/acs`
 
         Legacy SAML URL. Resolves the single configured SAML provider; with zero or multiple SAML providers it cannot resolve a provider. Prefer the provider-specific /externallogins/{externalLoginId}/saml/acs URL. Public assertion-consumer callback for the identity provider’s form POST. Validates the SAML response and maps the external identity to a ChurchTools person. Successful login redirects to the stored destination or the installation landing page; identities needing account linking are redirected into that flow instead. Normal login requires a visible provider. Administrator test flows can use hidden providers and return a small HTML page that closes the popup, without logging the tested identity in. Test failures can also return that 200 HTML page: read the separate test-result endpoint for the outcome. A pending administrator test with missing RelayState also returns the popup page. Normal failures return 401 as localized text or an HTML error page, never the usual JSON error envelope.
+
+        Example::
+
+            data = client.saml.acs()
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('POST', "/saml/acs", [], None)
 
@@ -18406,6 +22821,10 @@ class SamlResource(Resource):
 
         Args:
             redirect: Absolute same-origin destination after successful login.
+
+        Example::
+
+            client.saml.get_login()
         """
         self._raw('GET', "/saml/login", _query([('redirect', redirect)]), None)
 
@@ -18418,6 +22837,12 @@ class SamlResource(Resource):
         `GET /saml/metadata`
 
         Legacy SAML URL. Resolves the single configured SAML provider; with zero or multiple SAML providers it cannot resolve a provider. Prefer the provider-specific /externallogins/{externalLoginId}/saml/metadata URL. Returns the XML metadata that an identity-provider administrator uses to configure ChurchTools as a SAML service provider. The entity ID, assertion-consumer URL and logout URL refer to this external-login provider. This endpoint is public and also works for a hidden provider, allowing setup before enabling login. Any provider/configuration/metadata-generation failure is returned as 404 with localized text, not a JSON error envelope.
+
+        Example::
+
+            data = client.saml.get_metadata()
+            with open("ergebnis.bin", "wb") as f:
+                f.write(data)
         """
         return self._raw('GET', "/saml/metadata", [], None)
 
@@ -18437,6 +22862,11 @@ class SearchResource(Resource):
         `GET /search`
 
         Search globally for different or all domain types.
+
+        Example::
+
+            for search in client.search.list(query="max"):
+                print(search.type_)
         """
         return _t.cast(_t.List[models.GetSearchDataItem], self._call('GET', "/search", _query([('query', query), ('domain_types[]', domain_types)]), None, _t.List[models.GetSearchDataItem], envelope=True))
 
@@ -18460,6 +22890,11 @@ class SecuritylevelsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            result = client.securitylevels.create(1, name="Hauskreis Nord")
+            print(result.name)
         """
         return _t.cast(models.PostSecuritylevelsIdResponse, self._call('POST', f"/securitylevels/{_seg(id)}", [], _body({'name': name}, extra_body), models.PostSecuritylevelsIdResponse, envelope=False))
 
@@ -18479,6 +22914,10 @@ class SecuritylevelsResource(Resource):
         Args:
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.securitylevels.delete(1)
         """
         self._raw('DELETE', f"/securitylevels/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -18495,6 +22934,11 @@ class SecuritylevelsResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            securitylevel = client.securitylevels.get(1)
+            print(securitylevel.name)
         """
         return _t.cast(models.SecurityLevel, self._call('GET', f"/securitylevels/{_seg(id)}", [], None, models.SecurityLevel, envelope=False))
 
@@ -18505,6 +22949,11 @@ class SecuritylevelsResource(Resource):
         get all securitylevels
 
         `GET /securitylevels`
+
+        Example::
+
+            for securitylevel in client.securitylevels.list():
+                print(securitylevel.name)
         """
         return _t.cast(_t.List[models.SecurityLevel], self._call('GET', "/securitylevels", [], None, _t.List[models.SecurityLevel], envelope=True))
 
@@ -18528,6 +22977,11 @@ class SecuritylevelsResource(Resource):
         Args:
             id: ID of Entity
             forcereorder: Need to be true, if securitylevel shall be reordered
+
+        Example::
+
+            result = client.securitylevels.patch(1, name="Hauskreis Nord")
+            print(result.name)
         """
         return _t.cast(models.PatchSecuritylevelsIdResponse, self._call('PATCH', f"/securitylevels/{_seg(id)}", _query([('forcereorder', forcereorder)]), _body({'forcereorder': forcereorder2, 'name': name, 'newid': newid}, extra_body), models.PatchSecuritylevelsIdResponse, envelope=False))
 
@@ -18560,6 +23014,11 @@ class ServicegroupsResource(Resource):
             only_visible_in_campus_filter: Show this service group only when filtering by its campus.
             sort_key: Display order. Lists are sorted by `sortKey` and then name, both ascending.
             view_all: Make this service group visible through the general service-group viewing permissions.
+
+        Example::
+
+            result = client.servicegroups.create(name="Hauskreis Nord")
+            print(result.name)
         """
         return _t.cast(models.ServiceGroup, self._call('POST', "/servicegroups", [], _body({'campusId': campus_id, 'description': description, 'name': name, 'onlyVisibleInCampusFilter': only_visible_in_campus_filter, 'sortKey': sort_key, 'viewAll': view_all}, extra_body), models.ServiceGroup, envelope=True))
 
@@ -18576,6 +23035,10 @@ class ServicegroupsResource(Resource):
 
         Args:
             service_group_id: ID of a service group
+
+        Example::
+
+            client.servicegroups.delete(13)
         """
         self._raw('DELETE', f"/servicegroups/{_seg(service_group_id)}", [], None)
 
@@ -18592,6 +23055,11 @@ class ServicegroupsResource(Resource):
 
         Args:
             service_group_id: ID of a service group
+
+        Example::
+
+            servicegroup = client.servicegroups.get(13)
+            print(servicegroup.name)
         """
         return _t.cast(models.ServiceGroup, self._call('GET', f"/servicegroups/{_seg(service_group_id)}", [], None, models.ServiceGroup, envelope=True))
 
@@ -18604,6 +23072,11 @@ class ServicegroupsResource(Resource):
         `GET /servicegroups`
 
         Returns all service groups as an unpaginated list, sorted by `sortKey` and then name, both ascending.
+
+        Example::
+
+            for servicegroup in client.servicegroups.list():
+                print(servicegroup.name)
         """
         return _t.cast(_t.List[models.ServiceGroup], self._call('GET', "/servicegroups", [], None, _t.List[models.ServiceGroup], envelope=True))
 
@@ -18634,6 +23107,11 @@ class ServicegroupsResource(Resource):
             only_visible_in_campus_filter: Show this service group only when filtering by its campus.
             sort_key: Display order. Lists are sorted by `sortKey` and then name, both ascending.
             view_all: Make this service group visible through the general service-group viewing permissions.
+
+        Example::
+
+            result = client.servicegroups.update(13, name="Hauskreis Nord")
+            print(result.name)
         """
         return _t.cast(models.ServiceGroup, self._call('PUT', f"/servicegroups/{_seg(service_group_id)}", [], _body({'campusId': campus_id, 'description': description, 'name': name, 'onlyVisibleInCampusFilter': only_visible_in_campus_filter, 'sortKey': sort_key, 'viewAll': view_all}, extra_body), models.ServiceGroup, envelope=True))
 
@@ -18690,6 +23168,11 @@ class ServicesResource(Resource):
             sort_key: Display order. Lists are sorted by `sortKey` and then name, both ascending.
             standard: Whether this service is marked as a standard service for event planning.
             tag_ids: IDs of connected tags used for service planning. Nonexistent IDs are silently removed. Duplicates are retained. An empty list clears the connections.
+
+        Example::
+
+            result = client.services.create(name="Hauskreis Nord", service_group_id=42)
+            print(result.name)
         """
         return _t.cast(models.Service, self._call('POST', "/services", [], _body({'allowChat': allow_chat, 'allowCommentOnConfirmation': allow_comment_on_confirmation, 'allowControlLiveAgenda': allow_control_live_agenda, 'allowDecline': allow_decline, 'allowExchange': allow_exchange, 'calTextTemplate': cal_text_template, 'comment': comment, 'description': description, 'groupIds': group_ids, 'hidePersonName': hide_person_name, 'name': name, 'onlyAssignFromGroups': only_assign_from_groups, 'sendReminderMails': send_reminder_mails, 'sendServiceRequestEmails': send_service_request_emails, 'serviceGroupId': service_group_id, 'sortKey': sort_key, 'standard': standard, 'tagIds': tag_ids}, extra_body), models.Service, envelope=True))
 
@@ -18706,6 +23189,10 @@ class ServicesResource(Resource):
 
         Args:
             service_id: ID of a reusable service role from /services
+
+        Example::
+
+            client.services.delete(2)
         """
         self._raw('DELETE', f"/services/{_seg(service_id)}", [], None)
 
@@ -18722,6 +23209,11 @@ class ServicesResource(Resource):
 
         Args:
             service_id: ID of a reusable service role from /services
+
+        Example::
+
+            service = client.services.get(2)
+            print(service.name)
         """
         return _t.cast(models.Service, self._call('GET', f"/services/{_seg(service_id)}", [], None, models.Service, envelope=True))
 
@@ -18734,6 +23226,11 @@ class ServicesResource(Resource):
         `GET /services`
 
         Returns all services as an unpaginated list, sorted by `sortKey` and then name, both ascending.
+
+        Example::
+
+            for service in client.services.list():
+                print(service.name)
         """
         return _t.cast(_t.List[models.Service], self._call('GET', "/services", [], None, _t.List[models.Service], envelope=True))
 
@@ -18788,6 +23285,11 @@ class ServicesResource(Resource):
             sort_key: Display order. Lists are sorted by `sortKey` and then name, both ascending.
             standard: Whether this service is marked as a standard service for event planning.
             tag_ids: IDs of connected tags used for service planning. Nonexistent IDs are silently removed. Duplicates are retained. An empty list clears the connections.
+
+        Example::
+
+            result = client.services.update(2, name="Hauskreis Nord", service_group_id=42)
+            print(result.name)
         """
         return _t.cast(models.Service, self._call('PUT', f"/services/{_seg(service_id)}", [], _body({'allowChat': allow_chat, 'allowCommentOnConfirmation': allow_comment_on_confirmation, 'allowControlLiveAgenda': allow_control_live_agenda, 'allowDecline': allow_decline, 'allowExchange': allow_exchange, 'calTextTemplate': cal_text_template, 'comment': comment, 'description': description, 'groupIds': group_ids, 'hidePersonName': hide_person_name, 'name': name, 'onlyAssignFromGroups': only_assign_from_groups, 'sendReminderMails': send_reminder_mails, 'sendServiceRequestEmails': send_service_request_emails, 'serviceGroupId': service_group_id, 'sortKey': sort_key, 'standard': standard, 'tagIds': tag_ids}, extra_body), models.Service, envelope=True))
 
@@ -18807,6 +23309,10 @@ class SimulateResource(Resource):
         `POST /simulate`
 
         Starts simulating another person. The current user's session will act as the specified person until the simulation is stopped.
+
+        Example::
+
+            client.simulate.create(person_id=42)
         """
         self._raw('POST', "/simulate", [], _body({'personId': person_id}, extra_body))
 
@@ -18819,6 +23325,11 @@ class SimulateResource(Resource):
         `DELETE /simulate`
 
         Stops the current person simulation and returns a redirect path to navigate back.
+
+        Example::
+
+            simulate = client.simulate.delete()
+            print(simulate.redirect)
         """
         return _t.cast(models.DeleteSimulateData, self._call('DELETE', "/simulate", [], None, models.DeleteSimulateData, envelope=True))
 
@@ -18868,6 +23379,11 @@ class SongsResource(Resource):
             should_practice: Marks the song for rehearsal.
             tags: Tag names to assign. Existing tags are reused by name; missing tags are created. During update, this replaces the song's tag set.
             arrangements: Initial musical versions. The first arrangement becomes the default unless a later item has `isDefault: true`.
+
+        Example::
+
+            result = client.songs.create(category_id=1, name="Hallelujah")
+            print(result.name)
         """
         return _t.cast(models.Song, self._call('POST', "/songs", [], _body({'author': author, 'categoryId': category_id, 'ccli': ccli, 'copyright': copyright, 'name': name, 'shouldPractice': should_practice, 'tags': tags, 'arrangements': arrangements}, extra_body), models.Song, envelope=True))
 
@@ -18884,6 +23400,10 @@ class SongsResource(Resource):
 
         Args:
             song_id: ID of song
+
+        Example::
+
+            client.songs.delete(42)
         """
         self._raw('DELETE', f"/songs/{_seg(song_id)}", [], None)
 
@@ -18903,6 +23423,11 @@ class SongsResource(Resource):
         Args:
             song_id: ID of song
             include: Optional enrichments. Use include=tags for tags, or include[]=tags&include[]=arrangements for multiple values. Comma-separated values are not supported. Arrangements are already returned without this option by the current API, but this will change in a future release. Omitted requests no enrichment.
+
+        Example::
+
+            song = client.songs.get(42)
+            print(song.name)
         """
         return _t.cast(models.Song, self._call('GET', f"/songs/{_seg(song_id)}", _query([('include[]', include)]), None, models.Song, envelope=True))
 
@@ -18934,6 +23459,11 @@ class SongsResource(Resource):
             query: Substring search in either title or author, combined with name and the other filters.
             include: Optional enrichments. Use include=tags for tags, or include[]=tags&include[]=arrangements for multiple values. Comma-separated values are not supported. Arrangements are already returned without this option by the current API, but this will change in a future release. Omitted requests no enrichment.
             limit: Number of songs per page, from 1 to 200.
+
+        Example::
+
+            for song in client.songs.list():
+                print(song.name)
         """
         return Paginator(self._core, "/songs", _query([('song_category_ids[]', song_category_ids), ('ids[]', ids), ('practice', practice), ('key_of_arrangement', key_of_arrangement), ('name', name), ('query', query), ('include[]', include), ('limit', limit)]), models.Song)
 
@@ -18966,6 +23496,11 @@ class SongsResource(Resource):
             name: Song title.
             should_practice: Marks the song for rehearsal.
             tags: Tag names to assign. Existing tags are reused by name; missing tags are created. During update, this replaces the song's tag set.
+
+        Example::
+
+            result = client.songs.update(42, category_id=1, name="Hallelujah")
+            print(result.name)
         """
         return _t.cast(models.Song, self._call('PUT', f"/songs/{_seg(song_id)}", [], _body({'author': author, 'categoryId': category_id, 'ccli': ccli, 'copyright': copyright, 'name': name, 'shouldPractice': should_practice, 'tags': tags}, extra_body), models.Song, envelope=True))
 
@@ -18982,6 +23517,11 @@ class SsoLoginsResource(Resource):
         `GET /sso-logins`
 
         Returns visible external login providers that have a registered handler and login link. This public list is intended for the login screen and does not expose provider credentials or configuration. Providers are returned without pagination or a guaranteed order. Hidden providers are omitted. primaryLogin and hasRegistration are presentation/configuration flags, not a guarantee that an external login or account creation will succeed.
+
+        Example::
+
+            for sso_login in client.sso_logins.list():
+                print(sso_login.name)
         """
         return _t.cast(_t.List[models.SsoLogin], self._call('GET', "/sso-logins", [], None, _t.List[models.SsoLogin], envelope=True))
 
@@ -18998,6 +23538,11 @@ class StartpageResource(Resource):
         `GET /startpage`
 
         Here you get data like birthdays in the next seven days, open meeting requests, next appointments and songs to lern
+
+        Example::
+
+            for startpage in client.startpage.list():
+                print(startpage)
         """
         return _t.cast(_t.List[_t.Union[models.WidgetDate, models.WidgetDetail, models.WidgetDomainObject, models.WidgetPost, models.WidgetCommon, models.WidgetHidden]], self._call('GET', "/startpage", [], None, _t.List[_t.Union[models.WidgetDate, models.WidgetDetail, models.WidgetDomainObject, models.WidgetPost, models.WidgetCommon, models.WidgetHidden]], envelope=True))
 
@@ -19030,6 +23575,11 @@ class StatusesResource(Resource):
             security_level_id: Existing security-level definition associated with this status. Retrieve available IDs from `GET /securitylevels`.
             shorty: Abbreviation of the status name.
             sort_key: Display-order value.
+
+        Example::
+
+            result = client.statuses.create(name="Member", security_level_id=2)
+            print(result.name)
         """
         return _t.cast(models.Status, self._call('POST', "/statuses", [], _body({'isMember': is_member, 'isSearchable': is_searchable, 'name': name, 'securityLevelId': security_level_id, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.Status, envelope=True))
 
@@ -19046,6 +23596,10 @@ class StatusesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            client.statuses.delete(1)
         """
         self._raw('DELETE', f"/statuses/{_seg(id)}", [], None)
 
@@ -19062,6 +23616,11 @@ class StatusesResource(Resource):
 
         Args:
             id: ID of Entity
+
+        Example::
+
+            status = client.statuses.get(1)
+            print(status.name)
         """
         return _t.cast(models.Status, self._call('GET', f"/statuses/{_seg(id)}", [], None, models.Status, envelope=True))
 
@@ -19074,6 +23633,11 @@ class StatusesResource(Resource):
         `GET /statuses`
 
         Returns all person-status definitions, ordered by `sortKey` and then name.
+
+        Example::
+
+            for status in client.statuses.list():
+                print(status.name)
         """
         return _t.cast(_t.List[models.Status], self._call('GET', "/statuses", [], None, _t.List[models.Status], envelope=True))
 
@@ -19099,6 +23663,11 @@ class StatusesResource(Resource):
         Args:
             id: ID of Entity
             security_level_id: Existing security-level definition associated with this status.
+
+        Example::
+
+            result = client.statuses.patch(1, name="Member")
+            print(result.name)
         """
         return _t.cast(models.Status, self._call('PATCH', f"/statuses/{_seg(id)}", [], _body({'isMember': is_member, 'isSearchable': is_searchable, 'name': name, 'securityLevelId': security_level_id, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.Status, envelope=True))
 
@@ -19131,6 +23700,11 @@ class StatusesResource(Resource):
             security_level_id: Existing security-level definition associated with this status. Retrieve available IDs from `GET /securitylevels`.
             shorty: Abbreviation of the status name.
             sort_key: Display-order value.
+
+        Example::
+
+            result = client.statuses.update(1, name="Member", security_level_id=2)
+            print(result.name)
         """
         return _t.cast(models.Status, self._call('PUT', f"/statuses/{_seg(id)}", [], _body({'isMember': is_member, 'isSearchable': is_searchable, 'name': name, 'securityLevelId': security_level_id, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.Status, envelope=True))
 
@@ -19155,6 +23729,10 @@ class SubscriptionsResource(Resource):
             person_id: ID of person
             subject: Notification subject. Prefer canonical singular meetingrequest/servicerequest; plural names are legacy aliases.
             subject_identifier: group/post/public_channel: target ID; post_summary: 0; meetingrequest: root (legacy 0); servicerequest: root, created, assigned, unassigned, accepted, declined or reminder (legacy 0); resource: root or resource ID. Numeric IDs remain strings.
+
+        Example::
+
+            client.subscriptions.delete(42, "group", "root")
         """
         self._raw('DELETE', f"/subscriptions/{_seg(person_id)}/{_seg(subject)}/{_seg(subject_identifier)}", [], None)
 
@@ -19175,6 +23753,11 @@ class SubscriptionsResource(Resource):
             person_id: ID of person
             subject: Notification subject. Prefer canonical singular meetingrequest/servicerequest; plural names are legacy aliases.
             subject_identifier: group/post/public_channel: target ID; post_summary: 0; meetingrequest: root (legacy 0); servicerequest: root, created, assigned, unassigned, accepted, declined or reminder (legacy 0); resource: root or resource ID. Numeric IDs remain strings.
+
+        Example::
+
+            result = client.subscriptions.get(42, "group", "root")
+            print(result)
         """
         return _t.cast(_t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests], self._call('GET', f"/subscriptions/{_seg(person_id)}/{_seg(subject)}/{_seg(subject_identifier)}", [], None, _t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests], envelope=True))
 
@@ -19191,6 +23774,11 @@ class SubscriptionsResource(Resource):
 
         Args:
             person_id: ID of person
+
+        Example::
+
+            for subscription in client.subscriptions.list(42):
+                print(subscription)
         """
         return _t.cast(_t.List[_t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests]], self._call('GET', f"/subscriptions/{_seg(person_id)}", [], None, _t.List[_t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests]], envelope=True))
 
@@ -19209,6 +23797,11 @@ class SubscriptionsResource(Resource):
         Args:
             person_id: ID of person
             subject: Notification subject. Prefer canonical singular meetingrequest/servicerequest; plural names are legacy aliases.
+
+        Example::
+
+            for for_subject in client.subscriptions.list_for_subject(42, "group"):
+                print(for_subject)
         """
         return _t.cast(_t.List[_t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests]], self._call('GET', f"/subscriptions/{_seg(person_id)}/{_seg(subject)}", [], None, _t.List[_t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests]], envelope=True))
 
@@ -19235,6 +23828,11 @@ class SubscriptionsResource(Resource):
             subject_identifier: group/post/public_channel: target ID; post_summary: 0; meetingrequest: root (legacy 0); servicerequest: root, created, assigned, unassigned, accepted, declined or reminder (legacy 0); resource: root or resource ID. Numeric IDs remain strings.
             is_active: Omission enables the override, including when replacing an existing inactive setting.
             options: Required structured email-summary options for post_summary. For other subjects, omission clears stored options.
+
+        Example::
+
+            result = client.subscriptions.update(42, "group", "root", is_active=True)
+            print(result)
         """
         return _t.cast(_t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests], self._call('PUT', f"/subscriptions/{_seg(person_id)}/{_seg(subject)}/{_seg(subject_identifier)}", [], _body({'isActive': is_active, 'options': options}, extra_body), _t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests], envelope=True))
 
@@ -19261,6 +23859,13 @@ class SyncResource(Resource):
         `POST /sync/logs`
 
         Stores log entries. `messageKey`, translation arguments and changes are rendered into a stored message.
+
+        Example::
+
+            result = client.sync.create_logs(
+                logs=[ct.models.SyncLogCreate.model_validate({"date": "2022-10-19T12:00:00Z", "executionId": "beispiel", "jobId": 42, "level": "debug", "messageKey": "beispiel", "type": "create"})],
+            )
+            print(result.persisted)
         """
         return _t.cast(models.SyncLogsPersisted, self._call('POST', "/sync/logs", [], _body({'logs': logs}, extra_body), models.SyncLogsPersisted, envelope=True))
 
@@ -19290,6 +23895,11 @@ class SyncResource(Resource):
             end_date: Last included log day.
             statuses: Background execution statuses.
             is_dry_run: Filter by dry-run mode.
+
+        Example::
+
+            for execution in client.sync.list_executions():
+                print(execution.created_date)
         """
         return Paginator(self._core, "/sync/executions", _query([('limit', limit), ('es_ids[]', es_ids), ('job_ids[]', job_ids), ('start_date', start_date), ('end_date', end_date), ('statuses[]', statuses), ('is_dry_run', is_dry_run)]), models.SyncExecutionSummary)
 
@@ -19307,6 +23917,11 @@ class SyncResource(Resource):
 
         Args:
             external_system_ids: Restrict to these external connection IDs.
+
+        Example::
+
+            for jobconfig in client.sync.list_jobconfigs():
+                print(jobconfig.name)
         """
         return _t.cast(_t.List[models.JobConfigurationReturn], self._call('GET', "/sync/jobconfigs", _query([('external_system_ids[]', external_system_ids)]), None, _t.List[models.JobConfigurationReturn], envelope=True))
 
@@ -19342,6 +23957,11 @@ class SyncResource(Resource):
             levels: Log severities.
             query: Substring search in rendered log messages.
             is_dry_run: Select dry-run or actual-execution logs.
+
+        Example::
+
+            for log in client.sync.list_logs():
+                print(log.id)
         """
         return Paginator(self._core, "/sync/logs", _query([('limit', limit), ('es_ids[]', es_ids), ('job_ids[]', job_ids), ('execution_ids[]', execution_ids), ('start_date', start_date), ('end_date', end_date), ('types[]', types), ('levels[]', levels), ('query', query), ('is_dry_run', is_dry_run)]), models.SyncLog)
 
@@ -19366,6 +23986,11 @@ class TagsResource(Resource):
             domain_type: Domain types that tags can be used with
             domain_id: the domain id
             tag_id: ID of tag
+
+        Example::
+
+            tag = client.tags.attach("person", 35, 42)
+            print(tag.name)
         """
         return _t.cast(models.TagWithCount, self._call('PUT', f"/tags/{_seg(domain_type)}/{_seg(domain_id)}/{_seg(tag_id)}", [], None, models.TagWithCount, envelope=True))
 
@@ -19388,6 +24013,11 @@ class TagsResource(Resource):
             domain_type: Domain types that tags can be used with
             domain_id: the domain id
             name: Name of an existing or newly created tag in this domain.
+
+        Example::
+
+            tag = client.tags.attach_new("person", 35, name="Mission")
+            print(tag.name)
         """
         return _t.cast(models.TagWithCount, self._call('POST', f"/tags/{_seg(domain_type)}/{_seg(domain_id)}", [], _body({'name': name}, extra_body), models.TagWithCount, envelope=True))
 
@@ -19411,6 +24041,11 @@ class TagsResource(Resource):
             domain_type: Domain types that tags can be used with
             color: Semantic tag color; responses use `basic` when unset.
             name: Tag name, unique within the domain.
+
+        Example::
+
+            result = client.tags.create("person", name="Mission")
+            print(result.name)
         """
         return _t.cast(models.TagWithCount, self._call('POST', f"/tags/{_seg(domain_type)}", [], _body({'color': color, 'description': description, 'name': name}, extra_body), models.TagWithCount, envelope=True))
 
@@ -19427,6 +24062,10 @@ class TagsResource(Resource):
 
         Args:
             tag_id: ID of tag
+
+        Example::
+
+            client.tags.delete(42)
         """
         self._raw('DELETE', f"/tags/{_seg(tag_id)}", [], None)
 
@@ -19447,6 +24086,10 @@ class TagsResource(Resource):
             domain_type: Domain types that tags can be used with
             domain_id: the domain id
             tag_id: ID of tag
+
+        Example::
+
+            client.tags.detach("person", 35, 42)
         """
         self._raw('DELETE', f"/tags/{_seg(domain_type)}/{_seg(domain_id)}/{_seg(tag_id)}", [], None)
 
@@ -19463,6 +24106,11 @@ class TagsResource(Resource):
 
         Args:
             tag_id: ID of tag
+
+        Example::
+
+            tag = client.tags.get(42)
+            print(tag.name)
         """
         return _t.cast(models.TagWithCount, self._call('GET', f"/tags/{_seg(tag_id)}", [], None, models.TagWithCount, envelope=True))
 
@@ -19479,6 +24127,11 @@ class TagsResource(Resource):
 
         Args:
             domain_type: Domain types that tags can be used with
+
+        Example::
+
+            for tag in client.tags.list("person"):
+                print(tag.name)
         """
         return _t.cast(_t.List[models.TagWithCount], self._call('GET', f"/tags/{_seg(domain_type)}", [], None, _t.List[models.TagWithCount], envelope=True))
 
@@ -19497,6 +24150,11 @@ class TagsResource(Resource):
         Args:
             domain_type: Domain types that tags can be used with
             domain_id: the domain id
+
+        Example::
+
+            for for_object in client.tags.list_for_object("person", 35):
+                print(for_object.name)
         """
         return _t.cast(_t.List[models.TagWithCount], self._call('GET', f"/tags/{_seg(domain_type)}/{_seg(domain_id)}", [], None, _t.List[models.TagWithCount], envelope=True))
 
@@ -19520,6 +24178,11 @@ class TagsResource(Resource):
             tag_id: ID of tag
             color: Semantic tag color; responses use `basic` when unset.
             name: Tag name, unique within the domain.
+
+        Example::
+
+            result = client.tags.update(42, name="Mission")
+            print(result.name)
         """
         return _t.cast(models.TagWithCount, self._call('PUT', f"/tags/{_seg(tag_id)}", [], _body({'color': color, 'description': description, 'name': name}, extra_body), models.TagWithCount, envelope=True))
 
@@ -19544,6 +24207,10 @@ class TranslationsResource(Resource):
 
         Args:
             key_id: Numeric translation-key ID.
+
+        Example::
+
+            client.translations.delete(1)
         """
         self._raw('DELETE', f"/translations/{_seg(key_id)}", [], None)
 
@@ -19563,6 +24230,11 @@ class TranslationsResource(Resource):
         Args:
             updated_by_church: Filter if church has updated this translation by themselves.
             needs_check: Filter if translation has to be checked.
+
+        Example::
+
+            for translation in client.translations.list():
+                print(translation.id)
         """
         return _t.cast(_t.List[models.TranslationKey], self._call('GET', "/translations", _query([('updated_by_church', updated_by_church), ('needs_check', needs_check)]), None, _t.List[models.TranslationKey], envelope=True))
 
@@ -19580,6 +24252,11 @@ class TranslationsResource(Resource):
 
         Args:
             query: Translated text string
+
+        Example::
+
+            for keysbytext in client.translations.list_keysbytext(query="Welcome"):
+                print(keysbytext)
         """
         return _t.cast(_t.List[_t.List[str]], self._call('GET', "/translations/keysbytext", _query([('query', query)]), None, _t.List[_t.List[str]], envelope=True))
 
@@ -19602,6 +24279,10 @@ class TranslationsResource(Resource):
             key_id: Numeric translation-key ID.
             key: Translation key, trimmed before validation.
             module: Module grouping, trimmed before validation. This value is stored as text rather than checked against a fixed module enum.
+
+        Example::
+
+            client.translations.update(1, key="mychurch.welcome", module="churchcore")
         """
         self._raw('PUT', f"/translations/{_seg(key_id)}", [], _body({'key': key, 'module': module}, extra_body))
 
@@ -19626,6 +24307,11 @@ class TwofactorResource(Resource):
         Args:
             code: Six-digit current authenticator code. Send it as a string to preserve leading zeroes. A code already accepted recently for this person cannot be reused.
             person_id: ID of the current person whose initialized secret is checked.
+
+        Example::
+
+            twofactor = client.twofactor.totp(code="012345", person_id=42)
+            print(twofactor.status)
         """
         return _t.cast(models.PostTwofactorTotpData, self._call('POST', "/twofactor/totp", [], _body({'code': code, 'personId': person_id}, extra_body), models.PostTwofactorTotpData, envelope=True))
 
@@ -19644,6 +24330,10 @@ class WebsiteResource(Resource):
         TODO
 
         `GET /website/starttest`
+
+        Example::
+
+            client.website.get_starttest()
         """
         self._raw('GET', "/website/starttest", [], None)
 
@@ -19665,6 +24355,11 @@ class WhoamiResource(Resource):
 
         Args:
             only_allow_authenticated: If set to `true` the route will return 401 Unauthorized if the user is not logged in.
+
+        Example::
+
+            whoami = client.whoami.get()
+            print(whoami.title)
         """
         return _t.cast(models.Person, self._call('GET', "/whoami", _query([('only_allow_authenticated', only_allow_authenticated)]), None, models.Person, envelope=True))
 
@@ -19679,6 +24374,11 @@ class WidgetsResource(Resource):
         get-widgets-blog
 
         `GET /widgets/blog`
+
+        Example::
+
+            blog = client.widgets.get_blog()
+            print(blog.title)
         """
         return _t.cast(models.GetWidgetsBlogData, self._call('GET', "/widgets/blog", [], None, models.GetWidgetsBlogData, envelope=True))
 
@@ -19689,6 +24389,11 @@ class WidgetsResource(Resource):
         get-widgets-rss
 
         `GET /widgets/rss`
+
+        Example::
+
+            rss = client.widgets.get_rss()
+            print(rss.title)
         """
         return _t.cast(models.RssFeed, self._call('GET', "/widgets/rss", [], None, models.RssFeed, envelope=True))
 
@@ -19726,6 +24431,11 @@ class WikiResource(Resource):
             order_directions: Sort directions matching `order_fields[]` by position. Missing directions default to `ASC`.
             include: text returns Markdown or sanitized HTML; preview returns a raw stored-text prefix without HTML sanitization.
             preview_length: Maximum number of characters returned in `textPreview` when `include[]=preview` is requested. Ignored without `include[]=preview`.
+
+        Example::
+
+            for page in client.wiki.list_pages():
+                print(page.title)
         """
         return Paginator(self._core, "/wiki/pages", _query([('limit', limit), ('query', query), ('wiki_category_ids[]', wiki_category_ids), ('order_fields[]', order_fields), ('order_directions[]', order_directions), ('include[]', include), ('preview_length', preview_length)]), models.SimpleWikiPage)
 
@@ -19745,6 +24455,11 @@ class WikiResource(Resource):
         Args:
             query: Search term. Must contain at least one character.
             wiki_category_ids: Wiki categories that should be searched. If none are given, all categories the user can view are searched. Categories the user is not allowed to view are silently filtered out.
+
+        Example::
+
+            for search in client.wiki.list_search(query="welcome"):
+                print(search.title)
         """
         return _t.cast(_t.List[models.WikiSearchResult], self._call('GET', "/wiki/search", _query([('query', query), ('wiki_category_ids[]', wiki_category_ids)]), None, _t.List[models.WikiSearchResult], envelope=True))
 

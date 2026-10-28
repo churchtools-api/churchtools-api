@@ -1,0 +1,38 @@
+{
+ "operation": "post-agendatemplates",
+ "request": {
+  "method": "POST",
+  "path": "/agendatemplates",
+  "query": [],
+  "body": {
+   "calendarId": 49,
+   "name": "ctrs-test Ablauf 89782e"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 385,
+   "name": "ctrs-test Ablauf 89782e",
+   "series": null,
+   "isLocked": false,
+   "eventStartPosition": 0,
+   "calendarId": 49,
+   "total": 0,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:58Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:58Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "isFinal": "isLocked"
+   },
+   "isFinal": false,
+   "items": []
+  }
+ }
+}

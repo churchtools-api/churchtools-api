@@ -1,0 +1,20 @@
+{
+ "operation": "post-group-targetgroups",
+ "request": {
+  "method": "POST",
+  "path": "/group/targetgroups",
+  "query": [],
+  "body": {
+   "name": "ctrs-test targetgroups 72a1c7",
+   "sortKey": 999
+  }
+ },
+ "body": {
+  "data": {
+   "id": 28,
+   "name": "ctrs-test targetgroups 72a1c7",
+   "nameTranslated": "ctrs-test targetgroups 72a1c7",
+   "sortKey": 999
+  }
+ }
+}

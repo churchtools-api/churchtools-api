@@ -1,0 +1,44 @@
+{
+ "operation": "put-calendars-calendarId",
+ "request": {
+  "method": "PUT",
+  "path": "/calendars/97",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Kalender 1800b6 neu",
+   "sortKey": 998
+  }
+ },
+ "body": {
+  "data": {
+   "id": 97,
+   "name": "ctrs-test Kalender 1800b6 neu",
+   "nameTranslated": "ctrs-test Kalender 1800b6 neu",
+   "sortKey": 998,
+   "type": "church",
+   "color": null,
+   "randomUrl": "TJAy8f9nbmOkrPna2Sj5NRsqEH6ImIfA",
+   "iCalSourceUrl": null,
+   "syncToEvTermine": false,
+   "evTermineEventTypeId": null,
+   "campusId": null,
+   "eventTemplateId": null,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:11Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:11Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "isPublic": "type",
+    "isPrivate": "type"
+   },
+   "isPublic": true,
+   "isPrivate": false
+  }
+ }
+}

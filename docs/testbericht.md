@@ -12,7 +12,7 @@ liefen mit höchstens 4 Anfragen pro Sekunde (`CT_MIN_INTERVAL=0.25`).
 | Unit | `python/tests/test_client.py` | Client gegen lokalen Fake-Server: Auth, Query, Body, Fehler, Paginierung | nein |
 | Replay | `python/tests/test_recorded.py` | jede aufgezeichnete Antwort gegen das Pydantic-Modell ihrer Methode | nein |
 | Replay | `core/tests/recorded.rs` | dieselben Antworten gegen die Rust-Typen (eine Test-Funktion pro Endpunkt) | nein |
-| Doku | `core/tests/doc_examples.rs`, `python/tests/doc_examples.py` | alle Beispiele der Doku kompilieren bzw. bestehen `mypy --strict` | nein |
+| Doku | Doctests in `core/src/generated/api.rs`, `core/tests/doc_examples.rs`, `python/tests/test_doc_examples.py` | alle Beispiele der Doku kompilieren bzw. bestehen `mypy --strict`; die mit aufgezeichneter Antwort werden ausgeführt (Rust 444 + 12, Python 444 + 12) | nein |
 | Live | `python/tests/live/test_read.py` | jeder GET-Endpunkt einmal über die generierte API | ja |
 | Live | `python/tests/live/test_write*.py` | Szenarien: anlegen → lesen → ändern → löschen | ja |
 | Live | `core/tests/live.rs` | Passwort-Login, Rate-Limit, Kalender aus Rust | ja |
@@ -99,61 +99,22 @@ Die Tests übergeben sie. Der Client ändert daran nichts, weil die Spec das Fel
 | Sync-Endpunkte | 401 statt 403 für einen angemeldeten Admin ohne Sync-Recht |
 | Wiki-Seite in gelöschter Kategorie löschen | 403 statt 404 |
 
-### Hinweis zu Personenfeldern (unbestätigt)
-
-Betroffen ist nicht die Dienstliste `GET /persons/{p}/events/{e}/services`, sondern die Kandidatenliste für einen
-Diensttausch:
+### Hinweis zu Personenfeldern (geprüft, kein Datenleck)
 
 ```
 GET /api/persons/{personId}/events/{eventId}/services/{eventServiceId}/exchangerequests/candidates
 ```
 
-`eventServiceId` ist die `id` eines Eintrags aus `GET /persons/{personId}/events/{eventId}/services`, also die
-Dienstzuteilung, nicht die Dienst-ID. Getestet wurde `/persons/1/events/1986/services/33875/exchangerequests/candidates`.
+liefert für jeden Tauschkandidaten einen sehr großen Personen-Datensatz (69 Felder), in dem auch `password`,
+`loginString` und `lastLogin` vorkommen. Nachgeprüft mit dem Demo-Admin als Kandidat, der ein Passwort hat und sich
+regelmäßig anmeldet: `password` = `null`, `loginString` = `0`, `lastLogin` = `null`. Der Server leert diese Felder also;
+es werden keine Zugangsdaten ausgeliefert. Es bleibt eine Spec-Abweichung: `ServiceExchangePerson` beschreibt nur
+wenige der gelieferten Felder.
 
-Für jeden Kandidaten kommt dort ein sehr großer Personen-Datensatz zurück, in dem auch die Felder `password`,
-`loginString` und `lastLogin` vorkommen. Auf der Demo gab es nur einen Kandidaten (Person 188, ohne Login): `password`
-war `null`, `loginString` `0`. **Ob bei Personen mit Login dort Werte stehen, ist damit nicht belegt**; die Demo hatte
-keinen solchen Kandidaten. Zum Nachprüfen auf einer anderen Instanz braucht man einen Dienst, für den es Tauschkandidaten
-mit eigenem Login gibt. Die Spec beschreibt in `ServiceExchangePerson` nur wenige Felder.
-
-### 4. Eigenheiten der API
-
-- `DELETE /htmltemplates/{id}?dry_run=true` antwortet mit **409 Conflict** und dem Ergebnis des Probelaufs.
-  Im Client ist das ein `Conflict`.
-- `/images/{fileId}/{hash}` liegt nicht unter `/api`, sondern unter der Instanz-URL (`/images/…`). Über die API kommt 404.
-- `/events/{serviceId}/possiblepersonsforservice`: Der Platzhalter steht an der Stelle einer Event-ID, erwartet aber
-  eine Dienst-ID.
-- `/persons/{p}/events/{e}/services/{serviceId}/exchangerequests`: `serviceId` ist die ID der Dienstzuteilung
-  (EventService), nicht des Dienstes.
-- `GET /groups/{groupId}/parents` typisiert `groupId` als String, `furtherlinks` die ID als Gleitkommazahl.
-- Personeneinstellungen (`PUT /persons/{id}/settings/{module}/{attribute}`) lassen sich nur für eine feste Liste
-  schreiben. `DELETE` funktioniert aber für jede Einstellung.
-- Wiedervorlagen in Gruppen: Der Admin darf sie anlegen, aber nicht ändern (403). Dafür braucht er das Gruppenrecht
-  „+do followup“. Persönliche Wiedervorlagen gehen.
-- Die Vertraulichkeitsvereinbarung kann nur die Person selbst annehmen, der Admin kann sie aber widerrufen.
-- Für den Fehlerfall liefert der Server gute Details (`errors[].fieldId`, `args.allowedValues`). Der Client hängt sie
-  jetzt an die Fehlermeldung an, z. B.
-  `HTTP 400: 'There are validation errors' (domainType: Die Eingabe sollte eine der folgenden Werte sein: group)`.
-
-### 5. Felder, die nicht in der Spec stehen
-
-33 Modelle bekommen Felder, die die Spec nicht beschreibt. Die meisten sind harmlos, z. B. das Objekt `@deprecated`
-oder `groupings` bei den Startseiten-Widgets. Für Nutzer der Bibliothek sind diese relevant:
-
-| Modell | undokumentierte Felder |
-|---|---|
-| `ResolvedDomainObject` (`POST /domainobjects`) | `title`, `domainType`, `domainIdentifier`, `domainAttributes`, `frontendUrl`, `icon`; der eigentliche Inhalt fehlt also im Modell |
-| `GetSearchDataItem` (`GET /search`) | ebenso alle Felder eines Domain-Objekts |
-| `ServiceExchangePerson` | fast alle Personenfelder (Adresse, Geburtstag, …) |
-| `Image` | `description`, `annotation`, `annotationLink`, `aiGenerated`, `imageMetadata` |
-| `PermissionAssignmentTarget` | `group`, `groupType`, `role` |
-| `AppointmentTemplate` | `comment`, `note`, `repeatFrequence` (veraltete Namen) |
-| `RoutineStepRepeatActionData`, `RoutineStepWithoutRepeat` | die Konfiguration der Schritte (`actionKey`, `actionData`, `subject`, `body`, …) |
-
-Die vollständige Liste erzeugt `python tests/live/summary.py`.
-
-Sie gehen nicht verloren (`model_extra` bzw. `extra`). `@deprecated` ist ein Objekt, das alte Feldnamen auf neue abbildet.
+Zum Aufruf: `eventServiceId` ist die `id` eines Eintrags aus `GET /persons/{personId}/events/{eventId}/services`
+(die Dienstzuteilung), nicht die Dienst-ID. Laut Spec muss der angemeldete Benutzer dieser Zuteilung zugeordnet sein.
+Ob die Zuteilung zugesagt ist, spielt keine Rolle (auf der Demo ging es mit `agreed: false`). Der Admin durfte
+die Liste auch mit fremder `personId` abrufen.
 
 ### Testdaten für Endpunkte ohne Daten (`tests/live/seed.py`)
 

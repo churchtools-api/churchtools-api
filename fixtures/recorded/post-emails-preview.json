@@ -1,0 +1,17 @@
+{
+ "operation": "post-emails-preview",
+ "request": {
+  "method": "POST",
+  "path": "/emails/preview",
+  "query": [],
+  "body": {
+   "content": [
+    "Hallo [Vorname]"
+   ],
+   "personId": 1
+  }
+ },
+ "body": {
+  "html": "Hallo Armin"
+ }
+}

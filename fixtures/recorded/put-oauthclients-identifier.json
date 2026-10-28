@@ -1,0 +1,24 @@
+{
+ "operation": "put-oauthclients-identifier",
+ "request": {
+  "method": "PUT",
+  "path": "/oauthclients/6398647334b9ffbfcf8ff929d7117da7a36598060365e43eda2703ed19a2d806",
+  "query": [],
+  "body": {
+   "name": "ctrs-test OAuth b14b67 neu",
+   "redirectUri": "https://example.org/cb2"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 19,
+   "identifier": "6398647334b9ffbfcf8ff929d7117da7a36598060365e43eda2703ed19a2d806",
+   "name": "ctrs-test OAuth b14b67 neu",
+   "redirectUri": [
+    "https://example.org/cb2"
+   ],
+   "isConfidential": true,
+   "logoUrl": null
+  }
+ }
+}

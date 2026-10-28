@@ -1,0 +1,22 @@
+{
+ "operation": "put-contactlabels-id",
+ "request": {
+  "method": "PUT",
+  "path": "/contactlabels/28",
+  "query": [],
+  "body": {
+   "isDefault": false,
+   "name": "ctrs-test contactlabels 49d854 neu",
+   "sortKey": 998
+  }
+ },
+ "body": {
+  "data": {
+   "id": 28,
+   "name": "ctrs-test contactlabels 49d854 neu",
+   "nameTranslated": "ctrs-test contactlabels 49d854 neu",
+   "sortKey": 998,
+   "isDefault": false
+  }
+ }
+}

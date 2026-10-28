@@ -1,0 +1,48 @@
+{
+ "operation": "post-songs-songId-arrangements",
+ "request": {
+  "method": "POST",
+  "path": "/songs/106/arrangements",
+  "query": [],
+  "body": {
+   "name": "Gitarre"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 142,
+   "name": "Gitarre",
+   "isDefault": true,
+   "sourceId": null,
+   "source": null,
+   "sourceReference": null,
+   "key": null,
+   "beat": null,
+   "tempo": null,
+   "duration": null,
+   "description": null,
+   "links": [],
+   "files": [],
+   "meta": {
+    "createdDate": "2026-10-28T23:35:24Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:35:24Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "bpm": "tempo",
+    "keyOfArrangement": "key",
+    "note": "description",
+    "sourceName": "source.name"
+   },
+   "bpm": null,
+   "keyOfArrangement": null,
+   "note": "",
+   "sourceName": null
+  }
+ }
+}

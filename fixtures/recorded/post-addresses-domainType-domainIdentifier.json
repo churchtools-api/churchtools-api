@@ -1,0 +1,50 @@
+{
+ "operation": "post-addresses-domainType-domainIdentifier",
+ "request": {
+  "method": "POST",
+  "path": "/addresses/group/922",
+  "query": [],
+  "body": {
+   "city": "Hamburg",
+   "name": "Gemeindehaus",
+   "street": "Kirchweg 1",
+   "zip": "20354"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 526,
+   "domainType": "group",
+   "domainIdentifier": "922",
+   "name": "Gemeindehaus",
+   "icon": null,
+   "color": null,
+   "street": "Kirchweg 1",
+   "addition": null,
+   "district": null,
+   "zip": "20354",
+   "city": "Hamburg",
+   "country": null,
+   "latitude": null,
+   "longitude": null,
+   "latitudeLoose": null,
+   "longitudeLoose": null,
+   "@deprecated": {
+    "meetingAt": "name",
+    "markerIcon": "icon",
+    "markerColor": "color",
+    "postalcode": "zip",
+    "markerUrl": "@deleted use icon and color instead",
+    "geoLat": "latitude",
+    "geoLng": "longitude"
+   },
+   "meetingAt": "Gemeindehaus",
+   "markerIcon": null,
+   "markerColor": null,
+   "markerUrl": null,
+   "postalcode": "20354",
+   "geoLat": null,
+   "geoLng": null
+  }
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "operation": "post-servicegroups",
+ "request": {
+  "method": "POST",
+  "path": "/servicegroups",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Dienstgruppe 8e4432"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 34,
+   "name": "ctrs-test Dienstgruppe 8e4432",
+   "nameTranslated": "ctrs-test Dienstgruppe 8e4432",
+   "sortKey": 0,
+   "description": null,
+   "campusId": null,
+   "viewAll": true,
+   "onlyVisibleInCampusFilter": false,
+   "meta": {
+    "createdDate": "2026-10-28T23:34:16Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:16Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

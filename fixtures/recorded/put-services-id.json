@@ -1,0 +1,51 @@
+{
+ "operation": "put-services-id",
+ "request": {
+  "method": "PUT",
+  "path": "/services/121",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Dienst 35ed33 neu",
+   "serviceGroupId": 34
+  }
+ },
+ "body": {
+  "data": {
+   "id": 121,
+   "name": "ctrs-test Dienst 35ed33 neu",
+   "nameTranslated": "ctrs-test Dienst 35ed33 neu",
+   "sortKey": 0,
+   "description": null,
+   "serviceGroupId": 34,
+   "standard": false,
+   "hidePersonName": true,
+   "calTextTemplate": null,
+   "allowDecline": false,
+   "allowExchange": false,
+   "allowCommentOnConfirmation": false,
+   "allowControlLiveAgenda": false,
+   "allowChat": false,
+   "sendReminderMails": false,
+   "sendServiceRequestEmails": false,
+   "onlyAssignFromGroups": false,
+   "groupIds": [],
+   "tagIds": [],
+   "meta": {
+    "createdDate": "2026-10-28T23:34:16Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:17Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   },
+   "@deprecated": {
+    "commentOnConfirmation": "allowCommentOnConfirmation",
+    "comment": "description"
+   },
+   "commentOnConfirmation": false,
+   "comment": ""
+  }
+ }
+}

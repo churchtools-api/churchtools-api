@@ -1,0 +1,31 @@
+{
+ "operation": "put-person-growpaths-id",
+ "request": {
+  "method": "PUT",
+  "path": "/person/growpaths/31",
+  "query": [],
+  "body": {
+   "color": "blue",
+   "name": "ctrs-test growpaths f3709e neu"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 31,
+   "name": "ctrs-test growpaths f3709e neu",
+   "nameTranslated": "ctrs-test growpaths f3709e neu",
+   "sortKey": 0,
+   "color": "blue",
+   "meta": {
+    "createdDate": "2026-10-28T23:34:31Z",
+    "createdPerson": {
+     "id": 1
+    },
+    "modifiedDate": "2026-10-28T23:34:32Z",
+    "modifiedPerson": {
+     "id": 1
+    }
+   }
+  }
+ }
+}

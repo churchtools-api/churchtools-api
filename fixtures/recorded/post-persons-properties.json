@@ -1,0 +1,29 @@
+{
+ "operation": "post-persons-properties",
+ "request": {
+  "method": "POST",
+  "path": "/persons/properties",
+  "query": [],
+  "body": {
+   "ids": [
+    1
+   ]
+  }
+ },
+ "body": {
+  "data": {
+   "1": {
+    "hasEmail": true,
+    "canChat": true,
+    "invitationStatus": "accepted",
+    "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+    "isArchived": false,
+    "isDead": false,
+    "visibility": "visible"
+   }
+  },
+  "meta": {
+   "count": 1
+  }
+ }
+}

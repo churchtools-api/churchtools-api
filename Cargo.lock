@@ -124,6 +124,7 @@ name = "churchtools-core"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "churchtools-core",
  "percent-encoding",
  "reqwest",
  "serde",

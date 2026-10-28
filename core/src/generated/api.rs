@@ -331,6 +331,24 @@ impl<'a> ActionsResource<'a> {
     /// `POST /actions`
     ///
     /// Returns all available actions filtered by one or more domain types. Actions represent executable operations on domain objects (e.g. adding a member to a group, changing a member status). The optional filter object can be used to further narrow down the returned actions based on domain-specific criteria.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostActionsBody = serde_json::from_value(serde_json::json!({
+    ///     "domain_type": [
+    ///         "group_membership"
+    ///     ]
+    /// }))?;
+    /// for action in client.actions().create(&body)? {
+    ///     println!("{}", action.domain_type);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostActionsBody) -> Result<Vec<models::Action>> {
         let path = "/actions".to_owned();
         let query: Query = Query::new();
@@ -352,6 +370,21 @@ impl<'a> AddressesResource<'a> {
     /// `POST /addresses/{domainType}/{domainIdentifier}`
     ///
     /// Creates another stored meeting-place address for the group. Only domainType=group is registered. Requires permission to edit the group’s meeting-place field (treffpunkt). Ownership and address ID are supplied in the path. Coordinates are accepted as numbers or decimal strings and returned as strings or null. The request does not geocode a postal address automatically.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-addresses-domainType-domainIdentifier");
+    /// let body: models::GroupAddressCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Retreat Center"
+    /// }))?;
+    /// let result = client.addresses().create("group", "42", &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, domain_type: impl Display, domain_identifier: impl Display, body: &models::GroupAddressCreate) -> Result<models::StoredAddress> {
         let path = format!("/addresses/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
@@ -364,6 +397,17 @@ impl<'a> AddressesResource<'a> {
     /// `DELETE /addresses/{domainType}/{domainIdentifier}/{addressId}`
     ///
     /// Deletes the stored address identified by addressId. Only domainType=group is registered. Requires permission to edit the meeting-place field (treffpunkt) of the group in the path. The group itself remains. This operation has no dry-run mode; an unknown address ID returns 404.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.addresses().delete("group", "42", 7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, domain_type: impl Display, domain_identifier: impl Display, address_id: impl Display) -> Result<()> {
         let path = format!("/addresses/{}/{}/{}", seg(domain_type), seg(domain_identifier), seg(address_id));
         let query: Query = Query::new();
@@ -375,6 +419,19 @@ impl<'a> AddressesResource<'a> {
     /// `GET /addresses/{domainType}/{domainIdentifier}`
     ///
     /// Returns stored meeting-place addresses for the group in the path. Only domainType=group is currently registered for this endpoint. Requires permission to view the group. The list is unpaginated, with no guaranteed order; meta.count is the number of addresses returned. An existing group without addresses returns an empty list.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-addresses-domainType-domainIdentifier");
+    /// for address in client.addresses().get("group", "42")? {
+    ///     println!("{:?}", address.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, domain_type: impl Display, domain_identifier: impl Display) -> Result<Vec<models::StoredAddress>> {
         let path = format!("/addresses/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
@@ -386,6 +443,23 @@ impl<'a> AddressesResource<'a> {
     /// `GET /addresses/search`
     ///
     /// Searches for addresses across persons and a global geocoding service (e.g. Nominatim/Photon). Returns matching results from both sources. The query must be at least 2 characters long.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-addresses-search");
+    /// let query = GetAddressesSearchQuery {
+    ///     query: Some("Musterstraße".into()),
+    ///     ..Default::default()
+    /// };
+    /// for search in client.addresses().list_search(&query)? {
+    ///     println!("{:?}", search);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_search(&self, query: &GetAddressesSearchQuery) -> Result<Vec<models::AddressSearchResult>> {
         let path = "/addresses/search".to_owned();
         let query: Query = query.to_query();
@@ -397,6 +471,21 @@ impl<'a> AddressesResource<'a> {
     /// `PUT /addresses/{domainType}/{domainIdentifier}/{addressId}`
     ///
     /// Replaces a stored meeting-place address. Omitted body fields are cleared; send all values to retain. Only domainType=group is registered. Requires permission to edit the group’s meeting-place field (treffpunkt). Ownership and address ID are supplied in the path. Coordinates are accepted as numbers or decimal strings and returned as strings or null. The request does not geocode a postal address automatically.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-addresses-domainType-domainIdentifier-addressId");
+    /// let body: models::GroupAddressUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Retreat Center"
+    /// }))?;
+    /// let result = client.addresses().update("group", "42", 7, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, domain_type: impl Display, domain_identifier: impl Display, address_id: impl Display, body: &models::GroupAddressUpdate) -> Result<models::StoredAddress> {
         let path = format!("/addresses/{}/{}/{}", seg(domain_type), seg(domain_identifier), seg(address_id));
         let query: Query = Query::new();
@@ -433,6 +522,30 @@ impl<'a> AgendasResource<'a> {
     /// `POST /agendas/send`
     ///
     /// Deprecated compatibility endpoint for `POST /events/send`. Recipients are filtered to selected participants in visible service groups or other selected people the sender may view and the response reports the effective scope. `sendCopyToMe` can add the sender. Events do not have to share an agenda. Agenda links are included for events whose agenda the sender may view.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AgendaMailCreate = serde_json::from_value(serde_json::json!({
+    ///     "body": "<p>Please review the updated agenda for Sunday.</p>",
+    ///     "eventIds": [
+    ///         31,
+    ///         32
+    ///     ],
+    ///     "recipients": [
+    ///         40,
+    ///         41
+    ///     ],
+    ///     "subject": "Updated Sunday agenda"
+    /// }))?;
+    /// let agenda = client.agendas().send(&body)?;
+    /// println!("{:?}", agenda);
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn send(&self, body: &models::AgendaMailCreate) -> Result<models::EventMailSendResult> {
         let path = "/agendas/send".to_owned();
@@ -459,6 +572,22 @@ impl<'a> AgendatemplatesResource<'a> {
     /// `POST /agendatemplates`
     ///
     /// Creates a reusable agenda template and returns HTTP `200` with its complete representation. The caller must be a super administrator or have "edit agenda templates" for the supplied calendar. Items are optional and new templates start unlocked. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-agendatemplates");
+    /// let body: models::AgendaTemplateCreate = serde_json::from_value(serde_json::json!({
+    ///     "calendarId": 1,
+    ///     "name": "Sunday Service Template"
+    /// }))?;
+    /// let result = client.agendatemplates().create(&body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::AgendaTemplateCreate) -> Result<models::Agenda> {
         let path = "/agendatemplates".to_owned();
         let query: Query = Query::new();
@@ -473,6 +602,17 @@ impl<'a> AgendatemplatesResource<'a> {
     /// Deletes an unlocked agenda template. Previously copied event agendas retain their independent content. Requires a super administrator or "edit agenda templates" for the template calendar. Passing `dryRun`=`true` still deletes the template; this endpoint does not offer a deletion preview.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.agendatemplates().delete(35)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, agenda_id: impl Display) -> Result<()> {
         self.delete_with(agenda_id, &Default::default())
     }
@@ -495,6 +635,27 @@ impl<'a> AgendatemplatesResource<'a> {
     /// `POST /agendatemplates/{agendaId}/export`
     ///
     /// Generates a presenter import archive from an agenda template. Requires a super administrator or "view agenda", "edit agenda" or "edit agenda templates" for its calendar. Locked and unlocked agendas can be exported. Exports of unlocked agendas have a DRAFT label in the generated export name.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = PostAgendatemplatesAgendaIdExportQuery {
+    ///     format: Some("SONG_BEAMER".into()),
+    ///     ..Default::default()
+    /// };
+    /// let body: models::AgendaExportCreate = serde_json::from_value(serde_json::json!({
+    ///     "appendArrangement": true,
+    ///     "exportSongs": true,
+    ///     "withCategory": false
+    /// }))?;
+    /// let agendatemplate = client.agendatemplates().export(35, &query, &body)?;
+    /// println!("{}", agendatemplate.url);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn export(&self, agenda_id: impl Display, query: &PostAgendatemplatesAgendaIdExportQuery, body: &models::AgendaExportCreate) -> Result<models::AgendaExport> {
         let path = format!("/agendatemplates/{}/export", seg(agenda_id));
         let query: Query = query.to_query();
@@ -507,6 +668,18 @@ impl<'a> AgendatemplatesResource<'a> {
     /// `GET /agendatemplates/{agendaId}`
     ///
     /// Returns one agenda template with its complete ordered item list. An ID belonging to an event agenda is not a template and returns `404`. Visibility requires a super administrator or one of "view agenda", "edit agenda" or "edit agenda templates" for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-agendatemplates-agendaId");
+    /// let agendatemplate = client.agendatemplates().get(35)?;
+    /// println!("{:?}", agendatemplate.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, agenda_id: impl Display) -> Result<models::Agenda> {
         let path = format!("/agendatemplates/{}", seg(agenda_id));
         let query: Query = Query::new();
@@ -518,6 +691,19 @@ impl<'a> AgendatemplatesResource<'a> {
     /// `GET /agendatemplates`
     ///
     /// Returns every agenda template visible to the caller, including its items. Visibility requires a super administrator or one of "view agenda", "edit agenda" or "edit agenda templates" for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-agendatemplates");
+    /// for agendatemplate in client.agendatemplates().list()? {
+    ///     println!("{:?}", agendatemplate.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Agenda>> {
         let path = "/agendatemplates".to_owned();
         let query: Query = Query::new();
@@ -529,6 +715,22 @@ impl<'a> AgendatemplatesResource<'a> {
     /// `PUT /agendatemplates/{agendaId}`
     ///
     /// Updates the template metadata and, when supplied, replaces its complete item list. Existing item IDs may be supplied once each to retain those items. The template must be unlocked. Requires a super administrator or "edit agenda templates" for the template's existing calendar.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-agendatemplates-agendaId");
+    /// let body: models::AgendaTemplateUpdate = serde_json::from_value(serde_json::json!({
+    ///     "calendarId": 1,
+    ///     "name": "Sunday Service Template"
+    /// }))?;
+    /// let result = client.agendatemplates().update(35, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, agenda_id: impl Display, body: &models::AgendaTemplateUpdate) -> Result<models::Agenda> {
         let path = format!("/agendatemplates/{}", seg(agenda_id));
         let query: Query = Query::new();
@@ -586,6 +788,21 @@ impl<'a> AgendatemplatesItemsResource<'a> {
     /// Adds a header, text or song item to an existing agenda template. Without `before_id` or `after_id`, the new item is appended. Use at most one of `before_id` and `after_id`, referring to an item in the same template. Relative positioning can adjust `eventStartPosition`. Requires a super administrator or "edit agenda templates" for the template calendar.
     ///
     /// Use [`Self::create_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-agendatemplates-agendaId-items");
+    /// let body = serde_json::json!({
+    ///     "type": "beispiel"
+    /// });
+    /// let result = client.agendatemplates().items().create(35, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, agenda_id: impl Display, body: &serde_json::Value) -> Result<serde_json::Value> {
         self.create_with(agenda_id, &Default::default(), body)
     }
@@ -609,6 +826,17 @@ impl<'a> AgendatemplatesItemsResource<'a> {
     /// `DELETE /agendatemplates/{agendaId}/items/{itemId}`
     ///
     /// Removes one item from the template, including its service-group notes. Other items remain. Repeating the deletion returns `404` because the item no longer exists. Requires a super administrator or "edit agenda templates" for the template calendar.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.agendatemplates().items().delete(35, 123)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, agenda_id: impl Display, item_id: impl Display) -> Result<()> {
         let path = format!("/agendatemplates/{}/items/{}", seg(agenda_id), seg(item_id));
         let query: Query = Query::new();
@@ -622,6 +850,21 @@ impl<'a> AgendatemplatesItemsResource<'a> {
     /// Updates one item in an agenda template. The item must belong to this template. Without `before_id` or `after_id` its position is retained. Moving an item still requires type and, for a song, `arrangementId`; this is not a position-only patch. Requires a super administrator or "edit agenda templates" for the template calendar.
     ///
     /// Use [`Self::update_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-agendatemplates-agendaId-items-itemId");
+    /// let body = serde_json::json!({
+    ///     "type": "beispiel"
+    /// });
+    /// let result = client.agendatemplates().items().update(35, 123, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, agenda_id: impl Display, item_id: impl Display, body: &serde_json::Value) -> Result<serde_json::Value> {
         self.update_with(agenda_id, item_id, &Default::default(), body)
     }
@@ -696,6 +939,17 @@ impl<'a> AgendatemplatesItemsServicegroupsResource<'a> {
     /// `DELETE /agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}`
     ///
     /// Removes the note for one service group on a template item. An already absent note still returns `204`; an absent item returns `404`. Notes for other service groups and the remaining item content are retained. Template reads return service-group notes without filtering by service-group visibility. Requires a super administrator or "edit agenda templates" for the template calendar.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.agendatemplates().items().servicegroups().delete(35, 123, 13)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, agenda_id: impl Display, item_id: impl Display, service_group_id: impl Display) -> Result<()> {
         let path = format!("/agendatemplates/{}/items/{}/servicegroups/{}", seg(agenda_id), seg(item_id), seg(service_group_id));
         let query: Query = Query::new();
@@ -707,6 +961,20 @@ impl<'a> AgendatemplatesItemsServicegroupsResource<'a> {
     /// `PUT /agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}`
     ///
     /// Creates or replaces the note for one service group on a template item. Notes for other service groups and the remaining item content are retained. Template reads return service-group notes without filtering by service-group visibility. Requires a super administrator or "edit agenda templates" for the template calendar.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AgendaServiceGroupNoteUpdate = serde_json::from_value(serde_json::json!({
+    ///     "note": "Remember to bring the sheet music"
+    /// }))?;
+    /// client.agendatemplates().items().servicegroups().update(35, 123, 13, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, agenda_id: impl Display, item_id: impl Display, service_group_id: impl Display, body: &models::AgendaServiceGroupNoteUpdate) -> Result<()> {
         let path = format!("/agendatemplates/{}/items/{}/servicegroups/{}", seg(agenda_id), seg(item_id), seg(service_group_id));
         let query: Query = Query::new();
@@ -728,6 +996,18 @@ impl<'a> BookingsResource<'a> {
     /// `PUT /bookings/{bookingId}/{answer}`
     ///
     /// Changes the status of the entire booking: `approve` sets approved (2), `reject` sets rejected (3), and `reset` sets pending (1). `cancel` is a legacy alias for `reject`. Requires permission to update the booking to the target status.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let booking = client.bookings().answer(8, "beispiel")?;
+    /// println!("{}", booking.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn answer(&self, booking_id: impl Display, answer: impl Display) -> Result<models::BookingBase> {
         let path = format!("/bookings/{}/{}", seg(booking_id), seg(answer));
         let query: Query = Query::new();
@@ -739,6 +1019,26 @@ impl<'a> BookingsResource<'a> {
     /// `POST /bookings`
     ///
     /// Creates an independent booking for one resource. Requires permission to create bookings with the requested status. Resources with `needsAppointment=true` return 422. Automatic approval and conflicts can change the returned `statusId`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-bookings");
+    /// let body: models::BookingCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z",
+    ///     "resourceId": 7,
+    ///     "showInCal": true,
+    ///     "statusId": 1,
+    ///     "title": "Band rehearsal"
+    /// }))?;
+    /// let result = client.bookings().create(&body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::BookingCreate) -> Result<models::BookingBase> {
         let path = "/bookings".to_owned();
         let query: Query = Query::new();
@@ -751,6 +1051,17 @@ impl<'a> BookingsResource<'a> {
     /// `DELETE /bookings/{bookingId}`
     ///
     /// Deletes the complete booking, including all occurrences. To remove only an occurrence, update the independent booking’s exceptions or the linked appointment. Allowed for the booking creator, users with permission to administer bookings for the resource, or its resource administrators.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.bookings().delete(8)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, booking_id: impl Display) -> Result<()> {
         let path = format!("/bookings/{}", seg(booking_id));
         let query: Query = Query::new();
@@ -764,6 +1075,18 @@ impl<'a> BookingsResource<'a> {
     /// Returns the stored booking and every calculated occurrence of its series, indexed by local start date. Requires permission to view its resource. Booking details may be anonymized. Use `include[]` to request conflicts or involved persons.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-bookings-id");
+    /// let booking = client.bookings().get(8)?;
+    /// println!("{:?}", booking);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, booking_id: impl Display) -> Result<models::BookingWithIncludes> {
         self.get_with(booking_id, &Default::default())
     }
@@ -786,6 +1109,23 @@ impl<'a> BookingsResource<'a> {
     /// `GET /bookings`
     ///
     /// Returns occurrences overlapping the requested date range for the selected resources. The same recurring booking ID can appear more than once with different `booking.calculated` dates. `from` and `to` are inclusive local dates. Requires permission to view every selected resource. Booking details may be anonymized.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-bookings");
+    /// let query = GetBookingsQuery {
+    ///     resource_ids: Some(vec![42]),
+    ///     ..Default::default()
+    /// };
+    /// for booking in client.bookings().list(&query)? {
+    ///     println!("{:?}", booking);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetBookingsQuery) -> Result<Vec<models::BookingCalculatedWithIncludes>> {
         let path = "/bookings".to_owned();
         let query: Query = query.to_query();
@@ -797,6 +1137,24 @@ impl<'a> BookingsResource<'a> {
     /// `POST /bookings/conflicts`
     ///
     /// Calculates overlapping occurrences of other pending or approved bookings for the proposed resource and schedule. Does not create a booking or reserve availability. Returns the conflicting occurrences, whose titles may be anonymized. Adjacent timed bookings do not conflict. Repeated overlaps can return the same conflicting occurrence more than once.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-bookings-conflicts");
+    /// let body: models::BookingConflictRequestBody = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z",
+    ///     "resourceId": 7
+    /// }))?;
+    /// for booking in client.bookings().preview_conflicts(&body)? {
+    ///     println!("{}", booking.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn preview_conflicts(&self, body: &models::BookingConflictRequestBody) -> Result<Vec<models::BookingConflict>> {
         let path = "/bookings/conflicts".to_owned();
         let query: Query = Query::new();
@@ -809,6 +1167,23 @@ impl<'a> BookingsResource<'a> {
     /// `POST /bookings/{bookingId}/conflicts`
     ///
     /// Calculates conflicts for a replacement schedule using the stored booking’s resource. The booking itself is excluded; resourceId in the request is not used. Requires permission to update the booking. No changes are saved. Returns the conflicting occurrences, whose titles may be anonymized. Adjacent timed bookings do not conflict. Repeated overlaps can return the same conflicting occurrence more than once.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-bookings-id-conflicts");
+    /// let body: models::BookingConflictUpdate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z"
+    /// }))?;
+    /// for booking in client.bookings().preview_conflicts_for(8, &body)? {
+    ///     println!("{}", booking.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn preview_conflicts_for(&self, booking_id: impl Display, body: &models::BookingConflictUpdate) -> Result<Vec<models::BookingConflict>> {
         let path = format!("/bookings/{}/conflicts", seg(booking_id));
         let query: Query = Query::new();
@@ -821,6 +1196,28 @@ impl<'a> BookingsResource<'a> {
     /// `POST /bookings/{bookingId}`
     ///
     /// Removes one date or the remainder of an independent series and creates a replacement booking. `splitDate` identifies the original occurrence. Appointment-linked bookings cannot be split here. Requires permission to update the booking. Automatic approval and conflicts can change the returned `statusId`.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::BookingSplitCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z",
+    ///     "resourceId": 7,
+    ///     "showInCal": true,
+    ///     "statusId": 1,
+    ///     "title": "Band rehearsal",
+    ///     "splitDate": "2026-09-20",
+    ///     "splitUntilEnd": false
+    /// }))?;
+    /// let booking = client.bookings().split(8, &body)?;
+    /// println!("{}", booking.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn split(&self, booking_id: impl Display, body: &models::BookingSplitCreate) -> Result<models::BookingBase> {
         let path = format!("/bookings/{}", seg(booking_id));
         let query: Query = Query::new();
@@ -833,6 +1230,26 @@ impl<'a> BookingsResource<'a> {
     /// `PUT /bookings/{bookingId}`
     ///
     /// Replaces an independent booking. For an appointment-linked booking, only `statusId` and `description` are processed; update its resource and schedule through the appointment APIs. Requires permission to update the booking. Automatic approval and conflicts can change the returned `statusId`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-bookings-id");
+    /// let body = serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z",
+    ///     "resourceId": 7,
+    ///     "showInCal": true,
+    ///     "statusId": 1,
+    ///     "title": "Band rehearsal"
+    /// });
+    /// let result = client.bookings().update(8, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, booking_id: impl Display, body: &serde_json::Value) -> Result<models::BookingBase> {
         let path = format!("/bookings/{}", seg(booking_id));
         let query: Query = Query::new();
@@ -902,6 +1319,24 @@ impl<'a> BulkjobsResource<'a> {
     /// `POST /bulkjobs/{domainType}/{jobKey}/enqueue`
     ///
     /// Queues the selected operation for targets allowed by its preflight permission check. Forbidden targets are omitted; remaining IDs retain order and duplicates. Each queued chunk normally contains up to 50 IDs, or 5 for group/delete. HTTP 201 confirms enqueueing, not successful execution, and can contain zero queued jobs. Each target is processed separately. Follow job or queue status using the returned identifiers.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::BulkJobCreate = serde_json::from_value(serde_json::json!({
+    ///     "domainObjectIdentifiers": [
+    ///         42
+    ///     ],
+    ///     "jobData": {}
+    /// }))?;
+    /// let bulkjob = client.bulkjobs().enqueue("group", "setMaxMembers", &body)?;
+    /// println!("{}", bulkjob.job_group);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn enqueue(&self, domain_type: impl Display, job_key: impl Display, body: &models::BulkJobCreate) -> Result<models::BulkJobQueued> {
         let path = format!("/bulkjobs/{}/{}/enqueue", seg(domain_type), seg(job_key));
         let query: Query = Query::new();
@@ -914,6 +1349,24 @@ impl<'a> BulkjobsResource<'a> {
     /// `POST /bulkjobs/{domainType}/{jobKey}/infos`
     ///
     /// Checks which supplied target identifiers the current user is allowed to process for the chosen job and payload. This is a read-only permission preview: it does not queue or execute the operation. Forbidden targets are silently omitted, while missing targets, invalid data and other errors may abort the whole request. Order and duplicate identifiers are retained. No reservation is made. See BulkJobCreate for domain/key mappings.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::BulkJobCreate = serde_json::from_value(serde_json::json!({
+    ///     "domainObjectIdentifiers": [
+    ///         42
+    ///     ],
+    ///     "jobData": {}
+    /// }))?;
+    /// let bulkjob = client.bulkjobs().infos("group", "setMaxMembers", &body)?;
+    /// println!("{:?}", bulkjob);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn infos(&self, domain_type: impl Display, job_key: impl Display, body: &models::BulkJobCreate) -> Result<models::BulkInfos> {
         let path = format!("/bulkjobs/{}/{}/infos", seg(domain_type), seg(job_key));
         let query: Query = Query::new();
@@ -935,6 +1388,28 @@ impl<'a> BulklettersResource<'a> {
     /// `POST /bulkletters`
     ///
     /// Schedules a mail-merge rendering job and starts the worker in the background. Requires edit bulkletter permission and access to the selected HTML template. Returns HTTP 200 with only {id}, plus a Location header for the job; it does not return the job object or finished PDF. Poll that URL until the job is DONE and has fileId/url. The final download is a ZIP containing individual PDFs. groupByHousehold groups exact addresses rather than family relationships.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::BulkletterCreate = serde_json::from_value(serde_json::json!({
+    ///     "content": "<p>Hello [Spitzname]!</p>",
+    ///     "groupByHousehold": true,
+    ///     "htmlTemplateId": 39,
+    ///     "name": "Newsletter April 2025",
+    ///     "personIds": [
+    ///         13,
+    ///         14
+    ///     ]
+    /// }))?;
+    /// let result = client.bulkletters().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::BulkletterCreate) -> Result<models::BulkletterCreated> {
         let path = "/bulkletters".to_owned();
         let query: Query = Query::new();
@@ -947,6 +1422,17 @@ impl<'a> BulklettersResource<'a> {
     /// `DELETE /bulkletters/{id}`
     ///
     /// Deletes the mail-merge job, its recipient rows, temporary rendering directory and generated ZIP file. Requires edit bulkletter permission and the same owner restriction as the detail read. No dry-run mode is supported. The operation does not coordinate with a currently running renderer.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.bulkletters().delete(36)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/bulkletters/{}", seg(id));
         let query: Query = Query::new();
@@ -958,6 +1444,18 @@ impl<'a> BulklettersResource<'a> {
     /// `POST /bulkletters/execute`
     ///
     /// Internal worker entry point, normally started automatically after creation. Processes up to ten recipient rows of the first unfinished mail-merge job, then starts another background request while work remains. Operates across creators. It renders separate PDFs and packages them into a ZIP; it does not send mail. A recently active worker causes this request to do no work. Returns 204 regardless of whether processing was skipped or a rendering exception was recorded as job status ERROR; inspect the job status for the result.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// client.bulkletters().execute(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn execute(&self, body: &serde_json::Value) -> Result<()> {
         let path = "/bulkletters/execute".to_owned();
         let query: Query = Query::new();
@@ -970,6 +1468,18 @@ impl<'a> BulklettersResource<'a> {
     /// `GET /bulkletters/{id}`
     ///
     /// Reads one mail-merge job as a bare object, without a data wrapper. Requires edit bulkletter permission. Only the creator’s jobs and jobs with created_pid=0 are visible; other owners are reported as 404. The final file is a ZIP archive, not a combined PDF.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-bulkletters-id");
+    /// let bulkletter = client.bulkletters().get(36)?;
+    /// println!("{}", bulkletter.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Bulkletter> {
         let path = format!("/bulkletters/{}", seg(id));
         let query: Query = Query::new();
@@ -981,6 +1491,19 @@ impl<'a> BulklettersResource<'a> {
     /// `GET /bulkletters`
     ///
     /// Lists the current user’s mail-merge jobs and jobs with created_pid=0. Requires edit bulkletter permission. Returns a bare array without data or meta; no pagination, status filter or ordering is defined.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-bulkletters");
+    /// for bulkletter in client.bulkletters().list()? {
+    ///     println!("{}", bulkletter.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Bulkletter>> {
         let path = "/bulkletters".to_owned();
         let query: Query = Query::new();
@@ -992,6 +1515,19 @@ impl<'a> BulklettersResource<'a> {
     /// `GET /bulkletters/{id}/persons`
     ///
     /// Lists scheduled recipient persons whose person records the caller may view. Requires edit bulkletter or create print labels permission. Returns data only, without meta or pagination. Address fields reflect current person data. This endpoint does not apply the job-owner restriction of the detail read; a nonexistent job normally yields an empty list.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-bulkletters-id-persons");
+    /// for person in client.bulkletters().list_persons(36)? {
+    ///     println!("{:?}", person.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_persons(&self, id: impl Display) -> Result<Vec<models::BulkletterReceiver>> {
         let path = format!("/bulkletters/{}/persons", seg(id));
         let query: Query = Query::new();
@@ -1020,6 +1556,23 @@ impl<'a> CalendarsResource<'a> {
     /// `POST /calendars`
     ///
     /// Creates a calendar of the chosen type. church requires permission to administer church calendars; group and personal require permission to create or administer their respective category. The creator receives permission to edit appointments in the new calendar. Optional iCalSourceUrl starts an immediate external-feed import.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-calendars");
+    /// let body: models::CalendarCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Community events",
+    ///     "sortKey": 10,
+    ///     "type": "church"
+    /// }))?;
+    /// let result = client.calendars().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::CalendarCreate) -> Result<models::Calendar> {
         let path = "/calendars".to_owned();
         let query: Query = Query::new();
@@ -1032,6 +1585,17 @@ impl<'a> CalendarsResource<'a> {
     /// `DELETE /calendars/{calendarId}`
     ///
     /// Deletes the calendar and its appointment contents, and removes permissions attached to that calendar. Requires edit-category permission for the calendar or ownership as its creator. Deletion can be blocked by references, including agenda templates belonging to the calendar; 409 returns the blocking references.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.calendars().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, calendar_id: impl Display) -> Result<()> {
         let path = format!("/calendars/{}", seg(calendar_id));
         let query: Query = Query::new();
@@ -1043,6 +1607,18 @@ impl<'a> CalendarsResource<'a> {
     /// `GET /calendars/{calendarId}`
     ///
     /// Returns one calendar’s settings. Reading is allowed with view-category or edit-category permission for the calendar, or for its creator. This creator check is additional to the permission filter used by GET /calendars. Use /calendars/{calendarId}/appointments to retrieve occurrences.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-calendarId");
+    /// let calendar = client.calendars().get(42)?;
+    /// println!("{}", calendar.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, calendar_id: impl Display) -> Result<models::Calendar> {
         let path = format!("/calendars/{}", seg(calendar_id));
         let query: Query = Query::new();
@@ -1054,6 +1630,19 @@ impl<'a> CalendarsResource<'a> {
     /// `GET /calendars`
     ///
     /// Returns calendars for which the current user has view-category or edit-category permission, ordered by sortKey ascending.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars");
+    /// for calendar in client.calendars().list()? {
+    ///     println!("{}", calendar.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Calendar>> {
         let path = "/calendars".to_owned();
         let query: Query = Query::new();
@@ -1067,6 +1656,19 @@ impl<'a> CalendarsResource<'a> {
     /// Deprecated alias for /calendars/{calendarId}/meetingrequest/candidates. Returns the same visible candidates.
     ///
     /// Use [`Self::list_meetingrequestpersons_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-meetingrequestpersons");
+    /// for meetingrequestperson in client.calendars().list_meetingrequestpersons(42)? {
+    ///     println!("{:?}", meetingrequestperson.group_name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn list_meetingrequestpersons(&self, calendar_id: impl Display) -> Result<Vec<models::MeetingRequestCandidate>> {
         self.list_meetingrequestpersons_with(calendar_id, &Default::default())
@@ -1091,6 +1693,22 @@ impl<'a> CalendarsResource<'a> {
     /// `PUT /calendars/{calendarId}`
     ///
     /// Replaces editable calendar settings while preserving the calendar type. Requires administration permission for the calendar’s type or ownership as its creator; permission to edit appointments alone is not sufficient. iCalSourceUrl triggers an external calendar import.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-calendars-calendarId");
+    /// let body: models::CalendarUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Community events",
+    ///     "sortKey": 10
+    /// }))?;
+    /// let result = client.calendars().update(42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, calendar_id: impl Display, body: &models::CalendarUpdate) -> Result<models::Calendar> {
         let path = format!("/calendars/{}", seg(calendar_id));
         let query: Query = Query::new();
@@ -1135,6 +1753,23 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// `POST /calendars/{calendarId}/appointments/{appointmentId}/changeimpact`
     ///
     /// Calculates supported event, service-assignment and resource-booking impacts of the proposed schedule without saving the appointment.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-calendars-calendarId-appointments-appointmentId-changeimpact");
+    /// let body: models::AppointmentChangeImpactCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z"
+    /// }))?;
+    /// for appointment in client.calendars().appointments().changeimpact(42, 4, &body)? {
+    ///     println!("{:?}", appointment);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn changeimpact(&self, calendar_id: impl Display, appointment_id: impl Display, body: &models::AppointmentChangeImpactCreate) -> Result<Vec<serde_json::Value>> {
         let path = format!("/calendars/{}/appointments/{}/changeimpact", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
@@ -1147,6 +1782,24 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// `POST /calendars/{calendarId}/appointments`
     ///
     /// Creates a calendar appointment, with optional recurrence, resource reservations, service-planning events and meeting invitations. calendarId comes from the path. Creating registration groups and linked resources requires the corresponding permissions.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-calendars-calendarId-appointments");
+    /// let body: models::AppointmentCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z",
+    ///     "isInternal": true,
+    ///     "title": "Sunday service"
+    /// }))?;
+    /// let result = client.calendars().appointments().create(42, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, calendar_id: impl Display, body: &models::AppointmentCreate) -> Result<models::AppointmentBase> {
         let path = format!("/calendars/{}/appointments", seg(calendar_id));
         let query: Query = Query::new();
@@ -1159,6 +1812,17 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// `DELETE /calendars/{calendarId}/appointments/{appointmentId}`
     ///
     /// Deletes the stored appointment and triggers the cleanup of linked resources. For recurring appointments this removes the whole series. To remove only one occurrence, update the complete series with that local date in exceptions. This requires calendar editing permission or being the appointment’s last editor.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.calendars().appointments().delete(42, 4)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, calendar_id: impl Display, appointment_id: impl Display) -> Result<()> {
         let path = format!("/calendars/{}/appointments/{}", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
@@ -1172,6 +1836,18 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// Returns the stored appointment and all dates calculated from its recurrence settings. calculatedDates is keyed by local start date and contains UTC start/end timestamps even for all-day appointments. This differs from the date-or-timestamp format used by occurrence endpoints.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments-appointmentId");
+    /// let appointment = client.calendars().appointments().get(42, 4)?;
+    /// println!("{:?}", appointment);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, calendar_id: impl Display, appointment_id: impl Display) -> Result<models::AppointmentCalculated> {
         self.get_with(calendar_id, appointment_id, &Default::default())
     }
@@ -1194,6 +1870,18 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// `GET /calendars/{calendarId}/appointments/{appointmentId}/ical`
     ///
     /// Downloads appointment.ics as text/calendar. The export includes recurrence rules, excluded dates and additional dates; it may contain multiple VEVENT entries for additional recurring or standalone dates. This exports the stored appointment/series, not a selected occurrence.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.calendars().appointments().get_ical(42, 4)?;
+    /// std::fs::write("ergebnis.ics", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_ical(&self, calendar_id: impl Display, appointment_id: impl Display) -> Result<Vec<u8>> {
         let path = format!("/calendars/{}/appointments/{}/ical", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
@@ -1207,6 +1895,18 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// Returns the occurrence starting on the specified local date. appointment.base describes the stored series and appointment.calculated describes this occurrence. Returns 404 if no matching occurrence is available.
     ///
     /// Use [`Self::get_occurrence_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-appointments-appointmentId-startDate");
+    /// let occurrence = client.calendars().appointments().get_occurrence(4, "2026-09-20")?;
+    /// println!("{:?}", occurrence.title_suffix);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_occurrence(&self, appointment_id: impl Display, start_date: impl Display) -> Result<models::AppointmentOccurrence> {
         self.get_occurrence_with(appointment_id, start_date, &Default::default())
     }
@@ -1231,6 +1931,18 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// Returns the occurrence starting on the specified local date. appointment.base describes the stored series and appointment.calculated describes this occurrence. Returns 404 if no matching occurrence is available.
     ///
     /// Use [`Self::get_occurrence_in_calendar_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments-appointmentId-startDate");
+    /// let occurrence_in_calendar = client.calendars().appointments().get_occurrence_in_calendar(42, 4, "2026-09-20")?;
+    /// println!("{:?}", occurrence_in_calendar.title_suffix);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_occurrence_in_calendar(&self, calendar_id: impl Display, appointment_id: impl Display, start_date: impl Display) -> Result<models::AppointmentOccurrence> {
         self.get_occurrence_in_calendar_with(calendar_id, appointment_id, start_date, &Default::default())
     }
@@ -1253,6 +1965,23 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// `GET /calendars/appointments`
     ///
     /// Returns calculated occurrences for the requested date range, with one entry per occurrence rather than per series. Use appointment.base for the stored series and appointment.calculated for the displayed dates. Recurring occurrences use the installation’s local time across daylight-saving changes. Anonymous users receive only non-internal appointments in calendars they may view.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-appointments");
+    /// let query = GetCalendarsAppointmentsQuery {
+    ///     calendar_ids: Some(vec![2, 3]),
+    ///     ..Default::default()
+    /// };
+    /// for appointment in client.calendars().appointments().list(&query)? {
+    ///     println!("{:?}", appointment.title_suffix);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetCalendarsAppointmentsQuery) -> Result<Vec<models::AppointmentOccurrenceList>> {
         let path = "/calendars/appointments".to_owned();
         let query: Query = query.to_query();
@@ -1266,6 +1995,19 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// Returns calculated occurrences for the requested date range, with one entry per occurrence rather than per series. Use appointment.base for the stored series and appointment.calculated for the displayed dates. Recurring occurrences use the installation’s local time across daylight-saving changes. Anonymous users receive only non-internal appointments in calendars they may view.
     ///
     /// Use [`Self::list_in_calendar_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments");
+    /// for in_calendar in client.calendars().appointments().list_in_calendar(42)? {
+    ///     println!("{:?}", in_calendar.title_suffix);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_in_calendar(&self, calendar_id: impl Display) -> Result<Vec<models::AppointmentOccurrenceList>> {
         self.list_in_calendar_with(calendar_id, &Default::default())
     }
@@ -1288,6 +2030,26 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// `POST /calendars/{calendarId}/appointments/{appointmentId}`
     ///
     /// Creates a new stored appointment from the supplied complete data and removes the selected scope from the original. splitUntilEnd=true cuts the original off before splitDate and requires a split after the original start. false excludes only splitDate and allows splitting the first occurrence. The returned data.id belongs to the new appointment. The new recurrence must describe the intended replacement; splitting does not automatically restrict it to one date. Linked resources are adjusted by their respective workflows.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AppointmentSplitUpdate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z",
+    ///     "isInternal": true,
+    ///     "title": "Sunday service",
+    ///     "splitDate": "2026-10-04",
+    ///     "splitUntilEnd": true
+    /// }))?;
+    /// let appointment = client.calendars().appointments().split(42, 4, &body)?;
+    /// println!("{}", appointment.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn split(&self, calendar_id: impl Display, appointment_id: impl Display, body: &models::AppointmentSplitUpdate) -> Result<models::AppointmentBase> {
         let path = format!("/calendars/{}/appointments/{}", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
@@ -1300,6 +2062,24 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// `PUT /calendars/{calendarId}/appointments/{appointmentId}`
     ///
     /// Replaces editable base fields and the schedule of the stored appointment. This affects the entire series. Existing events and bookings follow the changed schedule. Use changeimpact to inspect supported consequences before submitting a schedule change.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-calendars-calendarId-appointments-appointmentId");
+    /// let body: models::AppointmentUpdate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z",
+    ///     "isInternal": true,
+    ///     "title": "Sunday service"
+    /// }))?;
+    /// let result = client.calendars().appointments().update(42, 4, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, calendar_id: impl Display, appointment_id: impl Display, body: &models::AppointmentUpdate) -> Result<models::AppointmentBase> {
         let path = format!("/calendars/{}/appointments/{}", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
@@ -1417,6 +2197,17 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// `POST /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId}/{answer}`
     ///
     /// Records the answer of the invited person. accept, decline and tentative set the corresponding state; reset returns the request to pending. maybe remains accepted as a deprecated alias for tentative. Only the invitee may answer.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.calendars().appointments().meetingrequests().answer(42, 4, 19, "accept")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn answer(&self, calendar_id: impl Display, appointment_id: impl Display, meeting_request_id: impl Display, answer: impl Display) -> Result<()> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests/{}/{}", seg(calendar_id), seg(appointment_id), seg(meeting_request_id), seg(answer));
         let query: Query = Query::new();
@@ -1428,6 +2219,21 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// `POST /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests`
     ///
     /// Creates a meeting invitation for inviteeId. Requires permission to edit the appointment and view the invited person. The inviter is onBehalfOfPid when set, otherwise the current user. An invitation to the inviter is automatically accepted.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::MeetingRequestCreate = serde_json::from_value(serde_json::json!({
+    ///     "inviteeId": 42
+    /// }))?;
+    /// let result = client.calendars().appointments().meetingrequests().create(42, 4, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, calendar_id: impl Display, appointment_id: impl Display, body: &models::MeetingRequestCreate) -> Result<models::MeetingRequest> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
@@ -1440,6 +2246,17 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// `DELETE /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId}`
     ///
     /// Removes a meeting request. This requires permission to edit the appointment; invitees can use the answer endpoint to decline instead.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.calendars().appointments().meetingrequests().delete(42, 4, 19)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, calendar_id: impl Display, appointment_id: impl Display, meeting_request_id: impl Display) -> Result<()> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests/{}", seg(calendar_id), seg(appointment_id), seg(meeting_request_id));
         let query: Query = Query::new();
@@ -1451,6 +2268,19 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// `GET /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests`
     ///
     /// Returns all meeting requests associated with the stored appointment/series. Requests are not per-occurrence attendance records.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments-appointmentId-meetingrequests");
+    /// for meetingrequest in client.calendars().appointments().meetingrequests().list(42, 4)? {
+    ///     println!("{}", meetingrequest.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, calendar_id: impl Display, appointment_id: impl Display) -> Result<Vec<models::MeetingRequest>> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
@@ -1462,6 +2292,20 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// `PUT /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId}`
     ///
     /// Legacy body-based endpoint for answering a meeting request. Only the invited person may answer. Use POST on the path ending in /{answer}.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::MeetingRequestUpdate = serde_json::from_value(serde_json::json!({
+    ///     "answer": "accept"
+    /// }))?;
+    /// client.calendars().appointments().meetingrequests().update(42, 4, 19, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn update(&self, calendar_id: impl Display, appointment_id: impl Display, meeting_request_id: impl Display, body: &models::MeetingRequestUpdate) -> Result<()> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests/{}", seg(calendar_id), seg(appointment_id), seg(meeting_request_id));
@@ -1484,6 +2328,24 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// `POST /calendars/appointments/templates`
     ///
     /// Stores reusable defaults for future appointments. Requires permission to edit calendar entry templates for the selected calendar.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-calendars-appointments-templates");
+    /// let body: models::AppointmentTemplateCreate = serde_json::from_value(serde_json::json!({
+    ///     "calendarId": 1,
+    ///     "duration": 3600,
+    ///     "startTime": "10:00",
+    ///     "title": "Service"
+    /// }))?;
+    /// let result = client.calendars().appointments().templates().create(&body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::AppointmentTemplateCreate) -> Result<models::AppointmentTemplateWritten> {
         let path = "/calendars/appointments/templates".to_owned();
         let query: Query = Query::new();
@@ -1496,6 +2358,17 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// `DELETE /calendars/appointments/templates/{templateId}`
     ///
     /// Deletes the reusable template and its associated image files. Requires permission to edit appointment templates in its calendar.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.calendars().appointments().templates().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, template_id: impl Display) -> Result<()> {
         let path = format!("/calendars/appointments/templates/{}", seg(template_id));
         let query: Query = Query::new();
@@ -1507,6 +2380,18 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// `GET /calendars/appointments/templates/{templateId}`
     ///
     /// Returns the saved defaults of one template, including its ID and metadata.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-appointments-templates-id");
+    /// let template = client.calendars().appointments().templates().get(1)?;
+    /// println!("{:?}", template.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, template_id: impl Display) -> Result<models::AppointmentTemplate> {
         let path = format!("/calendars/appointments/templates/{}", seg(template_id));
         let query: Query = Query::new();
@@ -1518,6 +2403,19 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// `GET /calendars/appointments/templates`
     ///
     /// Returns all saved appointment templates and their reusable defaults.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-appointments-templates");
+    /// for template in client.calendars().appointments().templates().list()? {
+    ///     println!("{:?}", template.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::AppointmentTemplate>> {
         let path = "/calendars/appointments/templates".to_owned();
         let query: Query = Query::new();
@@ -1529,6 +2427,24 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// `PUT /calendars/appointments/templates/{templateId}`
     ///
     /// Replaces the template’s saved defaults. Permission is checked for the calendar selected by calendarId.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-calendars-appointments-templates-id");
+    /// let body: models::AppointmentTemplateUpdate = serde_json::from_value(serde_json::json!({
+    ///     "calendarId": 1,
+    ///     "duration": 3600,
+    ///     "startTime": "10:00",
+    ///     "title": "Service"
+    /// }))?;
+    /// let result = client.calendars().appointments().templates().update(1, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, template_id: impl Display, body: &models::AppointmentTemplateUpdate) -> Result<models::AppointmentTemplateWritten> {
         let path = format!("/calendars/appointments/templates/{}", seg(template_id));
         let query: Query = Query::new();
@@ -1552,6 +2468,19 @@ impl<'a> CalendarsMeetingrequestResource<'a> {
     /// Returns visible people with direct, person-status, group-derived, or group-type-derived calendar permissions. When appointmentId is supplied, visible invitees already associated with that appointment are also included.
     ///
     /// Use [`Self::list_candidates_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-meetingrequest-candidates");
+    /// for candidate in client.calendars().meetingrequest().list_candidates(42)? {
+    ///     println!("{:?}", candidate.group_name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_candidates(&self, calendar_id: impl Display) -> Result<Vec<models::MeetingRequestCandidate>> {
         self.list_candidates_with(calendar_id, &Default::default())
     }
@@ -1598,6 +2527,22 @@ impl<'a> CampusesResource<'a> {
     /// `POST /campuses`
     ///
     /// Save new campus
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-campuses");
+    /// let body: models::CampusCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hamburg Altona",
+    ///     "shorty": "ALT"
+    /// }))?;
+    /// let result = client.campuses().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::CampusCreate) -> Result<models::Campus> {
         let path = "/campuses".to_owned();
         let query: Query = Query::new();
@@ -1608,6 +2553,17 @@ impl<'a> CampusesResource<'a> {
     /// Delete a campus
     ///
     /// `DELETE /campuses/{id}`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.campuses().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/campuses/{}", seg(id));
         let query: Query = Query::new();
@@ -1619,6 +2575,18 @@ impl<'a> CampusesResource<'a> {
     /// `GET /campuses/{id}`
     ///
     /// Get a specific campus
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-campuses-id");
+    /// let campus = client.campuses().get(1)?;
+    /// println!("{}", campus.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Campus> {
         let path = format!("/campuses/{}", seg(id));
         let query: Query = Query::new();
@@ -1630,6 +2598,19 @@ impl<'a> CampusesResource<'a> {
     /// `GET /campuses`
     ///
     /// Returns an array of all campuses defined in ChurchTools. Campuses are sorted by its `sortKey` by default.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-campuses");
+    /// for campus in client.campuses().list()? {
+    ///     println!("{}", campus.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Campus>> {
         let path = "/campuses".to_owned();
         let query: Query = Query::new();
@@ -1639,6 +2620,21 @@ impl<'a> CampusesResource<'a> {
     /// Update campus
     ///
     /// `PUT /campuses/{id}`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-campuses-id");
+    /// let body: models::CampusUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.campuses().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::CampusUpdate) -> Result<models::Campus> {
         let path = format!("/campuses/{}", seg(id));
         let query: Query = Query::new();
@@ -1660,6 +2656,21 @@ impl<'a> CaptchaResource<'a> {
     /// `POST /captcha`
     ///
     /// Verify a captcha solution. Only for testing purposes. Other endpoints that require a captcha take the solution directly. See https://altcha.org/docs/website-integration/ for more information
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostCaptchaBody = serde_json::from_value(serde_json::json!({
+    ///     "solution": "beispiel"
+    /// }))?;
+    /// let result = client.captcha().create(&body)?;
+    /// println!("{}", result.is_valid);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostCaptchaBody) -> Result<models::PostCaptchaResponse> {
         let path = "/captcha".to_owned();
         let query: Query = Query::new();
@@ -1672,6 +2683,18 @@ impl<'a> CaptchaResource<'a> {
     /// `GET /captcha`
     ///
     /// Get a new challenge to solve. To be used with https://altcha.org/docs/website-integration/
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-captcha");
+    /// let captcha = client.captcha().get()?;
+    /// println!("{}", captcha.signature);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self) -> Result<models::GetCaptchaResponse> {
         let path = "/captcha".to_owned();
         let query: Query = Query::new();
@@ -1692,6 +2715,24 @@ impl<'a> ChatResource<'a> {
     /// `POST /chat`
     ///
     /// Starts synchronization of a chat room with Matrix. New rooms have `STARTING` status and record the current user as creator.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ChatCreate = serde_json::from_value(serde_json::json!({
+    ///     "domainId": 9,
+    ///     "guid": "681F54E3-2EB7-40A4-84F0-EFF8E8F05727",
+    ///     "prefix": "ctg",
+    ///     "roomname": "Technical team"
+    /// }))?;
+    /// let result = client.chat().create(&body)?;
+    /// println!("{:?}", result.creator);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ChatCreate) -> Result<models::Chat> {
         let path = "/chat".to_owned();
         let query: Query = Query::new();
@@ -1706,6 +2747,17 @@ impl<'a> ChatResource<'a> {
     /// Deletes the local chat room record. A missing record is treated as already deleted.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.chat().delete("681F54E3-2EB7-40A4-84F0-EFF8E8F05727")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, guid: impl Display) -> Result<()> {
         self.delete_with(guid, &Default::default())
     }
@@ -1730,6 +2782,19 @@ impl<'a> ChatResource<'a> {
     /// Returns all chat rooms, or only rooms matching the supplied synchronization token.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-chat");
+    /// for chat in client.chat().list()? {
+    ///     println!("{:?}", chat.creator);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Chat>> {
         self.list_with(&Default::default())
     }
@@ -1752,6 +2817,21 @@ impl<'a> ChatResource<'a> {
     /// `PATCH /chat/{guid}`
     ///
     /// Updates chat room metadata or requests a lifecycle transition.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ChatUpdate = serde_json::from_value(serde_json::json!({
+    ///     "creator": 1
+    /// }))?;
+    /// let result = client.chat().patch("681F54E3-2EB7-40A4-84F0-EFF8E8F05727", &body)?;
+    /// println!("{:?}", result.creator);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, guid: impl Display, body: &models::ChatUpdate) -> Result<models::Chat> {
         let path = format!("/chat/{}", seg(guid));
         let query: Query = Query::new();
@@ -1805,6 +2885,33 @@ impl<'a> CheckinResource<'a> {
     /// Creates a person and admits them to a group for the check-in workflow. Requires administer persons, or create person in churchcheckin plus group meeting permission and a person security level covering the selected status. Masterdata IDs are installation-specific. Ordinary duplicate-person confirmation is bypassed; a unique GUID and license limits still apply. A creation note and optional tag are saved before the membership. This request does not record meeting attendance or print a label; perform the actual check-in separately. Failure can leave earlier steps saved because the whole workflow is not one transaction. The response is the legacy person model, not the regular Person representation.
     ///
     /// Use [`Self::create_persons_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CheckinPersonCreate = serde_json::from_value(serde_json::json!({
+    ///     "group": {
+    ///         "id": 9,
+    ///         "personFields": {}
+    ///     },
+    ///     "person": {
+    ///         "campusId": 42,
+    ///         "departmentIds": [
+    ///             42
+    ///         ],
+    ///         "firstName": "Alex",
+    ///         "lastName": "Example",
+    ///         "statusId": 42
+    ///     }
+    /// }))?;
+    /// let result = client.checkin().create_persons(&body)?;
+    /// println!("{:?}", result.first_name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create_persons(&self, body: &models::CheckinPersonCreate) -> Result<models::CheckinPerson> {
         self.create_persons_with(&Default::default(), body)
     }
@@ -1828,6 +2935,25 @@ impl<'a> CheckinResource<'a> {
     /// `PUT /checkin/persons`
     ///
     /// Admits an existing person to a group using its default role and check-in membership origin, optionally adds a tag, and updates person fields configured for that group. Requires administer persons or group meeting permission. Existing membership is a conflict, not an idempotent success. The operation does not record attendance or print labels. Tag changes occur before membership creation and can remain after a failed request. The returned legacy person-model representation differs from the regular Person API.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CheckinPersonUpdate = serde_json::from_value(serde_json::json!({
+    ///     "group": {
+    ///         "id": 9,
+    ///         "personFields": {}
+    ///     },
+    ///     "personId": 42
+    /// }))?;
+    /// let result = client.checkin().update_persons(&body)?;
+    /// println!("{:?}", result.first_name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_persons(&self, body: &models::CheckinPersonUpdate) -> Result<models::CheckinPerson> {
         let path = "/checkin/persons".to_owned();
         let query: Query = Query::new();
@@ -1868,6 +2994,18 @@ impl<'a> ChurchqueryResource<'a> {
     /// `GET /churchquery/metadata`
     ///
     /// Use [`Self::get_metadata_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-churchquery-metadata");
+    /// let result = client.churchquery().get_metadata()?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_metadata(&self) -> Result<serde_json::Value> {
         self.get_metadata_with(&Default::default())
     }
@@ -1917,6 +3055,18 @@ impl<'a> ChurchqueryDebugResource<'a> {
     /// **Caution**: This is an preliminary API, and is subject to be changed. It provides a downloadfile with the result of a given query.
     ///
     /// Use [`Self::export_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!("beispiel");
+    /// client.churchquery().debug().export(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn export(&self, body: &serde_json::Value) -> Result<()> {
         self.export_with(&Default::default(), body)
     }
@@ -1964,6 +3114,18 @@ impl<'a> ConfigResource<'a> {
     /// `GET /config`
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-config");
+    /// let config = client.config().get()?;
+    /// println!("{:?}", config.current_config_file);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self) -> Result<models::GetConfigResponse> {
         self.get_with(&Default::default())
     }
@@ -1982,6 +3144,20 @@ impl<'a> ConfigResource<'a> {
     /// Change the ChurchTools-Config
     ///
     /// `PUT /config`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PutConfigRequest = serde_json::from_value(serde_json::json!({
+    ///     "accept_datasecurity": true
+    /// }))?;
+    /// client.config().update(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, body: &models::PutConfigRequest) -> Result<()> {
         let path = "/config".to_owned();
         let query: Query = Query::new();
@@ -2018,6 +3194,23 @@ impl<'a> ContactlabelsResource<'a> {
     /// `POST /contactlabels`
     ///
     /// Creates a reusable email contact label. Requires "edit masterdata" permission in `churchdb`. Setting `isDefault` to `true` replaces the existing default.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-contactlabels");
+    /// let body: models::ContactLabelCreate = serde_json::from_value(serde_json::json!({
+    ///     "isDefault": false,
+    ///     "name": "Private",
+    ///     "sortKey": 10
+    /// }))?;
+    /// let result = client.contactlabels().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ContactLabelCreate) -> Result<models::ContactLabel> {
         let path = "/contactlabels".to_owned();
         let query: Query = Query::new();
@@ -2032,6 +3225,17 @@ impl<'a> ContactlabelsResource<'a> {
     /// Deletes an email contact label. Requires "edit masterdata" permission in `churchdb`. Email-address references can block deletion.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.contactlabels().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -2054,6 +3258,18 @@ impl<'a> ContactlabelsResource<'a> {
     /// `GET /contactlabels/{id}`
     ///
     /// Returns a contact-label definition, including its translated display name and default flag.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-contactlabels-id");
+    /// let contactlabel = client.contactlabels().get(1)?;
+    /// println!("{}", contactlabel.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::ContactLabel> {
         let path = format!("/contactlabels/{}", seg(id));
         let query: Query = Query::new();
@@ -2065,6 +3281,19 @@ impl<'a> ContactlabelsResource<'a> {
     /// `GET /contactlabels`
     ///
     /// Returns all email contact labels, ordered by `sortKey` and then `name`, both ascending. Labels classify addresses such as private and work.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-contactlabels");
+    /// for contactlabel in client.contactlabels().list()? {
+    ///     println!("{}", contactlabel.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::ContactLabel>> {
         let path = "/contactlabels".to_owned();
         let query: Query = Query::new();
@@ -2076,6 +3305,23 @@ impl<'a> ContactlabelsResource<'a> {
     /// `PUT /contactlabels/{id}`
     ///
     /// Replaces an email contact label. Requires "edit masterdata" permission in `churchdb`. Existing email-address associations retain the label ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-contactlabels-id");
+    /// let body: models::ContactLabelUpdate = serde_json::from_value(serde_json::json!({
+    ///     "isDefault": false,
+    ///     "name": "Private",
+    ///     "sortKey": 10
+    /// }))?;
+    /// let result = client.contactlabels().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::ContactLabelUpdate) -> Result<models::ContactLabel> {
         let path = format!("/contactlabels/{}", seg(id));
         let query: Query = Query::new();
@@ -2112,6 +3358,18 @@ impl<'a> CsrftokenResource<'a> {
     /// `GET /csrftoken`
     ///
     /// Returns the CSRF-Token for the current user in the current session. If the session does not exist, null is returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-csrftoken");
+    /// let result = client.csrftoken().get()?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self) -> Result<Option<String>> {
         let path = "/csrftoken".to_owned();
         let query: Query = Query::new();
@@ -2136,6 +3394,28 @@ impl<'a> DbfieldsResource<'a> {
     /// `POST /dbfields`
     ///
     /// Creates an installation-specific field definition and database column. Selection types also create an option table with one initial choice. Checkbox fields are non-nullable and cannot be cleared on archive.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DbFieldCreate = serde_json::from_value(serde_json::json!({
+    ///     "deleteOnArchive": true,
+    ///     "isActive": true,
+    ///     "isNewPersonField": true,
+    ///     "name": "Dietary notes",
+    ///     "securityLevel": 1,
+    ///     "sortKey": 50,
+    ///     "useAsPlaceholder": false,
+    ///     "fieldCategoryInternCode": "f_address"
+    /// }))?;
+    /// let result = client.dbfields().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::DbFieldCreate) -> Result<models::DbField> {
         let path = "/dbfields".to_owned();
         let query: Query = Query::new();
@@ -2148,6 +3428,17 @@ impl<'a> DbfieldsResource<'a> {
     /// `DELETE /dbfields/{fieldId}`
     ///
     /// Deletes a field definition, its physical database column and all values stored in that column; also removes its group-person-field mappings and custom selection table if present. Protected built-in fields cause a conflict.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.dbfields().delete(200)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, field_id: impl Display) -> Result<()> {
         let path = format!("/dbfields/{}", seg(field_id));
         let query: Query = Query::new();
@@ -2159,6 +3450,18 @@ impl<'a> DbfieldsResource<'a> {
     /// `GET /dbfields/{fieldId}`
     ///
     /// Returns one database-field definition, including its type, category and API key.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-dbfields-fieldId");
+    /// let dbfield = client.dbfields().get(200)?;
+    /// println!("{}", dbfield.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, field_id: impl Display) -> Result<models::DbField> {
         let path = format!("/dbfields/{}", seg(field_id));
         let query: Query = Query::new();
@@ -2172,6 +3475,19 @@ impl<'a> DbfieldsResource<'a> {
     /// Lists built-in and custom field definitions, not the values stored on individual persons or groups. Use `categories[]` to restrict the result and `include[]=options` to expand available choices.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-dbfields");
+    /// for dbfield in client.dbfields().list()? {
+    ///     println!("{}", dbfield.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::DbField>> {
         self.list_with(&Default::default())
     }
@@ -2194,6 +3510,25 @@ impl<'a> DbfieldsResource<'a> {
     /// `PUT /dbfields/{fieldId}`
     ///
     /// Updates a database-field definition. The existing field determines its type. Installation-created person fields can move between `f_address`, `f_church`, `f_category` and `f_datasecurity`.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DbFieldUpdate = serde_json::from_value(serde_json::json!({
+    ///     "deleteOnArchive": true,
+    ///     "isNewPersonField": true,
+    ///     "securityLevel": 1,
+    ///     "sortKey": 50,
+    ///     "useAsPlaceholder": false
+    /// }))?;
+    /// let result = client.dbfields().update(200, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, field_id: impl Display, body: &models::DbFieldUpdate) -> Result<models::DbField> {
         let path = format!("/dbfields/{}", seg(field_id));
         let query: Query = Query::new();
@@ -2233,6 +3568,21 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// `POST /dbfields/{fieldId}/options`
     ///
     /// Creates an option in the selected field’s backing table. Use the metadata endpoint to determine the complete request shape. Fields without a backing table do not support this operation.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DbFieldOptionCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Vegetarian"
+    /// }))?;
+    /// let result = client.dbfields().options().create(200, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, field_id: impl Display, body: &models::DbFieldOptionCreate) -> Result<models::DbFieldOption> {
         let path = format!("/dbfields/{}/options", seg(field_id));
         let query: Query = Query::new();
@@ -2247,6 +3597,17 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// Deletes an option row from the selected field’s backing masterdata table through the shared deletion service. References can block deletion. `dryRun=true` returns the deletion preview with HTTP 409 without removing the row.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.dbfields().options().delete(200, 3)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, field_id: impl Display, option_id: impl Display) -> Result<()> {
         self.delete_with(field_id, option_id, &Default::default())
     }
@@ -2269,6 +3630,19 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// `GET /dbfields/{fieldId}/options`
     ///
     /// Lists option rows from the field’s backing masterdata table. Rows are ordered by `sortKey` when available. Fields without a backing table return an empty list. Read the option metadata to interpret row keys.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-dbfields-fieldId-options");
+    /// for option in client.dbfields().options().list(200)? {
+    ///     println!("{:?}", option.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, field_id: impl Display) -> Result<Vec<models::DbFieldOption>> {
         let path = format!("/dbfields/{}/options", seg(field_id));
         let query: Query = Query::new();
@@ -2280,6 +3654,19 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// `GET /dbfields/{fieldId}/options/metadata`
     ///
     /// Describes the actual SQL columns of the selected field’s backing option table as API properties. Audit columns are omitted. Use this operation only for fields backed by a table.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// for metadata in client.dbfields().options().list_metadata(200)? {
+    ///     println!("{}", metadata.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_metadata(&self, field_id: impl Display) -> Result<Vec<models::DbFieldOptionColumn>> {
         let path = format!("/dbfields/{}/options/metadata", seg(field_id));
         let query: Query = Query::new();
@@ -2291,6 +3678,21 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// `PUT /dbfields/{fieldId}/options/{optionId}`
     ///
     /// Updates an option row using all non-auto-increment columns from the metadata endpoint. This operation replaces the complete metadata-defined row and supports only fields backed by a table.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DbFieldOptionUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Vegetarian"
+    /// }))?;
+    /// let result = client.dbfields().options().update(200, 3, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, field_id: impl Display, option_id: impl Display, body: &models::DbFieldOptionUpdate) -> Result<models::DbFieldOption> {
         let path = format!("/dbfields/{}/options/{}", seg(field_id), seg(option_id));
         let query: Query = Query::new();
@@ -2327,6 +3729,19 @@ impl<'a> DbfieldtypesResource<'a> {
     /// `GET /dbfieldtypes`
     ///
     /// Returns registered database-field types, ordered by sortKey and then name. These types describe the value and input behavior of configurable fields. Names are returned as stored and can be translation keys.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-dbfieldtypes");
+    /// for dbfieldtype in client.dbfieldtypes().list()? {
+    ///     println!("{}", dbfieldtype.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::DbFieldType>> {
         let path = "/dbfieldtypes".to_owned();
         let query: Query = Query::new();
@@ -2347,6 +3762,19 @@ impl<'a> DepartmentsResource<'a> {
     /// `GET /departments`
     ///
     /// Returns all department definitions, ordered by `sortKey` and then `name`. The caller must be allowed to view `departmentIds` on their current person record. This is a definition list, not a list of persons visible through those departments.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-departments");
+    /// for department in client.departments().list()? {
+    ///     println!("{}", department.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Department>> {
         let path = "/departments".to_owned();
         let query: Query = Query::new();
@@ -2367,6 +3795,29 @@ impl<'a> DomainobjectsResource<'a> {
     /// `POST /domainobjects`
     ///
     /// Read-only JSON alternative to `GET /domainobjects` with the same resolution and permission behavior. Output order and count may differ from the input. Missing or inaccessible objects are usually omitted, but an unresolved `appointment_occurrence` may fail the request.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-domainobjects");
+    /// let body: models::DomainObjectPayload = serde_json::from_value(serde_json::json!({
+    ///     "domain_identifiers": [
+    ///         "42",
+    ///         "7"
+    ///     ],
+    ///     "domain_types": [
+    ///         "person",
+    ///         "group"
+    ///     ]
+    /// }))?;
+    /// for domainobject in client.domainobjects().create(&body)? {
+    ///     println!("{:?}", domainobject.api_url);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::DomainObjectPayload) -> Result<Vec<models::ResolvedDomainObject>> {
         let path = "/domainobjects".to_owned();
         let query: Query = Query::new();
@@ -2379,6 +3830,24 @@ impl<'a> DomainobjectsResource<'a> {
     /// `GET /domainobjects`
     ///
     /// Resolves heterogeneous ChurchTools references into compact display objects. Pair `domain_types[]` and `domain_identifiers[]` by index. Output order and count may differ from the input, and repeated IDs may not produce repeated results. Missing or inaccessible objects are usually omitted, but an unresolved `appointment_occurrence` may fail the request. Resolver permissions differ by domain type.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-domainobjects");
+    /// let query = GetDomainobjectsQuery {
+    ///     domain_types: Some(vec!["person".into(), "group".into()]),
+    ///     domain_identifiers: Some(vec!["42".into(), "7".into()]),
+    ///     ..Default::default()
+    /// };
+    /// for domainobject in client.domainobjects().list(&query)? {
+    ///     println!("{:?}", domainobject.api_url);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetDomainobjectsQuery) -> Result<Vec<models::ResolvedDomainObject>> {
         let path = "/domainobjects".to_owned();
         let query: Query = query.to_query();
@@ -2417,6 +3886,17 @@ impl<'a> DynamicgroupsResource<'a> {
     /// `DELETE /dynamicgroups/{groupId}/ruleset`
     ///
     /// Clears the stored rule set and resets the stored dynamicGroupStatus to null (reported as none by GET /status). Requires churchcore administer persons. Existing group memberships and the group itself remain in place. No refresh is run. The current implementation returns HTTP 200 with an empty body, including when no rule set was stored.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.dynamicgroups().delete_ruleset(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_ruleset(&self, group_id: impl Display) -> Result<()> {
         let path = format!("/dynamicgroups/{}/ruleset", seg(group_id));
         let query: Query = Query::new();
@@ -2428,6 +3908,18 @@ impl<'a> DynamicgroupsResource<'a> {
     /// `GET /dynamicgroups/{groupId}/status`
     ///
     /// Returns the stored refresh mode of an ordinary group. A missing/null stored status is returned as none. This is configuration, not the progress of an in-flight job or proof that the rules are valid. Requires churchcore administer persons. The response is a flat object without a data wrapper.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-dynamicgroups-id-status");
+    /// let statu = client.dynamicgroups().get_status(42)?;
+    /// println!("{}", statu.dynamic_group_status);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_status(&self, group_id: impl Display) -> Result<models::DynamicGroupStatusUpdate> {
         let path = format!("/dynamicgroups/{}/status", seg(group_id));
         let query: Query = Query::new();
@@ -2439,6 +3931,19 @@ impl<'a> DynamicgroupsResource<'a> {
     /// `GET /dynamicgroups`
     ///
     /// Returns IDs of groups whose dynamicGroupStatus is active. A dynamic group is an ordinary ChurchTools group whose memberships can be maintained by a set of query rules. Groups in manual, inactive or none status are excluded, even when a rule set is stored. Conversely, active groups without a valid rule set are included and may fail during refresh. Requires churchcore administer persons. Results are not paginated and no ordering is guaranteed. This preliminary API may change.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-dynamicgroups");
+    /// for dynamicgroup in client.dynamicgroups().list()? {
+    ///     println!("{:?}", dynamicgroup);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<i64>> {
         let path = "/dynamicgroups".to_owned();
         let query: Query = Query::new();
@@ -2450,6 +3955,19 @@ impl<'a> DynamicgroupsResource<'a> {
     /// `GET /dynamicgroups/{groupId}/ruleset`
     ///
     /// Returns the stored rule array directly, without a data wrapper. Requires churchcore administer persons. Rules can exist independently of the refresh status. If the group has no rules, including after an empty array was saved, this returns 404. Reading rules does not execute or validate their query results.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-dynamicgroups-id-ruleset");
+    /// for ruleset in client.dynamicgroups().list_ruleset(42)? {
+    ///     println!("{}", ruleset.description);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_ruleset(&self, group_id: impl Display) -> Result<Vec<models::DynamicGroupRule>> {
         let path = format!("/dynamicgroups/{}/ruleset", seg(group_id));
         let query: Query = Query::new();
@@ -2461,6 +3979,19 @@ impl<'a> DynamicgroupsResource<'a> {
     /// `POST /dynamicgroups/{groupId}/refresh`
     ///
     /// Synchronously evaluates and applies the stored rules of one group. Requires churchcore administer persons and dynamicGroupStatus active or manual. inactive and none reject manual refreshes. The request has no body and no dry-run option. Rules run against the initial membership snapshot and changes are applied as the system user, with at most 500 actual changes per run. Inspect unprocessed and runsNeeded before assuming convergence. A caught processing failure returns 400 with a message; it does not return a successful statistics object. Membership updates have their own transaction, but later timestamp/event/logging failures can occur after those changes have committed.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// for dynamicgroup in client.dynamicgroups().refresh(42)? {
+    ///     println!("{}", dynamicgroup.created);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn refresh(&self, group_id: impl Display) -> Result<Vec<models::DynamicGroupRefreshResult>> {
         let path = format!("/dynamicgroups/{}/refresh", seg(group_id));
         let query: Query = Query::new();
@@ -2472,6 +4003,19 @@ impl<'a> DynamicgroupsResource<'a> {
     /// `POST /dynamicgroups/refresh`
     ///
     /// Synchronously evaluates and applies membership rules for all groups with active dynamicGroupStatus. Requires churchcore administer persons. Manual, inactive and none groups are excluded. Rules run in ascending importance order against the starting membership snapshot; later field updates can override earlier ones, while any deletion action takes precedence. Membership writes run as the system user and can bypass the group size limit. Each group is processed separately; this is not a transaction across groups. At most 500 actual changes are applied per group per run, so inspect unprocessed and runsNeeded and repeat if necessary. A 200 response can contain per-group failures alongside successful statistics. Error entries lack a structured groupId; unexpected Errors can still abort the whole request. This endpoint performs changes immediately and does not support a dry run.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// for dynamicgroup in client.dynamicgroups().refresh_all()? {
+    ///     println!("{:?}", dynamicgroup);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn refresh_all(&self) -> Result<Vec<serde_json::Value>> {
         let path = "/dynamicgroups/refresh".to_owned();
         let query: Query = Query::new();
@@ -2483,6 +4027,37 @@ impl<'a> DynamicgroupsResource<'a> {
     /// `PUT /dynamicgroups/{groupId}/ruleset`
     ///
     /// Stores the complete rule array after validation against the dynamic-group JSON schema. Requires churchcore administer persons. Rule syntax validation does not execute queries or validate all referenced roles, fields and runtime process values. Saving rules does not change dynamicGroupStatus or immediately update memberships. Use PUT /status to select the refresh mode and POST /refresh to run it explicitly. An empty array stores no rule set and returns dynamicGroupRuleSet: null, even if the group remains active. The response has a dynamicGroupRuleSet property directly, without a data wrapper.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DynamicGroupRuleSetUpdate = serde_json::from_value(serde_json::json!({
+    ///     "dynamicGroupRuleSet": [
+    ///         {
+    ///             "description": "Add selected people to the group.",
+    ///             "importance": 10,
+    ///             "personIdFieldName": "person.id",
+    ///             "process": {
+    ///                 "groupAndQueryResult": {},
+    ///                 "groupOnly": {},
+    ///                 "queryResultOnly": {}
+    ///             },
+    ///             "query": {
+    ///                 "method": "beispiel",
+    ///                 "params": {}
+    ///             },
+    ///             "shorty": "selected-people"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.dynamicgroups().update_ruleset(42, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_ruleset(&self, group_id: impl Display, body: &models::DynamicGroupRuleSetUpdate) -> Result<models::PutDynamicgroupsIdRulesetResponse> {
         let path = format!("/dynamicgroups/{}/ruleset", seg(group_id));
         let query: Query = Query::new();
@@ -2495,6 +4070,21 @@ impl<'a> DynamicgroupsResource<'a> {
     /// `PUT /dynamicgroups/{groupId}/status`
     ///
     /// Sets active, manual, inactive or none for an existing group. Requires churchcore administer persons. This does not run a refresh, delete stored rules or alter existing memberships. The mode is not checked against the presence or validity of a rule set, so an active group can subsequently fail to refresh. To remove rules as well, use DELETE /ruleset. The response is a flat object without a data wrapper.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DynamicGroupStatusUpdate = serde_json::from_value(serde_json::json!({
+    ///     "dynamicGroupStatus": "manual"
+    /// }))?;
+    /// let result = client.dynamicgroups().update_status(42, &body)?;
+    /// println!("{}", result.dynamic_group_status);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_status(&self, group_id: impl Display, body: &models::DynamicGroupStatusUpdate) -> Result<models::DynamicGroupStatusUpdate> {
         let path = format!("/dynamicgroups/{}/status", seg(group_id));
         let query: Query = Query::new();
@@ -2516,6 +4106,28 @@ impl<'a> EmailsResource<'a> {
     /// `POST /emails/placeholderstatistics`
     ///
     /// Renders placeholder statistics for the visible subset of personIds without sending emails. Content fragments are concatenated, optionally inserted into an accessible HTML template, then evaluated for each person. Missing/inaccessible recipients are omitted; if none are visible, the request returns 404. Without placeholder-like syntax in the resulting text, data is empty even when recipients were supplied. Results follow the loaded recipient order, not necessarily the input order; correlate by personId. Stats report availability of evaluated placeholders, not their values or occurrence counts. A subject is not part of this request. The automaticEmailId parameter currently has no effect.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EmailPlaceholderStatisticsCreate = serde_json::from_value(serde_json::json!({
+    ///     "content": [
+    ///         "Hello {{person.firstName}}"
+    ///     ],
+    ///     "personIds": [
+    ///         1,
+    ///         2
+    ///     ]
+    /// }))?;
+    /// for email in client.emails().placeholderstatistics(&body)? {
+    ///     println!("{}", email.person_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn placeholderstatistics(&self, body: &models::EmailPlaceholderStatisticsCreate) -> Result<Vec<models::EmailPlaceholderStatistics>> {
         let path = "/emails/placeholderstatistics".to_owned();
         let query: Query = Query::new();
@@ -2528,6 +4140,24 @@ impl<'a> EmailsResource<'a> {
     /// `POST /emails/preview`
     ///
     /// Renders content and an optional subject for one person visible to the caller. No email is sent and no draft is saved. Content fragments are concatenated without separators; an optional template replaces its {{body}} tokens before placeholder expansion. groupId adds group and membership context and requires access to that group. The HTML template requires template-view permission, or permission to view automatic emails for the supplied group. Missing or inaccessible recipients return 404. The flat response always contains html and contains subject only when supplied. userId selects a placeholder acting context rather than a recipient and is handled differently by individual decorators; it is not an authenticated-user switch for the whole request.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-emails-preview");
+    /// let body: models::EmailPreviewCreate = serde_json::from_value(serde_json::json!({
+    ///     "content": [
+    ///         "Hello {{person.firstName}}"
+    ///     ],
+    ///     "personId": 1
+    /// }))?;
+    /// let email = client.emails().preview(&body)?;
+    /// println!("{}", email.html);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn preview(&self, body: &models::EmailPreviewCreate) -> Result<models::EmailPreview> {
         let path = "/emails/preview".to_owned();
         let query: Query = Query::new();
@@ -2549,6 +4179,17 @@ impl<'a> EvangelischetermineResource<'a> {
     /// `DELETE /evangelischetermine`
     ///
     /// Queues removal of ChurchTools-published appointments from the configured Evangelische Termine organizer. Local ChurchTools appointments are retained. The background job reads the external JSON event list and deletes remote dates whose external identifier starts with ChurchTools; it does not limit removal to calendars currently selected for synchronization. Requires the churchcore permission "administer settings". HTTP 204 means the deletion job was queued and started in the background, not that remote deletion has completed. If synchronization is disabled, this call returns 204 without queuing a job. It does not disable synchronization, so later synchronization can publish appointments again. There is no dry-run option or returned job identifier.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.evangelischetermine().delete()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self) -> Result<()> {
         let path = "/evangelischetermine".to_owned();
         let query: Query = Query::new();
@@ -2560,6 +4201,19 @@ impl<'a> EvangelischetermineResource<'a> {
     /// `GET /evangelischetermine/eventtypes`
     ///
     /// Fetches the eventtype parameter values from the configured Evangelische Termine SOAP service. Use the returned keys and labels when selecting an external event classification. ChurchTools forwards the external list without adding pagination or meta. Synchronization must already be enabled and its stored connection settings must work. The controller has no additional settings-administration permission check beyond API authentication.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// for eventtype in client.evangelischetermine().list_eventtypes()? {
+    ///     println!("{}", eventtype.key);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_eventtypes(&self) -> Result<Vec<models::EvangelischeTermineEventType>> {
         let path = "/evangelischetermine/eventtypes".to_owned();
         let query: Query = Query::new();
@@ -2571,6 +4225,22 @@ impl<'a> EvangelischetermineResource<'a> {
     /// `POST /evangelischetermine/validatesettings`
     ///
     /// Tests the supplied server URL, organizer ID and API key by creating a SOAP connection and requesting the external event types. Requires the churchcore permission "administer settings". The integration need not already be enabled. A successful test returns 200 with an empty body; it does not save the settings, enable synchronization or publish appointments. A rejected URL or failed connection/authentication check returns 400 with an empty body. Invalid request-field types can instead return a JSON validation error.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EvangelischeTermineSettingsValidateCreate = serde_json::from_value(serde_json::json!({
+    ///     "apiKey": "*****",
+    ///     "url": "https://www.evangelische-termine.de",
+    ///     "vid": "1234"
+    /// }))?;
+    /// client.evangelischetermine().validatesettings(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn validatesettings(&self, body: &models::EvangelischeTermineSettingsValidateCreate) -> Result<()> {
         let path = "/evangelischetermine/validatesettings".to_owned();
         let query: Query = Query::new();
@@ -2592,6 +4262,18 @@ impl<'a> EventResource<'a> {
     /// `GET /event/masterdata`
     ///
     /// Returns six complete reference-data lists for the Event module together with their individual counts in `meta`. All lists are present and unpaginated; receiving a record does not grant permission to use or edit it. Song categories and sources have no guaranteed list order.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-event-masterdata");
+    /// let masterdata = client.event().get_masterdata()?;
+    /// println!("{:?}", masterdata);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_masterdata(&self) -> Result<models::EventMasterData> {
         let path = "/event/masterdata".to_owned();
         let query: Query = Query::new();
@@ -2632,6 +4314,20 @@ impl<'a> EventsResource<'a> {
     /// `POST /events/{eventId}/chat`
     ///
     /// Starts, reactivates or stops the chat linked to this event. Requires access to the event, an active chat installation with event chats enabled, and permission to administer persons, start an event chat through event permissions, or administer this event. A new room is provisioned through the chat service; HTTP `200` does not guarantee that remote room setup is already complete. Stopping a chat that has never been created returns `404`.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EventChatUpdate = serde_json::from_value(serde_json::json!({
+    ///     "enabled": true
+    /// }))?;
+    /// client.events().chat(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn chat(&self, event_id: impl Display, body: &models::EventChatUpdate) -> Result<()> {
         let path = format!("/events/{}/chat", seg(event_id));
         let query: Query = Query::new();
@@ -2644,6 +4340,22 @@ impl<'a> EventsResource<'a> {
     /// `POST /events/ical`
     ///
     /// Creates a new personal roster subscription secret and returns the link as JSON. Use `meta.iCalUrl` to fetch the actual iCalendar feed. A roster contains the person's service assignments at events, including pending requests and confirmed assignments.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = PostEventsIcalQuery {
+    ///     person_id: Some(42),
+    ///     ..Default::default()
+    /// };
+    /// let result = client.events().create_ical(&query)?;
+    /// println!("{}", result.attribute);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create_ical(&self, query: &PostEventsIcalQuery) -> Result<models::RosterICalSetting> {
         let path = "/events/ical".to_owned();
         let query: Query = query.to_query();
@@ -2657,6 +4369,17 @@ impl<'a> EventsResource<'a> {
     /// Deletes the service-planning event through the dependency-aware deletion service. With `dryRun`=`true`, the deletion check returns a `409` report without deleting the event, but `sendMail` is processed before that check. Requires event administration access, the "edit events" permission for the event calendar, or a corresponding internal group permission.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, event_id: impl Display) -> Result<()> {
         self.delete_with(event_id, &Default::default())
     }
@@ -2679,6 +4402,18 @@ impl<'a> EventsResource<'a> {
     /// `GET /events/{eventId}`
     ///
     /// Returns the event visible to the current user, including calendar, eventFiles and eventServices. Service assignments are filtered by service-group visibility or own assignment; persons can be concealed. The eventServices property is present even when empty. Cancelled events can also be read if visible.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-id");
+    /// let event = client.events().get(42)?;
+    /// println!("{}", event.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, event_id: impl Display) -> Result<models::EventReadWithServices> {
         let path = format!("/events/{}", seg(event_id));
         let query: Query = Query::new();
@@ -2690,6 +4425,22 @@ impl<'a> EventsResource<'a> {
     /// `GET /events/ical`
     ///
     /// Returns the personal roster subscription as JSON. If no secret exists, this `GET` creates one; otherwise it preserves the existing link. Use `meta.iCalUrl` to fetch the actual iCalendar feed. A roster contains the person's service assignments at events, including pending requests and confirmed assignments.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-ical");
+    /// let query = GetEventsIcalQuery {
+    ///     person_id: Some(42),
+    ///     ..Default::default()
+    /// };
+    /// let ical = client.events().get_ical(&query)?;
+    /// println!("{}", ical.attribute);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_ical(&self, query: &GetEventsIcalQuery) -> Result<models::RosterICalSetting> {
         let path = "/events/ical".to_owned();
         let query: Query = query.to_query();
@@ -2703,6 +4454,19 @@ impl<'a> EventsResource<'a> {
     /// Returns events visible through calendar permissions or the current user’s valid service assignments. Date comparisons use midnight in the application time zone: to includes exactly midnight, not later events that day. Results from calendar access are merged with events where the user is assigned and deduplicated; this merged range list is not guaranteed to be globally sorted. With direction, selects one page relative to from and ignores to.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events");
+    /// for event in client.events().list()? {
+    ///     println!("{}", event.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Event>> {
         self.list_with(&Default::default())
     }
@@ -2725,6 +4489,19 @@ impl<'a> EventsResource<'a> {
     /// `GET /events/{serviceId}/possiblepersonsforservice`
     ///
     /// Returns an unpaginated, deduplicated list of persons from active, non-hidden memberships in groups connected to the service. If connected tags exist, a matching tag is also required. Archived or deceased persons are excluded and hidden-person visibility is respected. With no connected groups, the result is empty.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-id-possiblepersonsforservice");
+    /// for possiblepersonsforservice in client.events().list_possiblepersonsforservice(2)? {
+    ///     println!("{}", possiblepersonsforservice.full_name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_possiblepersonsforservice(&self, service_id: impl Display) -> Result<Vec<models::ServiceCandidate>> {
         let path = format!("/events/{}/possiblepersonsforservice", seg(service_id));
         let query: Query = Query::new();
@@ -2736,6 +4513,34 @@ impl<'a> EventsResource<'a> {
     /// `POST /events/send`
     ///
     /// Sends an email to selected people in the context of one or more events. ChurchTools filters service participants by visible service groups and other selected recipients by person visibility. The response reports effective and rejected recipients. `sendCopyToMe` can add the sender. Optional agenda buttons require agenda visibility for each event; sending does not require an agenda or a shared agenda across events.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EventMailCreate = serde_json::from_value(serde_json::json!({
+    ///     "body": "<p>Please review the updated agenda for Sunday.</p>",
+    ///     "eventIds": [
+    ///         31,
+    ///         32
+    ///     ],
+    ///     "recipients": [
+    ///         40,
+    ///         41
+    ///     ],
+    ///     "subject": "Updated Sunday agenda",
+    ///     "appendAgendaButton": true,
+    ///     "files": [
+    ///         42
+    ///     ]
+    /// }))?;
+    /// let event = client.events().send(&body)?;
+    /// println!("{:?}", event);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn send(&self, body: &models::EventMailCreate) -> Result<models::EventMailSendResult> {
         let path = "/events/send".to_owned();
         let query: Query = Query::new();
@@ -2748,6 +4553,21 @@ impl<'a> EventsResource<'a> {
     /// `PUT /events/{eventId}`
     ///
     /// Updates the description, administrators and cancellation state for this service-planning event. It does not update service assignments or the calendar appointment. Changing the administrator set additionally requires the "edit masterdata" permission for the service planning domain; other changes require event administration access, the "edit events" permission for the event calendar, or a corresponding internal group permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EventDetailsUpdate = serde_json::from_value(serde_json::json!({
+    ///     "description": "Sound check starts 30 minutes before the gathering."
+    /// }))?;
+    /// let result = client.events().update(42, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, event_id: impl Display, body: &models::EventDetailsUpdate) -> Result<models::EventDetailsUpdateResult> {
         let path = format!("/events/{}", seg(event_id));
         let query: Query = Query::new();
@@ -2851,6 +4671,17 @@ impl<'a> EventsAgendaResource<'a> {
     /// `DELETE /events/{eventId}/agenda`
     ///
     /// Removes only the link between the event and its agenda. Other events sharing this agenda retain their links and content. If no event links remain, the unused agenda is cleaned up later. A locked agenda can also be detached. Requires agenda editing access for the event.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().agenda().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, event_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda", seg(event_id));
         let query: Query = Query::new();
@@ -2862,6 +4693,27 @@ impl<'a> EventsAgendaResource<'a> {
     /// `POST /events/{eventId}/agenda/export`
     ///
     /// Generates a presenter import archive for an event agenda. Requires a super administrator, an event administrator, "view agenda" or "edit agenda" for the event calendar, or involvement in the event. The current exporters use all items from the shared agenda, including items hidden for the requested event; the archive is not filtered to that event's visible positions. Locked and unlocked agendas can be exported.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = PostEventsIdAgendaExportQuery {
+    ///     format: Some("SONG_BEAMER".into()),
+    ///     ..Default::default()
+    /// };
+    /// let body: models::AgendaExportCreate = serde_json::from_value(serde_json::json!({
+    ///     "appendArrangement": true,
+    ///     "exportSongs": true,
+    ///     "withCategory": false
+    /// }))?;
+    /// let agenda = client.events().agenda().export(42, &query, &body)?;
+    /// println!("{}", agenda.url);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn export(&self, event_id: impl Display, query: &PostEventsIdAgendaExportQuery, body: &models::AgendaExportCreate) -> Result<models::AgendaExport> {
         let path = format!("/events/{}/agenda/export", seg(event_id));
         let query: Query = query.to_query();
@@ -2874,6 +4726,18 @@ impl<'a> EventsAgendaResource<'a> {
     /// `GET /events/{eventId}/agenda`
     ///
     /// Returns the event's running plan, including all ordered items, shared lock state and calculated times for linked events. Header, text and song items use different response fields; hidden items remain in `items` with a `null` entry in `startTimes`. Responsibility placeholders are resolved for the requested event and service-group notes are visibility-filtered.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-id-agenda");
+    /// let agenda = client.events().agenda().get(42)?;
+    /// println!("{:?}", agenda.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, event_id: impl Display) -> Result<models::Agenda> {
         let path = format!("/events/{}/agenda", seg(event_id));
         let query: Query = Query::new();
@@ -2885,6 +4749,22 @@ impl<'a> EventsAgendaResource<'a> {
     /// `POST /events/{eventId}/agenda/integrate`
     ///
     /// Links the target event in the path to the existing agenda of the source event given by `event_id`. This creates a shared agenda, not a copy: item IDs, content and lock state are shared with all already linked events. Event dates remain independent and item times are calculated per event. Hidden-item settings of the source event are not copied to the new link. Requires agenda editing permission for the target and agenda viewing permission for the source.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = PostEventsIdAgendaIntegrateQuery {
+    ///     event_id: Some(1337),
+    ///     ..Default::default()
+    /// };
+    /// let agenda = client.events().agenda().integrate(42, &query)?;
+    /// println!("{:?}", agenda.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn integrate(&self, event_id: impl Display, query: &PostEventsIdAgendaIntegrateQuery) -> Result<models::Agenda> {
         let path = format!("/events/{}/agenda/integrate", seg(event_id));
         let query: Query = query.to_query();
@@ -2896,6 +4776,19 @@ impl<'a> EventsAgendaResource<'a> {
     /// `GET /events/{eventId}/agenda/songs`
     ///
     /// Returns the distinct songs referenced by song items with an assigned arrangement in the event's agenda. Includes songs from positions hidden for this event because the complete shared agenda is inspected. Multiple positions or arrangements referring to one song produce one song record. Each record includes all arrangements of that song, not only the arrangement selected in the agenda.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-id-agenda-songs");
+    /// for song in client.events().agenda().list_songs(42)? {
+    ///     println!("{}", song.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_songs(&self, event_id: impl Display) -> Result<Vec<models::Song>> {
         let path = format!("/events/{}/agenda/songs", seg(event_id));
         let query: Query = Query::new();
@@ -2907,6 +4800,17 @@ impl<'a> EventsAgendaResource<'a> {
     /// `POST /events/{eventId}/agenda/lock`
     ///
     /// Locks the event's agenda against content changes. Events integrated with this event share the same agenda and therefore the same lock state. This is an agenda state, not a temporary editing lock owned by the caller. Calling lock on an already locked agenda returns `403`. Requires agenda editing access for the event.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().agenda().lock(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn lock(&self, event_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/lock", seg(event_id));
         let query: Query = Query::new();
@@ -2918,6 +4822,17 @@ impl<'a> EventsAgendaResource<'a> {
     /// `POST /events/{eventId}/agenda/unlock`
     ///
     /// Unlocks the event's agenda so its content can be edited again. The change applies to all events sharing the agenda. Calling unlock on an already unlocked agenda returns `403`. Any caller with the required agenda editing permission can unlock it; the caller need not be the person who locked it. Requires agenda editing access for the event.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().agenda().unlock(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn unlock(&self, event_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/unlock", seg(event_id));
         let query: Query = Query::new();
@@ -2931,6 +4846,19 @@ impl<'a> EventsAgendaResource<'a> {
     /// Creates an agenda for an event that has none, or updates its existing agenda. The operation always returns `200`. Supply `calendarId` when creating without a copy source. On update, the agenda must be unlocked; changes to a shared agenda affect every linked event. Requires agenda editing permission for the target and viewing permission for a selected source agenda or template.
     ///
     /// Use [`Self::update_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// let result = client.events().agenda().update(42, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, event_id: impl Display, body: &serde_json::Value) -> Result<models::Agenda> {
         self.update_with(event_id, &Default::default(), body)
     }
@@ -3017,6 +4945,21 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// Creates one header, text or song item in an existing, unlocked agenda. Without `before_id` or `after_id`, the item is appended. The agenda is not created automatically. Positioning references must belong to the same agenda. Requires agenda editing access for the event.
     ///
     /// Use [`Self::create_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-events-id-agenda-items");
+    /// let body = serde_json::json!({
+    ///     "type": "beispiel"
+    /// });
+    /// let result = client.events().agenda().items().create(42, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, event_id: impl Display, body: &serde_json::Value) -> Result<serde_json::Value> {
         self.create_with(event_id, &Default::default(), body)
     }
@@ -3040,6 +4983,17 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// `DELETE /events/{eventId}/agenda/items/{itemId}`
     ///
     /// Permanently removes an item from the agenda, affecting every event sharing that agenda. The agenda must be unlocked and the item must belong to the event's agenda. Repeating the deletion returns `404` once the item no longer exists. Requires agenda editing access for the event.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().agenda().items().delete(42, 123)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, event_id: impl Display, item_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}", seg(event_id), seg(item_id));
         let query: Query = Query::new();
@@ -3051,6 +5005,17 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// `POST /events/{eventId}/agenda/items/{itemId}/hide`
     ///
     /// Omits an agenda item only for the event in the path. The item remains part of the shared agenda and its visibility in other integrated events is unchanged. It no longer contributes to the timing of this event. Agenda responses still contain the item: its `startTimes` entry for this event is `null`. Requires agenda editing access for the event.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().agenda().items().hide(42, 123)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn hide(&self, event_id: impl Display, item_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}/hide", seg(event_id), seg(item_id));
         let query: Query = Query::new();
@@ -3062,6 +5027,17 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// `POST /events/{eventId}/agenda/items/{itemId}/unhide`
     ///
     /// Includes a previously hidden item in the event's agenda timing again. This only changes its visibility for the event in the path; other integrated events retain their visibility settings. The agenda must be unlocked and the item must belong to it. Showing an already visible item succeeds with `204`. Requires agenda editing access for the event.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().agenda().items().unhide(42, 123)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn unhide(&self, event_id: impl Display, item_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}/unhide", seg(event_id), seg(item_id));
         let query: Query = Query::new();
@@ -3075,6 +5051,21 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// Updates one item in an existing, unlocked agenda. The item must belong to the event's agenda. Without `before_id` or `after_id`, its order is preserved. To move an item, send its content fields as well: this is not a position-only PATCH. Requires agenda editing access for the event.
     ///
     /// Use [`Self::update_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-events-id-agenda-items-id");
+    /// let body = serde_json::json!({
+    ///     "type": "beispiel"
+    /// });
+    /// let result = client.events().agenda().items().update(42, 123, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, event_id: impl Display, item_id: impl Display, body: &serde_json::Value) -> Result<serde_json::Value> {
         self.update_with(event_id, item_id, &Default::default(), body)
     }
@@ -3149,6 +5140,17 @@ impl<'a> EventsAgendaItemsServicegroupsResource<'a> {
     /// `DELETE /events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}`
     ///
     /// Removes only the note for the service group in the path. If that note is already absent, the request still succeeds with `204`. Other service-group notes and item content are retained. The agenda must be unlocked and the item must belong to it. Requires agenda editing access for the event.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().agenda().items().servicegroups().delete(42, 123, 13)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, event_id: impl Display, item_id: impl Display, service_group_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}/servicegroups/{}", seg(event_id), seg(item_id), seg(service_group_id));
         let query: Query = Query::new();
@@ -3160,6 +5162,20 @@ impl<'a> EventsAgendaItemsServicegroupsResource<'a> {
     /// `PUT /events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}`
     ///
     /// Creates or replaces the note for one service group on an existing agenda item. Other service-group notes and item content are retained. Requires agenda editing access for the event.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AgendaServiceGroupNoteUpdate = serde_json::from_value(serde_json::json!({
+    ///     "note": "Remember to bring the sheet music"
+    /// }))?;
+    /// client.events().agenda().items().servicegroups().update(42, 123, 13, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, event_id: impl Display, item_id: impl Display, service_group_id: impl Display, body: &models::AgendaServiceGroupNoteUpdate) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}/servicegroups/{}", seg(event_id), seg(item_id), seg(service_group_id));
         let query: Query = Query::new();
@@ -3181,6 +5197,21 @@ impl<'a> EventsEventservicesResource<'a> {
     /// `DELETE /events/{eventId}/eventservices/{serviceId}`
     ///
     /// Deprecated alias for `/events/{eventId}/servicerequests/{requestId}/decline`. The path parameter `serviceId` identifies a concrete assignment record (`requestId`), not a reusable service role. Declining invalidates the original record and returns a new unassigned record; assigned persons need `allowDecline` unless another permission grants access.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
+    ///     "comment": "beispiel"
+    /// }))?;
+    /// let eventservice = client.events().eventservices().delete(42, 42, &body)?;
+    /// println!("{:?}", eventservice.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn delete(&self, event_id: impl Display, service_id: impl Display, body: &models::ServiceRequestAnswer) -> Result<models::ServiceRequest> {
         let path = format!("/events/{}/eventservices/{}", seg(event_id), seg(service_id));
@@ -3194,6 +5225,21 @@ impl<'a> EventsEventservicesResource<'a> {
     /// `PUT /events/{eventId}/eventservices/{serviceId}`
     ///
     /// Deprecated alias for `/events/{eventId}/servicerequests/{requestId}`. The path parameter `serviceId` identifies a concrete assignment record (`requestId`), not a reusable service role. Creates a replacement assignment and invalidates the previous active record for the same event, service and slot index. Always use the returned ID for subsequent actions.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ServiceRequestUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Guest musician"
+    /// }))?;
+    /// let result = client.events().eventservices().update(42, 42, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn update(&self, event_id: impl Display, service_id: impl Display, body: &models::ServiceRequestUpdate) -> Result<models::ServiceRequest> {
         let path = format!("/events/{}/eventservices/{}", seg(event_id), seg(service_id));
@@ -3207,6 +5253,25 @@ impl<'a> EventsEventservicesResource<'a> {
     /// `PUT /events/{eventId}/eventservices`
     ///
     /// Changes the active slot count only for the listed service roles, in one transaction. Increasing a count creates unassigned slots. Decreasing it removes unassigned slots but retains occupied slots. A failed reduction returns `422` and rolls back the update; changing counts requires event administration or editing access for every affected service.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EventServicesUpdate = serde_json::from_value(serde_json::json!({
+    ///     "services": [
+    ///         {
+    ///             "count": 3,
+    ///             "serviceId": 2
+    ///         }
+    ///     ]
+    /// }))?;
+    /// client.events().eventservices().update_all(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn update_all(&self, event_id: impl Display, body: &models::EventServicesUpdate) -> Result<()> {
         let path = format!("/events/{}/eventservices", seg(event_id));
@@ -3229,6 +5294,17 @@ impl<'a> EventsFactsResource<'a> {
     /// `DELETE /events/{eventId}/facts/{factId}`
     ///
     /// Removes the stored value for this event and fact definition, preserving the reusable definition and the event. Requires access to the event and edit permission for the fact definition. Returns `204` even if no value was stored for the pair.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.events().facts().delete(42, 1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, event_id: impl Display, fact_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/facts/{}", seg(event_id), seg(fact_id));
         let query: Query = Query::new();
@@ -3242,6 +5318,23 @@ impl<'a> EventsFactsResource<'a> {
     /// Downloads a CSV or XLSX file with one row per visible service-planning event in the selected calendars, including events without recorded fact values. Requires permission to export facts (the "export facts" permission for the service planning domain). Events are filtered by event visibility, and fact columns are limited to definitions the user may view or edit. Rows are ordered by event start time, then event ID.
     ///
     /// Use [`Self::export_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EventFactExportCreate = serde_json::from_value(serde_json::json!({
+    ///     "calendar_ids": [
+    ///         42
+    ///     ]
+    /// }))?;
+    /// let data = client.events().facts().export(&body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn export(&self, body: &models::EventFactExportCreate) -> Result<Vec<u8>> {
         self.export_with(&Default::default(), body)
     }
@@ -3265,6 +5358,18 @@ impl<'a> EventsFactsResource<'a> {
     /// `GET /events/{eventId}/facts/{factId}`
     ///
     /// Returns the stored value for the event and fact definition identified by the path. Requires access to the event and view or edit permission for the fact definition. Returns `404` when no value has been recorded for this pair; this is distinct from a recorded numeric zero.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-eventId-facts-factId");
+    /// let fact = client.events().facts().get(42, 1)?;
+    /// println!("{}", fact.deprecated);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, event_id: impl Display, fact_id: impl Display) -> Result<models::EventFact> {
         let path = format!("/events/{}/facts/{}", seg(event_id), seg(fact_id));
         let query: Query = Query::new();
@@ -3276,6 +5381,19 @@ impl<'a> EventsFactsResource<'a> {
     /// `GET /events/{eventId}/facts`
     ///
     /// Returns the event's stored fact values whose definitions the user may view or edit. `eventId` identifies the service-planning event, while `factId` identifies a reusable definition from `/facts`. Requires access to the event and at least one fact definition.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-eventId-facts");
+    /// for fact in client.events().facts().list(42)? {
+    ///     println!("{}", fact.deprecated);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, event_id: impl Display) -> Result<Vec<models::EventFact>> {
         let path = format!("/events/{}/facts", seg(event_id));
         let query: Query = Query::new();
@@ -3289,6 +5407,19 @@ impl<'a> EventsFactsResource<'a> {
     /// A fact definition describes a metric or selection (for example attendance or service type). An event fact stores one value for that definition on a service-planning event. `eventId` identifies the event, not its calendar appointment; `factId` identifies the reusable definition from /facts. Returns recorded values ordered by event start date descending, with pagination.
     ///
     /// Use [`Self::list_all_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-facts");
+    /// for all in client.events().facts().list_all()? {
+    ///     println!("{}", all.deprecated);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_all(&self) -> Result<Vec<models::EventFact>> {
         self.list_all_with(&Default::default())
     }
@@ -3311,6 +5442,21 @@ impl<'a> EventsFactsResource<'a> {
     /// `PUT /events/{eventId}/facts/{factId}`
     ///
     /// Stores one value for the event and fact definition identified by the path. Returns `200` for both insertion and replacement. Requires access to the event and edit permission for the fact definition. Numeric facts accept JSON numbers or numeric strings and return a JSON number; select facts accept an option configured in the definition.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EventFactUpdate = serde_json::from_value(serde_json::json!({
+    ///     "value": 1.5
+    /// }))?;
+    /// let result = client.events().facts().update(42, 1, &body)?;
+    /// println!("{}", result.deprecated);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, event_id: impl Display, fact_id: impl Display, body: &models::EventFactUpdate) -> Result<models::EventFact> {
         let path = format!("/events/{}/facts/{}", seg(event_id), seg(fact_id));
         let query: Query = Query::new();
@@ -3374,6 +5520,21 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// `POST /events/{eventId}/servicerequests/{requestId}/accept`
     ///
     /// Accepts an assigned, valid service request. On first acceptance it creates a new confirmed record, invalidates previous records for the slot, adjusts related exchange requests and sends notifications. A comment is stored on first acceptance only if the service allows comments on confirmation. If already accepted, the same record is returned and its comment is updated. Requires permission to update the assignment.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
+    ///     "comment": "beispiel"
+    /// }))?;
+    /// let servicerequest = client.events().servicerequests().accept(42, 42, &body)?;
+    /// println!("{:?}", servicerequest.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn accept(&self, event_id: impl Display, request_id: impl Display, body: &models::ServiceRequestAnswer) -> Result<models::ServiceRequest> {
         let path = format!("/events/{}/servicerequests/{}/accept", seg(event_id), seg(request_id));
         let query: Query = Query::new();
@@ -3386,6 +5547,21 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// `POST /events/{eventId}/servicerequests/{requestId}/decline`
     ///
     /// Declines the current assignment, invalidates its `requestId` and returns a new unassigned record. Related exchange requests are deleted and notifications are sent. Assigned persons need `allowDecline` unless another permission grants access.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
+    ///     "comment": "beispiel"
+    /// }))?;
+    /// let servicerequest = client.events().servicerequests().decline(42, 42, &body)?;
+    /// println!("{:?}", servicerequest.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn decline(&self, event_id: impl Display, request_id: impl Display, body: &models::ServiceRequestAnswer) -> Result<models::ServiceRequest> {
         let path = format!("/events/{}/servicerequests/{}/decline", seg(event_id), seg(request_id));
         let query: Query = Query::new();
@@ -3398,6 +5574,21 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// `POST /events/{eventId}/servicerequests/{requestId}/undo`
     ///
     /// Reverts the last acceptance or decline to an outstanding request. Only the assigned person may do this. The legacy history must identify this as the last action and its timestamp must be within the 10-minute undo window; otherwise `400` is returned. For a decline, use the original declined request ID, not the new unassigned record returned by the decline operation.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ServiceRequestUndoCreate = serde_json::from_value(serde_json::json!({
+    ///     "personId": 42
+    /// }))?;
+    /// let servicerequest = client.events().servicerequests().undo(42, 42, &body)?;
+    /// println!("{:?}", servicerequest.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn undo(&self, event_id: impl Display, request_id: impl Display, body: &models::ServiceRequestUndoCreate) -> Result<models::ServiceRequestUndoResult> {
         let path = format!("/events/{}/servicerequests/{}/undo", seg(event_id), seg(request_id));
         let query: Query = Query::new();
@@ -3410,6 +5601,21 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// `PUT /events/{eventId}/servicerequests/{requestId}`
     ///
     /// Creates a replacement assignment and invalidates the previous active record for the same event, service and slot index. Always use the returned ID for subsequent actions. `isAccepted`=`true` confirms it; `false` leaves it awaiting confirmation and does not decline it. Notifications follow the assignment workflow.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ServiceRequestUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Guest musician"
+    /// }))?;
+    /// let result = client.events().servicerequests().update(42, 42, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, event_id: impl Display, request_id: impl Display, body: &models::ServiceRequestUpdate) -> Result<models::ServiceRequest> {
         let path = format!("/events/{}/servicerequests/{}", seg(event_id), seg(request_id));
         let query: Query = Query::new();
@@ -3422,6 +5628,25 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// `PUT /events/{eventId}/servicerequests`
     ///
     /// Changes the active slot count only for the listed service roles, in one transaction. Increasing a count creates unassigned slots. Decreasing it removes unassigned slots but retains occupied slots. A failed reduction returns `422` and rolls back the update; changing counts requires event administration or editing access for every affected service.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EventServicesUpdate = serde_json::from_value(serde_json::json!({
+    ///     "services": [
+    ///         {
+    ///             "count": 3,
+    ///             "serviceId": 2
+    ///         }
+    ///     ]
+    /// }))?;
+    /// client.events().servicerequests().update_all(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_all(&self, event_id: impl Display, body: &models::EventServicesUpdate) -> Result<()> {
         let path = format!("/events/{}/servicerequests", seg(event_id));
         let query: Query = Query::new();
@@ -3443,6 +5668,19 @@ impl<'a> EventsServicesResource<'a> {
     /// `GET /events/{eventId}/services/{serviceId}/possiblepersons`
     ///
     /// Returns an unpaginated list of persons from active, visible-role memberships in groups connected to this reusable service role, narrowed by connected tags when present. Archived or deceased persons are excluded and hidden-person visibility is respected. Without permission to assign other persons, only the current user can appear. With no connected groups the list is empty.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-events-eventId-services-serviceId-possiblepersons");
+    /// for possibleperson in client.events().services().list_possiblepersons(42, 2)? {
+    ///     println!("{}", possibleperson.partner_services);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_possiblepersons(&self, event_id: impl Display, service_id: impl Display) -> Result<Vec<models::PossibleEventPerson>> {
         let path = format!("/events/{}/services/{}/possiblepersons", seg(event_id), seg(service_id));
         let query: Query = Query::new();
@@ -3463,6 +5701,19 @@ impl<'a> EventtemplatesResource<'a> {
     /// `GET /eventtemplates`
     ///
     /// Returns all event templates as an unpaginated list, sorted by `sortKey` ascending. No per-template visibility filter is applied.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-eventtemplates");
+    /// for eventtemplate in client.eventtemplates().list()? {
+    ///     println!("{}", eventtemplate.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::EventTemplate>> {
         let path = "/eventtemplates".to_owned();
         let query: Query = Query::new();
@@ -3495,6 +5746,34 @@ impl<'a> ExternalloginsResource<'a> {
     /// `POST /externallogins`
     ///
     /// Creates an OAuth, OpenID Connect or SAML provider configuration. Requires "churchcore administer settings" permission; SAML additionally requires the SAML settings feature flag. Logo discovery may contact the provider while saving. Only one provider can be primary.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ExternalLoginCreate = serde_json::from_value(serde_json::json!({
+    ///     "config": {
+    ///         "accessTokenUrl": "https://identity.example.org/accessTokenUrl",
+    ///         "authorizeUrl": "https://identity.example.org/authorizeUrl",
+    ///         "clientId": "churchtools",
+    ///         "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"
+    ///     },
+    ///     "createNewPerson": true,
+    ///     "hasRegistration": true,
+    ///     "name": "Organization login",
+    ///     "newPersonCampusId": 42,
+    ///     "newPersonDepartmentId": 42,
+    ///     "newPersonStatusId": 42,
+    ///     "type": "oauth",
+    ///     "updateDataOnLogin": true
+    /// }))?;
+    /// let result = client.externallogins().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ExternalLoginCreate) -> Result<models::ExternalLogin> {
         let path = "/externallogins".to_owned();
         let query: Query = Query::new();
@@ -3507,6 +5786,17 @@ impl<'a> ExternalloginsResource<'a> {
     /// `DELETE /externallogins/{externalLoginId}`
     ///
     /// Deletes the provider configuration and its stored person-identity mappings. Requires "churchcore administer settings" permission; deleting a SAML provider also requires the SAML settings feature flag. ChurchTools persons and sessions at the external provider remain.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.externallogins().delete(7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, external_login_id: impl Display) -> Result<()> {
         let path = format!("/externallogins/{}", seg(external_login_id));
         let query: Query = Query::new();
@@ -3518,6 +5808,18 @@ impl<'a> ExternalloginsResource<'a> {
     /// `GET /externallogins/{externalLoginId}`
     ///
     /// Returns one provider configuration. Requires "churchcore administer settings" permission. Hidden providers remain accessible. Client secrets and SAML SP private keys are not included.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-externallogins-id");
+    /// let externallogin = client.externallogins().get(7)?;
+    /// println!("{}", externallogin.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, external_login_id: impl Display) -> Result<models::ExternalLogin> {
         let path = format!("/externallogins/{}", seg(external_login_id));
         let query: Query = Query::new();
@@ -3529,6 +5831,19 @@ impl<'a> ExternalloginsResource<'a> {
     /// `GET /externallogins`
     ///
     /// Returns all external login provider configurations, including hidden providers. Requires "churchcore administer settings" permission. Client secrets and SAML SP private keys are not included.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-externallogins");
+    /// for externallogin in client.externallogins().list()? {
+    ///     println!("{}", externallogin.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::ExternalLogin>> {
         let path = "/externallogins".to_owned();
         let query: Query = Query::new();
@@ -3540,6 +5855,34 @@ impl<'a> ExternalloginsResource<'a> {
     /// `PUT /externallogins/{externalLoginId}`
     ///
     /// Updates an existing provider. Requires "churchcore administer settings" permission; SAML changes additionally require the SAML settings feature flag. The protocol cannot be changed. Logo discovery is repeated, and setting `primaryLogin` does not demote another primary provider.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ExternalLoginUpdate = serde_json::from_value(serde_json::json!({
+    ///     "config": {
+    ///         "accessTokenUrl": "https://identity.example.org/accessTokenUrl",
+    ///         "authorizeUrl": "https://identity.example.org/authorizeUrl",
+    ///         "clientId": "churchtools",
+    ///         "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"
+    ///     },
+    ///     "createNewPerson": true,
+    ///     "hasRegistration": true,
+    ///     "name": "Nextcloud",
+    ///     "newPersonCampusId": 42,
+    ///     "newPersonDepartmentId": 42,
+    ///     "newPersonStatusId": 42,
+    ///     "type": "oauth",
+    ///     "updateDataOnLogin": true
+    /// }))?;
+    /// let result = client.externallogins().update(7, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, external_login_id: impl Display, body: &models::ExternalLoginUpdate) -> Result<models::ExternalLogin> {
         let path = format!("/externallogins/{}", seg(external_login_id));
         let query: Query = Query::new();
@@ -3561,6 +5904,23 @@ impl<'a> ExternalloginsLinkResource<'a> {
     /// `POST /externallogins/{externalLoginId}/link`
     ///
     /// Completes the verified_user_linking flow after a successful external identity-provider callback requested proof of a ChurchTools account. Requires the same browser session and pending linkToken, a visible provider in verified_user_linking mode, and valid credentials for an active, non-archived person. Tokens expire after 600 seconds; only ten pending links are retained per session. Each attempt clears any previous pending two-factor session. If the account uses two-factor authentication, no identity is linked yet: data.location points to the two-factor screen and POST /login/totp completes linking after verification. Otherwise the external identity is linked and the ChurchTools session is logged in. Navigate to data.location; this endpoint returns JSON rather than an HTTP redirect. The token is consumed after successful login. Credential failures can increment the account’s failed-login counter; the shared login rate limit also applies.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ExternalLoginLinkCreate = serde_json::from_value(serde_json::json!({
+    ///     "linkToken": "opaque-session-bound-link-token",
+    ///     "password": "beispiel",
+    ///     "username": "alex@example.org"
+    /// }))?;
+    /// let result = client.externallogins().link().create(7, &body)?;
+    /// println!("{}", result.location);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, external_login_id: impl Display, body: &models::ExternalLoginLinkCreate) -> Result<models::ExternalLoginLinkResult> {
         let path = format!("/externallogins/{}/link", seg(external_login_id));
         let query: Query = Query::new();
@@ -3573,6 +5933,21 @@ impl<'a> ExternalloginsLinkResource<'a> {
     /// `POST /externallogins/{externalLoginId}/link/create-person`
     ///
     /// Creates a ChurchTools person from a pending verified external identity, links it and establishes the ChurchTools login session. Requires the same browser session and unexpired linkToken, a visible provider in verified_user_linking mode and createNewPerson enabled. Tokens expire after 600 seconds and are consumed after successful login. The external identity must not already be mapped. Person name, email and username come from the saved provider identity; department, campus and status come from the provider configuration. A nonblank last name is required by person creation. Returns JSON data.location for the client to navigate to. Person creation/mapping commit before session login, so a later completion error does not guarantee that no person was created.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ExternalLoginPersonCreate = serde_json::from_value(serde_json::json!({
+    ///     "linkToken": "opaque-session-bound-link-token"
+    /// }))?;
+    /// let result = client.externallogins().link().create_person(7, &body)?;
+    /// println!("{}", result.location);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create_person(&self, external_login_id: impl Display, body: &models::ExternalLoginPersonCreate) -> Result<models::ExternalLoginLinkResult> {
         let path = format!("/externallogins/{}/link/create-person", seg(external_login_id));
         let query: Query = Query::new();
@@ -3598,6 +5973,17 @@ impl<'a> ExternalloginsOidcResource<'a> {
     /// `POST /externallogins/oidc/backchannel-logout`
     ///
     /// Accepts an OIDC Back-Channel Logout token signed by a configured provider. No browser session, CSRF token or API authentication is required. Issuer, audience, signature, lifetime, event and session/subject claims are checked. Matching local OIDC sessions are rejected on their next request. Repeated valid tokens and tokens without a matching local session succeed. Local password sessions remain unaffected. Responses have Cache-Control: no-store.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.externallogins().oidc().backchannel_logout()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn backchannel_logout(&self) -> Result<()> {
         let path = "/externallogins/oidc/backchannel-logout".to_owned();
         let query: Query = Query::new();
@@ -3609,6 +5995,22 @@ impl<'a> ExternalloginsOidcResource<'a> {
     /// `GET /externallogins/oidc/callback`
     ///
     /// Browser callback for OIDC Authorization Code login. The state resolves the provider from a pending flow in the same session; no provider ID is needed in this URL. State is consumed once before code exchange and expires after 600 seconds. The server validates the ID token, nonce and configured claim policies, then applies the provider’s person-matching mode. Success redirects to the stored safe local target; verified-user-linking mode can instead redirect to the local account-linking screen. A local matching/login failure can return an HTML 401 page, while protocol/state failures use plain-text 401 with a diagnostic ID. For administrator test flows, it records sanitized diagnostics and returns an HTML popup-completion page without creating/linking/logging in a person; the page itself does not indicate whether the test succeeded. Inspect the test-result endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetExternalloginsOidcCallbackQuery {
+    ///     state: Some("opaque-session-bound-state".into()),
+    ///     ..Default::default()
+    /// };
+    /// let data = client.externallogins().oidc().callback(&query)?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn callback(&self, query: &GetExternalloginsOidcCallbackQuery) -> Result<Vec<u8>> {
         let path = "/externallogins/oidc/callback".to_owned();
         let query: Query = query.to_query();
@@ -3620,6 +6022,22 @@ impl<'a> ExternalloginsOidcResource<'a> {
     /// `GET /externallogins/{externalLoginId}/oidc/callback`
     ///
     /// Compatibility callback containing a provider ID. New flows use /api/externallogins/oidc/callback. The route ID must match the provider recorded for the state. Browser callback for OIDC Authorization Code login. The state resolves the provider from a pending flow in the same session; no provider ID is needed in this URL. State is consumed once before code exchange and expires after 600 seconds. The server validates the ID token, nonce and configured claim policies, then applies the provider’s person-matching mode. Success redirects to the stored safe local target; verified-user-linking mode can instead redirect to the local account-linking screen. A local matching/login failure can return an HTML 401 page, while protocol/state failures use plain-text 401 with a diagnostic ID. For administrator test flows, it records sanitized diagnostics and returns an HTML popup-completion page without creating/linking/logging in a person; the page itself does not indicate whether the test succeeded. Inspect the test-result endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetExternalloginsIdOidcCallbackQuery {
+    ///     state: Some("opaque-session-bound-state".into()),
+    ///     ..Default::default()
+    /// };
+    /// let data = client.externallogins().oidc().callback_for(7, &query)?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn callback_for(&self, external_login_id: impl Display, query: &GetExternalloginsIdOidcCallbackQuery) -> Result<Vec<u8>> {
         let path = format!("/externallogins/{}/oidc/callback", seg(external_login_id));
         let query: Query = query.to_query();
@@ -3633,6 +6051,18 @@ impl<'a> ExternalloginsOidcResource<'a> {
     /// Starts Authorization Code login for a visible OIDC provider using S256 PKCE, state and nonce. No existing ChurchTools login token is required. The pending flow is bound to the current browser session for 600 seconds; keep its cookie through the provider redirect and callback. At most ten pending OIDC authorizations/tests are retained per session, with older entries evicted. The configured issuer is discovered before returning the authorization URL. New flows use the stable /api/externallogins/oidc/callback URL. If the Accept header contains application/json, returns authorization details as JSON; otherwise redirects to the provider. Missing, hidden, wrong-type or unusable providers all use the same 404 text response.
     ///
     /// Use [`Self::get_start_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let start = client.externallogins().oidc().get_start(7)?;
+    /// println!("{}", start.expires_at);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_start(&self, external_login_id: impl Display) -> Result<models::ExternalLoginAuthorizationStart> {
         self.get_start_with(external_login_id, &Default::default())
     }
@@ -3721,6 +6151,18 @@ impl<'a> ExternalloginsOidcTestResource<'a> {
     /// `POST /externallogins/{externalLoginId}/oidc/test`
     ///
     /// Starts an OIDC Authorization Code test using the stored provider configuration. Requires "churchcore administer settings" permission. Hidden OIDC providers can be tested. Returns a URL to open in the same browser session and an opaque state for polling; preserve the session cookie through the provider callback. The pending flow expires after 600 seconds and shares the session limit of ten pending authorizations. This performs issuer discovery and token validation but does not create or link a person or establish a new ChurchTools login. Errors during authorization preparation are returned as data.status=error with HTTP 200; provider lookup errors occur before that conversion.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let result = client.externallogins().oidc().test().create(7)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, external_login_id: impl Display) -> Result<serde_json::Value> {
         let path = format!("/externallogins/{}/oidc/test", seg(external_login_id));
         let query: Query = Query::new();
@@ -3732,6 +6174,18 @@ impl<'a> ExternalloginsOidcTestResource<'a> {
     /// `GET /externallogins/{externalLoginId}/oidc/test/{state}`
     ///
     /// Polls an OIDC test started by the current administrator for this provider in the same browser session. Requires "churchcore administer settings" permission and an existing OIDC provider; hidden providers are allowed. Returns pending until the callback completes, then success with claim names or error with a sanitized category. Unknown states, another session/administrator/provider, or expired pending authorizations return data.status=expired with HTTP 200. Pending states expire after 600 seconds. Completed results are not consumed by reads; the current implementation only prunes their age when another test result is stored, so expiresAt is not a strict expiry for completed results. No claim values or tokens are exposed.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-externallogins-id-oidc-test-state");
+    /// let test = client.externallogins().oidc().test().get(7, "opaque-session-bound-state")?;
+    /// println!("{:?}", test.error_code);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, external_login_id: impl Display, state: impl Display) -> Result<models::ExternalLoginOidcTestResult> {
         let path = format!("/externallogins/{}/oidc/test/{}", seg(external_login_id), seg(state));
         let query: Query = Query::new();
@@ -3760,6 +6214,18 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// `POST /externallogins/{externalLoginId}/saml/acs`
     ///
     /// Public assertion-consumer callback for the identity provider’s form POST. Validates the SAML response and maps the external identity to a ChurchTools person. Successful login redirects to the stored destination or the installation landing page; identities needing account linking are redirected into that flow instead. Normal login requires a visible provider. Administrator test flows can use hidden providers and return a small HTML page that closes the popup, without logging the tested identity in. Test failures can also return that 200 HTML page: read the separate test-result endpoint for the outcome. A pending administrator test with missing RelayState also returns the popup page. Normal failures return 401 as localized text or an HTML error page, never the usual JSON error envelope.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.externallogins().saml().acs(7)?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn acs(&self, external_login_id: impl Display) -> Result<Vec<u8>> {
         let path = format!("/externallogins/{}/saml/acs", seg(external_login_id));
         let query: Query = Query::new();
@@ -3773,6 +6239,17 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// Processes a signed SAML HTTP-Redirect single-logout message for a visible provider. Prefer the GET binding for new integrations. A redirect does not confirm successful logout.
     ///
     /// Use [`Self::create_sls_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.externallogins().saml().create_sls(7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create_sls(&self, external_login_id: impl Display) -> Result<()> {
         self.create_sls_with(external_login_id, &Default::default())
     }
@@ -3797,6 +6274,17 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// Processes a signed SAML HTTP-Redirect single-logout message for a visible provider. Prefer the GET binding for new integrations. A redirect does not confirm successful logout.
     ///
     /// Use [`Self::delete_sls_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.externallogins().saml().delete_sls(7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_sls(&self, external_login_id: impl Display) -> Result<()> {
         self.delete_sls_with(external_login_id, &Default::default())
     }
@@ -3821,6 +6309,17 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// Starts the browser-based SAML login for a visible SAML external-login provider. Redirects to the configured identity provider with a SAML authentication request and an opaque RelayState. An optional post-login redirect is saved in the browser session, so the callback must retain that session. Only absolute URLs on this installation’s origin and within its base path are accepted; invalid redirect values are ignored. Missing, hidden or invalid providers and other setup failures produce a localized 404 response. No login or JSON access token is returned by this endpoint itself.
     ///
     /// Use [`Self::get_login_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.externallogins().saml().get_login(7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_login(&self, external_login_id: impl Display) -> Result<()> {
         self.get_login_with(external_login_id, &Default::default())
     }
@@ -3843,6 +6342,18 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// `GET /externallogins/{externalLoginId}/saml/metadata`
     ///
     /// Returns the XML metadata that an identity-provider administrator uses to configure ChurchTools as a SAML service provider. The entity ID, assertion-consumer URL and logout URL refer to this external-login provider. This endpoint is public and also works for a hidden provider, allowing setup before enabling login. Any provider/configuration/metadata-generation failure is returned as 404 with localized text, not a JSON error envelope.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.externallogins().saml().get_metadata(7)?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_metadata(&self, external_login_id: impl Display) -> Result<Vec<u8>> {
         let path = format!("/externallogins/{}/saml/metadata", seg(external_login_id));
         let query: Query = Query::new();
@@ -3856,6 +6367,17 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// Processes a signed SAML HTTP-Redirect single-logout message for a visible provider. A redirect does not confirm successful logout.
     ///
     /// Use [`Self::get_sls_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.externallogins().saml().get_sls(7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_sls(&self, external_login_id: impl Display) -> Result<()> {
         self.get_sls_with(external_login_id, &Default::default())
     }
@@ -3880,6 +6402,17 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// Processes a signed SAML HTTP-Redirect single-logout message for a visible provider. Prefer the GET binding for new integrations. A redirect does not confirm successful logout.
     ///
     /// Use [`Self::patch_sls_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.externallogins().saml().patch_sls(7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch_sls(&self, external_login_id: impl Display) -> Result<()> {
         self.patch_sls_with(external_login_id, &Default::default())
     }
@@ -3904,6 +6437,17 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// Processes a signed SAML HTTP-Redirect single-logout message for a visible provider. Prefer the GET binding for new integrations. A redirect does not confirm successful logout.
     ///
     /// Use [`Self::update_sls_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.externallogins().saml().update_sls(7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_sls(&self, external_login_id: impl Display) -> Result<()> {
         self.update_sls_with(external_login_id, &Default::default())
     }
@@ -4085,6 +6629,21 @@ impl<'a> ExternalloginsSamlMetadataResource<'a> {
     /// `POST /externallogins/saml/metadata/parse`
     ///
     /// Parses supplied XML into selectable IdP configuration candidates. Requires "churchcore administer settings" permission. Supports `EntityDescriptor` and `EntitiesDescriptor` documents and HTTP-Redirect SSO/SLO bindings. Parsing does not verify metadata signatures or certificate trust.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SamlMetadataParseCreate = serde_json::from_value(serde_json::json!({
+    ///     "xml": "beispiel"
+    /// }))?;
+    /// let metadata = client.externallogins().saml().metadata().parse(&body)?;
+    /// println!("{:?}", metadata);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn parse(&self, body: &models::SamlMetadataParseCreate) -> Result<models::PostExternalloginsSamlMetadataParseData> {
         let path = "/externallogins/saml/metadata/parse".to_owned();
         let query: Query = Query::new();
@@ -4106,6 +6665,18 @@ impl<'a> ExternalloginsSamlTestResource<'a> {
     /// `POST /externallogins/{externalLoginId}/saml/test`
     ///
     /// Starts a SAML round-trip test for the stored provider configuration. Requires "churchcore administer settings" permission; hidden SAML providers can be tested. Open data.url in the same browser session, then poll using data.state. At most five tests are retained per session; older entries are evicted. Tests and completed results expire 600 seconds after creation. The callback validates the SAML response and returns claim-name/mapping diagnostics without creating or linking a ChurchTools person or establishing a new ChurchTools login. A successful test does not guarantee that required identity attributes have usable values or that person matching would succeed. Configuration/URL-generation failures are not converted into an error result by this endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let result = client.externallogins().saml().test().create(7)?;
+    /// println!("{}", result.expires_at);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, external_login_id: impl Display) -> Result<models::ExternalLoginSamlTestStart> {
         let path = format!("/externallogins/{}/saml/test", seg(external_login_id));
         let query: Query = Query::new();
@@ -4117,6 +6688,18 @@ impl<'a> ExternalloginsSamlTestResource<'a> {
     /// `GET /externallogins/{externalLoginId}/saml/test/{state}`
     ///
     /// Polls a SAML test for the current administrator, provider and browser session. Requires "churchcore administer settings" permission; hidden SAML providers are allowed. An unknown state, another administrator/provider/session, an evicted test, or a test older than 600 seconds returns status=expired with HTTP 200. Success returns attribute names and all five mapping-presence checks; error returns only its status. Reads do not consume completed results. Provider lookup and SAML configuration are checked again, so deleting the provider or breaking its settings can prevent polling an existing result.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-externallogins-id-saml-test-state");
+    /// let test = client.externallogins().saml().test().get(7, "beispiel")?;
+    /// println!("{}", test.status);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, external_login_id: impl Display, state: impl Display) -> Result<models::ExternalLoginSamlTestResult> {
         let path = format!("/externallogins/{}/saml/test/{}", seg(external_login_id), seg(state));
         let query: Query = Query::new();
@@ -4143,6 +6726,19 @@ impl<'a> ExternalpostsResource<'a> {
     /// Get a list of external posts. The posts are sorted by the `createdDate` field descending.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-externalposts");
+    /// for externalpost in client.externalposts().list()? {
+    ///     println!("{}", externalpost.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Post>> {
         self.list_with(&Default::default())
     }
@@ -4233,6 +6829,18 @@ impl<'a> ExternalpostsInstancesChannelsPostsResource<'a> {
     /// `GET /externalposts/instances/{instanceGuid}/channels/{channelGuid}/posts/{postGuid}`
     ///
     /// Get one external Post
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let post = client.externalposts().instances().channels().posts().get("beispiel", "beispiel", "beispiel")?;
+    /// println!("{}", post.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, instance_guid: impl Display, channel_guid: impl Display, post_guid: impl Display) -> Result<models::Post> {
         let path = format!("/externalposts/instances/{}/channels/{}/posts/{}", seg(instance_guid), seg(channel_guid), seg(post_guid));
         let query: Query = Query::new();
@@ -4253,6 +6861,23 @@ impl<'a> FactsResource<'a> {
     /// `POST /facts`
     ///
     /// Creates a reusable metric or selection definition. Values for individual events are managed separately. Requires the "edit masterdata" permission for the service planning domain.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-facts");
+    /// let body = serde_json::json!({
+    ///     "name": "Attendance",
+    ///     "type": "number",
+    ///     "unit": "people"
+    /// });
+    /// let result = client.facts().create(&body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &serde_json::Value) -> Result<serde_json::Value> {
         let path = "/facts".to_owned();
         let query: Query = Query::new();
@@ -4267,6 +6892,17 @@ impl<'a> FactsResource<'a> {
     /// Deletes the reusable definition, all values recorded for it on events, its assignments in event templates and its fact-specific permissions. To remove only one recorded value, use `DELETE /events/{eventId}/facts/{factId}`. With `dry_run`=`true`, no deletion is performed and the API returns `409` with a deletion report even when deletable is `true`. A successful actual deletion returns `204`. Requires permission to edit service-planning master data (the "edit masterdata" permission for the service planning domain).
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.facts().delete(3)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -4289,6 +6925,18 @@ impl<'a> FactsResource<'a> {
     /// `GET /facts/{id}`
     ///
     /// Returns the reusable definition, including the numeric unit or available selection labels. This does not return values recorded for events and does not check permission to view those values.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-facts-id");
+    /// let result = client.facts().get(3)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<serde_json::Value> {
         let path = format!("/facts/{}", seg(id));
         let query: Query = Query::new();
@@ -4300,6 +6948,19 @@ impl<'a> FactsResource<'a> {
     /// `GET /facts`
     ///
     /// A fact definition describes a reusable metric (number) or selection (select), such as attendance or service type. It is separate from the value recorded for an individual event. Returns all definitions, ordered by `sortKey` ascending and then name ascending, without pagination. Definitions are not filtered by permissions to view recorded fact values.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-facts");
+    /// for fact in client.facts().list()? {
+    ///     println!("{:?}", fact);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<serde_json::Value>> {
         let path = "/facts".to_owned();
         let query: Query = Query::new();
@@ -4311,6 +6972,23 @@ impl<'a> FactsResource<'a> {
     /// `PUT /facts/{id}`
     ///
     /// Replaces the definition’s name, type, sort order and type-specific settings. Stored event values are not migrated or validated against a changed type or option list. Requires the "edit masterdata" permission for the service planning domain; permission to edit an individual fact value is not sufficient.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-facts-id");
+    /// let body = serde_json::json!({
+    ///     "name": "Attendance",
+    ///     "type": "number",
+    ///     "unit": "people"
+    /// });
+    /// let result = client.facts().update(3, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &serde_json::Value) -> Result<serde_json::Value> {
         let path = format!("/facts/{}", seg(id));
         let query: Query = Query::new();
@@ -4347,6 +7025,18 @@ impl<'a> FeatureusageResource<'a> {
     /// `POST /featureusage`
     ///
     /// Send feature usage statistics in bulk.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostFeatureusageBody = serde_json::from_value(serde_json::json!({}))?;
+    /// client.featureusage().create(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostFeatureusageBody) -> Result<()> {
         let path = "/featureusage".to_owned();
         let query: Query = Query::new();
@@ -4368,6 +7058,19 @@ impl<'a> FieldsResource<'a> {
     /// `GET /fields`
     ///
     /// Returns an array of all fields defined in ChurchTools.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-fields");
+    /// for field in client.fields().list()? {
+    ///     println!("{:?}", field);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn list(&self) -> Result<Vec<std::collections::BTreeMap<String, serde_json::Value>>> {
         let path = "/fields".to_owned();
@@ -4391,6 +7094,20 @@ impl<'a> FilesResource<'a> {
     /// Uploads files to a domain object. Requires update permission. The attachment category controls file multiplicity, image dimensions and category-specific processing.
     ///
     /// Use [`Self::create_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let file = Upload::from_path("gemeindebrief.pdf")?;
+    /// for file in client.files().create("beispiel", "42", &[file])? {
+    ///     println!("{}", file.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, domain_type: impl Display, domain_identifier: impl Display, files: &[Upload]) -> Result<Vec<models::FileUploadResult>> {
         self.create_with(domain_type, domain_identifier, files, &Default::default())
     }
@@ -4415,6 +7132,17 @@ impl<'a> FilesResource<'a> {
     /// `DELETE /files/{id}`
     ///
     /// Deletes one file or URL attachment. Requires update permission for its owning object and runs category-specific delete hooks.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.files().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/files/{}", seg(id));
         let query: Query = Query::new();
@@ -4426,6 +7154,17 @@ impl<'a> FilesResource<'a> {
     /// `DELETE /files/{domainType}/{domainIdentifier}`
     ///
     /// Deletes every file and URL attachment of the domain object. Requires update permission for the object and runs category-specific delete hooks.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.files().delete_for_object("beispiel", "42")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_for_object(&self, domain_type: impl Display, domain_identifier: impl Display) -> Result<()> {
         let path = format!("/files/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
@@ -4437,6 +7176,18 @@ impl<'a> FilesResource<'a> {
     /// `GET /files/{id}/meta`
     ///
     /// Returns normalized metadata for a file or URL attachment. Requires view permission for the file. Anonymous access depends on the attachment category.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-files-id-meta");
+    /// let meta = client.files().get_meta(1)?;
+    /// println!("{}", meta.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_meta(&self, id: impl Display) -> Result<models::CtFile> {
         let path = format!("/files/{}/meta", seg(id));
         let query: Query = Query::new();
@@ -4448,6 +7199,18 @@ impl<'a> FilesResource<'a> {
     /// `GET /files/{fileId}/metadata`
     ///
     /// Returns the raw file database record without a response envelope. Use `GET /files/{id}/meta` for normalized file metadata.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-files-id-metadata");
+    /// let metadata = client.files().get_metadata(42)?;
+    /// println!("{}", metadata.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn get_metadata(&self, file_id: impl Display) -> Result<models::LegacyFileMetadata> {
         let path = format!("/files/{}/metadata", seg(file_id));
@@ -4460,6 +7223,21 @@ impl<'a> FilesResource<'a> {
     /// `POST /files/{domainType}/{domainIdentifier}/link`
     ///
     /// Creates a URL attachment without fetching its target. Requires update permission and runs the selected category's file-save hooks.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::FileLinkCreate = serde_json::from_value(serde_json::json!({
+    ///     "url": "https://example.org/service-notes"
+    /// }))?;
+    /// let file = client.files().link("beispiel", "42", &body)?;
+    /// println!("{}", file.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn link(&self, domain_type: impl Display, domain_identifier: impl Display, body: &models::FileLinkCreate) -> Result<models::CtFile> {
         let path = format!("/files/{}/{}/link", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
@@ -4472,6 +7250,19 @@ impl<'a> FilesResource<'a> {
     /// `GET /files/{domainType}/{domainIdentifier}`
     ///
     /// Returns metadata for files and URL attachments of one domain object. Files hidden by view permissions or `showOnlyWhenEditable` are omitted. Anonymous access depends on the selected attachment category.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-files-domainType-domainIdentifier");
+    /// for file in client.files().list("beispiel", "42")? {
+    ///     println!("{}", file.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, domain_type: impl Display, domain_identifier: impl Display) -> Result<Vec<models::CtFile>> {
         let path = format!("/files/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
@@ -4483,6 +7274,18 @@ impl<'a> FilesResource<'a> {
     /// `GET /files/{domainType}`
     ///
     /// Returns file and URL-attachment metadata for one attachment category. Files hidden by view permissions or `showOnlyWhenEditable` are omitted.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-files-domainType");
+    /// let result = client.files().list_for_type("beispiel")?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_for_type(&self, domain_type: impl Display) -> Result<serde_json::Value> {
         let path = format!("/files/{}", seg(domain_type));
         let query: Query = Query::new();
@@ -4494,6 +7297,20 @@ impl<'a> FilesResource<'a> {
     /// `PATCH /files/{id}`
     ///
     /// Updates a file's display metadata and optionally copies it to another attachment context. Updating requires source update permission; copying requires source view permission and target update permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::FileUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Service notes.pdf"
+    /// }))?;
+    /// client.files().patch(1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, id: impl Display, body: &models::FileUpdate) -> Result<()> {
         let path = format!("/files/{}", seg(id));
         let query: Query = Query::new();
@@ -4506,6 +7323,20 @@ impl<'a> FilesResource<'a> {
     /// `PATCH /files/{domainType}/{domainIdentifier}`
     ///
     /// Updates the display name and sort key of every attachment of the domain object. Requires update permission and runs category-specific metadata hooks for each affected file.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::FileDomainUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Service notes.pdf"
+    /// }))?;
+    /// client.files().update_for_object("beispiel", "42", &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_for_object(&self, domain_type: impl Display, domain_identifier: impl Display, body: &models::FileDomainUpdate) -> Result<()> {
         let path = format!("/files/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
@@ -4620,6 +7451,22 @@ impl<'a> FinanceResource<'a> {
     /// `GET /finance/masterdata`
     ///
     /// Finance definitions needed for one accounting period. Clients and periods include all entries visible to the caller; account types, classes, groups and tax types are installation-wide. Accounts, cost centers, tax rates, cash discounts and transaction purposes relate to the selected period. The selected accounting period must be visible. Returns data, per-collection counts in meta and top-level UI permissions. Account balances are calculated only with global view/edit accounting period permission; otherwise account values may remain at their uncalculated defaults. Cost-center budgets are calculated independently. Unlike /finance/transactionpurposes, the preset list is restricted by period and, without global period rights, by groups allowing posting.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-masterdata");
+    /// let query = GetFinanceMasterdataQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let masterdata = client.finance().get_masterdata(&query)?;
+    /// println!("{:?}", masterdata);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_masterdata(&self, query: &GetFinanceMasterdataQuery) -> Result<models::FinanceMasterData> {
         let path = "/finance/masterdata".to_owned();
         let query: Query = query.to_query();
@@ -4655,6 +7502,22 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// `POST /finance/accountclasses`
     ///
     /// Creates finance master data. Account classes group account groups within one account type. The hierarchy is account type → account class → account group → account. Requires finance “edit masterdata”. Names must be unique across this resource. The successful response uses HTTP 200.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountClassCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountTypeId": 3,
+    ///     "name": "Anlagevermögen"
+    /// }))?;
+    /// let result = client.finance().accountclasses().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::AccountClassCreate) -> Result<models::AccountClass> {
         let path = "/finance/accountclasses".to_owned();
         let query: Query = Query::new();
@@ -4669,6 +7532,17 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// Deletes this definition if no account groups reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accountclasses().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -4691,6 +7565,18 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// `GET /finance/accountclasses/{id}`
     ///
     /// Account classes group account groups within one account type. The hierarchy is account type → account class → account group → account. Returns one definition by ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountclasses-id");
+    /// let accountclass = client.finance().accountclasses().get(1)?;
+    /// println!("{}", accountclass.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::AccountClass> {
         let path = format!("/finance/accountclasses/{}", seg(id));
         let query: Query = Query::new();
@@ -4702,6 +7588,19 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// `GET /finance/accountclasses`
     ///
     /// Account classes group account groups within one account type. The hierarchy is account type → account class → account group → account. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountclasses");
+    /// for accountclass in client.finance().accountclasses().list()? {
+    ///     println!("{}", accountclass.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::AccountClass>> {
         let path = "/finance/accountclasses".to_owned();
         let query: Query = Query::new();
@@ -4713,6 +7612,22 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// `PUT /finance/accountclasses/{id}`
     ///
     /// Replaces the editable fields of this definition. Requires finance “edit masterdata”. Names must remain unique. Omitted optional fields are reset to their defaults. includeProfitLoss defaults to false and may be enabled on at most one class.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountClassUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountTypeId": 3,
+    ///     "name": "Anlagevermögen"
+    /// }))?;
+    /// let result = client.finance().accountclasses().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::AccountClassUpdate) -> Result<models::AccountClass> {
         let path = format!("/finance/accountclasses/{}", seg(id));
         let query: Query = Query::new();
@@ -4749,6 +7664,23 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// `POST /finance/accountgroups`
     ///
     /// Creates finance master data. Account groups collect individual ledger accounts within one account class. isCashAssetAccount identifies groups of cash or bank accounts. Requires finance “edit masterdata”. Names must be unique across this resource. The successful response uses HTTP 200.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountGroupCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountClassId": 2,
+    ///     "isCashAssetAccount": false,
+    ///     "name": "Sachanlagen"
+    /// }))?;
+    /// let result = client.finance().accountgroups().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::AccountGroupCreate) -> Result<models::AccountGroup> {
         let path = "/finance/accountgroups".to_owned();
         let query: Query = Query::new();
@@ -4763,6 +7695,17 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// Deletes this definition if no accounts reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accountgroups().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -4785,6 +7728,18 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// `GET /finance/accountgroups/{id}`
     ///
     /// Account groups collect individual ledger accounts within one account class. isCashAssetAccount identifies groups of cash or bank accounts. Returns one definition by ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountgroups-id");
+    /// let accountgroup = client.finance().accountgroups().get(1)?;
+    /// println!("{}", accountgroup.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::AccountGroup> {
         let path = format!("/finance/accountgroups/{}", seg(id));
         let query: Query = Query::new();
@@ -4796,6 +7751,19 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// `GET /finance/accountgroups`
     ///
     /// Account groups collect individual ledger accounts within one account class. isCashAssetAccount identifies groups of cash or bank accounts. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountgroups");
+    /// for accountgroup in client.finance().accountgroups().list()? {
+    ///     println!("{}", accountgroup.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::AccountGroup>> {
         let path = "/finance/accountgroups".to_owned();
         let query: Query = Query::new();
@@ -4807,6 +7775,23 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// `PUT /finance/accountgroups/{id}`
     ///
     /// Replaces the editable fields of this definition. Requires finance “edit masterdata”. Names must remain unique. Omitted optional fields are reset to their defaults. sortKey defaults to 0.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountGroupUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountClassId": 2,
+    ///     "isCashAssetAccount": false,
+    ///     "name": "Sachanlagen"
+    /// }))?;
+    /// let result = client.finance().accountgroups().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::AccountGroupUpdate) -> Result<models::AccountGroup> {
         let path = format!("/finance/accountgroups/{}", seg(id));
         let query: Query = Query::new();
@@ -4851,6 +7836,25 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// `POST /finance/accountingperiods`
     ///
     /// Creates an accounting period and optionally copies master data and transfers opening balances. Requires finance “edit masterdata”. The combination of clientId, startDate and endDate must be unique. Returns HTTP 201. Exceptions during creation, copying or balance transfer are rolled back and reported as HTTP 400, including a missing client.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountingPeriodCreate = serde_json::from_value(serde_json::json!({
+    ///     "clientId": 1,
+    ///     "endDate": "2026-12-31",
+    ///     "incrementDocumentNumber": true,
+    ///     "isClosed": false,
+    ///     "startDate": "2026-01-01"
+    /// }))?;
+    /// let result = client.finance().accountingperiods().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::AccountingPeriodCreate) -> Result<models::AccountingPeriod> {
         let path = "/finance/accountingperiods".to_owned();
         let query: Query = Query::new();
@@ -4865,6 +7869,17 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// Deletes a period when its accounts no longer block deletion. Requires finance “edit masterdata”. The last accounting period in the installation cannot be deleted. Cost centers are treated as removable dependencies; associated authorization entries and donation receipts are cleaned up. dry_run=true returns the HTTP 409 conflict report without deleting, including when deletion is allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accountingperiods().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -4887,6 +7902,17 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// `DELETE /finance/accountingperiods/{id}/taxrates`
     ///
     /// Deletes all tax rates whose receiving accounts belong to this accounting period. Requires finance “edit masterdata”. The operation first clears the default taxRateId of every account in the period, then deletes its tax rates in one transaction. References from transactions prevent deletion and return 400. An unknown or empty period succeeds without changes. Unlike single deletion, this operation does not support dry_run.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accountingperiods().delete_taxrates(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_taxrates(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/taxrates", seg(id));
         let query: Query = Query::new();
@@ -4898,6 +7924,18 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// `GET /finance/accountingperiods/{id}`
     ///
     /// Returns one accounting period visible to the caller through global or group-internal finance permissions. A period rejected by the visibility check returns 403 before it is loaded.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id");
+    /// let accountingperiod = client.finance().accountingperiods().get(1)?;
+    /// println!("{}", accountingperiod.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::AccountingPeriod> {
         let path = format!("/finance/accountingperiods/{}", seg(id));
         let query: Query = Query::new();
@@ -4909,6 +7947,19 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// `GET /finance/accountingperiods`
     ///
     /// An accounting period is the date range for one finance client’s books, usually a financial year. Accounts and cost centers belong to a period. Closing a period prevents ordinary account and transaction changes; it is separate from making individual transactions immutable. Returns an unpaginated list of periods visible through global finance permissions or group-internal cost-center rights, ordered by startDate ascending. Finance master-data editors can see all periods. meta.count is the number returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods");
+    /// for accountingperiod in client.finance().accountingperiods().list()? {
+    ///     println!("{}", accountingperiod.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::AccountingPeriod>> {
         let path = "/finance/accountingperiods".to_owned();
         let query: Query = Query::new();
@@ -4922,6 +7973,19 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// Returns a page of supporting documents for an accounting period. Requires permission to view or edit the whole accounting period; access to individual transactions alone is insufficient for this list. Explicit order_by=submittedDate sorts by submission date and then bill ID in the same direction. Without order_by no order is guaranteed. The only supported query parameters are pagination and ordering; submitter/date/text filters are not exposed by this endpoint.
     ///
     /// Use [`Self::list_bills_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-bills");
+    /// for bill in client.finance().accountingperiods().list_bills(1)? {
+    ///     println!("{}", bill.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_bills(&self, id: impl Display) -> Result<Vec<models::Bill>> {
         self.list_bills_with(id, &Default::default())
     }
@@ -4944,6 +8008,19 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// `GET /finance/accountingperiods/{id}/userrules`
     ///
     /// Returns all suggestion rules for an accounting period, ordered by sortKey ascending, without pagination. Both reading and replacing these rules require edit accounting period permission. meta.count is the number returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-userrules");
+    /// for userrule in client.finance().accountingperiods().list_userrules(1)? {
+    ///     println!("{}", userrule.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_userrules(&self, id: impl Display) -> Result<Vec<models::UserRule>> {
         let path = format!("/finance/accountingperiods/{}/userrules", seg(id));
         let query: Query = Query::new();
@@ -4955,6 +8032,25 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// `PUT /finance/accountingperiods/{id}`
     ///
     /// Replaces period dates, client, closed state and document-number behavior. Requires finance “edit masterdata”; ordinary edit accounting period permission alone is insufficient. The date/client combination must remain unique. Optionally transfer opening balances or, when closing, make transactions immutable with setImmutability. Reopening does not make transactions editable again. Period settings are saved before these additional actions execute.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountingPeriodUpdate = serde_json::from_value(serde_json::json!({
+    ///     "clientId": 1,
+    ///     "endDate": "2026-12-31",
+    ///     "incrementDocumentNumber": true,
+    ///     "isClosed": false,
+    ///     "startDate": "2026-01-01"
+    /// }))?;
+    /// let result = client.finance().accountingperiods().update(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::AccountingPeriodUpdate) -> Result<models::AccountingPeriod> {
         let path = format!("/finance/accountingperiods/{}", seg(id));
         let query: Query = Query::new();
@@ -4967,6 +8063,36 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// `PUT /finance/accountingperiods/{id}/userrules`
     ///
     /// Replaces the entire rule set for an accounting period and returns the new records ordered by sortKey. Send rules: [] to remove all rules. Existing IDs are discarded and newly inserted rules receive new IDs. Requires edit accounting period permission. This saves rules only; it does not regenerate existing movement suggestions. Deletion and insertion are not enclosed in a single transaction.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::UserRulesUpdate = serde_json::from_value(serde_json::json!({
+    ///     "rules": [
+    ///         {
+    ///             "accountIds": [
+    ///                 5
+    ///             ],
+    ///             "allAccounts": false,
+    ///             "isIncome": true,
+    ///             "operator": "contains",
+    ///             "searchString": "Donation",
+    ///             "searchType": "purpose",
+    ///             "sortKey": 0,
+    ///             "suggestionType": "costCenterId",
+    ///             "suggestionValue": "8"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// for accountingperiod in client.finance().accountingperiods().update_userrules(1, &body)? {
+    ///     println!("{}", accountingperiod.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_userrules(&self, id: impl Display, body: &models::UserRulesUpdate) -> Result<Vec<models::UserRule>> {
         let path = format!("/finance/accountingperiods/{}/userrules", seg(id));
         let query: Query = Query::new();
@@ -5028,6 +8154,17 @@ impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
     /// `DELETE /finance/accountingperiods/{id}/accounts`
     ///
     /// Deletes all accounts of one accounting period. Requires finance “edit masterdata”. Existing transactions using any of these accounts as account or contra account prevent deletion with HTTP 400. The service removes associated bank statements and transaction purposes, clears account tax-rate links and deletes the period’s tax rates before deleting the accounts in a transaction. This endpoint does not support dry_run. It does not require the period to exist or be open.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accountingperiods().accounts().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/accounts", seg(id));
         let query: Query = Query::new();
@@ -5041,6 +8178,19 @@ impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
     /// Returns a page of imported movements, ordered by documentDate and then numberInStatement ascending. Requires edit accounting period permission for the actual account. Suggestions are always serialized; include[]=bills expands their attached documents. The period ID in the URL is not cross-checked against the account.
     ///
     /// Use [`Self::list_movements_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-movements");
+    /// for movement in client.finance().accountingperiods().accounts().list_movements(1, 42)? {
+    ///     println!("{}", movement.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_movements(&self, id: impl Display, account_id: impl Display) -> Result<Vec<models::StatementMovement>> {
         self.list_movements_with(id, account_id, &Default::default())
     }
@@ -5063,6 +8213,19 @@ impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
     /// `GET /finance/accountingperiods/{id}/accounts/statements`
     ///
     /// Returns per-account movement statistics across all imported statements of the accounting period. Only accounts that have at least one statement movement are included. For each account the number of movements is grouped by state (`open`, `booked`, `ignored`); a state key is only present when the account has movements in that state. Requires edit accounting period permission. The response has no outer meta object and no guaranteed account order.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-statements");
+    /// for statement in client.finance().accountingperiods().accounts().list_statements(1)? {
+    ///     println!("{}", statement.account_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_statements(&self, id: impl Display) -> Result<Vec<models::AccountStatementStatistics>> {
         let path = format!("/finance/accountingperiods/{}/accounts/statements", seg(id));
         let query: Query = Query::new();
@@ -5111,6 +8274,19 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsResource<'a> {
     /// `GET /finance/accountingperiods/{id}/accounts/{accountId}/statements`
     ///
     /// Returns all statements for the account, sorted by startDate descending, without pagination. Each statement includes counts for open, booked and ignored movements and their sum. Requires edit accounting period permission. An account outside the path’s accounting period returns HTTP 404.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-statements");
+    /// for statement in client.finance().accountingperiods().accounts().statements().list(1, 5)? {
+    ///     println!("{}", statement.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, id: impl Display, account_id: impl Display) -> Result<Vec<models::AccountStatement>> {
         let path = format!("/finance/accountingperiods/{}/accounts/{}/statements", seg(id), seg(account_id));
         let query: Query = Query::new();
@@ -5131,6 +8307,21 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     /// `POST /finance/accountingperiods/{id}/accounts/{accountId}/statements/{statementId}/movements/{movementId}`
     ///
     /// Changes the movement state and returns its associated transaction, or an empty array when none is linked. A transition from any state other than booked to booked creates a new transaction from the current suggestions. Required ordinary-booking fields are documentDate, accountId, contraAccountId and amount, plus documentNumber unless automatic numbering is active. Split suggestions create a split booking and return its first non-tax child. Switching to open or ignored does not undo the existing transaction; booking again can create another transaction. Requires edit accounting period permission for the movement’s actual period; parent IDs in the URL are not cross-checked.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::StatementMovementUpdate = serde_json::from_value(serde_json::json!({
+    ///     "state": "beispiel"
+    /// }))?;
+    /// let result = client.finance().accountingperiods().accounts().statements().movements().create(1, 42, 7, 123, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, id: impl Display, account_id: impl Display, statement_id: impl Display, movement_id: impl Display, body: &models::StatementMovementUpdate) -> Result<serde_json::Value> {
         let path = format!("/finance/accountingperiods/{}/accounts/{}/statements/{}/movements/{}", seg(id), seg(account_id), seg(statement_id), seg(movement_id));
         let query: Query = Query::new();
@@ -5145,6 +8336,19 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     /// Returns a page of imported movements, ordered by documentDate and then numberInStatement ascending. Requires edit accounting period permission for the actual account. Suggestions are always serialized; include[]=bills expands their attached documents. The statement must belong to the URL period (otherwise HTTP 404); the URL accountId is not cross-checked.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-statements-id-movements");
+    /// for movement in client.finance().accountingperiods().accounts().statements().movements().list(1, 42, 7)? {
+    ///     println!("{}", movement.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, id: impl Display, account_id: impl Display, statement_id: impl Display) -> Result<Vec<models::StatementMovement>> {
         self.list_with(id, account_id, statement_id, &Default::default())
     }
@@ -5167,6 +8371,25 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     /// `PATCH /finance/accountingperiods/{id}/accounts/{accountId}/statements/{statementId}/movements/{movementId}/suggestions`
     ///
     /// Applies incremental edits to a movement’s booking suggestions. Matches existing fields by name and splitKey. Non-empty values create or change a suggestion; an empty string removes it. Other suggestions are retained. Modified values receive confidence 100 and userOverwrite=true. Repeating an identical value leaves metadata unchanged. Requires edit accounting period permission for the movement’s actual period. Parent IDs in the URL are not cross-checked. Split keys require the split-booking feature.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::MovementSuggestionsUpdate = serde_json::from_value(serde_json::json!({
+    ///     "suggestions": [
+    ///         {
+    ///             "name": "costCenterId",
+    ///             "value": "8"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// client.finance().accountingperiods().accounts().statements().movements().patch_suggestions(1, 7, 7, 7, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch_suggestions(&self, id: impl Display, account_id: impl Display, statement_id: impl Display, movement_id: impl Display, body: &models::MovementSuggestionsUpdate) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/accounts/{}/statements/{}/movements/{}/suggestions", seg(id), seg(account_id), seg(statement_id), seg(movement_id));
         let query: Query = Query::new();
@@ -5212,6 +8435,19 @@ impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
     /// `POST /finance/accountingperiods/{id}/statements`
     ///
     /// Parses the first uploaded bank statement file and returns a preview without importing it. Send the file in multipart field files[]. Supported formats are MT940, CAMT and PayPal CSV; a ZIP can combine top-level files of the same type and account identifier. Requires edit accounting period permission for the path ID. Duplicate comparison is currently performed across all stored accounts in the date range, so the counts can differ from a later account-specific import. To import, upload the file to /files/statement/{accountId}.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let file = Upload::from_path("kontoauszug.xml")?;
+    /// let result = client.finance().accountingperiods().statements().create(1, &[file])?;
+    /// println!("{}", result.duplicates);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, id: impl Display, files: &[Upload]) -> Result<models::AccountStatementPreview> {
         let path = format!("/finance/accountingperiods/{}/statements", seg(id));
         let query: Query = Query::new();
@@ -5225,6 +8461,17 @@ impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
     /// `DELETE /finance/accountingperiods/{id}/statements/{statementId}`
     ///
     /// Deletes an imported statement, its movements, suggestions and source file. Finance transactions already created from the movements remain. Bills linked to deleted suggestions are also deleted. Requires edit accounting period permission for the statement’s actual period; the period ID in the URL is not cross-checked. There is no dry-run mode.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accountingperiods().statements().delete(1, 1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display, statement_id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/statements/{}", seg(id), seg(statement_id));
         let query: Query = Query::new();
@@ -5236,6 +8483,17 @@ impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
     /// `POST /finance/accountingperiods/{id}/statements/{statementId}/suggestions`
     ///
     /// Runs the configured suggestion generators over every movement of the statement, including movements already booked or ignored. New suggestions are merged with existing ones by field name and split key; an existing suggestion is replaced only by a higher-confidence suggestion, so this is not a complete reset. Invalid account references are removed afterwards. Requires edit accounting period permission for the statement’s actual period. The period ID in the URL is not cross-checked. Returns HTTP 204 without a body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accountingperiods().statements().suggestions(1, 7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn suggestions(&self, id: impl Display, statement_id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/statements/{}/suggestions", seg(id), seg(statement_id));
         let query: Query = Query::new();
@@ -5247,6 +8505,20 @@ impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
     /// `PUT /finance/accountingperiods/{id}/statements/{statementId}`
     ///
     /// Renames an imported statement and returns HTTP 204 without a body. Requires edit accounting period permission for the statement’s actual period. The period ID in the URL is not cross-checked by this operation.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountStatementUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "September 2026"
+    /// }))?;
+    /// client.finance().accountingperiods().statements().update(1, 1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, statement_id: impl Display, body: &models::AccountStatementUpdate) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/statements/{}", seg(id), seg(statement_id));
         let query: Query = Query::new();
@@ -5268,6 +8540,27 @@ impl<'a> FinanceAccountsResource<'a> {
     /// `POST /finance/accounts/bulkcreate`
     ///
     /// Imports a JSON array of account definitions. Requires finance “edit masterdata”. Existing accounts are matched by account number and accounting period and updated; other entries are created. Optional fields use the same false/null defaults as single creation, also when replacing existing accounts. Repeated raw period/number pairs in the request collapse to the last entry. Returns HTTP 200 and meta.count for the processed entries. Every affected period must be open. The bulk path does not apply the single-update donation-account protection.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!([
+    ///     {
+    ///         "accountGroupId": 4,
+    ///         "name": "Donations",
+    ///         "number": "8200",
+    ///         "accountingPeriodId": 5
+    ///     }
+    /// ]);
+    /// for account in client.finance().accounts().bulkcreate(&body)? {
+    ///     println!("{}", account.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn bulkcreate(&self, body: &serde_json::Value) -> Result<Vec<models::Account>> {
         let path = "/finance/accounts/bulkcreate".to_owned();
         let query: Query = Query::new();
@@ -5280,6 +8573,24 @@ impl<'a> FinanceAccountsResource<'a> {
     /// `POST /finance/accounts`
     ///
     /// Creates a ledger account in an open accounting period. Requires finance “edit masterdata”. Name and number must each be unique in that period; account number 9999 is reserved. Returns HTTP 200 with the new account, initially with balance 0.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountGroupId": 4,
+    ///     "name": "Donations",
+    ///     "number": "8200",
+    ///     "accountingPeriodId": 5
+    /// }))?;
+    /// let result = client.finance().accounts().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::AccountCreate) -> Result<models::Account> {
         let path = "/finance/accounts".to_owned();
         let query: Query = Query::new();
@@ -5294,6 +8605,17 @@ impl<'a> FinanceAccountsResource<'a> {
     /// Deletes an account if no transactions, transaction purposes, tax rates or cash discounts require it. Requires finance “edit masterdata”. Associated bank statements, account movements and transaction suggestions are removed. dry_run=true returns the HTTP 409 conflict report without deleting, including when deletion is allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accounts().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -5316,6 +8638,21 @@ impl<'a> FinanceAccountsResource<'a> {
     /// `POST /finance/accounts/exporttemplate`
     ///
     /// Downloads an XLSX workbook with translated column headings and import instructions. Requires finance “edit masterdata”. Select a finance template, existing accounts by year and optional client, or omit the selection for an empty workbook. Only accounting periods visible to the caller contribute existing accounts.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountImportTemplateCreate = serde_json::from_value(serde_json::json!({
+    ///     "clientId": 1
+    /// }))?;
+    /// let data = client.finance().accounts().exporttemplate(&body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn exporttemplate(&self, body: &models::AccountImportTemplateCreate) -> Result<Vec<u8>> {
         let path = "/finance/accounts/exporttemplate".to_owned();
         let query: Query = Query::new();
@@ -5328,6 +8665,18 @@ impl<'a> FinanceAccountsResource<'a> {
     /// `GET /finance/accounts/{id}`
     ///
     /// Returns one visible ledger account with calculated balances, preceding-period budget values and posting permission. Visibility follows the same rules as the collection endpoint. An unknown ID returns 404; an existing but inaccessible account returns 403.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accounts-id");
+    /// let account = client.finance().accounts().get(1)?;
+    /// println!("{}", account.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Account> {
         let path = format!("/finance/accounts/{}", seg(id));
         let query: Query = Query::new();
@@ -5339,6 +8688,22 @@ impl<'a> FinanceAccountsResource<'a> {
     /// `GET /finance/accounts/csv`
     ///
     /// Downloads visible accounts of one accounting period. Requires global finance “view accounting period” for that period. Columns contain number, name, annotation, budget, account-group name, account function, tax type/rate and identifier. Headings use the installation language. Budgets use formatted major currency units. CSV uses semicolons and a UTF-8 BOM. Returns an attachment without a JSON wrapper.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceAccountsCsvQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let data = client.finance().accounts().get_csv(&query)?;
+    /// std::fs::write("ergebnis.csv", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_csv(&self, query: &GetFinanceAccountsCsvQuery) -> Result<Vec<u8>> {
         let path = "/finance/accounts/csv".to_owned();
         let query: Query = query.to_query();
@@ -5350,6 +8715,22 @@ impl<'a> FinanceAccountsResource<'a> {
     /// `GET /finance/accounts/export`
     ///
     /// Downloads visible accounts of one accounting period. Requires global finance “view accounting period” for that period. Columns contain number, name, annotation, budget, account-group name, account function, tax type/rate and identifier. Headings use the installation language. Budgets use formatted major currency units. CSV uses semicolons and a UTF-8 BOM. Returns an attachment without a JSON wrapper.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceAccountsExportQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let data = client.finance().accounts().get_export(&query)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_export(&self, query: &GetFinanceAccountsExportQuery) -> Result<Vec<u8>> {
         let path = "/finance/accounts/export".to_owned();
         let query: Query = query.to_query();
@@ -5363,6 +8744,19 @@ impl<'a> FinanceAccountsResource<'a> {
     /// A ledger account belongs to one accounting period and one account group. The group links it to an account class and account type. Transactions post amounts between an account and a contra account. Amounts and budgets use integer minor currency units, for example cents. Returns an unpaginated list filtered by finance master-data permission, accounting-period permissions or access through cost centers and transaction purposes. Accounts are sorted by number across all selected periods, without a separate period sort. meta.count is the number returned. Balances and preceding-period budgets are calculated by default.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accounts");
+    /// for account in client.finance().accounts().list()? {
+    ///     println!("{}", account.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Account>> {
         self.list_with(&Default::default())
     }
@@ -5385,6 +8779,23 @@ impl<'a> FinanceAccountsResource<'a> {
     /// `PUT /finance/accounts/{id}`
     ///
     /// Replacement values for an account in an open accounting period. The period cannot be changed here. Omitted optional fields reset to false or null. A donation account with existing donation transactions cannot have isDonationAccount disabled through this single-update endpoint. Requires finance “edit masterdata”. Returns recalculated balances and posting permission. isMandatoryEubpLocked cannot be changed by this operation.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountGroupId": 4,
+    ///     "name": "Donations",
+    ///     "number": "8200"
+    /// }))?;
+    /// let result = client.finance().accounts().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::AccountUpdate) -> Result<models::Account> {
         let path = format!("/finance/accounts/{}", seg(id));
         let query: Query = Query::new();
@@ -5475,6 +8886,21 @@ impl<'a> FinanceAccounttypesResource<'a> {
     /// `POST /finance/accounttypes`
     ///
     /// Creates finance master data. Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Requires finance “edit masterdata”. Names must be unique across this resource. The successful response uses HTTP 200.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountTypeCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Aktiva"
+    /// }))?;
+    /// let result = client.finance().accounttypes().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::AccountTypeCreate) -> Result<models::AccountType> {
         let path = "/finance/accounttypes".to_owned();
         let query: Query = Query::new();
@@ -5489,6 +8915,17 @@ impl<'a> FinanceAccounttypesResource<'a> {
     /// Deletes this definition if no account classes reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accounttypes().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -5511,6 +8948,18 @@ impl<'a> FinanceAccounttypesResource<'a> {
     /// `GET /finance/accounttypes/{id}`
     ///
     /// Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns one definition by ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accounttypes-id");
+    /// let accounttype = client.finance().accounttypes().get(1)?;
+    /// println!("{}", accounttype.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::AccountType> {
         let path = format!("/finance/accounttypes/{}", seg(id));
         let query: Query = Query::new();
@@ -5522,6 +8971,19 @@ impl<'a> FinanceAccounttypesResource<'a> {
     /// `GET /finance/accounttypes`
     ///
     /// Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accounttypes");
+    /// for accounttype in client.finance().accounttypes().list()? {
+    ///     println!("{}", accounttype.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::AccountType>> {
         let path = "/finance/accounttypes".to_owned();
         let query: Query = Query::new();
@@ -5533,6 +8995,21 @@ impl<'a> FinanceAccounttypesResource<'a> {
     /// `PUT /finance/accounttypes/{id}`
     ///
     /// Replaces the editable fields of this definition. Requires finance “edit masterdata”. Names must remain unique. Omitted optional fields are reset to their defaults. Omitting balanceType changes the type to profit-and-loss.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountTypeUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Aktiva"
+    /// }))?;
+    /// let result = client.finance().accounttypes().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::AccountTypeUpdate) -> Result<models::AccountType> {
         let path = format!("/finance/accounttypes/{}", seg(id));
         let query: Query = Query::new();
@@ -5569,6 +9046,25 @@ impl<'a> FinanceBillsResource<'a> {
     /// `POST /finance/bills`
     ///
     /// Registers an existing uploaded file as a supporting document. Exactly one booking link is required. The linked transaction, all split components, or the account movement behind a suggestion must belong to accountingPeriodId. Ordinary and split transactions must be mutable and pass booking authorization. The submitting person must be visible. Returns the stored bill including file download metadata.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({
+    ///     "accountingPeriodId": 1,
+    ///     "fileId": 21,
+    ///     "submittedDate": "2026-09-14",
+    ///     "submittedPid": 42,
+    ///     "transactionId": 12
+    /// });
+    /// let result = client.finance().bills().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &serde_json::Value) -> Result<models::Bill> {
         let path = "/finance/bills".to_owned();
         let query: Query = Query::new();
@@ -5583,6 +9079,17 @@ impl<'a> FinanceBillsResource<'a> {
     /// Deletes a supporting document and its attached file, leaving the booking itself intact. Requires bill-update permissions and validates the existing booking links; immutable ordinary transactions or split components prevent deletion. dry_run=true performs the same checks and returns HTTP 409 with deletion information without deleting.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().bills().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -5605,6 +9112,18 @@ impl<'a> FinanceBillsResource<'a> {
     /// `GET /finance/bills/{id}`
     ///
     /// Returns one supporting document. Access is granted through view/edit permission for its accounting period or visibility of its directly linked ordinary transaction. Split transactions and booking suggestions do not provide this additional individual-access route.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-bills-id");
+    /// let bill = client.finance().bills().get(1)?;
+    /// println!("{}", bill.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Bill> {
         let path = format!("/finance/bills/{}", seg(id));
         let query: Query = Query::new();
@@ -5616,6 +9135,22 @@ impl<'a> FinanceBillsResource<'a> {
     /// `PUT /finance/bills/{id}`
     ///
     /// Updates submission date/person and optionally renames the file or changes its booking link. Requires edit permission for the accounting period or update access to the directly linked ordinary transaction. A directly linked immutable transaction prevents changes. Newly supplied transaction/split links are checked for authorization, immutability and accounting-period consistency. Omitted or null link IDs do not detach the document. Accounting period and file attachment remain fixed.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::BillUpdate = serde_json::from_value(serde_json::json!({
+    ///     "submittedDate": "2026-09-14",
+    ///     "submittedPid": 42
+    /// }))?;
+    /// let result = client.finance().bills().update(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::BillUpdate) -> Result<models::Bill> {
         let path = format!("/finance/bills/{}", seg(id));
         let query: Query = Query::new();
@@ -5652,6 +9187,23 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// `POST /finance/cashdiscounts`
     ///
     /// A cash discount defines a percentage for early-payment discounts and the ledger account to which the discount is posted. Its accounting period is determined by that account. Requires finance “edit masterdata”. Returns HTTP 200 on success.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CashDiscountCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountId": 5,
+    ///     "note": "Skonto 2%",
+    ///     "rate": 2
+    /// }))?;
+    /// let result = client.finance().cashdiscounts().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::CashDiscountCreate) -> Result<models::CashDiscount> {
         let path = "/finance/cashdiscounts".to_owned();
         let query: Query = Query::new();
@@ -5666,6 +9218,17 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// Deletes this cash discount if no transactions reference it. Requires finance “edit masterdata”. dry_run=true returns the HTTP 409 conflict report without deleting, also when deletion is allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().cashdiscounts().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -5688,6 +9251,18 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// `GET /finance/cashdiscounts/{id}`
     ///
     /// A cash discount defines a percentage for early-payment discounts and the ledger account to which the discount is posted. Its accounting period is determined by that account. Returns one definition by ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-cashdiscounts-id");
+    /// let cashdiscount = client.finance().cashdiscounts().get(1)?;
+    /// println!("{}", cashdiscount.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::CashDiscount> {
         let path = format!("/finance/cashdiscounts/{}", seg(id));
         let query: Query = Query::new();
@@ -5701,6 +9276,19 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// A cash discount defines a percentage for early-payment discounts and the ledger account to which the discount is posted. Its accounting period is determined by that account. Returns an unpaginated list. Optionally restrict results to the linked accounts’ accounting period. No result order is guaranteed; an unknown period returns an empty list. meta.count is the number returned.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-cashdiscounts");
+    /// for cashdiscount in client.finance().cashdiscounts().list()? {
+    ///     println!("{}", cashdiscount.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::CashDiscount>> {
         self.list_with(&Default::default())
     }
@@ -5723,6 +9311,23 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// `PUT /finance/cashdiscounts/{id}`
     ///
     /// Replaces this cash discount. Requires finance “edit masterdata”. All required creation fields must be supplied again.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CashDiscountUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountId": 5,
+    ///     "note": "Skonto 2%",
+    ///     "rate": 2
+    /// }))?;
+    /// let result = client.finance().cashdiscounts().update(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::CashDiscountUpdate) -> Result<models::CashDiscount> {
         let path = format!("/finance/cashdiscounts/{}", seg(id));
         let query: Query = Query::new();
@@ -5774,6 +9379,22 @@ impl<'a> FinanceClientsResource<'a> {
     /// `POST /finance/clients`
     ///
     /// Creates a finance client. Requires finance “edit masterdata” and an available client slot in the installation license. Returns HTTP 201 with the treasurer expanded, if assigned. Optional fields default to null.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ClientCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Example congregation",
+    ///     "sortKey": 0
+    /// }))?;
+    /// let result = client.finance().clients().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ClientCreate) -> Result<models::Client> {
         let path = "/finance/clients".to_owned();
         let query: Query = Query::new();
@@ -5788,6 +9409,17 @@ impl<'a> FinanceClientsResource<'a> {
     /// Deletes a finance client if no accounting periods reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, also when deletion would be allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().clients().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -5810,6 +9442,18 @@ impl<'a> FinanceClientsResource<'a> {
     /// `GET /finance/clients/{id}`
     ///
     /// Returns a finance client visible under the same rules as the collection endpoint. An unknown or invisible client returns 404. A finance client is the organizational entity whose books are kept separately, for example a congregation or a charitable organization. Each client owns accounting periods, and those periods own its accounts and cost centers. It is unrelated to an OAuth application client.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-clients-id");
+    /// let item = client.finance().clients().get(1)?;
+    /// println!("{}", item.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Client> {
         let path = format!("/finance/clients/{}", seg(id));
         let query: Query = Query::new();
@@ -5821,6 +9465,19 @@ impl<'a> FinanceClientsResource<'a> {
     /// `GET /finance/clients`
     ///
     /// A finance client is the organizational entity whose books are kept separately, for example a congregation or a charitable organization. Each client owns accounting periods, and those periods own its accounts and cost centers. It is unrelated to an OAuth application client. Returns an unpaginated list ordered by sortKey. Users with finance “edit masterdata” see all clients; other callers see clients belonging to their visible accounting periods. meta.count is the number returned. The treasurer is expanded to a person domain object.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-clients");
+    /// for item in client.finance().clients().list()? {
+    ///     println!("{}", item.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Client>> {
         let path = "/finance/clients".to_owned();
         let query: Query = Query::new();
@@ -5832,6 +9489,22 @@ impl<'a> FinanceClientsResource<'a> {
     /// `PUT /finance/clients/{id}`
     ///
     /// Replacement finance-client data. name and sortKey are required; omitted optional fields are cleared, including contact, DATEV and euBP fields. Requires finance “edit masterdata”. The client name must remain unique.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ClientUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Example congregation",
+    ///     "sortKey": 0
+    /// }))?;
+    /// let result = client.finance().clients().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::ClientUpdate) -> Result<models::Client> {
         let path = format!("/finance/clients/{}", seg(id));
         let query: Query = Query::new();
@@ -5868,6 +9541,28 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// `POST /finance/costcenters/bulkcreate`
     ///
     /// Creates cost centers in one database transaction and returns HTTP 201. Requires finance “edit masterdata”; every target period must exist and be open. Each item uses the creation fields, including optional annotation. The bulk controller does not run the single-create uniqueness constraint. Results contain stored entities without the expanded group property. meta.count is the number created.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CostCenterBulkCreate = serde_json::from_value(serde_json::json!({
+    ///     "costCenters": [
+    ///         {
+    ///             "accountingPeriodId": 1,
+    ///             "name": "Kostenstelle Sonstige",
+    ///             "number": "802"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// for costcenter in client.finance().costcenters().bulkcreate(&body)? {
+    ///     println!("{:?}", costcenter.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn bulkcreate(&self, body: &models::CostCenterBulkCreate) -> Result<Vec<models::CostCenterStored>> {
         let path = "/finance/costcenters/bulkcreate".to_owned();
         let query: Query = Query::new();
@@ -5880,6 +9575,23 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// `POST /finance/costcenters`
     ///
     /// Creates a cost center. A cost center assigns income and expenses to a purpose, project or group within one accounting period. Budgets and balances use integer minor currency units (for example cents). Linking a group also enables access through group-internal finance permissions. Requires finance “edit masterdata” and an open accounting period. Name and number must each be unique in that period. Returns HTTP 200. budgetBalance initially equals budget; spent and previous-period values are not yet calculated.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CostCenterCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountingPeriodId": 1,
+    ///     "name": "Kostenstelle Sonstige",
+    ///     "number": "802"
+    /// }))?;
+    /// let result = client.finance().costcenters().create(&body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::CostCenterCreate) -> Result<models::CostCenter> {
         let path = "/finance/costcenters".to_owned();
         let query: Query = Query::new();
@@ -5894,6 +9606,17 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// Deletes a cost center if no transactions or transaction purposes reference it. Requires finance “edit masterdata”. Linked transaction suggestions are removed. dry_run=true returns the HTTP 409 report without deleting, including when deletion would be allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().costcenters().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -5916,6 +9639,18 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// `GET /finance/costcenters/{id}`
     ///
     /// Returns one visible cost center and its linked group. Visibility follows the same period and group permissions as the collection endpoint. A missing or invisible ID is rejected with 403 before the entity lookup. Budget values may be null when no budget is configured.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-costcenters-id");
+    /// let costcenter = client.finance().costcenters().get(1)?;
+    /// println!("{:?}", costcenter.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::CostCenter> {
         let path = format!("/finance/costcenters/{}", seg(id));
         let query: Query = Query::new();
@@ -5927,6 +9662,22 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// `GET /finance/costcenters/export`
     ///
     /// Downloads the visible cost centers of one accounting period as CSV or XLSX. Requires global finance “view accounting period” for the selected period. Columns contain ID, number, name, budget and linked group ID. Headings are translated using the installation language. CSV uses semicolons and a UTF-8 BOM; budgets are formatted as major currency units. The response is a file, without a JSON data wrapper.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceCostcentersExportQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let data = client.finance().costcenters().get_export(&query)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_export(&self, query: &GetFinanceCostcentersExportQuery) -> Result<Vec<u8>> {
         let path = "/finance/costcenters/export".to_owned();
         let query: Query = query.to_query();
@@ -5940,6 +9691,19 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// A cost center assigns income and expenses to a purpose, project or group within one accounting period. Budgets and balances use integer minor currency units (for example cents). Linking a group also enables access through group-internal finance permissions. Returns an unpaginated list filtered by global accounting-period rights and group-internal permissions to see cost centers, see budgets or post transactions. Sorted by accounting-period ID, then the numeric value of number, ascending. Previous-period budget values are matched by cost-center number. meta.count is the number returned.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-costcenters");
+    /// for costcenter in client.finance().costcenters().list()? {
+    ///     println!("{:?}", costcenter.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::CostCenter>> {
         self.list_with(&Default::default())
     }
@@ -5962,6 +9726,22 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// `PUT /finance/costcenters/{id}`
     ///
     /// Replacement values for a cost center. number and accountingPeriodId are required; omitted name, annotation, budget and groupId are cleared. The target accounting period must be open. Both name and number must remain unique in that period. Requires finance “edit masterdata”. The returned current-period balance is recalculated; previous-period values are not guaranteed to be refreshed by this update.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CostCenterUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountingPeriodId": 1,
+    ///     "number": "802"
+    /// }))?;
+    /// let result = client.finance().costcenters().update(1, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::CostCenterUpdate) -> Result<models::CostCenter> {
         let path = format!("/finance/costcenters/{}", seg(id));
         let query: Query = Query::new();
@@ -6034,6 +9814,23 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// `POST /finance/donators/receipts`
     ///
     /// Queues ORIGINAL receipts for all donor households selected through the caller’s visible accounts. Requires accounting-period visibility and valid cover-letter/attachment template identifiers. A period already marked as having generated receipts is rejected. The period is marked when jobs are queued, before they finish. Returns HTTP 202 with job information, or HTTP 200 with total=0 and null job information when there are no households. Poll data.statusUrl before downloading the combined files.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DonationReceiptsCreate = serde_json::from_value(serde_json::json!({
+    ///     "accounting_period_id": 1,
+    ///     "donation_receipt_attachment_template_id": "beispiel",
+    ///     "donation_receipt_letter_template_id": "beispiel"
+    /// }))?;
+    /// let result = client.finance().donators().create_receipts(&body)?;
+    /// println!("{:?}", result.job_group);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create_receipts(&self, body: &models::DonationReceiptsCreate) -> Result<models::DonationReceiptJobResult> {
         let path = "/finance/donators/receipts".to_owned();
         let query: Query = Query::new();
@@ -6046,6 +9843,21 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// `POST /finance/donators/{donatorCoupleId}/receipts`
     ///
     /// Generates cover-letter and attachment PDFs using the default templates. DRAFT produces temporary files and is not persisted. If the accounting period has not ended, or batch receipts were generated before its end, the request is forced to DRAFT. Other types are persisted when no stored receipt exists; if one already exists, it is returned with HTTP 200 instead of generating another. Newly generated files return HTTP 201. Requires visibility of the accounting period.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DonationReceiptCreate = serde_json::from_value(serde_json::json!({
+    ///     "accounting_period_id": 1
+    /// }))?;
+    /// let result = client.finance().donators().create_receipts_for("42-43", &body)?;
+    /// println!("{}", result.accounting_period_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create_receipts_for(&self, donator_couple_id: impl Display, body: &models::DonationReceiptCreate) -> Result<models::DonationReceipt> {
         let path = format!("/finance/donators/{}/receipts", seg(donator_couple_id));
         let query: Query = Query::new();
@@ -6058,6 +9870,21 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// `DELETE /finance/donators/{donatorCoupleId}/receipts`
     ///
     /// Deletes only the latest stored receipt for the donor or pair, including its two stored files. Older receipts, if present, remain. Requires visibility of the accounting period. No dry-run is supported; the accounting-period batch-generation marker is not reset.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = DeleteFinanceDonatorsDonatorCoupleIdQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// client.finance().donators().delete_latest_receipt_for("42-43", &query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_latest_receipt_for(&self, donator_couple_id: impl Display, query: &DeleteFinanceDonatorsDonatorCoupleIdQuery) -> Result<()> {
         let path = format!("/finance/donators/{}/receipts", seg(donator_couple_id));
         let query: Query = query.to_query();
@@ -6069,6 +9896,21 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// `DELETE /finance/donators/receipts`
     ///
     /// Deletes all stored donation receipts and their files for the accounting period, then clears its batch-generation timestamp so generation can be repeated. Requires finance edit masterdata. Active generation jobs prevent deletion. Processing is synchronous, but the endpoint returns HTTP 202 without a body. Each receipt is deleted in its own transaction.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = DeleteFinanceDonatorsReceiptsQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// client.finance().donators().delete_receipts(&query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_receipts(&self, query: &DeleteFinanceDonatorsReceiptsQuery) -> Result<()> {
         let path = "/finance/donators/receipts".to_owned();
         let query: Query = query.to_query();
@@ -6080,6 +9922,22 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// `GET /finance/donators/receipts`
     ///
     /// Builds combined PDF download files from stored ORIGINAL receipts for the caller’s visible donor households, sorted by postcode, street, last name and first name. Requires accounting-period visibility. An active receipt job group normally returns HTTP 400; receipts must already exist. twofiles returns separate coverLetters and attachments URLs. onefile returns one coverLetters URL containing each household’s letter and attachment. Early-generated batch receipts receive a DRAFT watermark.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceDonatorsReceiptsQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let receipt = client.finance().donators().get_receipts(&query)?;
+    /// println!("{:?}", receipt.attachments);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_receipts(&self, query: &GetFinanceDonatorsReceiptsQuery) -> Result<models::CombinedDonationReceipts> {
         let path = "/finance/donators/receipts".to_owned();
         let query: Query = query.to_query();
@@ -6091,6 +9949,22 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// `GET /finance/donators/{donatorCoupleId}/receipts`
     ///
     /// Returns the latest stored receipt for the donor or pair and accounting period. The requested type controls watermarking only; the stored record is selected by creation date regardless of type. DRAFT and DUPLICATE produce temporary watermarked PDFs; ORIGINAL returns the stored files directly. Requires visibility of the accounting period.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceDonatorsDonatorCoupleIdQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let receipts_for = client.finance().donators().get_receipts_for("42-43", &query)?;
+    /// println!("{}", receipts_for.accounting_period_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_receipts_for(&self, donator_couple_id: impl Display, query: &GetFinanceDonatorsDonatorCoupleIdQuery) -> Result<models::DonationReceipt> {
         let path = format!("/finance/donators/{}/receipts", seg(donator_couple_id));
         let query: Query = query.to_query();
@@ -6102,6 +9976,23 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// `GET /finance/donators`
     ///
     /// Returns paginated donation/payback aggregates for one accounting period. Both accounts of each contributing transaction must be visible in the period. Requires explicit view or edit access to the complete accounting period; group-only access is insufficient. Completeness and name search use the single donor or the lower-ID person of a pair. meta.incompleteCount counts incomplete households after applying the current filters, before pagination. Ordering has no additional tie-breaker.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-donators");
+    /// let query = GetFinanceDonatorsQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// for donator in client.finance().donators().list(&query)? {
+    ///     println!("{}", donator.count);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetFinanceDonatorsQuery) -> Result<Vec<models::Donator>> {
         let path = "/finance/donators".to_owned();
         let query: Query = query.to_query();
@@ -6225,6 +10116,18 @@ impl<'a> FinanceEubpResource<'a> {
     /// `GET /finance/eubp/health`
     ///
     /// Checks the configured eXTra integration service and returns its availability, URL and configured environment. A connection failure is represented by extraServiceAvailable=false with HTTP 200. This does not establish that a submission will be accepted by DRV. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-eubp-health");
+    /// let health = client.finance().eubp().get_health()?;
+    /// println!("{}", health.environment);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_health(&self) -> Result<models::EubpHealthInfo> {
         let path = "/finance/eubp/health".to_owned();
         let query: Query = Query::new();
@@ -6249,6 +10152,18 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `POST /finance/eubp/submissions/{id}/cancel`
     ///
     /// Sends an external cancellation request and keeps the local submission. Allowed from pending, sent, accepted, rejected and cancelled; a treasurer and business number are required. A successful result sets cancelled. An eXTra-level rejection can still return HTTP 200 with rejection details in the submission, so inspect the returned status codes. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let submission = client.finance().eubp().submissions().cancel(1)?;
+    /// println!("{:?}", submission.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn cancel(&self, id: impl Display) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}/cancel", seg(id));
         let query: Query = Query::new();
@@ -6260,6 +10175,24 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `POST /finance/eubp/submissions`
     ///
     /// Creates a draft euBP submission for the inclusive calendar-year range. Main-client treasurer and business number are required. The main client is always included; eligible additional clients receive their own period rows. Each year links the first overlapping CT accounting period, or remains a row without data. Company name/number are snapshotted. No transmission is sent by this endpoint; a delivery deadline within seven days can trigger a notification. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EubpSubmissionCreate = serde_json::from_value(serde_json::json!({
+    ///     "clientId": 1,
+    ///     "transmissionReason": 1,
+    ///     "yearFrom": 2020,
+    ///     "yearTo": 2023
+    /// }))?;
+    /// let result = client.finance().eubp().submissions().create(&body)?;
+    /// println!("{:?}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::EubpSubmissionCreate) -> Result<models::EubpSubmission> {
         let path = "/finance/eubp/submissions".to_owned();
         let query: Query = Query::new();
@@ -6272,6 +10205,17 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `DELETE /finance/eubp/submissions/{id}`
     ///
     /// Deletes the local submission. For every state other than draft, it first sends an external cancellation request and requires a configured treasurer and business number. There is no dry-run mode. This is different from cancel, which retains the local record. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().eubp().submissions().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/eubp/submissions/{}", seg(id));
         let query: Query = Query::new();
@@ -6283,6 +10227,18 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `POST /finance/eubp/submissions/{id}/fetch-status`
     ///
     /// Fetches remote responses through eXTra, applies status/results locally and confirms received response IDs. Allowed from draft, pending, sent, accepted, rejected and cancelled. This operation can update the stored workflow state and history; it is not just a local read. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let submission = client.finance().eubp().submissions().fetch_status(1)?;
+    /// println!("{:?}", submission.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn fetch_status(&self, id: impl Display) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}/fetch-status", seg(id));
         let query: Query = Query::new();
@@ -6294,6 +10250,19 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `POST /finance/eubp/submissions/{id}/finish`
     ///
     /// Locally marks an accepted submission as finished and records the change in history. Other starting states return HTTP 400. Does not send another transmission. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// let submission = client.finance().eubp().submissions().finish(1, &body)?;
+    /// println!("{:?}", submission.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn finish(&self, id: impl Display, body: &serde_json::Value) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}/finish", seg(id));
         let query: Query = Query::new();
@@ -6306,6 +10275,18 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `POST /finance/eubp/submissions/{id}/generate`
     ///
     /// Generates and stores a new ZIP of transmission files and returns its download URL. This updates fileId/downloadUrl but neither sends data nor changes the workflow status. Requires the main client’s treasurer and a business number. File numbers are simulated without reserving transmission numbers. This operation is permitted in any submission state. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let submission = client.finance().eubp().submissions().generate(1)?;
+    /// println!("{}", submission.download_url);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn generate(&self, id: impl Display) -> Result<models::PostFinanceEubpSubmissionsIdGenerateData> {
         let path = format!("/finance/eubp/submissions/{}/generate", seg(id));
         let query: Query = Query::new();
@@ -6317,6 +10298,18 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `GET /finance/eubp/submissions/{id}`
     ///
     /// Returns the stored submission, including all client/year rows and the most recent transmission statuses. This does not contact DRV to refresh the status. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-eubp-submissions-id");
+    /// let submission = client.finance().eubp().submissions().get(1)?;
+    /// println!("{:?}", submission.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}", seg(id));
         let query: Query = Query::new();
@@ -6328,6 +10321,18 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `GET /finance/eubp/submissions/{id}/preview`
     ///
     /// Returns date ranges for all client/year rows and informational warnings for missing accounting periods. It does not generate an export or contact DRV. Multiple clients can produce repeated year entries; preview rows currently contain no client ID. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-eubp-submissions-id-preview");
+    /// let preview = client.finance().eubp().submissions().get_preview(1)?;
+    /// println!("{:?}", preview);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_preview(&self, id: impl Display) -> Result<models::EubpSubmissionPreview> {
         let path = format!("/finance/eubp/submissions/{}/preview", seg(id));
         let query: Query = Query::new();
@@ -6341,6 +10346,19 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// Returns all audit submissions, newest ID first, without pagination. client_id matches the main client or any client represented by a submission-period row. An unknown client filter returns an empty list. meta.count is the number returned. Requires finance edit masterdata permission.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-eubp-submissions");
+    /// for submission in client.finance().eubp().submissions().list()? {
+    ///     println!("{:?}", submission.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::EubpSubmission>> {
         self.list_with(&Default::default())
     }
@@ -6365,6 +10383,19 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// Returns accounts with bookings across the submission’s linked accounting periods, merged by exact number|name. Optional client_id restricts the contributing client. Accounts are sorted by account-number length and then lexicographically; years are sorted ascending. This response has no meta wrapper. Requires finance edit masterdata permission.
     ///
     /// Use [`Self::list_accounts_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-eubp-submissions-id-accounts");
+    /// for account in client.finance().eubp().submissions().list_accounts(1)? {
+    ///     println!("{}", account.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_accounts(&self, id: impl Display) -> Result<Vec<models::EubpUnifiedAccount>> {
         self.list_accounts_with(id, &Default::default())
     }
@@ -6387,6 +10418,19 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `POST /finance/eubp/submissions/{id}/reopen`
     ///
     /// Locally changes finished back to accepted and records the change in history. Other starting states return HTTP 400. This does not make the account selection editable, because accepted is not an editable state. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// let submission = client.finance().eubp().submissions().reopen(1, &body)?;
+    /// println!("{:?}", submission.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn reopen(&self, id: impl Display, body: &serde_json::Value) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}/reopen", seg(id));
         let query: Query = Query::new();
@@ -6399,6 +10443,17 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `POST /finance/eubp/submissions/{id}/send`
     ///
     /// Queues transmission through the eXTra service and returns HTTP 202 with the current submission. Allowed from draft, rejected, response, sent and accepted. Requires a treasurer and business number. The submission is set to pending and old status codes are cleared before the background job is queued. HTTP 202 does not confirm DRV acceptance; read or refresh status afterwards. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().eubp().submissions().send(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn send(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/eubp/submissions/{}/send", seg(id));
         let query: Query = Query::new();
@@ -6410,6 +10465,24 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// `PUT /finance/eubp/submissions/{id}/accounts`
     ///
     /// Replaces the optional account selections across linked periods, optionally for one client. Uses exact number|name keys. Unknown keys are ignored and omitted optional selections are removed. Mandatory accounts are not stored as additional selections. Only draft, rejected and response are editable. Returns the resulting merged list of accounts with bookings, without meta. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EubpSubmissionAccountsUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountKeys": [
+    ///         "1200|Bank"
+    ///     ]
+    /// }))?;
+    /// for submission in client.finance().eubp().submissions().update_accounts(1, &body)? {
+    ///     println!("{}", submission.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_accounts(&self, id: impl Display, body: &models::EubpSubmissionAccountsUpdate) -> Result<Vec<models::EubpUnifiedAccount>> {
         let path = format!("/finance/eubp/submissions/{}/accounts", seg(id));
         let query: Query = Query::new();
@@ -6461,6 +10534,24 @@ impl<'a> FinanceEubpSubmissionsPeriodsResource<'a> {
     /// `PUT /finance/eubp/submissions/{id}/periods/{periodId}/accounts`
     ///
     /// Replaces the additional-account selection for one submission-period row. periodId is a row ID from submission.periods, not an accounting-period ID. A row belonging to another submission returns HTTP 400. Only draft, rejected and response are editable. Unknown account IDs are ignored; current code does not enforce that supplied accounts belong to the row’s accounting period. Requires finance edit masterdata permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::EubpPeriodAccountsUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountIds": [
+    ///         10,
+    ///         11
+    ///     ]
+    /// }))?;
+    /// let result = client.finance().eubp().submissions().periods().update_accounts(1, 1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_accounts(&self, id: impl Display, period_id: impl Display, body: &models::EubpPeriodAccountsUpdate) -> Result<models::EubpSubmissionPeriod> {
         let path = format!("/finance/eubp/submissions/{}/periods/{}/accounts", seg(id), seg(period_id));
         let query: Query = Query::new();
@@ -6486,6 +10577,23 @@ impl<'a> FinanceReportsResource<'a> {
     /// `POST /finance/reports/balance`
     ///
     /// Creates a balance sheet from balance accounts in the requested document-date range. The configured profit/loss account class can include the period result. Requires finance edit masterdata or explicit view/edit permission for the accounting period; group-level access alone is insufficient. Default format=pdf returns HTTP 201 with data.url. CSV/XLSX return HTTP 200 with the file body. An Accept header whose first value is exactly text/html returns rendered HTML with HTTP 200 and overrides format.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::BalanceReportCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountingPeriodId": 1,
+    ///     "endDate": "2026-12-31",
+    ///     "startDate": "2026-01-01"
+    /// }))?;
+    /// let data = client.finance().reports().balance(&body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn balance(&self, body: &models::BalanceReportCreate) -> Result<Vec<u8>> {
         let path = "/finance/reports/balance".to_owned();
         let query: Query = Query::new();
@@ -6498,6 +10606,23 @@ impl<'a> FinanceReportsResource<'a> {
     /// `POST /finance/reports/profit-loss`
     ///
     /// Creates a profit-and-loss report from accounts whose account type has no balance-sheet classification. Requires finance edit masterdata or explicit view/edit permission for the accounting period; group-level access alone is insufficient. Default format=pdf returns HTTP 201 with data.url. CSV/XLSX return HTTP 200 with the file body. An Accept header whose first value is exactly text/html returns rendered HTML with HTTP 200 and overrides format.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::BalanceReportCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountingPeriodId": 1,
+    ///     "endDate": "2026-12-31",
+    ///     "startDate": "2026-01-01"
+    /// }))?;
+    /// let data = client.finance().reports().profit_loss(&body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn profit_loss(&self, body: &models::BalanceReportCreate) -> Result<Vec<u8>> {
         let path = "/finance/reports/profit-loss".to_owned();
         let query: Query = Query::new();
@@ -6510,6 +10635,22 @@ impl<'a> FinanceReportsResource<'a> {
     /// `POST /finance/reports/sum-balance`
     ///
     /// Creates a trial balance (Summen- und Saldenliste) with opening balances, debit/credit totals for the chosen month and cumulative totals from January. accountTypes does not filter this report. Requires finance edit masterdata or explicit view/edit permission for the accounting period; group-level access alone is insufficient. Default format=pdf returns HTTP 201 with data.url. CSV/XLSX return HTTP 200 with the file body. An Accept header whose first value is exactly text/html returns rendered HTML with HTTP 200 and overrides format.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SumBalanceReportCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountingPeriodId": 1,
+    ///     "month": 9
+    /// }))?;
+    /// let data = client.finance().reports().sum_balance(&body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn sum_balance(&self, body: &models::SumBalanceReportCreate) -> Result<Vec<u8>> {
         let path = "/finance/reports/sum-balance".to_owned();
         let query: Query = Query::new();
@@ -6522,6 +10663,22 @@ impl<'a> FinanceReportsResource<'a> {
     /// `POST /finance/reports/turnover`
     ///
     /// Creates monthly or quarterly account turnover columns. Columns use the calendar year of the accounting period’s start date; the total reflects the selected accounting period. Requires finance edit masterdata or explicit view/edit permission for the accounting period; group-level access alone is insufficient. Default format=pdf returns HTTP 201 with data.url. CSV/XLSX return HTTP 200 with the file body. An Accept header whose first value is exactly text/html returns rendered HTML with HTTP 200 and overrides format.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TurnoverReportCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountingPeriodId": 1,
+    ///     "period": "monthly"
+    /// }))?;
+    /// let data = client.finance().reports().turnover(&body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn turnover(&self, body: &models::TurnoverReportCreate) -> Result<Vec<u8>> {
         let path = "/finance/reports/turnover".to_owned();
         let query: Query = Query::new();
@@ -6560,6 +10717,21 @@ impl<'a> FinanceReportsStatementAccountsResource<'a> {
     /// `POST /finance/reports/statement/accounts/{accountId}`
     ///
     /// Creates a ledger report of posted finance transactions for one account, sorted by document date. This is separate from imported bank-statement files. Missing date boundaries default independently to the account’s accounting period. Requires finance edit masterdata or explicit view/edit permission for the accounting period; group-level access alone is insufficient. Default format=pdf returns HTTP 201 with data.url. CSV/XLSX return HTTP 200 with the file body. An Accept header whose first value is exactly text/html returns rendered HTML with HTTP 200 and overrides format.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AccountStatementReportCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-12-31"
+    /// }))?;
+    /// let data = client.finance().reports().statement().accounts().create(21, &body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, account_id: impl Display, body: &models::AccountStatementReportCreate) -> Result<Vec<u8>> {
         let path = format!("/finance/reports/statement/accounts/{}", seg(account_id));
         let query: Query = Query::new();
@@ -6581,6 +10753,21 @@ impl<'a> FinanceReportsStatementCostcentersResource<'a> {
     /// `POST /finance/reports/statement/costcenters/{costCenterId}`
     ///
     /// Creates a ledger report of transactions assigned to one cost center, with income, expenditure and totals. Canceled transactions and their cancellation entries are excluded. Internal rebookings are omitted unless includeRebookings=true. Missing date boundaries default independently to the cost center’s accounting period. Requires finance edit masterdata or explicit view/edit permission for the accounting period; group-level access alone is insufficient. Default format=pdf returns HTTP 201 with data.url. CSV/XLSX return HTTP 200 with the file body. An Accept header whose first value is exactly text/html returns rendered HTML with HTTP 200 and overrides format.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CostCenterStatementReportCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-12-31"
+    /// }))?;
+    /// let data = client.finance().reports().statement().costcenters().create(21, &body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, cost_center_id: impl Display, body: &models::CostCenterStatementReportCreate) -> Result<Vec<u8>> {
         let path = format!("/finance/reports/statement/costcenters/{}", seg(cost_center_id));
         let query: Query = Query::new();
@@ -6604,6 +10791,31 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// Creates a grouped booking from new children or existing standalone booking IDs. Child notes, amounts, accounts and assignments are supplied separately; document date and number come from the parent. New child accounts must allow posting; supplied existing child accounts require period edit permission. Children must meet the shared-account and amount-sum rules. A new child must belong to an open period containing the document date. Generated tax amounts are derived from the gross child inputs. With one child the group is converted to an ordinary booking and HTTP 204 is returned without its ID. For multiple children, returns the split parent with child booking data.
     ///
     /// Use [`Self::create_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SplitTransactionCreate = serde_json::from_value(serde_json::json!({
+    ///     "amount": 30000,
+    ///     "documentDate": "2026-09-14",
+    ///     "note": "Offering and building fund",
+    ///     "splitChildren": [
+    ///         {
+    ///             "accountId": 10,
+    ///             "amount": 7812,
+    ///             "contraAccountId": 11,
+    ///             "note": "Building fund"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.finance().splittransactions().create(&body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::SplitTransactionCreate) -> Result<Option<models::SplitTransaction>> {
         self.create_with(&Default::default(), body)
     }
@@ -6629,6 +10841,17 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// Deletes the entire split parent, its ordinary and generated tax children, related cancellation group, and attached receipts/files. Related statement movements are reset to open and unlinked. Requires edit permission for every child’s period. Each child must be mutable and its period open. dry_run=true returns HTTP 409 with a deletion assessment without deleting, including when deletion is possible.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().splittransactions().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -6651,6 +10874,19 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// `POST /finance/splittransactions/{id}/duplicate`
     ///
     /// Creates a new split group from the source children, regenerating tax bookings and copying parent receipts/files. Requires permission to create each child using its source accounts and cost center; periods must be open and dates valid. Copies the original date, notes, donor assignments, waiver and cash discount. Uses the parent number plus -Kopie and numbered child suffixes, without guaranteeing uniqueness. New children are mutable and non-synced. Unlike ordinary duplicate, child donor/spouse consistency is checked during creation.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// let splittransaction = client.finance().splittransactions().duplicate(1, &body)?;
+    /// println!("{}", splittransaction.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn duplicate(&self, id: impl Display, body: &serde_json::Value) -> Result<models::SplitTransaction> {
         let path = format!("/finance/splittransactions/{}/duplicate", seg(id));
         let query: Query = Query::new();
@@ -6665,6 +10901,18 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// Returns a split parent with its ordinary child bookings, including generated tax rows. The caller must be allowed to view every child; one inaccessible child rejects the entire request. Donor details and notes are censored per child according to donor visibility. include[]=bills adds receipts attached to the parent. The parent note is returned independently of the child notes.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-splittransactions-id");
+    /// let splittransaction = client.finance().splittransactions().get(1)?;
+    /// println!("{}", splittransaction.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::SplitTransaction> {
         self.get_with(id, &Default::default())
     }
@@ -6689,6 +10937,31 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// Replaces a split parent and its complete child list. Existing children not included in the request are deleted. Child notes, amounts, accounts and assignments are supplied separately; document date and number come from the parent. New child accounts must allow posting; supplied existing child accounts require period edit permission. Children must meet the shared-account and amount-sum rules. A new child must belong to an open period containing the document date. Generated tax amounts are derived from the gross child inputs. With one child the group is converted to an ordinary booking and HTTP 204 is returned without its ID. For multiple children, returns the split parent with child booking data.
     ///
     /// Use [`Self::update_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SplitTransactionUpdate = serde_json::from_value(serde_json::json!({
+    ///     "amount": 30000,
+    ///     "documentDate": "2026-09-14",
+    ///     "note": "Offering and building fund",
+    ///     "splitChildren": [
+    ///         {
+    ///             "accountId": 10,
+    ///             "amount": 7812,
+    ///             "contraAccountId": 11,
+    ///             "note": "Building fund"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.finance().splittransactions().update(1, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::SplitTransactionUpdate) -> Result<Option<models::SplitTransaction>> {
         self.update_with(id, &Default::default(), body)
     }
@@ -6712,6 +10985,21 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// `PUT /finance/splittransactions/{id}/storno`
     ///
     /// Creates and returns one cancellation split parent containing opposite bookings for the original children, including tax bookings. Original records remain and reference their cancellations. Requires edit permission for each child period. Unlike ordinary cancellation, a second cancellation attempt is rejected with 403 if a child already has a cancellation. This operation does not explicitly require an open period. The original document date and amount are retained; the parent document number receives -Storno. The result is one object, not an array.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SplitTransactionStornoCreate = serde_json::from_value(serde_json::json!({
+    ///     "note": "Incorrect allocation"
+    /// }))?;
+    /// let result = client.finance().splittransactions().update_storno(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_storno(&self, id: impl Display, body: &models::SplitTransactionStornoCreate) -> Result<models::SplitTransaction> {
         let path = format!("/finance/splittransactions/{}/storno", seg(id));
         let query: Query = Query::new();
@@ -6799,6 +11087,23 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// `POST /finance/taxrates`
     ///
     /// A tax rate combines a tax type, a percentage and the ledger account receiving the tax amount. Its accounting period is determined by that account. Requires finance “edit masterdata”. Returns HTTP 200 on success. The combination of taxTypeId, rate and accountId must be unique. The target account must belong to an open accounting period.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TaxRateCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountId": 5,
+    ///     "rate": 7,
+    ///     "taxTypeId": 4
+    /// }))?;
+    /// let result = client.finance().taxrates().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::TaxRateCreate) -> Result<models::TaxRate> {
         let path = "/finance/taxrates".to_owned();
         let query: Query = Query::new();
@@ -6813,6 +11118,17 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// Deletes this tax rate if no transactions or accounts reference it. Requires finance “edit masterdata”. dry_run=true returns the HTTP 409 conflict report without deleting, also when deletion is allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().taxrates().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -6835,6 +11151,18 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// `GET /finance/taxrates/{id}`
     ///
     /// A tax rate combines a tax type, a percentage and the ledger account receiving the tax amount. Its accounting period is determined by that account. Returns one definition by ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-taxrates-id");
+    /// let taxrate = client.finance().taxrates().get(1)?;
+    /// println!("{}", taxrate.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::TaxRate> {
         let path = format!("/finance/taxrates/{}", seg(id));
         let query: Query = Query::new();
@@ -6848,6 +11176,19 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// A tax rate combines a tax type, a percentage and the ledger account receiving the tax amount. Its accounting period is determined by that account. Returns an unpaginated list. Optionally restrict results to the linked accounts’ accounting period. No result order is guaranteed; an unknown period returns an empty list. meta.count is the number returned.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-taxrates");
+    /// for taxrate in client.finance().taxrates().list()? {
+    ///     println!("{}", taxrate.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::TaxRate>> {
         self.list_with(&Default::default())
     }
@@ -6870,6 +11211,23 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// `PUT /finance/taxrates/{id}`
     ///
     /// Replaces this tax rate. Requires finance “edit masterdata”. When transactions reference the rate, only note may change; resend the existing rate, taxTypeId and accountId. Omitted note is cleared. The target account must belong to an open accounting period.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TaxRateUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountId": 5,
+    ///     "rate": 7,
+    ///     "taxTypeId": 4
+    /// }))?;
+    /// let result = client.finance().taxrates().update(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::TaxRateUpdate) -> Result<models::TaxRate> {
         let path = format!("/finance/taxrates/{}", seg(id));
         let query: Query = Query::new();
@@ -6921,6 +11279,21 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// `POST /finance/taxtypes`
     ///
     /// Tax types group tax rates by their accounting purpose, for example input tax or output tax. The percentage and receiving ledger account are configured on each tax rate. Requires finance “edit masterdata”. Returns HTTP 200 on success. The name must be unique.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TaxTypeCreate = serde_json::from_value(serde_json::json!({
+    ///     "sortKey": 0
+    /// }))?;
+    /// let result = client.finance().taxtypes().create(&body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::TaxTypeCreate) -> Result<models::TaxType> {
         let path = "/finance/taxtypes".to_owned();
         let query: Query = Query::new();
@@ -6935,6 +11308,17 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// Deletes this tax type if no tax rates reference it. Requires finance “edit masterdata”. dry_run=true returns the HTTP 409 conflict report without deleting, also when deletion is allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().taxtypes().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -6957,6 +11341,18 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// `GET /finance/taxtypes/{id}`
     ///
     /// Tax types group tax rates by their accounting purpose, for example input tax or output tax. The percentage and receiving ledger account are configured on each tax rate. Returns one definition by ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-taxtypes-id");
+    /// let taxtype = client.finance().taxtypes().get(1)?;
+    /// println!("{:?}", taxtype.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::TaxType> {
         let path = format!("/finance/taxtypes/{}", seg(id));
         let query: Query = Query::new();
@@ -6968,6 +11364,19 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// `GET /finance/taxtypes`
     ///
     /// Tax types group tax rates by their accounting purpose, for example input tax or output tax. The percentage and receiving ledger account are configured on each tax rate. Returns an unpaginated list. Results are ordered by sortKey, then name, ascending. meta.count is the number returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-taxtypes");
+    /// for taxtype in client.finance().taxtypes().list()? {
+    ///     println!("{:?}", taxtype.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::TaxType>> {
         let path = "/finance/taxtypes".to_owned();
         let query: Query = Query::new();
@@ -6979,6 +11388,21 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// `PUT /finance/taxtypes/{id}`
     ///
     /// Replaces this tax type. Requires finance “edit masterdata”. All required creation fields must be supplied again. Omitted name is cleared; names must remain unique.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TaxTypeUpdate = serde_json::from_value(serde_json::json!({
+    ///     "sortKey": 0
+    /// }))?;
+    /// let result = client.finance().taxtypes().update(1, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::TaxTypeUpdate) -> Result<models::TaxType> {
         let path = format!("/finance/taxtypes/{}", seg(id));
         let query: Query = Query::new();
@@ -7015,6 +11439,21 @@ impl<'a> FinanceTemplatesResource<'a> {
     /// `POST /finance/templates/{id}`
     ///
     /// Applies a stored finance-template file to an existing accounting period with no transactions. Existing accounts and tax rates are removed before the template definitions are added. Existing account types/classes/groups and tax types are reused by normalized name; missing ones are added. Existing cost centers are retained, with additional matching/update rules. Cash-discount definitions are not imported by the current executors. This operation has no dry-run mode and no encompassing transaction; a later failure can leave earlier changes applied. Returns HTTP 204 without a body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = PostFinanceTemplatesIdQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// client.finance().templates().create(1, &query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, id: impl Display, query: &PostFinanceTemplatesIdQuery) -> Result<()> {
         let path = format!("/finance/templates/{}", seg(id));
         let query: Query = query.to_query();
@@ -7026,6 +11465,22 @@ impl<'a> FinanceTemplatesResource<'a> {
     /// `GET /finance/templates/export`
     ///
     /// Downloads finance master data for an existing, visible accounting period as a portable JSON attachment. The root object contains definition collections directly, without a data wrapper or metadata. Accounts, tax rates, cash discounts and cost centers come from the selected period; account types/classes/groups and tax types are installation-wide. The export follows the caller’s master-data visibility and may therefore contain only a subset.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-templates-export");
+    /// let query = GetFinanceTemplatesExportQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let export = client.finance().templates().get_export(&query)?;
+    /// println!("{:?}", export);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_export(&self, query: &GetFinanceTemplatesExportQuery) -> Result<models::FinanceTemplateExport> {
         let path = "/finance/templates/export".to_owned();
         let query: Query = query.to_query();
@@ -7037,6 +11492,19 @@ impl<'a> FinanceTemplatesResource<'a> {
     /// `GET /finance/templates`
     ///
     /// Returns stored finance-template files with per-collection definition counts. The list is unpaginated and has no guaranteed order. meta.count is the number returned. Files are selected by the finance_template domain.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-templates");
+    /// for template in client.finance().templates().list()? {
+    ///     println!("{}", template.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::FinanceTemplate>> {
         let path = "/finance/templates".to_owned();
         let query: Query = Query::new();
@@ -7087,6 +11555,28 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// `POST /finance/transactionpurposes`
     ///
     /// Creates a transaction purpose and returns HTTP 201. Requires finance “edit masterdata” and an open period for purposeAccountId. When costCenterId is supplied, its period must match the fixed account and all resolved selectable accounts.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TransactionPurposeCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountIds": [
+    ///         1,
+    ///         2
+    ///     ],
+    ///     "isIncome": true,
+    ///     "name": "Donations for youth work",
+    ///     "purposeAccountId": 3,
+    ///     "sortKey": 0
+    /// }))?;
+    /// let result = client.finance().transactionpurposes().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::TransactionPurposeCreate) -> Result<models::TransactionPurpose> {
         let path = "/finance/transactionpurposes".to_owned();
         let query: Query = Query::new();
@@ -7101,6 +11591,17 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// Deletes the transaction-purpose preset and its selectable-account links. Requires finance “edit masterdata”. Existing transaction records are not deleted. dry_run=true returns the HTTP 409 report without deleting, also when deletion is allowed.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().transactionpurposes().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -7123,6 +11624,18 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// `GET /finance/transactionpurposes/{id}`
     ///
     /// Returns one transaction purpose. A transaction purpose is a reusable preset for simplified bookkeeping. It fixes one ledger account, offers a list of accounts for the other side, and can assign a cost center. isIncome selects an income or expense preset; it is not the free-text note of a bank statement. Requires finance “view”; there is no additional period-specific visibility filter in this endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-transactionpurposes-id");
+    /// let transactionpurpose = client.finance().transactionpurposes().get(1)?;
+    /// println!("{}", transactionpurpose.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::TransactionPurpose> {
         let path = format!("/finance/transactionpurposes/{}", seg(id));
         let query: Query = Query::new();
@@ -7134,6 +11647,19 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// `GET /finance/transactionpurposes`
     ///
     /// A transaction purpose is a reusable preset for simplified bookkeeping. It fixes one ledger account, offers a list of accounts for the other side, and can assign a cost center. isIncome selects an income or expense preset; it is not the free-text note of a bank statement. Requires finance “view”. Returns the complete, unpaginated list across periods, ordered by sortKey and then name ascending. This endpoint does not apply the period/group filtering used by /finance/masterdata. meta.count is the number returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-transactionpurposes");
+    /// for transactionpurpose in client.finance().transactionpurposes().list()? {
+    ///     println!("{}", transactionpurpose.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::TransactionPurpose>> {
         let path = "/finance/transactionpurposes".to_owned();
         let query: Query = Query::new();
@@ -7145,6 +11671,28 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// `PUT /finance/transactionpurposes/{id}`
     ///
     /// Replaces a transaction purpose, including the complete list of selectable accounts. Requires finance “edit masterdata” and an open period for the new purposeAccountId. Omitted costCenterId clears it. If a cost center is supplied, all resolved accounts must belong to its period.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TransactionPurposeUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountIds": [
+    ///         1,
+    ///         2
+    ///     ],
+    ///     "isIncome": true,
+    ///     "name": "Donations for youth work",
+    ///     "purposeAccountId": 3,
+    ///     "sortKey": 0
+    /// }))?;
+    /// let result = client.finance().transactionpurposes().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::TransactionPurposeUpdate) -> Result<models::TransactionPurpose> {
         let path = format!("/finance/transactionpurposes/{}", seg(id));
         let query: Query = Query::new();
@@ -7183,6 +11731,29 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// Creates a non-empty JSON array of bookings in input order and returns the main bookings with meta.count. Each item supplies its own document number and accounts; items may belong to different accounting periods. Both accounts must allow posting and all related finance references within an item must belong to the same period. Periods must be open and contain each documentDate. Input validation runs before creation, followed by a shared database transaction. The optional query flag skips the normal donation-account/donor constraint for all items, but joint-donor consistency still applies. Use actual JSON boolean and integer values.
     ///
     /// Use [`Self::bulkcreate_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!([
+    ///     {
+    ///         "accountId": 10,
+    ///         "amount": 7812,
+    ///         "contraAccountId": 11,
+    ///         "documentDate": "2019-01-14",
+    ///         "note": "Donation service offering",
+    ///         "documentNumber": "2026-42"
+    ///     }
+    /// ]);
+    /// for transaction in client.finance().transactions().bulkcreate(&body)? {
+    ///     println!("{}", transaction.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn bulkcreate(&self, body: &serde_json::Value) -> Result<Vec<models::Transaction>> {
         self.bulkcreate_with(&Default::default(), body)
     }
@@ -7208,6 +11779,25 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// Creates one booking and, if requested, its tax booking. Requires permission to post on both accounts and either edit permission for the period or a permitted booking purpose matching the accounts and cost center. The accounting period must be open and contain documentDate. Related finance objects must belong to that same period. Unless ignoreDonationConstraint=true is supplied in the query, crediting a donation account from a non-donation account requires a donor. Joint donors must have an existing spouse relationship. Returns the main booking; generated tax booking IDs are included in it.
     ///
     /// Use [`Self::create_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TransactionCreate = serde_json::from_value(serde_json::json!({
+    ///     "accountId": 10,
+    ///     "amount": 7812,
+    ///     "contraAccountId": 11,
+    ///     "documentDate": "2019-01-14",
+    ///     "note": "Donation service offering"
+    /// }))?;
+    /// let result = client.finance().transactions().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::TransactionCreate) -> Result<models::Transaction> {
         self.create_with(&Default::default(), body)
     }
@@ -7233,6 +11823,17 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// Deletes a standalone booking and its generated tax and cancellation bookings, together with attached receipts/files. Related statement movements are reset to open and unlinked. Requires edit permission for the accounting period, which must be open. Immutable bookings, generated tax bookings and split children cannot be deleted directly. A cancellation booking can be deleted to remove the cancellation link from its original booking. dry_run=true performs the same eligibility checks without deleting and returns HTTP 409 with the deletion assessment, including when deletion is possible.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().transactions().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -7255,6 +11856,19 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `POST /finance/transactions/{id}/duplicate`
     ///
     /// Copies a standalone booking into its original open accounting period. Requires permission to create a booking with the source accounts and cost center. Copies document date, accounts, note, donor assignments, waiver and cash discount; recreates tax bookings and copies attached receipts/files. The document number receives the suffix -Kopie; this does not reserve or generate a unique number. The new booking starts mutable and non-synced and is not linked as a cancellation. Split children cannot be duplicated here. The response contains the new main booking; copied bills can be retrieved with include[]=bills.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// let transaction = client.finance().transactions().duplicate(1, &body)?;
+    /// println!("{}", transaction.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn duplicate(&self, id: impl Display, body: &serde_json::Value) -> Result<models::Transaction> {
         let path = format!("/finance/transactions/{}/duplicate", seg(id));
         let query: Query = Query::new();
@@ -7269,6 +11883,18 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// Returns a single booking, including a child of a split transaction. Requires view or edit permission for its accounting period, or the corresponding group permission for its assigned cost center. Donor visibility is checked separately: a user who may see the booking but not its donors receives censored person placeholders and a null note. Request include[]=bills to include attached receipts. Related tax, cancellation and split bookings are referenced by ID.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-transactions-id");
+    /// let transaction = client.finance().transactions().get(1)?;
+    /// println!("{}", transaction.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Transaction> {
         self.get_with(id, &Default::default())
     }
@@ -7291,6 +11917,22 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `GET /finance/transactions/csv`
     ///
     /// Downloads all matching bookings without pagination or a JSON wrapper. Supports the listed booking filters; page, limit, include, exclude_stornos and exclude_paybacks are not evaluated. Both accounts must be visible. Without an explicit cost-center filter, users without permission for the whole period are restricted to their accessible cost centers. Donor details and notes are censored where required, but the donor-ID filter itself is accepted without the list endpoint’s additional filter-permission check. target selects the column layout. CSV uses semicolons, UTF-8 with BOM, localized column labels and locale-dependent amount formatting in major currency units. Use /finance/transactions/export for new integrations.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceTransactionsCsvQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let data = client.finance().transactions().get_csv(&query)?;
+    /// std::fs::write("ergebnis.csv", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn get_csv(&self, query: &GetFinanceTransactionsCsvQuery) -> Result<Vec<u8>> {
         let path = "/finance/transactions/csv".to_owned();
@@ -7303,6 +11945,22 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `GET /finance/transactions/datevexport`
     ///
     /// Downloads a semicolon-separated DATEV EXTF booking-batch CSV with UTF-8 BOM, a metadata row and a column-header row. Includes all matching bookings without pagination, including cancellation and tax rows. The listed booking filters apply; exclude_stornos and exclude_paybacks are not evaluated. Accounts and default cost-center scope are restricted by permissions. Uses the client’s DATEV consultant/client numbers and the period’s start date. Current output uses EUR and debit indicator S. Choose order_by=date&order_direction=ASC because the header takes the first and last row dates as its range. An empty result currently fails during header creation.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceTransactionsDatevexportQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let data = client.finance().transactions().get_datevexport(&query)?;
+    /// std::fs::write("ergebnis.csv", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_datevexport(&self, query: &GetFinanceTransactionsDatevexportQuery) -> Result<Vec<u8>> {
         let path = "/finance/transactions/datevexport".to_owned();
         let query: Query = query.to_query();
@@ -7314,6 +11972,22 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `GET /finance/transactions/documentnumberavailable`
     ///
     /// Checks whether an ordinary transaction row in the accounting period uses document_number. Returns HTTP 200 without a body when available and HTTP 409 without a body when occupied. Includes synced and cancellation rows and performs a database string comparison. It does not normalize split-parent or copy suffixes as the next-number suggestion does, and does not reserve the number. Requires visibility of the accounting period.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceTransactionsDocumentnumberavailableQuery {
+    ///     accounting_period_id: Some(1),
+    ///     document_number: Some("2024-001".into()),
+    ///     ..Default::default()
+    /// };
+    /// client.finance().transactions().get_documentnumberavailable(&query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_documentnumberavailable(&self, query: &GetFinanceTransactionsDocumentnumberavailableQuery) -> Result<()> {
         let path = "/finance/transactions/documentnumberavailable".to_owned();
         let query: Query = query.to_query();
@@ -7325,6 +11999,22 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `GET /finance/transactions/export`
     ///
     /// Downloads all matching bookings without pagination or a JSON wrapper. Supports the listed booking filters; page, limit, include, exclude_stornos and exclude_paybacks are not evaluated. Both accounts must be visible. Without an explicit cost-center filter, users without permission for the whole period are restricted to their accessible cost centers. Donor details and notes are censored where required, but the donor-ID filter itself is accepted without the list endpoint’s additional filter-permission check. target selects the column layout. CSV uses semicolons, UTF-8 with BOM, localized column labels and locale-dependent amount formatting in major currency units. format=xlsx returns an Excel workbook instead of CSV; PDF is not supported.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = GetFinanceTransactionsExportQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let data = client.finance().transactions().get_export(&query)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_export(&self, query: &GetFinanceTransactionsExportQuery) -> Result<Vec<u8>> {
         let path = "/finance/transactions/export".to_owned();
         let query: Query = query.to_query();
@@ -7338,6 +12028,18 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// Returns ordinary transaction IDs for visible accounting periods, including split children, tax bookings and cancellations. With accounting_period_id, data is a flat array of decimal ID strings. Without it, data is an object keyed by accounting-period ID; periods without transactions are omitted and an entirely empty result is serialized as an empty array. Ordering is unspecified. The endpoint checks period visibility and does not apply the transaction list's account or cost-center filters; an ID in this result does not guarantee access to the corresponding transaction. Use the paginated transaction list for that purpose.
     ///
     /// Use [`Self::get_ids_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-transactions-ids");
+    /// let result = client.finance().transactions().get_ids()?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_ids(&self) -> Result<serde_json::Value> {
         self.get_ids_with(&Default::default())
     }
@@ -7360,6 +12062,22 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `GET /finance/transactions/nextdocumentnumber`
     ///
     /// Suggests a document number for a new booking. Uses the most recently inserted non-synced, non-cancellation transaction as its base, not the greatest existing number. For split children the child suffix is removed; the copy suffix -Kopie is removed as well. A trailing number is incremented with its zero padding preserved; a base without digits receives -1. Existing normalized non-cancellation numbers are skipped. With no eligible base transaction, returns the string 1. Requires visibility of the accounting period. The suggestion is not reserved and concurrent clients can receive the same number.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-transactions-nextdocumentnumber");
+    /// let query = GetFinanceTransactionsNextdocumentnumberQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let result = client.finance().transactions().get_nextdocumentnumber(&query)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_nextdocumentnumber(&self, query: &GetFinanceTransactionsNextdocumentnumberQuery) -> Result<String> {
         let path = "/finance/transactions/nextdocumentnumber".to_owned();
         let query: Query = query.to_query();
@@ -7371,6 +12089,22 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `GET /finance/transactions/summary`
     ///
     /// Calculates a journal summary for one accounting period. calculation_type selects account debit/credit balances, cost-center income/expense, or net donations. Supplying it also saves the current user’s preference for the combination of account, cost-center and donor filters. If omitted, the saved preference is used; without a preference the first non-empty filter selects accounts, then cost centers, then donors. Without a usable filter/type the request fails. Date limits default to the accounting period boundaries. Previous-year comparison shifts both dates back one year and uses the previous accounting period of the same client. Monetary values are minor currency units. The donor filter is removed unless the caller has view permission for the entire period, even if group donor visibility is available. include_ids, exclude_ids, pagination and exclusion flags are not evaluated by this endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-transactions-summary");
+    /// let query = GetFinanceTransactionsSummaryQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// let result = client.finance().transactions().get_summary(&query)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_summary(&self, query: &GetFinanceTransactionsSummaryQuery) -> Result<serde_json::Value> {
         let path = "/finance/transactions/summary".to_owned();
         let query: Query = query.to_query();
@@ -7382,6 +12116,23 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `GET /finance/transactions`
     ///
     /// Lists bookings in one accounting period, including split children and generated tax or cancellation bookings. Both accounts must be visible to the caller. With no cost_center_ids and no permission for the entire period, the list is limited to accessible cost centers. Donor filtering is silently ignored unless the caller has view permission for the period or a group permission to see donors in cost centers. Donor details are independently censored per booking. All filters are combined; an empty ID array does not restrict results. Send array filters using bracket query syntax, for example account_ids[]=10&account_ids[]=11. The pagination total describes the filtered result; meta.all ignores the optional filters except exclude_stornos and retains the visibility restrictions.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-transactions");
+    /// let query = GetFinanceTransactionsQuery {
+    ///     accounting_period_id: Some(1),
+    ///     ..Default::default()
+    /// };
+    /// for transaction in client.finance().transactions().list(&query)? {
+    ///     println!("{}", transaction.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetFinanceTransactionsQuery) -> Result<Vec<models::Transaction>> {
         let path = "/finance/transactions".to_owned();
         let query: Query = query.to_query();
@@ -7393,6 +12144,26 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `PATCH /finance/transactions`
     ///
     /// Runs one batch action on bookings selected by a non-empty array of filters. Conditions within each filter are combined with AND and filters with OR. Requires edit permission for every specified accounting period. isImmutable=true finalizes selected bookings and expands the selection to related tax bookings, tax bases and originals of selected cancellations. All children of any affected split booking must be covered, otherwise HTTP 403 is returned. delete=true performs period cleanup: it can delete immutable bookings and does not apply the normal open-period or standalone-booking checks. Deletion removes related records through the deletion service and has no dry-run mode. If both actions are true, finalization wins. Always send a non-empty filters array; the current backend does not safely restrict an empty selection.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TransactionBatchUpdate = serde_json::from_value(serde_json::json!({
+    ///     "changeset": {},
+    ///     "filters": [
+    ///         {
+    ///             "accountingPeriodId": 1
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.finance().transactions().patch(&body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, body: &models::TransactionBatchUpdate) -> Result<serde_json::Value> {
         let path = "/finance/transactions".to_owned();
         let query: Query = Query::new();
@@ -7407,6 +12178,26 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// Updates a standalone booking. Requires edit permission for its original accounting period and posting permission on the supplied accounts. The original period must be open and the booking mutable; split children, generated tax bookings and cancellation bookings cannot be edited here. Required fields replace existing values. Missing cost center, donors and tax rate are cleared, while missing cash-discount fields retain their previous values. isImmutable=true finalizes the booking and any tax booking. Joint-donor consistency is checked when either donor ID changes.
     ///
     /// Use [`Self::update_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TransactionUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accountId": 10,
+    ///     "amount": 7812,
+    ///     "contraAccountId": 11,
+    ///     "documentDate": "2019-01-14",
+    ///     "note": "Donation service offering",
+    ///     "documentNumber": "2026-42"
+    /// }))?;
+    /// let result = client.finance().transactions().update(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::TransactionUpdate) -> Result<models::Transaction> {
         self.update_with(id, &Default::default(), body)
     }
@@ -7430,6 +12221,20 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `PUT /finance/transactions/{id}/storno`
     ///
     /// Cancels a standalone booking by creating an opposite booking with swapped debit and credit accounts, the same amount and document date, and a -Storno document-number suffix. The original remains in place and references its cancellation. A tax booking is cancelled recursively. Requires edit permission for the period; split children must be cancelled through their parent endpoint. This operation does not require a mutable booking or check that the period is open. Repeating it updates the existing cancellation without creating another one; targeting a cancellation itself is a no-op. Returns HTTP 200 without a response body. Retrieve the original afterwards to obtain stornoTransactionId.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TransactionStornoCreate = serde_json::from_value(serde_json::json!({
+    ///     "note": "Incorrect amount"
+    /// }))?;
+    /// client.finance().transactions().update_storno(1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_storno(&self, id: impl Display, body: &models::TransactionStornoCreate) -> Result<()> {
         let path = format!("/finance/transactions/{}/storno", seg(id));
         let query: Query = Query::new();
@@ -7898,6 +12703,21 @@ impl<'a> FollowupsResource<'a> {
     /// `POST /followups/{followUpId}/complete`
     ///
     /// Sets `doneDate` to the current timestamp and records completion history. The subject person must be visible. Group-associated follow-ups require "churchdb +do followup" permission in that group. A supplied nonzero `successGroupId` adds or updates the subject’s membership in that selected group, including overwriting an existing membership’s role/status. Configured fixed-group/group-type restrictions are checked; a configured group is not selected automatically. Emits a completion event, which can trigger configured continuations or routines. Repeating this operation replaces `doneDate`, writes another history entry and emits another event. Due dates are retained.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-followups-followUpId-complete");
+    /// let body: models::FollowUpCompletionCreate = serde_json::from_value(serde_json::json!({
+    ///     "successGroupId": 42
+    /// }))?;
+    /// let followup = client.followups().complete(2, &body)?;
+    /// println!("{}", followup.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn complete(&self, follow_up_id: impl Display, body: &models::FollowUpCompletionCreate) -> Result<models::FollowUp2> {
         let path = format!("/followups/{}/complete", seg(follow_up_id));
         let query: Query = Query::new();
@@ -7910,6 +12730,17 @@ impl<'a> FollowupsResource<'a> {
     /// `DELETE /followups/{followUpId}`
     ///
     /// Deletes the follow-up and records deletion history in a transaction. Its specification is also deleted when it is not shared; a shared specification remains. Deletion requires access to the subject person and, for a group-associated follow-up, follow-up administration rights in that group. No dryRun/dependency-preview behavior is implemented. This removes the follow-up rather than marking it finished; it does not reverse group memberships or routine effects caused by earlier completion.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.followups().delete(2)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, follow_up_id: impl Display) -> Result<()> {
         let path = format!("/followups/{}", seg(follow_up_id));
         let query: Query = Query::new();
@@ -7921,6 +12752,19 @@ impl<'a> FollowupsResource<'a> {
     /// `POST /followups/{followUpId}/dismiss`
     ///
     /// Marks the follow-up as finished by setting `doneDate` to the current timestamp and recording a dismissal history entry. The subject person must be visible. Group-associated follow-ups require "churchdb +do followup" permission in that group. No success-group membership is changed and no completion event is emitted. Completion and dismissal both appear through `doneDate` and differ only in history. Repeating dismissal updates `doneDate` and creates another history entry.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-followups-followUpId-dismiss");
+    /// let body = serde_json::json!({});
+    /// let followup = client.followups().dismiss(2, &body)?;
+    /// println!("{}", followup.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn dismiss(&self, follow_up_id: impl Display, body: &serde_json::Value) -> Result<models::FollowUp2> {
         let path = format!("/followups/{}/dismiss", seg(follow_up_id));
         let query: Query = Query::new();
@@ -7933,6 +12777,18 @@ impl<'a> FollowupsResource<'a> {
     /// `GET /followups/{followUpId}`
     ///
     /// Returns one follow-up, including its subject person/group context, responsible person, current/original due dates and configured completion group. The current owner may view it; a group-associated follow-up is also visible to users with that group’s follow-up execution or administration rights. This direct check is broader than the list selection: group follow-ups assigned to another person can be read by eligible group staff even when omitted from their list. The response does not include notes or history, nor indicate whether its underlying specification is shared.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-followups-followUpId");
+    /// let followup = client.followups().get(2)?;
+    /// println!("{}", followup.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, follow_up_id: impl Display) -> Result<models::FollowUp2> {
         let path = format!("/followups/{}", seg(follow_up_id));
         let query: Query = Query::new();
@@ -7946,6 +12802,19 @@ impl<'a> FollowupsResource<'a> {
     /// Returns follow-ups owned by the current user plus unassigned group follow-ups for groups where the user has follow-up execution or administration rights. This includes personal and membership follow-ups; it is not an unrestricted list of every follow-up for a visible person. Archived subject persons are excluded. Date filters use `effectiveDueDate` and are combined with OR. Results are sorted by doneDate descending, then effectiveDueDate ascending, then ID ascending; finished items can precede open ones. Page/limit slice the result, but meta only contains count for this page, without a total or last page.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-followups");
+    /// for followup in client.followups().list()? {
+    ///     println!("{}", followup.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::FollowUp2>> {
         self.list_with(&Default::default())
     }
@@ -7970,6 +12839,20 @@ impl<'a> FollowupsResource<'a> {
     /// Creates a note linked to this follow-up. With `also_apply_to_person=true`, the same note is also linked to the subject person. `commentViewerId` applies only to the person link. The subject person must be visible; group-associated follow-ups require "churchdb +do followup" permission in that group.
     ///
     /// Use [`Self::notes_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::FollowUpNoteCreate = serde_json::from_value(serde_json::json!({
+    ///     "comment": "Called Alex; another conversation is planned for next week."
+    /// }))?;
+    /// client.followups().notes(2, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn notes(&self, follow_up_id: impl Display, body: &models::FollowUpNoteCreate) -> Result<()> {
         self.notes_with(follow_up_id, &Default::default(), body)
     }
@@ -7993,6 +12876,21 @@ impl<'a> FollowupsResource<'a> {
     /// `POST /followups/{followUpId}/postpone`
     ///
     /// Changes `effectiveDueDate` to a future calendar date and records postponement history. `dueDate` remains the original plan. The subject person must be visible. Group-associated follow-ups require "churchdb +do followup" permission in that group. Today is rejected. The method does not clear `doneDate` or reject already-finished follow-ups, so use reset to reopen one. No completion event or success-group action is performed.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-followups-followUpId-postpone");
+    /// let body: models::FollowUpPostponeCreate = serde_json::from_value(serde_json::json!({
+    ///     "dueDate": "2026-12-01"
+    /// }))?;
+    /// let followup = client.followups().postpone(2, &body)?;
+    /// println!("{}", followup.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn postpone(&self, follow_up_id: impl Display, body: &models::FollowUpPostponeCreate) -> Result<models::FollowUp2> {
         let path = format!("/followups/{}/postpone", seg(follow_up_id));
         let query: Query = Query::new();
@@ -8005,6 +12903,21 @@ impl<'a> FollowupsResource<'a> {
     /// `POST /followups/{followUpId}/reset`
     ///
     /// Reopens the follow-up by clearing `doneDate` and records reset history. A supplied future `dueDate` becomes `effectiveDueDate`; otherwise the original `dueDate` is restored as the effective date. The original `dueDate` is unchanged. The subject person must be visible. Group-associated follow-ups require "churchdb +do followup" permission in that group. Reset is also accepted for an already-open follow-up. It does not undo previous completion effects.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-followups-followUpId-reset");
+    /// let body: models::FollowUpResetCreate = serde_json::from_value(serde_json::json!({
+    ///     "dueDate": "2026-12-01"
+    /// }))?;
+    /// let followup = client.followups().reset(2, &body)?;
+    /// println!("{}", followup.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn reset(&self, follow_up_id: impl Display, body: &models::FollowUpResetCreate) -> Result<models::FollowUp2> {
         let path = format!("/followups/{}/reset", seg(follow_up_id));
         let query: Query = Query::new();
@@ -8017,6 +12930,21 @@ impl<'a> FollowupsResource<'a> {
     /// `PUT /followups/{followUpId}`
     ///
     /// Updates mutable fields of the specified follow-up.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-followups-followUpId");
+    /// let body = serde_json::json!({
+    ///     "title": "Call Peter"
+    /// });
+    /// let result = client.followups().update(2, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, follow_up_id: impl Display, body: &serde_json::Value) -> Result<models::FollowUp2> {
         let path = format!("/followups/{}", seg(follow_up_id));
         let query: Query = Query::new();
@@ -8071,6 +12999,25 @@ impl<'a> FurtherlinksResource<'a> {
     /// `POST /furtherlinks`
     ///
     /// Create a new further link.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-furtherlinks");
+    /// let body: models::FurtherLinkCreate = serde_json::from_value(serde_json::json!({
+    ///     "description": "Our church's NextCloud",
+    ///     "imageUrl": "beispiel",
+    ///     "name": "NextCloud",
+    ///     "sortKey": 1.5,
+    ///     "url": "beispiel"
+    /// }))?;
+    /// let result = client.furtherlinks().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::FurtherLinkCreate) -> Result<models::FurtherLink> {
         let path = "/furtherlinks".to_owned();
         let query: Query = Query::new();
@@ -8081,6 +13028,17 @@ impl<'a> FurtherlinksResource<'a> {
     /// delete-furtherlinks-furtherLinkId
     ///
     /// `DELETE /furtherlinks/{furtherLinkId}`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.furtherlinks().delete(1.5)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, further_link_id: impl Display) -> Result<()> {
         let path = format!("/furtherlinks/{}", seg(further_link_id));
         let query: Query = Query::new();
@@ -8092,6 +13050,18 @@ impl<'a> FurtherlinksResource<'a> {
     /// `GET /furtherlinks/{furtherLinkId}`
     ///
     /// Get the specified further link.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-furtherlinks-furtherLinkId");
+    /// let furtherlink = client.furtherlinks().get(1.5)?;
+    /// println!("{}", furtherlink.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, further_link_id: impl Display) -> Result<models::FurtherLink> {
         let path = format!("/furtherlinks/{}", seg(further_link_id));
         let query: Query = Query::new();
@@ -8103,6 +13073,19 @@ impl<'a> FurtherlinksResource<'a> {
     /// `GET /furtherlinks`
     ///
     /// Get all further links.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-furtherlinks");
+    /// for furtherlink in client.furtherlinks().list()? {
+    ///     println!("{}", furtherlink.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::FurtherLink>> {
         let path = "/furtherlinks".to_owned();
         let query: Query = Query::new();
@@ -8114,6 +13097,25 @@ impl<'a> FurtherlinksResource<'a> {
     /// `PUT /furtherlinks/{furtherLinkId}`
     ///
     /// Update the specified further link.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-furtherlinks-furtherLinkId");
+    /// let body: models::FurtherLinkCreate = serde_json::from_value(serde_json::json!({
+    ///     "description": "Our church's NextCloud",
+    ///     "imageUrl": "beispiel",
+    ///     "name": "NextCloud",
+    ///     "sortKey": 1.5,
+    ///     "url": "beispiel"
+    /// }))?;
+    /// let result = client.furtherlinks().update(1.5, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, further_link_id: impl Display, body: &models::FurtherLinkCreate) -> Result<models::FurtherLink> {
         let path = format!("/furtherlinks/{}", seg(further_link_id));
         let query: Query = Query::new();
@@ -8161,6 +13163,19 @@ impl<'a> GroupResource<'a> {
     /// Returns the fixed membership-status values with their names translated into the current language. A status describes a person's membership state in a group; their role (for example leader or participant) is a separate property.
     /// active means an active membership, requested a membership awaiting confirmation, waiting a place on the waiting list, and to_delete a membership pending removal. to_delete is still a stored membership state, not an already deleted record. These values are shared across group types. Use id in API requests and name for display.
     /// Requires authentication. This endpoint takes no parameters and returns a plain array, without a data wrapper or meta object. It lists possible statuses, not the transitions that a particular user may perform for a particular membership.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-memberstatus");
+    /// for memberstatu in client.group().list_memberstatus()? {
+    ///     println!("{}", memberstatu.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_memberstatus(&self) -> Result<Vec<models::GetGroupMemberstatusResponseItem>> {
         let path = "/group/memberstatus".to_owned();
         let query: Query = Query::new();
@@ -8182,6 +13197,24 @@ impl<'a> GroupAgegroupsResource<'a> {
     ///
     /// Creates a age range as shared master data. An age range describes intended participant ages, such as ages 3 to 5. Groups can reference several ranges through information.ageGroupIds. These configured ranges are independent of the calculated ages of current members.
     /// Requires the churchgroup permission "edit masterdata". Supply name, sortKey, start and end. Age boundaries are expressed in years. The name is trimmed. The endpoint validates integer boundaries but does not check that start is less than or equal to end; send a meaningful range. Returns the created record with its generated ID and translated display name. Creating this record does not create or assign any groups.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-group-agegroups");
+    /// let body: models::AgeGroupCreate = serde_json::from_value(serde_json::json!({
+    ///     "end": 5,
+    ///     "name": "3-5",
+    ///     "sortKey": 3,
+    ///     "start": 3
+    /// }))?;
+    /// let result = client.group().agegroups().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::AgeGroupCreate) -> Result<models::AgeGroup> {
         let path = "/group/agegroups".to_owned();
         let query: Query = Query::new();
@@ -8195,6 +13228,21 @@ impl<'a> GroupAgegroupsResource<'a> {
     ///
     /// Deletes a age range. Removing an age range also removes its ID from the ageGroupIds assignments of existing groups. The groups and their memberships remain.
     /// Requires the churchgroup permission "edit masterdata". The dryRun query parameter is required: send false to delete or true to inspect the deletion report. A dry run changes no records and returns 409 with the report, even when deletion would be possible. An actual successful deletion returns 204 without a body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = DeleteGroupAgegroupsAgeGroupIdQuery {
+    ///     dry_run: Some(true),
+    ///     ..Default::default()
+    /// };
+    /// client.group().agegroups().delete(2, &query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, age_group_id: impl Display, query: &DeleteGroupAgegroupsAgeGroupIdQuery) -> Result<()> {
         let path = format!("/group/agegroups/{}", seg(age_group_id));
         let query: Query = query.to_query();
@@ -8207,6 +13255,18 @@ impl<'a> GroupAgegroupsResource<'a> {
     ///
     /// Returns one age range using its ID from GET /group/agegroups. An age range describes intended participant ages, such as ages 3 to 5. Groups can reference several ranges through information.ageGroupIds. These configured ranges are independent of the calculated ages of current members.
     /// Requires authentication, but no master-data editing permission. Returns a single object in data and no list metadata. Returns 404 when the record does not exist.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-agegroups-ageGroupId");
+    /// let agegroup = client.group().agegroups().get(2)?;
+    /// println!("{}", agegroup.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, age_group_id: impl Display) -> Result<models::AgeGroup> {
         let path = format!("/group/agegroups/{}", seg(age_group_id));
         let query: Query = Query::new();
@@ -8219,6 +13279,19 @@ impl<'a> GroupAgegroupsResource<'a> {
     ///
     /// Returns all age ranges configured in this ChurchTools installation. An age range describes intended participant ages, such as ages 3 to 5. Groups can reference several ranges through information.ageGroupIds. These configured ranges are independent of the calculated ages of current members.
     /// Requires authentication, but no master-data editing permission. There are no filter or pagination parameters. Results are ordered by sortKey ascending and then by the stored name ascending; meta.count is the number of returned records. IDs and labels are installation-specific; discover them before assigning them to groups.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-agegroups");
+    /// for agegroup in client.group().agegroups().list()? {
+    ///     println!("{}", agegroup.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::AgeGroup>> {
         let path = "/group/agegroups".to_owned();
         let query: Query = Query::new();
@@ -8231,6 +13304,23 @@ impl<'a> GroupAgegroupsResource<'a> {
     ///
     /// Updates the shared age range identified by ageGroupId. Existing group assignments continue to reference the same record. This is a full update, not a partial update.
     /// Requires the churchgroup permission "edit masterdata". Supply name, sortKey, start and end. Age boundaries are expressed in years. The name is trimmed. The endpoint validates integer boundaries but does not check that start is less than or equal to end; send a meaningful range. The ID comes from the URL; no body id is required. Returns 204 without a response body. Use GET /group/agegroups/{ageGroupId} to read the updated record.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::AgeGroupCreate = serde_json::from_value(serde_json::json!({
+    ///     "end": 5,
+    ///     "name": "3-5",
+    ///     "sortKey": 3,
+    ///     "start": 3
+    /// }))?;
+    /// client.group().agegroups().update(2, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, age_group_id: impl Display, body: &models::AgeGroupCreate) -> Result<()> {
         let path = format!("/group/agegroups/{}", seg(age_group_id));
         let query: Query = Query::new();
@@ -8268,6 +13358,23 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     ///
     /// Creates a group category as shared master data. Categories organize groups by theme, for example worship services or community activities. A group references its category through information.groupCategoryId. Its group type separately defines shared settings and membership roles.
     /// Requires the churchgroup permission "edit masterdata". Supply name, color and sortKey. description is optional; omitted, null or blank input is stored as null. Text fields are trimmed. Returns the created record with its generated ID and translated display name. Creating this record does not create or assign any groups.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-group-groupcategories");
+    /// let body: models::GroupCategoryCreate = serde_json::from_value(serde_json::json!({
+    ///     "color": "blue",
+    ///     "name": "Gottesdienst",
+    ///     "sortKey": 5
+    /// }))?;
+    /// let result = client.group().groupcategories().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::GroupCategoryCreate) -> Result<models::GroupCategory> {
         let path = "/group/groupcategories".to_owned();
         let query: Query = Query::new();
@@ -8281,6 +13388,21 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     ///
     /// Deletes a group category. The deletion report includes groups that reference this category. Deleting a category does not delete these groups or their memberships.
     /// Requires the churchgroup permission "edit masterdata". The dryRun query parameter is required: send false to delete or true to inspect the deletion report. A dry run changes no records and returns 409 with the report, even when deletion would be possible. An actual successful deletion returns 204 without a body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = DeleteGroupGroupcategoriesGroupCategoryIdQuery {
+    ///     dry_run: Some(true),
+    ///     ..Default::default()
+    /// };
+    /// client.group().groupcategories().delete(2, &query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_category_id: impl Display, query: &DeleteGroupGroupcategoriesGroupCategoryIdQuery) -> Result<()> {
         let path = format!("/group/groupcategories/{}", seg(group_category_id));
         let query: Query = query.to_query();
@@ -8293,6 +13415,18 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     ///
     /// Returns one group category using its ID from GET /group/groupcategories. Categories organize groups by theme, for example worship services or community activities. A group references its category through information.groupCategoryId. Its group type separately defines shared settings and membership roles.
     /// Requires authentication, but no master-data editing permission. Returns a single object in data and no list metadata. Returns 404 when the record does not exist.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-groupcategories-groupCategoryId");
+    /// let groupcategory = client.group().groupcategories().get(2)?;
+    /// println!("{}", groupcategory.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_category_id: impl Display) -> Result<models::GroupCategory> {
         let path = format!("/group/groupcategories/{}", seg(group_category_id));
         let query: Query = Query::new();
@@ -8305,6 +13439,19 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     ///
     /// Returns all group categories configured in this ChurchTools installation. Categories organize groups by theme, for example worship services or community activities. A group references its category through information.groupCategoryId. Its group type separately defines shared settings and membership roles.
     /// Requires authentication, but no master-data editing permission. There are no filter or pagination parameters. Results are ordered by sortKey ascending and then by the stored name ascending; meta.count is the number of returned records. IDs and labels are installation-specific; discover them before assigning them to groups.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-groupcategories");
+    /// for groupcategory in client.group().groupcategories().list()? {
+    ///     println!("{}", groupcategory.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::GroupCategory>> {
         let path = "/group/groupcategories".to_owned();
         let query: Query = Query::new();
@@ -8317,6 +13464,23 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     ///
     /// Updates the shared group category identified by groupCategoryId. Existing group assignments continue to reference the same record. This is a full update, not a partial update.
     /// Requires the churchgroup permission "edit masterdata". Supply name, color and sortKey. description is optional; omitted, null or blank input is stored as null. Text fields are trimmed. The ID comes from the URL; no body id is required. Returns the updated record in data.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-group-groupcategories-groupCategoryId");
+    /// let body: models::GroupCategoryCreate = serde_json::from_value(serde_json::json!({
+    ///     "color": "blue",
+    ///     "name": "Gottesdienst",
+    ///     "sortKey": 5
+    /// }))?;
+    /// let result = client.group().groupcategories().update(2, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, group_category_id: impl Display, body: &models::GroupCategoryCreate) -> Result<models::GroupCategory> {
         let path = format!("/group/groupcategories/{}", seg(group_category_id));
         let query: Query = Query::new();
@@ -8354,6 +13518,29 @@ impl<'a> GroupGrouptypesResource<'a> {
     ///
     /// Creates a group type: shared configuration for groups such as small groups or ministry teams. This creates no groups or memberships. A participant role (the default) and a leader role are created automatically for the new type. Retrieve them with GET /group/roles?group_type_id={id} using the ID returned in data.id.
     /// Requires the churchgroup permission "edit masterdata". Supply all required settings; the boolean fields do not have implicit request defaults. description is optional; omitted, null or blank descriptions are stored as null. Text fields are trimmed. Returns the created type with its generated ID, translated names and metadata.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-group-grouptypes");
+    /// let body: models::GroupTypeCreate = serde_json::from_value(serde_json::json!({
+    ///     "availableForNewPerson": false,
+    ///     "color": "blue",
+    ///     "isLeaderNecessary": false,
+    ///     "name": "Kleingruppe",
+    ///     "namePlural": "Kleingruppen",
+    ///     "permissionDepth": 0,
+    ///     "postsEnabled": true,
+    ///     "shorty": "KG",
+    ///     "sortKey": 2
+    /// }))?;
+    /// let result = client.group().grouptypes().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::GroupTypeCreate) -> Result<models::GroupType> {
         let path = "/group/grouptypes".to_owned();
         let query: Query = Query::new();
@@ -8369,6 +13556,17 @@ impl<'a> GroupGrouptypesResource<'a> {
     /// dryRun=true performs the deletion checks without deleting anything and returns a 409 deletion report even when deletion would be possible. A successful actual deletion returns 204 with no response body.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.group().grouptypes().delete(2)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_type_id: impl Display) -> Result<()> {
         self.delete_with(group_type_id, &Default::default())
     }
@@ -8392,6 +13590,18 @@ impl<'a> GroupGrouptypesResource<'a> {
     /// `GET /group/grouptypes/{groupTypeId}`
     ///
     /// Returns one group type by its installation-specific ID from GET /group/grouptypes. The result describes shared settings, not a concrete group. Use GET /group/roles with group_type_id to retrieve the role definitions belonging to this type. Requires authentication, but no master-data editing permission. Returns 404 when the type does not exist.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-grouptypes-groupTypeId");
+    /// let grouptype = client.group().grouptypes().get(2)?;
+    /// println!("{}", grouptype.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_type_id: impl Display) -> Result<models::GroupType> {
         let path = format!("/group/grouptypes/{}", seg(group_type_id));
         let query: Query = Query::new();
@@ -8405,6 +13615,19 @@ impl<'a> GroupGrouptypesResource<'a> {
     /// Returns all group types configured in this ChurchTools installation. Group types are shared configuration records (master data), for example "Small group" or "Ministry team". A group is a concrete collection of people, such as "Tuesday evening small group", and references one type through `information.groupTypeId`.
     /// Each type defines common settings and has its own membership roles, such as leader or participant. Use `GET /group/roles` to retrieve role definitions and match their `groupTypeId` to the type's `id`. Use `GET /groups` to retrieve actual groups; this endpoint does not return groups or their members.
     /// Requires authentication. No master-data editing permission is required. The response is not paginated and accepts no filters. Results are ordered by `sortKey` ascending, then by the stored `name` ascending. `meta.count` is the number of group types returned. IDs and names are installation-specific; integrations should discover them instead of assuming fixed values.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-grouptypes");
+    /// for grouptype in client.group().grouptypes().list()? {
+    ///     println!("{}", grouptype.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::GroupType>> {
         let path = "/group/grouptypes".to_owned();
         let query: Query = Query::new();
@@ -8417,6 +13640,29 @@ impl<'a> GroupGrouptypesResource<'a> {
     ///
     /// Updates the shared settings of a group type. Existing groups reference these settings; this endpoint does not create a group or change which type a group belongs to.
     /// Requires the churchgroup permission "edit masterdata". Supply all required fields, including unchanged settings; this is not a partial update. The type ID comes from the URL, and no body id is required. Omitting description clears it to null rather than preserving the old text; null or blank text also clears it. Text fields are trimmed. Returns the updated type with translated names and metadata.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-group-grouptypes-groupTypeId");
+    /// let body: models::GroupTypeCreate = serde_json::from_value(serde_json::json!({
+    ///     "availableForNewPerson": false,
+    ///     "color": "blue",
+    ///     "isLeaderNecessary": false,
+    ///     "name": "Kleingruppe",
+    ///     "namePlural": "Kleingruppen",
+    ///     "permissionDepth": 0,
+    ///     "postsEnabled": true,
+    ///     "shorty": "KG",
+    ///     "sortKey": 2
+    /// }))?;
+    /// let result = client.group().grouptypes().update(2, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, group_type_id: impl Display, body: &models::GroupTypeCreate) -> Result<models::GroupType> {
         let path = format!("/group/grouptypes/{}", seg(group_type_id));
         let query: Query = Query::new();
@@ -8454,6 +13700,27 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     ///
     /// Creates a reusable group-meeting feedback template. A template defines an ordered feedback form for group meetings. It is selected through settings.groupMeeting.templateId on a group. Meeting answers are stored separately in pollResult; the template does not schedule meetings or record attendance.
     /// Requires the churchgroup permission "edit masterdata". Send name and the complete template array. Each field requires label and type. select fields also require non-empty options, preferably an array of non-blank strings; legacy comma-separated strings are accepted. Other field types must omit options or use null. An empty template array is allowed. Names and labels are trimmed. Returns the created template with its generated ID and metadata. Creating a template does not assign it to any groups.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-group-meetingtemplates");
+    /// let body: models::MeetingTemplateCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Lowlights / Highlights",
+    ///     "template": [
+    ///         {
+    ///             "label": "Highlights",
+    ///             "type": "color"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.group().meetingtemplates().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::MeetingTemplateCreate) -> Result<models::MeetingTemplate> {
         let path = "/group/meetingtemplates".to_owned();
         let query: Query = Query::new();
@@ -8467,6 +13734,21 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     ///
     /// Deletes a feedback template when no groups still reference it. Requires the churchgroup permission "edit masterdata". Groups using this template block deletion; change their template assignment before deleting it.
     /// The dryRun query parameter is required. Send true to inspect deletion dependencies without changing records; the report is returned with 409 even when deletion would be possible. Send false to delete. Successful deletion returns 204 without a response body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = DeleteGroupMeetingtemplatesMeetingTemplateIdQuery {
+    ///     dry_run: Some(true),
+    ///     ..Default::default()
+    /// };
+    /// client.group().meetingtemplates().delete(1, &query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, meeting_template_id: impl Display, query: &DeleteGroupMeetingtemplatesMeetingTemplateIdQuery) -> Result<()> {
         let path = format!("/group/meetingtemplates/{}", seg(meeting_template_id));
         let query: Query = query.to_query();
@@ -8478,6 +13760,18 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     /// `GET /group/meetingtemplates/{meetingTemplateId}`
     ///
     /// Returns one feedback template by its ID from GET /group/meetingtemplates. A template defines an ordered feedback form for group meetings. It is selected through settings.groupMeeting.templateId on a group. Meeting answers are stored separately in pollResult; the template does not schedule meetings or record attendance. Requires authentication, but no master-data editing permission. Returns the template in data, including its ordered fields and metadata. An unknown ID returns 404.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-meetingtemplates-meetingTemplateId");
+    /// let meetingtemplate = client.group().meetingtemplates().get(1)?;
+    /// println!("{}", meetingtemplate.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, meeting_template_id: impl Display) -> Result<models::MeetingTemplate> {
         let path = format!("/group/meetingtemplates/{}", seg(meeting_template_id));
         let query: Query = Query::new();
@@ -8490,6 +13784,19 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     ///
     /// Returns all configured group-meeting feedback templates. A template defines an ordered feedback form for group meetings. It is selected through settings.groupMeeting.templateId on a group. Meeting answers are stored separately in pollResult; the template does not schedule meetings or record attendance.
     /// Requires authentication, but no master-data editing permission. Accepts no filter or pagination parameters. Results are sorted by name ascending. meta.count is the number of returned templates.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-meetingtemplates");
+    /// for meetingtemplate in client.group().meetingtemplates().list()? {
+    ///     println!("{}", meetingtemplate.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::MeetingTemplate>> {
         let path = "/group/meetingtemplates".to_owned();
         let query: Query = Query::new();
@@ -8502,6 +13809,26 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     ///
     /// Replaces the name and complete field list of a feedback template. The template ID comes from the URL; no body id is required. Existing group assignments continue to reference this template.
     /// Requires the churchgroup permission "edit masterdata". Send name and the complete template array. Each field requires label and type. select fields also require non-empty options, preferably an array of non-blank strings; legacy comma-separated strings are accepted. Other field types must omit options or use null. An empty template array is allowed. Names and labels are trimmed. Omitted fields in the array are removed from the template. Returns 204 without a response body; retrieve the template again to read its updated contents. When displaying existing feedback, the ChurchTools UI matches saved answers to template fields by label and type, so changing either can affect that display.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::MeetingTemplateCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Lowlights / Highlights",
+    ///     "template": [
+    ///         {
+    ///             "label": "Highlights",
+    ///             "type": "color"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// client.group().meetingtemplates().update(1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, meeting_template_id: impl Display, body: &models::MeetingTemplateCreate) -> Result<()> {
         let path = format!("/group/meetingtemplates/{}", seg(meeting_template_id));
         let query: Query = Query::new();
@@ -8539,6 +13866,28 @@ impl<'a> GroupRolesResource<'a> {
     ///
     /// Creates a membership-role definition for the group type identified by groupTypeId. Groups of that type receive their own role settings records, which can be retrieved with GET /groups/{groupId}/roles. This does not add any people to a group.
     /// Requires the churchgroup permission "edit masterdata". All listed required fields must be supplied, including growPathId (use null for no growth-path association). Setting isDefault to true removes the default flag from other roles of this type. Returns the created definition, including its generated ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-group-roles");
+    /// let body: models::RoleCreate = serde_json::from_value(serde_json::json!({
+    ///     "groupTypeId": 2,
+    ///     "growPathId": 4,
+    ///     "isDefault": false,
+    ///     "isHidden": false,
+    ///     "name": "Leiter",
+    ///     "shorty": "L",
+    ///     "sortKey": 1,
+    ///     "type": "leader"
+    /// }))?;
+    /// let result = client.group().roles().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::RoleCreate) -> Result<models::Role> {
         let path = "/group/roles".to_owned();
         let query: Query = Query::new();
@@ -8554,6 +13903,17 @@ impl<'a> GroupRolesResource<'a> {
     /// Use dryRun=true to inspect deletion dependencies without deleting anything. A dry run returns 409 with the deletion report even when deletion would be possible. Actual successful deletion returns 204 with no response body.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.group().roles().delete(16)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, role_id: impl Display) -> Result<()> {
         self.delete_with(role_id, &Default::default())
     }
@@ -8577,6 +13937,18 @@ impl<'a> GroupRolesResource<'a> {
     /// `GET /group/roles/{roleId}`
     ///
     /// Returns one membership-role definition by its ID from GET /group/roles. This is the definition belonging to a group type. For the settings of a role in an individual group, use GET /groups/{groupId}/roles instead. Requires authentication, but no master-data editing permission. Returns 404 when the role does not exist.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-roles-roleId");
+    /// let role = client.group().roles().get(16)?;
+    /// println!("{}", role.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, role_id: impl Display) -> Result<models::Role> {
         let path = format!("/group/roles/{}", seg(role_id));
         let query: Query = Query::new();
@@ -8592,6 +13964,18 @@ impl<'a> GroupRolesResource<'a> {
     /// Requires authentication, but no master-data editing permission. The list is not paginated; meta.count is the number of returned roles. Without a filter, results are sorted by sortKey and name ascending. With group_type_id, they are sorted by type and sortKey ascending.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-roles");
+    /// let result = client.group().roles().list()?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<serde_json::Value> {
         self.list_with(&Default::default())
     }
@@ -8618,6 +14002,28 @@ impl<'a> GroupRolesResource<'a> {
     /// Updates the shared role definition identified by roleId. Changes apply to the definition used by groups of its type; use PATCH /groups/{groupId}/roles/{roleId} to change settings for one group instead.
     /// Requires the churchgroup permission "edit masterdata". Send all required fields; this is not a partial update. The ID is taken from the URL; no body id is required. groupTypeId is currently required by validation but does not move the role to another group type. Send the existing value.
     /// Setting isDefault to true clears the default flag on other roles of the same type. Setting it to false is rejected with 400 if no other default role remains. Returns the updated definition.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-group-roles-roleId");
+    /// let body: models::RoleCreate = serde_json::from_value(serde_json::json!({
+    ///     "groupTypeId": 2,
+    ///     "growPathId": 4,
+    ///     "isDefault": false,
+    ///     "isHidden": false,
+    ///     "name": "Leiter",
+    ///     "shorty": "L",
+    ///     "sortKey": 1,
+    ///     "type": "leader"
+    /// }))?;
+    /// let result = client.group().roles().update(16, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, role_id: impl Display, body: &models::RoleCreate) -> Result<models::Role> {
         let path = format!("/group/roles/{}", seg(role_id));
         let query: Query = Query::new();
@@ -8673,6 +14079,22 @@ impl<'a> GroupTargetgroupsResource<'a> {
     ///
     /// Creates a target audience as shared master data. A target audience describes whom a group is intended for, such as families or students. A group references one audience through information.targetGroupId. This endpoint returns audience labels, not people or groups.
     /// Requires the churchgroup permission "edit masterdata". Supply both name and sortKey. Use an integer sortKey to control display order. Returns the created record with its generated ID and translated display name. Creating this record does not create or assign any groups.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-group-targetgroups");
+    /// let body: models::TargetGroupCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "men",
+    ///     "sortKey": 2
+    /// }))?;
+    /// let result = client.group().targetgroups().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::TargetGroupCreate) -> Result<models::TargetGroup> {
         let path = "/group/targetgroups".to_owned();
         let query: Query = Query::new();
@@ -8686,6 +14108,21 @@ impl<'a> GroupTargetgroupsResource<'a> {
     ///
     /// Deletes a target audience. Deleting a target audience clears targetGroupId on groups assigned to it. The groups and their memberships remain.
     /// Requires the churchgroup permission "edit masterdata". The dryRun query parameter is required: send false to delete or true to inspect the deletion report. A dry run changes no records and returns 409 with the report, even when deletion would be possible. An actual successful deletion returns 204 without a body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = DeleteGroupTargetgroupsTargetGroupIdQuery {
+    ///     dry_run: Some(true),
+    ///     ..Default::default()
+    /// };
+    /// client.group().targetgroups().delete(2, &query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, target_group_id: impl Display, query: &DeleteGroupTargetgroupsTargetGroupIdQuery) -> Result<()> {
         let path = format!("/group/targetgroups/{}", seg(target_group_id));
         let query: Query = query.to_query();
@@ -8698,6 +14135,18 @@ impl<'a> GroupTargetgroupsResource<'a> {
     ///
     /// Returns one target audience using its ID from GET /group/targetgroups. A target audience describes whom a group is intended for, such as families or students. A group references one audience through information.targetGroupId. This endpoint returns audience labels, not people or groups.
     /// Requires authentication, but no master-data editing permission. Returns a single object in data and no list metadata. Returns 404 when the record does not exist.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-targetgroups-targetGroupId");
+    /// let targetgroup = client.group().targetgroups().get(2)?;
+    /// println!("{}", targetgroup.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, target_group_id: impl Display) -> Result<models::TargetGroup> {
         let path = format!("/group/targetgroups/{}", seg(target_group_id));
         let query: Query = Query::new();
@@ -8710,6 +14159,19 @@ impl<'a> GroupTargetgroupsResource<'a> {
     ///
     /// Returns all target audiences configured in this ChurchTools installation. A target audience describes whom a group is intended for, such as families or students. A group references one audience through information.targetGroupId. This endpoint returns audience labels, not people or groups.
     /// Requires authentication, but no master-data editing permission. There are no filter or pagination parameters. Results are ordered by sortKey ascending and then by the stored name ascending; meta.count is the number of returned records. IDs and labels are installation-specific; discover them before assigning them to groups.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-group-targetgroups");
+    /// for targetgroup in client.group().targetgroups().list()? {
+    ///     println!("{}", targetgroup.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::TargetGroup>> {
         let path = "/group/targetgroups".to_owned();
         let query: Query = Query::new();
@@ -8722,6 +14184,21 @@ impl<'a> GroupTargetgroupsResource<'a> {
     ///
     /// Updates the shared target audience identified by targetGroupId. Existing group assignments continue to reference the same record. This is a full update, not a partial update.
     /// Requires the churchgroup permission "edit masterdata". Supply both name and sortKey. Use an integer sortKey to control display order. The ID comes from the URL; no body id is required. Returns 204 without a response body. Use GET /group/targetgroups/{targetGroupId} to read the updated record.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TargetGroupCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "men",
+    ///     "sortKey": 2
+    /// }))?;
+    /// client.group().targetgroups().update(2, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, target_group_id: impl Display, body: &models::TargetGroupCreate) -> Result<()> {
         let path = format!("/group/targetgroups/{}", seg(target_group_id));
         let query: Query = Query::new();
@@ -8760,6 +14237,18 @@ impl<'a> GrouphomepagesResource<'a> {
     /// Public page settings, filter catalogs and eligible descendant groups for a group homepage hash. Anonymous access is supported, but signup eligibility and the public-group feature check can depend on whether the caller is signed in. Only enabled homepages are returned. Descendants are loaded through active, non-hidden hierarchy edges, sorted by the page’s configured field/direction, then filtered for public-page eligibility. The parent group itself is not included. An omitted depth uses the stored setting; depth=0 loads no groups, a positive depth limits hierarchy levels, and negative values currently traverse without a depth bound. The override does not change data.depth. Filter options include entire master-data catalogs, even for hidden filters and values unused by these groups. Group notes/places remain in the API even if their corresponding UI display settings hide them. No signup-person list is included here.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-grouphomepages-hash");
+    /// let grouphomepage = client.grouphomepages().get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")?;
+    /// println!("{}", grouphomepage.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, hash: impl Display) -> Result<models::GroupHomepage> {
         self.get_with(hash, &Default::default())
     }
@@ -8782,6 +14271,19 @@ impl<'a> GrouphomepagesResource<'a> {
     /// `GET /grouphomepages`
     ///
     /// Public directory of every enabled group homepage as lightweight domain objects. No authentication or per-homepage view permission is required. The random page hashes are intentionally returned in apiUrl/frontendUrl and are not secrets suitable for access control. Entries include the owning parent group ID and hierarchy descendant IDs across all depths; this list does not apply the stored page depth or the detailed page’s public-group eligibility filter. Active, non-hidden hierarchy edges are followed, so child IDs can include internal groups and duplicates through multiple paths. There is no pagination or guaranteed ordering of homepage entries.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-grouphomepages");
+    /// for grouphomepage in client.grouphomepages().list()? {
+    ///     println!("{}", grouphomepage.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::DomainObjectGrouphomepage>> {
         let path = "/grouphomepages".to_owned();
         let query: Query = Query::new();
@@ -8859,6 +14361,20 @@ impl<'a> GroupsResource<'a> {
     /// Start or stop an event chat
     ///
     /// `POST /groups/{groupId}/chat`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::StartStopChat = serde_json::from_value(serde_json::json!({
+    ///     "enabled": true
+    /// }))?;
+    /// client.groups().chat(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn chat(&self, group_id: impl Display, body: &models::StartStopChat) -> Result<()> {
         let path = format!("/groups/{}/chat", seg(group_id));
         let query: Query = Query::new();
@@ -8871,6 +14387,23 @@ impl<'a> GroupsResource<'a> {
     /// `POST /groups`
     ///
     /// Create new group
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-groups");
+    /// let body: models::PostGroupsBody = serde_json::from_value(serde_json::json!({
+    ///     "groupStatusId": 1,
+    ///     "groupTypeId": 42,
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.groups().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostGroupsBody) -> Result<models::Group> {
         let path = "/groups".to_owned();
         let query: Query = Query::new();
@@ -8885,6 +14418,17 @@ impl<'a> GroupsResource<'a> {
     /// Delete a group. This will remove all people from this group.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display) -> Result<()> {
         self.delete_with(group_id, &Default::default())
     }
@@ -8907,6 +14451,17 @@ impl<'a> GroupsResource<'a> {
     /// `DELETE /groups/{groupId}/grouphomepage`
     ///
     /// Permanently removes the homepage configuration attached to this parent group, including its public URL hash. The group, child groups and their memberships are retained. Requires permission to edit the parent group’s basic settings. If that group has no homepage configuration, the request still returns 204. There is no delete-preview workflow; use PUT with isEnabled=false to keep the configuration while disabling the public page.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().delete_grouphomepage(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_grouphomepage(&self, group_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/grouphomepage", seg(group_id));
         let query: Query = Query::new();
@@ -8920,6 +14475,21 @@ impl<'a> GroupsResource<'a> {
     /// Creates a pending group with a new ID, GUID and name. Requires permission to create a group with the source group’s type, campus and parent groups. The copy includes both parent and child hierarchy links, tags, membership field definitions, role settings, addresses and the group image. Memberships, role permissions and membership routines are copied only when their flags are enabled. Meetings and the appointment link are cleared. An existing group homepage is cloned with a new URL hash. Supply newName and optional flags in the query or JSON body; query values take precedence. The returned group is not enriched with all copied related data.
     ///
     /// Use [`Self::duplicate_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-groups-id-duplicate");
+    /// let body: models::GroupDuplicateCreate = serde_json::from_value(serde_json::json!({
+    ///     "copyMembers": true
+    /// }))?;
+    /// let group = client.groups().duplicate(42, &body)?;
+    /// println!("{}", group.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn duplicate(&self, group_id: impl Display, body: &models::GroupDuplicateCreate) -> Result<models::Group> {
         self.duplicate_with(group_id, &Default::default(), body)
     }
@@ -8945,6 +14515,24 @@ impl<'a> GroupsResource<'a> {
     /// Downloads selected visible groups as a spreadsheet, sorted by group name. Unknown or invisible IDs are omitted; an empty ids array produces a header-only export. Columns include standard and custom group fields, registration availability, tags, membership statistics, places and direct parent/child groups. Field labels and formatted values use the current language. Group field values pass through field security checks; related groups that are not visible may still appear as bare IDs. CSV uses semicolon-separated UTF-8 text; XLSX returns a workbook. This read-only POST does not create a stored file and does not paginate.
     ///
     /// Use [`Self::export_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::GroupExportCreate = serde_json::from_value(serde_json::json!({
+    ///     "ids": [
+    ///         12,
+    ///         34
+    ///     ]
+    /// }))?;
+    /// let data = client.groups().export(&body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn export(&self, body: &models::GroupExportCreate) -> Result<Vec<u8>> {
         self.export_with(&Default::default(), body)
     }
@@ -8968,6 +14556,18 @@ impl<'a> GroupsResource<'a> {
     /// `GET /groups/{groupId}`
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId");
+    /// let group = client.groups().get(42)?;
+    /// println!("{}", group.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_id: impl Display) -> Result<models::Group> {
         self.get_with(group_id, &Default::default())
     }
@@ -8988,6 +14588,22 @@ impl<'a> GroupsResource<'a> {
     /// `GET /groups/grouped`
     ///
     /// Returns visible groups grouped by the requested group attribute. Each group contains a preview list limited by `limit` and the total number of matching groups in `all`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-grouped");
+    /// let query = GetGroupsGroupedQuery {
+    ///     group_by: Some("beispiel".into()),
+    ///     ..Default::default()
+    /// };
+    /// let grouped = client.groups().get_grouped(&query)?;
+    /// println!("{}", grouped.grouped_by);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_grouped(&self, query: &GetGroupsGroupedQuery) -> Result<models::GroupedGroups> {
         let path = "/groups/grouped".to_owned();
         let query: Query = query.to_query();
@@ -8999,6 +14615,18 @@ impl<'a> GroupsResource<'a> {
     /// `GET /groups/{groupId}/grouphomepage`
     ///
     /// Returns the homepage configuration attached to this parent group, including disabled homepages. Requires permission to edit the parent group’s basic settings; ordinary group visibility is insufficient. A group without a homepage returns 404. This settings lookup does not populate the child groups or filter option catalogs: groups is empty and filter entries omit options. For the public page with its child groups and catalogs, use GET /grouphomepages/{hash}. showMap is combined with the global OpenStreetMap setting, so it can be false even when the stored page flag is true.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-grouphomepage");
+    /// let grouphomepage = client.groups().get_grouphomepage(42)?;
+    /// println!("{}", grouphomepage.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_grouphomepage(&self, group_id: impl Display) -> Result<models::GroupHomepage> {
         let path = format!("/groups/{}/grouphomepage", seg(group_id));
         let query: Query = Query::new();
@@ -9010,6 +14638,18 @@ impl<'a> GroupsResource<'a> {
     /// `GET /groups/{groupId}/optins`
     ///
     /// Returns active newsletter mappings and local newsletter-person records for the group, keyed by provider:listId and person ID. Requires permission to view the group and its members. The current backend calls the global administer groups check but does not enforce its result. Disabled/unknown providers are absent from newsletter; person records can remain with empty newsletter maps. The data is unpaginated, has no meta envelope and is not a live provider status lookup. Empty maps serialize as [].
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-optins");
+    /// let optin = client.groups().get_optins(42)?;
+    /// println!("{:?}", optin);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_optins(&self, group_id: impl Display) -> Result<models::NewsletterOptInData> {
         let path = format!("/groups/{}/optins", seg(group_id));
         let query: Query = Query::new();
@@ -9021,6 +14661,18 @@ impl<'a> GroupsResource<'a> {
     /// `GET /groups/{groupId}/poststatistics`
     ///
     /// Returns one object containing counts for group_intern and group_visible. Only already published, unexpired and non-banned posts are counted, and posts must be enabled for both the group and its group type. Drafts/scheduled posts are excluded. Empty groups and groups with posts disabled return both counters as zero. The current handler requires authentication but ignores the result of its group-edit permission check and does not filter counts by the caller’s post visibility. The response has no pagination or meta.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-poststatistics");
+    /// let poststatistic = client.groups().get_poststatistics(42)?;
+    /// println!("{}", poststatistic.group_intern);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_poststatistics(&self, group_id: impl Display) -> Result<models::GroupPostStatistics> {
         let path = format!("/groups/{}/poststatistics", seg(group_id));
         let query: Query = Query::new();
@@ -9032,6 +14684,18 @@ impl<'a> GroupsResource<'a> {
     /// `GET /groups/{groupId}/statistics`
     ///
     /// Returns one statistics object for the group. Requires group visibility. members is a role/status histogram restricted to members and persons visible to the caller; unfiltered contains group-wide capacity counts regardless of individual visibility. Consequently, summing members need not match any unfiltered counter. Roles, workflow status, archive state and seat-counting settings affect the counters differently. A group without visible memberships returns members=[]; capacity counters are still present. The response is not paginated and has no meta envelope.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-statistics");
+    /// let statistic = client.groups().get_statistics(42)?;
+    /// println!("{:?}", statistic);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_statistics(&self, group_id: impl Display) -> Result<models::GroupStatistics> {
         let path = format!("/groups/{}/statistics", seg(group_id));
         let query: Query = Query::new();
@@ -9043,6 +14707,21 @@ impl<'a> GroupsResource<'a> {
     /// `POST /groups/{groupId}/grouptype`
     ///
     /// Changes the group type and applies the supplied role mapping within a database transaction. Requires permission to edit the groupTypeId field of this group. Membership roles, group-role settings and their permissions, the registration override role, membership routines, dynamic-group rules and website role references can be affected. New target-type roles receive default group settings; obsolete role settings and their permissions are removed. Provide a complete mapping from old to new group-type role IDs. Use a different target type with valid target roles; incomplete or inconsistent mappings can fail during migration or leave membership roles inconsistent. Success returns 204 without a response body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::GroupTypeChangeUpdate = serde_json::from_value(serde_json::json!({
+    ///     "groupTypeId": 3,
+    ///     "roleMapping": {}
+    /// }))?;
+    /// client.groups().grouptype(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn grouptype(&self, group_id: impl Display, body: &models::GroupTypeChangeUpdate) -> Result<()> {
         let path = format!("/groups/{}/grouptype", seg(group_id));
         let query: Query = Query::new();
@@ -9059,6 +14738,19 @@ impl<'a> GroupsResource<'a> {
     /// In addition to the documented query parameters, groups can be filtered by all group fields (`=fieldValue`) as query parameters. For group fields with options (e.g. select fields), the format would be `[]=optionId` and can be repeated for serveral ids.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups");
+    /// for group in client.groups().list()? {
+    ///     println!("{}", group.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Group>> {
         self.list_with(&Default::default())
     }
@@ -9085,6 +14777,19 @@ impl<'a> GroupsResource<'a> {
     /// Returns absences for active, visible group members. Requires access to the group; member results are additionally restricted by manage absent or the internal group permission to view absences. Returns absences whose start is at or before to and whose end is at or after from. Absences ending exactly at midnight on the from date are also included, even if from specifies a later time that day. Dates use the application time zone; UTC timestamps are converted into it. Without filters the window starts at midnight two weeks ago and ends at midnight two weeks from today. The list is unpaginated and sorted by start; meta.count is the number returned.
     ///
     /// Use [`Self::list_absences_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-absences");
+    /// for absence in client.groups().list_absences(42)? {
+    ///     println!("{}", absence.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_absences(&self, group_id: impl Display) -> Result<Vec<models::Absence>> {
         self.list_absences_with(group_id, &Default::default())
     }
@@ -9107,6 +14812,19 @@ impl<'a> GroupsResource<'a> {
     /// `GET /groups/{groupId}/children`
     ///
     /// Use [`Self::list_children_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-children");
+    /// for children in client.groups().list_children(42)? {
+    ///     println!("{}", children.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_children(&self, group_id: impl Display) -> Result<Vec<models::DomainObjectGroup>> {
         self.list_children_with(group_id, &Default::default())
     }
@@ -9127,6 +14845,19 @@ impl<'a> GroupsResource<'a> {
     /// `GET /groups/{groupId}/documenttemplates`
     ///
     /// Lists the document templates assigned to the current user’s role in this group. The current user must have an active membership and that role must be configured in the group; administrative rights do not replace that membership. The result follows the role’s configured template order and is not paginated. An empty list means the role has no assigned templates. This endpoint returns template names only and does not generate PDFs. Unlike document generation, it does not check whether the group itself is active, so a listed template may still be unavailable for download.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-documenttemplates");
+    /// for documenttemplate in client.groups().list_documenttemplates(42)? {
+    ///     println!("{}", documenttemplate.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_documenttemplates(&self, group_id: impl Display) -> Result<Vec<models::HtmlTemplateInfo>> {
         let path = format!("/groups/{}/documenttemplates", seg(group_id));
         let query: Query = Query::new();
@@ -9140,6 +14871,19 @@ impl<'a> GroupsResource<'a> {
     /// Returns all group hierarchies. The groups not visible for the user only show ids. Note: You have to pass at least 2 group IDs for the filter to work. If you only want to see the children of a specific group use `GET /groups/{groupId}/children`.
     ///
     /// Use [`Self::list_hierarchies_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-hierarchies");
+    /// for hierarchy in client.groups().list_hierarchies()? {
+    ///     println!("{}", hierarchy.group_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_hierarchies(&self) -> Result<Vec<models::GroupHierarchy>> {
         self.list_hierarchies_with(&Default::default())
     }
@@ -9164,6 +14908,19 @@ impl<'a> GroupsResource<'a> {
     /// Returns all group ids the user can see. This includes groups the user is a member of as well as subordinate groups the user is allowed to see. Same as `GET /groups` but only returns ids.
     ///
     /// Use [`Self::list_ids_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-ids");
+    /// for id in client.groups().list_ids()? {
+    ///     println!("{:?}", id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_ids(&self) -> Result<Vec<i64>> {
         self.list_ids_with(&Default::default())
     }
@@ -9188,6 +14945,19 @@ impl<'a> GroupsResource<'a> {
     /// Returns the person IDs of all visible memberships matching the filters. These IDs can be used as personId in /groups/{groupId}/members/{personId}; they are not membership record IDs. Results are not paginated, and meta.count is the number of returned IDs. Filters are combined, and visibility restrictions still apply. Additional filters can use a group member field’s reference name or display name (=fieldValue), or a person-field key (person_=fieldValue).
     ///
     /// Use [`Self::list_memberids_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-memberids");
+    /// for memberid in client.groups().list_memberids(42)? {
+    ///     println!("{:?}", memberid);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_memberids(&self, group_id: impl Display) -> Result<Vec<i64>> {
         self.list_memberids_with(group_id, &Default::default())
     }
@@ -9212,6 +14982,19 @@ impl<'a> GroupsResource<'a> {
     /// Returns each role of the group’s group type with a limited selection of active, visible members. Roles are ordered by type and sort key, including roles with no matching members. Within each role, persons with an avatar come first, followed by last name and first name. members_per_role limits each role separately; meta.count counts role entries, not members. Use GET /groups/{groupId}/members for the paginated membership list and additional fields.
     ///
     /// Use [`Self::list_memberpreview_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-memberpreview");
+    /// for memberpreview in client.groups().list_memberpreview(42)? {
+    ///     println!("{:?}", memberpreview);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_memberpreview(&self, group_id: impl Display) -> Result<Vec<models::MemberPreview>> {
         self.list_memberpreview_with(group_id, &Default::default())
     }
@@ -9236,6 +15019,19 @@ impl<'a> GroupsResource<'a> {
     /// Returns all group members. Only accessible for users with right "administer persons".
     ///
     /// Use [`Self::list_members_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-members");
+    /// for member in client.groups().list_members()? {
+    ///     println!("{}", member.deleted);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_members(&self) -> Result<Vec<models::GroupMemberShort>> {
         self.list_members_with(&Default::default())
     }
@@ -9260,6 +15056,19 @@ impl<'a> GroupsResource<'a> {
     /// Returns published, unexpired and unbanned local posts visible to the current user in this group. Anonymous access is supported and limited by public group and post visibility. Posts must be enabled for both the group and its group type. Group-internal posts require membership; other posts follow group visibility. A missing or inaccessible group returns an empty list. Explicitly selecting a group includes it even when the user has hidden the group from their feed; hidden posts and hidden authors remain excluded. External instances are not queried. Results are ordered by publishedDate and GUID descending. For the next batch, pass the last post’s publishedDate as before and its guid as last_post_identifier. page is ignored; pagination.current stays 1, and total/lastPage describe the remaining cursor-filtered results rather than the complete feed.
     ///
     /// Use [`Self::list_posts_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-posts");
+    /// for post in client.groups().list_posts(42)? {
+    ///     println!("{}", post.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_posts(&self, group_id: impl Display) -> Result<Vec<models::Post>> {
         self.list_posts_with(group_id, &Default::default())
     }
@@ -9284,6 +15093,21 @@ impl<'a> GroupsResource<'a> {
     /// Announces a group to potential new members through push notifications. Requires permission to edit the group’s basic settings. Recipients have registered push devices, are not already linked to the group, and have not disabled these notifications. Group age, target-group and category values are compared with notification preferences, not with a person’s age or memberships. Use dry_run to preview the selection count without sending or marking the group as notified. A normal request marks the group as notified even when the count is zero; later requests, including dry runs, return 403. sentToCount measures recipient selection, not successful delivery. The response is returned directly without a data wrapper.
     ///
     /// Use [`Self::notification_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::GroupSignUpNotificationRequest = serde_json::from_value(serde_json::json!({
+    ///     "dry_run": true
+    /// }))?;
+    /// let group = client.groups().notification(42, &body)?;
+    /// println!("{}", group.sent_to_count);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn notification(&self, group_id: impl Display, body: &models::GroupSignUpNotificationRequest) -> Result<models::GroupSignUpNotificationResult> {
         self.notification_with(group_id, &Default::default(), body)
     }
@@ -9309,6 +15133,21 @@ impl<'a> GroupsResource<'a> {
     /// Update a group by id. All group fields can be updated here. Use the fields api to get all fields that can be updated here. To link an existing group to an existing appointment (e.g. a sign-up group), set `appointmentId` (and optionally `startDate` to identify a specific occurrence of a repeating appointment). Set `appointmentId` to `null` to remove the link. The current user must have permission to edit both the group and the referenced appointment.
     ///
     /// Use [`Self::patch_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("patch-groups-id");
+    /// let body: models::PatchGroupsIdBody = serde_json::from_value(serde_json::json!({
+    ///     "appointmentId": 42
+    /// }))?;
+    /// let result = client.groups().patch(42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, group_id: impl Display, body: &models::PatchGroupsIdBody) -> Result<models::Group> {
         self.patch_with(group_id, &Default::default(), body)
     }
@@ -9332,6 +15171,25 @@ impl<'a> GroupsResource<'a> {
     /// `PUT /groups/{groupId}/grouphomepage`
     ///
     /// Creates the homepage configuration if none exists, otherwise updates it. Requires permission to edit the parent group’s basic settings. Existing URL hashes are preserved; newly created pages receive a random hash. Supply all five enabled/display flags. Omitted header modes and custom text preserve existing values; omitted layout, ordering, collapse and depth settings reset to defaults, and omitted filters disables all filters. Returns 200 with an empty JSON object for both create and update. Read GET /groups/{groupId}/grouphomepage afterwards to obtain the saved configuration and URL hash.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-groups-groupId-grouphomepage");
+    /// let body: models::GroupHomepageUpdate = serde_json::from_value(serde_json::json!({
+    ///     "isEnabled": true,
+    ///     "showFilters": true,
+    ///     "showGroupImages": true,
+    ///     "showLeaders": true,
+    ///     "showMap": true
+    /// }))?;
+    /// let result = client.groups().update_grouphomepage(42, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_grouphomepage(&self, group_id: impl Display, body: &models::GroupHomepageUpdate) -> Result<std::collections::BTreeMap<String, serde_json::Value>> {
         let path = format!("/groups/{}/grouphomepage", seg(group_id));
         let query: Query = Query::new();
@@ -9895,6 +15753,21 @@ impl<'a> GroupsCheckinResource<'a> {
     /// `POST /groups/{groupId}/checkin/{personId}`
     ///
     /// Marks an existing person present at a group meeting. Requires permission to manage meetings of the path group. Supply either an existing meeting ID belonging to this group or its exact start timestamp; the timestamp variant creates a meeting when necessary. This does not create a group membership. Completed meetings and people already marked present produce 400. An optional ticket is marked used before these checks. printerId requests a name tag; printer warnings do not undo attendance or prevent a success response.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::CheckinCreate = serde_json::from_value(serde_json::json!({
+    ///     "date": "2022-10-19T12:00:00Z"
+    /// }))?;
+    /// let result = client.groups().checkin().create(42, 42, &body)?;
+    /// println!("{}", result.total_checked_in);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, group_id: impl Display, person_id: impl Display, body: &models::CheckinCreate) -> Result<models::Checkin> {
         let path = format!("/groups/{}/checkin/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -9916,6 +15789,17 @@ impl<'a> GroupsDocumentsResource<'a> {
     /// `GET /groups/{groupId}/documents/{htmlTemplateId}`
     ///
     /// Get a group document for the current logged in User
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().documents().get(42, "beispiel")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_id: impl Display, html_template_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/documents/{}", seg(group_id), seg(html_template_id));
         let query: Query = Query::new();
@@ -9936,6 +15820,18 @@ impl<'a> GroupsFollowupsResource<'a> {
     /// `GET /groups/{groupId}/followups/statistics`
     ///
     /// Counts follow-ups in this group assigned to the current user, plus unassigned follow-ups where that user has group follow-up rights. Items assigned to other people and archived subject persons are excluded, matching the group list scope. Requires permission to administer or perform follow-ups in this group. The counters cover all matching records and ignore list pagination and filter parameters. Due states use the effective due date and the server’s current date; dismissed and completed follow-ups share countDone. An empty scope returns all five counters as zero.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-followups-statistics");
+    /// let statistic = client.groups().followups().get_statistics(42)?;
+    /// println!("{}", statistic.count_done);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_statistics(&self, group_id: impl Display) -> Result<models::FollowUpStatistics> {
         let path = format!("/groups/{}/followups/statistics", seg(group_id));
         let query: Query = Query::new();
@@ -9949,6 +15845,19 @@ impl<'a> GroupsFollowupsResource<'a> {
     /// Returns follow-ups associated with this group, restricted to items assigned to the current user and unassigned items in groups where that user has follow-up rights. Items assigned to other people are omitted even if the current user can view them individually. Requires permission to administer or perform follow-ups in this group. Follow-ups whose subject person is archived are excluded. State filters are combined with OR; omission includes all states. Results are ordered by completion date descending, effective due date ascending, then ID. Pagination returns only meta.count for this page, without a total or last-page value.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-followups");
+    /// for followup in client.groups().followups().list(42)? {
+    ///     println!("{}", followup.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::FollowUp2>> {
         self.list_with(group_id, &Default::default())
     }
@@ -10002,6 +15911,21 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// `POST /groups/{groupId}/meetings`
     ///
     /// Creates one meeting at startDate and initializes attendance for eligible active group members as unsure. Requires authentication, permission to view the group and permission to manage its meetings. Send a UTC timestamp. Only startDate is accepted as meeting timing; endDate does not set a duration. dateFrom is a legacy alias for startDate. A duplicate meeting for the same group and start time returns 400.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-groups-id-meetings");
+    /// let body: models::PostGroupsIdMeetingsBody = serde_json::from_value(serde_json::json!({
+    ///     "startDate": "2026-09-20T08:00:00Z"
+    /// }))?;
+    /// let result = client.groups().meetings().create(42, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, group_id: impl Display, body: &models::PostGroupsIdMeetingsBody) -> Result<models::GroupMeeting> {
         let path = format!("/groups/{}/meetings", seg(group_id));
         let query: Query = Query::new();
@@ -10014,6 +15938,17 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// `DELETE /groups/{groupId}/meetings/{meetingId}`
     ///
     /// Permanently deletes the meeting. This differs from setting isCanceled=true, which retains the record. Requires authentication, permission to view the group and permission to manage its meetings. Use a meetingId belonging to the group in the URL. There is no dry-run option. Returns 204 without a response body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().meetings().delete(42, 120)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display, meeting_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/meetings/{}", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
@@ -10025,6 +15960,18 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// `GET /groups/{groupId}/meetings/{meetingId}`
     ///
     /// Returns one meeting with attendance statistics. Requires authentication, permission to view the group and permission to manage its meetings. Use a meetingId belonging to the group in the URL. No include parameters are supported; use the meeting list with include=attendances or the meeting members endpoint for individual attendance.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-meetings-meetingId");
+    /// let meeting = client.groups().meetings().get(42, 120)?;
+    /// println!("{}", meeting.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_id: impl Display, meeting_id: impl Display) -> Result<models::GroupMeeting> {
         let path = format!("/groups/{}/meetings/{}", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
@@ -10042,6 +15989,18 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// The result is a downloadable CSV (default) or XLSX file, not a JSON response. All matching meetings are exported; page and limit are not supported. The current date-range implementation orders meetings oldest first even when direction=backward is supplied.
     ///
     /// Use [`Self::get_export_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.groups().meetings().get_export(42)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_export(&self, group_id: impl Display) -> Result<Vec<u8>> {
         self.get_export_with(group_id, &Default::default())
     }
@@ -10076,6 +16035,19 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// meta.count is the number returned; meta.statistics covers all meetings of the group. In date-range mode, meta.previous and meta.next contain a matching meeting timestamp before from or after to, or null. They are omitted in directional mode. Use include=attendances to add person-level attendance states.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-meetings");
+    /// for meeting in client.groups().meetings().list(42)? {
+    ///     println!("{}", meeting.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::GroupMeeting>> {
         self.list_with(group_id, &Default::default())
     }
@@ -10108,6 +16080,23 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// Supply startDate, isCompleted and isCanceled; they have no implicit request defaults. Omitted numGuests, comment and pollResult are cleared to null. This is not a partial update. Blank comments are trimmed to null. endDate is not stored or updated. A duplicate start time for this group returns 400.
     ///
     /// Setting isCompleted=true locks attendance changes. Send false to reopen the meeting. This operation does not change individual attendance states or hasEditingStarted. Returns the updated meeting in data.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-groups-groupId-meetings-meetingId");
+    /// let body: models::PutGroupsGroupIdMeetingsMeetingIdBody = serde_json::from_value(serde_json::json!({
+    ///     "isCanceled": false,
+    ///     "isCompleted": false,
+    ///     "startDate": "2026-09-20T08:00:00Z"
+    /// }))?;
+    /// let result = client.groups().meetings().update(42, 120, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, group_id: impl Display, meeting_id: impl Display, body: &models::PutGroupsGroupIdMeetingsMeetingIdBody) -> Result<models::GroupMeeting> {
         let path = format!("/groups/{}/meetings/{}", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
@@ -10197,6 +16186,21 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// Sets one person's attendance to absent (the default) or unsure. This writes an attendance state rather than deleting the person or membership, and sets hasEditingStarted=true. Requires authentication and permission to manage meetings for the group. Completed meetings reject this attendance change with 400; reopen the meeting before editing attendance.
     ///
     /// The request body is optional. On success the response is 200 with a GroupMeeting directly at the JSON root, without a data wrapper. A meeting belonging to another group or an unknown person returns 404.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("delete-groups-groupId-meetings-meetingId-members-memberId");
+    /// let body: models::DeleteGroupsGroupIdMeetingsMeetingIdMembersMemberIdBody = serde_json::from_value(serde_json::json!({
+    ///     "status": "absent"
+    /// }))?;
+    /// let member = client.groups().meetings().members().delete(42, 120, 17, &body)?;
+    /// println!("{}", member.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display, meeting_id: impl Display, member_id: impl Display, body: &models::DeleteGroupsGroupIdMeetingsMeetingIdMembersMemberIdBody) -> Result<models::GroupMeeting> {
         let path = format!("/groups/{}/meetings/{}/members/{}", seg(group_id), seg(meeting_id), seg(member_id));
         let query: Query = Query::new();
@@ -10213,6 +16217,19 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// The list combines recorded attendance with visible group members; membership details are included only for current visible active memberships. Former members may appear when group-history permissions allow it, with member=null. A person without an attendance record receives status=not-in-group. personId identifies the person; isCheckedIn is true only for present.
     ///
     /// Returns an unpaginated data array with meta.count. It does not return meta.totalCheckedIn. A meeting belonging to another group returns 404.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-meetings-meetingId-members");
+    /// for member in client.groups().meetings().members().list(42, 120)? {
+    ///     println!("{}", member.is_checked_in);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display, meeting_id: impl Display) -> Result<Vec<models::GroupMeetingMember>> {
         let path = format!("/groups/{}/meetings/{}/members", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
@@ -10224,6 +16241,20 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// `POST /groups/{groupId}/meetings/{meetingId}/members/missing`
     ///
     /// Changes only existing unsure attendance records to the supplied present or absent status. Other attendance records are unchanged, and no new person records are added. Sets hasEditingStarted=true. Requires authentication and permission to manage meetings for the group. Completed meetings reject this attendance change with 400; reopen the meeting before editing attendance. Returns 204 without a response body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostGroupsGroupIdMeetingsMeetingIdMembersMissingBody = serde_json::from_value(serde_json::json!({
+    ///     "status": "absent"
+    /// }))?;
+    /// client.groups().meetings().members().missing(42, 120, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn missing(&self, group_id: impl Display, meeting_id: impl Display, body: &models::PostGroupsGroupIdMeetingsMeetingIdMembersMissingBody) -> Result<()> {
         let path = format!("/groups/{}/meetings/{}/members/missing", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
@@ -10236,6 +16267,17 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// `POST /groups/{groupId}/meetings/{meetingId}/members/reset`
     ///
     /// Resets all existing attendance records for the meeting to unsure, including records previously marked present or absent. Clears hasEditingStarted. This does not remove memberships or clear meeting feedback or guest counts. Requires authentication and permission to manage meetings for the group. Completed meetings reject this attendance change with 400; reopen the meeting before editing attendance. Returns 204 without a response body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().meetings().members().reset(42, 120)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn reset(&self, group_id: impl Display, meeting_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/meetings/{}/members/reset", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
@@ -10264,6 +16306,19 @@ impl<'a> GroupsMemberfieldsResource<'a> {
     /// `GET /groups/{groupId}/memberfields`
     ///
     /// Returns all configured fields for this group, ordered together by sortKey. type=group describes a field whose values belong to individual memberships; type=person links an existing global person field into the group’s membership/signup UI. The list contains field definitions, not members or their entered values. Requires visibility of the group. Field definitions are not additionally filtered by their securityLevel or useInRegistrationForm flag. Results are not paginated; meta.count is the total number of returned definitions. Anonymous access is possible when the group is publicly visible.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-memberfields");
+    /// for memberfield in client.groups().memberfields().list(42)? {
+    ///     println!("{:?}", memberfield);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Vec<serde_json::Value>> {
         let path = format!("/groups/{}/memberfields", seg(group_id));
         let query: Query = Query::new();
@@ -10284,6 +16339,25 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     /// `POST /groups/{groupId}/memberfields/group`
     ///
     /// Creates a field whose values are stored separately for each person’s membership in this group. Requires permission to edit group member fields. name must be unique within the group; referenceName must also be unique and is generated from name when omitted. Choose fieldTypeCode at creation; subsequent field updates cannot change it. Select-like options receive new backend IDs, and defaults are normalized to those IDs. The response is the field definition, without a type wrapper or member values. Existing memberships are not populated with the new default by this endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-groups-groupId-memberfields-group");
+    /// let body: models::GroupMemberFieldGroupCreate = serde_json::from_value(serde_json::json!({
+    ///     "fieldTypeCode": "text",
+    ///     "name": "T-Shirt size",
+    ///     "requiredInRegistrationForm": false,
+    ///     "securityLevel": 1,
+    ///     "useInRegistrationForm": true
+    /// }))?;
+    /// let result = client.groups().memberfields().group().create(42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, group_id: impl Display, body: &models::GroupMemberFieldGroupCreate) -> Result<models::GroupMemberFieldGroup> {
         let path = format!("/groups/{}/memberfields/group", seg(group_id));
         let query: Query = Query::new();
@@ -10296,6 +16370,17 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     /// `DELETE /groups/{groupId}/memberfields/group/{groupMemberFieldId}`
     ///
     /// Deletes the group-specific field definition, its selection options and all stored member values for that field. Requires permission to edit member fields of the path group. Supply a field belonging to that group. This operation has no delete-preview workflow and returns 204 without a body. Global person fields and person-field values are unaffected.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().memberfields().group().delete(42, 42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display, group_member_field_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/memberfields/group/{}", seg(group_id), seg(group_member_field_id));
         let query: Query = Query::new();
@@ -10307,6 +16392,21 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     /// `PATCH /groups/{groupId}/memberfields/group/{groupMemberFieldId}`
     ///
     /// Updates only supplied fields of a field belonging to the path group. Requires permission to edit group member fields. Empty {} is accepted and preserves the definition. fieldTypeCode is ignored; a field’s type cannot be changed here. When updating choices, send the full list with numeric IDs for retained choices; omitted IDs are deleted and removed from all member selections and the default. Use options=[] to remove all choices; omit options to preserve it. Avoid options=null because the current implementation reallocates IDs and can clear existing selections. Unlike create and PUT, PATCH does not check uniqueness of the display name, but it checks changed reference names.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("patch-groups-groupId-memberfields-group-groupMemberFieldId");
+    /// let body: models::GroupMemberFieldGroupPatch = serde_json::from_value(serde_json::json!({
+    ///     "name": "T-Shirt size"
+    /// }))?;
+    /// let result = client.groups().memberfields().group().patch(42, 42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, group_id: impl Display, group_member_field_id: impl Display, body: &models::GroupMemberFieldGroupPatch) -> Result<models::GroupMemberFieldGroup> {
         let path = format!("/groups/{}/memberfields/group/{}", seg(group_id), seg(group_member_field_id));
         let query: Query = Query::new();
@@ -10319,6 +16419,25 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     /// `PUT /groups/{groupId}/memberfields/group/{groupMemberFieldId}`
     ///
     /// Updates a field belonging to the path group. Requires permission to edit group member fields and the required name/referenceName/securityLevel/registration flags. Unlike PATCH, omitted notes, signup labels and defaultValue are cleared, and sortKey resets to zero. The display name and reference name must be unique within the group. The field type is unchanged. Send the full option list with numeric IDs for retained choices: removed choices are removed from member selections and defaults. Omitting options or sending null currently reallocates existing choice IDs and can clear selections. The returned object is the saved field definition.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-groups-groupId-memberfields-group-groupMemberFieldId");
+    /// let body: models::GroupMemberFieldGroupUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "T-Shirt size",
+    ///     "referenceName": "t-shirt-size",
+    ///     "requiredInRegistrationForm": false,
+    ///     "securityLevel": 1,
+    ///     "useInRegistrationForm": true
+    /// }))?;
+    /// let result = client.groups().memberfields().group().update(42, 42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, group_id: impl Display, group_member_field_id: impl Display, body: &models::GroupMemberFieldGroupUpdate) -> Result<models::GroupMemberFieldGroup> {
         let path = format!("/groups/{}/memberfields/group/{}", seg(group_id), seg(group_member_field_id));
         let query: Query = Query::new();
@@ -10340,6 +16459,17 @@ impl<'a> GroupsMemberfieldsPersonResource<'a> {
     /// `DELETE /groups/{groupId}/memberfields/person/{fieldId}`
     ///
     /// Removes the configuration linking this global person field to the group’s membership/signup UI. The underlying field definition and all values stored on persons are retained. Requires permission to edit group member fields. The lookup is scoped to both the group and dbField.id. Returns 204 on deletion and 404 when no such configuration exists; there is no delete-preview workflow.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().memberfields().person().delete(42, 200)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display, field_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/memberfields/person/{}", seg(group_id), seg(field_id));
         let query: Query = Query::new();
@@ -10351,6 +16481,22 @@ impl<'a> GroupsMemberfieldsPersonResource<'a> {
     /// `PUT /groups/{groupId}/memberfields/person/{fieldId}`
     ///
     /// Creates or updates the link from an existing global person field to this group’s membership/signup UI. Requires permission to edit group member fields. The path uses dbField.id, not the configuration row ID. Both sortKey and requiredInRegistrationForm must be supplied. The request does not change the global field definition or existing person values. Returns 200 with the saved configuration, including the full underlying dbField, for both create and update.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::GroupMemberFieldPersonUpdate = serde_json::from_value(serde_json::json!({
+    ///     "requiredInRegistrationForm": false,
+    ///     "sortKey": 20
+    /// }))?;
+    /// let result = client.groups().memberfields().person().update(42, 200, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, group_id: impl Display, field_id: impl Display, body: &models::GroupMemberFieldPersonUpdate) -> Result<models::GroupMemberFieldPerson> {
         let path = format!("/groups/{}/memberfields/person/{}", seg(group_id), seg(field_id));
         let query: Query = Query::new();
@@ -10386,6 +16532,19 @@ impl<'a> GroupsMembersResource<'a> {
     /// Downloads the same membership scope as GET on this path, using an optional JSON config. Omitted/null/empty config uses the default columns; {template: allin} selects the full discovered catalog. For custom columns, send version 10 and ordered pinned/unpinned lists. person.id is always included, prepended when missing. Some person fields expand into multiple columns; pinned columns are frozen in XLSX. Unknown keys and malformed configurations are not reliably validated and may cause 500. Legacy version 9 is migrated internally but has known custom-column migration limitations; new clients should use version 10. The request is read-only and does not save the export configuration.
     ///
     /// Use [`Self::create_export_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::GroupMemberExportCreate = serde_json::from_value(serde_json::json!({}))?;
+    /// let data = client.groups().members().create_export(42, &body)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create_export(&self, group_id: impl Display, body: &models::GroupMemberExportCreate) -> Result<Vec<u8>> {
         self.create_export_with(group_id, &Default::default(), body)
     }
@@ -10409,6 +16568,17 @@ impl<'a> GroupsMembersResource<'a> {
     /// `DELETE /groups/{groupId}/members/{personId}`
     ///
     /// Removes the membership linking groupId and personId. personId identifies the person, while data.id in membership responses identifies the membership record. The person record is retained. Viewing the group and its members is required, together with permission to delete members unless the current user is allowed to leave the group themselves. For an allowed self-service departure, autoAccept determines the outcome: true removes the membership immediately; false changes its status to to_delete (pending removal) and resets its role to the group type’s default role. After authorization, a missing or invisible membership is ignored and the endpoint still returns 204. A 204 response therefore does not guarantee that a membership was deleted.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().members().delete(42, 42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display, person_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/members/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -10420,6 +16590,18 @@ impl<'a> GroupsMembersResource<'a> {
     /// `GET /groups/{groupId}/members/{personId}`
     ///
     /// Returns the visible membership linking groupId and personId. personId is the person’s ID, not the membership record ID returned in data.id. The role and status describe this membership; they do not describe the person’s memberships in other groups. Comments, the end date and additional member fields are subject to field permissions. Returns 404 when the membership does not exist or is not visible to the current user.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-personId");
+    /// let member = client.groups().members().get(42, 42)?;
+    /// println!("{}", member.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_id: impl Display, person_id: impl Display) -> Result<models::GroupMember> {
         let path = format!("/groups/{}/members/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -10433,6 +16615,18 @@ impl<'a> GroupsMembersResource<'a> {
     /// Downloads visible memberships of this group as CSV or XLSX. Archived persons and members hidden by the current user’s access rules are excluded; all membership workflow statuses are eligible. Default columns include person ID and name, role, membership status, comment, registering person, membership dates, waiting-list position and accessible group-specific member fields. Missing member-field values are represented by their configured defaults. Headers and formatted values use the current language. There is no pagination or explicit sort parameter. CSV is UTF-8 with semicolon separators. Use POST on this path to select columns; query config is ignored. A scope with no visible members yields no member rows.
     ///
     /// Use [`Self::get_export_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.groups().members().get_export(42)?;
+    /// std::fs::write("ergebnis.xlsx", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_export(&self, group_id: impl Display) -> Result<Vec<u8>> {
         self.get_export_with(group_id, &Default::default())
     }
@@ -10457,6 +16651,19 @@ impl<'a> GroupsMembersResource<'a> {
     /// Returns one page of visible memberships in this group. Each entry links a person to the group and includes their role and membership status. Memberships in all visible statuses are included unless group_member_statuses filters them. Filters are combined. Additional filters can use a group member field’s reference name or display name (=fieldValue), or a person-field key (person_=fieldValue). meta.count counts entries on the current page, meta.pagination.total counts filtered memberships across all pages, and meta.all counts visible memberships before applying filters. Additional person fields and enrichments must be requested explicitly.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-members");
+    /// for member in client.groups().members().list(42)? {
+    ///     println!("{}", member.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::GroupMember>> {
         self.list_with(group_id, &Default::default())
     }
@@ -10481,6 +16688,19 @@ impl<'a> GroupsMembersResource<'a> {
     /// Returns legacy membership history for this group, newest entry ID first. Requires view group history or the internal +view history permission. member_id refers to the affected person and actor_id to the person who made the change. Change filters have precedence rather than being combined: new_role_id overrides new_status, which overrides new_fields/has_field_changed. The previous snapshot remains the actual linked predecessor even if it does not match the filters. To fetch older entries, pass the last returned id as offset_id; meta.count counts this batch, without a total or next cursor. Stored historical comments/field values are returned without individual person visibility or field security filtering.
     ///
     /// Use [`Self::list_history_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-history");
+    /// for history in client.groups().members().list_history(42)? {
+    ///     println!("{}", history.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_history(&self, group_id: impl Display) -> Result<Vec<models::GroupMemberHistoryEntry>> {
         self.list_history_with(group_id, &Default::default())
     }
@@ -10503,6 +16723,19 @@ impl<'a> GroupsMembersResource<'a> {
     /// `GET /groups/{groupId}/members/{personId}/meetings`
     ///
     /// Returns every meeting of the group, paired with the requested person’s attendance status. Requires permission to view the group and manage its meetings. Meetings without an attendance record are included with status null; canceled and completed meetings are also included. The endpoint does not verify that the person exists or is currently a group member. Results are not paginated and have no guaranteed order. Attendance statistics are not calculated.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-personId-meetings");
+    /// for meeting in client.groups().members().list_meetings(42, 42)? {
+    ///     println!("{:?}", meeting.status);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_meetings(&self, group_id: impl Display, person_id: impl Display) -> Result<Vec<models::GroupMemberMeeting>> {
         let path = format!("/groups/{}/members/{}/meetings", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -10514,6 +16747,23 @@ impl<'a> GroupsMembersResource<'a> {
     /// `GET /groups/{groupId}/members/statistics`
     ///
     /// Aggregates non-archived persons with a membership in this group and one of the requested group-type roles. Membership workflow status is not filtered. Requires permission to view the group and its members. Requested fields are included only if their security level is accessible; unknown or inaccessible fields are silently omitted. Person fields are selected by database field key, custom membership fields by numeric field ID. With no requested fields the result is empty. This is an unpaginated list; meta.count counts returned field statistics, not people. Person date fields return earliest/latest values including the corresponding person; requesting such a field when no non-null value exists currently reaches an unhandled empty-result path.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-statistics");
+    /// let query = GetGroupsGroupIdMembersStatisticsQuery {
+    ///     group_type_role_ids: Some(vec![8, 9]),
+    ///     ..Default::default()
+    /// };
+    /// for statistic in client.groups().members().list_statistics(42, &query)? {
+    ///     println!("{}", statistic.field_type);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_statistics(&self, group_id: impl Display, query: &GetGroupsGroupIdMembersStatisticsQuery) -> Result<Vec<models::GroupMemberStatistic>> {
         let path = format!("/groups/{}/members/statistics", seg(group_id));
         let query: Query = query.to_query();
@@ -10525,6 +16775,21 @@ impl<'a> GroupsMembersResource<'a> {
     /// `PATCH /groups/{groupId}/members/{personId}`
     ///
     /// Updates the membership linking this group and person; it does not create one. Use PUT to add a person. Requires permission to view group members, to edit changed membership properties and to edit submitted custom fields at their security levels. Omitted properties are preserved. The current backend incompletely checks changes supplied as null. Changes run transactionally, update history and recalculate the person’s growth path. Waiting-list processing is suppressed: set status and position explicitly when both must change. Date-only and UTC start timestamps are accepted, while the response formats the start as a date. An empty object is accepted but still runs update/history processing.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("patch-groups-groupId-members-personId");
+    /// let body: models::MembershipUpdate = serde_json::from_value(serde_json::json!({
+    ///     "comment": "Available on weekends."
+    /// }))?;
+    /// let result = client.groups().members().patch(42, 42, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, group_id: impl Display, person_id: impl Display, body: &models::MembershipUpdate) -> Result<models::GroupMember> {
         let path = format!("/groups/{}/members/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -10537,6 +16802,21 @@ impl<'a> GroupsMembersResource<'a> {
     /// `PUT /groups/{groupId}/members/{personId}`
     ///
     /// Creates a membership for the person identified in the path. Both creation and legacy updating return 200. Requires permission to view group members and add members; updating an existing membership additionally checks changed membership properties and custom-field security levels. Set only_add=true to reject existing memberships. Updating through PUT is deprecated in the backend; use PATCH for partial changes. The legacy update path clears omitted comments and end dates but preserves omitted status, role, start date and waiting-list position. Creation checks group capacity unless ignoreGroupFull is true; waiting-list capacity has a separate override. Changes update history, trigger membership events and recalculate the growth path. The response includes a legacy duplicate under data["0"] and a top-level deprecation mapping; use the regular data properties.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-groups-groupId-members-personId");
+    /// let body: models::MembershipCreate = serde_json::from_value(serde_json::json!({
+    ///     "comment": "Available on weekends."
+    /// }))?;
+    /// let result = client.groups().members().update(42, 42, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, group_id: impl Display, person_id: impl Display, body: &models::MembershipCreate) -> Result<models::PutGroupsGroupIdMembersPersonIdData> {
         let path = format!("/groups/{}/members/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -10708,6 +16988,17 @@ impl<'a> GroupsMembersDocumentsResource<'a> {
     /// `GET /groups/{groupId}/members/{memberId}/documents/{htmlTemplateId}`
     ///
     /// Get a document for a group member
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().members().documents().get(42, 42, 2)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_id: impl Display, member_id: impl Display, html_template_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/members/{}/documents/{}", seg(group_id), seg(member_id), seg(html_template_id));
         let query: Query = Query::new();
@@ -10728,6 +17019,21 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
     /// `POST /groups/{groupId}/members/{personId}/followups`
     ///
     /// Creates a task concerning this person in the context of the group. The subject person is distinct from ownerId, which identifies who should handle the task. Requires visibility of the person and permission to administer follow-ups in this group; a configured success group additionally requires permission to add members there, or the corresponding group-type permission. Missing/null ownerId leaves this group-related task unassigned. Dates may be in the past, and no due date is required. A new task specification is created from title and display/success settings. The current backend allows creation without an existing membership, storing a null membershipId; create the membership first so it can be found through the membership list/statistics routes.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-groups-id-members-id-followups");
+    /// let body: models::FollowUpCreate = serde_json::from_value(serde_json::json!({
+    ///     "title": "Call Peter"
+    /// }))?;
+    /// let result = client.groups().members().followups().create(42, 42, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, group_id: impl Display, person_id: impl Display, body: &models::FollowUpCreate) -> Result<models::FollowUp2> {
         let path = format!("/groups/{}/members/{}/followups", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -10740,6 +17046,18 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
     /// `GET /groups/{groupId}/members/{personId}/followups/statistics`
     ///
     /// Counts tasks linked to the current membership record for this group/person pair, excluding person-only tasks and tasks linked to older memberships. Counts follow-ups in this group assigned to the current user, plus unassigned follow-ups where that user has group follow-up rights. Items assigned to other people and archived subject persons are excluded, matching the group list scope. Requires permission to administer or perform follow-ups in this group. The counters cover all matching records and ignore list pagination and filter parameters. Due states use the effective due date and the server’s current date; dismissed and completed follow-ups share countDone. An empty scope returns all five counters as zero. If the membership does not exist, the current backend dereferences null instead of returning zero counters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-members-id-followups-statistics");
+    /// let statistic = client.groups().members().followups().get_statistics(42, 42)?;
+    /// println!("{}", statistic.count_done);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_statistics(&self, group_id: impl Display, person_id: impl Display) -> Result<models::FollowUpStatistics> {
         let path = format!("/groups/{}/members/{}/followups/statistics", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -10753,6 +17071,19 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
     /// Resolves the current membership linking this group and person, then lists follow-ups linked to that membership record ID. Follow-ups for an older deleted membership or person-only follow-ups are not included. Requires permission to administer or perform follow-ups in this group. Follow-ups whose subject person is archived are excluded. State filters are combined with OR; omission includes all states. Results are ordered by completion date descending, effective due date ascending, then ID. Pagination returns only meta.count for this page, without a total or last-page value. Results are restricted to the current owner and unassigned follow-ups in permitted groups; items assigned to others are omitted. A missing membership currently causes an unhandled null access rather than an empty list.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-personId-followups");
+    /// for followup in client.groups().members().followups().list(42, 42)? {
+    ///     println!("{}", followup.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display, person_id: impl Display) -> Result<Vec<models::FollowUp2>> {
         self.list_with(group_id, person_id, &Default::default())
     }
@@ -10802,6 +17133,17 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     /// `DELETE /groups/{groupId}/members/routines/{roleId}/{groupMemberStatus}`
     ///
     /// Deletes the binding for this exact group, group-type role and membership status, and also deletes the entire referenced routine and its steps. This is not an unlink-only operation. There is no delete-preview workflow. Requires authentication; this controller/service currently omit the group-specific permission checks used by the regular routine API. Missing bindings currently cause a server error rather than an idempotent 204 or a defined 404.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().members().routines().delete(42, 12, "active")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display, role_id: impl Display, group_member_status: impl Display) -> Result<()> {
         let path = format!("/groups/{}/members/routines/{}/{}", seg(group_id), seg(role_id), seg(group_member_status));
         let query: Query = Query::new();
@@ -10813,6 +17155,19 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     /// `GET /groups/{groupId}/members/routines`
     ///
     /// Lists the routines bound to role/status combinations in this group, including disabled routines and their nested steps. A binding selects which automation applies to matching memberships; it is separate from the execution progress of any individual member. The list is not paginated and has no guaranteed ordering. Requires authentication; the current controller/service do not perform an additional group-specific permission check. A group with no bindings returns an empty list. Action data is converted from its stored form by the registered action handler before being returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-routines");
+    /// for routine in client.groups().members().routines().list(42)? {
+    ///     println!("{}", routine.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::GroupMembershipRoutine>> {
         let path = format!("/groups/{}/members/routines", seg(group_id));
         let query: Query = Query::new();
@@ -10824,6 +17179,21 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     /// `PUT /groups/{groupId}/members/routines/{roleId}/{groupMemberStatus}`
     ///
     /// Binds an existing empty routine to this exact group, group-type role and membership status. Create the routine first and provide its ID; a routine with existing steps is rejected with 422. The response includes the binding and nested routine. If the binding already exists, this request returns it unchanged and ignores the submitted routineId. Requires authentication; the current controller/service omit group-specific permission checks. This endpoint does not start executions or change routine steps. Missing/nonexistent routine IDs for a new binding currently cause a server error.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::GroupMembershipRoutineUpdate = serde_json::from_value(serde_json::json!({
+    ///     "routineId": 5
+    /// }))?;
+    /// let result = client.groups().members().routines().update(42, 12, "active", &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, group_id: impl Display, role_id: impl Display, group_member_status: impl Display, body: &models::GroupMembershipRoutineUpdate) -> Result<models::GroupMembershipRoutine> {
         let path = format!("/groups/{}/members/routines/{}/{}", seg(group_id), seg(role_id), seg(group_member_status));
         let query: Query = Query::new();
@@ -10845,6 +17215,22 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// `POST /groups/{groupId}/newsletter-integrations`
     ///
     /// Creates a stored mapping and immediately starts synchronizing eligible active, non-archived members with email addresses. This request can create an external list, subscribe contacts and send confirmation emails. Requires visibility of the group and members plus the global churchgroup permission administer groups. Select an active provider and use exactly one of listId or createListName. A provider/list pair can belong to only one group. existingMembersHandling controls initial consent handling; optInRequired is retained for later sync. A successful response confirms the mapping was created, but individual contact synchronization can fail and is tracked separately. External provider operations cannot be undone by a local database rollback.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::NewsletterIntegrationGroupMappingCreate = serde_json::from_value(serde_json::json!({
+    ///     "optInRequired": true,
+    ///     "provider": "Mailjet"
+    /// }))?;
+    /// let result = client.groups().newsletter_integrations().create(42, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, group_id: impl Display, body: &models::NewsletterIntegrationGroupMappingCreate) -> Result<models::NewsletterIntegrationGroupMapping> {
         let path = format!("/groups/{}/newsletter-integrations", seg(group_id));
         let query: Query = Query::new();
@@ -10857,6 +17243,17 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// `DELETE /groups/{groupId}/newsletter-integrations/{provider}/{listId}`
     ///
     /// Removes this group/provider/list mapping and its local newsletter-person records, then unsubscribes their stored email addresses from the external list if the provider is active. The external list itself is retained. Requires visibility of the group and members plus the global churchgroup permission administer groups. A missing mapping is ignored and returns 204. Local deletion is committed before the provider call: a provider error may leave external subscriptions active after the local mapping is gone. When the provider is inactive or unknown, only local records are removed.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().newsletter_integrations().delete(42, "Mailjet", "12345")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display, provider: impl Display, list_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/newsletter-integrations/{}/{}", seg(group_id), seg(provider), seg(list_id));
         let query: Query = Query::new();
@@ -10868,6 +17265,19 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// `GET /groups/{groupId}/newsletter-integrations`
     ///
     /// Returns stored links to external newsletter lists, including disabled/unavailable providers. Requires visibility of the group and members plus the global churchgroup permission administer groups. This request does not contact newsletter providers or refresh list names/status. The unpaginated list has no defined order; meta.count is the number of mappings. An accessible group without mappings returns an empty list.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-newsletter-integrations");
+    /// for newsletter_integration in client.groups().newsletter_integrations().list(42)? {
+    ///     println!("{}", newsletter_integration.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::NewsletterIntegrationGroupMapping>> {
         let path = format!("/groups/{}/newsletter-integrations", seg(group_id));
         let query: Query = Query::new();
@@ -10881,6 +17291,18 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// Sends ChurchTools confirmation emails again for eligible pending newsletter-person records in this mapping. Requires visibility of the group and members plus the global churchgroup permission "administer groups". Selecting one recipient with `person_id` additionally requires visibility of that person. Candidates must have an active membership, a non-archived person, no successful synchronization, no unsubscribe date and no confirmed double opt-in. Previously sent requests are included; each recipient gets a new token, invalidating the old link. Email addresses already synchronized for the same list are excluded and candidates are grouped by stored email. Without `person_id`, missing mappings and empty candidate sets return `204`. With `person_id`, no eligible candidate returns `404`. No count is returned. The current handler does not check `optInRequired`, provider activation or whether the provider handles double opt-in itself.
     ///
     /// Use [`Self::resend_optins_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// client.groups().newsletter_integrations().resend_optins(42, "Mailjet", "12345", &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn resend_optins(&self, group_id: impl Display, provider: impl Display, list_id: impl Display, body: &serde_json::Value) -> Result<()> {
         self.resend_optins_with(group_id, provider, list_id, &Default::default(), body)
     }
@@ -10928,6 +17350,17 @@ impl<'a> GroupsParentsResource<'a> {
     /// `DELETE /groups/{groupId}/parents/{parentGroupId}`
     ///
     /// Removes only the direct hierarchy edge from parentGroupId to groupId; both groups and their memberships remain. Other paths through the hierarchy are unaffected, so the parent may still be an indirect ancestor. Requires global group administration or hierarchy/group editing permission for both endpoints. A missing relationship is ignored and returns 204. Successful processing invalidates the authorization cache because hierarchy changes can affect inherited permissions.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.groups().parents().delete(42, 12)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, group_id: impl Display, parent_group_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/parents/{}", seg(group_id), seg(parent_group_id));
         let query: Query = Query::new();
@@ -10939,6 +17372,19 @@ impl<'a> GroupsParentsResource<'a> {
     /// `GET /groups/{groupId}/parents`
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-parents");
+    /// for parent in client.groups().parents().list("beispiel")? {
+    ///     println!("{}", parent.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::DomainObjectGroup>> {
         self.list_with(group_id, &Default::default())
     }
@@ -10959,6 +17405,18 @@ impl<'a> GroupsParentsResource<'a> {
     /// `PUT /groups/{groupId}/parents/{parentGroupId}`
     ///
     /// Adds parentGroupId as a direct parent of groupId. Groups can have multiple parents; this adds an edge rather than replacing existing parents, and does not copy memberships. Requires global group administration or hierarchy/group editing permission for both groups. Self-parenting and a relationship that would create a cycle are rejected with 400. An existing direct relationship also returns 400, so repeating a successful PUT is not an idempotent success. Success returns 201 without a JSON body and invalidates the authorization cache because the hierarchy can affect inherited permissions.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// client.groups().parents().update(42, 12, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, group_id: impl Display, parent_group_id: impl Display, body: &serde_json::Value) -> Result<()> {
         let path = format!("/groups/{}/parents/{}", seg(group_id), seg(parent_group_id));
         let query: Query = Query::new();
@@ -11048,6 +17506,18 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// `GET /groups/{groupId}/qrcodecheckin/{personId}`
     ///
     /// Returns the stored ticket for this person and group, without generating one or recording attendance. The current user may retrieve their own ticket. Retrieving another person’s ticket requires group/group-type membership editing permission or internal edit basic group memberships. Returns 404 when no matching ticket exists. The lookup does not recheck current ticket eligibility, expiry, use or QR-check-in activation; inspect the lifecycle fields separately. No meta envelope is returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin-personId");
+    /// let qrcodecheckin = client.groups().qrcodecheckin().get(42, 42)?;
+    /// println!("{}", qrcodecheckin.domain_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_id: impl Display, person_id: impl Display) -> Result<models::GroupQRCodeCheckin> {
         let path = format!("/groups/{}/qrcodecheckin/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -11059,6 +17529,18 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// `GET /groups/{groupId}/qrcodecheckin/{personId}/pdf`
     ///
     /// Generates a PDF containing the stored ticket’s QR code and returns its absolute download URL as JSON; this endpoint does not stream PDF bytes. The current user may request their own ticket, while another person’s ticket requires group/group-type membership editing permission or internal edit basic group memberships. A matching ticket must already exist; otherwise 404 is returned. Generating the link updates downloadedDate immediately, before any download occurs. This GET therefore writes state and creates a file. The lookup does not recheck QR-check-in activation, current role/membership eligibility or ticket lifecycle validity.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin-personId-pdf");
+    /// let pdf = client.groups().qrcodecheckin().get_pdf(42, 42)?;
+    /// println!("{}", pdf.url);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_pdf(&self, group_id: impl Display, person_id: impl Display) -> Result<models::GetGroupsIdQrcodecheckinPersonIdPdfData> {
         let path = format!("/groups/{}/qrcodecheckin/{}/pdf", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -11070,6 +17552,18 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// `GET /groups/{groupId}/qrcodecheckin`
     ///
     /// Returns existing stored tickets; it does not generate missing tickets or record attendance. Users with one of the group/group-type membership editing permissions or internal edit basic group memberships can retrieve all group tickets. Other authenticated users receive only their own ticket, wrapped in an array, or data=null when they have none. The privileged empty result is [] instead. Results are unpaginated and have no defined order or meta envelope. This lookup does not filter ticket expiry/use or recheck current QR-check-in enablement, role eligibility or active membership.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin");
+    /// let result = client.groups().qrcodecheckin().list(42)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Option<Vec<models::GroupQRCodeCheckin>>> {
         let path = format!("/groups/{}/qrcodecheckin", seg(group_id));
         let query: Query = Query::new();
@@ -11081,6 +17575,19 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// `POST /groups/{groupId}/qrcodecheckin/{personId}/send`
     ///
     /// Queues a PDF ticket email and returns the current ticket, normally with isQueued=true while processing is pending. The current user may request their own ticket; sending another person’s ticket requires group/group-type membership editing permission or internal edit basic group memberships. A ticket must already exist. The subject person is preferred as recipient when they have an email and are not archived; otherwise the service attempts the membership’s registeredBy person. Already queued tickets are unchanged. With no eligible recipient this request still returns 200 without queuing. A previously sent ticket can be queued again. The worker generates the attachment and later updates sentDate/isQueued; this response does not confirm delivery. No request body selects recipients or content.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// let qrcodecheckin = client.groups().qrcodecheckin().send(42, 42, &body)?;
+    /// println!("{}", qrcodecheckin.domain_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn send(&self, group_id: impl Display, person_id: impl Display, body: &serde_json::Value) -> Result<models::GroupQRCodeCheckin> {
         let path = format!("/groups/{}/qrcodecheckin/{}/send", seg(group_id), seg(person_id));
         let query: Query = Query::new();
@@ -11104,6 +17611,19 @@ impl<'a> GroupsRolesResource<'a> {
     /// Returns the roles configured for one group, including inactive roles. Each entry combines a shared role definition from the group's type with settings specific to this group, such as chat access, check-in QR codes and participant capacity.
     /// id is the group-specific role settings ID used by PATCH /groups/{groupId}/roles/{roleId}. groupTypeRoleId links to the shared definition from GET /group/roles; do not interchange these IDs. isActive describes whether the role is enabled in this group, not the membership status of any person.
     /// Requires authentication and permission to view the group. Accepts its numeric ID or chat GUID. Results are not paginated and are sorted by the shared role's type and sortKey ascending. meta.count includes all returned roles.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-roles");
+    /// for role in client.groups().roles().list(serde_json::json!(42))? {
+    ///     println!("{}", role.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::GroupRole>> {
         let path = format!("/groups/{}/roles", seg(group_id));
         let query: Query = Query::new();
@@ -11117,6 +17637,21 @@ impl<'a> GroupsRolesResource<'a> {
     /// Updates settings for one role in one group. Use the entry's id from GET /groups/{groupId}/roles as roleId, not its groupTypeRoleId. This does not rename or reclassify the shared role definition.
     /// Send only the settings to change. Omitted fields are preserved. growPathId=null clears the growth-path association; htmlTemplateIds=[] clears the template list. A supplied template list replaces the previous list. The default role cannot be deactivated. Returns the complete updated GroupRole in data, without meta.
     /// Requires authentication and permission to view the group. Chat settings require one of administer groups, edit group, edit groups of grouptype or +admin group chat for this group. The other role settings except htmlTemplateIds require one of administer groups, edit group or edit groups of grouptype. Adding document templates requires one of administer groups, edit group, edit groups of grouptype or +edit group basic settings, plus the churchcore permission use church html templates for each added template. Templates must belong to the group-membership document domain.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::GroupRoleUpdate = serde_json::from_value(serde_json::json!({
+    ///     "canReadChat": true
+    /// }))?;
+    /// let result = client.groups().roles().patch(42, 1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, group_id: impl Display, role_id: impl Display, body: &models::GroupRoleUpdate) -> Result<models::GroupRole> {
         let path = format!("/groups/{}/roles/{}", seg(group_id), seg(role_id));
         let query: Query = Query::new();
@@ -11153,6 +17688,19 @@ impl<'a> GroupsWikiCategoriesResource<'a> {
     /// Requires group visibility and a current active, non-archived membership. Categories are selected from view-category rights attached directly to this membership’s group role and then checked against the current user’s effective wiki permissions. Global wiki access alone does not add categories to this group-specific list; without a matching role/category grant the result is empty. Categories are ordered by sortKey then ID. Each category contains up to limit latest-version pages, sorted by modification date descending then title; total counts eligible pages before that limit. System pages are filtered by the wiki repository rules. Redirect pages are not removed. Page text and previews are omitted. meta.count counts returned categories, not pages; there is no page-number parameter.
     ///
     /// Use [`Self::list_pages_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-id-wiki-categories-pages");
+    /// for page in client.groups().wiki().categories().list_pages(42)? {
+    ///     println!("{}", page.total);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_pages(&self, group_id: impl Display) -> Result<Vec<models::GroupWikiCategoryPagesItem>> {
         self.list_pages_with(group_id, &Default::default())
     }
@@ -11199,6 +17747,24 @@ impl<'a> HistoryResource<'a> {
     /// `GET /history`
     ///
     /// Get history entries with links to domain objects.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-history");
+    /// let query = GetHistoryQuery {
+    ///     domain_types: Some(vec!["beispiel".into()]),
+    ///     domain_identifiers: Some(vec!["beispiel".into()]),
+    ///     ..Default::default()
+    /// };
+    /// for history in client.history().list(&query)? {
+    ///     println!("{}", history.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetHistoryQuery) -> Result<Vec<models::HistoryEntry>> {
         let path = "/history".to_owned();
         let query: Query = query.to_query();
@@ -11258,6 +17824,22 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `POST /htmltemplates`
     ///
     /// Creates metadata and optional independent HTML/MJML files. The current user becomes owner even for a global template. email and bulkletter allow private templates (isGlobal defaults to false); groupmember-document and both donation-receipt types require isGlobal=true. Global creation requires the matching template domain’s administration permission. Neither source is required, so an empty template can be created. Source text is stored without rendering placeholders or compiling MJML. copyAssetsFromId copies only image files after template creation has committed; a copy failure can leave the new template and some assets in place. The current copy path does not check visibility of the source template.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-htmltemplates");
+    /// let body: models::HtmlTemplateCreate = serde_json::from_value(serde_json::json!({
+    ///     "domainType": "email",
+    ///     "name": "Welcome email"
+    /// }))?;
+    /// let result = client.htmltemplates().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::HtmlTemplateCreate) -> Result<models::HtmlTemplate> {
         let path = "/htmltemplates".to_owned();
         let query: Query = Query::new();
@@ -11270,6 +17852,21 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `DELETE /htmltemplates/{templateId}`
     ///
     /// Requires permission to edit the template (ownership or the domain’s global-template editing permission). Send dryRun explicitly. dryRun=true always returns 409 with a dependency report, even when deletion is allowed; it never returns a successful 204 preview. dryRun=false deletes an unblocked template, its HTML/MJML content files and image assets, then returns 204 without a body. References from group membership emails, bulk letters and group-role document configuration can block deletion, along with registered database dependency checks. An already missing template returns 404. Deleting a global template also invalidates cached authorization data.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = DeleteHtmltemplatesTemplateIdQuery {
+    ///     dry_run: Some(true),
+    ///     ..Default::default()
+    /// };
+    /// client.htmltemplates().delete(2, &query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, template_id: impl Display, query: &DeleteHtmltemplatesTemplateIdQuery) -> Result<()> {
         let path = format!("/htmltemplates/{}", seg(template_id));
         let query: Query = query.to_query();
@@ -11281,6 +17878,18 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `GET /htmltemplates/{templateId}`
     ///
     /// Returns metadata and content-file IDs for one visible template. Owners may view their own private or global templates; other users need the matching domain’s permission to view a global template. This endpoint does not return HTML/MJML source or asset contents. Use the html/mjml content routes or export for those. A template may exist with both content-file IDs null. Missing templates return 404; an existing inaccessible template returns 403.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId");
+    /// let htmltemplate = client.htmltemplates().get(2)?;
+    /// println!("{}", htmltemplate.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, template_id: impl Display) -> Result<models::HtmlTemplate> {
         let path = format!("/htmltemplates/{}", seg(template_id));
         let query: Query = Query::new();
@@ -11292,6 +17901,18 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `GET /htmltemplates/{templateId}/export`
     ///
     /// Requires the same template visibility as GET /htmltemplates/{templateId}. Generates and stores a JSON export file, then returns its relative download URL in data; the export is not embedded in this response. The file contains name, domainType, html, mjml and assets. Each asset contains its name, fileHash and base64-encoded content. Ownership, global/private state and template metadata are not exported. The export file is scheduled for deletion after 30 days. This GET creates a new stored file on each call; missing content files or asset failures can prevent export.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-export");
+    /// let result = client.htmltemplates().get_export(2)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_export(&self, template_id: impl Display) -> Result<String> {
         let path = format!("/htmltemplates/{}/export", seg(template_id));
         let query: Query = Query::new();
@@ -11303,6 +17924,18 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `GET /htmltemplates/{templateId}/html`
     ///
     /// Returns the HTML source as a string inside the JSON data property. Requires template ownership or permission to view the global template. No placeholders are rendered, HTML is not sanitized by this read endpoint, and stored MJML is not compiled as a fallback. data=null means no HTML file is attached; an attached but missing file instead results in 404. The response is application/json rather than text/html.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-html");
+    /// let result = client.htmltemplates().get_html(2)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_html(&self, template_id: impl Display) -> Result<Option<String>> {
         let path = format!("/htmltemplates/{}/html", seg(template_id));
         let query: Query = Query::new();
@@ -11314,6 +17947,18 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `GET /htmltemplates/{templateId}/mjml`
     ///
     /// Returns the MJML editor source as a string inside the JSON data property. Requires template ownership or permission to view the global template. The source is returned unchanged, without compilation, placeholder rendering or validation; no MJML is inferred from an HTML file. data=null means no MJML file is attached. A referenced but missing content file results in 404. The response has no meta envelope.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-mjml");
+    /// let result = client.htmltemplates().get_mjml(2)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_mjml(&self, template_id: impl Display) -> Result<Option<String>> {
         let path = format!("/htmltemplates/{}/mjml", seg(template_id));
         let query: Query = Query::new();
@@ -11325,6 +17970,23 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `GET /htmltemplates`
     ///
     /// Lists templates of exactly one required domain type, ordered by name. By default it includes the current user’s own templates and global templates allowed by the corresponding domain policy. Global does not mean public. onlyOwn=true filters by ownership, so it can include global templates owned by the current user. Other users’ private templates are omitted. The response contains metadata and file IDs, not source text or assets. Results are unpaginated; meta.count counts returned templates. domain_type is required unless its deprecated alias type is supplied; there is no default domain.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-htmltemplates");
+    /// let query = GetHtmltemplatesQuery {
+    ///     domain_type: Some("email".into()),
+    ///     ..Default::default()
+    /// };
+    /// for htmltemplate in client.htmltemplates().list(&query)? {
+    ///     println!("{}", htmltemplate.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetHtmltemplatesQuery) -> Result<Vec<models::HtmlTemplate>> {
         let path = "/htmltemplates".to_owned();
         let query: Query = query.to_query();
@@ -11336,6 +17998,21 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `PATCH /htmltemplates/{templateId}`
     ///
     /// Requires template editing permission. If the resulting template is global, the domain’s global-template administration permission is additionally required, even when isGlobal is omitted. The template owner is retained when changing visibility. Private templates are allowed only for email/bulkletter; an email template referenced by group membership emails cannot become private. Omitted/null values preserve fields; content cannot be cleared by sending null. HTML and MJML replacements run first. A truthy htmlFileId is processed last, must belong to this template or be the current user’s unbound html_template upload, and replaces the HTML reference while deleting other content files and clearing MJML. Supply either content or htmlFileId to avoid unintentionally replacing just-written files. domainType and owner are not changed by this route.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("patch-htmltemplates-templateId");
+    /// let body: models::HtmlTemplateUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Updated welcome email"
+    /// }))?;
+    /// let result = client.htmltemplates().patch(2, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, template_id: impl Display, body: &models::HtmlTemplateUpdate) -> Result<models::HtmlTemplate> {
         let path = format!("/htmltemplates/{}", seg(template_id));
         let query: Query = Query::new();
@@ -11348,6 +18025,20 @@ impl<'a> HtmltemplatesResource<'a> {
     /// `POST /htmltemplates/{templateId}/uploadassets`
     ///
     /// Requires permission to edit the template. Send one or more multipart file parts named files[]. The controller accepts client media types beginning with image/; it does not limit uploads to PNG. Files are saved as separate template image assets and returned in input order as editor descriptors. HTML and MJML source are not modified automatically. All client media-type headers are checked before storage, but files are then saved individually; a later storage failure can leave earlier assets persisted. This response has no meta envelope.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let file = Upload::from_path("logo.png")?;
+    /// for htmltemplate in client.htmltemplates().uploadassets(2, &[file])? {
+    ///     println!("{}", htmltemplate.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn uploadassets(&self, template_id: impl Display, files: &[Upload]) -> Result<Vec<models::HtmlTemplateAssetUpload>> {
         let path = format!("/htmltemplates/{}/uploadassets", seg(template_id));
         let query: Query = Query::new();
@@ -11408,6 +18099,18 @@ impl<'a> ImagesResource<'a> {
     /// Returns image bytes for a public image URL and applies Glide transformations. The hash grants access without a login. SVG content is returned without transformation as an attachment.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.images().get(42, "beispiel")?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, file_id: impl Display, hash: impl Display) -> Result<Vec<u8>> {
         self.get_with(file_id, hash, &Default::default())
     }
@@ -11430,6 +18133,18 @@ impl<'a> ImagesResource<'a> {
     /// `GET /images/{fileId}/{hash}/{queryParams}`
     ///
     /// Returns a public image with Glide transformations encoded in the final path segment. Image handling is otherwise identical to `GET /images/{fileId}/{hash}`.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.images().get_with_params(42, "beispiel", "fm%3Dwebp%26q%3D80%26w%3D700%26h%3Dauto")?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_with_params(&self, file_id: impl Display, hash: impl Display, query_params: impl Display) -> Result<Vec<u8>> {
         let path = format!("/images/{}/{}/{}", seg(file_id), seg(hash), seg(query_params));
         let query: Query = Query::new();
@@ -11441,6 +18156,21 @@ impl<'a> ImagesResource<'a> {
     /// `PATCH /images/{id}`
     ///
     /// Updates image description, attribution, AI flag and crop/focus options. Requires update permission for the owning object. Changing image options clears generated image caches.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ImageUpdate = serde_json::from_value(serde_json::json!({
+    ///     "description": "Congregation gathered outside the church."
+    /// }))?;
+    /// let result = client.images().patch(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, id: impl Display, body: &models::ImageUpdate) -> Result<models::ImageMetadataUpdateResult> {
         let path = format!("/images/{}", seg(id));
         let query: Query = Query::new();
@@ -11453,6 +18183,21 @@ impl<'a> ImagesResource<'a> {
     /// `PUT /images/{id}/options`
     ///
     /// Updates image metadata through the same handler as `PATCH /images/{id}`. Requires update permission for the owning object.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ImageUpdate = serde_json::from_value(serde_json::json!({
+    ///     "description": "Congregation gathered outside the church."
+    /// }))?;
+    /// let result = client.images().update_options(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_options(&self, id: impl Display, body: &models::ImageUpdate) -> Result<models::ImageMetadataUpdateResult> {
         let path = format!("/images/{}/options", seg(id));
         let query: Query = Query::new();
@@ -11507,6 +18252,18 @@ impl<'a> InfoResource<'a> {
     /// `GET /info`
     ///
     /// The API envoles and dependes on the ChurchTools version. This endpoint provides the build version and CT version.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-info");
+    /// let info = client.info().get()?;
+    /// println!("{:?}", info.build);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self) -> Result<models::GetInfoResponse> {
         let path = "/info".to_owned();
         let query: Query = Query::new();
@@ -11527,6 +18284,21 @@ impl<'a> InstallationSyncResource<'a> {
     /// `POST /installation-sync/oidc`
     ///
     /// Applies a Directory-signed OIDC configuration to the dedicated ChurchTools Identity provider. This public endpoint trusts only locally provisioned signing keys and uses monotonic revisions.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostInstallationSyncOidcBody = serde_json::from_value(serde_json::json!({
+    ///     "configurationToken": "beispiel"
+    /// }))?;
+    /// let installation_sync = client.installation_sync().oidc(&body)?;
+    /// println!("{:?}", installation_sync.external_login_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn oidc(&self, body: &models::PostInstallationSyncOidcBody) -> Result<models::PostInstallationSyncOidcData> {
         let path = "/installation-sync/oidc".to_owned();
         let query: Query = Query::new();
@@ -11548,6 +18320,23 @@ impl<'a> JoblogResource<'a> {
     /// `GET /joblog`
     ///
     /// Returns log entries for an exact job identifier. An unknown identifier returns an empty array. Results are not paginated or ordered.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-joblog");
+    /// let query = GetJoblogQuery {
+    ///     guid: Some("d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged".into()),
+    ///     ..Default::default()
+    /// };
+    /// for joblog in client.joblog().list(&query)? {
+    ///     println!("{}", joblog.element_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetJoblogQuery) -> Result<Vec<models::JobLogEntry>> {
         let path = "/joblog".to_owned();
         let query: Query = query.to_query();
@@ -11585,6 +18374,19 @@ impl<'a> JobsResource<'a> {
     /// Lists persisted background jobs, newest creation time first. Requires "administer settings" permission in `churchcore`. All supplied filters are combined with AND; status/domain ID lists match any contained value. Empty lists add no restriction. No pagination or result limit is implemented.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-jobs");
+    /// for job in client.jobs().list()? {
+    ///     println!("{}", job.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Job>> {
         self.list_with(&Default::default())
     }
@@ -11607,6 +18409,20 @@ impl<'a> JobsResource<'a> {
     /// `POST /jobs/{identifier}/logs`
     ///
     /// Appends an application log entry for an existing background job. Requires "administer settings" permission in `churchcore`. Returns no response body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::JobLogCreate = serde_json::from_value(serde_json::json!({
+    ///     "logMessage": "Processed 25 records."
+    /// }))?;
+    /// client.jobs().logs("1a9e9b86-78ee-4c8a-bf58-51e653073a0c", &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn logs(&self, identifier: impl Display, body: &models::JobLogCreate) -> Result<()> {
         let path = format!("/jobs/{}/logs", seg(identifier));
         let query: Query = Query::new();
@@ -11619,6 +18435,20 @@ impl<'a> JobsResource<'a> {
     /// `PUT /jobs/{identifier}/status`
     ///
     /// Updates the stored job status. For `sync_job` jobs, "view" permission in `churchsync` is required; other jobs require "administer settings" permission in `churchcore`. This endpoint does not start or stop a worker.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::JobStatusUpdate = serde_json::from_value(serde_json::json!({
+    ///     "status": "QUEUED"
+    /// }))?;
+    /// client.jobs().update_status("1a9e9b86-78ee-4c8a-bf58-51e653073a0c", &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_status(&self, identifier: impl Display, body: &models::JobStatusUpdate) -> Result<()> {
         let path = format!("/jobs/{}/status", seg(identifier));
         let query: Query = Query::new();
@@ -11676,6 +18506,24 @@ impl<'a> LabelsResource<'a> {
     /// `POST /labels`
     ///
     /// Generates and stores a PDF of address labels, returning an absolute download URL. Labels use the configured German address formatter and one of three A4 layouts. Only visible selected persons are included; individual printable fields are checked against security levels. Incomplete addresses are still included. With combineSpouses=true, selected visible spouses may share a label even when their addresses differ; the first spouse with a complete address is preferred. Birthday sorting forces separate labels. PDF files are scheduled to expire after one day. The generation handler checks person visibility but has no explicit create print labels permission check; the labels file-download handler checks that permission. Input is currently read without the shared request validator, so malformed input can cause server errors.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::LabelCreate = serde_json::from_value(serde_json::json!({
+    ///     "personIds": [
+    ///         42
+    ///     ],
+    ///     "type": "AveryLabels3475"
+    /// }))?;
+    /// let result = client.labels().create(&body)?;
+    /// println!("{}", result.pdf);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::LabelCreate) -> Result<models::PostLabelsData> {
         let path = "/labels".to_owned();
         let query: Query = Query::new();
@@ -11688,6 +18536,23 @@ impl<'a> LabelsResource<'a> {
     /// `POST /labels/totals`
     ///
     /// Calculates four label counts for visible selected persons without generating a PDF. ignoreAddress includes incomplete addresses; onlyCompleteAddress requires street, postal code and city, but not country or address addition. Each contains the count with separate persons and after spouse grouping. Both spouses must be in the visible selection, but their addresses need not match. These counts do not take sortpolicy or layout into account; birthday PDF sorting always uses separate labels. Stored field completeness is checked before any printable-field security filtering.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-labels-totals");
+    /// let body: models::LabelTotalsRequest = serde_json::from_value(serde_json::json!({
+    ///     "personIds": [
+    ///         42
+    ///     ]
+    /// }))?;
+    /// let label = client.labels().totals(&body)?;
+    /// println!("{:?}", label);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn totals(&self, body: &models::LabelTotalsRequest) -> Result<models::LabelTotals> {
         let path = "/labels/totals".to_owned();
         let query: Query = Query::new();
@@ -11711,6 +18576,19 @@ impl<'a> LanguagesResource<'a> {
     /// The response is a list of all languages
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-languages");
+    /// for language in client.languages().list()? {
+    ///     println!("{}", language.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Language>> {
         self.list_with(&Default::default())
     }
@@ -11757,6 +18635,17 @@ impl<'a> LicenseResource<'a> {
     /// `GET /license/fetch`
     ///
     /// Fetches and stores the current license information.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.license().get_fetch()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_fetch(&self) -> Result<()> {
         let path = "/license/fetch".to_owned();
         let query: Query = Query::new();
@@ -11781,6 +18670,22 @@ impl<'a> LoginResource<'a> {
     /// `POST /login`
     ///
     /// Verifies a username/email and password, using configured LDAP authentication before local credentials. The configured default-login policy is enforced. HTTP 200 may mean login succeeded or that a second step is required; inspect data.status. With totp, submit the code and personId to POST /login/totp. With twoFactorSetup, initialize and activate two-factor setup before login is completed. Preserve cookies across all steps. rememberMe controls persistent browser login. Invalid credentials and locked accounts return 400, not 401. Failed local attempts increment account counters. All login steps share the configured login rate limit.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::LoginCreate = serde_json::from_value(serde_json::json!({
+    ///     "password": "example-password",
+    ///     "username": "alex@example.org"
+    /// }))?;
+    /// let result = client.login().create(&body)?;
+    /// println!("{:?}", result.location);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::LoginCreate) -> Result<models::LoginResult> {
         let path = "/login".to_owned();
         let query: Query = Query::new();
@@ -11793,6 +18698,22 @@ impl<'a> LoginResource<'a> {
     /// `POST /login/token`
     ///
     /// Verifies username/email and password and returns the person’s existing persistent login token, creating one only if none exists. No browser login is completed by this operation. The configured default-login policy applies. Accounts with activated two-factor authentication are rejected with 400. Token retrieval is blocked during non-support simulation. The returned credential has no expiry field and remains independent of logout. Failed credential checks can increment local account error counters. This route shares the configured login rate limit with the other login steps.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::LoginCredentials = serde_json::from_value(serde_json::json!({
+    ///     "password": "example-password",
+    ///     "username": "alex@example.org"
+    /// }))?;
+    /// let login = client.login().token(&body)?;
+    /// println!("{}", login.person_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn token(&self, body: &models::LoginCredentials) -> Result<models::LoginTokenResult> {
         let path = "/login/token".to_owned();
         let query: Query = Query::new();
@@ -11805,6 +18726,22 @@ impl<'a> LoginResource<'a> {
     /// `POST /login/totp`
     ///
     /// Verifies the authenticator code for the person bound to the pending password-verified session. Retain the same session cookie from POST /login; this operation does not use ordinary API authentication to select a person. On success the code is temporarily blacklisted, login is completed and the pending session is removed. A pending external-account link is completed instead when that context exists. If two-factor authentication was disabled or its secret disappeared after the password step, the legacy normal-login branch returns success without redirectTo and without completing login; clients should restart the login flow. Invalid or reused codes, missing pending session and person mismatch return 400. Shares the login rate limit.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::LoginTotpVerify = serde_json::from_value(serde_json::json!({
+    ///     "code": "012345",
+    ///     "personId": 42
+    /// }))?;
+    /// let login = client.login().totp(&body)?;
+    /// println!("{:?}", login.redirect_to);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn totp(&self, body: &models::LoginTotpVerify) -> Result<models::TwoFactorLoginResult> {
         let path = "/login/totp".to_owned();
         let query: Query = Query::new();
@@ -11839,6 +18776,21 @@ impl<'a> LoginTwofactorSetupResource<'a> {
     /// `POST /login/twofactor/setup/activate`
     ///
     /// Verifies a code from the secret initialized through POST /login/twofactor/setup in the same pending login session. The session identifies the person. On success, blacklists the code, enables two-factor authentication, completes browser login using the original rememberMe choice, and clears the pending session. The response includes a navigation target from that session. Invalid/reused codes, missing secret or missing setup session return 400. Activation is saved before browser login finishes, so a later failure can leave two-factor authentication enabled. This endpoint is not an idempotent status-setting operation; after success the pending session is gone. Shares the login rate limit.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TwoFactorSetupActivate = serde_json::from_value(serde_json::json!({
+    ///     "code": "012345"
+    /// }))?;
+    /// let setup = client.login().twofactor().setup().activate(&body)?;
+    /// println!("{}", setup.redirect_to);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn activate(&self, body: &models::TwoFactorSetupActivate) -> Result<models::PostLoginTwofactorSetupActivateData> {
         let path = "/login/twofactor/setup/activate".to_owned();
         let query: Query = Query::new();
@@ -11851,6 +18803,18 @@ impl<'a> LoginTwofactorSetupResource<'a> {
     /// `POST /login/twofactor/setup`
     ///
     /// Starts authenticator enrollment for the person in a pending twoFactorSetup login session. Use the same cookies as the password step. Creates and stores a new secret and sets the enabled flag to false. Returns the secret and its QR-code image as a data URI. Repeating this request replaces the previous secret and invalidates its QR code, so do not use it as a read-only setup-status request. Submit a code generated from this secret to POST /login/twofactor/setup/activate. A missing or unsuitable pending session returns 400. Shares the login rate limit.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let result = client.login().twofactor().setup().create()?;
+    /// println!("{}", result.qrcode);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self) -> Result<models::TwoFactorSetupSecret> {
         let path = "/login/twofactor/setup".to_owned();
         let query: Query = Query::new();
@@ -11871,6 +18835,17 @@ impl<'a> LogoutResource<'a> {
     /// `POST /logout`
     ///
     /// Deletes the current session cookie, destroys the server-side session and resets the current user to anonymous. Also usable to leave a pending two-factor login. This affects the current session only; it does not revoke persistent login tokens or OAuth tokens. A subsequent request still carrying such an Authorization header may authenticate again. An unauthenticated request without an applicable session may be rejected by authentication middleware.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.logout().create()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self) -> Result<()> {
         let path = "/logout".to_owned();
         let query: Query = Query::new();
@@ -11895,6 +18870,18 @@ impl<'a> LogsResource<'a> {
     /// `GET /logs/{id}`
     ///
     /// Fetch one specific log message by its ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-logs-id");
+    /// let log = client.logs().get(1)?;
+    /// println!("{}", log.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Log> {
         let path = format!("/logs/{}", seg(id));
         let query: Query = Query::new();
@@ -11908,6 +18895,19 @@ impl<'a> LogsResource<'a> {
     /// The response is a collection of all log messages you may see and is limited to a specific number of messages. You can use the `page` parameter to browse the list of log messages. The logs are ordered by date.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-logs");
+    /// for log in client.logs().list()? {
+    ///     println!("{}", log.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Log>> {
         self.list_with(&Default::default())
     }
@@ -11971,6 +18971,19 @@ impl<'a> LogsStatisticsResource<'a> {
     /// Get statistics about login counts of users.
     ///
     /// Use [`Self::list_login_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-logs-statistics-login");
+    /// for login in client.logs().statistics().list_login()? {
+    ///     println!("{}", login.last_login);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_login(&self) -> Result<Vec<models::GetLogsStatisticsLoginDataItem>> {
         self.list_login_with(&Default::default())
     }
@@ -12020,6 +19033,22 @@ impl<'a> MarkdownResource<'a> {
     /// `POST /markdown/check`
     ///
     /// Check if the provided Markdown content is valid for the specified scope
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-markdown-check");
+    /// let body: models::PostMarkdownCheckBody = serde_json::from_value(serde_json::json!({
+    ///     "inputScope": "beispiel",
+    ///     "markdown": "beispiel"
+    /// }))?;
+    /// let markdown = client.markdown().check(&body)?;
+    /// println!("{}", markdown.is_valid);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn check(&self, body: &models::PostMarkdownCheckBody) -> Result<models::PostMarkdownCheckData> {
         let path = "/markdown/check".to_owned();
         let query: Query = Query::new();
@@ -12032,6 +19061,33 @@ impl<'a> MarkdownResource<'a> {
     /// `POST /markdown/convert`
     ///
     /// convert a set of markdown strings
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::MarkdownRequest = serde_json::from_value(serde_json::json!({
+    ///     "sources": [
+    ///         {
+    ///             "inputScope": "beispiel",
+    ///             "markdown": "beispiel",
+    ///             "outputFormats": [
+    ///                 "beispiel"
+    ///             ],
+    ///             "outputScopes": [
+    ///                 "beispiel"
+    ///             ],
+    ///             "shortName": "Hauskreis Nord"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let markdown = client.markdown().convert(&body)?;
+    /// println!("{:?}", markdown.current_config_file);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn convert(&self, body: &models::MarkdownRequest) -> Result<models::Config> {
         let path = "/markdown/convert".to_owned();
         let query: Query = Query::new();
@@ -12053,6 +19109,18 @@ impl<'a> MasterdataResource<'a> {
     /// `GET /masterdata/person`
     ///
     /// Deprecated alias of `GET /person/masterdata`. Use `/person/masterdata` for new integrations.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-masterdata-person");
+    /// let person = client.masterdata().get_person()?;
+    /// println!("{:?}", person);
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn get_person(&self) -> Result<models::PersonMasterData> {
         let path = "/masterdata/person".to_owned();
@@ -12074,6 +19142,22 @@ impl<'a> MeetingrequestsResource<'a> {
     /// `POST /meetingrequests/reply`
     ///
     /// Processes an external calendar reply using the invitation reply token. ACCEPTED and DECLINED replies can notify the inviter.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::MeetingRequestIcsReply = serde_json::from_value(serde_json::json!({
+    ///     "icsContent": "beispiel",
+    ///     "partstat": "ACCEPTED",
+    ///     "token": "example-reply-token"
+    /// }))?;
+    /// client.meetingrequests().reply(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn reply(&self, body: &models::MeetingRequestIcsReply) -> Result<()> {
         let path = "/meetingrequests/reply".to_owned();
         let query: Query = Query::new();
@@ -12093,6 +19177,18 @@ impl<'a> MenuResource<'a> {
     /// Get the CT-Menu
     ///
     /// `GET /menu`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-menu");
+    /// let menu = client.menu().get()?;
+    /// println!("{:?}", menu.current_station);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self) -> Result<models::GetMenuResponse> {
         let path = "/menu".to_owned();
         let query: Query = Query::new();
@@ -12113,6 +19209,19 @@ impl<'a> NewsletterIntegrationsResource<'a> {
     /// `GET /newsletter-integrations`
     ///
     /// Lists active configured newsletter providers, their capabilities and available remote lists. Requires administer groups in churchgroup; this is not a public endpoint. Queries the providers and marks lists already mapped to any group with isAssigned, including groups outside the caller’s individual visibility. Assigned lists are not removed from the result. A caught provider exception is logged and represented as an empty lists array, with HTTP 200 and no per-provider error field. No providers yields data: [] and meta.count: 0. Results follow provider registration order and are not paginated.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-newsletter-integrations");
+    /// for newsletter_integration in client.newsletter_integrations().list()? {
+    ///     println!("{}", newsletter_integration.can_create_lists);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::NewsletterIntegrationOptions>> {
         let path = "/newsletter-integrations".to_owned();
         let query: Query = Query::new();
@@ -12133,6 +19242,21 @@ impl<'a> NotesResource<'a> {
     /// `POST /notes/{domainType}/{domainId}`
     ///
     /// Creates a note linked to the object in the URL. Group notes require an existing group and group-note editing rights. Arrangement notes require "edit songcategory" permission for the parent song’s category. Person notes require person visibility, permission for the selected comment-viewer category, and person write or applicable group-member field-edit permission. Direct creation for `follow_up` is rejected; use the follow-up note API.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-notes-domainType-domainId");
+    /// let body: models::NoteCreate = serde_json::from_value(serde_json::json!({
+    ///     "text": "Please follow up next week."
+    /// }))?;
+    /// let result = client.notes().create("group", 35, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, domain_type: impl Display, domain_id: impl Display, body: &models::NoteCreate) -> Result<models::Note> {
         let path = format!("/notes/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -12145,6 +19269,17 @@ impl<'a> NotesResource<'a> {
     /// `DELETE /notes/{noteId}`
     ///
     /// Deletes the note from every linked business object. Authors can delete their notes without a fresh object-access check. Non-authors need global `churchdb` write access, and the first stored link must be a person link; person and comment visibility are not checked. Other domains do not allow non-author deletion. `DELETE /notes/{domainType}/{domainId}/{noteId}` is an equivalent alias whose domain path fields are ignored.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.notes().delete(101)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, note_id: impl Display) -> Result<()> {
         let path = format!("/notes/{}", seg(note_id));
         let query: Query = Query::new();
@@ -12156,6 +19291,17 @@ impl<'a> NotesResource<'a> {
     /// `DELETE /notes/{domainType}/{domainId}/{noteId}`
     ///
     /// Deletes the note and all its links, not only the link named in the URL. The handler ignores `domainType` and `domainId`. Authors can delete their notes without a fresh domain-access check. Non-authors need global `churchdb` write access, and the first stored link must be a person link; person and comment visibility are not checked. Other domains do not allow non-author deletion. `DELETE /notes/{noteId}` calls the same handler.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.notes().delete_for_object("group", "42", 101)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_for_object(&self, domain_type: impl Display, domain_id: impl Display, note_id: impl Display) -> Result<()> {
         let path = format!("/notes/{}/{}/{}", seg(domain_type), seg(domain_id), seg(note_id));
         let query: Query = Query::new();
@@ -12167,6 +19313,19 @@ impl<'a> NotesResource<'a> {
     /// `GET /notes/{domainType}/{domainId}`
     ///
     /// Lists notes linked to the requested object, newest creation date first, without pagination. Group notes require group visibility and a sufficient security level, person notes require comment-viewer permission, arrangement notes require parent-song visibility, and follow-up notes require access to the follow-up. Authors bypass the group security-level or person comment-category filter after the initial domain check. Person notes do not check the requested person’s visibility or existence. Each note includes all links and uses its first stored link for top-level domain fields.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-notes");
+    /// for note in client.notes().get("group", 35)? {
+    ///     println!("{}", note.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, domain_type: impl Display, domain_id: impl Display) -> Result<Vec<models::Note>> {
         let path = format!("/notes/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -12178,6 +19337,21 @@ impl<'a> NotesResource<'a> {
     /// `PUT /notes/{domainType}/{domainId}/{noteId}`
     ///
     /// Updates a note owned by the current author. Only `noteId` selects the note; `domainId` does not verify its association. The shared text changes for every linked context, while visibility changes only on the first link matching `domainType`. No fresh domain or comment-category permission check is performed.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-notes-domainType-domainId-id");
+    /// let body: models::NoteUpdate = serde_json::from_value(serde_json::json!({
+    ///     "text": "Please follow up next week."
+    /// }))?;
+    /// let result = client.notes().update("group", 35, 101, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, domain_type: impl Display, domain_id: impl Display, note_id: impl Display, body: &models::NoteUpdate) -> Result<models::Note> {
         let path = format!("/notes/{}/{}/{}", seg(domain_type), seg(domain_id), seg(note_id));
         let query: Query = Query::new();
@@ -12199,6 +19373,17 @@ impl<'a> NotificationsResource<'a> {
     /// `POST /notifications/test`
     ///
     /// Sends a localized test push notification to the authenticated person’s registered push-capable devices. No request body or target person is needed. The response has no body. A 201 response does not confirm delivery: it is also returned when no device is registered, Safe Mode suppresses sending, or a handled proxy/network error occurs.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.notifications().test()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn test(&self) -> Result<()> {
         let path = "/notifications/test".to_owned();
         let query: Query = Query::new();
@@ -12217,6 +19402,21 @@ impl<'a> NpsResource<'a> {
     /// Save NPS score
     ///
     /// `POST /nps`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostNpsBody = serde_json::from_value(serde_json::json!({
+    ///     "score": 42
+    /// }))?;
+    /// let result = client.nps().create(&body)?;
+    /// println!("{:?}", result.date);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostNpsBody) -> Result<models::PostNpsResponse> {
         let path = "/nps".to_owned();
         let query: Query = Query::new();
@@ -12238,6 +19438,22 @@ impl<'a> OauthclientsResource<'a> {
     /// `POST /oauthclients`
     ///
     /// Registers a visible OAuth client for an application that uses ChurchTools as its authorization server. Requires "churchcore administer settings" permission. The name must be unique, including hidden clients. Confidential clients receive a generated secret exactly once. Logo discovery can contact the redirect origin or configured metadata service.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-oauthclients");
+    /// let body: models::OAuthClientCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Parish website",
+    ///     "redirectUri": "https://parish.example.org/oauth/callback"
+    /// }))?;
+    /// let result = client.oauthclients().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::OAuthClientCreate) -> Result<models::OAuthClientCreated> {
         let path = "/oauthclients".to_owned();
         let query: Query = Query::new();
@@ -12250,6 +19466,17 @@ impl<'a> OauthclientsResource<'a> {
     /// `DELETE /oauthclients/{identifier}`
     ///
     /// Permanently deletes a visible OAuth client. Requires "churchcore administer settings" permission. Database cascades remove associated authorization codes, access tokens and consents. Hidden clients cannot be managed through this endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.oauthclients().delete("beispiel")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, identifier: impl Display) -> Result<()> {
         let path = format!("/oauthclients/{}", seg(identifier));
         let query: Query = Query::new();
@@ -12261,6 +19488,19 @@ impl<'a> OauthclientsResource<'a> {
     /// `GET /oauthclients`
     ///
     /// Lists visible OAuth clients registered in this ChurchTools installation, without pagination or an explicit sort order. Requires "churchcore administer settings" permission. Client secrets and hashes are not included.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-oauthclients");
+    /// for oauthclient in client.oauthclients().list()? {
+    ///     println!("{}", oauthclient.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::OAuthClient>> {
         let path = "/oauthclients".to_owned();
         let query: Query = Query::new();
@@ -12272,6 +19512,22 @@ impl<'a> OauthclientsResource<'a> {
     /// `PUT /oauthclients/{identifier}`
     ///
     /// Replaces the name and registered redirect URI of a visible OAuth client. Requires "churchcore administer settings" permission. The URI replaces all previously registered URI entries. The name must remain unique across visible and hidden clients. Logo discovery runs again from the new URI origin.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-oauthclients-identifier");
+    /// let body: models::OAuthClientUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Parish website",
+    ///     "redirectUri": "https://parish.example.org/oauth/callback"
+    /// }))?;
+    /// let result = client.oauthclients().update("beispiel", &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, identifier: impl Display, body: &models::OAuthClientUpdate) -> Result<models::OAuthClient> {
         let path = format!("/oauthclients/{}", seg(identifier));
         let query: Query = Query::new();
@@ -12305,6 +19561,25 @@ impl<'a> PermissionsResource<'a> {
     /// `POST /permissions/bulk`
     ///
     /// Applies raw permission changes atomically, including changes for different source owners. All entries are validated and authorized against the state before any writes. The authorization and locked-permission rules of the corresponding single-assignment operations apply to each entry. Any failure leaves all assignments unchanged. Duplicate owner/authId/inheritance keys are rejected. Permission caches are invalidated after commit. `save` is additive and an empty dataId list writes a null-data row; `replace` replaces the complete selection and an empty list removes it; `delete` removes exact selections or the whole assignment when no selections are specified. Validation errors identify fields such as `changes.2.authId`.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostPermissionsBulkBody = serde_json::from_value(serde_json::json!({
+    ///     "changes": [
+    ///         {
+    ///             "domainId": 7,
+    ///             "domainType": "group_type_role"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// client.permissions().bulk(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn bulk(&self, body: &models::PostPermissionsBulkBody) -> Result<()> {
         let path = "/permissions/bulk".to_owned();
         let query: Query = Query::new();
@@ -12317,6 +19592,20 @@ impl<'a> PermissionsResource<'a> {
     /// `DELETE /permissions/{domainType}/{domainId}`
     ///
     /// Deletes stored assignment rows for the owner in the path, authId and inheritance mode. Requires administer persons in churchcore, or specifically a group_role assignment for authId 10130/10131 plus churchdb +admin posts in that role’s actual group. Locked selections may only be changed by an authorized person. Omitting dataId, null or [] removes all selection rows in the chosen inheritance mode; a nonempty list deletes exact selections. -1 does not expand to concrete rows. type/reason do not filter deletion, so both grants and revocations matching the key are removed. Other assignment sources remain effective. Missing rows are harmless. The generic admin path does not verify the owner or permission definition exists, except obsolete authId=10127 returns 410. status/person disallow authId>=10000 and inheritance. The current deletion path does not explicitly invalidate the permission cache.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PermissionDelete = serde_json::from_value(serde_json::json!({
+    ///     "authId": 10130
+    /// }))?;
+    /// client.permissions().delete("group_role", 1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, domain_type: impl Display, domain_id: impl Display, body: &models::PermissionDelete) -> Result<()> {
         let path = format!("/permissions/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -12331,6 +19620,18 @@ impl<'a> PermissionsResource<'a> {
     /// Returns registered permission definitions grouped by module. Requires administer persons in churchcore. global selects keys without a leading +; internal selects group-internal keys beginning with +; all includes both. Definitions explain assignable keys, not the current user’s effective permissions. Modules follow application ordering and modules without matching definitions are omitted. For data-field permissions, selections starts with dataId=-1 for unrestricted access to current and future values. Other selections come from the configured catalog without per-object visibility filtering. name and description currently contain the same text, and assignmentDomains is a fixed generic list. The response is not paginated.
     ///
     /// Use [`Self::get_definitions_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-definitions");
+    /// let definition = client.permissions().get_definitions()?;
+    /// println!("{:?}", definition);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_definitions(&self) -> Result<models::GetPermissionsDefinitionsData> {
         self.get_definitions_with(&Default::default())
     }
@@ -12353,6 +19654,18 @@ impl<'a> PermissionsResource<'a> {
     /// `GET /permissions/locked`
     ///
     /// Lists all stored permission locks, ordered by permission ID and selection ID. Requires administer persons in churchcore, but the caller need not be an authorized contact person. A lock restricts assigning or removing the selected permission across assignment domains; it does not revoke existing grants or disable their use. Only authorized persons may change locked assignments. Locks can refer to global or group-internal permission keys. The response includes whether the current person is on the installation’s authorized-person list. Stored locks are returned without filtering inactive/obsolete definitions, and the result is not paginated.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-locked");
+    /// let locked = client.permissions().get_locked()?;
+    /// println!("{}", locked.is_current_user_authorized_person);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_locked(&self) -> Result<models::LockedPermissionState> {
         let path = "/permissions/locked".to_owned();
         let query: Query = Query::new();
@@ -12364,6 +19677,19 @@ impl<'a> PermissionsResource<'a> {
     /// `GET /permissions/{domainType}/{domainId}`
     ///
     /// Lists raw assignments for one source object. status/person address a person-status or person ID; group_type_role/group_role address their role IDs. group_type collects role-template assignments of that group type; group combines concrete group-role and associated group-type-role assignments, preserving each row’s actual owner domain and ID. Only permission IDs in the currently loaded active definition table are returned. No pagination, explicit ordering, or object-existence check is applied; an unknown owner normally returns an empty list. Intended access is administer persons in churchcore, with a restricted post-administration fallback. The current fallback passes an incomplete key to a boolean permission check and ignores its result; enabled assertions may fail the request. Otherwise direct-domain views restrict authIds to 10130/10131, but combined group/group_type views omit that restriction. This defect must not be treated as an authorization guarantee.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-permissionDomainType-permissionDomainId");
+    /// for permission in client.permissions().list("person", 1)? {
+    ///     println!("{}", permission.auth_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, domain_type: impl Display, domain_id: impl Display) -> Result<Vec<models::Permission>> {
         let path = format!("/permissions/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -12377,6 +19703,19 @@ impl<'a> PermissionsResource<'a> {
     /// Requires "administer persons" in churchcore. Lists statuses, group-type role templates, concrete group roles, and persons, independently of existing assignments. Archived and inactive targets are included. Without query, lists all targets. Every whitespace-separated search word must match part of the name or its group/group-type context, irrespective of word order. SQL wildcard characters are treated literally. Results use one global pagination, ordered by category (status, group_type_role, group_role, person), name, context name, and domainId. Later categories can therefore start on later pages. Selection does not authorize assigning a specific permission; write endpoints check that separately. Group and role context is returned only for role targets.
     ///
     /// Use [`Self::list_assignment_targets_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-assignment-targets");
+    /// for assignment_target in client.permissions().list_assignment_targets()? {
+    ///     println!("{}", assignment_target.domain_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_assignment_targets(&self) -> Result<Vec<models::PermissionAssignmentTarget>> {
         self.list_assignment_targets_with(&Default::default())
     }
@@ -12401,6 +19740,19 @@ impl<'a> PermissionsResource<'a> {
     /// Lists stored permission assignments in one source domain; these are raw grants/revocations, not effective permissions. Optional domainId filters a specific assignment owner. group_type and group are combined read views and require domainId even on this short route; omitting it returns a validation error. group_type lists its role-template assignments, while group combines concrete group-role and corresponding group-type-role assignments. Returned rows retain their actual role domain/ID. Only authIds present in the currently loaded active definition table are included. No pagination, object-existence check or explicit ordering is applied. Intended access is administer persons in churchcore, with a limited post-administration fallback. That fallback currently uses an incomplete permission key and ignores its boolean result; with assertions enabled it may fail, and otherwise combined views are not restricted to the two post-creation authIds. Do not rely on this behavior as an authorization guarantee.
     ///
     /// Use [`Self::list_for_type_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-permissionDomainType");
+    /// for for_type in client.permissions().list_for_type("person")? {
+    ///     println!("{}", for_type.auth_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_for_type(&self, domain_type: impl Display) -> Result<Vec<models::Permission>> {
         self.list_for_type_with(domain_type, &Default::default())
     }
@@ -12423,6 +19775,20 @@ impl<'a> PermissionsResource<'a> {
     /// `PUT /permissions/{domainType}/{domainId}`
     ///
     /// Adds or updates raw permission assignments for the source owner in the path. Requires administer persons in churchcore, or a group_role assignment for authId 10130/10131 and churchdb +admin posts in that role’s actual group. Locked selections additionally require an authorized person. type defaults to grant; revoke is only supported for group_role. Only role domains allow inheritance and internal authIds; status/person require authId<10000. Obsolete authId=10127 returns 410. dataId is an additive list: other existing selections remain. Omission, null or [] writes a null-data row, not an unrestricted grant; use [-1] for unrestricted selections. Currently any existing -1 row for the key/inheritance mode causes a nonempty-list update to be silently ignored, including reason/type changes. The general admin path does not validate owner, permission-definition or selection existence. Success returns 204 without a representation; it does not necessarily mean a row changed.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PermissionUpdate = serde_json::from_value(serde_json::json!({
+    ///     "authId": 10130
+    /// }))?;
+    /// client.permissions().update("group_role", 1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, domain_type: impl Display, domain_id: impl Display, body: &models::PermissionUpdate) -> Result<()> {
         let path = format!("/permissions/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -12435,6 +19801,30 @@ impl<'a> PermissionsResource<'a> {
     /// `PUT /permissions/locked`
     ///
     /// Adds and removes permission locks in one transaction. Requires both administer persons in churchcore and membership in the installation’s authorized-person list. Both add and remove are required; empty lists are allowed. Duplicates are collapsed, existing additions and missing removals are harmless, but the same normalized pair in both lists returns 400. This is a delta update, not full replacement. Each authId must exist in the definition table loaded for the request. Boolean permissions require omitted/null dataId; selectable permissions require a non-null dataId. Concrete selection existence and range are currently not checked. Locks may concern internal or global permissions; -1 locks all values. Existing grants are not revoked. Returns the complete resulting list under data.permissions, without the authorization flag returned by GET.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::LockedPermissionUpdate = serde_json::from_value(serde_json::json!({
+    ///     "add": [
+    ///         {
+    ///             "authId": 1
+    ///         }
+    ///     ],
+    ///     "remove": [
+    ///         {
+    ///             "authId": 1
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.permissions().update_locked(&body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_locked(&self, body: &models::LockedPermissionUpdate) -> Result<models::PutPermissionsLockedData> {
         let path = "/permissions/locked".to_owned();
         let query: Query = Query::new();
@@ -12447,6 +19837,24 @@ impl<'a> PermissionsResource<'a> {
     /// `PUT /permissions/{domainType}/{domainId}/replace`
     ///
     /// Atomically replaces all raw assignment rows for the source owner, authId and inheritance mode. A nonempty dataId list becomes the complete selection; an empty list removes the assignment. The authorization, domain and locked-permission restrictions are the same as for updating and deleting the corresponding raw assignment.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PermissionReplace = serde_json::from_value(serde_json::json!({
+    ///     "authId": 10130,
+    ///     "dataId": [
+    ///         1,
+    ///         2
+    ///     ]
+    /// }))?;
+    /// client.permissions().update_replace("group_role", 1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_replace(&self, domain_type: impl Display, domain_id: impl Display, body: &models::PermissionReplace) -> Result<()> {
         let path = format!("/permissions/{}/{}/replace", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -12526,6 +19934,18 @@ impl<'a> PermissionsGlobalResource<'a> {
     /// `GET /permissions/global`
     ///
     /// Returns effective global permission values for the authenticated user, grouped by active module. No permission-administration grant is required. Includes registered keys even without a grant: boolean flags are false and selection arrays are empty. A maximum-level permission is represented by a one-element array with the effective maximum; unrestricted maximum access uses 99999. Multi-selection grants expand unrestricted access into currently available IDs, so this response cannot distinguish unrestricted access from explicit grants to all current values. Inactive modules are absent; compatibility aliases in churchdb can be null when their source in churchgroup is absent. Use the definitions and origins endpoints for value semantics and assignment provenance. Group-internal permissions and additional object policies are not combined here.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-global");
+    /// let item = client.permissions().global().get()?;
+    /// println!("{:?}", item);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self) -> Result<models::GlobalPermissions> {
         let path = "/permissions/global".to_owned();
         let query: Query = Query::new();
@@ -12537,6 +19957,18 @@ impl<'a> PermissionsGlobalResource<'a> {
     /// `GET /permissions/global/person-summary`
     ///
     /// Returns every registered global permission of active modules with per-selection counts across non-archived persons. Requires administer persons in churchcore; this administrative overview has no additional person-visibility filter and does not generally exclude system users. Includes zero-count selections. Boolean permissions have one dataId=null selection. Data-field permissions start with unrestricted dataId=-1, followed by configured IDs in ascending order. Maximum grants count toward every configured level up to the effective maximum; unrestricted counts only include grants covering future values. Preview arrays contain the first three matching person IDs in ascending order. Permissions follow definition order. Counts across selections can overlap. No pagination or full person lists are returned; load /permissions/global/auths/{authId}/persons for one selection.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-global-person-summary");
+    /// let person_summary = client.permissions().global().get_person_summary()?;
+    /// println!("{:?}", person_summary);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_person_summary(&self) -> Result<models::GetPermissionsGlobalPersonSummaryData> {
         let path = "/permissions/global/person-summary".to_owned();
         let query: Query = Query::new();
@@ -12559,6 +19991,18 @@ impl<'a> PermissionsGlobalAuthsResource<'a> {
     /// Summarizes assignment sources for one global permission selection across non-archived persons. Requires administer persons in churchcore; does not filter the population to persons individually visible to the caller. data_id is required for selectable permissions and forbidden for boolean permissions; -1 selects genuinely unrestricted grants. Status, group-type-role, group-role and direct-person assignments are grouped into separate lists. Counts are distinct within one entry and can overlap across entries. Logged-in defaults, public-user rights and super-admin status count toward effectivePersonCount but have no breakdown entries, so the total need not match the sum even without overlapping assignments. Revoked sources are excluded. Unknown, inactive or group-internal authId values return 404. The result is not paginated.
     ///
     /// Use [`Self::get_assignment_summary_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-global-auths-authId-assignment-summary");
+    /// let assignment_summary = client.permissions().global().auths().get_assignment_summary(125)?;
+    /// println!("{}", assignment_summary.auth_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_assignment_summary(&self, auth_id: impl Display) -> Result<models::PermissionAssignmentSummary> {
         self.get_assignment_summary_with(auth_id, &Default::default())
     }
@@ -12583,6 +20027,18 @@ impl<'a> PermissionsGlobalAuthsResource<'a> {
     /// Lists non-archived persons with one effective global permission selection, in ascending numeric ID order. Requires administer persons in churchcore; there is no additional person-visibility filter or general exclusion of system users. Contributions from direct assignments, status, group roles, public-user rights, logged-in defaults and super-admin status are combined. For selectable permissions, data_id is required: a configured ID selects that value and -1 selects genuinely unrestricted access to current and future values. Maximum permissions match when their effective maximum reaches the requested value. For boolean permissions data_id must be omitted, and the selection has dataId=null. Unknown, inactive or internal authId values return 404; invalid/missing selections return 400. By default all matching IDs are returned. Supplying page, limit OR include=origins enables pagination, defaulting to page 1 and limit 50. include=origins adds contributing, non-revoked sources for each person on that page. Pagination metadata is inside data.meta.
     ///
     /// Use [`Self::get_persons_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-global-auths-authId-persons");
+    /// let person = client.permissions().global().auths().get_persons(125)?;
+    /// println!("{}", person.auth_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_persons(&self, auth_id: impl Display) -> Result<models::PermissionPersons> {
         self.get_persons_with(auth_id, &Default::default())
     }
@@ -12674,6 +20130,18 @@ impl<'a> PermissionsInternalEventsResource<'a> {
     /// `GET /permissions/internal/events/{eventId}`
     ///
     /// Calculates internal group permissions for the currently logged-in person from groups connected to service roles. internalPerms contains event-level grants, while serviceGroups and services are maps keyed by master-data IDs. Only granted keys appear and their values are `true`; an empty area is returned as []. Role and service-group grants are collected across connected roles and do not require an assignment in this event.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-internal-events-eventId");
+    /// let event = client.permissions().internal().events().get(42)?;
+    /// println!("{:?}", event);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, event_id: impl Display) -> Result<models::InternalEventPermissions> {
         let path = format!("/permissions/internal/events/{}", seg(event_id));
         let query: Query = Query::new();
@@ -12698,6 +20166,18 @@ impl<'a> PermissionsInternalGroupsResource<'a> {
     /// `GET /permissions/internal/groups/{groupId}`
     ///
     /// Calculates the authenticated user’s group-internal permissions for the target group, including inherited grants from superior groups. Values are grouped by active module. Registered flags without grants are false; level/selection values without grants are 0. Maximum-level grants are integers (99999 for unrestricted), while multiple selections are integer arrays. No permission-administration grant or group-visibility check is performed, and the group is not loaded: an unknown group ID returns the default permission structure rather than 404. Global grants and object policies are separate, so this response is not a complete authorization decision. Unlike the all-groups endpoint, this response includes legacy +create posts, derived as the conjunction of internal and visible post-creation grants.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-internal-groups-groupId");
+    /// let group = client.permissions().internal().groups().get(42)?;
+    /// println!("{:?}", group);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_id: impl Display) -> Result<models::InternalGroupPermissions> {
         let path = format!("/permissions/internal/groups/{}", seg(group_id));
         let query: Query = Query::new();
@@ -12709,6 +20189,18 @@ impl<'a> PermissionsInternalGroupsResource<'a> {
     /// `GET /permissions/internal/groups`
     ///
     /// Calculates the authenticated user’s group-internal permissions from active memberships, role assignments and inheritance through the group hierarchy. Returns an unpaginated map keyed by target group ID, or [] when there are no calculated groups. Values are grouped by active module, including false/0 defaults for registered keys without grants. This is an internal-permission calculation, not a list of visible groups or a complete authorization decision: global grants and object policies are separate. No permission-administration grant is required. The legacy +create posts flag is derived only by the single-group endpoint, not here.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-internal-groups");
+    /// let result = client.permissions().internal().groups().list()?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<serde_json::Value> {
         let path = "/permissions/internal/groups".to_owned();
         let query: Query = Query::new();
@@ -12731,6 +20223,18 @@ impl<'a> PermissionsInternalGroupsAuthsResource<'a> {
     /// Lists non-archived persons with one effective group-internal permission in the target group, combining direct and inherited grants and excluding revoked contributions. Requires administer persons in churchcore. The group must exist, but no additional group/person visibility check is performed. For selectable permissions data_id is required: a configured ID yields one selection, while -1 yields one selection for each currently configured value in ascending order, possibly none. Unlike the global endpoint, -1 does not mean only persons with unrestricted grants. Maximum permissions match every requested level up to the effective maximum. For boolean permissions omit data_id; the single selection then has dataId=null. Person IDs are sorted numerically. No pagination or include=origins option is implemented here. Unknown groups and unknown, inactive or global authId values return 404; invalid selection combinations return 400.
     ///
     /// Use [`Self::get_persons_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-internal-groups-groupId-auths-authId-persons");
+    /// let person = client.permissions().internal().groups().auths().get_persons(42, 125)?;
+    /// println!("{}", person.auth_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_persons(&self, group_id: impl Display, auth_id: impl Display) -> Result<models::PermissionPersons> {
         self.get_persons_with(group_id, auth_id, &Default::default())
     }
@@ -12777,6 +20281,18 @@ impl<'a> PermissionsInternalPersonsResource<'a> {
     /// `GET /permissions/internal/persons/{personId}`
     ///
     /// Calculates what the authenticated user is granted through group-internal permissions toward the target person. It does not return that person’s own grants. The target groups come from the person’s memberships in non-archived groups, currently including requested, waiting and to-delete memberships. The caller’s effective internal grants across those groups are combined by maximum value for person-related keys. Missing flags are false and missing levels are 0; unrestricted levels use 99999. No person-visibility or existence check is performed, so an unknown person ID returns default values rather than 404. Global grants and additional person policies are not included. +edit persons is a deprecated boolean derived from the modern person-field level. Service-module keys are absent when that module is inactive.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-internal-persons-id");
+    /// let person = client.permissions().internal().persons().get(42)?;
+    /// println!("{:?}", person);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display) -> Result<models::InternalPersonPermissions> {
         let path = format!("/permissions/internal/persons/{}", seg(person_id));
         let query: Query = Query::new();
@@ -12827,6 +20343,18 @@ impl<'a> PermissionsOriginsGlobalPersonsResource<'a> {
     /// `GET /permissions/origins/global/persons/{personId}`
     ///
     /// Explains global permission sources for the person specified in the path. Requires administer persons in churchcore even for the caller’s own ID. Sources include logged-in defaults, public-user rights, person status, direct person assignments, direct group/group-type roles and super-admin status. Only active memberships in groups that grant permissions contribute; archived persons have no normal origin data. No person-visibility or existence check is performed: unknown or archived IDs return the requested personId with an empty permissions array rather than 404. Entries follow active permission-definition order; each origin carries its own contribution and the entry carries the combined value. Global maximum-level values are integers here, unlike the arrays used by /permissions/global. No pagination is applied.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-origins-global-persons-personId");
+    /// let person = client.permissions().origins().global().persons().get(42)?;
+    /// println!("{}", person.person_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display) -> Result<models::GetPermissionsOriginsGlobalPersonsPersonIdData> {
         let path = format!("/permissions/origins/global/persons/{}", seg(person_id));
         let query: Query = Query::new();
@@ -12862,6 +20390,18 @@ impl<'a> PermissionsOriginsInternalPersonsResource<'a> {
     /// Explains the specified person’s group-internal (+) permission origins, grouped by target group. Requires administer persons in churchcore; no additional person/group visibility check is performed. Origins are group-role and group-type-role assignments from active memberships. inherited=true identifies a grant reaching the target through a superior group; origin.groupId is the donor group, while the outer groupId is the target. revokedByGroupRoleId marks a contribution canceled by that group role. Entries with only revoked contributions are still returned with false, 0 or [] as effectiveValue, so presence alone does not mean access is granted. Omit group_ids to inspect all targets; an explicit empty array selects none. Unknown target IDs and targets without recorded contributions are omitted. Unknown or archived person IDs return the requested personId and an empty groups array. Permissions follow definition order; no explicit group ordering or pagination is applied.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-permissions-origins-internal-persons-personId");
+    /// let person = client.permissions().origins().internal().persons().get(42)?;
+    /// println!("{}", person.person_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display) -> Result<models::GetPermissionsOriginsInternalPersonsPersonIdData> {
         self.get_with(person_id, &Default::default())
     }
@@ -12924,6 +20464,18 @@ impl<'a> PersonResource<'a> {
     /// `GET /person/masterdata`
     ///
     /// Returns complete reference catalogs for People & Groups, including membership roles, group and person classifications, campuses, relationship types and meeting feedback templates. These are reference definitions, not person records or group memberships. Roles are ordered by type and `sortKey`; campuses by `sortKey`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-masterdata");
+    /// let masterdata = client.person().get_masterdata()?;
+    /// println!("{:?}", masterdata);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_masterdata(&self) -> Result<models::PersonMasterData> {
         let path = "/person/masterdata".to_owned();
         let query: Query = Query::new();
@@ -12944,6 +20496,21 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// `POST /person/commentviewers`
     ///
     /// Creates a visibility category for person comments and person-linked notes. Requires edit masterdata in churchdb. name is trimmed and must contain 1–50 characters; duplicate names are allowed. sortKey defaults to 0. The returned category has a generated ID and a translated display name. Creating a category does not assign view comments permissions to any person or role.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-person-commentviewers");
+    /// let body: models::CommentViewerCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Pastoral team"
+    /// }))?;
+    /// let result = client.person().commentviewers().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::CommentViewerCreate) -> Result<models::CommentViewer> {
         let path = "/person/commentviewers".to_owned();
         let query: Query = Query::new();
@@ -12958,6 +20525,17 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// Deletes an unused visibility category. Requires edit masterdata in churchdb. Legacy person comments and note links referencing this category block deletion with 409. Successful deletion also removes explicit churchdb view comments assignments for this category and invalidates the permission cache. dry_run=true only checks references and returns 409 with the deletion report even when deletion would be allowed; it never returns 204. A missing category is not explicitly loaded before deletion, so a real delete can return 204 without having removed a row.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.person().commentviewers().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -12980,6 +20558,18 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// `GET /person/commentviewers/{id}`
     ///
     /// Returns one category used to classify the visibility of person comments and person-linked notes. Requires authentication; no master-data-edit or view-comments grant for this category is checked. Reading this catalog entry does not authorize reading comments assigned to it. Includes its stored name, translated display name and sort key. Unknown IDs return 404.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-commentviewers-id");
+    /// let commentviewer = client.person().commentviewers().get(1)?;
+    /// println!("{}", commentviewer.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::CommentViewer> {
         let path = format!("/person/commentviewers/{}", seg(id));
         let query: Query = Query::new();
@@ -12991,6 +20581,19 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// `GET /person/commentviewers`
     ///
     /// Lists all configured visibility categories for person comments and person-linked notes. A category is not a user group: assign churchdb view comments for its ID to control who may see matching content, subject to the content endpoint’s additional rules. Requires authentication, but no master-data-edit or per-category view-comments permission is checked here. The catalog is unpaginated and includes categories the caller cannot use to read content. Results are sorted by sortKey, then the stored name, both ascending.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-commentviewers");
+    /// for commentviewer in client.person().commentviewers().list()? {
+    ///     println!("{}", commentviewer.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::CommentViewer>> {
         let path = "/person/commentviewers".to_owned();
         let query: Query = Query::new();
@@ -13002,6 +20605,21 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// `PUT /person/commentviewers/{id}`
     ///
     /// Updates a category’s name and optionally its sort key. Requires edit masterdata in churchdb. The ID is taken from the path; no duplicate ID is required in the body. name is required, trimmed to 1–50 characters, and need not be unique. Unlike create, an omitted sortKey preserves the existing value. Explicit null currently passes validation but fails the integer setter, so omit the field to preserve it. Existing comment/note assignments and permission selections keep referencing the same category ID. Unknown IDs return 404.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-person-commentviewers-id");
+    /// let body: models::CommentViewerUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Pastoral team"
+    /// }))?;
+    /// let result = client.person().commentviewers().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::CommentViewerUpdate) -> Result<models::CommentViewer> {
         let path = format!("/person/commentviewers/{}", seg(id));
         let query: Query = Query::new();
@@ -13038,6 +20656,22 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// `POST /person/growpaths`
     ///
     /// Creates a stage in the growth-path catalog. Requires edit masterdata in churchdb. name is trimmed to 1–100 characters and need not be unique. color must be one of the accepted CTColor keys. sortKey is optional and defaults to 0; it controls both display ordering and precedence when deriving a person’s stage. The new stage is not automatically assigned to a role or person. Returns 201 with the generated ID, translated name and metadata.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-person-growpaths");
+    /// let body: models::GrowPathCreate = serde_json::from_value(serde_json::json!({
+    ///     "color": "blue",
+    ///     "name": "New Believer"
+    /// }))?;
+    /// let result = client.person().growpaths().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::GrowPathCreate) -> Result<models::GrowPath> {
         let path = "/person/growpaths".to_owned();
         let query: Query = Query::new();
@@ -13052,6 +20686,17 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// Deletes an unused growth-path stage. Requires edit masterdata in churchdb. References from group-type roles and concrete group roles block deletion with 409. Use dryRun=true to inspect deletion dependencies without deleting anything; the report also uses 409 when there are no blockers. The snake_case dry_run parameter used by other endpoints is not the flag read here. The stage is not loaded before deletion, so an unknown ID can return 204 without removing a row.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.person().growpaths().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -13074,6 +20719,18 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// `GET /person/growpaths/{id}`
     ///
     /// Returns one configured growth-path stage, including translated name, display color, ordering/priority and metadata. Requires view in churchdb. The ID identifies a stage referenced by group roles and person growPathId values; this is not the history or progression of a particular person. Unknown IDs return 404.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-growpaths-id");
+    /// let growpath = client.person().growpaths().get(1)?;
+    /// println!("{}", growpath.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::GrowPath> {
         let path = format!("/person/growpaths/{}", seg(id));
         let query: Query = Query::new();
@@ -13085,6 +20742,19 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// `GET /person/growpaths`
     ///
     /// Lists the configured growth-path stages, ordered by sortKey and stored name ascending. Requires view in churchdb. Stages are assigned to group-type roles or concrete group roles; ChurchTools derives a person’s stage from active memberships in active or finished groups, using the highest matching stage sortKey. A concrete group-role stage overrides the group-type-role stage for that membership. This endpoint returns the complete unpaginated stage catalog, not people or their progress history. Each stage includes translated display text, color and creation/modification metadata.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-growpaths");
+    /// for growpath in client.person().growpaths().list()? {
+    ///     println!("{}", growpath.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::GrowPath>> {
         let path = "/person/growpaths".to_owned();
         let query: Query = Query::new();
@@ -13096,6 +20766,22 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// `PUT /person/growpaths/{id}`
     ///
     /// Updates a stage’s name, color and ordering/priority. Requires edit masterdata in churchdb. ID comes from the path; name and color are required. sortKey is optional but defaults to 0 on every update, so send its current value to retain it. This differs from comment-viewer updates, which preserve an omitted sort key. sortKey affects both display order and which stage wins when calculating a person’s growth path. This handler only persists the stage; it does not trigger recalculation of all already stored person growPathId values. Equal priorities have no explicit tie-breaker in person calculation. Unknown IDs return 404.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-person-growpaths-id");
+    /// let body: models::GrowPathUpdate = serde_json::from_value(serde_json::json!({
+    ///     "color": "blue",
+    ///     "name": "New Believer"
+    /// }))?;
+    /// let result = client.person().growpaths().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::GrowPathUpdate) -> Result<models::GrowPath> {
         let path = format!("/person/growpaths/{}", seg(id));
         let query: Query = Query::new();
@@ -13132,6 +20818,23 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// `POST /person/relationshiptypes`
     ///
     /// Creates a relationship-type catalog definition. Requires "edit masterdata" permission in `churchdb`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-person-relationshiptypes");
+    /// let body: models::RelationshipTypeCreate = serde_json::from_value(serde_json::json!({
+    ///     "degreeNameA": "Parent",
+    ///     "degreeNameB": "Child",
+    ///     "securityLevelId": 1
+    /// }))?;
+    /// let result = client.person().relationshiptypes().create(&body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::RelationshipTypeCreate) -> Result<models::RelationshipType> {
         let path = "/person/relationshiptypes".to_owned();
         let query: Query = Query::new();
@@ -13146,6 +20849,17 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// Deletes the relationship-type definition and every stored person-to-person relationship referencing it. Requires "edit masterdata" permission in `churchdb`. Types with the built-in `nodelete` flag cannot be deleted.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.person().relationshiptypes().delete(4)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -13168,6 +20882,18 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// `GET /person/relationshiptypes/{id}`
     ///
     /// Returns one relationship-type catalog definition, not a relationship between two persons.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-relationshiptypes-id");
+    /// let relationshiptype = client.person().relationshiptypes().get(4)?;
+    /// println!("{:?}", relationshiptype.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::RelationshipType> {
         let path = format!("/person/relationshiptypes/{}", seg(id));
         let query: Query = Query::new();
@@ -13179,6 +20905,19 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// `GET /person/relationshiptypes`
     ///
     /// Lists relationship-type definitions, ordered by `sortKey` and stored name. This is a catalog, not the relationships between individual persons.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-relationshiptypes");
+    /// for relationshiptype in client.person().relationshiptypes().list()? {
+    ///     println!("{:?}", relationshiptype.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::RelationshipType>> {
         let path = "/person/relationshiptypes".to_owned();
         let query: Query = Query::new();
@@ -13190,6 +20929,23 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// `PUT /person/relationshiptypes/{id}`
     ///
     /// Replaces the editable fields of an existing relationship-type definition. Requires "edit masterdata" permission in `churchdb`. Existing person-to-person relationships retain their IDs and use the updated definition.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-person-relationshiptypes-id");
+    /// let body: models::RelationshipTypeUpdate = serde_json::from_value(serde_json::json!({
+    ///     "degreeNameA": "Parent",
+    ///     "degreeNameB": "Child",
+    ///     "securityLevelId": 1
+    /// }))?;
+    /// let result = client.person().relationshiptypes().update(4, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::RelationshipTypeUpdate) -> Result<models::RelationshipType> {
         let path = format!("/person/relationshiptypes/{}", seg(id));
         let query: Query = Query::new();
@@ -13226,6 +20982,21 @@ impl<'a> PersonSexesResource<'a> {
     /// `POST /person/sexes`
     ///
     /// Creates a sex catalog entry, not a person. Requires edit masterdata permission for Persons (churchdb). Text is trimmed; omitted salutations are null and sortKey defaults to 0. Name and salutation values may be translation keys or literal text. Creation is transactional.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-person-sexes");
+    /// let body: models::SexCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "sex.other"
+    /// }))?;
+    /// let result = client.person().sexes().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::SexCreate) -> Result<models::Sex> {
         let path = "/person/sexes".to_owned();
         let query: Query = Query::new();
@@ -13240,6 +21011,17 @@ impl<'a> PersonSexesResource<'a> {
     /// Deletes an unused sex catalog entry. Requires edit masterdata permission for Persons (churchdb). IDs 1 and 2 return 403 even for dryRun. Person references block deletion with 409. dryRun=true always returns a 409 deletion report for otherwise eligible IDs, including when deletion would be allowed. A missing unused ID is a successful no-op with 204.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.person().sexes().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -13262,6 +21044,18 @@ impl<'a> PersonSexesResource<'a> {
     /// `GET /person/sexes/{id}`
     ///
     /// Returns one sex catalog entry with raw and localized labels and salutations. Requires view permission for Persons (churchdb).
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-sexes-id");
+    /// let sex = client.person().sexes().get(1)?;
+    /// println!("{}", sex.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Sex> {
         let path = format!("/person/sexes/{}", seg(id));
         let query: Query = Query::new();
@@ -13273,6 +21067,19 @@ impl<'a> PersonSexesResource<'a> {
     /// `GET /person/sexes`
     ///
     /// Lists the configured sex catalog used by person records and salutations. Requires view permission for Persons (churchdb). Ordered by sortKey and stored name ascending; localized display text can have a different order. The complete catalog is returned without pagination.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-person-sexes");
+    /// for sex in client.person().sexes().list()? {
+    ///     println!("{}", sex.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Sex>> {
         let path = "/person/sexes".to_owned();
         let query: Query = Query::new();
@@ -13284,6 +21091,21 @@ impl<'a> PersonSexesResource<'a> {
     /// `PUT /person/sexes/{id}`
     ///
     /// Replaces the writable values of a sex catalog entry. Requires edit masterdata permission for Persons (churchdb). name is required; omitted sortKey is reset to 0 and omitted salutations are cleared to null. IDs 1 and 2 are protected against deletion but can be updated here. The ID is taken from the URL and is not required in the body. The update is transactional.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-person-sexes-id");
+    /// let body: models::SexUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "sex.other"
+    /// }))?;
+    /// let result = client.person().sexes().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::SexUpdate) -> Result<models::Sex> {
         let path = format!("/person/sexes/{}", seg(id));
         let query: Query = Query::new();
@@ -13360,6 +21182,20 @@ impl<'a> PersonsResource<'a> {
     /// `POST /persons/{personId}/archive`
     ///
     /// archives or undos an archive of a person
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostPersonsPersonIdArchiveBody = serde_json::from_value(serde_json::json!({
+    ///     "archived": true
+    /// }))?;
+    /// client.persons().archive(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn archive(&self, person_id: impl Display, body: &models::PostPersonsPersonIdArchiveBody) -> Result<()> {
         let path = format!("/persons/{}/archive", seg(person_id));
         let query: Query = Query::new();
@@ -13374,6 +21210,23 @@ impl<'a> PersonsResource<'a> {
     /// Creates a person using only fields the current user may write. Before calling this endpoint, retrieve valid `statusId`, `campusId`, and `departmentIds` values from `GET /person/masterdata`. Read `GET /config` to determine whether `privacy_policy_fields_mandatory` is enabled. If it is enabled, provide all three privacy agreement fields. `privacyPolicyAgreementTypeId` describes how the agreement was obtained, while `privacyPolicyAgreementWhoId` describes who gave it; these are independent facts and must not be inferred from each other. The `without_privacy_policy_agreement` parameter is only effective when `privacy_policy_fields_mandatory_api` is disabled and must not be used without first verifying that setting. If a duplicate person is found, repeat the request with `force` only after intentionally deciding to create the duplicate.
     ///
     /// Use [`Self::create_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-persons");
+    /// let body: models::PostPersonsBody = serde_json::from_value(serde_json::json!({
+    ///     "departmentIds": [
+    ///         42
+    ///     ]
+    /// }))?;
+    /// let result = client.persons().create(&body)?;
+    /// println!("{:?}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostPersonsBody) -> Result<models::Person> {
         self.create_with(&Default::default(), body)
     }
@@ -13397,6 +21250,17 @@ impl<'a> PersonsResource<'a> {
     /// `DELETE /persons/{personId}`
     ///
     /// Delete the Person
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}", seg(person_id));
         let query: Query = Query::new();
@@ -13408,6 +21272,17 @@ impl<'a> PersonsResource<'a> {
     /// `DELETE /persons/{personId}/confidentialityagreement`
     ///
     /// Clears the confidentiality acceptance date. Requires write access for Persons (churchdb); being the selected person alone is insufficient. Simulation is rejected. The policy checks module-level write access without an additional person-visibility check. Already absent acceptance is a successful no-op. This is separate from privacy-consent revocation and takes no request body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().delete_confidentialityagreement(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_confidentialityagreement(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/confidentialityagreement", seg(person_id));
         let query: Query = Query::new();
@@ -13419,6 +21294,17 @@ impl<'a> PersonsResource<'a> {
     /// `DELETE /persons/{personId}/logintoken`
     ///
     /// Deletes the current person’s persistent login token. Only the current person may revoke their own token. A missing token is treated as success. Ordinary user simulation is forbidden; support-user simulation is exempt. This does not invalidate existing sessions or separate one-time login strings. A subsequent GET creates a new token.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().delete_logintoken(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_logintoken(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/logintoken", seg(person_id));
         let query: Query = Query::new();
@@ -13430,6 +21316,17 @@ impl<'a> PersonsResource<'a> {
     /// `DELETE /persons/{personId}/privacypolicy`
     ///
     /// Clears the person’s consent timestamp, consent type and consent-giver category, and then notifies the configured administrator by email when an address is available. Requires an enabled consent banner and either the person themselves, a super administrator, or the parent of a person not known to be at least 16 through relationship type 1. Simulation is rejected. Revocation is not idempotent: an existing person without prior consent raises an application error instead of returning 204. Notification happens after the data change, so a later failure does not imply that consent was retained.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().delete_privacypolicy(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_privacypolicy(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
@@ -13439,6 +21336,17 @@ impl<'a> PersonsResource<'a> {
     /// TODO 200
     ///
     /// `POST /persons/export`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().export()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn export(&self) -> Result<()> {
         let path = "/persons/export".to_owned();
         let query: Query = Query::new();
@@ -13452,6 +21360,23 @@ impl<'a> PersonsResource<'a> {
     /// Evaluates a logical expression of probes against all persons the current user may view. Probe evaluation honors person security levels, and the matching persons are returned as a paginated collection.
     ///
     /// Use [`Self::filter_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({
+    ///     "data": {},
+    ///     "probe": "probe-person-field"
+    /// });
+    /// for person in client.persons().filter(&body)? {
+    ///     println!("{:?}", person.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn filter(&self, body: &serde_json::Value) -> Result<Vec<models::Person>> {
         self.filter_with(&Default::default(), body)
     }
@@ -13475,6 +21400,18 @@ impl<'a> PersonsResource<'a> {
     /// `GET /persons/{personId}`
     ///
     /// Each person as a unique numeric ID in ChurchTools. This ID is used all over in ChurchTools and in the API.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id");
+    /// let person = client.persons().get(42)?;
+    /// println!("{:?}", person.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display) -> Result<models::Person> {
         let path = format!("/persons/{}", seg(person_id));
         let query: Query = Query::new();
@@ -13486,6 +21423,18 @@ impl<'a> PersonsResource<'a> {
     /// `GET /persons/{personId}/information`
     ///
     /// Generates the complete configured data sheet for the person and returns a PDF download URL. Requires super-administrator access, even when exporting your own data. Despite using GET, every successful call generates and stores a file and logs the export; this is not a read-only preview. The file is associated with the datasheet domain and scheduled for deletion after one day. The API response is JSON, not PDF bytes. message is localized display text. Unknown persons return 404; generation or storage failures may return 500.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-information");
+    /// let information = client.persons().get_information(42)?;
+    /// println!("{}", information.pdf_link);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_information(&self, person_id: impl Display) -> Result<models::PersonInformationExport> {
         let path = format!("/persons/{}/information", seg(person_id));
         let query: Query = Query::new();
@@ -13497,6 +21446,18 @@ impl<'a> PersonsResource<'a> {
     /// `GET /persons/{personId}/loginstring`
     ///
     /// Creates a new one-time login credential valid for 14 days. Only the current person may request their own credential. Each GET creates and stores a fresh credential; treat the response as a secret. Use it as the loginstr parameter of a ChurchTools login link. Simulation creates a credential carrying the simulating user context. The legacy response has top-level loginString and personId fields, without a data envelope.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-loginstring");
+    /// let loginstring = client.persons().get_loginstring("beispiel")?;
+    /// println!("{}", loginstring.login_string);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_loginstring(&self, person_id: impl Display) -> Result<models::GetPersonsIdLoginstringResponse> {
         let path = format!("/persons/{}/loginstring", seg(person_id));
         let query: Query = Query::new();
@@ -13508,6 +21469,18 @@ impl<'a> PersonsResource<'a> {
     /// `GET /persons/{personId}/logintoken`
     ///
     /// Returns the current person’s persistent login credential, creating and storing one if absent. Only the current person may request their own token. The same token is returned on subsequent calls until revoked; treat it as a secret. It has no expiry field. Ordinary user simulation is forbidden; support-user simulation is exempt. This GET can change stored data.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-logintoken");
+    /// let result = client.persons().get_logintoken(42)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_logintoken(&self, person_id: impl Display) -> Result<String> {
         let path = format!("/persons/{}/logintoken", seg(person_id));
         let query: Query = Query::new();
@@ -13517,6 +21490,18 @@ impl<'a> PersonsResource<'a> {
     /// Returns the post statistics for a person
     ///
     /// `GET /persons/{personId}/poststatistics`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-poststatistics");
+    /// let poststatistic = client.persons().get_poststatistics("beispiel")?;
+    /// println!("{}", poststatistic.count_banned);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_poststatistics(&self, person_id: impl Display) -> Result<models::PersonPostStatistics> {
         let path = format!("/persons/{}/poststatistics", seg(person_id));
         let query: Query = Query::new();
@@ -13528,6 +21513,18 @@ impl<'a> PersonsResource<'a> {
     /// `GET /persons/{personId}/privacypolicy`
     ///
     /// Returns consent details and parent/child relationship information for the selected person. Simulation is rejected. Access is allowed to super administrators, the person themselves unless they are known to be younger than 16, and a parent linked through relationship type 1 for a person who is not known to be at least 16. An unknown birthday is treated differently by the self-read and acceptance checks. The response supplies suggested typeId/whoId and display flags; it does not grant permission to submit consent.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-privacypolicy");
+    /// let privacypolicy = client.persons().get_privacypolicy(42)?;
+    /// println!("{}", privacypolicy.minimum_age);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_privacypolicy(&self, person_id: impl Display) -> Result<models::PersonPrivacyPolicy> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
@@ -13539,6 +21536,17 @@ impl<'a> PersonsResource<'a> {
     /// `POST /persons/{personId}/invite`
     ///
     /// Sends a ChurchTools invitation email to the person’s stored email address. Requires the global churchcore permission invite persons or the group-internal churchdb +invite person permission for this person. Archived people cannot be invited. The call forces sending even after an earlier invitation or acceptance. With local login enabled, the email links to setting a password; with local login disabled, it links to the login page. No request body is consumed. A 204 response indicates that invitation processing completed, not confirmed email delivery.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().invite(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn invite(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/invite", seg(person_id));
         let query: Query = Query::new();
@@ -13554,6 +21562,19 @@ impl<'a> PersonsResource<'a> {
     ///  We distinguish between `date` and `date-time` fields. `date` is a ISO representation like `YYYY-MM-DD`. On the other hand, for `date-time` we return and accept a W3C Zulu date string. Example `1994-11-05T08:15:30Z`
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons");
+    /// for person in client.persons().list()? {
+    ///     println!("{:?}", person.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Person>> {
         self.list_with(&Default::default())
     }
@@ -13587,6 +21608,19 @@ impl<'a> PersonsResource<'a> {
     ///   to paginate through the results.
     ///
     /// Use [`Self::list_birthdays_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-birthdays");
+    /// for birthday in client.persons().list_birthdays()? {
+    ///     println!("{:?}", birthday.deprecated);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_birthdays(&self) -> Result<Vec<models::GetPersonsBirthdaysDataItem>> {
         self.list_birthdays_with(&Default::default())
     }
@@ -13627,6 +21661,19 @@ impl<'a> PersonsResource<'a> {
     /// * `p2` - properties of Person 2
     ///
     /// Use [`Self::list_duplicates_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-duplicates");
+    /// for duplicate in client.persons().list_duplicates()? {
+    ///     println!("{:?}", duplicate.relationship_type_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_duplicates(&self) -> Result<Vec<models::GetPersonsDuplicatesDataItem>> {
         self.list_duplicates_with(&Default::default())
     }
@@ -13660,6 +21707,19 @@ impl<'a> PersonsResource<'a> {
     /// This endpoint returns an array with all groups the user is in.
     ///
     /// Use [`Self::list_groups_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-groups");
+    /// for group in client.persons().list_groups(42)? {
+    ///     println!("{}", group.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_groups(&self, person_id: impl Display) -> Result<Vec<models::GroupMember>> {
         self.list_groups_with(person_id, &Default::default())
     }
@@ -13682,6 +21742,19 @@ impl<'a> PersonsResource<'a> {
     /// `GET /persons/{personId}/openmeetingrequests`
     ///
     /// Lists meeting invitations for the authenticated person that have no response date and still have an occurrence found by recurrence calculation. personId must match the current user; querying another person returns 403, including for administrators. Tentative answers are excluded because they already have a response date. Invitations apply to the stored appointment or series, not separately to every occurrence. Results include nextStartDate and nextEndDate, are sorted by nextStartDate ascending, and are not paginated. The embedded appointment and legacy eventDate describe the stored appointment, which can start in the past for a recurring series.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-openmeetingrequests");
+    /// for openmeetingrequest in client.persons().list_openmeetingrequests(42)? {
+    ///     println!("{}", openmeetingrequest.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_openmeetingrequests(&self, person_id: impl Display) -> Result<Vec<models::OpenMeetingRequest>> {
         let path = format!("/persons/{}/openmeetingrequests", seg(person_id));
         let query: Query = Query::new();
@@ -13693,6 +21766,19 @@ impl<'a> PersonsResource<'a> {
     /// `GET /persons/{personId}/posts`
     ///
     /// Use [`Self::list_posts_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-posts");
+    /// for post in client.persons().list_posts("beispiel")? {
+    ///     println!("{}", post.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_posts(&self, person_id: impl Display) -> Result<Vec<models::Post>> {
         self.list_posts_with(person_id, &Default::default())
     }
@@ -13711,6 +21797,19 @@ impl<'a> PersonsResource<'a> {
     /// Get all relationships for all persons
     ///
     /// `GET /persons/relationships`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-relationships");
+    /// for relationship in client.persons().list_relationships()? {
+    ///     println!("{:?}", relationship.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_relationships(&self) -> Result<Vec<models::GetPersonsRelationshipsDataItem>> {
         let path = "/persons/relationships".to_owned();
         let query: Query = Query::new();
@@ -13720,6 +21819,19 @@ impl<'a> PersonsResource<'a> {
     /// TODO 200
     ///
     /// `GET /persons/search_old`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-search_old");
+    /// for search_old in client.persons().list_search_old()? {
+    ///     println!("{:?}", search_old);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn list_search_old(&self) -> Result<Vec<i64>> {
         let path = "/persons/search_old".to_owned();
@@ -13732,6 +21844,21 @@ impl<'a> PersonsResource<'a> {
     /// `PATCH /persons/{personId}`
     ///
     /// Endpoint to update a person in ChurchTools. Generally, you can provide any information to save, but be aware that you can only save information for fields you have write access to. Beware, that not all fields which are listed in the Person schema can be updated. E.g. `imageUrl` or `familyUrl`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("patch-persons-id");
+    /// let body: models::PatchPersonsIdBody = serde_json::from_value(serde_json::json!({
+    ///     "title": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.persons().patch(42, &body)?;
+    /// println!("{:?}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, person_id: impl Display, body: &models::PatchPersonsIdBody) -> Result<models::Person> {
         let path = format!("/persons/{}", seg(person_id));
         let query: Query = Query::new();
@@ -13744,6 +21871,19 @@ impl<'a> PersonsResource<'a> {
     /// `POST /persons/properties`
     ///
     /// Returns lightweight account and communication properties for the given person IDs. The response object is keyed by person ID. If `ids` is empty or omitted, no person properties are returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-persons-properties");
+    /// let body: models::PostPersonsPropertiesBody = serde_json::from_value(serde_json::json!({}))?;
+    /// let result = client.persons().properties(&body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn properties(&self, body: &models::PostPersonsPropertiesBody) -> Result<std::collections::BTreeMap<String, models::PersonProperties>> {
         let path = "/persons/properties".to_owned();
         let query: Query = Query::new();
@@ -13756,6 +21896,17 @@ impl<'a> PersonsResource<'a> {
     /// `PUT /persons/{personId}/confidentialityagreement`
     ///
     /// Records the current database date as the selected person’s confidentiality acceptance date. Only the current person can accept; simulation is rejected and administrators cannot accept for another person. Repeated acceptance overwrites the date. This is separate from privacy consent and takes no request body.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().update_confidentialityagreement(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_confidentialityagreement(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/confidentialityagreement", seg(person_id));
         let query: Query = Query::new();
@@ -13767,6 +21918,22 @@ impl<'a> PersonsResource<'a> {
     /// `PUT /persons/{personId}/password`
     ///
     /// Changes the password for the account in the password-reset session, or otherwise the currently signed-in account. The personId path value is currently ignored and does not select the target account. A reset session takes precedence over a signed-in session; in that case oldPassword must be an empty string. Without a reset session, oldPassword must match the current password (or be empty if none exists). The new password must meet the installation’s minimum_password_length (default 8), contain ASCII upper- and lowercase letters and a digit, and exclude the person’s first name, last name and nickname case-insensitively. A successful change normally invalidates all sessions and persistent login tokens and signs out the affected current user. Initial setup from no password or the default admin password retains sessions unless using a reset session. Ordinary user simulation is forbidden; support-user simulation is exempt.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PersonPasswordUpdate = serde_json::from_value(serde_json::json!({
+    ///     "newPassword": "ExamplePassword42",
+    ///     "newPasswordConfirm": "ExamplePassword42",
+    ///     "oldPassword": "PreviousPassword41"
+    /// }))?;
+    /// client.persons().update_password(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_password(&self, person_id: impl Display, body: &models::PersonPasswordUpdate) -> Result<()> {
         let path = format!("/persons/{}/password", seg(person_id));
         let query: Query = Query::new();
@@ -13779,6 +21946,32 @@ impl<'a> PersonsResource<'a> {
     /// `PUT /persons/{personId}/privacypolicy`
     ///
     /// Records consent for the selected person and optionally their children. The consent banner must be enabled. The requester must be the person themselves at age 16 or above, a super administrator, or a parent authorized through relationship type 1. For own consent, a missing birthday must be supplied and the controller separately checks the age; a request can return 204 without recording own consent when that check does not pass. Children are checked against parent/child relationship type 1, missing prior consent and age below 16. If any child marked accepted is processed, 200 returns per-child outcomes, including errors or not allowed. Otherwise 204 has no body. The flow is not atomic; own consent or birthdays may already have changed when a later step fails. Unlike GET and DELETE, the acceptance policy has no explicit simulation prohibition.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PersonPrivacyPolicyUpdate = serde_json::from_value(serde_json::json!({
+    ///     "childrenAccepted": false,
+    ///     "ownAccepted": true,
+    ///     "persons": [
+    ///         {
+    ///             "accepted": true,
+    ///             "birthday": "2016-05-14",
+    ///             "editBirthday": false,
+    ///             "id": 43
+    ///         }
+    ///     ],
+    ///     "typeId": 2,
+    ///     "whoId": 1
+    /// }))?;
+    /// let result = client.persons().update_privacypolicy(42, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_privacypolicy(&self, person_id: impl Display, body: &models::PersonPrivacyPolicyUpdate) -> Result<Option<Vec<models::PersonPrivacyPolicyChildResult>>> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
@@ -13997,6 +22190,21 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// `POST /persons/{personId}/absences`
     ///
     /// Creates an absence for the person. Access requires the person themselves or "manage absent" or "churchservice +view absence" permission together with access to the person.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-persons-personId-absences");
+    /// let body: models::AbsenceCreate = serde_json::from_value(serde_json::json!({
+    ///     "absenceReasonId": 1
+    /// }))?;
+    /// let result = client.persons().absences().create(42, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, person_id: impl Display, body: &models::AbsenceCreate) -> Result<models::Absence> {
         let path = format!("/persons/{}/absences", seg(person_id));
         let query: Query = Query::new();
@@ -14011,6 +22219,17 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// Deletes the absence belonging to the person. Access requires the person themselves or "manage absent" or "churchservice +view absence" permission together with access to the person.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().absences().delete(42, 1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, id: impl Display) -> Result<()> {
         self.delete_with(person_id, id, &Default::default())
     }
@@ -14033,6 +22252,18 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// `GET /persons/{personId}/absences/{id}`
     ///
     /// Returns the absence belonging to the person. Access requires the person themselves or "manage absent" or "churchservice +view absence" permission together with access to the person.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-absences-id");
+    /// let absence = client.persons().absences().get(42, 1)?;
+    /// println!("{}", absence.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display, id: impl Display) -> Result<models::Absence> {
         let path = format!("/persons/{}/absences/{}", seg(person_id), seg(id));
         let query: Query = Query::new();
@@ -14046,6 +22277,19 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// Returns this person’s absences that overlap the requested date range, sorted by start. Access requires the person themselves or "manage absent" or "churchservice +view absence" permission together with access to the person.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-absences");
+    /// for absence in client.persons().absences().list(42)? {
+    ///     println!("{}", absence.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::Absence>> {
         self.list_with(person_id, &Default::default())
     }
@@ -14068,6 +22312,21 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// `PUT /persons/{personId}/absences/{id}`
     ///
     /// Replaces an absence belonging to the person. Access requires the person themselves or "manage absent" or "churchservice +view absence" permission together with access to the person.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-persons-personId-absences-id");
+    /// let body: models::AbsenceUpdate = serde_json::from_value(serde_json::json!({
+    ///     "absenceReasonId": 1
+    /// }))?;
+    /// let result = client.persons().absences().update(42, 1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, person_id: impl Display, id: impl Display, body: &models::AbsenceUpdate) -> Result<models::Absence> {
         let path = format!("/persons/{}/absences/{}", seg(person_id), seg(id));
         let query: Query = Query::new();
@@ -14125,6 +22384,17 @@ impl<'a> PersonsDevicesResource<'a> {
     /// `DELETE /persons/{personId}/devices/{deviceId}`
     ///
     /// Removes the registration identified by personId/deviceId. Requires the person themselves, a super administrator, or administer persons permission. An unknown registration is a successful no-op. Returns 204 without a response body; no other device registrations are deleted.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().devices().delete(42, "beispiel")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, device_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/devices/{}", seg(person_id), seg(device_id));
         let query: Query = Query::new();
@@ -14136,6 +22406,18 @@ impl<'a> PersonsDevicesResource<'a> {
     /// `GET /persons/{personId}/devices/{deviceId}`
     ///
     /// Returns the device identified by the personId/deviceId pair. Requires the same person-settings read access as the device list. Unknown registrations return 404. deviceId is the registration identifier; the deprecated response id is actually the push token. Reading does not refresh expiration.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-devices-deviceId");
+    /// let device = client.persons().devices().get(42, "beispiel")?;
+    /// println!("{:?}", device.app_version);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display, device_id: impl Display) -> Result<models::Device> {
         let path = format!("/persons/{}/devices/{}", seg(person_id), seg(device_id));
         let query: Query = Query::new();
@@ -14147,6 +22429,19 @@ impl<'a> PersonsDevicesResource<'a> {
     /// `GET /persons/{personId}/devices`
     ///
     /// Lists all device registrations stored for the person, including registrations whose expirationDate has passed until cleanup removes them. Requires access to the person’s settings: the person themselves, a super administrator, or someone with administer persons permission. The read policy also accepts the special person ID -1. There is no pagination or guaranteed order, and this operation does not refresh expiration.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-devices");
+    /// for device in client.persons().devices().list(42)? {
+    ///     println!("{:?}", device.app_version);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::Device>> {
         let path = format!("/persons/{}/devices", seg(person_id));
         let query: Query = Query::new();
@@ -14158,6 +22453,22 @@ impl<'a> PersonsDevicesResource<'a> {
     /// `PUT /persons/{personId}/devices/{deviceId}`
     ///
     /// Creates or refreshes the registration identified by personId/deviceId and returns the person’s complete device list. Requires access to update the person’s settings: the person themselves, a super administrator, or someone with administer persons permission. type is required on every call. Expiration is extended by three months, or one day during simulation. Omitted pushId becomes deviceId; empty pushId preserves the previous token; null clears it. Omitted appVersion clears the previous version. Other registrations of the same person with the same non-null push token are removed. Saving is transactional. When chat is active, a supplied appVersion outside simulation also sets the person’s hasMatrixUser setting.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::DeviceUpdate = serde_json::from_value(serde_json::json!({
+    ///     "type": "FCM"
+    /// }))?;
+    /// for device in client.persons().devices().update(42, "beispiel", &body)? {
+    ///     println!("{:?}", device.app_version);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, person_id: impl Display, device_id: impl Display, body: &models::DeviceUpdate) -> Result<Vec<models::Device>> {
         let path = format!("/persons/{}/devices/{}", seg(person_id), seg(device_id));
         let query: Query = Query::new();
@@ -14185,6 +22496,19 @@ impl<'a> PersonsEventsResource<'a> {
     /// Returns an unpaginated list of non-cancelled events where the person has a valid assignment. Requires the current user to be this person or a super administrator. from defaults to today and is compared strictly to midnight: an event exactly at midnight is excluded, later events that day are included. Results are ordered by event start ascending with no upper date bound. Visible service assignments are always included under eventServices and are not restricted to just this person. eventFiles is present but this endpoint does not load files, so it is empty. meta.count is the number returned.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-events");
+    /// for event in client.persons().events().list(42)? {
+    ///     println!("{}", event.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::EventReadWithServices>> {
         self.list_with(person_id, &Default::default())
     }
@@ -14235,6 +22559,19 @@ impl<'a> PersonsEventsServicesResource<'a> {
     /// `GET /persons/{personId}/events/{eventId}/services`
     ///
     /// Returns the valid assignments of this person in a non-cancelled event, including both outstanding and confirmed assignments. Requires the current user to be this person or a super administrator. Unknown or cancelled events produce an empty list; related person and event objects are not enriched.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-events-id-services");
+    /// for service in client.persons().events().services().list(42, 42)? {
+    ///     println!("{:?}", service.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display, event_id: impl Display) -> Result<Vec<models::ServiceRequest>> {
         let path = format!("/persons/{}/events/{}/services", seg(person_id), seg(event_id));
         let query: Query = Query::new();
@@ -14255,6 +22592,21 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     /// `POST /persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests`
     ///
     /// Creates an `UNANSWERED` exchange request and sends the request notification. Requires the current user to be assigned to the source assignment. The target requestedServiceId is an event-service assignment ID, as returned by the candidates endpoint. Creating the request does not change either assignment.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ServiceExchangeRequestCreate = serde_json::from_value(serde_json::json!({
+    ///     "requestedServiceId": 42
+    /// }))?;
+    /// let result = client.persons().events().services().exchangerequests().create(42, 42, 42, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, person_id: impl Display, event_id: impl Display, service_id: impl Display, body: &models::ServiceExchangeRequestCreate) -> Result<models::ServiceExchangeRequest> {
         let path = format!("/persons/{}/events/{}/services/{}/exchangerequests", seg(person_id), seg(event_id), seg(service_id));
         let query: Query = Query::new();
@@ -14269,6 +22621,17 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     /// Cancels the exchange by setting status to `CANCELLED` and sending a cancellation notification. Requires the current user to be assigned to the source `serviceId`. With hardDelete=`true`, removes the request matching both `requestId` and the source assignment instead, without a cancellation notification. Neither action swaps the assigned persons. Cancellation leaves the archive flag unchanged.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().events().services().exchangerequests().delete(42, 42, 42, 42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, event_id: impl Display, service_id: impl Display, request_id: impl Display) -> Result<()> {
         self.delete_with(person_id, event_id, service_id, request_id, &Default::default())
     }
@@ -14293,6 +22656,19 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     /// Returns incoming or outgoing exchange requests for the assignment identified by `serviceId`. Requires the current user to be assigned to it. The list is unpaginated and does not filter by status, archive flag or event date. Event and person details are enriched where available.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-events-id-services-id-exchangerequests");
+    /// for exchangerequest in client.persons().events().services().exchangerequests().list(42, 42, 42)? {
+    ///     println!("{}", exchangerequest.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display, event_id: impl Display, service_id: impl Display) -> Result<Vec<models::ServiceExchangeRequest>> {
         self.list_with(person_id, event_id, service_id, &Default::default())
     }
@@ -14315,6 +22691,19 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     /// `GET /persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests/candidates`
     ///
     /// Returns an unpaginated list of assignments for the same reusable service as the source assignment. Requires the current user to be assigned to the source. Candidates have valid assignments with a non-`null` name, an event starting after midnight today, and a person other than `personId`. Hidden-person visibility is respected.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-events-id-services-id-exchangerequests-candidates");
+    /// for candidate in client.persons().events().services().exchangerequests().list_candidates(42, 42, 42)? {
+    ///     println!("{}", candidate.event_date);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_candidates(&self, person_id: impl Display, event_id: impl Display, service_id: impl Display) -> Result<Vec<models::ServiceExchangeCandidate>> {
         let path = format!("/persons/{}/events/{}/services/{}/exchangerequests/candidates", seg(person_id), seg(event_id), seg(service_id));
         let query: Query = Query::new();
@@ -14365,6 +22754,18 @@ impl<'a> PersonsExchangerequestsResource<'a> {
     /// `DELETE /persons/{personId}/exchangerequests/{requestId}`
     ///
     /// Declines the exchange by setting its status to `DECLINED` and sending a notification. The request remains stored and its archive flag is unchanged; the assignments are not swapped. Requires `personId` to identify the current user and the person assigned to the requested assignment. Returns the updated exchange request without enriching events or persons. Already answered requests are returned unchanged.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let exchangerequest = client.persons().exchangerequests().delete(42, 42)?;
+    /// println!("{}", exchangerequest.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceExchangeRequest> {
         let path = format!("/persons/{}/exchangerequests/{}", seg(person_id), seg(request_id));
         let query: Query = Query::new();
@@ -14378,6 +22779,19 @@ impl<'a> PersonsExchangerequestsResource<'a> {
     /// Returns an unpaginated list of incoming or outgoing exchanges for the current user; `personId` must identify that user. Both assignments must still be valid, the exchange must not be archived, and at least one event must start today or later. Status is not restricted to `UNANSWERED`. Event and person details are enriched where available.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-exchangerequests");
+    /// for exchangerequest in client.persons().exchangerequests().list(42)? {
+    ///     println!("{}", exchangerequest.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::ServiceExchangeRequest>> {
         self.list_with(person_id, &Default::default())
     }
@@ -14400,6 +22814,18 @@ impl<'a> PersonsExchangerequestsResource<'a> {
     /// `PUT /persons/{personId}/exchangerequests/{requestId}`
     ///
     /// Accepts the exchange and swaps the persons assigned to the two event-service assignments, confirming both assignments. The workflow archives the accepted exchange and other active exchanges from the same source assignment, and sends notifications. Requires `personId` to identify the current user and the person assigned to the requested assignment. Returns the updated exchange request without enriching events or persons.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let result = client.persons().exchangerequests().update(42, 42)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceExchangeRequest> {
         let path = format!("/persons/{}/exchangerequests/{}", seg(person_id), seg(request_id));
         let query: Query = Query::new();
@@ -14435,6 +22861,17 @@ impl<'a> PersonsExternalLoginsResource<'a> {
     /// `DELETE /persons/{personId}/external-logins/{externalLoginId}`
     ///
     /// Removes this person’s identity mapping for the selected external-login provider. Requires the person themselves, a super administrator, or administer persons permission. A missing mapping returns 404, including on repeated deletion. The provider itself is retained. The method does not end existing sessions or verify that another login method remains available. A later external login is handled by the provider’s normal matching/linking workflow.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().external_logins().delete(42, 7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, external_login_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/external-logins/{}", seg(person_id), seg(external_login_id));
         let query: Query = Query::new();
@@ -14446,6 +22883,19 @@ impl<'a> PersonsExternalLoginsResource<'a> {
     /// `GET /persons/{personId}/external-logins`
     ///
     /// Lists the external identity providers linked to the person. Requires access to the person’s settings: the person themselves, a super administrator, or administer persons permission; the read policy also permits personId=-1. Hidden providers are included when a mapping exists. This is a list of identity links, not a list of all configured login options. No pagination or guaranteed order applies. Person existence is not checked separately; no mappings returns an empty list.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-external-logins");
+    /// for external_login in client.persons().external_logins().list(42)? {
+    ///     println!("{}", external_login.external_login_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::ExternalLoginPersonMapping>> {
         let path = format!("/persons/{}/external-logins", seg(person_id));
         let query: Query = Query::new();
@@ -14466,6 +22916,21 @@ impl<'a> PersonsFollowupsResource<'a> {
     /// `POST /persons/{personId}/followups`
     ///
     /// Creates a task concerning this person without a group or membership context. The subject person is distinct from ownerId, which identifies who should handle the task. Requires permission to view the person; a configured success group additionally requires permission to add members there, or the corresponding group-type permission. Missing/null ownerId assigns the task to the current user. A new specification is created from the title and display/success settings. A due date is optional and may lie in the past. Configuring a success group does not itself add a membership; the completion request must explicitly select the target group.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-persons-personId-followups");
+    /// let body: models::FollowUpCreate = serde_json::from_value(serde_json::json!({
+    ///     "title": "Call Peter"
+    /// }))?;
+    /// let result = client.persons().followups().create(42, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, person_id: impl Display, body: &models::FollowUpCreate) -> Result<models::FollowUp2> {
         let path = format!("/persons/{}/followups", seg(person_id));
         let query: Query = Query::new();
@@ -14478,6 +22943,18 @@ impl<'a> PersonsFollowupsResource<'a> {
     /// `GET /persons/{personId}/followups/statistics`
     ///
     /// Counts follow-ups concerning this person, including tasks linked to group memberships. Requires permission to view the person. Counts are restricted to tasks assigned to the current user and unassigned tasks in groups where that user has follow-up rights; tasks assigned to other people are omitted. Archived subject persons are excluded. Counts cover all matching tasks independently of list pagination and state filters. Due categories use the effective due date and the server’s current date. countDone includes both completed and dismissed tasks. Empty results return zero for every category.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-followups-statistics");
+    /// let statistic = client.persons().followups().get_statistics(42)?;
+    /// println!("{}", statistic.count_done);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_statistics(&self, person_id: impl Display) -> Result<models::FollowUpStatistics> {
         let path = format!("/persons/{}/followups/statistics", seg(person_id));
         let query: Query = Query::new();
@@ -14491,6 +22968,19 @@ impl<'a> PersonsFollowupsResource<'a> {
     /// Lists tasks concerning this person, including tasks linked to group memberships. The subject person is distinct from ownerId, which identifies who handles the task. Requires permission to view the person. Results are restricted to tasks assigned to the current user and unassigned tasks in groups where that user has follow-up rights; tasks assigned to others are omitted even if individually viewable. Archived subject persons are excluded. State filters are combined with OR; omission includes all states. Results are ordered by completion date descending, effective due date ascending, then ID. Pagination returns meta.count for this page only, without a total or last-page value.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-followups");
+    /// for followup in client.persons().followups().list(42)? {
+    ///     println!("{}", followup.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::FollowUp2>> {
         self.list_with(person_id, &Default::default())
     }
@@ -14542,6 +23032,18 @@ impl<'a> PersonsMergeResource<'a> {
     /// **Caution:** This API is published as Beta and subject to be changed. It is published such that customers can play evaluate it with production data.
     ///
     /// This retrieves the basis for a merge of two person records You will receive person data, relationships, groups etc. for both persons.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personid-merge-duplicateid");
+    /// let merge = client.persons().merge().get("beispiel", "100")?;
+    /// println!("{:?}", merge);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display, duplicate_id: impl Display) -> Result<models::PersonMergeInfo> {
         let path = format!("/persons/{}/merge/{}", seg(person_id), seg(duplicate_id));
         let query: Query = Query::new();
@@ -14569,6 +23071,21 @@ impl<'a> PersonsMergeResource<'a> {
     /// * delete the doublette if `deleteDuplicate` is true
     ///
     /// all to be done within one transaction.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PersonUpdateable = serde_json::from_value(serde_json::json!({
+    ///     "title": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.persons().merge().patch("beispiel", "100", &body)?;
+    /// println!("{}", result.body);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, person_id: impl Display, duplicate_id: impl Display, body: &models::PersonUpdateable) -> Result<models::PatchPersonsPersonidMergeDuplicateidData> {
         let path = format!("/persons/{}/merge/{}", seg(person_id), seg(duplicate_id));
         let query: Query = Query::new();
@@ -14590,6 +23107,22 @@ impl<'a> PersonsRelationshipsResource<'a> {
     /// `POST /persons/{personId}/relationships`
     ///
     /// Create a new relationship between the specified person and another person.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-persons-personId-relationships");
+    /// let body: models::PostPersonsPersonIdRelationshipsBody = serde_json::from_value(serde_json::json!({
+    ///     "otherPersonId": 42,
+    ///     "relationshipTypeId": 42
+    /// }))?;
+    /// let result = client.persons().relationships().create(42, &body)?;
+    /// println!("{:?}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, person_id: impl Display, body: &models::PostPersonsPersonIdRelationshipsBody) -> Result<models::GetPersonsRelationshipsDataItem> {
         let path = format!("/persons/{}/relationships", seg(person_id));
         let query: Query = Query::new();
@@ -14602,6 +23135,17 @@ impl<'a> PersonsRelationshipsResource<'a> {
     /// `DELETE /persons/{personId}/relationships/{relationshipId}`
     ///
     /// Delete the specified relationship.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().relationships().delete(42, 18)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, relationship_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/relationships/{}", seg(person_id), seg(relationship_id));
         let query: Query = Query::new();
@@ -14613,6 +23157,19 @@ impl<'a> PersonsRelationshipsResource<'a> {
     /// `GET /persons/{personId}/relationships`
     ///
     /// Returns all relationships of the specified person. The result is sorted by 1. the `sortkey` of the relationship type, 2. last name, and 3. first name of a person.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-personId-relationships");
+    /// for relationship in client.persons().relationships().list(42)? {
+    ///     println!("{}", relationship.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::PersonRelationship>> {
         let path = format!("/persons/{}/relationships", seg(person_id));
         let query: Query = Query::new();
@@ -14635,6 +23192,18 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// Declines the current assignment and returns HTTP 200 with a new unassigned record: person and name are null, isValid=true and isAccepted=false. The original requestId becomes invalid. Related exchange requests are deleted and the workflow sends notifications. Requires permission to decline; assigned persons additionally need allowDecline on the service unless another permission grants access. Invalid records return 404 and unassigned slots return 422.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let servicerequest = client.persons().servicerequests().delete(42, 42)?;
+    /// println!("{:?}", servicerequest.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceRequest> {
         self.delete_with(person_id, request_id, &Default::default())
     }
@@ -14657,6 +23226,18 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// `GET /persons/{personId}/servicerequests/{requestId}`
     ///
     /// Returns the assignment identified by requestId and personId when the viewer has access. Unlike the list endpoint, this lookup can return invalid historical records. Comments are null if the viewer cannot see the reason.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-servicerequests-id");
+    /// let servicerequest = client.persons().servicerequests().get(42, 42)?;
+    /// println!("{:?}", servicerequest.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceRequest> {
         let path = format!("/persons/{}/servicerequests/{}", seg(person_id), seg(request_id));
         let query: Query = Query::new();
@@ -14670,6 +23251,19 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// Returns an unpaginated list of visible, valid assignments for this person, including both outstanding and confirmed requests. Declined and superseded records are excluded. Sorted by event start ascending. only_future=true starts at midnight today, so events earlier today are included. meta.count is the number returned after permission filtering.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-servicerequests");
+    /// for servicerequest in client.persons().servicerequests().list(42)? {
+    ///     println!("{:?}", servicerequest.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::ServiceRequest>> {
         self.list_with(person_id, &Default::default())
     }
@@ -14692,6 +23286,18 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// `POST /persons/{personId}/servicerequests/{requestId}/undo`
     ///
     /// Reverts the last acceptance or decline to an outstanding request. Only the assigned person may do this. The legacy history must identify this as the last action and its timestamp must be within the 10-minute undo window; otherwise 400 is returned. For a decline, use the original declined request ID, not the new unassigned record returned by the decline operation. The automatically created empty record is removed when undoing a decline. Returns the legacy response shape ServiceRequestUndoResult.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let servicerequest = client.persons().servicerequests().undo(42, 42)?;
+    /// println!("{:?}", servicerequest.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn undo(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceRequestUndoResult> {
         let path = format!("/persons/{}/servicerequests/{}/undo", seg(person_id), seg(request_id));
         let query: Query = Query::new();
@@ -14703,6 +23309,21 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// `PUT /persons/{personId}/servicerequests/{requestId}`
     ///
     /// Creates a replacement assignment and invalidates the previous active record for the same event, service and slot index. Always use the returned ID for subsequent actions. isAccepted=true confirms it; false leaves it awaiting confirmation and does not decline it. Notifications follow the assignment workflow. Updating an occupied slot requires permission to update that assignment; free slots use the self-assignment policy, and target-person restrictions apply. The legacy agreed input is accepted as an alias for isAccepted.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PersonServiceRequestUpdate = serde_json::from_value(serde_json::json!({
+    ///     "comment": "beispiel"
+    /// }))?;
+    /// let result = client.persons().servicerequests().update(42, 42, &body)?;
+    /// println!("{:?}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, person_id: impl Display, request_id: impl Display, body: &models::PersonServiceRequestUpdate) -> Result<models::ServiceRequest> {
         let path = format!("/persons/{}/servicerequests/{}", seg(person_id), seg(request_id));
         let query: Query = Query::new();
@@ -14761,6 +23382,17 @@ impl<'a> PersonsSettingsResource<'a> {
     /// `DELETE /persons/{personId}/settings/{module}/{attribute}`
     ///
     /// Deletes the exact stored setting and returns 204, including if it did not exist. Requires the person themselves, a super administrator, or administer persons permission. The administer global views (churchgroup) exception also applies to churchdb/group-custom-views without restricting the target person. Unlike PUT, DELETE does not enforce the setting write allowlist. No setting-specific update hook is run.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().settings().delete(42, "beispiel", "beispiel")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, module: impl Display, attribute: impl Display) -> Result<()> {
         let path = format!("/persons/{}/settings/{}/{}", seg(person_id), seg(module), seg(attribute));
         let query: Query = Query::new();
@@ -14772,6 +23404,18 @@ impl<'a> PersonsSettingsResource<'a> {
     /// `GET /persons/{personId}/settings/{module}/{attribute}`
     ///
     /// Requires access to the person’s settings: the person themselves, a super administrator, or administer persons permission. The special person ID -1 is also readable by authenticated users. Returns the exact stored module/attribute pair. A missing setting returns 404 rather than a default value. Readability does not mean the setting can be changed through the PUT endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-settings-module-attribute");
+    /// let setting = client.persons().settings().get(42, "beispiel", "beispiel")?;
+    /// println!("{}", setting.attribute);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display, module: impl Display, attribute: impl Display) -> Result<models::PersonSetting> {
         let path = format!("/persons/{}/settings/{}/{}", seg(person_id), seg(module), seg(attribute));
         let query: Query = Query::new();
@@ -14783,6 +23427,19 @@ impl<'a> PersonsSettingsResource<'a> {
     /// `GET /persons/{personId}/settings/{module}`
     ///
     /// Requires access to the person’s settings: the person themselves, a super administrator, or administer persons permission. The special person ID -1 is also readable by authenticated users. Returns stored settings in the exact module namespace as a flat list. Unknown or empty namespaces return an empty list. No pagination or guaranteed order is applied; the read endpoint is not restricted to the write allowlist.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-settings-module");
+    /// for module in client.persons().settings().get_module(42, "beispiel")? {
+    ///     println!("{}", module.attribute);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_module(&self, person_id: impl Display, module: impl Display) -> Result<Vec<models::PersonSetting>> {
         let path = format!("/persons/{}/settings/{}", seg(person_id), seg(module));
         let query: Query = Query::new();
@@ -14794,6 +23451,19 @@ impl<'a> PersonsSettingsResource<'a> {
     /// `GET /persons/{personId}/settings`
     ///
     /// Requires access to the person’s settings: the person themselves, a super administrator, or administer persons permission. The special person ID -1 is also readable by authenticated users. Returns all stored preferences as a flat list of module/attribute/value records. No pagination, guaranteed order, or write-allowlist filtering is applied. An empty list means no stored settings were found; person existence is not checked separately.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-settings");
+    /// for setting in client.persons().settings().list(42)? {
+    ///     println!("{}", setting.attribute);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::PersonSetting>> {
         let path = format!("/persons/{}/settings", seg(person_id));
         let query: Query = Query::new();
@@ -14805,6 +23475,21 @@ impl<'a> PersonsSettingsResource<'a> {
     /// `PUT /persons/{personId}/settings/{module}/{attribute}`
     ///
     /// Creates or replaces one allowlisted setting; arbitrary module/attribute pairs return 400. Requires the person themselves, a super administrator, or administer persons permission. Additionally, administer global views (churchgroup) permits writes to churchdb/group-custom-views; the current policy does not restrict that exception to personId=-1. The response contains the value returned by the service, which can have a different JSON numeric type from a later GET. The three churchcal calendar-filter settings require JSON-array text and normalize referenced calendar IDs. See PersonSettingUpdate for supported pairs and value types.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-persons-id-settings-module-attribute");
+    /// let body: models::PersonSettingUpdate = serde_json::from_value(serde_json::json!({
+    ///     "value": "beispiel"
+    /// }))?;
+    /// let result = client.persons().settings().update(42, "push", "disableGroupSignUpNotifications", &body)?;
+    /// println!("{}", result.attribute);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, person_id: impl Display, module: impl Display, attribute: impl Display, body: &models::PersonSettingUpdate) -> Result<models::PersonSetting> {
         let path = format!("/persons/{}/settings/{}/{}", seg(person_id), seg(module), seg(attribute));
         let query: Query = Query::new();
@@ -14826,6 +23511,22 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// `POST /persons/{personId}/settings/twofactor`
     ///
     /// Verifies the current person’s username/email and password, then stores a new TOTP secret and sets twoFactorEnabled to false. Only the current person can initialize their own authenticator. Repeating this call replaces the previous secret and disables an already active authenticator. Keep the returned secret or QR code for enrollment, verify a generated code through POST /twofactor/totp, then call PUT on this path to activate. This step does not complete activation.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::LoginCredentials = serde_json::from_value(serde_json::json!({
+    ///     "password": "example-password",
+    ///     "username": "alex@example.org"
+    /// }))?;
+    /// let result = client.persons().settings().twofactor().create(42, &body)?;
+    /// println!("{}", result.qrcode);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, person_id: impl Display, body: &models::LoginCredentials) -> Result<models::TwoFactorSetupSecret> {
         let path = format!("/persons/{}/settings/twofactor", seg(person_id));
         let query: Query = Query::new();
@@ -14838,6 +23539,17 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// `DELETE /persons/{personId}/settings/twofactor`
     ///
     /// Sets twoFactorEnabled to false and deletes the stored TOTP secret. Only the current person may deactivate their own authenticator. No password or authenticator code is consumed. Repeating the call is allowed. This does not clear an administrator’s twoFactorForce setting or group-role requirements, so a later login can require setup again.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.persons().settings().twofactor().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/settings/twofactor", seg(person_id));
         let query: Query = Query::new();
@@ -14849,6 +23561,18 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// `GET /persons/{personId}/settings/twofactor`
     ///
     /// Returns the stored twoFactorEnabled setting, defaulting to false without storing it when absent. Requires access to the person’s settings (self, super administrator or administer persons; the global defaults person -1 is also allowed). This reports activation only, not whether two-factor authentication is required by an administrator or group role.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-settings-twofactor");
+    /// let twofactor = client.persons().settings().twofactor().get(42)?;
+    /// println!("{}", twofactor.attribute);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display) -> Result<models::PersonTwoFactorEnabled> {
         let path = format!("/persons/{}/settings/twofactor", seg(person_id));
         let query: Query = Query::new();
@@ -14860,6 +23584,18 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// `GET /persons/{personId}/settings/twofactor/force`
     ///
     /// Returns the stored twoFactorForce setting, defaulting to false when absent. Requires churchcore administer persons or simulate persons. This is only the explicit person-level flag; an applicable group role may still require two-factor authentication when this value is false.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-persons-id-settings-twofactor-force");
+    /// let force = client.persons().settings().twofactor().get_force(42)?;
+    /// println!("{}", force.attribute);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_force(&self, person_id: impl Display) -> Result<models::PersonTwoFactorForce> {
         let path = format!("/persons/{}/settings/twofactor/force", seg(person_id));
         let query: Query = Query::new();
@@ -14871,6 +23607,18 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// `PUT /persons/{personId}/settings/twofactor`
     ///
     /// Sets twoFactorEnabled to true and refreshes person session data. Only the current person may activate their own authenticator. A stored secret from initialization is required; otherwise 400 is returned. No request body is consumed. Clients should first verify an authenticator code with POST /twofactor/totp; this activation handler itself checks only that a secret exists, not that a code was previously verified. Existing login tokens and other sessions are not revoked.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let result = client.persons().settings().twofactor().update(42)?;
+    /// println!("{}", result.attribute);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, person_id: impl Display) -> Result<models::PersonTwoFactorEnabled> {
         let path = format!("/persons/{}/settings/twofactor", seg(person_id));
         let query: Query = Query::new();
@@ -14882,6 +23630,21 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// `PUT /persons/{personId}/settings/twofactor/force`
     ///
     /// Stores the explicit person-level two-factor requirement. Requires churchcore administer persons or simulate persons; only a super administrator may change this flag for another super administrator. Setting false does not remove a requirement inherited from a group role. This neither enrolls an authenticator nor changes twoFactorEnabled.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PersonTwoFactorForceUpdate = serde_json::from_value(serde_json::json!({
+    ///     "value": true
+    /// }))?;
+    /// let result = client.persons().settings().twofactor().update_force(42, &body)?;
+    /// println!("{}", result.attribute);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_force(&self, person_id: impl Display, body: &models::PersonTwoFactorForceUpdate) -> Result<models::PersonTwoFactorForce> {
         let path = format!("/persons/{}/settings/twofactor/force", seg(person_id));
         let query: Query = Query::new();
@@ -14907,6 +23670,19 @@ impl<'a> PlaceholdersResource<'a> {
     /// `GET /placeholders/email`
     ///
     /// Returns the editor’s available email-template placeholders using an empty person context. No recipient values are rendered. The response data is a recursive menu: groups have name and items, selectable leaves have placeholder and label, optionally menuLabel. Labels are translated. Insert the supplied expression verbatim; ordinary values use triple braces, while block helpers use double braces. The set of fields depends on configuration, so names are not a fixed enum. This object-backed tree has no meta.count envelope.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-placeholders-email");
+    /// for email in client.placeholders().list_email()? {
+    ///     println!("{}", email.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_email(&self) -> Result<Vec<models::PlaceholderMenuGroup>> {
         let path = "/placeholders/email".to_owned();
         let query: Query = Query::new();
@@ -14927,6 +23703,19 @@ impl<'a> PlaceholdersGroupResource<'a> {
     /// `GET /placeholders/group/{id}`
     ///
     /// Returns the editor’s available group and group-membership placeholders, including this group’s custom membership fields. id must be numeric; GUIDs are not accepted by this controller. No group/member values are rendered. The handler loads the group without a separate group-visibility check. The response data is a recursive menu: groups have name and items, selectable leaves have placeholder and label, optionally menuLabel. Labels are translated. Insert the supplied expression verbatim; ordinary values use triple braces, while block helpers use double braces. The set of fields depends on configuration, so names are not a fixed enum. This object-backed tree has no meta.count envelope.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-placeholders-group-id");
+    /// for group in client.placeholders().group().get(11)? {
+    ///     println!("{}", group.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<Vec<models::PlaceholderMenuGroup>> {
         let path = format!("/placeholders/group/{}", seg(id));
         let query: Query = Query::new();
@@ -14947,6 +23736,24 @@ impl<'a> PollfornewsResource<'a> {
     /// `GET /pollfornews`
     ///
     /// This endpoint returns the identifiers of changed entities since the last call.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-pollfornews");
+    /// let query = GetPollfornewsQuery {
+    ///     domain_types: Some(vec!["beispiel".into()]),
+    ///     since: Some("2022-10-19T12:00:00Z".parse()?),
+    ///     ..Default::default()
+    /// };
+    /// for pollfornew in client.pollfornews().list(&query)? {
+    ///     println!("{}", pollfornew.domain_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetPollfornewsQuery) -> Result<Vec<models::PollForNewsResult>> {
         let path = "/pollfornews".to_owned();
         let query: Query = query.to_query();
@@ -14993,6 +23800,18 @@ impl<'a> PostResource<'a> {
     /// `GET /post/linkings`
     ///
     /// Use [`Self::get_linkings_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-post-linkings");
+    /// let result = client.post().get_linkings()?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_linkings(&self) -> Result<serde_json::Value> {
         self.get_linkings_with(&Default::default())
     }
@@ -15011,6 +23830,19 @@ impl<'a> PostResource<'a> {
     /// get-post-groups
     ///
     /// `GET /post/groups`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-post-groups");
+    /// for group in client.post().list_groups()? {
+    ///     println!("{}", group.favorite_group);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_groups(&self) -> Result<Vec<models::PossiblePostGroup>> {
         let path = "/post/groups".to_owned();
         let query: Query = Query::new();
@@ -15024,6 +23856,19 @@ impl<'a> PostResource<'a> {
     /// Search posts
     ///
     /// Use [`Self::list_search_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-post-search");
+    /// for search in client.post().list_search()? {
+    ///     println!("{}", search.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_search(&self) -> Result<Vec<models::Post>> {
         self.list_search_with(&Default::default())
     }
@@ -15116,6 +23961,17 @@ impl<'a> PostHiddenResource<'a> {
     /// delete-post-hidden-domaintype-domainid
     ///
     /// `DELETE /post/hidden/{domainType}/{domainId}`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.post().hidden().delete("beispiel", 42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, domain_type: impl Display, domain_id: impl Display) -> Result<()> {
         let path = format!("/post/hidden/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -15125,6 +23981,19 @@ impl<'a> PostHiddenResource<'a> {
     /// get-post-hidden
     ///
     /// `GET /post/hidden`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-post-hidden");
+    /// for hidden in client.post().hidden().list()? {
+    ///     println!("{:?}", hidden);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<serde_json::Value>> {
         let path = "/post/hidden".to_owned();
         let query: Query = Query::new();
@@ -15143,6 +24012,22 @@ impl<'a> PostReportsResource<'a> {
     /// post-post-reports
     ///
     /// `POST /post/reports`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ReportCreate = serde_json::from_value(serde_json::json!({
+    ///     "domainId": 42,
+    ///     "domainType": "beispiel"
+    /// }))?;
+    /// let result = client.post().reports().create(&body)?;
+    /// println!("{:?}", result.comment);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ReportCreate) -> Result<models::Report> {
         let path = "/post/reports".to_owned();
         let query: Query = Query::new();
@@ -15155,6 +24040,19 @@ impl<'a> PostReportsResource<'a> {
     /// `GET /post/reports`
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-post-reports");
+    /// for report in client.post().reports().list()? {
+    ///     println!("{:?}", report);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<serde_json::Value>> {
         self.list_with(&Default::default())
     }
@@ -15173,6 +24071,22 @@ impl<'a> PostReportsResource<'a> {
     /// put-post-reports-answer
     ///
     /// `PUT /post/reports/answer`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ReportAnswer = serde_json::from_value(serde_json::json!({
+    ///     "domainId": 42,
+    ///     "domainType": "beispiel",
+    ///     "response": "beispiel"
+    /// }))?;
+    /// client.post().reports().update_answer(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_answer(&self, body: &models::ReportAnswer) -> Result<()> {
         let path = "/post/reports/answer".to_owned();
         let query: Query = Query::new();
@@ -15224,6 +24138,24 @@ impl<'a> PostsResource<'a> {
     /// `POST /posts`
     ///
     /// Create a new post. Images must be uploaded previously in a separate request.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-posts");
+    /// let body: models::PostCreate = serde_json::from_value(serde_json::json!({
+    ///     "content": "beispiel",
+    ///     "title": "Hauskreis Nord",
+    ///     "visibility": "beispiel",
+    ///     "groupId": 42
+    /// }))?;
+    /// let result = client.posts().create(&body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostCreate) -> Result<models::Post> {
         let path = "/posts".to_owned();
         let query: Query = Query::new();
@@ -15236,6 +24168,21 @@ impl<'a> PostsResource<'a> {
     /// `DELETE /posts/{postId}`
     ///
     /// Delete a post.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let query = DeletePostsPostIdQuery {
+    ///     dry_run: Some(true),
+    ///     ..Default::default()
+    /// };
+    /// client.posts().delete(42, &query)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, post_id: impl Display, query: &DeletePostsPostIdQuery) -> Result<()> {
         let path = format!("/posts/{}", seg(post_id));
         let query: Query = query.to_query();
@@ -15249,6 +24196,18 @@ impl<'a> PostsResource<'a> {
     /// Get a post.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-posts-postId");
+    /// let post = client.posts().get(42)?;
+    /// println!("{}", post.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, post_id: impl Display) -> Result<models::Post> {
         self.get_with(post_id, &Default::default())
     }
@@ -15273,6 +24232,19 @@ impl<'a> PostsResource<'a> {
     /// Get a list of posts sorted by `publishedDate` descending. This endpoint uses cursor-based pagination because the result can contain posts from external ChurchTools instances. To load another batch, use `before` together with `last_post_identifier`; page-based pagination is not supported.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-posts");
+    /// for post in client.posts().list()? {
+    ///     println!("{}", post.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Post>> {
         self.list_with(&Default::default())
     }
@@ -15295,6 +24267,21 @@ impl<'a> PostsResource<'a> {
     /// `PATCH /posts/{postId}`
     ///
     /// Update a post.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("patch-posts-postId");
+    /// let body: models::PostUpdate = serde_json::from_value(serde_json::json!({
+    ///     "title": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.posts().patch(42, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, post_id: impl Display, body: &models::PostUpdate) -> Result<models::Post> {
         let path = format!("/posts/{}", seg(post_id));
         let query: Query = Query::new();
@@ -15307,6 +24294,17 @@ impl<'a> PostsResource<'a> {
     /// `PUT /posts/{postId}/expire`
     ///
     /// Expire the referenced post immediately.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.posts().update_expire(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_expire(&self, post_id: impl Display) -> Result<()> {
         let path = format!("/posts/{}/expire", seg(post_id));
         let query: Query = Query::new();
@@ -15409,6 +24407,22 @@ impl<'a> PostsCommentsResource<'a> {
     /// `POST /posts/{postId}/comments`
     ///
     /// Create a new comment for a post.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-posts-postId-comments");
+    /// let body: models::PostCommentCreate = serde_json::from_value(serde_json::json!({
+    ///     "content": "beispiel",
+    ///     "postId": 42
+    /// }))?;
+    /// let result = client.posts().comments().create(42, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, post_id: impl Display, body: &models::PostCommentCreate) -> Result<models::PostComment> {
         let path = format!("/posts/{}/comments", seg(post_id));
         let query: Query = Query::new();
@@ -15421,6 +24435,17 @@ impl<'a> PostsCommentsResource<'a> {
     /// `DELETE /posts/{postId}/comments/{commentId}`
     ///
     /// Delete a comment of a post.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.posts().comments().delete(42, 42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, post_id: impl Display, comment_id: impl Display) -> Result<()> {
         let path = format!("/posts/{}/comments/{}", seg(post_id), seg(comment_id));
         let query: Query = Query::new();
@@ -15432,6 +24457,19 @@ impl<'a> PostsCommentsResource<'a> {
     /// `GET /posts/{postId}/comments`
     ///
     /// Get a list of comments for a post.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-posts-postId-comments");
+    /// for comment in client.posts().comments().list(42)? {
+    ///     println!("{}", comment.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, post_id: impl Display) -> Result<Vec<models::PostComment>> {
         let path = format!("/posts/{}/comments", seg(post_id));
         let query: Query = Query::new();
@@ -15452,6 +24490,17 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// `DELETE /posts/{postId}/comments/{commentId}/reactions/{emoji}`
     ///
     /// Delete a reaction of the current person for a post comment.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.posts().comments().reactions().delete(42, 42, "beispiel")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, post_id: impl Display, comment_id: impl Display, emoji: impl Display) -> Result<()> {
         let path = format!("/posts/{}/comments/{}/reactions/{}", seg(post_id), seg(comment_id), seg(emoji));
         let query: Query = Query::new();
@@ -15463,6 +24512,19 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// `GET /posts/{postId}/comments/{commentId}/reactions`
     ///
     /// Get a list of reactions for a post comment.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-posts-postId-comments-commentId-reactions");
+    /// for reaction in client.posts().comments().reactions().list(42, 42)? {
+    ///     println!("{}", reaction.comment_id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, post_id: impl Display, comment_id: impl Display) -> Result<Vec<models::PostCommentReaction>> {
         let path = format!("/posts/{}/comments/{}/reactions", seg(post_id), seg(comment_id));
         let query: Query = Query::new();
@@ -15474,6 +24536,21 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// `PUT /posts/{postId}/comments/{commentId}/reactions`
     ///
     /// Create a new reaction of the current person for a post comment.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-posts-postId-comments-commentId-reactions");
+    /// let body: models::PostCommentReactionCreate = serde_json::from_value(serde_json::json!({
+    ///     "emoji": "beispiel"
+    /// }))?;
+    /// let result = client.posts().comments().reactions().update(42, 42, &body)?;
+    /// println!("{}", result.comment_id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, post_id: impl Display, comment_id: impl Display, body: &models::PostCommentReactionCreate) -> Result<models::PostCommentReaction> {
         let path = format!("/posts/{}/comments/{}/reactions", seg(post_id), seg(comment_id));
         let query: Query = Query::new();
@@ -15495,6 +24572,17 @@ impl<'a> PostsHiddenResource<'a> {
     /// `PUT /posts/{postId}/hidden/{domainType}`
     ///
     /// Hide a post. This endpoint is used to hide a post from the timeline of the user. The post is not deleted, but the user will not see it anymore. NB: If the supplied domain type is `group`, this will also deactivate post-related subscriptions for that group.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.posts().hidden().update(42, "beispiel")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, post_id: impl Display, domain_type: impl Display) -> Result<()> {
         let path = format!("/posts/{}/hidden/{}", seg(post_id), seg(domain_type));
         let query: Query = Query::new();
@@ -15519,6 +24607,19 @@ impl<'a> PostsReactionsResource<'a> {
     /// `GET /posts/{postId}/reactions`
     ///
     /// Get a list of reactions for a post.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-posts-postId-reactions");
+    /// for reaction in client.posts().reactions().list(42)? {
+    ///     println!("{}", reaction.emoji);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, post_id: impl Display) -> Result<Vec<models::PostReaction>> {
         let path = format!("/posts/{}/reactions", seg(post_id));
         let query: Query = Query::new();
@@ -15539,6 +24640,17 @@ impl<'a> PostsReactionsPersonsResource<'a> {
     /// `DELETE /posts/{postId}/reactions/{emoji}/persons/{personId}`
     ///
     /// Delete a reaction of a person for a post.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.posts().reactions().persons().delete(42, "beispiel", "beispiel")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, post_id: impl Display, emoji: impl Display, person_id: impl Display) -> Result<()> {
         let path = format!("/posts/{}/reactions/{}/persons/{}", seg(post_id), seg(emoji), seg(person_id));
         let query: Query = Query::new();
@@ -15550,6 +24662,18 @@ impl<'a> PostsReactionsPersonsResource<'a> {
     /// `PUT /posts/{postId}/reactions/{emoji}/persons/{personId}`
     ///
     /// Create a new reaction of a person for a post.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-posts-postId-reactions-emoji-persons-personId");
+    /// let result = client.posts().reactions().persons().update(42, "beispiel", "beispiel")?;
+    /// println!("{}", result.emoji);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, post_id: impl Display, emoji: impl Display, person_id: impl Display) -> Result<models::PostReaction> {
         let path = format!("/posts/{}/reactions/{}/persons/{}", seg(post_id), seg(emoji), seg(person_id));
         let query: Query = Query::new();
@@ -15570,6 +24694,18 @@ impl<'a> PrResource<'a> {
     /// `GET /pr/masterdata`
     ///
     /// Returns the master data used by the public relations module and public profiles. The response groups each master data collection under `data` and returns the item count for each collection under `meta`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-pr-masterdata");
+    /// let masterdata = client.pr().get_masterdata()?;
+    /// println!("{:?}", masterdata);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_masterdata(&self) -> Result<models::PublicRelationsMasterData> {
         let path = "/pr/masterdata".to_owned();
         let query: Query = Query::new();
@@ -15590,6 +24726,19 @@ impl<'a> PrintersResource<'a> {
     /// `GET /printers`
     ///
     /// Lists all configured check-in code printers, including inactive printers. active indicates whether a printer is enabled; the endpoint does not check online status or submit a print job. Requires authentication but no additional printer/check-in permission in this handler. Results have no pagination or guaranteed order, and meta.count is the number of returned printers.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-printers");
+    /// for printer in client.printers().list()? {
+    ///     println!("{}", printer.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Printer>> {
         let path = "/printers".to_owned();
         let query: Query = Query::new();
@@ -15610,6 +24759,24 @@ impl<'a> ProbesResource<'a> {
     /// `POST /probes`
     ///
     /// Returns probe definitions filtered by one or more domain types.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostProbesBody = serde_json::from_value(serde_json::json!({
+    ///     "domain_type": [
+    ///         "person"
+    ///     ]
+    /// }))?;
+    /// for probe in client.probes().create(&body)? {
+    ///     println!("{}", probe.domain_type);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostProbesBody) -> Result<Vec<models::Probe>> {
         let path = "/probes".to_owned();
         let query: Query = Query::new();
@@ -15639,6 +24806,18 @@ impl<'a> ProfilesResource<'a> {
     /// `GET /profiles/church`
     ///
     /// Get church profile information.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-profiles-church");
+    /// let church = client.profiles().get_church()?;
+    /// println!("{}", church.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_church(&self) -> Result<models::Profile> {
         let path = "/profiles/church".to_owned();
         let query: Query = Query::new();
@@ -15650,6 +24829,19 @@ impl<'a> ProfilesResource<'a> {
     /// `GET /profiles`
     ///
     /// This endpoint returns all profiles for logged in users with permissions. All others (incl. public access) will only get published profiles.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-profiles");
+    /// for profile in client.profiles().list()? {
+    ///     println!("{}", profile.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Profile>> {
         let path = "/profiles".to_owned();
         let query: Query = Query::new();
@@ -15661,6 +24853,21 @@ impl<'a> ProfilesResource<'a> {
     /// `PUT /profiles/church`
     ///
     /// Update church information
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ProfileUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.profiles().update_church(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_church(&self, body: &models::ProfileUpdate) -> Result<models::Profile> {
         let path = "/profiles/church".to_owned();
         let query: Query = Query::new();
@@ -15682,6 +24889,21 @@ impl<'a> ProfilesCampusesResource<'a> {
     /// `PUT /profiles/campuses/{id}`
     ///
     /// Update campus profile information
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ProfileUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.profiles().campuses().update(42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::ProfileUpdate) -> Result<models::Profile> {
         let path = format!("/profiles/campuses/{}", seg(id));
         let query: Query = Query::new();
@@ -15705,6 +24927,17 @@ impl<'a> ProfilesSlugcheckResource<'a> {
     /// Published profiles are visibale in ChurchTools Finder. Each profile has an unique slug (URI). This endpoint can be used to check if a slug is free.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.profiles().slugcheck().get("my-church")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, slug: impl Display) -> Result<()> {
         self.get_with(slug, &Default::default())
     }
@@ -15757,6 +24990,18 @@ impl<'a> PublicgroupsResource<'a> {
     /// Returns group details, signup conditions and eligible signUpPersons for the current user. Public access is supported, but normal group-view permission still applies. Optional hash restricts the lookup to an enabled group homepage. Without it, the group is loaded directly. Seat counts include membership/role rules and need not equal the number of persons. Image and leader fields depend on the homepage display settings; signUpConditions explains why a signup is currently available or unavailable.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-publicgroups-id");
+    /// let publicgroup = client.publicgroups().get(42)?;
+    /// println!("{}", publicgroup.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, group_id: impl Display) -> Result<models::PublicGroupDetail> {
         self.get_with(group_id, &Default::default())
     }
@@ -15779,6 +25024,22 @@ impl<'a> PublicgroupsResource<'a> {
     /// `GET /publicgroups/{groupId}/form`
     ///
     /// Loads the dynamic signup form for a token belonging to this group. Requires access to group signup. The response is wrapped in data. Each field is identified by type plus id; required fields and allowed options depend on group configuration and on the requester. Additional spouse/child/other forms are null when unavailable. Optional personId selects the requester and persists that choice on the token (this GET changes state). Use a person returned by possiblerequesters. Prefilled person values and privacy state are returned in signUpPersons.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-publicgroups-groupId-form");
+    /// let query = GetPublicgroupsGroupIdFormQuery {
+    ///     token: Some("beispiel".into()),
+    ///     ..Default::default()
+    /// };
+    /// let form = client.publicgroups().get_form(42, &query)?;
+    /// println!("{:?}", form.email);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_form(&self, group_id: impl Display, query: &GetPublicgroupsGroupIdFormQuery) -> Result<models::PublicGroupFormResult> {
         let path = format!("/publicgroups/{}/form", seg(group_id));
         let query: Query = query.to_query();
@@ -15790,6 +25051,22 @@ impl<'a> PublicgroupsResource<'a> {
     /// `GET /publicgroups/{groupId}/possiblerequesters`
     ///
     /// Returns a requester-selection object for a token belonging to this group. Requires access to group signup. An email token lists persons sharing that address, because email addresses are not unique in ChurchTools; a token without email uses its requesterId. Status distinguishes existing members, pending/waiting requests and persons not yet requested. Results are not paginated and the DTO has no meta.count.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-publicgroups-groupId-possiblerequesters");
+    /// let query = GetPublicgroupsGroupIdPossiblerequestersQuery {
+    ///     token: Some("beispiel".into()),
+    ///     ..Default::default()
+    /// };
+    /// let possiblerequester = client.publicgroups().get_possiblerequesters(42, &query)?;
+    /// println!("{:?}", possiblerequester.email);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_possiblerequesters(&self, group_id: impl Display, query: &GetPublicgroupsGroupIdPossiblerequestersQuery) -> Result<models::PublicGroupPossibleRequesters> {
         let path = format!("/publicgroups/{}/possiblerequesters", seg(group_id));
         let query: Query = query.to_query();
@@ -15803,6 +25080,18 @@ impl<'a> PublicgroupsResource<'a> {
     /// Returns requester information and the persons whose group participation may be withdrawn directly or requires contacting leaders. A supplied signup token must belong to this group; without token the current user is used and signup access is required. For requesterId=-1 (no person created), requester and both person lists are null and noUserCreated=true is included. For a normal requester that flag is omitted. This GET does not withdraw anyone.
     ///
     /// Use [`Self::get_signoutdata_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-publicgroups-id-signoutdata");
+    /// let signoutdata = client.publicgroups().get_signoutdata(42)?;
+    /// println!("{}", signoutdata.group_has_auto_accept);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_signoutdata(&self, group_id: impl Display) -> Result<models::PublicGroupSignoutData> {
         self.get_signoutdata_with(group_id, &Default::default())
     }
@@ -15825,6 +25114,18 @@ impl<'a> PublicgroupsResource<'a> {
     /// `GET /publicgroups/{groupId}/{hash}`
     ///
     /// Returns group details, signup conditions and eligible signUpPersons for the current user. Public access is supported, but normal group-view permission still applies. The hash identifies an enabled group homepage; the group must be included in that homepage. This endpoint returns one group, not the whole homepage. Seat counts include membership/role rules and need not equal the number of persons. Image and leader fields depend on the homepage display settings; signUpConditions explains why a signup is currently available or unavailable.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-publicgroups-id-hash");
+    /// let with_hash = client.publicgroups().get_with_hash(42, "beispiel")?;
+    /// println!("{}", with_hash.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_with_hash(&self, group_id: impl Display, hash: impl Display) -> Result<models::PublicGroupDetail> {
         let path = format!("/publicgroups/{}/{}", seg(group_id), seg(hash));
         let query: Query = Query::new();
@@ -15836,6 +25137,23 @@ impl<'a> PublicgroupsResource<'a> {
     /// `POST /publicgroups/{groupId}/mailToLeaders`
     ///
     /// Sends the supplied message to group leaders with a default email address. Requires group signup access or a valid signup token for this group. The sender name/email are supplied by the caller. hideContactLeader is a display setting and is not checked here. No reachable leaders causes a server error; successful processing returns a message and does not create a membership.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PublicGroupLeaderMailCreate = serde_json::from_value(serde_json::json!({
+    ///     "email": "mara@example.org",
+    ///     "message": "beispiel",
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let publicgroup = client.publicgroups().mail_to_leaders(42, &body)?;
+    /// println!("{}", publicgroup.success);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn mail_to_leaders(&self, group_id: impl Display, body: &models::PublicGroupLeaderMailCreate) -> Result<models::PostPublicgroupsGroupIdMailToLeadersData> {
         let path = format!("/publicgroups/{}/mailToLeaders", seg(group_id));
         let query: Query = Query::new();
@@ -15848,6 +25166,23 @@ impl<'a> PublicgroupsResource<'a> {
     /// `POST /publicgroups/{groupId}/signout`
     ///
     /// Withdraws selected memberships for the requester or people registered by that requester. A group sign-up token identifies the requester without requiring a login; without a token the current user and group sign-up access are used. When registration is open, active, requested and waiting memberships are eligible. Otherwise the requester needs the group exit permission and only active memberships qualify. All person IDs are checked before changes begin. With automatic acceptance enabled, memberships are deleted; otherwise they are marked to_delete for approval and their role is cleared. The changes run in a transaction. An empty personIds list is a successful no-op. This signs people out of a group, not out of their ChurchTools session.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PublicGroupSignOutRequest = serde_json::from_value(serde_json::json!({
+    ///     "personIds": [
+    ///         42,
+    ///         43
+    ///     ]
+    /// }))?;
+    /// client.publicgroups().signout(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn signout(&self, group_id: impl Display, body: &models::PublicGroupSignOutRequest) -> Result<()> {
         let path = format!("/publicgroups/{}/signout", seg(group_id));
         let query: Query = Query::new();
@@ -15860,6 +25195,28 @@ impl<'a> PublicgroupsResource<'a> {
     /// `POST /publicgroups/{groupId}/signup`
     ///
     /// Submits one form per person using a signup token for this group. Copy field type/id from the dynamic form and use its mandatory/options rules. Existing person IDs must be eligible for this requester; new spouse/child/other forms are available only when allowed by group settings. Adding related/other persons requires hasAcceptedPrivacyForOther=true. A child must be younger than 16. Membership may be accepted immediately, requested from leaders or placed on a waiting list; capacity is checked for the entire submitted set. Depending on group configuration, a new applicant may produce a request email instead of a new person. The operation is transactional for database changes. Success returns a top-level nullable groupHomepageHash, without a data wrapper.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PublicGroupSignupCreate = serde_json::from_value(serde_json::json!({
+    ///     "forms": [
+    ///         {
+    ///             "form": [
+    ///                 {}
+    ///             ]
+    ///         }
+    ///     ],
+    ///     "token": "beispiel"
+    /// }))?;
+    /// let publicgroup = client.publicgroups().submit_signup(42, &body)?;
+    /// println!("{:?}", publicgroup.group_homepage_hash);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn submit_signup(&self, group_id: impl Display, body: &models::PublicGroupSignupCreate) -> Result<models::PostPublicgroupsGroupIdSignupResponse> {
         let path = format!("/publicgroups/{}/signup", seg(group_id));
         let query: Query = Query::new();
@@ -15872,6 +25229,21 @@ impl<'a> PublicgroupsResource<'a> {
     /// `POST /publicgroups/{groupId}/token`
     ///
     /// Starts a group-membership signup, distinct from account self-registration. Requires access to this group’s signup and an open signup feature. In verification mode `all`, supply either the current logged-in personId for a token returned directly or an email address for a verification link. Another personId is forbidden, and personId and email are mutually exclusive. In modes `existing` and `none`, both may be omitted and a new-person token is returned directly; in mode `existing`, matching uses the email supplied later in the signup form. Email flow returns only a success message. Tokens can be used to load forms, select a requester and submit memberships; they have no stored expiry in the current implementation.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PublicGroupTokenCreate = serde_json::from_value(serde_json::json!({
+    ///     "email": "mara@example.org"
+    /// }))?;
+    /// let result = client.publicgroups().token(42, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn token(&self, group_id: impl Display, body: &models::PublicGroupTokenCreate) -> Result<serde_json::Value> {
         let path = format!("/publicgroups/{}/token", seg(group_id));
         let query: Query = Query::new();
@@ -15969,6 +25341,19 @@ impl<'a> PublicgroupsSignupConfirmResource<'a> {
     /// `POST /publicgroups/signup/confirm/{confirmationToken}`
     ///
     /// Confirms a deferred group signup using the secret emailed to the requester. The link expires after 72 hours. Places are assigned using the group's current signup and waiting-list rules. Repeated confirmation is safe.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = serde_json::json!({});
+    /// let result = client.publicgroups().signup().confirm().create("beispiel", &body)?;
+    /// println!("{:?}", result.group_homepage_hash);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, confirmation_token: impl Display, body: &serde_json::Value) -> Result<models::PostPublicgroupsSignupConfirmConfirmationTokenData> {
         let path = format!("/publicgroups/signup/confirm/{}", seg(confirmation_token));
         let query: Query = Query::new();
@@ -15981,6 +25366,18 @@ impl<'a> PublicgroupsSignupConfirmResource<'a> {
     /// `GET /publicgroups/signup/confirm/{confirmationToken}`
     ///
     /// Renders the deferred signup confirmation page without changing signup data. The page starts confirmation through the POST endpoint after JavaScript has loaded, preventing email link scanners from confirming the signup.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.publicgroups().signup().confirm().get("beispiel")?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, confirmation_token: impl Display) -> Result<Vec<u8>> {
         let path = format!("/publicgroups/signup/confirm/{}", seg(confirmation_token));
         let query: Query = Query::new();
@@ -16005,6 +25402,18 @@ impl<'a> QueuesResource<'a> {
     /// `POST /queues/{queue}`
     ///
     /// ChurchTools utilizes a queueing system to offload time-intensive or processing-intensive work. Calling this endpoint will start a worker, which grabs pending jobs and processing them. If the queue has still jobs pending the worker starts a new worker to continue the work.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let result = client.queues().create("beispiel")?;
+    /// println!("{:?}", result.queue);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, queue: impl Display) -> Result<models::PostQueuesQueueData> {
         let path = format!("/queues/{}", seg(queue));
         let query: Query = Query::new();
@@ -16027,6 +25436,19 @@ impl<'a> QueuesJobgroupsResource<'a> {
     /// Job in a queue can belong to a job group to categorize a job. This endpoint counts jobs in queue and groups them by they status.
     ///
     /// Use this endpoint to check if all jobs are processed or if still jobs are pending and wait to be processed.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-queues-queue-jobgroups-jobGroup");
+    /// for jobgroup in client.queues().jobgroups().get("beispiel", "beispiel")? {
+    ///     println!("{}", jobgroup.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, queue: impl Display, job_group: impl Display) -> Result<Vec<models::JobGroupStatus>> {
         let path = format!("/queues/{}/jobgroups/{}", seg(queue), seg(job_group));
         let query: Query = Query::new();
@@ -16047,6 +25469,18 @@ impl<'a> RegistrationconfigResource<'a> {
     /// `GET /registrationconfig/{id}`
     ///
     /// Loads the form and campus choices for self-registration. Callers with "churchcore administer persons" permission also receive administrative settings and audit metadata. `fields` contains active configured fields, or the default phone, address, sex and birthday fields when no selection is stored.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-registrationconfig-id");
+    /// let registrationconfig = client.registrationconfig().get(serde_json::json!(42))?;
+    /// println!("{}", registrationconfig.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::RegistrationConfig> {
         let path = format!("/registrationconfig/{}", seg(id));
         let query: Query = Query::new();
@@ -16058,6 +25492,21 @@ impl<'a> RegistrationconfigResource<'a> {
     /// `PATCH /registrationconfig/{id}`
     ///
     /// Partially updates the numeric configuration ID. Requires "churchcore administer persons" permission. Supplied arrays replace their complete lists. Changing the configuration does not alter existing persons or memberships. Returns the complete administrative configuration.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RegistrationConfigUpdate = serde_json::from_value(serde_json::json!({
+    ///     "isActive": true
+    /// }))?;
+    /// let result = client.registrationconfig().patch(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, id: impl Display, body: &models::RegistrationConfigUpdate) -> Result<models::RegistrationConfigAdmin> {
         let path = format!("/registrationconfig/{}", seg(id));
         let query: Query = Query::new();
@@ -16079,6 +25528,21 @@ impl<'a> RegistrationsResource<'a> {
     /// `POST /registrations/{registrationGuid}/confirm`
     ///
     /// Verifies the emailed token for an unconverted registration and records the confirmation time. Returns active persons with the same default email as `possibleMatches`, including configured form fields and `hasPassword`. Repeated confirmation is accepted while the registration is unconverted.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RegistrationConfirm = serde_json::from_value(serde_json::json!({
+    ///     "token": "beispiel"
+    /// }))?;
+    /// let registration = client.registrations().confirm("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", &body)?;
+    /// println!("{}", registration.first_name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn confirm(&self, registration_guid: impl Display, body: &models::RegistrationConfirm) -> Result<models::Registration> {
         let path = format!("/registrations/{}/confirm", seg(registration_guid));
         let query: Query = Query::new();
@@ -16091,6 +25555,23 @@ impl<'a> RegistrationsResource<'a> {
     /// `POST /registrations/{registrationGuid}/convert`
     ///
     /// Completes an email-confirmed, unconverted registration using its token. Creates a new person or links `personId` to an active person with the same default email. Requires an active/complete configuration and enabled default login. `formData` supplies consent and configured fields by field ID or modern person field name (ID takes precedence); unknown/unconfigured fields are discarded. Required configured fields and person data are validated. A new person receives configured status, departments, tags and campus group memberships; a sole campus is selected automatically, otherwise `formData.campusId` must match a configured campus. Existing persons receive supplied fields, configured existing-person tags and the registration password. Success marks conversion complete and logs in that person in the current session.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RegistrationConvert = serde_json::from_value(serde_json::json!({
+    ///     "formData": {
+    ///         "acceptDataPrivacy": true
+    ///     },
+    ///     "token": "beispiel"
+    /// }))?;
+    /// client.registrations().convert("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn convert(&self, registration_guid: impl Display, body: &models::RegistrationConvert) -> Result<()> {
         let path = format!("/registrations/{}/convert", seg(registration_guid));
         let query: Query = Query::new();
@@ -16103,6 +25584,25 @@ impl<'a> RegistrationsResource<'a> {
     /// `POST /registrations`
     ///
     /// Starts account self-registration for the configuration GUID and emails a confirmation link. Requires an active, complete configuration and an enabled default login. Blacklisted email addresses, blocked accounts and recognized existing login accounts receive an informational email and return `204` without creating a registration.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RegistrationCreate = serde_json::from_value(serde_json::json!({
+    ///     "configId": "8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1",
+    ///     "email": "mara@example.org",
+    ///     "firstName": "Mara",
+    ///     "lastName": "Becker",
+    ///     "password": "beispiel"
+    /// }))?;
+    /// let result = client.registrations().create(&body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::RegistrationCreate) -> Result<Option<models::Registration>> {
         let path = "/registrations".to_owned();
         let query: Query = Query::new();
@@ -16115,6 +25615,17 @@ impl<'a> RegistrationsResource<'a> {
     /// `DELETE /registrations/{registrationGuid}`
     ///
     /// Deletes the registration record by GUID. This does not delete a person created by an earlier conversion.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.registrations().delete("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, registration_guid: impl Display) -> Result<()> {
         let path = format!("/registrations/{}", seg(registration_guid));
         let query: Query = Query::new();
@@ -16126,6 +25637,17 @@ impl<'a> RegistrationsResource<'a> {
     /// `POST /registrations/{registrationGuid}/resend`
     ///
     /// Resends the confirmation email for this registration.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.registrations().resend("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn resend(&self, registration_guid: impl Display) -> Result<()> {
         let path = format!("/registrations/{}/resend", seg(registration_guid));
         let query: Query = Query::new();
@@ -16146,6 +25668,23 @@ impl<'a> RepeatcalculationResource<'a> {
     /// `POST /repeatcalculation`
     ///
     /// Calculates occurrence dates without storing an appointment.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-repeatcalculation");
+    /// let body: models::RepeatCalculationCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z"
+    /// }))?;
+    /// for repeatcalculation in client.repeatcalculation().create(&body)? {
+    ///     println!("{:?}", repeatcalculation);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::RepeatCalculationCreate) -> Result<Vec<models::RepeatCalculationOccurrence>> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
@@ -16158,6 +25697,23 @@ impl<'a> RepeatcalculationResource<'a> {
     /// `DELETE /repeatcalculation`
     ///
     /// Calculates occurrence dates without storing an appointment. This is an alias of POST; use POST for new integrations.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RepeatCalculationCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z"
+    /// }))?;
+    /// for repeatcalculation in client.repeatcalculation().delete(&body)? {
+    ///     println!("{:?}", repeatcalculation);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, body: &models::RepeatCalculationCreate) -> Result<Vec<models::RepeatCalculationOccurrence>> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
@@ -16170,6 +25726,24 @@ impl<'a> RepeatcalculationResource<'a> {
     /// `GET /repeatcalculation`
     ///
     /// Calculates occurrence dates without storing an appointment. This is an alias of POST; use POST for new integrations.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-repeatcalculation");
+    /// let query = GetRepeatcalculationQuery {
+    ///     end_date: Some(serde_json::json!("2026-09-20T09:30:00Z")),
+    ///     start_date: Some(serde_json::json!("2026-09-20T08:00:00Z")),
+    ///     ..Default::default()
+    /// };
+    /// for repeatcalculation in client.repeatcalculation().list(&query)? {
+    ///     println!("{:?}", repeatcalculation);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetRepeatcalculationQuery) -> Result<Vec<models::RepeatCalculationOccurrence>> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = query.to_query();
@@ -16181,6 +25755,23 @@ impl<'a> RepeatcalculationResource<'a> {
     /// `PATCH /repeatcalculation`
     ///
     /// Calculates occurrence dates without storing an appointment. This is an alias of POST; use POST for new integrations.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RepeatCalculationCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z"
+    /// }))?;
+    /// for repeatcalculation in client.repeatcalculation().patch(&body)? {
+    ///     println!("{:?}", repeatcalculation);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, body: &models::RepeatCalculationCreate) -> Result<Vec<models::RepeatCalculationOccurrence>> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
@@ -16193,6 +25784,23 @@ impl<'a> RepeatcalculationResource<'a> {
     /// `PUT /repeatcalculation`
     ///
     /// Calculates occurrence dates without storing an appointment. This is an alias of POST; use POST for new integrations.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RepeatCalculationCreate = serde_json::from_value(serde_json::json!({
+    ///     "endDate": "2026-09-20T09:30:00Z",
+    ///     "startDate": "2026-09-20T08:00:00Z"
+    /// }))?;
+    /// for repeatcalculation in client.repeatcalculation().update(&body)? {
+    ///     println!("{:?}", repeatcalculation);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, body: &models::RepeatCalculationCreate) -> Result<Vec<models::RepeatCalculationOccurrence>> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
@@ -16250,6 +25858,21 @@ impl<'a> ResetPasswordResource<'a> {
     /// `POST /reset-password`
     ///
     /// Requests password-reset emails for active, non-archived accounts matching the stored email address or login name. More than one account can match. The account must already have a password, a previous login or a stored invitation login token. Eligible accounts receive a reset link valid for two weeks. The response always contains a generic translated information message, including when no account matches; it does not reveal which accounts exist or confirm delivery. This public endpoint is rate-limited (normally 20 requests per 60 seconds; configurable through ratelimit.login). Opening a valid reset link creates a password-reset session; submit the new password through PUT /persons/{personId}/password.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PasswordResetCreate = serde_json::from_value(serde_json::json!({
+    ///     "emailOrUsername": "alex@example.org"
+    /// }))?;
+    /// let result = client.reset_password().create(&body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PasswordResetCreate) -> Result<models::PostResetPasswordData> {
         let path = "/reset-password".to_owned();
         let query: Query = Query::new();
@@ -16273,6 +25896,18 @@ impl<'a> ResourceResource<'a> {
     /// Returns all resource types ordered by `sortKey` and all resources visible to the current user. A resource is visible when the user has permission to view it or administer its bookings, or is listed in its `adminIds`. Resource types are not filtered, so some may have no visible resources. Use `include[]` to resolve resource administrators.
     ///
     /// Use [`Self::get_masterdata_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-resource-masterdata");
+    /// let masterdata = client.resource().get_masterdata()?;
+    /// println!("{:?}", masterdata);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_masterdata(&self) -> Result<models::ResourceMasterData> {
         self.get_masterdata_with(&Default::default())
     }
@@ -16319,6 +25954,23 @@ impl<'a> ResourcesResource<'a> {
     /// `POST /resources`
     ///
     /// Creates an individual bookable resource. Returns 402 when the licensed resource limit is reached.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-resources");
+    /// let body: models::ResourceCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Main Hall",
+    ///     "resourceTypeId": 2,
+    ///     "sortKey": 1
+    /// }))?;
+    /// let result = client.resources().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ResourceCreate) -> Result<models::Resource> {
         let path = "/resources".to_owned();
         let query: Query = Query::new();
@@ -16331,6 +25983,17 @@ impl<'a> ResourcesResource<'a> {
     /// `DELETE /resources/{resourceId}`
     ///
     /// Deletes the resource.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.resources().delete(7)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, resource_id: impl Display) -> Result<()> {
         let path = format!("/resources/{}", seg(resource_id));
         let query: Query = Query::new();
@@ -16344,6 +26007,18 @@ impl<'a> ResourcesResource<'a> {
     /// Returns one resource and its booking settings. A resource is visible when the user has permission to view it or administer its bookings, or is listed in its `adminIds`. Use `include[]` to resolve administrators.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-resources-resourceId");
+    /// let resource = client.resources().get(7)?;
+    /// println!("{}", resource.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, resource_id: impl Display) -> Result<models::Resource> {
         self.get_with(resource_id, &Default::default())
     }
@@ -16366,6 +26041,18 @@ impl<'a> ResourcesResource<'a> {
     /// `GET /resources/{resourceId}/statistics`
     ///
     /// Returns the number of pending booking occurrences from now onward for this resource. Recurring bookings can contribute more than one occurrence. Candidate series are selected using a ten-year lookahead window, then expanded from now without an upper date limit. A resource is visible when the user has permission to view it or administer its bookings, or is listed in its `adminIds`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-resources-resourceId-statistics");
+    /// let statistic = client.resources().get_statistics(7)?;
+    /// println!("{}", statistic.num_requested_bookings_in_future);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_statistics(&self, resource_id: impl Display) -> Result<models::ResourceStatistics> {
         let path = format!("/resources/{}/statistics", seg(resource_id));
         let query: Query = Query::new();
@@ -16379,6 +26066,19 @@ impl<'a> ResourcesResource<'a> {
     /// Returns all resources visible to the current user. A resource is visible when the user has permission to view it or administer its bookings, or is listed in its `adminIds`. Use `include[]` to resolve administrators.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-resources");
+    /// for resource in client.resources().list()? {
+    ///     println!("{}", resource.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Resource>> {
         self.list_with(&Default::default())
     }
@@ -16401,6 +26101,23 @@ impl<'a> ResourcesResource<'a> {
     /// `PUT /resources/{resourceId}`
     ///
     /// Replaces the resource configuration.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-resources-resourceId");
+    /// let body: models::ResourceUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Main Hall",
+    ///     "resourceTypeId": 2,
+    ///     "sortKey": 1
+    /// }))?;
+    /// let result = client.resources().update(7, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, resource_id: impl Display, body: &models::ResourceUpdate) -> Result<models::Resource> {
         let path = format!("/resources/{}", seg(resource_id));
         let query: Query = Query::new();
@@ -16452,6 +26169,23 @@ impl<'a> ResourcetypesResource<'a> {
     /// `POST /resourcetypes`
     ///
     /// Creates a category used to group resources. `campusId` optionally associates the type with an organizational campus.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-resourcetypes");
+    /// let body: models::ResourceTypeCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Room",
+    ///     "namePlural": "Rooms",
+    ///     "sortKey": 1
+    /// }))?;
+    /// let result = client.resourcetypes().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ResourceTypeCreate) -> Result<models::ResourceType> {
         let path = "/resourcetypes".to_owned();
         let query: Query = Query::new();
@@ -16464,6 +26198,17 @@ impl<'a> ResourcetypesResource<'a> {
     /// `DELETE /resourcetypes/{resourceTypeId}`
     ///
     /// Deletes a resource category.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.resourcetypes().delete(2)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, resource_type_id: impl Display) -> Result<()> {
         let path = format!("/resourcetypes/{}", seg(resource_type_id));
         let query: Query = Query::new();
@@ -16475,6 +26220,18 @@ impl<'a> ResourcetypesResource<'a> {
     /// `GET /resourcetypes/{resourceTypeId}`
     ///
     /// Returns the resource category, its labels and optional campus assignment. It does not include the resources belonging to the type.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-resourcetypes-resourceTypeId");
+    /// let resourcetype = client.resourcetypes().get(2)?;
+    /// println!("{}", resourcetype.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, resource_type_id: impl Display) -> Result<models::ResourceType> {
         let path = format!("/resourcetypes/{}", seg(resource_type_id));
         let query: Query = Query::new();
@@ -16486,6 +26243,19 @@ impl<'a> ResourcetypesResource<'a> {
     /// `GET /resourcetypes`
     ///
     /// Returns all resource categories, such as rooms or vehicles, without filtering by resource visibility. A type may have no resources visible to the reader.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-resourcetypes");
+    /// for resourcetype in client.resourcetypes().list()? {
+    ///     println!("{}", resourcetype.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::ResourceType>> {
         let path = "/resourcetypes".to_owned();
         let query: Query = Query::new();
@@ -16497,6 +26267,23 @@ impl<'a> ResourcetypesResource<'a> {
     /// `PUT /resourcetypes/{resourceTypeId}`
     ///
     /// Replaces the resource category’s labels, sort value and campus assignment.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-resourcetypes-resourceTypeId");
+    /// let body: models::ResourceTypeUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Room",
+    ///     "namePlural": "Rooms",
+    ///     "sortKey": 1
+    /// }))?;
+    /// let result = client.resourcetypes().update(2, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, resource_type_id: impl Display, body: &models::ResourceTypeUpdate) -> Result<models::ResourceType> {
         let path = format!("/resourcetypes/{}", seg(resource_type_id));
         let query: Query = Query::new();
@@ -16526,6 +26313,26 @@ impl<'a> RoutinesResource<'a> {
     /// `POST /routines`
     ///
     /// Creates a routine and attaches it to a group, role and optional membership status. Currently domainType must be group_membership. Requires routine administration for the context group. The new definition has no steps; use PATCH to add the complete step tree. isEnabled defaults to false and priority to 0. Creation alone does not explicitly start the worker.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RoutineCreate = serde_json::from_value(serde_json::json!({
+    ///     "domainContext": {
+    ///         "groupId": 42,
+    ///         "groupTypeRoleId": 42
+    ///     },
+    ///     "domainType": "beispiel",
+    ///     "name": "Welcome new members"
+    /// }))?;
+    /// let result = client.routines().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::RoutineCreate) -> Result<models::Routine> {
         let path = "/routines".to_owned();
         let query: Query = Query::new();
@@ -16538,6 +26345,17 @@ impl<'a> RoutinesResource<'a> {
     /// `DELETE /routines/{routineId}`
     ///
     /// Requires routine administration for every associated group. Deletes the routine, its steps and associated action definitions through action cleanup handlers. A missing routine returns 404. This endpoint has no dry-run. Effects already produced by previous runs, such as sent mail or person changes, are not reversed.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.routines().delete(9)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, routine_id: impl Display) -> Result<()> {
         let path = format!("/routines/{}", seg(routine_id));
         let query: Query = Query::new();
@@ -16549,6 +26367,17 @@ impl<'a> RoutinesResource<'a> {
     /// `POST /routines/execute`
     ///
     /// Triggers the shared routine worker for pending ready runs of enabled routines. Requires authentication; this controller has no additional routine/group authorization check. Processes batches of up to 25 runs and schedules another worker when a batch is full. A recent worker marker or ongoing bulk processing can skip execution while still returning 204. This is a global processing trigger, not a request to execute one selected routine or a completion report.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.routines().execute()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn execute(&self) -> Result<()> {
         let path = "/routines/execute".to_owned();
         let query: Query = Query::new();
@@ -16560,6 +26389,18 @@ impl<'a> RoutinesResource<'a> {
     /// `GET /routines/{routineId}`
     ///
     /// Requires routine administration for every associated group. Returns the definition and nested step tree, including disabled steps. A routine with no associated domain context is not visible through this endpoint. Action data is expanded for clients, including stored email/follow-up definitions. Run progress is available separately from /runs.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-routines-routineId");
+    /// let routine = client.routines().get(9)?;
+    /// println!("{}", routine.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, routine_id: impl Display) -> Result<models::Routine> {
         let path = format!("/routines/{}", seg(routine_id));
         let query: Query = Query::new();
@@ -16573,6 +26414,19 @@ impl<'a> RoutinesResource<'a> {
     /// A routine is an automation definition attached to a domain context (currently a group membership role/status). Each matching membership can have its own run and progress. Lists only routines with at least one domain attachment for which the caller can administer routines in every associated group. Includes enabled and disabled definitions with nested step trees; no pagination or explicit sort order. meta.count counts the returned routines.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-routines");
+    /// for routine in client.routines().list()? {
+    ///     println!("{}", routine.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Routine>> {
         self.list_with(&Default::default())
     }
@@ -16597,6 +26451,21 @@ impl<'a> RoutinesResource<'a> {
     /// Requires routine administration for every associated group. Partially updates definition fields. Supplied steps replaces the entire step tree: keep id to update an existing step, omit id to create one; an existing step’s actionKey cannot change. Omitted steps are deleted, but affected runs must be repositioned or the operation returns 422. restart/finish and per-step reposition accept source step IDs or not-started/started/finished run buckets. Repeat loops may occur only at root level, must contain a waiting action, and an unbounded loop must be last. Destructive membership actions must be last. dry_run=true validates input and permissions, returns 204 and skips persistence; persistence-only consistency checks can still fail on the real update. Enabling, changing steps or repositioning runs can immediately trigger pending execution beyond this routine.
     ///
     /// Use [`Self::patch_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RoutineUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Welcome new members"
+    /// }))?;
+    /// let result = client.routines().patch(9, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, routine_id: impl Display, body: &models::RoutineUpdate) -> Result<Option<models::Routine>> {
         self.patch_with(routine_id, &Default::default(), body)
     }
@@ -16663,6 +26532,21 @@ impl<'a> RoutinesRunsResource<'a> {
     /// `POST /routines/{routineId}/runs/{runId}/{runAction}`
     ///
     /// Requires routine administration for every associated group. Actions pause, resume, restart-routine, restart-step, skip-step and update change run state and then invoke the worker, so the returned status may already reflect further execution. For update, supply at most one of currentIteration and waitingSince. currentIteration=0 is ignored by the current implementation; other integers have no minimum constraint. waitingSince is stored as a calendar date. A state change incompatible with the current step can return 422. Use run IDs belonging to the route routine; the current backend authorizes routineId separately from the run lookup.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RoutineRunUpdate = serde_json::from_value(serde_json::json!({
+    ///     "currentIteration": 42
+    /// }))?;
+    /// let result = client.routines().runs().create(9, 16, "beispiel", &body)?;
+    /// println!("{:?}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, routine_id: impl Display, run_id: impl Display, run_action: impl Display, body: &models::RoutineRunUpdate) -> Result<models::RoutineRun> {
         let path = format!("/routines/{}/runs/{}/{}", seg(routine_id), seg(run_id), seg(run_action));
         let query: Query = Query::new();
@@ -16677,6 +26561,19 @@ impl<'a> RoutinesRunsResource<'a> {
     /// Requires routine administration for every associated group. Lists persisted runs with isReady=true for this routine. with_potential_domain_objects=true appends eligible memberships without a run as not-started entries with id=null and meta=null; these are previews, not newly persisted runs. No pagination or explicit ordering. include[]=domainObject adds the resolved membership domain object or null if it cannot be resolved. Loop iteration and wait-start date are included only when available; terminal runs omit them.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-routines-routineId-runs");
+    /// for run in client.routines().runs().list(9)? {
+    ///     println!("{:?}", run.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, routine_id: impl Display) -> Result<Vec<models::RoutineRun>> {
         self.list_with(routine_id, &Default::default())
     }
@@ -16726,6 +26623,24 @@ impl<'a> RoutinesRunsBulkResource<'a> {
     /// `POST /routines/{routineId}/runs/bulk/{runAction}`
     ///
     /// Requires routine administration for every associated group. Actions pause, resume, restart-routine, restart-step, skip-step and update change run state and then invoke the worker, so the returned status may already reflect further execution. runIds is a nonempty list. Each run is processed in a separate transaction; earlier runs may remain changed when a later one fails. The bulk endpoint validates no currentIteration/waitingSince fields, so update cannot change those values here. Use run IDs belonging to the route routine; the current backend authorizes routineId separately from the run lookup.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RoutineRunBulkUpdate = serde_json::from_value(serde_json::json!({
+    ///     "runIds": [
+    ///         42
+    ///     ]
+    /// }))?;
+    /// for bulk in client.routines().runs().bulk().create(9, "beispiel", &body)? {
+    ///     println!("{:?}", bulk.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, routine_id: impl Display, run_action: impl Display, body: &models::RoutineRunBulkUpdate) -> Result<Vec<models::RoutineRun>> {
         let path = format!("/routines/{}/runs/bulk/{}", seg(routine_id), seg(run_action));
         let query: Query = Query::new();
@@ -16747,6 +26662,20 @@ impl<'a> RoutinesStepsResource<'a> {
     /// `POST /routines/{routineId}/steps/validate`
     ///
     /// Requires routine administration for every associated group. Validates actionKey/actionData and checks action execution permission in the routine context without creating or executing a step. For special:repeat, count is optional (unbounded) and otherwise at least 1. special:wait requires exactly one of untilDate or duration, with at least one positive numDays/numMonths/numYears. This endpoint does not validate a complete step tree, nesting, ordering or whether a repeat loop includes a delay; PATCH applies those checks separately. Unknown action keys currently produce a server error.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::RoutineActionValidation = serde_json::from_value(serde_json::json!({
+    ///     "actionKey": "special:wait"
+    /// }))?;
+    /// client.routines().steps().validate(42, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn validate(&self, routine_id: impl Display, body: &models::RoutineActionValidation) -> Result<()> {
         let path = format!("/routines/{}/steps/validate", seg(routine_id));
         let query: Query = Query::new();
@@ -16768,6 +26697,18 @@ impl<'a> SamlResource<'a> {
     /// `POST /saml/acs`
     ///
     /// Legacy SAML URL. Resolves the single configured SAML provider; with zero or multiple SAML providers it cannot resolve a provider. Prefer the provider-specific /externallogins/{externalLoginId}/saml/acs URL. Public assertion-consumer callback for the identity provider’s form POST. Validates the SAML response and maps the external identity to a ChurchTools person. Successful login redirects to the stored destination or the installation landing page; identities needing account linking are redirected into that flow instead. Normal login requires a visible provider. Administrator test flows can use hidden providers and return a small HTML page that closes the popup, without logging the tested identity in. Test failures can also return that 200 HTML page: read the separate test-result endpoint for the outcome. A pending administrator test with missing RelayState also returns the popup page. Normal failures return 401 as localized text or an HTML error page, never the usual JSON error envelope.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.saml().acs()?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn acs(&self) -> Result<Vec<u8>> {
         let path = "/saml/acs".to_owned();
         let query: Query = Query::new();
@@ -16781,6 +26722,17 @@ impl<'a> SamlResource<'a> {
     /// Legacy SAML URL. Resolves the single configured SAML provider; with zero or multiple SAML providers it cannot resolve a provider. Prefer the provider-specific /externallogins/{externalLoginId}/saml/login URL. Starts the browser-based SAML login for a visible SAML external-login provider. Redirects to the configured identity provider with a SAML authentication request and an opaque RelayState. An optional post-login redirect is saved in the browser session, so the callback must retain that session. Only absolute URLs on this installation’s origin and within its base path are accepted; invalid redirect values are ignored. Missing, hidden or invalid providers and other setup failures produce a localized 404 response. No login or JSON access token is returned by this endpoint itself.
     ///
     /// Use [`Self::get_login_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.saml().get_login()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_login(&self) -> Result<()> {
         self.get_login_with(&Default::default())
     }
@@ -16803,6 +26755,18 @@ impl<'a> SamlResource<'a> {
     /// `GET /saml/metadata`
     ///
     /// Legacy SAML URL. Resolves the single configured SAML provider; with zero or multiple SAML providers it cannot resolve a provider. Prefer the provider-specific /externallogins/{externalLoginId}/saml/metadata URL. Returns the XML metadata that an identity-provider administrator uses to configure ChurchTools as a SAML service provider. The entity ID, assertion-consumer URL and logout URL refer to this external-login provider. This endpoint is public and also works for a hidden provider, allowing setup before enabling login. Any provider/configuration/metadata-generation failure is returned as 404 with localized text, not a JSON error envelope.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let data = client.saml().get_metadata()?;
+    /// std::fs::write("ergebnis.bin", &data)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_metadata(&self) -> Result<Vec<u8>> {
         let path = "/saml/metadata".to_owned();
         let query: Query = Query::new();
@@ -16838,6 +26802,23 @@ impl<'a> SearchResource<'a> {
     /// `GET /search`
     ///
     /// Search globally for different or all domain types.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-search");
+    /// let query = GetSearchQuery {
+    ///     query: Some("max".into()),
+    ///     ..Default::default()
+    /// };
+    /// for search in client.search().list(&query)? {
+    ///     println!("{}", search.r#type);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, query: &GetSearchQuery) -> Result<Vec<models::GetSearchDataItem>> {
         let path = "/search".to_owned();
         let query: Query = query.to_query();
@@ -16874,6 +26855,21 @@ impl<'a> SecuritylevelsResource<'a> {
     /// `POST /securitylevels/{id}`
     ///
     /// Create a new Security level
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostSecuritylevelsIdBody = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.securitylevels().create(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, id: impl Display, body: &models::PostSecuritylevelsIdBody) -> Result<models::PostSecuritylevelsIdResponse> {
         let path = format!("/securitylevels/{}", seg(id));
         let query: Query = Query::new();
@@ -16888,6 +26884,17 @@ impl<'a> SecuritylevelsResource<'a> {
     /// Delete a security level
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.securitylevels().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -16910,6 +26917,18 @@ impl<'a> SecuritylevelsResource<'a> {
     /// `GET /securitylevels/{id}`
     ///
     /// Get a particular Security Level
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-securitylevels-id");
+    /// let securitylevel = client.securitylevels().get(1)?;
+    /// println!("{}", securitylevel.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::SecurityLevel> {
         let path = format!("/securitylevels/{}", seg(id));
         let query: Query = Query::new();
@@ -16919,6 +26938,19 @@ impl<'a> SecuritylevelsResource<'a> {
     /// get all securitylevels
     ///
     /// `GET /securitylevels`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-securitylevels");
+    /// for securitylevel in client.securitylevels().list()? {
+    ///     println!("{}", securitylevel.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::SecurityLevel>> {
         let path = "/securitylevels".to_owned();
         let query: Query = Query::new();
@@ -16932,6 +26964,21 @@ impl<'a> SecuritylevelsResource<'a> {
     /// Change the Security Level
     ///
     /// Use [`Self::patch_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PatchSecuritylevelsIdBody = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.securitylevels().patch(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, id: impl Display, body: &models::PatchSecuritylevelsIdBody) -> Result<models::PatchSecuritylevelsIdResponse> {
         self.patch_with(id, &Default::default(), body)
     }
@@ -16994,6 +27041,21 @@ impl<'a> ServicegroupsResource<'a> {
     /// `POST /servicegroups`
     ///
     /// Creates a reusable service group master-data record. Requires the "edit masterdata" permission for the service planning domain.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-servicegroups");
+    /// let body: models::ServiceGroupCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.servicegroups().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ServiceGroupCreate) -> Result<models::ServiceGroup> {
         let path = "/servicegroups".to_owned();
         let query: Query = Query::new();
@@ -17006,6 +27068,17 @@ impl<'a> ServicegroupsResource<'a> {
     /// `DELETE /servicegroups/{serviceGroupId}`
     ///
     /// Deletes the service group master-data record through the dependency-aware deletion service. A dependency conflict returns `409`. Requires the "edit masterdata" permission for the service planning domain.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.servicegroups().delete(13)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, service_group_id: impl Display) -> Result<()> {
         let path = format!("/servicegroups/{}", seg(service_group_id));
         let query: Query = Query::new();
@@ -17017,6 +27090,18 @@ impl<'a> ServicegroupsResource<'a> {
     /// `GET /servicegroups/{serviceGroupId}`
     ///
     /// Returns the reusable service group master-data record with the specified ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-servicegroups-id");
+    /// let servicegroup = client.servicegroups().get(13)?;
+    /// println!("{}", servicegroup.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, service_group_id: impl Display) -> Result<models::ServiceGroup> {
         let path = format!("/servicegroups/{}", seg(service_group_id));
         let query: Query = Query::new();
@@ -17028,6 +27113,19 @@ impl<'a> ServicegroupsResource<'a> {
     /// `GET /servicegroups`
     ///
     /// Returns all service groups as an unpaginated list, sorted by `sortKey` and then name, both ascending.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-servicegroups");
+    /// for servicegroup in client.servicegroups().list()? {
+    ///     println!("{}", servicegroup.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::ServiceGroup>> {
         let path = "/servicegroups".to_owned();
         let query: Query = Query::new();
@@ -17039,6 +27137,21 @@ impl<'a> ServicegroupsResource<'a> {
     /// `PUT /servicegroups/{serviceGroupId}`
     ///
     /// Requires the "edit masterdata" permission for the service planning domain.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-servicegroups-id");
+    /// let body: models::ServiceGroupUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord"
+    /// }))?;
+    /// let result = client.servicegroups().update(13, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, service_group_id: impl Display, body: &models::ServiceGroupUpdate) -> Result<models::ServiceGroup> {
         let path = format!("/servicegroups/{}", seg(service_group_id));
         let query: Query = Query::new();
@@ -17060,6 +27173,22 @@ impl<'a> ServicesResource<'a> {
     /// `POST /services`
     ///
     /// Creates a reusable service master-data record. Requires the "edit masterdata" permission for the service planning domain.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-services");
+    /// let body: models::ServiceCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord",
+    ///     "serviceGroupId": 42
+    /// }))?;
+    /// let result = client.services().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ServiceCreate) -> Result<models::Service> {
         let path = "/services".to_owned();
         let query: Query = Query::new();
@@ -17072,6 +27201,17 @@ impl<'a> ServicesResource<'a> {
     /// `DELETE /services/{serviceId}`
     ///
     /// Deletes the service master-data record through the dependency-aware deletion service. A dependency conflict returns `409`. Requires the "edit masterdata" permission for the service planning domain.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.services().delete(2)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, service_id: impl Display) -> Result<()> {
         let path = format!("/services/{}", seg(service_id));
         let query: Query = Query::new();
@@ -17083,6 +27223,18 @@ impl<'a> ServicesResource<'a> {
     /// `GET /services/{serviceId}`
     ///
     /// Returns the reusable service master-data record with the specified ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-services-id");
+    /// let service = client.services().get(2)?;
+    /// println!("{}", service.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, service_id: impl Display) -> Result<models::Service> {
         let path = format!("/services/{}", seg(service_id));
         let query: Query = Query::new();
@@ -17094,6 +27246,19 @@ impl<'a> ServicesResource<'a> {
     /// `GET /services`
     ///
     /// Returns all services as an unpaginated list, sorted by `sortKey` and then name, both ascending.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-services");
+    /// for service in client.services().list()? {
+    ///     println!("{}", service.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Service>> {
         let path = "/services".to_owned();
         let query: Query = Query::new();
@@ -17105,6 +27270,22 @@ impl<'a> ServicesResource<'a> {
     /// `PUT /services/{serviceId}`
     ///
     /// Update a service role. Requires the "edit masterdata" permission for the service planning domain.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-services-id");
+    /// let body: models::ServiceUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Hauskreis Nord",
+    ///     "serviceGroupId": 42
+    /// }))?;
+    /// let result = client.services().update(2, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, service_id: impl Display, body: &models::ServiceUpdate) -> Result<models::Service> {
         let path = format!("/services/{}", seg(service_id));
         let query: Query = Query::new();
@@ -17126,6 +27307,20 @@ impl<'a> SimulateResource<'a> {
     /// `POST /simulate`
     ///
     /// Starts simulating another person. The current user's session will act as the specified person until the simulation is stopped.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PostSimulateBody = serde_json::from_value(serde_json::json!({
+    ///     "personId": 42
+    /// }))?;
+    /// client.simulate().create(&body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::PostSimulateBody) -> Result<()> {
         let path = "/simulate".to_owned();
         let query: Query = Query::new();
@@ -17138,6 +27333,18 @@ impl<'a> SimulateResource<'a> {
     /// `DELETE /simulate`
     ///
     /// Stops the current person simulation and returns a redirect path to navigate back.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let simulate = client.simulate().delete()?;
+    /// println!("{}", simulate.redirect);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self) -> Result<models::DeleteSimulateData> {
         let path = "/simulate".to_owned();
         let query: Query = Query::new();
@@ -17175,6 +27382,21 @@ impl<'a> SongCategoriesResource<'a> {
     /// `POST /song/categories`
     ///
     /// Creates a song category. Requires `edit masterdata` in churchservice. A supplied campus ID must exist.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-song-categories");
+    /// let body: models::SongCategoryCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Worship"
+    /// }))?;
+    /// let result = client.song().categories().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::SongCategoryCreate) -> Result<models::SongCategory> {
         let path = "/song/categories".to_owned();
         let query: Query = Query::new();
@@ -17187,6 +27409,17 @@ impl<'a> SongCategoriesResource<'a> {
     /// `DELETE /song/categories/{songCategoryId}`
     ///
     /// Deletes the song category. Requires `edit masterdata` in churchservice. Songs referencing this category prevent deletion.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.song().categories().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, song_category_id: impl Display) -> Result<()> {
         let path = format!("/song/categories/{}", seg(song_category_id));
         let query: Query = Query::new();
@@ -17198,6 +27431,18 @@ impl<'a> SongCategoriesResource<'a> {
     /// `GET /song/categories/{songCategoryId}`
     ///
     /// Returns one song category without an additional record-level visibility check.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-song-categories-id");
+    /// let category = client.song().categories().get(1)?;
+    /// println!("{}", category.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, song_category_id: impl Display) -> Result<models::SongCategory> {
         let path = format!("/song/categories/{}", seg(song_category_id));
         let query: Query = Query::new();
@@ -17209,6 +27454,19 @@ impl<'a> SongCategoriesResource<'a> {
     /// `GET /song/categories`
     ///
     /// Returns all song categories ordered by sortKey ascending and then name ascending. The list is unpaginated and has no visibility or campus filter.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-song-categories");
+    /// for category in client.song().categories().list()? {
+    ///     println!("{}", category.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::SongCategory>> {
         let path = "/song/categories".to_owned();
         let query: Query = Query::new();
@@ -17220,6 +27478,21 @@ impl<'a> SongCategoriesResource<'a> {
     /// `PUT /song/categories/{songCategoryId}`
     ///
     /// Replaces the song category. Requires `edit masterdata` in churchservice. A supplied campus ID must exist.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-song-categories-id");
+    /// let body: models::SongCategoryUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Worship"
+    /// }))?;
+    /// let result = client.song().categories().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, song_category_id: impl Display, body: &models::SongCategoryUpdate) -> Result<models::SongCategory> {
         let path = format!("/song/categories/{}", seg(song_category_id));
         let query: Query = Query::new();
@@ -17241,6 +27514,21 @@ impl<'a> SongSourcesResource<'a> {
     /// `POST /song/sources`
     ///
     /// Creates a song source. Requires `edit masterdata` in churchservice.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-song-sources");
+    /// let body: models::SongSourceCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Community hymnal"
+    /// }))?;
+    /// let result = client.song().sources().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::SongSourceCreate) -> Result<models::SongSource> {
         let path = "/song/sources".to_owned();
         let query: Query = Query::new();
@@ -17253,6 +27541,17 @@ impl<'a> SongSourcesResource<'a> {
     /// `DELETE /song/sources/{songSourceId}`
     ///
     /// Deletes the song source. Requires `edit masterdata` in churchservice. Arrangements referencing this source prevent deletion.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.song().sources().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, song_source_id: impl Display) -> Result<()> {
         let path = format!("/song/sources/{}", seg(song_source_id));
         let query: Query = Query::new();
@@ -17264,6 +27563,18 @@ impl<'a> SongSourcesResource<'a> {
     /// `GET /song/sources/{songSourceId}`
     ///
     /// Returns one song source without an additional record-level visibility check.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-song-sources-id");
+    /// let source = client.song().sources().get(1)?;
+    /// println!("{}", source.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, song_source_id: impl Display) -> Result<models::SongSource> {
         let path = format!("/song/sources/{}", seg(song_source_id));
         let query: Query = Query::new();
@@ -17275,6 +27586,19 @@ impl<'a> SongSourcesResource<'a> {
     /// `GET /song/sources`
     ///
     /// Returns all song sources ordered by sortKey ascending and then name ascending. The list is unpaginated and has no visibility or campus filter.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-song-sources");
+    /// for source in client.song().sources().list()? {
+    ///     println!("{}", source.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::SongSource>> {
         let path = "/song/sources".to_owned();
         let query: Query = Query::new();
@@ -17286,6 +27610,21 @@ impl<'a> SongSourcesResource<'a> {
     /// `PUT /song/sources/{songSourceId}`
     ///
     /// Replaces the song source. Requires `edit masterdata` in churchservice.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-song-sources-id");
+    /// let body: models::SongSourceUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Community hymnal"
+    /// }))?;
+    /// let result = client.song().sources().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, song_source_id: impl Display, body: &models::SongSourceUpdate) -> Result<models::SongSource> {
         let path = format!("/song/sources/{}", seg(song_source_id));
         let query: Query = Query::new();
@@ -17311,6 +27650,22 @@ impl<'a> SongsResource<'a> {
     /// `POST /songs`
     ///
     /// Creates a song in an existing category. Requires edit songcategory permission for that category. Inline arrangements use the same contract as the arrangement creation endpoint, including source and file assignments. The first arrangement becomes the default unless a later item requests that role. The response does not enrich tags.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-songs");
+    /// let body: models::SongCreate = serde_json::from_value(serde_json::json!({
+    ///     "categoryId": 1,
+    ///     "name": "Hallelujah"
+    /// }))?;
+    /// let result = client.songs().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::SongCreate) -> Result<models::Song> {
         let path = "/songs".to_owned();
         let query: Query = Query::new();
@@ -17323,6 +27678,17 @@ impl<'a> SongsResource<'a> {
     /// `DELETE /songs/{songId}`
     ///
     /// Deletes the song, its tag associations, arrangements and arrangement files. The tags themselves remain available. Requires edit songcategory permission for the song's category. Agenda items referring to deleted arrangements keep their item records but lose the arrangement reference.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.songs().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, song_id: impl Display) -> Result<()> {
         let path = format!("/songs/{}", seg(song_id));
         let query: Query = Query::new();
@@ -17336,6 +27702,18 @@ impl<'a> SongsResource<'a> {
     /// Returns a song with its category, musical details and all arrangements. Requires view songcategory or edit songcategory permission for its category. Use include=tags to additionally retrieve its tags. Arrangement selection for a particular event belongs to that event's agenda item.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-songs-songId");
+    /// let song = client.songs().get(42)?;
+    /// println!("{}", song.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, song_id: impl Display) -> Result<models::Song> {
         self.get_with(song_id, &Default::default())
     }
@@ -17360,6 +27738,19 @@ impl<'a> SongsResource<'a> {
     /// Returns songs in categories for which the caller has view songcategory or edit songcategory permission. Songs are sorted by name, then ID, both ascending. Filters are combined with AND; query matches either title or author. Category filters are intersected with permitted categories. No permitted or matching songs returns an empty list. Each song includes all arrangements, including those that do not match key_of_arrangement. Results are paginated.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-songs");
+    /// for song in client.songs().list()? {
+    ///     println!("{}", song.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Song>> {
         self.list_with(&Default::default())
     }
@@ -17382,6 +27773,22 @@ impl<'a> SongsResource<'a> {
     /// `PUT /songs/{songId}`
     ///
     /// Replaces the song's main details. Requires "edit songcategory" permission for both the current and requested category. When supplied, tags replace all current tag associations. Arrangements are not processed. The response is not enriched with tags.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-songs-songId");
+    /// let body: models::SongUpdate = serde_json::from_value(serde_json::json!({
+    ///     "categoryId": 1,
+    ///     "name": "Hallelujah"
+    /// }))?;
+    /// let result = client.songs().update(42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, song_id: impl Display, body: &models::SongUpdate) -> Result<models::Song> {
         let path = format!("/songs/{}", seg(song_id));
         let query: Query = Query::new();
@@ -17458,6 +27865,21 @@ impl<'a> SongsArrangementsResource<'a> {
     /// `POST /songs/{songId}/arrangements`
     ///
     /// Creates a musical version of an existing song. Requires edit songcategory permission for the song's category. Existing files can be assigned with fileIds. The first arrangement becomes the default; otherwise `isDefault: true` replaces the current default.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-songs-songId-arrangements");
+    /// let body: models::ArrangementCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Men Voicing"
+    /// }))?;
+    /// let result = client.songs().arrangements().create(42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, song_id: impl Display, body: &models::ArrangementCreate) -> Result<models::Arrangement> {
         let path = format!("/songs/{}/arrangements", seg(song_id));
         let query: Query = Query::new();
@@ -17470,6 +27892,17 @@ impl<'a> SongsArrangementsResource<'a> {
     /// `DELETE /songs/{songId}/arrangements/{arrangementId}`
     ///
     /// Deletes an arrangement belonging to this song and its attached files and links. Requires edit songcategory permission for the song's category. When arrangements remain, one is selected as the default and agenda items referring to the deleted arrangement are reassigned to it.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.songs().arrangements().delete(42, 42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, song_id: impl Display, arrangement_id: impl Display) -> Result<()> {
         let path = format!("/songs/{}/arrangements/{}", seg(song_id), seg(arrangement_id));
         let query: Query = Query::new();
@@ -17481,6 +27914,18 @@ impl<'a> SongsArrangementsResource<'a> {
     /// `GET /songs/{songId}/arrangements/{arrangementId}`
     ///
     /// Returns one arrangement with its musical details, source, files and links. Requires view songcategory or edit songcategory permission for the song's category. The arrangement must belong to the song in the path.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-songs-songId-arrangements-arrangementId");
+    /// let arrangement = client.songs().arrangements().get(42, 42)?;
+    /// println!("{}", arrangement.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, song_id: impl Display, arrangement_id: impl Display) -> Result<models::Arrangement> {
         let path = format!("/songs/{}/arrangements/{}", seg(song_id), seg(arrangement_id));
         let query: Query = Query::new();
@@ -17492,6 +27937,19 @@ impl<'a> SongsArrangementsResource<'a> {
     /// `GET /songs/{songId}/arrangements`
     ///
     /// Returns every arrangement belonging to the song, including each arrangement's files and links. An arrangement is a musical version with its own key, tempo and source. The list is unpaginated, has no guaranteed order and includes meta.count. Requires view songcategory or edit songcategory permission for the song's category.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-songs-songId-arrangements");
+    /// for arrangement in client.songs().arrangements().list(42)? {
+    ///     println!("{}", arrangement.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, song_id: impl Display) -> Result<Vec<models::Arrangement>> {
         let path = format!("/songs/{}/arrangements", seg(song_id));
         let query: Query = Query::new();
@@ -17503,6 +27961,17 @@ impl<'a> SongsArrangementsResource<'a> {
     /// `PATCH /songs/{songId}/arrangements/{arrangementId}/default`
     ///
     /// Makes this arrangement the only default for the song by clearing the default flag on all of the song's other arrangements. Requires edit songcategory permission for the song's category. The arrangement must belong to this song. No request body is needed. Selecting an arrangement that is already the default also returns 204.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.songs().arrangements().patch_default(42, 42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch_default(&self, song_id: impl Display, arrangement_id: impl Display) -> Result<()> {
         let path = format!("/songs/{}/arrangements/{}/default", seg(song_id), seg(arrangement_id));
         let query: Query = Query::new();
@@ -17514,6 +27983,21 @@ impl<'a> SongsArrangementsResource<'a> {
     /// `PUT /songs/{songId}/arrangements/{arrangementId}`
     ///
     /// Replaces the musical details of an arrangement belonging to this song. Requires edit songcategory permission for the song's category. Files and links are unchanged. To change the default arrangement, use the dedicated default endpoint; isDefault is not processed here.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-songs-songId-arrangements-arrangementId");
+    /// let body: models::ArrangementUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Men Voicing"
+    /// }))?;
+    /// let result = client.songs().arrangements().update(42, 42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, song_id: impl Display, arrangement_id: impl Display, body: &models::ArrangementUpdate) -> Result<models::Arrangement> {
         let path = format!("/songs/{}/arrangements/{}", seg(song_id), seg(arrangement_id));
         let query: Query = Query::new();
@@ -17535,6 +28019,21 @@ impl<'a> SongsArrangementsFilesResource<'a> {
     /// `POST /songs/{songId}/arrangements/{arrangementId}/files/{fileId}/transpose`
     ///
     /// Transposes an existing audio file by one to six semitones and saves a new file on the arrangement identified by arrangementId. The original file is retained. Processing is synchronous, so the response is sent after conversion and saving finish. Pitch is changed with tempo compensation to preserve the playback duration. The output retains the source filename extension and contains audio only. Supported formats depend on the server's FFmpeg installation; an unsupported or unreadable input causes an error. Each successful call creates a new file record. This does not update the arrangement's key or tempo metadata. Requires view permission for churchservice and edit permission for the source file; for song arrangement files, this is edit songcategory permission for the source song's category.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ArrangementFileTransposeCreate = serde_json::from_value(serde_json::json!({
+    ///     "transpose-interval": "up2"
+    /// }))?;
+    /// let file = client.songs().arrangements().files().transpose(42, 42, 42, &body)?;
+    /// println!("{}", file.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn transpose(&self, song_id: impl Display, arrangement_id: impl Display, file_id: impl Display, body: &models::ArrangementFileTransposeCreate) -> Result<models::ArrangementFileTranspose> {
         let path = format!("/songs/{}/arrangements/{}/files/{}/transpose", seg(song_id), seg(arrangement_id), seg(file_id));
         let query: Query = Query::new();
@@ -17556,6 +28055,19 @@ impl<'a> SsoLoginsResource<'a> {
     /// `GET /sso-logins`
     ///
     /// Returns visible external login providers that have a registered handler and login link. This public list is intended for the login screen and does not expose provider credentials or configuration. Providers are returned without pagination or a guaranteed order. Hidden providers are omitted. primaryLogin and hasRegistration are presentation/configuration flags, not a guarantee that an external login or account creation will succeed.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sso-logins");
+    /// for sso_login in client.sso_logins().list()? {
+    ///     println!("{}", sso_login.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::SsoLogin>> {
         let path = "/sso-logins".to_owned();
         let query: Query = Query::new();
@@ -17576,6 +28088,19 @@ impl<'a> StartpageResource<'a> {
     /// `GET /startpage`
     ///
     /// Here you get data like birthdays in the next seven days, open meeting requests, next appointments and songs to lern
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-startpage");
+    /// for startpage in client.startpage().list()? {
+    ///     println!("{:?}", startpage);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<serde_json::Value>> {
         let path = "/startpage".to_owned();
         let query: Query = Query::new();
@@ -17596,6 +28121,22 @@ impl<'a> StatusesResource<'a> {
     /// `POST /statuses`
     ///
     /// Creates a person-status definition. Requires "edit masterdata" permission in `churchdb`.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-statuses");
+    /// let body: models::StatusCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Member",
+    ///     "securityLevelId": 2
+    /// }))?;
+    /// let result = client.statuses().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::StatusCreate) -> Result<models::Status> {
         let path = "/statuses".to_owned();
         let query: Query = Query::new();
@@ -17608,6 +28149,17 @@ impl<'a> StatusesResource<'a> {
     /// `DELETE /statuses/{id}`
     ///
     /// Deletes the status definition after checking dependent references. Requires "edit masterdata" permission in `churchdb`. Person assignments and other configuration can block deletion.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.statuses().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/statuses/{}", seg(id));
         let query: Query = Query::new();
@@ -17619,6 +28171,18 @@ impl<'a> StatusesResource<'a> {
     /// `GET /statuses/{id}`
     ///
     /// Returns one person-status definition, including its translated name and abbreviation.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-statuses-id");
+    /// let status = client.statuses().get(1)?;
+    /// println!("{}", status.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::Status> {
         let path = format!("/statuses/{}", seg(id));
         let query: Query = Query::new();
@@ -17630,6 +28194,19 @@ impl<'a> StatusesResource<'a> {
     /// `GET /statuses`
     ///
     /// Returns all person-status definitions, ordered by `sortKey` and then name.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-statuses");
+    /// for status in client.statuses().list()? {
+    ///     println!("{}", status.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::Status>> {
         let path = "/statuses".to_owned();
         let query: Query = Query::new();
@@ -17641,6 +28218,21 @@ impl<'a> StatusesResource<'a> {
     /// `PATCH /statuses/{id}`
     ///
     /// Updates the supplied fields of the specified person-status definition. Requires "edit masterdata" permission in `churchdb`. Omitted fields remain unchanged.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("patch-statuses-id");
+    /// let body: models::StatusUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Member"
+    /// }))?;
+    /// let result = client.statuses().patch(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, id: impl Display, body: &models::StatusUpdate) -> Result<models::Status> {
         let path = format!("/statuses/{}", seg(id));
         let query: Query = Query::new();
@@ -17653,6 +28245,22 @@ impl<'a> StatusesResource<'a> {
     /// `PUT /statuses/{id}`
     ///
     /// Replaces a person-status definition. Requires "edit masterdata" permission in `churchdb`. Existing persons retain the status ID. Use `PATCH /statuses/{id}` instead.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-statuses-id");
+    /// let body: models::StatusCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Member",
+    ///     "securityLevelId": 2
+    /// }))?;
+    /// let result = client.statuses().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     #[deprecated]
     pub fn update(&self, id: impl Display, body: &models::StatusCreate) -> Result<models::Status> {
         let path = format!("/statuses/{}", seg(id));
@@ -17675,6 +28283,17 @@ impl<'a> SubscriptionsResource<'a> {
     /// `DELETE /subscriptions/{personId}/{subject}/{subjectIdentifier}`
     ///
     /// Subscriptions control notifications for a subject (for example a group, post or resource). Explicit settings override implicit defaults for the same person, subject and identifier. Only the current person may access their own subscriptions. Removes the stored override, not the implicit default. If no explicit row exists, returns 404 even when GET returns an implicit subscription. Removing an inactive override can enable notifications again through the default; use PUT with isActive=false to opt out. Legacy subjects meetingrequests and servicerequests are normalized to meetingrequest and servicerequest; identifier 0 is normalized to root for both. List responses additionally include a legacy alias for each canonical root result. These aliases are compatibility copies, not separate subscriptions.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.subscriptions().delete(42, "group", "root")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, person_id: impl Display, subject: impl Display, subject_identifier: impl Display) -> Result<()> {
         let path = format!("/subscriptions/{}/{}/{}", seg(person_id), seg(subject), seg(subject_identifier));
         let query: Query = Query::new();
@@ -17686,6 +28305,18 @@ impl<'a> SubscriptionsResource<'a> {
     /// `GET /subscriptions/{personId}/{subject}/{subjectIdentifier}`
     ///
     /// Subscriptions control notifications for a subject (for example a group, post or resource). Explicit settings override implicit defaults for the same person, subject and identifier. Only the current person may access their own subscriptions. Read results include active and inactive subscriptions, after subject-specific eligibility filtering: meeting/service requests require a registered push-capable device, email summaries require an eligible recipient, and resources require administration or booking-administration rights. A stored override can therefore be absent from a read response. Legacy subjects meetingrequests and servicerequests are normalized to meetingrequest and servicerequest; identifier 0 is normalized to root for both. List responses additionally include a legacy alias for each canonical root result. These aliases are compatibility copies, not separate subscriptions. This endpoint returns one object using the canonical subject and identifier, without a compatibility copy. It returns 404 when no eligible effective subscription exists and 422 if more than one result remains.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-subscriptions-personId-subject-subjectIdentifier");
+    /// let result = client.subscriptions().get(42, "group", "root")?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, person_id: impl Display, subject: impl Display, subject_identifier: impl Display) -> Result<serde_json::Value> {
         let path = format!("/subscriptions/{}/{}/{}", seg(person_id), seg(subject), seg(subject_identifier));
         let query: Query = Query::new();
@@ -17697,6 +28328,19 @@ impl<'a> SubscriptionsResource<'a> {
     /// `GET /subscriptions/{personId}`
     ///
     /// Subscriptions control notifications for a subject (for example a group, post or resource). Explicit settings override implicit defaults for the same person, subject and identifier. Only the current person may access their own subscriptions. Read results include active and inactive subscriptions, after subject-specific eligibility filtering: meeting/service requests require a registered push-capable device, email summaries require an eligible recipient, and resources require administration or booking-administration rights. A stored override can therefore be absent from a read response. Results are not paginated; meta.count includes compatibility aliases. Legacy subjects meetingrequests and servicerequests are normalized to meetingrequest and servicerequest; identifier 0 is normalized to root for both. List responses additionally include a legacy alias for each canonical root result. These aliases are compatibility copies, not separate subscriptions.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-subscriptions-personId");
+    /// for subscription in client.subscriptions().list(42)? {
+    ///     println!("{:?}", subscription);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, person_id: impl Display) -> Result<Vec<serde_json::Value>> {
         let path = format!("/subscriptions/{}", seg(person_id));
         let query: Query = Query::new();
@@ -17708,6 +28352,19 @@ impl<'a> SubscriptionsResource<'a> {
     /// `GET /subscriptions/{personId}/{subject}`
     ///
     /// Subscriptions control notifications for a subject (for example a group, post or resource). Explicit settings override implicit defaults for the same person, subject and identifier. Only the current person may access their own subscriptions. Read results include active and inactive subscriptions, after subject-specific eligibility filtering: meeting/service requests require a registered push-capable device, email summaries require an eligible recipient, and resources require administration or booking-administration rights. A stored override can therefore be absent from a read response. Results are not paginated; meta.count includes compatibility aliases. Legacy subjects meetingrequests and servicerequests are normalized to meetingrequest and servicerequest; identifier 0 is normalized to root for both. List responses additionally include a legacy alias for each canonical root result. These aliases are compatibility copies, not separate subscriptions.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-subscriptions-personId-subject");
+    /// for for_subject in client.subscriptions().list_for_subject(42, "group")? {
+    ///     println!("{:?}", for_subject);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_for_subject(&self, person_id: impl Display, subject: impl Display) -> Result<Vec<serde_json::Value>> {
         let path = format!("/subscriptions/{}/{}", seg(person_id), seg(subject));
         let query: Query = Query::new();
@@ -17719,6 +28376,21 @@ impl<'a> SubscriptionsResource<'a> {
     /// `PUT /subscriptions/{personId}/{subject}/{subjectIdentifier}`
     ///
     /// Subscriptions control notifications for a subject (for example a group, post or resource). Explicit settings override implicit defaults for the same person, subject and identifier. Only the current person may access their own subscriptions. Creates or updates a stored override and returns that single object before read-side eligibility filtering. Omitted isActive becomes true and omitted options clears existing options to null. For post_summary, options.filter and 1–7 distinct options.weekdays are required, and the current person needs a receiving email address. Use identifier 0 for post_summary. Legacy subjects meetingrequests and servicerequests are normalized to meetingrequest and servicerequest; identifier 0 is normalized to root for both. List responses additionally include a legacy alias for each canonical root result. These aliases are compatibility copies, not separate subscriptions.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SubscriptionUpdate = serde_json::from_value(serde_json::json!({
+    ///     "isActive": true
+    /// }))?;
+    /// let result = client.subscriptions().update(42, "group", "root", &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, person_id: impl Display, subject: impl Display, subject_identifier: impl Display, body: &models::SubscriptionUpdate) -> Result<serde_json::Value> {
         let path = format!("/subscriptions/{}/{}/{}", seg(person_id), seg(subject), seg(subject_identifier));
         let query: Query = Query::new();
@@ -17756,6 +28428,30 @@ impl<'a> SyncResource<'a> {
     /// `POST /sync/logs`
     ///
     /// Stores log entries. `messageKey`, translation arguments and changes are rendered into a stored message.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncLogsCreate = serde_json::from_value(serde_json::json!({
+    ///     "logs": [
+    ///         {
+    ///             "date": "2022-10-19T12:00:00Z",
+    ///             "executionId": "beispiel",
+    ///             "jobId": 42,
+    ///             "level": "debug",
+    ///             "messageKey": "beispiel",
+    ///             "type": "create"
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.sync().create_logs(&body)?;
+    /// println!("{}", result.persisted);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create_logs(&self, body: &models::SyncLogsCreate) -> Result<models::SyncLogsPersisted> {
         let path = "/sync/logs".to_owned();
         let query: Query = Query::new();
@@ -17770,6 +28466,19 @@ impl<'a> SyncResource<'a> {
     /// Returns background executions ordered by creation date descending and job ID ascending. Counts are derived from operation logs.
     ///
     /// Use [`Self::list_executions_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-executions");
+    /// for execution in client.sync().list_executions()? {
+    ///     println!("{:?}", execution.created_date);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_executions(&self) -> Result<Vec<models::SyncExecutionSummary>> {
         self.list_executions_with(&Default::default())
     }
@@ -17794,6 +28503,19 @@ impl<'a> SyncResource<'a> {
     /// Lists job configurations ordered by name.
     ///
     /// Use [`Self::list_jobconfigs_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-jobconfigs");
+    /// for jobconfig in client.sync().list_jobconfigs()? {
+    ///     println!("{}", jobconfig.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_jobconfigs(&self) -> Result<Vec<models::JobConfigurationReturn>> {
         self.list_jobconfigs_with(&Default::default())
     }
@@ -17818,6 +28540,19 @@ impl<'a> SyncResource<'a> {
     /// Returns rendered log messages ordered by log ID descending.
     ///
     /// Use [`Self::list_logs_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-logs");
+    /// for log in client.sync().list_logs()? {
+    ///     println!("{}", log.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_logs(&self) -> Result<Vec<models::SyncLog>> {
         self.list_logs_with(&Default::default())
     }
@@ -17943,6 +28678,23 @@ impl<'a> SyncAdaptersResource<'a> {
     /// `POST /sync/adapters`
     ///
     /// Registers the service URL and authentication token of an adapter. Registration does not configure an external connection.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncAdapterCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "churchtools",
+    ///     "token": "kfghsjdlkfigblszurglizeifuz4",
+    ///     "url": "http://localhost:8090"
+    /// }))?;
+    /// let result = client.sync().adapters().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::SyncAdapterCreate) -> Result<models::SyncAdapter> {
         let path = "/sync/adapters".to_owned();
         let query: Query = Query::new();
@@ -17957,6 +28709,17 @@ impl<'a> SyncAdaptersResource<'a> {
     /// Deletes the adapter registration. External connections referencing it block deletion.
     ///
     /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().adapters().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         self.delete_with(id, &Default::default())
     }
@@ -17979,6 +28742,18 @@ impl<'a> SyncAdaptersResource<'a> {
     /// `GET /sync/adapters/{id}`
     ///
     /// Returns adapter settings with a masked token.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-adapters-id");
+    /// let adapter = client.sync().adapters().get(1)?;
+    /// println!("{}", adapter.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::SyncAdapter> {
         let path = format!("/sync/adapters/{}", seg(id));
         let query: Query = Query::new();
@@ -17990,6 +28765,19 @@ impl<'a> SyncAdaptersResource<'a> {
     /// `GET /sync/adapters`
     ///
     /// Lists registered adapter services. An adapter translates between the Sync worker and a system-specific API.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-adapters");
+    /// for adapter in client.sync().adapters().list()? {
+    ///     println!("{}", adapter.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::SyncAdapter>> {
         let path = "/sync/adapters".to_owned();
         let query: Query = Query::new();
@@ -18001,6 +28789,23 @@ impl<'a> SyncAdaptersResource<'a> {
     /// `PUT /sync/adapters/{id}`
     ///
     /// Replaces the adapter name, URL and authentication token.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncAdapterUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "churchtools",
+    ///     "token": "kfghsjdlkfigblszurglizeifuz4",
+    ///     "url": "http://localhost:8090"
+    /// }))?;
+    /// let result = client.sync().adapters().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::SyncAdapterUpdate) -> Result<models::SyncAdapter> {
         let path = format!("/sync/adapters/{}", seg(id));
         let query: Query = Query::new();
@@ -18037,6 +28842,17 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// `POST /sync/adapters/{adapterName}/proxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. Uses the registered adapter token.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().adapters().proxy().create("churchtools", "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
@@ -18048,6 +28864,17 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// `DELETE /sync/adapters/{adapterName}/proxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. Uses the registered adapter token.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().adapters().proxy().delete("churchtools", "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
@@ -18059,6 +28886,17 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// `GET /sync/adapters/{adapterName}/proxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. Uses the registered adapter token.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().adapters().proxy().get("churchtools", "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
@@ -18070,6 +28908,17 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// `PATCH /sync/adapters/{adapterName}/proxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. Uses the registered adapter token.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().adapters().proxy().patch("churchtools", "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
@@ -18081,6 +28930,17 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// `PUT /sync/adapters/{adapterName}/proxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. Uses the registered adapter token.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().adapters().proxy().update("churchtools", "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
@@ -18101,6 +28961,29 @@ impl<'a> SyncConflictsResource<'a> {
     /// `POST /sync/conflicts`
     ///
     /// Creates a conflict record. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncConflictCreate = serde_json::from_value(serde_json::json!({
+    ///     "data": [
+    ///         {
+    ///             "key": "beispiel",
+    ///             "value": "beispiel"
+    ///         }
+    ///     ],
+    ///     "entityMappingId": 1,
+    ///     "jobId": "7e31c399-91b1-4148-bfdd-6c05b557a25c",
+    ///     "type": "create"
+    /// }))?;
+    /// let result = client.sync().conflicts().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::SyncConflictCreate) -> Result<models::SyncConflicts> {
         let path = "/sync/conflicts".to_owned();
         let query: Query = Query::new();
@@ -18113,6 +28996,17 @@ impl<'a> SyncConflictsResource<'a> {
     /// `DELETE /sync/conflicts/{id}`
     ///
     /// Removes the conflict record without resolving or modifying the underlying records. Missing conflicts also return `204`. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().conflicts().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/sync/conflicts/{}", seg(id));
         let query: Query = Query::new();
@@ -18124,6 +29018,18 @@ impl<'a> SyncConflictsResource<'a> {
     /// `GET /sync/conflicts/{id}`
     ///
     /// Returns one conflict and its supporting key/value data. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let conflict = client.sync().conflicts().get(1)?;
+    /// println!("{}", conflict.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::SyncConflicts> {
         let path = format!("/sync/conflicts/{}", seg(id));
         let query: Query = Query::new();
@@ -18137,6 +29043,19 @@ impl<'a> SyncConflictsResource<'a> {
     /// Filters on source and domain refer to the linked entity mapping. Conflict `jobId` identifies the producing sync run, not a job configuration. Requires "churchcore: administer persons" permission.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-conflicts");
+    /// for conflict in client.sync().conflicts().list()? {
+    ///     println!("{}", conflict.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::SyncConflicts>> {
         self.list_with(&Default::default())
     }
@@ -18159,6 +29078,29 @@ impl<'a> SyncConflictsResource<'a> {
     /// `PUT /sync/conflicts/{id}`
     ///
     /// Replaces job, relationship, type and all conflict data. This does not modify either synchronized record. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncConflictUpdate = serde_json::from_value(serde_json::json!({
+    ///     "data": [
+    ///         {
+    ///             "key": "beispiel",
+    ///             "value": "beispiel"
+    ///         }
+    ///     ],
+    ///     "entityMappingId": 1,
+    ///     "jobId": "7e31c399-91b1-4148-bfdd-6c05b557a25c",
+    ///     "type": "create"
+    /// }))?;
+    /// let result = client.sync().conflicts().update(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::SyncConflictUpdate) -> Result<models::SyncConflicts> {
         let path = format!("/sync/conflicts/{}", seg(id));
         let query: Query = Query::new();
@@ -18204,6 +29146,25 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// `POST /sync/entitymappings`
     ///
     /// Registers a relationship without creating either underlying record. Provided ChurchTools or external IDs must not be linked for the same domain and source. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncEntityMappingCreate = serde_json::from_value(serde_json::json!({
+    ///     "domainId": "42",
+    ///     "domainType": "status",
+    ///     "sourceEntityId": "p-42",
+    ///     "sourceId": 1,
+    ///     "status": "synced"
+    /// }))?;
+    /// let result = client.sync().entitymappings().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::SyncEntityMappingCreate) -> Result<models::SyncEntityMapping> {
         let path = "/sync/entitymappings".to_owned();
         let query: Query = Query::new();
@@ -18216,6 +29177,17 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// `DELETE /sync/entitymappings/{id}`
     ///
     /// Removes only the stored relationship; neither the ChurchTools record nor the external record is deleted. A missing mapping also returns `204`. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().entitymappings().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/sync/entitymappings/{}", seg(id));
         let query: Query = Query::new();
@@ -18227,6 +29199,18 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// `GET /sync/entitymappings/{id}`
     ///
     /// Returns a stored relationship. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-entitymappings-id");
+    /// let entitymapping = client.sync().entitymappings().get(1)?;
+    /// println!("{}", entitymapping.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, id: impl Display) -> Result<models::SyncEntityMapping> {
         let path = format!("/sync/entitymappings/{}", seg(id));
         let query: Query = Query::new();
@@ -18240,6 +29224,19 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// Lists relationships between ChurchTools records and external records, newest mapping ID first. `domainId` and `sourceEntityId` are record identifiers; `sourceId` identifies the external connection. Requires "churchcore: administer persons" permission.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-entitymappings");
+    /// for entitymapping in client.sync().entitymappings().list()? {
+    ///     println!("{}", entitymapping.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::SyncEntityMapping>> {
         self.list_with(&Default::default())
     }
@@ -18262,6 +29259,25 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// `PUT /sync/entitymappings/{id}`
     ///
     /// Updates the relationship. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncEntityMappingUpdate = serde_json::from_value(serde_json::json!({
+    ///     "domainId": "42",
+    ///     "domainType": "status",
+    ///     "sourceEntityId": "p-42",
+    ///     "sourceId": 1,
+    ///     "status": "synced"
+    /// }))?;
+    /// let result = client.sync().entitymappings().update(1, &body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, id: impl Display, body: &models::SyncEntityMappingUpdate) -> Result<models::SyncEntityMapping> {
         let path = format!("/sync/entitymappings/{}", seg(id));
         let query: Query = Query::new();
@@ -18325,6 +29341,23 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// `POST /sync/externalsystems`
     ///
     /// Creates a connection using an existing adapter name and copies available field-mapping presets. Outside the trial period, the licensed connection limit is checked.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ExternalSystemCreate = serde_json::from_value(serde_json::json!({
+    ///     "accessHeaderValues": {},
+    ///     "adapter": "churchtools",
+    ///     "name": "Accounting system"
+    /// }))?;
+    /// let result = client.sync().externalsystems().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::ExternalSystemCreate) -> Result<models::ExternalSystem> {
         let path = "/sync/externalsystems".to_owned();
         let query: Query = Query::new();
@@ -18337,6 +29370,17 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// `DELETE /sync/externalsystems/{externalSystemId}`
     ///
     /// Deletes the connection, its job configurations, related job logs and executions, field mappings and entity mappings. Synchronized records themselves are not deleted. Returns `204` if the connection is missing.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, external_system_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}", seg(external_system_id));
         let query: Query = Query::new();
@@ -18348,6 +29392,17 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// `DELETE /sync/externalsystems/{externalSystemId}/entitymappings`
     ///
     /// Removes all relationships belonging to the external connection. Underlying records remain. Returns `204` when no mapping exists. Requires "churchcore: administer persons" permission.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().delete_entitymappings(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_entitymappings(&self, external_system_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/entitymappings", seg(external_system_id));
         let query: Query = Query::new();
@@ -18359,6 +29414,18 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}`
     ///
     /// Returns connection settings with masked access credentials.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId");
+    /// let externalsystem = client.sync().externalsystems().get(1)?;
+    /// println!("{}", externalsystem.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, external_system_id: impl Display) -> Result<models::ExternalSystem> {
         let path = format!("/sync/externalsystems/{}", seg(external_system_id));
         let query: Query = Query::new();
@@ -18370,6 +29437,19 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// `GET /sync/externalsystems`
     ///
     /// Lists configured connections, including their adapter names and job counts. A connection identifies one external installation or account; several can use the same adapter.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems");
+    /// for externalsystem in client.sync().externalsystems().list()? {
+    ///     println!("{}", externalsystem.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::ExternalSystem>> {
         let path = "/sync/externalsystems".to_owned();
         let query: Query = Query::new();
@@ -18381,6 +29461,17 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// `POST /sync/externalsystems/{externalSystemId}/test`
     ///
     /// Calls the adapter’s connection test using the saved settings. This is a connection check, not a synchronization run.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().test(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn test(&self, external_system_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/test", seg(external_system_id));
         let query: Query = Query::new();
@@ -18392,6 +29483,23 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// `POST /sync/externalsystems/test`
     ///
     /// Runs the adapter's connection test without saving the supplied settings.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncExternalSystemTestCreate = serde_json::from_value(serde_json::json!({
+    ///     "accessHeaderValues": {},
+    ///     "adapter": "churchtools",
+    ///     "name": "Accounting system"
+    /// }))?;
+    /// let result = client.sync().externalsystems().test_settings(&body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn test_settings(&self, body: &models::SyncExternalSystemTestCreate) -> Result<serde_json::Value> {
         let path = "/sync/externalsystems/test".to_owned();
         let query: Query = Query::new();
@@ -18404,6 +29512,24 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// `PUT /sync/externalsystems/{externalSystemId}`
     ///
     /// Changes the name and adapter and merges supplied access headers.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::ExternalSystemUpdate = serde_json::from_value(serde_json::json!({
+    ///     "accessHeaderValues": {},
+    ///     "adapter": "churchtools",
+    ///     "name": "Accounting system",
+    ///     "id": 1
+    /// }))?;
+    /// let result = client.sync().externalsystems().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, external_system_id: impl Display, body: &models::ExternalSystemUpdate) -> Result<models::ExternalSystem> {
         let path = format!("/sync/externalsystems/{}", seg(external_system_id));
         let query: Query = Query::new();
@@ -18425,6 +29551,17 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// `POST /sync/externalsystems/{externalSystemId}/adapterproxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. `externalSystemId` set to `0` selects the local ChurchTools system.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().adapterproxy().create(1, "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
@@ -18436,6 +29573,17 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// `DELETE /sync/externalsystems/{externalSystemId}/adapterproxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. `externalSystemId` set to `0` selects the local ChurchTools system.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().adapterproxy().delete(1, "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
@@ -18447,6 +29595,17 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/adapterproxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. `externalSystemId` set to `0` selects the local ChurchTools system.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().adapterproxy().get(1, "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
@@ -18458,6 +29617,17 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// `PATCH /sync/externalsystems/{externalSystemId}/adapterproxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. `externalSystemId` set to `0` selects the local ChurchTools system.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().adapterproxy().patch(1, "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
@@ -18469,6 +29639,17 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// `PUT /sync/externalsystems/{externalSystemId}/adapterproxy/{uri}`
     ///
     /// Forwards the HTTP method and query parameters to the adapter’s `/api/{uri}` route. Response status, body and `Content-Type` come from the adapter without a `data` wrapper. `externalSystemId` set to `0` selects the local ChurchTools system.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().adapterproxy().update(1, "adapter/info")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
@@ -18489,6 +29670,17 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// `DELETE /sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}`
     ///
     /// Removes the stored field mapping and its entries for this connection and domain. A missing mapping also returns `204`.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().fieldmappings().delete(1, "status")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, external_system_id: impl Display, domain_type: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/fieldmappings/{}", seg(external_system_id), seg(domain_type));
         let query: Query = Query::new();
@@ -18500,6 +29692,18 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}`
     ///
     /// Returns mappings in both directions. If the connection exists but no mapping is stored for the domain, returns an unsaved mapping.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-fieldmappings-domaintype");
+    /// let fieldmapping = client.sync().externalsystems().fieldmappings().get(1, "status")?;
+    /// println!("{:?}", fieldmapping.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, external_system_id: impl Display, domain_type: impl Display) -> Result<models::FieldMapping> {
         let path = format!("/sync/externalsystems/{}/fieldmappings/{}", seg(external_system_id), seg(domain_type));
         let query: Query = Query::new();
@@ -18511,6 +29715,18 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}/nosuggestions`
     ///
     /// Returns source fields whose adapter preset has no target suggestion, grouped by system. This reports preset coverage, not all unselected job fields.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions");
+    /// let result = client.sync().externalsystems().fieldmappings().get_nosuggestions(1, "status")?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_nosuggestions(&self, external_system_id: impl Display, domain_type: impl Display) -> Result<serde_json::Value> {
         let path = format!("/sync/externalsystems/{}/fieldmappings/{}/nosuggestions", seg(external_system_id), seg(domain_type));
         let query: Query = Query::new();
@@ -18522,6 +29738,19 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/fieldmappings`
     ///
     /// Lists stored domain-level field mappings. These define available translations between fields; a job separately selects which mappings to use.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-fieldmappings");
+    /// for fieldmapping in client.sync().externalsystems().fieldmappings().list(1)? {
+    ///     println!("{:?}", fieldmapping.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, external_system_id: impl Display) -> Result<Vec<models::FieldMapping>> {
         let path = format!("/sync/externalsystems/{}/fieldmappings", seg(external_system_id));
         let query: Query = Query::new();
@@ -18533,6 +29762,40 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// `PUT /sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}`
     ///
     /// Replaces both direction lists. Direction is inferred from the enclosing list.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncFieldMappingUpdate = serde_json::from_value(serde_json::json!({
+    ///     "propertyMappingsESToMaster": [
+    ///         {
+    ///             "from": "firstName",
+    ///             "fromFilter": "",
+    ///             "others": {},
+    ///             "to": "firstName",
+    ///             "toFilter": "",
+    ///             "valueMapping": {}
+    ///         }
+    ///     ],
+    ///     "propertyMappingsMasterToES": [
+    ///         {
+    ///             "from": "firstName",
+    ///             "fromFilter": "",
+    ///             "others": {},
+    ///             "to": "firstName",
+    ///             "toFilter": "",
+    ///             "valueMapping": {}
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.sync().externalsystems().fieldmappings().update(1, "status", &body)?;
+    /// println!("{:?}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, external_system_id: impl Display, domain_type: impl Display, body: &models::SyncFieldMappingUpdate) -> Result<models::FieldMapping> {
         let path = format!("/sync/externalsystems/{}/fieldmappings/{}", seg(external_system_id), seg(domain_type));
         let query: Query = Query::new();
@@ -18558,6 +29821,23 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `POST /sync/externalsystems/{externalSystemId}/jobconfigs`
     ///
     /// Selected fields and record filters are managed through the properties and filter endpoints.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncJobConfigurationCreate = serde_json::from_value(serde_json::json!({
+    ///     "autoScheduleEnabled": false,
+    ///     "domainType": "person",
+    ///     "name": "Synchronize people"
+    /// }))?;
+    /// let result = client.sync().externalsystems().jobconfigs().create(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, external_system_id: impl Display, body: &models::SyncJobConfigurationCreate) -> Result<models::JobConfigurationReturn> {
         let path = format!("/sync/externalsystems/{}/jobconfigs", seg(external_system_id));
         let query: Query = Query::new();
@@ -18570,6 +29850,17 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `DELETE /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}`
     ///
     /// Deletes the configuration together with selected properties, filters, logs and associated background executions. Missing jobs also return `204`.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().jobconfigs().delete(1, 1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, external_system_id: impl Display, job_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18581,6 +29872,17 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `DELETE /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/filter`
     ///
     /// Deletes all record filters; the job configuration remains.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().jobconfigs().delete_filter(1, 1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_filter(&self, external_system_id: impl Display, job_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/filter", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18592,6 +29894,17 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `DELETE /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/properties`
     ///
     /// Deletes all selected fields; the job configuration remains.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.sync().externalsystems().jobconfigs().delete_properties(1, 1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete_properties(&self, external_system_id: impl Display, job_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/properties", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18603,6 +29916,19 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}`
     ///
     /// Returns configurations matching the job and external connection IDs.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId");
+    /// for jobconfig in client.sync().externalsystems().jobconfigs().get(1, 1)? {
+    ///     println!("{}", jobconfig.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, external_system_id: impl Display, job_id: impl Display) -> Result<Vec<models::JobConfigurationReturn>> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18614,6 +29940,18 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/filter`
     ///
     /// Returns record filters grouped by direction.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter");
+    /// let filter = client.sync().externalsystems().jobconfigs().get_filter(1, 1)?;
+    /// println!("{:?}", filter);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_filter(&self, external_system_id: impl Display, job_id: impl Display) -> Result<models::SyncJobFilters> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/filter", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18625,6 +29963,18 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/properties`
     ///
     /// Returns selected fields grouped by direction.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties");
+    /// let property = client.sync().externalsystems().jobconfigs().get_properties(1, 1)?;
+    /// println!("{}", property.domain_type);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_properties(&self, external_system_id: impl Display, job_id: impl Display) -> Result<models::SyncJobProperties> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/properties", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18636,6 +29986,19 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/jobconfigs`
     ///
     /// Lists job configurations belonging to the external connection.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-jobconfigs");
+    /// for jobconfig in client.sync().externalsystems().jobconfigs().list(1)? {
+    ///     println!("{}", jobconfig.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, external_system_id: impl Display) -> Result<Vec<models::JobConfigurationReturn>> {
         let path = format!("/sync/externalsystems/{}/jobconfigs", seg(external_system_id));
         let query: Query = Query::new();
@@ -18647,6 +30010,20 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `POST /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/start`
     ///
     /// Schedules the configuration as a background job. A `204` response confirms scheduling, not successful synchronization. Inspect `/sync/executions` and `/sync/logs` for progress. Requires an enabled license or active trial.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncExecutionCreate = serde_json::from_value(serde_json::json!({
+    ///     "isDryRun": true
+    /// }))?;
+    /// client.sync().externalsystems().jobconfigs().start(1, 1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn start(&self, external_system_id: impl Display, job_id: impl Display, body: &models::SyncExecutionCreate) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/start", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18659,6 +30036,24 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `PUT /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}`
     ///
     /// Updates the job configuration for the external connection.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncJobConfigurationUpdate = serde_json::from_value(serde_json::json!({
+    ///     "autoScheduleEnabled": false,
+    ///     "domainType": "person",
+    ///     "name": "Synchronize people",
+    ///     "id": 1
+    /// }))?;
+    /// let result = client.sync().externalsystems().jobconfigs().update(1, 1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, external_system_id: impl Display, job_id: impl Display, body: &models::SyncJobConfigurationUpdate) -> Result<models::JobConfigurationReturn> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18671,6 +30066,34 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `PUT /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/filter`
     ///
     /// Filter operators and values are interpreted by the adapter.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncJobFiltersUpdate = serde_json::from_value(serde_json::json!({
+    ///     "es": [
+    ///         {
+    ///             "field": "statusId",
+    ///             "system": "master",
+    ///             "values": {}
+    ///         }
+    ///     ],
+    ///     "master": [
+    ///         {
+    ///             "field": "statusId",
+    ///             "system": "master",
+    ///             "values": {}
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.sync().externalsystems().jobconfigs().update_filter(1, 1, &body)?;
+    /// println!("{:?}", result);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_filter(&self, external_system_id: impl Display, job_id: impl Display, body: &models::SyncJobFiltersUpdate) -> Result<models::SyncJobFilters> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/filter", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18683,6 +30106,40 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// `PUT /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/properties`
     ///
     /// Value mappings and adapter options are inherited from the referenced mapping.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::SyncJobPropertiesUpdate = serde_json::from_value(serde_json::json!({
+    ///     "propertyMappingsESToMaster": [
+    ///         {
+    ///             "fieldMappingId": 1,
+    ///             "from": "firstName",
+    ///             "fromFilter": "",
+    ///             "system": "master",
+    ///             "to": "firstName",
+    ///             "toFilter": ""
+    ///         }
+    ///     ],
+    ///     "propertyMappingsMasterToES": [
+    ///         {
+    ///             "fieldMappingId": 1,
+    ///             "from": "firstName",
+    ///             "fromFilter": "",
+    ///             "system": "master",
+    ///             "to": "firstName",
+    ///             "toFilter": ""
+    ///         }
+    ///     ]
+    /// }))?;
+    /// let result = client.sync().externalsystems().jobconfigs().update_properties(1, 1, &body)?;
+    /// println!("{}", result.domain_type);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update_properties(&self, external_system_id: impl Display, job_id: impl Display, body: &models::SyncJobPropertiesUpdate) -> Result<models::SyncJobProperties> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/properties", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
@@ -18704,6 +30161,18 @@ impl<'a> SyncExternalsystemsJobconfigsExecutionsResource<'a> {
     /// `GET /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/executions/{executionId}`
     ///
     /// Returns the arguments saved for a background execution. Adapter credentials and the external connection headers are removed. Mapping system values are normalized to `master` and `es`.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let execution = client.sync().externalsystems().jobconfigs().executions().get(1, 1, "run-123")?;
+    /// println!("{}", execution.domain_type);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, external_system_id: impl Display, job_id: impl Display, execution_id: impl Display) -> Result<models::SyncExecutionDetails> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/executions/{}", seg(external_system_id), seg(job_id), seg(execution_id));
         let query: Query = Query::new();
@@ -18724,6 +30193,18 @@ impl<'a> TagsResource<'a> {
     /// `PUT /tags/{domainType}/{domainId}/{tagId}`
     ///
     /// Attaches the tag to the target without a request body. Requires domain-specific assignment rights for the target. An existing assignment is reused. A new assignment requires the tag to exist in the specified domain. The response contains the tag with `count` normally set to `1`, not the tag link.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-tags-domainType-domainId-tagId");
+    /// let tag = client.tags().attach("person", 35, 42)?;
+    /// println!("{}", tag.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn attach(&self, domain_type: impl Display, domain_id: impl Display, tag_id: impl Display) -> Result<models::TagWithCount> {
         let path = format!("/tags/{}/{}/{}", seg(domain_type), seg(domain_id), seg(tag_id));
         let query: Query = Query::new();
@@ -18735,6 +30216,21 @@ impl<'a> TagsResource<'a> {
     /// `POST /tags/{domainType}/{domainId}`
     ///
     /// Finds or creates the named tag and attaches it to the target. Requires domain-specific assignment rights: person-tag visibility and person write or group-internal edit rights, group visibility and applicable group-edit rights, song-category edit rights, or appointment edit rights. Separate tag administration rights are not required. An existing assignment is reused. The response contains the tag with `count` normally set to `1`, not the tag link.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-tags-domainType-domainId");
+    /// let body: models::TagAssignmentCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Mission"
+    /// }))?;
+    /// let tag = client.tags().attach_new("person", 35, &body)?;
+    /// println!("{}", tag.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn attach_new(&self, domain_type: impl Display, domain_id: impl Display, body: &models::TagAssignmentCreate) -> Result<models::TagWithCount> {
         let path = format!("/tags/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -18747,6 +30243,21 @@ impl<'a> TagsResource<'a> {
     /// `POST /tags/{domainType}`
     ///
     /// Creates an unused tag with `count` set to `0`. Requires "edit masterdata" permission in `churchdb`, `churchgroup`, or `churchservice`, or "admin appointment tags" permission in `churchcal`, depending on the domain. The scheduled purge may remove unused song tags and, when person settings are disabled, unused person tags not referenced by services. It retains group and appointment tags.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-tags-domainType");
+    /// let body: models::TagCreate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Mission"
+    /// }))?;
+    /// let result = client.tags().create("person", &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, domain_type: impl Display, body: &models::TagCreate) -> Result<models::TagWithCount> {
         let path = format!("/tags/{}", seg(domain_type));
         let query: Query = Query::new();
@@ -18759,6 +30270,17 @@ impl<'a> TagsResource<'a> {
     /// `DELETE /tags/{tagId}`
     ///
     /// Deletes the tag and all its object assignments through the database cascade. Requires "edit masterdata" permission in `churchdb`, `churchgroup`, or `churchservice`, or "admin appointment tags" permission in `churchcal`, depending on the domain. No dry-run or delete-conflict workflow is available.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.tags().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, tag_id: impl Display) -> Result<()> {
         let path = format!("/tags/{}", seg(tag_id));
         let query: Query = Query::new();
@@ -18770,6 +30292,17 @@ impl<'a> TagsResource<'a> {
     /// `DELETE /tags/{domainType}/{domainId}/{tagId}`
     ///
     /// Removes the matching assignment while retaining the tag itself. Requires the same domain-specific assignment rights as adding a tag. A missing assignment succeeds, including when the tag is missing or belongs to another domain. A missing target may still produce `404`, depending on its domain policy.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.tags().detach("person", 35, 42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn detach(&self, domain_type: impl Display, domain_id: impl Display, tag_id: impl Display) -> Result<()> {
         let path = format!("/tags/{}/{}/{}", seg(domain_type), seg(domain_id), seg(tag_id));
         let query: Query = Query::new();
@@ -18781,6 +30314,18 @@ impl<'a> TagsResource<'a> {
     /// `GET /tags/{tagId}`
     ///
     /// Returns one tag. Requires "edit masterdata" permission in `churchdb`, `churchgroup`, or `churchservice`, or "admin appointment tags" permission in `churchcal`, depending on the domain. Unlike object-specific reads, this endpoint requires administration rights. The tag’s `count` is normally `1`, not a calculated usage count.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-tags-tagId");
+    /// let tag = client.tags().get(42)?;
+    /// println!("{}", tag.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, tag_id: impl Display) -> Result<models::TagWithCount> {
         let path = format!("/tags/{}", seg(tag_id));
         let query: Query = Query::new();
@@ -18792,6 +30337,19 @@ impl<'a> TagsResource<'a> {
     /// `GET /tags/{domainType}`
     ///
     /// Lists all tags in the domain, including currently unused tags, sorted by name and without per-object visibility checks. Each tag’s `count` includes links to objects the caller may not be able to view, while `meta.count` is the number of returned tags.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-tags-domainType");
+    /// for tag in client.tags().list("person")? {
+    ///     println!("{}", tag.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, domain_type: impl Display) -> Result<Vec<models::TagWithCount>> {
         let path = format!("/tags/{}", seg(domain_type));
         let query: Query = Query::new();
@@ -18803,6 +30361,19 @@ impl<'a> TagsResource<'a> {
     /// `GET /tags/{domainType}/{domainId}`
     ///
     /// Lists tags attached to this domain object, sorted by name and without pagination. Requires the domain’s tag-view permission for the target. Each tag’s `count` is normally `1`, not its overall usage count, while `meta.count` is the number of returned tags.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-tags-domainType-domainId");
+    /// for for_object in client.tags().list_for_object("person", 35)? {
+    ///     println!("{}", for_object.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_for_object(&self, domain_type: impl Display, domain_id: impl Display) -> Result<Vec<models::TagWithCount>> {
         let path = format!("/tags/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
@@ -18814,6 +30385,21 @@ impl<'a> TagsResource<'a> {
     /// `PUT /tags/{tagId}`
     ///
     /// Replaces name, description and color while keeping the domain unchanged. Requires "edit masterdata" permission in `churchdb`, `churchgroup`, or `churchservice`, or "admin appointment tags" permission in `churchcal`, depending on the domain. The uniqueness check reads `id` instead of the route’s `tagId`, so retaining the same name may be rejected as a duplicate.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-tags-tagId");
+    /// let body: models::TagUpdate = serde_json::from_value(serde_json::json!({
+    ///     "name": "Mission"
+    /// }))?;
+    /// let result = client.tags().update(42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, tag_id: impl Display, body: &models::TagUpdate) -> Result<models::TagWithCount> {
         let path = format!("/tags/{}", seg(tag_id));
         let query: Query = Query::new();
@@ -18839,6 +30425,17 @@ impl<'a> TranslationsResource<'a> {
     /// `DELETE /translations/{keyId}`
     ///
     /// Marks a locally created translation key as deleted and clears generated message files. It no longer appears in translation queries. Product-supplied keys are rejected with 400. This is a soft deletion; language entries are not individually deleted by this operation. There is no dry-run mode.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.translations().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, key_id: impl Display) -> Result<()> {
         let path = format!("/translations/{}", seg(key_id));
         let query: Query = Query::new();
@@ -18852,6 +30449,19 @@ impl<'a> TranslationsResource<'a> {
     /// Returns non-deleted translation keys with matching non-deleted language entries. updated_by_church and needs_check filter language entries; omit either to include both boolean states. The returned translations map contains the matching entries, and keys without any match are omitted. The list is unpaginated, has no guaranteed order and returns meta.count, not page metadata.
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-translations");
+    /// for translation in client.translations().list()? {
+    ///     println!("{}", translation.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::TranslationKey>> {
         self.list_with(&Default::default())
     }
@@ -18874,6 +30484,23 @@ impl<'a> TranslationsResource<'a> {
     /// `GET /translations/keysbytext`
     ///
     /// Finds keys whose non-deleted translation text exactly matches the trimmed query in any language. This is not a substring search. Keys are returned in a nested array: data always contains one array, which is empty when nothing matches; meta.count is therefore always 1. A key can appear more than once if multiple languages match. No global ordering or pagination is applied.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-translations-keysbytext");
+    /// let query = GetTranslationsKeysbytextQuery {
+    ///     query: Some("Welcome".into()),
+    ///     ..Default::default()
+    /// };
+    /// for keysbytext in client.translations().list_keysbytext(&query)? {
+    ///     println!("{:?}", keysbytext);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_keysbytext(&self, query: &GetTranslationsKeysbytextQuery) -> Result<Vec<Vec<String>>> {
         let path = "/translations/keysbytext".to_owned();
         let query: Query = query.to_query();
@@ -18885,6 +30512,21 @@ impl<'a> TranslationsResource<'a> {
     /// `PUT /translations/{keyId}`
     ///
     /// Changes the key string and module of an installation-created translation key. Both fields are required; individual translated texts are unchanged. Product-supplied keys are rejected with 400. The response is empty.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::TranslationKeyUpdate = serde_json::from_value(serde_json::json!({
+    ///     "key": "mychurch.welcome",
+    ///     "module": "churchcore"
+    /// }))?;
+    /// client.translations().update(1, &body)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, key_id: impl Display, body: &models::TranslationKeyUpdate) -> Result<()> {
         let path = format!("/translations/{}", seg(key_id));
         let query: Query = Query::new();
@@ -18939,6 +30581,17 @@ impl<'a> TranslationsLanguagesResource<'a> {
     /// `DELETE /translations/{keyId}/languages/{languageId}`
     ///
     /// Marks one language translation as deleted, updates its modification timestamp and clears generated message files. The key and other language entries remain. An unknown key/language pair returns 404. Repeating the operation on an existing already-deleted entry also succeeds with 204. There is no dry-run mode.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.translations().languages().delete(1, 1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, key_id: impl Display, language_id: impl Display) -> Result<()> {
         let path = format!("/translations/{}/languages/{}", seg(key_id), seg(language_id));
         let query: Query = Query::new();
@@ -18959,6 +30612,22 @@ impl<'a> TwofactorResource<'a> {
     /// `POST /twofactor/totp`
     ///
     /// Checks a code against the stored authenticator secret for the current person. Only the current person may verify their own secret. Initialization must have completed first. A successful call returns status=success and records the code as used; it does not enable two-factor authentication. Call PUT /persons/{personId}/settings/twofactor separately to activate. Missing secrets, invalid codes and codes already recorded as used produce 400. Keep the code as a string to preserve leading zeroes.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::PersonTwoFactorVerify = serde_json::from_value(serde_json::json!({
+    ///     "code": "012345",
+    ///     "personId": 42
+    /// }))?;
+    /// let twofactor = client.twofactor().totp(&body)?;
+    /// println!("{}", twofactor.status);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn totp(&self, body: &models::PersonTwoFactorVerify) -> Result<models::PostTwofactorTotpData> {
         let path = "/twofactor/totp".to_owned();
         let query: Query = Query::new();
@@ -18982,6 +30651,17 @@ impl<'a> WebsiteResource<'a> {
     /// TODO
     ///
     /// `GET /website/starttest`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-website-starttest");
+    /// client.website().get_starttest()?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_starttest(&self) -> Result<()> {
         let path = "/website/starttest".to_owned();
         let query: Query = Query::new();
@@ -19000,6 +30680,22 @@ impl<'a> WebsiteDataResource<'a> {
     /// post-website-data
     ///
     /// `POST /website/data`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body: models::WebsiteDataCreate = serde_json::from_value(serde_json::json!({
+    ///     "domainId": 42,
+    ///     "domainType": "beispiel"
+    /// }))?;
+    /// let result = client.website().data().create(&body)?;
+    /// println!("{}", result.id);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::WebsiteDataCreate) -> Result<models::WebsiteDataWithoutInclude> {
         let path = "/website/data".to_owned();
         let query: Query = Query::new();
@@ -19010,6 +30706,17 @@ impl<'a> WebsiteDataResource<'a> {
     /// delete-website-data
     ///
     /// `DELETE /website/data/{id}`
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.website().data().delete(4)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/website/data/{}", seg(id));
         let query: Query = Query::new();
@@ -19023,6 +30730,19 @@ impl<'a> WebsiteDataResource<'a> {
     /// Get the data that is shared with the CT website
     ///
     /// Use [`Self::list_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-website-data");
+    /// for item in client.website().data().list()? {
+    ///     println!("{:?}", item);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<serde_json::Value>> {
         self.list_with(&Default::default())
     }
@@ -19071,6 +30791,18 @@ impl<'a> WhoamiResource<'a> {
     /// This endpoint returns the current user. If the request is unauthorized, the anonymous user (aka public user) is returned.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-whoami");
+    /// let whoami = client.whoami().get()?;
+    /// println!("{:?}", whoami.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self) -> Result<models::Person> {
         self.get_with(&Default::default())
     }
@@ -19115,6 +30847,18 @@ impl<'a> WidgetsResource<'a> {
     /// get-widgets-blog
     ///
     /// `GET /widgets/blog`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-widgets-blog");
+    /// let blog = client.widgets().get_blog()?;
+    /// println!("{:?}", blog.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_blog(&self) -> Result<models::GetWidgetsBlogData> {
         let path = "/widgets/blog".to_owned();
         let query: Query = Query::new();
@@ -19124,6 +30868,18 @@ impl<'a> WidgetsResource<'a> {
     /// get-widgets-rss
     ///
     /// `GET /widgets/rss`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-widgets-rss");
+    /// let rss = client.widgets().get_rss()?;
+    /// println!("{}", rss.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get_rss(&self) -> Result<models::RssFeed> {
         let path = "/widgets/rss".to_owned();
         let query: Query = Query::new();
@@ -19150,6 +30906,19 @@ impl<'a> WikiResource<'a> {
     /// Lists the latest revisions of non-system, non-redirect pages in viewable categories. Guest category permissions are supported. Omitted/empty wiki_category_ids selects every viewable category; inaccessible IDs are silently dropped. Without query, ordering defaults to display title, then GUID. With query, default ranking prefers matching category main pages, then title matches, exact-content matches and finally matches containing all query words. Explicit order_fields overrides ranking. Pagination is applied after finding and enriching all matching pages. Text is omitted unless include[]=text; include[]=preview returns an unrendered stored-text prefix, which may contain raw HTML. searchPreview is independently included when query is supplied. meta contains page count and pagination total/limit/current/lastPage; lastPage is 0 for no results.
     ///
     /// Use [`Self::list_pages_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-wiki-pages");
+    /// for page in client.wiki().list_pages()? {
+    ///     println!("{}", page.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_pages(&self) -> Result<Vec<models::SimpleWikiPage>> {
         self.list_pages_with(&Default::default())
     }
@@ -19172,6 +30941,23 @@ impl<'a> WikiResource<'a> {
     /// `GET /wiki/search`
     ///
     /// Searches latest non-system, non-redirect pages in categories the current user or guest can view. Omitted/empty wiki_category_ids means all viewable categories; inaccessible categories are silently dropped. Results are grouped by relevance: category-name main pages, title matches (shorter first), exact text matches and then matches containing all query words. Results are deduplicated by GUID and are not paginated. The query is not trimmed; SQL LIKE wildcard characters % and _ are interpreted. Results contain domain-object links and a text preview with Markdown emphasis for matches, not the full page. For paginated page resources, use GET /wiki/pages.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-wiki-search");
+    /// let query = GetWikiSearchQuery {
+    ///     query: Some("welcome".into()),
+    ///     ..Default::default()
+    /// };
+    /// for search in client.wiki().list_search(&query)? {
+    ///     println!("{}", search.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list_search(&self, query: &GetWikiSearchQuery) -> Result<Vec<models::WikiSearchResult>> {
         let path = "/wiki/search".to_owned();
         let query: Query = query.to_query();
@@ -19247,6 +31033,24 @@ impl<'a> WikiCategoriesResource<'a> {
     /// `POST /wiki/categories`
     ///
     /// Creates a wiki category and an initial page titled main (version 1, empty text, Markdown enabled). Requires churchwiki edit masterdata. The creator receives view category and edit category permissions for the new category if missing. A nonexistent campusId silently resolves to null. The returned category has an empty permissions object; use the list to obtain page-operation hints.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-wiki-categories");
+    /// let body: models::WikiCategoryCreate = serde_json::from_value(serde_json::json!({
+    ///     "fileAccessWithoutPermission": false,
+    ///     "inMenu": true,
+    ///     "name": "Dokumentation",
+    ///     "sortKey": 10
+    /// }))?;
+    /// let result = client.wiki().categories().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, body: &models::WikiCategoryCreate) -> Result<models::WikiCategory> {
         let path = "/wiki/categories".to_owned();
         let query: Query = Query::new();
@@ -19259,6 +31063,17 @@ impl<'a> WikiCategoriesResource<'a> {
     /// `DELETE /wiki/categories/{wikiCategoryId}`
     ///
     /// Deletes the category, all its wiki page versions and category view/edit permission assignments. Requires churchwiki edit masterdata. Existing pages do not block this deletion, and no page-level protected-system-page check is made by this handler. A missing category normally succeeds with 204. No request body or dry-run parameter is consumed.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.wiki().categories().delete(42)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, wiki_category_id: impl Display) -> Result<()> {
         let path = format!("/wiki/categories/{}", seg(wiki_category_id));
         let query: Query = Query::new();
@@ -19270,6 +31085,19 @@ impl<'a> WikiCategoriesResource<'a> {
     /// `GET /wiki/categories`
     ///
     /// Lists wiki categories for which the current user (including a guest) has churchwiki view category permission. Categories organize pages and define their access permissions. Results are sorted by sortKey, then stored name, without pagination. inMenu does not filter this catalog. Each category’s canEdit/canDelete flags describe page operations based on edit category, not permission to rename or delete the category itself. The top-level permissions.editMasterData flag controls category administration. meta.count counts visible categories.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-wiki-categories");
+    /// for category in client.wiki().categories().list()? {
+    ///     println!("{}", category.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self) -> Result<Vec<models::WikiCategory>> {
         let path = "/wiki/categories".to_owned();
         let query: Query = Query::new();
@@ -19281,6 +31109,24 @@ impl<'a> WikiCategoriesResource<'a> {
     /// `PUT /wiki/categories/{wikiCategoryId}`
     ///
     /// Replaces the category’s name, sort order, menu flag, file-access flag and optional campus association. Requires churchwiki edit masterdata. name, sortKey, inMenu and fileAccessWithoutPermission are required; omitted/null or unknown campusId clears the association. Pages and their versions are retained. The response permissions object is normally empty.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-wiki-categories-id");
+    /// let body: models::WikiCategoryUpdate = serde_json::from_value(serde_json::json!({
+    ///     "fileAccessWithoutPermission": false,
+    ///     "inMenu": true,
+    ///     "name": "Dokumentation",
+    ///     "sortKey": 10
+    /// }))?;
+    /// let result = client.wiki().categories().update(42, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn update(&self, wiki_category_id: impl Display, body: &models::WikiCategoryUpdate) -> Result<models::WikiCategory> {
         let path = format!("/wiki/categories/{}", seg(wiki_category_id));
         let query: Query = Query::new();
@@ -19306,6 +31152,21 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// `POST /wiki/categories/{wikiCategoryId}/pages`
     ///
     /// Creates a page with a generated stable GUID and version 1. Requires churchwiki edit category; creating a title that resolves to a protected system page additionally requires a super administrator. The trimmed title must be unique in the category across stored versions. Unicode ellipsis is normalized to three periods. Omitted text is stored as null but returned as an empty string. isMarkdown and onStartpage default to false; this differs from the main page automatically created with a new category, which starts with Markdown enabled.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-wiki-categories-id-pages");
+    /// let body: models::WikiPageCreate = serde_json::from_value(serde_json::json!({
+    ///     "title": "My new wiki page"
+    /// }))?;
+    /// let result = client.wiki().categories().pages().create(42, &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn create(&self, wiki_category_id: impl Display, body: &models::WikiPageCreate) -> Result<models::WikiPage> {
         let path = format!("/wiki/categories/{}/pages", seg(wiki_category_id));
         let query: Query = Query::new();
@@ -19318,6 +31179,17 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// `DELETE /wiki/categories/{wikiCategoryId}/pages/{identifier}`
     ///
     /// Deletes the page identified by GUID and every stored revision. Requires churchwiki edit category. Protected system pages in category 0 cannot be deleted through this endpoint, including by super administrators. Missing pages succeed with 204. Latest redirect pages targeting the deleted title have redirectTo cleared; older redirect revisions are retained. This deletion has no dry-run or version precondition.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.wiki().categories().pages().delete(42, "681F54E3-2EB7-40A4-84F0-EFF8E8F05727")?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn delete(&self, wiki_category_id: impl Display, identifier: impl Display) -> Result<()> {
         let path = format!("/wiki/categories/{}/pages/{}", seg(wiki_category_id), seg(identifier));
         let query: Query = Query::new();
@@ -19331,6 +31203,18 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// Requires churchwiki view category permission, including any permissions assigned to guests. For a protected system page in category 0, super-administrator access also permits the individual read. Returns one page revision with text: Markdown is returned as stored, legacy HTML is sanitized, and null content becomes an empty string. Prefer the stable page GUID; legacy titles are accepted and Unicode ellipsis characters in titles are normalized to three periods. A version value of 0 behaves like omission and selects the latest revision; other nonzero values select that exact revision. Redirect pages are returned as data with redirectTo rather than followed.
     ///
     /// Use [`Self::get_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-wiki-categories-id-pages-identifier");
+    /// let page = client.wiki().categories().pages().get(42, "main")?;
+    /// println!("{}", page.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, wiki_category_id: impl Display, identifier: impl Display) -> Result<models::WikiPage> {
         self.get_with(wiki_category_id, identifier, &Default::default())
     }
@@ -19353,6 +31237,19 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// `GET /wiki/categories/{wikiCategoryId}/pages`
     ///
     /// Lists the latest version of each non-system page in this category, including redirect pages. Requires churchwiki view category permission. Page text and previews are omitted. Results are ordered by display title (main uses the category name), then GUID, without pagination; meta.count is the number of returned pages. The nested wikiCategory.permissions object is normally empty, while page.permissions contains canEdit/canDelete.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-wiki-categories-id-pages");
+    /// for page in client.wiki().categories().pages().list(42)? {
+    ///     println!("{}", page.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, wiki_category_id: impl Display) -> Result<Vec<models::SimpleWikiPage>> {
         let path = format!("/wiki/categories/{}/pages", seg(wiki_category_id));
         let query: Query = Query::new();
@@ -19364,6 +31261,21 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// `PATCH /wiki/categories/{wikiCategoryId}/pages/{identifier}`
     ///
     /// Updates only supplied text, isMarkdown and onStartpage fields on the latest revision identified by GUID. Titles cannot be changed through this endpoint. Requires category edit permission; protected system pages in category 0 require a super administrator. Changed text creates the next revision with the same GUID; unchanged text or changes only to the flags modify the existing latest revision. Trimmed blank/null text clears the stored content. No expected-version or ETag precondition is accepted, so this endpoint does not provide optimistic edit-conflict protection.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("patch-wiki-categories-id-pages-identifier");
+    /// let body: models::WikiPageUpdate = serde_json::from_value(serde_json::json!({
+    ///     "isMarkdown": true
+    /// }))?;
+    /// let result = client.wiki().categories().pages().patch(42, "681F54E3-2EB7-40A4-84F0-EFF8E8F05727", &body)?;
+    /// println!("{}", result.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn patch(&self, wiki_category_id: impl Display, identifier: impl Display, body: &models::WikiPageUpdate) -> Result<models::WikiPage> {
         let path = format!("/wiki/categories/{}/pages/{}", seg(wiki_category_id), seg(identifier));
         let query: Query = Query::new();
@@ -19400,6 +31312,18 @@ impl<'a> WikiCategoriesPagesVersionsResource<'a> {
     /// `GET /wiki/categories/{wikiCategoryId}/pages/{identifier}/versions/{version}`
     ///
     /// Requires churchwiki view category permission, including any permissions assigned to guests. For a protected system page in category 0, super-administrator access also permits the individual read. Returns one page revision with text: Markdown is returned as stored, legacy HTML is sanitized, and null content becomes an empty string. Prefer the stable page GUID; legacy titles are accepted and Unicode ellipsis characters in titles are normalized to three periods. A version value of 0 behaves like omission and selects the latest revision; other nonzero values select that exact revision. Redirect pages are returned as data with redirectTo rather than followed.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-wiki-categories-id-pages-id-versions-id");
+    /// let version = client.wiki().categories().pages().versions().get(42, "main", 1)?;
+    /// println!("{}", version.title);
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn get(&self, wiki_category_id: impl Display, identifier: impl Display, version: impl Display) -> Result<models::WikiPage> {
         let path = format!("/wiki/categories/{}/pages/{}/versions/{}", seg(wiki_category_id), seg(identifier), seg(version));
         let query: Query = Query::new();
@@ -19411,6 +31335,19 @@ impl<'a> WikiCategoriesPagesVersionsResource<'a> {
     /// `GET /wiki/categories/{wikiCategoryId}/pages/{identifier}/versions`
     ///
     /// Requires churchwiki view category permission, including any permissions assigned to guests. For a protected system page in category 0, super-administrator access also permits the individual read. Returns all revisions for the GUID or legacy title, newest version first, including each revision’s text. Missing pages return an empty list rather than 404. The list is not paginated; meta.count is the number of versions. Metadata and current permission hints are included for each revision. Title identifiers are deprecated for this history endpoint.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-wiki-categories-id-pages-identifier-versions");
+    /// for version in client.wiki().categories().pages().versions().list(42, "main")? {
+    ///     println!("{}", version.title);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn list(&self, wiki_category_id: impl Display, identifier: impl Display) -> Result<Vec<models::WikiPage>> {
         let path = format!("/wiki/categories/{}/pages/{}/versions", seg(wiki_category_id), seg(identifier));
         let query: Query = Query::new();

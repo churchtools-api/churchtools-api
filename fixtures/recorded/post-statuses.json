@@ -1,0 +1,26 @@
+{
+ "operation": "post-statuses",
+ "request": {
+  "method": "POST",
+  "path": "/statuses",
+  "query": [],
+  "body": {
+   "name": "ctrs-test Status bd821c",
+   "securityLevelId": 1,
+   "shorty": "T"
+  }
+ },
+ "body": {
+  "data": {
+   "id": 46,
+   "name": "ctrs-test Status bd821c",
+   "nameTranslated": "ctrs-test Status bd821c",
+   "sortKey": 0,
+   "shorty": "T",
+   "shortyTranslated": "T",
+   "isMember": false,
+   "isSearchable": false,
+   "securityLevelId": 1
+  }
+ }
+}
