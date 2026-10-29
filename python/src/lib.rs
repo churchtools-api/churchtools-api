@@ -64,7 +64,7 @@ mod _core {
     #[pymethods]
     impl Client {
         #[new]
-        #[pyo3(signature = (base_url, token=None, timeout=30.0, min_interval=None, allow_insecure_http=false, max_response_size=None))]
+        #[pyo3(signature = (base_url, token=None, timeout=30.0, min_interval=None, allow_insecure_http=false, max_response_size=None, connect_timeout=None))]
         fn new(
             py: Python<'_>,
             base_url: &str,
@@ -73,8 +73,13 @@ mod _core {
             min_interval: Option<f64>,
             allow_insecure_http: bool,
             max_response_size: Option<u64>,
+            connect_timeout: Option<f64>,
         ) -> PyResult<Self> {
-            let mut inner = churchtools_core::Client::builder(base_url)
+            let mut builder = churchtools_core::Client::builder(base_url);
+            if let Some(connect) = connect_timeout {
+                builder = builder.connect_timeout(seconds("connect_timeout", connect)?);
+            }
+            let mut inner = builder
                 .token(token)
                 .timeout(seconds("timeout", timeout)?)
                 .allow_insecure_http(allow_insecure_http)

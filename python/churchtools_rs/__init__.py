@@ -38,7 +38,8 @@ class Client(Resources):
     Args:
         base_url: Instance URL, e.g. `https://meinegemeinde.church.tools` (`/api` optional).
         token: Personal login token; sent as `Authorization: Login <token>`.
-        timeout: Request timeout in seconds.
+        timeout: Timeout in seconds for a whole request including the body; raise
+            it for large downloads, uploads or slow exports.
         min_interval: Minimum time in seconds between two requests (rate limit),
             e.g. `0.25` for at most four requests per second. Answers with
             `429 Too Many Requests` are retried regardless of this setting.
@@ -46,6 +47,8 @@ class Client(Resources):
             token then travels unencrypted; only for instances in a trusted network.
         max_response_size: Largest response body in bytes that is read (default
             256 MiB); larger ones raise `TransportError`.
+        connect_timeout: Timeout in seconds for establishing the connection
+            (default 10, at most `timeout`), so an unreachable host fails fast.
     """
 
     def __init__(
@@ -57,8 +60,11 @@ class Client(Resources):
         min_interval: _t.Optional[float] = None,
         allow_insecure_http: bool = False,
         max_response_size: _t.Optional[int] = None,
+        connect_timeout: _t.Optional[float] = None,
     ) -> None:
-        self._core = _CoreClient(base_url, token, timeout, min_interval, allow_insecure_http, max_response_size)
+        self._core = _CoreClient(
+            base_url, token, timeout, min_interval, allow_insecure_http, max_response_size, connect_timeout
+        )
         super().__init__(self._core)
 
     @classmethod

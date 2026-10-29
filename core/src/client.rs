@@ -16,6 +16,8 @@ pub type Query = Vec<(String, String)>;
 /// Default for [`ClientBuilder::max_response_size`]: 256 MiB.
 pub const DEFAULT_MAX_RESPONSE_SIZE: u64 = 256 * 1024 * 1024;
 
+const DEFAULT_CONNECT_TIMEOUT: Duration = Duration::from_secs(10);
+
 /// How often a request answered with `429 Too Many Requests` is retried.
 const MAX_RETRIES_ON_429: u32 = 3;
 /// Upper bound for waiting on a `Retry-After` header.
@@ -30,6 +32,7 @@ pub struct Client {
     api_url: String,
     token: Option<String>,
     timeout: Duration,
+    connect_timeout: Duration,
     max_response_size: u64,
     throttle: Option<Arc<Throttle>>,
 }
@@ -41,6 +44,7 @@ impl std::fmt::Debug for Client {
             .field("api_url", &self.api_url)
             .field("token", &self.token.as_ref().map(|_| "<redacted>"))
             .field("timeout", &self.timeout)
+            .field("connect_timeout", &self.connect_timeout)
             .field("max_response_size", &self.max_response_size)
             .field("throttle", &self.throttle)
             .finish_non_exhaustive()
@@ -97,6 +101,7 @@ pub struct ClientBuilder {
     base_url: String,
     token: Option<String>,
     timeout: Duration,
+    connect_timeout: Option<Duration>,
     max_response_size: u64,
     allow_insecure_http: bool,
 }
@@ -108,9 +113,19 @@ impl ClientBuilder {
         self
     }
 
-    /// Timeout for a whole request (default 30 s).
+    /// Timeout for a whole request including reading the body (default 30 s).
+    ///
+    /// Raise it for large downloads, uploads or slow exports.
     pub fn timeout(mut self, timeout: Duration) -> Self {
         self.timeout = timeout;
+        self
+    }
+
+    /// Timeout for establishing the connection (default 10 s, at most
+    /// [`timeout`](Self::timeout)), so an unreachable host fails fast even
+    /// with a long request timeout.
+    pub fn connect_timeout(mut self, timeout: Duration) -> Self {
+        self.connect_timeout = Some(timeout);
         self
     }
 
@@ -131,8 +146,10 @@ impl ClientBuilder {
     }
 
     pub fn build(self) -> Result<Client> {
+        let connect_timeout = self.connect_timeout.unwrap_or(DEFAULT_CONNECT_TIMEOUT).min(self.timeout);
         let http = reqwest::blocking::Client::builder()
             .timeout(self.timeout)
+            .connect_timeout(connect_timeout)
             .user_agent(USER_AGENT)
             .redirect(redirect_policy())
             .build()?;
@@ -141,6 +158,7 @@ impl ClientBuilder {
             api_url: normalize_base_url(&self.base_url, self.allow_insecure_http)?,
             token: self.token,
             timeout: self.timeout,
+            connect_timeout,
             max_response_size: self.max_response_size,
             throttle: None,
         })
@@ -204,6 +222,7 @@ impl Client {
             base_url: base_url.to_owned(),
             token: None,
             timeout: Duration::from_secs(30),
+            connect_timeout: None,
             max_response_size: DEFAULT_MAX_RESPONSE_SIZE,
             allow_insecure_http: false,
         }
@@ -239,6 +258,7 @@ impl Client {
         let session = Self {
             http: reqwest::blocking::Client::builder()
                 .timeout(self.timeout)
+                .connect_timeout(self.connect_timeout)
                 .user_agent(USER_AGENT)
                 .redirect(redirect_policy())
                 .cookie_store(true)
@@ -618,6 +638,26 @@ mod tests {
             "HTTP/1.1 {status}\r\n{headers}Content-Length: {}\r\nConnection: close\r\n\r\n{body}",
             body.len()
         )
+    }
+
+    #[test]
+    fn connect_timeout_defaults_to_10s_but_not_above_timeout() {
+        let client = Client::new("https://x.church.tools", None).unwrap();
+        assert_eq!(client.connect_timeout, Duration::from_secs(10));
+        let short = Client::with_timeout("https://x.church.tools", None, Duration::from_secs(3)).unwrap();
+        assert_eq!(short.connect_timeout, Duration::from_secs(3));
+        let custom = Client::builder("https://x.church.tools")
+            .timeout(Duration::from_secs(600))
+            .connect_timeout(Duration::from_millis(200))
+            .build()
+            .unwrap();
+        assert_eq!((custom.timeout, custom.connect_timeout), (Duration::from_secs(600), Duration::from_millis(200)));
+        // A blackholed address fails after the connect timeout, not after 600 s.
+        let start = Instant::now();
+        let blackhole = Client::builder("http://10.255.255.1").allow_insecure_http(true);
+        let blackhole = blackhole.timeout(Duration::from_secs(600)).connect_timeout(Duration::from_millis(200));
+        assert!(blackhole.build().unwrap().request(Method::GET, "/x", &[], None).is_err());
+        assert!(start.elapsed() < Duration::from_secs(5));
     }
 
     #[test]
