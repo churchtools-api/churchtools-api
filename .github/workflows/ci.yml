@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Tests (unit, recorded responses, doc examples)
+        run: cargo test --workspace
+      - name: Docs without warnings
+        run: cargo doc -p churchtools-core --no-deps
+        env:
+          RUSTDOCFLAGS: -D warnings
+
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.13"]
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: |
+          uv venv
+          uv pip install --group dev
+          uv run --no-sync maturin develop
+      - name: Ruff
+        run: uv run --no-sync ruff check ..
+      - name: Mypy
+        run: uv run --no-sync mypy --strict churchtools_rs tests
+      - name: Tests (offline)
+        run: uv run --no-sync pytest tests --ignore=tests/live ../codegen/tests
+
+  generated-code:
+    # The generated files must match the generator and the stored spec.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Regenerate
+        run: python codegen/generate.py
+      - name: Check for differences
+        run: git diff --exit-code --stat
