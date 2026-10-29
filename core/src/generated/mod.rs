@@ -3,3 +3,8 @@
 pub mod api;
 pub mod models;
 pub mod queries;
+
+/// ChurchTools version whose API description the code was generated from.
+pub const API_VERSION: &str = "3.138.0";
+/// Build number of [`API_VERSION`].
+pub const API_BUILD: &str = "32935";

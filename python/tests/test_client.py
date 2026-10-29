@@ -309,3 +309,13 @@ def test_deprecated_operations_and_arguments_warn(client: ct.Client) -> None:
     with pytest.warns(DeprecationWarning, match="argument .type_. is deprecated in the ChurchTools API. Use `format`"):
         with pytest.raises(ct.ServerError):
             client.groups.members.create_export(7, type_="csv")
+
+
+def test_raw_request_reaches_any_endpoint(client: ct.Client) -> None:
+    body = client.request("POST", "/persons", query={"force": True, "ids[]": [1, 2]}, json={"firstName": "Ben"})
+    assert json.loads(body)["data"]["firstName"] == "Ben"
+    request = FakeServer.requests[-1]
+    assert request["query"] == {"force": ["true"], "ids[]": ["1", "2"]}
+    assert request["body"] == {"firstName": "Ben"}
+    with pytest.raises(ct.NotFound):
+        client.request("GET", "/groups/404")

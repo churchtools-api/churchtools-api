@@ -265,7 +265,7 @@ impl Client {
     ///
     /// The token is the person's persistent login token: ChurchTools creates one
     /// if there is none, and it stays valid after this client is dropped, until
-    /// it is revoked with `client.persons().delete_logintoken(person_id)`. The
+    /// it is revoked with `client.persons().delete_login_token(person_id)`. The
     /// password session used to fetch it is not reused; the API has no logout,
     /// so it ends when the server expires it.
     pub fn login_with_password(&self, username: &str, password: &str) -> Result<Self> {

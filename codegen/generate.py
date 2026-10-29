@@ -1529,6 +1529,13 @@ def write_operations_md(ops: list[Op], header: str, out: Path) -> None:
     out.write_text("\n".join(lines) + "\n")
 
 
+def api_version() -> tuple[str, str]:
+    """ChurchTools version and build of the cached spec, from `info.json`."""
+    info_path = CACHE.parent / "info.json"
+    info = json.loads(info_path.read_text()) if info_path.exists() else {}
+    return str(info.get("version", "unknown")), str(info.get("build", "unknown"))
+
+
 def load_spec(path: str | None, refresh: bool) -> tuple[dict, str]:
     if path:
         return json.loads(Path(path).read_text()), "custom spec"
@@ -1581,7 +1588,21 @@ def main() -> int:
     write_python_resources(ops, header, py_pkg / "_resources.py")
     write_rust_models(schemas, header, rs_gen / "models.rs")
     write_rust_api(ops, header, rs_gen / "api.rs")
-    (rs_gen / "mod.rs").write_text(f"//! {header}\n\npub mod api;\npub mod models;\npub mod queries;\n")
+    api, build = api_version() if not args.spec else ("unknown", "unknown")
+    (rs_gen / "mod.rs").write_text(
+        f"//! {header}\n\npub mod api;\npub mod models;\npub mod queries;\n\n"
+        "/// ChurchTools version whose API description the code was generated from.\n"
+        f'pub const API_VERSION: &str = "{api}";\n'
+        "/// Build number of [`API_VERSION`].\n"
+        f'pub const API_BUILD: &str = "{build}";\n'
+    )
+    (py_pkg / "_version.py").write_text(
+        f'"""{header}"""\n\n'
+        "#: ChurchTools version whose API description the code was generated from.\n"
+        f'API_VERSION = "{api}"\n'
+        "#: Build number of `API_VERSION`.\n"
+        f'API_BUILD = "{build}"\n'
+    )
     write_operations_md(ops, header, ROOT / "codegen" / "OPERATIONS.md")
     import docs  # imports this module, so only after everything above is defined
     import testgen

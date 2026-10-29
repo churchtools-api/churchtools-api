@@ -11,9 +11,10 @@ from __future__ import annotations
 
 import os
 import typing as _t
+from importlib import metadata as _metadata
 
 from . import models
-from ._base import UNSET, CTModel, Paginator, Upload
+from ._base import UNSET, CTModel, Paginator, Upload, _body, _query
 from ._core import Client as _CoreClient
 from ._errors import (
     ApiError,
@@ -34,6 +35,12 @@ from ._errors import (
     UnprocessableEntity,
 )
 from ._resources import Resources
+from ._version import API_BUILD, API_VERSION
+
+try:
+    __version__ = _metadata.version("churchtools-rs")
+except _metadata.PackageNotFoundError:  # pragma: no cover - not installed (e.g. plain source tree)
+    __version__ = "0.0.0"
 
 
 class Client(Resources):
@@ -88,12 +95,31 @@ class Client(Resources):
 
         The token is the person's persistent login token: ChurchTools creates one
         if there is none, and it stays valid until it is revoked with
-        `client.persons.delete_logintoken(person_id)`.
+        `client.persons.delete_login_token(person_id)`.
         """
         client = Client.__new__(Client)
         client._core = self._core.login_with_password(username, password)
         Resources.__init__(client, client._core)
         return client
+
+    def request(
+        self,
+        method: str,
+        path: str,
+        *,
+        query: _t.Optional[_t.Mapping[str, _t.Any]] = None,
+        json: _t.Any = UNSET,
+    ) -> bytes:
+        """Sends a request to any endpoint, e.g. one missing from the spec; returns the raw body.
+
+        `path` is relative to `/api` (`"/persons/7"`); `query` values may be lists
+        (repeated keys), dates and booleans like the generated methods take them;
+        `json` is sent as the body unless left out. Errors raise the same
+        exceptions as the generated methods. Decode the result with
+        `json.loads` or a model's `model_validate_json`.
+        """
+        body = None if json is UNSET else _body(json)
+        return self._core.request(method, path, _query((query or {}).items()), body)
 
     @property
     def api_url(self) -> str:
@@ -104,6 +130,8 @@ class Client(Resources):
 
 
 __all__ = [
+    "API_BUILD",
+    "API_VERSION",
     "ApiError",
     "BadRequest",
     "ChurchToolsError",

@@ -16,6 +16,10 @@
 //! # Ok::<(), churchtools_core::Error>(())
 //! ```
 //!
+//! The code is generated from the API description of ChurchTools
+//! [`API_VERSION`]. Other versions work as far as their API matches: missing
+//! endpoints answer `404`, unknown fields end up in `extra`.
+//!
 //! The client is blocking. Inside an async runtime such as Tokio, run it in
 //! `tokio::task::spawn_blocking`; calling it directly from async code panics.
 
@@ -34,5 +38,5 @@ pub use client::{Client, ClientBuilder, DEFAULT_MAX_RESPONSE_SIZE, Items, Pages,
 pub use datetime::DateOrDateTime;
 pub use error::{ApiError, Error, Result};
 pub use generated::api as resources;
-pub use generated::{models, queries};
+pub use generated::{API_BUILD, API_VERSION, models, queries};
 pub use reqwest::Method;
