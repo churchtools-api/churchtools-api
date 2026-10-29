@@ -1,4 +1,4 @@
-"""Fetches what Monatsplan needs: calendars, appointments, events with services.
+"""Monatsplan: calendars, the appointments of one month and the events with their services.
 
     CT_URL=https://meinegemeinde.church.tools CT_TOKEN=... python examples/monatsplan.py
 
