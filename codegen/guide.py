@@ -312,7 +312,8 @@ Große Listen liefert ChurchTools seitenweise. Der Client blättert für dich:
 - In **Python** bekommst du einen `Paginator`. Er lädt die nächste Seite erst, wenn du sie brauchst.
   Brichst du die Schleife ab, werden keine weiteren Seiten geladen. `first()` holt nur das erste
   Element, `to_list()` alles.
-- In **Rust** bekommst du gleich einen `Vec` mit allen Einträgen.
+- In **Rust** liefert `list()` gleich einen `Vec` mit allen Einträgen. `list_iter(&query)` lädt dagegen
+  wie in Python erst beim Iterieren nach; jedes Element ist ein `Result`.
 
 Mit `limit` bestimmst du, wie viele Einträge pro Seite geladen werden (höchstens 100).
 
@@ -334,9 +335,15 @@ first = client.groups.list().first()
 all_groups = client.groups.list().to_list()""",
             rust="""\
 let query = GetPersonsQuery { limit: Some(100), ..Default::default() };
-for person in client.persons().list_with(&query)? {
+for person in client.persons().list_iter(&query) {
+    let person = person?;
     println!("{:?}", person.last_name);
-}""",
+    if person.last_name.as_deref() == Some("Zimmermann") {
+        break;              // weitere Seiten werden nicht mehr geladen
+    }
+}
+
+let all_groups = client.groups().list()?;""",
         ),
         Section(
             "datum",

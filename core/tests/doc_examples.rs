@@ -134,9 +134,15 @@ fn guide_rueckgaben() {
 // guide: listen
 fn example_6(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let query = GetPersonsQuery { limit: Some(100), ..Default::default() };
-    for person in client.persons().list_with(&query)? {
+    for person in client.persons().list_iter(&query) {
+        let person = person?;
         println!("{:?}", person.last_name);
+        if person.last_name.as_deref() == Some("Zimmermann") {
+            break;              // weitere Seiten werden nicht mehr geladen
+        }
     }
+
+    let all_groups = client.groups().list()?;
     Ok(())
 }
 

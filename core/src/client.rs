@@ -474,25 +474,67 @@ impl Client {
 
     /// Fetches all pages and concatenates their `data` arrays.
     pub fn collect_pages<T: DeserializeOwned>(&self, path: &str, query: Query) -> Result<Vec<T>> {
+        self.items(path, query).collect()
+    }
+
+    /// Iterates over the items of all pages, fetching each page only when the
+    /// previous one is used up. Stopping early saves the remaining requests.
+    ///
+    /// Ends after the first error; the same rules as for [`Client::pages`] apply.
+    pub fn items<T: DeserializeOwned>(&self, path: &str, query: Query) -> Items<T> {
+        Items {
+            client: self.clone(),
+            path: path.to_owned(),
+            query: query.into_iter().filter(|(k, _)| k != "page").collect(),
+            next_page: Some(1),
+            buffer: Vec::new().into_iter(),
+        }
+    }
+
+    /// One page: its items and the number of the next page, if any.
+    fn fetch_page<T: DeserializeOwned>(&self, path: &str, query: &Query, page: u64) -> Result<(Vec<T>, Option<u64>)> {
         #[derive(Deserialize)]
         struct Page<T> {
             data: Vec<T>,
             // Kept loose: an unexpected `meta` only ends the pagination.
             meta: Option<serde_json::Value>,
         }
-        let query: Query = query.into_iter().filter(|(k, _)| k != "page").collect();
-        let mut items = Vec::new();
-        let mut next = Some(1);
-        while let Some(page) = next {
-            let mut page_query = query.clone();
-            page_query.push(("page".into(), page.to_string()));
-            // One pass over the body for both the items and the page info.
-            let body: Page<T> = decode(&self.request(Method::GET, path, &page_query, None)?)?;
-            let meta = body.meta.and_then(|m| serde_json::from_value(m).ok());
-            next = next_page(meta, !body.data.is_empty(), page);
-            items.extend(body.data);
+        let mut page_query = query.clone();
+        page_query.push(("page".into(), page.to_string()));
+        // One pass over the body for both the items and the page info.
+        let body: Page<T> = decode(&self.request(Method::GET, path, &page_query, None)?)?;
+        let meta = body.meta.and_then(|m| serde_json::from_value(m).ok());
+        let next = next_page(meta, !body.data.is_empty(), page);
+        Ok((body.data, next))
+    }
+}
+
+/// Iterator returned by [`Client::items`] and the generated `…_iter` methods.
+pub struct Items<T> {
+    client: Client,
+    path: String,
+    query: Query,
+    next_page: Option<u64>,
+    buffer: std::vec::IntoIter<T>,
+}
+
+impl<T: DeserializeOwned> Iterator for Items<T> {
+    type Item = Result<T>;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        loop {
+            if let Some(item) = self.buffer.next() {
+                return Some(Ok(item));
+            }
+            let page = self.next_page.take()?;
+            match self.client.fetch_page(&self.path, &self.query, page) {
+                Ok((items, next)) => {
+                    self.buffer = items.into_iter();
+                    self.next_page = next;
+                }
+                Err(e) => return Some(Err(e)),
+            }
         }
-        Ok(items)
     }
 }
 
@@ -920,6 +962,23 @@ mod tests {
         let (url, _) = serve(vec![reply("200 OK", "", r#"{"data":[1],"meta":[]}"#)]);
         let items: Vec<i64> = Client::new(&url, None).unwrap().collect_pages("/x", vec![]).unwrap();
         assert_eq!(items, [1]);
+    }
+
+    #[test]
+    fn items_fetch_pages_only_when_needed() {
+        let page = |c: u64, items: &str| {
+            reply("200 OK", "", &format!(r#"{{"data":[{items}],"meta":{{"pagination":{{"current":{c},"lastPage":3}}}}}}"#))
+        };
+        let (url, seen) = serve(vec![page(1, "1,2"), page(2, "3"), page(3, "4")]);
+        let client = Client::new(&url, None).unwrap();
+        let first: Vec<i64> = client.items("/x", vec![]).take(3).collect::<Result<_>>().unwrap();
+        assert_eq!(first, [1, 2, 3]);
+        assert_eq!(*seen.lock().unwrap(), ["GET /api/x?page=1", "GET /api/x?page=2"]);
+        // An error ends the iteration.
+        let (url, _) = serve(vec![reply("404 Not Found", "", "{}")]);
+        let mut items = Client::new(&url, None).unwrap().items::<i64>("/x", vec![]);
+        assert!(matches!(items.next(), Some(Err(Error::Api(_)))));
+        assert!(items.next().is_none());
     }
 
     #[test]

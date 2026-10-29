@@ -9,7 +9,7 @@ use std::fmt::Display;
 use reqwest::Method;
 
 use super::models;
-use crate::client::{Client, Query, Upload, encode_path_segment as seg};
+use crate::client::{Client, Items, Query, Upload, encode_path_segment as seg};
 use crate::error::Result;
 use crate::query::ToQuery;
 
@@ -4519,6 +4519,15 @@ impl<'a> EventsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get all events
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetEventsQuery) -> Items<models::Event> {
+        let path = "/events".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
     /// Get all possible persons for a service
     ///
     /// `GET /events/{serviceId}/possiblepersonsforservice`
@@ -5471,6 +5480,15 @@ impl<'a> EventsFactsResource<'a> {
         let path = "/events/facts".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// List recorded event facts
+    ///
+    /// Like [`Self::list_all_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_all_iter(&self, query: &GetEventsFactsQuery) -> Items<models::EventFact> {
+        let path = "/events/facts".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
     /// Create or replace an event fact
@@ -8041,6 +8059,15 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get bills for accounting period
+    ///
+    /// Like [`Self::list_bills_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_bills_iter(&self, id: impl Display, query: &GetFinanceAccountingperiodsIdBillsQuery) -> Items<models::Bill> {
+        let path = format!("/finance/accountingperiods/{}/bills", seg(id));
+        self.client.items(&path, query.to_query())
+    }
+
     /// Get statement suggestion rules
     ///
     /// `GET /finance/accountingperiods/{id}/userrules`
@@ -8247,6 +8274,15 @@ impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get all movements of an account
+    ///
+    /// Like [`Self::list_movements_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_movements_iter(&self, id: impl Display, account_id: impl Display, query: &GetFinanceAccountingperiodsIdAccountsIdMovementsQuery) -> Items<models::StatementMovement> {
+        let path = format!("/finance/accountingperiods/{}/accounts/{}/movements", seg(id), seg(account_id));
+        self.client.items(&path, query.to_query())
+    }
+
     /// Get per-account statement movement statistics
     ///
     /// `GET /finance/accountingperiods/{id}/accounts/statements`
@@ -8406,6 +8442,15 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
         let path = format!("/finance/accountingperiods/{}/accounts/{}/statements/{}/movements", seg(id), seg(account_id), seg(statement_id));
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Get all movements of a statement
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, id: impl Display, account_id: impl Display, statement_id: impl Display, query: &GetFinanceAccountingperiodsIdAccountsIdStatementsIdMovementsQuery) -> Items<models::StatementMovement> {
+        let path = format!("/finance/accountingperiods/{}/accounts/{}/statements/{}/movements", seg(id), seg(account_id), seg(statement_id));
+        self.client.items(&path, query.to_query())
     }
 
     /// Update movement suggestions
@@ -10061,6 +10106,15 @@ impl<'a> FinanceDonatorsResource<'a> {
         let path = "/finance/donators".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Get donor household donation summaries
+    ///
+    /// Like [`Self::list`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetFinanceDonatorsQuery) -> Items<models::Donator> {
+        let path = "/finance/donators".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
 }
@@ -12216,6 +12270,15 @@ impl<'a> FinanceTransactionsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get all transactions
+    ///
+    /// Like [`Self::list`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetFinanceTransactionsQuery) -> Items<models::Transaction> {
+        let path = "/finance/transactions".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
     /// Finalize or delete a filtered set of bookings
     ///
     /// `PATCH /finance/transactions`
@@ -12930,6 +12993,15 @@ impl<'a> FollowupsResource<'a> {
         let path = "/followups".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// List follow-ups assigned to the current user or eligible groups
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetFollowupsQuery) -> Items<models::FollowUp2> {
+        let path = "/followups".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
     /// Add a note to a follow-up
@@ -14887,6 +14959,15 @@ impl<'a> GroupsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get all groups
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetGroupsQuery) -> Items<models::Group> {
+        let path = "/groups".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
     /// Fetch all absences for persons in a group
     ///
     /// `GET /groups/{groupId}/absences`
@@ -14957,6 +15038,15 @@ impl<'a> GroupsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get child groups
+    ///
+    /// Like [`Self::list_children_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_children_iter(&self, group_id: impl Display, query: &GetGroupsGroupIdChildrenQuery) -> Items<models::DomainObjectGroup> {
+        let path = format!("/groups/{}/children", seg(group_id));
+        self.client.items(&path, query.to_query())
+    }
+
     /// List membership document templates for the current user
     ///
     /// `GET /groups/{groupId}/documenttemplates`
@@ -15018,6 +15108,15 @@ impl<'a> GroupsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get all group hierarchies
+    ///
+    /// Like [`Self::list_hierarchies_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_hierarchies_iter(&self, query: &GetGroupsHierarchiesQuery) -> Items<models::GroupHierarchy> {
+        let path = "/groups/hierarchies".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
     /// Get all group ids
     ///
     /// `GET /groups/ids`
@@ -15053,6 +15152,15 @@ impl<'a> GroupsResource<'a> {
         let path = "/groups/ids".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Get all group ids
+    ///
+    /// Like [`Self::list_ids_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_ids_iter(&self, query: &GetGroupsIdsQuery) -> Items<i64> {
+        let path = "/groups/ids".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
     /// Get person IDs of group members
@@ -15201,6 +15309,15 @@ impl<'a> GroupsResource<'a> {
         let path = format!("/groups/{}/posts", seg(group_id));
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Get visible posts of a group
+    ///
+    /// Like [`Self::list_posts_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_posts_iter(&self, group_id: impl Display, query: &GetGroupsGroupIdPostsQuery) -> Items<models::Post> {
+        let path = format!("/groups/{}/posts", seg(group_id));
+        self.client.items(&path, query.to_query())
     }
 
     /// Send a group sign-up push notification
@@ -16010,6 +16127,15 @@ impl<'a> GroupsFollowupsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// List follow-ups for group memberships
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, group_id: impl Display, query: &GetGroupsGroupIdFollowupsQuery) -> Items<models::FollowUp2> {
+        let path = format!("/groups/{}/followups", seg(group_id));
+        self.client.items(&path, query.to_query())
+    }
+
 }
 
 /// Query parameters for `GET /groups/{groupId}/followups`.
@@ -16206,6 +16332,15 @@ impl<'a> GroupsMeetingsResource<'a> {
         let path = format!("/groups/{}/meetings", seg(group_id));
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Get meetings for a group
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, group_id: impl Display, query: &GetGroupsIdMeetingsQuery) -> Items<models::GroupMeeting> {
+        let path = format!("/groups/{}/meetings", seg(group_id));
+        self.client.items(&path, query.to_query())
     }
 
     /// Update a group meeting
@@ -16830,6 +16965,15 @@ impl<'a> GroupsMembersResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// List group memberships
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, group_id: impl Display, query: &GetGroupsIdMembersQuery) -> Items<models::GroupMember> {
+        let path = format!("/groups/{}/members", seg(group_id));
+        self.client.items(&path, query.to_query())
+    }
+
     /// List membership history with previous and current values
     ///
     /// `GET /groups/{groupId}/members/history`
@@ -17262,6 +17406,15 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// List follow-ups for one group membership
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, group_id: impl Display, person_id: impl Display, query: &GetGroupsGroupIdMembersPersonIdFollowupsQuery) -> Items<models::FollowUp2> {
+        let path = format!("/groups/{}/members/{}/followups", seg(group_id), seg(person_id));
+        self.client.items(&path, query.to_query())
+    }
+
 }
 
 /// Query parameters for `GET /groups/{groupId}/members/{personId}/followups`.
@@ -17562,6 +17715,15 @@ impl<'a> GroupsParentsResource<'a> {
         let path = format!("/groups/{}/parents", seg(group_id));
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Get child groups
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, group_id: impl Display, query: &GetGroupsGroupIdParentsQuery) -> Items<models::DomainObjectGroup> {
+        let path = format!("/groups/{}/parents", seg(group_id));
+        self.client.items(&path, query.to_query())
     }
 
     /// Add a direct parent-group relationship
@@ -17935,6 +18097,15 @@ impl<'a> HistoryResource<'a> {
         let path = "/history".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Get History
+    ///
+    /// Like [`Self::list`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetHistoryQuery) -> Items<models::HistoryEntry> {
+        let path = "/history".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
 }
@@ -19105,6 +19276,15 @@ impl<'a> LogsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get all log messages
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetLogsQuery) -> Items<models::Log> {
+        let path = "/logs".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
 }
 
 /// Query parameters for `GET /logs`.
@@ -19175,6 +19355,15 @@ impl<'a> LogsStatisticsResource<'a> {
         let path = "/logs/statistics/login".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// `GET /logs/statistics/login`
+    ///
+    /// Like [`Self::list_login_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_login_iter(&self, query: &GetLogsStatisticsLoginQuery) -> Items<models::GetLogsStatisticsLoginDataItem> {
+        let path = "/logs/statistics/login".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
 }
@@ -19911,6 +20100,15 @@ impl<'a> PermissionsResource<'a> {
         let path = "/permissions/assignment-targets".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Search selectable permission assignment targets
+    ///
+    /// Like [`Self::list_assignment_targets_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_assignment_targets_iter(&self, query: &GetPermissionsAssignmentTargetsQuery) -> Items<models::PermissionAssignmentTarget> {
+        let path = "/permissions/assignment-targets".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
     /// List permissions for a domain type
@@ -21779,6 +21977,15 @@ impl<'a> PersonsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get all persons
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetPersonsQuery) -> Items<models::Person> {
+        let path = "/persons".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
     /// Fetch Birthdays
     ///
     /// `GET /persons/birthdays`
@@ -21828,6 +22035,15 @@ impl<'a> PersonsResource<'a> {
         let path = "/persons/birthdays".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Fetch Birthdays
+    ///
+    /// Like [`Self::list_birthdays_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_birthdays_iter(&self, query: &GetPersonsBirthdaysQuery) -> Items<models::GetPersonsBirthdaysDataItem> {
+        let path = "/persons/birthdays".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
     /// get potential duplicates of persons
@@ -23190,6 +23406,15 @@ impl<'a> PersonsFollowupsResource<'a> {
         let path = format!("/persons/{}/followups", seg(person_id));
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// Get a person's follow-ups
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, person_id: impl Display, query: &GetPersonsPersonIdFollowupsQuery) -> Items<models::FollowUp2> {
+        let path = format!("/persons/{}/followups", seg(person_id));
+        self.client.items(&path, query.to_query())
     }
 
 }
@@ -27964,6 +28189,15 @@ impl<'a> SongsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// Get all songs
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetSongsQuery) -> Items<models::Song> {
+        let path = "/songs".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
     /// Update song
     ///
     /// `PUT /songs/{songId}`
@@ -28703,6 +28937,15 @@ impl<'a> SyncResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// List sync execution summaries
+    ///
+    /// Like [`Self::list_executions_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_executions_iter(&self, query: &GetSyncExecutionsQuery) -> Items<models::SyncExecutionSummary> {
+        let path = "/sync/executions".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
     /// List sync job configurations
     ///
     /// `GET /sync/jobconfigs`
@@ -28775,6 +29018,15 @@ impl<'a> SyncResource<'a> {
         let path = "/sync/logs".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// List sync log entries
+    ///
+    /// Like [`Self::list_logs_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_logs_iter(&self, query: &GetSyncLogsQuery) -> Items<models::SyncLog> {
+        let path = "/sync/logs".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
 }
@@ -29285,6 +29537,15 @@ impl<'a> SyncConflictsResource<'a> {
         self.client.collect_pages(&path, query)
     }
 
+    /// List sync conflicts
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetSyncConflictsQuery) -> Items<models::SyncConflicts> {
+        let path = "/sync/conflicts".to_owned();
+        self.client.items(&path, query.to_query())
+    }
+
     /// Replace a sync conflict
     ///
     /// `PUT /sync/conflicts/{id}`
@@ -29467,6 +29728,15 @@ impl<'a> SyncEntitymappingsResource<'a> {
         let path = "/sync/entitymappings".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// List entity mappings
+    ///
+    /// Like [`Self::list_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_iter(&self, query: &GetSyncEntitymappingsQuery) -> Items<models::SyncEntityMapping> {
+        let path = "/sync/entitymappings".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
     /// Update or create an entity mapping
@@ -31147,6 +31417,15 @@ impl<'a> WikiResource<'a> {
         let path = "/wiki/pages".to_owned();
         let query: Query = query.to_query();
         self.client.collect_pages(&path, query)
+    }
+
+    /// List wiki pages
+    ///
+    /// Like [`Self::list_pages_with`], but lazy: each page is fetched only when the iteration reaches it.
+    /// Breaking off early saves the remaining requests.
+    pub fn list_pages_iter(&self, query: &GetWikiPagesQuery) -> Items<models::SimpleWikiPage> {
+        let path = "/wiki/pages".to_owned();
+        self.client.items(&path, query.to_query())
     }
 
     /// Full-text search across wiki pages

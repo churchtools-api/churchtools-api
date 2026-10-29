@@ -451,7 +451,7 @@ text = person.model_dump_json()</code></pre><pre class="rs"><code><span class="t
 <span class="t-kw">let</span> text = serde_json::to_string(&amp;person)?;</code></pre></div></div>
 </article>
 <article class="topic" id="listen"><div class="prose"><h3>Listen und Seiten</h3><p>Große Listen liefert ChurchTools seitenweise. Der Client blättert für dich:</p>
-<ul><li>In <strong>Python</strong> bekommst du einen <code>Paginator</code>. Er lädt die nächste Seite erst, wenn du sie brauchst. Brichst du die Schleife ab, werden keine weiteren Seiten geladen. <code>first()</code> holt nur das erste Element, <code>to_list()</code> alles.</li><li>In <strong>Rust</strong> bekommst du gleich einen <code>Vec</code> mit allen Einträgen.</li></ul>
+<ul><li>In <strong>Python</strong> bekommst du einen <code>Paginator</code>. Er lädt die nächste Seite erst, wenn du sie brauchst. Brichst du die Schleife ab, werden keine weiteren Seiten geladen. <code>first()</code> holt nur das erste Element, <code>to_list()</code> alles.</li><li>In <strong>Rust</strong> liefert <code>list()</code> gleich einen <code>Vec</code> mit allen Einträgen. <code>list_iter(&amp;query)</code> lädt dagegen wie in Python erst beim Iterieren nach; jedes Element ist ein <code>Result</code>.</li></ul>
 <p>Mit <code>limit</code> bestimmst du, wie viele Einträge pro Seite geladen werden (höchstens 100).</p>
 <p>Die Seiten werden nacheinander abgerufen. Ändert sich die Liste währenddessen, etwa weil jemand eine Person anlegt oder löscht, kann ein Eintrag doppelt vorkommen oder fehlen. Für Abgleiche lohnt es sich deshalb, nach <code>id</code> zu deduplizieren. Eine leere Seite beendet das Blättern, auch wenn der Server mehr Seiten ankündigt.</p>
 <p>Der Client ist synchron. In Rust darfst du ihn nicht direkt in <code>async</code>-Code (Tokio) aufrufen, sondern nur über <code>tokio::task::spawn_blocking</code>.</p></div>
@@ -462,9 +462,15 @@ text = person.model_dump_json()</code></pre><pre class="rs"><code><span class="t
 
 first = client.groups.list().first()
 all_groups = client.groups.list().to_list()</code></pre><pre class="rs"><code><span class="t-kw">let</span> query = <span class="t-type">GetPersonsQuery</span> { limit: <span class="t-kw">Some</span>(<span class="t-number">100</span>), ..<span class="t-type">Default</span>::default() };
-<span class="t-kw">for</span> person <span class="t-kw">in</span> client.persons().list_with(&amp;query)? {
+<span class="t-kw">for</span> person <span class="t-kw">in</span> client.persons().list_iter(&amp;query) {
+    <span class="t-kw">let</span> person = person?;
     <span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, person.last_name);
-}</code></pre></div></div>
+    <span class="t-kw">if</span> person.last_name.as_deref() == <span class="t-kw">Some</span>(<span class="t-string">&quot;Zimmermann&quot;</span>) {
+        <span class="t-kw">break</span>;              <span class="t-comment">// weitere Seiten werden nicht mehr geladen</span>
+    }
+}
+
+<span class="t-kw">let</span> all_groups = client.groups().list()?;</code></pre></div></div>
 </article>
 <article class="topic" id="datum"><div class="prose"><h3>Datum und Uhrzeit</h3><p>Datumswerte (Geburtstage, ganztägige Termine) sind reine Kalenderdaten. Zeitpunkte kommen immer in <strong>UTC</strong> und mit Zeitzone. Für die Anzeige rechnest du sie in die lokale Zeit um.</p>
 <p>Termine können beides sein: Ganztägige Termine haben nur ein Datum, alle anderen einen Zeitpunkt.</p></div>

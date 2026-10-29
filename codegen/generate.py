@@ -1207,7 +1207,7 @@ def write_rust_api(ops: list[Op], header: str, out: Path) -> None:
         "use std::fmt::Display;\n",
         "use reqwest::Method;\n",
         "use super::models;",
-        "use crate::client::{Client, Query, Upload, encode_path_segment as seg};",
+        "use crate::client::{Client, Items, Query, Upload, encode_path_segment as seg};",
         "use crate::error::Result;",
         "use crate::query::ToQuery;\n",
         "impl Client {",
@@ -1220,7 +1220,7 @@ def write_rust_api(ops: list[Op], header: str, out: Path) -> None:
 
     for chain in sorted(chains):
         names = [op.name for op in by_chain.get(chain, [])]
-        clash = {f"{n}_with" for n in names} & set(names)
+        clash = {f"{n}{suffix}" for n in names for suffix in ("_with", "_iter")} & set(names)
         assert not clash, f"Rust method name clash in {chain}: {clash}"
         cls = resource_class(chain)
         lines.append(f"/// `client.{'().'.join(chain)}()`")
@@ -1400,6 +1400,19 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
         return lines, struct_lines
     if op.paginated:
         lines.append("        self.client.collect_pages(&path, query)")
+        lines.append("    }\n")
+        item = rust_type(op.result_type.inner[0], prefix="models::")
+        iter_args = [a for a in args if not a.startswith("body:")]
+        lines += rust_doc(
+            "\n".join(doc[:1] + ["", f"Like [`Self::{name}`], but lazy: each page is fetched only when the iteration reaches it.",
+                                 "Breaking off early saves the remaining requests."]),
+            "    ",
+        )
+        if op.deprecated:
+            lines.append(f"    #[deprecated = {json.dumps(deprecation_message(op))}]")
+        lines.append(f"    pub fn {op.name}_iter({', '.join(iter_args)}) -> Items<{item}> {{")
+        lines.append(f"        let path = {path};")
+        lines.append(f"        self.client.items(&path, {'query.to_query()' if query_struct else 'Query::new()'})")
     elif op.result == "data":
         lines.append(f"        self.client.request_data({method}, &path, &query, {body})")
     elif op.result == "json":
