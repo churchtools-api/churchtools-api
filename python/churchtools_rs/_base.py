@@ -221,6 +221,9 @@ class Paginator(_t.Generic[T]):
     """Lazily iterates over all items of a paginated endpoint.
 
     Pages are requested only as far as you iterate; `limit` sets the page size.
+    Pages are fetched one by one with offsets: if entries are added or removed
+    meanwhile, an entry can show up twice or be skipped. An empty page ends the
+    iteration.
     """
 
     def __init__(self, core: _t.Any, path: str, query: _t.List[_t.Tuple[str, str]], item: _t.Any) -> None:

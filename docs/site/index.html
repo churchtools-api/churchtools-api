@@ -449,7 +449,9 @@ text = person.model_dump_json()</code></pre><pre class="rs"><code><span class="t
 </article>
 <article class="topic" id="listen"><div class="prose"><h3>Listen und Seiten</h3><p>Große Listen liefert ChurchTools seitenweise. Der Client blättert für dich:</p>
 <ul><li>In <strong>Python</strong> bekommst du einen <code>Paginator</code>. Er lädt die nächste Seite erst, wenn du sie brauchst. Brichst du die Schleife ab, werden keine weiteren Seiten geladen. <code>first()</code> holt nur das erste Element, <code>to_list()</code> alles.</li><li>In <strong>Rust</strong> bekommst du gleich einen <code>Vec</code> mit allen Einträgen.</li></ul>
-<p>Mit <code>limit</code> bestimmst du, wie viele Einträge pro Seite geladen werden (höchstens 100).</p></div>
+<p>Mit <code>limit</code> bestimmst du, wie viele Einträge pro Seite geladen werden (höchstens 100).</p>
+<p>Die Seiten werden nacheinander abgerufen. Ändert sich die Liste währenddessen, etwa weil jemand eine Person anlegt oder löscht, kann ein Eintrag doppelt vorkommen oder fehlen. Für Abgleiche lohnt es sich deshalb, nach <code>id</code> zu deduplizieren. Eine leere Seite beendet das Blättern, auch wenn der Server mehr Seiten ankündigt.</p>
+<p>Der Client ist synchron. In Rust darfst du ihn nicht direkt in <code>async</code>-Code (Tokio) aufrufen, sondern nur über <code>tokio::task::spawn_blocking</code>.</p></div>
 <div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> person <span class="t-kw">in</span> client.persons.list(limit=<span class="t-number">100</span>):
     print(person.last_name)
     <span class="t-kw">if</span> person.last_name == <span class="t-string">&quot;Zimmermann&quot;</span>:

@@ -31,6 +31,10 @@ const MAX_RETRY_WAIT: Duration = Duration::from_secs(60);
 /// Synchronous ChurchTools API client.
 ///
 /// Cloning is cheap: the connection pool and the rate limit are shared.
+///
+/// The client blocks (it uses `reqwest::blocking`) and panics when created,
+/// used or dropped inside an async runtime such as Tokio. From async code,
+/// call it in `tokio::task::spawn_blocking`.
 #[derive(Clone)]
 pub struct Client {
     http: reqwest::blocking::Client,
@@ -432,8 +436,11 @@ impl Client {
     /// Iterates over the raw bodies of all pages of a paginated GET endpoint.
     ///
     /// Any `page` entry in `query` is replaced. Iteration stops after the page
-    /// whose `meta.pagination.current` reaches `lastPage`, or after the first
-    /// page if the response carries no pagination info.
+    /// whose `meta.pagination.current` reaches `lastPage`, after an empty page,
+    /// or after the first page if the response carries no pagination info.
+    ///
+    /// Pages are fetched one by one with offsets: if entries are added or
+    /// removed meanwhile, an entry can show up twice or be skipped.
     pub fn pages(&self, path: &str, query: Query) -> Pages {
         Pages {
             client: self.clone(),
@@ -507,11 +514,65 @@ fn next_page_number(body: &[u8], requested: u64) -> Option<u64> {
     #[derive(Deserialize)]
     struct Body {
         meta: Option<Meta>,
+        #[serde(default)]
+        data: HasItems,
     }
-    let pagination = serde_json::from_slice::<Body>(body).ok()?.meta?.pagination?;
-    // Guard against servers that echo a page number we did not ask for.
-    (pagination.current == requested && pagination.current < pagination.last_page)
+    let body = serde_json::from_slice::<Body>(body).ok()?;
+    let pagination = body.meta?.pagination?;
+    // Guard against servers that echo a page number we did not ask for, and
+    // against a `lastPage` that never comes (an empty page ends the list).
+    (body.data.0 && pagination.current == requested && pagination.current < pagination.last_page)
         .then_some(requested + 1)
+}
+
+/// Whether `data` is anything but an empty list, without keeping its items.
+struct HasItems(bool);
+
+impl Default for HasItems {
+    fn default() -> Self {
+        Self(true)
+    }
+}
+
+impl<'de> Deserialize<'de> for HasItems {
+    fn deserialize<D: serde::Deserializer<'de>>(d: D) -> std::result::Result<Self, D::Error> {
+        use serde::de::{IgnoredAny, SeqAccess, Visitor};
+
+        struct V;
+        impl<'de> Visitor<'de> for V {
+            type Value = HasItems;
+            fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                f.write_str("any JSON value")
+            }
+            fn visit_seq<A: SeqAccess<'de>>(self, mut seq: A) -> std::result::Result<HasItems, A::Error> {
+                let first = seq.next_element::<IgnoredAny>()?;
+                while seq.next_element::<IgnoredAny>()?.is_some() {}
+                Ok(HasItems(first.is_some()))
+            }
+            fn visit_map<A: serde::de::MapAccess<'de>>(self, map: A) -> std::result::Result<HasItems, A::Error> {
+                IgnoredAny.visit_map(map).map(|_| HasItems(true))
+            }
+            fn visit_unit<E>(self) -> std::result::Result<HasItems, E> {
+                Ok(HasItems(true))
+            }
+            fn visit_bool<E>(self, _: bool) -> std::result::Result<HasItems, E> {
+                Ok(HasItems(true))
+            }
+            fn visit_i64<E>(self, _: i64) -> std::result::Result<HasItems, E> {
+                Ok(HasItems(true))
+            }
+            fn visit_u64<E>(self, _: u64) -> std::result::Result<HasItems, E> {
+                Ok(HasItems(true))
+            }
+            fn visit_f64<E>(self, _: f64) -> std::result::Result<HasItems, E> {
+                Ok(HasItems(true))
+            }
+            fn visit_str<E>(self, _: &str) -> std::result::Result<HasItems, E> {
+                Ok(HasItems(true))
+            }
+        }
+        d.deserialize_any(V)
+    }
 }
 
 fn is_idempotent(method: &Method) -> bool {
@@ -787,12 +848,17 @@ mod tests {
     #[test]
     fn pagination_stops_on_last_page_or_missing_meta() {
         let page = |c: u64, l: u64| {
-            format!(r#"{{"data":[],"meta":{{"pagination":{{"current":{c},"lastPage":{l}}}}}}}"#)
+            format!(r#"{{"data":[{{"id":1}}],"meta":{{"pagination":{{"current":{c},"lastPage":{l}}}}}}}"#)
         };
         assert_eq!(next_page_number(page(1, 3).as_bytes(), 1), Some(2));
         assert_eq!(next_page_number(page(3, 3).as_bytes(), 3), None);
         assert_eq!(next_page_number(page(1, 3).as_bytes(), 2), None);
-        assert_eq!(next_page_number(br#"{"data":[],"meta":{"count":3}}"#, 1), None);
+        assert_eq!(next_page_number(br#"{"data":[1],"meta":{"count":3}}"#, 1), None);
+        // An empty page ends the list even if `lastPage` says otherwise.
+        let empty = br#"{"data":[],"meta":{"pagination":{"current":1,"lastPage":1000000}}}"#;
+        assert_eq!(next_page_number(empty, 1), None);
+        let map = br#"{"data":{"a":1},"meta":{"pagination":{"current":1,"lastPage":2}}}"#;
+        assert_eq!(next_page_number(map, 1), Some(2));
     }
 
     #[test]

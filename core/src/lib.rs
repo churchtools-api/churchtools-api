@@ -14,6 +14,9 @@
 //! }
 //! # Ok::<(), churchtools_core::Error>(())
 //! ```
+//!
+//! The client is blocking. Inside an async runtime such as Tokio, run it in
+//! `tokio::task::spawn_blocking`; calling it directly from async code panics.
 
 mod client;
 mod datetime;

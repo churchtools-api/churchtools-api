@@ -309,6 +309,14 @@ Große Listen liefert ChurchTools seitenweise. Der Client blättert für dich:
 - In **Rust** bekommst du gleich einen `Vec` mit allen Einträgen.
 
 Mit `limit` bestimmst du, wie viele Einträge pro Seite geladen werden (höchstens 100).
+
+Die Seiten werden nacheinander abgerufen. Ändert sich die Liste währenddessen, etwa weil
+jemand eine Person anlegt oder löscht, kann ein Eintrag doppelt vorkommen oder fehlen. Für
+Abgleiche lohnt es sich deshalb, nach `id` zu deduplizieren. Eine leere Seite beendet das
+Blättern, auch wenn der Server mehr Seiten ankündigt.
+
+Der Client ist synchron. In Rust darfst du ihn nicht direkt in `async`-Code (Tokio) aufrufen,
+sondern nur über `tokio::task::spawn_blocking`.
 """,
             python="""\
 for person in client.persons.list(limit=100):
