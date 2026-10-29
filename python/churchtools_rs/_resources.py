@@ -22,7 +22,7 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
         statement_id: int,
         movement_id: int,
         *,
-        state: str,
+        state: _t.Literal['booked', 'ignored', 'open'],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> _t.Union[models.Transaction, _t.List[_t.Any]]:
         """
@@ -38,6 +38,7 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
             statement_id: ID of the statement the movement belongs to.
             movement_id: ID of the movement to update.
             state: Target movement state. Returning from booked to another state does not undo or delete the existing transaction.
+                Allowed values: `booked`, `ignored`, `open`.
 
         Example::
 
@@ -46,7 +47,7 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
                 42,
                 7,
                 123,
-                state="beispiel",
+                state="booked",
             )
             print(result)
         """
@@ -59,9 +60,9 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
         statement_id: int,
         *,
         limit: _t.Optional[int] = None,
-        state: _t.Optional[str] = None,
+        state: _t.Optional[_t.Literal['booked', 'ignored', 'open']] = None,
         query: _t.Optional[str] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
     ) -> Paginator[models.StatementMovement]:
         """
         Get all movements of a statement
@@ -76,8 +77,10 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
             statement_id: ID of the statement whose movements are returned.
             limit: Positive number of results per page. No upper bound is enforced.
             state: Restrict to a stored movement state.
+                Allowed values: `booked`, `ignored`, `open`.
             query: Substring search across purpose, account identifier and person name.
             include: Additional suggestion details; use the PHP array syntax include[]=bills.
+                Allowed values: `bills`.
 
         Example::
 
@@ -207,7 +210,7 @@ class ExternalpostsInstancesChannelsPostsResource(Resource):
 
         Example::
 
-            post = client.externalposts.instances.channels.posts.get("beispiel", "beispiel", "beispiel")
+            post = client.externalposts.instances.channels.posts.get("abc123", "abc123", "abc123")
             print(post.title)
         """
         return _t.cast(models.Post, self._call('GET', f"/externalposts/instances/{_seg(instance_guid)}/channels/{_seg(channel_guid)}/posts/{_seg(post_guid)}", [], None, models.Post, envelope=True))
@@ -283,7 +286,7 @@ class FinanceReportsStatementAccountsResource(Resource):
         account_id: int,
         *,
         end_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
-        format: _t.Union[str, UnsetType] = UNSET,
+        format: _t.Union[_t.Literal['csv', 'pdf', 'xlsx'], UnsetType] = UNSET,
         start_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> bytes:
@@ -298,6 +301,7 @@ class FinanceReportsStatementAccountsResource(Resource):
             account_id: ID of account
             end_date: Last document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
             format: PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+                Allowed values: `csv`, `pdf`, `xlsx`.
             start_date: First document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
 
         Example::
@@ -317,10 +321,10 @@ class FinanceReportsStatementCostcentersResource(Resource):
         cost_center_id: int,
         *,
         end_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
-        format: _t.Union[str, UnsetType] = UNSET,
+        format: _t.Union[_t.Literal['csv', 'pdf', 'xlsx'], UnsetType] = UNSET,
         start_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         include_rebookings: _t.Union[bool, UnsetType] = UNSET,
-        type_: _t.Union[str, UnsetType] = UNSET,
+        type_: _t.Union[_t.Literal['csv', 'pdf', 'xlsx'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> bytes:
         """
@@ -334,9 +338,11 @@ class FinanceReportsStatementCostcentersResource(Resource):
             cost_center_id: ID of cost center
             end_date: Last document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
             format: PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+                Allowed values: `csv`, `pdf`, `xlsx`.
             start_date: First document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
             include_rebookings: Include transactions classified as internal rebookings in the cost-center report.
             type_: Legacy alias for format.
+                Allowed values: `csv`, `pdf`, `xlsx`.
 
         Example::
 
@@ -700,7 +706,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
         calendar_id: int,
         appointment_id: int,
         meeting_request_id: int,
-        answer: str,
+        answer: _t.Literal['accept', 'decline', 'maybe', 'reset', 'tentative'],
     ) -> None:
         """
         Answer a meeting invitation
@@ -714,6 +720,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
             appointment_id: ID of appointment
             meeting_request_id: ID of meeting request
             answer: Answer to the meeting request
+                Allowed values: `accept`, `decline`, `maybe`, `reset`, `tentative`.
 
         Example::
 
@@ -801,7 +808,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
         appointment_id: int,
         meeting_request_id: int,
         *,
-        answer: str,
+        answer: _t.Literal['accept', 'decline', 'maybe', 'reset', 'tentative'],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
         """
@@ -818,6 +825,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
             appointment_id: ID of appointment
             meeting_request_id: ID of meeting request
             answer: Answer accepted by meeting-request response endpoints.
+                Allowed values: `accept`, `decline`, `maybe`, `reset`, `tentative`.
 
         Example::
 
@@ -849,7 +857,7 @@ class CalendarsAppointmentsTemplatesResource(Resource):
         on_behalf_of_pid: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_duration: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         subtitle: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         tags: _t.Union[_t.Optional[_t.List[int]], UnsetType] = UNSET,
@@ -876,6 +884,7 @@ class CalendarsAppointmentsTemplatesResource(Resource):
             repeat_duration: Seconds from the chosen appointment start to the series end used when applying this template.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option_id: Monthly-by-weekday ordinal, using the template field name repeatOptionId. The resulting appointment uses repeatOption.
             start_time: Local start time used when applying the template, conventionally HH:mm.
             tags: Existing appointment-tag IDs saved in the template.
@@ -973,7 +982,7 @@ class CalendarsAppointmentsTemplatesResource(Resource):
         on_behalf_of_pid: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_duration: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         subtitle: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         tags: _t.Union[_t.Optional[_t.List[int]], UnsetType] = UNSET,
@@ -1001,6 +1010,7 @@ class CalendarsAppointmentsTemplatesResource(Resource):
             repeat_duration: Seconds from the chosen appointment start to the series end used when applying this template.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option_id: Monthly-by-weekday ordinal, using the template field name repeatOptionId. The resulting appointment uses repeatOption.
             start_time: Local start time used when applying the template, conventionally HH:mm.
             tags: Existing appointment-tag IDs saved in the template.
@@ -1054,7 +1064,7 @@ class EventsAgendaItemsResource(Resource):
 
             result = client.events.agenda.items.create(
                 42,
-                body=ct.models.AgendaItemInputHeader.model_validate({"type": "beispiel"}),
+                body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
             )
             print(result)
         """
@@ -1155,7 +1165,7 @@ class EventsAgendaItemsResource(Resource):
             result = client.events.agenda.items.update(
                 42,
                 123,
-                body=ct.models.AgendaItemInputHeader.model_validate({"type": "beispiel"}),
+                body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
             )
             print(result)
         """
@@ -1318,9 +1328,9 @@ class FinanceAccountingperiodsAccountsResource(Resource):
         account_id: int,
         *,
         limit: _t.Optional[int] = None,
-        state: _t.Optional[str] = None,
+        state: _t.Optional[_t.Literal['booked', 'ignored', 'open']] = None,
         query: _t.Optional[str] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
     ) -> Paginator[models.StatementMovement]:
         """
         Get all movements of an account
@@ -1334,8 +1344,10 @@ class FinanceAccountingperiodsAccountsResource(Resource):
             account_id: ID of the account
             limit: Positive number of results per page. No upper bound is enforced.
             state: Restrict to a stored movement state.
+                Allowed values: `booked`, `ignored`, `open`.
             query: Substring search across purpose, account identifier and person name.
             include: Additional suggestion details; use the PHP array syntax include[]=bills.
+                Allowed values: `bills`.
 
         Example::
 
@@ -1499,7 +1511,7 @@ class FinanceEubpSubmissionsResource(Resource):
         self,
         *,
         client_id: int,
-        transmission_reason: int,
+        transmission_reason: _t.Literal[1, 2, 3],
         year_from: int,
         year_to: int,
         additional_accounts_per_year: _t.Union[_t.Optional[StrMap[_t.List[int]]], UnsetType] = UNSET,
@@ -1524,6 +1536,7 @@ class FinanceEubpSubmissionsResource(Resource):
             reference_date: Reference date for the audit (Stichtag der Prüfung) Only retained for transmissionReason=1; cleared for software/provider changes. Only retained for transmissionReason=1; cleared for software/provider changes.
             title: Title of the submission
             transmission_reason: Reason for transmission (1=audit, 2=software change, 3=provider change)
+                Allowed values: `1`, `2`, `3`.
             year_from: Start year of the delivery period
             year_to: End year of the delivery period
 
@@ -1801,7 +1814,7 @@ class GroupsMeetingsMembersResource(Resource):
         meeting_id: int,
         member_id: int,
         *,
-        status: _t.Union[str, UnsetType] = UNSET,
+        status: _t.Union[_t.Literal['absent', 'unsure'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.GroupMeeting:
         """
@@ -1818,6 +1831,7 @@ class GroupsMeetingsMembersResource(Resource):
             meeting_id: ID of a meeting belonging to the group in the URL.
             member_id: Person ID from the attendance list, not a membership or attendance-record ID.
             status: Attendance state after revoking the check-in.
+                Allowed values: `absent`, `unsure`.
 
         Example::
 
@@ -1858,7 +1872,7 @@ class GroupsMeetingsMembersResource(Resource):
         group_id: int,
         meeting_id: int,
         *,
-        status: str,
+        status: _t.Literal['absent', 'present'],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
         """
@@ -1872,6 +1886,7 @@ class GroupsMeetingsMembersResource(Resource):
             group_id: ID of group
             meeting_id: ID of a meeting belonging to the group in the URL.
             status: Attendance state to assign to currently unsure records.
+                Allowed values: `absent`, `present`.
 
         Example::
 
@@ -1909,7 +1924,7 @@ class GroupsMemberfieldsGroupResource(Resource):
         self,
         group_id: int,
         *,
-        field_type_code: str,
+        field_type_code: _t.Literal['api', 'checkbox', 'date', 'datetime', 'multiselect', 'number', 'radioselect', 'select', 'text', 'textarea'],
         name: str,
         required_in_registration_form: bool,
         security_level: int,
@@ -1934,6 +1949,7 @@ class GroupsMemberfieldsGroupResource(Resource):
             group_id: ID of group
             default_value: Default value, validated according to fieldTypeCode. Checkbox accepts booleans and supported boolean strings; number accepts numbers or numeric strings. Date/datetime require date/Zulu date-time strings. Text and textarea accept up to 4000 characters; api accepts up to 255. Select/radioselect accept an option name or ID; multiselect accepts an array, comma-separated string or JSON-encoded array of option names/IDs. Responses normalize scalar values to strings and multiselect values to arrays of option-ID strings. Null clears the default.
             field_type_code: One of the ten supported field types. Unlike global database fields, text/textarea member fields do not require a length parameter and have a fixed maximum value size of 4000.
+                Allowed values: `api`, `checkbox`, `date`, `datetime`, `multiselect`, `number`, `radioselect`, `select`, `text`, `textarea`.
             name: Internal field name shown to administrators.
             name_in_signup_form: Optional field name shown in the signup form. Null or text identical to the internal name/note is stored as null, allowing the internal text to be used.
             note: Internal field description.
@@ -2180,14 +2196,14 @@ class GroupsMembersFollowupsResource(Resource):
         person_id: int,
         *,
         title: str,
-        color: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        color: _t.Union[_t.Optional[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow']], UnsetType] = UNSET,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         due_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         effective_due_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         icon: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         owner_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         success_group_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        success_group_member_status: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        success_group_member_status: _t.Union[_t.Optional[_t.Literal['active', 'requested', 'to_delete', 'waiting']], UnsetType] = UNSET,
         success_group_of_group_type_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         success_role_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -2203,6 +2219,7 @@ class GroupsMembersFollowupsResource(Resource):
             group_id: ID of group
             person_id: ID of person
             color: Optional color. Missing/null uses the yellow display fallback.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             description: Trimmed description; missing, null or blank becomes null.
             due_date: Original planned date. May be absent/null; direct creation/update allows past dates. Omission on update clears it.
             effective_due_date: Current working due date. Defaults to dueDate when omitted/null; postponement changes this independently of the original dueDate.
@@ -2210,6 +2227,7 @@ class GroupsMembersFollowupsResource(Resource):
             owner_id: Responsible person ID. Personal creation defaults to the current user; group-member creation can remain unassigned. Omitted/null on update preserves the current owner.
             success_group_id: Optional fixed destination group for completion. Completion still requires the client to submit its selected successGroupId; it is not added automatically.
             success_group_member_status: Membership status assigned in the selected success group; null uses the default active status.
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
             success_group_of_group_type_id: Optional group-type restriction for selecting a destination group on completion.
             success_role_id: Role assigned in the selected success group; null uses the membership service default.
 
@@ -2248,7 +2266,7 @@ class GroupsMembersFollowupsResource(Resource):
         group_id: int,
         person_id: int,
         *,
-        filter: _t.Optional[_t.List[str]] = None,
+        filter: _t.Optional[_t.List[_t.Literal['done', 'due-after-today', 'due-before-today', 'due-today', 'due-unspecified']]] = None,
         limit: _t.Optional[int] = None,
     ) -> Paginator[models.FollowUp2]:
         """
@@ -2262,6 +2280,7 @@ class GroupsMembersFollowupsResource(Resource):
             group_id: ID of group
             person_id: ID of person
             filter: Repeat to select any of the listed states; omitted/empty includes all states.
+                Allowed values: `done`, `due-after-today`, `due-before-today`, `due-today`, `due-unspecified`.
             limit: Maximum results in this page.
 
         Example::
@@ -2279,7 +2298,7 @@ class GroupsMembersRoutinesResource(Resource):
         self,
         group_id: int,
         role_id: int,
-        group_member_status: str,
+        group_member_status: _t.Literal['active', 'requested', 'to_delete', 'waiting'],
     ) -> None:
         """
         Delete a membership routine and its binding
@@ -2292,6 +2311,7 @@ class GroupsMembersRoutinesResource(Resource):
             group_id: ID of group
             role_id: Group-type role ID, not the ID of a group-role configuration row.
             group_member_status: Status of a group membership
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
 
         Example::
 
@@ -2324,7 +2344,7 @@ class GroupsMembersRoutinesResource(Resource):
         self,
         group_id: int,
         role_id: int,
-        group_member_status: str,
+        group_member_status: _t.Literal['active', 'requested', 'to_delete', 'waiting'],
         *,
         routine_id: _t.Union[int, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -2340,6 +2360,7 @@ class GroupsMembersRoutinesResource(Resource):
             group_id: ID of group
             role_id: Group-type role ID, not the ID of a group-role configuration row.
             group_member_status: Status of a group membership
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
             routine_id: ID of an existing routine with no steps. Needed when creating a binding; ignored if a binding already exists for this path.
 
         Example::
@@ -2456,7 +2477,7 @@ class PermissionsGlobalAuthsResource(Resource):
         data_id: _t.Optional[int] = None,
         page: _t.Optional[int] = None,
         limit: _t.Optional[int] = None,
-        include: _t.Optional[str] = None,
+        include: _t.Optional[_t.Literal['origins']] = None,
     ) -> models.PermissionPersons:
         """
         List Persons with a Global Permission
@@ -2471,6 +2492,7 @@ class PermissionsGlobalAuthsResource(Resource):
             page: One-based page. Providing page, limit or include=origins enables pagination; otherwise all matching IDs are returned. Defaults to 1 when pagination is enabled.
             limit: Page size, 1–100. Providing it enables pagination; page defaults to 1. When pagination is enabled by page or include, this defaults to 50.
             include: Add origins for each person on the page. This also enables pagination with defaults page=1 and limit=50.
+                Allowed values: `origins`.
 
         Example::
 
@@ -2789,7 +2811,7 @@ class PostsCommentsReactionsResource(Resource):
 
         Example::
 
-            client.posts.comments.reactions.delete(42, 42, "beispiel")
+            client.posts.comments.reactions.delete(42, 42, "👍")
         """
         self._raw('DELETE', f"/posts/{_seg(post_id)}/comments/{_seg(comment_id)}/reactions/{_seg(emoji)}", [], None)
 
@@ -2837,7 +2859,7 @@ class PostsCommentsReactionsResource(Resource):
 
         Example::
 
-            result = client.posts.comments.reactions.update(42, 42, emoji="beispiel")
+            result = client.posts.comments.reactions.update(42, 42, emoji="👍")
             print(result.comment_id)
         """
         return _t.cast(models.PostCommentReaction, self._call('PUT', f"/posts/{_seg(post_id)}/comments/{_seg(comment_id)}/reactions", [], _body({'emoji': emoji}, extra_body), models.PostCommentReaction, envelope=True))
@@ -2864,7 +2886,7 @@ class PostsReactionsPersonsResource(Resource):
 
         Example::
 
-            client.posts.reactions.persons.delete(42, "beispiel", "beispiel")
+            client.posts.reactions.persons.delete(42, "👍", "abc123")
         """
         self._raw('DELETE', f"/posts/{_seg(post_id)}/reactions/{_seg(emoji)}/persons/{_seg(person_id)}", [], None)
 
@@ -2886,7 +2908,7 @@ class PostsReactionsPersonsResource(Resource):
 
         Example::
 
-            result = client.posts.reactions.persons.update(42, "beispiel", "beispiel")
+            result = client.posts.reactions.persons.update(42, "👍", "abc123")
             print(result.emoji)
         """
         return _t.cast(models.PostReaction, self._call('PUT', f"/posts/{_seg(post_id)}/reactions/{_seg(emoji)}/persons/{_seg(person_id)}", [], None, models.PostReaction, envelope=True))
@@ -2913,7 +2935,7 @@ class PublicgroupsSignupConfirmResource(Resource):
 
         Example::
 
-            result = client.publicgroups.signup.confirm.create("beispiel", body={})
+            result = client.publicgroups.signup.confirm.create("abc123", body={})
             print(result.group_homepage_hash)
         """
         return _t.cast(models.PostPublicgroupsSignupConfirmConfirmationTokenData, self._call('POST', f"/publicgroups/signup/confirm/{_seg(confirmation_token)}", [], _body(body), models.PostPublicgroupsSignupConfirmConfirmationTokenData, envelope=True))
@@ -2934,7 +2956,7 @@ class PublicgroupsSignupConfirmResource(Resource):
 
         Example::
 
-            data = client.publicgroups.signup.confirm.get("beispiel")
+            data = client.publicgroups.signup.confirm.get("abc123")
             with open("ergebnis.bin", "wb") as f:
                 f.write(data)
         """
@@ -2947,7 +2969,7 @@ class RoutinesRunsBulkResource(Resource):
     def create(
         self,
         routine_id: int,
-        run_action: str,
+        run_action: _t.Literal['pause', 'restart-routine', 'restart-step', 'resume', 'skip-step', 'update'],
         *,
         run_ids: _t.List[int],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -2962,11 +2984,12 @@ class RoutinesRunsBulkResource(Resource):
         Args:
             routine_id: ID of a routine
             run_action: Run transition; some actions may immediately continue execution.
+                Allowed values: `pause`, `restart-routine`, `restart-step`, `resume`, `skip-step`, `update`.
             run_ids: Run IDs processed sequentially. Duplicates are not rejected.
 
         Example::
 
-            for bulk in client.routines.runs.bulk.create(9, "beispiel", run_ids=[42]):
+            for bulk in client.routines.runs.bulk.create(9, "pause", run_ids=[42]):
                 print(bulk.id)
         """
         return _t.cast(_t.List[models.RoutineRun], self._call('POST', f"/routines/{_seg(routine_id)}/runs/bulk/{_seg(run_action)}", [], _body({'runIds': run_ids}, extra_body), _t.List[models.RoutineRun], envelope=True))
@@ -2981,7 +3004,7 @@ class SongsArrangementsFilesResource(Resource):
         arrangement_id: int,
         file_id: int,
         *,
-        transpose_interval: str,
+        transpose_interval: _t.Literal['down1', 'down2', 'down3', 'down4', 'down5', 'down6', 'up1', 'up2', 'up3', 'up4', 'up5', 'up6'],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.ArrangementFileTranspose:
         """
@@ -2996,6 +3019,7 @@ class SongsArrangementsFilesResource(Resource):
             arrangement_id: ID of arrangement
             file_id: ID of the file
             transpose_interval: Pitch shift in semitones: up1 through up6 raise the pitch by one to six semitones, down1 through down6 lower it. For example, up2 moves C to D. Zero and shifts beyond six semitones are not accepted.
+                Allowed values: `down1`, `down2`, `down3`, `down4`, `down5`, `down6`, `up1`, `up2`, `up3`, `up4`, `up5`, `up6`.
 
         Example::
 
@@ -3239,7 +3263,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
     def delete(
         self,
         external_system_id: int,
-        domain_type: str,
+        domain_type: _t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'],
     ) -> None:
         """
         Delete field mappings for a domain
@@ -3251,6 +3275,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             domain_type: Entity domain for this field mapping. The adapter must support it.
+                Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
 
         Example::
 
@@ -3261,7 +3286,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
     def get(
         self,
         external_system_id: int,
-        domain_type: str,
+        domain_type: _t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'],
     ) -> models.FieldMapping:
         """
         Get field mappings for a domain
@@ -3273,6 +3298,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             domain_type: Entity domain for this field mapping. The adapter must support it.
+                Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
 
         Example::
 
@@ -3284,7 +3310,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
     def get_nosuggestions(
         self,
         external_system_id: int,
-        domain_type: str,
+        domain_type: _t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'],
     ) -> _t.Union[models.GetSyncExternalsystemsIdFieldmappingsDomaintypeNosuggestionsDataVariant1, _t.List[_t.Any]]:
         """
         List fields without mapping suggestions
@@ -3296,6 +3322,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             domain_type: Entity domain for this field mapping. The adapter must support it.
+                Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
 
         Example::
 
@@ -3328,7 +3355,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
     def update(
         self,
         external_system_id: int,
-        domain_type: str,
+        domain_type: _t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'],
         *,
         property_mappings_es_to_master: _t.List[models.SyncFieldMappingEntryCreate],
         property_mappings_master_to_es: _t.List[models.SyncFieldMappingEntryCreate],
@@ -3344,6 +3371,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         Args:
             external_system_id: ID of a configured external connection.
             domain_type: Entity domain for this field mapping. The adapter must support it.
+                Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
 
         Example::
 
@@ -3372,16 +3400,16 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         auto_schedule_enabled: bool,
         domain_type: str,
         name: str,
-        create_behavior_es: _t.Union[str, UnsetType] = UNSET,
-        create_behavior_master: _t.Union[str, UnsetType] = UNSET,
+        create_behavior_es: _t.Union[_t.Literal['always', 'never'], UnsetType] = UNSET,
+        create_behavior_master: _t.Union[_t.Literal['always', 'never'], UnsetType] = UNSET,
         create_defaults_es: _t.Union[_t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]], UnsetType] = UNSET,
         create_defaults_master: _t.Union[_t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]], UnsetType] = UNSET,
-        delete_behavior_es: _t.Union[str, UnsetType] = UNSET,
-        delete_behavior_master: _t.Union[str, UnsetType] = UNSET,
-        link_behavior: _t.Union[str, UnsetType] = UNSET,
-        link_data: _t.Union[str, UnsetType] = UNSET,
-        update_behavior: _t.Union[str, UnsetType] = UNSET,
-        update_data: _t.Union[str, UnsetType] = UNSET,
+        delete_behavior_es: _t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], UnsetType] = UNSET,
+        delete_behavior_master: _t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], UnsetType] = UNSET,
+        link_behavior: _t.Union[_t.Literal['alwaysMerge', 'alwaysUse', 'never'], UnsetType] = UNSET,
+        link_data: _t.Union[_t.Literal['es', 'lastUpdated', 'master'], UnsetType] = UNSET,
+        update_behavior: _t.Union[_t.Literal['always', 'never'], UnsetType] = UNSET,
+        update_data: _t.Union[_t.Literal['es', 'lastUpdated', 'master'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.JobConfigurationReturn:
         """
@@ -3395,15 +3423,23 @@ class SyncExternalsystemsJobconfigsResource(Resource):
             external_system_id: ID of a configured external connection.
             auto_schedule_enabled: Whether the periodic scheduler can start this job.
             create_behavior_es: Whether records may be created or updated.
+                Allowed values: `always`, `never`.
             create_behavior_master: Whether records may be created or updated.
+                Allowed values: `always`, `never`.
             delete_behavior_es: How deletions are handled on the specified side: retain, archive or delete.
+                Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
             delete_behavior_master: How deletions are handled on the specified side: retain, archive or delete.
+                Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
             domain_type: Domain supported by the adapter, such as person. Job configuration accepts adapter-specific domain names.
             link_behavior: Whether matching records are linked: never, use an existing record, or merge when linking.
+                Allowed values: `alwaysMerge`, `alwaysUse`, `never`.
             link_data: Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+                Allowed values: `es`, `lastUpdated`, `master`.
             name: Job display name.
             update_behavior: Whether records may be created or updated.
+                Allowed values: `always`, `never`.
             update_data: Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+                Allowed values: `es`, `lastUpdated`, `master`.
 
         Example::
 
@@ -3610,16 +3646,16 @@ class SyncExternalsystemsJobconfigsResource(Resource):
         domain_type: str,
         name: str,
         id: int,
-        create_behavior_es: _t.Union[str, UnsetType] = UNSET,
-        create_behavior_master: _t.Union[str, UnsetType] = UNSET,
+        create_behavior_es: _t.Union[_t.Literal['always', 'never'], UnsetType] = UNSET,
+        create_behavior_master: _t.Union[_t.Literal['always', 'never'], UnsetType] = UNSET,
         create_defaults_es: _t.Union[_t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]], UnsetType] = UNSET,
         create_defaults_master: _t.Union[_t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]], UnsetType] = UNSET,
-        delete_behavior_es: _t.Union[str, UnsetType] = UNSET,
-        delete_behavior_master: _t.Union[str, UnsetType] = UNSET,
-        link_behavior: _t.Union[str, UnsetType] = UNSET,
-        link_data: _t.Union[str, UnsetType] = UNSET,
-        update_behavior: _t.Union[str, UnsetType] = UNSET,
-        update_data: _t.Union[str, UnsetType] = UNSET,
+        delete_behavior_es: _t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], UnsetType] = UNSET,
+        delete_behavior_master: _t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], UnsetType] = UNSET,
+        link_behavior: _t.Union[_t.Literal['alwaysMerge', 'alwaysUse', 'never'], UnsetType] = UNSET,
+        link_data: _t.Union[_t.Literal['es', 'lastUpdated', 'master'], UnsetType] = UNSET,
+        update_behavior: _t.Union[_t.Literal['always', 'never'], UnsetType] = UNSET,
+        update_data: _t.Union[_t.Literal['es', 'lastUpdated', 'master'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.JobConfigurationReturn:
         """
@@ -3634,17 +3670,25 @@ class SyncExternalsystemsJobconfigsResource(Resource):
             job_id: Numeric job configuration ID, distinct from an execution ID.
             auto_schedule_enabled: Whether the periodic scheduler can start this job.
             create_behavior_es: Whether records may be created or updated.
+                Allowed values: `always`, `never`.
             create_behavior_master: Whether records may be created or updated.
+                Allowed values: `always`, `never`.
             create_defaults_es: Adapter-specific defaults for newly created records on this side.
             create_defaults_master: Adapter-specific defaults for newly created records on this side.
             delete_behavior_es: How deletions are handled on the specified side: retain, archive or delete.
+                Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
             delete_behavior_master: How deletions are handled on the specified side: retain, archive or delete.
+                Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
             domain_type: Domain supported by the adapter, such as person. Job configuration accepts adapter-specific domain names.
             link_behavior: Whether matching records are linked: never, use an existing record, or merge when linking.
+                Allowed values: `alwaysMerge`, `alwaysUse`, `never`.
             link_data: Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+                Allowed values: `es`, `lastUpdated`, `master`.
             name: Job display name.
             update_behavior: Whether records may be created or updated.
+                Allowed values: `always`, `never`.
             update_data: Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+                Allowed values: `es`, `lastUpdated`, `master`.
             id: Existing job configuration ID.
 
         Example::
@@ -3900,7 +3944,7 @@ class AgendatemplatesItemsResource(Resource):
 
             result = client.agendatemplates.items.create(
                 35,
-                body=ct.models.AgendaItemInputHeader.model_validate({"type": "beispiel"}),
+                body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
             )
             print(result)
         """
@@ -3957,7 +4001,7 @@ class AgendatemplatesItemsResource(Resource):
             result = client.agendatemplates.items.update(
                 35,
                 123,
-                body=ct.models.AgendaItemInputHeader.model_validate({"type": "beispiel"}),
+                body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
             )
             print(result)
         """
@@ -3982,7 +4026,7 @@ class CalendarsAppointmentsResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         split_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
@@ -4002,6 +4046,7 @@ class CalendarsAppointmentsResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -4031,7 +4076,7 @@ class CalendarsAppointmentsResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         address: _t.Union[models.AppointmentAddressCreate, UnsetType] = UNSET,
@@ -4059,6 +4104,7 @@ class CalendarsAppointmentsResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -4113,7 +4159,7 @@ class CalendarsAppointmentsResource(Resource):
         calendar_id: int,
         appointment_id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bookings', 'event', 'group', 'meetingRequests', 'tags', 'titleSuffix']]] = None,
     ) -> models.AppointmentCalculated:
         """
         Get an appointment series and its dates
@@ -4126,6 +4172,7 @@ class CalendarsAppointmentsResource(Resource):
             calendar_id: ID of Calendar
             appointment_id: ID of appointment
             include: Additional series data: event, group, bookings and titleSuffix enrich calculatedDates; tags enriches additionalInfos.
+                Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
 
         Example::
 
@@ -4163,7 +4210,7 @@ class CalendarsAppointmentsResource(Resource):
         appointment_id: int,
         start_date: _dt.date,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bookings', 'event', 'group', 'meetingRequests', 'tags', 'titleSuffix']]] = None,
     ) -> models.AppointmentOccurrence:
         """
         Get one appointment occurrence
@@ -4176,6 +4223,7 @@ class CalendarsAppointmentsResource(Resource):
             appointment_id: ID of appointment
             start_date: Local start date (YYYY-MM-DD) of the occurrence, not its UTC timestamp or the base date of the series.
             include: Additional data for this occurrence. Meeting requests belong to the whole appointment/series.
+                Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
 
         Example::
 
@@ -4190,7 +4238,7 @@ class CalendarsAppointmentsResource(Resource):
         appointment_id: int,
         start_date: _dt.date,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bookings', 'event', 'group', 'meetingRequests', 'tags', 'titleSuffix']]] = None,
     ) -> models.AppointmentOccurrence:
         """
         Get one appointment occurrence
@@ -4204,6 +4252,7 @@ class CalendarsAppointmentsResource(Resource):
             appointment_id: ID of appointment
             start_date: Local start date (YYYY-MM-DD) of the occurrence, not its UTC timestamp or the base date of the series.
             include: Additional data for this occurrence. Meeting requests belong to the whole appointment/series.
+                Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
 
         Example::
 
@@ -4219,7 +4268,7 @@ class CalendarsAppointmentsResource(Resource):
         from_: _t.Optional[_dt.date] = None,
         to: _t.Optional[_dt.date] = None,
         query: _t.Optional[str] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bookings', 'event', 'group', 'meetingRequests', 'tags', 'titleSuffix']]] = None,
     ) -> _t.List[models.AppointmentOccurrenceList]:
         """
         List appointment occurrences across calendars
@@ -4234,6 +4283,7 @@ class CalendarsAppointmentsResource(Resource):
             to: Last requested calendar date. Defaults to the last day of the current month and must be on or after from.
             query: Search appointment titles for the supplied text.
             include: Additional data requested for each calculated occurrence.
+                Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
 
         Example::
 
@@ -4249,7 +4299,7 @@ class CalendarsAppointmentsResource(Resource):
         from_: _t.Optional[_dt.date] = None,
         to: _t.Optional[_dt.date] = None,
         query: _t.Optional[str] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bookings', 'event', 'group', 'meetingRequests', 'tags', 'titleSuffix']]] = None,
     ) -> _t.List[models.AppointmentOccurrenceList]:
         """
         List appointment occurrences in a calendar
@@ -4264,6 +4314,7 @@ class CalendarsAppointmentsResource(Resource):
             to: Last requested calendar date. Defaults to the last day of the current month and must be on or after from.
             query: Search appointment titles for the supplied text.
             include: Additional data requested for each calculated occurrence.
+                Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
 
         Example::
 
@@ -4286,7 +4337,7 @@ class CalendarsAppointmentsResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         address: _t.Union[models.AppointmentAddressCreate, UnsetType] = UNSET,
@@ -4316,6 +4367,7 @@ class CalendarsAppointmentsResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -4361,7 +4413,7 @@ class CalendarsAppointmentsResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         address: _t.Union[models.AppointmentAddressCreate, UnsetType] = UNSET,
@@ -4391,6 +4443,7 @@ class CalendarsAppointmentsResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -4633,7 +4686,7 @@ class EventsAgendaResource(Resource):
         self,
         event_id: int,
         *,
-        format: str,
+        format: _t.Literal['PRO_PRESENTER_6', 'PRO_PRESENTER_7', 'SONG_BEAMER'],
         append_arrangement: bool,
         export_songs: bool,
         with_category: bool,
@@ -4649,6 +4702,7 @@ class EventsAgendaResource(Resource):
         Args:
             event_id: ID of Event
             format: Target presenter format. The generated archive is returned through a download URL in the JSON response.
+                Allowed values: `PRO_PRESENTER_6`, `PRO_PRESENTER_7`, `SONG_BEAMER`.
             append_arrangement: Append the selected arrangement name to exported song captions and generated fallback file names. Existing attached files retain their file names.
             export_songs: Include available song files for the target software. The first matching file of the selected arrangement is used. For SongBeamer, the song's default arrangement can provide a fallback `.sng` file. When disabled, song references point to files expected in the presenter library. No song-file conversion is performed.
             with_category: For `SONG_BEAMER` with `exportSongs`=`false`, prefix generated song file references with the song category as a directory. Has no effect with embedded song files or for either ProPresenter format.
@@ -4827,7 +4881,7 @@ class EventsEventservicesResource(Resource):
 
         Example::
 
-            eventservice = client.events.eventservices.delete(42, 42, comment="beispiel")
+            eventservice = client.events.eventservices.delete(42, 42, comment="Hallo zusammen")
             print(eventservice.name)
         """
         return _t.cast(models.ServiceRequest, self._call('DELETE', f"/events/{_seg(event_id)}/eventservices/{_seg(service_id)}", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
@@ -4930,7 +4984,7 @@ class EventsFactsResource(Resource):
         self,
         *,
         calendar_ids: _t.List[int],
-        format: _t.Optional[str] = None,
+        format: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
         from_: _t.Union[_dt.date, UnsetType] = UNSET,
         to: _t.Union[_dt.date, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -4944,6 +4998,7 @@ class EventsFactsResource(Resource):
 
         Args:
             format: Download format.
+                Allowed values: `csv`, `xlsx`.
             calendar_ids: Calendars containing the appointments linked to the service-planning events. Only events visible to the current user are exported.
             from_: Inclusive lower bound for the event start date in the installation’s timezone.
             to: Exclusive upper bound for the event start date in the installation’s timezone. Must be later than from when both are supplied.
@@ -5083,7 +5138,7 @@ class EventsServicerequestsResource(Resource):
 
         Example::
 
-            servicerequest = client.events.servicerequests.accept(42, 42, comment="beispiel")
+            servicerequest = client.events.servicerequests.accept(42, 42, comment="Hallo zusammen")
             print(servicerequest.name)
         """
         return _t.cast(models.ServiceRequest, self._call('POST', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}/accept", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
@@ -5110,7 +5165,7 @@ class EventsServicerequestsResource(Resource):
 
         Example::
 
-            servicerequest = client.events.servicerequests.decline(42, 42, comment="beispiel")
+            servicerequest = client.events.servicerequests.decline(42, 42, comment="Hallo zusammen")
             print(servicerequest.name)
         """
         return _t.cast(models.ServiceRequest, self._call('POST', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}/decline", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
@@ -5263,7 +5318,7 @@ class ExternalloginsLinkResource(Resource):
             result = client.externallogins.link.create(
                 7,
                 link_token="opaque-session-bound-link-token",
-                password="beispiel",
+                password="geheim",
                 username="alex@example.org",
             )
             print(result.location)
@@ -6021,8 +6076,8 @@ class FinanceAccountingperiodsResource(Resource):
         id: int,
         *,
         limit: _t.Optional[int] = None,
-        order_by: _t.Optional[str] = None,
-        order_direction: _t.Optional[str] = None,
+        order_by: _t.Optional[_t.Literal['submittedDate']] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC']] = None,
     ) -> Paginator[models.Bill]:
         """
         Get bills for accounting period
@@ -6035,7 +6090,9 @@ class FinanceAccountingperiodsResource(Resource):
             id: ID of Entity
             limit: Maximum documents per page.
             order_by: Enable sorting by submission date, with bill ID as a tie-breaker.
+                Allowed values: `submittedDate`.
             order_direction: Direction used when order_by is supplied.
+                Allowed values: `ASC`, `DESC`.
 
         Example::
 
@@ -6313,8 +6370,8 @@ class FinanceAccountsResource(Resource):
         self,
         *,
         accounting_period_id: int,
-        format: _t.Optional[str] = None,
-        type_: _t.Optional[str] = None,
+        format: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
+        type_: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
     ) -> bytes:
         """
         Export accounts
@@ -6326,7 +6383,9 @@ class FinanceAccountsResource(Resource):
         Args:
             accounting_period_id: Accounting period to export.
             format: Download format. Only CSV and XLSX generators are registered.
+                Allowed values: `csv`, `xlsx`.
             type_: Compatibility alias for format.
+                Allowed values: `csv`, `xlsx`.
 
         Example::
 
@@ -6411,7 +6470,7 @@ class FinanceAccounttypesResource(Resource):
         self,
         *,
         name: str,
-        balance_type: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        balance_type: _t.Union[_t.Optional[_t.Literal['assets', 'liabilities']], UnsetType] = UNSET,
         sort_key: _t.Union[int, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.AccountType:
@@ -6424,6 +6483,7 @@ class FinanceAccounttypesResource(Resource):
 
         Args:
             balance_type: Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
+                Allowed values: `assets`, `liabilities`.
             name: Unique account-type name. The controller does not trim the name or enforce a length limit.
             sort_key: Ascending display order. Omission resets it to 0, including on update.
 
@@ -6500,7 +6560,7 @@ class FinanceAccounttypesResource(Resource):
         id: int,
         *,
         name: str,
-        balance_type: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        balance_type: _t.Union[_t.Optional[_t.Literal['assets', 'liabilities']], UnsetType] = UNSET,
         sort_key: _t.Union[int, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.AccountType:
@@ -6514,6 +6574,7 @@ class FinanceAccounttypesResource(Resource):
         Args:
             id: ID of Entity
             balance_type: Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
+                Allowed values: `assets`, `liabilities`.
             name: Unique account-type name. The controller does not trim the name or enforce a length limit.
             sort_key: Ascending display order. Omission resets it to 0, including on update.
 
@@ -7022,8 +7083,8 @@ class FinanceCostcentersResource(Resource):
         self,
         *,
         accounting_period_id: int,
-        format: _t.Optional[str] = None,
-        type_: _t.Optional[str] = None,
+        format: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
+        type_: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
     ) -> bytes:
         """
         Export cost centers
@@ -7035,7 +7096,9 @@ class FinanceCostcentersResource(Resource):
         Args:
             accounting_period_id: Accounting period to export.
             format: Download format. Only CSV and XLSX generators are registered.
+                Allowed values: `csv`, `xlsx`.
             type_: Compatibility alias for format.
+                Allowed values: `csv`, `xlsx`.
 
         Example::
 
@@ -7129,8 +7192,8 @@ class FinanceDonatorsResource(Resource):
 
             result = client.finance.donators.create_receipts(
                 accounting_period_id=1,
-                donation_receipt_attachment_template_id="beispiel",
-                donation_receipt_letter_template_id="beispiel",
+                donation_receipt_attachment_template_id="abc123",
+                donation_receipt_letter_template_id="abc123",
             )
             print(result.job_group)
         """
@@ -7141,7 +7204,7 @@ class FinanceDonatorsResource(Resource):
         donator_couple_id: str,
         *,
         accounting_period_id: int,
-        type_: _t.Union[str, UnsetType] = UNSET,
+        type_: _t.Union[_t.Literal['DRAFT', 'DUPLICATE', 'ORIGINAL'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.DonationReceipt:
         """
@@ -7155,6 +7218,7 @@ class FinanceDonatorsResource(Resource):
             donator_couple_id: One person ID (42) or two person IDs joined with a hyphen (42-43). A pair and a single donor are separate receipt recipients.
             accounting_period_id: Accounting period for the requested donor or pair.
             type_: DRAFT creates temporary PDFs, ORIGINAL creates persistent files, and DUPLICATE marks a copy. On reads this parameter chooses watermarking, not which stored record is selected.
+                Allowed values: `DRAFT`, `DUPLICATE`, `ORIGINAL`.
 
         Example::
 
@@ -7211,8 +7275,8 @@ class FinanceDonatorsResource(Resource):
         self,
         *,
         accounting_period_id: int,
-        mode: _t.Optional[str] = None,
-        cleardoublepage: _t.Optional[str] = None,
+        mode: _t.Optional[_t.Literal['onefile', 'twofiles']] = None,
+        cleardoublepage: _t.Optional[_t.Literal['all', 'donation_attachment', 'donation_cover_letter', 'none']] = None,
     ) -> models.CombinedDonationReceipts:
         """
         Get combined donation receipt PDFs
@@ -7224,7 +7288,9 @@ class FinanceDonatorsResource(Resource):
         Args:
             accounting_period_id: Accounting period for these donation receipts.
             mode: Combine letters and attachments separately (twofiles), or interleave them by recipient into one PDF (onefile).
+                Allowed values: `onefile`, `twofiles`.
             cleardoublepage: Insert blank pages for duplex printing: all, only cover letters, only attachments, or none. In onefile mode donation_attachment alone has no effect.
+                Allowed values: `all`, `donation_attachment`, `donation_cover_letter`, `none`.
 
         Example::
 
@@ -7238,7 +7304,7 @@ class FinanceDonatorsResource(Resource):
         donator_couple_id: str,
         *,
         accounting_period_id: int,
-        type_: _t.Optional[str] = None,
+        type_: _t.Optional[_t.Literal['DRAFT', 'DUPLICATE', 'ORIGINAL']] = None,
     ) -> models.DonationReceipt:
         """
         Get existing donation receipt PDFs (cover letter and attachment)
@@ -7251,6 +7317,7 @@ class FinanceDonatorsResource(Resource):
             donator_couple_id: One person ID (42) or two person IDs joined with a hyphen (42-43). A pair and a single donor are separate receipt recipients.
             accounting_period_id: Accounting period for these donation receipts.
             type_: Watermark for returned files. Does not select the stored receipt type.
+                Allowed values: `DRAFT`, `DUPLICATE`, `ORIGINAL`.
 
         Example::
 
@@ -7264,8 +7331,8 @@ class FinanceDonatorsResource(Resource):
         *,
         accounting_period_id: int,
         only_incomplete: _t.Optional[bool] = None,
-        order_by: _t.Optional[str] = None,
-        order_direction: _t.Optional[str] = None,
+        order_by: _t.Optional[_t.Literal['count', 'last', 'name', 'sum']] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC', 'asc', 'desc']] = None,
         query: _t.Optional[str] = None,
         limit: _t.Optional[int] = None,
     ) -> Paginator[models.Donator]:
@@ -7280,7 +7347,9 @@ class FinanceDonatorsResource(Resource):
             accounting_period_id: Accounting period to aggregate.
             only_incomplete: Return only households missing at least one required name/address field.
             order_by: Sort by primary last name, donation count, latest donation date or net sum.
+                Allowed values: `count`, `last`, `name`, `sum`.
             order_direction: Sort direction; upper- and lower-case values are accepted.
+                Allowed values: `ASC`, `DESC`, `asc`, `desc`.
             query: Substring search on the primary first or last name. No minimum length is enforced; SQL LIKE wildcards are not escaped.
             limit: Maximum households per page. No upper bound is enforced.
 
@@ -7331,7 +7400,7 @@ class FinanceReportsResource(Resource):
         end_date: _dt.date,
         start_date: _dt.date,
         account_types: _t.Union[_t.Optional[_t.List[int]], UnsetType] = UNSET,
-        format: _t.Union[str, UnsetType] = UNSET,
+        format: _t.Union[_t.Literal['csv', 'pdf', 'xlsx'], UnsetType] = UNSET,
         show_account_groups: _t.Union[bool, UnsetType] = UNSET,
         show_empty_accounts: _t.Union[bool, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -7347,6 +7416,7 @@ class FinanceReportsResource(Resource):
             account_types: Account-type IDs. Omission, null or [] selects all types. Existing IDs must be JSON integers; numeric strings do not match. Unknown IDs are ignored.
             accounting_period_id: Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
             format: PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+                Allowed values: `csv`, `pdf`, `xlsx`.
             show_account_groups: Include account-group grouping/columns in the report.
             show_empty_accounts: Include zero-value accounts according to the selected report’s balance/activity calculation.
             end_date: Last document date to include.
@@ -7371,7 +7441,7 @@ class FinanceReportsResource(Resource):
         end_date: _dt.date,
         start_date: _dt.date,
         account_types: _t.Union[_t.Optional[_t.List[int]], UnsetType] = UNSET,
-        format: _t.Union[str, UnsetType] = UNSET,
+        format: _t.Union[_t.Literal['csv', 'pdf', 'xlsx'], UnsetType] = UNSET,
         show_account_groups: _t.Union[bool, UnsetType] = UNSET,
         show_empty_accounts: _t.Union[bool, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -7387,6 +7457,7 @@ class FinanceReportsResource(Resource):
             account_types: Account-type IDs. Omission, null or [] selects all types. Existing IDs must be JSON integers; numeric strings do not match. Unknown IDs are ignored.
             accounting_period_id: Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
             format: PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+                Allowed values: `csv`, `pdf`, `xlsx`.
             show_account_groups: Include account-group grouping/columns in the report.
             show_empty_accounts: Include zero-value accounts according to the selected report’s balance/activity calculation.
             end_date: Last document date to include.
@@ -7410,7 +7481,7 @@ class FinanceReportsResource(Resource):
         accounting_period_id: int,
         month: int,
         account_types: _t.Union[_t.Optional[_t.List[int]], UnsetType] = UNSET,
-        format: _t.Union[str, UnsetType] = UNSET,
+        format: _t.Union[_t.Literal['csv', 'pdf', 'xlsx'], UnsetType] = UNSET,
         show_account_groups: _t.Union[bool, UnsetType] = UNSET,
         show_empty_accounts: _t.Union[bool, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -7426,6 +7497,7 @@ class FinanceReportsResource(Resource):
             account_types: Accepted by the shared validator but ignored by the sum-balance report.
             accounting_period_id: Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
             format: PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+                Allowed values: `csv`, `pdf`, `xlsx`.
             month: Calendar month in the year of the accounting period’s start date. The report includes month totals and cumulative totals from January.
             show_account_groups: Include account-group grouping/columns in the report.
             show_empty_accounts: Include zero-value accounts according to the selected report’s balance/activity calculation.
@@ -7442,9 +7514,9 @@ class FinanceReportsResource(Resource):
         self,
         *,
         accounting_period_id: int,
-        period: str,
+        period: _t.Literal['monthly', 'quarterly'],
         account_types: _t.Union[_t.Optional[_t.List[int]], UnsetType] = UNSET,
-        format: _t.Union[str, UnsetType] = UNSET,
+        format: _t.Union[_t.Literal['csv', 'pdf', 'xlsx'], UnsetType] = UNSET,
         show_account_groups: _t.Union[bool, UnsetType] = UNSET,
         show_empty_accounts: _t.Union[bool, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -7460,7 +7532,9 @@ class FinanceReportsResource(Resource):
             account_types: Account-type IDs. Omission, null or [] selects all types. Existing IDs must be JSON integers; numeric strings do not match. Unknown IDs are ignored. If no supplied ID matches, the turnover calculator falls back to all types.
             accounting_period_id: Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
             format: PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+                Allowed values: `csv`, `pdf`, `xlsx`.
             period: Use twelve calendar-month columns or four calendar-quarter columns for the year of the accounting period’s start date.
+                Allowed values: `monthly`, `quarterly`.
             show_account_groups: Accepted by the shared validator but ignored by the turnover report.
             show_empty_accounts: Include zero-value accounts according to the selected report’s balance/activity calculation.
 
@@ -7519,7 +7593,7 @@ class FinanceSplittransactionsResource(Resource):
         id: int,
         *,
         dry_run: _t.Optional[bool] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
     ) -> None:
         """
         Delete split transaction
@@ -7532,6 +7606,7 @@ class FinanceSplittransactionsResource(Resource):
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
             include: Include additional information
+                Allowed values: `bills`.
 
         Example::
 
@@ -7566,7 +7641,7 @@ class FinanceSplittransactionsResource(Resource):
         self,
         id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
     ) -> models.SplitTransaction:
         """
         Get a split transaction
@@ -7578,6 +7653,7 @@ class FinanceSplittransactionsResource(Resource):
         Args:
             id: ID of Entity
             include: Include additional information
+                Allowed values: `bills`.
 
         Example::
 
@@ -7595,7 +7671,7 @@ class FinanceSplittransactionsResource(Resource):
         note: _t.Optional[str],
         split_children: _t.List[models.SplitTransactionChildCreate],
         ignore_donation_constraint: _t.Optional[bool] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
         document_number: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> _t.Optional[models.SplitTransaction]:
@@ -7610,6 +7686,7 @@ class FinanceSplittransactionsResource(Resource):
             id: ID of Entity
             ignore_donation_constraint: Skip the normal donation-account/donor constraint. Must be a query parameter. Joint-donor consistency checks still apply in the child service.
             include: Include additional information
+                Allowed values: `bills`.
             amount: Total gross amount in minor currency units, equal to the sum of submitted child amounts.
             document_date: Document date applied to all children.
             document_number: Parent number. Required unless the period generates numbers; omission or null then generates a number, including on update. Multi-child bookings receive suffixes -1, -2, and so on.
@@ -8206,7 +8283,7 @@ class FinanceTransactionsResource(Resource):
         id: int,
         *,
         dry_run: _t.Optional[bool] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
     ) -> None:
         """
         Delete transaction
@@ -8219,6 +8296,7 @@ class FinanceTransactionsResource(Resource):
             id: ID of Entity
             dry_run: If set to true, the deletion is simulated but nothing will be deleted.
             include: Include additional information
+                Allowed values: `bills`.
 
         Example::
 
@@ -8253,7 +8331,7 @@ class FinanceTransactionsResource(Resource):
         self,
         id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
     ) -> models.Transaction:
         """
         Get a transaction
@@ -8265,6 +8343,7 @@ class FinanceTransactionsResource(Resource):
         Args:
             id: ID of Entity
             include: Include additional information
+                Allowed values: `bills`.
 
         Example::
 
@@ -8288,11 +8367,11 @@ class FinanceTransactionsResource(Resource):
         start_date: _t.Optional[_dt.date] = None,
         end_date: _t.Optional[_dt.date] = None,
         is_immutable: _t.Optional[bool] = None,
-        order_by: _t.Optional[str] = None,
-        order_direction: _t.Optional[str] = None,
+        order_by: _t.Optional[_t.Literal['account', 'amount', 'bills', 'contra_account', 'cost_center', 'date', 'donator', 'modified', 'note', 'number']] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC', 'asc', 'desc']] = None,
         query: _t.Optional[str] = None,
         is_waiver_of_reimbursement_of_expenses: _t.Optional[bool] = None,
-        target: _t.Optional[str] = None,
+        target: _t.Optional[_t.Literal['', 'default', 'sage100']] = None,
     ) -> bytes:
         """
         Export transactions as CSV
@@ -8317,10 +8396,13 @@ class FinanceTransactionsResource(Resource):
             end_date: Inclusive upper bound for documentDate.
             is_immutable: Filter transactions, whether transaction is immutable.
             order_by: Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+                Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
             order_direction: Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+                Allowed values: `ASC`, `DESC`, `asc`, `desc`.
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
             target: Column layout: default is the human-readable CT export; sage100 uses separate debit/credit account and cost-center numbers plus tax fields. An empty string selects default.
+                Allowed values: ``, `default`, `sage100`.
 
         Example::
 
@@ -8345,8 +8427,8 @@ class FinanceTransactionsResource(Resource):
         start_date: _t.Optional[_dt.date] = None,
         end_date: _t.Optional[_dt.date] = None,
         is_immutable: _t.Optional[bool] = None,
-        order_by: _t.Optional[str] = None,
-        order_direction: _t.Optional[str] = None,
+        order_by: _t.Optional[_t.Literal['account', 'amount', 'bills', 'contra_account', 'cost_center', 'date', 'donator', 'modified', 'note', 'number']] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC', 'asc', 'desc']] = None,
         query: _t.Optional[str] = None,
         is_waiver_of_reimbursement_of_expenses: _t.Optional[bool] = None,
     ) -> bytes:
@@ -8371,7 +8453,9 @@ class FinanceTransactionsResource(Resource):
             end_date: Inclusive upper bound for documentDate.
             is_immutable: Filter transactions, whether transaction is immutable.
             order_by: Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+                Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
             order_direction: Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+                Allowed values: `ASC`, `DESC`, `asc`, `desc`.
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
 
@@ -8424,13 +8508,13 @@ class FinanceTransactionsResource(Resource):
         start_date: _t.Optional[_dt.date] = None,
         end_date: _t.Optional[_dt.date] = None,
         is_immutable: _t.Optional[bool] = None,
-        order_by: _t.Optional[str] = None,
-        order_direction: _t.Optional[str] = None,
+        order_by: _t.Optional[_t.Literal['account', 'amount', 'bills', 'contra_account', 'cost_center', 'date', 'donator', 'modified', 'note', 'number']] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC', 'asc', 'desc']] = None,
         query: _t.Optional[str] = None,
         is_waiver_of_reimbursement_of_expenses: _t.Optional[bool] = None,
-        target: _t.Optional[str] = None,
-        format: _t.Optional[str] = None,
-        type_: _t.Optional[str] = None,
+        target: _t.Optional[_t.Literal['', 'default', 'sage100']] = None,
+        format: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
+        type_: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
     ) -> bytes:
         """
         Export transactions
@@ -8453,12 +8537,17 @@ class FinanceTransactionsResource(Resource):
             end_date: Inclusive upper bound for documentDate.
             is_immutable: Filter transactions, whether transaction is immutable.
             order_by: Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+                Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
             order_direction: Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+                Allowed values: `ASC`, `DESC`, `asc`, `desc`.
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
             target: Column layout: default is the human-readable CT export; sage100 uses separate debit/credit account and cost-center numbers plus tax fields. An empty string selects default.
+                Allowed values: ``, `default`, `sage100`.
             format: File format.
+                Allowed values: `csv`, `xlsx`.
             type_: Legacy alias for format. Use format for new integrations.
+                Allowed values: `csv`, `xlsx`.
 
         Example::
 
@@ -8525,11 +8614,11 @@ class FinanceTransactionsResource(Resource):
         start_date: _t.Optional[_dt.date] = None,
         end_date: _t.Optional[_dt.date] = None,
         is_immutable: _t.Optional[bool] = None,
-        order_by: _t.Optional[str] = None,
-        order_direction: _t.Optional[str] = None,
+        order_by: _t.Optional[_t.Literal['account', 'amount', 'bills', 'contra_account', 'cost_center', 'date', 'donator', 'modified', 'note', 'number']] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC', 'asc', 'desc']] = None,
         query: _t.Optional[str] = None,
         is_waiver_of_reimbursement_of_expenses: _t.Optional[bool] = None,
-        calculation_type: _t.Optional[str] = None,
+        calculation_type: _t.Optional[_t.Literal['costcenter-sum', 'credit-debit', 'donation-sum']] = None,
     ) -> _t.Union[models.TransactionSummaryCostCenter, models.TransactionSummaryCreditDebit, models.TransactionSummaryDonation]:
         """
         Calculate a journal summary with previous-year comparison
@@ -8550,10 +8639,13 @@ class FinanceTransactionsResource(Resource):
             end_date: Inclusive upper bound for documentDate.
             is_immutable: Filter transactions, whether transaction is immutable.
             order_by: Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+                Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
             order_direction: Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+                Allowed values: `ASC`, `DESC`, `asc`, `desc`.
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
             calculation_type: Explicit calculation mode, also saved as the current user’s preference. credit-debit uses selected account_ids; costcenter-sum uses cost-center selection; donation-sum uses donor selection.
+                Allowed values: `costcenter-sum`, `credit-debit`, `donation-sum`.
 
         Example::
 
@@ -8579,10 +8671,10 @@ class FinanceTransactionsResource(Resource):
         is_immutable: _t.Optional[bool] = None,
         exclude_stornos: _t.Optional[bool] = None,
         exclude_paybacks: _t.Optional[bool] = None,
-        order_by: _t.Optional[str] = None,
-        order_direction: _t.Optional[str] = None,
+        order_by: _t.Optional[_t.Literal['account', 'amount', 'bills', 'contra_account', 'cost_center', 'date', 'donator', 'modified', 'note', 'number']] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC', 'asc', 'desc']] = None,
         limit: _t.Optional[int] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
         query: _t.Optional[str] = None,
         is_waiver_of_reimbursement_of_expenses: _t.Optional[bool] = None,
     ) -> Paginator[models.Transaction]:
@@ -8609,9 +8701,12 @@ class FinanceTransactionsResource(Resource):
             exclude_stornos: Exclude both cancellation bookings and the original bookings they cancel.
             exclude_paybacks: Exclude donor-linked bookings debiting a donation account and crediting a non-donation account (donation repayments).
             order_by: Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+                Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
             order_direction: Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+                Allowed values: `ASC`, `DESC`, `asc`, `desc`.
             limit: Maximum number of bookings per page. No explicit maximum is validated.
             include: Include additional information
+                Allowed values: `bills`.
             query: Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
             is_waiver_of_reimbursement_of_expenses: Filter by whether reimbursement of expenses was waived as a donation.
 
@@ -8660,7 +8755,7 @@ class FinanceTransactionsResource(Resource):
         document_date: _dt.date,
         note: str,
         document_number: str,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['bills']]] = None,
         cash_discount_amount: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         cash_discount_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         contra_cost_center_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
@@ -8683,6 +8778,7 @@ class FinanceTransactionsResource(Resource):
         Args:
             id: ID of Entity
             include: Include additional information
+                Allowed values: `bills`.
             account_id: ID of the debit account the amount is posted to.
             amount: Gross booking amount in integer minor currency units. With taxRateId, tax is calculated from this amount and split into a separate booking; the returned main booking contains the remaining net amount.
             cash_discount_amount: Cash discount in the smallest currency unit. Used only together with cashDiscountId.
@@ -8875,7 +8971,7 @@ class GroupGroupcategoriesResource(Resource):
     def create(
         self,
         *,
-        color: str,
+        color: _t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'],
         name: str,
         sort_key: int,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
@@ -8891,6 +8987,7 @@ class GroupGroupcategoriesResource(Resource):
 
         Args:
             color: ChurchTools color token used to display the category, such as blue.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             description: Optional explanation of the category. Omitted, null or blank input is stored as null, including on update.
             name: Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
             sort_key: Display order. Lower values come first; list endpoints sort equal values by the stored name.
@@ -8970,7 +9067,7 @@ class GroupGroupcategoriesResource(Resource):
         self,
         group_category_id: int,
         *,
-        color: str,
+        color: _t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'],
         name: str,
         sort_key: int,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
@@ -8987,6 +9084,7 @@ class GroupGroupcategoriesResource(Resource):
         Args:
             group_category_id: ID of the group category returned by GET /group/groupcategories.
             color: ChurchTools color token used to display the category, such as blue.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             description: Optional explanation of the category. Omitted, null or blank input is stored as null, including on update.
             name: Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
             sort_key: Display order. Lower values come first; list endpoints sort equal values by the stored name.
@@ -9006,7 +9104,7 @@ class GroupGrouptypesResource(Resource):
         self,
         *,
         available_for_new_person: bool,
-        color: str,
+        color: _t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'],
         is_leader_necessary: bool,
         name: str,
         name_plural: str,
@@ -9028,6 +9126,7 @@ class GroupGrouptypesResource(Resource):
         Args:
             available_for_new_person: Whether eligible groups of this type are offered for membership selection when creating a person in the ChurchTools UI. This does not automatically add the person to a group or grant membership permissions.
             color: ChurchTools color token used to display this group type; not a hexadecimal color code.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             description: Optional explanatory text for this group type. Returned as null when no description is stored.
             is_leader_necessary: Whether groups of this type are expected to retain a leader. The ChurchTools UI uses this setting when removing leaders or deactivating leader roles.
             name: Stored singular name of the group type. Use nameTranslated from the response for a localized display name.
@@ -9123,7 +9222,7 @@ class GroupGrouptypesResource(Resource):
         group_type_id: int,
         *,
         available_for_new_person: bool,
-        color: str,
+        color: _t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'],
         is_leader_necessary: bool,
         name: str,
         name_plural: str,
@@ -9146,6 +9245,7 @@ class GroupGrouptypesResource(Resource):
             group_type_id: ID of the group type returned by GET /group/grouptypes.
             available_for_new_person: Whether eligible groups of this type are offered for membership selection when creating a person in the ChurchTools UI. This does not automatically add the person to a group or grant membership permissions.
             color: ChurchTools color token used to display this group type; not a hexadecimal color code.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             description: Optional explanatory text for this group type. Returned as null when no description is stored.
             is_leader_necessary: Whether groups of this type are expected to retain a leader. The ChurchTools UI uses this setting when removing leaders or deactivating leader roles.
             name: Stored singular name of the group type. Use nameTranslated from the response for a localized display name.
@@ -9314,7 +9414,7 @@ class GroupRolesResource(Resource):
         name: str,
         shorty: str,
         sort_key: int,
-        type_: str,
+        type_: _t.Literal['leader', 'participant'],
         is_leader: _t.Union[bool, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Role:
@@ -9336,6 +9436,7 @@ class GroupRolesResource(Resource):
             shorty: Abbreviated label for the role, used in compact displays.
             sort_key: Display order among roles. Lower values come first.
             type_: Functional classification of the role. Multiple roles with different names can share the same classification.
+                Allowed values: `leader`, `participant`.
 
         Example::
 
@@ -9402,7 +9503,7 @@ class GroupRolesResource(Resource):
         self,
         *,
         group_type_id: _t.Optional[int] = None,
-        response_format: _t.Optional[str] = None,
+        response_format: _t.Optional[_t.Literal['domainObject', 'standard']] = None,
     ) -> _t.Union[_t.List[models.Role], _t.List[models.DomainObjectRole]]:
         """
         Get roles
@@ -9416,6 +9517,7 @@ class GroupRolesResource(Resource):
         Args:
             group_type_id: ID of the group type whose role definitions to return.
             response_format: Choose full role definitions (standard) or compact display references (domainObject).
+                Allowed values: `domainObject`, `standard`.
 
         Example::
 
@@ -9435,7 +9537,7 @@ class GroupRolesResource(Resource):
         name: str,
         shorty: str,
         sort_key: int,
-        type_: str,
+        type_: _t.Literal['leader', 'participant'],
         is_leader: _t.Union[bool, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Role:
@@ -9459,6 +9561,7 @@ class GroupRolesResource(Resource):
             shorty: Abbreviated label for the role, used in compact displays.
             sort_key: Display order among roles. Lower values come first.
             type_: Functional classification of the role. Multiple roles with different names can share the same classification.
+                Allowed values: `leader`, `participant`.
 
         Example::
 
@@ -9660,7 +9763,7 @@ class GroupsDocumentsResource(Resource):
 
         Example::
 
-            client.groups.documents.get(42, "beispiel")
+            client.groups.documents.get(42, "abc123")
         """
         self._raw('GET', f"/groups/{_seg(group_id)}/documents/{_seg(html_template_id)}", [], None)
 
@@ -9693,7 +9796,7 @@ class GroupsFollowupsResource(Resource):
         self,
         group_id: int,
         *,
-        filter: _t.Optional[_t.List[str]] = None,
+        filter: _t.Optional[_t.List[_t.Literal['done', 'due-after-today', 'due-before-today', 'due-today', 'due-unspecified']]] = None,
         limit: _t.Optional[int] = None,
     ) -> Paginator[models.FollowUp2]:
         """
@@ -9706,6 +9809,7 @@ class GroupsFollowupsResource(Resource):
         Args:
             group_id: ID of group
             filter: Repeat to select any of the listed states; omitted/empty includes all states.
+                Allowed values: `done`, `due-after-today`, `due-before-today`, `due-today`, `due-unspecified`.
             limit: Maximum results in this page.
 
         Example::
@@ -9800,13 +9904,13 @@ class GroupsMeetingsResource(Resource):
         self,
         group_id: int,
         *,
-        format: _t.Optional[str] = None,
-        type_: _t.Optional[str] = None,
+        format: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
+        type_: _t.Optional[_t.Literal['meetings_members', 'meetings_overview']] = None,
         is_canceled: _t.Optional[bool] = None,
         is_completed: _t.Optional[bool] = None,
         from_: _t.Optional[str] = None,
         to: _t.Optional[str] = None,
-        direction: _t.Optional[str] = None,
+        direction: _t.Optional[_t.Literal['backward', 'forward']] = None,
     ) -> bytes:
         """
         Export group meeting attendance or overview
@@ -9822,12 +9926,15 @@ class GroupsMeetingsResource(Resource):
         Args:
             group_id: ID of group
             format: Download format supported by the export generators.
+                Allowed values: `csv`, `xlsx`.
             type_: Choose a person-by-meeting attendance matrix or one summary row per meeting.
+                Allowed values: `meetings_members`, `meetings_overview`.
             is_canceled: Match the exact cancellation flag; omit to include canceled and non-canceled meetings.
             is_completed: Match the exact completion flag; omit to include both states.
             from_: Inclusive lower start-time boundary. Date or UTC date-time; defaults to yesterday at midnight. start_date is a legacy alias.
             to: Exclusive upper start-time boundary. Date or UTC date-time; defaults to midnight 30 days after today. end_date is a legacy alias.
             direction: Accepted for compatibility; the current date-range export remains ordered oldest first.
+                Allowed values: `backward`, `forward`.
 
         Example::
 
@@ -9845,9 +9952,9 @@ class GroupsMeetingsResource(Resource):
         is_completed: _t.Optional[bool] = None,
         from_: _t.Optional[str] = None,
         to: _t.Optional[str] = None,
-        direction: _t.Optional[str] = None,
+        direction: _t.Optional[_t.Literal['backward', 'forward']] = None,
         limit: _t.Optional[int] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['attendances']]] = None,
     ) -> Paginator[models.GroupMeeting]:
         """
         Get meetings for a group
@@ -9869,8 +9976,10 @@ class GroupsMeetingsResource(Resource):
             from_: Lower inclusive range boundary, or exclusive anchor when direction is supplied. Defaults to yesterday at midnight. start_date is a legacy alias.
             to: Exclusive upper range boundary. Defaults to midnight 30 days after today; ignored in directional mode. end_date is a legacy alias.
             direction: Enable directional paging strictly before or after from; omit for an unpaginated date range.
+                Allowed values: `backward`, `forward`.
             limit: Number of meetings per page in directional mode only.
             include: Include additional information
+                Allowed values: `attendances`.
 
         Example::
 
@@ -9970,8 +10079,8 @@ class GroupsMembersResource(Resource):
         self,
         group_id: int,
         *,
-        format: _t.Optional[str] = None,
-        type_: _t.Optional[str] = None,
+        format: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
+        type_: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
         config: _t.Union[_t.Optional[_t.Union[models.GroupMemberExportConfig, models.GroupMemberExportTemplate, StrMap[_t.Any]]], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> bytes:
@@ -9985,7 +10094,9 @@ class GroupsMembersResource(Resource):
         Args:
             group_id: ID of group
             format: Output format; CSV by default.
+                Allowed values: `csv`, `xlsx`.
             type_: Use `format`
+                Allowed values: `csv`, `xlsx`.
 
         Example::
 
@@ -10044,8 +10155,8 @@ class GroupsMembersResource(Resource):
         self,
         group_id: int,
         *,
-        format: _t.Optional[str] = None,
-        type_: _t.Optional[str] = None,
+        format: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
+        type_: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
     ) -> bytes:
         """
         Export visible group members with the default columns
@@ -10057,7 +10168,9 @@ class GroupsMembersResource(Resource):
         Args:
             group_id: ID of group
             format: Output format; CSV by default.
+                Allowed values: `csv`, `xlsx`.
             type_: Use `format`
+                Allowed values: `csv`, `xlsx`.
 
         Example::
 
@@ -10074,7 +10187,7 @@ class GroupsMembersResource(Resource):
         limit: _t.Optional[int] = None,
         role_ids: _t.Optional[_t.List[int]] = None,
         person_id: _t.Optional[_t.List[int]] = None,
-        group_member_statuses: _t.Optional[_t.List[str]] = None,
+        group_member_statuses: _t.Optional[_t.List[_t.Literal['active', 'requested', 'to_delete', 'waiting']]] = None,
         allowed_chat_users_only: _t.Optional[bool] = None,
         allowed_chat_writers_only: _t.Optional[bool] = None,
         query: _t.Optional[str] = None,
@@ -10082,9 +10195,9 @@ class GroupsMembersResource(Resource):
         member_start_date_after: _t.Optional[_t.Union[_dt.date, _dt.datetime]] = None,
         member_start_date_before: _t.Optional[_t.Union[_dt.date, _dt.datetime]] = None,
         order_fields: _t.Optional[_t.List[str]] = None,
-        order_directions: _t.Optional[_t.List[str]] = None,
+        order_directions: _t.Optional[_t.List[_t.Literal['ASC', 'DESC']]] = None,
         person_fields: _t.Optional[_t.List[str]] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['aggregations', 'newsletter', 'tags']]] = None,
     ) -> Paginator[models.GroupMember]:
         """
         List group memberships
@@ -10099,6 +10212,7 @@ class GroupsMembersResource(Resource):
             role_ids: Filter by role definition IDs (Role.id from GET /roles), matching groupTypeRoleId on memberships. Multiple IDs match any of the selected roles.
             person_id: Filter by person IDs. These are the IDs in person.domainIdentifier, not membership record IDs.
             group_member_statuses: Filter by membership status, independently of the member’s role. Multiple values match any selected status. Omit this filter to include all visible statuses.
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
             allowed_chat_users_only: If true, return only group members, that are allowed to chat in this group
             allowed_chat_writers_only: If true, return only group members that are allowed to write in the chat.
             query: Search the first and last names of the persons belonging to the group.
@@ -10107,8 +10221,10 @@ class GroupsMembersResource(Resource):
             member_start_date_before: Filter by a membership start date strictly before this value. Memberships without a start date do not match. Use YYYY-MM-DD; UTC timestamps are also accepted for compatibility.
             order_fields: Fields used to sort the member list. Use person_ for person fields and member_ for membership properties or custom member fields. For example: person_lastName or member_groupTypeRoleId. Without this parameter, results are ordered by role type, role sort key, last name, first name and person ID.
             order_directions: Sort directions corresponding by position to orderFields. Supply one direction per sort field. Built-in fields default to ASC when their direction is omitted.
+                Allowed values: `ASC`, `DESC`.
             person_fields: Additional person-field keys to include in each member’s personFields object, for example firstName. Person-field permissions apply; membership-specific fields are returned separately in fields.
             include: Additional member-list data. newsletter and tags add properties to each member; aggregations adds meta.aggregations.fields with numeric group member field aggregates over all filtered members, across all pages.
+                Allowed values: `aggregations`, `newsletter`, `tags`.
 
         Example::
 
@@ -10123,7 +10239,7 @@ class GroupsMembersResource(Resource):
         *,
         member_id: _t.Optional[int] = None,
         actor_id: _t.Optional[int] = None,
-        origin: _t.Optional[str] = None,
+        origin: _t.Optional[_t.Literal['automatic', 'bulk-job', 'check-in', 'cron', 'default', 'duplicate-group', 'follow-up', 'group-creation', 'person-deletion', 'routine', 'self-registration', 'sign-up', 'waitinglist']] = None,
         new_role_id: _t.Optional[int] = None,
         new_status: _t.Optional[str] = None,
         new_fields: _t.Optional[bool] = None,
@@ -10143,6 +10259,7 @@ class GroupsMembersResource(Resource):
             member_id: Affected person ID.
             actor_id: Person ID recorded as the actor.
             origin: Origin of the membership change.
+                Allowed values: `automatic`, `bulk-job`, `check-in`, `cron`, `default`, `duplicate-group`, `follow-up`, `group-creation`, `person-deletion`, `routine`, `self-registration`, `sign-up`, `waitinglist`.
             new_role_id: Only changes to this role ID. Takes precedence over status/field-change filters.
             new_status: Only changes to this status, unless new_role_id is supplied. Unknown strings match no entries.
             new_fields: Whether the stored field snapshot changed; ignored when new_role_id or new_status is supplied.
@@ -10215,7 +10332,7 @@ class GroupsMembersResource(Resource):
         *,
         comment: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         fields: _t.Union[_t.Optional[StrMap[_t.Optional[_t.Union[str, float, bool, _t.List[_t.Union[str, int]]]]]], UnsetType] = UNSET,
-        group_member_status: _t.Union[str, UnsetType] = UNSET,
+        group_member_status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], UnsetType] = UNSET,
         group_type_role_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         ignore_waiting_list_full: _t.Union[bool, UnsetType] = UNSET,
         inform_leader: _t.Union[bool, UnsetType] = UNSET,
@@ -10237,6 +10354,7 @@ class GroupsMembersResource(Resource):
             comment: Membership comment; surrounding whitespace is trimmed. Null or empty text clears it.
             fields: Values keyed by numeric membership-field definition ID. Only submitted known fields are updated; unknown IDs are ignored. Null clears one field; an omitted/null fields container changes no fields. Field-specific validation applies: text up to 4000 characters, numeric values, dates, timestamps, checkbox booleans, option IDs or labels for select/radioselect, and arrays of option IDs or labels for multiselect.
             group_member_status: Target membership workflow status; omitted preserves the existing status. Explicit null is not a usable status.
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
             group_type_role_id: Role definition ID belonging to the group type. Null resets to its default role.
             ignore_waiting_list_full: Allow the update even when it would exceed waiting-list capacity.
             inform_leader: Whether membership-change processing should inform group leaders.
@@ -10258,7 +10376,7 @@ class GroupsMembersResource(Resource):
         *,
         comment: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         fields: _t.Union[_t.Optional[StrMap[_t.Optional[_t.Union[str, float, bool, _t.List[_t.Union[str, int]]]]]], UnsetType] = UNSET,
-        group_member_status: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        group_member_status: _t.Union[_t.Optional[_t.Literal['active', 'requested', 'to_delete', 'waiting']], UnsetType] = UNSET,
         group_type_role_id: _t.Union[int, UnsetType] = UNSET,
         ignore_group_full: _t.Union[bool, UnsetType] = UNSET,
         ignore_waiting_list_full: _t.Union[bool, UnsetType] = UNSET,
@@ -10282,6 +10400,7 @@ class GroupsMembersResource(Resource):
             comment: Membership comment; surrounding whitespace is trimmed. Null or empty text clears it. Omission clears an existing comment in the legacy update path.
             fields: Values keyed by numeric membership-field definition ID. Only submitted known fields are updated; unknown IDs are ignored. Null clears one field; an omitted/null fields container changes no fields. Field-specific validation applies: text up to 4000 characters, numeric values, dates, timestamps, checkbox booleans, option IDs or labels for select/radioselect, and arrays of option IDs or labels for multiselect.
             group_member_status: New memberships default to active for omitted/null status. On legacy updates omitted/null preserves the previous status. A supplied waiting-list position can override the status to waiting.
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
             group_type_role_id: Role ID for this group type; 0 or omission selects its default role for creation. Existing memberships retain their role when 0/omitted.
             ignore_group_full: Skip the group-capacity check when creating the membership.
             ignore_waiting_list_full: Allow the update even when it would exceed waiting-list capacity.
@@ -10307,9 +10426,9 @@ class GroupsNewsletterIntegrationsResource(Resource):
         group_id: int,
         *,
         opt_in_required: bool,
-        provider: str,
+        provider: _t.Literal['CleverReach', 'MailChimp', 'Mailjet'],
         create_list_name: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        existing_members_handling: _t.Union[str, UnsetType] = UNSET,
+        existing_members_handling: _t.Union[_t.Literal['ignore_opt_in', 'require_opt_in'], UnsetType] = UNSET,
         list_id: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.NewsletterIntegrationGroupMapping:
@@ -10324,9 +10443,11 @@ class GroupsNewsletterIntegrationsResource(Resource):
             group_id: ID of group
             create_list_name: Create an external list with this name; only use if the provider advertises canCreateLists=true.
             existing_members_handling: Controls the initial synchronization only. ignore_opt_in subscribes eligible existing members without double opt-in even when optInRequired=true; the stored flag still governs later synchronization.
+                Allowed values: `ignore_opt_in`, `require_opt_in`.
             list_id: Existing provider list ID. The provider/list pair must not already be mapped to any group.
             opt_in_required: Require double opt-in for subscriptions. Providers with doesDoubleOptIn=true handle confirmation; otherwise ChurchTools sends confirmation emails.
             provider: Canonical newsletter provider name. Availability depends on the installation configuration; discover active providers using GET /newsletter-integrations. The backend also accepts case variations but stores the supplied spelling.
+                Allowed values: `CleverReach`, `MailChimp`, `Mailjet`.
 
         Example::
 
@@ -10460,7 +10581,7 @@ class GroupsParentsResource(Resource):
         has_posts: _t.Optional[bool] = None,
         has_active_chat: _t.Optional[bool] = None,
         query: _t.Optional[str] = None,
-        visibility: _t.Optional[str] = None,
+        visibility: _t.Optional[_t.Literal['hidden', 'intern', 'public', 'restricted']] = None,
     ) -> Paginator[models.DomainObjectGroup]:
         """
         Get child groups
@@ -10486,10 +10607,11 @@ class GroupsParentsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+                Allowed values: `hidden`, `intern`, `public`, `restricted`.
 
         Example::
 
-            for parent in client.groups.parents.list("beispiel"):
+            for parent in client.groups.parents.list("abc123"):
                 print(parent.title)
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/parents", _query([('limit', limit), ('ids[]', ids), ('campus_ids[]', campus_ids), ('agegroup_ids[]', agegroup_ids), ('group_status_ids[]', group_status_ids), ('group_category_ids[]', group_category_ids), ('target_group_ids[]', target_group_ids), ('weekdays[]', weekdays), ('group_type_ids[]', group_type_ids), ('tag_ids[]', tag_ids), ('is_open_for_members', is_open_for_members), ('without_my_groups', without_my_groups), ('only_my_groups', only_my_groups), ('has_meeting_place', has_meeting_place), ('allow_posts', allow_posts), ('has_posts', has_posts), ('has_active_chat', has_active_chat), ('query', query), ('visibility', visibility)]), models.DomainObjectGroup)
@@ -10913,7 +11035,7 @@ class PersonGrowpathsResource(Resource):
     def create(
         self,
         *,
-        color: str,
+        color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str],
         name: str,
         sort_key: _t.Union[int, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -10927,12 +11049,13 @@ class PersonGrowpathsResource(Resource):
 
         Args:
             color: Color key accepted by the growth-path validator.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             name: Trimmed stage name or translation key, 1–100 characters. Duplicate names are allowed.
             sort_key: Nonnegative display order and calculation priority; defaults to 0. Larger values take precedence when a person qualifies for several stages.
 
         Example::
 
-            result = client.person.growpaths.create(color="blue", name="New Believer")
+            result = client.person.growpaths.create(color="accent", name="New Believer")
             print(result.name)
         """
         return _t.cast(models.GrowPath, self._call('POST', "/person/growpaths", [], _body({'color': color, 'name': name, 'sortKey': sort_key}, extra_body), models.GrowPath, envelope=True))
@@ -11002,7 +11125,7 @@ class PersonGrowpathsResource(Resource):
         self,
         id: int,
         *,
-        color: str,
+        color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str],
         name: str,
         sort_key: _t.Union[int, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -11017,12 +11140,13 @@ class PersonGrowpathsResource(Resource):
         Args:
             id: ID of Entity
             color: Color key accepted by the growth-path validator.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             name: Trimmed stage name or translation key, 1–100 characters. Duplicate names are allowed.
             sort_key: Nonnegative display order and calculation priority; defaults to 0. Larger values take precedence when a person qualifies for several stages.
 
         Example::
 
-            result = client.person.growpaths.update(1, color="blue", name="New Believer")
+            result = client.person.growpaths.update(1, color="accent", name="New Believer")
             print(result.name)
         """
         return _t.cast(models.GrowPath, self._call('PUT', f"/person/growpaths/{_seg(id)}", [], _body({'color': color, 'name': name, 'sortKey': sort_key}, extra_body), models.GrowPath, envelope=True))
@@ -11391,7 +11515,7 @@ class PersonsAbsencesResource(Resource):
         *,
         from_: _t.Optional[_t.Union[_dt.date, _dt.datetime]] = None,
         to: _t.Optional[_t.Union[_dt.date, _dt.datetime]] = None,
-        order_direction: _t.Optional[str] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC']] = None,
     ) -> _t.List[models.Absence]:
         """
         Fetch all absences for a person
@@ -11405,6 +11529,7 @@ class PersonsAbsencesResource(Resource):
             from_: Start of the overlap window. Defaults to midnight two weeks ago.
             to: End of the overlap window. Defaults to midnight two weeks from today.
             order_direction: Order by absence start.
+                Allowed values: `ASC`, `DESC`.
 
         Example::
 
@@ -11471,7 +11596,7 @@ class PersonsDevicesResource(Resource):
 
         Example::
 
-            client.persons.devices.delete(42, "beispiel")
+            client.persons.devices.delete(42, "abc123")
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/devices/{_seg(device_id)}", [], None)
 
@@ -11492,7 +11617,7 @@ class PersonsDevicesResource(Resource):
 
         Example::
 
-            device = client.persons.devices.get(42, "beispiel")
+            device = client.persons.devices.get(42, "abc123")
             print(device.app_version)
         """
         return _t.cast(models.Device, self._call('GET', f"/persons/{_seg(person_id)}/devices/{_seg(device_id)}", [], None, models.Device, envelope=True))
@@ -11523,7 +11648,7 @@ class PersonsDevicesResource(Resource):
         person_id: int,
         device_id: str,
         *,
-        type_: str,
+        type_: _t.Literal['APN', 'FCM'],
         app_version: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         push_id: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         version: _t.Union[_t.Optional[str], UnsetType] = UNSET,
@@ -11541,11 +11666,12 @@ class PersonsDevicesResource(Resource):
             app_version: App version accepted by the version validator, such as 1.2.3. Omission or null clears the stored version.
             push_id: Trimmed push token. Omission replaces the token with deviceId; null clears it; an empty or whitespace-only string preserves the previous token (null on a new device).
             type_: Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging.
+                Allowed values: `APN`, `FCM`.
             version: Legacy alias of appVersion; use appVersion. The canonical field takes precedence if both are present.
 
         Example::
 
-            for device in client.persons.devices.update(42, "beispiel", type_="FCM"):
+            for device in client.persons.devices.update(42, "abc123", type_="FCM"):
                 print(device.app_version)
         """
         return _t.cast(_t.List[models.Device], self._call('PUT', f"/persons/{_seg(person_id)}/devices/{_seg(device_id)}", [], _body({'appVersion': app_version, 'pushId': push_id, 'type': type_, 'version': version}, extra_body), _t.List[models.Device], envelope=True))
@@ -11711,14 +11837,14 @@ class PersonsFollowupsResource(Resource):
         person_id: int,
         *,
         title: str,
-        color: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        color: _t.Union[_t.Optional[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow']], UnsetType] = UNSET,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         due_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         effective_due_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         icon: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         owner_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         success_group_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        success_group_member_status: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        success_group_member_status: _t.Union[_t.Optional[_t.Literal['active', 'requested', 'to_delete', 'waiting']], UnsetType] = UNSET,
         success_group_of_group_type_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         success_role_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -11733,6 +11859,7 @@ class PersonsFollowupsResource(Resource):
         Args:
             person_id: ID of person
             color: Optional color. Missing/null uses the yellow display fallback.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             description: Trimmed description; missing, null or blank becomes null.
             due_date: Original planned date. May be absent/null; direct creation/update allows past dates. Omission on update clears it.
             effective_due_date: Current working due date. Defaults to dueDate when omitted/null; postponement changes this independently of the original dueDate.
@@ -11740,6 +11867,7 @@ class PersonsFollowupsResource(Resource):
             owner_id: Responsible person ID. Personal creation defaults to the current user; group-member creation can remain unassigned. Omitted/null on update preserves the current owner.
             success_group_id: Optional fixed destination group for completion. Completion still requires the client to submit its selected successGroupId; it is not added automatically.
             success_group_member_status: Membership status assigned in the selected success group; null uses the default active status.
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
             success_group_of_group_type_id: Optional group-type restriction for selecting a destination group on completion.
             success_role_id: Role assigned in the selected success group; null uses the membership service default.
 
@@ -11775,7 +11903,7 @@ class PersonsFollowupsResource(Resource):
         self,
         person_id: int,
         *,
-        filter: _t.Optional[_t.List[str]] = None,
+        filter: _t.Optional[_t.List[_t.Literal['done', 'due-after-today', 'due-before-today', 'due-today', 'due-unspecified']]] = None,
         limit: _t.Optional[int] = None,
     ) -> Paginator[models.FollowUp2]:
         """
@@ -11788,6 +11916,7 @@ class PersonsFollowupsResource(Resource):
         Args:
             person_id: ID of person
             filter: Repeat to select any of the listed states; omitted/empty includes all states.
+                Allowed values: `done`, `due-after-today`, `due-before-today`, `due-today`, `due-unspecified`.
             limit: Maximum results in this page.
 
         Example::
@@ -11821,7 +11950,7 @@ class PersonsMergeResource(Resource):
 
         Example::
 
-            merge = client.persons.merge.get("beispiel", "100")
+            merge = client.persons.merge.get("abc123", "100")
             print(merge)
         """
         return _t.cast(models.PersonMergeInfo, self._call('GET', f"/persons/{_seg(person_id)}/merge/{_seg(duplicate_id)}", [], None, models.PersonMergeInfo, envelope=True))
@@ -11870,7 +11999,7 @@ class PersonsMergeResource(Resource):
         status_id: _t.Union[int, UnsetType] = UNSET,
         street: _t.Union[str, UnsetType] = UNSET,
         title: _t.Union[str, UnsetType] = UNSET,
-        visibility: _t.Union[str, UnsetType] = UNSET,
+        visibility: _t.Union[_t.Literal['hidden', 'visible'], UnsetType] = UNSET,
         wedding_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         zip: _t.Union[str, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -11905,10 +12034,11 @@ class PersonsMergeResource(Resource):
             emails: Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
             privacy_policy_agreement: This object can be optional or required. Depending on your ChurchTools data security settings.
             visibility: Visibility accepted when creating or updating a person.
+                Allowed values: `hidden`, `visible`.
 
         Example::
 
-            result = client.persons.merge.patch("beispiel", "100", title="Hauskreis Nord")
+            result = client.persons.merge.patch("abc123", "100", title="Hauskreis Nord")
             print(result.body)
         """
         return _t.cast(models.PatchPersonsPersonidMergeDuplicateidData, self._call('PATCH', f"/persons/{_seg(person_id)}/merge/{_seg(duplicate_id)}", [], _body({'addressAddition': address_addition, 'age': age, 'baptisedBy': baptised_by, 'birthName': birth_name, 'birthday': birthday, 'birthplace': birthplace, 'campusId': campus_id, 'city': city, 'cmsUserId': cms_user_id, 'country': country, 'dateOfBaptism': date_of_baptism, 'dateOfBelonging': date_of_belonging, 'dateOfDeath': date_of_death, 'dateOfEntry': date_of_entry, 'dateOfResign': date_of_resign, 'departmentIds': department_ids, 'email': email, 'emails': emails, 'familyStatusId': family_status_id, 'fax': fax, 'firstContact': first_contact, 'firstName': first_name, 'growPathId': grow_path_id, 'job': job, 'lastName': last_name, 'mobile': mobile, 'nationalityId': nationality_id, 'nickname': nickname, 'optigemId': optigem_id, 'phonePrivate': phone_private, 'phoneWork': phone_work, 'placeOfBaptism': place_of_baptism, 'privacyPolicyAgreement': privacy_policy_agreement, 'referredBy': referred_by, 'referredTo': referred_to, 'sexId': sex_id, 'statusId': status_id, 'street': street, 'title': title, 'visibility': visibility, 'weddingDate': wedding_date, 'zip': zip}, extra_body), models.PatchPersonsPersonidMergeDuplicateidData, envelope=True))
@@ -12115,7 +12245,7 @@ class PersonsServicerequestsResource(Resource):
 
         Example::
 
-            result = client.persons.servicerequests.update(42, 42, comment="beispiel")
+            result = client.persons.servicerequests.update(42, 42, comment="Hallo zusammen")
             print(result.name)
         """
         return _t.cast(models.ServiceRequest, self._call('PUT', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}", [], _body({'agreed': agreed, 'comment': comment, 'inform_person': inform_person, 'isAccepted': is_accepted}, extra_body), models.ServiceRequest, envelope=True))
@@ -12224,8 +12354,8 @@ class PersonsSettingsResource(Resource):
     def update(
         self,
         person_id: int,
-        module: str,
-        attribute: str,
+        module: _t.Literal['app', 'churchcal', 'churchcheckin', 'churchcore', 'churchdb', 'churchhome', 'churchservice', 'finance', 'global', 'push', 'wiki'],
+        attribute: _t.Literal['agendaExportSettings', 'alpha-consent', 'bereich_id', 'birthday-type', 'category_id', 'currentBirthdayScope', 'disableGroupSignUpNotifications', 'distrikt_id', 'donation-download-double-page', 'donation-download-mode', 'eubp-mock-scenario', 'event_datum', 'excluded-calendars', 'excluded-widgets', 'favorite-groups', 'file_attachToAllEvents', 'filterGemeindekalendar', 'filterGruppenKalender', 'filterPersonalKalender', 'group-custom-views', 'groupSignUpNotificationsAgeGroupIds', 'groupSignUpNotificationsCategoryIds', 'groupSignUpNotificationsTargetGroupIds', 'group_id', 'hidden-hints', 'hidden-hints-temporarily', 'hiddenStartpageWidgets', 'labelTemplateSelection', 'language', 'mailerBCC', 'personsSortBy', 'printer_id', 'printgrouplist', 'recent-appointments', 'recent-groups', 'recent-persons', 'recent-searches', 'recent-songs', 'recent-wiki_pages', 'rolename', 'saml-id', 'selected-accounting-period', 'selected-client', 'selected-donation-receipt-attachment-template', 'selected-donation-receipt-letter-template', 'sendBCCMail', 'show-entries-without-budget', 'show-purposes-in-import', 'showMarkdownHints', 'signature', 'simulatedPersons', 'sorted-widgets', 'sortnames', 'starthelpReaded', 'startpageWidgets', 'statements-booking-number-template', 'statements-document-number-type', 'station', 'station_id', 'status_id', 'tour-completion-stats', 'transaction-mode', 'viewCheckin'],
         *,
         value: _t.Union[str, float, bool, _t.List[_t.Any], StrMap[_t.Any]],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -12240,7 +12370,9 @@ class PersonsSettingsResource(Resource):
         Args:
             person_id: ID of person
             module: Writable namespace. Only the module/attribute pairs listed in PersonSettingUpdate are accepted.
+                Allowed values: `app`, `churchcal`, `churchcheckin`, `churchcore`, `churchdb`, `churchhome`, `churchservice`, `finance`, `global`, `push`, `wiki`.
             attribute: Writable key, paired with the module as listed in PersonSettingUpdate.
+                Allowed values: `agendaExportSettings`, `alpha-consent`, `bereich_id`, `birthday-type`, `category_id`, `currentBirthdayScope`, `disableGroupSignUpNotifications`, `distrikt_id`, `donation-download-double-page`, `donation-download-mode`, `eubp-mock-scenario`, `event_datum`, `excluded-calendars`, `excluded-widgets`, `favorite-groups`, `file_attachToAllEvents`, `filterGemeindekalendar`, `filterGruppenKalender`, `filterPersonalKalender`, `group-custom-views`, `groupSignUpNotificationsAgeGroupIds`, `groupSignUpNotificationsCategoryIds`, `groupSignUpNotificationsTargetGroupIds`, `group_id`, `hidden-hints`, `hidden-hints-temporarily`, `hiddenStartpageWidgets`, `labelTemplateSelection`, `language`, `mailerBCC`, ….
             value: Value of the selected setting, using its required type. Calendar filters require a string containing a JSON array, not a JSON array directly.
 
         Example::
@@ -12286,7 +12418,7 @@ class PostHiddenResource(Resource):
 
     def delete(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['actor', 'group', 'post'],
         domain_id: int,
     ) -> None:
         """
@@ -12294,9 +12426,12 @@ class PostHiddenResource(Resource):
 
         `DELETE /post/hidden/{domainType}/{domainId}`
 
+        Args:
+            domain_type: Allowed values: `actor`, `group`, `post`.
+
         Example::
 
-            client.post.hidden.delete("beispiel", 42)
+            client.post.hidden.delete("actor", 42)
         """
         self._raw('DELETE', f"/post/hidden/{_seg(domain_type)}/{_seg(domain_id)}", [], None)
 
@@ -12323,7 +12458,7 @@ class PostReportsResource(Resource):
         self,
         *,
         domain_id: int,
-        domain_type: str,
+        domain_type: _t.Literal['post', 'post_comment'],
         captcha: _t.Union[str, UnsetType] = UNSET,
         comment: _t.Union[str, UnsetType] = UNSET,
         reporter: _t.Union[models.ReportCreateReporter, UnsetType] = UNSET,
@@ -12334,9 +12469,12 @@ class PostReportsResource(Resource):
 
         `POST /post/reports`
 
+        Args:
+            domain_type: Allowed values: `post`, `post_comment`.
+
         Example::
 
-            result = client.post.reports.create(domain_id=42, domain_type="beispiel")
+            result = client.post.reports.create(domain_id=42, domain_type="post")
             print(result.comment)
         """
         return _t.cast(models.Report, self._call('POST', "/post/reports", [], _body({'captcha': captcha, 'comment': comment, 'domainId': domain_id, 'domainType': domain_type, 'reporter': reporter}, extra_body), models.Report, envelope=True))
@@ -12344,14 +12482,18 @@ class PostReportsResource(Resource):
     def list(
         self,
         *,
-        domain_type: _t.Optional[str] = None,
+        domain_type: _t.Optional[_t.Literal['post', 'post_comment']] = None,
         domain_id: _t.Optional[int] = None,
-        status: _t.Optional[str] = None,
+        status: _t.Optional[_t.Literal['accepted', 'declined', 'pending', 'pending-again']] = None,
     ) -> _t.List[_t.Union[models.ReportObjectPost, models.ReportObjectPostComment]]:
         """
         get-post-reports
 
         `GET /post/reports`
+
+        Args:
+            domain_type: Allowed values: `post`, `post_comment`.
+            status: Allowed values: `accepted`, `declined`, `pending`, `pending-again`.
 
         Example::
 
@@ -12364,8 +12506,8 @@ class PostReportsResource(Resource):
         self,
         *,
         domain_id: int,
-        domain_type: str,
-        response: str,
+        domain_type: _t.Literal['post', 'post_comment'],
+        response: _t.Literal['accept', 'decline'],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
         """
@@ -12373,13 +12515,13 @@ class PostReportsResource(Resource):
 
         `PUT /post/reports/answer`
 
+        Args:
+            domain_type: Allowed values: `post`, `post_comment`.
+            response: Allowed values: `accept`, `decline`.
+
         Example::
 
-            client.post.reports.update_answer(
-                domain_id=42,
-                domain_type="beispiel",
-                response="beispiel",
-            )
+            client.post.reports.update_answer(domain_id=42, domain_type="post", response="accept")
         """
         self._raw('PUT', "/post/reports/answer", [], _body({'domainId': domain_id, 'domainType': domain_type, 'response': response}, extra_body))
 
@@ -12412,7 +12554,7 @@ class PostsCommentsResource(Resource):
 
         Example::
 
-            result = client.posts.comments.create(42, content="beispiel", post_id_2=42)
+            result = client.posts.comments.create(42, content="Hallo zusammen", post_id_2=42)
             print(result.id)
         """
         return _t.cast(models.PostComment, self._call('POST', f"/posts/{_seg(post_id)}/comments", [], _body({'content': content, 'parentCommentId': parent_comment_id, 'postId': post_id_2}, extra_body), models.PostComment, envelope=True))
@@ -12467,7 +12609,7 @@ class PostsHiddenResource(Resource):
     def update(
         self,
         post_id: int,
-        domain_type: str,
+        domain_type: _t.Literal['actor', 'group', 'post'],
     ) -> None:
         """
         put-posts-postId-hidden-domainType
@@ -12479,10 +12621,11 @@ class PostsHiddenResource(Resource):
         Args:
             post_id: ID of post
             domain_type: The type of the domain where the post is hidden. This can be `actor`, `post`, or `group`.
+                Allowed values: `actor`, `group`, `post`.
 
         Example::
 
-            client.posts.hidden.update(42, "beispiel")
+            client.posts.hidden.update(42, "actor")
         """
         self._raw('PUT', f"/posts/{_seg(post_id)}/hidden/{_seg(domain_type)}", [], None)
 
@@ -12526,7 +12669,7 @@ class ProfilesCampusesResource(Resource):
         name: str,
         address: _t.Union[_t.Optional[models.ProfileAddressUpdate], UnsetType] = UNSET,
         association_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        denomination: _t.Union[_t.Union[str, models.ProfileUpdateDenominationVariant2], UnsetType] = UNSET,
+        denomination: _t.Union[_t.Union[_t.Literal['denomination.catholic', 'denomination.ecumenical', 'denomination.free.evangelical', 'denomination.none', 'denomination.orthodox', 'denomination.protestant'], models.ProfileUpdateDenominationVariant2], UnsetType] = UNSET,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         email: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         groups: _t.Union[_t.List[int], UnsetType] = UNSET,
@@ -12542,7 +12685,7 @@ class ProfilesCampusesResource(Resource):
         tags: _t.Union[_t.List[str], UnsetType] = UNSET,
         team: _t.Union[_t.List[models.ProfileUpdateTeamItem], UnsetType] = UNSET,
         team_title: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        visitors: _t.Union[int, UnsetType] = UNSET,
+        visitors: _t.Union[_t.Literal[0, 1, 100, 1000, 250, 50, 500], UnsetType] = UNSET,
         website: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         id2: _t.Union[int, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -12557,11 +12700,13 @@ class ProfilesCampusesResource(Resource):
         Args:
             id: Campus profile ID
             denomination: Either exact denomination key or denomination object with name property.
+                Allowed values: `denomination.catholic`, `denomination.ecumenical`, `denomination.free.evangelical`, `denomination.none`, `denomination.orthodox`, `denomination.protestant`.
             groups: List of group IDs shown on the profile.
             sign_up_group_id: Group ID used for profile sign-up or null to disable sign-up.
             social_media: Key-Value Pair, where key is the name of the network and value is the absolute link
             tags: List of tags.
             visitors: Single integer, which represents a range.
+                Allowed values: `0`, `1`, `100`, `1000`, `250`, `50`, `500`.
             id2: Campus profile ID. For `/profiles/church`, this is ignored.
 
         Example::
@@ -12646,7 +12791,7 @@ class RoutinesRunsResource(Resource):
         self,
         routine_id: int,
         run_id: int,
-        run_action: str,
+        run_action: _t.Literal['pause', 'restart-routine', 'restart-step', 'resume', 'skip-step', 'update'],
         *,
         current_iteration: _t.Union[int, UnsetType] = UNSET,
         waiting_since: _t.Union[_dt.date, UnsetType] = UNSET,
@@ -12663,12 +12808,13 @@ class RoutinesRunsResource(Resource):
             routine_id: ID of a routine
             run_id: ID of a routine run
             run_action: Run transition; some actions may immediately continue execution.
+                Allowed values: `pause`, `restart-routine`, `restart-step`, `resume`, `skip-step`, `update`.
             current_iteration: Update the current iteration for a special:repeat step
             waiting_since: Update the waiting since date for a special:wait step
 
         Example::
 
-            result = client.routines.runs.create(9, 16, "beispiel", current_iteration=42)
+            result = client.routines.runs.create(9, 16, "pause", current_iteration=42)
             print(result.id)
         """
         return _t.cast(models.RoutineRun, self._call('POST', f"/routines/{_seg(routine_id)}/runs/{_seg(run_id)}/{_seg(run_action)}", [], _body({'currentIteration': current_iteration, 'waitingSince': waiting_since}, extra_body), models.RoutineRun, envelope=True))
@@ -12677,7 +12823,7 @@ class RoutinesRunsResource(Resource):
         self,
         routine_id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['domainObject']]] = None,
         with_potential_domain_objects: _t.Optional[bool] = None,
     ) -> _t.List[models.RoutineRun]:
         """
@@ -12690,6 +12836,7 @@ class RoutinesRunsResource(Resource):
         Args:
             routine_id: ID of a routine
             include: Include additional information
+                Allowed values: `domainObject`.
             with_potential_domain_objects: Append unpersisted candidate runs with null IDs.
 
         Example::
@@ -12980,7 +13127,7 @@ class SongsArrangementsResource(Resource):
         beat: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         duration: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        key: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        key: _t.Union[_t.Optional[_t.Literal['A', 'A#', 'A#m', 'Ab', 'Abm', 'Am', 'B', 'B#', 'B#m', 'Bb', 'Bbm', 'Bm', 'C', 'C#', 'C#m', 'Cb', 'Cbm', 'Cm', 'D', 'D#', 'D#m', 'Db', 'Dbm', 'Dm', 'E', 'E#', 'E#m', 'Eb', 'Ebm', 'Em', 'F', 'F#', 'F#m', 'Fb', 'Fbm', 'Fm', 'G', 'G#', 'G#m', 'Gb', 'Gbm', 'Gm']], UnsetType] = UNSET,
         source_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         source_reference: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         tempo: _t.Union[_t.Optional[int], UnsetType] = UNSET,
@@ -13001,6 +13148,7 @@ class SongsArrangementsResource(Resource):
             description: Notes about performing this arrangement.
             duration: Expected duration in seconds.
             key: Musical key using the API spelling.
+                Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
             name: Name distinguishing this version from other arrangements.
             source_id: ID of a song source, such as a hymnal or songbook, from GET /song/sources.
             source_reference: Location within the selected source, such as a song number or page. Only used with sourceId.
@@ -13112,7 +13260,7 @@ class SongsArrangementsResource(Resource):
         beat: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         duration: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        key: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        key: _t.Union[_t.Optional[_t.Literal['A', 'A#', 'A#m', 'Ab', 'Abm', 'Am', 'B', 'B#', 'B#m', 'Bb', 'Bbm', 'Bm', 'C', 'C#', 'C#m', 'Cb', 'Cbm', 'Cm', 'D', 'D#', 'D#m', 'Db', 'Dbm', 'Dm', 'E', 'E#', 'E#m', 'Eb', 'Ebm', 'Em', 'F', 'F#', 'F#m', 'Fb', 'Fbm', 'Fm', 'G', 'G#', 'G#m', 'Gb', 'Gbm', 'Gm']], UnsetType] = UNSET,
         source_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         source_reference: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         tempo: _t.Union[_t.Optional[int], UnsetType] = UNSET,
@@ -13132,6 +13280,7 @@ class SongsArrangementsResource(Resource):
             description: Notes about performing this arrangement.
             duration: Expected duration in seconds.
             key: Musical key using the API spelling.
+                Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
             name: Name distinguishing this version from other arrangements.
             source_id: ID of a song source, such as a hymnal or songbook, from GET /song/sources.
             source_reference: Location within the selected source, such as a song number or page. Only used with sourceId.
@@ -13288,7 +13437,7 @@ class SyncConflictsResource(Resource):
         data: _t.List[models.SyncConflictDataCreate],
         entity_mapping_id: int,
         job_id: str,
-        type_: str,
+        type_: _t.Literal['create', 'delete_or_create', 'duplicate_in_CT', 'duplicate_in_source', 'link_and_update', 'update'],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.SyncConflicts:
         """
@@ -13302,11 +13451,12 @@ class SyncConflictsResource(Resource):
             entity_mapping_id: Relationship affected by the conflict.
             job_id: Identifier of the sync job run that produced the conflict; not the numeric job configuration ID.
             type_: Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools.
+                Allowed values: `create`, `delete_or_create`, `duplicate_in_CT`, `duplicate_in_source`, `link_and_update`, `update`.
 
         Example::
 
             result = client.sync.conflicts.create(
-                data=[ct.models.SyncConflictDataCreate.model_validate({"key": "beispiel", "value": "beispiel"})],
+                data=[ct.models.SyncConflictDataCreate.model_validate({"key": "abc123", "value": "beispiel"})],
                 entity_mapping_id=1,
                 job_id="7e31c399-91b1-4148-bfdd-6c05b557a25c",
                 type_="create",
@@ -13360,8 +13510,8 @@ class SyncConflictsResource(Resource):
         self,
         *,
         limit: _t.Optional[int] = None,
-        types: _t.Optional[_t.List[str]] = None,
-        domain_types: _t.Optional[_t.List[str]] = None,
+        types: _t.Optional[_t.List[_t.Literal['create', 'delete_or_create', 'duplicate_in_CT', 'duplicate_in_source', 'link_and_update', 'update']]] = None,
+        domain_types: _t.Optional[_t.List[_t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page']]] = None,
         source_ids: _t.Optional[_t.List[int]] = None,
     ) -> Paginator[models.SyncConflicts]:
         """
@@ -13374,7 +13524,9 @@ class SyncConflictsResource(Resource):
         Args:
             limit: Number of results per page.
             types: Conflict categories.
+                Allowed values: `create`, `delete_or_create`, `duplicate_in_CT`, `duplicate_in_source`, `link_and_update`, `update`.
             domain_types: Domains of linked entity mappings.
+                Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
             source_ids: External connection IDs of linked entity mappings.
 
         Example::
@@ -13391,7 +13543,7 @@ class SyncConflictsResource(Resource):
         data: _t.List[models.SyncConflictDataCreate],
         entity_mapping_id: int,
         job_id: str,
-        type_: str,
+        type_: _t.Literal['create', 'delete_or_create', 'duplicate_in_CT', 'duplicate_in_source', 'link_and_update', 'update'],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.SyncConflicts:
         """
@@ -13406,12 +13558,13 @@ class SyncConflictsResource(Resource):
             entity_mapping_id: Relationship affected by the conflict.
             job_id: Identifier of the sync job run that produced the conflict; not the numeric job configuration ID.
             type_: Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools.
+                Allowed values: `create`, `delete_or_create`, `duplicate_in_CT`, `duplicate_in_source`, `link_and_update`, `update`.
 
         Example::
 
             result = client.sync.conflicts.update(
                 1,
-                data=[ct.models.SyncConflictDataCreate.model_validate({"key": "beispiel", "value": "beispiel"})],
+                data=[ct.models.SyncConflictDataCreate.model_validate({"key": "abc123", "value": "beispiel"})],
                 entity_mapping_id=1,
                 job_id="7e31c399-91b1-4148-bfdd-6c05b557a25c",
                 type_="create",
@@ -13428,10 +13581,10 @@ class SyncEntitymappingsResource(Resource):
         self,
         *,
         domain_id: _t.Optional[str],
-        domain_type: str,
+        domain_type: _t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'],
         source_entity_id: _t.Optional[str],
         source_id: int,
-        status: str,
+        status: _t.Literal['conflict', 'deleted in CT', 'synced'],
         last_synced_date: _t.Union[_t.Optional[_dt.datetime], UnsetType] = UNSET,
         scope: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -13446,11 +13599,13 @@ class SyncEntitymappingsResource(Resource):
         Args:
             domain_id: ChurchTools entity ID as text.
             domain_type: ChurchTools domain types accepted by entity and field mapping validation. Adapter support can be a smaller subset.
+                Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
             last_synced_date: Last synchronization timestamp. Prefer an explicit timezone.
             scope: Adapter-specific context key.
             source_entity_id: ID in the external system.
             source_id: External connection ID (the source system).
             status: State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools.
+                Allowed values: `conflict`, `deleted in CT`, `synced`.
 
         Example::
 
@@ -13510,7 +13665,7 @@ class SyncEntitymappingsResource(Resource):
         self,
         *,
         limit: _t.Optional[int] = None,
-        domain_type: _t.Optional[_t.List[str]] = None,
+        domain_type: _t.Optional[_t.List[_t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page']]] = None,
         domain_id: _t.Optional[_t.List[str]] = None,
         source_entity_id: _t.Optional[_t.List[str]] = None,
         source_id: _t.Optional[str] = None,
@@ -13526,6 +13681,7 @@ class SyncEntitymappingsResource(Resource):
         Args:
             limit: Number of results per page.
             domain_type: Restrict to these ChurchTools domains.
+                Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
             domain_id: Filter ChurchTools record IDs, represented as strings.
             source_entity_id: Filter external record IDs.
             source_id: External connection ID as a string.
@@ -13543,10 +13699,10 @@ class SyncEntitymappingsResource(Resource):
         id: int,
         *,
         domain_id: _t.Optional[str],
-        domain_type: str,
+        domain_type: _t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'],
         source_entity_id: _t.Optional[str],
         source_id: int,
-        status: str,
+        status: _t.Literal['conflict', 'deleted in CT', 'synced'],
         last_synced_date: _t.Union[_t.Optional[_dt.datetime], UnsetType] = UNSET,
         scope: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -13562,11 +13718,13 @@ class SyncEntitymappingsResource(Resource):
             id: ID of Entity
             domain_id: ChurchTools entity ID as text.
             domain_type: ChurchTools domain types accepted by entity and field mapping validation. Adapter support can be a smaller subset.
+                Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
             last_synced_date: Last synchronization timestamp. Prefer an explicit timezone.
             scope: Adapter-specific context key.
             source_entity_id: ID in the external system.
             source_id: External connection ID (the source system).
             status: State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools.
+                Allowed values: `conflict`, `deleted in CT`, `synced`.
 
         Example::
 
@@ -13825,7 +13983,7 @@ class WebsiteDataResource(Resource):
         self,
         *,
         domain_id: int,
-        domain_type: str,
+        domain_type: _t.Literal['calendar', 'person', 'posts-in-group', 'staff'],
         additional_id: _t.Union[int, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.WebsiteDataWithoutInclude:
@@ -13834,9 +13992,12 @@ class WebsiteDataResource(Resource):
 
         `POST /website/data`
 
+        Args:
+            domain_type: Allowed values: `calendar`, `person`, `posts-in-group`, `staff`.
+
         Example::
 
-            result = client.website.data.create(domain_id=42, domain_type="beispiel")
+            result = client.website.data.create(domain_id=42, domain_type="calendar")
             print(result.id)
         """
         return _t.cast(models.WebsiteDataWithoutInclude, self._call('POST', "/website/data", [], _body({'additionalId': additional_id, 'domainId': domain_id, 'domainType': domain_type}, extra_body), models.WebsiteDataWithoutInclude, envelope=True))
@@ -13862,7 +14023,7 @@ class WebsiteDataResource(Resource):
     def list(
         self,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['domainData']]] = None,
     ) -> _t.List[_t.Union[models.WebsiteDataStaff, models.WebsiteDataCalendar, models.WebsiteDataPerson, models.WebsiteDataPostsInGroup]]:
         """
         get-website-data
@@ -13873,6 +14034,7 @@ class WebsiteDataResource(Resource):
 
         Args:
             include: Include additional information
+                Allowed values: `domainData`.
 
         Example::
 
@@ -14008,7 +14170,7 @@ class ActionsResource(Resource):
     def create(
         self,
         *,
-        domain_type: _t.List[str],
+        domain_type: _t.List[_t.Literal['group_membership', 'person']],
         filter: _t.Union[StrMap[_t.Any], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> _t.List[models.Action]:
@@ -14021,6 +14183,7 @@ class ActionsResource(Resource):
 
         Args:
             domain_type: One or more domain types to filter actions by.
+                Allowed values: `group_membership`, `person`.
             filter: Optional filter criteria to further narrow the returned actions. The structure depends on the domain type.
 
         Example::
@@ -14036,12 +14199,12 @@ class AddressesResource(Resource):
 
     def create(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group'],
         domain_identifier: str,
         *,
         addition: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         city: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        color: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        color: _t.Union[_t.Optional[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], _t.Literal['default', 'parent']]], UnsetType] = UNSET,
         country: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         district: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         icon: _t.Union[_t.Optional[str], UnsetType] = UNSET,
@@ -14061,10 +14224,12 @@ class AddressesResource(Resource):
 
         Args:
             domain_type: The domain type to retrieve addresses for. Currently only `group` is supported.
+                Allowed values: `group`.
             domain_identifier: Group ID as a string. Whitespace is trimmed.
             addition: Address addition. Whitespace is trimmed; omitted, null or blank clears the value.
             city: Address city. Whitespace is trimmed; omitted, null or blank clears the value.
             color: Optional ChurchTools color. The special values default and parent select the default or owning group color. Omitted or null clears the value.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
             country: Country code, at most two characters. Whitespace is trimmed; omitted, null or blank clears the value.
             district: Address district. Whitespace is trimmed; omitted, null or blank clears the value.
             icon: Address icon. Whitespace is trimmed; omitted, null or blank clears the value.
@@ -14083,7 +14248,7 @@ class AddressesResource(Resource):
 
     def delete(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group'],
         domain_identifier: str,
         address_id: int,
     ) -> None:
@@ -14096,6 +14261,7 @@ class AddressesResource(Resource):
 
         Args:
             domain_type: The domain type of the address. Currently only `group` is supported.
+                Allowed values: `group`.
             domain_identifier: Group ID as a string. Whitespace is trimmed.
             address_id: The ID of the address to update or delete.
 
@@ -14107,7 +14273,7 @@ class AddressesResource(Resource):
 
     def get(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group'],
         domain_identifier: str,
     ) -> _t.List[models.StoredAddress]:
         """
@@ -14119,6 +14285,7 @@ class AddressesResource(Resource):
 
         Args:
             domain_type: The domain type to retrieve addresses for. Currently only `group` is supported.
+                Allowed values: `group`.
             domain_identifier: Group ID as a string. Whitespace is trimmed.
 
         Example::
@@ -14152,13 +14319,13 @@ class AddressesResource(Resource):
 
     def update(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group'],
         domain_identifier: str,
         address_id: int,
         *,
         addition: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         city: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        color: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        color: _t.Union[_t.Optional[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], _t.Literal['default', 'parent']]], UnsetType] = UNSET,
         country: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         district: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         icon: _t.Union[_t.Optional[str], UnsetType] = UNSET,
@@ -14178,11 +14345,13 @@ class AddressesResource(Resource):
 
         Args:
             domain_type: The domain type of the address. Currently only `group` is supported.
+                Allowed values: `group`.
             domain_identifier: Group ID as a string. Whitespace is trimmed.
             address_id: The ID of the address to update or delete.
             addition: Address addition. Whitespace is trimmed; omitted, null or blank clears the value.
             city: Address city. Whitespace is trimmed; omitted, null or blank clears the value.
             color: Optional ChurchTools color. The special values default and parent select the default or owning group color. Omitted or null clears the value.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
             country: Country code, at most two characters. Whitespace is trimmed; omitted, null or blank clears the value.
             district: Address district. Whitespace is trimmed; omitted, null or blank clears the value.
             icon: Address icon. Whitespace is trimmed; omitted, null or blank clears the value.
@@ -14311,7 +14480,7 @@ class AgendatemplatesResource(Resource):
         self,
         agenda_id: int,
         *,
-        format: str,
+        format: _t.Literal['PRO_PRESENTER_6', 'PRO_PRESENTER_7', 'SONG_BEAMER'],
         append_arrangement: bool,
         export_songs: bool,
         with_category: bool,
@@ -14327,6 +14496,7 @@ class AgendatemplatesResource(Resource):
         Args:
             agenda_id: ID of agenda
             format: Target presenter format. The generated archive is returned through a download URL in the JSON response.
+                Allowed values: `PRO_PRESENTER_6`, `PRO_PRESENTER_7`, `SONG_BEAMER`.
             append_arrangement: Append the selected arrangement name to exported song captions and generated fallback file names. Existing attached files retain their file names.
             export_songs: Include available song files for the target software. The first matching file of the selected arrangement is used. For SongBeamer, the song's default arrangement can provide a fallback `.sng` file. When disabled, song references point to files expected in the presenter library. No song-file conversion is performed.
             with_category: For `SONG_BEAMER` with `exportSongs`=`false`, prefix generated song file references with the song category as a directory. Has no effect with embedded song files or for either ProPresenter format.
@@ -14422,7 +14592,7 @@ class BookingsResource(Resource):
     def answer(
         self,
         booking_id: int,
-        answer: str,
+        answer: _t.Literal['approve', 'cancel', 'reject', 'reset'],
     ) -> models.BookingBase:
         """
         Answer a booking request
@@ -14434,10 +14604,11 @@ class BookingsResource(Resource):
         Args:
             booking_id: ID of booking
             answer: Status action. Prefer reject over the legacy cancel alias.
+                Allowed values: `approve`, `cancel`, `reject`, `reset`.
 
         Example::
 
-            booking = client.bookings.answer(8, "beispiel")
+            booking = client.bookings.answer(8, "approve")
             print(booking.title)
         """
         return _t.cast(models.BookingBase, self._call('PUT', f"/bookings/{_seg(booking_id)}/{_seg(answer)}", [], None, models.BookingBase, envelope=True))
@@ -14449,12 +14620,12 @@ class BookingsResource(Resource):
         start_date: _t.Union[_dt.datetime, _dt.date],
         resource_id: int,
         show_in_cal: bool,
-        status_id: int,
+        status_id: _t.Literal[1, 2, 3],
         title: str,
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         quantity: _t.Union[int, UnsetType] = UNSET,
@@ -14474,6 +14645,7 @@ class BookingsResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -14483,6 +14655,7 @@ class BookingsResource(Resource):
             resource_id: Resource to reserve, such as a room, vehicle or piece of equipment.
             show_in_cal: Whether the booking is marked for display in the calendar. This does not create or link a calendar appointment.
             status_id: Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+                Allowed values: `1`, `2`, `3`.
             subtitle: Optional booking subtitle.
             title: Booking title shown in resource planning.
 
@@ -14524,7 +14697,7 @@ class BookingsResource(Resource):
         self,
         booking_id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['conflicts', 'involvedPersonsDomainObjects']]] = None,
     ) -> models.BookingWithIncludes:
         """
         Get a booking series
@@ -14536,6 +14709,7 @@ class BookingsResource(Resource):
         Args:
             booking_id: ID of booking
             include: Optional enrichments. conflicts adds overlapping bookings; involvedPersonsDomainObjects adds person references to the booking base.
+                Allowed values: `conflicts`, `involvedPersonsDomainObjects`.
 
         Example::
 
@@ -14548,10 +14722,10 @@ class BookingsResource(Resource):
         self,
         *,
         resource_ids: _t.List[int],
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['conflicts', 'involvedPersonsDomainObjects']]] = None,
         query: _t.Optional[str] = None,
         person_id: _t.Optional[int] = None,
-        status_ids: _t.Optional[_t.List[int]] = None,
+        status_ids: _t.Optional[_t.List[_t.Literal[1, 2, 3]]] = None,
         from_: _t.Optional[_dt.date] = None,
         to: _t.Optional[_dt.date] = None,
     ) -> _t.List[models.BookingCalculatedWithIncludes]:
@@ -14564,10 +14738,12 @@ class BookingsResource(Resource):
 
         Args:
             include: Optional enrichments. conflicts adds overlapping bookings; involvedPersonsDomainObjects adds person references to the booking base.
+                Allowed values: `conflicts`, `involvedPersonsDomainObjects`.
             resource_ids: IDs of resources to include.
             query: Substring search in booking titles; at least two characters after trimming.
             person_id: Return bookings created by this person or made on their behalf.
             status_ids: Booking statuses to include.
+                Allowed values: `1`, `2`, `3`.
             from_: First included local date.
             to: Last included local date, on or after `from`.
 
@@ -14587,7 +14763,7 @@ class BookingsResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         quantity: _t.Union[int, UnsetType] = UNSET,
@@ -14604,6 +14780,7 @@ class BookingsResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -14630,7 +14807,7 @@ class BookingsResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         quantity: _t.Union[int, UnsetType] = UNSET,
@@ -14648,6 +14825,7 @@ class BookingsResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -14672,14 +14850,14 @@ class BookingsResource(Resource):
         start_date: _t.Union[_dt.datetime, _dt.date],
         resource_id: int,
         show_in_cal: bool,
-        status_id: int,
+        status_id: _t.Literal[1, 2, 3],
         title: str,
         split_date: _dt.date,
         split_until_end: bool,
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         quantity: _t.Union[int, UnsetType] = UNSET,
@@ -14700,6 +14878,7 @@ class BookingsResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -14709,6 +14888,7 @@ class BookingsResource(Resource):
             resource_id: Resource to reserve, such as a room, vehicle or piece of equipment.
             show_in_cal: Whether the booking is marked for display in the calendar. This does not create or link a calendar appointment.
             status_id: Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+                Allowed values: `1`, `2`, `3`.
             subtitle: Optional booking subtitle.
             title: Booking title shown in resource planning.
             split_date: Local start date of the occurrence to remove or the first date to cut from the series.
@@ -14763,8 +14943,8 @@ class BulkjobsResource(Resource):
 
     def enqueue(
         self,
-        domain_type: str,
-        job_key: str,
+        domain_type: _t.Literal['event', 'group', 'group_membership', 'person'],
+        job_key: _t.Literal['add-member-to-group', 'add-person-to-group', 'addDepartment', 'addParentGroup', 'addPersonAuth', 'addPersonTag', 'addPersonToService', 'addTag', 'addToGroup', 'archive-member', 'archive-person', 'archivePerson', 'change-member-status-active-requested', 'change-member-status-active-to_delete', 'change-member-status-requested-active', 'change-member-status-requested-to_delete', 'change-member-status-requested-waiting', 'change-member-status-to_delete-active', 'change-member-status-to_delete-requested', 'change-member-status-waiting-active', 'change-member-status-waiting-requested', 'change-member-status-waiting-to_delete', 'changeCampus', 'changeFamilyStatus', 'changeGroupMemberField', 'changeGroupRoleAndStatus', 'changeNationality', 'changeSex', 'changeStatus', 'create-follow-up', 'deactivateForceTwoFactor', 'declineEvent', 'delPersonTag', 'delTag', 'delete', 'deleteDepartment', 'deleteFromGroup', 'deletePerson', 'edit-group-membership', 'edit-member', 'edit-person', 'edit-tags-for-member', 'edit-tags-for-person', 'forceTwoFactor', 'invite-member', 'invite-person', 'invitePerson', 'remove-member', 'send-member-email', 'setAgeGroups', 'setCampus', 'setGroupCategory', 'setInformLeader', 'setMaxMembers', 'setMeetingTime', 'setShowInMemberStatistic', 'setSignUpOpen', 'setStatus', 'setTargetGroup', 'setVisibility', 'setWeekday', 'setWeeklyMeeting', 'undoArchivePerson'],
         *,
         domain_object_identifiers: _t.List[_t.Union[int, str]],
         job_data: _t.Union[StrMap[_t.Any], models.BulkGroupSetMaxMembersUpdate, models.BulkGroupSetCampusUpdate, models.BulkGroupSetGroupCategoryUpdate, models.BulkGroupSetTargetGroupUpdate, models.BulkGroupAddParentGroupUpdate, models.BulkGroupDelTagUpdate, models.BulkGroupSetInformLeaderUpdate, models.BulkGroupSetShowInMemberStatisticUpdate, models.BulkGroupSetWeeklyMeetingUpdate, models.BulkGroupSetSignUpOpenUpdate, models.BulkGroupMeetingTimeUpdate, models.BulkGroupWeekdayUpdate, models.BulkGroupAgeGroupsUpdate, models.BulkGroupStatusUpdate, models.BulkGroupVisibilityUpdate, models.BulkTagCreate, models.BulkPersonChangeNationalityUpdate, models.BulkPersonChangeFamilyStatusUpdate, models.BulkPersonChangeSexUpdate, models.BulkPersonChangeCampusUpdate, models.BulkPersonChangeStatusUpdate, models.BulkPersonAddPersonAuthUpdate, models.BulkPersonAddDepartmentUpdate, models.BulkPersonDeleteDepartmentUpdate, models.BulkPersonDelPersonTagUpdate, models.BulkPersonDeleteFromGroupUpdate, models.BulkPersonMembershipCreate, models.BulkPersonMembershipUpdate, models.BulkPersonMembershipFieldUpdate, models.BulkEventDeclineUpdate, models.BulkEventServiceAssignmentCreate, models.BulkMembershipActionUpdate, models.BulkMembershipActionCreate, models.BulkPersonTagsActionUpdate, models.BulkMemberEmailActionCreate, models.BulkFollowUpActionCreate],
@@ -14780,7 +14960,9 @@ class BulkjobsResource(Resource):
 
         Args:
             domain_type: Domain of the target identifiers.
+                Allowed values: `event`, `group`, `group_membership`, `person`.
             job_key: Registered operation key.
+                Allowed values: `add-member-to-group`, `add-person-to-group`, `addDepartment`, `addParentGroup`, `addPersonAuth`, `addPersonTag`, `addPersonToService`, `addTag`, `addToGroup`, `archive-member`, `archive-person`, `archivePerson`, `change-member-status-active-requested`, `change-member-status-active-to_delete`, `change-member-status-requested-active`, `change-member-status-requested-to_delete`, `change-member-status-requested-waiting`, `change-member-status-to_delete-active`, `change-member-status-to_delete-requested`, `change-member-status-waiting-active`, `change-member-status-waiting-requested`, `change-member-status-waiting-to_delete`, `changeCampus`, `changeFamilyStatus`, `changeGroupMemberField`, `changeGroupRoleAndStatus`, `changeNationality`, `changeSex`, `changeStatus`, `create-follow-up`, ….
             action_context: Context for action-based operations. Membership actions commonly require `groupId`.
             domain_object_identifiers: Targets to check or queue, in request order. Empty arrays are accepted. Prefer integer IDs for the registered jobs/actions.
             job_data: Payload selected by the domain/key table.
@@ -14799,8 +14981,8 @@ class BulkjobsResource(Resource):
 
     def infos(
         self,
-        domain_type: str,
-        job_key: str,
+        domain_type: _t.Literal['event', 'group', 'group_membership', 'person'],
+        job_key: _t.Literal['add-member-to-group', 'add-person-to-group', 'addDepartment', 'addParentGroup', 'addPersonAuth', 'addPersonTag', 'addPersonToService', 'addTag', 'addToGroup', 'archive-member', 'archive-person', 'archivePerson', 'change-member-status-active-requested', 'change-member-status-active-to_delete', 'change-member-status-requested-active', 'change-member-status-requested-to_delete', 'change-member-status-requested-waiting', 'change-member-status-to_delete-active', 'change-member-status-to_delete-requested', 'change-member-status-waiting-active', 'change-member-status-waiting-requested', 'change-member-status-waiting-to_delete', 'changeCampus', 'changeFamilyStatus', 'changeGroupMemberField', 'changeGroupRoleAndStatus', 'changeNationality', 'changeSex', 'changeStatus', 'create-follow-up', 'deactivateForceTwoFactor', 'declineEvent', 'delPersonTag', 'delTag', 'delete', 'deleteDepartment', 'deleteFromGroup', 'deletePerson', 'edit-group-membership', 'edit-member', 'edit-person', 'edit-tags-for-member', 'edit-tags-for-person', 'forceTwoFactor', 'invite-member', 'invite-person', 'invitePerson', 'remove-member', 'send-member-email', 'setAgeGroups', 'setCampus', 'setGroupCategory', 'setInformLeader', 'setMaxMembers', 'setMeetingTime', 'setShowInMemberStatistic', 'setSignUpOpen', 'setStatus', 'setTargetGroup', 'setVisibility', 'setWeekday', 'setWeeklyMeeting', 'undoArchivePerson'],
         *,
         domain_object_identifiers: _t.List[_t.Union[int, str]],
         job_data: _t.Union[StrMap[_t.Any], models.BulkGroupSetMaxMembersUpdate, models.BulkGroupSetCampusUpdate, models.BulkGroupSetGroupCategoryUpdate, models.BulkGroupSetTargetGroupUpdate, models.BulkGroupAddParentGroupUpdate, models.BulkGroupDelTagUpdate, models.BulkGroupSetInformLeaderUpdate, models.BulkGroupSetShowInMemberStatisticUpdate, models.BulkGroupSetWeeklyMeetingUpdate, models.BulkGroupSetSignUpOpenUpdate, models.BulkGroupMeetingTimeUpdate, models.BulkGroupWeekdayUpdate, models.BulkGroupAgeGroupsUpdate, models.BulkGroupStatusUpdate, models.BulkGroupVisibilityUpdate, models.BulkTagCreate, models.BulkPersonChangeNationalityUpdate, models.BulkPersonChangeFamilyStatusUpdate, models.BulkPersonChangeSexUpdate, models.BulkPersonChangeCampusUpdate, models.BulkPersonChangeStatusUpdate, models.BulkPersonAddPersonAuthUpdate, models.BulkPersonAddDepartmentUpdate, models.BulkPersonDeleteDepartmentUpdate, models.BulkPersonDelPersonTagUpdate, models.BulkPersonDeleteFromGroupUpdate, models.BulkPersonMembershipCreate, models.BulkPersonMembershipUpdate, models.BulkPersonMembershipFieldUpdate, models.BulkEventDeclineUpdate, models.BulkEventServiceAssignmentCreate, models.BulkMembershipActionUpdate, models.BulkMembershipActionCreate, models.BulkPersonTagsActionUpdate, models.BulkMemberEmailActionCreate, models.BulkFollowUpActionCreate],
@@ -14816,7 +14998,9 @@ class BulkjobsResource(Resource):
 
         Args:
             domain_type: Domain of the target identifiers.
+                Allowed values: `event`, `group`, `group_membership`, `person`.
             job_key: Registered operation key.
+                Allowed values: `add-member-to-group`, `add-person-to-group`, `addDepartment`, `addParentGroup`, `addPersonAuth`, `addPersonTag`, `addPersonToService`, `addTag`, `addToGroup`, `archive-member`, `archive-person`, `archivePerson`, `change-member-status-active-requested`, `change-member-status-active-to_delete`, `change-member-status-requested-active`, `change-member-status-requested-to_delete`, `change-member-status-requested-waiting`, `change-member-status-to_delete-active`, `change-member-status-to_delete-requested`, `change-member-status-waiting-active`, `change-member-status-waiting-requested`, `change-member-status-waiting-to_delete`, `changeCampus`, `changeFamilyStatus`, `changeGroupMemberField`, `changeGroupRoleAndStatus`, `changeNationality`, `changeSex`, `changeStatus`, `create-follow-up`, ….
             action_context: Context for action-based operations. Membership actions commonly require `groupId`.
             domain_object_identifiers: Targets to check or queue, in request order. Empty arrays are accepted. Prefer integer IDs for the registered jobs/actions.
             job_data: Payload selected by the domain/key table.
@@ -14987,7 +15171,7 @@ class CalendarsResource(Resource):
         *,
         name: str,
         sort_key: int,
-        type_: str,
+        type_: _t.Literal['church', 'group', 'personal'],
         campus_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         color: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         ev_termine_event_type_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
@@ -15013,6 +15197,7 @@ class CalendarsResource(Resource):
             sort_key: Display order. The calendar list is sorted by this value in ascending order.
             sync_to_ev_termine: Whether the Evangelische Termine integration should synchronize this calendar. This is separate from importing an iCalendar feed.
             type_: Calendar category used by ChurchTools: church for a church calendar, group for a group calendar, personal for a personal calendar. The category determines which administration permissions apply; it does not by itself grant public access or link the calendar to a particular group or person. Access is controlled separately. The type is chosen on creation and cannot be changed by PUT.
+                Allowed values: `church`, `group`, `personal`.
 
         Example::
 
@@ -15308,7 +15493,7 @@ class ChatResource(Resource):
         *,
         domain_id: int,
         guid: str,
-        prefix: str,
+        prefix: _t.Literal['cte', 'ctg'],
         roomname: str,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Chat:
@@ -15323,6 +15508,7 @@ class ChatResource(Resource):
             domain_id: ID of the group (`ctg`) or service-planning event (`cte`) associated with the room.
             guid: Stable ChurchTools chat identifier, not a Matrix room ID.
             prefix: `ctg` identifies a group and `cte` identifies a service-planning event.
+                Allowed values: `cte`, `ctg`.
             roomname: Display name of the room.
 
         Example::
@@ -15389,9 +15575,9 @@ class ChatResource(Resource):
         creator: _t.Union[int, UnsetType] = UNSET,
         domain_id: _t.Union[int, UnsetType] = UNSET,
         nonce: _t.Union[str, UnsetType] = UNSET,
-        prefix: _t.Union[str, UnsetType] = UNSET,
+        prefix: _t.Union[_t.Literal['cte', 'ctg'], UnsetType] = UNSET,
         roomname: _t.Union[str, UnsetType] = UNSET,
-        status: _t.Union[str, UnsetType] = UNSET,
+        status: _t.Union[_t.Literal['STARTED', 'STOPPED'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Chat:
         """
@@ -15407,8 +15593,10 @@ class ChatResource(Resource):
             domain_id: ID of the group (`ctg`) or service-planning event (`cte`) associated with the room.
             nonce: Synchronization token for central chat service callbacks.
             prefix: `ctg` identifies a group and `cte` identifies a service-planning event.
+                Allowed values: `cte`, `ctg`.
             roomname: Display name of the room.
             status: Requested lifecycle status.
+                Allowed values: `STARTED`, `STOPPED`.
 
         Example::
 
@@ -15576,7 +15764,7 @@ class ConfigResource(Resource):
         churchdb_archivedeletehistory: _t.Union[bool, UnsetType] = UNSET,
         churchdb_birthdaylist_station: _t.Union[str, UnsetType] = UNSET,
         churchdb_birthdaylist_status: _t.Union[str, UnsetType] = UNSET,
-        churchdb_cleverreach_connected: _t.Union[str, UnsetType] = UNSET,
+        churchdb_cleverreach_connected: _t.Union[_t.Literal['false', 'true'], UnsetType] = UNSET,
         churchdb_emailseparator: _t.Union[str, UnsetType] = UNSET,
         churchdb_groupnotchoosable: _t.Union[int, UnsetType] = UNSET,
         churchdb_home_lat: _t.Union[str, UnsetType] = UNSET,
@@ -15630,7 +15818,7 @@ class ConfigResource(Resource):
         datasecurity_privacy_agreement_text: _t.Union[str, UnsetType] = UNSET,
         datasecurity_privacy_agreement_text_for_children: _t.Union[str, UnsetType] = UNSET,
         deactivate_default_login: _t.Union[bool, UnsetType] = UNSET,
-        email_server: _t.Union[str, UnsetType] = UNSET,
+        email_server: _t.Union[_t.Literal['churchtools', 'own'], UnsetType] = UNSET,
         evangelische_termine_api_key: _t.Union[str, UnsetType] = UNSET,
         evangelische_termine_enabled: _t.Union[bool, UnsetType] = UNSET,
         evangelische_termine_name: _t.Union[str, UnsetType] = UNSET,
@@ -15640,7 +15828,7 @@ class ConfigResource(Resource):
         hide_licensetab: _t.Union[str, UnsetType] = UNSET,
         impressum_external: _t.Union[str, UnsetType] = UNSET,
         impressum_external_link: _t.Union[str, UnsetType] = UNSET,
-        impressum_internal: _t.Union[str, UnsetType] = UNSET,
+        impressum_internal: _t.Union[_t.Literal['0', '1'], UnsetType] = UNSET,
         invite_email_text: _t.Union[str, UnsetType] = UNSET,
         is_churchtools_blog_widget_active: _t.Union[bool, UnsetType] = UNSET,
         is_churchtools_onboarding_widget_active: _t.Union[bool, UnsetType] = UNSET,
@@ -15659,7 +15847,7 @@ class ConfigResource(Resource):
         post_active: _t.Union[bool, UnsetType] = UNSET,
         post_edit_time_limited: _t.Union[bool, UnsetType] = UNSET,
         post_email_summary_default_enabled: _t.Union[bool, UnsetType] = UNSET,
-        post_email_summary_default_filter: _t.Union[str, UnsetType] = UNSET,
+        post_email_summary_default_filter: _t.Union[_t.Literal['all', 'featured_groups', 'my_groups'], UnsetType] = UNSET,
         post_email_summary_default_weekdays: _t.Union[str, UnsetType] = UNSET,
         post_featured_groups: _t.Union[str, UnsetType] = UNSET,
         post_inmenu: _t.Union[bool, UnsetType] = UNSET,
@@ -15696,9 +15884,13 @@ class ConfigResource(Resource):
 
         Args:
             churchchat_start_event_chat_for_calendars: A stringified array of calendar ids
+            churchdb_cleverreach_connected: Allowed values: `false`, `true`.
             datasecurity_privacy_agreement_text: Only in extended config
             datasecurity_privacy_agreement_text_for_children: Only in extended config
+            email_server: Allowed values: `churchtools`, `own`.
             impressum_internal: This is a string that can only be true or false.
+                Allowed values: `0`, `1`.
+            post_email_summary_default_filter: Allowed values: `all`, `featured_groups`, `my_groups`.
             support_user_active_since: A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
 
         Example::
@@ -15867,7 +16059,7 @@ class DbfieldsResource(Resource):
         security_level: int,
         sort_key: int,
         use_as_placeholder: bool,
-        field_category_intern_code: str,
+        field_category_intern_code: _t.Literal['f_address', 'f_category', 'f_church', 'f_datasecurity', 'f_dep', 'f_group', 'f_growpath'],
         is_available_in_routines: _t.Union[bool, UnsetType] = UNSET,
         length: _t.Union[int, UnsetType] = UNSET,
         line_ending: _t.Union[_t.Optional[str], UnsetType] = UNSET,
@@ -15894,6 +16086,7 @@ class DbfieldsResource(Resource):
             sort_key: Display-order value within its category.
             use_as_placeholder: Whether the field may be used as a placeholder.
             field_category_intern_code: Field category: f_address (person address/contact), f_church (person church information), f_category (person categories), f_group (group data), f_dep (departments), f_growpath (person growth-path data), or f_datasecurity (person privacy information). These are category codes, not entity IDs.
+                Allowed values: `f_address`, `f_category`, `f_church`, `f_datasecurity`, `f_dep`, `f_group`, `f_growpath`.
 
         Example::
 
@@ -15955,8 +16148,8 @@ class DbfieldsResource(Resource):
     def list(
         self,
         *,
-        categories: _t.Optional[_t.List[str]] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        categories: _t.Optional[_t.List[_t.Literal['f_address', 'f_category', 'f_church', 'f_datasecurity', 'f_dep', 'f_group', 'f_growpath']]] = None,
+        include: _t.Optional[_t.List[_t.Literal['options']]] = None,
     ) -> _t.List[models.DbField]:
         """
         List database-field definitions
@@ -15967,7 +16160,9 @@ class DbfieldsResource(Resource):
 
         Args:
             categories: Limit results to database-field categories.
+                Allowed values: `f_address`, `f_category`, `f_church`, `f_datasecurity`, `f_dep`, `f_group`, `f_growpath`.
             include: Expand selection choices for each field.
+                Allowed values: `options`.
 
         Example::
 
@@ -15991,7 +16186,7 @@ class DbfieldsResource(Resource):
         line_ending: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         name: _t.Union[str, UnsetType] = UNSET,
         shorty: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        field_category_intern_code: _t.Union[str, UnsetType] = UNSET,
+        field_category_intern_code: _t.Union[_t.Literal['f_address', 'f_category', 'f_church', 'f_datasecurity', 'f_dep', 'f_group', 'f_growpath'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.DbField:
         """
@@ -16015,6 +16210,7 @@ class DbfieldsResource(Resource):
             sort_key: Display-order value within its category.
             use_as_placeholder: Whether the field may be used as a placeholder.
             field_category_intern_code: Installation-created person fields can move between `f_address`, `f_church`, `f_category` and `f_datasecurity`. Built-in fields and fields in other categories can only keep their existing category.
+                Allowed values: `f_address`, `f_category`, `f_church`, `f_datasecurity`, `f_dep`, `f_group`, `f_growpath`.
 
         Example::
 
@@ -16080,7 +16276,7 @@ class DomainobjectsResource(Resource):
         self,
         *,
         domain_identifiers: _t.List[str],
-        domain_types: _t.List[str],
+        domain_types: _t.List[_t.Literal['appointment', 'appointment_occurrence', 'event', 'group', 'group_membership', 'person', 'song', 'wiki_page']],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> _t.List[models.ResolvedDomainObject]:
         """
@@ -16093,6 +16289,7 @@ class DomainobjectsResource(Resource):
         Args:
             domain_identifiers: For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
             domain_types: Object types corresponding to the identifiers at the same indexes.
+                Allowed values: `appointment`, `appointment_occurrence`, `event`, `group`, `group_membership`, `person`, `song`, `wiki_page`.
 
         Example::
 
@@ -16107,7 +16304,7 @@ class DomainobjectsResource(Resource):
     def list(
         self,
         *,
-        domain_types: _t.List[str],
+        domain_types: _t.List[_t.Literal['appointment', 'appointment_occurrence', 'event', 'group', 'group_membership', 'person', 'song', 'wiki_page']],
         domain_identifiers: _t.List[str],
     ) -> _t.List[models.ResolvedDomainObject]:
         """
@@ -16119,6 +16316,7 @@ class DomainobjectsResource(Resource):
 
         Args:
             domain_types: Registered object types, paired by index with `domain_identifiers[]`.
+                Allowed values: `appointment`, `appointment_occurrence`, `event`, `group`, `group_membership`, `person`, `song`, `wiki_page`.
             domain_identifiers: For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
 
         Example::
@@ -16273,7 +16471,7 @@ class DynamicgroupsResource(Resource):
 
             result = client.dynamicgroups.update_ruleset(
                 42,
-                dynamic_group_rule_set=[ct.models.DynamicGroupRule.model_validate({"description": "Add selected people to the group.", "importance": 10, "personIdFieldName": "person.id", "process": {"groupAndQueryResult": {}, "groupOnly": {}, "queryResultOnly": {}}, "query": {"method": "beispiel", "params": {}}, "shorty": "selected-people"})],
+                dynamic_group_rule_set=[ct.models.DynamicGroupRule.model_validate({"description": "Add selected people to the group.", "importance": 10, "personIdFieldName": "person.id", "process": {"groupAndQueryResult": {}, "groupOnly": {}, "queryResultOnly": {}}, "query": {"method": "ChurchQuery", "params": {}}, "shorty": "selected-people"})],
             )
             print(result)
         """
@@ -16283,7 +16481,7 @@ class DynamicgroupsResource(Resource):
         self,
         group_id: int,
         *,
-        dynamic_group_status: str,
+        dynamic_group_status: _t.Literal['active', 'inactive', 'manual', 'none'],
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.DynamicGroupStatusUpdate:
         """
@@ -16296,6 +16494,7 @@ class DynamicgroupsResource(Resource):
         Args:
             group_id: ID of group
             dynamic_group_status: Controls automatic membership refresh: active participates in scheduled and manual refreshes; manual allows explicit refresh only; inactive blocks both; none disables dynamic-group behavior without deleting stored rules or existing memberships.
+                Allowed values: `active`, `inactive`, `manual`, `none`.
 
         Example::
 
@@ -16596,7 +16795,7 @@ class EventsResource(Resource):
         *,
         from_: _t.Optional[_dt.date] = None,
         to: _t.Optional[_dt.date] = None,
-        direction: _t.Optional[str] = None,
+        direction: _t.Optional[_t.Literal['backward', 'forward']] = None,
         limit: _t.Optional[int] = None,
         canceled: _t.Optional[bool] = None,
         include: _t.Optional[str] = None,
@@ -16612,6 +16811,7 @@ class EventsResource(Resource):
             from_: Midnight anchor or beginning of the range.
             to: Range upper bound at midnight, inclusive.
             direction: Enable directional pagination; omit for an unpaginated date range.
+                Allowed values: `backward`, `forward`.
             limit: Results per page in directional mode; ignored in range mode.
             canceled: Include cancelled events in addition to active events.
             include: Comma-separated Fractal includes. event_services includes visible assignments; eventServices is its legacy spelling. The response key follows the selected spelling. Other Fractal syntax is accepted, so this is not a closed enum.
@@ -16763,10 +16963,10 @@ class ExternalloginsResource(Resource):
         new_person_campus_id: _t.Optional[int],
         new_person_department_id: _t.Optional[int],
         new_person_status_id: _t.Optional[int],
-        type_: str,
+        type_: _t.Literal['oauth', 'oidc', 'saml'],
         update_data_on_login: bool,
         is_visible: _t.Union[bool, UnsetType] = UNSET,
-        matching_mode: _t.Union[str, UnsetType] = UNSET,
+        matching_mode: _t.Union[_t.Literal['auto_match', 'preprovisioned_only', 'verified_user_linking'], UnsetType] = UNSET,
         primary_login: _t.Union[bool, UnsetType] = UNSET,
         subtitle: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -16782,12 +16982,14 @@ class ExternalloginsResource(Resource):
             create_new_person: Whether the login flow may create a ChurchTools person when no local identity mapping exists. The matching mode controls whether this happens automatically or requires an explicit choice.
             has_registration: Whether the external provider offers a registration flow; support depends on the protocol handler.
             matching_mode: Determines how an authenticated external identity without an existing person mapping is handled. Auto-match mode uses automatic name-and-email matching and optional person creation. Verified mode asks the user to either prove ownership of a local account or, when `createNewPerson` is enabled, explicitly create a person. Pre-provisioned mode rejects identities without a mapping.
+                Allowed values: `auto_match`, `preprovisioned_only`, `verified_user_linking`.
             name: Display name shown for this provider.
             new_person_campus_id: Default campus ID for newly created people. A numeric ID is required when createNewPerson is true; explicit null is required otherwise.
             new_person_department_id: Default department ID for newly created people. A numeric ID is required when createNewPerson is true; explicit null is required otherwise.
             new_person_status_id: Default person status ID for newly created people. A numeric ID is required when createNewPerson is true; explicit null is required otherwise.
             subtitle: Secondary text on the login choice.
             type_: Configured login protocol.
+                Allowed values: `oauth`, `oidc`, `saml`.
             update_data_on_login: Whether existing person data is updated from provider data after successful matching.
 
         Example::
@@ -16870,10 +17072,10 @@ class ExternalloginsResource(Resource):
         new_person_campus_id: _t.Optional[int],
         new_person_department_id: _t.Optional[int],
         new_person_status_id: _t.Optional[int],
-        type_: str,
+        type_: _t.Literal['oauth', 'oidc', 'saml'],
         update_data_on_login: bool,
         is_visible: _t.Union[bool, UnsetType] = UNSET,
-        matching_mode: _t.Union[str, UnsetType] = UNSET,
+        matching_mode: _t.Union[_t.Literal['auto_match', 'preprovisioned_only', 'verified_user_linking'], UnsetType] = UNSET,
         primary_login: _t.Union[bool, UnsetType] = UNSET,
         subtitle: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -16890,6 +17092,7 @@ class ExternalloginsResource(Resource):
             has_registration: Whether the external provider offers a registration flow; support depends on the protocol handler.
             is_visible: Whether this provider is listed among available SSO login choices. Hiding it is not the same as deleting its configuration or mappings.
             matching_mode: Determines how an authenticated external identity without an existing person mapping is handled. Auto-match mode uses automatic name-and-email matching and optional person creation. Verified mode asks the user to either prove ownership of a local account or, when `createNewPerson` is enabled, explicitly create a person. Pre-provisioned mode rejects identities without a mapping.
+                Allowed values: `auto_match`, `preprovisioned_only`, `verified_user_linking`.
             name: Display name shown for this provider.
             new_person_campus_id: Default campus ID for newly created people. A numeric ID is required when createNewPerson is true; explicit null is required otherwise.
             new_person_department_id: Default department ID for newly created people. A numeric ID is required when createNewPerson is true; explicit null is required otherwise.
@@ -16897,6 +17100,7 @@ class ExternalloginsResource(Resource):
             primary_login: Marks the preferred external login. At most one provider may have this flag; choosing a second primary provider is rejected rather than automatically demoting the first.
             subtitle: Secondary text on the login choice.
             type_: Configured login protocol.
+                Allowed values: `oauth`, `oidc`, `saml`.
             update_data_on_login: Whether existing person data is updated from provider data after successful matching.
 
         Example::
@@ -16933,7 +17137,7 @@ class ExternalpostsResource(Resource):
         after: _t.Optional[_dt.datetime] = None,
         external_group_guid: _t.Optional[_t.List[str]] = None,
         external_instance_guid: _t.Optional[_t.List[str]] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['linkings']]] = None,
         limit: _t.Optional[int] = None,
     ) -> _t.List[models.Post]:
         """
@@ -16950,6 +17154,7 @@ class ExternalpostsResource(Resource):
             external_group_guid: If set posts of these groups are returned.
             external_instance_guid: If set posts of these instances are returned.
             include: If set, the response will include the specified data.
+                Allowed values: `linkings`.
             limit: Number of results per page.
 
         Example::
@@ -17123,7 +17328,7 @@ class FilesResource(Resource):
 
     def create(
         self,
-        domain_type: str,
+        domain_type: _t.Union[_t.Literal['agenda_PRO_PRESENTER_6', 'agenda_PRO_PRESENTER_7', 'agenda_SONG_BEAMER', 'appointment_image', 'appointment_template_image', 'attachments', 'avatar', 'bill', 'bulk_letter_zip', 'bulkletter_template', 'custom_module', 'datasheet', 'donation_cover_letter', 'eubp_submission', 'familyavatar', 'groupimage', 'html_template', 'html_template_asset', 'importtable', 'labels', 'logo', 'person', 'post', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'routine_email_attachment', 'service', 'song_arrangement', 'statement', 'unknown'], str],
         domain_identifier: str,
         *,
         files: _t.Sequence[Upload],
@@ -17140,6 +17345,7 @@ class FilesResource(Resource):
 
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
+                Allowed values: `agenda_PRO_PRESENTER_6`, `agenda_PRO_PRESENTER_7`, `agenda_SONG_BEAMER`, `appointment_image`, `appointment_template_image`, `attachments`, `avatar`, `bill`, `bulk_letter_zip`, `bulkletter_template`, `custom_module`, `datasheet`, `donation_cover_letter`, `eubp_submission`, `familyavatar`, `groupimage`, `html_template`, `html_template_asset`, `importtable`, `labels`, `logo`, `person`, `post`, `profile_banner`, `profile_gallery`, `profile_logo`, `profile_service_banner`, `routine_email_attachment`, `service`, `song_arrangement`, ….
             domain_identifier: Identifier of the target within the file category, such as a person ID for `avatar` or a page identifier for `wiki_`.
             files: Files to upload.
             image_options: JSON-encoded image crop and focus options.
@@ -17148,7 +17354,11 @@ class FilesResource(Resource):
 
         Example::
 
-            for file in client.files.create("beispiel", "42", files=[ct.Upload.from_path("gemeindebrief.pdf")]):
+            for file in client.files.create(
+                "agenda_PRO_PRESENTER_6",
+                "42",
+                files=[ct.Upload.from_path("gemeindebrief.pdf")],
+            ):
                 print(file.name)
         """
         return _t.cast(_t.List[models.FileUploadResult], self._call('POST', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}", [], None, _t.List[models.FileUploadResult], envelope=True, upload=('files[]', _query([('image_options', image_options), ('securitylevel_id', securitylevel_id), ('sortKey', sort_key)]), files)))
@@ -17175,7 +17385,7 @@ class FilesResource(Resource):
 
     def delete_for_object(
         self,
-        domain_type: str,
+        domain_type: _t.Union[_t.Literal['agenda_PRO_PRESENTER_6', 'agenda_PRO_PRESENTER_7', 'agenda_SONG_BEAMER', 'appointment_image', 'appointment_template_image', 'attachments', 'avatar', 'bill', 'bulk_letter_zip', 'bulkletter_template', 'custom_module', 'datasheet', 'donation_cover_letter', 'eubp_submission', 'familyavatar', 'groupimage', 'html_template', 'html_template_asset', 'importtable', 'labels', 'logo', 'person', 'post', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'routine_email_attachment', 'service', 'song_arrangement', 'statement', 'unknown'], str],
         domain_identifier: str,
     ) -> None:
         """
@@ -17187,11 +17397,12 @@ class FilesResource(Resource):
 
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
+                Allowed values: `agenda_PRO_PRESENTER_6`, `agenda_PRO_PRESENTER_7`, `agenda_SONG_BEAMER`, `appointment_image`, `appointment_template_image`, `attachments`, `avatar`, `bill`, `bulk_letter_zip`, `bulkletter_template`, `custom_module`, `datasheet`, `donation_cover_letter`, `eubp_submission`, `familyavatar`, `groupimage`, `html_template`, `html_template_asset`, `importtable`, `labels`, `logo`, `person`, `post`, `profile_banner`, `profile_gallery`, `profile_logo`, `profile_service_banner`, `routine_email_attachment`, `service`, `song_arrangement`, ….
             domain_identifier: Identifier of the target within the file category, such as a person ID for `avatar` or a page identifier for `wiki_`.
 
         Example::
 
-            client.files.delete_for_object("beispiel", "42")
+            client.files.delete_for_object("agenda_PRO_PRESENTER_6", "42")
         """
         self._raw('DELETE', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}", [], None)
 
@@ -17241,7 +17452,7 @@ class FilesResource(Resource):
 
     def link(
         self,
-        domain_type: str,
+        domain_type: _t.Union[_t.Literal['agenda_PRO_PRESENTER_6', 'agenda_PRO_PRESENTER_7', 'agenda_SONG_BEAMER', 'appointment_image', 'appointment_template_image', 'attachments', 'avatar', 'bill', 'bulk_letter_zip', 'bulkletter_template', 'custom_module', 'datasheet', 'donation_cover_letter', 'eubp_submission', 'familyavatar', 'groupimage', 'html_template', 'html_template_asset', 'importtable', 'labels', 'logo', 'person', 'post', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'routine_email_attachment', 'service', 'song_arrangement', 'statement', 'unknown'], str],
         domain_identifier: str,
         *,
         url: str,
@@ -17258,6 +17469,7 @@ class FilesResource(Resource):
 
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
+                Allowed values: `agenda_PRO_PRESENTER_6`, `agenda_PRO_PRESENTER_7`, `agenda_SONG_BEAMER`, `appointment_image`, `appointment_template_image`, `attachments`, `avatar`, `bill`, `bulk_letter_zip`, `bulkletter_template`, `custom_module`, `datasheet`, `donation_cover_letter`, `eubp_submission`, `familyavatar`, `groupimage`, `html_template`, `html_template_asset`, `importtable`, `labels`, `logo`, `person`, `post`, `profile_banner`, `profile_gallery`, `profile_logo`, `profile_service_banner`, `routine_email_attachment`, `service`, `song_arrangement`, ….
             domain_identifier: Identifier of the target within the file category, such as a person ID for `avatar` or a page identifier for `wiki_`.
             name: Display name. The URL is used when no name is supplied.
             security_level_id: Attachment security level.
@@ -17265,14 +17477,18 @@ class FilesResource(Resource):
 
         Example::
 
-            file = client.files.link("beispiel", "42", url="https://example.org/service-notes")
+            file = client.files.link(
+                "agenda_PRO_PRESENTER_6",
+                "42",
+                url="https://example.org/service-notes",
+            )
             print(file.name)
         """
         return _t.cast(models.CtFile, self._call('POST', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}/link", [], _body({'name': name, 'securityLevelId': security_level_id, 'url': url}, extra_body), models.CtFile, envelope=True))
 
     def list(
         self,
-        domain_type: str,
+        domain_type: _t.Union[_t.Literal['agenda_PRO_PRESENTER_6', 'agenda_PRO_PRESENTER_7', 'agenda_SONG_BEAMER', 'appointment_image', 'appointment_template_image', 'attachments', 'avatar', 'bill', 'bulk_letter_zip', 'bulkletter_template', 'custom_module', 'datasheet', 'donation_cover_letter', 'eubp_submission', 'familyavatar', 'groupimage', 'html_template', 'html_template_asset', 'importtable', 'labels', 'logo', 'person', 'post', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'routine_email_attachment', 'service', 'song_arrangement', 'statement', 'unknown'], str],
         domain_identifier: str,
     ) -> _t.List[models.CtFile]:
         """
@@ -17284,18 +17500,19 @@ class FilesResource(Resource):
 
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
+                Allowed values: `agenda_PRO_PRESENTER_6`, `agenda_PRO_PRESENTER_7`, `agenda_SONG_BEAMER`, `appointment_image`, `appointment_template_image`, `attachments`, `avatar`, `bill`, `bulk_letter_zip`, `bulkletter_template`, `custom_module`, `datasheet`, `donation_cover_letter`, `eubp_submission`, `familyavatar`, `groupimage`, `html_template`, `html_template_asset`, `importtable`, `labels`, `logo`, `person`, `post`, `profile_banner`, `profile_gallery`, `profile_logo`, `profile_service_banner`, `routine_email_attachment`, `service`, `song_arrangement`, ….
             domain_identifier: Identifier of the target within the file category, such as a person ID for `avatar` or a page identifier for `wiki_`.
 
         Example::
 
-            for file in client.files.list("beispiel", "42"):
+            for file in client.files.list("agenda_PRO_PRESENTER_6", "42"):
                 print(file.name)
         """
         return _t.cast(_t.List[models.CtFile], self._call('GET', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}", [], None, _t.List[models.CtFile], envelope=True))
 
     def list_for_type(
         self,
-        domain_type: str,
+        domain_type: _t.Union[_t.Literal['agenda_PRO_PRESENTER_6', 'agenda_PRO_PRESENTER_7', 'agenda_SONG_BEAMER', 'appointment_image', 'appointment_template_image', 'attachments', 'avatar', 'bill', 'bulk_letter_zip', 'bulkletter_template', 'custom_module', 'datasheet', 'donation_cover_letter', 'eubp_submission', 'familyavatar', 'groupimage', 'html_template', 'html_template_asset', 'importtable', 'labels', 'logo', 'person', 'post', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'routine_email_attachment', 'service', 'song_arrangement', 'statement', 'unknown'], str],
     ) -> _t.Union[_t.List[models.CtFile], StrMap[models.CtFile]]:
         """
         Get all files for a domain type
@@ -17306,10 +17523,11 @@ class FilesResource(Resource):
 
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
+                Allowed values: `agenda_PRO_PRESENTER_6`, `agenda_PRO_PRESENTER_7`, `agenda_SONG_BEAMER`, `appointment_image`, `appointment_template_image`, `attachments`, `avatar`, `bill`, `bulk_letter_zip`, `bulkletter_template`, `custom_module`, `datasheet`, `donation_cover_letter`, `eubp_submission`, `familyavatar`, `groupimage`, `html_template`, `html_template_asset`, `importtable`, `labels`, `logo`, `person`, `post`, `profile_banner`, `profile_gallery`, `profile_logo`, `profile_service_banner`, `routine_email_attachment`, `service`, `song_arrangement`, ….
 
         Example::
 
-            result = client.files.list_for_type("beispiel")
+            result = client.files.list_for_type("agenda_PRO_PRESENTER_6")
             print(result)
         """
         return _t.cast(_t.Union[_t.List[models.CtFile], StrMap[models.CtFile]], self._call('GET', f"/files/{_seg(domain_type)}", [], None, _t.Union[_t.List[models.CtFile], StrMap[models.CtFile]], envelope=True))
@@ -17344,7 +17562,7 @@ class FilesResource(Resource):
 
     def update_for_object(
         self,
-        domain_type: str,
+        domain_type: _t.Union[_t.Literal['agenda_PRO_PRESENTER_6', 'agenda_PRO_PRESENTER_7', 'agenda_SONG_BEAMER', 'appointment_image', 'appointment_template_image', 'attachments', 'avatar', 'bill', 'bulk_letter_zip', 'bulkletter_template', 'custom_module', 'datasheet', 'donation_cover_letter', 'eubp_submission', 'familyavatar', 'groupimage', 'html_template', 'html_template_asset', 'importtable', 'labels', 'logo', 'person', 'post', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'routine_email_attachment', 'service', 'song_arrangement', 'statement', 'unknown'], str],
         domain_identifier: str,
         *,
         name: _t.Union[_t.Optional[str], UnsetType] = UNSET,
@@ -17360,13 +17578,14 @@ class FilesResource(Resource):
 
         Args:
             domain_type: Attachment category; determines the file handler and permission checks.
+                Allowed values: `agenda_PRO_PRESENTER_6`, `agenda_PRO_PRESENTER_7`, `agenda_SONG_BEAMER`, `appointment_image`, `appointment_template_image`, `attachments`, `avatar`, `bill`, `bulk_letter_zip`, `bulkletter_template`, `custom_module`, `datasheet`, `donation_cover_letter`, `eubp_submission`, `familyavatar`, `groupimage`, `html_template`, `html_template_asset`, `importtable`, `labels`, `logo`, `person`, `post`, `profile_banner`, `profile_gallery`, `profile_logo`, `profile_service_banner`, `routine_email_attachment`, `service`, `song_arrangement`, ….
             domain_identifier: Identifier of the target within the file category, such as a person ID for `avatar` or a page identifier for `wiki_`.
             name: Display name assigned to every matching file.
             sort_key: Sort key assigned to every matching file.
 
         Example::
 
-            client.files.update_for_object("beispiel", "42", name="Service notes.pdf")
+            client.files.update_for_object("agenda_PRO_PRESENTER_6", "42", name="Service notes.pdf")
         """
         self._raw('PATCH', f"/files/{_seg(domain_type)}/{_seg(domain_identifier)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body))
 
@@ -17513,7 +17732,7 @@ class FollowupsResource(Resource):
     def list(
         self,
         *,
-        filter: _t.Optional[_t.List[str]] = None,
+        filter: _t.Optional[_t.List[_t.Literal['done', 'due-after-today', 'due-before-today', 'due-today', 'due-unspecified']]] = None,
         limit: _t.Optional[int] = None,
     ) -> Paginator[models.FollowUp2]:
         """
@@ -17525,6 +17744,7 @@ class FollowupsResource(Resource):
 
         Args:
             filter: Repeat to select any of the listed states. An empty array includes all states.
+                Allowed values: `done`, `due-after-today`, `due-before-today`, `due-today`, `due-unspecified`.
             limit: Maximum results in this page.
 
         Example::
@@ -17666,10 +17886,10 @@ class FurtherlinksResource(Resource):
 
             result = client.furtherlinks.create(
                 description="Our church's NextCloud",
-                image_url="beispiel",
+                image_url="https://example.org",
                 name="NextCloud",
                 sort_key=1.5,
-                url="beispiel",
+                url="https://example.org",
             )
             print(result.name)
         """
@@ -17748,10 +17968,10 @@ class FurtherlinksResource(Resource):
             result = client.furtherlinks.update(
                 1.5,
                 description="Our church's NextCloud",
-                image_url="beispiel",
+                image_url="https://example.org",
                 name="NextCloud",
                 sort_key=1.5,
-                url="beispiel",
+                url="https://example.org",
             )
             print(result.name)
         """
@@ -17885,7 +18105,7 @@ class GroupsResource(Resource):
         group_category_id: _t.Union[int, UnsetType] = UNSET,
         parent_group_id: _t.Union[int, UnsetType] = UNSET,
         role_id: _t.Union[int, UnsetType] = UNSET,
-        visibility: _t.Union[str, UnsetType] = UNSET,
+        visibility: _t.Union[_t.Literal['hidden', 'intern', 'public', 'restricted'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Group:
         """
@@ -17905,6 +18125,7 @@ class GroupsResource(Resource):
             parent_group_id: Group ID of parent group
             role_id: put yourself in this role
             visibility: The visibility of a group.
+                Allowed values: `hidden`, `intern`, `public`, `restricted`.
 
         Example::
 
@@ -17999,8 +18220,8 @@ class GroupsResource(Resource):
         self,
         *,
         ids: _t.List[int],
-        format: _t.Optional[str] = None,
-        type_: _t.Optional[str] = None,
+        format: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
+        type_: _t.Optional[_t.Literal['csv', 'xlsx']] = None,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> bytes:
         """
@@ -18012,7 +18233,9 @@ class GroupsResource(Resource):
 
         Args:
             format: Export file format. Defaults to `csv` when omitted. The response content type depends on the selected format.
+                Allowed values: `csv`, `xlsx`.
             type_: Use `format`
+                Allowed values: `csv`, `xlsx`.
             ids: Group IDs to export. Unknown or invisible IDs are silently omitted; duplicates do not produce duplicate rows. Rows are sorted by group name, not by this array.
 
         Example::
@@ -18027,7 +18250,7 @@ class GroupsResource(Resource):
         self,
         group_id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['averageMemberAge', 'hasPermissions', 'memberStatistics', 'places', 'publicPostsStatistic', 'roles', 'signupConditions', 'tags']]] = None,
     ) -> models.Group:
         """
         Get a group
@@ -18037,6 +18260,7 @@ class GroupsResource(Resource):
         Args:
             group_id: ID of group
             include: Include additional information (currently, 'roles' are included by default but this behaviour is now deprecated)
+                Allowed values: `averageMemberAge`, `hasPermissions`, `memberStatistics`, `places`, `publicPostsStatistic`, `roles`, `signupConditions`, `tags`.
 
         Example::
 
@@ -18048,7 +18272,7 @@ class GroupsResource(Resource):
     def get_grouped(
         self,
         *,
-        group_by: str,
+        group_by: _t.Literal['ageGroup', 'campus', 'groupCategory', 'groupStatus', 'groupType', 'isOpenForMembers', 'targetGroup', 'visibility'],
         limit: _t.Optional[int] = None,
     ) -> models.GroupedGroups:
         """
@@ -18060,11 +18284,12 @@ class GroupsResource(Resource):
 
         Args:
             group_by: Group attribute used to build the response buckets
+                Allowed values: `ageGroup`, `campus`, `groupCategory`, `groupStatus`, `groupType`, `isOpenForMembers`, `targetGroup`, `visibility`.
             limit: Number of results per page.
 
         Example::
 
-            grouped = client.groups.get_grouped(group_by="beispiel")
+            grouped = client.groups.get_grouped(group_by="ageGroup")
             print(grouped.grouped_by)
         """
         return _t.cast(models.GroupedGroups, self._call('GET', "/groups/grouped", _query([('group_by', group_by), ('limit', limit)]), None, models.GroupedGroups, envelope=True))
@@ -18202,10 +18427,10 @@ class GroupsResource(Resource):
         has_posts: _t.Optional[bool] = None,
         has_active_chat: _t.Optional[bool] = None,
         query: _t.Optional[str] = None,
-        visibility: _t.Optional[str] = None,
+        visibility: _t.Optional[_t.Literal['hidden', 'intern', 'public', 'restricted']] = None,
         order_fields: _t.Optional[_t.List[str]] = None,
-        order_directions: _t.Optional[_t.List[str]] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        order_directions: _t.Optional[_t.List[_t.Literal['ASC', 'DESC']]] = None,
+        include: _t.Optional[_t.List[_t.Literal['averageMemberAge', 'hasPermissions', 'memberStatistics', 'places', 'publicPostsStatistic', 'roles', 'signupConditions', 'tags']]] = None,
     ) -> Paginator[models.Group]:
         """
         Get all groups
@@ -18237,9 +18462,12 @@ class GroupsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+                Allowed values: `hidden`, `intern`, `public`, `restricted`.
             order_fields: The fields to order by
             order_directions: The order direction ASC or DESC for the order_fields
+                Allowed values: `ASC`, `DESC`.
             include: Include additional information (currently, 'roles' are included by default but this behaviour is now deprecated)
+                Allowed values: `averageMemberAge`, `hasPermissions`, `memberStatistics`, `places`, `publicPostsStatistic`, `roles`, `signupConditions`, `tags`.
 
         Example::
 
@@ -18254,7 +18482,7 @@ class GroupsResource(Resource):
         *,
         from_: _t.Optional[_t.Union[_dt.date, _dt.datetime]] = None,
         to: _t.Optional[_t.Union[_dt.date, _dt.datetime]] = None,
-        order_direction: _t.Optional[str] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC']] = None,
         from_date: _t.Optional[_t.Union[_dt.date, _dt.datetime]] = None,
         to_date: _t.Optional[_t.Union[_dt.date, _dt.datetime]] = None,
     ) -> _t.List[models.Absence]:
@@ -18270,6 +18498,7 @@ class GroupsResource(Resource):
             from_: Start of the overlap window. Defaults to midnight two weeks ago.
             to: End of the overlap window. Defaults to midnight two weeks from today.
             order_direction: Order by absence start.
+                Allowed values: `ASC`, `DESC`.
             from_date: Legacy alias for from.
             to_date: Legacy alias for to.
 
@@ -18302,7 +18531,7 @@ class GroupsResource(Resource):
         has_posts: _t.Optional[bool] = None,
         has_active_chat: _t.Optional[bool] = None,
         query: _t.Optional[str] = None,
-        visibility: _t.Optional[str] = None,
+        visibility: _t.Optional[_t.Literal['hidden', 'intern', 'public', 'restricted']] = None,
     ) -> Paginator[models.DomainObjectGroup]:
         """
         Get child groups
@@ -18329,6 +18558,7 @@ class GroupsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+                Allowed values: `hidden`, `intern`, `public`, `restricted`.
 
         Example::
 
@@ -18379,7 +18609,7 @@ class GroupsResource(Resource):
         has_posts: _t.Optional[bool] = None,
         has_active_chat: _t.Optional[bool] = None,
         query: _t.Optional[str] = None,
-        visibility: _t.Optional[str] = None,
+        visibility: _t.Optional[_t.Literal['hidden', 'intern', 'public', 'restricted']] = None,
     ) -> Paginator[models.GroupHierarchy]:
         """
         Get all group hierarchies
@@ -18407,6 +18637,7 @@ class GroupsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+                Allowed values: `hidden`, `intern`, `public`, `restricted`.
 
         Example::
 
@@ -18438,7 +18669,7 @@ class GroupsResource(Resource):
         has_posts: _t.Optional[bool] = None,
         has_active_chat: _t.Optional[bool] = None,
         query: _t.Optional[str] = None,
-        visibility: _t.Optional[str] = None,
+        visibility: _t.Optional[_t.Literal['hidden', 'intern', 'public', 'restricted']] = None,
     ) -> Paginator[int]:
         """
         Get all group ids
@@ -18468,6 +18699,7 @@ class GroupsResource(Resource):
             has_posts: Only show groups which has posts
             has_active_chat: Filter groups based on whether they have an active chat
             visibility: Group visibility
+                Allowed values: `hidden`, `intern`, `public`, `restricted`.
 
         Example::
 
@@ -18482,7 +18714,7 @@ class GroupsResource(Resource):
         *,
         role_ids: _t.Optional[_t.List[int]] = None,
         person_id: _t.Optional[_t.List[int]] = None,
-        group_member_statuses: _t.Optional[_t.List[str]] = None,
+        group_member_statuses: _t.Optional[_t.List[_t.Literal['active', 'requested', 'to_delete', 'waiting']]] = None,
         allowed_chat_users_only: _t.Optional[bool] = None,
         allowed_chat_writers_only: _t.Optional[bool] = None,
         query: _t.Optional[str] = None,
@@ -18502,6 +18734,7 @@ class GroupsResource(Resource):
             role_ids: Filter by role definition IDs (Role.id from GET /roles), matching groupTypeRoleId on memberships. Multiple IDs match any of the selected roles.
             person_id: Filter by person IDs. These are the IDs in person.domainIdentifier, not membership record IDs.
             group_member_statuses: Filter by membership status, independently of the member’s role. Multiple values match any selected status. Omit this filter to include all visible statuses.
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
             allowed_chat_users_only: If true, return only group members, that are allowed to chat in this group
             allowed_chat_writers_only: If true, return only group members that are allowed to write in the chat.
             query: Search the first and last names of the persons belonging to the group.
@@ -18572,7 +18805,7 @@ class GroupsResource(Resource):
         last_post_identifier: _t.Optional[str] = None,
         after: _t.Optional[_dt.datetime] = None,
         limit: _t.Optional[int] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['comments', 'linkings', 'reactions']]] = None,
     ) -> Paginator[models.Post]:
         """
         Get visible posts of a group
@@ -18588,6 +18821,7 @@ class GroupsResource(Resource):
             after: If set, only posts published at or after this date are returned. The date must be in RFC3339 format (Zulu-Date).
             limit: Maximum number of posts in this batch.
             include: Optional comments and reactions. Linkings are already included by default.
+                Allowed values: `comments`, `linkings`, `reactions`.
 
         Example::
 
@@ -18632,7 +18866,7 @@ class GroupsResource(Resource):
         appointment_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         group_type_id: _t.Union[int, UnsetType] = UNSET,
         start_date: _t.Union[_t.Optional[_dt.datetime], UnsetType] = UNSET,
-        statuses_counted_towards_seats: _t.Union[_t.List[str], UnsetType] = UNSET,
+        statuses_counted_towards_seats: _t.Union[_t.List[_t.Literal['active', 'requested', 'to_delete', 'waiting']], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Group:
         """
@@ -18649,6 +18883,7 @@ class GroupsResource(Resource):
             appointment_id: ID of the appointment this group is linked to. Set to `null` to unlink the group from any appointment.
             start_date: Start date of the appointment occurrence this group is linked to (used together with `appointmentId` for repeating appointments). Set to `null` to clear.
             statuses_counted_towards_seats: Membership statuses that occupy seats when their role counts towards seats. Defaults to active only. An empty array means no membership occupies a seat.
+                Allowed values: `active`, `requested`, `to_delete`, `waiting`.
 
         Example::
 
@@ -18668,14 +18903,14 @@ class GroupsResource(Resource):
         show_map: bool,
         custom_description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         custom_title: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        default_view: _t.Union[str, UnsetType] = UNSET,
+        default_view: _t.Union[_t.Literal['list', 'minitile', 'tile'], UnsetType] = UNSET,
         depth: _t.Union[int, UnsetType] = UNSET,
-        description_mode: _t.Union[str, UnsetType] = UNSET,
+        description_mode: _t.Union[_t.Literal['custom', 'group', 'none'], UnsetType] = UNSET,
         filters: _t.Union[_t.List[models.GroupHomepageFilterCreate], UnsetType] = UNSET,
         is_collapsed: _t.Union[bool, UnsetType] = UNSET,
-        order_by: _t.Union[str, UnsetType] = UNSET,
-        order_direction: _t.Union[str, UnsetType] = UNSET,
-        title_mode: _t.Union[str, UnsetType] = UNSET,
+        order_by: _t.Union[_t.Literal['dateOfFoundation', 'name'], UnsetType] = UNSET,
+        order_direction: _t.Union[_t.Literal['ASC', 'DESC'], UnsetType] = UNSET,
+        title_mode: _t.Union[_t.Literal['custom', 'group', 'none'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> StrMap[_t.Any]:
         """
@@ -18690,18 +18925,23 @@ class GroupsResource(Resource):
             custom_description: Custom description. Trimmed; null or blank clears the value. Omission preserves the current value on update.
             custom_title: Custom heading. Trimmed; null or blank clears the value. Omission preserves the current value on update.
             default_view: Initial group display layout.
+                Allowed values: `list`, `minitile`, `tile`.
             depth: Maximum child hierarchy depth; 1 includes direct children. The public endpoint can override this value.
             description_mode: Header content source. Omission uses group for a new page and preserves the current setting on update.
+                Allowed values: `custom`, `group`, `none`.
             filters: Replaces the enabled filters in the supplied order. Omission or an empty array disables all five filters. options from read responses are ignored.
             is_collapsed: Whether the group list starts collapsed.
             is_enabled: Whether the public hash URL may be opened.
             order_by: Group field used to sort the page.
+                Allowed values: `dateOfFoundation`, `name`.
             order_direction: Ascending or descending sort order.
+                Allowed values: `ASC`, `DESC`.
             show_filters: Display the filter controls. Individual filter visibility is configured with filters.
             show_group_images: Include group images in public group details.
             show_leaders: Include leaders in public group details.
             show_map: Enable the map when the global OpenStreetMap setting also permits it.
             title_mode: Header content source. Omission uses group for a new page and preserves the current setting on update.
+                Allowed values: `custom`, `group`, `none`.
 
         Example::
 
@@ -18766,7 +19006,7 @@ class HtmltemplatesResource(Resource):
     def create(
         self,
         *,
-        domain_type: str,
+        domain_type: _t.Literal['bulkletter', 'donation-receipt-attachment', 'donation-receipt-letter', 'email', 'groupmember-document'],
         name: str,
         is_global: _t.Union[bool, UnsetType] = UNSET,
         copy_assets_from_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
@@ -18783,6 +19023,7 @@ class HtmltemplatesResource(Resource):
 
         Args:
             domain_type: Template purpose: email for group-member emails, bulkletter for mail-merged letters, groupmember-document for membership documents, and donation-receipt-letter/attachment for donation receipt output.
+                Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
             is_global: Whether the template is shared for its domain. Shared availability still depends on template/domain permissions; ownership is retained even for global templates.
             name: Display name of the HTML template.
             copy_assets_from_id: Copy image asset files from this template ID after creating the new template. Does not copy HTML/MJML or rewrite embedded URLs; omit/null to copy none.
@@ -18906,8 +19147,8 @@ class HtmltemplatesResource(Resource):
     def list(
         self,
         *,
-        domain_type: str,
-        type_: _t.Optional[str] = None,
+        domain_type: _t.Literal['bulkletter', 'donation-receipt-attachment', 'donation-receipt-letter', 'email', 'groupmember-document'],
+        type_: _t.Optional[_t.Literal['bulkletter', 'donation-receipt-attachment', 'donation-receipt-letter', 'email', 'groupmember-document']] = None,
         only_own: _t.Optional[bool] = None,
     ) -> _t.List[models.HtmlTemplate]:
         """
@@ -18919,7 +19160,9 @@ class HtmltemplatesResource(Resource):
 
         Args:
             domain_type: Template purpose. Supply this canonical parameter, or the legacy type alias.
+                Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
             type_: Legacy alias for domain_type; domain_type wins if both are provided.
+                Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
             only_own: Filter by the current owner, regardless of private/global visibility.
 
         Example::
@@ -19000,7 +19243,7 @@ class ImagesResource(Resource):
         q: _t.Optional[int] = None,
         crop: _t.Optional[str] = None,
         fit: _t.Optional[str] = None,
-        fm: _t.Optional[str] = None,
+        fm: _t.Optional[_t.Literal['avif', 'gif', 'heic', 'jpg', 'pjpg', 'png', 'tiff', 'webp']] = None,
         p: _t.Optional[str] = None,
     ) -> bytes:
         """
@@ -19019,11 +19262,12 @@ class ImagesResource(Resource):
             crop: Glide crop specification. `original` bypasses the stored crop.
             fit: Glide fit mode. Raster images use their stored focus point by default.
             fm: Output format. A recognized hash suffix takes precedence.
+                Allowed values: `avif`, `gif`, `heic`, `jpg`, `pjpg`, `png`, `tiff`, `webp`.
             p: Comma-separated preset names: `group-homepage`, `group-detail`, `group-list`, `group-tile`, `group-minitile`, `person-detail` and `avatar`. Explicit parameters take precedence over preset values.
 
         Example::
 
-            data = client.images.get(42, "beispiel")
+            data = client.images.get(42, "abc123")
             with open("ergebnis.bin", "wb") as f:
                 f.write(data)
         """
@@ -19049,7 +19293,7 @@ class ImagesResource(Resource):
 
         Example::
 
-            data = client.images.get_with_params(42, "beispiel", "fm%3Dwebp%26q%3D80%26w%3D700%26h%3Dauto")
+            data = client.images.get_with_params(42, "abc123", "fm%3Dwebp%26q%3D80%26w%3D700%26h%3Dauto")
             with open("ergebnis.bin", "wb") as f:
                 f.write(data)
         """
@@ -19168,7 +19412,7 @@ class InstallationSyncResource(Resource):
 
         Example::
 
-            installation_sync = client.installation_sync.oidc(configuration_token="beispiel")
+            installation_sync = client.installation_sync.oidc(configuration_token="abc123")
             print(installation_sync.external_login_id)
         """
         return _t.cast(models.PostInstallationSyncOidcData, self._call('POST', "/installation-sync/oidc", [], _body({'configurationToken': configuration_token}, extra_body), models.PostInstallationSyncOidcData, envelope=True))
@@ -19206,7 +19450,7 @@ class JobsResource(Resource):
     def list(
         self,
         *,
-        status: _t.Optional[_t.List[str]] = None,
+        status: _t.Optional[_t.List[_t.Literal['DONE', 'ERROR', 'IN_PROGRESS']]] = None,
         identifier: _t.Optional[str] = None,
         name: _t.Optional[str] = None,
         domain_ids: _t.Optional[_t.List[float]] = None,
@@ -19224,6 +19468,7 @@ class JobsResource(Resource):
 
         Args:
             status: Filter by stored states. Omit this filter to include all states.
+                Allowed values: `DONE`, `ERROR`, `IN_PROGRESS`.
             identifier: Exact identifier match, not a substring search.
             name: Exact name match, not a substring search.
             domain_ids: Associated business-object IDs, matched across all job domain types. Empty list does not restrict results.
@@ -19270,7 +19515,7 @@ class JobsResource(Resource):
         self,
         identifier: str,
         *,
-        status: str,
+        status: _t.Literal['CANCELED', 'DONE', 'ERROR', 'IN_PROGRESS', 'QUEUED'],
         manual: _t.Union[bool, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
@@ -19285,6 +19530,7 @@ class JobsResource(Resource):
             identifier: Opaque background-job identifier returned when scheduling; not an integer ID.
             manual: Marks the status change as manual.
             status: Stored background-job status. The status-update endpoint accepts all values; the list filter accepts only `IN_PROGRESS`, `DONE`, and `ERROR`.
+                Allowed values: `CANCELED`, `DONE`, `ERROR`, `IN_PROGRESS`, `QUEUED`.
 
         Example::
 
@@ -19300,9 +19546,9 @@ class LabelsResource(Resource):
         self,
         *,
         person_ids: _t.Union[_t.List[int], str, int],
-        type_: str,
+        type_: _t.Literal['AveryLabels3475', 'HermaLabels4425', 'HermaLabels4677'],
         combine_spouses: _t.Union[bool, UnsetType] = UNSET,
-        sortpolicy: _t.Union[str, UnsetType] = UNSET,
+        sortpolicy: _t.Union[_t.Literal['birthday', 'name', 'postal'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.PostLabelsData:
         """
@@ -19316,7 +19562,9 @@ class LabelsResource(Resource):
             combine_spouses: Combine selected visible spouses linked by relationship type 2 into one label. Their addresses need not match. Birthday sorting always disables this option.
             person_ids: Selected person IDs. Prefer an array of integers; legacy comma-separated strings and a single integer are also accepted. Duplicate IDs do not duplicate labels. Empty selection yields no persons; nonexistent or invisible persons are omitted.
             sortpolicy: name sorts by surname/given name; postal by country/postal code/street/name; birthday by month/day/year/name. Birthday sorting forces separate labels. Unrecognized values currently retain initial name order.
+                Allowed values: `birthday`, `name`, `postal`.
             type_: A4 sheet layout: Avery3475 has 24 labels (70×36 mm), Herma4425 has 10 (105×57 mm), Herma4677 has 21 (63.5×38.1 mm).
+                Allowed values: `AveryLabels3475`, `HermaLabels4425`, `HermaLabels4677`.
 
         Example::
 
@@ -19567,7 +19815,7 @@ class MarkdownResource(Resource):
     def check(
         self,
         *,
-        input_scope: str,
+        input_scope: _t.Literal['description', 'document', 'plaintext', 'richline'],
         markdown: str,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.PostMarkdownCheckData:
@@ -19581,11 +19829,12 @@ class MarkdownResource(Resource):
         Args:
             input_scope: Validates the provided Markdown content against the specified scope's rules and restrictions.
                 This ensures the content adheres to the allowed formatting and elements for the given context.
+                Allowed values: `description`, `document`, `plaintext`, `richline`.
             markdown: The Markdown text to be processed
 
         Example::
 
-            markdown = client.markdown.check(input_scope="beispiel", markdown="beispiel")
+            markdown = client.markdown.check(input_scope="description", markdown="Hallo zusammen")
             print(markdown.is_valid)
         """
         return _t.cast(models.PostMarkdownCheckData, self._call('POST', "/markdown/check", [], _body({'inputScope': input_scope, 'markdown': markdown}, extra_body), models.PostMarkdownCheckData, envelope=True))
@@ -19610,7 +19859,7 @@ class MarkdownResource(Resource):
         Example::
 
             markdown = client.markdown.convert(
-                sources=[ct.models.MarkdownRequestSourcesItem.model_validate({"inputScope": "beispiel", "markdown": "beispiel", "outputFormats": ["beispiel"], "outputScopes": ["beispiel"], "shortName": "Hauskreis Nord"})],
+                sources=[ct.models.MarkdownRequestSourcesItem.model_validate({"inputScope": "description", "markdown": "Hallo zusammen", "outputFormats": ["html"], "outputScopes": ["description"], "shortName": "Hauskreis Nord"})],
             )
             print(markdown.current_config_file)
         """
@@ -19647,7 +19896,7 @@ class MeetingrequestsResource(Resource):
         self,
         *,
         ics_content: str,
-        partstat: str,
+        partstat: _t.Literal['ACCEPTED', 'DECLINED', 'TENTATIVE'],
         token: str,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
@@ -19661,12 +19910,13 @@ class MeetingrequestsResource(Resource):
         Args:
             ics_content: Raw ICS reply used to compare appointment scope.
             partstat: Participation status supplied by the calendar-mail processor.
+                Allowed values: `ACCEPTED`, `DECLINED`, `TENTATIVE`.
             token: Reply token embedded in the invitation. Must exist in the meetingrequest_reply domain and remain valid. It is not consumed by this request.
 
         Example::
 
             client.meetingrequests.reply(
-                ics_content="beispiel",
+                ics_content="Hallo zusammen",
                 partstat="ACCEPTED",
                 token="example-reply-token",
             )
@@ -19719,7 +19969,7 @@ class NotesResource(Resource):
 
     def create(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['follow_up', 'group', 'person', 'song_arrangement'],
         domain_id: int,
         *,
         text: str,
@@ -19736,6 +19986,7 @@ class NotesResource(Resource):
 
         Args:
             domain_type: Domain types that notes can be used with
+                Allowed values: `follow_up`, `group`, `person`, `song_arrangement`.
             domain_id: the domain id
             comment_viewer_id: Visibility category for person notes. Creating a person note requires permission for this category.
             security_level_id: Group-note security threshold; ignored for list filtering in the other domains. The create handler also accepts legacy string representations.
@@ -19794,7 +20045,7 @@ class NotesResource(Resource):
 
     def get(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['follow_up', 'group', 'person', 'song_arrangement'],
         domain_id: int,
     ) -> _t.List[models.Note]:
         """
@@ -19806,6 +20057,7 @@ class NotesResource(Resource):
 
         Args:
             domain_type: Domain types that notes can be used with
+                Allowed values: `follow_up`, `group`, `person`, `song_arrangement`.
             domain_id: the domain id
 
         Example::
@@ -19817,7 +20069,7 @@ class NotesResource(Resource):
 
     def update(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['follow_up', 'group', 'person', 'song_arrangement'],
         domain_id: int,
         note_id: int,
         *,
@@ -19835,6 +20087,7 @@ class NotesResource(Resource):
 
         Args:
             domain_type: Domain types that notes can be used with
+                Allowed values: `follow_up`, `group`, `person`, `song_arrangement`.
             domain_id: the domain id
             note_id: ID of note
             comment_viewer_id: Person-comment visibility category. The update handler does not repeat the category permission check used on create.
@@ -19940,7 +20193,7 @@ class OauthclientsResource(Resource):
 
         Example::
 
-            client.oauthclients.delete("beispiel")
+            client.oauthclients.delete("abc123")
         """
         self._raw('DELETE', f"/oauthclients/{_seg(identifier)}", [], None)
 
@@ -19986,7 +20239,7 @@ class OauthclientsResource(Resource):
         Example::
 
             result = client.oauthclients.update(
-                "beispiel",
+                "abc123",
                 name="Parish website",
                 redirect_uri="https://parish.example.org/oauth/callback",
             )
@@ -20027,7 +20280,7 @@ class PermissionsResource(Resource):
 
     def delete(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group_role', 'group_type_role', 'person', 'status'],
         domain_id: int,
         *,
         auth_id: int,
@@ -20044,6 +20297,7 @@ class PermissionsResource(Resource):
 
         Args:
             domain_type: Assignment source domain. group and group_type are read-only combined views and cannot be written.
+                Allowed values: `group_role`, `group_type_role`, `person`, `status`.
             domain_id: ID of the object in the selected permission domain
             auth_id: Permission ID. status and person require values below 10000. Role domains also accept internal permission IDs. 10127 is obsolete and returns 410.
             data_id: Concrete selections to delete. Omission, null or an empty array removes all selection rows, including the null row. A nonempty array uses exact IDs; -1 only matches the unrestricted row.
@@ -20058,7 +20312,7 @@ class PermissionsResource(Resource):
     def get_definitions(
         self,
         *,
-        scope: _t.Optional[str] = None,
+        scope: _t.Optional[_t.Literal['all', 'global', 'internal']] = None,
     ) -> models.GetPermissionsDefinitionsData:
         """
         List permission definitions
@@ -20069,6 +20323,7 @@ class PermissionsResource(Resource):
 
         Args:
             scope: Permission scope to return
+                Allowed values: `all`, `global`, `internal`.
 
         Example::
 
@@ -20096,7 +20351,7 @@ class PermissionsResource(Resource):
 
     def list(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group', 'group_role', 'group_type', 'group_type_role', 'person', 'status'],
         domain_id: int,
     ) -> _t.List[models.Permission]:
         """
@@ -20108,6 +20363,7 @@ class PermissionsResource(Resource):
 
         Args:
             domain_type: Read domain. status/person select direct assignments; group_type_role/group_role select role assignments. group_type selects all role-template assignments of one group type; group combines the concrete group’s roles with their group-type-role assignments. The combined domains require domainId and are read-only.
+                Allowed values: `group`, `group_role`, `group_type`, `group_type_role`, `person`, `status`.
             domain_id: ID of the object in the selected permission domain
 
         Example::
@@ -20121,7 +20377,7 @@ class PermissionsResource(Resource):
         self,
         *,
         query: _t.Optional[str] = None,
-        domain_types: _t.Optional[_t.List[str]] = None,
+        domain_types: _t.Optional[_t.List[_t.Literal['group_role', 'group_type_role', 'person', 'status']]] = None,
         group_id: _t.Optional[int] = None,
         limit: _t.Optional[int] = None,
     ) -> Paginator[models.PermissionAssignmentTarget]:
@@ -20135,6 +20391,7 @@ class PermissionsResource(Resource):
         Args:
             query: Search status, role, group-type, group, or person names
             domain_types: Restrict categories; omitted or empty selects all categories
+                Allowed values: `group_role`, `group_type_role`, `person`, `status`.
             group_id: Restrict to concrete roles of this group, intersected with domainTypes. A nonexistent group or incompatible categories yield an empty list.
             limit: Maximum number of targets per page across all categories
 
@@ -20147,7 +20404,7 @@ class PermissionsResource(Resource):
 
     def list_for_type(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group', 'group_role', 'group_type', 'group_type_role', 'person', 'status'],
         *,
         domain_id: _t.Optional[int] = None,
     ) -> _t.List[models.Permission]:
@@ -20160,6 +20417,7 @@ class PermissionsResource(Resource):
 
         Args:
             domain_type: Read domain. status/person select direct assignments; group_type_role/group_role select role assignments. group_type selects all role-template assignments of one group type; group combines the concrete group’s roles with their group-type-role assignments. The combined domains require domainId and are read-only.
+                Allowed values: `group`, `group_role`, `group_type`, `group_type_role`, `person`, `status`.
             domain_id: Optional owner ID for direct domains; required in practice for group and group_type combined views. Prefer the explicit /{domainId} route for these views.
 
         Example::
@@ -20171,14 +20429,14 @@ class PermissionsResource(Resource):
 
     def update(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group_role', 'group_type_role', 'person', 'status'],
         domain_id: int,
         *,
         auth_id: int,
         data_id: _t.Union[_t.Optional[_t.List[int]], UnsetType] = UNSET,
         is_inherited: _t.Union[bool, UnsetType] = UNSET,
         reason: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        type_: _t.Union[str, UnsetType] = UNSET,
+        type_: _t.Union[_t.Literal['grant', 'revoke'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
         """
@@ -20190,12 +20448,14 @@ class PermissionsResource(Resource):
 
         Args:
             domain_type: Assignment source domain. group and group_type are read-only combined views and cannot be written.
+                Allowed values: `group_role`, `group_type_role`, `person`, `status`.
             domain_id: ID of the object in the selected permission domain
             auth_id: Permission ID. status and person require values below 10000. Role domains also accept internal permission IDs. 10127 is obsolete and returns 410.
             data_id: Selections to add/update. Omission, null or [] writes a null-data row, normally used for boolean permissions. Use [-1] for unrestricted selection access. Existing other selections remain. If a -1 row already exists for this key/inheritance mode, any nonempty request currently returns without changing rows, type or reason.
             is_inherited: Select inherited-source rows when true, otherwise direct rows. Only role domains allow true.
             reason: Trimmed optional explanation. Empty/whitespace input becomes null. No maximum length is validated by the controller.
             type_: Grant a permission, or revoke a contribution for a concrete group_role. revoke is rejected for all other source domains.
+                Allowed values: `grant`, `revoke`.
 
         Example::
 
@@ -20233,14 +20493,14 @@ class PermissionsResource(Resource):
 
     def update_replace(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['group_role', 'group_type_role', 'person', 'status'],
         domain_id: int,
         *,
         auth_id: int,
         data_id: _t.List[int],
         is_inherited: _t.Union[bool, UnsetType] = UNSET,
         reason: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        type_: _t.Union[str, UnsetType] = UNSET,
+        type_: _t.Union[_t.Literal['grant', 'revoke'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
         """
@@ -20252,12 +20512,14 @@ class PermissionsResource(Resource):
 
         Args:
             domain_type: Assignment source domain. group and group_type are read-only combined views and cannot be written.
+                Allowed values: `group_role`, `group_type_role`, `person`, `status`.
             domain_id: ID of the object in the selected permission domain
             auth_id: Permission ID. status and person require values below 10000. Role domains also accept internal permission IDs. 10127 is obsolete and returns 410.
             data_id: Complete replacement selection. Use [-1] for unrestricted selection access or [] to remove the assignment.
             is_inherited: Select inherited-source rows when true, otherwise direct rows. Only role domains allow true.
             reason: Optional explanation for the replacement assignment.
             type_: Grant a permission, or revoke a contribution for a concrete group_role. revoke is rejected for all other source domains.
+                Allowed values: `grant`, `revoke`.
 
         Example::
 
@@ -20380,7 +20642,7 @@ class PersonsResource(Resource):
         status_id: _t.Union[int, UnsetType] = UNSET,
         street: _t.Union[str, UnsetType] = UNSET,
         title: _t.Union[str, UnsetType] = UNSET,
-        visibility: _t.Union[str, UnsetType] = UNSET,
+        visibility: _t.Union[_t.Literal['hidden', 'visible'], UnsetType] = UNSET,
         wedding_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         zip: _t.Union[str, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -20404,6 +20666,7 @@ class PersonsResource(Resource):
             privacy_policy_agreement_who_id: ID of the configured agreement source describing who gave the agreement. This is independent from how the agreement was obtained. Required together with agreement date and type when `privacy_policy_fields_mandatory` is enabled.
             status_id: ID of a person status returned by `GET /person/masterdata`.
             visibility: Visibility accepted when creating or updating a person.
+                Allowed values: `hidden`, `visible`.
 
         Example::
 
@@ -20588,7 +20851,7 @@ class PersonsResource(Resource):
 
         Example::
 
-            loginstring = client.persons.get_loginstring("beispiel")
+            loginstring = client.persons.get_loginstring("abc123")
             print(loginstring.login_string)
         """
         return _t.cast(models.GetPersonsIdLoginstringResponse, self._call('GET', f"/persons/{_seg(person_id)}/loginstring", [], None, models.GetPersonsIdLoginstringResponse, envelope=False))
@@ -20625,7 +20888,7 @@ class PersonsResource(Resource):
 
         Example::
 
-            poststatistic = client.persons.get_poststatistics("beispiel")
+            poststatistic = client.persons.get_poststatistics("abc123")
             print(poststatistic.count_banned)
         """
         return _t.cast(models.PersonPostStatistics, self._call('GET', f"/persons/{_seg(person_id)}/poststatistics", [], None, models.PersonPostStatistics, envelope=True))
@@ -20689,7 +20952,7 @@ class PersonsResource(Resource):
         email: _t.Optional[str] = None,
         email_exact: _t.Optional[str] = None,
         limit: _t.Optional[int] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['tags']]] = None,
     ) -> Paginator[models.Person]:
         """
         Get all persons
@@ -20717,6 +20980,7 @@ class PersonsResource(Resource):
             email_exact: Filter by an exact email address
             limit: Number of results per page.
             include: Include additional information
+                Allowed values: `tags`.
 
         Example::
 
@@ -20730,7 +20994,7 @@ class PersonsResource(Resource):
         *,
         start_date: _t.Optional[_dt.date] = None,
         end_date: _t.Optional[_dt.date] = None,
-        direction: _t.Optional[str] = None,
+        direction: _t.Optional[_t.Literal['backward', 'forward']] = None,
         limit: _t.Optional[int] = None,
         campus_ids: _t.Optional[_t.List[int]] = None,
         group_ids: _t.Optional[_t.List[int]] = None,
@@ -20755,6 +21019,7 @@ class PersonsResource(Resource):
             start_date: Birthdays from that date on, defaults to yesterday
             end_date: Birthdays up to that date, defaults to 30 days from now
             direction: The direction of the result set
+                Allowed values: `backward`, `forward`.
             limit: Number of results per page.
             campus_ids: Filter by campus ids
             group_ids: Filter by group ids
@@ -20851,7 +21116,7 @@ class PersonsResource(Resource):
         self,
         person_id: str,
         *,
-        filter: _t.Optional[_t.List[str]] = None,
+        filter: _t.Optional[_t.List[_t.Literal['banned', 'expiration_future', 'expiration_past', 'publication_future', 'published']]] = None,
         limit: _t.Optional[int] = None,
         before: _t.Optional[_dt.datetime] = None,
         last_post_indentifier: _t.Optional[str] = None,
@@ -20864,6 +21129,7 @@ class PersonsResource(Resource):
 
         Args:
             filter: Can only be used if the endpoint is called with the personId of the currently logged in user. If a different personId is used in combination with filter[] the result will be empty.
+                Allowed values: `banned`, `expiration_future`, `expiration_past`, `publication_future`, `published`.
             limit: Number of results per page.
             before: If set, only posts created before this date are returned. The date must be in RFC3339 format (Zulu-Date).
             last_post_indentifier: If set, posts created at the "before" date are included in the result, if the guids of the posts are lexically smaller than the last_post_indentifier. Will be ignored if "before" is not set.
@@ -20871,7 +21137,7 @@ class PersonsResource(Resource):
 
         Example::
 
-            for post in client.persons.list_posts("beispiel"):
+            for post in client.persons.list_posts("abc123"):
                 print(post.title)
         """
         return _t.cast(_t.List[models.Post], self._call('GET', f"/persons/{_seg(person_id)}/posts", _query([('filter[]', filter), ('limit', limit), ('before', before), ('last_post_indentifier', last_post_indentifier), ('after', after)]), None, _t.List[models.Post], envelope=True))
@@ -20951,7 +21217,7 @@ class PersonsResource(Resource):
         status_id: _t.Union[int, UnsetType] = UNSET,
         street: _t.Union[str, UnsetType] = UNSET,
         title: _t.Union[str, UnsetType] = UNSET,
-        visibility: _t.Union[str, UnsetType] = UNSET,
+        visibility: _t.Union[_t.Literal['hidden', 'visible'], UnsetType] = UNSET,
         wedding_date: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         zip: _t.Union[str, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -20969,6 +21235,7 @@ class PersonsResource(Resource):
             emails: Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
             privacy_policy_agreement: This object can be optional or required. Depending on your ChurchTools data security settings.
             visibility: Visibility accepted when creating or updating a person.
+                Allowed values: `hidden`, `visible`.
 
         Example::
 
@@ -21199,16 +21466,16 @@ class PostResource(Resource):
         self,
         *,
         query: _t.Optional[str] = None,
-        order_by: _t.Optional[str] = None,
-        order_direction: _t.Optional[str] = None,
+        order_by: _t.Optional[_t.Literal['publishedDate', 'relevance']] = None,
+        order_direction: _t.Optional[_t.Literal['ASC', 'DESC']] = None,
         before: _t.Optional[_dt.datetime] = None,
         after: _t.Optional[_dt.datetime] = None,
         campus_ids: _t.Optional[_t.List[int]] = None,
         actor_ids: _t.Optional[_t.List[int]] = None,
-        group_visibility: _t.Optional[str] = None,
-        post_visibility: _t.Optional[str] = None,
+        group_visibility: _t.Optional[_t.Literal['hidden', 'intern', 'public', 'restricted']] = None,
+        post_visibility: _t.Optional[_t.Literal['group_intern', 'group_visible']] = None,
         group_ids: _t.Optional[_t.List[int]] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['comments', 'linkings', 'reactions']]] = None,
         only_my_groups: _t.Optional[bool] = None,
     ) -> _t.List[models.Post]:
         """
@@ -21221,15 +21488,20 @@ class PostResource(Resource):
         Args:
             query: The query string to search for in post title and content
             order_by: The order the posts are returned in.
+                Allowed values: `publishedDate`, `relevance`.
             order_direction: The order direction. Only works for order_by publishedDate.
+                Allowed values: `ASC`, `DESC`.
             before: If set, only posts created before this date are returned. The date must be in RFC3339 format (Zulu-Date).
             after: If set, only posts created after this date are returned. The date must be in RFC3339 format (Zulu-Date).
             campus_ids: If set, only posts of these campuses are returned. If not set, posts of all campuses are returned.
             actor_ids: If set, only posts by these persons are returned. If not set, posts by all persons are returned.
             group_visibility: If set, only posts are returned that belong to groups with this visibility.
+                Allowed values: `hidden`, `intern`, `public`, `restricted`.
             post_visibility: If set, only posts with that visibility are returned.
+                Allowed values: `group_intern`, `group_visible`.
             group_ids: If set, only posts of these groups are returned. If not set, posts of all groups are returned.
             include: If set, the response will include the specified data.
+                Allowed values: `comments`, `linkings`, `reactions`.
             only_my_groups: If set to true, only posts of groups the user is member of are returned. If not set, posts of all groups are returned.
 
         Example::
@@ -21254,7 +21526,7 @@ class PostsResource(Resource):
         *,
         content: _t.Optional[str],
         title: str,
-        visibility: str,
+        visibility: _t.Literal['group_intern', 'group_visible'],
         group_id: int,
         expiration_date: _t.Union[_t.Optional[_dt.datetime], UnsetType] = UNSET,
         publication_date: _t.Union[_t.Optional[_dt.datetime], UnsetType] = UNSET,
@@ -21269,12 +21541,15 @@ class PostsResource(Resource):
 
         Create a new post. Images must be uploaded previously in a separate request.
 
+        Args:
+            visibility: Allowed values: `group_intern`, `group_visible`.
+
         Example::
 
             result = client.posts.create(
-                content="beispiel",
+                content="Hallo zusammen",
                 title="Hauskreis Nord",
-                visibility="beispiel",
+                visibility="group_intern",
                 group_id=42,
             )
             print(result.title)
@@ -21308,7 +21583,7 @@ class PostsResource(Resource):
         self,
         post_id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['comments', 'reactions']]] = None,
     ) -> models.Post:
         """
         get-posts-postId
@@ -21320,6 +21595,7 @@ class PostsResource(Resource):
         Args:
             post_id: ID of post
             include: If set, the response will include the specified data.
+                Allowed values: `comments`, `reactions`.
 
         Example::
 
@@ -21337,10 +21613,10 @@ class PostsResource(Resource):
         campus_id: _t.Optional[int] = None,
         campus_ids: _t.Optional[_t.List[int]] = None,
         actor_ids: _t.Optional[_t.List[int]] = None,
-        group_visibility: _t.Optional[str] = None,
-        post_visibility: _t.Optional[str] = None,
+        group_visibility: _t.Optional[_t.Literal['hidden', 'intern', 'public', 'restricted']] = None,
+        post_visibility: _t.Optional[_t.Literal['group_intern', 'group_visible']] = None,
         group_ids: _t.Optional[_t.List[int]] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['comments', 'linkings', 'reactions']]] = None,
         limit: _t.Optional[int] = None,
         only_my_groups: _t.Optional[bool] = None,
     ) -> _t.List[models.Post]:
@@ -21359,9 +21635,12 @@ class PostsResource(Resource):
             campus_ids: If set, only posts of these campuses are returned. If not set, posts of all campuses are returned.
             actor_ids: If set, only posts by these persons are returned. If not set, posts by all persons are returned.
             group_visibility: If set, only posts are returned that belong to groups with this visibility.
+                Allowed values: `hidden`, `intern`, `public`, `restricted`.
             post_visibility: If set, only posts with that visibility are returned.
+                Allowed values: `group_intern`, `group_visible`.
             group_ids: If set, only posts of these groups are returned. If not set, posts of all groups are returned.
             include: If set, the response will include the specified data.
+                Allowed values: `comments`, `linkings`, `reactions`.
             limit: Number of results per page.
             only_my_groups: If set to true, only posts of groups the user is member of are returned. If not set, posts of all groups are returned.
 
@@ -21382,7 +21661,7 @@ class PostsResource(Resource):
         image_ids: _t.Union[_t.List[int], UnsetType] = UNSET,
         publication_date: _t.Union[_t.Optional[_dt.datetime], UnsetType] = UNSET,
         title: _t.Union[str, UnsetType] = UNSET,
-        visibility: _t.Union[str, UnsetType] = UNSET,
+        visibility: _t.Union[_t.Literal['group_intern', 'group_visible'], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Post:
         """
@@ -21394,6 +21673,7 @@ class PostsResource(Resource):
 
         Args:
             post_id: ID of post
+            visibility: Allowed values: `group_intern`, `group_visible`.
 
         Example::
 
@@ -21471,7 +21751,7 @@ class ProbesResource(Resource):
     def create(
         self,
         *,
-        domain_type: _t.List[str],
+        domain_type: _t.List[_t.Literal['person']],
         filter: _t.Union[StrMap[_t.Any], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> _t.List[models.Probe]:
@@ -21484,6 +21764,7 @@ class ProbesResource(Resource):
 
         Args:
             domain_type: One or more domain types to filter probes by.
+                Allowed values: `person`.
             filter: Optional domain-specific filter criteria.
 
         Example::
@@ -21542,7 +21823,7 @@ class ProfilesResource(Resource):
         name: str,
         address: _t.Union[_t.Optional[models.ProfileAddressUpdate], UnsetType] = UNSET,
         association_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        denomination: _t.Union[_t.Union[str, models.ProfileUpdateDenominationVariant2], UnsetType] = UNSET,
+        denomination: _t.Union[_t.Union[_t.Literal['denomination.catholic', 'denomination.ecumenical', 'denomination.free.evangelical', 'denomination.none', 'denomination.orthodox', 'denomination.protestant'], models.ProfileUpdateDenominationVariant2], UnsetType] = UNSET,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         email: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         groups: _t.Union[_t.List[int], UnsetType] = UNSET,
@@ -21558,7 +21839,7 @@ class ProfilesResource(Resource):
         tags: _t.Union[_t.List[str], UnsetType] = UNSET,
         team: _t.Union[_t.List[models.ProfileUpdateTeamItem], UnsetType] = UNSET,
         team_title: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        visitors: _t.Union[int, UnsetType] = UNSET,
+        visitors: _t.Union[_t.Literal[0, 1, 100, 1000, 250, 50, 500], UnsetType] = UNSET,
         website: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         id: _t.Union[int, UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -21572,11 +21853,13 @@ class ProfilesResource(Resource):
 
         Args:
             denomination: Either exact denomination key or denomination object with name property.
+                Allowed values: `denomination.catholic`, `denomination.ecumenical`, `denomination.free.evangelical`, `denomination.none`, `denomination.orthodox`, `denomination.protestant`.
             groups: List of group IDs shown on the profile.
             sign_up_group_id: Group ID used for profile sign-up or null to disable sign-up.
             social_media: Key-Value Pair, where key is the name of the network and value is the absolute link
             tags: List of tags.
             visitors: Single integer, which represents a range.
+                Allowed values: `0`, `1`, `100`, `1000`, `250`, `50`, `500`.
             id: Campus profile ID. For `/profiles/church`, this is ignored.
 
         Example::
@@ -21639,7 +21922,7 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            form = client.publicgroups.get_form(42, token="beispiel")
+            form = client.publicgroups.get_form(42, token="abc123")
             print(form.email)
         """
         return _t.cast(models.PublicGroupFormResult, self._call('GET', f"/publicgroups/{_seg(group_id)}/form", _query([('token', token), ('personId', person_id)]), None, models.PublicGroupFormResult, envelope=True))
@@ -21663,7 +21946,7 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            possiblerequester = client.publicgroups.get_possiblerequesters(42, token="beispiel")
+            possiblerequester = client.publicgroups.get_possiblerequesters(42, token="abc123")
             print(possiblerequester.email)
         """
         return _t.cast(models.PublicGroupPossibleRequesters, self._call('GET', f"/publicgroups/{_seg(group_id)}/possiblerequesters", _query([('token', token)]), None, models.PublicGroupPossibleRequesters, envelope=True))
@@ -21710,7 +21993,7 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            with_hash = client.publicgroups.get_with_hash(42, "beispiel")
+            with_hash = client.publicgroups.get_with_hash(42, "abc123")
             print(with_hash.name)
         """
         return _t.cast(models.PublicGroupDetail, self._call('GET', f"/publicgroups/{_seg(group_id)}/{_seg(hash)}", [], None, models.PublicGroupDetail, envelope=True))
@@ -21744,7 +22027,7 @@ class PublicgroupsResource(Resource):
             publicgroup = client.publicgroups.mail_to_leaders(
                 42,
                 email="mara@example.org",
-                message="beispiel",
+                message="Hallo zusammen",
                 name="Hauskreis Nord",
             )
             print(publicgroup.success)
@@ -21806,7 +22089,7 @@ class PublicgroupsResource(Resource):
             publicgroup = client.publicgroups.submit_signup(
                 42,
                 forms=[ct.models.PublicGroupSignupCreateFormsItem.model_validate({"form": [{}]})],
-                token="beispiel",
+                token="abc123",
             )
             print(publicgroup.group_homepage_hash)
         """
@@ -21856,7 +22139,7 @@ class QueuesResource(Resource):
 
     def create(
         self,
-        queue: str,
+        queue: _t.Literal['default'],
     ) -> models.PostQueuesQueueData:
         """
         Start Worker For Queue
@@ -21865,9 +22148,12 @@ class QueuesResource(Resource):
 
         ChurchTools utilizes a queueing system to offload time-intensive or processing-intensive work. Calling this endpoint will start a worker, which grabs pending jobs and processing them. If the queue has still jobs pending the worker starts a new worker to continue the work.
 
+        Args:
+            queue: Allowed values: `default`.
+
         Example::
 
-            result = client.queues.create("beispiel")
+            result = client.queues.create("default")
             print(result.queue)
         """
         return _t.cast(models.PostQueuesQueueData, self._call('POST', f"/queues/{_seg(queue)}", [], None, models.PostQueuesQueueData, envelope=True))
@@ -21958,7 +22244,7 @@ class RegistrationsResource(Resource):
 
         Example::
 
-            registration = client.registrations.confirm("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", token="beispiel")
+            registration = client.registrations.confirm("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", token="abc123")
             print(registration.first_name)
         """
         return _t.cast(models.Registration, self._call('POST', f"/registrations/{_seg(registration_guid)}/confirm", [], _body({'token': token}, extra_body), models.Registration, envelope=True))
@@ -21990,7 +22276,7 @@ class RegistrationsResource(Resource):
             client.registrations.convert(
                 "8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1",
                 form_data=ct.models.RegistrationConvertFormData.model_validate({"acceptDataPrivacy": True}),
-                token="beispiel",
+                token="abc123",
             )
         """
         self._raw('POST', f"/registrations/{_seg(registration_guid)}/convert", [], _body({'formData': form_data, 'personId': person_id, 'token': token}, extra_body))
@@ -22030,7 +22316,7 @@ class RegistrationsResource(Resource):
                 email="mara@example.org",
                 first_name="Mara",
                 last_name="Becker",
-                password="beispiel",
+                password="geheim",
             )
             print(result)
         """
@@ -22088,7 +22374,7 @@ class RepeatcalculationResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -22104,6 +22390,7 @@ class RepeatcalculationResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -22126,7 +22413,7 @@ class RepeatcalculationResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -22142,6 +22429,7 @@ class RepeatcalculationResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -22164,7 +22452,7 @@ class RepeatcalculationResource(Resource):
         additionals: _t.Optional[StrMap[models.AppointmentAdditionalCreate]] = None,
         exceptions: _t.Optional[StrMap[models.AppointmentExceptionCreate]] = None,
         repeat_frequency: _t.Optional[int] = None,
-        repeat_id: _t.Optional[int] = None,
+        repeat_id: _t.Optional[_t.Literal[0, 1, 31, 32, 365, 7, 999]] = None,
         repeat_option: _t.Optional[int] = None,
         repeat_until: _t.Optional[_dt.date] = None,
     ) -> _t.List[models.RepeatCalculationOccurrence]:
@@ -22181,6 +22469,7 @@ class RepeatcalculationResource(Resource):
             exceptions: Indexed entries encoded with PHP bracket notation, for example exceptions[0][date]=2026-10-01.
             repeat_frequency: Recurrence input: repeatFrequency.
             repeat_id: Recurrence input: repeatId.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: Recurrence input: repeatOption.
             repeat_until: Recurrence input: repeatUntil.
             start_date: Recurrence input: startDate.
@@ -22203,7 +22492,7 @@ class RepeatcalculationResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -22219,6 +22508,7 @@ class RepeatcalculationResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -22241,7 +22531,7 @@ class RepeatcalculationResource(Resource):
         additionals: _t.Union[_t.List[models.AppointmentAdditionalCreate], UnsetType] = UNSET,
         exceptions: _t.Union[_t.List[models.AppointmentExceptionCreate], UnsetType] = UNSET,
         repeat_frequency: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        repeat_id: _t.Union[int, UnsetType] = UNSET,
+        repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], UnsetType] = UNSET,
         repeat_option: _t.Union[_t.Optional[int], UnsetType] = UNSET,
         repeat_until: _t.Union[_t.Optional[_dt.date], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
@@ -22257,6 +22547,7 @@ class RepeatcalculationResource(Resource):
             end_date: End of the base occurrence. For timed appointments it must be later than startDate. For all-day appointments this date is inclusive and may equal startDate for a one-day appointment.
             repeat_frequency: Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
             repeat_id: Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+                Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
             repeat_option: For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
             repeat_until: Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
             start_date: Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
@@ -22305,7 +22596,7 @@ class ResourceResource(Resource):
     def get_masterdata(
         self,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['involvedPersonsDomainObjects']]] = None,
     ) -> models.ResourceMasterData:
         """
         Get resource planning master data
@@ -22316,6 +22607,7 @@ class ResourceResource(Resource):
 
         Args:
             include: Optional enrichment with person references for resource administrators.
+                Allowed values: `involvedPersonsDomainObjects`.
 
         Example::
 
@@ -22397,7 +22689,7 @@ class ResourcesResource(Resource):
         self,
         resource_id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['involvedPersonsDomainObjects']]] = None,
     ) -> models.Resource:
         """
         Get a resource
@@ -22409,6 +22701,7 @@ class ResourcesResource(Resource):
         Args:
             resource_id: ID of the individual resource.
             include: Optional enrichment with person references for resource administrators.
+                Allowed values: `involvedPersonsDomainObjects`.
 
         Example::
 
@@ -22441,7 +22734,7 @@ class ResourcesResource(Resource):
     def list(
         self,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['involvedPersonsDomainObjects']]] = None,
     ) -> _t.List[models.Resource]:
         """
         List visible resources
@@ -22452,6 +22745,7 @@ class ResourcesResource(Resource):
 
         Args:
             include: Optional enrichment with person references for resource administrators.
+                Allowed values: `involvedPersonsDomainObjects`.
 
         Example::
 
@@ -22642,7 +22936,7 @@ class RoutinesResource(Resource):
         self,
         *,
         domain_context: models.RoutineCreateDomainContext,
-        domain_type: str,
+        domain_type: _t.Literal['group_membership'],
         name: str,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         is_enabled: _t.Union[bool, UnsetType] = UNSET,
@@ -22658,13 +22952,14 @@ class RoutinesResource(Resource):
 
         Args:
             domain_context: Context for the currently supported group_membership domain. Group and role IDs are required by the domain handler.
+            domain_type: Allowed values: `group_membership`.
             name: Trimmed automation name.
 
         Example::
 
             result = client.routines.create(
                 domain_context=ct.models.RoutineCreateDomainContext.model_validate({"groupId": 42, "groupTypeRoleId": 42}),
-                domain_type="beispiel",
+                domain_type="group_membership",
                 name="Welcome new members",
             )
             print(result.name)
@@ -22731,7 +23026,7 @@ class RoutinesResource(Resource):
     def list(
         self,
         *,
-        domain_type: _t.Optional[str] = None,
+        domain_type: _t.Optional[_t.Literal['group_membership']] = None,
     ) -> _t.List[models.Routine]:
         """
         List visible automation definitions
@@ -22742,6 +23037,7 @@ class RoutinesResource(Resource):
 
         Args:
             domain_type: Optional domain filter; group_membership is the currently registered handler.
+                Allowed values: `group_membership`.
 
         Example::
 
@@ -22756,11 +23052,11 @@ class RoutinesResource(Resource):
         *,
         dry_run: _t.Optional[bool] = None,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        finish: _t.Union[_t.List[_t.Union[int, str]], UnsetType] = UNSET,
+        finish: _t.Union[_t.List[_t.Union[int, _t.Literal['finished', 'not-started', 'started']]], UnsetType] = UNSET,
         is_enabled: _t.Union[bool, UnsetType] = UNSET,
         name: _t.Union[str, UnsetType] = UNSET,
         priority: _t.Union[int, UnsetType] = UNSET,
-        restart: _t.Union[_t.List[_t.Union[int, str]], UnsetType] = UNSET,
+        restart: _t.Union[_t.List[_t.Union[int, _t.Literal['finished', 'not-started', 'started']]], UnsetType] = UNSET,
         steps: _t.Union[_t.List[_t.Union[models.RoutineStepUpdateWithoutRepeat, models.RoutineStepUpdateRepeat]], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> _t.Optional[models.Routine]:
@@ -22775,7 +23071,9 @@ class RoutinesResource(Resource):
             routine_id: ID of a routine
             dry_run: Validate controller-level input/permissions without persisting; returns 204.
             finish: Source step IDs or run status buckets. not-started materializes potential runs; this is not a list of run IDs.
+                Allowed values: `finished`, `not-started`, `started`.
             restart: Source step IDs or run status buckets. not-started materializes potential runs; this is not a list of run IDs.
+                Allowed values: `finished`, `not-started`, `started`.
             steps: Complete replacement tree; omitted existing steps are removed.
 
         Example::
@@ -22854,7 +23152,7 @@ class SearchResource(Resource):
         self,
         *,
         query: str,
-        domain_types: _t.Optional[_t.List[str]] = None,
+        domain_types: _t.Optional[_t.List[_t.Literal['action', 'group', 'person', 'song', 'wiki_page']]] = None,
     ) -> _t.List[models.GetSearchDataItem]:
         """
         Global Search
@@ -22862,6 +23160,9 @@ class SearchResource(Resource):
         `GET /search`
 
         Search globally for different or all domain types.
+
+        Args:
+            domain_types: Allowed values: `action`, `group`, `person`, `song`, `wiki_page`.
 
         Example::
 
@@ -23411,7 +23712,7 @@ class SongsResource(Resource):
         self,
         song_id: int,
         *,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['arrangements', 'tags']]] = None,
     ) -> models.Song:
         """
         Get song
@@ -23423,6 +23724,7 @@ class SongsResource(Resource):
         Args:
             song_id: ID of song
             include: Optional enrichments. Use include=tags for tags, or include[]=tags&include[]=arrangements for multiple values. Comma-separated values are not supported. Arrangements are already returned without this option by the current API, but this will change in a future release. Omitted requests no enrichment.
+                Allowed values: `arrangements`, `tags`.
 
         Example::
 
@@ -23437,10 +23739,10 @@ class SongsResource(Resource):
         song_category_ids: _t.Optional[_t.List[int]] = None,
         ids: _t.Optional[_t.List[int]] = None,
         practice: _t.Optional[bool] = None,
-        key_of_arrangement: _t.Optional[str] = None,
+        key_of_arrangement: _t.Optional[_t.Literal['A', 'A#', 'A#m', 'Ab', 'Abm', 'Am', 'B', 'B#', 'B#m', 'Bb', 'Bbm', 'Bm', 'C', 'C#', 'C#m', 'Cb', 'Cbm', 'Cm', 'D', 'D#', 'D#m', 'Db', 'Dbm', 'Dm', 'E', 'E#', 'E#m', 'Eb', 'Ebm', 'Em', 'F', 'F#', 'F#m', 'Fb', 'Fbm', 'Fm', 'G', 'G#', 'G#m', 'Gb', 'Gbm', 'Gm']] = None,
         name: _t.Optional[str] = None,
         query: _t.Optional[str] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        include: _t.Optional[_t.List[_t.Literal['arrangements', 'tags']]] = None,
         limit: _t.Optional[int] = None,
     ) -> Paginator[models.Song]:
         """
@@ -23455,9 +23757,11 @@ class SongsResource(Resource):
             ids: Restrict to these song IDs. An empty array matches no songs.
             practice: Filter the rehearsal flag: `true` selects songs marked for practice, false selects those not marked.
             key_of_arrangement: Filter by arrangement key. Song plus all its arrangements are returned if one arrangement meets the filter criterion.
+                Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
             name: Substring filter on the song title, combined with query and the other filters.
             query: Substring search in either title or author, combined with name and the other filters.
             include: Optional enrichments. Use include=tags for tags, or include[]=tags&include[]=arrangements for multiple values. Comma-separated values are not supported. Arrangements are already returned without this option by the current API, but this will change in a future release. Omitted requests no enrichment.
+                Allowed values: `arrangements`, `tags`.
             limit: Number of songs per page, from 1 to 200.
 
         Example::
@@ -23715,7 +24019,7 @@ class SubscriptionsResource(Resource):
     def delete(
         self,
         person_id: int,
-        subject: str,
+        subject: _t.Literal['group', 'meetingrequest', 'meetingrequests', 'post', 'post_summary', 'public_channel', 'resource', 'servicerequest', 'servicerequests'],
         subject_identifier: str,
     ) -> None:
         """
@@ -23728,6 +24032,7 @@ class SubscriptionsResource(Resource):
         Args:
             person_id: ID of person
             subject: Notification subject. Prefer canonical singular meetingrequest/servicerequest; plural names are legacy aliases.
+                Allowed values: `group`, `meetingrequest`, `meetingrequests`, `post`, `post_summary`, `public_channel`, `resource`, `servicerequest`, `servicerequests`.
             subject_identifier: group/post/public_channel: target ID; post_summary: 0; meetingrequest: root (legacy 0); servicerequest: root, created, assigned, unassigned, accepted, declined or reminder (legacy 0); resource: root or resource ID. Numeric IDs remain strings.
 
         Example::
@@ -23739,7 +24044,7 @@ class SubscriptionsResource(Resource):
     def get(
         self,
         person_id: int,
-        subject: str,
+        subject: _t.Literal['group', 'meetingrequest', 'meetingrequests', 'post', 'post_summary', 'public_channel', 'resource', 'servicerequest', 'servicerequests'],
         subject_identifier: str,
     ) -> _t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests]:
         """
@@ -23752,6 +24057,7 @@ class SubscriptionsResource(Resource):
         Args:
             person_id: ID of person
             subject: Notification subject. Prefer canonical singular meetingrequest/servicerequest; plural names are legacy aliases.
+                Allowed values: `group`, `meetingrequest`, `meetingrequests`, `post`, `post_summary`, `public_channel`, `resource`, `servicerequest`, `servicerequests`.
             subject_identifier: group/post/public_channel: target ID; post_summary: 0; meetingrequest: root (legacy 0); servicerequest: root, created, assigned, unassigned, accepted, declined or reminder (legacy 0); resource: root or resource ID. Numeric IDs remain strings.
 
         Example::
@@ -23785,7 +24091,7 @@ class SubscriptionsResource(Resource):
     def list_for_subject(
         self,
         person_id: int,
-        subject: str,
+        subject: _t.Literal['group', 'meetingrequest', 'meetingrequests', 'post', 'post_summary', 'public_channel', 'resource', 'servicerequest', 'servicerequests'],
     ) -> _t.List[_t.Union[models.SubscriptionGroup, models.SubscriptionMeetingRequests, models.SubscriptionPost, models.SubscriptionPostSummary, models.SubscriptionPublicChannel, models.SubscriptionResource, models.SubscriptionServiceRequests, models.SubscriptionLegacyMeetingRequests, models.SubscriptionLegacyServiceRequests]]:
         """
         List effective subscriptions for one subject
@@ -23797,6 +24103,7 @@ class SubscriptionsResource(Resource):
         Args:
             person_id: ID of person
             subject: Notification subject. Prefer canonical singular meetingrequest/servicerequest; plural names are legacy aliases.
+                Allowed values: `group`, `meetingrequest`, `meetingrequests`, `post`, `post_summary`, `public_channel`, `resource`, `servicerequest`, `servicerequests`.
 
         Example::
 
@@ -23808,7 +24115,7 @@ class SubscriptionsResource(Resource):
     def update(
         self,
         person_id: int,
-        subject: str,
+        subject: _t.Literal['group', 'meetingrequest', 'meetingrequests', 'post', 'post_summary', 'public_channel', 'resource', 'servicerequest', 'servicerequests'],
         subject_identifier: str,
         *,
         is_active: _t.Union[bool, UnsetType] = UNSET,
@@ -23825,6 +24132,7 @@ class SubscriptionsResource(Resource):
         Args:
             person_id: ID of person
             subject: Notification subject. Prefer canonical singular meetingrequest/servicerequest; plural names are legacy aliases.
+                Allowed values: `group`, `meetingrequest`, `meetingrequests`, `post`, `post_summary`, `public_channel`, `resource`, `servicerequest`, `servicerequests`.
             subject_identifier: group/post/public_channel: target ID; post_summary: 0; meetingrequest: root (legacy 0); servicerequest: root, created, assigned, unassigned, accepted, declined or reminder (legacy 0); resource: root or resource ID. Numeric IDs remain strings.
             is_active: Omission enables the override, including when replacing an existing inactive setting.
             options: Required structured email-summary options for post_summary. For other subjects, omission clears stored options.
@@ -23863,7 +24171,7 @@ class SyncResource(Resource):
         Example::
 
             result = client.sync.create_logs(
-                logs=[ct.models.SyncLogCreate.model_validate({"date": "2022-10-19T12:00:00Z", "executionId": "beispiel", "jobId": 42, "level": "debug", "messageKey": "beispiel", "type": "create"})],
+                logs=[ct.models.SyncLogCreate.model_validate({"date": "2022-10-19T12:00:00Z", "executionId": "abc123", "jobId": 42, "level": "debug", "messageKey": "Hallo zusammen", "type": "create"})],
             )
             print(result.persisted)
         """
@@ -23877,7 +24185,7 @@ class SyncResource(Resource):
         job_ids: _t.Optional[_t.List[int]] = None,
         start_date: _t.Optional[_dt.date] = None,
         end_date: _t.Optional[_dt.date] = None,
-        statuses: _t.Optional[_t.List[str]] = None,
+        statuses: _t.Optional[_t.List[_t.Literal['CANCELED', 'DONE', 'ERROR', 'IN_PROGRESS', 'QUEUED']]] = None,
         is_dry_run: _t.Optional[bool] = None,
     ) -> Paginator[models.SyncExecutionSummary]:
         """
@@ -23894,6 +24202,7 @@ class SyncResource(Resource):
             start_date: First included log day.
             end_date: Last included log day.
             statuses: Background execution statuses.
+                Allowed values: `CANCELED`, `DONE`, `ERROR`, `IN_PROGRESS`, `QUEUED`.
             is_dry_run: Filter by dry-run mode.
 
         Example::
@@ -23934,8 +24243,8 @@ class SyncResource(Resource):
         execution_ids: _t.Optional[_t.List[str]] = None,
         start_date: _t.Optional[_dt.date] = None,
         end_date: _t.Optional[_dt.date] = None,
-        types: _t.Optional[_t.List[str]] = None,
-        levels: _t.Optional[_t.List[str]] = None,
+        types: _t.Optional[_t.List[_t.Literal['create', 'delete', 'execution', 'link', 'update']]] = None,
+        levels: _t.Optional[_t.List[_t.Literal['alert', 'critical', 'debug', 'emergency', 'error', 'info', 'notice', 'warning']]] = None,
         query: _t.Optional[str] = None,
         is_dry_run: _t.Optional[bool] = None,
     ) -> Paginator[models.SyncLog]:
@@ -23954,7 +24263,9 @@ class SyncResource(Resource):
             start_date: First included log day.
             end_date: Last included log day.
             types: Operation types.
+                Allowed values: `create`, `delete`, `execution`, `link`, `update`.
             levels: Log severities.
+                Allowed values: `alert`, `critical`, `debug`, `emergency`, `error`, `info`, `notice`, `warning`.
             query: Substring search in rendered log messages.
             is_dry_run: Select dry-run or actual-execution logs.
 
@@ -23971,7 +24282,7 @@ class TagsResource(Resource):
 
     def attach(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['appointment', 'group', 'person', 'song'],
         domain_id: int,
         tag_id: int,
     ) -> models.TagWithCount:
@@ -23984,6 +24295,7 @@ class TagsResource(Resource):
 
         Args:
             domain_type: Domain types that tags can be used with
+                Allowed values: `appointment`, `group`, `person`, `song`.
             domain_id: the domain id
             tag_id: ID of tag
 
@@ -23996,7 +24308,7 @@ class TagsResource(Resource):
 
     def attach_new(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['appointment', 'group', 'person', 'song'],
         domain_id: int,
         *,
         name: str,
@@ -24011,6 +24323,7 @@ class TagsResource(Resource):
 
         Args:
             domain_type: Domain types that tags can be used with
+                Allowed values: `appointment`, `group`, `person`, `song`.
             domain_id: the domain id
             name: Name of an existing or newly created tag in this domain.
 
@@ -24023,10 +24336,10 @@ class TagsResource(Resource):
 
     def create(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['appointment', 'group', 'person', 'song'],
         *,
         name: str,
-        color: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        color: _t.Union[_t.Optional[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow']], UnsetType] = UNSET,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.TagWithCount:
@@ -24039,7 +24352,9 @@ class TagsResource(Resource):
 
         Args:
             domain_type: Domain types that tags can be used with
+                Allowed values: `appointment`, `group`, `person`, `song`.
             color: Semantic tag color; responses use `basic` when unset.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             name: Tag name, unique within the domain.
 
         Example::
@@ -24071,7 +24386,7 @@ class TagsResource(Resource):
 
     def detach(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['appointment', 'group', 'person', 'song'],
         domain_id: int,
         tag_id: int,
     ) -> None:
@@ -24084,6 +24399,7 @@ class TagsResource(Resource):
 
         Args:
             domain_type: Domain types that tags can be used with
+                Allowed values: `appointment`, `group`, `person`, `song`.
             domain_id: the domain id
             tag_id: ID of tag
 
@@ -24116,7 +24432,7 @@ class TagsResource(Resource):
 
     def list(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['appointment', 'group', 'person', 'song'],
     ) -> _t.List[models.TagWithCount]:
         """
         Get tags for domain type
@@ -24127,6 +24443,7 @@ class TagsResource(Resource):
 
         Args:
             domain_type: Domain types that tags can be used with
+                Allowed values: `appointment`, `group`, `person`, `song`.
 
         Example::
 
@@ -24137,7 +24454,7 @@ class TagsResource(Resource):
 
     def list_for_object(
         self,
-        domain_type: str,
+        domain_type: _t.Literal['appointment', 'group', 'person', 'song'],
         domain_id: int,
     ) -> _t.List[models.TagWithCount]:
         """
@@ -24149,6 +24466,7 @@ class TagsResource(Resource):
 
         Args:
             domain_type: Domain types that tags can be used with
+                Allowed values: `appointment`, `group`, `person`, `song`.
             domain_id: the domain id
 
         Example::
@@ -24163,7 +24481,7 @@ class TagsResource(Resource):
         tag_id: int,
         *,
         name: str,
-        color: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        color: _t.Union[_t.Optional[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow']], UnsetType] = UNSET,
         description: _t.Union[_t.Optional[str], UnsetType] = UNSET,
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.TagWithCount:
@@ -24177,6 +24495,7 @@ class TagsResource(Resource):
         Args:
             tag_id: ID of tag
             color: Semantic tag color; responses use `basic` when unset.
+                Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
             name: Tag name, unique within the domain.
 
         Example::
@@ -24411,9 +24730,9 @@ class WikiResource(Resource):
         limit: _t.Optional[int] = None,
         query: _t.Optional[str] = None,
         wiki_category_ids: _t.Optional[_t.List[int]] = None,
-        order_fields: _t.Optional[_t.List[str]] = None,
-        order_directions: _t.Optional[_t.List[str]] = None,
-        include: _t.Optional[_t.List[str]] = None,
+        order_fields: _t.Optional[_t.List[_t.Literal['createdDate', 'modifiedDate', 'modifiedPerson', 'title', 'wikiCategoryId', 'wikiCategoryName']]] = None,
+        order_directions: _t.Optional[_t.List[_t.Literal['ASC', 'DESC']]] = None,
+        include: _t.Optional[_t.List[_t.Literal['preview', 'text']]] = None,
         preview_length: _t.Optional[int] = None,
     ) -> Paginator[models.SimpleWikiPage]:
         """
@@ -24428,8 +24747,11 @@ class WikiResource(Resource):
             query: Trimmed search term. SQL LIKE wildcard characters % and _ are interpreted by the backend.
             wiki_category_ids: Wiki category IDs that should be included. If none are given, all categories the user can view are included. Categories the user is not allowed to view are silently filtered out.
             order_fields: Fields used to sort the result. Multiple fields are applied in the given order. If omitted while `query` is present, results are sorted by search relevance.
+                Allowed values: `createdDate`, `modifiedDate`, `modifiedPerson`, `title`, `wikiCategoryId`, `wikiCategoryName`.
             order_directions: Sort directions matching `order_fields[]` by position. Missing directions default to `ASC`.
+                Allowed values: `ASC`, `DESC`.
             include: text returns Markdown or sanitized HTML; preview returns a raw stored-text prefix without HTML sanitization.
+                Allowed values: `preview`, `text`.
             preview_length: Maximum number of characters returned in `textPreview` when `include[]=preview` is requested. Ignored without `include[]=preview`.
 
         Example::

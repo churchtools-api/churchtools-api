@@ -328,8 +328,11 @@ class AccountStatementPreview(CTModel):
     end_date: _dt.date = Field(validation_alias='endDate', serialization_alias='endDate')
     """A simple date in ISO format, e.g. '2022-10-19'"""
     file_name: str = Field(validation_alias='fileName', serialization_alias='fileName')
-    file_type: str = Field(validation_alias='fileType', serialization_alias='fileType')
-    """Detected parser format."""
+    file_type: _t.Union[_t.Literal['camt', 'mt940', 'paypal'], str] = Field(validation_alias='fileType', serialization_alias='fileType')
+    """
+    Detected parser format.
+    Allowed values: `camt`, `mt940`, `paypal`.
+    """
     identifier: _t.Optional[str] = Field(default=None)
     """
     Account identifier detected in the source, such as an IBAN; null if the format provides none.
@@ -351,9 +354,10 @@ class AccountStatementReportCreate(CTModel):
     """
     Last document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
     """
-    format: _t.Optional[str] = Field(default=None)
+    format: _t.Optional[_t.Union[_t.Literal['csv', 'pdf', 'xlsx'], str]] = Field(default=None)
     """
     PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+    Allowed values: `csv`, `pdf`, `xlsx`.
     """
     start_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='startDate', serialization_alias='startDate')
     """
@@ -379,9 +383,10 @@ class AccountType(CTModel):
     """
     Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type.
     """
-    balance_type: _t.Optional[str] = Field(default=None, validation_alias='balanceType', serialization_alias='balanceType')
+    balance_type: _t.Optional[_t.Union[_t.Literal['assets', 'liabilities'], str]] = Field(default=None, validation_alias='balanceType', serialization_alias='balanceType')
     """
     Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
+    Allowed values: `assets`, `liabilities`.
     """
     name: str
     """
@@ -398,9 +403,10 @@ class AccountTypeCreate(CTModel):
     """
     Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type.
     """
-    balance_type: _t.Optional[str] = Field(default=None, validation_alias='balanceType', serialization_alias='balanceType')
+    balance_type: _t.Optional[_t.Union[_t.Literal['assets', 'liabilities'], str]] = Field(default=None, validation_alias='balanceType', serialization_alias='balanceType')
     """
     Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
+    Allowed values: `assets`, `liabilities`.
     """
     name: str
     """
@@ -413,9 +419,10 @@ class AccountTypeUpdate(CTModel):
     """
     Replacement values for an existing account type. Optional fields use the creation defaults when omitted.
     """
-    balance_type: _t.Optional[str] = Field(default=None, validation_alias='balanceType', serialization_alias='balanceType')
+    balance_type: _t.Optional[_t.Union[_t.Literal['assets', 'liabilities'], str]] = Field(default=None, validation_alias='balanceType', serialization_alias='balanceType')
     """
     Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
+    Allowed values: `assets`, `liabilities`.
     """
     name: str
     """
@@ -574,7 +581,10 @@ class Action(CTModel):
     action_meta_data: ActionMetaData = Field(validation_alias='actionMetaData', serialization_alias='actionMetaData')
     domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
     group: _t.Optional[ActionGroup] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['add-member-to-group', 'archive-member', 'change-member-status-active-requested', 'change-member-status-active-to_delete', 'change-member-status-requested-active', 'change-member-status-requested-to_delete', 'change-member-status-requested-waiting', 'change-member-status-to_delete-active', 'change-member-status-to_delete-requested', 'change-member-status-waiting-active', 'change-member-status-waiting-requested', 'change-member-status-waiting-to_delete', 'create-follow-up', 'edit-group-membership', 'edit-member', 'edit-tags-for-member', 'invite-member', 'remove-member', 'send-member-email', 'special:repeat', 'special:wait'], str]
+    """
+    Allowed values: `add-member-to-group`, `archive-member`, `change-member-status-active-requested`, `change-member-status-active-to_delete`, `change-member-status-requested-active`, `change-member-status-requested-to_delete`, `change-member-status-requested-waiting`, `change-member-status-to_delete-active`, `change-member-status-to_delete-requested`, `change-member-status-waiting-active`, `change-member-status-waiting-requested`, `change-member-status-waiting-to_delete`, `create-follow-up`, `edit-group-membership`, `edit-member`, `edit-tags-for-member`, `invite-member`, `remove-member`, `send-member-email`, `special:repeat`, `special:wait`.
+    """
 
 class ActionGroup(CTModel):
     """"""
@@ -583,8 +593,11 @@ class ActionGroup(CTModel):
 
 class ActionMetaData(CTModel):
     """"""
-    color: str
-    """A color in ChurchTools"""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    A color in ChurchTools
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     icon: str
     name: str
@@ -593,7 +606,10 @@ class Address(CTModel):
     """"""
     addition: _t.Optional[str] = Field(default=None)
     city: _t.Optional[str] = Field(default=None)
-    color: _t.Optional[str] = Field(default=None)
+    color: _t.Optional[_t.Union[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str], _t.Union[_t.Literal['default', 'parent'], str]]] = Field(default=None)
+    """
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
+    """
     country: _t.Optional[str] = Field(default=None)
     """A country's ISO-code"""
     district: _t.Optional[str] = Field(default=None)
@@ -601,9 +617,10 @@ class Address(CTModel):
     """
     The identifier of the domain object. This field is set automatically from the path parameter and should not be included in the request body.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['appointment', 'campus', 'church', 'group'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     The domain type of the address. This field is set automatically from the path parameter and should not be included in the request body.
+    Allowed values: `appointment`, `campus`, `church`, `group`.
     """
     icon: _t.Optional[str] = Field(default=None)
     latitude: _t.Optional[str] = Field(default=None)
@@ -622,7 +639,10 @@ class Address(CTModel):
     """Use `latitude` instead"""
     longitude_loose: _t.Optional[str] = Field(default=None, validation_alias='longitudeLoose', serialization_alias='longitudeLoose', deprecated=True)
     """Use `longitude` instead"""
-    marker_color: _t.Optional[str] = Field(default=None, validation_alias='markerColor', serialization_alias='markerColor', deprecated=True)
+    marker_color: _t.Optional[_t.Union[_t.Union[_t.Literal['default', 'parent'], str], _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None, validation_alias='markerColor', serialization_alias='markerColor', deprecated=True)
+    """
+    Allowed values: `default`, `parent`, `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     marker_icon: _t.Optional[str] = Field(default=None, validation_alias='markerIcon', serialization_alias='markerIcon', deprecated=True)
     """Use `icon` instead"""
     marker_url: _t.Optional[str] = Field(default=None, validation_alias='markerUrl', serialization_alias='markerUrl', deprecated=True)
@@ -755,7 +775,8 @@ class AgendaCreate(CTModel):
 
 class AgendaDeprecated(CTModel):
     """Compatibility mapping included in the response."""
-    is_final: str = Field(validation_alias='isFinal', serialization_alias='isFinal')
+    is_final: _t.Union[_t.Literal['isLocked'], str] = Field(validation_alias='isFinal', serialization_alias='isFinal')
+    """Allowed values: `isLocked`."""
 
 class AgendaExport(CTModel):
     """
@@ -818,7 +839,8 @@ class AgendaItemHeader(CTModel):
     """
     Total duration in seconds of visible content items up to the next visible header or event start, calculated independently of the stored duration. Use for display when `duration` is zero.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['header'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `header`."""
 
 class AgendaItemInputHeader(CTModel):
     """"""
@@ -828,7 +850,8 @@ class AgendaItemInputHeader(CTModel):
     """
     title: _t.Optional[str] = Field(default=None)
     """Responses represent a missing title as an empty string."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['header'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `header`."""
 
 class AgendaItemInputSong(CTModel):
     """"""
@@ -844,7 +867,8 @@ class AgendaItemInputSong(CTModel):
     """Notes to associate with service groups."""
     arrangement_id: _t.Optional[int] = Field(default=None, validation_alias='arrangementId', serialization_alias='arrangementId')
     """Existing song arrangement to use. An unknown arrangement ID causes `422`."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['song'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `song`."""
 
 class AgendaItemInputText(CTModel):
     """"""
@@ -858,7 +882,8 @@ class AgendaItemInputText(CTModel):
     """Free text with optional service placeholders, such as [Worship Leader]."""
     service_group_notes: _t.Optional[_t.List[AgendaServiceGroupNoteCreate]] = Field(default=None, validation_alias='serviceGroupNotes', serialization_alias='serviceGroupNotes')
     """Notes to associate with service groups."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['text'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `text`."""
 
 class AgendaItemListUpdate(CTModel):
     """
@@ -911,7 +936,8 @@ class AgendaItemSong(CTModel):
     """
     The selected song arrangement, or `null` if no arrangement is assigned. `text` and `header` items do not include this field.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['song'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `song`."""
 
 class AgendaItemSongArrangement(CTModel):
     """
@@ -966,7 +992,8 @@ class AgendaItemText(CTModel):
     """
     Notes for service groups. The event-agenda GET filters these to visible service groups; agenda write responses do not apply that filtering step.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['text'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `text`."""
 
 class AgendaItemTextDeprecated(CTModel):
     """Compatibility marker included in each serialized agenda item."""
@@ -1161,9 +1188,10 @@ class AppointmentBase(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: int = Field(validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int] = Field(validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -1210,9 +1238,10 @@ class AppointmentBaseCalendar(CTModel):
     """
     Whether the Evangelische Termine integration should synchronize this calendar. This is separate from importing an iCalendar feed.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['church', 'group', 'personal'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Calendar category used by ChurchTools: church for a church calendar, group for a group calendar, personal for a personal calendar. The category determines which administration permissions apply; it does not by itself grant public access or link the calendar to a particular group or person. Access is controlled separately. The type is chosen on creation and cannot be changed by PUT.
+    Allowed values: `church`, `group`, `personal`.
     """
     deprecated: StrMap[str] = Field(validation_alias='@deprecated', serialization_alias='@deprecated')
     """Legacy response metadata mapping isPublic and isPrivate to type."""
@@ -1246,12 +1275,14 @@ class AppointmentBookingChangeImpact(CTModel):
     """
     base: _t.Optional[AppointmentBookingImpactOccurrence] = Field(default=None)
     conflict: _t.Optional[AppointmentBookingImpactOccurrence] = Field(default=None)
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['booking'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `booking`."""
     resource: Resource
     """
     An individual bookable resource, such as a room, vehicle or item of equipment. A resource type groups similar resources. Bookings reserve this resource for specific dates.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['conflict'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `conflict`."""
 
 class AppointmentBookingCreate(CTModel):
     """
@@ -1264,9 +1295,10 @@ class AppointmentBookingCreate(CTModel):
     quantity: _t.Optional[int] = Field(default=None)
     resource_id: int = Field(validation_alias='resourceId', serialization_alias='resourceId')
     """ID of the resource to reserve; use each resource only once."""
-    status_id: int = Field(validation_alias='statusId', serialization_alias='statusId')
+    status_id: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='statusId', serialization_alias='statusId')
     """
     Resource booking state: 1 = pending, 2 = approved, 3 = rejected. The requested state is subject to booking permissions.
+    Allowed values: `1`, `2`, `3`.
     """
 
 class AppointmentBookingImpactOccurrence(CTModel):
@@ -1318,9 +1350,10 @@ class AppointmentChangeImpactCreate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -1353,9 +1386,10 @@ class AppointmentCreate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -1407,9 +1441,11 @@ class AppointmentEvent(CTModel):
 
 class AppointmentEventChangeImpact(CTModel):
     """An existing service-planning event would no longer match the resulting series."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['event'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `event`."""
     event: AppointmentEventChangeImpactEvent
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['deletion'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `deletion`."""
 
 class AppointmentEventChangeImpactEvent(CTModel):
     """"""
@@ -1448,11 +1484,13 @@ class AppointmentEventServiceChangeImpact(CTModel):
     """
     An accepted service assignment associated with the appointment. The calculator reports these as move impacts; this is not a detailed before/after diff.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['eventService'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `eventService`."""
     event_service: EventService = Field(validation_alias='eventService', serialization_alias='eventService')
     start_date: _dt.datetime = Field(validation_alias='startDate', serialization_alias='startDate')
     """Start of the assignment’s current event."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['move'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `move`."""
 
 class AppointmentExceptionCreate(CTModel):
     """
@@ -1565,9 +1603,10 @@ class AppointmentOccurrenceListBase(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: int = Field(validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int] = Field(validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -1635,9 +1674,10 @@ class AppointmentSplitUpdate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -1729,9 +1769,10 @@ class AppointmentTemplate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: int = Field(validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int] = Field(validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option_id: _t.Optional[int] = Field(default=None, validation_alias='repeatOptionId', serialization_alias='repeatOptionId')
     """
@@ -1808,9 +1849,10 @@ class AppointmentTemplateCreate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option_id: _t.Optional[int] = Field(default=None, validation_alias='repeatOptionId', serialization_alias='repeatOptionId')
     """
@@ -1873,9 +1915,10 @@ class AppointmentTemplateUpdate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option_id: _t.Optional[int] = Field(default=None, validation_alias='repeatOptionId', serialization_alias='repeatOptionId')
     """
@@ -1927,9 +1970,10 @@ class AppointmentTemplateWritten(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: int = Field(validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int] = Field(validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option_id: _t.Optional[int] = Field(default=None, validation_alias='repeatOptionId', serialization_alias='repeatOptionId')
     """
@@ -1965,9 +2009,10 @@ class AppointmentUpdate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -2027,8 +2072,11 @@ class Arrangement(CTModel):
     """Notes about performing this arrangement."""
     duration: _t.Optional[int] = Field(default=None)
     """Expected duration in seconds."""
-    key: _t.Optional[str] = Field(default=None)
-    """Musical key using the API spelling."""
+    key: _t.Optional[_t.Union[_t.Literal['A', 'A#', 'A#m', 'Ab', 'Abm', 'Am', 'B', 'B#', 'B#m', 'Bb', 'Bbm', 'Bm', 'C', 'C#', 'C#m', 'Cb', 'Cbm', 'Cm', 'D', 'D#', 'D#m', 'Db', 'Dbm', 'Dm', 'E', 'E#', 'E#m', 'Eb', 'Ebm', 'Em', 'F', 'F#', 'F#m', 'Fb', 'Fbm', 'Fm', 'G', 'G#', 'G#m', 'Gb', 'Gbm', 'Gm'], str]] = Field(default=None)
+    """
+    Musical key using the API spelling.
+    Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
+    """
     name: str
     """Name distinguishing this version from other arrangements."""
     source_id: _t.Optional[int] = Field(default=None, validation_alias='sourceId', serialization_alias='sourceId')
@@ -2047,8 +2095,11 @@ class Arrangement(CTModel):
     id: int
     is_default: bool = Field(validation_alias='isDefault', serialization_alias='isDefault')
     """Whether this arrangement is marked as a default for its song."""
-    key_of_arrangement: _t.Optional[str] = Field(default=None, validation_alias='keyOfArrangement', serialization_alias='keyOfArrangement', deprecated=True)
-    """Use 'key' instead"""
+    key_of_arrangement: _t.Optional[_t.Union[_t.Literal['A', 'A#', 'A#m', 'Ab', 'Abm', 'Am', 'B', 'B#', 'B#m', 'Bb', 'Bbm', 'Bm', 'C', 'C#', 'C#m', 'Cb', 'Cbm', 'Cm', 'D', 'D#', 'D#m', 'Db', 'Dbm', 'Dm', 'E', 'E#', 'E#m', 'Eb', 'Ebm', 'Em', 'F', 'F#', 'F#m', 'Fb', 'Fbm', 'Fm', 'G', 'G#', 'G#m', 'Gb', 'Gbm', 'Gm'], str]] = Field(default=None, validation_alias='keyOfArrangement', serialization_alias='keyOfArrangement', deprecated=True)
+    """
+    Use 'key' instead
+    Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
+    """
     links: _t.List[FileOrLink]
     """List of links "uploaded" to that arrangement"""
     meta: MetaDataEntityId
@@ -2067,8 +2118,11 @@ class ArrangementCreate(CTModel):
     """Notes about performing this arrangement."""
     duration: _t.Optional[int] = Field(default=None)
     """Expected duration in seconds."""
-    key: _t.Optional[str] = Field(default=None)
-    """Musical key using the API spelling."""
+    key: _t.Optional[_t.Union[_t.Literal['A', 'A#', 'A#m', 'Ab', 'Abm', 'Am', 'B', 'B#', 'B#m', 'Bb', 'Bbm', 'Bm', 'C', 'C#', 'C#m', 'Cb', 'Cbm', 'Cm', 'D', 'D#', 'D#m', 'Db', 'Dbm', 'Dm', 'E', 'E#', 'E#m', 'Eb', 'Ebm', 'Em', 'F', 'F#', 'F#m', 'Fb', 'Fbm', 'Fm', 'G', 'G#', 'G#m', 'Gb', 'Gbm', 'Gm'], str]] = Field(default=None)
+    """
+    Musical key using the API spelling.
+    Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
+    """
     name: str
     """Name distinguishing this version from other arrangements."""
     source_id: _t.Optional[int] = Field(default=None, validation_alias='sourceId', serialization_alias='sourceId')
@@ -2088,10 +2142,14 @@ class ArrangementCreate(CTModel):
 
 class ArrangementDeprecated(CTModel):
     """"""
-    bpm: str
-    key_of_arrangement: str = Field(validation_alias='keyOfArrangement', serialization_alias='keyOfArrangement')
-    note: str
-    source_name: str = Field(validation_alias='sourceName', serialization_alias='sourceName')
+    bpm: _t.Union[_t.Literal['tempo'], str]
+    """Allowed values: `tempo`."""
+    key_of_arrangement: _t.Union[_t.Literal['key'], str] = Field(validation_alias='keyOfArrangement', serialization_alias='keyOfArrangement')
+    """Allowed values: `key`."""
+    note: _t.Union[_t.Literal['description'], str]
+    """Allowed values: `description`."""
+    source_name: _t.Union[_t.Literal['source.name'], str] = Field(validation_alias='sourceName', serialization_alias='sourceName')
+    """Allowed values: `source.name`."""
 
 class ArrangementFileTranspose(CTModel):
     """
@@ -2118,9 +2176,10 @@ class ArrangementFileTransposeCreate(CTModel):
     """
     Creates a transposed audio copy from an existing file. No file upload is included in this request.
     """
-    transpose_interval: str = Field(validation_alias='transpose-interval', serialization_alias='transpose-interval')
+    transpose_interval: _t.Union[_t.Literal['down1', 'down2', 'down3', 'down4', 'down5', 'down6', 'up1', 'up2', 'up3', 'up4', 'up5', 'up6'], str] = Field(validation_alias='transpose-interval', serialization_alias='transpose-interval')
     """
     Pitch shift in semitones: up1 through up6 raise the pitch by one to six semitones, down1 through down6 lower it. For example, up2 moves C to D. Zero and shifts beyond six semitones are not accepted.
+    Allowed values: `down1`, `down2`, `down3`, `down4`, `down5`, `down6`, `up1`, `up2`, `up3`, `up4`, `up5`, `up6`.
     """
 
 class ArrangementUpdate(CTModel):
@@ -2133,8 +2192,11 @@ class ArrangementUpdate(CTModel):
     """Notes about performing this arrangement."""
     duration: _t.Optional[int] = Field(default=None)
     """Expected duration in seconds."""
-    key: _t.Optional[str] = Field(default=None)
-    """Musical key using the API spelling."""
+    key: _t.Optional[_t.Union[_t.Literal['A', 'A#', 'A#m', 'Ab', 'Abm', 'Am', 'B', 'B#', 'B#m', 'Bb', 'Bbm', 'Bm', 'C', 'C#', 'C#m', 'Cb', 'Cbm', 'Cm', 'D', 'D#', 'D#m', 'Db', 'Dbm', 'Dm', 'E', 'E#', 'E#m', 'Eb', 'Ebm', 'Em', 'F', 'F#', 'F#m', 'Fb', 'Fbm', 'Fm', 'G', 'G#', 'G#m', 'Gb', 'Gbm', 'Gm'], str]] = Field(default=None)
+    """
+    Musical key using the API spelling.
+    Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
+    """
     name: str
     """Name distinguishing this version from other arrangements."""
     source_id: _t.Optional[int] = Field(default=None, validation_alias='sourceId', serialization_alias='sourceId')
@@ -2167,9 +2229,10 @@ class BalanceReportCreate(CTModel):
     """
     Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
     """
-    format: _t.Optional[str] = Field(default=None)
+    format: _t.Optional[_t.Union[_t.Literal['csv', 'pdf', 'xlsx'], str]] = Field(default=None)
     """
     PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+    Allowed values: `csv`, `pdf`, `xlsx`.
     """
     show_account_groups: _t.Optional[bool] = Field(default=None, validation_alias='showAccountGroups', serialization_alias='showAccountGroups')
     """Include account-group grouping/columns in the report."""
@@ -2273,7 +2336,8 @@ class BillFile(CTModel):
     """
     domain_id: _t.Optional[str] = Field(default=None, validation_alias='domainId', serialization_alias='domainId')
     """Bill ID stored as a file-domain string."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['bill'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `bill`."""
     file_url: str = Field(validation_alias='fileUrl', serialization_alias='fileUrl')
     filename: _t.Optional[str] = Field(default=None)
     """Stored filename, or null when unavailable."""
@@ -2336,9 +2400,10 @@ class BookingAppointmentUpdate(CTModel):
     """
     description: _t.Optional[str] = Field(default=None)
     """Booking notes."""
-    status_id: _t.Optional[int] = Field(default=None, validation_alias='statusId', serialization_alias='statusId')
+    status_id: _t.Optional[_t.Union[_t.Literal[1, 2, 3], int]] = Field(default=None, validation_alias='statusId', serialization_alias='statusId')
     """
     Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+    Allowed values: `1`, `2`, `3`.
     """
 
 class BookingBase(CTModel):
@@ -2383,9 +2448,10 @@ class BookingBase(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: int = Field(validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int] = Field(validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -2404,9 +2470,10 @@ class BookingBase(CTModel):
     Whether the booking is marked for display in the calendar. This does not create or link a calendar appointment.
     """
     start_date: _t.Union[_dt.datetime, _dt.date] = Field(validation_alias='startDate', serialization_alias='startDate')
-    status_id: int = Field(validation_alias='statusId', serialization_alias='statusId')
+    status_id: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='statusId', serialization_alias='statusId')
     """
     Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+    Allowed values: `1`, `2`, `3`.
     """
     subtitle: _t.Optional[str] = Field(default=None)
     title: str
@@ -2483,9 +2550,10 @@ class BookingCalculatedWithIncludesBase(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: int = Field(validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int] = Field(validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -2504,9 +2572,10 @@ class BookingCalculatedWithIncludesBase(CTModel):
     Whether the booking is marked for display in the calendar. This does not create or link a calendar appointment.
     """
     start_date: _t.Union[_dt.datetime, _dt.date] = Field(validation_alias='startDate', serialization_alias='startDate')
-    status_id: int = Field(validation_alias='statusId', serialization_alias='statusId')
+    status_id: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='statusId', serialization_alias='statusId')
     """
     Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+    Allowed values: `1`, `2`, `3`.
     """
     subtitle: _t.Optional[str] = Field(default=None)
     title: str
@@ -2593,9 +2662,10 @@ class BookingConflict(CTModel):
     is_anonymized: bool = Field(validation_alias='isAnonymized', serialization_alias='isAnonymized')
     """True when title is replaced by the translated unknown-appointment label."""
     start_date: _dt.datetime = Field(validation_alias='startDate', serialization_alias='startDate')
-    status_id: int = Field(validation_alias='statusId', serialization_alias='statusId')
+    status_id: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='statusId', serialization_alias='statusId')
     """
     Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+    Allowed values: `1`, `2`, `3`.
     """
     title: str
 
@@ -2611,9 +2681,10 @@ class BookingConflictRequestBody(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -2644,9 +2715,10 @@ class BookingConflictUpdate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -2675,9 +2747,10 @@ class BookingCreate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -2701,9 +2774,10 @@ class BookingCreate(CTModel):
     """
     Whether the booking is marked for display in the calendar. This does not create or link a calendar appointment.
     """
-    status_id: int = Field(validation_alias='statusId', serialization_alias='statusId')
+    status_id: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='statusId', serialization_alias='statusId')
     """
     Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+    Allowed values: `1`, `2`, `3`.
     """
     subtitle: _t.Optional[str] = Field(default=None)
     """Optional booking subtitle."""
@@ -2731,9 +2805,10 @@ class BookingSplitCreate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -2757,9 +2832,10 @@ class BookingSplitCreate(CTModel):
     """
     Whether the booking is marked for display in the calendar. This does not create or link a calendar appointment.
     """
-    status_id: int = Field(validation_alias='statusId', serialization_alias='statusId')
+    status_id: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='statusId', serialization_alias='statusId')
     """
     Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+    Allowed values: `1`, `2`, `3`.
     """
     subtitle: _t.Optional[str] = Field(default=None)
     """Optional booking subtitle."""
@@ -2786,9 +2862,10 @@ class BookingStandaloneUpdate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -2812,9 +2889,10 @@ class BookingStandaloneUpdate(CTModel):
     """
     Whether the booking is marked for display in the calendar. This does not create or link a calendar appointment.
     """
-    status_id: int = Field(validation_alias='statusId', serialization_alias='statusId')
+    status_id: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='statusId', serialization_alias='statusId')
     """
     Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
+    Allowed values: `1`, `2`, `3`.
     """
     subtitle: _t.Optional[str] = Field(default=None)
     """Optional booking subtitle."""
@@ -2862,9 +2940,10 @@ class BulkEventServiceAssignmentCreate(CTModel):
     """
     `event`/`addPersonToService`: Assigns a person or free-text name to a service position in each event. Exactly one of `personId` or `personName` must be specified.
     """
-    option: str
+    option: _t.Union[_t.Literal['alwaysNew', 'never', 'newIfNeeded'], str]
     """
     never requires a reusable slot; newIfNeeded creates one if needed; alwaysNew adds a slot unless the same assignee already has a valid assignment.
+    Allowed values: `alwaysNew`, `never`, `newIfNeeded`.
     """
     person_id: _t.Optional[int] = Field(default=None, validation_alias='personId', serialization_alias='personId')
     """Registered person ID."""
@@ -2877,8 +2956,12 @@ class BulkFollowUpActionCreate(CTModel):
     """
     For `create-follow-up`. Supply exactly one of `dueDate` or `duration`; `duration` must contain a supported day, month, or year count. `actionContext.groupId` is the originating group.
     """
-    color: _t.Optional[str] = Field(default=None)
-    continuation_type: str = Field(validation_alias='continuationType', serialization_alias='continuationType')
+    color: _t.Optional[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]] = Field(default=None)
+    """
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
+    continuation_type: _t.Union[_t.Literal['immediately', 'when-completed'], str] = Field(validation_alias='continuationType', serialization_alias='continuationType')
+    """Allowed values: `immediately`, `when-completed`."""
     description: _t.Optional[str] = Field(default=None)
     due_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='dueDate', serialization_alias='dueDate')
     """Exactly one of `dueDate` or `duration` must be specified."""
@@ -2888,7 +2971,8 @@ class BulkFollowUpActionCreate(CTModel):
     """
     icon: _t.Optional[str] = Field(default=None)
     success_group_id: _t.Optional[int] = Field(default=None, validation_alias='successGroupId', serialization_alias='successGroupId')
-    success_group_member_status: _t.Optional[str] = Field(default=None, validation_alias='successGroupMemberStatus', serialization_alias='successGroupMemberStatus')
+    success_group_member_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='successGroupMemberStatus', serialization_alias='successGroupMemberStatus')
+    """Allowed values: `active`, `requested`, `to_delete`, `waiting`."""
     success_group_of_group_type_id: _t.Optional[int] = Field(default=None, validation_alias='successGroupOfGroupTypeId', serialization_alias='successGroupOfGroupTypeId')
     success_role_id: _t.Optional[int] = Field(default=None, validation_alias='successRoleId', serialization_alias='successRoleId')
     title: str
@@ -2909,8 +2993,11 @@ class BulkGroupAddParentGroupUpdate(CTModel):
 class BulkGroupAgeGroupsUpdate(CTModel):
     """`group`/`setAgeGroups`: Changes selected age groups."""
     age_group_ids: _t.List[int] = Field(validation_alias='ageGroupIds', serialization_alias='ageGroupIds')
-    write_option: str = Field(validation_alias='writeOption', serialization_alias='writeOption')
-    """Replace the selection, add choices, or remove choices."""
+    write_option: _t.Union[_t.Literal['add', 'del', 'overwrite'], str] = Field(validation_alias='writeOption', serialization_alias='writeOption')
+    """
+    Replace the selection, add choices, or remove choices.
+    Allowed values: `add`, `del`, `overwrite`.
+    """
 
 class BulkGroupDelTagUpdate(CTModel):
     """`group`/`delTag`: Applies the setting to each selected group."""
@@ -2981,8 +3068,11 @@ class BulkGroupVisibilityUpdate(CTModel):
     """`group`/`setVisibility`: Changes group visibility."""
     skip_my_posts_reducing_visibility: _t.Optional[bool] = Field(default=None)
     """Passes the visibility-change option for the current user’s posts to the group update."""
-    visibility: str
-    """The visibility of a group."""
+    visibility: _t.Union[_t.Literal['hidden', 'intern', 'public', 'restricted'], str]
+    """
+    The visibility of a group.
+    Allowed values: `hidden`, `intern`, `public`, `restricted`.
+    """
 
 class BulkGroupWeekdayUpdate(CTModel):
     """`group`/`setWeekday`: Changes the meeting weekday."""
@@ -3131,9 +3221,10 @@ class BulkMembershipActionCreate(CTModel):
     """A simple date in ISO format, e.g. '2022-10-19'"""
     role_id: int = Field(validation_alias='roleId', serialization_alias='roleId')
     """Target group-type role ID."""
-    status: str
+    status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     waitinglist_position: _t.Optional[int] = Field(default=None, validation_alias='waitinglistPosition', serialization_alias='waitinglistPosition')
     """Waiting-list position; -1 requests the next available position."""
@@ -3215,9 +3306,10 @@ class BulkPersonMembershipCreate(CTModel):
     """Target group ID."""
     role_id: int = Field(validation_alias='roleId', serialization_alias='roleId')
     """Role ID belonging to the target group type."""
-    status: str
+    status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
 
 class BulkPersonMembershipFieldUpdate(CTModel):
@@ -3230,8 +3322,11 @@ class BulkPersonMembershipFieldUpdate(CTModel):
     """Group ID."""
     value: _t.Any = Field(default=None)
     """Value matching the field’s configured type and options."""
-    write_option: _t.Optional[str] = Field(default=None, validation_alias='writeOption', serialization_alias='writeOption')
-    """For multiselect fields, replace, add, or remove values."""
+    write_option: _t.Optional[_t.Union[_t.Literal['add', 'del', 'overwrite'], str]] = Field(default=None, validation_alias='writeOption', serialization_alias='writeOption')
+    """
+    For multiselect fields, replace, add, or remove values.
+    Allowed values: `add`, `del`, `overwrite`.
+    """
 
 class BulkPersonMembershipUpdate(CTModel):
     """
@@ -3241,15 +3336,17 @@ class BulkPersonMembershipUpdate(CTModel):
     """Group ID."""
     new_role_id: _t.Optional[int] = Field(default=None, validation_alias='newRoleId', serialization_alias='newRoleId')
     """Optional replacement role."""
-    new_status: str = Field(validation_alias='newStatus', serialization_alias='newStatus')
+    new_status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str] = Field(validation_alias='newStatus', serialization_alias='newStatus')
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     old_role_id: _t.Optional[int] = Field(default=None, validation_alias='oldRoleId', serialization_alias='oldRoleId')
     """Optional old-role filter."""
-    old_status: str = Field(validation_alias='oldStatus', serialization_alias='oldStatus')
+    old_status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str] = Field(validation_alias='oldStatus', serialization_alias='oldStatus')
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
 
 class BulkPersonTagsActionUpdate(CTModel):
@@ -3258,7 +3355,8 @@ class BulkPersonTagsActionUpdate(CTModel):
     """
     tag_ids: _t.Optional[_t.List[int]] = Field(default=None, validation_alias='tagIds', serialization_alias='tagIds')
     tag_names: _t.Optional[_t.List[str]] = Field(default=None, validation_alias='tagNames', serialization_alias='tagNames')
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['add', 'remove'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `add`, `remove`."""
 
 class BulkTagCreate(CTModel):
     """
@@ -3287,9 +3385,10 @@ class Bulkletter(CTModel):
     """ID of the HTML template used to render the bulkletter."""
     id: int
     name: str
-    status: str
+    status: _t.Union[_t.Literal['DONE', 'ERROR', 'IN_PROGRESS', 'TODO'], str]
     """
     Rendering lifecycle: TODO, IN_PROGRESS, DONE or ERROR. Completion and storing the archive are separate steps; check fileId/url as well as status.
+    Allowed values: `DONE`, `ERROR`, `IN_PROGRESS`, `TODO`.
     """
     updated: _t.Optional[str] = Field(default=None)
     """Legacy database timestamp in Y-m-d H:i:s format, without timezone; nullable in storage."""
@@ -3376,9 +3475,10 @@ class Calendar(CTModel):
     """
     Whether the Evangelische Termine integration should synchronize this calendar. This is separate from importing an iCalendar feed.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['church', 'group', 'personal'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Calendar category used by ChurchTools: church for a church calendar, group for a group calendar, personal for a personal calendar. The category determines which administration permissions apply; it does not by itself grant public access or link the calendar to a particular group or person. Access is controlled separately. The type is chosen on creation and cannot be changed by PUT.
+    Allowed values: `church`, `group`, `personal`.
     """
     deprecated: StrMap[str] = Field(validation_alias='@deprecated', serialization_alias='@deprecated')
     """Legacy response metadata mapping isPublic and isPrivate to type."""
@@ -3428,9 +3528,10 @@ class CalendarCreate(CTModel):
     """
     Whether the Evangelische Termine integration should synchronize this calendar. This is separate from importing an iCalendar feed.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['church', 'group', 'personal'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Calendar category used by ChurchTools: church for a church calendar, group for a group calendar, personal for a personal calendar. The category determines which administration permissions apply; it does not by itself grant public access or link the calendar to a particular group or person. Access is controlled separately. The type is chosen on creation and cannot be changed by PUT.
+    Allowed values: `church`, `group`, `personal`.
     """
 
 class CalendarUpdate(CTModel):
@@ -3500,7 +3601,10 @@ class CampusAddress(CTModel):
     """Stored address associated with a campus profile."""
     addition: _t.Optional[str] = Field(default=None)
     city: _t.Optional[str] = Field(default=None)
-    color: _t.Optional[str] = Field(default=None)
+    color: _t.Optional[_t.Union[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str], _t.Union[_t.Literal['default', 'parent'], str]]] = Field(default=None)
+    """
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
+    """
     country: _t.Optional[str] = Field(default=None)
     """A country's ISO-code"""
     district: _t.Optional[str] = Field(default=None)
@@ -3508,9 +3612,10 @@ class CampusAddress(CTModel):
     """
     The identifier of the domain object. This field is set automatically from the path parameter and should not be included in the request body.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['appointment', 'campus', 'church', 'group'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     The domain type of the address. This field is set automatically from the path parameter and should not be included in the request body.
+    Allowed values: `appointment`, `campus`, `church`, `group`.
     """
     icon: _t.Optional[str] = Field(default=None)
     latitude: _t.Optional[str] = Field(default=None)
@@ -3528,7 +3633,10 @@ class CampusAddress(CTModel):
     """Use `latitude` instead"""
     longitude_loose: _t.Optional[str] = Field(default=None, validation_alias='longitudeLoose', serialization_alias='longitudeLoose', deprecated=True)
     """Use `longitude` instead"""
-    marker_color: _t.Optional[str] = Field(default=None, validation_alias='markerColor', serialization_alias='markerColor', deprecated=True)
+    marker_color: _t.Optional[_t.Union[_t.Union[_t.Literal['default', 'parent'], str], _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None, validation_alias='markerColor', serialization_alias='markerColor', deprecated=True)
+    """
+    Allowed values: `default`, `parent`, `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     marker_icon: _t.Optional[str] = Field(default=None, validation_alias='markerIcon', serialization_alias='markerIcon', deprecated=True)
     """Use `icon` instead"""
     marker_url: _t.Optional[str] = Field(default=None, validation_alias='markerUrl', serialization_alias='markerUrl', deprecated=True)
@@ -3616,12 +3724,18 @@ class Chat(CTModel):
     """ID of the group (`ctg`) or service-planning event (`cte`) associated with the room."""
     guid: str
     """Stable ChurchTools chat identifier, not a Matrix room ID."""
-    prefix: str
-    """`ctg` identifies a group and `cte` identifies a service-planning event."""
+    prefix: _t.Union[_t.Literal['cte', 'ctg'], str]
+    """
+    `ctg` identifies a group and `cte` identifies a service-planning event.
+    Allowed values: `cte`, `ctg`.
+    """
     roomname: _t.Optional[str] = Field(default=None)
     """Display name of the room."""
-    status: str
-    """Room lifecycle status. `STARTING` awaits confirmation from the central chat service."""
+    status: _t.Union[_t.Literal['NOT_STARTED', 'STARTED', 'STARTING', 'STOPPED'], str]
+    """
+    Room lifecycle status. `STARTING` awaits confirmation from the central chat service.
+    Allowed values: `NOT_STARTED`, `STARTED`, `STARTING`, `STOPPED`.
+    """
 
 class ChatCreate(CTModel):
     """"""
@@ -3629,8 +3743,11 @@ class ChatCreate(CTModel):
     """ID of the group (`ctg`) or service-planning event (`cte`) associated with the room."""
     guid: str
     """Stable ChurchTools chat identifier, not a Matrix room ID."""
-    prefix: str
-    """`ctg` identifies a group and `cte` identifies a service-planning event."""
+    prefix: _t.Union[_t.Literal['cte', 'ctg'], str]
+    """
+    `ctg` identifies a group and `cte` identifies a service-planning event.
+    Allowed values: `cte`, `ctg`.
+    """
     roomname: str
     """Display name of the room."""
 
@@ -3644,12 +3761,18 @@ class ChatUpdate(CTModel):
     """ID of the group (`ctg`) or service-planning event (`cte`) associated with the room."""
     nonce: _t.Optional[str] = Field(default=None)
     """Synchronization token for central chat service callbacks."""
-    prefix: _t.Optional[str] = Field(default=None)
-    """`ctg` identifies a group and `cte` identifies a service-planning event."""
+    prefix: _t.Optional[_t.Union[_t.Literal['cte', 'ctg'], str]] = Field(default=None)
+    """
+    `ctg` identifies a group and `cte` identifies a service-planning event.
+    Allowed values: `cte`, `ctg`.
+    """
     roomname: _t.Optional[str] = Field(default=None)
     """Display name of the room."""
-    status: _t.Optional[str] = Field(default=None)
-    """Requested lifecycle status."""
+    status: _t.Optional[_t.Union[_t.Literal['STARTED', 'STOPPED'], str]] = Field(default=None)
+    """
+    Requested lifecycle status.
+    Allowed values: `STARTED`, `STOPPED`.
+    """
 
 class Checkin(CTModel):
     """
@@ -3982,9 +4105,13 @@ class ClientUpdate(CTModel):
 
 class Color(CTModel):
     """Value for Tailwind color"""
-    key: str
-    """A color in ChurchTools"""
-    shade: _t.Optional[int] = Field(default=None)
+    key: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    A color in ChurchTools
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
+    shade: _t.Optional[_t.Union[_t.Literal[100, 200, 300, 400, 50, 500, 600, 700, 800, 900], int]] = Field(default=None)
+    """Allowed values: `100`, `200`, `300`, `400`, `50`, `500`, `600`, `700`, `800`, `900`."""
 
 class CombinedDonationReceipts(CTModel):
     """"""
@@ -4050,8 +4177,11 @@ class Config(CTModel):
     ai_description_generation_enabled: _t.Optional[bool] = Field(default=None)
     ai_description_total_generation_count: _t.Optional[float] = Field(default=None)
     allowaiassistant: _t.Optional[bool] = Field(default=None)
-    allowcheckin: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    allowcheckin: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     allowedcals: _t.Optional[str] = Field(default=None)
     allowedclients: _t.Optional[str] = Field(default=None)
     allowedcwbusers: _t.Optional[str] = Field(default=None)
@@ -4062,18 +4192,31 @@ class Config(CTModel):
     allowedsyncjobs: _t.Optional[str] = Field(default=None)
     allowedtextgenerations: _t.Optional[str] = Field(default=None)
     alloweduser: _t.Optional[str] = Field(default=None)
-    allowfinance: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    allowldap: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    allowoptigemsync: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    allowsync: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    allowfinance: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    allowldap: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    allowoptigemsync: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    allowsync: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     app_security_request: _t.Optional[bool] = Field(default=None)
     auth_cache_time: _t.Optional[_t.Union[int, str]] = Field(default=None)
     authorized_persons: _t.Optional[str] = Field(default=None)
-    brand: str
+    brand: _t.Union[_t.Literal['ChurchTools', 'VereinTools'], str]
+    """Allowed values: `ChurchTools`, `VereinTools`."""
     build: _t.Optional[str] = Field(default=None)
     ccli_access_token: _t.Optional[str] = Field(default=None)
     ccli_auto_reporting_enabled: _t.Optional[bool] = Field(default=None)
@@ -4081,8 +4224,11 @@ class Config(CTModel):
     ccli_last_token_refresh: _t.Optional[str] = Field(default=None)
     ccli_refresh_token: _t.Optional[str] = Field(default=None)
     chat_server: str = Field(validation_alias='chatServer', serialization_alias='chatServer')
-    chrome_active: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    chrome_active: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     chrome_binary: _t.Optional[str] = Field(default=None)
     churchcal_active: _t.Optional[bool] = Field(default=None)
     churchcal_css: _t.Optional[str] = Field(default=None)
@@ -4113,8 +4259,11 @@ class Config(CTModel):
     churchcheckin_name_default: _t.Optional[str] = Field(default=None)
     churchcheckin_sortcode: _t.Optional[int] = Field(default=None)
     churchcheckin_tags: _t.Optional[str] = Field(default=None)
-    churchcustommodule_active: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    churchcustommodule_active: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     churchcustommodule_name: _t.Optional[str] = Field(default=None)
     churchcustommodule_name_default: _t.Optional[str] = Field(default=None)
     churchdb_active: _t.Optional[bool] = Field(default=None)
@@ -4124,7 +4273,8 @@ class Config(CTModel):
     churchdb_cleverreach_access_token: _t.Optional[str] = Field(default=None)
     churchdb_cleverreach_client_id: _t.Optional[str] = Field(default=None)
     churchdb_cleverreach_client_secret: _t.Optional[str] = Field(default=None)
-    churchdb_cleverreach_connected: _t.Optional[str] = Field(default=None)
+    churchdb_cleverreach_connected: _t.Optional[_t.Union[_t.Literal['false', 'true'], str]] = Field(default=None)
+    """Allowed values: `false`, `true`."""
     churchdb_cleverreach_refresh_token: _t.Optional[str] = Field(default=None)
     churchdb_cleverreach_scopes: _t.Optional[str] = Field(default=None)
     churchdb_cleverreach_token_expiry: _t.Optional[str] = Field(default=None)
@@ -4190,11 +4340,17 @@ class Config(CTModel):
     cron_hour_8: OptionalDateTime = Field(default=None)
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     cron_last_execution: _t.Optional[str] = Field(default=None)
-    cronjob_dbdump: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    cronjob_dbdump: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     cronjob_delay: _t.Optional[int] = Field(default=None)
-    currently_mail_sending: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    currently_mail_sending: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     datasecurity_privacy_declaration_wiki_link: _t.Optional[str] = Field(default=None, validation_alias='datasecurityPrivacyDeclarationWikiLink', serialization_alias='datasecurityPrivacyDeclarationWikiLink')
     datasecurity_banner_enabled: _t.Optional[bool] = Field(default=None)
     datasecurity_privacy_agreement_hint: _t.Optional[str] = Field(default=None)
@@ -4210,7 +4366,8 @@ class Config(CTModel):
     deactivate_default_login: _t.Optional[bool] = Field(default=None)
     default_phone_area_code: _t.Optional[str] = Field(default=None)
     deprecation_usage_mail_last_execution: _t.Optional[str] = Field(default=None)
-    email_server: _t.Optional[str] = Field(default=None, validation_alias='emailServer', serialization_alias='emailServer')
+    email_server: _t.Optional[_t.Union[_t.Literal['churchtools', 'own'], str]] = Field(default=None, validation_alias='emailServer', serialization_alias='emailServer')
+    """Allowed values: `churchtools`, `own`."""
     encryptionkey: _t.Optional[str] = Field(default=None)
     env: _t.Optional[str] = Field(default=None)
     evangelische_termine_api_key: _t.Optional[str] = Field(default=None)
@@ -4219,43 +4376,73 @@ class Config(CTModel):
     evangelische_termine_url: _t.Optional[str] = Field(default=None)
     evangelische_termine_vid: _t.Optional[str] = Field(default=None)
     feature_appointment_search: _t.Optional[bool] = Field(default=None)
-    feature_automation: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    feature_custommodule: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    feature_darkmode: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    feature_dynamic_groups: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_automation: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    feature_custommodule: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    feature_darkmode: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    feature_dynamic_groups: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_eubp: _t.Optional[bool] = Field(default=None)
     feature_event_fact_widget: _t.Optional[bool] = Field(default=None)
     feature_finance_donators_datatable: _t.Optional[bool] = Field(default=None)
     feature_flags_ui: _t.Optional[bool] = Field(default=None)
-    feature_group: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_group: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_markdown_group: _t.Optional[bool] = Field(default=None, deprecated=True)
     """Deprecated compatibility flag that is always true."""
-    feature_mobile_groups: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_mobile_groups: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_newsfeed_comment_reactions: _t.Optional[bool] = Field(default=None, deprecated=True)
     """Deprecated compatibility flag that is always true."""
     feature_old_group_module: _t.Optional[bool] = Field(default=None)
     feature_org_chart_groups: _t.Optional[str] = Field(default=None)
     feature_permission_new: _t.Optional[bool] = Field(default=None)
     feature_person_probe_filter: _t.Optional[bool] = Field(default=None)
-    feature_posts: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    feature_resources_app: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_posts: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    feature_resources_app: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_sessionless_login: _t.Optional[bool] = Field(default=None)
-    feature_sync: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_sync: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_usechurchquery: _t.Optional[str] = Field(default=None)
     file_meta_cron_last_file_size_id: _t.Optional[str] = Field(default=None)
     file_meta_cron_last_image_metadata_id: _t.Optional[str] = Field(default=None)
     finance_active: _t.Optional[bool] = Field(default=None)
-    finance_inmenu: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    finance_inmenu: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     finance_name: _t.Optional[str] = Field(default=None)
     finance_name_default: _t.Optional[str] = Field(default=None)
     finance_sortcode: _t.Optional[str] = Field(default=None)
@@ -4266,15 +4453,21 @@ class Config(CTModel):
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     hide_beta_states: _t.Optional[bool] = Field(default=None, validation_alias='hideBetaStates', serialization_alias='hideBetaStates')
     hide_all_hints: _t.Optional[bool] = Field(default=None)
-    hostingservice: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    hostingservice: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     https_only: _t.Optional[str] = Field(default=None)
     ical_invitation_hmac_secret: _t.Optional[str] = Field(default=None)
     image_extension: _t.Optional[str] = Field(default=None)
     impressum_external: _t.Optional[str] = Field(default=None)
     impressum_external_link: _t.Optional[str] = Field(default=None)
-    impressum_internal: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    impressum_internal: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     imprint_wiki_link: _t.Optional[str] = Field(default=None, validation_alias='imprintWikiLink', serialization_alias='imprintWikiLink')
     installation_verification_code: _t.Optional[str] = Field(default=None)
     invite_email_text: _t.Optional[str] = Field(default=None)
@@ -4286,9 +4479,10 @@ class Config(CTModel):
     is_churchtools_onboarding_widget_active: _t.Optional[bool] = Field(default=None)
     is_pr_widget_active: _t.Optional[bool] = Field(default=None)
     is_rss_widget_active: _t.Optional[bool] = Field(default=None)
-    language: _t.Optional[str] = Field(default=None)
+    language: _t.Optional[_t.Union[_t.Literal['cn', 'de', 'en', 'es', 'fa', 'fi', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sv', 'tw'], str]] = Field(default=None)
     """
     The language code is a two-letter code that represents the language. For example, "en" for English, "de" for German, and "fr" for French.
+    Allowed values: `cn`, `de`, `en`, `es`, `fa`, `fi`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sv`, `tw`.
     """
     last_cron: _t.Optional[str] = Field(default=None)
     last_cron_finished: _t.Optional[str] = Field(default=None)
@@ -4297,12 +4491,18 @@ class Config(CTModel):
     last_translation_update: _t.Optional[str] = Field(default=None)
     ldap_otp_enabled: _t.Optional[bool] = Field(default=None)
     license_settings: _t.Optional[GetConfigResponseLicenseSettings] = Field(default=None, validation_alias='licenseSettings', serialization_alias='licenseSettings')
-    log_debug: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    log_debug: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     login_message: _t.Optional[str] = Field(default=None)
     mail_enabled: _t.Optional[bool] = Field(default=None)
-    mail_sending_in_background: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    mail_sending_in_background: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     mail_sending_starttime: _t.Optional[str] = Field(default=None)
     mail_smtp_args_host: _t.Optional[str] = Field(default=None)
     mail_smtp_args_password: _t.Optional[str] = Field(default=None)
@@ -4311,36 +4511,67 @@ class Config(CTModel):
     mail_smtp_args_username: _t.Optional[str] = Field(default=None)
     matomo_uri: _t.Optional[str] = Field(default=None)
     max_uploadfile_size_kb: _t.Optional[int] = Field(default=None)
-    memberlist_birthday_full: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_email: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_fax: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_group_couples: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_picture: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_salutation: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_telefongeschaeftlich: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_telefonhandy: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_telefonprivat: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    memberlist_birthday_full: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_email: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_fax: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_group_couples: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_picture: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_salutation: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_telefongeschaeftlich: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_telefonhandy: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_telefonprivat: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     onboarding_start: OptionalDateTime = Field(default=None)
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     openai_api_key: _t.Optional[str] = Field(default=None)
     openstreetmaps_enabled: _t.Optional[bool] = Field(default=None)
-    orderstatus: _t.Optional[str] = Field(default=None)
+    orderstatus: _t.Optional[_t.Union[_t.Literal['Auftrag', 'Bedenkzeit', 'Entscheidung', 'Finder', 'FinderCombo', 'Mitarbeiter', 'Testphase', 'Unbekannt', 'Vorlage/Schulung/Test', 'WebsiteCombo', 'zu löschen'], str]] = Field(default=None)
+    """
+    Allowed values: `Auftrag`, `Bedenkzeit`, `Entscheidung`, `Finder`, `FinderCombo`, `Mitarbeiter`, `Testphase`, `Unbekannt`, `Vorlage/Schulung/Test`, `WebsiteCombo`, `zu löschen`.
+    """
     orderstatus_since_date: OptionalDateTime = Field(default=None)
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     package: _t.Optional[str] = Field(default=None)
     post_active: _t.Optional[bool] = Field(default=None)
     post_edit_time_limited: _t.Optional[bool] = Field(default=None)
     post_email_summary_default_enabled: _t.Optional[bool] = Field(default=None)
-    post_email_summary_default_filter: _t.Optional[str] = Field(default=None)
+    post_email_summary_default_filter: _t.Optional[_t.Union[_t.Literal['all', 'featured_groups', 'my_groups'], str]] = Field(default=None)
+    """Allowed values: `all`, `featured_groups`, `my_groups`."""
     post_email_summary_default_weekdays: _t.Optional[str] = Field(default=None)
     post_featured_groups: _t.Optional[str] = Field(default=None)
     post_inmenu: _t.Optional[bool] = Field(default=None)
@@ -4348,7 +4579,8 @@ class Config(CTModel):
     post_sortcode: _t.Optional[int] = Field(default=None)
     post_wizard_completed: _t.Optional[bool] = Field(default=None)
     post_wizard_groups: _t.Optional[str] = Field(default=None)
-    prevent_change_security_settings: _t.Optional[str] = Field(default=None)
+    prevent_change_security_settings: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """Allowed values: `0`, `1`."""
     prevent_export: _t.Optional[bool] = Field(default=None)
     prevent_manual_finance_account_creation: _t.Optional[bool] = Field(default=None)
     privacy_policy_external: _t.Optional[bool] = Field(default=None)
@@ -4370,8 +4602,11 @@ class Config(CTModel):
     safe_mode_enable_chat_sync: _t.Optional[str] = Field(default=None)
     safe_mode_enable_consolidation: _t.Optional[str] = Field(default=None)
     safe_mode_enable_guid_sync: _t.Optional[str] = Field(default=None)
-    safe_mode_enable_job_queueing: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    safe_mode_enable_job_queueing: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     safe_mode_enable_mail: _t.Optional[str] = Field(default=None)
     safe_mode_enable_newsletter: _t.Optional[str] = Field(default=None)
     safe_mode_enable_notification: _t.Optional[str] = Field(default=None)
@@ -4395,7 +4630,8 @@ class Config(CTModel):
     """Whether this installation is configured as a test system."""
     timezone: _t.Optional[str] = Field(default=None)
     url_metadata_url: _t.Optional[str] = Field(default=None)
-    verification_status: str = Field(validation_alias='verificationStatus', serialization_alias='verificationStatus')
+    verification_status: _t.Union[_t.Literal['failed', 'in_progress', 'not_verified', 'verified'], str] = Field(validation_alias='verificationStatus', serialization_alias='verificationStatus')
+    """Allowed values: `failed`, `in_progress`, `not_verified`, `verified`."""
     version: _t.Optional[str] = Field(default=None)
     webchat_link: str = Field(validation_alias='webchatLink', serialization_alias='webchatLink')
     website_order_status: _t.Optional[str] = Field(default=None)
@@ -4514,9 +4750,10 @@ class CostCenterStatementReportCreate(CTModel):
     """
     Last document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
     """
-    format: _t.Optional[str] = Field(default=None)
+    format: _t.Optional[_t.Union[_t.Literal['csv', 'pdf', 'xlsx'], str]] = Field(default=None)
     """
     PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+    Allowed values: `csv`, `pdf`, `xlsx`.
     """
     start_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='startDate', serialization_alias='startDate')
     """
@@ -4524,8 +4761,11 @@ class CostCenterStatementReportCreate(CTModel):
     """
     include_rebookings: _t.Optional[bool] = Field(default=None, validation_alias='includeRebookings', serialization_alias='includeRebookings')
     """Include transactions classified as internal rebookings in the cost-center report."""
-    type_: _t.Optional[str] = Field(default=None, validation_alias='type', serialization_alias='type', deprecated=True)
-    """Legacy alias for format."""
+    type_: _t.Optional[_t.Union[_t.Literal['csv', 'pdf', 'xlsx'], str]] = Field(default=None, validation_alias='type', serialization_alias='type', deprecated=True)
+    """
+    Legacy alias for format.
+    Allowed values: `csv`, `pdf`, `xlsx`.
+    """
 
 class CostCenterStored(CTModel):
     """
@@ -4620,8 +4860,11 @@ class CtFile(CTModel):
     """Whether domain lists show the file only to users who may edit its owning object."""
     size: _t.Optional[int] = Field(default=None)
     """The file size in byte"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """file for a stored file, link for a filename beginning with http."""
+    type_: _t.Union[_t.Literal['file', 'link'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    file for a stored file, link for a filename beginning with http.
+    Allowed values: `file`, `link`.
+    """
     id: int
     """Persisted file record ID."""
 
@@ -4722,9 +4965,10 @@ class DbFieldCategory(CTModel):
     Stored field category and its underlying entity table. Use internCode when creating a field.
     """
     id: int
-    intern_code: str = Field(validation_alias='internCode', serialization_alias='internCode')
+    intern_code: _t.Union[_t.Literal['f_address', 'f_category', 'f_church', 'f_datasecurity', 'f_dep', 'f_group', 'f_growpath'], str] = Field(validation_alias='internCode', serialization_alias='internCode')
     """
     Field category: f_address (person address/contact), f_church (person church information), f_category (person categories), f_group (group data), f_dep (departments), f_growpath (person growth-path data), or f_datasecurity (person privacy information). These are category codes, not entity IDs.
+    Allowed values: `f_address`, `f_category`, `f_church`, `f_datasecurity`, `f_dep`, `f_group`, `f_growpath`.
     """
     name: str
     table: str
@@ -4759,15 +5003,18 @@ class DbFieldCreate(CTModel):
     """Display-order value within its category."""
     use_as_placeholder: bool = Field(validation_alias='useAsPlaceholder', serialization_alias='useAsPlaceholder')
     """Whether the field may be used as a placeholder."""
-    field_category_intern_code: str = Field(validation_alias='fieldCategoryInternCode', serialization_alias='fieldCategoryInternCode')
+    field_category_intern_code: _t.Union[_t.Literal['f_address', 'f_category', 'f_church', 'f_datasecurity', 'f_dep', 'f_group', 'f_growpath'], str] = Field(validation_alias='fieldCategoryInternCode', serialization_alias='fieldCategoryInternCode')
     """
     Field category: f_address (person address/contact), f_church (person church information), f_category (person categories), f_group (group data), f_dep (departments), f_growpath (person growth-path data), or f_datasecurity (person privacy information). These are category codes, not entity IDs.
+    Allowed values: `f_address`, `f_category`, `f_church`, `f_datasecurity`, `f_dep`, `f_group`, `f_growpath`.
     """
 
 class DbFieldDeprecated(CTModel):
     """Compatibility mappings emitted by the backend."""
-    not_configurable: str = Field(validation_alias='notConfigurable', serialization_alias='notConfigurable')
-    nullable: str
+    not_configurable: _t.Union[_t.Literal['isNotConfigurable'], str] = Field(validation_alias='notConfigurable', serialization_alias='notConfigurable')
+    """Allowed values: `isNotConfigurable`."""
+    nullable: _t.Union[_t.Literal['isNullable'], str]
+    """Allowed values: `isNullable`."""
 
 class DbFieldOption(CTModel):
     """
@@ -4824,9 +5071,10 @@ class DbFieldType(CTModel):
     Database-field type definition. internCode selects the input/validation behavior; the numeric ID is referenced by field definitions. The name can be a translation key.
     """
     id: int
-    intern_code: str = Field(validation_alias='internCode', serialization_alias='internCode')
+    intern_code: _t.Union[_t.Literal['api', 'checkbox', 'date', 'datetime', 'multiselect', 'number', 'radioselect', 'select', 'text', 'textarea'], str] = Field(validation_alias='internCode', serialization_alias='internCode')
     """
     Input/storage type. select and radioselect use one option, multiselect uses multiple options. text and textarea require a configured length when created. api identifies an application-specific field type.
+    Allowed values: `api`, `checkbox`, `date`, `datetime`, `multiselect`, `number`, `radioselect`, `select`, `text`, `textarea`.
     """
     name: str
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
@@ -4862,15 +5110,19 @@ class DbFieldUpdate(CTModel):
     """Display-order value within its category."""
     use_as_placeholder: bool = Field(validation_alias='useAsPlaceholder', serialization_alias='useAsPlaceholder')
     """Whether the field may be used as a placeholder."""
-    field_category_intern_code: _t.Optional[str] = Field(default=None, validation_alias='fieldCategoryInternCode', serialization_alias='fieldCategoryInternCode')
+    field_category_intern_code: _t.Optional[_t.Union[_t.Literal['f_address', 'f_category', 'f_church', 'f_datasecurity', 'f_dep', 'f_group', 'f_growpath'], str]] = Field(default=None, validation_alias='fieldCategoryInternCode', serialization_alias='fieldCategoryInternCode')
     """
     Installation-created person fields can move between `f_address`, `f_church`, `f_category` and `f_datasecurity`. Built-in fields and fields in other categories can only keep their existing category.
+    Allowed values: `f_address`, `f_category`, `f_church`, `f_datasecurity`, `f_dep`, `f_group`, `f_growpath`.
     """
 
 class DeleteGroupsGroupIdMeetingsMeetingIdMembersMemberIdBody(CTModel):
     """"""
-    status: _t.Optional[str] = Field(default=None)
-    """Attendance state after revoking the check-in."""
+    status: _t.Optional[_t.Union[_t.Literal['absent', 'unsure'], str]] = Field(default=None)
+    """
+    Attendance state after revoking the check-in.
+    Allowed values: `absent`, `unsure`.
+    """
 
 class DeleteSimulateData(CTModel):
     """"""
@@ -4878,10 +5130,16 @@ class DeleteSimulateData(CTModel):
 
 class Denomination(CTModel):
     """Denomination of a church"""
-    key: str
-    """Technical enum case name used by ChurchTools."""
-    name: str
-    """Translation key of the denomination."""
+    key: _t.Union[_t.Literal['CATHOLIC', 'ECUMENICAL', 'FREE_EVANGELICAL', 'NONE', 'ORTHODOX', 'PROTESTANT'], str]
+    """
+    Technical enum case name used by ChurchTools.
+    Allowed values: `CATHOLIC`, `ECUMENICAL`, `FREE_EVANGELICAL`, `NONE`, `ORTHODOX`, `PROTESTANT`.
+    """
+    name: _t.Union[_t.Literal['denomination.catholic', 'denomination.ecumenical', 'denomination.free.evangelical', 'denomination.none', 'denomination.orthodox', 'denomination.protestant'], str]
+    """
+    Translation key of the denomination.
+    Allowed values: `denomination.catholic`, `denomination.ecumenical`, `denomination.free.evangelical`, `denomination.none`, `denomination.orthodox`, `denomination.protestant`.
+    """
     name_translated: str = Field(validation_alias='nameTranslated', serialization_alias='nameTranslated')
     """Localized denomination name."""
 
@@ -4900,7 +5158,8 @@ class Department(CTModel):
 
 class DepartmentDeprecated(CTModel):
     """"""
-    short: str
+    short: _t.Union[_t.Literal['shorty'], str]
+    """Allowed values: `shorty`."""
 
 class Deprecated(CTModel):
     """Compatibility metadata describing legacy date fields."""
@@ -4936,8 +5195,11 @@ class Device(CTModel):
     """Push-provider token, or null. Do not use it as the registration identifier."""
     ttl: OptionalDateTime = Field(default=None, deprecated=True)
     """Use `expirationDate` instead"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging."""
+    type_: _t.Union[_t.Literal['APN', 'FCM'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging.
+    Allowed values: `APN`, `FCM`.
+    """
     updated_at: OptionalDateTime = Field(default=None, validation_alias='updatedAt', serialization_alias='updatedAt', deprecated=True)
     """Use `meta.modifiedDate` instead"""
     version: _t.Optional[str] = Field(default=None, deprecated=True)
@@ -4963,8 +5225,11 @@ class DeviceUpdate(CTModel):
     """
     Trimmed push token. Omission replaces the token with deviceId; null clears it; an empty or whitespace-only string preserves the previous token (null on a new device).
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging."""
+    type_: _t.Union[_t.Literal['APN', 'FCM'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging.
+    Allowed values: `APN`, `FCM`.
+    """
     version: _t.Optional[str] = Field(default=None, deprecated=True)
     """
     Legacy alias of appVersion; use appVersion. The canonical field takes precedence if both are present.
@@ -4976,8 +5241,11 @@ class DomainObjectAction(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -4989,7 +5257,8 @@ class DomainObjectAction(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectActionDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['action'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `action`."""
     frontend_url: None = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
     icon: str
 
@@ -5003,8 +5272,11 @@ class DomainObjectAppointment(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5016,9 +5288,11 @@ class DomainObjectAppointment(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: StrMap[_t.Any] = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['appointment'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `appointment`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['calendar'], str]
+    """Allowed values: `calendar`."""
 
 class DomainObjectAppointmentOccurrence(CTModel):
     """
@@ -5028,8 +5302,11 @@ class DomainObjectAppointmentOccurrence(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5041,9 +5318,11 @@ class DomainObjectAppointmentOccurrence(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectAppointmentOccurrenceDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['appointment_occurrence'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `appointment_occurrence`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['calendar-day'], str]
+    """Allowed values: `calendar-day`."""
 
 class DomainObjectAppointmentOccurrenceDomainAttributes(CTModel):
     """"""
@@ -5056,8 +5335,11 @@ class DomainObjectCalendar(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5069,9 +5351,11 @@ class DomainObjectCalendar(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectCalendarDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['calendar'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `calendar`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['calendar'], str]
+    """Allowed values: `calendar`."""
 
 class DomainObjectCalendarDomainAttributes(CTModel):
     """"""
@@ -5083,8 +5367,11 @@ class DomainObjectEvent(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5096,9 +5383,11 @@ class DomainObjectEvent(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectEventDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['event'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `event`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['calendar-day'], str]
+    """Allowed values: `calendar-day`."""
 
 class DomainObjectEventDomainAttributes(CTModel):
     """"""
@@ -5111,9 +5400,11 @@ class DomainObjectExternalPerson(CTModel):
     color: None
     domain_attributes: DomainObjectExternalPersonDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
     domain_identifier: None = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['externalPerson'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `externalPerson`."""
     frontend_url: None = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['user'], str]
+    """Allowed values: `user`."""
     image_url: None = Field(validation_alias='imageUrl', serialization_alias='imageUrl')
     infos: _t.List[str]
     initials: _t.Optional[str] = Field(default=None)
@@ -5131,8 +5422,11 @@ class DomainObjectFile(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5144,9 +5438,11 @@ class DomainObjectFile(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: StrMap[_t.Any] = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['file'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `file`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['file'], str]
+    """Allowed values: `file`."""
 
 class DomainObjectFurtherLink(CTModel):
     """
@@ -5156,8 +5452,11 @@ class DomainObjectFurtherLink(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5169,17 +5468,22 @@ class DomainObjectFurtherLink(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: StrMap[_t.Any] = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['further_link'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `further_link`."""
     frontend_url: None = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['link'], str]
+    """Allowed values: `link`."""
 
 class DomainObjectGroup(CTModel):
     """
     Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
     """
     api_url: str = Field(validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5191,9 +5495,11 @@ class DomainObjectGroup(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectGroupDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['group'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `group`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['users'], str]
+    """Allowed values: `users`."""
 
 class DomainObjectGroupDomainAttributes(CTModel):
     """"""
@@ -5202,16 +5508,22 @@ class DomainObjectGroupDomainAttributes(CTModel):
     group_type_id: float = Field(validation_alias='groupTypeId', serialization_alias='groupTypeId')
     guid: str
     note: str
-    visibility: str
-    """The visibility of a group."""
+    visibility: _t.Union[_t.Literal['hidden', 'intern', 'public', 'restricted'], str]
+    """
+    The visibility of a group.
+    Allowed values: `hidden`, `intern`, `public`, `restricted`.
+    """
 
 class DomainObjectGroupMembership(CTModel):
     """
     A person’s membership in a group. Its `domainIdentifier` is the membership row ID; `domainAttributes` contains the group, person, and role IDs.
     """
     api_url: str = Field(validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5222,9 +5534,11 @@ class DomainObjectGroupMembership(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectGroupMembershipDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['group_membership'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `group_membership`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['user'], str]
+    """Allowed values: `user`."""
 
 class DomainObjectGroupMembershipDomainAttributes(CTModel):
     """"""
@@ -5247,8 +5561,11 @@ class DomainObjectGrouphomepage(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5260,9 +5577,11 @@ class DomainObjectGrouphomepage(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectGrouphomepageDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['grouphomepage'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `grouphomepage`."""
     frontend_url: _t.Optional[str] = Field(default=None, validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['globe'], str]
+    """Allowed values: `globe`."""
 
 class DomainObjectGrouphomepageDomainAttributes(CTModel):
     """"""
@@ -5283,8 +5602,11 @@ class DomainObjectLogo(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5296,15 +5618,19 @@ class DomainObjectLogo(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: StrMap[_t.Any] = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['logo'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `logo`."""
     frontend_url: None = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
     icon: str
 
 class DomainObjectOsmAddress(CTModel):
     """OSM Address as Domain Object"""
     api_url: _t.Optional[None] = Field(default=None, validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5314,7 +5640,8 @@ class DomainObjectOsmAddress(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: StrMap[_t.Any] = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['osm-address'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `osm-address`."""
     frontend_url: _t.Optional[None] = Field(default=None, validation_alias='frontendUrl', serialization_alias='frontendUrl')
     icon: str
 
@@ -5326,14 +5653,20 @@ class DomainObjectPayload(CTModel):
     """
     For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
     """
-    domain_types: _t.List[str]
-    """Object types corresponding to the identifiers at the same indexes."""
+    domain_types: _t.List[_t.Union[_t.Literal['appointment', 'appointment_occurrence', 'event', 'group', 'group_membership', 'person', 'song', 'wiki_page'], str]]
+    """
+    Object types corresponding to the identifiers at the same indexes.
+    Allowed values: `appointment`, `appointment_occurrence`, `event`, `group`, `group_membership`, `person`, `song`, `wiki_page`.
+    """
 
 class DomainObjectPerson(CTModel):
     """Person as Domain Object"""
     api_url: str = Field(validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5344,10 +5677,14 @@ class DomainObjectPerson(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectPersonDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['person'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `person`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
-    """user for an ordinary person; user-shield for a censored person placeholder."""
+    icon: _t.Union[_t.Literal['user', 'user-shield'], str]
+    """
+    user for an ordinary person; user-shield for a censored person placeholder.
+    Allowed values: `user`, `user-shield`.
+    """
 
 class DomainObjectPersonDomainAttributes(CTModel):
     """"""
@@ -5367,8 +5704,11 @@ class DomainObjectPost(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5379,9 +5719,11 @@ class DomainObjectPost(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: StrMap[_t.Any] = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['post'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `post`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['newspaper'], str]
+    """Allowed values: `newspaper`."""
 
 class DomainObjectRole(CTModel):
     """
@@ -5391,8 +5733,11 @@ class DomainObjectRole(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5405,11 +5750,15 @@ class DomainObjectRole(CTModel):
     """Display title of the referenced object."""
     domain_attributes: StrMap[_t.Any] = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
     """Empty object; roles do not expose additional domain attributes."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['role'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `role`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
     """Absolute link to this role in the group-type settings."""
-    icon: str
-    """Icon identifying a leader or participant role."""
+    icon: _t.Union[_t.Literal['id-badge', 'user'], str]
+    """
+    Icon identifying a leader or participant role.
+    Allowed values: `id-badge`, `user`.
+    """
 
 class DomainObjectSong(CTModel):
     """
@@ -5419,8 +5768,11 @@ class DomainObjectSong(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5432,9 +5784,11 @@ class DomainObjectSong(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: StrMap[_t.Any] = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['song'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `song`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['music'], str]
+    """Allowed values: `music`."""
 
 class DomainObjectWikiPage(CTModel):
     """
@@ -5444,8 +5798,11 @@ class DomainObjectWikiPage(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -5457,9 +5814,11 @@ class DomainObjectWikiPage(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectWikiPageDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['wiki_page'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `wiki_page`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['file'], str]
+    """Allowed values: `file`."""
 
 class DomainObjectWikiPageDomainAttributes(CTModel):
     """"""
@@ -5476,18 +5835,20 @@ class DonationReceipt(CTModel):
     """Download URL of the cover letter PDF, possibly a temporary watermarked copy."""
     donator_id: int = Field(validation_alias='donatorId', serialization_alias='donatorId')
     donator_spouse_id: _t.Optional[int] = Field(default=None, validation_alias='donatorSpouseId', serialization_alias='donatorSpouseId')
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['DRAFT', 'DUPLICATE', 'ORIGINAL'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Stored or newly generated receipt type. Requested watermarking does not change the stored type in this response.
+    Allowed values: `DRAFT`, `DUPLICATE`, `ORIGINAL`.
     """
 
 class DonationReceiptCreate(CTModel):
     """"""
     accounting_period_id: int
     """Accounting period for the requested donor or pair."""
-    type_: _t.Optional[str] = Field(default=None, validation_alias='type', serialization_alias='type')
+    type_: _t.Optional[_t.Union[_t.Literal['DRAFT', 'DUPLICATE', 'ORIGINAL'], str]] = Field(default=None, validation_alias='type', serialization_alias='type')
     """
     DRAFT creates temporary PDFs, ORIGINAL creates persistent files, and DUPLICATE marks a copy. On reads this parameter chooses watermarking, not which stored record is selected.
+    Allowed values: `DRAFT`, `DUPLICATE`, `ORIGINAL`.
     """
 
 class DonationReceiptJobResult(CTModel):
@@ -5553,7 +5914,8 @@ class Donator(CTModel):
 
 class DonatorDeprecated(CTModel):
     """Serialized migration hint for the deprecated field."""
-    last_modified: str = Field(validation_alias='lastModified', serialization_alias='lastModified')
+    last_modified: _t.Union[_t.Literal['lastModifiedDate'], str] = Field(validation_alias='lastModified', serialization_alias='lastModified')
+    """Allowed values: `lastModifiedDate`."""
 
 class DonatorHasDonatorData(CTModel):
     """
@@ -5584,7 +5946,8 @@ class DynamicGroupProcessHandleMembership(CTModel):
     """
     Membership-field values keyed by numeric field ID or reference name. The request schema only accepts lowercase letters, digits and hyphens as keys; field existence and value semantics are resolved during refresh.
     """
-    group_member_status: _t.Optional[_t.Union[DynamicGroupValueUnchanged, DynamicGroupValueDefault, str, DynamicGroupProcessHandleMembershipGroupMemberStatusVariant5]] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Optional[_t.Union[DynamicGroupValueUnchanged, DynamicGroupValueDefault, _t.Union[_t.Literal['active', 'none', 'requested', 'to_delete', 'waiting'], str], DynamicGroupProcessHandleMembershipGroupMemberStatusVariant5]] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    """Allowed values: `active`, `none`, `requested`, `to_delete`, `waiting`."""
     group_type_role_id: _t.Optional[_t.Union[DynamicGroupValueUnchanged, DynamicGroupValueDefault, int, DynamicGroupProcessHandleMembershipGroupTypeRoleIdVariant5]] = Field(default=None, validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
     """
     Group-type role ID, or a value-control object. It must be valid for this group when executed; the request schema does not resolve it.
@@ -5604,7 +5967,8 @@ class DynamicGroupProcessHandleMembershipCommentVariant5(CTModel):
 
 class DynamicGroupProcessHandleMembershipGroupMemberStatusVariant5(CTModel):
     """"""
-    value: _t.Optional[str] = Field(default=None)
+    value: _t.Optional[_t.Union[_t.Literal['active', 'none', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None)
+    """Allowed values: `active`, `none`, `requested`, `to_delete`, `waiting`."""
 
 class DynamicGroupProcessHandleMembershipGroupTypeRoleIdVariant5(CTModel):
     """"""
@@ -5663,7 +6027,8 @@ class DynamicGroupQuery(CTModel):
     ChurchQuery definition evaluated by the dynamic-group engine. params.responseFields must include the field named by personIdFieldName.
     """
     description: _t.Optional[str] = Field(default=None)
-    method: str
+    method: _t.Union[_t.Literal['ChurchQuery'], str]
+    """Allowed values: `ChurchQuery`."""
     params: DynamicGroupQueryParams
 
 class DynamicGroupQueryParams(CTModel):
@@ -5753,9 +6118,10 @@ class DynamicGroupStatusUpdate(CTModel):
     """
     Set the refresh mode independently of the stored rule set. This does not evaluate or execute rules.
     """
-    dynamic_group_status: str = Field(validation_alias='dynamicGroupStatus', serialization_alias='dynamicGroupStatus')
+    dynamic_group_status: _t.Union[_t.Literal['active', 'inactive', 'manual', 'none'], str] = Field(validation_alias='dynamicGroupStatus', serialization_alias='dynamicGroupStatus')
     """
     Controls automatic membership refresh: active participates in scheduled and manual refreshes; manual allows explicit refresh only; inactive blocks both; none disables dynamic-group behavior without deleting stored rules or existing memberships.
+    Allowed values: `active`, `inactive`, `manual`, `none`.
     """
 
 class DynamicGroupValueDefault(CTModel):
@@ -5776,9 +6142,10 @@ class EmailPlaceholderStatistics(CTModel):
     """
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
     """Recipient represented by this entry."""
-    stats: _t.Union[StrMap[int], _t.List[int]]
+    stats: _t.Union[StrMap[_t.Union[_t.Literal[0, 1, 2], int]], _t.List[_t.Union[_t.Literal[0, 1, 2], int]]]
     """
     Map of evaluated placeholder names to availability codes. An empty map can serialize as []. Internal names ending in .all or .person are omitted.
+    Allowed values: `0`, `1`, `2`.
     """
 
 class EmailPlaceholderStatisticsCreate(CTModel):
@@ -5899,14 +6266,18 @@ class EubpSubmission(CTModel):
     """Timestamp when submission was sent"""
     server_message_id: _t.Optional[str] = Field(default=None, validation_alias='serverMessageId', serialization_alias='serverMessageId')
     """Server message ID from eXTra service"""
-    status: str
+    status: _t.Union[_t.Literal['accepted', 'cancelled', 'draft', 'finished', 'pending', 'rejected', 'response', 'sent'], str]
     """
     Local workflow state. Accounts are editable in draft, rejected and response. pending means queued/in progress, not accepted by DRV.
+    Allowed values: `accepted`, `cancelled`, `draft`, `finished`, `pending`, `rejected`, `response`, `sent`.
     """
     title: _t.Optional[str] = Field(default=None)
     """Title of the submission"""
-    transmission_reason: int = Field(validation_alias='transmissionReason', serialization_alias='transmissionReason')
-    """Reason for transmission (1=audit, 2=software change, 3=provider change)"""
+    transmission_reason: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='transmissionReason', serialization_alias='transmissionReason')
+    """
+    Reason for transmission (1=audit, 2=software change, 3=provider change)
+    Allowed values: `1`, `2`, `3`.
+    """
     year_from: int = Field(validation_alias='yearFrom', serialization_alias='yearFrom')
     """Start year of the delivery period"""
     year_to: int = Field(validation_alias='yearTo', serialization_alias='yearTo')
@@ -5960,8 +6331,11 @@ class EubpSubmissionCreate(CTModel):
     """
     title: _t.Optional[str] = Field(default=None)
     """Title of the submission"""
-    transmission_reason: int = Field(validation_alias='transmissionReason', serialization_alias='transmissionReason')
-    """Reason for transmission (1=audit, 2=software change, 3=provider change)"""
+    transmission_reason: _t.Union[_t.Literal[1, 2, 3], int] = Field(validation_alias='transmissionReason', serialization_alias='transmissionReason')
+    """
+    Reason for transmission (1=audit, 2=software change, 3=provider change)
+    Allowed values: `1`, `2`, `3`.
+    """
     year_from: int = Field(validation_alias='yearFrom', serialization_alias='yearFrom')
     """Start year of the delivery period"""
     year_to: int = Field(validation_alias='yearTo', serialization_alias='yearTo')
@@ -6022,8 +6396,10 @@ class EubpSubmissionPreviewWarningsItem(CTModel):
     """"""
     message: str
     """Localized warning text."""
-    severity: str
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    severity: _t.Union[_t.Literal['info'], str]
+    """Allowed values: `info`."""
+    type_: _t.Union[_t.Literal['missing_accounting_period'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `missing_accounting_period`."""
     years: _t.List[int]
     """
     Years without a linked accounting period. A year can occur more than once for different clients.
@@ -6099,8 +6475,11 @@ class Event(CTModel):
     appointment_id: int = Field(validation_alias='appointmentId', serialization_alias='appointmentId')
     calendar: DomainObjectCalendar
     """Calendar as Domain Object"""
-    chat_status: str = Field(validation_alias='chatStatus', serialization_alias='chatStatus')
-    """Room lifecycle status. `STARTING` awaits confirmation from the central chat service."""
+    chat_status: _t.Union[_t.Literal['NOT_STARTED', 'STARTED', 'STARTING', 'STOPPED'], str] = Field(validation_alias='chatStatus', serialization_alias='chatStatus')
+    """
+    Room lifecycle status. `STARTING` awaits confirmation from the central chat service.
+    Allowed values: `NOT_STARTED`, `STARTED`, `STARTING`, `STOPPED`.
+    """
     description: _t.Optional[str] = Field(default=None)
     end_date: _dt.datetime = Field(validation_alias='endDate', serialization_alias='endDate')
     """
@@ -6209,9 +6588,10 @@ class EventDetailsUpdateResultAppointment(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: int = Field(validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int] = Field(validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -6361,8 +6741,11 @@ class EventReadWithServices(CTModel):
     appointment_id: int = Field(validation_alias='appointmentId', serialization_alias='appointmentId')
     calendar: DomainObjectCalendar
     """Calendar as Domain Object"""
-    chat_status: str = Field(validation_alias='chatStatus', serialization_alias='chatStatus')
-    """Room lifecycle status. `STARTING` awaits confirmation from the central chat service."""
+    chat_status: _t.Union[_t.Literal['NOT_STARTED', 'STARTED', 'STARTING', 'STOPPED'], str] = Field(validation_alias='chatStatus', serialization_alias='chatStatus')
+    """
+    Room lifecycle status. `STARTING` awaits confirmation from the central chat service.
+    Allowed values: `NOT_STARTED`, `STARTED`, `STARTING`, `STOPPED`.
+    """
     description: _t.Optional[str] = Field(default=None)
     end_date: _dt.datetime = Field(validation_alias='endDate', serialization_alias='endDate')
     """
@@ -6501,9 +6884,10 @@ class ExternalLogin(CTModel):
     """
     Whether this provider is listed among available SSO login choices. Hiding it is not the same as deleting its configuration or mappings.
     """
-    matching_mode: str = Field(validation_alias='matchingMode', serialization_alias='matchingMode')
+    matching_mode: _t.Union[_t.Literal['auto_match', 'preprovisioned_only', 'verified_user_linking'], str] = Field(validation_alias='matchingMode', serialization_alias='matchingMode')
     """
     Determines how an authenticated external identity without an existing person mapping is handled. Auto-match mode uses automatic name-and-email matching and optional person creation. Verified mode asks the user to either prove ownership of a local account or, when `createNewPerson` is enabled, explicitly create a person. Pre-provisioned mode rejects identities without a mapping.
+    Allowed values: `auto_match`, `preprovisioned_only`, `verified_user_linking`.
     """
     name: str
     """Display name shown for this provider."""
@@ -6525,8 +6909,11 @@ class ExternalLogin(CTModel):
     """
     subtitle: _t.Optional[str] = Field(default=None)
     """Secondary text on the login choice."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Configured login protocol."""
+    type_: _t.Union[_t.Literal['oauth', 'oidc', 'saml'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Configured login protocol.
+    Allowed values: `oauth`, `oidc`, `saml`.
+    """
     update_data_on_login: bool = Field(validation_alias='updateDataOnLogin', serialization_alias='updateDataOnLogin')
     """Whether existing person data is updated from provider data after successful matching."""
     id: int
@@ -6561,9 +6948,10 @@ class ExternalLoginCreate(CTModel):
     Whether the external provider offers a registration flow; support depends on the protocol handler.
     """
     is_visible: _t.Optional[bool] = Field(default=None, validation_alias='isVisible', serialization_alias='isVisible')
-    matching_mode: _t.Optional[str] = Field(default=None, validation_alias='matchingMode', serialization_alias='matchingMode')
+    matching_mode: _t.Optional[_t.Union[_t.Literal['auto_match', 'preprovisioned_only', 'verified_user_linking'], str]] = Field(default=None, validation_alias='matchingMode', serialization_alias='matchingMode')
     """
     Determines how an authenticated external identity without an existing person mapping is handled. Auto-match mode uses automatic name-and-email matching and optional person creation. Verified mode asks the user to either prove ownership of a local account or, when `createNewPerson` is enabled, explicitly create a person. Pre-provisioned mode rejects identities without a mapping.
+    Allowed values: `auto_match`, `preprovisioned_only`, `verified_user_linking`.
     """
     name: str
     """Display name shown for this provider."""
@@ -6582,8 +6970,11 @@ class ExternalLoginCreate(CTModel):
     primary_login: _t.Optional[bool] = Field(default=None, validation_alias='primaryLogin', serialization_alias='primaryLogin')
     subtitle: _t.Optional[str] = Field(default=None)
     """Secondary text on the login choice."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Configured login protocol."""
+    type_: _t.Union[_t.Literal['oauth', 'oidc', 'saml'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Configured login protocol.
+    Allowed values: `oauth`, `oidc`, `saml`.
+    """
     update_data_on_login: bool = Field(validation_alias='updateDataOnLogin', serialization_alias='updateDataOnLogin')
     """Whether existing person data is updated from provider data after successful matching."""
 
@@ -6613,9 +7004,10 @@ class ExternalLoginOAuthConfig(CTModel):
     """OAuth provider configuration."""
     access_token_url: str = Field(validation_alias='accessTokenUrl', serialization_alias='accessTokenUrl')
     authorize_url: str = Field(validation_alias='authorizeUrl', serialization_alias='authorizeUrl')
-    callback_url_version: _t.Optional[int] = Field(default=None, validation_alias='callbackUrlVersion', serialization_alias='callbackUrlVersion')
+    callback_url_version: _t.Optional[_t.Union[_t.Literal[2], int]] = Field(default=None, validation_alias='callbackUrlVersion', serialization_alias='callbackUrlVersion')
     """
     Version 2 uses the stable /oauthclients/login/callback URL. Existing providers without this value retain their provider-specific callback URL. New OAuth providers default to version 2.
+    Allowed values: `2`.
     """
     client_id: str = Field(validation_alias='clientId', serialization_alias='clientId')
     client_secret: _t.Optional[str] = Field(default=None, validation_alias='clientSecret', serialization_alias='clientSecret')
@@ -6629,9 +7021,10 @@ class ExternalLoginOidcConfig(CTModel):
     """
     Optional allowlist for the `ct_connection` claim. When configured, an ID token without an allowed connection is rejected.
     """
-    callback_url_version: _t.Optional[int] = Field(default=None, validation_alias='callbackUrlVersion', serialization_alias='callbackUrlVersion', deprecated=True)
+    callback_url_version: _t.Optional[_t.Union[_t.Literal[2], int]] = Field(default=None, validation_alias='callbackUrlVersion', serialization_alias='callbackUrlVersion', deprecated=True)
     """
     Retained for stored-data and API compatibility. Callback routing no longer depends on this value.
+    Allowed values: `2`.
     """
     client_id: str = Field(validation_alias='clientId', serialization_alias='clientId')
     client_secret: _t.Optional[str] = Field(default=None, validation_alias='clientSecret', serialization_alias='clientSecret')
@@ -6657,8 +7050,11 @@ class ExternalLoginOidcTestError(CTModel):
     """
     Sorted unique claim names from the validated ID token on success. Claim values and tokens are never returned.
     """
-    error_code: _t.Optional[str] = Field(default=None, validation_alias='errorCode', serialization_alias='errorCode')
-    """Sanitized, actionable failure category without provider response details."""
+    error_code: _t.Optional[_t.Union[_t.Literal['acr_insufficient', 'client_id_mismatch', 'configuration_error', 'connection_not_allowed', 'discovery_issuer_mismatch', 'discovery_private_network', 'discovery_unavailable', 'entitlement_missing', 'id_token_invalid', 'issuer_invalid', 'nonce_invalid', 'provider_error', 'signature_invalid', 'signing_algorithm_unsupported', 'signing_key_unavailable', 'subject_missing', 'token_exchange_failed', 'token_time_invalid', 'validation_failed'], str]] = Field(default=None, validation_alias='errorCode', serialization_alias='errorCode')
+    """
+    Sanitized, actionable failure category without provider response details.
+    Allowed values: `acr_insufficient`, `client_id_mismatch`, `configuration_error`, `connection_not_allowed`, `discovery_issuer_mismatch`, `discovery_private_network`, `discovery_unavailable`, `entitlement_missing`, `id_token_invalid`, `issuer_invalid`, `nonce_invalid`, `provider_error`, `signature_invalid`, `signing_algorithm_unsupported`, `signing_key_unavailable`, `subject_missing`, `token_exchange_failed`, `token_time_invalid`, `validation_failed`.
+    """
     status: str
 
 class ExternalLoginOidcTestResult(CTModel):
@@ -6669,9 +7065,13 @@ class ExternalLoginOidcTestResult(CTModel):
     """
     Sorted unique claim names from the validated ID token on success. Claim values and tokens are never returned.
     """
-    error_code: _t.Optional[str] = Field(default=None, validation_alias='errorCode', serialization_alias='errorCode')
-    """Sanitized, actionable failure category without provider response details."""
-    status: str
+    error_code: _t.Optional[_t.Union[_t.Literal['acr_insufficient', 'client_id_mismatch', 'configuration_error', 'connection_not_allowed', 'discovery_issuer_mismatch', 'discovery_private_network', 'discovery_unavailable', 'entitlement_missing', 'id_token_invalid', 'issuer_invalid', 'nonce_invalid', 'provider_error', 'signature_invalid', 'signing_algorithm_unsupported', 'signing_key_unavailable', 'subject_missing', 'token_exchange_failed', 'token_time_invalid', 'validation_failed'], str]] = Field(default=None, validation_alias='errorCode', serialization_alias='errorCode')
+    """
+    Sanitized, actionable failure category without provider response details.
+    Allowed values: `acr_insufficient`, `client_id_mismatch`, `configuration_error`, `connection_not_allowed`, `discovery_issuer_mismatch`, `discovery_private_network`, `discovery_unavailable`, `entitlement_missing`, `id_token_invalid`, `issuer_invalid`, `nonce_invalid`, `provider_error`, `signature_invalid`, `signing_algorithm_unsupported`, `signing_key_unavailable`, `subject_missing`, `token_exchange_failed`, `token_time_invalid`, `validation_failed`.
+    """
+    status: _t.Union[_t.Literal['error', 'expired', 'pending', 'success'], str]
+    """Allowed values: `error`, `expired`, `pending`, `success`."""
 
 class ExternalLoginOidcTestStart(CTModel):
     """
@@ -6703,22 +7103,28 @@ class ExternalLoginPersonMapping(CTModel):
     """ID of the linked external-login provider; used to unlink this mapping."""
     external_login_name: str = Field(validation_alias='externalLoginName', serialization_alias='externalLoginName')
     """Configured provider display name."""
-    external_login_type: str = Field(validation_alias='externalLoginType', serialization_alias='externalLoginType')
-    """Authentication protocol used by the provider."""
+    external_login_type: _t.Union[_t.Literal['ldap', 'oauth', 'oidc', 'saml'], str] = Field(validation_alias='externalLoginType', serialization_alias='externalLoginType')
+    """
+    Authentication protocol used by the provider.
+    Allowed values: `ldap`, `oauth`, `oidc`, `saml`.
+    """
 
 class ExternalLoginSamlCertificateMetadata(CTModel):
     """"""
     fingerprint_sha256: str = Field(validation_alias='fingerprintSha256', serialization_alias='fingerprintSha256')
-    status: str
-    use: str
+    status: _t.Union[_t.Literal['expired', 'expiring', 'not-yet-valid', 'valid'], str]
+    """Allowed values: `expired`, `expiring`, `not-yet-valid`, `valid`."""
+    use: _t.Union[_t.Literal['signing'], str]
+    """Allowed values: `signing`."""
     valid_from: _dt.datetime = Field(validation_alias='validFrom', serialization_alias='validFrom')
     valid_to: _dt.datetime = Field(validation_alias='validTo', serialization_alias='validTo')
 
 class ExternalLoginSamlConfig(CTModel):
     """SAML identity-provider settings. SP keys and certificates are managed by ChurchTools."""
-    callback_url_version: _t.Optional[int] = Field(default=None, validation_alias='callbackUrlVersion', serialization_alias='callbackUrlVersion', deprecated=True)
+    callback_url_version: _t.Optional[_t.Union[_t.Literal[2], int]] = Field(default=None, validation_alias='callbackUrlVersion', serialization_alias='callbackUrlVersion', deprecated=True)
     """
     Retained for stored-data and API compatibility. Callback routing no longer depends on this value.
+    Allowed values: `2`.
     """
     email_attribute: _t.Optional[str] = Field(default=None, validation_alias='emailAttribute', serialization_alias='emailAttribute')
     first_name_attribute: _t.Optional[str] = Field(default=None, validation_alias='firstNameAttribute', serialization_alias='firstNameAttribute')
@@ -6731,10 +7137,12 @@ class ExternalLoginSamlConfig(CTModel):
     idp_entity_id: _t.Optional[str] = Field(default=None, validation_alias='idpEntityId', serialization_alias='idpEntityId')
     """SAML IdP entity identifier. Required when the provider will be visible."""
     idp_single_logout_service: _t.Optional[str] = Field(default=None, validation_alias='idpSingleLogoutService', serialization_alias='idpSingleLogoutService')
-    idp_single_logout_service_binding: _t.Optional[str] = Field(default=None, validation_alias='idpSingleLogoutServiceBinding', serialization_alias='idpSingleLogoutServiceBinding')
+    idp_single_logout_service_binding: _t.Optional[_t.Union[_t.Literal['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'], str]] = Field(default=None, validation_alias='idpSingleLogoutServiceBinding', serialization_alias='idpSingleLogoutServiceBinding')
+    """Allowed values: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`."""
     idp_single_sign_on_service: _t.Optional[str] = Field(default=None, validation_alias='idpSingleSignOnService', serialization_alias='idpSingleSignOnService')
     """IdP SSO URL. Required when the provider will be visible."""
-    idp_single_sign_on_service_binding: _t.Optional[str] = Field(default=None, validation_alias='idpSingleSignOnServiceBinding', serialization_alias='idpSingleSignOnServiceBinding')
+    idp_single_sign_on_service_binding: _t.Optional[_t.Union[_t.Literal['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'], str]] = Field(default=None, validation_alias='idpSingleSignOnServiceBinding', serialization_alias='idpSingleSignOnServiceBinding')
+    """Allowed values: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`."""
     idp_x509cert: _t.Optional[str] = Field(default=None, validation_alias='idpX509cert', serialization_alias='idpX509cert')
     """Legacy field for a single IdP signing certificate in PEM format."""
     idp_x509cert_multi: _t.Optional[ExternalLoginSamlConfigIdpX509certMulti] = Field(default=None, validation_alias='idpX509certMulti', serialization_alias='idpX509certMulti')
@@ -6744,9 +7152,10 @@ class ExternalLoginSamlConfig(CTModel):
     sign_requests: _t.Optional[bool] = Field(default=None, validation_alias='signRequests', serialization_alias='signRequests')
     signature_algorithm: _t.Optional[str] = Field(default=None, validation_alias='signatureAlgorithm', serialization_alias='signatureAlgorithm')
     """Signature algorithm URI. The API validates URL syntax but not a closed algorithm catalog."""
-    signature_requirement: _t.Optional[str] = Field(default=None, validation_alias='signatureRequirement', serialization_alias='signatureRequirement')
+    signature_requirement: _t.Optional[_t.Union[_t.Literal['assertion', 'both', 'response'], str]] = Field(default=None, validation_alias='signatureRequirement', serialization_alias='signatureRequirement')
     """
     Required signatures on inbound SAML authentication responses. `response` requires the outer SAML Response, `assertion` requires its Assertion, and `both` requires both. SP metadata exposes the Assertion requirement as `WantAssertionsSigned`; SAML metadata has no standard attribute for requiring the outer Response signature.
+    Allowed values: `assertion`, `both`, `response`.
     """
     site_name: _t.Optional[str] = Field(default=None, validation_alias='siteName', serialization_alias='siteName')
     sp_x509cert: _t.Optional[str] = Field(default=None, validation_alias='spX509cert', serialization_alias='spX509cert')
@@ -6763,8 +7172,11 @@ class ExternalLoginSamlTestMapping(CTModel):
     """"""
     claim_name: str = Field(validation_alias='claimName', serialization_alias='claimName')
     """Configured attribute name, or the SAML default for this ChurchTools field."""
-    field: str
-    """ChurchTools identity field whose provider attribute mapping is inspected."""
+    field: _t.Union[_t.Literal['email', 'firstName', 'id', 'lastName', 'username'], str]
+    """
+    ChurchTools identity field whose provider attribute mapping is inspected.
+    Allowed values: `email`, `firstName`, `id`, `lastName`, `username`.
+    """
     present: bool
     """
     Whether the attribute name exists in the response. Empty attribute values still count as present.
@@ -6782,7 +7194,8 @@ class ExternalLoginSamlTestResult(CTModel):
     """
     Five configured/default mappings in order: id, email, username, firstName, lastName. Presence checks only the attribute name, not whether its value is nonempty or usable.
     """
-    status: str
+    status: _t.Union[_t.Literal['error', 'expired', 'pending', 'success'], str]
+    """Allowed values: `error`, `expired`, `pending`, `success`."""
 
 class ExternalLoginSamlTestStart(CTModel):
     """
@@ -6814,9 +7227,10 @@ class ExternalLoginUpdate(CTModel):
     """
     Whether this provider is listed among available SSO login choices. Hiding it is not the same as deleting its configuration or mappings.
     """
-    matching_mode: _t.Optional[str] = Field(default=None, validation_alias='matchingMode', serialization_alias='matchingMode')
+    matching_mode: _t.Optional[_t.Union[_t.Literal['auto_match', 'preprovisioned_only', 'verified_user_linking'], str]] = Field(default=None, validation_alias='matchingMode', serialization_alias='matchingMode')
     """
     Determines how an authenticated external identity without an existing person mapping is handled. Auto-match mode uses automatic name-and-email matching and optional person creation. Verified mode asks the user to either prove ownership of a local account or, when `createNewPerson` is enabled, explicitly create a person. Pre-provisioned mode rejects identities without a mapping.
+    Allowed values: `auto_match`, `preprovisioned_only`, `verified_user_linking`.
     """
     name: str
     """Display name shown for this provider."""
@@ -6838,8 +7252,11 @@ class ExternalLoginUpdate(CTModel):
     """
     subtitle: _t.Optional[str] = Field(default=None)
     """Secondary text on the login choice."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Configured login protocol."""
+    type_: _t.Union[_t.Literal['oauth', 'oidc', 'saml'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Configured login protocol.
+    Allowed values: `oauth`, `oidc`, `saml`.
+    """
     update_data_on_login: bool = Field(validation_alias='updateDataOnLogin', serialization_alias='updateDataOnLogin')
     """Whether existing person data is updated from provider data after successful matching."""
 
@@ -6880,8 +7297,11 @@ class FactNumber(CTModel):
     """Stored numeric metric definition. `unit` can be `null` in existing data."""
     deprecated: str = Field(validation_alias='@deprecated', serialization_alias='@deprecated')
     """Deprecated response field that points clients from fieldType to type."""
-    field_type: _t.Optional[str] = Field(default=None, validation_alias='fieldType', serialization_alias='fieldType', deprecated=True)
-    """Legacy alias for type."""
+    field_type: _t.Optional[_t.Union[_t.Literal['number', 'select'], str]] = Field(default=None, validation_alias='fieldType', serialization_alias='fieldType', deprecated=True)
+    """
+    Legacy alias for type.
+    Allowed values: `number`, `select`.
+    """
     id: int
     """ID of the fact master data entry."""
     name: str
@@ -6890,7 +7310,8 @@ class FactNumber(CTModel):
     """Label translated for the current language, falling back to name."""
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
     """Sort key for ordering facts."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['number'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `number`."""
     unit: _t.Optional[str] = Field(default=None)
     """Unit for numeric values."""
 
@@ -6912,8 +7333,11 @@ class FactSelect(CTModel):
     """
     deprecated: str = Field(validation_alias='@deprecated', serialization_alias='@deprecated')
     """Deprecated response field that points clients from fieldType to type."""
-    field_type: _t.Optional[str] = Field(default=None, validation_alias='fieldType', serialization_alias='fieldType', deprecated=True)
-    """Legacy alias for type."""
+    field_type: _t.Optional[_t.Union[_t.Literal['number', 'select'], str]] = Field(default=None, validation_alias='fieldType', serialization_alias='fieldType', deprecated=True)
+    """
+    Legacy alias for type.
+    Allowed values: `number`, `select`.
+    """
     id: int
     """ID of the fact master data entry."""
     name: str
@@ -6924,7 +7348,8 @@ class FactSelect(CTModel):
     """Sort key for ordering facts."""
     options: _t.List[str]
     """Allowed values for select facts."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['select'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `select`."""
 
 class FactSelectCreate(CTModel):
     """
@@ -6944,15 +7369,17 @@ class FeatureUsage(CTModel):
     """Value to decrement the metric by"""
     name: str
     """Feature, tour or event name."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['event', 'feature', 'tour'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `event`, `feature`, `tour`."""
 
 class FieldMapping(CTModel):
     """
     Field mapping for an external connection and domain. `GET` can return an unsaved mapping when none exists.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     ChurchTools domain types accepted by entity and field mapping validation. Adapter support can be a smaller subset.
+    Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
     """
     entries: SyncFieldMappingEntries
     external_system: ExternalSystem = Field(validation_alias='externalSystem', serialization_alias='externalSystem')
@@ -6966,9 +7393,10 @@ class FieldMappingEntry(CTModel):
     from_filter: str = Field(validation_alias='fromFilter', serialization_alias='fromFilter')
     """Adapter-specific source-field qualifier."""
     others: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None)
-    system: str
+    system: _t.Union[_t.Literal['es', 'master'], str]
     """
     Side of synchronization: `master` is ChurchTools and `es` is the configured external system.
+    Allowed values: `es`, `master`.
     """
     to: str
     """Target field name supported by the adapter."""
@@ -7075,8 +7503,11 @@ class FileUploadResult(CTModel):
     """Whether domain lists show the file only to users who may edit its owning object."""
     size: _t.Optional[int] = Field(default=None)
     """The file size in byte"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """file for a stored file, link for a filename beginning with http."""
+    type_: _t.Union[_t.Literal['file', 'link'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    file for a stored file, link for a filename beginning with http.
+    Allowed values: `file`, `link`.
+    """
     id: _t.Optional[int] = Field(default=None)
     """Persisted file ID, or null for the special attachments category."""
 
@@ -7112,7 +7543,8 @@ class FinanceTemplate(CTModel):
     counts: FinanceTemplateCounts
     domain_identifier: _t.Optional[str] = Field(default=None, validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """File-domain identifier, if assigned."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['finance_template'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `finance_template`."""
     filename: str
     id: int
     name: str
@@ -7155,7 +7587,8 @@ class FinanceTemplateAccountGroup(CTModel):
 
 class FinanceTemplateAccountType(CTModel):
     """Portable account type definition in an exported finance template."""
-    balance_type: _t.Optional[str] = Field(default=None, validation_alias='balanceType', serialization_alias='balanceType')
+    balance_type: _t.Optional[_t.Union[_t.Literal['assets', 'liabilities'], str]] = Field(default=None, validation_alias='balanceType', serialization_alias='balanceType')
+    """Allowed values: `assets`, `liabilities`."""
     name: str
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
 
@@ -7220,8 +7653,11 @@ class FollowUp2(CTModel):
     """
     A planned follow-up for a person, optionally associated with a group membership. dueDate is the original plan; effectiveDueDate is the currently scheduled date. doneDate marks both completed and dismissed follow-ups, which are distinguished in history rather than a separate response status. FollowUp is the older master-data type; this resource is FollowUp2 for compatibility.
     """
-    color: str
-    """A color in ChurchTools"""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    A color in ChurchTools
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     """Trimmed description; missing, null or blank becomes null."""
     due_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='dueDate', serialization_alias='dueDate')
@@ -7238,9 +7674,10 @@ class FollowUp2(CTModel):
     """
     Optional fixed destination group for completion. Completion still requires the client to submit its selected successGroupId; it is not added automatically.
     """
-    success_group_member_status: _t.Optional[str] = Field(default=None, validation_alias='successGroupMemberStatus', serialization_alias='successGroupMemberStatus')
+    success_group_member_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='successGroupMemberStatus', serialization_alias='successGroupMemberStatus')
     """
     Membership status assigned in the selected success group; null uses the default active status.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     success_group_of_group_type_id: _t.Optional[int] = Field(default=None, validation_alias='successGroupOfGroupTypeId', serialization_alias='successGroupOfGroupTypeId')
     """Optional group-type restriction for selecting a destination group on completion."""
@@ -7255,7 +7692,8 @@ class FollowUp2(CTModel):
     membership_id: _t.Optional[int] = Field(default=None, validation_alias='membershipId', serialization_alias='membershipId')
     """Group-membership row ID, distinct from personId; null for personal follow-ups."""
     meta: MetaDataEntityId
-    origin: str
+    origin: _t.Union[_t.Literal['bulk-job', 'default', 'migration', 'routine'], str]
+    """Allowed values: `bulk-job`, `default`, `migration`, `routine`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
     """Person the follow-up concerns."""
 
@@ -7272,8 +7710,11 @@ class FollowUpCreate(CTModel):
     """
     Input for a follow-up concerning a person, optionally within an existing group membership. The person is the subject; ownerId is the person responsible for handling it. Date fields are calendar dates, not timestamps. Only title must be nonempty; omitted/blank description is normalized to null. duration is not read by these direct CRUD endpoints.
     """
-    color: _t.Optional[str] = Field(default=None)
-    """Optional color. Missing/null uses the yellow display fallback."""
+    color: _t.Optional[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]] = Field(default=None)
+    """
+    Optional color. Missing/null uses the yellow display fallback.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     """Trimmed description; missing, null or blank becomes null."""
     due_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='dueDate', serialization_alias='dueDate')
@@ -7296,9 +7737,10 @@ class FollowUpCreate(CTModel):
     """
     Optional fixed destination group for completion. Completion still requires the client to submit its selected successGroupId; it is not added automatically.
     """
-    success_group_member_status: _t.Optional[str] = Field(default=None, validation_alias='successGroupMemberStatus', serialization_alias='successGroupMemberStatus')
+    success_group_member_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='successGroupMemberStatus', serialization_alias='successGroupMemberStatus')
     """
     Membership status assigned in the selected success group; null uses the default active status.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     success_group_of_group_type_id: _t.Optional[int] = Field(default=None, validation_alias='successGroupOfGroupTypeId', serialization_alias='successGroupOfGroupTypeId')
     """Optional group-type restriction for selecting a destination group on completion."""
@@ -7359,8 +7801,11 @@ class FollowUpUpdate(CTModel):
     """
     Update of a follow-up backed by an unshared specification. Updating a shared specification uses `FollowUpSharedUpdate` instead. The owner cannot be unassigned through this endpoint.
     """
-    color: _t.Optional[str] = Field(default=None)
-    """Optional color. Missing/null uses the yellow display fallback."""
+    color: _t.Optional[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]] = Field(default=None)
+    """
+    Optional color. Missing/null uses the yellow display fallback.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     """Trimmed description; missing, null or blank becomes null."""
     due_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='dueDate', serialization_alias='dueDate')
@@ -7383,9 +7828,10 @@ class FollowUpUpdate(CTModel):
     """
     Optional fixed destination group for completion. Completion still requires the client to submit its selected successGroupId; it is not added automatically.
     """
-    success_group_member_status: _t.Optional[str] = Field(default=None, validation_alias='successGroupMemberStatus', serialization_alias='successGroupMemberStatus')
+    success_group_member_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='successGroupMemberStatus', serialization_alias='successGroupMemberStatus')
     """
     Membership status assigned in the selected success group; null uses the default active status.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     success_group_of_group_type_id: _t.Optional[int] = Field(default=None, validation_alias='successGroupOfGroupTypeId', serialization_alias='successGroupOfGroupTypeId')
     """Optional group-type restriction for selecting a destination group on completion."""
@@ -7442,8 +7888,11 @@ class GetConfigResponse(CTModel):
     ai_description_generation_enabled: _t.Optional[bool] = Field(default=None)
     ai_description_total_generation_count: _t.Optional[float] = Field(default=None)
     allowaiassistant: _t.Optional[bool] = Field(default=None)
-    allowcheckin: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    allowcheckin: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     allowedcals: _t.Optional[str] = Field(default=None)
     allowedclients: _t.Optional[str] = Field(default=None)
     allowedcwbusers: _t.Optional[str] = Field(default=None)
@@ -7454,18 +7903,31 @@ class GetConfigResponse(CTModel):
     allowedsyncjobs: _t.Optional[str] = Field(default=None)
     allowedtextgenerations: _t.Optional[str] = Field(default=None)
     alloweduser: _t.Optional[str] = Field(default=None)
-    allowfinance: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    allowldap: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    allowoptigemsync: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    allowsync: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    allowfinance: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    allowldap: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    allowoptigemsync: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    allowsync: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     app_security_request: _t.Optional[bool] = Field(default=None)
     auth_cache_time: _t.Optional[_t.Union[int, str]] = Field(default=None)
     authorized_persons: _t.Optional[str] = Field(default=None)
-    brand: str
+    brand: _t.Union[_t.Literal['ChurchTools', 'VereinTools'], str]
+    """Allowed values: `ChurchTools`, `VereinTools`."""
     build: _t.Optional[str] = Field(default=None)
     ccli_access_token: _t.Optional[str] = Field(default=None)
     ccli_auto_reporting_enabled: _t.Optional[bool] = Field(default=None)
@@ -7473,8 +7935,11 @@ class GetConfigResponse(CTModel):
     ccli_last_token_refresh: _t.Optional[str] = Field(default=None)
     ccli_refresh_token: _t.Optional[str] = Field(default=None)
     chat_server: str = Field(validation_alias='chatServer', serialization_alias='chatServer')
-    chrome_active: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    chrome_active: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     chrome_binary: _t.Optional[str] = Field(default=None)
     churchcal_active: _t.Optional[bool] = Field(default=None)
     churchcal_css: _t.Optional[str] = Field(default=None)
@@ -7505,8 +7970,11 @@ class GetConfigResponse(CTModel):
     churchcheckin_name_default: _t.Optional[str] = Field(default=None)
     churchcheckin_sortcode: _t.Optional[int] = Field(default=None)
     churchcheckin_tags: _t.Optional[str] = Field(default=None)
-    churchcustommodule_active: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    churchcustommodule_active: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     churchcustommodule_name: _t.Optional[str] = Field(default=None)
     churchcustommodule_name_default: _t.Optional[str] = Field(default=None)
     churchdb_active: _t.Optional[bool] = Field(default=None)
@@ -7516,7 +7984,8 @@ class GetConfigResponse(CTModel):
     churchdb_cleverreach_access_token: _t.Optional[str] = Field(default=None)
     churchdb_cleverreach_client_id: _t.Optional[str] = Field(default=None)
     churchdb_cleverreach_client_secret: _t.Optional[str] = Field(default=None)
-    churchdb_cleverreach_connected: _t.Optional[str] = Field(default=None)
+    churchdb_cleverreach_connected: _t.Optional[_t.Union[_t.Literal['false', 'true'], str]] = Field(default=None)
+    """Allowed values: `false`, `true`."""
     churchdb_cleverreach_refresh_token: _t.Optional[str] = Field(default=None)
     churchdb_cleverreach_scopes: _t.Optional[str] = Field(default=None)
     churchdb_cleverreach_token_expiry: _t.Optional[str] = Field(default=None)
@@ -7582,11 +8051,17 @@ class GetConfigResponse(CTModel):
     cron_hour_8: OptionalDateTime = Field(default=None)
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     cron_last_execution: _t.Optional[str] = Field(default=None)
-    cronjob_dbdump: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    cronjob_dbdump: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     cronjob_delay: _t.Optional[int] = Field(default=None)
-    currently_mail_sending: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    currently_mail_sending: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     datasecurity_privacy_declaration_wiki_link: _t.Optional[str] = Field(default=None, validation_alias='datasecurityPrivacyDeclarationWikiLink', serialization_alias='datasecurityPrivacyDeclarationWikiLink')
     datasecurity_banner_enabled: _t.Optional[bool] = Field(default=None)
     datasecurity_privacy_agreement_hint: _t.Optional[str] = Field(default=None)
@@ -7602,7 +8077,8 @@ class GetConfigResponse(CTModel):
     deactivate_default_login: _t.Optional[bool] = Field(default=None)
     default_phone_area_code: _t.Optional[str] = Field(default=None)
     deprecation_usage_mail_last_execution: _t.Optional[str] = Field(default=None)
-    email_server: _t.Optional[str] = Field(default=None, validation_alias='emailServer', serialization_alias='emailServer')
+    email_server: _t.Optional[_t.Union[_t.Literal['churchtools', 'own'], str]] = Field(default=None, validation_alias='emailServer', serialization_alias='emailServer')
+    """Allowed values: `churchtools`, `own`."""
     encryptionkey: _t.Optional[str] = Field(default=None)
     env: _t.Optional[str] = Field(default=None)
     evangelische_termine_api_key: _t.Optional[str] = Field(default=None)
@@ -7611,43 +8087,73 @@ class GetConfigResponse(CTModel):
     evangelische_termine_url: _t.Optional[str] = Field(default=None)
     evangelische_termine_vid: _t.Optional[str] = Field(default=None)
     feature_appointment_search: _t.Optional[bool] = Field(default=None)
-    feature_automation: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    feature_custommodule: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    feature_darkmode: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    feature_dynamic_groups: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_automation: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    feature_custommodule: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    feature_darkmode: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    feature_dynamic_groups: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_eubp: _t.Optional[bool] = Field(default=None)
     feature_event_fact_widget: _t.Optional[bool] = Field(default=None)
     feature_finance_donators_datatable: _t.Optional[bool] = Field(default=None)
     feature_flags_ui: _t.Optional[bool] = Field(default=None)
-    feature_group: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_group: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_markdown_group: _t.Optional[bool] = Field(default=None, deprecated=True)
     """Deprecated compatibility flag that is always true."""
-    feature_mobile_groups: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_mobile_groups: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_newsfeed_comment_reactions: _t.Optional[bool] = Field(default=None, deprecated=True)
     """Deprecated compatibility flag that is always true."""
     feature_old_group_module: _t.Optional[bool] = Field(default=None)
     feature_org_chart_groups: _t.Optional[str] = Field(default=None)
     feature_permission_new: _t.Optional[bool] = Field(default=None)
     feature_person_probe_filter: _t.Optional[bool] = Field(default=None)
-    feature_posts: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    feature_resources_app: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_posts: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    feature_resources_app: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_sessionless_login: _t.Optional[bool] = Field(default=None)
-    feature_sync: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    feature_sync: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     feature_usechurchquery: _t.Optional[str] = Field(default=None)
     file_meta_cron_last_file_size_id: _t.Optional[str] = Field(default=None)
     file_meta_cron_last_image_metadata_id: _t.Optional[str] = Field(default=None)
     finance_active: _t.Optional[bool] = Field(default=None)
-    finance_inmenu: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    finance_inmenu: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     finance_name: _t.Optional[str] = Field(default=None)
     finance_name_default: _t.Optional[str] = Field(default=None)
     finance_sortcode: _t.Optional[str] = Field(default=None)
@@ -7658,15 +8164,21 @@ class GetConfigResponse(CTModel):
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     hide_beta_states: _t.Optional[bool] = Field(default=None, validation_alias='hideBetaStates', serialization_alias='hideBetaStates')
     hide_all_hints: _t.Optional[bool] = Field(default=None)
-    hostingservice: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    hostingservice: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     https_only: _t.Optional[str] = Field(default=None)
     ical_invitation_hmac_secret: _t.Optional[str] = Field(default=None)
     image_extension: _t.Optional[str] = Field(default=None)
     impressum_external: _t.Optional[str] = Field(default=None)
     impressum_external_link: _t.Optional[str] = Field(default=None)
-    impressum_internal: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    impressum_internal: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     imprint_wiki_link: _t.Optional[str] = Field(default=None, validation_alias='imprintWikiLink', serialization_alias='imprintWikiLink')
     installation_verification_code: _t.Optional[str] = Field(default=None)
     invite_email_text: _t.Optional[str] = Field(default=None)
@@ -7678,9 +8190,10 @@ class GetConfigResponse(CTModel):
     is_churchtools_onboarding_widget_active: _t.Optional[bool] = Field(default=None)
     is_pr_widget_active: _t.Optional[bool] = Field(default=None)
     is_rss_widget_active: _t.Optional[bool] = Field(default=None)
-    language: _t.Optional[str] = Field(default=None)
+    language: _t.Optional[_t.Union[_t.Literal['cn', 'de', 'en', 'es', 'fa', 'fi', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sv', 'tw'], str]] = Field(default=None)
     """
     The language code is a two-letter code that represents the language. For example, "en" for English, "de" for German, and "fr" for French.
+    Allowed values: `cn`, `de`, `en`, `es`, `fa`, `fi`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sv`, `tw`.
     """
     last_cron: _t.Optional[str] = Field(default=None)
     last_cron_finished: _t.Optional[str] = Field(default=None)
@@ -7689,12 +8202,18 @@ class GetConfigResponse(CTModel):
     last_translation_update: _t.Optional[str] = Field(default=None)
     ldap_otp_enabled: _t.Optional[bool] = Field(default=None)
     license_settings: _t.Optional[GetConfigResponseLicenseSettings] = Field(default=None, validation_alias='licenseSettings', serialization_alias='licenseSettings')
-    log_debug: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    log_debug: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     login_message: _t.Optional[str] = Field(default=None)
     mail_enabled: _t.Optional[bool] = Field(default=None)
-    mail_sending_in_background: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    mail_sending_in_background: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     mail_sending_starttime: _t.Optional[str] = Field(default=None)
     mail_smtp_args_host: _t.Optional[str] = Field(default=None)
     mail_smtp_args_password: _t.Optional[str] = Field(default=None)
@@ -7703,36 +8222,67 @@ class GetConfigResponse(CTModel):
     mail_smtp_args_username: _t.Optional[str] = Field(default=None)
     matomo_uri: _t.Optional[str] = Field(default=None)
     max_uploadfile_size_kb: _t.Optional[int] = Field(default=None)
-    memberlist_birthday_full: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_email: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_fax: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_group_couples: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_picture: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_salutation: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_telefongeschaeftlich: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_telefonhandy: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
-    memberlist_telefonprivat: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    memberlist_birthday_full: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_email: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_fax: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_group_couples: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_picture: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_salutation: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_telefongeschaeftlich: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_telefonhandy: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
+    memberlist_telefonprivat: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     onboarding_start: OptionalDateTime = Field(default=None)
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     openai_api_key: _t.Optional[str] = Field(default=None)
     openstreetmaps_enabled: _t.Optional[bool] = Field(default=None)
-    orderstatus: _t.Optional[str] = Field(default=None)
+    orderstatus: _t.Optional[_t.Union[_t.Literal['Auftrag', 'Bedenkzeit', 'Entscheidung', 'Finder', 'FinderCombo', 'Mitarbeiter', 'Testphase', 'Unbekannt', 'Vorlage/Schulung/Test', 'WebsiteCombo', 'zu löschen'], str]] = Field(default=None)
+    """
+    Allowed values: `Auftrag`, `Bedenkzeit`, `Entscheidung`, `Finder`, `FinderCombo`, `Mitarbeiter`, `Testphase`, `Unbekannt`, `Vorlage/Schulung/Test`, `WebsiteCombo`, `zu löschen`.
+    """
     orderstatus_since_date: OptionalDateTime = Field(default=None)
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     package: _t.Optional[str] = Field(default=None)
     post_active: _t.Optional[bool] = Field(default=None)
     post_edit_time_limited: _t.Optional[bool] = Field(default=None)
     post_email_summary_default_enabled: _t.Optional[bool] = Field(default=None)
-    post_email_summary_default_filter: _t.Optional[str] = Field(default=None)
+    post_email_summary_default_filter: _t.Optional[_t.Union[_t.Literal['all', 'featured_groups', 'my_groups'], str]] = Field(default=None)
+    """Allowed values: `all`, `featured_groups`, `my_groups`."""
     post_email_summary_default_weekdays: _t.Optional[str] = Field(default=None)
     post_featured_groups: _t.Optional[str] = Field(default=None)
     post_inmenu: _t.Optional[bool] = Field(default=None)
@@ -7740,7 +8290,8 @@ class GetConfigResponse(CTModel):
     post_sortcode: _t.Optional[int] = Field(default=None)
     post_wizard_completed: _t.Optional[bool] = Field(default=None)
     post_wizard_groups: _t.Optional[str] = Field(default=None)
-    prevent_change_security_settings: _t.Optional[str] = Field(default=None)
+    prevent_change_security_settings: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """Allowed values: `0`, `1`."""
     prevent_export: _t.Optional[bool] = Field(default=None)
     prevent_manual_finance_account_creation: _t.Optional[bool] = Field(default=None)
     privacy_policy_external: _t.Optional[bool] = Field(default=None)
@@ -7762,8 +8313,11 @@ class GetConfigResponse(CTModel):
     safe_mode_enable_chat_sync: _t.Optional[str] = Field(default=None)
     safe_mode_enable_consolidation: _t.Optional[str] = Field(default=None)
     safe_mode_enable_guid_sync: _t.Optional[str] = Field(default=None)
-    safe_mode_enable_job_queueing: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    safe_mode_enable_job_queueing: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     safe_mode_enable_mail: _t.Optional[str] = Field(default=None)
     safe_mode_enable_newsletter: _t.Optional[str] = Field(default=None)
     safe_mode_enable_notification: _t.Optional[str] = Field(default=None)
@@ -7786,7 +8340,8 @@ class GetConfigResponse(CTModel):
     test: bool
     timezone: _t.Optional[str] = Field(default=None)
     url_metadata_url: _t.Optional[str] = Field(default=None)
-    verification_status: str = Field(validation_alias='verificationStatus', serialization_alias='verificationStatus')
+    verification_status: _t.Union[_t.Literal['failed', 'in_progress', 'not_verified', 'verified'], str] = Field(validation_alias='verificationStatus', serialization_alias='verificationStatus')
+    """Allowed values: `failed`, `in_progress`, `not_verified`, `verified`."""
     version: _t.Optional[str] = Field(default=None)
     webchat_link: str = Field(validation_alias='webchatLink', serialization_alias='webchatLink')
     website_order_status: _t.Optional[str] = Field(default=None)
@@ -7800,13 +8355,15 @@ class GetConfigResponse(CTModel):
 
 class GetConfigResponseLicenseSettings(CTModel):
     """"""
-    hide_licensetab: _t.Optional[str] = Field(default=None)
+    hide_licensetab: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """Allowed values: `0`, `1`."""
 
 class GetGroupMemberstatusResponseItem(CTModel):
     """"""
-    id: str
+    id: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     name: str
     """Translated name of the member status."""
@@ -7817,7 +8374,8 @@ class GetGroupsGroupIdMemberfieldsDataItemVariant1(CTModel):
     """
     A global person field configured for this group’s membership/signup UI. id identifies the configuration row; dbField.id identifies the underlying person field used in the /memberfields/person/{fieldId} path.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['person'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `person`."""
 
 class GetGroupsGroupIdMemberfieldsDataItemVariant2(CTModel):
     """"""
@@ -7825,7 +8383,8 @@ class GetGroupsGroupIdMemberfieldsDataItemVariant2(CTModel):
     """
     A group-specific membership field definition. Values belong to a person’s membership in this group, rather than to the person globally.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['group'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `group`."""
 
 class GetGroupsIdQrcodecheckinPersonIdPdfData(CTModel):
     """"""
@@ -8035,7 +8594,8 @@ class GetPersonsRelationshipsDataItem(CTModel):
 
 class GetSearchDataItem(CTModel):
     """"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['action', 'domainObject'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `action`, `domainObject`."""
 
 class GetSyncExternalsystemsIdFieldmappingsDomaintypeNosuggestionsDataVariant1(CTModel):
     """"""
@@ -8299,9 +8859,10 @@ class GroupAddressCreate(CTModel):
     """Address addition. Whitespace is trimmed; omitted, null or blank clears the value."""
     city: _t.Optional[str] = Field(default=None)
     """Address city. Whitespace is trimmed; omitted, null or blank clears the value."""
-    color: _t.Optional[str] = Field(default=None)
+    color: _t.Optional[_t.Union[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str], _t.Union[_t.Literal['default', 'parent'], str]]] = Field(default=None)
     """
     Optional ChurchTools color. The special values default and parent select the default or owning group color. Omitted or null clears the value.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
     """
     country: _t.Optional[str] = Field(default=None)
     """
@@ -8334,9 +8895,10 @@ class GroupAddressUpdate(CTModel):
     """Address addition. Whitespace is trimmed; omitted, null or blank clears the value."""
     city: _t.Optional[str] = Field(default=None)
     """Address city. Whitespace is trimmed; omitted, null or blank clears the value."""
-    color: _t.Optional[str] = Field(default=None)
+    color: _t.Optional[_t.Union[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str], _t.Union[_t.Literal['default', 'parent'], str]]] = Field(default=None)
     """
     Optional ChurchTools color. The special values default and parent select the default or owning group color. Omitted or null clears the value.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
     """
     country: _t.Optional[str] = Field(default=None)
     """
@@ -8365,8 +8927,11 @@ class GroupCategory(CTModel):
     """
     A thematic classification for groups, such as worship services or community activities. A group can reference a category through information.groupCategoryId. Categories are separate from group types, which define shared settings and membership roles.
     """
-    color: str
-    """ChurchTools color token used to display the category, such as blue."""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    ChurchTools color token used to display the category, such as blue.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     """
     Optional explanation of the category. Omitted, null or blank input is stored as null, including on update.
@@ -8390,8 +8955,11 @@ class GroupCategory(CTModel):
 
 class GroupCategoryCreate(CTModel):
     """"""
-    color: str
-    """ChurchTools color token used to display the category, such as blue."""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    ChurchTools color token used to display the category, such as blue.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     """
     Optional explanation of the category. Omitted, null or blank input is stored as null, including on update.
@@ -8462,17 +9030,21 @@ class GroupHomepage(CTModel):
     """Stored custom description for the group homepage header."""
     custom_title: _t.Optional[str] = Field(default=None, validation_alias='customTitle', serialization_alias='customTitle')
     """Stored custom title for the group homepage header."""
-    default_view: str = Field(validation_alias='defaultView', serialization_alias='defaultView')
-    """Type how groups are listed on the page."""
+    default_view: _t.Union[_t.Literal['list', 'minitile', 'tile'], str] = Field(validation_alias='defaultView', serialization_alias='defaultView')
+    """
+    Type how groups are listed on the page.
+    Allowed values: `list`, `minitile`, `tile`.
+    """
     depth: int
     """
     Stored hierarchy depth. A request depth override changes loaded groups without changing this returned setting.
     """
     description: str
     """Description of the group that owns the group homepage."""
-    description_mode: str = Field(validation_alias='descriptionMode', serialization_alias='descriptionMode')
+    description_mode: _t.Union[_t.Literal['custom', 'group', 'none'], str] = Field(validation_alias='descriptionMode', serialization_alias='descriptionMode')
     """
     Header rendering choice: none hides the description, group uses description, custom uses customDescription. The API retains both stored texts regardless of this choice.
+    Allowed values: `custom`, `group`, `none`.
     """
     filter: _t.Optional[_t.List[GroupHomepageFilter]] = Field(default=None, deprecated=True)
     """Deprecated alias of filters."""
@@ -8493,10 +9065,16 @@ class GroupHomepage(CTModel):
     meta: MetaDataEntityId
     name: str
     """Name of the group homepage's parent group."""
-    order_by: str = Field(validation_alias='orderBy', serialization_alias='orderBy')
-    """Group field to sort groups by."""
-    order_direction: str = Field(validation_alias='orderDirection', serialization_alias='orderDirection')
-    """Direction if groups are sorted ascending or descending."""
+    order_by: _t.Union[_t.Literal['dateOfFoundation', 'name'], str] = Field(validation_alias='orderBy', serialization_alias='orderBy')
+    """
+    Group field to sort groups by.
+    Allowed values: `dateOfFoundation`, `name`.
+    """
+    order_direction: _t.Union[_t.Literal['ASC', 'DESC'], str] = Field(validation_alias='orderDirection', serialization_alias='orderDirection')
+    """
+    Direction if groups are sorted ascending or descending.
+    Allowed values: `ASC`, `DESC`.
+    """
     parent_group: int = Field(validation_alias='parentGroup', serialization_alias='parentGroup')
     """ID of the parent group of all groups that should be displayed in the group homepage"""
     random_url: str = Field(validation_alias='randomUrl', serialization_alias='randomUrl')
@@ -8515,11 +9093,15 @@ class GroupHomepage(CTModel):
     """
     Effective map-display setting: true only when both the homepage setting and the installation openstreetmaps_enabled flag are true. Meeting-place data remains in groups when false.
     """
-    sort_by: _t.Optional[str] = Field(default=None, validation_alias='sortBy', serialization_alias='sortBy', deprecated=True)
-    """Use 'orderBy' instead."""
-    title_mode: str = Field(validation_alias='titleMode', serialization_alias='titleMode')
+    sort_by: _t.Optional[_t.Union[_t.Literal['dateOfFoundation', 'name'], str]] = Field(default=None, validation_alias='sortBy', serialization_alias='sortBy', deprecated=True)
+    """
+    Use 'orderBy' instead.
+    Allowed values: `dateOfFoundation`, `name`.
+    """
+    title_mode: _t.Union[_t.Literal['custom', 'group', 'none'], str] = Field(validation_alias='titleMode', serialization_alias='titleMode')
     """
     Header rendering choice: none hides the heading, group uses name, custom uses customTitle. The API returns the individual fields rather than a resolved display title.
+    Allowed values: `custom`, `group`, `none`.
     """
 
 class GroupHomepageFilter(CTModel):
@@ -8528,8 +9110,11 @@ class GroupHomepageFilter(CTModel):
     """
     show: bool
     """If true, this filter is enabled on the group homepage."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Catalog used by this filter."""
+    type_: _t.Union[_t.Literal['agegroups', 'campus', 'groupcategory', 'targetgroups', 'weekday'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Catalog used by this filter.
+    Allowed values: `agegroups`, `campus`, `groupcategory`, `targetgroups`, `weekday`.
+    """
     options: _t.Optional[_t.List[_t.Union[Weekday, TargetGroup, AgeGroup, GroupCategory, Campus]]] = Field(default=None)
     """Available options for this filter type."""
 
@@ -8539,8 +9124,11 @@ class GroupHomepageFilterCreate(CTModel):
     """
     show: bool
     """If true, this filter is enabled on the group homepage."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Catalog used by this filter."""
+    type_: _t.Union[_t.Literal['agegroups', 'campus', 'groupcategory', 'targetgroups', 'weekday'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Catalog used by this filter.
+    Allowed values: `agegroups`, `campus`, `groupcategory`, `targetgroups`, `weekday`.
+    """
 
 class GroupHomepageUpdate(CTModel):
     """
@@ -8554,15 +9142,19 @@ class GroupHomepageUpdate(CTModel):
     """
     Custom heading. Trimmed; null or blank clears the value. Omission preserves the current value on update.
     """
-    default_view: _t.Optional[str] = Field(default=None, validation_alias='defaultView', serialization_alias='defaultView')
-    """Initial group display layout."""
+    default_view: _t.Optional[_t.Union[_t.Literal['list', 'minitile', 'tile'], str]] = Field(default=None, validation_alias='defaultView', serialization_alias='defaultView')
+    """
+    Initial group display layout.
+    Allowed values: `list`, `minitile`, `tile`.
+    """
     depth: _t.Optional[int] = Field(default=None)
     """
     Maximum child hierarchy depth; 1 includes direct children. The public endpoint can override this value.
     """
-    description_mode: _t.Optional[str] = Field(default=None, validation_alias='descriptionMode', serialization_alias='descriptionMode')
+    description_mode: _t.Optional[_t.Union[_t.Literal['custom', 'group', 'none'], str]] = Field(default=None, validation_alias='descriptionMode', serialization_alias='descriptionMode')
     """
     Header content source. Omission uses group for a new page and preserves the current setting on update.
+    Allowed values: `custom`, `group`, `none`.
     """
     filters: _t.Optional[_t.List[GroupHomepageFilterCreate]] = Field(default=None)
     """
@@ -8572,10 +9164,16 @@ class GroupHomepageUpdate(CTModel):
     """Whether the group list starts collapsed."""
     is_enabled: bool = Field(validation_alias='isEnabled', serialization_alias='isEnabled')
     """Whether the public hash URL may be opened."""
-    order_by: _t.Optional[str] = Field(default=None, validation_alias='orderBy', serialization_alias='orderBy')
-    """Group field used to sort the page."""
-    order_direction: _t.Optional[str] = Field(default=None, validation_alias='orderDirection', serialization_alias='orderDirection')
-    """Ascending or descending sort order."""
+    order_by: _t.Optional[_t.Union[_t.Literal['dateOfFoundation', 'name'], str]] = Field(default=None, validation_alias='orderBy', serialization_alias='orderBy')
+    """
+    Group field used to sort the page.
+    Allowed values: `dateOfFoundation`, `name`.
+    """
+    order_direction: _t.Optional[_t.Union[_t.Literal['ASC', 'DESC'], str]] = Field(default=None, validation_alias='orderDirection', serialization_alias='orderDirection')
+    """
+    Ascending or descending sort order.
+    Allowed values: `ASC`, `DESC`.
+    """
     show_filters: bool = Field(validation_alias='showFilters', serialization_alias='showFilters')
     """Display the filter controls. Individual filter visibility is configured with filters."""
     show_group_images: bool = Field(validation_alias='showGroupImages', serialization_alias='showGroupImages')
@@ -8584,19 +9182,26 @@ class GroupHomepageUpdate(CTModel):
     """Include leaders in public group details."""
     show_map: bool = Field(validation_alias='showMap', serialization_alias='showMap')
     """Enable the map when the global OpenStreetMap setting also permits it."""
-    title_mode: _t.Optional[str] = Field(default=None, validation_alias='titleMode', serialization_alias='titleMode')
+    title_mode: _t.Optional[_t.Union[_t.Literal['custom', 'group', 'none'], str]] = Field(default=None, validation_alias='titleMode', serialization_alias='titleMode')
     """
     Header content source. Omission uses group for a new page and preserves the current setting on update.
+    Allowed values: `custom`, `group`, `none`.
     """
 
 class GroupInformation(CTModel):
     """"""
     age_group_ids: _t.List[int] = Field(validation_alias='ageGroupIds', serialization_alias='ageGroupIds')
     campus_id: _t.Optional[int] = Field(default=None, validation_alias='campusId', serialization_alias='campusId')
-    chat_status: str = Field(validation_alias='chatStatus', serialization_alias='chatStatus')
-    """Room lifecycle status. `STARTING` awaits confirmation from the central chat service."""
-    color: str
-    """A color in ChurchTools"""
+    chat_status: _t.Union[_t.Literal['NOT_STARTED', 'STARTED', 'STARTING', 'STOPPED'], str] = Field(validation_alias='chatStatus', serialization_alias='chatStatus')
+    """
+    Room lifecycle status. `STARTING` awaits confirmation from the central chat service.
+    Allowed values: `NOT_STARTED`, `STARTED`, `STARTING`, `STOPPED`.
+    """
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    A color in ChurchTools
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     date_of_foundation: _t.Optional[_dt.date] = Field(default=None, validation_alias='dateOfFoundation', serialization_alias='dateOfFoundation')
     end_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='endDate', serialization_alias='endDate')
     group_category_id: _t.Optional[int] = Field(default=None, validation_alias='groupCategoryId', serialization_alias='groupCategoryId')
@@ -8623,7 +9228,7 @@ class GroupMeeting(CTModel):
     """
     deprecated: _t.Optional[Deprecated] = Field(default=None, validation_alias='@deprecated', serialization_alias='@deprecated')
     """Compatibility metadata describing legacy date fields."""
-    attendances: _t.Optional[StrMap[str]] = Field(default=None)
+    attendances: _t.Optional[StrMap[_t.Union[_t.Literal['absent', 'not-in-group', 'present', 'unsure'], str]]] = Field(default=None)
     """
     Optional map from person IDs to attendance states, returned with include=attendances. Visibility and group-history permissions affect which people are included.
     """
@@ -8719,9 +9324,10 @@ class GroupMeetingMember(CTModel):
     """
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
     """Person ID. Use this value as memberId when changing this person's meeting attendance."""
-    status: str
+    status: _t.Union[_t.Literal['absent', 'not-in-group', 'present', 'unsure'], str]
     """
     Attendance at one meeting, independent of membership status: present means recorded as attending; absent means recorded as not attending; unsure means attendance has not been decided. not-in-group is also used when no attendance record exists for that person and meeting, so it does not prove that the person is currently outside the group.
+    Allowed values: `absent`, `not-in-group`, `present`, `unsure`.
     """
 
 class GroupMeetingStatistics(CTModel):
@@ -8749,9 +9355,10 @@ class GroupMember(CTModel):
     """
     group: GroupMemberGroup
     """Group to which this membership belongs."""
-    group_member_status: str = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str] = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     group_type_role_id: int = Field(validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
     """
@@ -8834,8 +9441,11 @@ class GroupMemberExportConfig(CTModel):
     """Leading columns, frozen horizontally in XLSX."""
     unpinned: _t.List[GroupMemberExportColumn]
     """Columns following the pinned columns."""
-    version: int
-    """Current configuration version. Use the integer 10."""
+    version: _t.Union[_t.Literal[10], int]
+    """
+    Current configuration version. Use the integer 10.
+    Allowed values: `10`.
+    """
 
 class GroupMemberExportCreate(CTModel):
     """
@@ -8845,9 +9455,10 @@ class GroupMemberExportCreate(CTModel):
 
 class GroupMemberExportTemplate(CTModel):
     """Built-in full export preset. Replaces any supplied column lists and version."""
-    template: str
+    template: _t.Union[_t.Literal['allin'], str]
     """
     Select every discoverable person, relationship, group-type, special and accessible membership field.
+    Allowed values: `allin`.
     """
 
 class GroupMemberFieldGroup(CTModel):
@@ -8862,9 +9473,10 @@ class GroupMemberFieldGroup(CTModel):
     """
     field_name: _t.Optional[str] = Field(default=None, validation_alias='fieldName', serialization_alias='fieldName', deprecated=True)
     """Use `name` instead."""
-    field_type_code: str = Field(validation_alias='fieldTypeCode', serialization_alias='fieldTypeCode')
+    field_type_code: _t.Union[_t.Literal['api', 'checkbox', 'date', 'datetime', 'multiselect', 'number', 'radioselect', 'select', 'text', 'textarea'], str] = Field(validation_alias='fieldTypeCode', serialization_alias='fieldTypeCode')
     """
     Input/storage type. select and radioselect use one option, multiselect uses multiple options. text and textarea require a configured length when created. api identifies an application-specific field type.
+    Allowed values: `api`, `checkbox`, `date`, `datetime`, `multiselect`, `number`, `radioselect`, `select`, `text`, `textarea`.
     """
     field_type_id: int = Field(validation_alias='fieldTypeId', serialization_alias='fieldTypeId')
     """Numeric id of the field type."""
@@ -8903,9 +9515,10 @@ class GroupMemberFieldGroupCreate(CTModel):
     """
     Default value, validated according to fieldTypeCode. Checkbox accepts booleans and supported boolean strings; number accepts numbers or numeric strings. Date/datetime require date/Zulu date-time strings. Text and textarea accept up to 4000 characters; api accepts up to 255. Select/radioselect accept an option name or ID; multiselect accepts an array, comma-separated string or JSON-encoded array of option names/IDs. Responses normalize scalar values to strings and multiselect values to arrays of option-ID strings. Null clears the default.
     """
-    field_type_code: str = Field(validation_alias='fieldTypeCode', serialization_alias='fieldTypeCode')
+    field_type_code: _t.Union[_t.Literal['api', 'checkbox', 'date', 'datetime', 'multiselect', 'number', 'radioselect', 'select', 'text', 'textarea'], str] = Field(validation_alias='fieldTypeCode', serialization_alias='fieldTypeCode')
     """
     One of the ten supported field types. Unlike global database fields, text/textarea member fields do not require a length parameter and have a fixed maximum value size of 4000.
+    Allowed values: `api`, `checkbox`, `date`, `datetime`, `multiselect`, `number`, `radioselect`, `select`, `text`, `textarea`.
     """
     name: str
     """Internal field name shown to administrators."""
@@ -9152,8 +9765,11 @@ class GroupMemberFieldsItem(CTModel):
 class GroupMemberGroup(CTModel):
     """Group to which this membership belongs."""
     api_url: str = Field(validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -9165,9 +9781,11 @@ class GroupMemberGroup(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectGroupDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['group'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `group`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['users'], str]
+    """Allowed values: `users`."""
 
 class GroupMemberHistoryEntry(CTModel):
     """
@@ -9182,8 +9800,11 @@ class GroupMemberHistoryEntry(CTModel):
     member_id: int = Field(validation_alias='memberId', serialization_alias='memberId')
     """Person ID, not the membership row ID."""
     meta: MetaDataCreatedId
-    origin: _t.Optional[str] = Field(default=None)
-    """Recorded source of the change; older entries can have no source."""
+    origin: _t.Optional[_t.Union[_t.Literal['automatic', 'bulk-job', 'check-in', 'cron', 'default', 'duplicate-group', 'follow-up', 'group-creation', 'person-deletion', 'routine', 'self-registration', 'sign-up', 'waitinglist'], str]] = Field(default=None)
+    """
+    Recorded source of the change; older entries can have no source.
+    Allowed values: `automatic`, `bulk-job`, `check-in`, `cron`, `default`, `duplicate-group`, `follow-up`, `group-creation`, `person-deletion`, `routine`, `self-registration`, `sign-up`, `waitinglist`.
+    """
     previous: GroupMemberHistoryEntryPrevious
     """
     State from the linked previous history entry, independently of filters and pagination. All fields are null when no previous snapshot exists.
@@ -9201,8 +9822,11 @@ class GroupMemberHistoryEntryCurrent(CTModel):
     """
     member_role_id: _t.Optional[int] = Field(default=None, validation_alias='memberRoleId', serialization_alias='memberRoleId')
     """Group-type role ID at this point, or null when there is no membership."""
-    membership_status: _t.Optional[str] = Field(default=None, validation_alias='membershipStatus', serialization_alias='membershipStatus')
-    """Membership workflow state at this point, or null after removal/before creation."""
+    membership_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='membershipStatus', serialization_alias='membershipStatus')
+    """
+    Membership workflow state at this point, or null after removal/before creation.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
+    """
     start_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='startDate', serialization_alias='startDate')
     """A simple date in ISO format, e.g. '2022-10-19'"""
 
@@ -9220,8 +9844,11 @@ class GroupMemberHistoryEntryPrevious(CTModel):
     """
     member_role_id: _t.Optional[int] = Field(default=None, validation_alias='memberRoleId', serialization_alias='memberRoleId')
     """Group-type role ID at this point, or null when there is no membership."""
-    membership_status: _t.Optional[str] = Field(default=None, validation_alias='membershipStatus', serialization_alias='membershipStatus')
-    """Membership workflow state at this point, or null after removal/before creation."""
+    membership_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='membershipStatus', serialization_alias='membershipStatus')
+    """
+    Membership workflow state at this point, or null after removal/before creation.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
+    """
     start_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='startDate', serialization_alias='startDate')
     """A simple date in ISO format, e.g. '2022-10-19'"""
 
@@ -9231,9 +9858,10 @@ class GroupMemberMeeting(CTModel):
     """
     Group meeting as returned by the member history endpoint. Attendance statistics are not calculated here.
     """
-    status: _t.Optional[str] = Field(default=None)
+    status: _t.Optional[_t.Union[_t.Literal['absent', 'not-in-group', 'present', 'unsure'], str]] = Field(default=None)
     """
     Stored attendance status, or null when no attendance record exists. Null does not indicate whether the person is a current group member.
+    Allowed values: `absent`, `not-in-group`, `present`, `unsure`.
     """
 
 class GroupMemberNewsletter(CTModel):
@@ -9254,8 +9882,11 @@ class GroupMemberNewsletterPersonStatus(CTModel):
 class GroupMemberPerson(CTModel):
     """Person who belongs to the group. domainIdentifier is the person ID as a string."""
     api_url: str = Field(validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -9266,17 +9897,22 @@ class GroupMemberPerson(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectPersonDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['person'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `person`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
-    """user for an ordinary person; user-shield for a censored person placeholder."""
+    icon: _t.Union[_t.Literal['user', 'user-shield'], str]
+    """
+    user for an ordinary person; user-shield for a censored person placeholder.
+    Allowed values: `user`, `user-shield`.
+    """
 
 class GroupMemberShort(CTModel):
     """"""
     deleted: bool
     """Whether this row represents a deleted historical membership"""
     group_id: int = Field(validation_alias='groupId', serialization_alias='groupId')
-    group_member_status: _t.Optional[str] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    """Allowed values: `active`, `requested`, `to_delete`, `waiting`."""
     group_type_role_id: int = Field(validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
     last_change: OptionalDateTime = Field(default=None, validation_alias='lastChange', serialization_alias='lastChange')
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
@@ -9290,11 +9926,15 @@ class GroupMemberStatistic(CTModel):
     """
     Person date fields return earliest/latest records. Other fields return frequency buckets, normally sorted by descending count.
     """
-    field_type: str = Field(validation_alias='fieldType', serialization_alias='fieldType')
-    """Identifies the namespace of key."""
-    field_type_code: str = Field(validation_alias='fieldTypeCode', serialization_alias='fieldTypeCode')
+    field_type: _t.Union[_t.Literal['groupMemberField', 'personField'], str] = Field(validation_alias='fieldType', serialization_alias='fieldType')
+    """
+    Identifies the namespace of key.
+    Allowed values: `groupMemberField`, `personField`.
+    """
+    field_type_code: _t.Union[_t.Literal['api', 'checkbox', 'date', 'datetime', 'multiselect', 'number', 'radioselect', 'select', 'text', 'textarea'], str] = Field(validation_alias='fieldTypeCode', serialization_alias='fieldTypeCode')
     """
     Input/storage type. select and radioselect use one option, multiselect uses multiple options. text and textarea require a configured length when created. api identifies an application-specific field type.
+    Allowed values: `api`, `checkbox`, `date`, `datetime`, `multiselect`, `number`, `radioselect`, `select`, `text`, `textarea`.
     """
     key: _t.Union[int, str]
     """Integer membership-field ID for groupMemberField; database field key for personField."""
@@ -9344,9 +9984,10 @@ class GroupMembershipRoutine(CTModel):
     """
     group_id: int = Field(validation_alias='groupId', serialization_alias='groupId')
     """Group using this routine."""
-    group_member_status: str = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str] = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     group_type_role_id: int = Field(validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
     """Group-type role ID for which this binding applies."""
@@ -9398,8 +10039,11 @@ class GroupQRCodeCheckin(CTModel):
     """
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
     """ChurchTools group ID."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
-    """Ticket domain for these routes."""
+    domain_type: _t.Union[_t.Literal['group'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """
+    Ticket domain for these routes.
+    Allowed values: `group`.
+    """
     downloaded_date: OptionalDateTime = Field(default=None, validation_alias='downloadedDate', serialization_alias='downloadedDate')
     """
     Most recent PDF-link generation recorded as downloaded; this does not prove the PDF was retrieved.
@@ -9451,9 +10095,10 @@ class GroupRole(CTModel):
     """Abbreviated label for the role, used in compact displays."""
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
     """Display order among roles. Lower values come first."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['leader', 'participant'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Functional classification of the role. Multiple roles with different names can share the same classification.
+    Allowed values: `leader`, `participant`.
     """
     id: int
     """
@@ -9539,23 +10184,31 @@ class GroupSettings(CTModel):
     """Indicator whether the chat history should be visible for new chat group members."""
     default_post_comments_active: bool = Field(validation_alias='defaultPostCommentsActive', serialization_alias='defaultPostCommentsActive')
     """Default value for whether posts can be commented on."""
-    default_post_notification_scope: _t.Optional[str] = Field(default=None, validation_alias='defaultPostNotificationScope', serialization_alias='defaultPostNotificationScope')
-    """Default value for post notification scope."""
+    default_post_notification_scope: _t.Optional[_t.Union[_t.Literal['group_intern', 'group_visible'], str]] = Field(default=None, validation_alias='defaultPostNotificationScope', serialization_alias='defaultPostNotificationScope')
+    """
+    Default value for post notification scope.
+    Allowed values: `group_intern`, `group_visible`.
+    """
     default_post_placeholder_text: _t.Optional[str] = Field(default=None, validation_alias='defaultPostPlaceholderText', serialization_alias='defaultPostPlaceholderText')
     """Default placeholder text for entering post content."""
-    default_post_visibility: str = Field(validation_alias='defaultPostVisibility', serialization_alias='defaultPostVisibility')
+    default_post_visibility: _t.Union[_t.Literal['group_intern', 'group_visible'], str] = Field(validation_alias='defaultPostVisibility', serialization_alias='defaultPostVisibility')
+    """Allowed values: `group_intern`, `group_visible`."""
     dynamic_group_rule_set: _t.Optional[_t.List[DynamicGroupRule]] = Field(default=None, validation_alias='dynamicGroupRuleSet', serialization_alias='dynamicGroupRuleSet')
     """Rule set for dynamic group update."""
-    dynamic_group_status: _t.Optional[str] = Field(default=None, validation_alias='dynamicGroupStatus', serialization_alias='dynamicGroupStatus')
+    dynamic_group_status: _t.Optional[_t.Union[_t.Literal['active', 'inactive', 'manual', 'none'], str]] = Field(default=None, validation_alias='dynamicGroupStatus', serialization_alias='dynamicGroupStatus')
     """
     Controls automatic membership refresh: active participates in scheduled and manual refreshes; manual allows explicit refresh only; inactive blocks both; none disables dynamic-group behavior without deleting stored rules or existing memberships. Null in group resources means no explicit status is stored.
+    Allowed values: `active`, `inactive`, `manual`, `none`.
     """
     dynamic_group_update_finished: OptionalDateTime = Field(default=None, validation_alias='dynamicGroupUpdateFinished', serialization_alias='dynamicGroupUpdateFinished')
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     dynamic_group_update_started: OptionalDateTime = Field(default=None, validation_alias='dynamicGroupUpdateStarted', serialization_alias='dynamicGroupUpdateStarted')
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
-    email_verification_mode: str = Field(validation_alias='emailVerificationMode', serialization_alias='emailVerificationMode')
-    """Controls email verification for anonymous group signups."""
+    email_verification_mode: _t.Union[_t.Literal['all', 'existing', 'none'], str] = Field(validation_alias='emailVerificationMode', serialization_alias='emailVerificationMode')
+    """
+    Controls email verification for anonymous group signups.
+    Allowed values: `all`, `existing`, `none`.
+    """
     external_post_subscriptions_enabled: bool = Field(validation_alias='externalPostSubscriptionsEnabled', serialization_alias='externalPostSubscriptionsEnabled')
     """Indicator if posts of this groups are featured to subscribe"""
     group_meeting: GroupSettingsGroupMeeting = Field(validation_alias='groupMeeting', serialization_alias='groupMeeting')
@@ -9589,12 +10242,16 @@ class GroupSettings(CTModel):
     sign_up_opening_date: OptionalDateTime = Field(default=None, validation_alias='signUpOpeningDate', serialization_alias='signUpOpeningDate')
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     sign_up_override_role_id: _t.Optional[int] = Field(default=None, validation_alias='signUpOverrideRoleId', serialization_alias='signUpOverrideRoleId')
-    statuses_counted_towards_seats: _t.List[str] = Field(validation_alias='statusesCountedTowardsSeats', serialization_alias='statusesCountedTowardsSeats')
+    statuses_counted_towards_seats: _t.List[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(validation_alias='statusesCountedTowardsSeats', serialization_alias='statusesCountedTowardsSeats')
     """
     Membership statuses that occupy seats when their role counts towards seats. Defaults to active only. An empty array means no membership occupies a seat.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
-    visibility: str
-    """The visibility of a group."""
+    visibility: _t.Union[_t.Literal['hidden', 'intern', 'public', 'restricted'], str]
+    """
+    The visibility of a group.
+    Allowed values: `hidden`, `intern`, `public`, `restricted`.
+    """
     waitinglist_max_persons: _t.Optional[int] = Field(default=None, validation_alias='waitinglistMaxPersons', serialization_alias='waitinglistMaxPersons')
     """Maximum number of persons on waiting list."""
 
@@ -9643,8 +10300,11 @@ class GroupSignUpConditions(CTModel):
     """
     If false, the group is not public and only users already signed in are allowed to sign up.
     """
-    group_visibility: str = Field(validation_alias='groupVisibility', serialization_alias='groupVisibility')
-    """The visibility of a group."""
+    group_visibility: _t.Union[_t.Literal['hidden', 'intern', 'public', 'restricted'], str] = Field(validation_alias='groupVisibility', serialization_alias='groupVisibility')
+    """
+    The visibility of a group.
+    Allowed values: `hidden`, `intern`, `public`, `restricted`.
+    """
     new_person_department_is_set: bool = Field(validation_alias='newPersonDepartmentIsSet', serialization_alias='newPersonDepartmentIsSet')
     """
     If false, the default department for new users is not set. When persons without an account attempt to sign up, no new user accounts will be created but the group leader will be requested by mail.
@@ -9694,8 +10354,11 @@ class GroupSignupConditions(CTModel):
     group_is_not_hidden: bool = Field(validation_alias='groupIsNotHidden', serialization_alias='groupIsNotHidden')
     group_is_open_for_members: bool = Field(validation_alias='groupIsOpenForMembers', serialization_alias='groupIsOpenForMembers')
     group_is_public: bool = Field(validation_alias='groupIsPublic', serialization_alias='groupIsPublic')
-    group_visibility: str = Field(validation_alias='groupVisibility', serialization_alias='groupVisibility')
-    """The visibility of a group."""
+    group_visibility: _t.Union[_t.Literal['hidden', 'intern', 'public', 'restricted'], str] = Field(validation_alias='groupVisibility', serialization_alias='groupVisibility')
+    """
+    The visibility of a group.
+    Allowed values: `hidden`, `intern`, `public`, `restricted`.
+    """
     new_person_department_is_set: bool = Field(validation_alias='newPersonDepartmentIsSet', serialization_alias='newPersonDepartmentIsSet')
     new_person_station_is_set: bool = Field(validation_alias='newPersonStationIsSet', serialization_alias='newPersonStationIsSet')
     new_person_status_is_set: bool = Field(validation_alias='newPersonStatusIsSet', serialization_alias='newPersonStatusIsSet')
@@ -9724,7 +10387,8 @@ class GroupStatisticsMembersVariant1Value(CTModel):
 class GroupStatus(CTModel):
     """"""
     id: int
-    name: str
+    name: _t.Union[_t.Literal['active', 'archived', 'finished', 'pending'], str]
+    """Allowed values: `active`, `archived`, `finished`, `pending`."""
     name_translated: str = Field(validation_alias='nameTranslated', serialization_alias='nameTranslated')
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
 
@@ -9736,8 +10400,11 @@ class GroupType(CTModel):
     """
     Whether eligible groups of this type are offered for membership selection when creating a person in the ChurchTools UI. This does not automatically add the person to a group or grant membership permissions.
     """
-    color: str
-    """ChurchTools color token used to display this group type; not a hexadecimal color code."""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    ChurchTools color token used to display this group type; not a hexadecimal color code.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     """
     Optional explanatory text for this group type. Returned as null when no description is stored.
@@ -9796,8 +10463,11 @@ class GroupTypeCreate(CTModel):
     """
     Whether eligible groups of this type are offered for membership selection when creating a person in the ChurchTools UI. This does not automatically add the person to a group or grant membership permissions.
     """
-    color: str
-    """ChurchTools color token used to display this group type; not a hexadecimal color code."""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    ChurchTools color token used to display this group type; not a hexadecimal color code.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     """
     Optional explanatory text for this group type. Returned as null when no description is stored.
@@ -9885,7 +10555,10 @@ class GroupWikiCategoryPagesItemCategoryPermissions(CTModel):
 
 class GroupedGroups(CTModel):
     """"""
-    grouped_by: str = Field(validation_alias='groupedBy', serialization_alias='groupedBy')
+    grouped_by: _t.Union[_t.Literal['ageGroup', 'campus', 'groupCategory', 'groupStatus', 'groupType', 'isOpenForMembers', 'targetGroup', 'visibility'], str] = Field(validation_alias='groupedBy', serialization_alias='groupedBy')
+    """
+    Allowed values: `ageGroup`, `campus`, `groupCategory`, `groupStatus`, `groupType`, `isOpenForMembers`, `targetGroup`, `visibility`.
+    """
     grouped_groups: StrMap[GroupedGroupsGroupedGroupsValue] = Field(validation_alias='groupedGroups', serialization_alias='groupedGroups')
 
 class GroupedGroupsGroupedGroupsValue(CTModel):
@@ -9916,8 +10589,11 @@ class GrowPath(CTModel):
 
 class GrowPathCreate(CTModel):
     """Create a stage used by role-based person growth-path calculation."""
-    color: str
-    """Color key accepted by the growth-path validator."""
+    color: _t.Union[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str], str]
+    """
+    Color key accepted by the growth-path validator.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     name: str
     """Trimmed stage name or translation key, 1–100 characters. Duplicate names are allowed."""
     sort_key: _t.Optional[int] = Field(default=None, validation_alias='sortKey', serialization_alias='sortKey')
@@ -9929,8 +10605,11 @@ class GrowPathUpdate(CTModel):
     """
     Replacement stage fields. ID comes from the URL. name and color are required; omitting sortKey resets it to 0, unlike the comment-viewer update endpoint.
     """
-    color: str
-    """Color key accepted by the growth-path validator."""
+    color: _t.Union[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str], str]
+    """
+    Color key accepted by the growth-path validator.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     name: str
     """Trimmed stage name or translation key, 1–100 characters. Duplicate names are allowed."""
     sort_key: _t.Optional[int] = Field(default=None, validation_alias='sortKey', serialization_alias='sortKey')
@@ -9947,8 +10626,11 @@ class HistoryBeforeAfterValue(CTModel):
     id: int
     key: str
     key_translated: str = Field(validation_alias='keyTranslated', serialization_alias='keyTranslated')
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type and serialization format of the historical value"""
+    type_: _t.Union[_t.Literal['boolean', 'date', 'date-list', 'datetime', 'number', 'text', 'text-list'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type and serialization format of the historical value
+    Allowed values: `boolean`, `date`, `date-list`, `datetime`, `number`, `text`, `text-list`.
+    """
 
 class HistoryEntry(CTModel):
     """"""
@@ -9973,9 +10655,10 @@ class HtmlTemplate(CTModel):
     """
     Stored template metadata. HTML and MJML content are separate file references; retrieve the corresponding content endpoints for source text. Image assets are stored separately.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['bulkletter', 'donation-receipt-attachment', 'donation-receipt-letter', 'email', 'groupmember-document'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Template purpose: email for group-member emails, bulkletter for mail-merged letters, groupmember-document for membership documents, and donation-receipt-letter/attachment for donation receipt output.
+    Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
     """
     is_global: bool = Field(validation_alias='isGlobal', serialization_alias='isGlobal')
     """
@@ -10003,16 +10686,20 @@ class HtmlTemplateAssetUpload(CTModel):
     """Original uploaded file name."""
     src: str
     """Absolute image URL with crop=original, suitable for embedding in the template."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Uploaded asset type used by the editor."""
+    type_: _t.Union[_t.Literal['image'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Uploaded asset type used by the editor.
+    Allowed values: `image`.
+    """
 
 class HtmlTemplateCreate(CTModel):
     """
     Creates template metadata owned by the current user, with independently optional HTML and MJML source files. The API stores both sources as supplied; it does not compile MJML into HTML. Membership-document and donation-receipt purposes require isGlobal=true.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['bulkletter', 'donation-receipt-attachment', 'donation-receipt-letter', 'email', 'groupmember-document'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Template purpose: email for group-member emails, bulkletter for mail-merged letters, groupmember-document for membership documents, and donation-receipt-letter/attachment for donation receipt output.
+    Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
     """
     is_global: _t.Optional[bool] = Field(default=None, validation_alias='isGlobal', serialization_alias='isGlobal')
     """
@@ -10323,9 +11010,10 @@ class Job(CTModel):
     """Last status-update timestamp."""
     name: str
     """Registered worker job name; an extensible key, not localized display text."""
-    status: str
+    status: _t.Union[_t.Literal['CANCELED', 'DONE', 'ERROR', 'IN_PROGRESS', 'QUEUED'], str]
     """
     Stored background-job status. The status-update endpoint accepts all values; the list filter accepts only `IN_PROGRESS`, `DONE`, and `ERROR`.
+    Allowed values: `CANCELED`, `DONE`, `ERROR`, `IN_PROGRESS`, `QUEUED`.
     """
 
 class JobConfigurationReturn(CTModel):
@@ -10334,37 +11022,55 @@ class JobConfigurationReturn(CTModel):
     """
     auto_schedule_enabled: bool = Field(validation_alias='autoScheduleEnabled', serialization_alias='autoScheduleEnabled')
     """Whether the periodic scheduler can start this job."""
-    create_behavior_es: str = Field(validation_alias='createBehaviorES', serialization_alias='createBehaviorES')
-    """Whether records may be created or updated."""
-    create_behavior_master: str = Field(validation_alias='createBehaviorMaster', serialization_alias='createBehaviorMaster')
-    """Whether records may be created or updated."""
+    create_behavior_es: _t.Union[_t.Literal['always', 'never'], str] = Field(validation_alias='createBehaviorES', serialization_alias='createBehaviorES')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
+    create_behavior_master: _t.Union[_t.Literal['always', 'never'], str] = Field(validation_alias='createBehaviorMaster', serialization_alias='createBehaviorMaster')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
     create_defaults_es: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None, validation_alias='createDefaultsES', serialization_alias='createDefaultsES')
     """Adapter-specific defaults for newly created records on this side."""
     create_defaults_master: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None, validation_alias='createDefaultsMaster', serialization_alias='createDefaultsMaster')
     """Adapter-specific defaults for newly created records on this side."""
-    delete_behavior_es: str = Field(validation_alias='deleteBehaviorES', serialization_alias='deleteBehaviorES')
-    """How deletions are handled on the specified side: retain, archive or delete."""
-    delete_behavior_master: str = Field(validation_alias='deleteBehaviorMaster', serialization_alias='deleteBehaviorMaster')
-    """How deletions are handled on the specified side: retain, archive or delete."""
+    delete_behavior_es: _t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], str] = Field(validation_alias='deleteBehaviorES', serialization_alias='deleteBehaviorES')
+    """
+    How deletions are handled on the specified side: retain, archive or delete.
+    Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
+    """
+    delete_behavior_master: _t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], str] = Field(validation_alias='deleteBehaviorMaster', serialization_alias='deleteBehaviorMaster')
+    """
+    How deletions are handled on the specified side: retain, archive or delete.
+    Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
+    """
     domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Domain supported by the adapter, such as person. Job configuration accepts adapter-specific domain names.
     """
-    link_behavior: str = Field(validation_alias='linkBehavior', serialization_alias='linkBehavior')
+    link_behavior: _t.Union[_t.Literal['alwaysMerge', 'alwaysUse', 'never'], str] = Field(validation_alias='linkBehavior', serialization_alias='linkBehavior')
     """
     Whether matching records are linked: never, use an existing record, or merge when linking.
+    Allowed values: `alwaysMerge`, `alwaysUse`, `never`.
     """
-    link_data: str = Field(validation_alias='linkData', serialization_alias='linkData')
+    link_data: _t.Union[_t.Literal['es', 'lastUpdated', 'master'], str] = Field(validation_alias='linkData', serialization_alias='linkData')
     """
     Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+    Allowed values: `es`, `lastUpdated`, `master`.
     """
     name: str
     """Job display name."""
-    update_behavior: str = Field(validation_alias='updateBehavior', serialization_alias='updateBehavior')
-    """Whether records may be created or updated."""
-    update_data: str = Field(validation_alias='updateData', serialization_alias='updateData')
+    update_behavior: _t.Union[_t.Literal['always', 'never'], str] = Field(validation_alias='updateBehavior', serialization_alias='updateBehavior')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
+    update_data: _t.Union[_t.Literal['es', 'lastUpdated', 'master'], str] = Field(validation_alias='updateData', serialization_alias='updateData')
     """
     Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+    Allowed values: `es`, `lastUpdated`, `master`.
     """
     external_system: ExternalSystem = Field(validation_alias='externalSystem', serialization_alias='externalSystem')
     """Configured external connection with masked access credentials."""
@@ -10416,9 +11122,10 @@ class JobStatusUpdate(CTModel):
     """
     manual: _t.Optional[bool] = Field(default=None)
     """Marks the status change as manual."""
-    status: str
+    status: _t.Union[_t.Literal['CANCELED', 'DONE', 'ERROR', 'IN_PROGRESS', 'QUEUED'], str]
     """
     Stored background-job status. The status-update endpoint accepts all values; the list filter accepts only `IN_PROGRESS`, `DONE`, and `ERROR`.
+    Allowed values: `CANCELED`, `DONE`, `ERROR`, `IN_PROGRESS`, `QUEUED`.
     """
 
 class LabelCreate(CTModel):
@@ -10433,13 +11140,15 @@ class LabelCreate(CTModel):
     """
     Selected person IDs. Prefer an array of integers; legacy comma-separated strings and a single integer are also accepted. Duplicate IDs do not duplicate labels. Empty selection yields no persons; nonexistent or invisible persons are omitted.
     """
-    sortpolicy: _t.Optional[str] = Field(default=None)
+    sortpolicy: _t.Optional[_t.Union[_t.Literal['birthday', 'name', 'postal'], str]] = Field(default=None)
     """
     name sorts by surname/given name; postal by country/postal code/street/name; birthday by month/day/year/name. Birthday sorting forces separate labels. Unrecognized values currently retain initial name order.
+    Allowed values: `birthday`, `name`, `postal`.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['AveryLabels3475', 'HermaLabels4425', 'HermaLabels4677'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     A4 sheet layout: Avery3475 has 24 labels (70×36 mm), Herma4425 has 10 (105×57 mm), Herma4677 has 21 (63.5×38.1 mm).
+    Allowed values: `AveryLabels3475`, `HermaLabels4425`, `HermaLabels4677`.
     """
 
 class LabelTotals(CTModel):
@@ -10480,9 +11189,10 @@ class LabelTotalsRequest(CTModel):
 
 class Language(CTModel):
     """"""
-    code: str
+    code: _t.Union[_t.Literal['cn', 'de', 'en', 'es', 'fa', 'fi', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sv', 'tw'], str]
     """
     The language code is a two-letter code that represents the language. For example, "en" for English, "de" for German, and "fr" for French.
+    Allowed values: `cn`, `de`, `en`, `es`, `fa`, `fi`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sv`, `tw`.
     """
     id: int
     is_active: bool = Field(validation_alias='isActive', serialization_alias='isActive')
@@ -10493,8 +11203,11 @@ class LegacyFileMetadata(CTModel):
     """
     Deprecated raw cc_file database row with an added download URL. Numeric/boolean columns are strings, date columns use SQL datetime strings, JSON columns remain JSON text. SELECT * can expose further database columns as the schema evolves; use CtFile through /files/{id}/meta for a stable normalized contract.
     """
-    ai_generated_yn: str
-    """Raw database boolean flag (0 or 1 as string)."""
+    ai_generated_yn: _t.Union[_t.Literal['0', '1'], str]
+    """
+    Raw database boolean flag (0 or 1 as string).
+    Allowed values: `0`, `1`.
+    """
     annotation: _t.Optional[str] = Field(default=None)
     annotation_link: _t.Optional[str] = Field(default=None)
     bezeichnung: str
@@ -10531,8 +11244,11 @@ class LegacyFileMetadata(CTModel):
     """Raw database numeric value returned as a string by the legacy connection."""
     securitylevel_id: _t.Optional[str] = Field(default=None)
     """Raw database numeric value returned as a string by the legacy connection."""
-    showonlywheneditable_yn: str
-    """Raw database boolean flag (0 or 1 as string)."""
+    showonlywheneditable_yn: _t.Union[_t.Literal['0', '1'], str]
+    """
+    Raw database boolean flag (0 or 1 as string).
+    Allowed values: `0`, `1`.
+    """
     sortkey: str
     """Raw database numeric value returned as a string by the legacy connection."""
     url: str
@@ -10542,10 +11258,12 @@ class LegacyFileMetadata(CTModel):
 
 class LinkingOpenGraph(CTModel):
     """"""
-    fetch_status: str = Field(validation_alias='fetchStatus', serialization_alias='fetchStatus')
+    fetch_status: _t.Union[_t.Literal['http-error', 'success', 'timeout-short'], str] = Field(validation_alias='fetchStatus', serialization_alias='fetchStatus')
+    """Allowed values: `http-error`, `success`, `timeout-short`."""
     url: str
     data: _t.Optional[LinkingOpenGraphData] = Field(default=None)
-    linking_type: str = Field(validation_alias='linkingType', serialization_alias='linkingType')
+    linking_type: _t.Union[_t.Literal['opengraph'], str] = Field(validation_alias='linkingType', serialization_alias='linkingType')
+    """Allowed values: `opengraph`."""
 
 class LinkingOpenGraphData(CTModel):
     """"""
@@ -10686,9 +11404,10 @@ class LoginResult(CTModel):
     """
     Authenticated person ID, also returned before two-factor verification. Pass it to the TOTP step.
     """
-    status: str
+    status: _t.Union[_t.Literal['success', 'totp', 'twoFactorSetup'], str]
     """
     success: session login completed; totp: submit /login/totp; twoFactorSetup: initialize and activate /login/twofactor/setup.
+    Allowed values: `success`, `totp`, `twoFactorSetup`.
     """
 
 class LoginTokenResult(CTModel):
@@ -10720,20 +11439,30 @@ class MarkdownRequest(CTModel):
 class MarkdownRequestOptions(CTModel):
     """Global options for all sources"""
     common_language: _t.Optional[str] = Field(default=None, validation_alias='commonLanguage', serialization_alias='commonLanguage')
-    default_output_scope: _t.Optional[str] = Field(default=None, validation_alias='defaultOutputScope', serialization_alias='defaultOutputScope')
+    default_output_scope: _t.Optional[_t.Union[_t.Literal['description', 'document', 'plaintext', 'richline'], str]] = Field(default=None, validation_alias='defaultOutputScope', serialization_alias='defaultOutputScope')
+    """Allowed values: `description`, `document`, `plaintext`, `richline`."""
 
 class MarkdownRequestSourcesItem(CTModel):
     """"""
-    input_scope: str = Field(validation_alias='inputScope', serialization_alias='inputScope')
-    """The scope of the input content"""
+    input_scope: _t.Union[_t.Literal['description', 'document', 'plaintext', 'richline'], str] = Field(validation_alias='inputScope', serialization_alias='inputScope')
+    """
+    The scope of the input content
+    Allowed values: `description`, `document`, `plaintext`, `richline`.
+    """
     markdown: str
     """The markdown content to be processed"""
     options: _t.Optional[MarkdownRequestSourcesItemOptions] = Field(default=None)
     """Additional processing options"""
-    output_formats: _t.List[str] = Field(validation_alias='outputFormats', serialization_alias='outputFormats')
-    """List of output formats for the processed markdown content"""
-    output_scopes: _t.List[str] = Field(validation_alias='outputScopes', serialization_alias='outputScopes')
-    """List of scopes for the output content"""
+    output_formats: _t.List[_t.Union[_t.Literal['html', 'md', 'xml'], str]] = Field(validation_alias='outputFormats', serialization_alias='outputFormats')
+    """
+    List of output formats for the processed markdown content
+    Allowed values: `html`, `md`, `xml`.
+    """
+    output_scopes: _t.List[_t.Union[_t.Literal['description', 'document', 'plaintext', 'richline'], str]] = Field(validation_alias='outputScopes', serialization_alias='outputScopes')
+    """
+    List of scopes for the output content
+    Allowed values: `description`, `document`, `plaintext`, `richline`.
+    """
     short_name: str = Field(validation_alias='shortName', serialization_alias='shortName')
     """A short identifier for the source"""
 
@@ -10778,9 +11507,10 @@ class MeetingRequest(CTModel):
     """Use `invitee` instead"""
     response_date: OptionalDateTime = Field(default=None, validation_alias='responseDate', serialization_alias='responseDate')
     """When the invitee last responded, or null."""
-    state: str
+    state: _t.Union[_t.Literal['accepted', 'declined', 'pending', 'tentative'], str]
     """
     Response state: pending awaits an answer, accepted confirms attendance, declined refuses, tentative is undecided.
+    Allowed values: `accepted`, `declined`, `pending`, `tentative`.
     """
 
 class MeetingRequestCandidate(CTModel):
@@ -10797,9 +11527,10 @@ class MeetingRequestCandidate(CTModel):
     """Person as Domain Object"""
     person_status_name: _t.Optional[str] = Field(default=None, validation_alias='personStatusName', serialization_alias='personStatusName')
     """Source person status name for personStatus candidates; null for other sources."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['groupMember', 'groupTypeMember', 'meetingRequest', 'person', 'personStatus'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Candidate source: direct calendar permission, person status, group membership, group type membership, or an existing invitation.
+    Allowed values: `groupMember`, `groupTypeMember`, `meetingRequest`, `person`, `personStatus`.
     """
 
 class MeetingRequestCreate(CTModel):
@@ -10813,8 +11544,11 @@ class MeetingRequestIcsReply(CTModel):
     """
     ics_content: str = Field(validation_alias='icsContent', serialization_alias='icsContent')
     """Raw ICS reply used to compare appointment scope."""
-    partstat: str
-    """Participation status supplied by the calendar-mail processor."""
+    partstat: _t.Union[_t.Literal['ACCEPTED', 'DECLINED', 'TENTATIVE'], str]
+    """
+    Participation status supplied by the calendar-mail processor.
+    Allowed values: `ACCEPTED`, `DECLINED`, `TENTATIVE`.
+    """
     token: str
     """
     Reply token embedded in the invitation. Must exist in the meetingrequest_reply domain and remain valid. It is not consumed by this request.
@@ -10823,8 +11557,11 @@ class MeetingRequestIcsReply(CTModel):
 class MeetingRequestInvitee(CTModel):
     """Person invited to the appointment."""
     api_url: str = Field(validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -10835,18 +11572,25 @@ class MeetingRequestInvitee(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectPersonDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['person'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `person`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
-    """user for an ordinary person; user-shield for a censored person placeholder."""
+    icon: _t.Union[_t.Literal['user', 'user-shield'], str]
+    """
+    user for an ordinary person; user-shield for a censored person placeholder.
+    Allowed values: `user`, `user-shield`.
+    """
 
 class MeetingRequestInviter(CTModel):
     """
     Person issuing the invitation, derived from onBehalfOfPid when set or the user creating the request.
     """
     api_url: str = Field(validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -10857,16 +11601,23 @@ class MeetingRequestInviter(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectPersonDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['person'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `person`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
-    """user for an ordinary person; user-shield for a censored person placeholder."""
+    icon: _t.Union[_t.Literal['user', 'user-shield'], str]
+    """
+    user for an ordinary person; user-shield for a censored person placeholder.
+    Allowed values: `user`, `user-shield`.
+    """
 
 class MeetingRequestPerson(CTModel):
     """Use `invitee` instead"""
     api_url: str = Field(validation_alias='apiUrl', serialization_alias='apiUrl')
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -10877,17 +11628,24 @@ class MeetingRequestPerson(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectPersonDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['person'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `person`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
-    """user for an ordinary person; user-shield for a censored person placeholder."""
+    icon: _t.Union[_t.Literal['user', 'user-shield'], str]
+    """
+    user for an ordinary person; user-shield for a censored person placeholder.
+    Allowed values: `user`, `user-shield`.
+    """
 
 class MeetingRequestUpdate(CTModel):
     """
     Answer a meeting request as its invitee. This updates the series-level invitation response.
     """
-    answer: str
-    """Answer accepted by meeting-request response endpoints."""
+    answer: _t.Union[_t.Literal['accept', 'decline', 'maybe', 'reset', 'tentative'], str]
+    """
+    Answer accepted by meeting-request response endpoints.
+    Allowed values: `accept`, `decline`, `maybe`, `reset`, `tentative`.
+    """
 
 class MeetingTemplate(CTModel):
     """
@@ -10921,9 +11679,10 @@ class MeetingTemplateField(CTModel):
     """
     Only applicable to select fields, where it is required and non-empty. Strings contain comma-separated legacy options.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['caption', 'checkbox', 'color', 'input', 'select', 'textarea'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Form control: input for a single line, textarea for multiple lines, checkbox for a check box, select for an option list, color for a color selection, or caption for a section heading without an answer field.
+    Allowed values: `caption`, `checkbox`, `color`, `input`, `select`, `textarea`.
     """
     value: _t.Optional[str] = Field(default=None)
     """
@@ -10980,9 +11739,10 @@ class MemberPreviewRole(CTModel):
     """Abbreviated label for the role, used in compact displays."""
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
     """Display order among roles. Lower values come first."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['leader', 'participant'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Functional classification of the role. Multiple roles with different names can share the same classification.
+    Allowed values: `leader`, `participant`.
     """
     id: int
     """
@@ -11003,9 +11763,10 @@ class MembershipCreate(CTModel):
     """
     Values keyed by numeric membership-field definition ID. Only submitted known fields are updated; unknown IDs are ignored. Null clears one field; an omitted/null fields container changes no fields. Field-specific validation applies: text up to 4000 characters, numeric values, dates, timestamps, checkbox booleans, option IDs or labels for select/radioselect, and arrays of option IDs or labels for multiselect.
     """
-    group_member_status: _t.Optional[str] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
     """
     New memberships default to active for omitted/null status. On legacy updates omitted/null preserves the previous status. A supplied waiting-list position can override the status to waiting.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     group_type_role_id: _t.Optional[int] = Field(default=None, validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
     """
@@ -11040,9 +11801,10 @@ class MembershipUpdate(CTModel):
     """
     Values keyed by numeric membership-field definition ID. Only submitted known fields are updated; unknown IDs are ignored. Null clears one field; an omitted/null fields container changes no fields. Field-specific validation applies: text up to 4000 characters, numeric values, dates, timestamps, checkbox booleans, option IDs or labels for select/radioselect, and arrays of option IDs or labels for multiselect.
     """
-    group_member_status: _t.Optional[str] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
     """
     Target membership workflow status; omitted preserves the existing status. Explicit null is not a usable status.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     group_type_role_id: _t.Optional[int] = Field(default=None, validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
     """Role definition ID belonging to the group type. Null resets to its default role."""
@@ -11172,9 +11934,10 @@ class NewsletterIntegrationGroupMappingCreate(CTModel):
     """
     Create an external list with this name; only use if the provider advertises canCreateLists=true.
     """
-    existing_members_handling: _t.Optional[str] = Field(default=None, validation_alias='existingMembersHandling', serialization_alias='existingMembersHandling')
+    existing_members_handling: _t.Optional[_t.Union[_t.Literal['ignore_opt_in', 'require_opt_in'], str]] = Field(default=None, validation_alias='existingMembersHandling', serialization_alias='existingMembersHandling')
     """
     Controls the initial synchronization only. ignore_opt_in subscribes eligible existing members without double opt-in even when optInRequired=true; the stored flag still governs later synchronization.
+    Allowed values: `ignore_opt_in`, `require_opt_in`.
     """
     list_id: _t.Optional[str] = Field(default=None, validation_alias='listId', serialization_alias='listId')
     """
@@ -11184,9 +11947,10 @@ class NewsletterIntegrationGroupMappingCreate(CTModel):
     """
     Require double opt-in for subscriptions. Providers with doesDoubleOptIn=true handle confirmation; otherwise ChurchTools sends confirmation emails.
     """
-    provider: str
+    provider: _t.Union[_t.Literal['CleverReach', 'MailChimp', 'Mailjet'], str]
     """
     Canonical newsletter provider name. Availability depends on the installation configuration; discover active providers using GET /newsletter-integrations. The backend also accepts case variations but stores the supplied spelling.
+    Allowed values: `CleverReach`, `MailChimp`, `Mailjet`.
     """
 
 class NewsletterIntegrationListOption(CTModel):
@@ -11220,9 +11984,10 @@ class NewsletterIntegrationOptions(CTModel):
     """
     Remote lists in provider-returned order. Empty can mean no lists or a caught provider error; assigned lists remain included.
     """
-    provider: str
+    provider: _t.Union[_t.Literal['CleverReach', 'MailChimp', 'Mailjet'], str]
     """
     Canonical newsletter provider name. Availability depends on the installation configuration; discover active providers using GET /newsletter-integrations. The backend also accepts case variations but stores the supplied spelling.
+    Allowed values: `CleverReach`, `MailChimp`, `Mailjet`.
     """
 
 class NewsletterOptInData(CTModel):
@@ -11281,9 +12046,10 @@ class Note(CTModel):
     """
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
     """ID of the linked business object."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['follow_up', 'group', 'person', 'song_arrangement'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Kinds of objects with attached notes. Notes for `follow_up` can be read here but must be created through the follow-up API.
+    Allowed values: `follow_up`, `group`, `person`, `song_arrangement`.
     """
     security_level_id: _t.Optional[int] = Field(default=None, validation_alias='securityLevelId', serialization_alias='securityLevelId')
     """
@@ -11325,9 +12091,10 @@ class NoteDomainObjectLink(CTModel):
     """
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
     """ID of the linked business object."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['follow_up', 'group', 'person', 'song_arrangement'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Kinds of objects with attached notes. Notes for `follow_up` can be read here but must be created through the follow-up API.
+    Allowed values: `follow_up`, `group`, `person`, `song_arrangement`.
     """
     security_level_id: _t.Optional[int] = Field(default=None, validation_alias='securityLevelId', serialization_alias='securityLevelId')
     """
@@ -11606,9 +12373,10 @@ class OpenMeetingRequest(CTModel):
     """Use `invitee` instead"""
     response_date: None = Field(validation_alias='responseDate', serialization_alias='responseDate')
     """No answer has been recorded. Tentative answers have a response date and are excluded."""
-    state: str
+    state: _t.Union[_t.Literal['accepted', 'declined', 'pending', 'tentative'], str]
     """
     Response state: pending awaits an answer, accepted confirms attendance, declined refuses, tentative is undecided.
+    Allowed values: `accepted`, `declined`, `pending`, `tentative`.
     """
 
 class PasswordResetCreate(CTModel):
@@ -11627,9 +12395,10 @@ class PatchGroupsIdBody(CTModel):
     """
     Start date of the appointment occurrence this group is linked to (used together with `appointmentId` for repeating appointments). Set to `null` to clear.
     """
-    statuses_counted_towards_seats: _t.Optional[_t.List[str]] = Field(default=None, validation_alias='statusesCountedTowardsSeats', serialization_alias='statusesCountedTowardsSeats')
+    statuses_counted_towards_seats: _t.Optional[_t.List[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]]] = Field(default=None, validation_alias='statusesCountedTowardsSeats', serialization_alias='statusesCountedTowardsSeats')
     """
     Membership statuses that occupy seats when their role counts towards seats. Defaults to active only. An empty array means no membership occupies a seat.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
 
 class PatchPersonsIdBody(CTModel):
@@ -11682,8 +12451,11 @@ class PatchPersonsIdBody(CTModel):
     status_id: _t.Optional[int] = Field(default=None, validation_alias='statusId', serialization_alias='statusId')
     street: _t.Optional[str] = Field(default=None)
     title: _t.Optional[str] = Field(default=None)
-    visibility: _t.Optional[str] = Field(default=None)
-    """Visibility accepted when creating or updating a person."""
+    visibility: _t.Optional[_t.Union[_t.Literal['hidden', 'visible'], str]] = Field(default=None)
+    """
+    Visibility accepted when creating or updating a person.
+    Allowed values: `hidden`, `visible`.
+    """
     wedding_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='weddingDate', serialization_alias='weddingDate')
     zip: _t.Optional[str] = Field(default=None)
 
@@ -11723,9 +12495,10 @@ class Permission(CTModel):
     """
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
     """ID of the object the permission belongs to"""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['group_role', 'group_type_role', 'person', 'status'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Assignment owner: person status, role template of a group type, role in a concrete group, or direct person assignment. These are assignment sources, not necessarily the objects on which the permission takes effect.
+    Allowed values: `group_role`, `group_type_role`, `person`, `status`.
     """
     is_inherited: bool = Field(validation_alias='isInherited', serialization_alias='isInherited')
     """
@@ -11734,8 +12507,11 @@ class Permission(CTModel):
     meta: PermissionModification
     reason: _t.Optional[str] = Field(default=None)
     """Optional reason why this permission was assigned"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Whether the permission grants or revokes access"""
+    type_: _t.Union[_t.Literal['grant', 'revoke'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Whether the permission grants or revokes access
+    Allowed values: `grant`, `revoke`.
+    """
 
 class PermissionAssignmentGroup(CTModel):
     """"""
@@ -11799,9 +12575,10 @@ class PermissionAssignmentTarget(CTModel):
     """
     Status, role template, concrete group role, or person ID. For group_role this is neither the group ID nor the role template ID.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['group_role', 'group_type_role', 'person', 'status'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Assignment owner: person status, role template of a group type, role in a concrete group, or direct person assignment. These are assignment sources, not necessarily the objects on which the permission takes effect.
+    Allowed values: `group_role`, `group_type_role`, `person`, `status`.
     """
     label: str
     """Display label localized in the current request language"""
@@ -11809,15 +12586,17 @@ class PermissionAssignmentTarget(CTModel):
 class PermissionBulkChange(CTModel):
     """"""
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['group_role', 'group_type_role', 'person', 'status'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `group_role`, `group_type_role`, `person`, `status`."""
 
 class PermissionDefinition(CTModel):
     """
     Definition of one assignable permission, not an effective grant. Combine the module key and permission key to identify it by name, or use authId in assignment endpoints.
     """
-    assignment_domains: _t.List[str] = Field(validation_alias='assignmentDomains', serialization_alias='assignmentDomains')
+    assignment_domains: _t.List[_t.Union[_t.Literal['group_role', 'group_type_role', 'person', 'status'], str]] = Field(validation_alias='assignmentDomains', serialization_alias='assignmentDomains')
     """
     Currently always lists status, group_type_role, group_role and person. This is generic metadata and does not establish that every combination is accepted by assignment validation.
+    Allowed values: `group_role`, `group_type_role`, `person`, `status`.
     """
     auth_id: int = Field(validation_alias='authId', serialization_alias='authId')
     """Numeric permission key"""
@@ -11833,9 +12612,10 @@ class PermissionDefinition(CTModel):
     """
     Selectable data IDs, beginning with the all entry (-1). Empty for permissions without a data field. Values follow the underlying catalog order.
     """
-    value_type: str = Field(validation_alias='valueType', serialization_alias='valueType')
+    value_type: _t.Union[_t.Literal['boolean', 'maximum', 'multiple'], str] = Field(validation_alias='valueType', serialization_alias='valueType')
     """
     boolean combines grants as a flag; multiple combines selected IDs; maximum selects the highest level. Selections describe available IDs, and -1 denotes unrestricted access including future values.
+    Allowed values: `boolean`, `maximum`, `multiple`.
     """
 
 class PermissionDefinitionModule(CTModel):
@@ -11852,7 +12632,8 @@ class PermissionDefinitionSelection(CTModel):
     """"""
     data_id: int = Field(validation_alias='dataId', serialization_alias='dataId')
     """Selection ID; -1 represents unrestricted access to all current and future values"""
-    kind: str
+    kind: _t.Union[_t.Literal['all', 'value'], str]
+    """Allowed values: `all`, `value`."""
     name: str
     """Translated selection name"""
 
@@ -11928,7 +12709,8 @@ class PermissionPersonWithOriginsOriginsItemVariant1(CTModel):
     """
     Value this source contributes: `true` for simple permissions, a number for level permissions (e.g. security levels) or a list of IDs for data permissions
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['loggedIn'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `loggedIn`."""
 
 class PermissionPersonWithOriginsOriginsItemVariant2(CTModel):
     """"""
@@ -11940,7 +12722,8 @@ class PermissionPersonWithOriginsOriginsItemVariant2(CTModel):
     """
     Value this source contributes: `true` for simple permissions, a number for level permissions (e.g. security levels) or a list of IDs for data permissions
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['superAdmin'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `superAdmin`."""
 
 class PermissionPersonWithOriginsOriginsItemVariant3(CTModel):
     """"""
@@ -11952,7 +12735,8 @@ class PermissionPersonWithOriginsOriginsItemVariant3(CTModel):
     """
     Value this source contributes: `true` for simple permissions, a number for level permissions (e.g. security levels) or a list of IDs for data permissions
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['publicUser'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `publicUser`."""
 
 class PermissionPersonWithOriginsOriginsItemVariant4(CTModel):
     """"""
@@ -11966,7 +12750,8 @@ class PermissionPersonWithOriginsOriginsItemVariant4(CTModel):
     """
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
     """ID of the person the permission is set on directly"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['person'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `person`."""
 
 class PermissionPersonWithOriginsOriginsItemVariant5(CTModel):
     """"""
@@ -11980,7 +12765,8 @@ class PermissionPersonWithOriginsOriginsItemVariant5(CTModel):
     """
     status_id: int = Field(validation_alias='statusId', serialization_alias='statusId')
     """ID of the person status that grants the permission"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['status'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `status`."""
 
 class PermissionPersonWithOriginsOriginsItemVariant6(CTModel):
     """"""
@@ -12002,7 +12788,8 @@ class PermissionPersonWithOriginsOriginsItemVariant6(CTModel):
     """ID of the group type role of the membership"""
     inherited: bool
     """Whether the permission reaches the target group through inheritance from a superior group"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['groupRole'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `groupRole`."""
 
 class PermissionPersonWithOriginsOriginsItemVariant7(CTModel):
     """"""
@@ -12024,7 +12811,8 @@ class PermissionPersonWithOriginsOriginsItemVariant7(CTModel):
     """ID of the group type role of the membership"""
     inherited: bool
     """Whether the permission reaches the target group through inheritance from a superior group"""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['groupTypeRole'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `groupTypeRole`."""
 
 class PermissionPersons(CTModel):
     """
@@ -12065,9 +12853,10 @@ class PermissionReplace(CTModel):
     """
     reason: _t.Optional[str] = Field(default=None)
     """Optional explanation for the replacement assignment."""
-    type_: _t.Optional[str] = Field(default=None, validation_alias='type', serialization_alias='type')
+    type_: _t.Optional[_t.Union[_t.Literal['grant', 'revoke'], str]] = Field(default=None, validation_alias='type', serialization_alias='type')
     """
     Grant a permission, or revoke a contribution for a concrete group_role. revoke is rejected for all other source domains.
+    Allowed values: `grant`, `revoke`.
     """
 
 class PermissionUpdate(CTModel):
@@ -12090,9 +12879,10 @@ class PermissionUpdate(CTModel):
     """
     Trimmed optional explanation. Empty/whitespace input becomes null. No maximum length is validated by the controller.
     """
-    type_: _t.Optional[str] = Field(default=None, validation_alias='type', serialization_alias='type')
+    type_: _t.Optional[_t.Union[_t.Literal['grant', 'revoke'], str]] = Field(default=None, validation_alias='type', serialization_alias='type')
     """
     Grant a permission, or revoke a contribution for a concrete group_role. revoke is rejected for all other source domains.
+    Allowed values: `grant`, `revoke`.
     """
 
 class PermissionWithOrigins(CTModel):
@@ -12160,7 +12950,8 @@ class Person(CTModel):
     guid: str
     id: int
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
-    invitation_status: _t.Optional[str] = Field(default=None, validation_alias='invitationStatus', serialization_alias='invitationStatus')
+    invitation_status: _t.Optional[_t.Union[_t.Literal['accepted', 'not_invited', 'pending'], str]] = Field(default=None, validation_alias='invitationStatus', serialization_alias='invitationStatus')
+    """Allowed values: `accepted`, `not_invited`, `pending`."""
     is_archived: _t.Optional[bool] = Field(default=None, validation_alias='isArchived', serialization_alias='isArchived')
     is_dead: _t.Optional[bool] = Field(default=None, validation_alias='isDead', serialization_alias='isDead')
     """This computed field is true iff a date of death is set for this person."""
@@ -12271,9 +13062,10 @@ class PersonMasterData(CTModel):
 
 class PersonMergeGroupDiff(CTModel):
     """"""
-    group_member_status: str = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str] = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     id: int
     """ID of the group"""
@@ -12370,8 +13162,11 @@ class PersonPrivacyPolicyChildResult(CTModel):
     error: str
     """Localized error text for error outcomes; empty string otherwise."""
     id: int
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Per-child outcome."""
+    type_: _t.Union[_t.Literal['error', 'not allowed', 'success'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Per-child outcome.
+    Allowed values: `error`, `not allowed`, `success`.
+    """
 
 class PersonPrivacyPolicyChildUpdate(CTModel):
     """
@@ -12475,7 +13270,8 @@ class PersonProperties(CTModel):
     can_chat: bool = Field(validation_alias='canChat', serialization_alias='canChat')
     has_email: bool = Field(validation_alias='hasEmail', serialization_alias='hasEmail')
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
-    invitation_status: str = Field(validation_alias='invitationStatus', serialization_alias='invitationStatus')
+    invitation_status: _t.Union[_t.Literal['accepted', 'not_invited', 'pending'], str] = Field(validation_alias='invitationStatus', serialization_alias='invitationStatus')
+    """Allowed values: `accepted`, `not_invited`, `pending`."""
     is_archived: bool = Field(validation_alias='isArchived', serialization_alias='isArchived')
     is_dead: bool = Field(validation_alias='isDead', serialization_alias='isDead')
     visibility: str
@@ -12637,8 +13433,11 @@ class PersonUpdateable(CTModel):
     status_id: _t.Optional[int] = Field(default=None, validation_alias='statusId', serialization_alias='statusId')
     street: _t.Optional[str] = Field(default=None)
     title: _t.Optional[str] = Field(default=None)
-    visibility: _t.Optional[str] = Field(default=None)
-    """Visibility accepted when creating or updating a person."""
+    visibility: _t.Optional[_t.Union[_t.Literal['hidden', 'visible'], str]] = Field(default=None)
+    """
+    Visibility accepted when creating or updating a person.
+    Allowed values: `hidden`, `visible`.
+    """
     wedding_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='weddingDate', serialization_alias='weddingDate')
     zip: _t.Optional[str] = Field(default=None)
 
@@ -12682,7 +13481,10 @@ class PlaceholderMenuGroup(CTModel):
 class PollForNewsResult(CTModel):
     """"""
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['agenda', 'agenda_item', 'appointment', 'booking', 'calendar', 'event', 'event_service', 'follow_up', 'group', 'group_meeting', 'person', 'resource', 'routine'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """
+    Allowed values: `agenda`, `agenda_item`, `appointment`, `booking`, `calendar`, `event`, `event_service`, `follow_up`, `group`, `group_meeting`, `person`, `resource`, `routine`.
+    """
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
     """The person id of the person that changed the object"""
 
@@ -12740,7 +13542,8 @@ class PossiblePostGroup(CTModel):
     featured_group: bool = Field(validation_alias='featuredGroup', serialization_alias='featuredGroup')
     group: DomainObjectGroup
     role_name: _t.Optional[str] = Field(default=None, validation_alias='roleName', serialization_alias='roleName')
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['postPossible', 'signupAndPostPossible'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `postPossible`, `signupAndPostPossible`."""
 
 class Post(CTModel):
     """"""
@@ -12748,7 +13551,8 @@ class Post(CTModel):
     expiration_date: OptionalDateTime = Field(default=None, validation_alias='expirationDate', serialization_alias='expirationDate')
     publication_date: OptionalDateTime = Field(default=None, validation_alias='publicationDate', serialization_alias='publicationDate')
     title: str
-    visibility: str
+    visibility: _t.Union[_t.Literal['group_intern', 'group_visible'], str]
+    """Allowed values: `group_intern`, `group_visible`."""
     actor: DomainObjectPerson
     """Person as Domain Object"""
     comments: _t.Optional[_t.List[PostComment]] = Field(default=None)
@@ -12760,8 +13564,11 @@ class Post(CTModel):
     expiration_pid: _t.Optional[int] = Field(default=None, validation_alias='expirationPid', serialization_alias='expirationPid')
     """ID of the person who last set or changed the expiration date."""
     group: DomainObjectGroup
-    group_visibility: str = Field(validation_alias='groupVisibility', serialization_alias='groupVisibility')
-    """The visibility of a group."""
+    group_visibility: _t.Union[_t.Literal['hidden', 'intern', 'public', 'restricted'], str] = Field(validation_alias='groupVisibility', serialization_alias='groupVisibility')
+    """
+    The visibility of a group.
+    Allowed values: `hidden`, `intern`, `public`, `restricted`.
+    """
     guid: str
     id: int
     images: _t.List[str]
@@ -12778,8 +13585,11 @@ class Post(CTModel):
 
 class PostActionsBody(CTModel):
     """"""
-    domain_type: _t.List[str]
-    """One or more domain types to filter actions by."""
+    domain_type: _t.List[_t.Union[_t.Literal['group_membership', 'person'], str]]
+    """
+    One or more domain types to filter actions by.
+    Allowed values: `group_membership`, `person`.
+    """
     filter: _t.Optional[StrMap[_t.Any]] = Field(default=None)
     """
     Optional filter criteria to further narrow the returned actions. The structure depends on the domain type.
@@ -12827,7 +13637,8 @@ class PostCreate(CTModel):
     expiration_date: OptionalDateTime = Field(default=None, validation_alias='expirationDate', serialization_alias='expirationDate')
     publication_date: OptionalDateTime = Field(default=None, validation_alias='publicationDate', serialization_alias='publicationDate')
     title: str
-    visibility: str
+    visibility: _t.Union[_t.Literal['group_intern', 'group_visible'], str]
+    """Allowed values: `group_intern`, `group_visible`."""
     comments_active: _t.Optional[bool] = Field(default=None, validation_alias='commentsActive', serialization_alias='commentsActive')
     group_id: int = Field(validation_alias='groupId', serialization_alias='groupId')
     image_ids: _t.Optional[_t.List[int]] = Field(default=None, validation_alias='imageIds', serialization_alias='imageIds')
@@ -12865,13 +13676,19 @@ class PostGroupsBody(CTModel):
     """Group ID of parent group"""
     role_id: _t.Optional[int] = Field(default=None, validation_alias='roleId', serialization_alias='roleId')
     """put yourself in this role"""
-    visibility: _t.Optional[str] = Field(default=None)
-    """The visibility of a group."""
+    visibility: _t.Optional[_t.Union[_t.Literal['hidden', 'intern', 'public', 'restricted'], str]] = Field(default=None)
+    """
+    The visibility of a group.
+    Allowed values: `hidden`, `intern`, `public`, `restricted`.
+    """
 
 class PostGroupsGroupIdMeetingsMeetingIdMembersMissingBody(CTModel):
     """"""
-    status: str
-    """Attendance state to assign to currently unsure records."""
+    status: _t.Union[_t.Literal['absent', 'present'], str]
+    """
+    Attendance state to assign to currently unsure records.
+    Allowed values: `absent`, `present`.
+    """
 
 class PostGroupsIdMeetingsBody(CTModel):
     """"""
@@ -12914,10 +13731,11 @@ class PostLoginTwofactorSetupActivateData(CTModel):
 
 class PostMarkdownCheckBody(CTModel):
     """"""
-    input_scope: str = Field(validation_alias='inputScope', serialization_alias='inputScope')
+    input_scope: _t.Union[_t.Literal['description', 'document', 'plaintext', 'richline'], str] = Field(validation_alias='inputScope', serialization_alias='inputScope')
     """
     Validates the provided Markdown content against the specified scope's rules and restrictions.
     This ensures the content adheres to the allowed formatting and elements for the given context.
+    Allowed values: `description`, `document`, `plaintext`, `richline`.
     """
     markdown: str
     """The Markdown text to be processed"""
@@ -13016,8 +13834,11 @@ class PostPersonsBody(CTModel):
     """ID of a person status returned by `GET /person/masterdata`."""
     street: _t.Optional[str] = Field(default=None)
     title: _t.Optional[str] = Field(default=None)
-    visibility: _t.Optional[str] = Field(default=None)
-    """Visibility accepted when creating or updating a person."""
+    visibility: _t.Optional[_t.Union[_t.Literal['hidden', 'visible'], str]] = Field(default=None)
+    """
+    Visibility accepted when creating or updating a person.
+    Allowed values: `hidden`, `visible`.
+    """
     wedding_date: _t.Optional[_dt.date] = Field(default=None, validation_alias='weddingDate', serialization_alias='weddingDate')
     zip: _t.Optional[str] = Field(default=None)
 
@@ -13038,8 +13859,11 @@ class PostPersonsPropertiesBody(CTModel):
 
 class PostProbesBody(CTModel):
     """"""
-    domain_type: _t.List[str]
-    """One or more domain types to filter probes by."""
+    domain_type: _t.List[_t.Union[_t.Literal['person'], str]]
+    """
+    One or more domain types to filter probes by.
+    Allowed values: `person`.
+    """
     filter: _t.Optional[StrMap[_t.Any]] = Field(default=None)
     """Optional domain-specific filter criteria."""
 
@@ -13065,8 +13889,10 @@ class PostPublicgroupsSignupConfirmConfirmationTokenData(CTModel):
     group_homepage_hash: _t.Optional[str] = Field(default=None, validation_alias='groupHomepageHash', serialization_alias='groupHomepageHash')
     group_id: _t.Optional[int] = Field(default=None, validation_alias='groupId', serialization_alias='groupId')
     group_name: _t.Optional[str] = Field(default=None, validation_alias='groupName', serialization_alias='groupName')
-    membership_status: _t.Optional[str] = Field(default=None, validation_alias='membershipStatus', serialization_alias='membershipStatus')
-    state: str
+    membership_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'waiting'], str]] = Field(default=None, validation_alias='membershipStatus', serialization_alias='membershipStatus')
+    """Allowed values: `active`, `requested`, `waiting`."""
+    state: _t.Union[_t.Literal['closed', 'expired', 'success'], str]
+    """Allowed values: `closed`, `expired`, `success`."""
 
 class PostQueuesQueueData(CTModel):
     """"""
@@ -13106,8 +13932,11 @@ class PostSimulateBody(CTModel):
 
 class PostSummarySubscriptionOptions(CTModel):
     """"""
-    filter: str
-    """Which posts to include in the email summary."""
+    filter: _t.Union[_t.Literal['all', 'featured_groups', 'my_campus', 'my_groups'], str]
+    """
+    Which posts to include in the email summary.
+    Allowed values: `all`, `featured_groups`, `my_campus`, `my_groups`.
+    """
     weekdays: _t.List[int]
     """Delivery weekdays, Sunday=0 through Saturday=6."""
 
@@ -13123,7 +13952,8 @@ class PostUpdate(CTModel):
     image_ids: _t.Optional[_t.List[int]] = Field(default=None, validation_alias='imageIds', serialization_alias='imageIds')
     publication_date: OptionalDateTime = Field(default=None, validation_alias='publicationDate', serialization_alias='publicationDate')
     title: _t.Optional[str] = Field(default=None)
-    visibility: _t.Optional[str] = Field(default=None)
+    visibility: _t.Optional[_t.Union[_t.Literal['group_intern', 'group_visible'], str]] = Field(default=None)
+    """Allowed values: `group_intern`, `group_visible`."""
 
 class Printer(CTModel):
     """A printer designated to print check-in codes"""
@@ -13143,13 +13973,19 @@ class Probe(CTModel):
     domain_types: _t.List[str] = Field(validation_alias='domainTypes', serialization_alias='domainTypes')
     """Domain types for which this probe can evaluate entities."""
     group: _t.Optional[ActionGroup] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['probe-group-meeting-attendance', 'probe-group-membership', 'probe-person-avatar', 'probe-person-email', 'probe-person-field'], str]
+    """
+    Allowed values: `probe-group-meeting-attendance`, `probe-group-membership`, `probe-person-avatar`, `probe-person-email`, `probe-person-field`.
+    """
 
 class ProbeInvocation(CTModel):
     """"""
     data: StrMap[_t.Any]
     """Probe-specific configuration."""
-    probe: str
+    probe: _t.Union[_t.Literal['probe-group-meeting-attendance', 'probe-group-membership', 'probe-person-avatar', 'probe-person-email', 'probe-person-field'], str]
+    """
+    Allowed values: `probe-group-meeting-attendance`, `probe-group-membership`, `probe-person-avatar`, `probe-person-email`, `probe-person-field`.
+    """
 
 class ProbeLogicalExpression(CTModel):
     """
@@ -13159,7 +13995,8 @@ class ProbeLogicalExpression(CTModel):
     """
     Nested expressions. The `not` operator requires exactly one child; all other operators accept between one and 20 children. Entries have the same shape as ProbeExpression, but are documented without a recursive $ref because some OpenAPI tooling cannot resolve recursive schemas.
     """
-    operator: str
+    operator: _t.Union[_t.Literal['and', 'not', 'or', 'xor'], str]
+    """Allowed values: `and`, `not`, `or`, `xor`."""
 
 class ProbeTraversalExpression(CTModel):
     """
@@ -13175,7 +14012,8 @@ class ProbeTraversalExpression(CTModel):
 
 class ProbeTraversalExpressionData(CTModel):
     """"""
-    direction: str
+    direction: _t.Union[_t.Literal['person-a-to-person-b', 'person-b-to-person-a'], str]
+    """Allowed values: `person-a-to-person-b`, `person-b-to-person-a`."""
     relationship_type_id: int = Field(validation_alias='relationshipTypeId', serialization_alias='relationshipTypeId')
 
 class Profile(CTModel):
@@ -13203,8 +14041,11 @@ class Profile(CTModel):
     name: str
     name_translated: str = Field(validation_alias='nameTranslated', serialization_alias='nameTranslated')
     phone: _t.Optional[str] = Field(default=None)
-    profile_type: str = Field(validation_alias='profileType', serialization_alias='profileType')
-    """church: Church profile for this installation; campus: one specific campus profile"""
+    profile_type: _t.Union[_t.Literal['campus', 'church'], str] = Field(validation_alias='profileType', serialization_alias='profileType')
+    """
+    church: Church profile for this installation; campus: one specific campus profile
+    Allowed values: `campus`, `church`.
+    """
     service_banner: _t.Optional[str] = Field(default=None, validation_alias='serviceBanner', serialization_alias='serviceBanner', deprecated=True)
     """Use `serviceBanner_new` instead."""
     service_banner_new: _t.Optional[DomainObjectFile] = Field(default=None, validation_alias='serviceBanner_new', serialization_alias='serviceBanner_new')
@@ -13246,7 +14087,8 @@ class ProfileServicesItem(CTModel):
     """"""
     day: int
     note: _t.Optional[str] = Field(default=None)
-    repetition: str
+    repetition: _t.Union[_t.Literal['biweekly', 'every_fourth_week', 'every_third_week', 'monthly', 'weekly'], str]
+    """Allowed values: `biweekly`, `every_fourth_week`, `every_third_week`, `monthly`, `weekly`."""
     time: str
 
 class ProfileSignUpGroupVariant1(CTModel):
@@ -13272,8 +14114,11 @@ class ProfileUpdate(CTModel):
     """"""
     address: _t.Optional[ProfileAddressUpdate] = Field(default=None)
     association_id: _t.Optional[int] = Field(default=None, validation_alias='associationId', serialization_alias='associationId')
-    denomination: _t.Optional[_t.Union[str, ProfileUpdateDenominationVariant2]] = Field(default=None)
-    """Either exact denomination key or denomination object with name property."""
+    denomination: _t.Optional[_t.Union[_t.Union[_t.Literal['denomination.catholic', 'denomination.ecumenical', 'denomination.free.evangelical', 'denomination.none', 'denomination.orthodox', 'denomination.protestant'], str], ProfileUpdateDenominationVariant2]] = Field(default=None)
+    """
+    Either exact denomination key or denomination object with name property.
+    Allowed values: `denomination.catholic`, `denomination.ecumenical`, `denomination.free.evangelical`, `denomination.none`, `denomination.orthodox`, `denomination.protestant`.
+    """
     description: _t.Optional[str] = Field(default=None)
     email: _t.Optional[str] = Field(default=None)
     groups: _t.Optional[_t.List[int]] = Field(default=None)
@@ -13294,21 +14139,28 @@ class ProfileUpdate(CTModel):
     """List of tags."""
     team: _t.Optional[_t.List[ProfileUpdateTeamItem]] = Field(default=None)
     team_title: _t.Optional[str] = Field(default=None, validation_alias='teamTitle', serialization_alias='teamTitle')
-    visitors: _t.Optional[int] = Field(default=None)
-    """Single integer, which represents a range."""
+    visitors: _t.Optional[_t.Union[_t.Literal[0, 1, 100, 1000, 250, 50, 500], int]] = Field(default=None)
+    """
+    Single integer, which represents a range.
+    Allowed values: `0`, `1`, `100`, `1000`, `250`, `50`, `500`.
+    """
     website: _t.Optional[str] = Field(default=None)
     id: _t.Optional[int] = Field(default=None)
     """Campus profile ID. For `/profiles/church`, this is ignored."""
 
 class ProfileUpdateDenominationVariant2(CTModel):
     """"""
-    name: str
+    name: _t.Union[_t.Literal['denomination.catholic', 'denomination.ecumenical', 'denomination.free.evangelical', 'denomination.none', 'denomination.orthodox', 'denomination.protestant'], str]
+    """
+    Allowed values: `denomination.catholic`, `denomination.ecumenical`, `denomination.free.evangelical`, `denomination.none`, `denomination.orthodox`, `denomination.protestant`.
+    """
 
 class ProfileUpdateServicesItem(CTModel):
     """"""
     day: int
     note: _t.Optional[str] = Field(default=None)
-    repetition: str
+    repetition: _t.Union[_t.Literal['biweekly', 'every_fourth_week', 'every_third_week', 'monthly', 'weekly'], str]
+    """Allowed values: `biweekly`, `every_fourth_week`, `every_third_week`, `monthly`, `weekly`."""
     time: str
 
 class ProfileUpdateTeamItem(CTModel):
@@ -13385,7 +14237,10 @@ class PublicGroupAddress(CTModel):
     deprecated: StoredAddressDeprecated = Field(validation_alias='@deprecated', serialization_alias='@deprecated')
     addition: _t.Optional[str] = Field(default=None)
     city: _t.Optional[str] = Field(default=None)
-    color: _t.Optional[str] = Field(default=None)
+    color: _t.Optional[_t.Union[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str], _t.Union[_t.Literal['default', 'parent'], str]]] = Field(default=None)
+    """
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
+    """
     country: _t.Optional[str] = Field(default=None)
     """A country's ISO-code"""
     district: _t.Optional[str] = Field(default=None)
@@ -13393,9 +14248,10 @@ class PublicGroupAddress(CTModel):
     """
     The identifier of the domain object. This field is set automatically from the path parameter and should not be included in the request body.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['appointment', 'campus', 'church', 'group'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     The domain type of the address. This field is set automatically from the path parameter and should not be included in the request body.
+    Allowed values: `appointment`, `campus`, `church`, `group`.
     """
     geo_lat: _t.Optional[str] = Field(default=None, validation_alias='geoLat', serialization_alias='geoLat', deprecated=True)
     """Use `latitude` instead"""
@@ -13409,7 +14265,10 @@ class PublicGroupAddress(CTModel):
     longitude: _t.Optional[str] = Field(default=None)
     longitude_loose: _t.Optional[str] = Field(default=None, validation_alias='longitudeLoose', serialization_alias='longitudeLoose', deprecated=True)
     """Use `longitude` instead"""
-    marker_color: _t.Optional[str] = Field(default=None, validation_alias='markerColor', serialization_alias='markerColor', deprecated=True)
+    marker_color: _t.Optional[_t.Union[_t.Union[_t.Literal['default', 'parent'], str], _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None, validation_alias='markerColor', serialization_alias='markerColor', deprecated=True)
+    """
+    Allowed values: `default`, `parent`, `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     marker_icon: _t.Optional[str] = Field(default=None, validation_alias='markerIcon', serialization_alias='markerIcon', deprecated=True)
     """Use `icon` instead"""
     marker_url: _t.Optional[str] = Field(default=None, validation_alias='markerUrl', serialization_alias='markerUrl', deprecated=True)
@@ -13485,7 +14344,10 @@ class PublicGroupFormField(CTModel):
     """"""
     default: _t.Optional[_t.Union[str, bool]] = Field(default=None)
     """Configured default, including checkbox booleans; not necessarily a string."""
-    field_type_code: _t.Optional[str] = Field(default=None, validation_alias='fieldTypeCode', serialization_alias='fieldTypeCode')
+    field_type_code: _t.Optional[_t.Union[_t.Union[_t.Literal['api', 'checkbox', 'date', 'datetime', 'multiselect', 'number', 'radioselect', 'select', 'text', 'textarea'], str], str]] = Field(default=None, validation_alias='fieldTypeCode', serialization_alias='fieldTypeCode')
+    """
+    Allowed values: `api`, `checkbox`, `date`, `datetime`, `multiselect`, `number`, `radioselect`, `select`, `text`, `textarea`.
+    """
     id: int
     """
     ID of the form field. Only IDs within the same form field type are unique, i.e. a form field is identified by its type and its ID.
@@ -13508,8 +14370,11 @@ class PublicGroupFormField(CTModel):
     """Person field is locked, for example an email captured by the token."""
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
     """Form fields should be sorted by this key ascending."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Field domain; combine with id to identify a submitted field."""
+    type_: _t.Union[_t.Literal['comment', 'custom', 'person', 'privacy', 'privacyForChild', 'privacyForOther', 'privacyForSelf', 'relation'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Field domain; combine with id to identify a submitted field.
+    Allowed values: `comment`, `custom`, `person`, `privacy`, `privacyForChild`, `privacyForOther`, `privacyForSelf`, `relation`.
+    """
 
 class PublicGroupFormFieldOptionsItem(CTModel):
     """"""
@@ -13546,11 +14411,15 @@ class PublicGroupFormResultSignUpPersonsItem(CTModel):
     has_accepted_privacy: bool = Field(validation_alias='hasAcceptedPrivacy', serialization_alias='hasAcceptedPrivacy')
     person: DomainObjectPerson
     """Person as Domain Object"""
-    relation_type: _t.Optional[str] = Field(default=None, validation_alias='relationType', serialization_alias='relationType')
-    """Relation of this sign-up person to the requester."""
-    status: str
+    relation_type: _t.Optional[_t.Union[_t.Literal['child', 'other', 'spouse'], str]] = Field(default=None, validation_alias='relationType', serialization_alias='relationType')
+    """
+    Relation of this sign-up person to the requester.
+    Allowed values: `child`, `other`, `spouse`.
+    """
+    status: _t.Union[_t.Literal['CLICKED', 'IN_GROUP', 'NOT_CLICKED', 'REQUESTED'], str]
     """
     Specifies whether this person is already in the group (IN_GROUP), in pending state for the group (REQUESTED), or selected by the user to be added into the group (CLICKED). Otherwise NOT_CLICKED.
+    Allowed values: `CLICKED`, `IN_GROUP`, `NOT_CLICKED`, `REQUESTED`.
     """
 
 class PublicGroupFormResultSignUpPersonsItemFormDataItem(CTModel):
@@ -13618,8 +14487,11 @@ class PublicGroupSettings(CTModel):
     allow_sameemail_registration: _t.Optional[bool] = Field(default=None, validation_alias='allowSameemailRegistration', serialization_alias='allowSameemailRegistration', deprecated=True)
     """Use `allowSameEmailRegistration` instead."""
     allow_spouse_registration: bool = Field(validation_alias='allowSpouseRegistration', serialization_alias='allowSpouseRegistration')
-    email_verification_mode: str = Field(validation_alias='emailVerificationMode', serialization_alias='emailVerificationMode')
-    """Controls email verification for anonymous group signups."""
+    email_verification_mode: _t.Union[_t.Literal['all', 'existing', 'none'], str] = Field(validation_alias='emailVerificationMode', serialization_alias='emailVerificationMode')
+    """
+    Controls email verification for anonymous group signups.
+    Allowed values: `all`, `existing`, `none`.
+    """
     hide_contact_leader: bool = Field(validation_alias='hideContactLeader', serialization_alias='hideContactLeader')
     hide_login: bool = Field(validation_alias='hideLogin', serialization_alias='hideLogin')
     show_street: bool = Field(validation_alias='showStreet', serialization_alias='showStreet')
@@ -13643,9 +14515,10 @@ class PublicGroupSignUpPersonsItem(CTModel):
     """"""
     person: DomainObjectPerson
     """Person as Domain Object"""
-    status: str
+    status: _t.Union[_t.Literal['IN_GROUP', 'NOT_CLICKED', 'REQUESTED'], str]
     """
     Existing membership/request status, or NOT_CLICKED for an eligible person not yet requested. CLICKED is a client state and is not returned.
+    Allowed values: `IN_GROUP`, `NOT_CLICKED`, `REQUESTED`.
     """
 
 class PublicGroupSignoutData(CTModel):
@@ -13684,7 +14557,10 @@ class PublicGroupSignupCreateFormsItemFormItem(CTModel):
     """"""
     id: int
     """Field ID paired with its type; use the IDs from the form response."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['comment', 'custom', 'person', 'privacy', 'privacyForChild', 'privacyForOther', 'privacyForSelf', 'relation'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Allowed values: `comment`, `custom`, `person`, `privacy`, `privacyForChild`, `privacyForOther`, `privacyForSelf`, `relation`.
+    """
     value: _t.Any = Field(default=None)
     """
     Value according to the dynamic field definition: scalar, null, or an array for multiple choices.
@@ -13736,10 +14612,16 @@ class PublicRelationGroupHomepage(CTModel):
 
 class PublicRelationTag(CTModel):
     """"""
-    key: str
-    """Technical enum case name used by ChurchTools."""
-    name: str
-    """Translation key of the public relation profile tag."""
+    key: _t.Union[_t.Literal['ACTIVE', 'BIBLICALLY_DEVOTED', 'CHARISMATIC', 'CHILD_FRIENDLY', 'CLASSICAL', 'CONTEMPLATIVE', 'INTERNATIONAL', 'LIVELY', 'MISSIONARY', 'MODERN', 'OPEN_TO_GUESTS', 'PERSONAL', 'PROGRESSIVE', 'TRADITIONAL'], str]
+    """
+    Technical enum case name used by ChurchTools.
+    Allowed values: `ACTIVE`, `BIBLICALLY_DEVOTED`, `CHARISMATIC`, `CHILD_FRIENDLY`, `CLASSICAL`, `CONTEMPLATIVE`, `INTERNATIONAL`, `LIVELY`, `MISSIONARY`, `MODERN`, `OPEN_TO_GUESTS`, `PERSONAL`, `PROGRESSIVE`, `TRADITIONAL`.
+    """
+    name: _t.Union[_t.Literal['active', 'biblically.devoted', 'charismatic', 'child.friendly', 'classical', 'contemplative', 'international', 'lively', 'missionary', 'modern', 'open.to.guests', 'personal', 'progressive', 'traditional'], str]
+    """
+    Translation key of the public relation profile tag.
+    Allowed values: `active`, `biblically.devoted`, `charismatic`, `child.friendly`, `classical`, `contemplative`, `international`, `lively`, `missionary`, `modern`, `open.to.guests`, `personal`, `progressive`, `traditional`.
+    """
     name_translated: str = Field(validation_alias='nameTranslated', serialization_alias='nameTranslated')
     """Localized public relation profile tag name."""
 
@@ -13751,8 +14633,11 @@ class PublicRelationsMasterData(CTModel):
     """Denominations that can be assigned to a public profile."""
     group_homepages: _t.List[PublicRelationGroupHomepage] = Field(validation_alias='groupHomepages', serialization_alias='groupHomepages')
     """Public group homepages with their owning group IDs and URLs."""
-    social_media: _t.List[str] = Field(validation_alias='socialMedia', serialization_alias='socialMedia')
-    """Supported social media channels for public profile links."""
+    social_media: _t.List[_t.Union[_t.Literal['Facebook', 'Instagram', 'Pinterest', 'Snapchat', 'Soundcloud', 'Spotify', 'Telegram', 'TikTok', 'Twitter', 'Vimeo', 'WhatsApp', 'YouTube'], str]] = Field(validation_alias='socialMedia', serialization_alias='socialMedia')
+    """
+    Supported social media channels for public profile links.
+    Allowed values: `Facebook`, `Instagram`, `Pinterest`, `Snapchat`, `Soundcloud`, `Spotify`, `Telegram`, `TikTok`, `Twitter`, `Vimeo`, `WhatsApp`, `YouTube`.
+    """
     tags: _t.List[PublicRelationTag]
     """Tags that can describe a public profile."""
 
@@ -13795,7 +14680,8 @@ class PutConfigRequest(CTModel):
     churchdb_archivedeletehistory: _t.Optional[bool] = Field(default=None)
     churchdb_birthdaylist_station: _t.Optional[str] = Field(default=None)
     churchdb_birthdaylist_status: _t.Optional[str] = Field(default=None)
-    churchdb_cleverreach_connected: _t.Optional[str] = Field(default=None)
+    churchdb_cleverreach_connected: _t.Optional[_t.Union[_t.Literal['false', 'true'], str]] = Field(default=None)
+    """Allowed values: `false`, `true`."""
     churchdb_emailseparator: _t.Optional[str] = Field(default=None)
     churchdb_groupnotchoosable: _t.Optional[int] = Field(default=None)
     churchdb_home_lat: _t.Optional[str] = Field(default=None)
@@ -13851,7 +14737,8 @@ class PutConfigRequest(CTModel):
     datasecurity_privacy_agreement_text_for_children: _t.Optional[str] = Field(default=None)
     """Only in extended config"""
     deactivate_default_login: _t.Optional[bool] = Field(default=None)
-    email_server: _t.Optional[str] = Field(default=None, validation_alias='emailServer', serialization_alias='emailServer')
+    email_server: _t.Optional[_t.Union[_t.Literal['churchtools', 'own'], str]] = Field(default=None, validation_alias='emailServer', serialization_alias='emailServer')
+    """Allowed values: `churchtools`, `own`."""
     evangelische_termine_api_key: _t.Optional[str] = Field(default=None)
     evangelische_termine_enabled: _t.Optional[bool] = Field(default=None)
     evangelische_termine_name: _t.Optional[str] = Field(default=None)
@@ -13861,8 +14748,11 @@ class PutConfigRequest(CTModel):
     hide_licensetab: _t.Optional[str] = Field(default=None)
     impressum_external: _t.Optional[str] = Field(default=None)
     impressum_external_link: _t.Optional[str] = Field(default=None)
-    impressum_internal: _t.Optional[str] = Field(default=None)
-    """This is a string that can only be true or false."""
+    impressum_internal: _t.Optional[_t.Union[_t.Literal['0', '1'], str]] = Field(default=None)
+    """
+    This is a string that can only be true or false.
+    Allowed values: `0`, `1`.
+    """
     invite_email_text: _t.Optional[str] = Field(default=None)
     is_churchtools_blog_widget_active: _t.Optional[bool] = Field(default=None)
     is_churchtools_onboarding_widget_active: _t.Optional[bool] = Field(default=None)
@@ -13881,7 +14771,8 @@ class PutConfigRequest(CTModel):
     post_active: _t.Optional[bool] = Field(default=None)
     post_edit_time_limited: _t.Optional[bool] = Field(default=None)
     post_email_summary_default_enabled: _t.Optional[bool] = Field(default=None)
-    post_email_summary_default_filter: _t.Optional[str] = Field(default=None)
+    post_email_summary_default_filter: _t.Optional[_t.Union[_t.Literal['all', 'featured_groups', 'my_groups'], str]] = Field(default=None)
+    """Allowed values: `all`, `featured_groups`, `my_groups`."""
     post_email_summary_default_weekdays: _t.Optional[str] = Field(default=None)
     post_featured_groups: _t.Optional[str] = Field(default=None)
     post_inmenu: _t.Optional[bool] = Field(default=None)
@@ -13952,9 +14843,10 @@ class PutGroupsGroupIdMembersPersonIdData(CTModel):
     """
     group: GroupMemberGroup
     """Group to which this membership belongs."""
-    group_member_status: str = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str] = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     group_type_role_id: int = Field(validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
     """
@@ -14007,9 +14899,10 @@ class PutGroupsGroupIdMembersPersonIdDataT0(CTModel):
     """
     group: GroupMemberGroup
     """Group to which this membership belongs."""
-    group_member_status: str = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str] = Field(validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
     """
     State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     group_type_role_id: int = Field(validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
     """
@@ -14320,9 +15213,10 @@ class RelationshipType(CTModel):
     """Side A role label translated for the current language."""
     degree_name_b_translated: str = Field(validation_alias='degreeNameBTranslated', serialization_alias='degreeNameBTranslated')
     """Side B role label translated for the current language."""
-    function_keys: _t.List[str] = Field(validation_alias='functionKeys', serialization_alias='functionKeys')
+    function_keys: _t.List[_t.Union[_t.Literal['nodelete', 'noduplicate', 'openduplicate'], str]] = Field(validation_alias='functionKeys', serialization_alias='functionKeys')
     """
     Built-in behavior flags; always an array, empty for ordinary custom types. `nodelete` protects the type from deletion; `noduplicate` and `openduplicate` identify types used by duplicate-person handling.
+    Allowed values: `nodelete`, `noduplicate`, `openduplicate`.
     """
     id: int
     """Relationship-type ID used when creating or reading a relationship between persons."""
@@ -14384,15 +15278,19 @@ class RepeatCalculationBase(CTModel):
     Use a UTC timestamp for a timed appointment or YYYY-MM-DD for an all-day appointment. ChurchTools interprets dates in the installation’s timezone. Seconds on appointment input are discarded.
     """
     exceptions: _t.List[StrMap[_t.Any]]
-    id: int
-    """Placeholder ID because no appointment is stored."""
+    id: _t.Union[_t.Literal[-1], int]
+    """
+    Placeholder ID because no appointment is stored.
+    Allowed values: `-1`.
+    """
     repeat_frequency: _t.Optional[int] = Field(default=None, validation_alias='repeatFrequency', serialization_alias='repeatFrequency')
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: int = Field(validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int] = Field(validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -14419,9 +15317,10 @@ class RepeatCalculationCreate(CTModel):
     """
     Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
     """
-    repeat_id: _t.Optional[int] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
+    repeat_id: _t.Optional[_t.Union[_t.Literal[0, 1, 31, 32, 365, 7, 999], int]] = Field(default=None, validation_alias='repeatId', serialization_alias='repeatId')
     """
     Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
+    Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     """
     repeat_option: _t.Optional[int] = Field(default=None, validation_alias='repeatOption', serialization_alias='repeatOption')
     """
@@ -14458,20 +15357,24 @@ class Report(CTModel):
     comment: _t.Optional[str] = Field(default=None)
     meta: MetaDataEntityId
     reporter: _t.Union[DomainObjectPerson, DomainObjectExternalPerson]
-    status: str
+    status: _t.Union[_t.Literal['accepted', 'declined', 'pending'], str]
+    """Allowed values: `accepted`, `declined`, `pending`."""
 
 class ReportAnswer(CTModel):
     """"""
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
-    response: str
+    domain_type: _t.Union[_t.Literal['post', 'post_comment'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `post`, `post_comment`."""
+    response: _t.Union[_t.Literal['accept', 'decline'], str]
+    """Allowed values: `accept`, `decline`."""
 
 class ReportCreate(CTModel):
     """"""
     captcha: _t.Optional[str] = Field(default=None)
     comment: _t.Optional[str] = Field(default=None)
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['post', 'post_comment'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `post`, `post_comment`."""
     reporter: _t.Optional[ReportCreateReporter] = Field(default=None)
 
 class ReportCreateReporter(CTModel):
@@ -14487,9 +15390,11 @@ class ReportObjectPost(CTModel):
     id: int
     meta: MetaDataEntityId
     reports: _t.List[Report]
-    status: str
+    status: _t.Union[_t.Literal['accepted', 'declined', 'pending', 'pending-again'], str]
+    """Allowed values: `accepted`, `declined`, `pending`, `pending-again`."""
     domain_object: Post = Field(validation_alias='domainObject', serialization_alias='domainObject')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['post'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `post`."""
 
 class ReportObjectPostComment(CTModel):
     """"""
@@ -14498,9 +15403,11 @@ class ReportObjectPostComment(CTModel):
     id: int
     meta: MetaDataEntityId
     reports: _t.List[Report]
-    status: str
+    status: _t.Union[_t.Literal['accepted', 'declined', 'pending', 'pending-again'], str]
+    """Allowed values: `accepted`, `declined`, `pending`, `pending-again`."""
     domain_object: PostComment = Field(validation_alias='domainObject', serialization_alias='domainObject')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['post_comment'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `post_comment`."""
 
 class ResolvedDomainObject(CTModel):
     """
@@ -14510,8 +15417,11 @@ class ResolvedDomainObject(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
     """Optional image URL."""
     infos: _t.List[str]
@@ -14741,9 +15651,10 @@ class Role(CTModel):
     """Abbreviated label for the role, used in compact displays."""
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
     """Display order among roles. Lower values come first."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['leader', 'participant'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Functional classification of the role. Multiple roles with different names can share the same classification.
+    Allowed values: `leader`, `participant`.
     """
     id: int
     """
@@ -14782,15 +15693,18 @@ class RoleCreate(CTModel):
     """Abbreviated label for the role, used in compact displays."""
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
     """Display order among roles. Lower values come first."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['leader', 'participant'], str] = Field(validation_alias='type', serialization_alias='type')
     """
     Functional classification of the role. Multiple roles with different names can share the same classification.
+    Allowed values: `leader`, `participant`.
     """
 
 class RosterICalSetting(CTModel):
     """Personal setting containing the secret used by a roster calendar subscription."""
-    attribute: str
-    module: str
+    attribute: _t.Union[_t.Literal['rosterICalSecret'], str]
+    """Allowed values: `rosterICalSecret`."""
+    module: _t.Union[_t.Literal['churchservice'], str]
+    """Allowed values: `churchservice`."""
     value: str
     """
     Secret identifying the person in the subscription URL. Creating a new roster link replaces this value.
@@ -14801,7 +15715,8 @@ class Routine(CTModel):
     Automation definition, including enabled and disabled steps as a nested tree. Domain context bindings and per-membership execution progress are separate resources.
     """
     description: _t.Optional[str] = Field(default=None)
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['group_membership'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `group_membership`."""
     id: int
     is_enabled: bool = Field(validation_alias='isEnabled', serialization_alias='isEnabled')
     name: str
@@ -14825,7 +15740,8 @@ class RoutineCreate(CTModel):
     """
     Context for the currently supported group_membership domain. Group and role IDs are required by the domain handler.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['group_membership'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `group_membership`."""
     is_enabled: _t.Optional[bool] = Field(default=None, validation_alias='isEnabled', serialization_alias='isEnabled')
     name: str
     """Trimmed automation name."""
@@ -14836,9 +15752,10 @@ class RoutineCreateDomainContext(CTModel):
     Context for the currently supported group_membership domain. Group and role IDs are required by the domain handler.
     """
     group_id: int = Field(validation_alias='groupId', serialization_alias='groupId')
-    group_member_status: _t.Optional[str] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
+    group_member_status: _t.Optional[_t.Union[_t.Literal['active', 'requested', 'to_delete', 'waiting'], str]] = Field(default=None, validation_alias='groupMemberStatus', serialization_alias='groupMemberStatus')
     """
     Optional membership status for the binding; null means the active/default status representation.
+    Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     """
     group_type_role_id: int = Field(validation_alias='groupTypeRoleId', serialization_alias='groupTypeRoleId')
 
@@ -14850,8 +15767,10 @@ class RoutineRun(CTModel):
     """Group membership ID, not a person or group ID."""
     domain_object: _t.Optional[DomainObjectGroupMembership] = Field(default=None, validation_alias='domainObject', serialization_alias='domainObject')
     """Only present with include[]=domainObject; null when resolution fails."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
-    error_code: _t.Optional[str] = Field(default=None, validation_alias='errorCode', serialization_alias='errorCode')
+    domain_type: _t.Union[_t.Literal['group_membership'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `group_membership`."""
+    error_code: _t.Optional[_t.Union[_t.Literal['exception-thrown', 'invalid-step-id', 'loop-detected'], str]] = Field(default=None, validation_alias='errorCode', serialization_alias='errorCode')
+    """Allowed values: `exception-thrown`, `invalid-step-id`, `loop-detected`."""
     error_message: _t.Optional[str] = Field(default=None, validation_alias='errorMessage', serialization_alias='errorMessage')
     """Can be either an error message or an translatable messageKey"""
     id: _t.Optional[int] = Field(default=None)
@@ -14859,7 +15778,10 @@ class RoutineRun(CTModel):
     meta: _t.Optional[MetaDataEntityId] = Field(default=None)
     routine_id: int = Field(validation_alias='routineId', serialization_alias='routineId')
     routine_step_id: _t.Optional[int] = Field(default=None, validation_alias='routineStepId', serialization_alias='routineStepId')
-    status: str
+    status: _t.Union[_t.Literal['failed', 'finished', 'not-started', 'paused', 'rerun-step', 'started', 'waiting'], str]
+    """
+    Allowed values: `failed`, `finished`, `not-started`, `paused`, `rerun-step`, `started`, `waiting`.
+    """
     waiting_since: _t.Optional[_dt.date] = Field(default=None, validation_alias='waitingSince', serialization_alias='waitingSince')
     """A simple date in ISO format, e.g. '2022-10-19'"""
 
@@ -14884,7 +15806,8 @@ class RoutineStepRepeat(CTModel):
     id: int
     routine_id: int = Field(validation_alias='routineId', serialization_alias='routineId')
     action_data: RoutineStepRepeatActionData = Field(validation_alias='actionData', serialization_alias='actionData')
-    action_key: str = Field(validation_alias='actionKey', serialization_alias='actionKey')
+    action_key: _t.Union[_t.Literal['special:repeat'], str] = Field(validation_alias='actionKey', serialization_alias='actionKey')
+    """Allowed values: `special:repeat`."""
     children: _t.Optional[_t.List[RoutineStepWithoutRepeat]] = Field(default=None)
     """Child steps when present. Omitted for an empty repeat step."""
     is_enabled: bool = Field(validation_alias='isEnabled', serialization_alias='isEnabled')
@@ -14896,18 +15819,23 @@ class RoutineStepRepeatActionData(CTModel):
 class RoutineStepUpdateRepeat(CTModel):
     """"""
     action_data: RoutineStepRepeatActionData = Field(validation_alias='actionData', serialization_alias='actionData')
-    action_key: str = Field(validation_alias='actionKey', serialization_alias='actionKey')
+    action_key: _t.Union[_t.Literal['special:repeat'], str] = Field(validation_alias='actionKey', serialization_alias='actionKey')
+    """Allowed values: `special:repeat`."""
     children: _t.List[RoutineStepUpdateWithoutRepeat]
-    finish: _t.Optional[_t.List[_t.Union[int, str]]] = Field(default=None)
+    finish: _t.Optional[_t.List[_t.Union[int, _t.Union[_t.Literal['finished', 'not-started', 'started'], str]]]] = Field(default=None)
+    """Allowed values: `finished`, `not-started`, `started`."""
     id: _t.Optional[int] = Field(default=None)
     is_enabled: bool = Field(validation_alias='isEnabled', serialization_alias='isEnabled')
-    reposition: _t.Optional[_t.List[_t.Union[int, str]]] = Field(default=None)
-    restart: _t.Optional[_t.List[_t.Union[int, str]]] = Field(default=None)
+    reposition: _t.Optional[_t.List[_t.Union[int, _t.Union[_t.Literal['finished', 'not-started', 'started'], str]]]] = Field(default=None)
+    """Allowed values: `finished`, `not-started`, `started`."""
+    restart: _t.Optional[_t.List[_t.Union[int, _t.Union[_t.Literal['finished', 'not-started', 'started'], str]]]] = Field(default=None)
+    """Allowed values: `finished`, `not-started`, `started`."""
 
 class RoutineStepUpdateWithoutRepeat(CTModel):
     """"""
     id: _t.Optional[int] = Field(default=None)
-    reposition: _t.Optional[_t.List[_t.Union[int, str]]] = Field(default=None)
+    reposition: _t.Optional[_t.List[_t.Union[int, _t.Union[_t.Literal['finished', 'not-started', 'started'], str]]]] = Field(default=None)
+    """Allowed values: `finished`, `not-started`, `started`."""
 
 class RoutineStepWithoutRepeat(CTModel):
     """"""
@@ -14917,16 +15845,18 @@ class RoutineStepWithoutRepeat(CTModel):
 class RoutineUpdate(CTModel):
     """"""
     description: _t.Optional[str] = Field(default=None)
-    finish: _t.Optional[_t.List[_t.Union[int, str]]] = Field(default=None)
+    finish: _t.Optional[_t.List[_t.Union[int, _t.Union[_t.Literal['finished', 'not-started', 'started'], str]]]] = Field(default=None)
     """
     Source step IDs or run status buckets. not-started materializes potential runs; this is not a list of run IDs.
+    Allowed values: `finished`, `not-started`, `started`.
     """
     is_enabled: _t.Optional[bool] = Field(default=None, validation_alias='isEnabled', serialization_alias='isEnabled')
     name: _t.Optional[str] = Field(default=None)
     priority: _t.Optional[int] = Field(default=None)
-    restart: _t.Optional[_t.List[_t.Union[int, str]]] = Field(default=None)
+    restart: _t.Optional[_t.List[_t.Union[int, _t.Union[_t.Literal['finished', 'not-started', 'started'], str]]]] = Field(default=None)
     """
     Source step IDs or run status buckets. not-started materializes potential runs; this is not a list of run IDs.
+    Allowed values: `finished`, `not-started`, `started`.
     """
     steps: _t.Optional[_t.List[_t.Union[RoutineStepUpdateWithoutRepeat, RoutineStepUpdateRepeat]]] = Field(default=None)
     """Complete replacement tree; omitted existing steps are removed."""
@@ -14962,7 +15892,8 @@ class SamlMetadataEndpoint(CTModel):
     """
     An endpoint using the supported HTTP-Redirect binding. Unsupported bindings and invalid endpoint URLs are excluded.
     """
-    binding: str
+    binding: _t.Union[_t.Literal['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'], str]
+    """Allowed values: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`."""
     url: str
 
 class SamlMetadataParseCreate(CTModel):
@@ -15101,9 +16032,10 @@ class ServiceCandidateScoreHint(CTModel):
     """"""
     name_translated: str = Field(validation_alias='nameTranslated', serialization_alias='nameTranslated')
     """Human-readable explanation in the current language."""
-    reason: str
+    reason: _t.Union[_t.Union[_t.Literal['absence', 'last.service.near', 'next.service.near', 'preference.always-seperated', 'preference.daytime', 'preference.max-reached', 'preference.with-partner', 'service.previously-declined', 'service.same-day'], str], str]
     """
     Stable reason key for a score contribution. Monthly utilization reasons include a YYYY-MM suffix. The spelling always-seperated is part of the wire format.
+    Allowed values: `absence`, `last.service.near`, `next.service.near`, `preference.always-seperated`, `preference.daytime`, `preference.max-reached`, `preference.with-partner`, `service.previously-declined`, `service.same-day`.
     """
     score: int
     """
@@ -15221,9 +16153,10 @@ class ServiceExchangeRequest(CTModel):
     """
     Assignment offered by the requester. ID of a concrete event-service assignment (service request), not the reusable service master-data ID from /services.
     """
-    status: str
+    status: _t.Union[_t.Literal['AGREED', 'CANCELLED', 'DECLINED', 'UNANSWERED'], str]
     """
     `UNANSWERED`: awaiting a reply; `AGREED`: exchange accepted; `DECLINED`: recipient declined; `CANCELLED`: requester cancelled. Archiving is tracked separately by `isArchived`.
+    Allowed values: `AGREED`, `CANCELLED`, `DECLINED`, `UNANSWERED`.
     """
 
 class ServiceExchangeRequestCreate(CTModel):
@@ -15284,14 +16217,16 @@ class ServiceGroupPersonPreference(CTModel):
     modified_date: _dt.datetime = Field(validation_alias='modifiedDate', serialization_alias='modifiedDate')
     """A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'"""
     modified_person: ServiceGroupPersonPreferenceModifiedPerson = Field(validation_alias='modifiedPerson', serialization_alias='modifiedPerson')
-    morning_weight: int = Field(validation_alias='morningWeight', serialization_alias='morningWeight')
+    morning_weight: _t.Union[_t.Literal[0, 1, 2, 3, 4], int] = Field(validation_alias='morningWeight', serialization_alias='morningWeight')
     """
     0: no preference; 1: prefer morning; 2: only morning; 3: prefer afternoon/evening; 4: only afternoon/evening. Candidate scoring treats event starts before 13:00 as morning. These preferences influence the score; they do not remove candidates.
+    Allowed values: `0`, `1`, `2`, `3`, `4`.
     """
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
-    relation_weight: int = Field(validation_alias='relationWeight', serialization_alias='relationWeight')
+    relation_weight: _t.Union[_t.Literal[0, 1, 2], int] = Field(validation_alias='relationWeight', serialization_alias='relationWeight')
     """
     0: no preference; 1: prefer serving with the partner; 2: prefer serving separately. Influences candidate scoring when a related partner has an assignment at the event.
+    Allowed values: `0`, `1`, `2`.
     """
     service_group_id: int = Field(validation_alias='serviceGroupId', serialization_alias='serviceGroupId')
 
@@ -15900,8 +16835,11 @@ class SsoLogin(CTModel):
     """Whether the provider is marked as the primary login option."""
     subtitle: _t.Optional[str] = Field(default=None)
     """Optional explanatory text for the login screen."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Authentication protocol implemented by the provider."""
+    type_: _t.Union[_t.Literal['oauth', 'oidc', 'saml'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Authentication protocol implemented by the provider.
+    Allowed values: `oauth`, `oidc`, `saml`.
+    """
 
 class StartStopChat(CTModel):
     """"""
@@ -15944,9 +16882,10 @@ class StatementMovement(CTModel):
 
 class StatementMovementUpdate(CTModel):
     """"""
-    state: str
+    state: _t.Union[_t.Literal['booked', 'ignored', 'open'], str]
     """
     Target movement state. Returning from booked to another state does not undo or delete the existing transaction.
+    Allowed values: `booked`, `ignored`, `open`.
     """
 
 class StatementStatistics(CTModel):
@@ -16020,7 +16959,10 @@ class StoredAddress(CTModel):
     """
     addition: _t.Optional[str] = Field(default=None)
     city: _t.Optional[str] = Field(default=None)
-    color: _t.Optional[str] = Field(default=None)
+    color: _t.Optional[_t.Union[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str], _t.Union[_t.Literal['default', 'parent'], str]]] = Field(default=None)
+    """
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
+    """
     country: _t.Optional[str] = Field(default=None)
     """A country's ISO-code"""
     district: _t.Optional[str] = Field(default=None)
@@ -16028,9 +16970,10 @@ class StoredAddress(CTModel):
     """
     The identifier of the domain object. This field is set automatically from the path parameter and should not be included in the request body.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['appointment', 'campus', 'church', 'group'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     The domain type of the address. This field is set automatically from the path parameter and should not be included in the request body.
+    Allowed values: `appointment`, `campus`, `church`, `group`.
     """
     icon: _t.Optional[str] = Field(default=None)
     latitude: _t.Optional[str] = Field(default=None)
@@ -16048,7 +16991,10 @@ class StoredAddress(CTModel):
     """Use `latitude` instead"""
     longitude_loose: _t.Optional[str] = Field(default=None, validation_alias='longitudeLoose', serialization_alias='longitudeLoose', deprecated=True)
     """Use `longitude` instead"""
-    marker_color: _t.Optional[str] = Field(default=None, validation_alias='markerColor', serialization_alias='markerColor', deprecated=True)
+    marker_color: _t.Optional[_t.Union[_t.Union[_t.Literal['default', 'parent'], str], _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None, validation_alias='markerColor', serialization_alias='markerColor', deprecated=True)
+    """
+    Allowed values: `default`, `parent`, `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     marker_icon: _t.Optional[str] = Field(default=None, validation_alias='markerIcon', serialization_alias='markerIcon', deprecated=True)
     """Use `icon` instead"""
     marker_url: _t.Optional[str] = Field(default=None, validation_alias='markerUrl', serialization_alias='markerUrl', deprecated=True)
@@ -16059,13 +17005,20 @@ class StoredAddress(CTModel):
 
 class StoredAddressDeprecated(CTModel):
     """"""
-    geo_lat: str = Field(validation_alias='geoLat', serialization_alias='geoLat')
-    geo_lng: str = Field(validation_alias='geoLng', serialization_alias='geoLng')
-    marker_color: str = Field(validation_alias='markerColor', serialization_alias='markerColor')
-    marker_icon: str = Field(validation_alias='markerIcon', serialization_alias='markerIcon')
-    marker_url: str = Field(validation_alias='markerUrl', serialization_alias='markerUrl')
-    meeting_at: str = Field(validation_alias='meetingAt', serialization_alias='meetingAt')
-    postalcode: str
+    geo_lat: _t.Union[_t.Literal['latitude'], str] = Field(validation_alias='geoLat', serialization_alias='geoLat')
+    """Allowed values: `latitude`."""
+    geo_lng: _t.Union[_t.Literal['longitude'], str] = Field(validation_alias='geoLng', serialization_alias='geoLng')
+    """Allowed values: `longitude`."""
+    marker_color: _t.Union[_t.Literal['color'], str] = Field(validation_alias='markerColor', serialization_alias='markerColor')
+    """Allowed values: `color`."""
+    marker_icon: _t.Union[_t.Literal['icon'], str] = Field(validation_alias='markerIcon', serialization_alias='markerIcon')
+    """Allowed values: `icon`."""
+    marker_url: _t.Union[_t.Literal['@deleted use icon and color instead'], str] = Field(validation_alias='markerUrl', serialization_alias='markerUrl')
+    """Allowed values: `@deleted use icon and color instead`."""
+    meeting_at: _t.Union[_t.Literal['name'], str] = Field(validation_alias='meetingAt', serialization_alias='meetingAt')
+    """Allowed values: `name`."""
+    postalcode: _t.Union[_t.Literal['zip'], str]
+    """Allowed values: `zip`."""
 
 class SubscriptionGroup(CTModel):
     """
@@ -16081,8 +17034,11 @@ class SubscriptionGroup(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
@@ -16092,7 +17048,8 @@ class SubscriptionGroup(CTModel):
     """
     Subject-specific options; null when none are stored. Most subjects do not interpret these options.
     """
-    subject: str
+    subject: _t.Union[_t.Literal['group'], str]
+    """Allowed values: `group`."""
 
 class SubscriptionGroupMeta(CTModel):
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
@@ -16121,8 +17078,11 @@ class SubscriptionLegacyMeetingRequests(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
@@ -16147,8 +17107,11 @@ class SubscriptionLegacyServiceRequests(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
@@ -16173,8 +17136,11 @@ class SubscriptionMeetingRequests(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
@@ -16184,7 +17150,8 @@ class SubscriptionMeetingRequests(CTModel):
     """
     Subject-specific options; null when none are stored. Most subjects do not interpret these options.
     """
-    subject: str
+    subject: _t.Union[_t.Literal['meetingrequest'], str]
+    """Allowed values: `meetingrequest`."""
 
 class SubscriptionPost(CTModel):
     """
@@ -16200,8 +17167,11 @@ class SubscriptionPost(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
@@ -16211,7 +17181,8 @@ class SubscriptionPost(CTModel):
     """
     Subject-specific options; null when none are stored. Most subjects do not interpret these options.
     """
-    subject: str
+    subject: _t.Union[_t.Literal['post'], str]
+    """Allowed values: `post`."""
 
 class SubscriptionPostSummary(CTModel):
     """
@@ -16227,19 +17198,24 @@ class SubscriptionPostSummary(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
     subject_identifier: str = Field(validation_alias='subjectIdentifier', serialization_alias='subjectIdentifier')
     """Subject-specific identifier represented as a string, including numeric IDs."""
     options: SubscriptionPostSummaryOptions
-    subject: str
+    subject: _t.Union[_t.Literal['post_summary'], str]
+    """Allowed values: `post_summary`."""
 
 class SubscriptionPostSummaryOptions(CTModel):
     """"""
-    filter: str
+    filter: _t.Union[_t.Literal['all', 'featured_groups', 'my_campus', 'my_groups'], str]
+    """Allowed values: `all`, `featured_groups`, `my_campus`, `my_groups`."""
     weekdays: _t.List[_t.Union[int, str]]
 
 class SubscriptionPublicChannel(CTModel):
@@ -16256,8 +17232,11 @@ class SubscriptionPublicChannel(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
@@ -16267,7 +17246,8 @@ class SubscriptionPublicChannel(CTModel):
     """
     Subject-specific options; null when none are stored. Most subjects do not interpret these options.
     """
-    subject: str
+    subject: _t.Union[_t.Literal['public_channel'], str]
+    """Allowed values: `public_channel`."""
 
 class SubscriptionResource(CTModel):
     """
@@ -16283,8 +17263,11 @@ class SubscriptionResource(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
@@ -16296,7 +17279,8 @@ class SubscriptionResource(CTModel):
     """
     Subject-specific options; null when none are stored. Most subjects do not interpret these options.
     """
-    subject: str
+    subject: _t.Union[_t.Literal['resource'], str]
+    """Allowed values: `resource`."""
 
 class SubscriptionServiceRequests(CTModel):
     """
@@ -16312,8 +17296,11 @@ class SubscriptionServiceRequests(CTModel):
     """True for a stored override, false for an implicit default or legacy list alias."""
     meta: _t.Optional[SubscriptionGroupMeta] = Field(default=None)
     """Audit metadata for explicit overrides; null for implicit defaults and legacy aliases."""
-    origin: str
-    """Reason this subscription exists; default means an explicit override."""
+    origin: _t.Union[_t.Literal['default', 'group-settings', 'meetingrequests-default', 'post-summary-default', 'resource-admin', 'resource-permission', 'resource-root-default', 'servicerequests-default'], str]
+    """
+    Reason this subscription exists; default means an explicit override.
+    Allowed values: `default`, `group-settings`, `meetingrequests-default`, `post-summary-default`, `resource-admin`, `resource-permission`, `resource-root-default`, `servicerequests-default`.
+    """
     origin_hint: _t.Optional[str] = Field(default=None, validation_alias='originHint', serialization_alias='originHint', deprecated=True)
     """Deprecated alias for `hint`."""
     person_id: int = Field(validation_alias='personId', serialization_alias='personId')
@@ -16323,7 +17310,8 @@ class SubscriptionServiceRequests(CTModel):
     """
     Subject-specific options; null when none are stored. Most subjects do not interpret these options.
     """
-    subject: str
+    subject: _t.Union[_t.Literal['servicerequest'], str]
+    """Allowed values: `servicerequest`."""
 
 class SubscriptionUpdate(CTModel):
     """
@@ -16344,9 +17332,10 @@ class SumBalanceReportCreate(CTModel):
     """
     Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
     """
-    format: _t.Optional[str] = Field(default=None)
+    format: _t.Optional[_t.Union[_t.Literal['csv', 'pdf', 'xlsx'], str]] = Field(default=None)
     """
     PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+    Allowed values: `csv`, `pdf`, `xlsx`.
     """
     month: int
     """
@@ -16399,8 +17388,11 @@ class SyncConflictCreate(CTModel):
     """
     Identifier of the sync job run that produced the conflict; not the numeric job configuration ID.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools."""
+    type_: _t.Union[_t.Literal['create', 'delete_or_create', 'duplicate_in_CT', 'duplicate_in_source', 'link_and_update', 'update'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools.
+    Allowed values: `create`, `delete_or_create`, `duplicate_in_CT`, `duplicate_in_source`, `link_and_update`, `update`.
+    """
 
 class SyncConflictData(CTModel):
     """"""
@@ -16423,8 +17415,11 @@ class SyncConflictUpdate(CTModel):
     """
     Identifier of the sync job run that produced the conflict; not the numeric job configuration ID.
     """
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools."""
+    type_: _t.Union[_t.Literal['create', 'delete_or_create', 'duplicate_in_CT', 'duplicate_in_source', 'link_and_update', 'update'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools.
+    Allowed values: `create`, `delete_or_create`, `duplicate_in_CT`, `duplicate_in_source`, `link_and_update`, `update`.
+    """
 
 class SyncConflicts(CTModel):
     """
@@ -16440,8 +17435,11 @@ class SyncConflicts(CTModel):
     Identifier of the sync job run that produced the conflict; not the numeric job configuration ID.
     """
     meta: MetaDataEntityId
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools."""
+    type_: _t.Union[_t.Literal['create', 'delete_or_create', 'duplicate_in_CT', 'duplicate_in_source', 'link_and_update', 'update'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Conflict category. Values use underscores and are case-sensitive; CT denotes ChurchTools.
+    Allowed values: `create`, `delete_or_create`, `duplicate_in_CT`, `duplicate_in_source`, `link_and_update`, `update`.
+    """
 
 class SyncEntityMapping(CTModel):
     """
@@ -16449,9 +17447,10 @@ class SyncEntityMapping(CTModel):
     """
     domain_id: _t.Optional[str] = Field(default=None, validation_alias='domainId', serialization_alias='domainId')
     """ChurchTools entity ID as text."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     ChurchTools domain types accepted by entity and field mapping validation. Adapter support can be a smaller subset.
+    Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
     """
     id: int
     """Mapping ID"""
@@ -16464,8 +17463,11 @@ class SyncEntityMapping(CTModel):
     """ID in the external system."""
     source_id: int = Field(validation_alias='sourceId', serialization_alias='sourceId')
     """External connection ID (the source system)."""
-    status: str
-    """State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools."""
+    status: _t.Union[_t.Literal['conflict', 'deleted in CT', 'synced'], str]
+    """
+    State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools.
+    Allowed values: `conflict`, `deleted in CT`, `synced`.
+    """
 
 class SyncEntityMappingCreate(CTModel):
     """
@@ -16473,9 +17475,10 @@ class SyncEntityMappingCreate(CTModel):
     """
     domain_id: _t.Optional[str] = Field(default=None, validation_alias='domainId', serialization_alias='domainId')
     """ChurchTools entity ID as text."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     ChurchTools domain types accepted by entity and field mapping validation. Adapter support can be a smaller subset.
+    Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
     """
     last_synced_date: OptionalDateTime = Field(default=None, validation_alias='lastSyncedDate', serialization_alias='lastSyncedDate')
     """Last synchronization timestamp. Prefer an explicit timezone."""
@@ -16485,16 +17488,20 @@ class SyncEntityMappingCreate(CTModel):
     """ID in the external system."""
     source_id: int = Field(validation_alias='sourceId', serialization_alias='sourceId')
     """External connection ID (the source system)."""
-    status: str
-    """State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools."""
+    status: _t.Union[_t.Literal['conflict', 'deleted in CT', 'synced'], str]
+    """
+    State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools.
+    Allowed values: `conflict`, `deleted in CT`, `synced`.
+    """
 
 class SyncEntityMappingUpdate(CTModel):
     """Replaces a record relationship."""
     domain_id: _t.Optional[str] = Field(default=None, validation_alias='domainId', serialization_alias='domainId')
     """ChurchTools entity ID as text."""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['account', 'account_class', 'account_group', 'account_type', 'accounting_period', 'agenda', 'agenda_item', 'appointment', 'appointment_image', 'appointment_occurrence', 'appointment_template_image', 'attachments', 'avatar', 'booking', 'bulkletter_template', 'client', 'cost_center', 'custom_module', 'donation_attachment_template', 'donation_cover_letter_template', 'eubp_attachment', 'eubp_submission', 'event', 'eventchat', 'familyavatar', 'file', 'finance_template', 'follow_up', 'further_link', 'group', 'groupMemberstatus', 'group_category', 'group_meeting', 'group_membership', 'group_type', 'groupchat', 'groupimage', 'grouptypeMemberstatus', 'html_template', 'html_template_asset', 'html_template_export', 'importtable', 'link', 'logo', 'meeting_request', 'newsletter', 'person', 'post', 'profile', 'profile_banner', 'profile_gallery', 'profile_logo', 'profile_service_banner', 'registration', 'registration_config', 'relationship', 'resource', 'resource_type', 'routine_email_attachment', 'service', 'service_group', 'song', 'song_arrangement', 'song_category', 'song_source', 'statement', 'status', 'sync_job', 'transaction', 'transaction_purpose', 'translation', 'wiki_page'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     ChurchTools domain types accepted by entity and field mapping validation. Adapter support can be a smaller subset.
+    Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
     """
     last_synced_date: OptionalDateTime = Field(default=None, validation_alias='lastSyncedDate', serialization_alias='lastSyncedDate')
     """Last synchronization timestamp. Prefer an explicit timezone."""
@@ -16504,8 +17511,11 @@ class SyncEntityMappingUpdate(CTModel):
     """ID in the external system."""
     source_id: int = Field(validation_alias='sourceId', serialization_alias='sourceId')
     """External connection ID (the source system)."""
-    status: str
-    """State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools."""
+    status: _t.Union[_t.Literal['conflict', 'deleted in CT', 'synced'], str]
+    """
+    State of the relationship: synchronized, unresolved conflict, or deleted in ChurchTools.
+    Allowed values: `conflict`, `deleted in CT`, `synced`.
+    """
 
 class SyncExecutionBehavior(CTModel):
     """"""
@@ -16516,10 +17526,16 @@ class SyncExecutionBehavior(CTModel):
 
 class SyncExecutionBehaviorCreate(CTModel):
     """"""
-    behavior_es: str = Field(validation_alias='behaviorES', serialization_alias='behaviorES')
-    """Whether records may be created or updated."""
-    behavior_master: str = Field(validation_alias='behaviorMaster', serialization_alias='behaviorMaster')
-    """Whether records may be created or updated."""
+    behavior_es: _t.Union[_t.Literal['always', 'never'], str] = Field(validation_alias='behaviorES', serialization_alias='behaviorES')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
+    behavior_master: _t.Union[_t.Literal['always', 'never'], str] = Field(validation_alias='behaviorMaster', serialization_alias='behaviorMaster')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
     defaults_es: _t.Union[StrMap[_t.Any], _t.List[_t.Any]] = Field(validation_alias='defaultsES', serialization_alias='defaultsES')
     """Adapter-specific JSON object or list."""
     defaults_master: _t.Union[StrMap[_t.Any], _t.List[_t.Any]] = Field(validation_alias='defaultsMaster', serialization_alias='defaultsMaster')
@@ -16527,29 +17543,41 @@ class SyncExecutionBehaviorCreate(CTModel):
 
 class SyncExecutionBehaviorDelete(CTModel):
     """"""
-    behavior_es: str = Field(validation_alias='behaviorES', serialization_alias='behaviorES')
-    """How deletions are handled on the specified side: retain, archive or delete."""
-    behavior_master: str = Field(validation_alias='behaviorMaster', serialization_alias='behaviorMaster')
-    """How deletions are handled on the specified side: retain, archive or delete."""
+    behavior_es: _t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], str] = Field(validation_alias='behaviorES', serialization_alias='behaviorES')
+    """
+    How deletions are handled on the specified side: retain, archive or delete.
+    Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
+    """
+    behavior_master: _t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], str] = Field(validation_alias='behaviorMaster', serialization_alias='behaviorMaster')
+    """
+    How deletions are handled on the specified side: retain, archive or delete.
+    Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
+    """
 
 class SyncExecutionBehaviorLink(CTModel):
     """"""
-    behavior: str
+    behavior: _t.Union[_t.Literal['alwaysMerge', 'alwaysUse', 'never'], str]
     """
     Whether matching records are linked: never, use an existing record, or merge when linking.
+    Allowed values: `alwaysMerge`, `alwaysUse`, `never`.
     """
-    data: str
+    data: _t.Union[_t.Literal['es', 'lastUpdated', 'master'], str]
     """
     Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+    Allowed values: `es`, `lastUpdated`, `master`.
     """
 
 class SyncExecutionBehaviorUpdate(CTModel):
     """"""
-    behavior: str
-    """Whether records may be created or updated."""
-    data: str
+    behavior: _t.Union[_t.Literal['always', 'never'], str]
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
+    data: _t.Union[_t.Literal['es', 'lastUpdated', 'master'], str]
     """
     Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+    Allowed values: `es`, `lastUpdated`, `master`.
     """
 
 class SyncExecutionCounts(CTModel):
@@ -16606,9 +17634,10 @@ class SyncExecutionProperty(CTModel):
     from_filter: str = Field(validation_alias='fromFilter', serialization_alias='fromFilter')
     """Adapter-specific source-field qualifier."""
     others: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None)
-    system: str
+    system: _t.Union[_t.Literal['es', 'master'], str]
     """
     Side of synchronization: `master` is ChurchTools and `es` is the configured external system.
+    Allowed values: `es`, `master`.
     """
     to: str
     """Target field name supported by the adapter."""
@@ -16633,8 +17662,11 @@ class SyncExecutionSummary(CTModel):
     master: SyncExecutionCounts
     start_date: OptionalDateTime = Field(default=None, validation_alias='startDate', serialization_alias='startDate')
     """Earliest log timestamp."""
-    status: str
-    """Background execution status, distinct from entity mapping status."""
+    status: _t.Union[_t.Literal['CANCELED', 'DONE', 'ERROR', 'IN_PROGRESS', 'QUEUED'], str]
+    """
+    Background execution status, distinct from entity mapping status.
+    Allowed values: `CANCELED`, `DONE`, `ERROR`, `IN_PROGRESS`, `QUEUED`.
+    """
 
 class SyncExternalSystemTestCreate(CTModel):
     """
@@ -16678,72 +17710,108 @@ class SyncJobConfigurationCreate(CTModel):
     """"""
     auto_schedule_enabled: bool = Field(validation_alias='autoScheduleEnabled', serialization_alias='autoScheduleEnabled')
     """Whether the periodic scheduler can start this job."""
-    create_behavior_es: _t.Optional[str] = Field(default=None, validation_alias='createBehaviorES', serialization_alias='createBehaviorES')
-    """Whether records may be created or updated."""
-    create_behavior_master: _t.Optional[str] = Field(default=None, validation_alias='createBehaviorMaster', serialization_alias='createBehaviorMaster')
-    """Whether records may be created or updated."""
+    create_behavior_es: _t.Optional[_t.Union[_t.Literal['always', 'never'], str]] = Field(default=None, validation_alias='createBehaviorES', serialization_alias='createBehaviorES')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
+    create_behavior_master: _t.Optional[_t.Union[_t.Literal['always', 'never'], str]] = Field(default=None, validation_alias='createBehaviorMaster', serialization_alias='createBehaviorMaster')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
     create_defaults_es: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None, validation_alias='createDefaultsES', serialization_alias='createDefaultsES')
     create_defaults_master: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None, validation_alias='createDefaultsMaster', serialization_alias='createDefaultsMaster')
-    delete_behavior_es: _t.Optional[str] = Field(default=None, validation_alias='deleteBehaviorES', serialization_alias='deleteBehaviorES')
-    """How deletions are handled on the specified side: retain, archive or delete."""
-    delete_behavior_master: _t.Optional[str] = Field(default=None, validation_alias='deleteBehaviorMaster', serialization_alias='deleteBehaviorMaster')
-    """How deletions are handled on the specified side: retain, archive or delete."""
+    delete_behavior_es: _t.Optional[_t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], str]] = Field(default=None, validation_alias='deleteBehaviorES', serialization_alias='deleteBehaviorES')
+    """
+    How deletions are handled on the specified side: retain, archive or delete.
+    Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
+    """
+    delete_behavior_master: _t.Optional[_t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], str]] = Field(default=None, validation_alias='deleteBehaviorMaster', serialization_alias='deleteBehaviorMaster')
+    """
+    How deletions are handled on the specified side: retain, archive or delete.
+    Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
+    """
     domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Domain supported by the adapter, such as person. Job configuration accepts adapter-specific domain names.
     """
-    link_behavior: _t.Optional[str] = Field(default=None, validation_alias='linkBehavior', serialization_alias='linkBehavior')
+    link_behavior: _t.Optional[_t.Union[_t.Literal['alwaysMerge', 'alwaysUse', 'never'], str]] = Field(default=None, validation_alias='linkBehavior', serialization_alias='linkBehavior')
     """
     Whether matching records are linked: never, use an existing record, or merge when linking.
+    Allowed values: `alwaysMerge`, `alwaysUse`, `never`.
     """
-    link_data: _t.Optional[str] = Field(default=None, validation_alias='linkData', serialization_alias='linkData')
+    link_data: _t.Optional[_t.Union[_t.Literal['es', 'lastUpdated', 'master'], str]] = Field(default=None, validation_alias='linkData', serialization_alias='linkData')
     """
     Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+    Allowed values: `es`, `lastUpdated`, `master`.
     """
     name: str
     """Job display name."""
-    update_behavior: _t.Optional[str] = Field(default=None, validation_alias='updateBehavior', serialization_alias='updateBehavior')
-    """Whether records may be created or updated."""
-    update_data: _t.Optional[str] = Field(default=None, validation_alias='updateData', serialization_alias='updateData')
+    update_behavior: _t.Optional[_t.Union[_t.Literal['always', 'never'], str]] = Field(default=None, validation_alias='updateBehavior', serialization_alias='updateBehavior')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
+    update_data: _t.Optional[_t.Union[_t.Literal['es', 'lastUpdated', 'master'], str]] = Field(default=None, validation_alias='updateData', serialization_alias='updateData')
     """
     Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+    Allowed values: `es`, `lastUpdated`, `master`.
     """
 
 class SyncJobConfigurationUpdate(CTModel):
     """Updates the job configuration."""
     auto_schedule_enabled: bool = Field(validation_alias='autoScheduleEnabled', serialization_alias='autoScheduleEnabled')
     """Whether the periodic scheduler can start this job."""
-    create_behavior_es: _t.Optional[str] = Field(default=None, validation_alias='createBehaviorES', serialization_alias='createBehaviorES')
-    """Whether records may be created or updated."""
-    create_behavior_master: _t.Optional[str] = Field(default=None, validation_alias='createBehaviorMaster', serialization_alias='createBehaviorMaster')
-    """Whether records may be created or updated."""
+    create_behavior_es: _t.Optional[_t.Union[_t.Literal['always', 'never'], str]] = Field(default=None, validation_alias='createBehaviorES', serialization_alias='createBehaviorES')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
+    create_behavior_master: _t.Optional[_t.Union[_t.Literal['always', 'never'], str]] = Field(default=None, validation_alias='createBehaviorMaster', serialization_alias='createBehaviorMaster')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
     create_defaults_es: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None, validation_alias='createDefaultsES', serialization_alias='createDefaultsES')
     """Adapter-specific defaults for newly created records on this side."""
     create_defaults_master: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None, validation_alias='createDefaultsMaster', serialization_alias='createDefaultsMaster')
     """Adapter-specific defaults for newly created records on this side."""
-    delete_behavior_es: _t.Optional[str] = Field(default=None, validation_alias='deleteBehaviorES', serialization_alias='deleteBehaviorES')
-    """How deletions are handled on the specified side: retain, archive or delete."""
-    delete_behavior_master: _t.Optional[str] = Field(default=None, validation_alias='deleteBehaviorMaster', serialization_alias='deleteBehaviorMaster')
-    """How deletions are handled on the specified side: retain, archive or delete."""
+    delete_behavior_es: _t.Optional[_t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], str]] = Field(default=None, validation_alias='deleteBehaviorES', serialization_alias='deleteBehaviorES')
+    """
+    How deletions are handled on the specified side: retain, archive or delete.
+    Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
+    """
+    delete_behavior_master: _t.Optional[_t.Union[_t.Literal['alwaysArchive', 'alwaysDelete', 'never'], str]] = Field(default=None, validation_alias='deleteBehaviorMaster', serialization_alias='deleteBehaviorMaster')
+    """
+    How deletions are handled on the specified side: retain, archive or delete.
+    Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
+    """
     domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
     """
     Domain supported by the adapter, such as person. Job configuration accepts adapter-specific domain names.
     """
-    link_behavior: _t.Optional[str] = Field(default=None, validation_alias='linkBehavior', serialization_alias='linkBehavior')
+    link_behavior: _t.Optional[_t.Union[_t.Literal['alwaysMerge', 'alwaysUse', 'never'], str]] = Field(default=None, validation_alias='linkBehavior', serialization_alias='linkBehavior')
     """
     Whether matching records are linked: never, use an existing record, or merge when linking.
+    Allowed values: `alwaysMerge`, `alwaysUse`, `never`.
     """
-    link_data: _t.Optional[str] = Field(default=None, validation_alias='linkData', serialization_alias='linkData')
+    link_data: _t.Optional[_t.Union[_t.Literal['es', 'lastUpdated', 'master'], str]] = Field(default=None, validation_alias='linkData', serialization_alias='linkData')
     """
     Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+    Allowed values: `es`, `lastUpdated`, `master`.
     """
     name: str
     """Job display name."""
-    update_behavior: _t.Optional[str] = Field(default=None, validation_alias='updateBehavior', serialization_alias='updateBehavior')
-    """Whether records may be created or updated."""
-    update_data: _t.Optional[str] = Field(default=None, validation_alias='updateData', serialization_alias='updateData')
+    update_behavior: _t.Optional[_t.Union[_t.Literal['always', 'never'], str]] = Field(default=None, validation_alias='updateBehavior', serialization_alias='updateBehavior')
+    """
+    Whether records may be created or updated.
+    Allowed values: `always`, `never`.
+    """
+    update_data: _t.Optional[_t.Union[_t.Literal['es', 'lastUpdated', 'master'], str]] = Field(default=None, validation_alias='updateData', serialization_alias='updateData')
     """
     Which side supplies data: the most recently updated record, ChurchTools, or the external system.
+    Allowed values: `es`, `lastUpdated`, `master`.
     """
     id: int
     """Existing job configuration ID."""
@@ -16754,9 +17822,10 @@ class SyncJobFilter(CTModel):
     """Adapter field to filter."""
     operator: str
     """Adapter-specific comparison operator. ChurchTools does not enforce a fixed operator list."""
-    system: str
+    system: _t.Union[_t.Literal['es', 'master'], str]
     """
     Side of synchronization: `master` is ChurchTools and `es` is the configured external system.
+    Allowed values: `es`, `master`.
     """
     values: _t.Optional[_t.Union[StrMap[_t.Any], _t.List[_t.Any]]] = Field(default=None)
     """Adapter-specific filter values."""
@@ -16767,9 +17836,10 @@ class SyncJobFilterCreate(CTModel):
     """Adapter field to filter."""
     operator: _t.Optional[str] = Field(default=None)
     """Adapter-specific comparison operator. ChurchTools does not enforce a fixed operator list."""
-    system: str
+    system: _t.Union[_t.Literal['es', 'master'], str]
     """
     Side of synchronization: `master` is ChurchTools and `es` is the configured external system.
+    Allowed values: `es`, `master`.
     """
     values: _t.Union[StrMap[_t.Any], _t.List[_t.Any]]
     """Filter values passed to the adapter. Value types depend on the field and adapter."""
@@ -16809,9 +17879,10 @@ class SyncJobProperty(CTModel):
     """Source field name supported by the adapter."""
     from_filter: str = Field(validation_alias='fromFilter', serialization_alias='fromFilter')
     """Adapter-specific source-field qualifier."""
-    system: str
+    system: _t.Union[_t.Literal['es', 'master'], str]
     """
     Side of synchronization: `master` is ChurchTools and `es` is the configured external system.
+    Allowed values: `es`, `master`.
     """
     to: str
     """Target field name supported by the adapter."""
@@ -16828,9 +17899,10 @@ class SyncJobPropertyCreate(CTModel):
     """Source field name supported by the adapter."""
     from_filter: str = Field(validation_alias='fromFilter', serialization_alias='fromFilter')
     """Adapter-specific source-field qualifier."""
-    system: str
+    system: _t.Union[_t.Literal['es', 'master'], str]
     """
     Side of synchronization: `master` is ChurchTools and `es` is the configured external system.
+    Allowed values: `es`, `master`.
     """
     to: str
     """Target field name supported by the adapter."""
@@ -16855,17 +17927,24 @@ class SyncLog(CTModel):
     id: int
     is_dry_run: bool = Field(validation_alias='isDryRun', serialization_alias='isDryRun')
     job: SyncLogJob
-    level: str
-    """PSR log severity."""
+    level: _t.Union[_t.Literal['alert', 'critical', 'debug', 'emergency', 'error', 'info', 'notice', 'warning'], str]
+    """
+    PSR log severity.
+    Allowed values: `alert`, `critical`, `debug`, `emergency`, `error`, `info`, `notice`, `warning`.
+    """
     message: str
     """
     Rendered, translated log message including formatted changes. Original messageKey and args are not returned.
     """
     source_entity_id: _t.Optional[str] = Field(default=None, validation_alias='sourceEntityId', serialization_alias='sourceEntityId')
     """`sourceEntityId` of the affected record."""
-    system: _t.Optional[str] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Operation described by a sync log entry."""
+    system: _t.Optional[_t.Union[_t.Literal['both', 'es', 'master'], str]] = Field(default=None)
+    """Allowed values: `both`, `es`, `master`."""
+    type_: _t.Union[_t.Literal['create', 'delete', 'execution', 'link', 'update'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Operation described by a sync log entry.
+    Allowed values: `create`, `delete`, `execution`, `link`, `update`.
+    """
 
 class SyncLogCreate(CTModel):
     """"""
@@ -16880,15 +17959,24 @@ class SyncLogCreate(CTModel):
     """Background execution identifier, not the job configuration ID."""
     is_dry_run: _t.Optional[bool] = Field(default=None, validation_alias='isDryRun', serialization_alias='isDryRun')
     job_id: int = Field(validation_alias='jobId', serialization_alias='jobId')
-    level: str
-    """PSR log severity."""
+    level: _t.Union[_t.Literal['alert', 'critical', 'debug', 'emergency', 'error', 'info', 'notice', 'warning'], str]
+    """
+    PSR log severity.
+    Allowed values: `alert`, `critical`, `debug`, `emergency`, `error`, `info`, `notice`, `warning`.
+    """
     message_key: str = Field(validation_alias='messageKey', serialization_alias='messageKey')
     """Translation Key"""
     source_entity_id: _t.Optional[str] = Field(default=None, validation_alias='sourceEntityId', serialization_alias='sourceEntityId')
-    system: _t.Optional[str] = Field(default=None)
-    """Affected side."""
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Operation described by a sync log entry."""
+    system: _t.Optional[_t.Union[_t.Literal['both', 'es', 'master'], str]] = Field(default=None)
+    """
+    Affected side.
+    Allowed values: `both`, `es`, `master`.
+    """
+    type_: _t.Union[_t.Literal['create', 'delete', 'execution', 'link', 'update'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Operation described by a sync log entry.
+    Allowed values: `create`, `delete`, `execution`, `link`, `update`.
+    """
 
 class SyncLogCreateChangesItem(CTModel):
     """"""
@@ -16923,8 +18011,11 @@ class Tag(CTModel):
     """
     Tag label and display properties. The REST tag controller does not return the tag domain or audit metadata.
     """
-    color: str
-    """Stored semantic color, or `basic` when no color is stored."""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    Stored semantic color, or `basic` when no color is stored.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     id: int
     name: str
@@ -16940,16 +18031,22 @@ class TagAssignmentCreate(CTModel):
 
 class TagCreate(CTModel):
     """"""
-    color: _t.Optional[str] = Field(default=None)
-    """Semantic tag color; responses use `basic` when unset."""
+    color: _t.Optional[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]] = Field(default=None)
+    """
+    Semantic tag color; responses use `basic` when unset.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     name: str
     """Tag name, unique within the domain."""
 
 class TagUpdate(CTModel):
     """Replacement tag properties. The tag’s domain cannot be changed."""
-    color: _t.Optional[str] = Field(default=None)
-    """Semantic tag color; responses use `basic` when unset."""
+    color: _t.Optional[_t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]] = Field(default=None)
+    """
+    Semantic tag color; responses use `basic` when unset.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     name: str
     """Tag name, unique within the domain."""
@@ -16958,8 +18055,11 @@ class TagWithCount(CTModel):
     """
     Tag with contextual count. The domain-wide list computes its total links; creation returns `0`. Other operations normally return the serializer’s fallback `1`, not a freshly calculated total.
     """
-    color: str
-    """Stored semantic color, or `basic` when no color is stored."""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    Stored semantic color, or `basic` when no color is stored.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     description: _t.Optional[str] = Field(default=None)
     id: int
     name: str
@@ -17210,9 +18310,10 @@ class TransactionBatchFilter(CTModel):
     """
     True selects a cash-asset debit account and a non-cash-asset credit account (income); false selects the reverse (expense). Transfers between two cash-asset accounts or two non-cash-asset accounts match neither value.
     """
-    order_by: _t.Optional[str] = Field(default=None, validation_alias='orderBy', serialization_alias='orderBy')
+    order_by: _t.Optional[_t.Union[_t.Literal['account', 'amount', 'bills', 'contra_account', 'cost_center', 'date', 'donator', 'modified', 'note', 'number'], str]] = Field(default=None, validation_alias='orderBy', serialization_alias='orderBy')
     """
     Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+    Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
     """
     query: _t.Optional[str] = Field(default=None)
     """
@@ -17364,8 +18465,10 @@ class TransactionCreate(CTModel):
 
 class TransactionDeprecated(CTModel):
     """Compatibility marker mapping the deprecated donor ID fields to their replacements."""
-    donator_id: str = Field(validation_alias='donatorId', serialization_alias='donatorId')
-    donator_spouse_id: str = Field(validation_alias='donatorSpouseId', serialization_alias='donatorSpouseId')
+    donator_id: _t.Union[_t.Literal['donator'], str] = Field(validation_alias='donatorId', serialization_alias='donatorId')
+    """Allowed values: `donator`."""
+    donator_spouse_id: _t.Union[_t.Literal['donatorSpouse'], str] = Field(validation_alias='donatorSpouseId', serialization_alias='donatorSpouseId')
+    """Allowed values: `donatorSpouse`."""
 
 class TransactionPermissions(CTModel):
     """
@@ -17464,7 +18567,8 @@ class TransactionSummaryCostCenter(CTModel):
     """
     periods: TransactionSummaryCostCenterPeriods
     summary: TransactionSummaryCostCenterSummary
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['costcenter-sum'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `costcenter-sum`."""
 
 class TransactionSummaryCostCenterPeriods(CTModel):
     """"""
@@ -17499,7 +18603,8 @@ class TransactionSummaryCreditDebit(CTModel):
     """
     periods: TransactionSummaryCostCenterPeriods
     summary: TransactionSummaryCreditDebitSummary
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['credit-debit'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `credit-debit`."""
 
 class TransactionSummaryCreditDebitSummary(CTModel):
     """"""
@@ -17544,7 +18649,8 @@ class TransactionSummaryDonation(CTModel):
     """
     periods: TransactionSummaryCostCenterPeriods
     summary: TransactionSummaryDonationSummary
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['donation-sum'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `donation-sum`."""
 
 class TransactionSummaryDonationSummary(CTModel):
     """"""
@@ -17679,13 +18785,15 @@ class TurnoverReportCreate(CTModel):
     """
     Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
     """
-    format: _t.Optional[str] = Field(default=None)
+    format: _t.Optional[_t.Union[_t.Literal['csv', 'pdf', 'xlsx'], str]] = Field(default=None)
     """
     PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
+    Allowed values: `csv`, `pdf`, `xlsx`.
     """
-    period: str
+    period: _t.Union[_t.Literal['monthly', 'quarterly'], str]
     """
     Use twelve calendar-month columns or four calendar-quarter columns for the year of the accounting period’s start date.
+    Allowed values: `monthly`, `quarterly`.
     """
     show_account_groups: _t.Optional[bool] = Field(default=None, validation_alias='showAccountGroups', serialization_alias='showAccountGroups')
     """Accepted by the shared validator but ignored by the turnover report."""
@@ -17771,20 +18879,27 @@ class UserRuleCreate(CTModel):
     """Apply to all statement accounts in this accounting period instead of accountIds."""
     is_income: bool = Field(validation_alias='isIncome', serialization_alias='isIncome')
     """True matches incoming movements, false matches outgoing movements."""
-    operator: str
+    operator: _t.Union[_t.Literal['=', 'contains', 'regex'], str]
     """
     contains and = compare case-insensitively. regex uses PHP preg_match with the supplied pattern and flags.
+    Allowed values: `=`, `contains`, `regex`.
     """
     search_string: str = Field(validation_alias='searchString', serialization_alias='searchString')
     """
     Text to match against the movement purpose, or a complete PHP regular expression including delimiters for regex (for example /donation/i).
     """
-    search_type: str = Field(validation_alias='searchType', serialization_alias='searchType')
-    """Movement field to search. Only purpose is implemented."""
+    search_type: _t.Union[_t.Literal['purpose'], str] = Field(validation_alias='searchType', serialization_alias='searchType')
+    """
+    Movement field to search. Only purpose is implemented.
+    Allowed values: `purpose`.
+    """
     sort_key: int = Field(validation_alias='sortKey', serialization_alias='sortKey')
     """Ascending rule order. IDs are regenerated when the complete rule set is replaced."""
-    suggestion_type: str = Field(validation_alias='suggestionType', serialization_alias='suggestionType')
-    """Booking field for which a value is suggested."""
+    suggestion_type: _t.Union[_t.Literal['accountId', 'contraAccountId', 'costCenterId'], str] = Field(validation_alias='suggestionType', serialization_alias='suggestionType')
+    """
+    Booking field for which a value is suggested.
+    Allowed values: `accountId`, `contraAccountId`, `costCenterId`.
+    """
     suggestion_value: str = Field(validation_alias='suggestionValue', serialization_alias='suggestionValue')
     """
     Suggested account or cost-center ID encoded as a string. Referenced IDs are not validated when saving the rules.
@@ -17804,13 +18919,15 @@ class WebsiteDataCalendar(CTModel):
     """
     Calendar containing appointments and their series. Calendar settings, appointment editing and calendar administration are separate concerns. The type selects the applicable administration category; effective visibility depends on permissions. This object is also embedded in appointment responses.
     """
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['calendar'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `calendar`."""
 
 class WebsiteDataCreate(CTModel):
     """"""
     additional_id: _t.Optional[int] = Field(default=None, validation_alias='additionalId', serialization_alias='additionalId')
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['calendar', 'person', 'posts-in-group', 'staff'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `calendar`, `person`, `posts-in-group`, `staff`."""
 
 class WebsiteDataPerson(CTModel):
     """"""
@@ -17819,7 +18936,8 @@ class WebsiteDataPerson(CTModel):
     additional_id: int = Field(validation_alias='additionalId', serialization_alias='additionalId')
     """The role id"""
     domain_data: _t.Optional[WebsiteDataPersonDomainData] = Field(default=None, validation_alias='domainData', serialization_alias='domainData')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['person'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `person`."""
 
 class WebsiteDataPersonDomainData(CTModel):
     """"""
@@ -17836,7 +18954,8 @@ class WebsiteDataPostsInGroup(CTModel):
     id: int
     additional_id: int = Field(validation_alias='additionalId', serialization_alias='additionalId')
     domain_data: _t.Optional[WebsiteDataPostsInGroupDomainData] = Field(default=None, validation_alias='domainData', serialization_alias='domainData')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['posts-in-group'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `posts-in-group`."""
 
 class WebsiteDataPostsInGroupDomainData(CTModel):
     """"""
@@ -17850,14 +18969,16 @@ class WebsiteDataStaff(CTModel):
     additional_id: int = Field(validation_alias='additionalId', serialization_alias='additionalId')
     domain_data: _t.Optional[DomainObjectPerson] = Field(default=None, validation_alias='domainData', serialization_alias='domainData')
     """Person as Domain Object"""
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['staff'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `staff`."""
 
 class WebsiteDataWithoutInclude(CTModel):
     """"""
     domain_id: int = Field(validation_alias='domainId', serialization_alias='domainId')
     id: int
     additional_id: _t.Optional[int] = Field(default=None, validation_alias='additionalId', serialization_alias='additionalId')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['calendar', 'person', 'posts-in-group', 'staff'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `calendar`, `person`, `posts-in-group`, `staff`."""
 
 class Weekday(CTModel):
     """"""
@@ -17868,26 +18989,40 @@ class Weekday(CTModel):
 
 class WidgetActionAllBirthdaysAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.allBirthdays.all'], str]
+    """Allowed values: `action.allBirthdays.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionAppointmentsAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.appointments.all'], str]
+    """Allowed values: `action.appointments.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionDataAppointment(CTModel):
@@ -17937,134 +19072,211 @@ class WidgetActionDataUrl(CTModel):
 
 class WidgetActionExchangeRequestsAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.exchange-requests.all'], str]
+    """Allowed values: `action.exchange-requests.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionFavoriteGroupsAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.favorite-groups.all'], str]
+    """Allowed values: `action.favorite-groups.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionGeneralUrl(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.general.url'], str]
+    """Allowed values: `action.general.url`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataUrl] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionGroupMeetingAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.groupmeeting.all'], str]
+    """Allowed values: `action.groupmeeting.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionMyBookingsAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.my-bookings.all'], str]
+    """Allowed values: `action.my-bookings.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionMyGroupsAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.my-groups.all'], str]
+    """Allowed values: `action.my-groups.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionMyResourcesAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.my-resources.all'], str]
+    """Allowed values: `action.my-resources.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionPostsAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.posts.all'], str]
+    """Allowed values: `action.posts.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionServiceRequestsAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.service-requests.all'], str]
+    """Allowed values: `action.service-requests.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionSongsToLearnAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.songsToLearn.all'], str]
+    """Allowed values: `action.songsToLearn.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetActionUpcomingServicesAll(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.upcoming-services.all'], str]
+    """Allowed values: `action.upcoming-services.all`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetAvatar(CTModel):
@@ -18075,14 +19287,18 @@ class WidgetAvatar(CTModel):
 class WidgetCommon(CTModel):
     """"""
     actions: _t.Optional[_t.List[_t.Union[WidgetActionAppointmentsAll, WidgetActionAllBirthdaysAll, WidgetActionExchangeRequestsAll, WidgetActionFavoriteGroupsAll, WidgetActionGeneralUrl, WidgetActionGroupMeetingAll, WidgetActionMyBookingsAll, WidgetActionMyGroupsAll, WidgetActionMyResourcesAll, WidgetActionPostsAll, WidgetActionServiceRequestsAll, WidgetActionSongsToLearnAll, WidgetActionUpcomingServicesAll]]] = Field(default=None)
-    empty_strategy: _t.Optional[str] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
-    """Strategy for handling empty widget content"""
+    empty_strategy: _t.Optional[_t.Union[_t.Literal['HIDE', 'SHOW'], str]] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
+    """
+    Strategy for handling empty widget content
+    Allowed values: `HIDE`, `SHOW`.
+    """
     empty_text: _t.Optional[str] = Field(default=None, validation_alias='emptyText', serialization_alias='emptyText')
     filter: _t.Optional[WidgetDateFilterVariant1] = Field(default=None)
     help_link: _t.Optional[str] = Field(default=None, validation_alias='helpLink', serialization_alias='helpLink')
     is_mandatory: _t.Optional[bool] = Field(default=None, validation_alias='isMandatory', serialization_alias='isMandatory')
     key: str
-    orientation: _t.Optional[str] = Field(default=None)
+    orientation: _t.Optional[_t.Union[_t.Literal['horizontal', 'vertical'], str]] = Field(default=None)
+    """Allowed values: `horizontal`, `vertical`."""
     replacement: _t.Optional[str] = Field(default=None)
     title: str
     widget_settings: WidgetSettingsCommon = Field(validation_alias='widgetSettings', serialization_alias='widgetSettings')
@@ -18090,7 +19306,8 @@ class WidgetCommon(CTModel):
     groupings: StrMap[WidgetGroupingOption]
     """Grouping configuration for widgets"""
     items: _t.List[WidgetCommonItem]
-    widget_type: str = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    widget_type: _t.Union[_t.Literal['common'], str] = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    """Allowed values: `common`."""
 
 class WidgetCommonItem(CTModel):
     """Common widget item structure"""
@@ -18115,27 +19332,36 @@ class WidgetCommonItemDetails(CTModel):
 
 class WidgetCount(CTModel):
     """Count display for widgets"""
-    color: str
-    """A color in ChurchTools"""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    A color in ChurchTools
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     text: str
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['bubble', 'regular'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `bubble`, `regular`."""
 
 class WidgetDate(CTModel):
     """"""
     actions: _t.Optional[_t.List[_t.Union[WidgetActionAppointmentsAll, WidgetActionAllBirthdaysAll, WidgetActionExchangeRequestsAll, WidgetActionFavoriteGroupsAll, WidgetActionGeneralUrl, WidgetActionGroupMeetingAll, WidgetActionMyBookingsAll, WidgetActionMyGroupsAll, WidgetActionMyResourcesAll, WidgetActionPostsAll, WidgetActionServiceRequestsAll, WidgetActionSongsToLearnAll, WidgetActionUpcomingServicesAll]]] = Field(default=None)
-    empty_strategy: _t.Optional[str] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
-    """Strategy for handling empty widget content"""
+    empty_strategy: _t.Optional[_t.Union[_t.Literal['HIDE', 'SHOW'], str]] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
+    """
+    Strategy for handling empty widget content
+    Allowed values: `HIDE`, `SHOW`.
+    """
     empty_text: _t.Optional[str] = Field(default=None, validation_alias='emptyText', serialization_alias='emptyText')
     filter: _t.Optional[WidgetDateFilterVariant1] = Field(default=None)
     help_link: _t.Optional[str] = Field(default=None, validation_alias='helpLink', serialization_alias='helpLink')
     is_mandatory: _t.Optional[bool] = Field(default=None, validation_alias='isMandatory', serialization_alias='isMandatory')
     key: str
-    orientation: _t.Optional[str] = Field(default=None)
+    orientation: _t.Optional[_t.Union[_t.Literal['horizontal', 'vertical'], str]] = Field(default=None)
+    """Allowed values: `horizontal`, `vertical`."""
     replacement: _t.Optional[str] = Field(default=None)
     title: str
     widget_settings: WidgetDateWidgetSettings = Field(validation_alias='widgetSettings', serialization_alias='widgetSettings')
     items: _t.List[WidgetDateItem]
-    widget_type: str = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    widget_type: _t.Union[_t.Literal['date'], str] = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    """Allowed values: `date`."""
 
 class WidgetDateFilterVariant1(CTModel):
     """"""
@@ -18177,19 +19403,24 @@ class WidgetDateWidgetSettings(CTModel):
 class WidgetDetail(CTModel):
     """"""
     actions: _t.Optional[_t.List[_t.Union[WidgetActionAppointmentsAll, WidgetActionAllBirthdaysAll, WidgetActionExchangeRequestsAll, WidgetActionFavoriteGroupsAll, WidgetActionGeneralUrl, WidgetActionGroupMeetingAll, WidgetActionMyBookingsAll, WidgetActionMyGroupsAll, WidgetActionMyResourcesAll, WidgetActionPostsAll, WidgetActionServiceRequestsAll, WidgetActionSongsToLearnAll, WidgetActionUpcomingServicesAll]]] = Field(default=None)
-    empty_strategy: _t.Optional[str] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
-    """Strategy for handling empty widget content"""
+    empty_strategy: _t.Optional[_t.Union[_t.Literal['HIDE', 'SHOW'], str]] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
+    """
+    Strategy for handling empty widget content
+    Allowed values: `HIDE`, `SHOW`.
+    """
     empty_text: _t.Optional[str] = Field(default=None, validation_alias='emptyText', serialization_alias='emptyText')
     filter: _t.Optional[WidgetDateFilterVariant1] = Field(default=None)
     help_link: _t.Optional[str] = Field(default=None, validation_alias='helpLink', serialization_alias='helpLink')
     is_mandatory: _t.Optional[bool] = Field(default=None, validation_alias='isMandatory', serialization_alias='isMandatory')
     key: str
-    orientation: _t.Optional[str] = Field(default=None)
+    orientation: _t.Optional[_t.Union[_t.Literal['horizontal', 'vertical'], str]] = Field(default=None)
+    """Allowed values: `horizontal`, `vertical`."""
     replacement: _t.Optional[str] = Field(default=None)
     title: str
     widget_settings: WidgetDateWidgetSettings = Field(validation_alias='widgetSettings', serialization_alias='widgetSettings')
     items: _t.List[WidgetDetailItem]
-    widget_type: str = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    widget_type: _t.Union[_t.Literal['detail'], str] = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    """Allowed values: `detail`."""
 
 class WidgetDetailItem(CTModel):
     """Item for widget detail lists"""
@@ -18205,28 +19436,33 @@ class WidgetDetailItemRowEntry(CTModel):
     """Value for Tailwind color"""
     icon: str
     text: str
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['entry'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `entry`."""
 
 class WidgetDetailRowDomainObjects(CTModel):
     """Domain objects row type for widget detail items"""
     domain_objects: _t.List[_t.Union[DomainObjectExternalPerson, DomainObjectGroup, DomainObjectPerson, DomainObjectSong, DomainObjectWikiPage, DomainObjectFile, DomainObjectFurtherLink]] = Field(validation_alias='domainObjects', serialization_alias='domainObjects')
     text: str
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['domainObjects'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `domainObjects`."""
 
 class WidgetDetailRowInfoLine(CTModel):
     """Info line row type for widget detail items"""
     infos: _t.List[str]
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['info-line'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `info-line`."""
 
 class WidgetDetailRowPrimary(CTModel):
     """Primary row type for widget detail items"""
     text: str
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['primary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `primary`."""
 
 class WidgetDetailRowProperties(CTModel):
     """Properties row type for widget detail items"""
     properties: _t.List[WidgetDetailRowPropertiesPropertiesItem]
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['properties'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `properties`."""
 
 class WidgetDetailRowPropertiesPropertiesItem(CTModel):
     """"""
@@ -18236,7 +19472,8 @@ class WidgetDetailRowPropertiesPropertiesItem(CTModel):
 class WidgetDetailRowStatus(CTModel):
     """Status row type for widget detail items"""
     status: _t.List[WidgetDetailRowStatusStatusItem]
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['status'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `status`."""
 
 class WidgetDetailRowStatusStatusItem(CTModel):
     """"""
@@ -18251,24 +19488,30 @@ class WidgetDetailRowTopLine(CTModel):
     color: Color
     """Value for Tailwind color"""
     infos: _t.List[str]
-    type_: str = Field(validation_alias='type', serialization_alias='type')
+    type_: _t.Union[_t.Literal['top-line'], str] = Field(validation_alias='type', serialization_alias='type')
+    """Allowed values: `top-line`."""
 
 class WidgetDomainObject(CTModel):
     """"""
     actions: _t.Optional[_t.List[_t.Union[WidgetActionAppointmentsAll, WidgetActionAllBirthdaysAll, WidgetActionExchangeRequestsAll, WidgetActionFavoriteGroupsAll, WidgetActionGeneralUrl, WidgetActionGroupMeetingAll, WidgetActionMyBookingsAll, WidgetActionMyGroupsAll, WidgetActionMyResourcesAll, WidgetActionPostsAll, WidgetActionServiceRequestsAll, WidgetActionSongsToLearnAll, WidgetActionUpcomingServicesAll]]] = Field(default=None)
-    empty_strategy: _t.Optional[str] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
-    """Strategy for handling empty widget content"""
+    empty_strategy: _t.Optional[_t.Union[_t.Literal['HIDE', 'SHOW'], str]] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
+    """
+    Strategy for handling empty widget content
+    Allowed values: `HIDE`, `SHOW`.
+    """
     empty_text: _t.Optional[str] = Field(default=None, validation_alias='emptyText', serialization_alias='emptyText')
     filter: _t.Optional[WidgetDateFilterVariant1] = Field(default=None)
     help_link: _t.Optional[str] = Field(default=None, validation_alias='helpLink', serialization_alias='helpLink')
     is_mandatory: _t.Optional[bool] = Field(default=None, validation_alias='isMandatory', serialization_alias='isMandatory')
     key: str
-    orientation: _t.Optional[str] = Field(default=None)
+    orientation: _t.Optional[_t.Union[_t.Literal['horizontal', 'vertical'], str]] = Field(default=None)
+    """Allowed values: `horizontal`, `vertical`."""
     replacement: _t.Optional[str] = Field(default=None)
     title: str
     widget_settings: WidgetDateWidgetSettings = Field(validation_alias='widgetSettings', serialization_alias='widgetSettings')
     items: _t.List[WidgetDomainObjectItem]
-    widget_type: str = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    widget_type: _t.Union[_t.Literal['domainObject'], str] = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    """Allowed values: `domainObject`."""
 
 class WidgetDomainObjectItem(CTModel):
     """Item for widget domain object lists"""
@@ -18299,23 +19542,31 @@ class WidgetGroupingOption(CTModel):
 class WidgetHidden(CTModel):
     """"""
     actions: _t.Optional[_t.List[_t.Union[WidgetActionAppointmentsAll, WidgetActionAllBirthdaysAll, WidgetActionExchangeRequestsAll, WidgetActionFavoriteGroupsAll, WidgetActionGeneralUrl, WidgetActionGroupMeetingAll, WidgetActionMyBookingsAll, WidgetActionMyGroupsAll, WidgetActionMyResourcesAll, WidgetActionPostsAll, WidgetActionServiceRequestsAll, WidgetActionSongsToLearnAll, WidgetActionUpcomingServicesAll]]] = Field(default=None)
-    empty_strategy: _t.Optional[str] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
-    """Strategy for handling empty widget content"""
+    empty_strategy: _t.Optional[_t.Union[_t.Literal['HIDE', 'SHOW'], str]] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
+    """
+    Strategy for handling empty widget content
+    Allowed values: `HIDE`, `SHOW`.
+    """
     empty_text: _t.Optional[str] = Field(default=None, validation_alias='emptyText', serialization_alias='emptyText')
     filter: _t.Optional[WidgetDateFilterVariant1] = Field(default=None)
     help_link: _t.Optional[str] = Field(default=None, validation_alias='helpLink', serialization_alias='helpLink')
     is_mandatory: _t.Optional[bool] = Field(default=None, validation_alias='isMandatory', serialization_alias='isMandatory')
     key: str
-    orientation: _t.Optional[str] = Field(default=None)
+    orientation: _t.Optional[_t.Union[_t.Literal['horizontal', 'vertical'], str]] = Field(default=None)
+    """Allowed values: `horizontal`, `vertical`."""
     replacement: _t.Optional[str] = Field(default=None)
     title: str
     widget_settings: WidgetDateWidgetSettings = Field(validation_alias='widgetSettings', serialization_alias='widgetSettings')
-    widget_type: str = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    widget_type: _t.Union[_t.Literal['hidden'], str] = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    """Allowed values: `hidden`."""
 
 class WidgetInfoItem(CTModel):
     """Information item for widget lists"""
-    color: str
-    """A color in ChurchTools"""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    A color in ChurchTools
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     icon_before: _t.Optional[str] = Field(default=None, validation_alias='iconBefore', serialization_alias='iconBefore')
     label: _t.Optional[str] = Field(default=None)
     sub_items: _t.List[WidgetInfoSubItem] = Field(validation_alias='subItems', serialization_alias='subItems')
@@ -18323,180 +19574,282 @@ class WidgetInfoItem(CTModel):
 
 class WidgetInfoList(CTModel):
     """List of information items for widgets"""
-    direction: str
-    """Direction for widget info lists"""
+    direction: _t.Union[_t.Literal['horizontal', 'vertical', 'wrapped'], str]
+    """
+    Direction for widget info lists
+    Allowed values: `horizontal`, `vertical`, `wrapped`.
+    """
     info_items: _t.List[WidgetInfoItem] = Field(validation_alias='infoItems', serialization_alias='infoItems')
-    size: str
-    """Size options for widget info lists"""
+    size: _t.Union[_t.Literal['medium', 'small'], str]
+    """
+    Size options for widget info lists
+    Allowed values: `medium`, `small`.
+    """
     with_label: bool = Field(validation_alias='withLabel', serialization_alias='withLabel')
 
 class WidgetInfoSubItem(CTModel):
     """Sub-item for widget information items"""
-    color: str
-    """A color in ChurchTools"""
+    color: _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]
+    """
+    A color in ChurchTools
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     icon_before: _t.Optional[str] = Field(default=None, validation_alias='iconBefore', serialization_alias='iconBefore')
     text: _t.Optional[str] = Field(default=None)
 
 class WidgetItemActionAppointmentDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.appointment.details'], str]
+    """Allowed values: `action.appointment.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataAppointment] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionBirthdayDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.birthday.details'], str]
+    """Allowed values: `action.birthday.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataPerson] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionBookingDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.my-bookings.details'], str]
+    """Allowed values: `action.my-bookings.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataBooking] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionEventAgenda(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.event.agenda'], str]
+    """Allowed values: `action.event.agenda`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataEvent] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionEventDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.event.details'], str]
+    """Allowed values: `action.event.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataEvent] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionEventfactDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.eventfact.details'], str]
+    """Allowed values: `action.eventfact.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataEvent] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionExchangeRequests(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.exchangeRequests.accept', 'action.exchangeRequests.cancel', 'action.exchangeRequests.decline', 'action.exchangeRequests.request'], str]
+    """
+    Allowed values: `action.exchangeRequests.accept`, `action.exchangeRequests.cancel`, `action.exchangeRequests.decline`, `action.exchangeRequests.request`.
+    """
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionGroupDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.group.details'], str]
+    """Allowed values: `action.group.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataGroup] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionMyResourcesDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.my-resources.details'], str]
+    """Allowed values: `action.my-resources.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[WidgetActionDataResource] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionPostDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.post.details'], str]
+    """Allowed values: `action.post.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[_t.Union[WidgetActionDataPostInternal, WidgetActionDataPostExternal]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionServiceRequests(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.serviceRequests.absence', 'action.serviceRequests.accept', 'action.serviceRequests.comment', 'action.serviceRequests.decline', 'action.serviceRequests.exchange', 'action.serviceRequests.undo'], str]
+    """
+    Allowed values: `action.serviceRequests.absence`, `action.serviceRequests.accept`, `action.serviceRequests.comment`, `action.serviceRequests.decline`, `action.serviceRequests.exchange`, `action.serviceRequests.undo`.
+    """
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetItemActionSongsToLearnDetails(CTModel):
     """"""
-    flavor: _t.Optional[str] = Field(default=None)
-    """Flavor of widget action"""
+    flavor: _t.Optional[_t.Union[_t.Literal['accent', 'basic', 'constructive', 'destructive', 'magic'], str]] = Field(default=None)
+    """
+    Flavor of widget action
+    Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
+    """
     icon: _t.Optional[str] = Field(default=None)
-    key: str
+    key: _t.Union[_t.Literal['action.songsToLearn.details'], str]
+    """Allowed values: `action.songsToLearn.details`."""
     label: str
     props: _t.Optional[StrMap[_t.Any]] = Field(default=None)
-    type_: str = Field(validation_alias='type', serialization_alias='type')
-    """Type of widget action"""
+    type_: _t.Union[_t.Literal['details', 'other', 'primary', 'secondary'], str] = Field(validation_alias='type', serialization_alias='type')
+    """
+    Type of widget action
+    Allowed values: `details`, `other`, `primary`, `secondary`.
+    """
     action_data: _t.Optional[StrMap[_t.Any]] = Field(default=None, validation_alias='actionData', serialization_alias='actionData')
 
 class WidgetPost(CTModel):
     """"""
     actions: _t.Optional[_t.List[_t.Union[WidgetActionAppointmentsAll, WidgetActionAllBirthdaysAll, WidgetActionExchangeRequestsAll, WidgetActionFavoriteGroupsAll, WidgetActionGeneralUrl, WidgetActionGroupMeetingAll, WidgetActionMyBookingsAll, WidgetActionMyGroupsAll, WidgetActionMyResourcesAll, WidgetActionPostsAll, WidgetActionServiceRequestsAll, WidgetActionSongsToLearnAll, WidgetActionUpcomingServicesAll]]] = Field(default=None)
-    empty_strategy: _t.Optional[str] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
-    """Strategy for handling empty widget content"""
+    empty_strategy: _t.Optional[_t.Union[_t.Literal['HIDE', 'SHOW'], str]] = Field(default=None, validation_alias='emptyStrategy', serialization_alias='emptyStrategy')
+    """
+    Strategy for handling empty widget content
+    Allowed values: `HIDE`, `SHOW`.
+    """
     empty_text: _t.Optional[str] = Field(default=None, validation_alias='emptyText', serialization_alias='emptyText')
     filter: _t.Optional[WidgetDateFilterVariant1] = Field(default=None)
     help_link: _t.Optional[str] = Field(default=None, validation_alias='helpLink', serialization_alias='helpLink')
     is_mandatory: _t.Optional[bool] = Field(default=None, validation_alias='isMandatory', serialization_alias='isMandatory')
     key: str
-    orientation: _t.Optional[str] = Field(default=None)
+    orientation: _t.Optional[_t.Union[_t.Literal['horizontal', 'vertical'], str]] = Field(default=None)
+    """Allowed values: `horizontal`, `vertical`."""
     replacement: _t.Optional[str] = Field(default=None)
     title: str
     widget_settings: WidgetDateWidgetSettings = Field(validation_alias='widgetSettings', serialization_alias='widgetSettings')
     items: _t.List[WidgetPostItem]
-    widget_type: str = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    widget_type: _t.Union[_t.Literal['post'], str] = Field(validation_alias='widgetType', serialization_alias='widgetType')
+    """Allowed values: `post`."""
 
 class WidgetPostItem(CTModel):
     """Item for widget post lists"""
@@ -18514,8 +19867,11 @@ class WidgetPostItemDetails(CTModel):
 
 class WidgetSettingsCommon(CTModel):
     """Settings specific to common widgets"""
-    density: str
-    """Density options for common widgets"""
+    density: _t.Union[_t.Literal['compact', 'default', 'divided'], str]
+    """
+    Density options for common widgets
+    Allowed values: `compact`, `default`, `divided`.
+    """
 
 class WidgetTopLine(CTModel):
     """Top line text for widget items"""
@@ -18654,8 +20010,11 @@ class WikiSearchResult(CTModel):
     """
     URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     """
-    color: _t.Optional[_t.Union[Color, str]] = Field(default=None)
-    """Optional display color."""
+    color: _t.Optional[_t.Union[Color, _t.Union[_t.Literal['accent', 'amber', 'basic', 'blue', 'constructive', 'critical', 'cyan', 'destructive', 'emerald', 'error', 'fuchsia', 'gray', 'green', 'indigo', 'info', 'lime', 'magic', 'orange', 'pink', 'purple', 'red', 'rose', 'sky', 'success', 'teal', 'violet', 'warning', 'yellow'], str]]] = Field(default=None)
+    """
+    Optional display color.
+    Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
+    """
     domain_identifier: str = Field(validation_alias='domainIdentifier', serialization_alias='domainIdentifier')
     """Opaque identifier within the domain; do not assume that every domain uses a numeric ID."""
     image_url: _t.Optional[str] = Field(default=None, validation_alias='imageUrl', serialization_alias='imageUrl')
@@ -18667,9 +20026,11 @@ class WikiSearchResult(CTModel):
     title: str
     """Display title of the referenced object."""
     domain_attributes: DomainObjectWikiPageDomainAttributes = Field(validation_alias='domainAttributes', serialization_alias='domainAttributes')
-    domain_type: str = Field(validation_alias='domainType', serialization_alias='domainType')
+    domain_type: _t.Union[_t.Literal['wiki_page'], str] = Field(validation_alias='domainType', serialization_alias='domainType')
+    """Allowed values: `wiki_page`."""
     frontend_url: str = Field(validation_alias='frontendUrl', serialization_alias='frontendUrl')
-    icon: str
+    icon: _t.Union[_t.Literal['file'], str]
+    """Allowed values: `file`."""
     preview: str
     """Search excerpt, possibly empty, with Markdown emphasis for matching text."""
     type_: str = Field(validation_alias='type', serialization_alias='type')

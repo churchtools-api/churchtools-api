@@ -242,6 +242,30 @@ class T:
     kind: str  # any str int float bool date datetime list map model union opt
     inner: tuple = ()
     name: str = ""
+    values: tuple = ()  # allowed values of a str or int enum
+
+
+def enum_values(t: T) -> tuple:
+    """Allowed values of `t`, also through Optional and List; empty if not an enum."""
+    while t.kind in ("opt", "list"):
+        t = t.inner[0]
+    if t.kind == "union":
+        return tuple(dict.fromkeys(v for m in t.inner for v in enum_values(m)))
+    return t.values
+
+
+def allowed_doc(t: T, limit: int = 30) -> str:
+    """`Allowed values: ...` for docs, or empty."""
+    values = enum_values(t)
+    if not values:
+        return ""
+    shown = ", ".join(f"`{v}`" for v in values[:limit])
+    return f"Allowed values: {shown}{', …' if len(values) > limit else ''}."
+
+
+def with_allowed(doc: str, t: T) -> str:
+    allowed = allowed_doc(t)
+    return f"{doc}\n{allowed}" if doc and allowed else doc or allowed
 
 
 ANY = T("any")
@@ -331,6 +355,11 @@ class Schemas:
             return T("null")
         else:
             t = prim(types, s)
+            if isinstance(s.get("enum"), list) and t.kind in ("str", "int"):
+                py = str if t.kind == "str" else int
+                values = tuple(v for v in s["enum"] if type(v) is py)
+                if values:
+                    t = T(t.kind, values=tuple(dict.fromkeys(values)))
         if "enum" in s and None in s["enum"]:
             nullable = True
         return opt(t) if nullable else t
@@ -651,10 +680,15 @@ def check_names(ops: list[Op]) -> list[str]:
 # Python output
 
 
-def py_type(t: T, quote_models: bool = True) -> str:
+def py_type(t: T, quote_models: bool = True, enums: str = "") -> str:
+    """`enums`: "" plain `str`/`int`, "strict" `Literal[...]` for arguments, "open"
+    `Literal[...] | str` for responses, where the server may send new values."""
     k = t.kind
     if k == "any":
         return "_t.Any"
+    if k in ("str", "int") and t.values and enums:
+        literal = f"_t.Literal[{', '.join(repr(v) for v in t.values)}]"
+        return literal if enums == "strict" else f"_t.Union[{literal}, {k}]"
     if k in ("str", "int", "float", "bool"):
         return k
     if k == "date":
@@ -662,15 +696,15 @@ def py_type(t: T, quote_models: bool = True) -> str:
     if k == "datetime":
         return "_dt.datetime"
     if k == "list":
-        return f"_t.List[{py_type(t.inner[0], quote_models)}]"
+        return f"_t.List[{py_type(t.inner[0], quote_models, enums)}]"
     if k == "map":
-        return f"StrMap[{py_type(t.inner[0], quote_models)}]"
+        return f"StrMap[{py_type(t.inner[0], quote_models, enums)}]"
     if k == "model":
         return t.name
     if k == "union":
-        return f"_t.Union[{', '.join(py_type(i, quote_models) for i in t.inner)}]"
+        return f"_t.Union[{', '.join(py_type(i, quote_models, enums) for i in t.inner)}]"
     if k == "opt":
-        return f"_t.Optional[{py_type(t.inner[0], quote_models)}]"
+        return f"_t.Optional[{py_type(t.inner[0], quote_models, enums)}]"
     if k == "null":
         return "None"
     raise ValueError(k)
@@ -718,7 +752,7 @@ def write_python_models(schemas: Schemas, header: str, out: Path) -> None:
         lines.append(f"\nclass {name}(CTModel):")
         lines.append(py_docstring(model.doc, "    ").rstrip("\n") or '    """"""')
         for f, attr in zip(model.fields, py_field_names(model)):
-            ann = py_type(f.type)
+            ann = py_type(f.type, enums="open")
             required = f.required and f.type.kind not in ("opt", "any")
             if not required and f.type.kind not in ("opt", "any"):
                 ann = f"_t.Optional[{ann}]"
@@ -734,8 +768,9 @@ def write_python_models(schemas: Schemas, header: str, out: Path) -> None:
                 args.append("deprecated=True")
             value = f" = Field({', '.join(args)})" if args else ""
             lines.append(f"    {attr}: {ann}{value}")
-            if f.doc:
-                lines.append(py_docstring(f.doc, "    ").rstrip("\n"))
+            doc = with_allowed(f.doc, f.type)
+            if doc:
+                lines.append(py_docstring(doc, "    ").rstrip("\n"))
     out.write_text("\n".join(lines) + "\n")
 
 
@@ -781,10 +816,15 @@ def write_python_resources(ops: list[Op], header: str, out: Path) -> None:
     out.write_text("\n".join(lines) + "\n")
 
 
-def model_type_for_resources(t: T) -> str:
+def model_type_for_resources(t: T, enums: str = "") -> str:
     """Python annotation inside _resources.py, where models live in `models.`."""
-    s = py_type(t)
-    return re.sub(r"(?<![\w.])([A-Z]\w*)", lambda m: m.group(1) if m.group(1) in ("None", "StrMap") else f"models.{m.group(1)}", s)
+    parts = re.split(r"('(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\")", py_type(t, enums=enums))
+    return "".join(
+        part if i % 2 else re.sub(
+            r"(?<![\w.])([A-Z]\w*)", lambda m: m.group(1) if m.group(1) in ("None", "StrMap") else f"models.{m.group(1)}", part
+        )
+        for i, part in enumerate(parts)
+    )
 
 
 @dataclass
@@ -830,7 +870,7 @@ def python_method(op: Op) -> list[str]:
     pairs = []
     body_expr = "None"
     for p in python_params(op):
-        ann = model_type_for_resources(p.type)
+        ann = model_type_for_resources(p.type, "strict")
         if p.kind == "path":
             sig_pos.append(f"{p.py}: {ann}")
             path_expr = path_expr.replace("{" + p.wire + "}", "{_seg(" + p.py + ")}")
@@ -859,8 +899,9 @@ def python_method(op: Op) -> list[str]:
             else:
                 sig_kw.append((1, f"body: _t.Optional[{ann}] = None"))
             body_expr = "_body(body)"
-        if p.doc:
-            doc_args.append((p.py, p.doc))
+        doc = with_allowed(p.doc, p.type)
+        if doc:
+            doc_args.append((p.py, doc))
     if op.body_model is not None:
         sig_kw.append((1, "extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None"))
         body_expr = "_body({" + ", ".join(pairs) + "}, extra_body)"
@@ -869,8 +910,8 @@ def python_method(op: Op) -> list[str]:
     params = ["self", *sig_pos] + (["*", *kw] if kw else [])
 
     if op.result == "data" or op.result == "json":
-        rt = model_type_for_resources(op.result_type)
-        ret = f"Paginator[{model_type_for_resources(op.result_type.inner[0])}]" if op.paginated else rt
+        rt = model_type_for_resources(op.result_type, "open")
+        ret = f"Paginator[{model_type_for_resources(op.result_type.inner[0], 'open')}]" if op.paginated else rt
     elif op.result == "bytes":
         ret = "bytes"
     else:
@@ -902,10 +943,10 @@ def python_method(op: Op) -> list[str]:
         upload_kw = f", upload=({op.upload[0]!r}, {form_q}, {upload_expr})"
     path_lit = f'f"{path_expr}"' if "{" in path_expr else f'"{path_expr}"'
     if op.paginated:
-        item = model_type_for_resources(op.result_type.inner[0])
+        item = model_type_for_resources(op.result_type.inner[0], "open")
         out.append(f"        return Paginator(self._core, {path_lit}, {q}, {item})")
     elif op.result in ("data", "json"):
-        rt = model_type_for_resources(op.result_type)
+        rt = model_type_for_resources(op.result_type, "open")
         out.append(
             f"        return _t.cast({rt}, self._call({op.method.upper()!r}, {path_lit}, {q}, {body_expr}, "
             f"{rt}, envelope={op.result == 'data'}{upload_kw}))"
@@ -1000,7 +1041,7 @@ def write_rust_models(schemas: Schemas, header: str, out: Path) -> None:
             optional = not f.required or f.type.kind == "opt"
             if optional and not ty.startswith("Option<") and ty != "serde_json::Value":
                 ty = f"Option<{ty}>"
-            lines += rust_doc(f.doc, "    ")
+            lines += rust_doc(with_allowed(f.doc, f.type), "    ")
             attrs = []
             if ident.removeprefix("r#") != f.json_name:
                 attrs.append(f'rename = "{f.json_name}"')
@@ -1151,7 +1192,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
         for p in query_params:
             ident = unique(rust_ident(p.name), qtaken)
             idents.append((ident, p))
-            struct_lines += rust_doc(p.doc, "    ")
+            struct_lines += rust_doc(with_allowed(p.doc, p.type), "    ")
             struct_lines.append(f"    pub {ident}: Option<{rust_param_type(p.type)}>,")
         struct_lines.append("}\n")
         struct_lines.append(f"impl {query_struct} {{")
@@ -1182,7 +1223,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
             for f in form:
                 ident = unique(rust_ident(snake(f.json_name)), ftaken)
                 fidents.append((ident, f))
-                struct_lines += rust_doc(f.doc, "    ")
+                struct_lines += rust_doc(with_allowed(f.doc, f.type), "    ")
                 struct_lines.append(f"    pub {ident}: Option<{rust_param_type(f.type)}>,")
             struct_lines.append("}\n")
             struct_lines.append(f"impl {form_struct} {{")

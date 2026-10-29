@@ -759,6 +759,7 @@ impl DeleteAgendatemplatesAgendaIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct PostAgendatemplatesAgendaIdExportQuery {
     /// Target presenter format. The generated archive is returned through a download URL in the JSON response.
+    /// Allowed values: `PRO_PRESENTER_6`, `PRO_PRESENTER_7`, `SONG_BEAMER`.
     pub format: Option<String>,
 }
 
@@ -796,7 +797,7 @@ impl<'a> AgendatemplatesItemsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-agendatemplates-agendaId-items");
     /// let body = serde_json::json!({
-    ///     "type": "beispiel"
+    ///     "type": "header"
     /// });
     /// let result = client.agendatemplates().items().create(35, &body)?;
     /// println!("{:?}", result);
@@ -858,7 +859,7 @@ impl<'a> AgendatemplatesItemsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-agendatemplates-agendaId-items-itemId");
     /// let body = serde_json::json!({
-    ///     "type": "beispiel"
+    ///     "type": "header"
     /// });
     /// let result = client.agendatemplates().items().update(35, 123, &body)?;
     /// println!("{:?}", result);
@@ -1003,7 +1004,7 @@ impl<'a> BookingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let booking = client.bookings().answer(8, "beispiel")?;
+    /// let booking = client.bookings().answer(8, "approve")?;
     /// println!("{}", booking.title);
     /// # Ok(())
     /// # }
@@ -1263,6 +1264,7 @@ impl<'a> BookingsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetBookingsIdQuery {
     /// Optional enrichments. conflicts adds overlapping bookings; involvedPersonsDomainObjects adds person references to the booking base.
+    /// Allowed values: `conflicts`, `involvedPersonsDomainObjects`.
     pub include: Option<Vec<String>>,
 }
 
@@ -1278,6 +1280,7 @@ impl GetBookingsIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetBookingsQuery {
     /// Optional enrichments. conflicts adds overlapping bookings; involvedPersonsDomainObjects adds person references to the booking base.
+    /// Allowed values: `conflicts`, `involvedPersonsDomainObjects`.
     pub include: Option<Vec<String>>,
     /// IDs of resources to include.
     pub resource_ids: Option<Vec<i64>>,
@@ -1286,6 +1289,7 @@ pub struct GetBookingsQuery {
     /// Return bookings created by this person or made on their behalf.
     pub person_id: Option<i64>,
     /// Booking statuses to include.
+    /// Allowed values: `1`, `2`, `3`.
     pub status_ids: Option<Vec<i64>>,
     /// First included local date.
     pub from: Option<chrono::NaiveDate>,
@@ -2093,6 +2097,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetCalendarsCalendarIdAppointmentsAppointmentIdQuery {
     /// Additional series data: event, group, bookings and titleSuffix enrich calculatedDates; tags enriches additionalInfos.
+    /// Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
     pub include: Option<Vec<String>>,
 }
 
@@ -2108,6 +2113,7 @@ impl GetCalendarsCalendarIdAppointmentsAppointmentIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetCalendarsAppointmentsAppointmentIdStartDateQuery {
     /// Additional data for this occurrence. Meeting requests belong to the whole appointment/series.
+    /// Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
     pub include: Option<Vec<String>>,
 }
 
@@ -2123,6 +2129,7 @@ impl GetCalendarsAppointmentsAppointmentIdStartDateQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetCalendarsCalendarIdAppointmentsAppointmentIdStartDateQuery {
     /// Additional data for this occurrence. Meeting requests belong to the whole appointment/series.
+    /// Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
     pub include: Option<Vec<String>>,
 }
 
@@ -2146,6 +2153,7 @@ pub struct GetCalendarsAppointmentsQuery {
     /// Search appointment titles for the supplied text.
     pub query: Option<String>,
     /// Additional data requested for each calculated occurrence.
+    /// Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
     pub include: Option<Vec<String>>,
 }
 
@@ -2171,6 +2179,7 @@ pub struct GetCalendarsCalendarIdAppointmentsQuery {
     /// Search appointment titles for the supplied text.
     pub query: Option<String>,
     /// Additional data requested for each calculated occurrence.
+    /// Allowed values: `bookings`, `event`, `group`, `meetingRequests`, `tags`, `titleSuffix`.
     pub include: Option<Vec<String>>,
 }
 
@@ -3542,8 +3551,10 @@ impl<'a> DbfieldsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetDbfieldsQuery {
     /// Limit results to database-field categories.
+    /// Allowed values: `f_address`, `f_category`, `f_church`, `f_datasecurity`, `f_dep`, `f_group`, `f_growpath`.
     pub categories: Option<Vec<String>>,
     /// Expand selection choices for each field.
+    /// Allowed values: `options`.
     pub include: Option<Vec<String>>,
 }
 
@@ -3860,6 +3871,7 @@ impl<'a> DomainobjectsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetDomainobjectsQuery {
     /// Registered object types, paired by index with `domain_identifiers[]`.
+    /// Allowed values: `appointment`, `appointment_occurrence`, `event`, `group`, `group_membership`, `person`, `song`, `wiki_page`.
     pub domain_types: Option<Vec<String>>,
     /// For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
     pub domain_identifiers: Option<Vec<String>>,
@@ -4046,7 +4058,7 @@ impl<'a> DynamicgroupsResource<'a> {
     ///                 "queryResultOnly": {}
     ///             },
     ///             "query": {
-    ///                 "method": "beispiel",
+    ///                 "method": "ChurchQuery",
     ///                 "params": {}
     ///             },
     ///             "shorty": "selected-people"
@@ -4633,6 +4645,7 @@ pub struct GetEventsQuery {
     /// Range upper bound at midnight, inclusive.
     pub to: Option<chrono::NaiveDate>,
     /// Enable directional pagination; omit for an unpaginated date range.
+    /// Allowed values: `backward`, `forward`.
     pub direction: Option<String>,
     /// Results per page in directional mode; ignored in range mode.
     pub limit: Option<i64>,
@@ -4883,6 +4896,7 @@ impl<'a> EventsAgendaResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct PostEventsIdAgendaExportQuery {
     /// Target presenter format. The generated archive is returned through a download URL in the JSON response.
+    /// Allowed values: `PRO_PRESENTER_6`, `PRO_PRESENTER_7`, `SONG_BEAMER`.
     pub format: Option<String>,
 }
 
@@ -4953,7 +4967,7 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-events-id-agenda-items");
     /// let body = serde_json::json!({
-    ///     "type": "beispiel"
+    ///     "type": "header"
     /// });
     /// let result = client.events().agenda().items().create(42, &body)?;
     /// println!("{:?}", result);
@@ -5059,7 +5073,7 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-events-id-agenda-items-id");
     /// let body = serde_json::json!({
-    ///     "type": "beispiel"
+    ///     "type": "header"
     /// });
     /// let result = client.events().agenda().items().update(42, 123, &body)?;
     /// println!("{:?}", result);
@@ -5205,7 +5219,7 @@ impl<'a> EventsEventservicesResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
-    ///     "comment": "beispiel"
+    ///     "comment": "Hallo zusammen"
     /// }))?;
     /// let eventservice = client.events().eventservices().delete(42, 42, &body)?;
     /// println!("{:?}", eventservice.name);
@@ -5470,6 +5484,7 @@ impl<'a> EventsFactsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct PostEventsFactsExportQuery {
     /// Download format.
+    /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
 }
 
@@ -5528,7 +5543,7 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
-    ///     "comment": "beispiel"
+    ///     "comment": "Hallo zusammen"
     /// }))?;
     /// let servicerequest = client.events().servicerequests().accept(42, 42, &body)?;
     /// println!("{:?}", servicerequest.name);
@@ -5555,7 +5570,7 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
-    ///     "comment": "beispiel"
+    ///     "comment": "Hallo zusammen"
     /// }))?;
     /// let servicerequest = client.events().servicerequests().decline(42, 42, &body)?;
     /// println!("{:?}", servicerequest.name);
@@ -5913,7 +5928,7 @@ impl<'a> ExternalloginsLinkResource<'a> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::ExternalLoginLinkCreate = serde_json::from_value(serde_json::json!({
     ///     "linkToken": "opaque-session-bound-link-token",
-    ///     "password": "beispiel",
+    ///     "password": "geheim",
     ///     "username": "alex@example.org"
     /// }))?;
     /// let result = client.externallogins().link().create(7, &body)?;
@@ -6772,6 +6787,7 @@ pub struct GetExternalpostsQuery {
     /// If set posts of these instances are returned.
     pub external_instance_guid: Option<Vec<String>>,
     /// If set, the response will include the specified data.
+    /// Allowed values: `linkings`.
     pub include: Option<Vec<String>>,
     /// Number of results per page.
     pub limit: Option<i64>,
@@ -6836,7 +6852,7 @@ impl<'a> ExternalpostsInstancesChannelsPostsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let post = client.externalposts().instances().channels().posts().get("beispiel", "beispiel", "beispiel")?;
+    /// let post = client.externalposts().instances().channels().posts().get("abc123", "abc123", "abc123")?;
     /// println!("{}", post.title);
     /// # Ok(())
     /// # }
@@ -7102,7 +7118,7 @@ impl<'a> FilesResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let file = Upload::from_path("gemeindebrief.pdf")?;
-    /// for file in client.files().create("beispiel", "42", &[file])? {
+    /// for file in client.files().create(serde_json::json!("agenda_PRO_PRESENTER_6"), "42", &[file])? {
     ///     println!("{}", file.name);
     /// }
     /// # Ok(())
@@ -7161,7 +7177,7 @@ impl<'a> FilesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.files().delete_for_object("beispiel", "42")?;
+    /// client.files().delete_for_object(serde_json::json!("agenda_PRO_PRESENTER_6"), "42")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -7233,7 +7249,7 @@ impl<'a> FilesResource<'a> {
     /// let body: models::FileLinkCreate = serde_json::from_value(serde_json::json!({
     ///     "url": "https://example.org/service-notes"
     /// }))?;
-    /// let file = client.files().link("beispiel", "42", &body)?;
+    /// let file = client.files().link(serde_json::json!("agenda_PRO_PRESENTER_6"), "42", &body)?;
     /// println!("{}", file.name);
     /// # Ok(())
     /// # }
@@ -7257,7 +7273,7 @@ impl<'a> FilesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-files-domainType-domainIdentifier");
-    /// for file in client.files().list("beispiel", "42")? {
+    /// for file in client.files().list(serde_json::json!("agenda_PRO_PRESENTER_6"), "42")? {
     ///     println!("{}", file.name);
     /// }
     /// # Ok(())
@@ -7281,7 +7297,7 @@ impl<'a> FilesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-files-domainType");
-    /// let result = client.files().list_for_type("beispiel")?;
+    /// let result = client.files().list_for_type(serde_json::json!("agenda_PRO_PRESENTER_6"))?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -7333,7 +7349,7 @@ impl<'a> FilesResource<'a> {
     /// let body: models::FileDomainUpdate = serde_json::from_value(serde_json::json!({
     ///     "name": "Service notes.pdf"
     /// }))?;
-    /// client.files().update_for_object("beispiel", "42", &body)?;
+    /// client.files().update_for_object(serde_json::json!("agenda_PRO_PRESENTER_6"), "42", &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -8123,8 +8139,10 @@ pub struct GetFinanceAccountingperiodsIdBillsQuery {
     /// Maximum documents per page.
     pub limit: Option<i64>,
     /// Enable sorting by submission date, with bill ID as a tie-breaker.
+    /// Allowed values: `submittedDate`.
     pub order_by: Option<String>,
     /// Direction used when order_by is supplied.
+    /// Allowed values: `ASC`, `DESC`.
     pub order_direction: Option<String>,
 }
 
@@ -8240,10 +8258,12 @@ pub struct GetFinanceAccountingperiodsIdAccountsIdMovementsQuery {
     /// Positive number of results per page. No upper bound is enforced.
     pub limit: Option<i64>,
     /// Restrict to a stored movement state.
+    /// Allowed values: `booked`, `ignored`, `open`.
     pub state: Option<String>,
     /// Substring search across purpose, account identifier and person name.
     pub query: Option<String>,
     /// Additional suggestion details; use the PHP array syntax include[]=bills.
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
 }
 
@@ -8315,7 +8335,7 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::StatementMovementUpdate = serde_json::from_value(serde_json::json!({
-    ///     "state": "beispiel"
+    ///     "state": "booked"
     /// }))?;
     /// let result = client.finance().accountingperiods().accounts().statements().movements().create(1, 42, 7, 123, &body)?;
     /// println!("{:?}", result);
@@ -8405,10 +8425,12 @@ pub struct GetFinanceAccountingperiodsIdAccountsIdStatementsIdMovementsQuery {
     /// Positive number of results per page. No upper bound is enforced.
     pub limit: Option<i64>,
     /// Restrict to a stored movement state.
+    /// Allowed values: `booked`, `ignored`, `open`.
     pub state: Option<String>,
     /// Substring search across purpose, account identifier and person name.
     pub query: Option<String>,
     /// Additional suggestion details; use the PHP array syntax include[]=bills.
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
 }
 
@@ -8841,8 +8863,10 @@ pub struct GetFinanceAccountsExportQuery {
     /// Accounting period to export.
     pub accounting_period_id: Option<i64>,
     /// Download format. Only CSV and XLSX generators are registered.
+    /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
     /// Compatibility alias for format.
+    /// Allowed values: `csv`, `xlsx`.
     pub r#type: Option<String>,
 }
 
@@ -9772,8 +9796,10 @@ pub struct GetFinanceCostcentersExportQuery {
     /// Accounting period to export.
     pub accounting_period_id: Option<i64>,
     /// Download format. Only CSV and XLSX generators are registered.
+    /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
     /// Compatibility alias for format.
+    /// Allowed values: `csv`, `xlsx`.
     pub r#type: Option<String>,
 }
 
@@ -9823,8 +9849,8 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::DonationReceiptsCreate = serde_json::from_value(serde_json::json!({
     ///     "accounting_period_id": 1,
-    ///     "donation_receipt_attachment_template_id": "beispiel",
-    ///     "donation_receipt_letter_template_id": "beispiel"
+    ///     "donation_receipt_attachment_template_id": "abc123",
+    ///     "donation_receipt_letter_template_id": "abc123"
     /// }))?;
     /// let result = client.finance().donators().create_receipts(&body)?;
     /// println!("{:?}", result.job_group);
@@ -10037,8 +10063,10 @@ pub struct GetFinanceDonatorsReceiptsQuery {
     /// Accounting period for these donation receipts.
     pub accounting_period_id: Option<i64>,
     /// Combine letters and attachments separately (twofiles), or interleave them by recipient into one PDF (onefile).
+    /// Allowed values: `onefile`, `twofiles`.
     pub mode: Option<String>,
     /// Insert blank pages for duplex printing: all, only cover letters, only attachments, or none. In onefile mode donation_attachment alone has no effect.
+    /// Allowed values: `all`, `donation_attachment`, `donation_cover_letter`, `none`.
     pub cleardoublepage: Option<String>,
 }
 
@@ -10058,6 +10086,7 @@ pub struct GetFinanceDonatorsDonatorCoupleIdQuery {
     /// Accounting period for these donation receipts.
     pub accounting_period_id: Option<i64>,
     /// Watermark for returned files. Does not select the stored receipt type.
+    /// Allowed values: `DRAFT`, `DUPLICATE`, `ORIGINAL`.
     pub r#type: Option<String>,
 }
 
@@ -10078,8 +10107,10 @@ pub struct GetFinanceDonatorsQuery {
     /// Return only households missing at least one required name/address field.
     pub only_incomplete: Option<bool>,
     /// Sort by primary last name, donation count, latest donation date or net sum.
+    /// Allowed values: `count`, `last`, `name`, `sum`.
     pub order_by: Option<String>,
     /// Sort direction; upper- and lower-case values are accepted.
+    /// Allowed values: `ASC`, `DESC`, `asc`, `desc`.
     pub order_direction: Option<String>,
     /// Substring search on the primary first or last name. No minimum length is enforced; SQL LIKE wildcards are not escaped.
     pub query: Option<String>,
@@ -11030,6 +11061,7 @@ pub struct DeleteFinanceSplittransactionsIdQuery {
     /// If set to true, the deletion is simulated but nothing will be deleted.
     pub dry_run: Option<bool>,
     /// Include additional information
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
 }
 
@@ -11046,6 +11078,7 @@ impl DeleteFinanceSplittransactionsIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetFinanceSplittransactionsIdQuery {
     /// Include additional information
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
 }
 
@@ -11063,6 +11096,7 @@ pub struct PutFinanceSplittransactionsIdQuery {
     /// Skip the normal donation-account/donor constraint. Must be a query parameter. Joint-donor consistency checks still apply in the child service.
     pub ignore_donation_constraint: Option<bool>,
     /// Include additional information
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
 }
 
@@ -12280,6 +12314,7 @@ pub struct DeleteFinanceTransactionsIdQuery {
     /// If set to true, the deletion is simulated but nothing will be deleted.
     pub dry_run: Option<bool>,
     /// Include additional information
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
 }
 
@@ -12296,6 +12331,7 @@ impl DeleteFinanceTransactionsIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetFinanceTransactionsIdQuery {
     /// Include additional information
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
 }
 
@@ -12335,14 +12371,17 @@ pub struct GetFinanceTransactionsCsvQuery {
     /// Filter transactions, whether transaction is immutable.
     pub is_immutable: Option<bool>,
     /// Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+    /// Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
     pub order_by: Option<String>,
     /// Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+    /// Allowed values: `ASC`, `DESC`, `asc`, `desc`.
     pub order_direction: Option<String>,
     /// Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
     pub query: Option<String>,
     /// Filter by whether reimbursement of expenses was waived as a donation.
     pub is_waiver_of_reimbursement_of_expenses: Option<bool>,
     /// Column layout: default is the human-readable CT export; sage100 uses separate debit/credit account and cost-center numbers plus tax fields. An empty string selects default.
+    /// Allowed values: ``, `default`, `sage100`.
     pub target: Option<String>,
 }
 
@@ -12398,8 +12437,10 @@ pub struct GetFinanceTransactionsDatevexportQuery {
     /// Filter transactions, whether transaction is immutable.
     pub is_immutable: Option<bool>,
     /// Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+    /// Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
     pub order_by: Option<String>,
     /// Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+    /// Allowed values: `ASC`, `DESC`, `asc`, `desc`.
     pub order_direction: Option<String>,
     /// Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
     pub query: Option<String>,
@@ -12476,18 +12517,23 @@ pub struct GetFinanceTransactionsExportQuery {
     /// Filter transactions, whether transaction is immutable.
     pub is_immutable: Option<bool>,
     /// Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+    /// Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
     pub order_by: Option<String>,
     /// Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+    /// Allowed values: `ASC`, `DESC`, `asc`, `desc`.
     pub order_direction: Option<String>,
     /// Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
     pub query: Option<String>,
     /// Filter by whether reimbursement of expenses was waived as a donation.
     pub is_waiver_of_reimbursement_of_expenses: Option<bool>,
     /// Column layout: default is the human-readable CT export; sage100 uses separate debit/credit account and cost-center numbers plus tax fields. An empty string selects default.
+    /// Allowed values: ``, `default`, `sage100`.
     pub target: Option<String>,
     /// File format.
+    /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
     /// Legacy alias for format. Use format for new integrations.
+    /// Allowed values: `csv`, `xlsx`.
     pub r#type: Option<String>,
 }
 
@@ -12571,14 +12617,17 @@ pub struct GetFinanceTransactionsSummaryQuery {
     /// Filter transactions, whether transaction is immutable.
     pub is_immutable: Option<bool>,
     /// Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+    /// Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
     pub order_by: Option<String>,
     /// Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+    /// Allowed values: `ASC`, `DESC`, `asc`, `desc`.
     pub order_direction: Option<String>,
     /// Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
     pub query: Option<String>,
     /// Filter by whether reimbursement of expenses was waived as a donation.
     pub is_waiver_of_reimbursement_of_expenses: Option<bool>,
     /// Explicit calculation mode, also saved as the current user’s preference. credit-debit uses selected account_ids; costcenter-sum uses cost-center selection; donation-sum uses donor selection.
+    /// Allowed values: `costcenter-sum`, `credit-debit`, `donation-sum`.
     pub calculation_type: Option<String>,
 }
 
@@ -12636,12 +12685,15 @@ pub struct GetFinanceTransactionsQuery {
     /// Exclude donor-linked bookings debiting a donation account and crediting a non-donation account (donation repayments).
     pub exclude_paybacks: Option<bool>,
     /// Sort by document date, amount, modification time, document number, note, account number, contra-account number, cost-center number, donor name or receipt count. Date and modification time plus ID break ties where applicable. Document numbers use their stored text, numeric and split suffix parts.
+    /// Allowed values: `account`, `amount`, `bills`, `contra_account`, `cost_center`, `date`, `donator`, `modified`, `note`, `number`.
     pub order_by: Option<String>,
     /// Primary sort direction. Prefer uppercase values for consistent secondary sorting.
+    /// Allowed values: `ASC`, `DESC`, `asc`, `desc`.
     pub order_direction: Option<String>,
     /// Maximum number of bookings per page. No explicit maximum is validated.
     pub limit: Option<i64>,
     /// Include additional information
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
     /// Search note, document number or amount. For amount matching, leading zeros and decimal separators are removed.
     pub query: Option<String>,
@@ -12680,6 +12732,7 @@ impl GetFinanceTransactionsQuery {
 #[derive(Debug, Clone, Default)]
 pub struct PutFinanceTransactionsIdQuery {
     /// Include additional information
+    /// Allowed values: `bills`.
     pub include: Option<Vec<String>>,
 }
 
@@ -12958,6 +13011,7 @@ impl<'a> FollowupsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetFollowupsQuery {
     /// Repeat to select any of the listed states. An empty array includes all states.
+    /// Allowed values: `done`, `due-after-today`, `due-before-today`, `due-today`, `due-unspecified`.
     pub filter: Option<Vec<String>>,
     /// Maximum results in this page.
     pub limit: Option<i64>,
@@ -13008,10 +13062,10 @@ impl<'a> FurtherlinksResource<'a> {
     /// # let client = churchtools_core::replay::client("post-furtherlinks");
     /// let body: models::FurtherLinkCreate = serde_json::from_value(serde_json::json!({
     ///     "description": "Our church's NextCloud",
-    ///     "imageUrl": "beispiel",
+    ///     "imageUrl": "https://example.org",
     ///     "name": "NextCloud",
     ///     "sortKey": 1.5,
-    ///     "url": "beispiel"
+    ///     "url": "https://example.org"
     /// }))?;
     /// let result = client.furtherlinks().create(&body)?;
     /// println!("{}", result.name);
@@ -13106,10 +13160,10 @@ impl<'a> FurtherlinksResource<'a> {
     /// # let client = churchtools_core::replay::client("put-furtherlinks-furtherLinkId");
     /// let body: models::FurtherLinkCreate = serde_json::from_value(serde_json::json!({
     ///     "description": "Our church's NextCloud",
-    ///     "imageUrl": "beispiel",
+    ///     "imageUrl": "https://example.org",
     ///     "name": "NextCloud",
     ///     "sortKey": 1.5,
-    ///     "url": "beispiel"
+    ///     "url": "https://example.org"
     /// }))?;
     /// let result = client.furtherlinks().update(1.5, &body)?;
     /// println!("{}", result.name);
@@ -14054,6 +14108,7 @@ pub struct GetGroupRolesQuery {
     /// ID of the group type whose role definitions to return.
     pub group_type_id: Option<i64>,
     /// Choose full role definitions (standard) or compact display references (domainObject).
+    /// Allowed values: `domainObject`, `standard`.
     pub response_format: Option<String>,
 }
 
@@ -14596,7 +14651,7 @@ impl<'a> GroupsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-grouped");
     /// let query = GetGroupsGroupedQuery {
-    ///     group_by: Some("beispiel".into()),
+    ///     group_by: Some("ageGroup".into()),
     ///     ..Default::default()
     /// };
     /// let grouped = client.groups().get_grouped(&query)?;
@@ -15242,8 +15297,10 @@ impl PostGroupsIdDuplicateQuery {
 #[derive(Debug, Clone, Default)]
 pub struct PostGroupsExportQuery {
     /// Export file format. Defaults to `csv` when omitted. The response content type depends on the selected format.
+    /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
     /// Use `format`
+    /// Allowed values: `csv`, `xlsx`.
     pub r#type: Option<String>,
 }
 
@@ -15260,6 +15317,7 @@ impl PostGroupsExportQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetGroupsGroupIdQuery {
     /// Include additional information (currently, 'roles' are included by default but this behaviour is now deprecated)
+    /// Allowed values: `averageMemberAge`, `hasPermissions`, `memberStatistics`, `places`, `publicPostsStatistic`, `roles`, `signupConditions`, `tags`.
     pub include: Option<Vec<String>>,
 }
 
@@ -15275,6 +15333,7 @@ impl GetGroupsGroupIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetGroupsGroupedQuery {
     /// Group attribute used to build the response buckets
+    /// Allowed values: `ageGroup`, `campus`, `groupCategory`, `groupStatus`, `groupType`, `isOpenForMembers`, `targetGroup`, `visibility`.
     pub group_by: Option<String>,
     /// Number of results per page.
     pub limit: Option<i64>,
@@ -15332,12 +15391,15 @@ pub struct GetGroupsQuery {
     pub has_active_chat: Option<bool>,
     pub query: Option<String>,
     /// Group visibility
+    /// Allowed values: `hidden`, `intern`, `public`, `restricted`.
     pub visibility: Option<String>,
     /// The fields to order by
     pub order_fields: Option<Vec<String>>,
     /// The order direction ASC or DESC for the order_fields
+    /// Allowed values: `ASC`, `DESC`.
     pub order_directions: Option<Vec<String>>,
     /// Include additional information (currently, 'roles' are included by default but this behaviour is now deprecated)
+    /// Allowed values: `averageMemberAge`, `hasPermissions`, `memberStatistics`, `places`, `publicPostsStatistic`, `roles`, `signupConditions`, `tags`.
     pub include: Option<Vec<String>>,
 }
 
@@ -15380,6 +15442,7 @@ pub struct GetGroupsAbsencesQuery {
     /// End of the overlap window. Defaults to midnight two weeks from today.
     pub to: Option<serde_json::Value>,
     /// Order by absence start.
+    /// Allowed values: `ASC`, `DESC`.
     pub order_direction: Option<String>,
     /// Legacy alias for from.
     pub from_date: Option<serde_json::Value>,
@@ -15438,6 +15501,7 @@ pub struct GetGroupsGroupIdChildrenQuery {
     pub has_active_chat: Option<bool>,
     pub query: Option<String>,
     /// Group visibility
+    /// Allowed values: `hidden`, `intern`, `public`, `restricted`.
     pub visibility: Option<String>,
 }
 
@@ -15506,6 +15570,7 @@ pub struct GetGroupsHierarchiesQuery {
     pub has_active_chat: Option<bool>,
     pub query: Option<String>,
     /// Group visibility
+    /// Allowed values: `hidden`, `intern`, `public`, `restricted`.
     pub visibility: Option<String>,
 }
 
@@ -15578,6 +15643,7 @@ pub struct GetGroupsIdsQuery {
     pub has_active_chat: Option<bool>,
     pub query: Option<String>,
     /// Group visibility
+    /// Allowed values: `hidden`, `intern`, `public`, `restricted`.
     pub visibility: Option<String>,
 }
 
@@ -15617,6 +15683,7 @@ pub struct GetGroupsGroupIdMemberidsQuery {
     /// Filter by person IDs. These are the IDs in person.domainIdentifier, not membership record IDs.
     pub person_id: Option<Vec<i64>>,
     /// Filter by membership status, independently of the member’s role. Multiple values match any selected status. Omit this filter to include all visible statuses.
+    /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     pub group_member_statuses: Option<Vec<String>>,
     /// If true, return only group members, that are allowed to chat in this group
     pub allowed_chat_users_only: Option<bool>,
@@ -15693,6 +15760,7 @@ pub struct GetGroupsGroupIdPostsQuery {
     /// Maximum number of posts in this batch.
     pub limit: Option<i64>,
     /// Optional comments and reactions. Linkings are already included by default.
+    /// Allowed values: `comments`, `linkings`, `reactions`.
     pub include: Option<Vec<String>>,
 }
 
@@ -15796,7 +15864,7 @@ impl<'a> GroupsDocumentsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.groups().documents().get(42, "beispiel")?;
+    /// client.groups().documents().get(42, "abc123")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -15881,6 +15949,7 @@ impl<'a> GroupsFollowupsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetGroupsGroupIdFollowupsQuery {
     /// Repeat to select any of the listed states; omitted/empty includes all states.
+    /// Allowed values: `done`, `due-after-today`, `due-before-today`, `due-today`, `due-unspecified`.
     pub filter: Option<Vec<String>>,
     /// Maximum results in this page.
     pub limit: Option<i64>,
@@ -16110,8 +16179,10 @@ impl<'a> GroupsMeetingsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetGroupsGroupIdMeetingsExportQuery {
     /// Download format supported by the export generators.
+    /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
     /// Choose a person-by-meeting attendance matrix or one summary row per meeting.
+    /// Allowed values: `meetings_members`, `meetings_overview`.
     pub r#type: Option<String>,
     /// Match the exact cancellation flag; omit to include canceled and non-canceled meetings.
     pub is_canceled: Option<bool>,
@@ -16122,6 +16193,7 @@ pub struct GetGroupsGroupIdMeetingsExportQuery {
     /// Exclusive upper start-time boundary. Date or UTC date-time; defaults to midnight 30 days after today. end_date is a legacy alias.
     pub to: Option<String>,
     /// Accepted for compatibility; the current date-range export remains ordered oldest first.
+    /// Allowed values: `backward`, `forward`.
     pub direction: Option<String>,
 }
 
@@ -16151,10 +16223,12 @@ pub struct GetGroupsIdMeetingsQuery {
     /// Exclusive upper range boundary. Defaults to midnight 30 days after today; ignored in directional mode. end_date is a legacy alias.
     pub to: Option<String>,
     /// Enable directional paging strictly before or after from; omit for an unpaginated date range.
+    /// Allowed values: `backward`, `forward`.
     pub direction: Option<String>,
     /// Number of meetings per page in directional mode only.
     pub limit: Option<i64>,
     /// Include additional information
+    /// Allowed values: `attendances`.
     pub include: Option<Vec<String>>,
 }
 
@@ -16830,8 +16904,10 @@ impl<'a> GroupsMembersResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct PostGroupsIdMembersExportQuery {
     /// Output format; CSV by default.
+    /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
     /// Use `format`
+    /// Allowed values: `csv`, `xlsx`.
     pub r#type: Option<String>,
 }
 
@@ -16848,8 +16924,10 @@ impl PostGroupsIdMembersExportQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetGroupsGroupIdMembersExportQuery {
     /// Output format; CSV by default.
+    /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
     /// Use `format`
+    /// Allowed values: `csv`, `xlsx`.
     pub r#type: Option<String>,
 }
 
@@ -16872,6 +16950,7 @@ pub struct GetGroupsIdMembersQuery {
     /// Filter by person IDs. These are the IDs in person.domainIdentifier, not membership record IDs.
     pub person_id: Option<Vec<i64>>,
     /// Filter by membership status, independently of the member’s role. Multiple values match any selected status. Omit this filter to include all visible statuses.
+    /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     pub group_member_statuses: Option<Vec<String>>,
     /// If true, return only group members, that are allowed to chat in this group
     pub allowed_chat_users_only: Option<bool>,
@@ -16888,10 +16967,12 @@ pub struct GetGroupsIdMembersQuery {
     /// Fields used to sort the member list. Use person_ for person fields and member_ for membership properties or custom member fields. For example: person_lastName or member_groupTypeRoleId. Without this parameter, results are ordered by role type, role sort key, last name, first name and person ID.
     pub order_fields: Option<Vec<String>>,
     /// Sort directions corresponding by position to orderFields. Supply one direction per sort field. Built-in fields default to ASC when their direction is omitted.
+    /// Allowed values: `ASC`, `DESC`.
     pub order_directions: Option<Vec<String>>,
     /// Additional person-field keys to include in each member’s personFields object, for example firstName. Person-field permissions apply; membership-specific fields are returned separately in fields.
     pub person_fields: Option<Vec<String>>,
     /// Additional member-list data. newsletter and tags add properties to each member; aggregations adds meta.aggregations.fields with numeric group member field aggregates over all filtered members, across all pages.
+    /// Allowed values: `aggregations`, `newsletter`, `tags`.
     pub include: Option<Vec<String>>,
 }
 
@@ -16924,6 +17005,7 @@ pub struct GetGroupsGroupIdMembersHistoryQuery {
     /// Person ID recorded as the actor.
     pub actor_id: Option<i64>,
     /// Origin of the membership change.
+    /// Allowed values: `automatic`, `bulk-job`, `check-in`, `cron`, `default`, `duplicate-group`, `follow-up`, `group-creation`, `person-deletion`, `routine`, `self-registration`, `sign-up`, `waitinglist`.
     pub origin: Option<String>,
     /// Only changes to this role ID. Takes precedence over status/field-change filters.
     pub new_role_id: Option<i64>,
@@ -17107,6 +17189,7 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetGroupsGroupIdMembersPersonIdFollowupsQuery {
     /// Repeat to select any of the listed states; omitted/empty includes all states.
+    /// Allowed values: `done`, `due-after-today`, `due-before-today`, `due-today`, `due-unspecified`.
     pub filter: Option<Vec<String>>,
     /// Maximum results in this page.
     pub limit: Option<i64>,
@@ -17379,7 +17462,7 @@ impl<'a> GroupsParentsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-groupId-parents");
-    /// for parent in client.groups().parents().list("beispiel")? {
+    /// for parent in client.groups().parents().list("abc123")? {
     ///     println!("{}", parent.title);
     /// }
     /// # Ok(())
@@ -17465,6 +17548,7 @@ pub struct GetGroupsGroupIdParentsQuery {
     pub has_active_chat: Option<bool>,
     pub query: Option<String>,
     /// Group visibility
+    /// Allowed values: `hidden`, `intern`, `public`, `restricted`.
     pub visibility: Option<String>,
 }
 
@@ -18068,8 +18152,10 @@ impl DeleteHtmltemplatesTemplateIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetHtmltemplatesQuery {
     /// Template purpose. Supply this canonical parameter, or the legacy type alias.
+    /// Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
     pub domain_type: Option<String>,
     /// Legacy alias for domain_type; domain_type wins if both are provided.
+    /// Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
     pub r#type: Option<String>,
     /// Filter by the current owner, regardless of private/global visibility.
     pub only_own: Option<bool>,
@@ -18106,7 +18192,7 @@ impl<'a> ImagesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let data = client.images().get(42, "beispiel")?;
+    /// let data = client.images().get(42, "abc123")?;
     /// std::fs::write("ergebnis.bin", &data)?;
     /// # Ok(())
     /// # }
@@ -18140,7 +18226,7 @@ impl<'a> ImagesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let data = client.images().get_with_params(42, "beispiel", "fm%3Dwebp%26q%3D80%26w%3D700%26h%3Dauto")?;
+    /// let data = client.images().get_with_params(42, "abc123", "fm%3Dwebp%26q%3D80%26w%3D700%26h%3Dauto")?;
     /// std::fs::write("ergebnis.bin", &data)?;
     /// # Ok(())
     /// # }
@@ -18221,6 +18307,7 @@ pub struct GetImagesFileIdHashQuery {
     /// Glide fit mode. Raster images use their stored focus point by default.
     pub fit: Option<String>,
     /// Output format. A recognized hash suffix takes precedence.
+    /// Allowed values: `avif`, `gif`, `heic`, `jpg`, `pjpg`, `png`, `tiff`, `webp`.
     pub fm: Option<String>,
     /// Comma-separated preset names: `group-homepage`, `group-detail`, `group-list`, `group-tile`, `group-minitile`, `person-detail` and `avatar`. Explicit parameters take precedence over preset values.
     pub p: Option<String>,
@@ -18292,7 +18379,7 @@ impl<'a> InstallationSyncResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::PostInstallationSyncOidcBody = serde_json::from_value(serde_json::json!({
-    ///     "configurationToken": "beispiel"
+    ///     "configurationToken": "abc123"
     /// }))?;
     /// let installation_sync = client.installation_sync().oidc(&body)?;
     /// println!("{:?}", installation_sync.external_login_id);
@@ -18462,6 +18549,7 @@ impl<'a> JobsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetJobsQuery {
     /// Filter by stored states. Omit this filter to include all states.
+    /// Allowed values: `DONE`, `ERROR`, `IN_PROGRESS`.
     pub status: Option<Vec<String>>,
     /// Exact identifier match, not a substring search.
     pub identifier: Option<String>,
@@ -19041,8 +19129,8 @@ impl<'a> MarkdownResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-markdown-check");
     /// let body: models::PostMarkdownCheckBody = serde_json::from_value(serde_json::json!({
-    ///     "inputScope": "beispiel",
-    ///     "markdown": "beispiel"
+    ///     "inputScope": "description",
+    ///     "markdown": "Hallo zusammen"
     /// }))?;
     /// let markdown = client.markdown().check(&body)?;
     /// println!("{}", markdown.is_valid);
@@ -19071,13 +19159,13 @@ impl<'a> MarkdownResource<'a> {
     /// let body: models::MarkdownRequest = serde_json::from_value(serde_json::json!({
     ///     "sources": [
     ///         {
-    ///             "inputScope": "beispiel",
-    ///             "markdown": "beispiel",
+    ///             "inputScope": "description",
+    ///             "markdown": "Hallo zusammen",
     ///             "outputFormats": [
-    ///                 "beispiel"
+    ///                 "html"
     ///             ],
     ///             "outputScopes": [
-    ///                 "beispiel"
+    ///                 "description"
     ///             ],
     ///             "shortName": "Hauskreis Nord"
     ///         }
@@ -19150,7 +19238,7 @@ impl<'a> MeetingrequestsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::MeetingRequestIcsReply = serde_json::from_value(serde_json::json!({
-    ///     "icsContent": "beispiel",
+    ///     "icsContent": "Hallo zusammen",
     ///     "partstat": "ACCEPTED",
     ///     "token": "example-reply-token"
     /// }))?;
@@ -19473,7 +19561,7 @@ impl<'a> OauthclientsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.oauthclients().delete("beispiel")?;
+    /// client.oauthclients().delete("abc123")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -19523,7 +19611,7 @@ impl<'a> OauthclientsResource<'a> {
     ///     "name": "Parish website",
     ///     "redirectUri": "https://parish.example.org/oauth/callback"
     /// }))?;
-    /// let result = client.oauthclients().update("beispiel", &body)?;
+    /// let result = client.oauthclients().update("abc123", &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -19868,6 +19956,7 @@ impl<'a> PermissionsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetPermissionsDefinitionsQuery {
     /// Permission scope to return
+    /// Allowed values: `all`, `global`, `internal`.
     pub scope: Option<String>,
 }
 
@@ -19885,6 +19974,7 @@ pub struct GetPermissionsAssignmentTargetsQuery {
     /// Search status, role, group-type, group, or person names
     pub query: Option<String>,
     /// Restrict categories; omitted or empty selects all categories
+    /// Allowed values: `group_role`, `group_type_role`, `person`, `status`.
     pub domain_types: Option<Vec<String>>,
     /// Restrict to concrete roles of this group, intersected with domainTypes. A nonexistent group or incompatible categories yield an empty list.
     pub group_id: Option<i64>,
@@ -20083,6 +20173,7 @@ pub struct GetPermissionsGlobalAuthsAuthIdPersonsQuery {
     /// Page size, 1–100. Providing it enables pagination; page defaults to 1. When pagination is enabled by page or include, this defaults to 50.
     pub limit: Option<i64>,
     /// Add origins for each person on the page. This also enables pagination with defaults page=1 and limit=50.
+    /// Allowed values: `origins`.
     pub include: Option<String>,
 }
 
@@ -20664,7 +20755,7 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-person-growpaths");
     /// let body: models::GrowPathCreate = serde_json::from_value(serde_json::json!({
-    ///     "color": "blue",
+    ///     "color": "accent",
     ///     "name": "New Believer"
     /// }))?;
     /// let result = client.person().growpaths().create(&body)?;
@@ -20774,7 +20865,7 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-person-growpaths-id");
     /// let body: models::GrowPathUpdate = serde_json::from_value(serde_json::json!({
-    ///     "color": "blue",
+    ///     "color": "accent",
     ///     "name": "New Believer"
     /// }))?;
     /// let result = client.person().growpaths().update(1, &body)?;
@@ -21453,7 +21544,7 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-loginstring");
-    /// let loginstring = client.persons().get_loginstring("beispiel")?;
+    /// let loginstring = client.persons().get_loginstring("abc123")?;
     /// println!("{}", loginstring.login_string);
     /// # Ok(())
     /// # }
@@ -21497,7 +21588,7 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-personId-poststatistics");
-    /// let poststatistic = client.persons().get_poststatistics("beispiel")?;
+    /// let poststatistic = client.persons().get_poststatistics("abc123")?;
     /// println!("{}", poststatistic.count_banned);
     /// # Ok(())
     /// # }
@@ -21773,7 +21864,7 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-personId-posts");
-    /// for post in client.persons().list_posts("beispiel")? {
+    /// for post in client.persons().list_posts("abc123")? {
     ///     println!("{}", post.title);
     /// }
     /// # Ok(())
@@ -22051,6 +22142,7 @@ pub struct GetPersonsQuery {
     /// Number of results per page.
     pub limit: Option<i64>,
     /// Include additional information
+    /// Allowed values: `tags`.
     pub include: Option<Vec<String>>,
 }
 
@@ -22085,6 +22177,7 @@ pub struct GetPersonsBirthdaysQuery {
     /// Birthdays up to that date, defaults to 30 days from now
     pub end_date: Option<chrono::NaiveDate>,
     /// The direction of the result set
+    /// Allowed values: `backward`, `forward`.
     pub direction: Option<String>,
     /// Number of results per page.
     pub limit: Option<i64>,
@@ -22155,6 +22248,7 @@ impl GetPersonsIdGroupsQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetPersonsPersonIdPostsQuery {
     /// Can only be used if the endpoint is called with the personId of the currently logged in user. If a different personId is used in combination with filter[] the result will be empty.
+    /// Allowed values: `banned`, `expiration_future`, `expiration_past`, `publication_future`, `published`.
     pub filter: Option<Vec<String>>,
     /// Number of results per page.
     pub limit: Option<i64>,
@@ -22359,6 +22453,7 @@ pub struct GetPersonsPersonIdAbsencesQuery {
     /// End of the overlap window. Defaults to midnight two weeks from today.
     pub to: Option<serde_json::Value>,
     /// Order by absence start.
+    /// Allowed values: `ASC`, `DESC`.
     pub order_direction: Option<String>,
 }
 
@@ -22391,7 +22486,7 @@ impl<'a> PersonsDevicesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.persons().devices().delete(42, "beispiel")?;
+    /// client.persons().devices().delete(42, "abc123")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -22413,7 +22508,7 @@ impl<'a> PersonsDevicesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-personId-devices-deviceId");
-    /// let device = client.persons().devices().get(42, "beispiel")?;
+    /// let device = client.persons().devices().get(42, "abc123")?;
     /// println!("{:?}", device.app_version);
     /// # Ok(())
     /// # }
@@ -22463,7 +22558,7 @@ impl<'a> PersonsDevicesResource<'a> {
     /// let body: models::DeviceUpdate = serde_json::from_value(serde_json::json!({
     ///     "type": "FCM"
     /// }))?;
-    /// for device in client.persons().devices().update(42, "beispiel", &body)? {
+    /// for device in client.persons().devices().update(42, "abc123", &body)? {
     ///     println!("{:?}", device.app_version);
     /// }
     /// # Ok(())
@@ -23004,6 +23099,7 @@ impl<'a> PersonsFollowupsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetPersonsPersonIdFollowupsQuery {
     /// Repeat to select any of the listed states; omitted/empty includes all states.
+    /// Allowed values: `done`, `due-after-today`, `due-before-today`, `due-today`, `due-unspecified`.
     pub filter: Option<Vec<String>>,
     /// Maximum results in this page.
     pub limit: Option<i64>,
@@ -23039,7 +23135,7 @@ impl<'a> PersonsMergeResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-personid-merge-duplicateid");
-    /// let merge = client.persons().merge().get("beispiel", "100")?;
+    /// let merge = client.persons().merge().get("abc123", "100")?;
     /// println!("{:?}", merge);
     /// # Ok(())
     /// # }
@@ -23081,7 +23177,7 @@ impl<'a> PersonsMergeResource<'a> {
     /// let body: models::PersonUpdateable = serde_json::from_value(serde_json::json!({
     ///     "title": "Hauskreis Nord"
     /// }))?;
-    /// let result = client.persons().merge().patch("beispiel", "100", &body)?;
+    /// let result = client.persons().merge().patch("abc123", "100", &body)?;
     /// println!("{}", result.body);
     /// # Ok(())
     /// # }
@@ -23317,7 +23413,7 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::PersonServiceRequestUpdate = serde_json::from_value(serde_json::json!({
-    ///     "comment": "beispiel"
+    ///     "comment": "Hallo zusammen"
     /// }))?;
     /// let result = client.persons().servicerequests().update(42, 42, &body)?;
     /// println!("{:?}", result.name);
@@ -23909,8 +24005,10 @@ pub struct GetPostSearchQuery {
     /// The query string to search for in post title and content
     pub query: Option<String>,
     /// The order the posts are returned in.
+    /// Allowed values: `publishedDate`, `relevance`.
     pub order_by: Option<String>,
     /// The order direction. Only works for order_by publishedDate.
+    /// Allowed values: `ASC`, `DESC`.
     pub order_direction: Option<String>,
     /// If set, only posts created before this date are returned. The date must be in RFC3339 format (Zulu-Date).
     pub before: Option<chrono::DateTime<chrono::Utc>>,
@@ -23921,12 +24019,15 @@ pub struct GetPostSearchQuery {
     /// If set, only posts by these persons are returned. If not set, posts by all persons are returned.
     pub actor_ids: Option<Vec<i64>>,
     /// If set, only posts are returned that belong to groups with this visibility.
+    /// Allowed values: `hidden`, `intern`, `public`, `restricted`.
     pub group_visibility: Option<String>,
     /// If set, only posts with that visibility are returned.
+    /// Allowed values: `group_intern`, `group_visible`.
     pub post_visibility: Option<String>,
     /// If set, only posts of these groups are returned. If not set, posts of all groups are returned.
     pub group_ids: Option<Vec<i64>>,
     /// If set, the response will include the specified data.
+    /// Allowed values: `comments`, `linkings`, `reactions`.
     pub include: Option<Vec<String>>,
     /// If set to true, only posts of groups the user is member of are returned. If not set, posts of all groups are returned.
     pub only_my_groups: Option<bool>,
@@ -23968,7 +24069,7 @@ impl<'a> PostHiddenResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.post().hidden().delete("beispiel", 42)?;
+    /// client.post().hidden().delete("actor", 42)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -24021,7 +24122,7 @@ impl<'a> PostReportsResource<'a> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::ReportCreate = serde_json::from_value(serde_json::json!({
     ///     "domainId": 42,
-    ///     "domainType": "beispiel"
+    ///     "domainType": "post"
     /// }))?;
     /// let result = client.post().reports().create(&body)?;
     /// println!("{:?}", result.comment);
@@ -24080,8 +24181,8 @@ impl<'a> PostReportsResource<'a> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::ReportAnswer = serde_json::from_value(serde_json::json!({
     ///     "domainId": 42,
-    ///     "domainType": "beispiel",
-    ///     "response": "beispiel"
+    ///     "domainType": "post",
+    ///     "response": "accept"
     /// }))?;
     /// client.post().reports().update_answer(&body)?;
     /// # Ok(())
@@ -24099,8 +24200,10 @@ impl<'a> PostReportsResource<'a> {
 /// Query parameters for `GET /post/reports`.
 #[derive(Debug, Clone, Default)]
 pub struct GetPostReportsQuery {
+    /// Allowed values: `post`, `post_comment`.
     pub domain_type: Option<String>,
     pub domain_id: Option<i64>,
+    /// Allowed values: `accepted`, `declined`, `pending`, `pending-again`.
     pub status: Option<String>,
 }
 
@@ -24146,9 +24249,9 @@ impl<'a> PostsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-posts");
     /// let body: models::PostCreate = serde_json::from_value(serde_json::json!({
-    ///     "content": "beispiel",
+    ///     "content": "Hallo zusammen",
     ///     "title": "Hauskreis Nord",
-    ///     "visibility": "beispiel",
+    ///     "visibility": "group_intern",
     ///     "groupId": 42
     /// }))?;
     /// let result = client.posts().create(&body)?;
@@ -24332,6 +24435,7 @@ impl DeletePostsPostIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetPostsPostIdQuery {
     /// If set, the response will include the specified data.
+    /// Allowed values: `comments`, `reactions`.
     pub include: Option<Vec<String>>,
 }
 
@@ -24359,12 +24463,15 @@ pub struct GetPostsQuery {
     /// If set, only posts by these persons are returned. If not set, posts by all persons are returned.
     pub actor_ids: Option<Vec<i64>>,
     /// If set, only posts are returned that belong to groups with this visibility.
+    /// Allowed values: `hidden`, `intern`, `public`, `restricted`.
     pub group_visibility: Option<String>,
     /// If set, only posts with that visibility are returned.
+    /// Allowed values: `group_intern`, `group_visible`.
     pub post_visibility: Option<String>,
     /// If set, only posts of these groups are returned. If not set, posts of all groups are returned.
     pub group_ids: Option<Vec<i64>>,
     /// If set, the response will include the specified data.
+    /// Allowed values: `comments`, `linkings`, `reactions`.
     pub include: Option<Vec<String>>,
     /// Number of results per page.
     pub limit: Option<i64>,
@@ -24415,7 +24522,7 @@ impl<'a> PostsCommentsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-posts-postId-comments");
     /// let body: models::PostCommentCreate = serde_json::from_value(serde_json::json!({
-    ///     "content": "beispiel",
+    ///     "content": "Hallo zusammen",
     ///     "postId": 42
     /// }))?;
     /// let result = client.posts().comments().create(42, &body)?;
@@ -24497,7 +24604,7 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.posts().comments().reactions().delete(42, 42, "beispiel")?;
+    /// client.posts().comments().reactions().delete(42, 42, "👍")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -24544,7 +24651,7 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-posts-postId-comments-commentId-reactions");
     /// let body: models::PostCommentReactionCreate = serde_json::from_value(serde_json::json!({
-    ///     "emoji": "beispiel"
+    ///     "emoji": "👍"
     /// }))?;
     /// let result = client.posts().comments().reactions().update(42, 42, &body)?;
     /// println!("{}", result.comment_id);
@@ -24579,7 +24686,7 @@ impl<'a> PostsHiddenResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.posts().hidden().update(42, "beispiel")?;
+    /// client.posts().hidden().update(42, "actor")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -24647,7 +24754,7 @@ impl<'a> PostsReactionsPersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.posts().reactions().persons().delete(42, "beispiel", "beispiel")?;
+    /// client.posts().reactions().persons().delete(42, "👍", "abc123")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -24669,7 +24776,7 @@ impl<'a> PostsReactionsPersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-posts-postId-reactions-emoji-persons-personId");
-    /// let result = client.posts().reactions().persons().update(42, "beispiel", "beispiel")?;
+    /// let result = client.posts().reactions().persons().update(42, "👍", "abc123")?;
     /// println!("{}", result.emoji);
     /// # Ok(())
     /// # }
@@ -25032,7 +25139,7 @@ impl<'a> PublicgroupsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-publicgroups-groupId-form");
     /// let query = GetPublicgroupsGroupIdFormQuery {
-    ///     token: Some("beispiel".into()),
+    ///     token: Some("abc123".into()),
     ///     ..Default::default()
     /// };
     /// let form = client.publicgroups().get_form(42, &query)?;
@@ -25059,7 +25166,7 @@ impl<'a> PublicgroupsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-publicgroups-groupId-possiblerequesters");
     /// let query = GetPublicgroupsGroupIdPossiblerequestersQuery {
-    ///     token: Some("beispiel".into()),
+    ///     token: Some("abc123".into()),
     ///     ..Default::default()
     /// };
     /// let possiblerequester = client.publicgroups().get_possiblerequesters(42, &query)?;
@@ -25121,7 +25228,7 @@ impl<'a> PublicgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-publicgroups-id-hash");
-    /// let with_hash = client.publicgroups().get_with_hash(42, "beispiel")?;
+    /// let with_hash = client.publicgroups().get_with_hash(42, "abc123")?;
     /// println!("{}", with_hash.name);
     /// # Ok(())
     /// # }
@@ -25146,7 +25253,7 @@ impl<'a> PublicgroupsResource<'a> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::PublicGroupLeaderMailCreate = serde_json::from_value(serde_json::json!({
     ///     "email": "mara@example.org",
-    ///     "message": "beispiel",
+    ///     "message": "Hallo zusammen",
     ///     "name": "Hauskreis Nord"
     /// }))?;
     /// let publicgroup = client.publicgroups().mail_to_leaders(42, &body)?;
@@ -25210,7 +25317,7 @@ impl<'a> PublicgroupsResource<'a> {
     ///             ]
     ///         }
     ///     ],
-    ///     "token": "beispiel"
+    ///     "token": "abc123"
     /// }))?;
     /// let publicgroup = client.publicgroups().submit_signup(42, &body)?;
     /// println!("{:?}", publicgroup.group_homepage_hash);
@@ -25349,7 +25456,7 @@ impl<'a> PublicgroupsSignupConfirmResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = serde_json::json!({});
-    /// let result = client.publicgroups().signup().confirm().create("beispiel", &body)?;
+    /// let result = client.publicgroups().signup().confirm().create("abc123", &body)?;
     /// println!("{:?}", result.group_homepage_hash);
     /// # Ok(())
     /// # }
@@ -25373,7 +25480,7 @@ impl<'a> PublicgroupsSignupConfirmResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let data = client.publicgroups().signup().confirm().get("beispiel")?;
+    /// let data = client.publicgroups().signup().confirm().get("abc123")?;
     /// std::fs::write("ergebnis.bin", &data)?;
     /// # Ok(())
     /// # }
@@ -25409,7 +25516,7 @@ impl<'a> QueuesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let result = client.queues().create("beispiel")?;
+    /// let result = client.queues().create("default")?;
     /// println!("{:?}", result.queue);
     /// # Ok(())
     /// # }
@@ -25536,7 +25643,7 @@ impl<'a> RegistrationsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::RegistrationConfirm = serde_json::from_value(serde_json::json!({
-    ///     "token": "beispiel"
+    ///     "token": "abc123"
     /// }))?;
     /// let registration = client.registrations().confirm("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", &body)?;
     /// println!("{}", registration.first_name);
@@ -25566,7 +25673,7 @@ impl<'a> RegistrationsResource<'a> {
     ///     "formData": {
     ///         "acceptDataPrivacy": true
     ///     },
-    ///     "token": "beispiel"
+    ///     "token": "abc123"
     /// }))?;
     /// client.registrations().convert("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", &body)?;
     /// # Ok(())
@@ -25596,7 +25703,7 @@ impl<'a> RegistrationsResource<'a> {
     ///     "email": "mara@example.org",
     ///     "firstName": "Mara",
     ///     "lastName": "Becker",
-    ///     "password": "beispiel"
+    ///     "password": "geheim"
     /// }))?;
     /// let result = client.registrations().create(&body)?;
     /// println!("{:?}", result);
@@ -25822,6 +25929,7 @@ pub struct GetRepeatcalculationQuery {
     /// Recurrence input: repeatFrequency.
     pub repeat_frequency: Option<i64>,
     /// Recurrence input: repeatId.
+    /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     pub repeat_id: Option<i64>,
     /// Recurrence input: repeatOption.
     pub repeat_option: Option<i64>,
@@ -25931,6 +26039,7 @@ impl<'a> ResourceResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetResourceMasterdataQuery {
     /// Optional enrichment with person references for resource administrators.
+    /// Allowed values: `involvedPersonsDomainObjects`.
     pub include: Option<Vec<String>>,
 }
 
@@ -26131,6 +26240,7 @@ impl<'a> ResourcesResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetResourcesResourceIdQuery {
     /// Optional enrichment with person references for resource administrators.
+    /// Allowed values: `involvedPersonsDomainObjects`.
     pub include: Option<Vec<String>>,
 }
 
@@ -26146,6 +26256,7 @@ impl GetResourcesResourceIdQuery {
 #[derive(Debug, Clone, Default)]
 pub struct GetResourcesQuery {
     /// Optional enrichment with person references for resource administrators.
+    /// Allowed values: `involvedPersonsDomainObjects`.
     pub include: Option<Vec<String>>,
 }
 
@@ -26325,7 +26436,7 @@ impl<'a> RoutinesResource<'a> {
     ///         "groupId": 42,
     ///         "groupTypeRoleId": 42
     ///     },
-    ///     "domainType": "beispiel",
+    ///     "domainType": "group_membership",
     ///     "name": "Welcome new members"
     /// }))?;
     /// let result = client.routines().create(&body)?;
@@ -26490,6 +26601,7 @@ impl<'a> RoutinesResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetRoutinesQuery {
     /// Optional domain filter; group_membership is the currently registered handler.
+    /// Allowed values: `group_membership`.
     pub domain_type: Option<String>,
 }
 
@@ -26542,7 +26654,7 @@ impl<'a> RoutinesRunsResource<'a> {
     /// let body: models::RoutineRunUpdate = serde_json::from_value(serde_json::json!({
     ///     "currentIteration": 42
     /// }))?;
-    /// let result = client.routines().runs().create(9, 16, "beispiel", &body)?;
+    /// let result = client.routines().runs().create(9, 16, "pause", &body)?;
     /// println!("{:?}", result.id);
     /// # Ok(())
     /// # }
@@ -26597,6 +26709,7 @@ impl<'a> RoutinesRunsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetRoutinesRoutineIdRunsQuery {
     /// Include additional information
+    /// Allowed values: `domainObject`.
     pub include: Option<Vec<String>>,
     /// Append unpersisted candidate runs with null IDs.
     pub with_potential_domain_objects: Option<bool>,
@@ -26635,7 +26748,7 @@ impl<'a> RoutinesRunsBulkResource<'a> {
     ///         42
     ///     ]
     /// }))?;
-    /// for bulk in client.routines().runs().bulk().create(9, "beispiel", &body)? {
+    /// for bulk in client.routines().runs().bulk().create(9, "pause", &body)? {
     ///     println!("{:?}", bulk.id);
     /// }
     /// # Ok(())
@@ -26831,6 +26944,7 @@ impl<'a> SearchResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetSearchQuery {
     pub query: Option<String>,
+    /// Allowed values: `action`, `group`, `person`, `song`, `wiki_page`.
     pub domain_types: Option<Vec<String>>,
 }
 
@@ -27802,6 +27916,7 @@ impl<'a> SongsResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetSongsSongIdQuery {
     /// Optional enrichments. Use include=tags for tags, or include[]=tags&include[]=arrangements for multiple values. Comma-separated values are not supported. Arrangements are already returned without this option by the current API, but this will change in a future release. Omitted requests no enrichment.
+    /// Allowed values: `arrangements`, `tags`.
     pub include: Option<Vec<String>>,
 }
 
@@ -27823,12 +27938,14 @@ pub struct GetSongsQuery {
     /// Filter the rehearsal flag: `true` selects songs marked for practice, false selects those not marked.
     pub practice: Option<bool>,
     /// Filter by arrangement key. Song plus all its arrangements are returned if one arrangement meets the filter criterion.
+    /// Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
     pub key_of_arrangement: Option<String>,
     /// Substring filter on the song title, combined with query and the other filters.
     pub name: Option<String>,
     /// Substring search in either title or author, combined with name and the other filters.
     pub query: Option<String>,
     /// Optional enrichments. Use include=tags for tags, or include[]=tags&include[]=arrangements for multiple values. Comma-separated values are not supported. Arrangements are already returned without this option by the current API, but this will change in a future release. Omitted requests no enrichment.
+    /// Allowed values: `arrangements`, `tags`.
     pub include: Option<Vec<String>>,
     /// Number of songs per page, from 1 to 200.
     pub limit: Option<i64>,
@@ -28439,10 +28556,10 @@ impl<'a> SyncResource<'a> {
     ///     "logs": [
     ///         {
     ///             "date": "2022-10-19T12:00:00Z",
-    ///             "executionId": "beispiel",
+    ///             "executionId": "abc123",
     ///             "jobId": 42,
     ///             "level": "debug",
-    ///             "messageKey": "beispiel",
+    ///             "messageKey": "Hallo zusammen",
     ///             "type": "create"
     ///         }
     ///     ]
@@ -28586,6 +28703,7 @@ pub struct GetSyncExecutionsQuery {
     /// Last included log day.
     pub end_date: Option<chrono::NaiveDate>,
     /// Background execution statuses.
+    /// Allowed values: `CANCELED`, `DONE`, `ERROR`, `IN_PROGRESS`, `QUEUED`.
     pub statuses: Option<Vec<String>>,
     /// Filter by dry-run mode.
     pub is_dry_run: Option<bool>,
@@ -28636,8 +28754,10 @@ pub struct GetSyncLogsQuery {
     /// Last included log day.
     pub end_date: Option<chrono::NaiveDate>,
     /// Operation types.
+    /// Allowed values: `create`, `delete`, `execution`, `link`, `update`.
     pub types: Option<Vec<String>>,
     /// Log severities.
+    /// Allowed values: `alert`, `critical`, `debug`, `emergency`, `error`, `info`, `notice`, `warning`.
     pub levels: Option<Vec<String>>,
     /// Substring search in rendered log messages.
     pub query: Option<String>,
@@ -28971,7 +29091,7 @@ impl<'a> SyncConflictsResource<'a> {
     /// let body: models::SyncConflictCreate = serde_json::from_value(serde_json::json!({
     ///     "data": [
     ///         {
-    ///             "key": "beispiel",
+    ///             "key": "abc123",
     ///             "value": "beispiel"
     ///         }
     ///     ],
@@ -29088,7 +29208,7 @@ impl<'a> SyncConflictsResource<'a> {
     /// let body: models::SyncConflictUpdate = serde_json::from_value(serde_json::json!({
     ///     "data": [
     ///         {
-    ///             "key": "beispiel",
+    ///             "key": "abc123",
     ///             "value": "beispiel"
     ///         }
     ///     ],
@@ -29116,8 +29236,10 @@ pub struct GetSyncConflictsQuery {
     /// Number of results per page.
     pub limit: Option<i64>,
     /// Conflict categories.
+    /// Allowed values: `create`, `delete_or_create`, `duplicate_in_CT`, `duplicate_in_source`, `link_and_update`, `update`.
     pub types: Option<Vec<String>>,
     /// Domains of linked entity mappings.
+    /// Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
     pub domain_types: Option<Vec<String>>,
     /// External connection IDs of linked entity mappings.
     pub source_ids: Option<Vec<i64>>,
@@ -29293,6 +29415,7 @@ pub struct GetSyncEntitymappingsQuery {
     /// Number of results per page.
     pub limit: Option<i64>,
     /// Restrict to these ChurchTools domains.
+    /// Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
     pub domain_type: Option<Vec<String>>,
     /// Filter ChurchTools record IDs, represented as strings.
     pub domain_id: Option<Vec<String>>,
@@ -30689,7 +30812,7 @@ impl<'a> WebsiteDataResource<'a> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: models::WebsiteDataCreate = serde_json::from_value(serde_json::json!({
     ///     "domainId": 42,
-    ///     "domainType": "beispiel"
+    ///     "domainType": "calendar"
     /// }))?;
     /// let result = client.website().data().create(&body)?;
     /// println!("{}", result.id);
@@ -30766,6 +30889,7 @@ impl<'a> WebsiteDataResource<'a> {
 #[derive(Debug, Clone, Default)]
 pub struct GetWebsiteDataQuery {
     /// Include additional information
+    /// Allowed values: `domainData`.
     pub include: Option<Vec<String>>,
 }
 
@@ -30976,10 +31100,13 @@ pub struct GetWikiPagesQuery {
     /// Wiki category IDs that should be included. If none are given, all categories the user can view are included. Categories the user is not allowed to view are silently filtered out.
     pub wiki_category_ids: Option<Vec<i64>>,
     /// Fields used to sort the result. Multiple fields are applied in the given order. If omitted while `query` is present, results are sorted by search relevance.
+    /// Allowed values: `createdDate`, `modifiedDate`, `modifiedPerson`, `title`, `wikiCategoryId`, `wikiCategoryName`.
     pub order_fields: Option<Vec<String>>,
     /// Sort directions matching `order_fields[]` by position. Missing directions default to `ASC`.
+    /// Allowed values: `ASC`, `DESC`.
     pub order_directions: Option<Vec<String>>,
     /// text returns Markdown or sanitized HTML; preview returns a raw stored-text prefix without HTML sanitization.
+    /// Allowed values: `preview`, `text`.
     pub include: Option<Vec<String>>,
     /// Maximum number of characters returned in `textPreview` when `include[]=preview` is requested. Ignored without `include[]=preview`.
     pub preview_length: Option<i64>,

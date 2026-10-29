@@ -236,6 +236,11 @@ Es gibt drei Arten von Parametern:
 
 Die Namen sind in Python im üblichen snake_case geschrieben (`first_name` statt `firstName`). Wo ein Name ein
 Python-Schlüsselwort ist, kommt ein Unterstrich dazu: `from_`.
+
+Hat ein Wert eine feste Auswahl (z. B. `group_member_status`: `active`, `requested`, `waiting`, …), steht sie
+in der Doku unter „Allowed values“. In Python ist das Argument als `Literal[...]` typisiert: Die IDE schlägt
+die Werte vor, und mypy meldet Tippfehler. In Antworten ist zusätzlich jeder `str` erlaubt, damit ein neuer Wert
+einer neueren ChurchTools-Version nicht zu einem Fehler führt. In Rust sind solche Werte `String`.
 """,
             python="""\
 import datetime as dt

@@ -46,6 +46,8 @@ def valid_example(t: g.T, example: object) -> bool:
     k = unwrap(t).kind
     if example is None:
         return False
+    if unwrap(t).values and k != "list":
+        return example in unwrap(t).values
     if k == "int":
         return isinstance(example, int) and not isinstance(example, bool)
     if k == "float":
@@ -79,6 +81,18 @@ def default_str(name: str) -> str:
         return "Hauskreis Nord"
     if "color" in n:
         return "blue"
+    if "url" in n or "link" in n:
+        return "https://example.org"
+    if n.replace("_", "") == "domaintype":
+        return "person"
+    if any(w in n for w in ("comment", "message", "content", "markdown", "text", "note", "description")):
+        return "Hallo zusammen"
+    if "passw" in n or "secret" in n:
+        return "geheim"
+    if "emoji" in n:
+        return "👍"
+    if n.endswith(("token", "id", "guid", "uuid", "hash", "identifier", "key")):
+        return "abc123"
     return "beispiel"
 
 
@@ -88,6 +102,8 @@ def json_example(schemas: g.Schemas, t: g.T, name: str, example: object = None, 
         return example
     t = unwrap(t)
     k = t.kind
+    if t.values:
+        return t.values[0]
     if k == "int":
         return 42
     if k == "float":
