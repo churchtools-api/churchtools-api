@@ -12,9 +12,9 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import functools
 import statistics
 import subprocess
-import sys
 import time
 import typing as _t
 from pathlib import Path
@@ -175,7 +175,7 @@ class Efficient:
     def __init__(self, api: str) -> None:
         url = urlsplit(api)
         self.prefix = url.path
-        self.pool = urllib3.HTTPConnectionPool(url.hostname, url.port, maxsize=1, headers=HEADERS)
+        self.pool = urllib3.HTTPConnectionPool(url.hostname or "127.0.0.1", url.port, maxsize=1, headers=HEADERS)
 
     def _request(self, method: str, path: str, body: _t.Optional[bytes] = None) -> bytes:
         headers = {**HEADERS, "Content-Type": "application/json"} if body is not None else None
@@ -208,6 +208,10 @@ class Efficient:
 def count(items: _t.Iterable[object]) -> None:
     n = sum(1 for _ in items)
     assert n == PERSONS, n
+
+
+def list_all(client: Typical | Httpx | Efficient) -> None:
+    count(client.list_persons())
 
 
 def scenarios(url: str) -> dict[str, dict[str, _t.Callable[[], object]]]:
@@ -243,7 +247,7 @@ def scenarios(url: str) -> dict[str, dict[str, _t.Callable[[], object]]]:
         },
         "list_persons": {
             "churchtools_rs": lambda: count(client.persons.list(limit=PAGE_SIZE)),
-            **{name: (lambda c=c: count(c.list_persons())) for name, c in clients.items()},
+            **{name: functools.partial(list_all, c) for name, c in clients.items()},
         },
         "create_person": {
             "churchtools_rs": create,
@@ -283,4 +287,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
