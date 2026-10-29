@@ -92,8 +92,9 @@ Die Python-Seite verwendet die Rust-Structs nicht. Rust liefert die rohen JSON-B
 ## Bauen und testen
 
 ```bash
-python3 codegen/generate.py              # lädt die Spec (Cache in codegen/.cache), generiert Code, Doku und Tests
-python3 codegen/generate.py --refresh    # Spec neu herunterladen
+python3 codegen/generate.py              # generiert Code, Doku und Tests aus codegen/spec/openapi.json.xz
+python3 codegen/generate.py --refresh    # Spec der aktuellen ChurchTools-Version herunterladen und ersetzen
+pytest codegen/tests                     # Unit-Tests des Generators
 
 cargo test --workspace                   # Unit-Tests, Replay, Doku-Beispiele (Doctests); ohne Netz
 cd python

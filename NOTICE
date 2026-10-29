@@ -24,6 +24,7 @@ RESULT_FIXES in codegen/generate.py), and the examples were added.
 
 These parts are licensed under CC BY 4.0 as well:
 
+    codegen/spec/openapi.json.xz   the specification itself (minified, unchanged)
     core/src/generated/            Rust models and endpoints
     core/tests/recorded.rs
     python/churchtools_rs/models.py

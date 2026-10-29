@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import keyword
+import lzma
 import re
 import sys
 import textwrap
@@ -33,6 +34,10 @@ from rust_out import *  # noqa: E402,F403
 from spec import *  # noqa: E402,F403
 
 ROOT = Path(__file__).resolve().parent.parent
+# The spec the code is generated from, compressed (40 MB as JSON); `--refresh` replaces it.
+SPEC_FILE = ROOT / "codegen" / "spec" / "openapi.json.xz"
+INFO_FILE = ROOT / "codegen" / "spec" / "info.json"
+# Untracked output, e.g. the docs page without document skeleton.
 CACHE = ROOT / "codegen" / ".cache" / "openapi.json"
 SPEC_URL = "https://demo.church.tools/system/runtime/swagger/openapi.json"
 INFO_URL = "https://demo.church.tools/api/info"
@@ -59,27 +64,26 @@ def write_operations_md(ops: list[Op], header: str, out: Path) -> None:
 
 
 def api_version() -> tuple[str, str]:
-    """ChurchTools version and build of the cached spec, from `info.json`."""
-    info_path = CACHE.parent / "info.json"
-    info = json.loads(info_path.read_text()) if info_path.exists() else {}
+    """ChurchTools version and build of the stored spec, from `info.json`."""
+    info = json.loads(INFO_FILE.read_text()) if INFO_FILE.exists() else {}
     return str(info.get("version", "unknown")), str(info.get("build", "unknown"))
 
 
 def load_spec(path: str | None, refresh: bool) -> tuple[dict, str]:
     if path:
         return json.loads(Path(path).read_text()), "custom spec"
-    if refresh or not CACHE.exists():
-        CACHE.parent.mkdir(parents=True, exist_ok=True)
+    if refresh or not SPEC_FILE.exists():
         print(f"Downloading {SPEC_URL} ...", file=sys.stderr)
-        urllib.request.urlretrieve(SPEC_URL, CACHE)
-        info = json.load(urllib.request.urlopen(INFO_URL))
-        (CACHE.parent / "info.json").write_text(json.dumps(info))
-    info_path = CACHE.parent / "info.json"
-    version = "unknown"
-    if info_path.exists():
-        info = json.loads(info_path.read_text())
-        version = f"ChurchTools {info.get('version')} (build {info.get('build')})"
-    return json.loads(CACHE.read_text()), version
+        with urllib.request.urlopen(SPEC_URL) as response:
+            spec = json.load(response)
+        with urllib.request.urlopen(INFO_URL) as response:
+            info = json.load(response)
+        SPEC_FILE.parent.mkdir(parents=True, exist_ok=True)
+        SPEC_FILE.write_bytes(lzma.compress(json.dumps(spec, ensure_ascii=False, separators=(",", ":")).encode()))
+        # Only what identifies the version; the rest describes the demo church.
+        INFO_FILE.write_text(json.dumps({"version": info.get("version"), "build": info.get("build")}) + "\n")
+    api, build = api_version()
+    return json.loads(lzma.decompress(SPEC_FILE.read_bytes())), f"ChurchTools {api} (build {build})"
 
 
 def main() -> int:

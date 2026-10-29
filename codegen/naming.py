@@ -73,14 +73,16 @@ def snake(s: str) -> str:
     return s
 
 
-PY_RESERVED = set(keyword.kwlist) | set(keyword.softkwlist)
-try:
-    from pydantic import BaseModel as _BM
-
-    PY_RESERVED |= {n for n in dir(_BM) if not n.startswith("_")}
-except ImportError:  # pragma: no cover
-    PY_RESERVED |= {"json", "dict", "copy", "schema", "construct", "validate"}
-PY_RESERVED |= {"model_config", "model_extra", "model_fields"}
+# Python keywords, soft keywords (as of 3.14) and public attributes of Pydantic's
+# BaseModel. Fixed here instead of read from the running interpreter, so the
+# output does not depend on the installed Python or Pydantic version.
+PY_RESERVED = set(keyword.kwlist) | {"_", "case", "match", "type"} | {
+    "construct", "copy", "dict", "from_orm", "json", "model_computed_fields", "model_config", "model_construct",
+    "model_copy", "model_dump", "model_dump_json", "model_extra", "model_fields", "model_fields_set",
+    "model_json_schema", "model_parametrized_name", "model_post_init", "model_rebuild", "model_validate",
+    "model_validate_json", "model_validate_strings", "parse_file", "parse_obj", "parse_raw", "schema", "schema_json",
+    "update_forward_refs", "validate",
+}
 
 RUST_KEYWORDS = {
     "as", "break", "const", "continue", "crate", "else", "enum", "extern", "false", "fn",
