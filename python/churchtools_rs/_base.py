@@ -91,8 +91,18 @@ def _parse(body: bytes, tp: _t.Any, envelope: bool) -> _t.Any:
     try:
         value = _adapter(tp, envelope).validate_json(body)
     except ValidationError as e:
-        raise DecodeError(str(e), body) from e
+        raise DecodeError(_describe(e), body) from None
     return value.data if envelope else value
+
+
+def _describe(error: _t.Any) -> str:
+    """Like `str(ValidationError)`, but without the input values: they may be
+    personal data and error messages end up in logs. The body stays in `DecodeError.body`."""
+    lines = [f"{error.error_count()} validation error(s) for {error.title}"]
+    for e in error.errors(include_input=False, include_url=False)[:10]:
+        loc = ".".join(str(part) for part in e["loc"])
+        lines.append(f"  {loc}: {e['msg']} [type={e['type']}]")
+    return "\n".join(lines)
 
 
 def _wire_datetime(value: _dt.datetime) -> str:

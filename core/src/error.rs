@@ -2,7 +2,7 @@ use serde::Deserialize;
 
 pub type Result<T> = std::result::Result<T, Error>;
 
-#[derive(Debug, thiserror::Error)]
+#[derive(thiserror::Error)]
 pub enum Error {
     /// The server answered with a non-2xx status.
     #[error("{0}")]
@@ -28,6 +28,40 @@ pub enum Error {
     InvalidPath(String),
 }
 
+/// Longest part of a response body shown by `Debug`; bodies may contain
+/// personal data and end up in logs. The full body stays in the field.
+const BODY_PREVIEW: usize = 300;
+
+struct Preview<'a>(&'a [u8]);
+
+impl std::fmt::Debug for Preview<'_> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let text = String::from_utf8_lossy(&self.0[..self.0.len().min(BODY_PREVIEW)]);
+        if self.0.len() > BODY_PREVIEW {
+            write!(f, "{text:?}… ({} bytes)", self.0.len())
+        } else {
+            write!(f, "{text:?}")
+        }
+    }
+}
+
+impl std::fmt::Debug for Error {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Api(api) => f.debug_tuple("Api").field(api).finish(),
+            Self::Transport(err) => f.debug_tuple("Transport").field(err).finish(),
+            Self::Decode { source, body } => f
+                .debug_struct("Decode")
+                .field("source", source)
+                .field("body", &Preview(body.as_bytes()))
+                .finish(),
+            Self::InvalidBaseUrl(url) => f.debug_tuple("InvalidBaseUrl").field(url).finish(),
+            Self::InvalidToken => f.write_str("InvalidToken"),
+            Self::InvalidPath(path) => f.debug_tuple("InvalidPath").field(path).finish(),
+        }
+    }
+}
+
 impl From<ApiError> for Error {
     fn from(err: ApiError) -> Self {
         Self::Api(Box::new(err))
@@ -39,7 +73,7 @@ impl From<ApiError> for Error {
 /// ChurchTools reports errors as
 /// `{"message", "translatedMessage", "messageKey", "args", "errors"}`;
 /// all fields are optional here because not every error path fills them.
-#[derive(Debug, Clone, thiserror::Error)]
+#[derive(Clone, thiserror::Error)]
 #[error("HTTP {status}: {}", .message.as_deref().unwrap_or("<no message>"))]
 pub struct ApiError {
     pub status: u16,
@@ -50,6 +84,20 @@ pub struct ApiError {
     pub errors: serde_json::Value,
     /// Raw response body.
     pub body: Vec<u8>,
+}
+
+impl std::fmt::Debug for ApiError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("ApiError")
+            .field("status", &self.status)
+            .field("message", &self.message)
+            .field("translated_message", &self.translated_message)
+            .field("message_key", &self.message_key)
+            .field("args", &self.args)
+            .field("errors", &self.errors)
+            .field("body", &Preview(&self.body))
+            .finish()
+    }
 }
 
 #[derive(Deserialize, Default)]
@@ -74,5 +122,26 @@ impl ApiError {
             errors: parsed.errors,
             body,
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn debug_shortens_long_bodies() {
+        let body = format!(r#"{{"data":[{}]}}"#, r#"{"email":"anna@example.org"},"#.repeat(100));
+        let err = crate::decode::<i64>(body.as_bytes()).unwrap_err();
+        let debug = format!("{err:?}");
+        assert!(debug.len() < 1000, "{debug}");
+        assert!(debug.contains(&format!("({} bytes)", body.len())));
+        let Error::Decode { body: full, .. } = &err else { panic!() };
+        assert_eq!(full.len(), body.len()); // the field keeps everything
+
+        let api = ApiError::from_response(500, body.into_bytes());
+        assert!(format!("{api:?}").len() < 1000);
+        let short = ApiError::from_response(404, br#"{"message":"nope"}"#.to_vec());
+        assert!(format!("{short:?}").contains(r#"body: "{\"message\":\"nope\"}""#));
     }
 }

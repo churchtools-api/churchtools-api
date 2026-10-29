@@ -72,6 +72,8 @@ class FakeServer(BaseHTTPRequestHandler):
         elif url.path == "/api/groups/7/meetings" and method == "POST":
             self._reply(400, {"message": "There are validation errors", "errors": [
                 {"fieldId": "startDate", "message": "Bitte das Datum in folgendem Format eingeben", "args": {}}]})
+        elif url.path == "/api/persons/8":
+            self._reply(200, {"data": {**person(8, "Anna"), "id": "geheim@example.org"}})
         elif url.path == "/api/busy":
             FakeServer.busy_calls += 1
             if FakeServer.busy_calls == 1:
@@ -222,3 +224,12 @@ def test_plain_http_needs_opt_in_outside_localhost():
     with pytest.raises(ct.ChurchToolsError, match="unencrypted"):
         ct.Client("http://ct.example.org", token="secret")
     assert ct.Client("http://ct.example.org", allow_insecure_http=True).api_url == "http://ct.example.org/api"
+
+
+def test_decode_error_message_omits_input_values(client):
+    with pytest.raises(ct.DecodeError) as info:
+        client.persons.get(8)
+    assert "data.id" in str(info.value)
+    assert "geheim@example.org" not in str(info.value)
+    assert info.value.__cause__ is None  # the ValidationError would repeat the input
+    assert b"geheim@example.org" in info.value.body
