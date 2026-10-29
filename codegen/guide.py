@@ -626,6 +626,7 @@ ERRORS = [
     ("5xx", "ServerError", "Fehler auf dem Server. Später erneut versuchen."),
     ("–", "TransportError", "Die Instanz war nicht erreichbar (Netzwerk, falsche Adresse, Timeout)."),
     ("–", "DecodeError", "Die Antwort passt nicht zur API-Beschreibung. Bitte als Fehler melden."),
+    ("3xx", "RedirectError", "Der Server leitet um (301, 302, 303). Der Client folgt nicht, weil die Anfrage sonst als GET ohne Body wiederholt würde. Meist stimmt die Adresse der Instanz nicht."),
 ]
 
 # Short German introductions for the most used API areas.

@@ -20,6 +20,10 @@ pub enum Error {
     },
     #[error("invalid base URL: {0}")]
     InvalidBaseUrl(String),
+    /// The server answered with a redirect that is not followed (301, 302,
+    /// 303: it would repeat the request as GET without its body).
+    #[error("unexpected redirect (HTTP {status}) to {}", .location.as_deref().unwrap_or("<no location>"))]
+    Redirect { status: u16, location: Option<String> },
     /// The token contains characters not allowed in an HTTP header.
     #[error("invalid token: contains characters not allowed in an HTTP header")]
     InvalidToken,
@@ -56,6 +60,11 @@ impl std::fmt::Debug for Error {
                 .field("body", &Preview(body.as_bytes()))
                 .finish(),
             Self::InvalidBaseUrl(url) => f.debug_tuple("InvalidBaseUrl").field(url).finish(),
+            Self::Redirect { status, location } => f
+                .debug_struct("Redirect")
+                .field("status", status)
+                .field("location", location)
+                .finish(),
             Self::InvalidToken => f.write_str("InvalidToken"),
             Self::InvalidPath(path) => f.debug_tuple("InvalidPath").field(path).finish(),
         }

@@ -25,6 +25,9 @@ mod _core {
                     "DecodeError",
                     (err.to_string(), PyBytes::new(py, body.as_bytes())),
                 )?,
+                Error::Redirect { status, location } => {
+                    errors.call_method1("RedirectError", (err.to_string(), *status, location.clone()))?
+                }
                 Error::InvalidPath(_) | Error::InvalidToken => return Ok(PyValueError::new_err(err.to_string())),
                 Error::Transport(_) | Error::InvalidBaseUrl(_) => {
                     errors.call_method1("TransportError", (err.to_string(),))?

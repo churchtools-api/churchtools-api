@@ -120,6 +120,7 @@ impl ClientBuilder {
         let http = reqwest::blocking::Client::builder()
             .timeout(self.timeout)
             .user_agent(USER_AGENT)
+            .redirect(redirect_policy())
             .build()?;
         Ok(Client {
             http,
@@ -129,6 +130,23 @@ impl ClientBuilder {
             throttle: None,
         })
     }
+}
+
+/// Follows only redirects that keep method and body (307, 308).
+///
+/// On 301/302/303 reqwest would repeat a POST/PUT/DELETE as GET and drop the
+/// body, so a write would look successful without having happened. Those are
+/// reported as [`Error::Redirect`] instead.
+fn redirect_policy() -> reqwest::redirect::Policy {
+    reqwest::redirect::Policy::custom(|attempt| {
+        if attempt.previous().len() >= 10 {
+            attempt.error("too many redirects")
+        } else if matches!(attempt.status().as_u16(), 307 | 308) {
+            attempt.follow()
+        } else {
+            attempt.stop()
+        }
+    })
 }
 
 const USER_AGENT: &str = concat!("churchtools-rs/", env!("CARGO_PKG_VERSION"));
@@ -193,6 +211,12 @@ impl Client {
     ///
     /// Keeps the rate limit of `self`. Prefer a stored token for scripts; this is
     /// meant for tests and interactive tools.
+    ///
+    /// The token is the person's persistent login token: ChurchTools creates one
+    /// if there is none, and it stays valid after this client is dropped, until
+    /// it is revoked with `client.persons().delete_logintoken(person_id)`. The
+    /// password session used to fetch it is not reused; the API has no logout,
+    /// so it ends when the server expires it.
     pub fn login_with_password(&self, username: &str, password: &str) -> Result<Self> {
         // The password login answers with a session cookie, which is only needed
         // to fetch the token.
@@ -200,6 +224,7 @@ impl Client {
             http: reqwest::blocking::Client::builder()
                 .timeout(self.timeout)
                 .user_agent(USER_AGENT)
+                .redirect(redirect_policy())
                 .cookie_store(true)
                 .build()?,
             token: None,
@@ -311,6 +336,13 @@ impl Client {
                 attempt += 1;
                 std::thread::sleep(retry_after(response.headers(), attempt));
                 continue;
+            }
+            if response.status().is_redirection() {
+                let location = response.headers().get(reqwest::header::LOCATION);
+                return Err(Error::Redirect {
+                    status,
+                    location: location.and_then(|v| v.to_str().ok()).map(str::to_owned),
+                });
             }
             let bytes = response.bytes()?.to_vec();
             if !(200..300).contains(&status) {
@@ -510,7 +542,74 @@ pub fn encode_path_segment(value: impl std::fmt::Display) -> String {
 
 #[cfg(test)]
 mod tests {
+    use std::io::{BufRead, BufReader, Read, Write};
+
     use super::*;
+
+    /// Answers each connection with the next of `responses` (raw HTTP) and
+    /// records method and path of each request, e.g. `"POST /api/x"`.
+    fn serve(responses: Vec<String>) -> (String, Arc<Mutex<Vec<String>>>) {
+        let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+        let url = format!("http://{}", listener.local_addr().unwrap());
+        let seen = Arc::new(Mutex::new(Vec::new()));
+        let log = seen.clone();
+        std::thread::spawn(move || {
+            for (stream, response) in listener.incoming().zip(responses) {
+                let mut stream = stream.unwrap();
+                let mut reader = BufReader::new(stream.try_clone().unwrap());
+                let mut line = String::new();
+                reader.read_line(&mut line).unwrap();
+                let request: Vec<&str> = line.split_whitespace().take(2).collect();
+                log.lock().unwrap().push(request.join(" "));
+                let mut length = 0;
+                loop {
+                    let mut header = String::new();
+                    if reader.read_line(&mut header).unwrap() == 0 || header == "\r\n" {
+                        break;
+                    }
+                    if let Some((name, value)) = header.split_once(':')
+                        && name.eq_ignore_ascii_case("content-length")
+                    {
+                        length = value.trim().parse().unwrap();
+                    }
+                }
+                reader.read_exact(&mut vec![0; length]).unwrap();
+                stream.write_all(response.as_bytes()).unwrap();
+            }
+        });
+        (url, seen)
+    }
+
+    fn reply(status: &str, headers: &str, body: &str) -> String {
+        format!(
+            "HTTP/1.1 {status}\r\n{headers}Content-Length: {}\r\nConnection: close\r\n\r\n{body}",
+            body.len()
+        )
+    }
+
+    #[test]
+    fn redirects_that_would_turn_a_write_into_a_get_are_errors() {
+        let (url, seen) = serve(vec![reply("302 Found", "Location: /api/elsewhere\r\n", "")]);
+        let client = Client::new(&url, None).unwrap();
+        let body = serde_json::json!({"name": "x"});
+        let err = client.request(Method::POST, "/groups", &[], Some(&body)).unwrap_err();
+        let Error::Redirect { status, location } = err else { panic!("{err}") };
+        assert_eq!((status, location.as_deref()), (302, Some("/api/elsewhere")));
+        assert_eq!(*seen.lock().unwrap(), ["POST /api/groups"]); // no GET afterwards
+    }
+
+    #[test]
+    fn method_preserving_redirects_are_followed() {
+        let (url, seen) = serve(vec![
+            reply("307 Temporary Redirect", "Location: /api/moved\r\n", ""),
+            reply("200 OK", "", r#"{"data":1}"#),
+        ]);
+        let client = Client::new(&url, None).unwrap();
+        let body = serde_json::json!({"name": "x"});
+        let data: i64 = client.request_data(Method::POST, "/groups", &[], Some(&body)).unwrap();
+        assert_eq!(data, 1);
+        assert_eq!(*seen.lock().unwrap(), ["POST /api/groups", "POST /api/moved"]);
+    }
 
     #[test]
     fn base_url_gets_api_suffix_once() {

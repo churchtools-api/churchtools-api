@@ -442,11 +442,12 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
         + "</ul></li>"
         for c in guide.CHAPTERS
     )
+    RUST_ERRORS = {"TransportError": "Error::Transport", "DecodeError": "Error::Decode", "RedirectError": "Error::Redirect"}
     errors = "".join(
         f"<tr><td>{code}</td><td><code>{both('ct.' + name, rs)}</code></td><td>{inline(text)}</td></tr>"
         for code, name, text in guide.ERRORS
         for rs in [
-            "Error::Transport" if name == "TransportError" else "Error::Decode" if name == "DecodeError" else f"Error::Api (status {code})"
+            RUST_ERRORS.get(name, f"Error::Api (status {code})")
         ]
     )
     page = TEMPLATE

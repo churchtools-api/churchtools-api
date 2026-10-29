@@ -22,6 +22,16 @@ class DecodeError(ChurchToolsError):
         self.body = body
 
 
+class RedirectError(ChurchToolsError):
+    """The server answered with a redirect (301, 302, 303) that is not followed:
+    it would repeat the request as GET without its body."""
+
+    def __init__(self, message: str, status: int, location: _t.Optional[str] = None) -> None:
+        super().__init__(message)
+        self.status = status
+        self.location = location
+
+
 class ApiError(ChurchToolsError):
     """The server answered with a non-2xx status.
 

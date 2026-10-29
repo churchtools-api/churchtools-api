@@ -23,6 +23,7 @@ from ._errors import (
     DecodeError,
     Forbidden,
     NotFound,
+    RedirectError,
     ServerError,
     TransportError,
     Unauthorized,
@@ -67,6 +68,10 @@ class Client(Resources):
 
         Keeps URL, timeout and rate limit. Meant for tests and interactive tools;
         scripts should use a stored token.
+
+        The token is the person's persistent login token: ChurchTools creates one
+        if there is none, and it stays valid until it is revoked with
+        `client.persons.delete_logintoken(person_id)`.
         """
         client = Client.__new__(Client)
         client._core = self._core.login_with_password(username, password)
@@ -92,6 +97,7 @@ __all__ = [
     "Forbidden",
     "NotFound",
     "Paginator",
+    "RedirectError",
     "ServerError",
     "TransportError",
     "Unauthorized",

@@ -74,6 +74,11 @@ class FakeServer(BaseHTTPRequestHandler):
                 {"fieldId": "startDate", "message": "Bitte das Datum in folgendem Format eingeben", "args": {}}]})
         elif url.path == "/api/persons/8":
             self._reply(200, {"data": {**person(8, "Anna"), "id": "geheim@example.org"}})
+        elif url.path == "/api/groups" and method == "POST":
+            self.send_response(302)
+            self.send_header("Location", "/api/groups/1")
+            self.send_header("Content-Length", "0")
+            self.end_headers()
         elif url.path == "/api/busy":
             FakeServer.busy_calls += 1
             if FakeServer.busy_calls == 1:
@@ -233,3 +238,10 @@ def test_decode_error_message_omits_input_values(client):
     assert "geheim@example.org" not in str(info.value)
     assert info.value.__cause__ is None  # the ValidationError would repeat the input
     assert b"geheim@example.org" in info.value.body
+
+
+def test_redirect_of_a_write_is_an_error(client):
+    with pytest.raises(ct.RedirectError) as info:
+        client._core.request("POST", "/groups", [], '{"name": "x"}')
+    assert (info.value.status, info.value.location) == (302, "/api/groups/1")
+    assert [r["method"] for r in FakeServer.requests] == ["POST"]
