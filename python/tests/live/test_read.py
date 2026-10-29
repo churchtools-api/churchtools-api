@@ -11,7 +11,7 @@ import json
 import operator
 import typing as _t
 
-import churchtools_rs as ct
+import churchtools_api as ct
 import pytest
 from conftest import CATALOG, ROOT, LiveClient, Results, record
 from expectations import EXPECTED_ERRORS, SKIP

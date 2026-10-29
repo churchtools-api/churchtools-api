@@ -31,7 +31,7 @@ jobs:
       - name: Benchmarks still build
         run: cargo check --release --manifest-path benchmarks/Cargo.toml
       - name: Docs without warnings
-        run: cargo doc -p churchtools-core --no-deps
+        run: cargo doc -p churchtools-api --no-deps
         env:
           RUSTDOCFLAGS: -D warnings
 
@@ -58,7 +58,7 @@ jobs:
       - name: Ruff
         run: uv run --no-sync ruff check ..
       - name: Mypy
-        run: uv run --no-sync mypy --strict churchtools_rs tests
+        run: uv run --no-sync mypy --strict churchtools_api tests
       - name: Tests (offline)
         run: uv run --no-sync pytest tests --ignore=tests/live ../codegen/tests
 

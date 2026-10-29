@@ -3,8 +3,8 @@
 
 Outputs:
   core/src/generated/{mod,models,api}.rs      Rust models and endpoints
-  python/churchtools_rs/models.py             Pydantic models
-  python/churchtools_rs/_resources.py         Python endpoints
+  python/churchtools_api/models.py             Pydantic models
+  python/churchtools_api/_resources.py         Python endpoints
   codegen/OPERATIONS.md                       Python method <-> HTTP operation
 
 Modules: naming.py (identifiers), spec.py (spec -> IR, fixes, operation names),
@@ -114,7 +114,7 @@ def main() -> int:
     EXAMPLES.update({op.op_id: ex.example_for(schemas, op) for op in ops})
     RECORDED.update(p.stem for p in (ROOT / "fixtures" / "recorded").glob("*.json"))
 
-    py_pkg = ROOT / "python" / "churchtools_rs"
+    py_pkg = ROOT / "python" / "churchtools_api"
     rs_gen = ROOT / "core" / "src" / "generated"
     rs_gen.mkdir(parents=True, exist_ok=True)
     write_python_models(schemas, header, py_pkg / "models.py")

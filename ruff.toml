@@ -2,8 +2,8 @@
 line-length = 120
 target-version = "py310"
 extend-exclude = [
-    "python/churchtools_rs/models.py",
-    "python/churchtools_rs/_resources.py",
+    "python/churchtools_api/models.py",
+    "python/churchtools_api/_resources.py",
     "python/tests/doc_examples.py",
     "**/.venv",
     "target",

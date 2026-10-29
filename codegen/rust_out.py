@@ -315,7 +315,7 @@ def rust_doctest(op: Op) -> list[str]:
         return []
     runs = op.op_id in RECORDED and op.upload is None
     client = (
-        f'# let client = churchtools_core::replay::client("{op.op_id}");'
+        f'# let client = churchtools_api::replay::client("{op.op_id}");'
         if runs
         else '# let client = Client::new("https://meinegemeinde.church.tools", None)?;'
     )
@@ -324,8 +324,8 @@ def rust_doctest(op: Op) -> list[str]:
         "# Example",
         "",
         "```" if runs else "```no_run",
-        "# use churchtools_core::*;",
-        "# use churchtools_core::queries::*;",
+        "# use churchtools_api::*;",
+        "# use churchtools_api::queries::*;",
         "# fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {",
         client,
         *example.rust.splitlines(),

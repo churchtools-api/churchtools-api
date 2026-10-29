@@ -9,7 +9,7 @@ import datetime as dt
 import os
 from zoneinfo import ZoneInfo
 
-import churchtools_rs as ct
+import churchtools_api as ct
 
 LOCAL = ZoneInfo("Europe/Berlin")  # the API returns timezone-aware UTC datetimes
 client = ct.Client(os.environ.get("CT_URL", "https://demo.church.tools"), os.environ.get("CT_TOKEN"))

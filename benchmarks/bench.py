@@ -20,13 +20,13 @@ import typing as _t
 from pathlib import Path
 from urllib.parse import urlsplit
 
-import churchtools_rs as ct
+import churchtools_api as ct
 import httpx
 import orjson
 import requests
 import urllib3
-from churchtools_rs import models
-from churchtools_rs._base import _parse
+from churchtools_api import models
+from churchtools_api._base import _parse
 from pydantic import BaseModel, TypeAdapter
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -238,24 +238,24 @@ def scenarios(url: str) -> dict[str, dict[str, _t.Callable[[], object]]]:
 
     return {
         "get_person": {
-            "churchtools_rs": lambda: client.persons.get(1),
+            "churchtools_api": lambda: client.persons.get(1),
             **{name: c.get_person for name, c in clients.items()},
             # Transport only, without decoding: the floor of each stack.
-            "churchtools_rs (nur HTTP)": lambda: client._core.request("GET", "/persons/1", [], None),
+            "churchtools_api (nur HTTP)": lambda: client._core.request("GET", "/persons/1", [], None),
             "urllib3 (nur HTTP)": lambda: efficient._request("GET", "/persons/1"),
         },
         "list_persons": {
-            "churchtools_rs": lambda: count(client.persons.list(limit=PAGE_SIZE)),
+            "churchtools_api": lambda: count(client.persons.list(limit=PAGE_SIZE)),
             **{name: functools.partial(list_all, c) for name, c in clients.items()},
         },
         "create_person": {
-            "churchtools_rs": create,
+            "churchtools_api": create,
             **{name: c.create_person for name, c in clients.items()},
         },
         "decode_page": {
             "json.loads + model_validate": json_model_validate,
             "orjson.loads + validate_python": lambda: PERSON_LIST.validate_python(orjson.loads(page)["data"]),
-            "validate_json (wie churchtools_rs)": lambda: _parse(page, _t.List[models.Person], True),
+            "validate_json (wie churchtools_api)": lambda: _parse(page, _t.List[models.Person], True),
             # Untyped, for reference: parsing alone, no models.
             "json.loads (nur Parsen)": lambda: json.loads(page),
             "orjson.loads (nur Parsen)": lambda: orjson.loads(page),

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 </head>
 <body>
-<title>churchtools-rs</title>
+<title>churchtools-api</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Python- und Rust-Client für die ChurchTools-API: Grundlagen, Projekte und vollständige Referenz.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -268,7 +268,7 @@ a.untested:hover { text-decoration: underline; }
 <div id="app" data-lang="python">
   <header class="topbar">
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">Inhalt</button>
-    <a class="brand" href="#start"><b>churchtools-rs</b><span>ChurchTools 3.138.0 (build 32935)</span></a>
+    <a class="brand" href="#start"><b>churchtools-api</b><span>ChurchTools 3.138.0 (build 32935)</span></a>
     <div class="search"><input id="search" type="search" placeholder="Endpunkt oder Modell suchen, z. B. members" aria-label="Referenz durchsuchen" autocomplete="off"></div>
     <div class="lang-switch" role="group" aria-label="Sprache der Beispiele">
       <button type="button" data-l="python" aria-pressed="true">Python</button>
@@ -309,7 +309,7 @@ a.untested:hover { text-decoration: underline; }
         </section>
 
         <section class="chapter" id="einstieg"><h2>Einstieg</h2><p class="lead">Vom Installieren bis zum ersten Aufruf in wenigen Minuten.</p>
-<article class="topic no-code" id="ueberblick"><div class="prose"><h3>Worum es geht</h3><p><code>churchtools-rs</code> ist ein Client für die REST-API von <a href="https://church.tools" target="_blank" rel="noopener">ChurchTools</a>: Personen, Gruppen, Kalender, Events, Dienste, Lieder, Finanzen und alles Weitere, was die API anbietet.</p>
+<article class="topic no-code" id="ueberblick"><div class="prose"><h3>Worum es geht</h3><p><code>churchtools-api</code> ist ein Client für die REST-API von <a href="https://church.tools" target="_blank" rel="noopener">ChurchTools</a>: Personen, Gruppen, Kalender, Events, Dienste, Lieder, Finanzen und alles Weitere, was die API anbietet.</p>
 <p>Es gibt ihn für zwei Sprachen. Beide entstehen aus derselben API-Beschreibung und funktionieren gleich:</p>
 <ul><li><strong>Python</strong>: Rückgaben sind Pydantic-Modelle mit Autovervollständigung in der IDE.</li><li><strong>Rust</strong>: Rückgaben sind serde-Structs, Fehler sind ein <code>Result</code>.</li></ul>
 <p>Wähle oben rechts deine Sprache. Alle Beispiele auf dieser Seite wechseln mit.</p></div>
@@ -318,25 +318,25 @@ a.untested:hover { text-decoration: underline; }
 <p>Öffentliche Daten wie öffentliche Kalender funktionieren auch ohne Token. Damit kannst du sofort loslegen.</p></div>
 </article>
 <article class="topic" id="installation"><div class="prose"><h3>Installation</h3><p>Noch gibt es keine fertigen Pakete auf PyPI und crates.io. Du installierst direkt aus dem Quellcode:</p>
-<ul><li><strong>Python:</strong> <code>pip</code> baut das Paket mit <a href="https://www.maturin.rs" target="_blank" rel="noopener">maturin</a>. Dafür braucht es eine <a href="https://rustup.rs" target="_blank" rel="noopener">Rust-Toolchain</a> (ab 1.88), einen C-Compiler (für die TLS-Bibliothek; unter Linux <code>gcc</code> oder <code>clang</code>, unter macOS die Xcode-Kommandozeilenwerkzeuge, unter Windows die Visual-Studio-Build-Tools) und Python ab 3.10. Der Bau dauert beim ersten Mal ein paar Minuten.</li><li><strong>Rust:</strong> Du bindest die Crate <code>churchtools-core</code> als Git- oder Pfad-Abhängigkeit ein; auch hier wird ein C-Compiler gebraucht.</li></ul>
-<p>Wenn die Pakete veröffentlicht sind, reicht <code>pip install churchtools-rs</code> bzw. <code>cargo add churchtools-core</code>.</p></div>
+<ul><li><strong>Python:</strong> <code>pip</code> baut das Paket mit <a href="https://www.maturin.rs" target="_blank" rel="noopener">maturin</a>. Dafür braucht es eine <a href="https://rustup.rs" target="_blank" rel="noopener">Rust-Toolchain</a> (ab 1.88), einen C-Compiler (für die TLS-Bibliothek; unter Linux <code>gcc</code> oder <code>clang</code>, unter macOS die Xcode-Kommandozeilenwerkzeuge, unter Windows die Visual-Studio-Build-Tools) und Python ab 3.10. Der Bau dauert beim ersten Mal ein paar Minuten.</li><li><strong>Rust:</strong> Du bindest die Crate <code>churchtools-api</code> als Git- oder Pfad-Abhängigkeit ein; auch hier wird ein C-Compiler gebraucht.</li></ul>
+<p>Wenn die Pakete veröffentlicht sind, reicht <code>pip install churchtools-api</code> bzw. <code>cargo add churchtools-api</code>.</p></div>
 <div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-comment"># aus einem Checkout des Projekts</span>
-pip install ./churchtools-rs/python
+pip install ./churchtools-api/python
 
 <span class="t-comment"># oder direkt aus dem Git-Repository</span>
-pip install <span class="t-string">&quot;churchtools-rs @ git+https://&lt;repository&gt;#subdirectory=python&quot;</span></code></pre><pre class="rs"><code><span class="t-comment"># Cargo.toml</span>
+pip install <span class="t-string">&quot;churchtools-api @ git+https://&lt;repository&gt;#subdirectory=python&quot;</span></code></pre><pre class="rs"><code><span class="t-comment"># Cargo.toml</span>
 [dependencies]
-churchtools-core = { git = <span class="t-string">&quot;https://&lt;repository&gt;&quot;</span> }
+churchtools-api = { git = <span class="t-string">&quot;https://&lt;repository&gt;&quot;</span> }
 <span class="t-comment"># oder aus einem Checkout</span>
-churchtools-core = { path = <span class="t-string">&quot;../churchtools-rs/core&quot;</span> }</code></pre></div></div>
+churchtools-api = { path = <span class="t-string">&quot;../churchtools-api/core&quot;</span> }</code></pre></div></div>
 </article>
 <article class="topic" id="schnellstart"><div class="prose"><h3>Dein erster Aufruf</h3><p>Dieses Programm fragt ab, welche ChurchTools-Version eine Instanz verwendet. Es braucht kein Token und läuft gegen die öffentliche Demo-Instanz.</p>
 <p>Danach bist du startklar. Die folgenden Beispiele zeigen nur noch den Teil, der sich ändert, und setzen einen fertigen <code>client</code> voraus.</p></div>
-<div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_rs <span class="t-kw">as</span> ct
+<div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_api <span class="t-kw">as</span> ct
 
 client = ct.<span class="t-type">Client</span>(<span class="t-string">&quot;https://demo.church.tools&quot;</span>)
 info = client.info.get()
-print(info.site_name, info.version)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_core::<span class="t-type">Client</span>;
+print(info.site_name, info.version)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_api::<span class="t-type">Client</span>;
 
 <span class="t-kw">fn</span> main() -&gt; <span class="t-type">Result</span>&lt;(), <span class="t-type">Box</span>&lt;<span class="t-kw">dyn</span> std::error::<span class="t-type">Error</span>&gt;&gt; {
     <span class="t-kw">let</span> client = <span class="t-type">Client</span>::new(<span class="t-string">&quot;https://demo.church.tools&quot;</span>, <span class="t-kw">None</span>)?;
@@ -349,7 +349,7 @@ print(info.site_name, info.version)</code></pre><pre class="rs"><code><span clas
 <section class="chapter" id="grundlagen"><h2>Grundlagen</h2><p class="lead">Die Konzepte, die für jeden Aufruf gelten. Wer sie kennt, findet sich in der ganzen Referenz zurecht.</p>
 <article class="topic" id="anmeldung"><div class="prose"><h3>Client und Anmeldung</h3><p>Ein Client gehört zu einer Instanz und einem Token. Das Token wird als <code>Authorization: Login &lt;token&gt;</code> mitgeschickt. Du musst dich um nichts weiter kümmern.</p>
 <p>Lege das Token nicht in den Quelltext. Am einfachsten liest du es aus den Umgebungsvariablen <code>CT_URL</code> und <code>CT_TOKEN</code>.</p></div>
-<div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_rs <span class="t-kw">as</span> ct
+<div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_api <span class="t-kw">as</span> ct
 
 client = ct.<span class="t-type">Client</span>(<span class="t-string">&quot;https://meinegemeinde.church.tools&quot;</span>, token=<span class="t-string">&quot;DEIN_TOKEN&quot;</span>)
 
@@ -357,7 +357,7 @@ client = ct.<span class="t-type">Client</span>(<span class="t-string">&quot;http
 client = ct.<span class="t-type">Client</span>.from_env()
 
 me = client.whoami.get()
-print(<span class="t-string">f&quot;Angemeldet als {me.first_name} {me.last_name}&quot;</span>)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_core::<span class="t-type">Client</span>;
+print(<span class="t-string">f&quot;Angemeldet als {me.first_name} {me.last_name}&quot;</span>)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_api::<span class="t-type">Client</span>;
 
 <span class="t-kw">let</span> client = <span class="t-type">Client</span>::new(<span class="t-string">&quot;https://meinegemeinde.church.tools&quot;</span>, <span class="t-kw">Some</span>(<span class="t-string">&quot;DEIN_TOKEN&quot;</span>.into()))?;
 
@@ -495,7 +495,7 @@ start = appointment.appointment.calculated.start_date
 <span class="t-kw">if</span> isinstance(start, dt.datetime):
     print(<span class="t-string">&quot;um&quot;</span>, start.astimezone(berlin).strftime(<span class="t-string">&quot;%H:%M&quot;</span>))
 <span class="t-kw">else</span>:
-    print(<span class="t-string">&quot;ganztägig am&quot;</span>, start)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_core::chrono::<span class="t-type">Local</span>;
+    print(<span class="t-string">&quot;ganztägig am&quot;</span>, start)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_api::chrono::<span class="t-type">Local</span>;
 
 <span class="t-kw">let</span> event = client.events().get(<span class="t-number">42</span>)?;
 <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, event.start_date.with_timezone(&amp;<span class="t-type">Local</span>));
@@ -516,7 +516,7 @@ start = appointment.appointment.calculated.start_date
 <span class="t-kw">except</span> ct.<span class="t-type">Unauthorized</span>:
     print(<span class="t-string">&quot;Token fehlt oder ist abgelaufen.&quot;</span>)
 <span class="t-kw">except</span> ct.<span class="t-type">ApiError</span> <span class="t-kw">as</span> e:
-    print(e.status, e.translated_message)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_core::<span class="t-type">Error</span>;
+    print(e.status, e.translated_message)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_api::<span class="t-type">Error</span>;
 
 <span class="t-kw">match</span> client.persons().get(<span class="t-number">999999</span>) {
     <span class="t-kw">Ok</span>(person) =&gt; <span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, person.first_name),
@@ -551,7 +551,7 @@ client.persons().patch(<span class="t-number">7</span>, &amp;body)?;</code></pre
 </article>
 <article class="topic" id="uploads"><div class="prose"><h3>Dateien hochladen und herunterladen</h3><p>Endpunkte mit Datei-Upload nehmen eine Liste von <code>Upload</code>-Objekten. <code>Upload.from_path</code> liest eine Datei und leitet den Dateityp aus der Endung ab; <code>Upload(name, inhalt, typ)</code> nimmt Bytes aus dem Speicher.</p>
 <p>Downloads (PDF, CSV, Excel, Bilder) kommen als Bytes zurück, die du direkt speichern kannst.</p></div>
-<div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_rs <span class="t-kw">as</span> ct
+<div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_api <span class="t-kw">as</span> ct
 
 <span class="t-comment"># an eine Person anhängen</span>
 client.files.create(<span class="t-string">&quot;person&quot;</span>, <span class="t-string">&quot;7&quot;</span>, files=[ct.<span class="t-type">Upload</span>.from_path(<span class="t-string">&quot;brief.pdf&quot;</span>)])
@@ -605,13 +605,13 @@ client.request(<span class="t-type">Method</span>::<span class="t-type">Post</sp
 <article class="topic" id="versionen"><div class="prose"><h3>ChurchTools-Versionen</h3><p>Der Client ist aus der API-Beschreibung einer bestimmten ChurchTools-Version erzeugt. Welche das ist, steht in <code>API_VERSION</code> (z. B. <code>3.138.0</code>). Gegen andere Versionen funktioniert er, soweit die API gleich ist:</p>
 <ul><li><strong>Neue Felder</strong> einer neueren Version gehen nicht verloren: Sie landen in <code>model_extra</code> bzw. <code>extra</code>.</li><li><strong>Neue Werte</strong> in Feldern mit fester Auswahl führen nicht zu Fehlern, Antworten erlauben jeden <code>str</code>.</li><li><strong>Fehlende Endpunkte</strong> einer älteren Version antworten mit <code>404</code>.</li><li><strong>Geänderte Pflichtfelder</strong> können ein <code>DecodeError</code> auslösen. Dann hilft eine neuere Version des Clients.</li></ul>
 <p>Die eigene Version (<code>__version__</code>, in Rust die Crate-Version) folgt SemVer. Was sich ändert, steht im <code>CHANGELOG.md</code>. Neue ChurchTools-Versionen bringen meist eine neue Minor-Version.</p></div>
-<div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_rs <span class="t-kw">as</span> ct
+<div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_api <span class="t-kw">as</span> ct
 
 info = client.info.get()
 <span class="t-kw">if</span> info.version != ct.<span class="t-type">API_VERSION</span>:
     print(<span class="t-string">f&quot;Instanz {info.version}, Client erzeugt für {ct.API_VERSION} (Version {ct.__version__})&quot;</span>)</code></pre><pre class="rs"><code><span class="t-kw">let</span> info = client.info().get()?;
-<span class="t-kw">if</span> info.version.as_deref() != <span class="t-kw">Some</span>(churchtools_core::<span class="t-type">API_VERSION</span>) {
-    <span class="t-macro">println!</span>(<span class="t-string">&quot;Instanz {:?}, Client erzeugt für {}&quot;</span>, info.version, churchtools_core::<span class="t-type">API_VERSION</span>);
+<span class="t-kw">if</span> info.version.as_deref() != <span class="t-kw">Some</span>(churchtools_api::<span class="t-type">API_VERSION</span>) {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;Instanz {:?}, Client erzeugt für {}&quot;</span>, info.version, churchtools_api::<span class="t-type">API_VERSION</span>);
 }</code></pre></div></div>
 </article>
 </section>
@@ -636,7 +636,7 @@ termine = client.calendars.appointments.list(
         wann = start.astimezone(berlin).strftime(<span class="t-string">&quot;%d.%m. %H:%M&quot;</span>)
     <span class="t-kw">else</span>:
         wann = start.strftime(<span class="t-string">&quot;%d.%m.&quot;</span>) + <span class="t-string">&quot; ganztags&quot;</span>
-    print(wann, termin.appointment.base.title)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_core::chrono::<span class="t-type">Local</span>;
+    print(wann, termin.appointment.base.title)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_api::chrono::<span class="t-type">Local</span>;
 
 <span class="t-kw">let</span> calendars = client.calendars().list()?;
 <span class="t-kw">let</span> query = <span class="t-type">GetCalendarsAppointmentsQuery</span> {
@@ -698,7 +698,7 @@ heute = dt.date.today()
     end_date=heute + dt.timedelta(days=<span class="t-number">7</span>),
 ):
     <span class="t-kw">if</span> eintrag.person:
-        print(<span class="t-string">f&quot;{eintrag.anniversary:%d.%m.}  {eintrag.person.title} wird {eintrag.age}&quot;</span>)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_core::chrono::{<span class="t-type">Days</span>, <span class="t-type">Local</span>};
+        print(<span class="t-string">f&quot;{eintrag.anniversary:%d.%m.}  {eintrag.person.title} wird {eintrag.age}&quot;</span>)</code></pre><pre class="rs"><code><span class="t-kw">use</span> churchtools_api::chrono::{<span class="t-type">Days</span>, <span class="t-type">Local</span>};
 
 <span class="t-kw">let</span> heute = <span class="t-type">Local</span>::now().date_naive();
 <span class="t-kw">let</span> query = <span class="t-type">GetPersonsBirthdaysQuery</span> {
@@ -760,7 +760,7 @@ client.groups().members().update(<span class="t-number">42</span>, person.id, &a
 <p><code>login_with_password</code> holt das dauerhafte Login-Token des Benutzers. Für eine Demo-Instanz ist das in Ordnung; in einer echten Instanz legst du besser einen eigenen Benutzer mit passenden Rechten an und speicherst dessen Token.</p>
 <p>Teste nie gegen eine Produktivinstanz, wenn dein Skript Daten anlegt oder löscht.</p></div>
 <div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> os
-<span class="t-kw">import</span> churchtools_rs <span class="t-kw">as</span> ct
+<span class="t-kw">import</span> churchtools_api <span class="t-kw">as</span> ct
 
 demo = ct.<span class="t-type">Client</span>(os.environ[<span class="t-string">&quot;CT_URL&quot;</span>], min_interval=<span class="t-number">0.25</span>)
 client = demo.login_with_password(os.environ[<span class="t-string">&quot;CT_USER&quot;</span>], os.environ[<span class="t-string">&quot;CT_PASSWORD&quot;</span>])
@@ -785,7 +785,7 @@ export <span class="t-type">CT_MIN_INTERVAL</span>=<span class="t-number">0.25</
 pytest tests/live
 python tests/live/summary.py</code></pre><pre class="rs"><code><span class="t-comment"># Login, Drosselung und Kalender aus Rust</span>
 export <span class="t-type">CT_URL</span>=https:<span class="t-comment">//xyz.church.tools CT_USER=... CT_PASSWORD=...</span>
-cargo test -p churchtools-core --test live -- --ignored</code></pre></div></div>
+cargo test -p churchtools-api --test live -- --ignored</code></pre></div></div>
 </article>
 </section>
 
@@ -6882,13 +6882,13 @@ print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span>
 
         <section class="reference hide-search" id="lizenz">
           <h2>Lizenz</h2>
-          <p>Der Code von churchtools-rs steht unter der MIT-Lizenz. Die Referenz, die Modelle und die
+          <p>Der Code von churchtools-api steht unter der MIT-Lizenz. Die Referenz, die Modelle und die
           englischen Beschreibungen stammen aus der API-Beschreibung „ChurchTools REST API“ von ChurchTools
           (<a href="https://demo.church.tools/system/runtime/swagger/openapi.json" target="_blank" rel="noopener">OpenAPI-Spec</a>),
           lizenziert unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank" rel="noopener">CC BY 4.0</a>.
           Sie wurde in Code und diese Seite umgewandelt, an einigen Stellen korrigiert und um Beispiele ergänzt.
           Details stehen in <code>NOTICE</code>.</p>
-          <p>churchtools-rs ist kein offizielles Produkt der ChurchTools Innovations GmbH und wird von ihr weder
+          <p>churchtools-api ist kein offizielles Produkt der ChurchTools Innovations GmbH und wird von ihr weder
           unterstützt noch geprüft.</p>
         </section>
 

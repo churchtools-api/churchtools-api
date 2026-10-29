@@ -11,9 +11,9 @@ import datetime as dt
 import itertools
 import typing as _t
 
-import churchtools_rs as ct
+import churchtools_api as ct
 import pytest
-from churchtools_rs import models as m
+from churchtools_api import models as m
 from conftest import LiveClient
 from scenario import NOW, Cleanup, name, required_person_fields
 

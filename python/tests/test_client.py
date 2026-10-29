@@ -10,7 +10,7 @@ import typing as _t
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlsplit
 
-import churchtools_rs as ct
+import churchtools_api as ct
 import pytest
 
 

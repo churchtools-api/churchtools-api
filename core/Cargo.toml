@@ -1,5 +1,5 @@
 [package]
-name = "churchtools-core"
+name = "churchtools-api"
 description = "Synchronous ChurchTools REST API client"
 version.workspace = true
 edition.workspace = true
@@ -25,4 +25,4 @@ thiserror = "2.0.21"
 
 [dev-dependencies]
 serde_path_to_error = "0.1.20"
-churchtools-core = { path = ".", features = ["replay"] }
+churchtools-api = { path = ".", features = ["replay"] }

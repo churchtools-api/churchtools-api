@@ -12,7 +12,7 @@ import datetime as dt
 import json
 import typing as _t
 
-import churchtools_rs as ct
+import churchtools_api as ct
 from conftest import CATALOG
 
 GETS = {e["path"]: e for e in CATALOG if e["method"] == "GET"}

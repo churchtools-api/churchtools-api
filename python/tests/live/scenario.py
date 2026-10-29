@@ -6,7 +6,7 @@ import datetime as dt
 import typing as _t
 import uuid
 
-import churchtools_rs as ct
+import churchtools_api as ct
 from conftest import Recorder
 
 PREFIX = "ctrs-test"

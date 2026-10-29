@@ -10,7 +10,7 @@ import datetime as dt
 import typing as _t
 import uuid
 
-import churchtools_rs as ct
+import churchtools_api as ct
 import pytest
 from conftest import LiveClient
 from scenario import NOW, PREFIX, Cleanup, name, required_person_fields

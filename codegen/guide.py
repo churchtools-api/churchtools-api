@@ -37,7 +37,7 @@ START = Chapter(
             "ueberblick",
             "Worum es geht",
             """
-`churchtools-rs` ist ein Client für die REST-API von [ChurchTools](https://church.tools): Personen, Gruppen,
+`churchtools-api` ist ein Client für die REST-API von [ChurchTools](https://church.tools): Personen, Gruppen,
 Kalender, Events, Dienste, Lieder, Finanzen und alles Weitere, was die API anbietet.
 
 Es gibt ihn für zwei Sprachen. Beide entstehen aus derselben API-Beschreibung und funktionieren gleich:
@@ -70,23 +70,23 @@ Noch gibt es keine fertigen Pakete auf PyPI und crates.io. Du installierst direk
   [Rust-Toolchain](https://rustup.rs) (ab 1.88), einen C-Compiler (für die TLS-Bibliothek; unter Linux `gcc`
   oder `clang`, unter macOS die Xcode-Kommandozeilenwerkzeuge, unter Windows die Visual-Studio-Build-Tools)
   und Python ab 3.10. Der Bau dauert beim ersten Mal ein paar Minuten.
-- **Rust:** Du bindest die Crate `churchtools-core` als Git- oder Pfad-Abhängigkeit ein; auch hier wird ein
+- **Rust:** Du bindest die Crate `churchtools-api` als Git- oder Pfad-Abhängigkeit ein; auch hier wird ein
   C-Compiler gebraucht.
 
-Wenn die Pakete veröffentlicht sind, reicht `pip install churchtools-rs` bzw. `cargo add churchtools-core`.
+Wenn die Pakete veröffentlicht sind, reicht `pip install churchtools-api` bzw. `cargo add churchtools-api`.
 """,
             python="""\
 # aus einem Checkout des Projekts
-pip install ./churchtools-rs/python
+pip install ./churchtools-api/python
 
 # oder direkt aus dem Git-Repository
-pip install "churchtools-rs @ git+https://<repository>#subdirectory=python\"""",
+pip install "churchtools-api @ git+https://<repository>#subdirectory=python\"""",
             rust="""\
 # Cargo.toml
 [dependencies]
-churchtools-core = { git = "https://<repository>" }
+churchtools-api = { git = "https://<repository>" }
 # oder aus einem Checkout
-churchtools-core = { path = "../churchtools-rs/core" }""",
+churchtools-api = { path = "../churchtools-api/core" }""",
         ),
         Section(
             "schnellstart",
@@ -99,13 +99,13 @@ Danach bist du startklar. Die folgenden Beispiele zeigen nur noch den Teil, der 
 setzen einen fertigen `client` voraus.
 """,
             python="""\
-import churchtools_rs as ct
+import churchtools_api as ct
 
 client = ct.Client("https://demo.church.tools")
 info = client.info.get()
 print(info.site_name, info.version)""",
             rust="""\
-use churchtools_core::Client;
+use churchtools_api::Client;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = Client::new("https://demo.church.tools", None)?;
@@ -134,7 +134,7 @@ Lege das Token nicht in den Quelltext. Am einfachsten liest du es aus den Umgebu
 `CT_URL` und `CT_TOKEN`.
 """,
             python="""\
-import churchtools_rs as ct
+import churchtools_api as ct
 
 client = ct.Client("https://meinegemeinde.church.tools", token="DEIN_TOKEN")
 
@@ -144,7 +144,7 @@ client = ct.Client.from_env()
 me = client.whoami.get()
 print(f"Angemeldet als {me.first_name} {me.last_name}")""",
             rust="""\
-use churchtools_core::Client;
+use churchtools_api::Client;
 
 let client = Client::new("https://meinegemeinde.church.tools", Some("DEIN_TOKEN".into()))?;
 
@@ -391,7 +391,7 @@ if isinstance(start, dt.datetime):
 else:
     print("ganztägig am", start)""",
             rust="""\
-use churchtools_core::chrono::Local;
+use churchtools_api::chrono::Local;
 
 let event = client.events().get(42)?;
 println!("{}", event.start_date.with_timezone(&Local));
@@ -424,7 +424,7 @@ except ct.Unauthorized:
 except ct.ApiError as e:
     print(e.status, e.translated_message)""",
             rust="""\
-use churchtools_core::Error;
+use churchtools_api::Error;
 
 match client.persons().get(999999) {
     Ok(person) => println!("{:?}", person.first_name),
@@ -481,7 +481,7 @@ leitet den Dateityp aus der Endung ab; `Upload(name, inhalt, typ)` nimmt Bytes a
 Downloads (PDF, CSV, Excel, Bilder) kommen als Bytes zurück, die du direkt speichern kannst.
 """,
             python="""\
-import churchtools_rs as ct
+import churchtools_api as ct
 
 # an eine Person anhängen
 client.files.create("person", "7", files=[ct.Upload.from_path("brief.pdf")])
@@ -577,15 +577,15 @@ Die eigene Version (`__version__`, in Rust die Crate-Version) folgt SemVer. Was 
 `CHANGELOG.md`. Neue ChurchTools-Versionen bringen meist eine neue Minor-Version.
 """,
             python="""\
-import churchtools_rs as ct
+import churchtools_api as ct
 
 info = client.info.get()
 if info.version != ct.API_VERSION:
     print(f"Instanz {info.version}, Client erzeugt für {ct.API_VERSION} (Version {ct.__version__})")""",
             rust="""\
 let info = client.info().get()?;
-if info.version.as_deref() != Some(churchtools_core::API_VERSION) {
-    println!("Instanz {:?}, Client erzeugt für {}", info.version, churchtools_core::API_VERSION);
+if info.version.as_deref() != Some(churchtools_api::API_VERSION) {
+    println!("Instanz {:?}, Client erzeugt für {}", info.version, churchtools_api::API_VERSION);
 }""",
         ),
     ],
@@ -616,7 +616,7 @@ Teste nie gegen eine Produktivinstanz, wenn dein Skript Daten anlegt oder lösch
 """,
             python="""\
 import os
-import churchtools_rs as ct
+import churchtools_api as ct
 
 demo = ct.Client(os.environ["CT_URL"], min_interval=0.25)
 client = demo.login_with_password(os.environ["CT_USER"], os.environ["CT_PASSWORD"])
@@ -660,7 +660,7 @@ python tests/live/summary.py""",
             rust="""\
 # Login, Drosselung und Kalender aus Rust
 export CT_URL=https://xyz.church.tools CT_USER=... CT_PASSWORD=...
-cargo test -p churchtools-core --test live -- --ignored""",
+cargo test -p churchtools-api --test live -- --ignored""",
         ),
     ],
 )
@@ -702,7 +702,7 @@ for termin in termine:
         wann = start.strftime("%d.%m.") + " ganztags"
     print(wann, termin.appointment.base.title)""",
             rust="""\
-use churchtools_core::chrono::Local;
+use churchtools_api::chrono::Local;
 
 let calendars = client.calendars().list()?;
 let query = GetCalendarsAppointmentsQuery {
@@ -785,7 +785,7 @@ for eintrag in client.persons.list_birthdays(
     if eintrag.person:
         print(f"{eintrag.anniversary:%d.%m.}  {eintrag.person.title} wird {eintrag.age}")""",
             rust="""\
-use churchtools_core::chrono::{Days, Local};
+use churchtools_api::chrono::{Days, Local};
 
 let heute = Local::now().date_naive();
 let query = GetPersonsBirthdaysQuery {

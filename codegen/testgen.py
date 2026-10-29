@@ -73,7 +73,7 @@ def rust_recorded_tests(ops: list[g.Op], header: str) -> str:
         "",
         "#![allow(non_snake_case)]",
         "",
-        "use churchtools_core::models;",
+        "use churchtools_api::models;",
         "use serde::de::DeserializeOwned;",
         "",
         "/// Loads the recorded body of `op_id`; `None` if nothing was recorded.",

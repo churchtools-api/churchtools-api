@@ -286,7 +286,7 @@ fn redirect_policy() -> reqwest::redirect::Policy {
     })
 }
 
-const USER_AGENT: &str = concat!("churchtools-rs/", env!("CARGO_PKG_VERSION"));
+const USER_AGENT: &str = concat!("churchtools-api/", env!("CARGO_PKG_VERSION"));
 
 /// Spaces requests at least `interval` apart, across all clones of a client.
 #[derive(Debug)]

@@ -6,7 +6,7 @@ Bitte melde Sicherheitslücken **nicht** als öffentliches Issue, sondern vertra
 auf der Seite des Repositories unter **Security → Report a vulnerability** („Private vulnerability reporting“).
 Die Meldung sieht nur der Betreuer des Projekts; über denselben Weg bekommst du Rückmeldung.
 
-Hilfreich sind: betroffene Version (`churchtools_rs.__version__` bzw. die Crate-Version), was passiert, und wie
+Hilfreich sind: betroffene Version (`churchtools_api.__version__` bzw. die Crate-Version), was passiert, und wie
 man es nachstellt. Bitte keine echten Token, Passwörter oder Personendaten mitschicken.
 
 Das Projekt wird in der Freizeit gepflegt. Ich bemühe mich, innerhalb von zwei Wochen zu antworten.

@@ -1,4 +1,4 @@
-//! Benchmarks of churchtools-core against a local server.
+//! Benchmarks of churchtools-api against a local server.
 //!
 //! `churchtools-bench`         runs the Rust scenarios (starts its own server process)
 //! `churchtools-bench serve`   only starts the server and prints its URL (used by bench.py)
@@ -13,8 +13,8 @@ use std::process::{Child, Command, Stdio};
 use std::sync::Arc;
 use std::time::{Duration, Instant};
 
-use churchtools_core::queries::{GetPersonsQuery, PostPersonsQuery};
-use churchtools_core::{Client, Method, decode_data, models};
+use churchtools_api::queries::{GetPersonsQuery, PostPersonsQuery};
+use churchtools_api::{Client, Method, decode_data, models};
 
 /// Minimum time spent on warm-up before measuring.
 const WARMUP: Duration = Duration::from_millis(300);

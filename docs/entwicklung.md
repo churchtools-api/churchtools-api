@@ -6,8 +6,8 @@ Für Nutzer des Clients ist das [README](../README.md) und die [Doku-Seite](site
 ## Aufbau
 
 ```
-core/      churchtools-core: Rust-Crate (reqwest blocking + serde)
-python/    churchtools-rs:  PyO3-Erweiterung `_core` + Python-Paket `churchtools_rs`
+core/      churchtools-api: Rust-Crate (reqwest blocking + serde)
+python/    churchtools-api:  PyO3-Erweiterung `_core` + Python-Paket `churchtools_api`
 codegen/   generate.py:     openapi.json -> Rust- und Python-Code, OPERATIONS.md, Doku
            guide.py:        handgeschriebene Doku-Texte und Projekt-Beispiele
            examples.py:     erzeugt die Referenz-Beispiele
@@ -18,7 +18,7 @@ benchmarks/ eigener Cargo-Workspace, siehe benchmarks/README.md
 
 Die Aufgaben sind so aufgeteilt:
 
-| | Rust (`core`) | Python (`churchtools_rs`) |
+| | Rust (`core`) | Python (`churchtools_api`) |
 |---|---|---|
 | HTTP, Login-Token, Timeouts | ✔ (auch für Python) | |
 | Rate-Limit (`min_interval`), Retry bei `429`/`5xx` | ✔ (auch für Python) | |
@@ -66,7 +66,7 @@ cd python
 uv venv && uv pip install --group dev     # Entwicklungswerkzeuge aus [dependency-groups] in pyproject.toml
 maturin develop                          # baut _core und installiert das Paket editierbar
 pytest tests                             # ohne Netz: Fake-Server, Replay, alle Doku-Beispiele ausgeführt
-mypy --strict churchtools_rs tests       # inkl. aller Python-Beispiele der Doku
+mypy --strict churchtools_api tests       # inkl. aller Python-Beispiele der Doku
 ruff check ..
 ```
 
@@ -108,7 +108,7 @@ export CT_URL=https://xyz.church.tools CT_USER=... CT_PASSWORD=...
 export CT_MIN_INTERVAL=0.25              # Abstand zwischen Anfragen (Standard 0,25 s = 4 pro Sekunde)
 pytest tests/live                        # alle GET-Endpunkte + Schreib-Szenarien, ca. 4 Minuten
 python tests/live/summary.py             # Übersicht als Markdown
-cargo test -p churchtools-core --test live -- --ignored   # Login, Rate-Limit und Kalender aus Rust
+cargo test -p churchtools-api --test live -- --ignored   # Login, Rate-Limit und Kalender aus Rust
 ```
 
 - `tests/live/test_read.py` ruft jeden GET-Endpunkt einmal über die generierte API auf. Die IDs dafür sucht ein
@@ -140,7 +140,7 @@ Ein späterer Async-Client lässt sich also ergänzen, ohne die synchrone API zu
 ## Öffentliche API und Stabilität
 
 - Die Abhängigkeiten des HTTP-Stacks (reqwest, rustls) sind nicht Teil der öffentlichen Rust-API: Anfragen nehmen
-  `churchtools_core::Method`, Transportfehler sind in `TransportError` gekapselt. `chrono`, `serde` und `serde_json`
+  `churchtools_api::Method`, Transportfehler sind in `TransportError` gekapselt. `chrono`, `serde` und `serde_json`
   sind bewusst öffentlich, weil die Modelle ihre Typen verwenden.
 - Python- und Rust-API sollen gleich bleiben: gleiche Optionen am Client, gleiche Fehlerklassen, gleiche Namen der
   Endpunkte (siehe `codegen/OPERATIONS.md`).

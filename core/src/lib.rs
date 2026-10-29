@@ -1,8 +1,8 @@
 //! Synchronous client for the ChurchTools REST API.
 //!
 //! ```no_run
-//! use churchtools_core::Client;
-//! use churchtools_core::queries::GetEventsQuery;
+//! use churchtools_api::Client;
+//! use churchtools_api::queries::GetEventsQuery;
 //!
 //! let client = Client::new("https://meinegemeinde.church.tools", Some("token".into()))?;
 //! let query = GetEventsQuery {
@@ -13,7 +13,7 @@
 //! for event in client.events().list_with(&query)? {
 //!     println!("{} {}", event.start_date, event.name);
 //! }
-//! # Ok::<(), churchtools_core::Error>(())
+//! # Ok::<(), churchtools_api::Error>(())
 //! ```
 //!
 //! The code is generated from the API description of ChurchTools

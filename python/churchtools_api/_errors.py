@@ -7,7 +7,7 @@ import typing as _t
 
 
 class ChurchToolsError(Exception):
-    """Base class of all errors raised by churchtools_rs."""
+    """Base class of all errors raised by churchtools_api."""
 
 
 class InvalidArgument(ChurchToolsError, ValueError):

@@ -1,21 +1,21 @@
-//! Native part of the `churchtools-rs` Python package.
+//! Native part of the `churchtools-api` Python package.
 //!
 //! Only transport lives here (HTTP, auth, errors, pagination); the typed API
-//! and Pydantic models are generated Python in `churchtools_rs`.
+//! and Pydantic models are generated Python in `churchtools_api`.
 
 #[pyo3::pymodule]
 mod _core {
     use std::time::Duration;
 
-    use churchtools_core::{Error, Method, Upload};
+    use churchtools_api::{Error, Method, Upload};
     use pyo3::exceptions::PyValueError;
     use pyo3::prelude::*;
     use pyo3::types::PyBytes;
 
-    /// Converts a core error into the matching exception from `churchtools_rs._errors`.
+    /// Converts a core error into the matching exception from `churchtools_api._errors`.
     fn to_py_err(py: Python<'_>, err: Error) -> PyErr {
         let result = (|| -> PyResult<PyErr> {
-            let errors = py.import("churchtools_rs._errors")?;
+            let errors = py.import("churchtools_api._errors")?;
             let exc = match &err {
                 Error::Api(api) => errors.call_method1(
                     "from_response",
@@ -47,12 +47,12 @@ mod _core {
     }
 
     fn parse_method(method: &str) -> PyResult<Method> {
-        method.parse().map_err(|e: churchtools_core::InvalidMethod| PyValueError::new_err(e.to_string()))
+        method.parse().map_err(|e: churchtools_api::InvalidMethod| PyValueError::new_err(e.to_string()))
     }
 
-    /// `churchtools_rs.InvalidArgument` (a `ValueError`) with `message`.
+    /// `churchtools_api.InvalidArgument` (a `ValueError`) with `message`.
     fn invalid_argument(py: Python<'_>, message: String) -> PyErr {
-        py.import("churchtools_rs._errors")
+        py.import("churchtools_api._errors")
             .and_then(|errors| errors.call_method1("InvalidArgument", (message,)))
             .map(PyErr::from_value)
             .unwrap_or_else(|e| e)
@@ -67,9 +67,9 @@ mod _core {
     }
 
 
-    #[pyclass(frozen, module = "churchtools_rs._core")]
+    #[pyclass(frozen, module = "churchtools_api._core")]
     struct Client {
-        inner: churchtools_core::Client,
+        inner: churchtools_api::Client,
     }
 
     #[pymethods]
@@ -87,7 +87,7 @@ mod _core {
             max_response_size: Option<u64>,
             connect_timeout: Option<f64>,
         ) -> PyResult<Self> {
-            let mut builder = churchtools_core::Client::builder(base_url);
+            let mut builder = churchtools_api::Client::builder(base_url);
             if let Some(connect) = connect_timeout {
                 builder = builder.connect_timeout(seconds(py, "connect_timeout", connect)?);
             }
@@ -95,7 +95,7 @@ mod _core {
                 .token(token)
                 .timeout(seconds(py, "timeout", timeout)?)
                 .allow_insecure_http(allow_insecure_http)
-                .max_response_size(max_response_size.unwrap_or(churchtools_core::DEFAULT_MAX_RESPONSE_SIZE))
+                .max_response_size(max_response_size.unwrap_or(churchtools_api::DEFAULT_MAX_RESPONSE_SIZE))
                 .build()
                 .map_err(|e| to_py_err(py, e))?;
             if let Some(interval) = min_interval {
@@ -170,9 +170,9 @@ mod _core {
         }
     }
 
-    #[pyclass(module = "churchtools_rs._core")]
+    #[pyclass(module = "churchtools_api._core")]
     struct Pages {
-        inner: churchtools_core::Pages,
+        inner: churchtools_api::Pages,
     }
 
     #[pymethods]

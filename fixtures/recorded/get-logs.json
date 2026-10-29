@@ -37,7 +37,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497455,
@@ -68,7 +68,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497452,
@@ -99,7 +99,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497449,
@@ -130,7 +130,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497446,
@@ -161,7 +161,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497443,
@@ -192,7 +192,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497440,
@@ -223,7 +223,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497437,
@@ -254,7 +254,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497434,
@@ -285,7 +285,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
     "id": 497431,
@@ -316,7 +316,7 @@
     "simulatePerson": null,
     "domainType": "login",
     "domainId": -1,
-    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+    "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    }
   ],
   "meta": {

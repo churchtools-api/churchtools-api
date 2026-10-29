@@ -1,6 +1,6 @@
 [package]
 name = "churchtools-bench"
-description = "Benchmarks for churchtools-core and the Python package against a local server"
+description = "Benchmarks for churchtools-api and the Python package against a local server"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
@@ -10,5 +10,5 @@ publish = false
 [workspace]
 
 [dependencies]
-churchtools-core = { path = "../core" }
+churchtools-api = { path = "../core" }
 serde_json = "1.0.154"

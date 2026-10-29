@@ -1,4 +1,4 @@
-# churchtools-rs
+# churchtools-api
 
 Ein Client für die REST-API von [ChurchTools](https://church.tools), für **Python** und **Rust**. Der Kern ist in
 Rust geschrieben; das Python-Paket nutzt ihn für HTTP, Login-Token, Rate-Limit, Wiederholungen und Paginierung und
@@ -8,7 +8,7 @@ liefert Pydantic-Modelle. Beide Varianten entstehen aus derselben API-Beschreibu
 *A ChurchTools REST API client for Python and Rust, generated from the official OpenAPI description. The
 documentation is in German.*
 
-churchtools-rs ist ein inoffizielles Projekt und gehört nicht zu ChurchTools. Es ist nicht verwandt mit dem
+churchtools-api ist ein inoffizielles Projekt und gehört nicht zu ChurchTools. Es ist nicht verwandt mit dem
 PyPI-Paket `churchtools`.
 
 **Dokumentation:** [`docs/site/index.html`](docs/site/index.html) mit Einstieg, Grundlagen, Beispielprojekten und
@@ -19,7 +19,7 @@ der vollständigen Referenz. Jedes Beispiel gibt es für Python und Rust. Alle A
 
 ```python
 import datetime as dt
-import churchtools_rs as ct
+import churchtools_api as ct
 
 client = ct.Client("https://meinegemeinde.church.tools", token="...")   # oder ct.Client.from_env()
 
@@ -35,7 +35,7 @@ client.files.create("person", "7", files=[ct.Upload.from_path("brief.pdf")])   #
 ```
 
 ```rust
-use churchtools_core::{Client, queries::GetEventsQuery};
+use churchtools_api::{Client, queries::GetEventsQuery};
 
 let client = Client::new("https://meinegemeinde.church.tools", Some("...".into()))?;
 let query = GetEventsQuery { from: Some("2026-11-01".parse()?), to: Some("2026-11-30".parse()?), ..Default::default() };
@@ -49,9 +49,9 @@ for event in client.events().list_with(&query)? {
 Fertige Pakete auf PyPI und crates.io gibt es noch nicht; die Installation läuft aus dem Quellcode.
 
 - **Python** (ab 3.10): `pip install ./python` aus einem Checkout, oder
-  `pip install "churchtools-rs @ git+https://<repository>#subdirectory=python"`. Gebraucht werden eine
+  `pip install "churchtools-api @ git+https://<repository>#subdirectory=python"`. Gebraucht werden eine
   [Rust-Toolchain](https://rustup.rs) ab 1.88 und ein C-Compiler (für die TLS-Bibliothek).
-- **Rust**: `churchtools-core = { git = "https://<repository>" }` oder als Pfad-Abhängigkeit auf `core/`.
+- **Rust**: `churchtools-api = { git = "https://<repository>" }` oder als Pfad-Abhängigkeit auf `core/`.
 
 Details stehen in der Doku unter „Installation“.
 
@@ -105,7 +105,7 @@ Das Projekt ist jung und experimentell. Was bisher geschehen ist und was geplant
 - **Doppelte Parameter:** Einige Endpunkte nehmen denselben Wert in Query und Body (`groups.duplicate`: `new_name`
   und `new_name_2`) oder in Pfad und Body (`posts.comments.create`: `post_id` und `post_id_2`).
 - **Namen aus der Position:** Schemas ohne Namen in der Spec heißen nach ihrer Stelle, z. B. `PostPersonsBody`.
-- **Größe:** `models.py` und `_resources.py` haben je über 20 000 Zeilen; `import churchtools_rs` dauert etwa 0,3 s.
+- **Größe:** `models.py` und `_resources.py` haben je über 20 000 Zeilen; `import churchtools_api` dauert etwa 0,3 s.
 - **Sprache:** Die Doku ist deutsch, die Beschreibungen aus der Spec (Hover-Texte, Referenz) sind englisch.
 - **Nur synchron:** Einen Async-Client gibt es noch nicht; er ließe sich ergänzen, ohne die synchrone API zu ändern.
 
@@ -122,4 +122,4 @@ Der Code steht unter der [MIT-Lizenz](LICENSE). Die generierten Dateien beruhen 
 steht; für sie gilt zusätzlich diese Lizenz. Welche Dateien das sind und was geändert wurde, steht in
 [`NOTICE`](NOTICE). Lizenzangabe der Pakete: `MIT AND CC-BY-4.0`.
 
-churchtools-rs ist kein offizielles Produkt der ChurchTools Innovations GmbH.
+churchtools-api ist kein offizielles Produkt der ChurchTools Innovations GmbH.

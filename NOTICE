@@ -1,4 +1,4 @@
-churchtools-rs
+churchtools-api
 ==============
 
 The code of this project (the generator in codegen/, the handwritten Rust and
@@ -27,8 +27,8 @@ These parts are licensed under CC BY 4.0 as well:
     codegen/spec/openapi.json.xz   the specification itself (minified, unchanged)
     core/src/generated/            Rust models and endpoints
     core/tests/recorded.rs
-    python/churchtools_rs/models.py
-    python/churchtools_rs/_resources.py
+    python/churchtools_api/models.py
+    python/churchtools_api/_resources.py
     python/tests/doc_examples.py, core/tests/doc_examples.rs
     python/tests/live/operations.json
     codegen/OPERATIONS.md

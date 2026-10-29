@@ -78,11 +78,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "churchtools-core"
+name = "churchtools-api"
 version = "0.1.0"
 dependencies = [
  "chrono",
- "churchtools-core",
+ "churchtools-api",
  "percent-encoding",
  "reqwest",
  "rustls",
@@ -96,7 +96,7 @@ dependencies = [
 name = "churchtools-py"
 version = "0.1.0"
 dependencies = [
- "churchtools-core",
+ "churchtools-api",
  "pyo3",
 ]
 

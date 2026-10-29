@@ -4,8 +4,8 @@
 
 #![allow(unused, deprecated, clippy::all)]
 
-use churchtools_core::*;
-use churchtools_core::queries::*;
+use churchtools_api::*;
+use churchtools_api::queries::*;
 use std::result::Result;
 
 /// A client for the replay server; `CT_URL` points there too, for `Client::from_env()`.
@@ -18,7 +18,7 @@ fn replay_client() -> Client {
             std::env::set_var("CT_TOKEN", "replay");
         }
         // Snippets that write files (e.g. CSV exports) do so in a temporary directory.
-        let dir = std::env::temp_dir().join("churchtools-rs-doc-examples");
+        let dir = std::env::temp_dir().join("churchtools-api-doc-examples");
         std::fs::create_dir_all(&dir).unwrap();
         std::env::set_current_dir(&dir).unwrap();
     });
@@ -27,7 +27,7 @@ fn replay_client() -> Client {
 
 // guide: schnellstart
 fn example_0(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    use churchtools_core::Client;
+    use churchtools_api::Client;
 
     fn main() -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::new("https://demo.church.tools", None)?;
@@ -40,7 +40,7 @@ fn example_0(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
 // guide: anmeldung
 fn example_1(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    use churchtools_core::Client;
+    use churchtools_api::Client;
 
     let client = Client::new("https://meinegemeinde.church.tools", Some("DEIN_TOKEN".into()))?;
 
@@ -154,7 +154,7 @@ fn guide_listen() {
 
 // guide: datum
 fn example_7(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    use churchtools_core::chrono::Local;
+    use churchtools_api::chrono::Local;
 
     let event = client.events().get(42)?;
     println!("{}", event.start_date.with_timezone(&Local));
@@ -176,7 +176,7 @@ fn guide_datum() {
 
 // guide: fehler
 fn example_8(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    use churchtools_core::Error;
+    use churchtools_api::Error;
 
     match client.persons().get(999999) {
         Ok(person) => println!("{:?}", person.first_name),
@@ -264,8 +264,8 @@ fn guide_rohzugriff() {
 // guide: versionen
 fn example_13(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let info = client.info().get()?;
-    if info.version.as_deref() != Some(churchtools_core::API_VERSION) {
-        println!("Instanz {:?}, Client erzeugt für {}", info.version, churchtools_core::API_VERSION);
+    if info.version.as_deref() != Some(churchtools_api::API_VERSION) {
+        println!("Instanz {:?}, Client erzeugt für {}", info.version, churchtools_api::API_VERSION);
     }
     Ok(())
 }
@@ -277,7 +277,7 @@ fn guide_versionen() {
 
 // guide: projekt-monatsplan
 fn example_14(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    use churchtools_core::chrono::Local;
+    use churchtools_api::chrono::Local;
 
     let calendars = client.calendars().list()?;
     let query = GetCalendarsAppointmentsQuery {
@@ -332,7 +332,7 @@ fn guide_projekt_dienstplan() {
 
 // guide: projekt-geburtstage
 fn example_16(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    use churchtools_core::chrono::{Days, Local};
+    use churchtools_api::chrono::{Days, Local};
 
     let heute = Local::now().date_naive();
     let query = GetPersonsBirthdaysQuery {

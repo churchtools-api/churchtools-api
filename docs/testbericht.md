@@ -1,4 +1,4 @@
-# Testbericht: churchtools-rs gegen eine echte Instanz
+# Testbericht: churchtools-api gegen eine echte Instanz
 
 Getestet am 28.10.2026 gegen eine 3-Tage-Demo-Instanz (ChurchTools 3.138.0, Build 32935,
 dieselbe Spec wie demo.church.tools). Angemeldet war der Demo-Admin (Person 1, Sicherheitsstufe 99999). Alle Anfragen

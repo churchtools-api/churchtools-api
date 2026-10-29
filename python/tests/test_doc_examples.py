@@ -16,7 +16,7 @@ import typing as _t
 import warnings
 from pathlib import Path
 
-import churchtools_rs as ct
+import churchtools_api as ct
 import doc_examples
 import pytest
 from replay import ROOT, ReplayServer, recorded

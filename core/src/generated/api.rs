@@ -435,8 +435,8 @@ impl<'a> ActionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostActionsBody {
@@ -474,10 +474,10 @@ impl<'a> AddressesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-addresses-domainType-domainIdentifier");
+    /// # let client = churchtools_api::replay::client("post-addresses-domainType-domainIdentifier");
     /// let body = models::GroupAddressCreate {
     ///     name: Some(Some("Retreat Center".into())),
     ///     ..Default::default()
@@ -503,8 +503,8 @@ impl<'a> AddressesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.addresses().delete("group", "42", 7)?;
@@ -526,10 +526,10 @@ impl<'a> AddressesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-addresses-domainType-domainIdentifier");
+    /// # let client = churchtools_api::replay::client("get-addresses-domainType-domainIdentifier");
     /// for address in client.addresses().get("group", "42")? {
     ///     println!("{:?}", address.name);
     /// }
@@ -551,10 +551,10 @@ impl<'a> AddressesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-addresses-search");
+    /// # let client = churchtools_api::replay::client("get-addresses-search");
     /// let query = GetAddressesSearchQuery {
     ///     query: Some("Musterstraße".into()),
     ///     ..Default::default()
@@ -580,10 +580,10 @@ impl<'a> AddressesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-addresses-domainType-domainIdentifier-addressId");
+    /// # let client = churchtools_api::replay::client("put-addresses-domainType-domainIdentifier-addressId");
     /// let body = models::GroupAddressUpdate {
     ///     name: Some(Some("Retreat Center".into())),
     ///     ..Default::default()
@@ -622,10 +622,10 @@ impl<'a> AgendaTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-agendatemplates");
+    /// # let client = churchtools_api::replay::client("post-agendatemplates");
     /// let body = models::AgendaTemplateCreate {
     ///     calendar_id: 1,
     ///     name: "Sunday Service Template".into(),
@@ -654,8 +654,8 @@ impl<'a> AgendaTemplatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.agenda_templates().delete(35)?;
@@ -688,8 +688,8 @@ impl<'a> AgendaTemplatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = PostAgendatemplatesAgendaIdExportQuery {
@@ -723,10 +723,10 @@ impl<'a> AgendaTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-agendatemplates-agendaId");
+    /// # let client = churchtools_api::replay::client("get-agendatemplates-agendaId");
     /// let agenda_template = client.agenda_templates().get(35)?;
     /// println!("{:?}", agenda_template.name);
     /// # Ok(())
@@ -747,10 +747,10 @@ impl<'a> AgendaTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-agendatemplates");
+    /// # let client = churchtools_api::replay::client("get-agendatemplates");
     /// for agenda_template in client.agenda_templates().list()? {
     ///     println!("{:?}", agenda_template.name);
     /// }
@@ -772,10 +772,10 @@ impl<'a> AgendaTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-agendatemplates-agendaId");
+    /// # let client = churchtools_api::replay::client("put-agendatemplates-agendaId");
     /// let body = models::AgendaTemplateUpdate {
     ///     calendar_id: 1,
     ///     name: "Sunday Service Template".into(),
@@ -817,10 +817,10 @@ impl<'a> AgendaTemplatesItemsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-agendatemplates-agendaId-items");
+    /// # let client = churchtools_api::replay::client("post-agendatemplates-agendaId-items");
     /// let body = serde_json::json!({
     ///     "type": "header"
     /// });
@@ -856,8 +856,8 @@ impl<'a> AgendaTemplatesItemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.agenda_templates().items().delete(35, 123)?;
@@ -881,10 +881,10 @@ impl<'a> AgendaTemplatesItemsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-agendatemplates-agendaId-items-itemId");
+    /// # let client = churchtools_api::replay::client("put-agendatemplates-agendaId-items-itemId");
     /// let body = serde_json::json!({
     ///     "type": "header"
     /// });
@@ -929,8 +929,8 @@ impl<'a> AgendaTemplatesItemsServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.agenda_templates().items().service_groups().delete(35, 123, 13)?;
@@ -952,8 +952,8 @@ impl<'a> AgendaTemplatesItemsServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AgendaServiceGroupNoteUpdate {
@@ -989,8 +989,8 @@ impl<'a> AgendasResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AgendaMailCreate {
@@ -1031,8 +1031,8 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let booking = client.bookings().answer(8, "approve")?;
@@ -1055,10 +1055,10 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-bookings");
+    /// # let client = churchtools_api::replay::client("post-bookings");
     /// let body = models::BookingCreate {
     ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
@@ -1089,8 +1089,8 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.bookings().delete(8)?;
@@ -1114,10 +1114,10 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-bookings-id");
+    /// # let client = churchtools_api::replay::client("get-bookings-id");
     /// let booking = client.bookings().get(8)?;
     /// println!("{:?}", booking);
     /// # Ok(())
@@ -1149,10 +1149,10 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-bookings");
+    /// # let client = churchtools_api::replay::client("get-bookings");
     /// let query = GetBookingsQuery {
     ///     resource_ids: Some(vec![42]),
     ///     ..Default::default()
@@ -1178,10 +1178,10 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-bookings-conflicts");
+    /// # let client = churchtools_api::replay::client("post-bookings-conflicts");
     /// let body = models::BookingConflictRequestBody {
     ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
@@ -1210,10 +1210,10 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-bookings-id-conflicts");
+    /// # let client = churchtools_api::replay::client("post-bookings-id-conflicts");
     /// let body = models::BookingConflictUpdate {
     ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
@@ -1241,8 +1241,8 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::BookingSplitCreate {
@@ -1277,10 +1277,10 @@ impl<'a> BookingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-bookings-id");
+    /// # let client = churchtools_api::replay::client("put-bookings-id");
     /// let body = serde_json::json!({
     ///     "endDate": "2026-09-20T09:30:00Z",
     ///     "startDate": "2026-09-20T08:00:00Z",
@@ -1319,8 +1319,8 @@ impl<'a> BulkJobsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::BulkJobCreate {
@@ -1349,8 +1349,8 @@ impl<'a> BulkJobsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::BulkJobCreate {
@@ -1388,8 +1388,8 @@ impl<'a> BulkLettersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::BulkletterCreate {
@@ -1421,8 +1421,8 @@ impl<'a> BulkLettersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.bulk_letters().delete(36)?;
@@ -1444,8 +1444,8 @@ impl<'a> BulkLettersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -1469,10 +1469,10 @@ impl<'a> BulkLettersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-bulkletters-id");
+    /// # let client = churchtools_api::replay::client("get-bulkletters-id");
     /// let bulk_letter = client.bulk_letters().get(36)?;
     /// println!("{}", bulk_letter.name);
     /// # Ok(())
@@ -1493,10 +1493,10 @@ impl<'a> BulkLettersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-bulkletters");
+    /// # let client = churchtools_api::replay::client("get-bulkletters");
     /// for bulk_letter in client.bulk_letters().list()? {
     ///     println!("{}", bulk_letter.name);
     /// }
@@ -1518,10 +1518,10 @@ impl<'a> BulkLettersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-bulkletters-id-persons");
+    /// # let client = churchtools_api::replay::client("get-bulkletters-id-persons");
     /// for person in client.bulk_letters().list_persons(36)? {
     ///     println!("{:?}", person.name);
     /// }
@@ -1560,10 +1560,10 @@ impl<'a> CalendarsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-calendars");
+    /// # let client = churchtools_api::replay::client("post-calendars");
     /// let body = models::CalendarCreate {
     ///     name: "Community events".into(),
     ///     sort_key: 10,
@@ -1591,8 +1591,8 @@ impl<'a> CalendarsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.calendars().delete(42)?;
@@ -1614,10 +1614,10 @@ impl<'a> CalendarsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-calendarId");
+    /// # let client = churchtools_api::replay::client("get-calendars-calendarId");
     /// let calendar = client.calendars().get(42)?;
     /// println!("{}", calendar.name);
     /// # Ok(())
@@ -1638,10 +1638,10 @@ impl<'a> CalendarsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars");
+    /// # let client = churchtools_api::replay::client("get-calendars");
     /// for calendar in client.calendars().list()? {
     ///     println!("{}", calendar.name);
     /// }
@@ -1665,10 +1665,10 @@ impl<'a> CalendarsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-meetingrequestpersons");
+    /// # let client = churchtools_api::replay::client("get-calendars-calendarId-meetingrequestpersons");
     /// for meeting_request_person in client.calendars().list_meeting_request_persons(42)? {
     ///     println!("{:?}", meeting_request_person.group_name);
     /// }
@@ -1703,10 +1703,10 @@ impl<'a> CalendarsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-calendars-calendarId");
+    /// # let client = churchtools_api::replay::client("put-calendars-calendarId");
     /// let body = models::CalendarUpdate {
     ///     name: "Community events".into(),
     ///     sort_key: 10,
@@ -1750,10 +1750,10 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-calendars-calendarId-appointments-appointmentId-changeimpact");
+    /// # let client = churchtools_api::replay::client("post-calendars-calendarId-appointments-appointmentId-changeimpact");
     /// let body = models::AppointmentChangeImpactCreate {
     ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
@@ -1781,10 +1781,10 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-calendars-calendarId-appointments");
+    /// # let client = churchtools_api::replay::client("post-calendars-calendarId-appointments");
     /// let body = models::AppointmentCreate {
     ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
@@ -1813,8 +1813,8 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.calendars().appointments().delete(42, 4)?;
@@ -1838,10 +1838,10 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments-appointmentId");
+    /// # let client = churchtools_api::replay::client("get-calendars-calendarId-appointments-appointmentId");
     /// let appointment = client.calendars().appointments().get(42, 4)?;
     /// println!("{:?}", appointment);
     /// # Ok(())
@@ -1873,8 +1873,8 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.calendars().appointments().get_ical(42, 4)?;
@@ -1899,10 +1899,10 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-appointments-appointmentId-startDate");
+    /// # let client = churchtools_api::replay::client("get-calendars-appointments-appointmentId-startDate");
     /// let occurrence = client.calendars().appointments().get_occurrence(4, "2026-09-20")?;
     /// println!("{:?}", occurrence.title_suffix);
     /// # Ok(())
@@ -1936,10 +1936,10 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments-appointmentId-startDate");
+    /// # let client = churchtools_api::replay::client("get-calendars-calendarId-appointments-appointmentId-startDate");
     /// let occurrence_in_calendar = client.calendars().appointments().get_occurrence_in_calendar(42, 4, "2026-09-20")?;
     /// println!("{:?}", occurrence_in_calendar.title_suffix);
     /// # Ok(())
@@ -1971,10 +1971,10 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-appointments");
+    /// # let client = churchtools_api::replay::client("get-calendars-appointments");
     /// let query = GetCalendarsAppointmentsQuery {
     ///     calendar_ids: Some(vec![2, 3]),
     ///     ..Default::default()
@@ -2002,10 +2002,10 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments");
+    /// # let client = churchtools_api::replay::client("get-calendars-calendarId-appointments");
     /// for in_calendar in client.calendars().appointments().list_in_calendar(42)? {
     ///     println!("{:?}", in_calendar.title_suffix);
     /// }
@@ -2038,8 +2038,8 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AppointmentSplitUpdate {
@@ -2072,10 +2072,10 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-calendars-calendarId-appointments-appointmentId");
+    /// # let client = churchtools_api::replay::client("put-calendars-calendarId-appointments-appointmentId");
     /// let body = models::AppointmentUpdate {
     ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
@@ -2113,8 +2113,8 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.calendars().appointments().meeting_requests().answer(42, 4, 19, "accept")?;
@@ -2136,8 +2136,8 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::MeetingRequestCreate {
@@ -2165,8 +2165,8 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.calendars().appointments().meeting_requests().delete(42, 4, 19)?;
@@ -2188,10 +2188,10 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments-appointmentId-meetingrequests");
+    /// # let client = churchtools_api::replay::client("get-calendars-calendarId-appointments-appointmentId-meetingrequests");
     /// for meeting_request in client.calendars().appointments().meeting_requests().list(42, 4)? {
     ///     println!("{}", meeting_request.id);
     /// }
@@ -2213,8 +2213,8 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::MeetingRequestUpdate {
@@ -2251,10 +2251,10 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-calendars-appointments-templates");
+    /// # let client = churchtools_api::replay::client("post-calendars-appointments-templates");
     /// let body = models::AppointmentTemplateCreate {
     ///     calendar_id: 1,
     ///     duration: 3600,
@@ -2283,8 +2283,8 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.calendars().appointments().templates().delete(1)?;
@@ -2306,10 +2306,10 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-appointments-templates-id");
+    /// # let client = churchtools_api::replay::client("get-calendars-appointments-templates-id");
     /// let template = client.calendars().appointments().templates().get(1)?;
     /// println!("{:?}", template.title);
     /// # Ok(())
@@ -2330,10 +2330,10 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-appointments-templates");
+    /// # let client = churchtools_api::replay::client("get-calendars-appointments-templates");
     /// for template in client.calendars().appointments().templates().list()? {
     ///     println!("{:?}", template.title);
     /// }
@@ -2355,10 +2355,10 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-calendars-appointments-templates-id");
+    /// # let client = churchtools_api::replay::client("put-calendars-appointments-templates-id");
     /// let body = models::AppointmentTemplateUpdate {
     ///     calendar_id: 1,
     ///     duration: 3600,
@@ -2398,10 +2398,10 @@ impl<'a> CalendarsMeetingRequestResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-calendars-calendarId-meetingrequest-candidates");
+    /// # let client = churchtools_api::replay::client("get-calendars-calendarId-meetingrequest-candidates");
     /// for candidate in client.calendars().meeting_request().list_candidates(42)? {
     ///     println!("{:?}", candidate.group_name);
     /// }
@@ -2443,10 +2443,10 @@ impl<'a> CampusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-campuses");
+    /// # let client = churchtools_api::replay::client("post-campuses");
     /// let body = models::CampusCreate {
     ///     name: "Hamburg Altona".into(),
     ///     shorty: "ALT".into(),
@@ -2471,8 +2471,8 @@ impl<'a> CampusesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.campuses().delete(1)?;
@@ -2494,10 +2494,10 @@ impl<'a> CampusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-campuses-id");
+    /// # let client = churchtools_api::replay::client("get-campuses-id");
     /// let campus = client.campuses().get(1)?;
     /// println!("{}", campus.name);
     /// # Ok(())
@@ -2518,10 +2518,10 @@ impl<'a> CampusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-campuses");
+    /// # let client = churchtools_api::replay::client("get-campuses");
     /// for campus in client.campuses().list()? {
     ///     println!("{}", campus.name);
     /// }
@@ -2541,10 +2541,10 @@ impl<'a> CampusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-campuses-id");
+    /// # let client = churchtools_api::replay::client("put-campuses-id");
     /// let body = models::CampusUpdate {
     ///     name: Some(Some("Hauskreis Nord".into())),
     ///     ..Default::default()
@@ -2579,8 +2579,8 @@ impl<'a> CaptchaResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostCaptchaBody {
@@ -2608,10 +2608,10 @@ impl<'a> CaptchaResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-captcha");
+    /// # let client = churchtools_api::replay::client("get-captcha");
     /// let captcha = client.captcha().get()?;
     /// println!("{}", captcha.signature);
     /// # Ok(())
@@ -2641,8 +2641,8 @@ impl<'a> ChatResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ChatCreate {
@@ -2675,8 +2675,8 @@ impl<'a> ChatResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.chat().delete("681F54E3-2EB7-40A4-84F0-EFF8E8F05727")?;
@@ -2711,10 +2711,10 @@ impl<'a> ChatResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-chat");
+    /// # let client = churchtools_api::replay::client("get-chat");
     /// for chat in client.chat().list()? {
     ///     println!("{:?}", chat.creator);
     /// }
@@ -2747,8 +2747,8 @@ impl<'a> ChatResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ChatUpdate {
@@ -2787,8 +2787,8 @@ impl<'a> CheckinResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CheckinPersonCreate {
@@ -2839,8 +2839,8 @@ impl<'a> CheckinResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CheckinPersonUpdate {
@@ -2886,10 +2886,10 @@ impl<'a> ChurchQueryResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-churchquery-metadata");
+    /// # let client = churchtools_api::replay::client("get-churchquery-metadata");
     /// let result = client.church_query().get_metadata()?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -2930,8 +2930,8 @@ impl<'a> ChurchQueryDebugResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: String = "beispiel".into();
@@ -2975,10 +2975,10 @@ impl<'a> ConfigResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-config");
+    /// # let client = churchtools_api::replay::client("get-config");
     /// let config = client.config().get()?;
     /// println!("{:?}", config.current_config_file);
     /// # Ok(())
@@ -3006,8 +3006,8 @@ impl<'a> ConfigResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PutConfigRequest {
@@ -3043,10 +3043,10 @@ impl<'a> ContactLabelsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-contactlabels");
+    /// # let client = churchtools_api::replay::client("post-contactlabels");
     /// let body = models::ContactLabelCreate {
     ///     is_default: false,
     ///     name: "Private".into(),
@@ -3076,8 +3076,8 @@ impl<'a> ContactLabelsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.contact_labels().delete(1)?;
@@ -3110,10 +3110,10 @@ impl<'a> ContactLabelsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-contactlabels-id");
+    /// # let client = churchtools_api::replay::client("get-contactlabels-id");
     /// let contact_label = client.contact_labels().get(1)?;
     /// println!("{}", contact_label.name);
     /// # Ok(())
@@ -3134,10 +3134,10 @@ impl<'a> ContactLabelsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-contactlabels");
+    /// # let client = churchtools_api::replay::client("get-contactlabels");
     /// for contact_label in client.contact_labels().list()? {
     ///     println!("{}", contact_label.name);
     /// }
@@ -3159,10 +3159,10 @@ impl<'a> ContactLabelsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-contactlabels-id");
+    /// # let client = churchtools_api::replay::client("put-contactlabels-id");
     /// let body = models::ContactLabelUpdate {
     ///     is_default: false,
     ///     name: "Private".into(),
@@ -3199,10 +3199,10 @@ impl<'a> CsrfTokenResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-csrftoken");
+    /// # let client = churchtools_api::replay::client("get-csrftoken");
     /// let result = client.csrf_token().get()?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -3232,10 +3232,10 @@ impl<'a> DbFieldTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-dbfieldtypes");
+    /// # let client = churchtools_api::replay::client("get-dbfieldtypes");
     /// for db_field_type in client.db_field_types().list()? {
     ///     println!("{}", db_field_type.name);
     /// }
@@ -3270,8 +3270,8 @@ impl<'a> DbFieldsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DbFieldCreate {
@@ -3306,8 +3306,8 @@ impl<'a> DbFieldsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.db_fields().delete(200)?;
@@ -3329,10 +3329,10 @@ impl<'a> DbFieldsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-dbfields-fieldId");
+    /// # let client = churchtools_api::replay::client("get-dbfields-fieldId");
     /// let db_field = client.db_fields().get(200)?;
     /// println!("{}", db_field.name);
     /// # Ok(())
@@ -3355,10 +3355,10 @@ impl<'a> DbFieldsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-dbfields");
+    /// # let client = churchtools_api::replay::client("get-dbfields");
     /// for db_field in client.db_fields().list()? {
     ///     println!("{}", db_field.name);
     /// }
@@ -3391,8 +3391,8 @@ impl<'a> DbFieldsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DbFieldUpdate {
@@ -3433,8 +3433,8 @@ impl<'a> DbFieldsOptionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DbFieldOptionCreate {
@@ -3464,8 +3464,8 @@ impl<'a> DbFieldsOptionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.db_fields().options().delete(200, 3)?;
@@ -3498,10 +3498,10 @@ impl<'a> DbFieldsOptionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-dbfields-fieldId-options");
+    /// # let client = churchtools_api::replay::client("get-dbfields-fieldId-options");
     /// for option in client.db_fields().options().list(200)? {
     ///     println!("{:?}", option.name);
     /// }
@@ -3523,8 +3523,8 @@ impl<'a> DbFieldsOptionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// for metadata in client.db_fields().options().list_metadata(200)? {
@@ -3548,8 +3548,8 @@ impl<'a> DbFieldsOptionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DbFieldOptionUpdate {
@@ -3586,10 +3586,10 @@ impl<'a> DepartmentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-departments");
+    /// # let client = churchtools_api::replay::client("get-departments");
     /// for department in client.departments().list()? {
     ///     println!("{}", department.name);
     /// }
@@ -3620,10 +3620,10 @@ impl<'a> DomainObjectsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-domainobjects");
+    /// # let client = churchtools_api::replay::client("get-domainobjects");
     /// let query = GetDomainobjectsQuery {
     ///     domain_types: Some(vec!["person".into(), "group".into()]),
     ///     domain_identifiers: Some(vec!["42".into(), "7".into()]),
@@ -3650,10 +3650,10 @@ impl<'a> DomainObjectsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-domainobjects");
+    /// # let client = churchtools_api::replay::client("post-domainobjects");
     /// let body = models::DomainObjectPayload {
     ///     domain_identifiers: vec!["42".into(), "7".into()],
     ///     domain_types: vec!["person".into(), "group".into()],
@@ -3690,8 +3690,8 @@ impl<'a> DynamicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.dynamic_groups().delete_ruleset(42)?;
@@ -3713,10 +3713,10 @@ impl<'a> DynamicGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-dynamicgroups-id-status");
+    /// # let client = churchtools_api::replay::client("get-dynamicgroups-id-status");
     /// let statu = client.dynamic_groups().get_status(42)?;
     /// println!("{}", statu.dynamic_group_status);
     /// # Ok(())
@@ -3737,10 +3737,10 @@ impl<'a> DynamicGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-dynamicgroups");
+    /// # let client = churchtools_api::replay::client("get-dynamicgroups");
     /// for dynamic_group in client.dynamic_groups().list()? {
     ///     println!("{:?}", dynamic_group);
     /// }
@@ -3762,10 +3762,10 @@ impl<'a> DynamicGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-dynamicgroups-id-ruleset");
+    /// # let client = churchtools_api::replay::client("get-dynamicgroups-id-ruleset");
     /// for ruleset in client.dynamic_groups().list_ruleset(42)? {
     ///     println!("{}", ruleset.description);
     /// }
@@ -3787,8 +3787,8 @@ impl<'a> DynamicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// for dynamic_group in client.dynamic_groups().refresh(42)? {
@@ -3812,8 +3812,8 @@ impl<'a> DynamicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// for dynamic_group in client.dynamic_groups().refresh_all()? {
@@ -3837,8 +3837,8 @@ impl<'a> DynamicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DynamicGroupRuleSetUpdate {
@@ -3883,8 +3883,8 @@ impl<'a> DynamicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DynamicGroupStatusUpdate {
@@ -3921,8 +3921,8 @@ impl<'a> EmailsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EmailPlaceholderStatisticsCreate {
@@ -3952,10 +3952,10 @@ impl<'a> EmailsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-emails-preview");
+    /// # let client = churchtools_api::replay::client("post-emails-preview");
     /// let body = models::EmailPreviewCreate {
     ///     content: vec!["Hello {{person.firstName}}".into()],
     ///     person_id: 1,
@@ -3991,8 +3991,8 @@ impl<'a> EvangelischeTermineResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.evangelische_termine().delete()?;
@@ -4014,8 +4014,8 @@ impl<'a> EvangelischeTermineResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// for event_type in client.evangelische_termine().list_event_types()? {
@@ -4039,8 +4039,8 @@ impl<'a> EvangelischeTermineResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EvangelischeTermineSettingsValidateCreate {
@@ -4078,10 +4078,10 @@ impl<'a> EventResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-event-masterdata");
+    /// # let client = churchtools_api::replay::client("get-event-masterdata");
     /// let master_data = client.event().get_master_data()?;
     /// println!("{:?}", master_data);
     /// # Ok(())
@@ -4111,10 +4111,10 @@ impl<'a> EventTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-eventtemplates");
+    /// # let client = churchtools_api::replay::client("get-eventtemplates");
     /// for event_template in client.event_templates().list()? {
     ///     println!("{}", event_template.id);
     /// }
@@ -4165,8 +4165,8 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EventChatUpdate {
@@ -4193,8 +4193,8 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = PostEventsIcalQuery {
@@ -4223,8 +4223,8 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().delete(42)?;
@@ -4257,10 +4257,10 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-id");
+    /// # let client = churchtools_api::replay::client("get-events-id");
     /// let event = client.events().get(42)?;
     /// println!("{}", event.name);
     /// # Ok(())
@@ -4281,10 +4281,10 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-ical");
+    /// # let client = churchtools_api::replay::client("get-events-ical");
     /// let query = GetEventsIcalQuery {
     ///     person_id: Some(42),
     ///     ..Default::default()
@@ -4311,10 +4311,10 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events");
+    /// # let client = churchtools_api::replay::client("get-events");
     /// for event in client.events().list()? {
     ///     println!("{}", event.name);
     /// }
@@ -4356,10 +4356,10 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-id-possiblepersonsforservice");
+    /// # let client = churchtools_api::replay::client("get-events-id-possiblepersonsforservice");
     /// for possible_persons_for_service in client.events().list_possible_persons_for_service(2)? {
     ///     println!("{}", possible_persons_for_service.full_name);
     /// }
@@ -4381,8 +4381,8 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EventMailCreate {
@@ -4415,8 +4415,8 @@ impl<'a> EventsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EventDetailsUpdate {
@@ -4457,8 +4457,8 @@ impl<'a> EventsAgendaResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().agenda().delete(42)?;
@@ -4480,8 +4480,8 @@ impl<'a> EventsAgendaResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = PostEventsIdAgendaExportQuery {
@@ -4515,10 +4515,10 @@ impl<'a> EventsAgendaResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-id-agenda");
+    /// # let client = churchtools_api::replay::client("get-events-id-agenda");
     /// let agenda = client.events().agenda().get(42)?;
     /// println!("{:?}", agenda.name);
     /// # Ok(())
@@ -4539,8 +4539,8 @@ impl<'a> EventsAgendaResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = PostEventsIdAgendaIntegrateQuery {
@@ -4567,10 +4567,10 @@ impl<'a> EventsAgendaResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-id-agenda-songs");
+    /// # let client = churchtools_api::replay::client("get-events-id-agenda-songs");
     /// for song in client.events().agenda().list_songs(42)? {
     ///     println!("{}", song.name);
     /// }
@@ -4592,8 +4592,8 @@ impl<'a> EventsAgendaResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().agenda().lock(42)?;
@@ -4615,8 +4615,8 @@ impl<'a> EventsAgendaResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().agenda().unlock(42)?;
@@ -4640,8 +4640,8 @@ impl<'a> EventsAgendaResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = serde_json::json!({});
@@ -4692,10 +4692,10 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-events-id-agenda-items");
+    /// # let client = churchtools_api::replay::client("post-events-id-agenda-items");
     /// let body = serde_json::json!({
     ///     "type": "header"
     /// });
@@ -4731,8 +4731,8 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().agenda().items().delete(42, 123)?;
@@ -4754,8 +4754,8 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().agenda().items().hide(42, 123)?;
@@ -4777,8 +4777,8 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().agenda().items().unhide(42, 123)?;
@@ -4802,10 +4802,10 @@ impl<'a> EventsAgendaItemsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-events-id-agenda-items-id");
+    /// # let client = churchtools_api::replay::client("put-events-id-agenda-items-id");
     /// let body = serde_json::json!({
     ///     "type": "header"
     /// });
@@ -4850,8 +4850,8 @@ impl<'a> EventsAgendaItemsServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().agenda().items().service_groups().delete(42, 123, 13)?;
@@ -4873,8 +4873,8 @@ impl<'a> EventsAgendaItemsServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AgendaServiceGroupNoteUpdate {
@@ -4910,8 +4910,8 @@ impl<'a> EventsEventServicesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ServiceRequestAnswer {
@@ -4940,8 +4940,8 @@ impl<'a> EventsEventServicesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ServiceRequestUpdate {
@@ -4970,8 +4970,8 @@ impl<'a> EventsEventServicesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EventServicesUpdate {
@@ -5012,8 +5012,8 @@ impl<'a> EventsFactsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.events().facts().delete(42, 1)?;
@@ -5037,8 +5037,8 @@ impl<'a> EventsFactsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EventFactExportCreate {
@@ -5077,10 +5077,10 @@ impl<'a> EventsFactsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-eventId-facts-factId");
+    /// # let client = churchtools_api::replay::client("get-events-eventId-facts-factId");
     /// let fact = client.events().facts().get(42, 1)?;
     /// println!("{}", fact.deprecated);
     /// # Ok(())
@@ -5101,10 +5101,10 @@ impl<'a> EventsFactsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-eventId-facts");
+    /// # let client = churchtools_api::replay::client("get-events-eventId-facts");
     /// for fact in client.events().facts().list(42)? {
     ///     println!("{}", fact.deprecated);
     /// }
@@ -5128,10 +5128,10 @@ impl<'a> EventsFactsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-facts");
+    /// # let client = churchtools_api::replay::client("get-events-facts");
     /// for all in client.events().facts().list_all()? {
     ///     println!("{}", all.deprecated);
     /// }
@@ -5173,8 +5173,8 @@ impl<'a> EventsFactsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EventFactUpdate {
@@ -5211,8 +5211,8 @@ impl<'a> EventsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ServiceRequestAnswer {
@@ -5240,8 +5240,8 @@ impl<'a> EventsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ServiceRequestAnswer {
@@ -5269,8 +5269,8 @@ impl<'a> EventsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ServiceRequestUndoCreate {
@@ -5298,8 +5298,8 @@ impl<'a> EventsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ServiceRequestUpdate {
@@ -5327,8 +5327,8 @@ impl<'a> EventsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EventServicesUpdate {
@@ -5368,10 +5368,10 @@ impl<'a> EventsServicesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-events-eventId-services-serviceId-possiblepersons");
+    /// # let client = churchtools_api::replay::client("get-events-eventId-services-serviceId-possiblepersons");
     /// for possible_person in client.events().services().list_possible_persons(42, 2)? {
     ///     println!("{}", possible_person.partner_services);
     /// }
@@ -5414,8 +5414,8 @@ impl<'a> ExternalLoginsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ExternalLoginCreate {
@@ -5451,8 +5451,8 @@ impl<'a> ExternalLoginsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.external_logins().delete(7)?;
@@ -5474,10 +5474,10 @@ impl<'a> ExternalLoginsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-externallogins-id");
+    /// # let client = churchtools_api::replay::client("get-externallogins-id");
     /// let external_login = client.external_logins().get(7)?;
     /// println!("{}", external_login.name);
     /// # Ok(())
@@ -5498,10 +5498,10 @@ impl<'a> ExternalLoginsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-externallogins");
+    /// # let client = churchtools_api::replay::client("get-externallogins");
     /// for external_login in client.external_logins().list()? {
     ///     println!("{}", external_login.name);
     /// }
@@ -5523,8 +5523,8 @@ impl<'a> ExternalLoginsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ExternalLoginUpdate {
@@ -5569,8 +5569,8 @@ impl<'a> ExternalLoginsLinkResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ExternalLoginLinkCreate {
@@ -5600,8 +5600,8 @@ impl<'a> ExternalLoginsLinkResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ExternalLoginPersonCreate {
@@ -5642,8 +5642,8 @@ impl<'a> ExternalLoginsOidcResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.external_logins().oidc().backchannel_logout()?;
@@ -5665,8 +5665,8 @@ impl<'a> ExternalLoginsOidcResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetExternalloginsOidcCallbackQuery {
@@ -5693,8 +5693,8 @@ impl<'a> ExternalLoginsOidcResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetExternalloginsIdOidcCallbackQuery {
@@ -5723,8 +5723,8 @@ impl<'a> ExternalLoginsOidcResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let start = client.external_logins().oidc().get_start(7)?;
@@ -5767,8 +5767,8 @@ impl<'a> ExternalLoginsOidcTestResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let result = client.external_logins().oidc().test().create(7)?;
@@ -5791,10 +5791,10 @@ impl<'a> ExternalLoginsOidcTestResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-externallogins-id-oidc-test-state");
+    /// # let client = churchtools_api::replay::client("get-externallogins-id-oidc-test-state");
     /// let test = client.external_logins().oidc().test().get(7, "opaque-session-bound-state")?;
     /// println!("{:?}", test.error_code);
     /// # Ok(())
@@ -5832,8 +5832,8 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.external_logins().saml().acs(7)?;
@@ -5858,8 +5858,8 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.external_logins().saml().create_sls(7)?;
@@ -5894,8 +5894,8 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.external_logins().saml().delete_sls(7)?;
@@ -5930,8 +5930,8 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.external_logins().saml().get_login(7)?;
@@ -5964,8 +5964,8 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.external_logins().saml().get_metadata(7)?;
@@ -5990,8 +5990,8 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.external_logins().saml().get_sls(7)?;
@@ -6026,8 +6026,8 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.external_logins().saml().patch_sls(7)?;
@@ -6062,8 +6062,8 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.external_logins().saml().update_sls(7)?;
@@ -6105,8 +6105,8 @@ impl<'a> ExternalLoginsSamlMetadataResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SamlMetadataParseCreate {
@@ -6143,8 +6143,8 @@ impl<'a> ExternalLoginsSamlTestResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let result = client.external_logins().saml().test().create(7)?;
@@ -6167,10 +6167,10 @@ impl<'a> ExternalLoginsSamlTestResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-externallogins-id-saml-test-state");
+    /// # let client = churchtools_api::replay::client("get-externallogins-id-saml-test-state");
     /// let test = client.external_logins().saml().test().get(7, "beispiel")?;
     /// println!("{}", test.status);
     /// # Ok(())
@@ -6204,10 +6204,10 @@ impl<'a> ExternalPostsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-externalposts");
+    /// # let client = churchtools_api::replay::client("get-externalposts");
     /// for external_post in client.external_posts().list()? {
     ///     println!("{}", external_post.title);
     /// }
@@ -6271,8 +6271,8 @@ impl<'a> ExternalPostsInstancesChannelsPostsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let post = client.external_posts().instances().channels().posts().get("abc123", "abc123", "abc123")?;
@@ -6304,10 +6304,10 @@ impl<'a> FactsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-facts");
+    /// # let client = churchtools_api::replay::client("post-facts");
     /// let body = serde_json::json!({
     ///     "name": "Attendance",
     ///     "type": "number",
@@ -6336,8 +6336,8 @@ impl<'a> FactsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.facts().delete(3)?;
@@ -6370,10 +6370,10 @@ impl<'a> FactsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-facts-id");
+    /// # let client = churchtools_api::replay::client("get-facts-id");
     /// let result = client.facts().get(3)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -6394,10 +6394,10 @@ impl<'a> FactsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-facts");
+    /// # let client = churchtools_api::replay::client("get-facts");
     /// for fact in client.facts().list()? {
     ///     println!("{:?}", fact);
     /// }
@@ -6419,10 +6419,10 @@ impl<'a> FactsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-facts-id");
+    /// # let client = churchtools_api::replay::client("put-facts-id");
     /// let body = serde_json::json!({
     ///     "name": "Attendance",
     ///     "type": "number",
@@ -6456,8 +6456,8 @@ impl<'a> FeatureUsageResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostFeatureusageBody::default();
@@ -6490,10 +6490,10 @@ impl<'a> FieldsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-fields");
+    /// # let client = churchtools_api::replay::client("get-fields");
     /// for field in client.fields().list()? {
     ///     println!("{:?}", field);
     /// }
@@ -6527,8 +6527,8 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let file = Upload::from_path("gemeindebrief.pdf")?;
@@ -6566,8 +6566,8 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.files().delete(1)?;
@@ -6589,8 +6589,8 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.files().delete_for_object(serde_json::json!("agenda_PRO_PRESENTER_6"), "42")?;
@@ -6612,10 +6612,10 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-files-id-meta");
+    /// # let client = churchtools_api::replay::client("get-files-id-meta");
     /// let meta = client.files().get_meta(1)?;
     /// println!("{}", meta.name);
     /// # Ok(())
@@ -6636,10 +6636,10 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-files-id-metadata");
+    /// # let client = churchtools_api::replay::client("get-files-id-metadata");
     /// let metadata = client.files().get_metadata(42)?;
     /// println!("{}", metadata.id);
     /// # Ok(())
@@ -6661,8 +6661,8 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::FileLinkCreate {
@@ -6690,10 +6690,10 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-files-domainType-domainIdentifier");
+    /// # let client = churchtools_api::replay::client("get-files-domainType-domainIdentifier");
     /// for file in client.files().list(serde_json::json!("agenda_PRO_PRESENTER_6"), "42")? {
     ///     println!("{}", file.name);
     /// }
@@ -6715,10 +6715,10 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-files-domainType");
+    /// # let client = churchtools_api::replay::client("get-files-domainType");
     /// let result = client.files().list_for_type(serde_json::json!("agenda_PRO_PRESENTER_6"))?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -6739,8 +6739,8 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::FileUpdate {
@@ -6767,8 +6767,8 @@ impl<'a> FilesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::FileDomainUpdate {
@@ -6876,10 +6876,10 @@ impl<'a> FinanceResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-masterdata");
+    /// # let client = churchtools_api::replay::client("get-finance-masterdata");
     /// let query = GetFinanceMasterdataQuery {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
@@ -6913,8 +6913,8 @@ impl<'a> FinanceAccountClassesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountClassCreate {
@@ -6945,8 +6945,8 @@ impl<'a> FinanceAccountClassesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().account_classes().delete(1)?;
@@ -6979,10 +6979,10 @@ impl<'a> FinanceAccountClassesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountclasses-id");
+    /// # let client = churchtools_api::replay::client("get-finance-accountclasses-id");
     /// let account_class = client.finance().account_classes().get(1)?;
     /// println!("{}", account_class.name);
     /// # Ok(())
@@ -7003,10 +7003,10 @@ impl<'a> FinanceAccountClassesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountclasses");
+    /// # let client = churchtools_api::replay::client("get-finance-accountclasses");
     /// for account_class in client.finance().account_classes().list()? {
     ///     println!("{}", account_class.name);
     /// }
@@ -7028,8 +7028,8 @@ impl<'a> FinanceAccountClassesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountClassUpdate {
@@ -7067,8 +7067,8 @@ impl<'a> FinanceAccountGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountGroupCreate {
@@ -7100,8 +7100,8 @@ impl<'a> FinanceAccountGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().account_groups().delete(1)?;
@@ -7134,10 +7134,10 @@ impl<'a> FinanceAccountGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountgroups-id");
+    /// # let client = churchtools_api::replay::client("get-finance-accountgroups-id");
     /// let account_group = client.finance().account_groups().get(1)?;
     /// println!("{}", account_group.name);
     /// # Ok(())
@@ -7158,10 +7158,10 @@ impl<'a> FinanceAccountGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountgroups");
+    /// # let client = churchtools_api::replay::client("get-finance-accountgroups");
     /// for account_group in client.finance().account_groups().list()? {
     ///     println!("{}", account_group.name);
     /// }
@@ -7183,8 +7183,8 @@ impl<'a> FinanceAccountGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountGroupUpdate {
@@ -7223,8 +7223,8 @@ impl<'a> FinanceAccountTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountTypeCreate {
@@ -7254,8 +7254,8 @@ impl<'a> FinanceAccountTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().account_types().delete(1)?;
@@ -7288,10 +7288,10 @@ impl<'a> FinanceAccountTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accounttypes-id");
+    /// # let client = churchtools_api::replay::client("get-finance-accounttypes-id");
     /// let account_type = client.finance().account_types().get(1)?;
     /// println!("{}", account_type.name);
     /// # Ok(())
@@ -7312,10 +7312,10 @@ impl<'a> FinanceAccountTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accounttypes");
+    /// # let client = churchtools_api::replay::client("get-finance-accounttypes");
     /// for account_type in client.finance().account_types().list()? {
     ///     println!("{}", account_type.name);
     /// }
@@ -7337,8 +7337,8 @@ impl<'a> FinanceAccountTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountTypeUpdate {
@@ -7383,8 +7383,8 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountingPeriodCreate {
@@ -7418,8 +7418,8 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().accounting_periods().delete(1)?;
@@ -7452,8 +7452,8 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().accounting_periods().delete_tax_rates(1)?;
@@ -7475,10 +7475,10 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id");
+    /// # let client = churchtools_api::replay::client("get-finance-accountingperiods-id");
     /// let accounting_period = client.finance().accounting_periods().get(1)?;
     /// println!("{}", accounting_period.id);
     /// # Ok(())
@@ -7499,10 +7499,10 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods");
+    /// # let client = churchtools_api::replay::client("get-finance-accountingperiods");
     /// for accounting_period in client.finance().accounting_periods().list()? {
     ///     println!("{}", accounting_period.id);
     /// }
@@ -7526,10 +7526,10 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-bills");
+    /// # let client = churchtools_api::replay::client("get-finance-accountingperiods-id-bills");
     /// for bill in client.finance().accounting_periods().list_bills(1)? {
     ///     println!("{}", bill.id);
     /// }
@@ -7571,10 +7571,10 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-userrules");
+    /// # let client = churchtools_api::replay::client("get-finance-accountingperiods-id-userrules");
     /// for user_rule in client.finance().accounting_periods().list_user_rules(1)? {
     ///     println!("{}", user_rule.id);
     /// }
@@ -7596,8 +7596,8 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountingPeriodUpdate {
@@ -7629,8 +7629,8 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::UserRulesUpdate {
@@ -7683,8 +7683,8 @@ impl<'a> FinanceAccountingPeriodsAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().accounting_periods().accounts().delete(1)?;
@@ -7708,10 +7708,10 @@ impl<'a> FinanceAccountingPeriodsAccountsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-movements");
+    /// # let client = churchtools_api::replay::client("get-finance-accountingperiods-id-accounts-id-movements");
     /// for movement in client.finance().accounting_periods().accounts().list_movements(1, 42)? {
     ///     println!("{}", movement.id);
     /// }
@@ -7753,10 +7753,10 @@ impl<'a> FinanceAccountingPeriodsAccountsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-statements");
+    /// # let client = churchtools_api::replay::client("get-finance-accountingperiods-id-accounts-statements");
     /// for statement in client.finance().accounting_periods().accounts().list_statements(1)? {
     ///     println!("{}", statement.account_id);
     /// }
@@ -7791,10 +7791,10 @@ impl<'a> FinanceAccountingPeriodsAccountsStatementsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-statements");
+    /// # let client = churchtools_api::replay::client("get-finance-accountingperiods-id-accounts-id-statements");
     /// for statement in client.finance().accounting_periods().accounts().statements().list(1, 5)? {
     ///     println!("{}", statement.name);
     /// }
@@ -7825,8 +7825,8 @@ impl<'a> FinanceAccountingPeriodsAccountsStatementsMovementsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::StatementMovementUpdate {
@@ -7856,10 +7856,10 @@ impl<'a> FinanceAccountingPeriodsAccountsStatementsMovementsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-statements-id-movements");
+    /// # let client = churchtools_api::replay::client("get-finance-accountingperiods-id-accounts-id-statements-id-movements");
     /// for movement in client.finance().accounting_periods().accounts().statements().movements().list(1, 42, 7)? {
     ///     println!("{}", movement.id);
     /// }
@@ -7901,8 +7901,8 @@ impl<'a> FinanceAccountingPeriodsAccountsStatementsMovementsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::MovementSuggestionsUpdate {
@@ -7942,8 +7942,8 @@ impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().accounting_periods().statements().delete(1, 1)?;
@@ -7965,8 +7965,8 @@ impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let file = Upload::from_path("kontoauszug.xml")?;
@@ -7992,8 +7992,8 @@ impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().accounting_periods().statements().suggestions(1, 7)?;
@@ -8015,8 +8015,8 @@ impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountStatementUpdate {
@@ -8052,8 +8052,8 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: Vec<models::AccountCreate> = vec![models::AccountCreate {
@@ -8085,8 +8085,8 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountCreate {
@@ -8119,8 +8119,8 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().accounts().delete(1)?;
@@ -8153,8 +8153,8 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountImportTemplateCreate {
@@ -8182,10 +8182,10 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accounts-id");
+    /// # let client = churchtools_api::replay::client("get-finance-accounts-id");
     /// let account = client.finance().accounts().get(1)?;
     /// println!("{}", account.name);
     /// # Ok(())
@@ -8206,8 +8206,8 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceAccountsCsvQuery {
@@ -8234,8 +8234,8 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceAccountsExportQuery {
@@ -8264,10 +8264,10 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accounts");
+    /// # let client = churchtools_api::replay::client("get-finance-accounts");
     /// for account in client.finance().accounts().list()? {
     ///     println!("{}", account.name);
     /// }
@@ -8300,8 +8300,8 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountUpdate {
@@ -8340,8 +8340,8 @@ impl<'a> FinanceBillsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = serde_json::json!({
@@ -8374,8 +8374,8 @@ impl<'a> FinanceBillsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().bills().delete(1)?;
@@ -8408,10 +8408,10 @@ impl<'a> FinanceBillsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-bills-id");
+    /// # let client = churchtools_api::replay::client("get-finance-bills-id");
     /// let bill = client.finance().bills().get(1)?;
     /// println!("{}", bill.id);
     /// # Ok(())
@@ -8432,8 +8432,8 @@ impl<'a> FinanceBillsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::BillUpdate {
@@ -8471,8 +8471,8 @@ impl<'a> FinanceCashDiscountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CashDiscountCreate {
@@ -8504,8 +8504,8 @@ impl<'a> FinanceCashDiscountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().cash_discounts().delete(1)?;
@@ -8538,10 +8538,10 @@ impl<'a> FinanceCashDiscountsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-cashdiscounts-id");
+    /// # let client = churchtools_api::replay::client("get-finance-cashdiscounts-id");
     /// let cash_discount = client.finance().cash_discounts().get(1)?;
     /// println!("{}", cash_discount.id);
     /// # Ok(())
@@ -8564,10 +8564,10 @@ impl<'a> FinanceCashDiscountsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-cashdiscounts");
+    /// # let client = churchtools_api::replay::client("get-finance-cashdiscounts");
     /// for cash_discount in client.finance().cash_discounts().list()? {
     ///     println!("{}", cash_discount.id);
     /// }
@@ -8600,8 +8600,8 @@ impl<'a> FinanceCashDiscountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CashDiscountUpdate {
@@ -8640,8 +8640,8 @@ impl<'a> FinanceClientsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ClientCreate {
@@ -8672,8 +8672,8 @@ impl<'a> FinanceClientsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().clients().delete(1)?;
@@ -8706,10 +8706,10 @@ impl<'a> FinanceClientsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-clients-id");
+    /// # let client = churchtools_api::replay::client("get-finance-clients-id");
     /// let item = client.finance().clients().get(1)?;
     /// println!("{}", item.name);
     /// # Ok(())
@@ -8730,10 +8730,10 @@ impl<'a> FinanceClientsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-clients");
+    /// # let client = churchtools_api::replay::client("get-finance-clients");
     /// for item in client.finance().clients().list()? {
     ///     println!("{}", item.name);
     /// }
@@ -8755,8 +8755,8 @@ impl<'a> FinanceClientsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ClientUpdate {
@@ -8794,8 +8794,8 @@ impl<'a> FinanceCostCentersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CostCenterBulkCreate {
@@ -8829,8 +8829,8 @@ impl<'a> FinanceCostCentersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CostCenterCreate {
@@ -8862,8 +8862,8 @@ impl<'a> FinanceCostCentersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().cost_centers().delete(1)?;
@@ -8896,10 +8896,10 @@ impl<'a> FinanceCostCentersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-costcenters-id");
+    /// # let client = churchtools_api::replay::client("get-finance-costcenters-id");
     /// let cost_center = client.finance().cost_centers().get(1)?;
     /// println!("{:?}", cost_center.name);
     /// # Ok(())
@@ -8920,8 +8920,8 @@ impl<'a> FinanceCostCentersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceCostcentersExportQuery {
@@ -8950,10 +8950,10 @@ impl<'a> FinanceCostCentersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-costcenters");
+    /// # let client = churchtools_api::replay::client("get-finance-costcenters");
     /// for cost_center in client.finance().cost_centers().list()? {
     ///     println!("{:?}", cost_center.name);
     /// }
@@ -8986,8 +8986,8 @@ impl<'a> FinanceCostCentersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CostCenterUpdate {
@@ -9025,8 +9025,8 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DonationReceiptsCreate {
@@ -9056,8 +9056,8 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DonationReceiptCreate {
@@ -9085,8 +9085,8 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = DeleteFinanceDonatorsDonatorCoupleIdQuery {
@@ -9112,8 +9112,8 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = DeleteFinanceDonatorsReceiptsQuery {
@@ -9139,8 +9139,8 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceDonatorsReceiptsQuery {
@@ -9167,8 +9167,8 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceDonatorsDonatorCoupleIdQuery {
@@ -9195,10 +9195,10 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-donators");
+    /// # let client = churchtools_api::replay::client("get-finance-donators");
     /// let query = GetFinanceDonatorsQuery {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
@@ -9246,10 +9246,10 @@ impl<'a> FinanceEubpResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-eubp-health");
+    /// # let client = churchtools_api::replay::client("get-finance-eubp-health");
     /// let health = client.finance().eubp().get_health()?;
     /// println!("{}", health.environment);
     /// # Ok(())
@@ -9283,8 +9283,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let submission = client.finance().eubp().submissions().cancel(1)?;
@@ -9307,8 +9307,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EubpSubmissionCreate {
@@ -9339,8 +9339,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().eubp().submissions().delete(1)?;
@@ -9362,8 +9362,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let submission = client.finance().eubp().submissions().fetch_status(1)?;
@@ -9386,8 +9386,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -9412,8 +9412,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let submission = client.finance().eubp().submissions().generate(1)?;
@@ -9436,10 +9436,10 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-eubp-submissions-id");
+    /// # let client = churchtools_api::replay::client("get-finance-eubp-submissions-id");
     /// let submission = client.finance().eubp().submissions().get(1)?;
     /// println!("{:?}", submission.title);
     /// # Ok(())
@@ -9460,10 +9460,10 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-eubp-submissions-id-preview");
+    /// # let client = churchtools_api::replay::client("get-finance-eubp-submissions-id-preview");
     /// let preview = client.finance().eubp().submissions().get_preview(1)?;
     /// println!("{:?}", preview);
     /// # Ok(())
@@ -9486,10 +9486,10 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-eubp-submissions");
+    /// # let client = churchtools_api::replay::client("get-finance-eubp-submissions");
     /// for submission in client.finance().eubp().submissions().list()? {
     ///     println!("{:?}", submission.title);
     /// }
@@ -9524,10 +9524,10 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-eubp-submissions-id-accounts");
+    /// # let client = churchtools_api::replay::client("get-finance-eubp-submissions-id-accounts");
     /// for account in client.finance().eubp().submissions().list_accounts(1)? {
     ///     println!("{}", account.name);
     /// }
@@ -9560,8 +9560,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -9586,8 +9586,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().eubp().submissions().send(1)?;
@@ -9609,8 +9609,8 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EubpSubmissionAccountsUpdate {
@@ -9648,8 +9648,8 @@ impl<'a> FinanceEubpSubmissionsPeriodsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::EubpPeriodAccountsUpdate {
@@ -9690,8 +9690,8 @@ impl<'a> FinanceReportsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::BalanceReportCreate {
@@ -9721,8 +9721,8 @@ impl<'a> FinanceReportsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::BalanceReportCreate {
@@ -9752,8 +9752,8 @@ impl<'a> FinanceReportsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SumBalanceReportCreate {
@@ -9782,8 +9782,8 @@ impl<'a> FinanceReportsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TurnoverReportCreate {
@@ -9838,8 +9838,8 @@ impl<'a> FinanceReportsStatementAccountsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AccountStatementReportCreate {
@@ -9876,8 +9876,8 @@ impl<'a> FinanceReportsStatementCostCentersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CostCenterStatementReportCreate {
@@ -9916,8 +9916,8 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SplitTransactionCreate {
@@ -9967,8 +9967,8 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().split_transactions().delete(1)?;
@@ -10001,8 +10001,8 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -10029,10 +10029,10 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-splittransactions-id");
+    /// # let client = churchtools_api::replay::client("get-finance-splittransactions-id");
     /// let split_transaction = client.finance().split_transactions().get(1)?;
     /// println!("{}", split_transaction.id);
     /// # Ok(())
@@ -10066,8 +10066,8 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SplitTransactionUpdate {
@@ -10115,8 +10115,8 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SplitTransactionStornoCreate {
@@ -10153,8 +10153,8 @@ impl<'a> FinanceTaxRatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TaxRateCreate {
@@ -10186,8 +10186,8 @@ impl<'a> FinanceTaxRatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().tax_rates().delete(1)?;
@@ -10220,10 +10220,10 @@ impl<'a> FinanceTaxRatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-taxrates-id");
+    /// # let client = churchtools_api::replay::client("get-finance-taxrates-id");
     /// let tax_rate = client.finance().tax_rates().get(1)?;
     /// println!("{}", tax_rate.id);
     /// # Ok(())
@@ -10246,10 +10246,10 @@ impl<'a> FinanceTaxRatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-taxrates");
+    /// # let client = churchtools_api::replay::client("get-finance-taxrates");
     /// for tax_rate in client.finance().tax_rates().list()? {
     ///     println!("{}", tax_rate.id);
     /// }
@@ -10282,8 +10282,8 @@ impl<'a> FinanceTaxRatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TaxRateUpdate {
@@ -10322,8 +10322,8 @@ impl<'a> FinanceTaxTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TaxTypeCreate {
@@ -10353,8 +10353,8 @@ impl<'a> FinanceTaxTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().tax_types().delete(1)?;
@@ -10387,10 +10387,10 @@ impl<'a> FinanceTaxTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-taxtypes-id");
+    /// # let client = churchtools_api::replay::client("get-finance-taxtypes-id");
     /// let tax_type = client.finance().tax_types().get(1)?;
     /// println!("{:?}", tax_type.name);
     /// # Ok(())
@@ -10411,10 +10411,10 @@ impl<'a> FinanceTaxTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-taxtypes");
+    /// # let client = churchtools_api::replay::client("get-finance-taxtypes");
     /// for tax_type in client.finance().tax_types().list()? {
     ///     println!("{:?}", tax_type.name);
     /// }
@@ -10436,8 +10436,8 @@ impl<'a> FinanceTaxTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TaxTypeUpdate {
@@ -10474,8 +10474,8 @@ impl<'a> FinanceTemplatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = PostFinanceTemplatesIdQuery {
@@ -10501,10 +10501,10 @@ impl<'a> FinanceTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-templates-export");
+    /// # let client = churchtools_api::replay::client("get-finance-templates-export");
     /// let query = GetFinanceTemplatesExportQuery {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
@@ -10529,10 +10529,10 @@ impl<'a> FinanceTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-templates");
+    /// # let client = churchtools_api::replay::client("get-finance-templates");
     /// for template in client.finance().templates().list()? {
     ///     println!("{}", template.name);
     /// }
@@ -10563,8 +10563,8 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TransactionPurposeCreate {
@@ -10598,8 +10598,8 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().transaction_purposes().delete(1)?;
@@ -10632,10 +10632,10 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-transactionpurposes-id");
+    /// # let client = churchtools_api::replay::client("get-finance-transactionpurposes-id");
     /// let transaction_purpose = client.finance().transaction_purposes().get(1)?;
     /// println!("{}", transaction_purpose.name);
     /// # Ok(())
@@ -10656,10 +10656,10 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-transactionpurposes");
+    /// # let client = churchtools_api::replay::client("get-finance-transactionpurposes");
     /// for transaction_purpose in client.finance().transaction_purposes().list()? {
     ///     println!("{}", transaction_purpose.name);
     /// }
@@ -10681,8 +10681,8 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TransactionPurposeUpdate {
@@ -10725,8 +10725,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: Vec<models::TransactionBulkCreateItem> = vec![models::TransactionBulkCreateItem {
@@ -10773,8 +10773,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TransactionCreate {
@@ -10819,8 +10819,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.finance().transactions().delete(1)?;
@@ -10853,8 +10853,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -10881,10 +10881,10 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-transactions-id");
+    /// # let client = churchtools_api::replay::client("get-finance-transactions-id");
     /// let transaction = client.finance().transactions().get(1)?;
     /// println!("{}", transaction.id);
     /// # Ok(())
@@ -10916,8 +10916,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceTransactionsCsvQuery {
@@ -10945,8 +10945,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceTransactionsDatevexportQuery {
@@ -10973,8 +10973,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceTransactionsDocumentnumberavailableQuery {
@@ -11001,8 +11001,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = GetFinanceTransactionsExportQuery {
@@ -11031,10 +11031,10 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-transactions-ids");
+    /// # let client = churchtools_api::replay::client("get-finance-transactions-ids");
     /// let result = client.finance().transactions().get_ids()?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -11066,10 +11066,10 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-transactions-nextdocumentnumber");
+    /// # let client = churchtools_api::replay::client("get-finance-transactions-nextdocumentnumber");
     /// let query = GetFinanceTransactionsNextdocumentnumberQuery {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
@@ -11094,10 +11094,10 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-transactions-summary");
+    /// # let client = churchtools_api::replay::client("get-finance-transactions-summary");
     /// let query = GetFinanceTransactionsSummaryQuery {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
@@ -11122,10 +11122,10 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-transactions");
+    /// # let client = churchtools_api::replay::client("get-finance-transactions");
     /// let query = GetFinanceTransactionsQuery {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
@@ -11160,8 +11160,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TransactionBatchUpdate {
@@ -11195,8 +11195,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TransactionUpdate {
@@ -11240,8 +11240,8 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TransactionStornoCreate {
@@ -11277,10 +11277,10 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-followups-followUpId-complete");
+    /// # let client = churchtools_api::replay::client("post-followups-followUpId-complete");
     /// let body = models::FollowUpCompletionCreate {
     ///     success_group_id: Some(Some(42)),
     ///     ..Default::default()
@@ -11306,8 +11306,8 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.followups().delete(2)?;
@@ -11329,10 +11329,10 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-followups-followUpId-dismiss");
+    /// # let client = churchtools_api::replay::client("post-followups-followUpId-dismiss");
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// let followup = client.followups().dismiss(2, &body)?;
     /// println!("{}", followup.title);
@@ -11355,10 +11355,10 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-followups-followUpId");
+    /// # let client = churchtools_api::replay::client("get-followups-followUpId");
     /// let followup = client.followups().get(2)?;
     /// println!("{}", followup.title);
     /// # Ok(())
@@ -11381,10 +11381,10 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-followups");
+    /// # let client = churchtools_api::replay::client("get-followups");
     /// for followup in client.followups().list()? {
     ///     println!("{}", followup.title);
     /// }
@@ -11428,8 +11428,8 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::FollowUpNoteCreate {
@@ -11467,10 +11467,10 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-followups-followUpId-postpone");
+    /// # let client = churchtools_api::replay::client("post-followups-followUpId-postpone");
     /// let body = models::FollowUpPostponeCreate {
     ///     due_date: "2026-12-01".parse()?,
     ///     ..Default::default()
@@ -11496,10 +11496,10 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-followups-followUpId-reset");
+    /// # let client = churchtools_api::replay::client("post-followups-followUpId-reset");
     /// let body = models::FollowUpResetCreate {
     ///     due_date: Some(Some("2026-12-01".parse()?)),
     ///     ..Default::default()
@@ -11525,10 +11525,10 @@ impl<'a> FollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-followups-followUpId");
+    /// # let client = churchtools_api::replay::client("put-followups-followUpId");
     /// let body = serde_json::json!({
     ///     "title": "Call Peter"
     /// });
@@ -11562,10 +11562,10 @@ impl<'a> FurtherLinksResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-furtherlinks");
+    /// # let client = churchtools_api::replay::client("post-furtherlinks");
     /// let body = models::FurtherLinkCreate {
     ///     description: Some("Our church's NextCloud".into()),
     ///     image_url: Some("https://example.org".into()),
@@ -11591,8 +11591,8 @@ impl<'a> FurtherLinksResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.further_links().delete(1.5)?;
@@ -11614,10 +11614,10 @@ impl<'a> FurtherLinksResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-furtherlinks-furtherLinkId");
+    /// # let client = churchtools_api::replay::client("get-furtherlinks-furtherLinkId");
     /// let further_link = client.further_links().get(1.5)?;
     /// println!("{}", further_link.name);
     /// # Ok(())
@@ -11638,10 +11638,10 @@ impl<'a> FurtherLinksResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-furtherlinks");
+    /// # let client = churchtools_api::replay::client("get-furtherlinks");
     /// for further_link in client.further_links().list()? {
     ///     println!("{}", further_link.name);
     /// }
@@ -11663,10 +11663,10 @@ impl<'a> FurtherLinksResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-furtherlinks-furtherLinkId");
+    /// # let client = churchtools_api::replay::client("put-furtherlinks-furtherLinkId");
     /// let body = models::FurtherLinkCreate {
     ///     description: Some("Our church's NextCloud".into()),
     ///     image_url: Some("https://example.org".into()),
@@ -11731,10 +11731,10 @@ impl<'a> GroupResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-memberstatus");
+    /// # let client = churchtools_api::replay::client("get-group-memberstatus");
     /// for member_statu in client.group().list_member_status()? {
     ///     println!("{}", member_statu.name);
     /// }
@@ -11766,10 +11766,10 @@ impl<'a> GroupAgeGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-group-agegroups");
+    /// # let client = churchtools_api::replay::client("post-group-agegroups");
     /// let body = models::AgeGroupCreate {
     ///     end: 5,
     ///     name: "3-5".into(),
@@ -11799,8 +11799,8 @@ impl<'a> GroupAgeGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = DeleteGroupAgegroupsAgeGroupIdQuery {
@@ -11827,10 +11827,10 @@ impl<'a> GroupAgeGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-agegroups-ageGroupId");
+    /// # let client = churchtools_api::replay::client("get-group-agegroups-ageGroupId");
     /// let age_group = client.group().age_groups().get(2)?;
     /// println!("{}", age_group.name);
     /// # Ok(())
@@ -11852,10 +11852,10 @@ impl<'a> GroupAgeGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-agegroups");
+    /// # let client = churchtools_api::replay::client("get-group-agegroups");
     /// for age_group in client.group().age_groups().list()? {
     ///     println!("{}", age_group.name);
     /// }
@@ -11878,8 +11878,8 @@ impl<'a> GroupAgeGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::AgeGroupCreate {
@@ -11919,10 +11919,10 @@ impl<'a> GroupGroupCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-group-groupcategories");
+    /// # let client = churchtools_api::replay::client("post-group-groupcategories");
     /// let body = models::GroupCategoryCreate {
     ///     color: "blue".into(),
     ///     name: "Gottesdienst".into(),
@@ -11951,8 +11951,8 @@ impl<'a> GroupGroupCategoriesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = DeleteGroupGroupcategoriesGroupCategoryIdQuery {
@@ -11979,10 +11979,10 @@ impl<'a> GroupGroupCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-groupcategories-groupCategoryId");
+    /// # let client = churchtools_api::replay::client("get-group-groupcategories-groupCategoryId");
     /// let group_category = client.group().group_categories().get(2)?;
     /// println!("{}", group_category.name);
     /// # Ok(())
@@ -12004,10 +12004,10 @@ impl<'a> GroupGroupCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-groupcategories");
+    /// # let client = churchtools_api::replay::client("get-group-groupcategories");
     /// for group_category in client.group().group_categories().list()? {
     ///     println!("{}", group_category.name);
     /// }
@@ -12030,10 +12030,10 @@ impl<'a> GroupGroupCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-group-groupcategories-groupCategoryId");
+    /// # let client = churchtools_api::replay::client("put-group-groupcategories-groupCategoryId");
     /// let body = models::GroupCategoryCreate {
     ///     color: "blue".into(),
     ///     name: "Gottesdienst".into(),
@@ -12071,10 +12071,10 @@ impl<'a> GroupGroupTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-group-grouptypes");
+    /// # let client = churchtools_api::replay::client("post-group-grouptypes");
     /// let body = models::GroupTypeCreate {
     ///     available_for_new_person: false,
     ///     color: "blue".into(),
@@ -12111,8 +12111,8 @@ impl<'a> GroupGroupTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.group().group_types().delete(2)?;
@@ -12146,10 +12146,10 @@ impl<'a> GroupGroupTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-grouptypes-groupTypeId");
+    /// # let client = churchtools_api::replay::client("get-group-grouptypes-groupTypeId");
     /// let group_type = client.group().group_types().get(2)?;
     /// println!("{}", group_type.name);
     /// # Ok(())
@@ -12172,10 +12172,10 @@ impl<'a> GroupGroupTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-grouptypes");
+    /// # let client = churchtools_api::replay::client("get-group-grouptypes");
     /// for group_type in client.group().group_types().list()? {
     ///     println!("{}", group_type.name);
     /// }
@@ -12198,10 +12198,10 @@ impl<'a> GroupGroupTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-group-grouptypes-groupTypeId");
+    /// # let client = churchtools_api::replay::client("put-group-grouptypes-groupTypeId");
     /// let body = models::GroupTypeCreate {
     ///     available_for_new_person: false,
     ///     color: "blue".into(),
@@ -12245,10 +12245,10 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-group-meetingtemplates");
+    /// # let client = churchtools_api::replay::client("post-group-meetingtemplates");
     /// let body = models::MeetingTemplateCreate {
     ///     name: "Lowlights / Highlights".into(),
     ///     template: vec![models::MeetingTemplateField {
@@ -12280,8 +12280,8 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = DeleteGroupMeetingtemplatesMeetingTemplateIdQuery {
@@ -12307,10 +12307,10 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-meetingtemplates-meetingTemplateId");
+    /// # let client = churchtools_api::replay::client("get-group-meetingtemplates-meetingTemplateId");
     /// let meeting_template = client.group().meeting_templates().get(1)?;
     /// println!("{}", meeting_template.name);
     /// # Ok(())
@@ -12332,10 +12332,10 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-meetingtemplates");
+    /// # let client = churchtools_api::replay::client("get-group-meetingtemplates");
     /// for meeting_template in client.group().meeting_templates().list()? {
     ///     println!("{}", meeting_template.name);
     /// }
@@ -12358,8 +12358,8 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::MeetingTemplateCreate {
@@ -12401,10 +12401,10 @@ impl<'a> GroupRolesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-group-roles");
+    /// # let client = churchtools_api::replay::client("post-group-roles");
     /// let body = models::RoleCreate {
     ///     group_type_id: 2,
     ///     grow_path_id: Some(4),
@@ -12440,8 +12440,8 @@ impl<'a> GroupRolesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.group().roles().delete(16)?;
@@ -12475,10 +12475,10 @@ impl<'a> GroupRolesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-roles-roleId");
+    /// # let client = churchtools_api::replay::client("get-group-roles-roleId");
     /// let role = client.group().roles().get(16)?;
     /// println!("{}", role.name);
     /// # Ok(())
@@ -12503,10 +12503,10 @@ impl<'a> GroupRolesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-roles");
+    /// # let client = churchtools_api::replay::client("get-group-roles");
     /// let result = client.group().roles().list()?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -12542,10 +12542,10 @@ impl<'a> GroupRolesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-group-roles-roleId");
+    /// # let client = churchtools_api::replay::client("put-group-roles-roleId");
     /// let body = models::RoleCreate {
     ///     group_type_id: 2,
     ///     grow_path_id: Some(4),
@@ -12588,10 +12588,10 @@ impl<'a> GroupTargetGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-group-targetgroups");
+    /// # let client = churchtools_api::replay::client("post-group-targetgroups");
     /// let body = models::TargetGroupCreate {
     ///     name: "men".into(),
     ///     sort_key: 2,
@@ -12619,8 +12619,8 @@ impl<'a> GroupTargetGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = DeleteGroupTargetgroupsTargetGroupIdQuery {
@@ -12647,10 +12647,10 @@ impl<'a> GroupTargetGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-targetgroups-targetGroupId");
+    /// # let client = churchtools_api::replay::client("get-group-targetgroups-targetGroupId");
     /// let target_group = client.group().target_groups().get(2)?;
     /// println!("{}", target_group.name);
     /// # Ok(())
@@ -12672,10 +12672,10 @@ impl<'a> GroupTargetGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-group-targetgroups");
+    /// # let client = churchtools_api::replay::client("get-group-targetgroups");
     /// for target_group in client.group().target_groups().list()? {
     ///     println!("{}", target_group.name);
     /// }
@@ -12698,8 +12698,8 @@ impl<'a> GroupTargetGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TargetGroupCreate {
@@ -12738,10 +12738,10 @@ impl<'a> GroupHomepagesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-grouphomepages-hash");
+    /// # let client = churchtools_api::replay::client("get-grouphomepages-hash");
     /// let group_homepage = client.group_homepages().get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")?;
     /// println!("{}", group_homepage.name);
     /// # Ok(())
@@ -12773,10 +12773,10 @@ impl<'a> GroupHomepagesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-grouphomepages");
+    /// # let client = churchtools_api::replay::client("get-grouphomepages");
     /// for group_homepage in client.group_homepages().list()? {
     ///     println!("{}", group_homepage.title);
     /// }
@@ -12849,8 +12849,8 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::StartStopChat {
@@ -12877,10 +12877,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-groups");
+    /// # let client = churchtools_api::replay::client("post-groups");
     /// let body = models::PostGroupsBody {
     ///     group_status_id: 1,
     ///     group_type_id: 42,
@@ -12910,8 +12910,8 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().delete(42)?;
@@ -12944,8 +12944,8 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().delete_group_homepage(42)?;
@@ -12969,10 +12969,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-groups-id-duplicate");
+    /// # let client = churchtools_api::replay::client("post-groups-id-duplicate");
     /// let body = models::GroupDuplicateCreate {
     ///     copy_members: Some(true),
     ///     ..Default::default()
@@ -13011,8 +13011,8 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::GroupExportCreate {
@@ -13051,10 +13051,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId");
     /// let group = client.groups().get(42)?;
     /// println!("{}", group.name);
     /// # Ok(())
@@ -13084,10 +13084,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-grouphomepage");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-grouphomepage");
     /// let group_homepage = client.groups().get_group_homepage(42)?;
     /// println!("{}", group_homepage.name);
     /// # Ok(())
@@ -13108,10 +13108,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-grouped");
+    /// # let client = churchtools_api::replay::client("get-groups-grouped");
     /// let query = GetGroupsGroupedQuery {
     ///     group_by: Some("ageGroup".into()),
     ///     ..Default::default()
@@ -13136,10 +13136,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-optins");
+    /// # let client = churchtools_api::replay::client("get-groups-optins");
     /// let optin = client.groups().get_optins(42)?;
     /// println!("{:?}", optin);
     /// # Ok(())
@@ -13160,10 +13160,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-poststatistics");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-poststatistics");
     /// let post_statistic = client.groups().get_post_statistics(42)?;
     /// println!("{}", post_statistic.group_intern);
     /// # Ok(())
@@ -13184,10 +13184,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-statistics");
+    /// # let client = churchtools_api::replay::client("get-groups-id-statistics");
     /// let statistic = client.groups().get_statistics(42)?;
     /// println!("{:?}", statistic);
     /// # Ok(())
@@ -13208,8 +13208,8 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::GroupTypeChangeUpdate {
@@ -13241,10 +13241,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups");
+    /// # let client = churchtools_api::replay::client("get-groups");
     /// for group in client.groups().list()? {
     ///     println!("{}", group.name);
     /// }
@@ -13290,10 +13290,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-absences");
+    /// # let client = churchtools_api::replay::client("get-groups-absences");
     /// for absence in client.groups().list_absences(42)? {
     ///     println!("{}", absence.id);
     /// }
@@ -13326,10 +13326,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-children");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-children");
     /// for children in client.groups().list_children(42)? {
     ///     println!("{}", children.title);
     /// }
@@ -13369,10 +13369,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-documenttemplates");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-documenttemplates");
     /// for document_template in client.groups().list_document_templates(42)? {
     ///     println!("{}", document_template.name);
     /// }
@@ -13396,10 +13396,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-hierarchies");
+    /// # let client = churchtools_api::replay::client("get-groups-hierarchies");
     /// for hierarchy in client.groups().list_hierarchies()? {
     ///     println!("{}", hierarchy.group_id);
     /// }
@@ -13443,10 +13443,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-ids");
+    /// # let client = churchtools_api::replay::client("get-groups-ids");
     /// for id in client.groups().list_ids()? {
     ///     println!("{:?}", id);
     /// }
@@ -13490,10 +13490,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-memberids");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-memberids");
     /// for member_id in client.groups().list_member_ids(42)? {
     ///     println!("{:?}", member_id);
     /// }
@@ -13528,10 +13528,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-memberpreview");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-memberpreview");
     /// for member_preview in client.groups().list_member_preview(42)? {
     ///     println!("{:?}", member_preview);
     /// }
@@ -13566,10 +13566,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-members");
+    /// # let client = churchtools_api::replay::client("get-groups-members");
     /// for member in client.groups().list_members()? {
     ///     println!("{}", member.deleted);
     /// }
@@ -13604,10 +13604,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-posts");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-posts");
     /// for post in client.groups().list_posts(42)? {
     ///     println!("{}", post.title);
     /// }
@@ -13651,8 +13651,8 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::GroupSignUpNotificationRequest {
@@ -13693,10 +13693,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("patch-groups-id");
+    /// # let client = churchtools_api::replay::client("patch-groups-id");
     /// let body = models::PatchGroupsIdBody {
     ///     appointment_id: Some(Some(42)),
     ///     ..Default::default()
@@ -13733,10 +13733,10 @@ impl<'a> GroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-groups-groupId-grouphomepage");
+    /// # let client = churchtools_api::replay::client("put-groups-groupId-grouphomepage");
     /// let body = models::GroupHomepageUpdate {
     ///     is_enabled: true,
     ///     show_filters: true,
@@ -13775,8 +13775,8 @@ impl<'a> GroupsCheckinResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::CheckinCreate {
@@ -13811,8 +13811,8 @@ impl<'a> GroupsDocumentsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().documents().get(42, "abc123")?;
@@ -13843,10 +13843,10 @@ impl<'a> GroupsFollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-followups-statistics");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-followups-statistics");
     /// let statistic = client.groups().followups().get_statistics(42)?;
     /// println!("{}", statistic.count_done);
     /// # Ok(())
@@ -13869,10 +13869,10 @@ impl<'a> GroupsFollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-followups");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-followups");
     /// for followup in client.groups().followups().list(42)? {
     ///     println!("{}", followup.title);
     /// }
@@ -13927,10 +13927,10 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-groups-id-meetings");
+    /// # let client = churchtools_api::replay::client("post-groups-id-meetings");
     /// let body = models::PostGroupsIdMeetingsBody {
     ///     start_date: "2026-09-20T08:00:00Z".parse()?,
     ///     ..Default::default()
@@ -13956,8 +13956,8 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().meetings().delete(42, 120)?;
@@ -13979,10 +13979,10 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-meetings-meetingId");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-meetings-meetingId");
     /// let meeting = client.groups().meetings().get(42, 120)?;
     /// println!("{}", meeting.id);
     /// # Ok(())
@@ -14009,8 +14009,8 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.groups().meetings().get_export(42)?;
@@ -14056,10 +14056,10 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-meetings");
+    /// # let client = churchtools_api::replay::client("get-groups-id-meetings");
     /// for meeting in client.groups().meetings().list(42)? {
     ///     println!("{}", meeting.id);
     /// }
@@ -14111,10 +14111,10 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-groups-groupId-meetings-meetingId");
+    /// # let client = churchtools_api::replay::client("put-groups-groupId-meetings-meetingId");
     /// let body = models::PutGroupsGroupIdMeetingsMeetingIdBody {
     ///     is_canceled: false,
     ///     is_completed: false,
@@ -14153,10 +14153,10 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("delete-groups-groupId-meetings-meetingId-members-memberId");
+    /// # let client = churchtools_api::replay::client("delete-groups-groupId-meetings-meetingId-members-memberId");
     /// let body = models::DeleteGroupsGroupIdMeetingsMeetingIdMembersMemberIdBody {
     ///     status: Some("absent".into()),
     ///     ..Default::default()
@@ -14186,10 +14186,10 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-meetings-meetingId-members");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-meetings-meetingId-members");
     /// for member in client.groups().meetings().members().list(42, 120)? {
     ///     println!("{}", member.is_checked_in);
     /// }
@@ -14211,8 +14211,8 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostGroupsGroupIdMeetingsMeetingIdMembersMissingBody {
@@ -14239,8 +14239,8 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().meetings().members().reset(42, 120)?;
@@ -14279,10 +14279,10 @@ impl<'a> GroupsMemberFieldsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-memberfields");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-memberfields");
     /// for member_field in client.groups().member_fields().list(42)? {
     ///     println!("{:?}", member_field);
     /// }
@@ -14313,10 +14313,10 @@ impl<'a> GroupsMemberFieldsGroupResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-groups-groupId-memberfields-group");
+    /// # let client = churchtools_api::replay::client("post-groups-groupId-memberfields-group");
     /// let body = models::GroupMemberFieldGroupCreate {
     ///     field_type_code: "text".into(),
     ///     name: "T-Shirt size".into(),
@@ -14346,8 +14346,8 @@ impl<'a> GroupsMemberFieldsGroupResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().member_fields().group().delete(42, 42)?;
@@ -14369,10 +14369,10 @@ impl<'a> GroupsMemberFieldsGroupResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("patch-groups-groupId-memberfields-group-groupMemberFieldId");
+    /// # let client = churchtools_api::replay::client("patch-groups-groupId-memberfields-group-groupMemberFieldId");
     /// let body = models::GroupMemberFieldGroupPatch {
     ///     name: Some("T-Shirt size".into()),
     ///     ..Default::default()
@@ -14398,10 +14398,10 @@ impl<'a> GroupsMemberFieldsGroupResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-groups-groupId-memberfields-group-groupMemberFieldId");
+    /// # let client = churchtools_api::replay::client("put-groups-groupId-memberfields-group-groupMemberFieldId");
     /// let body = models::GroupMemberFieldGroupUpdate {
     ///     name: "T-Shirt size".into(),
     ///     reference_name: "t-shirt-size".into(),
@@ -14440,8 +14440,8 @@ impl<'a> GroupsMemberFieldsPersonResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().member_fields().person().delete(42, 200)?;
@@ -14463,8 +14463,8 @@ impl<'a> GroupsMemberFieldsPersonResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::GroupMemberFieldPersonUpdate {
@@ -14516,8 +14516,8 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::GroupMemberExportCreate::default();
@@ -14553,8 +14553,8 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().members().delete(42, 42)?;
@@ -14576,10 +14576,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-personId");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-members-personId");
     /// let member = client.groups().members().get(42, 42)?;
     /// println!("{}", member.id);
     /// # Ok(())
@@ -14602,8 +14602,8 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.groups().members().get_export(42)?;
@@ -14639,10 +14639,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-members");
+    /// # let client = churchtools_api::replay::client("get-groups-id-members");
     /// for member in client.groups().members().list(42)? {
     ///     println!("{}", member.id);
     /// }
@@ -14686,10 +14686,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-history");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-members-history");
     /// for history in client.groups().members().list_history(42)? {
     ///     println!("{}", history.id);
     /// }
@@ -14722,10 +14722,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-personId-meetings");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-members-personId-meetings");
     /// for meeting in client.groups().members().list_meetings(42, 42)? {
     ///     println!("{:?}", meeting.status);
     /// }
@@ -14747,10 +14747,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-statistics");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-members-statistics");
     /// let query = GetGroupsGroupIdMembersStatisticsQuery {
     ///     group_type_role_ids: Some(vec![8, 9]),
     ///     ..Default::default()
@@ -14776,10 +14776,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("patch-groups-groupId-members-personId");
+    /// # let client = churchtools_api::replay::client("patch-groups-groupId-members-personId");
     /// let body = models::MembershipUpdate {
     ///     comment: Some(Some("Available on weekends.".into())),
     ///     ..Default::default()
@@ -14805,10 +14805,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-groups-groupId-members-personId");
+    /// # let client = churchtools_api::replay::client("put-groups-groupId-members-personId");
     /// let body = models::MembershipCreate {
     ///     comment: Some(Some("Available on weekends.".into())),
     ///     ..Default::default()
@@ -14841,8 +14841,8 @@ impl<'a> GroupsMembersDocumentsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().members().documents().get(42, 42, 2)?;
@@ -14873,10 +14873,10 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-groups-id-members-id-followups");
+    /// # let client = churchtools_api::replay::client("post-groups-id-members-id-followups");
     /// let body = models::FollowUpCreate {
     ///     title: "Call Peter".into(),
     ///     ..Default::default()
@@ -14902,10 +14902,10 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-members-id-followups-statistics");
+    /// # let client = churchtools_api::replay::client("get-groups-id-members-id-followups-statistics");
     /// let statistic = client.groups().members().followups().get_statistics(42, 42)?;
     /// println!("{}", statistic.count_done);
     /// # Ok(())
@@ -14928,10 +14928,10 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-personId-followups");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-members-personId-followups");
     /// for followup in client.groups().members().followups().list(42, 42)? {
     ///     println!("{}", followup.title);
     /// }
@@ -14982,8 +14982,8 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().members().routines().delete(42, 12, "active")?;
@@ -15005,10 +15005,10 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-members-routines");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-members-routines");
     /// for routine in client.groups().members().routines().list(42)? {
     ///     println!("{}", routine.id);
     /// }
@@ -15030,8 +15030,8 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::GroupMembershipRoutineUpdate {
@@ -15068,8 +15068,8 @@ impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::NewsletterIntegrationGroupMappingCreate {
@@ -15098,8 +15098,8 @@ impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().news_letter_integrations().delete(42, "Mailjet", "12345")?;
@@ -15121,10 +15121,10 @@ impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-newsletter-integrations");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-newsletter-integrations");
     /// for news_letter_integration in client.groups().news_letter_integrations().list(42)? {
     ///     println!("{}", news_letter_integration.id);
     /// }
@@ -15148,8 +15148,8 @@ impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -15193,8 +15193,8 @@ impl<'a> GroupsParentsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.groups().parents().delete(42, 12)?;
@@ -15216,10 +15216,10 @@ impl<'a> GroupsParentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-parents");
+    /// # let client = churchtools_api::replay::client("get-groups-groupId-parents");
     /// for parent in client.groups().parents().list("abc123")? {
     ///     println!("{}", parent.title);
     /// }
@@ -15259,8 +15259,8 @@ impl<'a> GroupsParentsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -15293,10 +15293,10 @@ impl<'a> GroupsQrcodeCheckinResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin-personId");
+    /// # let client = churchtools_api::replay::client("get-groups-id-qrcodecheckin-personId");
     /// let qrcode_checkin = client.groups().qrcode_checkin().get(42, 42)?;
     /// println!("{}", qrcode_checkin.domain_id);
     /// # Ok(())
@@ -15317,10 +15317,10 @@ impl<'a> GroupsQrcodeCheckinResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin-personId-pdf");
+    /// # let client = churchtools_api::replay::client("get-groups-id-qrcodecheckin-personId-pdf");
     /// let pdf = client.groups().qrcode_checkin().get_pdf(42, 42)?;
     /// println!("{}", pdf.url);
     /// # Ok(())
@@ -15341,10 +15341,10 @@ impl<'a> GroupsQrcodeCheckinResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin");
+    /// # let client = churchtools_api::replay::client("get-groups-id-qrcodecheckin");
     /// let result = client.groups().qrcode_checkin().list(42)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -15365,8 +15365,8 @@ impl<'a> GroupsQrcodeCheckinResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -15402,10 +15402,10 @@ impl<'a> GroupsRolesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-roles");
+    /// # let client = churchtools_api::replay::client("get-groups-id-roles");
     /// for role in client.groups().roles().list(serde_json::json!(42))? {
     ///     println!("{}", role.name);
     /// }
@@ -15429,8 +15429,8 @@ impl<'a> GroupsRolesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::GroupRoleUpdate {
@@ -15482,10 +15482,10 @@ impl<'a> GroupsWikiCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-id-wiki-categories-pages");
+    /// # let client = churchtools_api::replay::client("get-groups-id-wiki-categories-pages");
     /// for page in client.groups().wiki().categories().list_pages(42)? {
     ///     println!("{}", page.total);
     /// }
@@ -15527,10 +15527,10 @@ impl<'a> HistoryResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-history");
+    /// # let client = churchtools_api::replay::client("get-history");
     /// let query = GetHistoryQuery {
     ///     domain_types: Some(vec!["beispiel".into()]),
     ///     domain_identifiers: Some(vec!["beispiel".into()]),
@@ -15575,10 +15575,10 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-htmltemplates");
+    /// # let client = churchtools_api::replay::client("post-htmltemplates");
     /// let body = models::HtmlTemplateCreate {
     ///     domain_type: "email".into(),
     ///     name: "Welcome email".into(),
@@ -15605,8 +15605,8 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = DeleteHtmltemplatesTemplateIdQuery {
@@ -15632,10 +15632,10 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId");
+    /// # let client = churchtools_api::replay::client("get-htmltemplates-templateId");
     /// let html_template = client.html_templates().get(2)?;
     /// println!("{}", html_template.name);
     /// # Ok(())
@@ -15656,10 +15656,10 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-export");
+    /// # let client = churchtools_api::replay::client("get-htmltemplates-templateId-export");
     /// let result = client.html_templates().get_export(2)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -15680,10 +15680,10 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-html");
+    /// # let client = churchtools_api::replay::client("get-htmltemplates-templateId-html");
     /// let result = client.html_templates().get_html(2)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -15704,10 +15704,10 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-mjml");
+    /// # let client = churchtools_api::replay::client("get-htmltemplates-templateId-mjml");
     /// let result = client.html_templates().get_mjml(2)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -15728,10 +15728,10 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-htmltemplates");
+    /// # let client = churchtools_api::replay::client("get-htmltemplates");
     /// let query = GetHtmltemplatesQuery {
     ///     domain_type: Some("email".into()),
     ///     ..Default::default()
@@ -15757,10 +15757,10 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("patch-htmltemplates-templateId");
+    /// # let client = churchtools_api::replay::client("patch-htmltemplates-templateId");
     /// let body = models::HtmlTemplateUpdate {
     ///     name: Some(Some("Updated welcome email".into())),
     ///     ..Default::default()
@@ -15786,8 +15786,8 @@ impl<'a> HtmlTemplatesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let file = Upload::from_path("logo.png")?;
@@ -15825,8 +15825,8 @@ impl<'a> ImagesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.images().get(42, "abc123")?;
@@ -15860,8 +15860,8 @@ impl<'a> ImagesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.images().get_with_params(42, "abc123", "fm%3Dwebp%26q%3D80%26w%3D700%26h%3Dauto")?;
@@ -15884,8 +15884,8 @@ impl<'a> ImagesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ImageUpdate {
@@ -15913,8 +15913,8 @@ impl<'a> ImagesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ImageUpdate {
@@ -15951,10 +15951,10 @@ impl<'a> InfoResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-info");
+    /// # let client = churchtools_api::replay::client("get-info");
     /// let info = client.info().get()?;
     /// println!("{:?}", info.build);
     /// # Ok(())
@@ -15984,8 +15984,8 @@ impl<'a> InstallationSyncResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostInstallationSyncOidcBody {
@@ -16022,10 +16022,10 @@ impl<'a> JobLogResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-joblog");
+    /// # let client = churchtools_api::replay::client("get-joblog");
     /// let query = GetJoblogQuery {
     ///     guid: Some("d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged".into()),
     ///     ..Default::default()
@@ -16062,10 +16062,10 @@ impl<'a> JobsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-jobs");
+    /// # let client = churchtools_api::replay::client("get-jobs");
     /// for job in client.jobs().list()? {
     ///     println!("{}", job.name);
     /// }
@@ -16098,8 +16098,8 @@ impl<'a> JobsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::JobLogCreate {
@@ -16126,8 +16126,8 @@ impl<'a> JobsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::JobStatusUpdate {
@@ -16163,8 +16163,8 @@ impl<'a> LabelsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::LabelCreate {
@@ -16193,10 +16193,10 @@ impl<'a> LabelsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-labels-totals");
+    /// # let client = churchtools_api::replay::client("post-labels-totals");
     /// let body = models::LabelTotalsRequest {
     ///     person_ids: serde_json::json!([42]),
     ///     ..Default::default()
@@ -16233,10 +16233,10 @@ impl<'a> LanguagesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-languages");
+    /// # let client = churchtools_api::replay::client("get-languages");
     /// for language in client.languages().list()? {
     ///     println!("{}", language.name);
     /// }
@@ -16278,8 +16278,8 @@ impl<'a> LicenseResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.license().get_fetch()?;
@@ -16314,8 +16314,8 @@ impl<'a> LoginResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::LoginCreate {
@@ -16344,8 +16344,8 @@ impl<'a> LoginResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::LoginCredentials {
@@ -16374,8 +16374,8 @@ impl<'a> LoginResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::LoginTotpVerify {
@@ -16426,8 +16426,8 @@ impl<'a> LoginTwoFactorSetupResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TwoFactorSetupActivate {
@@ -16455,8 +16455,8 @@ impl<'a> LoginTwoFactorSetupResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let result = client.login().two_factor().setup().create()?;
@@ -16488,8 +16488,8 @@ impl<'a> LogoutResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.logout().create()?;
@@ -16524,10 +16524,10 @@ impl<'a> LogsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-logs-id");
+    /// # let client = churchtools_api::replay::client("get-logs-id");
     /// let log = client.logs().get(1)?;
     /// println!("{}", log.id);
     /// # Ok(())
@@ -16550,10 +16550,10 @@ impl<'a> LogsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-logs");
+    /// # let client = churchtools_api::replay::client("get-logs");
     /// for log in client.logs().list()? {
     ///     println!("{}", log.id);
     /// }
@@ -16604,10 +16604,10 @@ impl<'a> LogsStatisticsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-logs-statistics-login");
+    /// # let client = churchtools_api::replay::client("get-logs-statistics-login");
     /// for login in client.logs().statistics().list_login()? {
     ///     println!("{}", login.last_login);
     /// }
@@ -16656,10 +16656,10 @@ impl<'a> MarkdownResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-markdown-check");
+    /// # let client = churchtools_api::replay::client("post-markdown-check");
     /// let body = models::PostMarkdownCheckBody {
     ///     input_scope: "description".into(),
     ///     markdown: "Hallo zusammen".into(),
@@ -16686,8 +16686,8 @@ impl<'a> MarkdownResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::MarkdownRequest {
@@ -16731,10 +16731,10 @@ impl<'a> MasterDataResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-masterdata-person");
+    /// # let client = churchtools_api::replay::client("get-masterdata-person");
     /// let person = client.master_data().get_person()?;
     /// println!("{:?}", person);
     /// # Ok(())
@@ -16765,8 +16765,8 @@ impl<'a> MeetingRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::MeetingRequestIcsReply {
@@ -16802,10 +16802,10 @@ impl<'a> MenuResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-menu");
+    /// # let client = churchtools_api::replay::client("get-menu");
     /// let menu = client.menu().get()?;
     /// println!("{:?}", menu.current_station);
     /// # Ok(())
@@ -16835,10 +16835,10 @@ impl<'a> NewsLetterIntegrationsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-newsletter-integrations");
+    /// # let client = churchtools_api::replay::client("get-newsletter-integrations");
     /// for news_letter_integration in client.news_letter_integrations().list()? {
     ///     println!("{}", news_letter_integration.can_create_lists);
     /// }
@@ -16869,10 +16869,10 @@ impl<'a> NotesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-notes-domainType-domainId");
+    /// # let client = churchtools_api::replay::client("post-notes-domainType-domainId");
     /// let body = models::NoteCreate {
     ///     text: "Please follow up next week.".into(),
     ///     ..Default::default()
@@ -16898,8 +16898,8 @@ impl<'a> NotesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.notes().delete(101)?;
@@ -16921,8 +16921,8 @@ impl<'a> NotesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.notes().delete_for_object("group", "42", 101)?;
@@ -16944,10 +16944,10 @@ impl<'a> NotesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-notes");
+    /// # let client = churchtools_api::replay::client("get-notes");
     /// for note in client.notes().get("group", 35)? {
     ///     println!("{}", note.id);
     /// }
@@ -16969,10 +16969,10 @@ impl<'a> NotesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-notes-domainType-domainId-id");
+    /// # let client = churchtools_api::replay::client("put-notes-domainType-domainId-id");
     /// let body = models::NoteUpdate {
     ///     text: "Please follow up next week.".into(),
     ///     ..Default::default()
@@ -17007,8 +17007,8 @@ impl<'a> NotificationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.notifications().test()?;
@@ -17037,8 +17037,8 @@ impl<'a> NpsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostNpsBody {
@@ -17075,10 +17075,10 @@ impl<'a> OauthClientsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-oauthclients");
+    /// # let client = churchtools_api::replay::client("post-oauthclients");
     /// let body = models::OAuthClientCreate {
     ///     name: "Parish website".into(),
     ///     redirect_uri: "https://parish.example.org/oauth/callback".into(),
@@ -17105,8 +17105,8 @@ impl<'a> OauthClientsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.oauth_clients().delete("abc123")?;
@@ -17128,10 +17128,10 @@ impl<'a> OauthClientsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-oauthclients");
+    /// # let client = churchtools_api::replay::client("get-oauthclients");
     /// for oauth_client in client.oauth_clients().list()? {
     ///     println!("{}", oauth_client.name);
     /// }
@@ -17153,10 +17153,10 @@ impl<'a> OauthClientsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-oauthclients-identifier");
+    /// # let client = churchtools_api::replay::client("put-oauthclients-identifier");
     /// let body = models::OAuthClientUpdate {
     ///     name: "Parish website".into(),
     ///     redirect_uri: "https://parish.example.org/oauth/callback".into(),
@@ -17204,8 +17204,8 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostPermissionsBulkBody {
@@ -17236,8 +17236,8 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PermissionDelete {
@@ -17266,10 +17266,10 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-definitions");
+    /// # let client = churchtools_api::replay::client("get-permissions-definitions");
     /// let definition = client.permissions().get_definitions()?;
     /// println!("{:?}", definition);
     /// # Ok(())
@@ -17301,10 +17301,10 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-locked");
+    /// # let client = churchtools_api::replay::client("get-permissions-locked");
     /// let locked = client.permissions().get_locked()?;
     /// println!("{}", locked.is_current_user_authorized_person);
     /// # Ok(())
@@ -17325,10 +17325,10 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-permissionDomainType-permissionDomainId");
+    /// # let client = churchtools_api::replay::client("get-permissions-permissionDomainType-permissionDomainId");
     /// for permission in client.permissions().list("person", 1)? {
     ///     println!("{}", permission.auth_id);
     /// }
@@ -17352,10 +17352,10 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-assignment-targets");
+    /// # let client = churchtools_api::replay::client("get-permissions-assignment-targets");
     /// for assignment_target in client.permissions().list_assignment_targets()? {
     ///     println!("{}", assignment_target.domain_id);
     /// }
@@ -17399,10 +17399,10 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-permissionDomainType");
+    /// # let client = churchtools_api::replay::client("get-permissions-permissionDomainType");
     /// for for_type in client.permissions().list_for_type("person")? {
     ///     println!("{}", for_type.auth_id);
     /// }
@@ -17435,8 +17435,8 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PermissionUpdate {
@@ -17463,8 +17463,8 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::LockedPermissionUpdate {
@@ -17499,8 +17499,8 @@ impl<'a> PermissionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PermissionReplace {
@@ -17541,10 +17541,10 @@ impl<'a> PermissionsGlobalResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-global");
+    /// # let client = churchtools_api::replay::client("get-permissions-global");
     /// let item = client.permissions().global().get()?;
     /// println!("{:?}", item);
     /// # Ok(())
@@ -17565,10 +17565,10 @@ impl<'a> PermissionsGlobalResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-global-person-summary");
+    /// # let client = churchtools_api::replay::client("get-permissions-global-person-summary");
     /// let person_summary = client.permissions().global().get_person_summary()?;
     /// println!("{:?}", person_summary);
     /// # Ok(())
@@ -17600,10 +17600,10 @@ impl<'a> PermissionsGlobalAuthsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-global-auths-authId-assignment-summary");
+    /// # let client = churchtools_api::replay::client("get-permissions-global-auths-authId-assignment-summary");
     /// let assignment_summary = client.permissions().global().auths().get_assignment_summary(125)?;
     /// println!("{}", assignment_summary.auth_id);
     /// # Ok(())
@@ -17637,10 +17637,10 @@ impl<'a> PermissionsGlobalAuthsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-global-auths-authId-persons");
+    /// # let client = churchtools_api::replay::client("get-permissions-global-auths-authId-persons");
     /// let person = client.permissions().global().auths().get_persons(125)?;
     /// println!("{}", person.auth_id);
     /// # Ok(())
@@ -17702,10 +17702,10 @@ impl<'a> PermissionsInternalEventsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-internal-events-eventId");
+    /// # let client = churchtools_api::replay::client("get-permissions-internal-events-eventId");
     /// let event = client.permissions().internal().events().get(42)?;
     /// println!("{:?}", event);
     /// # Ok(())
@@ -17739,10 +17739,10 @@ impl<'a> PermissionsInternalGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-internal-groups-groupId");
+    /// # let client = churchtools_api::replay::client("get-permissions-internal-groups-groupId");
     /// let group = client.permissions().internal().groups().get(42)?;
     /// println!("{:?}", group);
     /// # Ok(())
@@ -17763,10 +17763,10 @@ impl<'a> PermissionsInternalGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-internal-groups");
+    /// # let client = churchtools_api::replay::client("get-permissions-internal-groups");
     /// let result = client.permissions().internal().groups().list()?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -17798,10 +17798,10 @@ impl<'a> PermissionsInternalGroupsAuthsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-internal-groups-groupId-auths-authId-persons");
+    /// # let client = churchtools_api::replay::client("get-permissions-internal-groups-groupId-auths-authId-persons");
     /// let person = client.permissions().internal().groups().auths().get_persons(42, 125)?;
     /// println!("{}", person.auth_id);
     /// # Ok(())
@@ -17842,10 +17842,10 @@ impl<'a> PermissionsInternalPersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-internal-persons-id");
+    /// # let client = churchtools_api::replay::client("get-permissions-internal-persons-id");
     /// let person = client.permissions().internal().persons().get(42)?;
     /// println!("{:?}", person);
     /// # Ok(())
@@ -17905,10 +17905,10 @@ impl<'a> PermissionsOriginsGlobalPersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-origins-global-persons-personId");
+    /// # let client = churchtools_api::replay::client("get-permissions-origins-global-persons-personId");
     /// let person = client.permissions().origins().global().persons().get(42)?;
     /// println!("{}", person.person_id);
     /// # Ok(())
@@ -17953,10 +17953,10 @@ impl<'a> PermissionsOriginsInternalPersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-permissions-origins-internal-persons-personId");
+    /// # let client = churchtools_api::replay::client("get-permissions-origins-internal-persons-personId");
     /// let person = client.permissions().origins().internal().persons().get(42)?;
     /// println!("{}", person.person_id);
     /// # Ok(())
@@ -18013,10 +18013,10 @@ impl<'a> PersonResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-masterdata");
+    /// # let client = churchtools_api::replay::client("get-person-masterdata");
     /// let master_data = client.person().get_master_data()?;
     /// println!("{:?}", master_data);
     /// # Ok(())
@@ -18046,10 +18046,10 @@ impl<'a> PersonCommentViewersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-person-commentviewers");
+    /// # let client = churchtools_api::replay::client("post-person-commentviewers");
     /// let body = models::CommentViewerCreate {
     ///     name: "Pastoral team".into(),
     ///     ..Default::default()
@@ -18077,8 +18077,8 @@ impl<'a> PersonCommentViewersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.person().comment_viewers().delete(1)?;
@@ -18111,10 +18111,10 @@ impl<'a> PersonCommentViewersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-commentviewers-id");
+    /// # let client = churchtools_api::replay::client("get-person-commentviewers-id");
     /// let comment_viewer = client.person().comment_viewers().get(1)?;
     /// println!("{}", comment_viewer.name);
     /// # Ok(())
@@ -18135,10 +18135,10 @@ impl<'a> PersonCommentViewersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-commentviewers");
+    /// # let client = churchtools_api::replay::client("get-person-commentviewers");
     /// for comment_viewer in client.person().comment_viewers().list()? {
     ///     println!("{}", comment_viewer.name);
     /// }
@@ -18160,10 +18160,10 @@ impl<'a> PersonCommentViewersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-person-commentviewers-id");
+    /// # let client = churchtools_api::replay::client("put-person-commentviewers-id");
     /// let body = models::CommentViewerUpdate {
     ///     name: "Pastoral team".into(),
     ///     ..Default::default()
@@ -18198,10 +18198,10 @@ impl<'a> PersonGrowPathsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-person-growpaths");
+    /// # let client = churchtools_api::replay::client("post-person-growpaths");
     /// let body = models::GrowPathCreate {
     ///     color: serde_json::json!("accent"),
     ///     name: "New Believer".into(),
@@ -18230,8 +18230,8 @@ impl<'a> PersonGrowPathsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.person().grow_paths().delete(1)?;
@@ -18264,10 +18264,10 @@ impl<'a> PersonGrowPathsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-growpaths-id");
+    /// # let client = churchtools_api::replay::client("get-person-growpaths-id");
     /// let grow_path = client.person().grow_paths().get(1)?;
     /// println!("{}", grow_path.name);
     /// # Ok(())
@@ -18288,10 +18288,10 @@ impl<'a> PersonGrowPathsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-growpaths");
+    /// # let client = churchtools_api::replay::client("get-person-growpaths");
     /// for grow_path in client.person().grow_paths().list()? {
     ///     println!("{}", grow_path.name);
     /// }
@@ -18313,10 +18313,10 @@ impl<'a> PersonGrowPathsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-person-growpaths-id");
+    /// # let client = churchtools_api::replay::client("put-person-growpaths-id");
     /// let body = models::GrowPathUpdate {
     ///     color: serde_json::json!("accent"),
     ///     name: "New Believer".into(),
@@ -18352,10 +18352,10 @@ impl<'a> PersonRelationshipTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-person-relationshiptypes");
+    /// # let client = churchtools_api::replay::client("post-person-relationshiptypes");
     /// let body = models::RelationshipTypeCreate {
     ///     degree_name_a: "Parent".into(),
     ///     degree_name_b: "Child".into(),
@@ -18385,8 +18385,8 @@ impl<'a> PersonRelationshipTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.person().relationship_types().delete(4)?;
@@ -18419,10 +18419,10 @@ impl<'a> PersonRelationshipTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-relationshiptypes-id");
+    /// # let client = churchtools_api::replay::client("get-person-relationshiptypes-id");
     /// let relationship_type = client.person().relationship_types().get(4)?;
     /// println!("{:?}", relationship_type.name);
     /// # Ok(())
@@ -18443,10 +18443,10 @@ impl<'a> PersonRelationshipTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-relationshiptypes");
+    /// # let client = churchtools_api::replay::client("get-person-relationshiptypes");
     /// for relationship_type in client.person().relationship_types().list()? {
     ///     println!("{:?}", relationship_type.name);
     /// }
@@ -18468,10 +18468,10 @@ impl<'a> PersonRelationshipTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-person-relationshiptypes-id");
+    /// # let client = churchtools_api::replay::client("put-person-relationshiptypes-id");
     /// let body = models::RelationshipTypeUpdate {
     ///     degree_name_a: "Parent".into(),
     ///     degree_name_b: "Child".into(),
@@ -18508,10 +18508,10 @@ impl<'a> PersonSexesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-person-sexes");
+    /// # let client = churchtools_api::replay::client("post-person-sexes");
     /// let body = models::SexCreate {
     ///     name: "sex.other".into(),
     ///     ..Default::default()
@@ -18539,8 +18539,8 @@ impl<'a> PersonSexesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.person().sexes().delete(1)?;
@@ -18573,10 +18573,10 @@ impl<'a> PersonSexesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-sexes-id");
+    /// # let client = churchtools_api::replay::client("get-person-sexes-id");
     /// let sex = client.person().sexes().get(1)?;
     /// println!("{}", sex.name);
     /// # Ok(())
@@ -18597,10 +18597,10 @@ impl<'a> PersonSexesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-person-sexes");
+    /// # let client = churchtools_api::replay::client("get-person-sexes");
     /// for sex in client.person().sexes().list()? {
     ///     println!("{}", sex.name);
     /// }
@@ -18622,10 +18622,10 @@ impl<'a> PersonSexesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-person-sexes-id");
+    /// # let client = churchtools_api::replay::client("put-person-sexes-id");
     /// let body = models::SexUpdate {
     ///     name: "sex.other".into(),
     ///     ..Default::default()
@@ -18698,8 +18698,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostPersonsPersonIdArchiveBody {
@@ -18728,10 +18728,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-persons");
+    /// # let client = churchtools_api::replay::client("post-persons");
     /// let body = models::PostPersonsBody {
     ///     department_ids: vec![42],
     ///     ..Default::default()
@@ -18768,8 +18768,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().delete(42)?;
@@ -18791,8 +18791,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().delete_confidentiality_agreement(42)?;
@@ -18814,8 +18814,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().delete_login_token(42)?;
@@ -18837,8 +18837,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().delete_privacy_policy(42)?;
@@ -18856,8 +18856,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().export()?;
@@ -18881,8 +18881,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = serde_json::json!({
@@ -18922,10 +18922,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id");
+    /// # let client = churchtools_api::replay::client("get-persons-id");
     /// let person = client.persons().get(42)?;
     /// println!("{:?}", person.title);
     /// # Ok(())
@@ -18946,10 +18946,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-information");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-information");
     /// let information = client.persons().get_information(42)?;
     /// println!("{}", information.pdf_link);
     /// # Ok(())
@@ -18970,10 +18970,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-loginstring");
+    /// # let client = churchtools_api::replay::client("get-persons-id-loginstring");
     /// let login_string = client.persons().get_login_string("abc123")?;
     /// println!("{}", login_string.login_string);
     /// # Ok(())
@@ -18994,10 +18994,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-logintoken");
+    /// # let client = churchtools_api::replay::client("get-persons-id-logintoken");
     /// let result = client.persons().get_login_token(42)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -19016,10 +19016,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-poststatistics");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-poststatistics");
     /// let post_statistic = client.persons().get_post_statistics("abc123")?;
     /// println!("{}", post_statistic.count_banned);
     /// # Ok(())
@@ -19040,10 +19040,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-privacypolicy");
+    /// # let client = churchtools_api::replay::client("get-persons-id-privacypolicy");
     /// let privacy_policy = client.persons().get_privacy_policy(42)?;
     /// println!("{}", privacy_policy.minimum_age);
     /// # Ok(())
@@ -19064,8 +19064,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().invite(42)?;
@@ -19091,10 +19091,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons");
+    /// # let client = churchtools_api::replay::client("get-persons");
     /// for person in client.persons().list()? {
     ///     println!("{:?}", person.title);
     /// }
@@ -19147,10 +19147,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-birthdays");
+    /// # let client = churchtools_api::replay::client("get-persons-birthdays");
     /// for birthday in client.persons().list_birthdays()? {
     ///     println!("{:?}", birthday.deprecated);
     /// }
@@ -19210,10 +19210,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-duplicates");
+    /// # let client = churchtools_api::replay::client("get-persons-duplicates");
     /// for duplicate in client.persons().list_duplicates()? {
     ///     println!("{:?}", duplicate.relationship_type_id);
     /// }
@@ -19257,10 +19257,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-groups");
+    /// # let client = churchtools_api::replay::client("get-persons-id-groups");
     /// for group in client.persons().list_groups(42)? {
     ///     println!("{}", group.id);
     /// }
@@ -19293,10 +19293,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-openmeetingrequests");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-openmeetingrequests");
     /// for open_meeting_request in client.persons().list_open_meeting_requests(42)? {
     ///     println!("{}", open_meeting_request.id);
     /// }
@@ -19318,10 +19318,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-posts");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-posts");
     /// for post in client.persons().list_posts("abc123")? {
     ///     println!("{}", post.title);
     /// }
@@ -19350,10 +19350,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-relationships");
+    /// # let client = churchtools_api::replay::client("get-persons-relationships");
     /// for relationship in client.persons().list_relationships()? {
     ///     println!("{:?}", relationship.id);
     /// }
@@ -19371,10 +19371,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-search_old");
+    /// # let client = churchtools_api::replay::client("get-persons-search_old");
     /// for search_old in client.persons().list_search_old()? {
     ///     println!("{:?}", search_old);
     /// }
@@ -19397,10 +19397,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("patch-persons-id");
+    /// # let client = churchtools_api::replay::client("patch-persons-id");
     /// let body = models::PatchPersonsIdBody {
     ///     title: Some("Hauskreis Nord".into()),
     ///     ..Default::default()
@@ -19426,10 +19426,10 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-persons-properties");
+    /// # let client = churchtools_api::replay::client("post-persons-properties");
     /// let body = models::PostPersonsPropertiesBody::default();
     /// let result = client.persons().properties(&body)?;
     /// println!("{:?}", result);
@@ -19452,8 +19452,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().update_confidentiality_agreement(42)?;
@@ -19475,8 +19475,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PersonPasswordUpdate {
@@ -19505,8 +19505,8 @@ impl<'a> PersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PersonPrivacyPolicyUpdate {
@@ -19553,10 +19553,10 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-persons-personId-absences");
+    /// # let client = churchtools_api::replay::client("post-persons-personId-absences");
     /// let body = models::AbsenceCreate {
     ///     absence_reason_id: 1,
     ///     ..Default::default()
@@ -19584,8 +19584,8 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().absences().delete(42, 1)?;
@@ -19618,10 +19618,10 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-absences-id");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-absences-id");
     /// let absence = client.persons().absences().get(42, 1)?;
     /// println!("{}", absence.id);
     /// # Ok(())
@@ -19644,10 +19644,10 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-absences");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-absences");
     /// for absence in client.persons().absences().list(42)? {
     ///     println!("{}", absence.id);
     /// }
@@ -19680,10 +19680,10 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-persons-personId-absences-id");
+    /// # let client = churchtools_api::replay::client("put-persons-personId-absences-id");
     /// let body = models::AbsenceUpdate {
     ///     absence_reason_id: 1,
     ///     ..Default::default()
@@ -19718,8 +19718,8 @@ impl<'a> PersonsDevicesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().devices().delete(42, "abc123")?;
@@ -19741,10 +19741,10 @@ impl<'a> PersonsDevicesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-devices-deviceId");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-devices-deviceId");
     /// let device = client.persons().devices().get(42, "abc123")?;
     /// println!("{:?}", device.app_version);
     /// # Ok(())
@@ -19765,10 +19765,10 @@ impl<'a> PersonsDevicesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-devices");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-devices");
     /// for device in client.persons().devices().list(42)? {
     ///     println!("{:?}", device.app_version);
     /// }
@@ -19790,8 +19790,8 @@ impl<'a> PersonsDevicesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::DeviceUpdate {
@@ -19835,10 +19835,10 @@ impl<'a> PersonsEventsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-events");
+    /// # let client = churchtools_api::replay::client("get-persons-id-events");
     /// for event in client.persons().events().list(42)? {
     ///     println!("{}", event.name);
     /// }
@@ -19884,10 +19884,10 @@ impl<'a> PersonsEventsServicesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-events-id-services");
+    /// # let client = churchtools_api::replay::client("get-persons-id-events-id-services");
     /// for service in client.persons().events().services().list(42, 42)? {
     ///     println!("{:?}", service.name);
     /// }
@@ -19918,8 +19918,8 @@ impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ServiceExchangeRequestCreate {
@@ -19949,8 +19949,8 @@ impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().events().services().exchange_requests().delete(42, 42, 42, 42)?;
@@ -19985,10 +19985,10 @@ impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-events-id-services-id-exchangerequests");
+    /// # let client = churchtools_api::replay::client("get-persons-id-events-id-services-id-exchangerequests");
     /// for exchange_request in client.persons().events().services().exchange_requests().list(42, 42, 42)? {
     ///     println!("{}", exchange_request.id);
     /// }
@@ -20021,10 +20021,10 @@ impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-events-id-services-id-exchangerequests-candidates");
+    /// # let client = churchtools_api::replay::client("get-persons-id-events-id-services-id-exchangerequests-candidates");
     /// for candidate in client.persons().events().services().exchange_requests().list_candidates(42, 42, 42)? {
     ///     println!("{}", candidate.event_date);
     /// }
@@ -20055,8 +20055,8 @@ impl<'a> PersonsExchangeRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let exchange_request = client.persons().exchange_requests().delete(42, 42)?;
@@ -20081,10 +20081,10 @@ impl<'a> PersonsExchangeRequestsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-exchangerequests");
+    /// # let client = churchtools_api::replay::client("get-persons-id-exchangerequests");
     /// for exchange_request in client.persons().exchange_requests().list(42)? {
     ///     println!("{}", exchange_request.id);
     /// }
@@ -20117,8 +20117,8 @@ impl<'a> PersonsExchangeRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let result = client.persons().exchange_requests().update(42, 42)?;
@@ -20150,8 +20150,8 @@ impl<'a> PersonsExternalLoginsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().external_logins().delete(42, 7)?;
@@ -20173,10 +20173,10 @@ impl<'a> PersonsExternalLoginsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-external-logins");
+    /// # let client = churchtools_api::replay::client("get-persons-id-external-logins");
     /// for external_login in client.persons().external_logins().list(42)? {
     ///     println!("{}", external_login.external_login_id);
     /// }
@@ -20207,10 +20207,10 @@ impl<'a> PersonsFollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-persons-personId-followups");
+    /// # let client = churchtools_api::replay::client("post-persons-personId-followups");
     /// let body = models::FollowUpCreate {
     ///     title: "Call Peter".into(),
     ///     ..Default::default()
@@ -20236,10 +20236,10 @@ impl<'a> PersonsFollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-followups-statistics");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-followups-statistics");
     /// let statistic = client.persons().followups().get_statistics(42)?;
     /// println!("{}", statistic.count_done);
     /// # Ok(())
@@ -20262,10 +20262,10 @@ impl<'a> PersonsFollowupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-followups");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-followups");
     /// for followup in client.persons().followups().list(42)? {
     ///     println!("{}", followup.title);
     /// }
@@ -20318,10 +20318,10 @@ impl<'a> PersonsMergeResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personid-merge-duplicateid");
+    /// # let client = churchtools_api::replay::client("get-persons-personid-merge-duplicateid");
     /// let merge = client.persons().merge().get("abc123", "100")?;
     /// println!("{:?}", merge);
     /// # Ok(())
@@ -20358,8 +20358,8 @@ impl<'a> PersonsMergeResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PersonUpdateable {
@@ -20396,10 +20396,10 @@ impl<'a> PersonsRelationshipsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-persons-personId-relationships");
+    /// # let client = churchtools_api::replay::client("post-persons-personId-relationships");
     /// let body = models::PostPersonsPersonIdRelationshipsBody {
     ///     other_person_id: 42,
     ///     relationship_type_id: 42,
@@ -20426,8 +20426,8 @@ impl<'a> PersonsRelationshipsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().relationships().delete(42, 18)?;
@@ -20449,10 +20449,10 @@ impl<'a> PersonsRelationshipsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-personId-relationships");
+    /// # let client = churchtools_api::replay::client("get-persons-personId-relationships");
     /// for relationship in client.persons().relationships().list(42)? {
     ///     println!("{}", relationship.id);
     /// }
@@ -20485,8 +20485,8 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let service_request = client.persons().service_requests().delete(42, 42)?;
@@ -20520,10 +20520,10 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-servicerequests-id");
+    /// # let client = churchtools_api::replay::client("get-persons-id-servicerequests-id");
     /// let service_request = client.persons().service_requests().get(42, 42)?;
     /// println!("{:?}", service_request.name);
     /// # Ok(())
@@ -20546,10 +20546,10 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-servicerequests");
+    /// # let client = churchtools_api::replay::client("get-persons-id-servicerequests");
     /// for service_request in client.persons().service_requests().list(42)? {
     ///     println!("{:?}", service_request.name);
     /// }
@@ -20582,8 +20582,8 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let service_request = client.persons().service_requests().undo(42, 42)?;
@@ -20606,8 +20606,8 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PersonServiceRequestUpdate {
@@ -20648,8 +20648,8 @@ impl<'a> PersonsSettingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().settings().delete(42, "beispiel", "beispiel")?;
@@ -20671,10 +20671,10 @@ impl<'a> PersonsSettingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-settings-module-attribute");
+    /// # let client = churchtools_api::replay::client("get-persons-id-settings-module-attribute");
     /// let setting = client.persons().settings().get(42, "beispiel", "beispiel")?;
     /// println!("{}", setting.attribute);
     /// # Ok(())
@@ -20695,10 +20695,10 @@ impl<'a> PersonsSettingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-settings-module");
+    /// # let client = churchtools_api::replay::client("get-persons-id-settings-module");
     /// for module in client.persons().settings().get_module(42, "beispiel")? {
     ///     println!("{}", module.attribute);
     /// }
@@ -20720,10 +20720,10 @@ impl<'a> PersonsSettingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-settings");
+    /// # let client = churchtools_api::replay::client("get-persons-id-settings");
     /// for setting in client.persons().settings().list(42)? {
     ///     println!("{}", setting.attribute);
     /// }
@@ -20745,10 +20745,10 @@ impl<'a> PersonsSettingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-persons-id-settings-module-attribute");
+    /// # let client = churchtools_api::replay::client("put-persons-id-settings-module-attribute");
     /// let body = models::PersonSettingUpdate {
     ///     value: serde_json::json!("beispiel"),
     ///     ..Default::default()
@@ -20783,8 +20783,8 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::LoginCredentials {
@@ -20813,8 +20813,8 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.persons().settings().two_factor().delete(42)?;
@@ -20836,10 +20836,10 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-settings-twofactor");
+    /// # let client = churchtools_api::replay::client("get-persons-id-settings-twofactor");
     /// let two_factor = client.persons().settings().two_factor().get(42)?;
     /// println!("{}", two_factor.attribute);
     /// # Ok(())
@@ -20860,10 +20860,10 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-persons-id-settings-twofactor-force");
+    /// # let client = churchtools_api::replay::client("get-persons-id-settings-twofactor-force");
     /// let force = client.persons().settings().two_factor().get_force(42)?;
     /// println!("{}", force.attribute);
     /// # Ok(())
@@ -20884,8 +20884,8 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let result = client.persons().settings().two_factor().update(42)?;
@@ -20908,8 +20908,8 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PersonTwoFactorForceUpdate {
@@ -20950,10 +20950,10 @@ impl<'a> PlaceholdersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-placeholders-email");
+    /// # let client = churchtools_api::replay::client("get-placeholders-email");
     /// for email in client.placeholders().list_email()? {
     ///     println!("{}", email.name);
     /// }
@@ -20984,10 +20984,10 @@ impl<'a> PlaceholdersGroupResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-placeholders-group-id");
+    /// # let client = churchtools_api::replay::client("get-placeholders-group-id");
     /// for group in client.placeholders().group().get(11)? {
     ///     println!("{}", group.name);
     /// }
@@ -21016,10 +21016,10 @@ impl<'a> PollForNewsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-pollfornews");
+    /// # let client = churchtools_api::replay::client("get-pollfornews");
     /// let query = GetPollfornewsQuery {
     ///     domain_types: Some(vec!["beispiel".into()]),
     ///     since: Some("2022-10-19T12:00:00Z".parse()?),
@@ -21061,10 +21061,10 @@ impl<'a> PostResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-post-linkings");
+    /// # let client = churchtools_api::replay::client("get-post-linkings");
     /// let result = client.post().get_linkings()?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -21088,10 +21088,10 @@ impl<'a> PostResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-post-groups");
+    /// # let client = churchtools_api::replay::client("get-post-groups");
     /// for group in client.post().list_groups()? {
     ///     println!("{}", group.favorite_group);
     /// }
@@ -21113,10 +21113,10 @@ impl<'a> PostResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-post-search");
+    /// # let client = churchtools_api::replay::client("get-post-search");
     /// for search in client.post().list_search()? {
     ///     println!("{}", search.title);
     /// }
@@ -21152,8 +21152,8 @@ impl<'a> PostHiddenResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.post().hidden().delete("actor", 42)?;
@@ -21171,10 +21171,10 @@ impl<'a> PostHiddenResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-post-hidden");
+    /// # let client = churchtools_api::replay::client("get-post-hidden");
     /// for hidden in client.post().hidden().list()? {
     ///     println!("{:?}", hidden);
     /// }
@@ -21201,8 +21201,8 @@ impl<'a> PostReportsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ReportCreate {
@@ -21229,10 +21229,10 @@ impl<'a> PostReportsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-post-reports");
+    /// # let client = churchtools_api::replay::client("get-post-reports");
     /// for report in client.post().reports().list()? {
     ///     println!("{:?}", report);
     /// }
@@ -21257,8 +21257,8 @@ impl<'a> PostReportsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ReportAnswer {
@@ -21306,10 +21306,10 @@ impl<'a> PostsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-posts");
+    /// # let client = churchtools_api::replay::client("post-posts");
     /// let body = models::PostCreate {
     ///     content: Some("Hallo zusammen".into()),
     ///     title: "Hauskreis Nord".into(),
@@ -21336,8 +21336,8 @@ impl<'a> PostsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let query = DeletePostsPostIdQuery {
@@ -21363,10 +21363,10 @@ impl<'a> PostsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-posts-postId");
+    /// # let client = churchtools_api::replay::client("get-posts-postId");
     /// let post = client.posts().get(42)?;
     /// println!("{}", post.title);
     /// # Ok(())
@@ -21396,10 +21396,10 @@ impl<'a> PostsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-posts");
+    /// # let client = churchtools_api::replay::client("get-posts");
     /// for post in client.posts().list()? {
     ///     println!("{}", post.title);
     /// }
@@ -21428,10 +21428,10 @@ impl<'a> PostsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("patch-posts-postId");
+    /// # let client = churchtools_api::replay::client("patch-posts-postId");
     /// let body = models::PostUpdate {
     ///     title: Some("Hauskreis Nord".into()),
     ///     ..Default::default()
@@ -21455,8 +21455,8 @@ impl<'a> PostsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.posts().update_expire(42)?;
@@ -21489,10 +21489,10 @@ impl<'a> PostsCommentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-posts-postId-comments");
+    /// # let client = churchtools_api::replay::client("post-posts-postId-comments");
     /// let body = models::PostCommentCreate {
     ///     content: "Hallo zusammen".into(),
     ///     post_id: 42,
@@ -21517,8 +21517,8 @@ impl<'a> PostsCommentsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.posts().comments().delete(42, 42)?;
@@ -21538,10 +21538,10 @@ impl<'a> PostsCommentsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-posts-postId-comments");
+    /// # let client = churchtools_api::replay::client("get-posts-postId-comments");
     /// for comment in client.posts().comments().list(42)? {
     ///     println!("{}", comment.id);
     /// }
@@ -21570,8 +21570,8 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.posts().comments().reactions().delete(42, 42, "👍")?;
@@ -21591,10 +21591,10 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-posts-postId-comments-commentId-reactions");
+    /// # let client = churchtools_api::replay::client("get-posts-postId-comments-commentId-reactions");
     /// for reaction in client.posts().comments().reactions().list(42, 42)? {
     ///     println!("{}", reaction.comment_id);
     /// }
@@ -21614,10 +21614,10 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-posts-postId-comments-commentId-reactions");
+    /// # let client = churchtools_api::replay::client("put-posts-postId-comments-commentId-reactions");
     /// let body = models::PostCommentReactionCreate {
     ///     emoji: "👍".into(),
     ///     ..Default::default()
@@ -21650,8 +21650,8 @@ impl<'a> PostsHiddenResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.posts().hidden().update(42, "actor")?;
@@ -21684,10 +21684,10 @@ impl<'a> PostsReactionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-posts-postId-reactions");
+    /// # let client = churchtools_api::replay::client("get-posts-postId-reactions");
     /// for reaction in client.posts().reactions().list(42)? {
     ///     println!("{}", reaction.emoji);
     /// }
@@ -21716,8 +21716,8 @@ impl<'a> PostsReactionsPersonsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.posts().reactions().persons().delete(42, "👍", "abc123")?;
@@ -21737,10 +21737,10 @@ impl<'a> PostsReactionsPersonsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-posts-postId-reactions-emoji-persons-personId");
+    /// # let client = churchtools_api::replay::client("put-posts-postId-reactions-emoji-persons-personId");
     /// let result = client.posts().reactions().persons().update(42, "👍", "abc123")?;
     /// println!("{}", result.emoji);
     /// # Ok(())
@@ -21770,10 +21770,10 @@ impl<'a> PrResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-pr-masterdata");
+    /// # let client = churchtools_api::replay::client("get-pr-masterdata");
     /// let master_data = client.pr().get_master_data()?;
     /// println!("{:?}", master_data);
     /// # Ok(())
@@ -21803,10 +21803,10 @@ impl<'a> PrintersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-printers");
+    /// # let client = churchtools_api::replay::client("get-printers");
     /// for printer in client.printers().list()? {
     ///     println!("{}", printer.title);
     /// }
@@ -21837,8 +21837,8 @@ impl<'a> ProbesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostProbesBody {
@@ -21884,10 +21884,10 @@ impl<'a> ProfilesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-profiles-church");
+    /// # let client = churchtools_api::replay::client("get-profiles-church");
     /// let church = client.profiles().get_church()?;
     /// println!("{}", church.name);
     /// # Ok(())
@@ -21908,10 +21908,10 @@ impl<'a> ProfilesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-profiles");
+    /// # let client = churchtools_api::replay::client("get-profiles");
     /// for profile in client.profiles().list()? {
     ///     println!("{}", profile.name);
     /// }
@@ -21933,8 +21933,8 @@ impl<'a> ProfilesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ProfileUpdate {
@@ -21971,8 +21971,8 @@ impl<'a> ProfilesCampusesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ProfileUpdate {
@@ -22011,8 +22011,8 @@ impl<'a> ProfilesSlugCheckResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.profiles().slug_check().get("my-church")?;
@@ -22060,10 +22060,10 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-publicgroups-id");
+    /// # let client = churchtools_api::replay::client("get-publicgroups-id");
     /// let public_group = client.public_groups().get(42)?;
     /// println!("{}", public_group.name);
     /// # Ok(())
@@ -22095,10 +22095,10 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-publicgroups-groupId-form");
+    /// # let client = churchtools_api::replay::client("get-publicgroups-groupId-form");
     /// let query = GetPublicgroupsGroupIdFormQuery {
     ///     token: Some("abc123".into()),
     ///     ..Default::default()
@@ -22123,10 +22123,10 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-publicgroups-groupId-possiblerequesters");
+    /// # let client = churchtools_api::replay::client("get-publicgroups-groupId-possiblerequesters");
     /// let query = GetPublicgroupsGroupIdPossiblerequestersQuery {
     ///     token: Some("abc123".into()),
     ///     ..Default::default()
@@ -22153,10 +22153,10 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-publicgroups-id-signoutdata");
+    /// # let client = churchtools_api::replay::client("get-publicgroups-id-signoutdata");
     /// let signout_data = client.public_groups().get_signout_data(42)?;
     /// println!("{}", signout_data.group_has_auto_accept);
     /// # Ok(())
@@ -22188,10 +22188,10 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-publicgroups-id-hash");
+    /// # let client = churchtools_api::replay::client("get-publicgroups-id-hash");
     /// let with_hash = client.public_groups().get_with_hash(42, "abc123")?;
     /// println!("{}", with_hash.name);
     /// # Ok(())
@@ -22212,8 +22212,8 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PublicGroupLeaderMailCreate {
@@ -22243,8 +22243,8 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PublicGroupSignOutRequest {
@@ -22271,8 +22271,8 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PublicGroupSignupCreate {
@@ -22304,8 +22304,8 @@ impl<'a> PublicGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PublicGroupTokenCreate {
@@ -22355,8 +22355,8 @@ impl<'a> PublicGroupsSignupConfirmResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
@@ -22381,8 +22381,8 @@ impl<'a> PublicGroupsSignupConfirmResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.public_groups().signup().confirm().get("abc123")?;
@@ -22418,8 +22418,8 @@ impl<'a> QueuesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let result = client.queues().create("default")?;
@@ -22453,10 +22453,10 @@ impl<'a> QueuesJobGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-queues-queue-jobgroups-jobGroup");
+    /// # let client = churchtools_api::replay::client("get-queues-queue-jobgroups-jobGroup");
     /// for job_group in client.queues().job_groups().get("beispiel", "beispiel")? {
     ///     println!("{}", job_group.name);
     /// }
@@ -22487,10 +22487,10 @@ impl<'a> RegistrationConfigResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-registrationconfig-id");
+    /// # let client = churchtools_api::replay::client("get-registrationconfig-id");
     /// let registration_config = client.registration_config().get(serde_json::json!(42))?;
     /// println!("{}", registration_config.id);
     /// # Ok(())
@@ -22511,8 +22511,8 @@ impl<'a> RegistrationConfigResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RegistrationConfigUpdate {
@@ -22549,8 +22549,8 @@ impl<'a> RegistrationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RegistrationConfirm {
@@ -22578,8 +22578,8 @@ impl<'a> RegistrationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RegistrationConvert {
@@ -22610,8 +22610,8 @@ impl<'a> RegistrationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RegistrationCreate {
@@ -22643,8 +22643,8 @@ impl<'a> RegistrationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.registrations().delete("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1")?;
@@ -22666,8 +22666,8 @@ impl<'a> RegistrationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.registrations().resend("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1")?;
@@ -22698,10 +22698,10 @@ impl<'a> RepeatCalculationResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-repeatcalculation");
+    /// # let client = churchtools_api::replay::client("post-repeatcalculation");
     /// let body = models::RepeatCalculationCreate {
     ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
@@ -22729,8 +22729,8 @@ impl<'a> RepeatCalculationResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RepeatCalculationCreate {
@@ -22760,10 +22760,10 @@ impl<'a> RepeatCalculationResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-repeatcalculation");
+    /// # let client = churchtools_api::replay::client("get-repeatcalculation");
     /// let query = GetRepeatcalculationQuery {
     ///     end_date: Some(serde_json::json!("2026-09-20T09:30:00Z")),
     ///     start_date: Some(serde_json::json!("2026-09-20T08:00:00Z")),
@@ -22790,8 +22790,8 @@ impl<'a> RepeatCalculationResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RepeatCalculationCreate {
@@ -22821,8 +22821,8 @@ impl<'a> RepeatCalculationResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RepeatCalculationCreate {
@@ -22861,8 +22861,8 @@ impl<'a> ResetPasswordResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PasswordResetCreate {
@@ -22901,10 +22901,10 @@ impl<'a> ResourceResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-resource-masterdata");
+    /// # let client = churchtools_api::replay::client("get-resource-masterdata");
     /// let master_data = client.resource().get_master_data()?;
     /// println!("{:?}", master_data);
     /// # Ok(())
@@ -22945,10 +22945,10 @@ impl<'a> ResourceTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-resourcetypes");
+    /// # let client = churchtools_api::replay::client("post-resourcetypes");
     /// let body = models::ResourceTypeCreate {
     ///     name: "Room".into(),
     ///     name_plural: "Rooms".into(),
@@ -22976,8 +22976,8 @@ impl<'a> ResourceTypesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.resource_types().delete(2)?;
@@ -22999,10 +22999,10 @@ impl<'a> ResourceTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-resourcetypes-resourceTypeId");
+    /// # let client = churchtools_api::replay::client("get-resourcetypes-resourceTypeId");
     /// let resource_type = client.resource_types().get(2)?;
     /// println!("{}", resource_type.name);
     /// # Ok(())
@@ -23023,10 +23023,10 @@ impl<'a> ResourceTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-resourcetypes");
+    /// # let client = churchtools_api::replay::client("get-resourcetypes");
     /// for resource_type in client.resource_types().list()? {
     ///     println!("{}", resource_type.name);
     /// }
@@ -23048,10 +23048,10 @@ impl<'a> ResourceTypesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-resourcetypes-resourceTypeId");
+    /// # let client = churchtools_api::replay::client("put-resourcetypes-resourceTypeId");
     /// let body = models::ResourceTypeUpdate {
     ///     name: "Room".into(),
     ///     name_plural: "Rooms".into(),
@@ -23088,10 +23088,10 @@ impl<'a> ResourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-resources");
+    /// # let client = churchtools_api::replay::client("post-resources");
     /// let body = models::ResourceCreate {
     ///     name: "Main Hall".into(),
     ///     resource_type_id: 2,
@@ -23119,8 +23119,8 @@ impl<'a> ResourcesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.resources().delete(7)?;
@@ -23144,10 +23144,10 @@ impl<'a> ResourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-resources-resourceId");
+    /// # let client = churchtools_api::replay::client("get-resources-resourceId");
     /// let resource = client.resources().get(7)?;
     /// println!("{}", resource.name);
     /// # Ok(())
@@ -23179,10 +23179,10 @@ impl<'a> ResourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-resources-resourceId-statistics");
+    /// # let client = churchtools_api::replay::client("get-resources-resourceId-statistics");
     /// let statistic = client.resources().get_statistics(7)?;
     /// println!("{}", statistic.num_requested_bookings_in_future);
     /// # Ok(())
@@ -23205,10 +23205,10 @@ impl<'a> ResourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-resources");
+    /// # let client = churchtools_api::replay::client("get-resources");
     /// for resource in client.resources().list()? {
     ///     println!("{}", resource.name);
     /// }
@@ -23241,10 +23241,10 @@ impl<'a> ResourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-resources-resourceId");
+    /// # let client = churchtools_api::replay::client("put-resources-resourceId");
     /// let body = models::ResourceUpdate {
     ///     name: "Main Hall".into(),
     ///     resource_type_id: 2,
@@ -23289,8 +23289,8 @@ impl<'a> RoutinesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RoutineCreate {
@@ -23324,8 +23324,8 @@ impl<'a> RoutinesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.routines().delete(9)?;
@@ -23347,8 +23347,8 @@ impl<'a> RoutinesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.routines().execute()?;
@@ -23370,10 +23370,10 @@ impl<'a> RoutinesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-routines-routineId");
+    /// # let client = churchtools_api::replay::client("get-routines-routineId");
     /// let routine = client.routines().get(9)?;
     /// println!("{}", routine.name);
     /// # Ok(())
@@ -23396,10 +23396,10 @@ impl<'a> RoutinesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-routines");
+    /// # let client = churchtools_api::replay::client("get-routines");
     /// for routine in client.routines().list()? {
     ///     println!("{}", routine.name);
     /// }
@@ -23434,8 +23434,8 @@ impl<'a> RoutinesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RoutineUpdate {
@@ -23487,8 +23487,8 @@ impl<'a> RoutinesRunsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RoutineRunUpdate {
@@ -23518,10 +23518,10 @@ impl<'a> RoutinesRunsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-routines-routineId-runs");
+    /// # let client = churchtools_api::replay::client("get-routines-routineId-runs");
     /// for run in client.routines().runs().list(9)? {
     ///     println!("{:?}", run.id);
     /// }
@@ -23563,8 +23563,8 @@ impl<'a> RoutinesRunsBulkResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RoutineRunBulkUpdate {
@@ -23602,8 +23602,8 @@ impl<'a> RoutinesStepsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::RoutineActionValidation {
@@ -23639,8 +23639,8 @@ impl<'a> SamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.saml().acs()?;
@@ -23665,8 +23665,8 @@ impl<'a> SamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.saml().get_login()?;
@@ -23699,8 +23699,8 @@ impl<'a> SamlResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let data = client.saml().get_metadata()?;
@@ -23732,10 +23732,10 @@ impl<'a> SearchResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-search");
+    /// # let client = churchtools_api::replay::client("get-search");
     /// let query = GetSearchQuery {
     ///     query: Some("max".into()),
     ///     ..Default::default()
@@ -23770,8 +23770,8 @@ impl<'a> SecurityLevelsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostSecuritylevelsIdBody {
@@ -23801,8 +23801,8 @@ impl<'a> SecurityLevelsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.security_levels().delete(1)?;
@@ -23835,10 +23835,10 @@ impl<'a> SecurityLevelsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-securitylevels-id");
+    /// # let client = churchtools_api::replay::client("get-securitylevels-id");
     /// let security_level = client.security_levels().get(1)?;
     /// println!("{}", security_level.name);
     /// # Ok(())
@@ -23857,10 +23857,10 @@ impl<'a> SecurityLevelsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-securitylevels");
+    /// # let client = churchtools_api::replay::client("get-securitylevels");
     /// for security_level in client.security_levels().list()? {
     ///     println!("{}", security_level.name);
     /// }
@@ -23884,8 +23884,8 @@ impl<'a> SecurityLevelsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PatchSecuritylevelsIdBody {
@@ -23933,10 +23933,10 @@ impl<'a> ServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-servicegroups");
+    /// # let client = churchtools_api::replay::client("post-servicegroups");
     /// let body = models::ServiceGroupCreate {
     ///     name: "Hauskreis Nord".into(),
     ///     ..Default::default()
@@ -23962,8 +23962,8 @@ impl<'a> ServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.service_groups().delete(13)?;
@@ -23985,10 +23985,10 @@ impl<'a> ServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-servicegroups-id");
+    /// # let client = churchtools_api::replay::client("get-servicegroups-id");
     /// let service_group = client.service_groups().get(13)?;
     /// println!("{}", service_group.name);
     /// # Ok(())
@@ -24009,10 +24009,10 @@ impl<'a> ServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-servicegroups");
+    /// # let client = churchtools_api::replay::client("get-servicegroups");
     /// for service_group in client.service_groups().list()? {
     ///     println!("{}", service_group.name);
     /// }
@@ -24034,10 +24034,10 @@ impl<'a> ServiceGroupsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-servicegroups-id");
+    /// # let client = churchtools_api::replay::client("put-servicegroups-id");
     /// let body = models::ServiceGroupUpdate {
     ///     name: "Hauskreis Nord".into(),
     ///     ..Default::default()
@@ -24072,10 +24072,10 @@ impl<'a> ServicesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-services");
+    /// # let client = churchtools_api::replay::client("post-services");
     /// let body = models::ServiceCreate {
     ///     name: "Hauskreis Nord".into(),
     ///     service_group_id: 42,
@@ -24102,8 +24102,8 @@ impl<'a> ServicesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.services().delete(2)?;
@@ -24125,10 +24125,10 @@ impl<'a> ServicesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-services-id");
+    /// # let client = churchtools_api::replay::client("get-services-id");
     /// let service = client.services().get(2)?;
     /// println!("{}", service.name);
     /// # Ok(())
@@ -24149,10 +24149,10 @@ impl<'a> ServicesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-services");
+    /// # let client = churchtools_api::replay::client("get-services");
     /// for service in client.services().list()? {
     ///     println!("{}", service.name);
     /// }
@@ -24174,10 +24174,10 @@ impl<'a> ServicesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-services-id");
+    /// # let client = churchtools_api::replay::client("put-services-id");
     /// let body = models::ServiceUpdate {
     ///     name: "Hauskreis Nord".into(),
     ///     service_group_id: 42,
@@ -24213,8 +24213,8 @@ impl<'a> SimulateResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostSimulateBody {
@@ -24241,8 +24241,8 @@ impl<'a> SimulateResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let simulate = client.simulate().delete()?;
@@ -24291,10 +24291,10 @@ impl<'a> SongCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-song-categories");
+    /// # let client = churchtools_api::replay::client("post-song-categories");
     /// let body = models::SongCategoryCreate {
     ///     name: "Worship".into(),
     ///     ..Default::default()
@@ -24320,8 +24320,8 @@ impl<'a> SongCategoriesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.song().categories().delete(1)?;
@@ -24343,10 +24343,10 @@ impl<'a> SongCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-song-categories-id");
+    /// # let client = churchtools_api::replay::client("get-song-categories-id");
     /// let category = client.song().categories().get(1)?;
     /// println!("{}", category.name);
     /// # Ok(())
@@ -24367,10 +24367,10 @@ impl<'a> SongCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-song-categories");
+    /// # let client = churchtools_api::replay::client("get-song-categories");
     /// for category in client.song().categories().list()? {
     ///     println!("{}", category.name);
     /// }
@@ -24392,10 +24392,10 @@ impl<'a> SongCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-song-categories-id");
+    /// # let client = churchtools_api::replay::client("put-song-categories-id");
     /// let body = models::SongCategoryUpdate {
     ///     name: "Worship".into(),
     ///     ..Default::default()
@@ -24430,10 +24430,10 @@ impl<'a> SongSourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-song-sources");
+    /// # let client = churchtools_api::replay::client("post-song-sources");
     /// let body = models::SongSourceCreate {
     ///     name: "Community hymnal".into(),
     ///     ..Default::default()
@@ -24459,8 +24459,8 @@ impl<'a> SongSourcesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.song().sources().delete(1)?;
@@ -24482,10 +24482,10 @@ impl<'a> SongSourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-song-sources-id");
+    /// # let client = churchtools_api::replay::client("get-song-sources-id");
     /// let source = client.song().sources().get(1)?;
     /// println!("{}", source.name);
     /// # Ok(())
@@ -24506,10 +24506,10 @@ impl<'a> SongSourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-song-sources");
+    /// # let client = churchtools_api::replay::client("get-song-sources");
     /// for source in client.song().sources().list()? {
     ///     println!("{}", source.name);
     /// }
@@ -24531,10 +24531,10 @@ impl<'a> SongSourcesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-song-sources-id");
+    /// # let client = churchtools_api::replay::client("put-song-sources-id");
     /// let body = models::SongSourceUpdate {
     ///     name: "Community hymnal".into(),
     ///     ..Default::default()
@@ -24573,10 +24573,10 @@ impl<'a> SongsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-songs");
+    /// # let client = churchtools_api::replay::client("post-songs");
     /// let body = models::SongCreate {
     ///     category_id: 1,
     ///     name: "Hallelujah".into(),
@@ -24603,8 +24603,8 @@ impl<'a> SongsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.songs().delete(42)?;
@@ -24628,10 +24628,10 @@ impl<'a> SongsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-songs-songId");
+    /// # let client = churchtools_api::replay::client("get-songs-songId");
     /// let song = client.songs().get(42)?;
     /// println!("{}", song.name);
     /// # Ok(())
@@ -24665,10 +24665,10 @@ impl<'a> SongsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-songs");
+    /// # let client = churchtools_api::replay::client("get-songs");
     /// for song in client.songs().list()? {
     ///     println!("{}", song.name);
     /// }
@@ -24710,10 +24710,10 @@ impl<'a> SongsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-songs-songId");
+    /// # let client = churchtools_api::replay::client("put-songs-songId");
     /// let body = models::SongUpdate {
     ///     category_id: 1,
     ///     name: "Hallelujah".into(),
@@ -24753,10 +24753,10 @@ impl<'a> SongsArrangementsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-songs-songId-arrangements");
+    /// # let client = churchtools_api::replay::client("post-songs-songId-arrangements");
     /// let body = models::ArrangementCreate {
     ///     name: "Men Voicing".into(),
     ///     ..Default::default()
@@ -24782,8 +24782,8 @@ impl<'a> SongsArrangementsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.songs().arrangements().delete(42, 42)?;
@@ -24805,10 +24805,10 @@ impl<'a> SongsArrangementsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-songs-songId-arrangements-arrangementId");
+    /// # let client = churchtools_api::replay::client("get-songs-songId-arrangements-arrangementId");
     /// let arrangement = client.songs().arrangements().get(42, 42)?;
     /// println!("{}", arrangement.name);
     /// # Ok(())
@@ -24829,10 +24829,10 @@ impl<'a> SongsArrangementsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-songs-songId-arrangements");
+    /// # let client = churchtools_api::replay::client("get-songs-songId-arrangements");
     /// for arrangement in client.songs().arrangements().list(42)? {
     ///     println!("{}", arrangement.name);
     /// }
@@ -24854,8 +24854,8 @@ impl<'a> SongsArrangementsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.songs().arrangements().patch_default(42, 42)?;
@@ -24877,10 +24877,10 @@ impl<'a> SongsArrangementsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-songs-songId-arrangements-arrangementId");
+    /// # let client = churchtools_api::replay::client("put-songs-songId-arrangements-arrangementId");
     /// let body = models::ArrangementUpdate {
     ///     name: "Men Voicing".into(),
     ///     ..Default::default()
@@ -24915,8 +24915,8 @@ impl<'a> SongsArrangementsFilesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ArrangementFileTransposeCreate {
@@ -24953,10 +24953,10 @@ impl<'a> SsoLoginsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sso-logins");
+    /// # let client = churchtools_api::replay::client("get-sso-logins");
     /// for sso_login in client.sso_logins().list()? {
     ///     println!("{}", sso_login.name);
     /// }
@@ -24987,10 +24987,10 @@ impl<'a> StartPageResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-startpage");
+    /// # let client = churchtools_api::replay::client("get-startpage");
     /// for start_page in client.start_page().list()? {
     ///     println!("{:?}", start_page);
     /// }
@@ -25021,10 +25021,10 @@ impl<'a> StatusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-statuses");
+    /// # let client = churchtools_api::replay::client("post-statuses");
     /// let body = models::StatusCreate {
     ///     name: "Member".into(),
     ///     security_level_id: 2,
@@ -25051,8 +25051,8 @@ impl<'a> StatusesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.statuses().delete(1)?;
@@ -25074,10 +25074,10 @@ impl<'a> StatusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-statuses-id");
+    /// # let client = churchtools_api::replay::client("get-statuses-id");
     /// let status = client.statuses().get(1)?;
     /// println!("{}", status.name);
     /// # Ok(())
@@ -25098,10 +25098,10 @@ impl<'a> StatusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-statuses");
+    /// # let client = churchtools_api::replay::client("get-statuses");
     /// for status in client.statuses().list()? {
     ///     println!("{}", status.name);
     /// }
@@ -25123,10 +25123,10 @@ impl<'a> StatusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("patch-statuses-id");
+    /// # let client = churchtools_api::replay::client("patch-statuses-id");
     /// let body = models::StatusUpdate {
     ///     name: Some("Member".into()),
     ///     ..Default::default()
@@ -25152,10 +25152,10 @@ impl<'a> StatusesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-statuses-id");
+    /// # let client = churchtools_api::replay::client("put-statuses-id");
     /// let body = models::StatusCreate {
     ///     name: "Member".into(),
     ///     security_level_id: 2,
@@ -25192,8 +25192,8 @@ impl<'a> SubscriptionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.subscriptions().delete(42, "group", "root")?;
@@ -25215,10 +25215,10 @@ impl<'a> SubscriptionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-subscriptions-personId-subject-subjectIdentifier");
+    /// # let client = churchtools_api::replay::client("get-subscriptions-personId-subject-subjectIdentifier");
     /// let result = client.subscriptions().get(42, "group", "root")?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -25239,10 +25239,10 @@ impl<'a> SubscriptionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-subscriptions-personId");
+    /// # let client = churchtools_api::replay::client("get-subscriptions-personId");
     /// for subscription in client.subscriptions().list(42)? {
     ///     println!("{:?}", subscription);
     /// }
@@ -25264,10 +25264,10 @@ impl<'a> SubscriptionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-subscriptions-personId-subject");
+    /// # let client = churchtools_api::replay::client("get-subscriptions-personId-subject");
     /// for for_subject in client.subscriptions().list_for_subject(42, "group")? {
     ///     println!("{:?}", for_subject);
     /// }
@@ -25289,8 +25289,8 @@ impl<'a> SubscriptionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SubscriptionUpdate {
@@ -25343,8 +25343,8 @@ impl<'a> SyncResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncLogsCreate {
@@ -25382,10 +25382,10 @@ impl<'a> SyncResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-executions");
+    /// # let client = churchtools_api::replay::client("get-sync-executions");
     /// for execution in client.sync().list_executions()? {
     ///     println!("{:?}", execution.created_date);
     /// }
@@ -25429,10 +25429,10 @@ impl<'a> SyncResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-jobconfigs");
+    /// # let client = churchtools_api::replay::client("get-sync-jobconfigs");
     /// for job_config in client.sync().list_job_configs()? {
     ///     println!("{}", job_config.name);
     /// }
@@ -25467,10 +25467,10 @@ impl<'a> SyncResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-logs");
+    /// # let client = churchtools_api::replay::client("get-sync-logs");
     /// for log in client.sync().list_logs()? {
     ///     println!("{}", log.id);
     /// }
@@ -25525,8 +25525,8 @@ impl<'a> SyncAdaptersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncAdapterCreate {
@@ -25558,8 +25558,8 @@ impl<'a> SyncAdaptersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().adapters().delete(1)?;
@@ -25592,10 +25592,10 @@ impl<'a> SyncAdaptersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-adapters-id");
+    /// # let client = churchtools_api::replay::client("get-sync-adapters-id");
     /// let adapter = client.sync().adapters().get(1)?;
     /// println!("{}", adapter.name);
     /// # Ok(())
@@ -25616,10 +25616,10 @@ impl<'a> SyncAdaptersResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-adapters");
+    /// # let client = churchtools_api::replay::client("get-sync-adapters");
     /// for adapter in client.sync().adapters().list()? {
     ///     println!("{}", adapter.name);
     /// }
@@ -25641,8 +25641,8 @@ impl<'a> SyncAdaptersResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncAdapterUpdate {
@@ -25681,8 +25681,8 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().adapters().proxy().create("churchtools", "adapter/info")?;
@@ -25704,8 +25704,8 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().adapters().proxy().delete("churchtools", "adapter/info")?;
@@ -25727,8 +25727,8 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().adapters().proxy().get("churchtools", "adapter/info")?;
@@ -25750,8 +25750,8 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().adapters().proxy().patch("churchtools", "adapter/info")?;
@@ -25773,8 +25773,8 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().adapters().proxy().update("churchtools", "adapter/info")?;
@@ -25805,8 +25805,8 @@ impl<'a> SyncConflictsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncConflictCreate {
@@ -25841,8 +25841,8 @@ impl<'a> SyncConflictsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().conflicts().delete(1)?;
@@ -25864,8 +25864,8 @@ impl<'a> SyncConflictsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let conflict = client.sync().conflicts().get(1)?;
@@ -25890,10 +25890,10 @@ impl<'a> SyncConflictsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-conflicts");
+    /// # let client = churchtools_api::replay::client("get-sync-conflicts");
     /// for conflict in client.sync().conflicts().list()? {
     ///     println!("{}", conflict.id);
     /// }
@@ -25935,8 +25935,8 @@ impl<'a> SyncConflictsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncConflictUpdate {
@@ -25980,8 +25980,8 @@ impl<'a> SyncEntityMappingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncEntityMappingCreate {
@@ -26013,8 +26013,8 @@ impl<'a> SyncEntityMappingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().entity_mappings().delete(1)?;
@@ -26036,10 +26036,10 @@ impl<'a> SyncEntityMappingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-entitymappings-id");
+    /// # let client = churchtools_api::replay::client("get-sync-entitymappings-id");
     /// let entity_mapping = client.sync().entity_mappings().get(1)?;
     /// println!("{}", entity_mapping.id);
     /// # Ok(())
@@ -26062,10 +26062,10 @@ impl<'a> SyncEntityMappingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-entitymappings");
+    /// # let client = churchtools_api::replay::client("get-sync-entitymappings");
     /// for entity_mapping in client.sync().entity_mappings().list()? {
     ///     println!("{}", entity_mapping.id);
     /// }
@@ -26107,8 +26107,8 @@ impl<'a> SyncEntityMappingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncEntityMappingUpdate {
@@ -26161,8 +26161,8 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ExternalSystemCreate {
@@ -26192,8 +26192,8 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().delete(1)?;
@@ -26215,8 +26215,8 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().delete_entity_mappings(1)?;
@@ -26238,10 +26238,10 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems-externalSystemId");
     /// let externalsystem = client.sync().externalsystems().get(1)?;
     /// println!("{}", externalsystem.name);
     /// # Ok(())
@@ -26262,10 +26262,10 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems");
     /// for externalsystem in client.sync().externalsystems().list()? {
     ///     println!("{}", externalsystem.name);
     /// }
@@ -26287,8 +26287,8 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().test(1)?;
@@ -26310,8 +26310,8 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncExternalSystemTestCreate {
@@ -26341,8 +26341,8 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::ExternalSystemUpdate {
@@ -26382,8 +26382,8 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().adapter_proxy().create(1, "adapter/info")?;
@@ -26405,8 +26405,8 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().adapter_proxy().delete(1, "adapter/info")?;
@@ -26428,8 +26428,8 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().adapter_proxy().get(1, "adapter/info")?;
@@ -26451,8 +26451,8 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().adapter_proxy().patch(1, "adapter/info")?;
@@ -26474,8 +26474,8 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().adapter_proxy().update(1, "adapter/info")?;
@@ -26506,8 +26506,8 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().field_mappings().delete(1, "status")?;
@@ -26529,10 +26529,10 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-fieldmappings-domaintype");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems-id-fieldmappings-domaintype");
     /// let field_mapping = client.sync().externalsystems().field_mappings().get(1, "status")?;
     /// println!("{:?}", field_mapping.id);
     /// # Ok(())
@@ -26553,10 +26553,10 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions");
     /// let result = client.sync().externalsystems().field_mappings().get_nosuggestions(1, "status")?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -26577,10 +26577,10 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-fieldmappings");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems-externalSystemId-fieldmappings");
     /// for field_mapping in client.sync().externalsystems().field_mappings().list(1)? {
     ///     println!("{:?}", field_mapping.id);
     /// }
@@ -26602,8 +26602,8 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncFieldMappingUpdate {
@@ -26661,8 +26661,8 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncJobConfigurationCreate {
@@ -26692,8 +26692,8 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().job_configs().delete(1, 1)?;
@@ -26715,8 +26715,8 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().job_configs().delete_filter(1, 1)?;
@@ -26738,8 +26738,8 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.sync().externalsystems().job_configs().delete_properties(1, 1)?;
@@ -26761,10 +26761,10 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId");
     /// for job_config in client.sync().externalsystems().job_configs().get(1, 1)? {
     ///     println!("{}", job_config.name);
     /// }
@@ -26786,10 +26786,10 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter");
     /// let filter = client.sync().externalsystems().job_configs().get_filter(1, 1)?;
     /// println!("{:?}", filter);
     /// # Ok(())
@@ -26810,10 +26810,10 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties");
     /// let property = client.sync().externalsystems().job_configs().get_properties(1, 1)?;
     /// println!("{}", property.domain_type);
     /// # Ok(())
@@ -26834,10 +26834,10 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-jobconfigs");
+    /// # let client = churchtools_api::replay::client("get-sync-externalsystems-id-jobconfigs");
     /// for job_config in client.sync().externalsystems().job_configs().list(1)? {
     ///     println!("{}", job_config.name);
     /// }
@@ -26859,8 +26859,8 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncExecutionCreate {
@@ -26887,8 +26887,8 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncJobConfigurationUpdate {
@@ -26919,8 +26919,8 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncJobFiltersUpdate {
@@ -26959,8 +26959,8 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::SyncJobPropertiesUpdate {
@@ -27014,8 +27014,8 @@ impl<'a> SyncExternalsystemsJobConfigsExecutionsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let execution = client.sync().externalsystems().job_configs().executions().get(1, 1, "run-123")?;
@@ -27047,10 +27047,10 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-tags-domainType-domainId-tagId");
+    /// # let client = churchtools_api::replay::client("put-tags-domainType-domainId-tagId");
     /// let tag = client.tags().attach("person", 35, 42)?;
     /// println!("{}", tag.name);
     /// # Ok(())
@@ -27071,10 +27071,10 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-tags-domainType-domainId");
+    /// # let client = churchtools_api::replay::client("post-tags-domainType-domainId");
     /// let body = models::TagAssignmentCreate {
     ///     name: "Mission".into(),
     ///     ..Default::default()
@@ -27100,10 +27100,10 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-tags-domainType");
+    /// # let client = churchtools_api::replay::client("post-tags-domainType");
     /// let body = models::TagCreate {
     ///     name: "Mission".into(),
     ///     ..Default::default()
@@ -27129,8 +27129,8 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.tags().delete(42)?;
@@ -27152,8 +27152,8 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.tags().detach("person", 35, 42)?;
@@ -27175,10 +27175,10 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-tags-tagId");
+    /// # let client = churchtools_api::replay::client("get-tags-tagId");
     /// let tag = client.tags().get(42)?;
     /// println!("{}", tag.name);
     /// # Ok(())
@@ -27199,10 +27199,10 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-tags-domainType");
+    /// # let client = churchtools_api::replay::client("get-tags-domainType");
     /// for tag in client.tags().list("person")? {
     ///     println!("{}", tag.name);
     /// }
@@ -27224,10 +27224,10 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-tags-domainType-domainId");
+    /// # let client = churchtools_api::replay::client("get-tags-domainType-domainId");
     /// for for_object in client.tags().list_for_object("person", 35)? {
     ///     println!("{}", for_object.name);
     /// }
@@ -27249,10 +27249,10 @@ impl<'a> TagsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-tags-tagId");
+    /// # let client = churchtools_api::replay::client("put-tags-tagId");
     /// let body = models::TagUpdate {
     ///     name: "Mission".into(),
     ///     ..Default::default()
@@ -27291,8 +27291,8 @@ impl<'a> TranslationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.translations().delete(1)?;
@@ -27316,10 +27316,10 @@ impl<'a> TranslationsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-translations");
+    /// # let client = churchtools_api::replay::client("get-translations");
     /// for translation in client.translations().list()? {
     ///     println!("{}", translation.id);
     /// }
@@ -27352,10 +27352,10 @@ impl<'a> TranslationsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-translations-keysbytext");
+    /// # let client = churchtools_api::replay::client("get-translations-keysbytext");
     /// let query = GetTranslationsKeysbytextQuery {
     ///     query: Some("Welcome".into()),
     ///     ..Default::default()
@@ -27381,8 +27381,8 @@ impl<'a> TranslationsResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::TranslationKeyUpdate {
@@ -27419,8 +27419,8 @@ impl<'a> TranslationsLanguagesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.translations().languages().delete(1, 1)?;
@@ -27451,8 +27451,8 @@ impl<'a> TwoFactorResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PersonTwoFactorVerify {
@@ -27490,10 +27490,10 @@ impl<'a> WebsiteResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-website-starttest");
+    /// # let client = churchtools_api::replay::client("get-website-starttest");
     /// client.website().get_start_test()?;
     /// # Ok(())
     /// # }
@@ -27518,8 +27518,8 @@ impl<'a> WebsiteDataResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::WebsiteDataCreate {
@@ -27544,8 +27544,8 @@ impl<'a> WebsiteDataResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.website().data().delete(4)?;
@@ -27567,10 +27567,10 @@ impl<'a> WebsiteDataResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-website-data");
+    /// # let client = churchtools_api::replay::client("get-website-data");
     /// for item in client.website().data().list()? {
     ///     println!("{:?}", item);
     /// }
@@ -27612,10 +27612,10 @@ impl<'a> WhoamiResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-whoami");
+    /// # let client = churchtools_api::replay::client("get-whoami");
     /// let whoami = client.whoami().get()?;
     /// println!("{:?}", whoami.title);
     /// # Ok(())
@@ -27652,10 +27652,10 @@ impl<'a> WidgetsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-widgets-blog");
+    /// # let client = churchtools_api::replay::client("get-widgets-blog");
     /// let blog = client.widgets().get_blog()?;
     /// println!("{:?}", blog.title);
     /// # Ok(())
@@ -27672,10 +27672,10 @@ impl<'a> WidgetsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-widgets-rss");
+    /// # let client = churchtools_api::replay::client("get-widgets-rss");
     /// let rss = client.widgets().get_rss()?;
     /// println!("{}", rss.title);
     /// # Ok(())
@@ -27711,10 +27711,10 @@ impl<'a> WikiResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-wiki-pages");
+    /// # let client = churchtools_api::replay::client("get-wiki-pages");
     /// for page in client.wiki().list_pages()? {
     ///     println!("{}", page.title);
     /// }
@@ -27756,10 +27756,10 @@ impl<'a> WikiResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-wiki-search");
+    /// # let client = churchtools_api::replay::client("get-wiki-search");
     /// let query = GetWikiSearchQuery {
     ///     query: Some("welcome".into()),
     ///     ..Default::default()
@@ -27798,10 +27798,10 @@ impl<'a> WikiCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-wiki-categories");
+    /// # let client = churchtools_api::replay::client("post-wiki-categories");
     /// let body = models::WikiCategoryCreate {
     ///     file_access_without_permission: false,
     ///     in_menu: true,
@@ -27830,8 +27830,8 @@ impl<'a> WikiCategoriesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.wiki().categories().delete(42)?;
@@ -27853,10 +27853,10 @@ impl<'a> WikiCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-wiki-categories");
+    /// # let client = churchtools_api::replay::client("get-wiki-categories");
     /// for category in client.wiki().categories().list()? {
     ///     println!("{}", category.name);
     /// }
@@ -27878,10 +27878,10 @@ impl<'a> WikiCategoriesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-wiki-categories-id");
+    /// # let client = churchtools_api::replay::client("put-wiki-categories-id");
     /// let body = models::WikiCategoryUpdate {
     ///     file_access_without_permission: false,
     ///     in_menu: true,
@@ -27923,10 +27923,10 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-wiki-categories-id-pages");
+    /// # let client = churchtools_api::replay::client("post-wiki-categories-id-pages");
     /// let body = models::WikiPageCreate {
     ///     title: "My new wiki page".into(),
     ///     ..Default::default()
@@ -27952,8 +27952,8 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// # Example
     ///
     /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// client.wiki().categories().pages().delete(42, "681F54E3-2EB7-40A4-84F0-EFF8E8F05727")?;
@@ -27977,10 +27977,10 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-wiki-categories-id-pages-identifier");
+    /// # let client = churchtools_api::replay::client("get-wiki-categories-id-pages-identifier");
     /// let page = client.wiki().categories().pages().get(42, "main")?;
     /// println!("{}", page.title);
     /// # Ok(())
@@ -28012,10 +28012,10 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-wiki-categories-id-pages");
+    /// # let client = churchtools_api::replay::client("get-wiki-categories-id-pages");
     /// for page in client.wiki().categories().pages().list(42)? {
     ///     println!("{}", page.title);
     /// }
@@ -28037,10 +28037,10 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("patch-wiki-categories-id-pages-identifier");
+    /// # let client = churchtools_api::replay::client("patch-wiki-categories-id-pages-identifier");
     /// let body = models::WikiPageUpdate {
     ///     is_markdown: Some(true),
     ///     ..Default::default()
@@ -28075,10 +28075,10 @@ impl<'a> WikiCategoriesPagesVersionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-wiki-categories-id-pages-id-versions-id");
+    /// # let client = churchtools_api::replay::client("get-wiki-categories-id-pages-id-versions-id");
     /// let version = client.wiki().categories().pages().versions().get(42, "main", 1)?;
     /// println!("{}", version.title);
     /// # Ok(())
@@ -28099,10 +28099,10 @@ impl<'a> WikiCategoriesPagesVersionsResource<'a> {
     /// # Example
     ///
     /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
+    /// # use churchtools_api::*;
+    /// # use churchtools_api::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-wiki-categories-id-pages-identifier-versions");
+    /// # let client = churchtools_api::replay::client("get-wiki-categories-id-pages-identifier-versions");
     /// for version in client.wiki().categories().pages().versions().list(42, "main")? {
     ///     println!("{}", version.title);
     /// }

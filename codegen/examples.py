@@ -446,8 +446,8 @@ def write_check_files(examples: list[tuple[str, Example]], root) -> None:
         "//! The reference examples are doctests in `src/generated/api.rs`.",
         "//! Snippets that do not contact a fixed server run against recorded responses.\n",
         "#![allow(unused, deprecated, clippy::all)]\n",
-        "use churchtools_core::*;",
-        "use churchtools_core::queries::*;",
+        "use churchtools_api::*;",
+        "use churchtools_api::queries::*;",
         "use std::result::Result;\n",
         "/// A client for the replay server; `CT_URL` points there too, for `Client::from_env()`.",
         "fn replay_client() -> Client {",
@@ -459,7 +459,7 @@ def write_check_files(examples: list[tuple[str, Example]], root) -> None:
         '            std::env::set_var("CT_TOKEN", "replay");',
         "        }",
         "        // Snippets that write files (e.g. CSV exports) do so in a temporary directory.",
-        '        let dir = std::env::temp_dir().join("churchtools-rs-doc-examples");',
+        '        let dir = std::env::temp_dir().join("churchtools-api-doc-examples");',
         "        std::fs::create_dir_all(&dir).unwrap();",
         "        std::env::set_current_dir(&dir).unwrap();",
         "    });",
@@ -473,7 +473,7 @@ def write_check_files(examples: list[tuple[str, Example]], root) -> None:
         "responses by `tests/test_doc_examples.py`.",
         '"""\n',
         "import datetime as dt\n",
-        "import churchtools_rs as ct\n",
+        "import churchtools_api as ct\n",
     ]
     reference, guide_map = [], []
     for i, (key, ex) in enumerate(examples):

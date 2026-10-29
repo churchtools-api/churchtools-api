@@ -1,6 +1,6 @@
 """Synchronous ChurchTools API client with a Rust core.
 
-    import churchtools_rs as ct
+    import churchtools_api as ct
 
     client = ct.Client("https://meinegemeinde.church.tools", token="...")
     for event in client.events.list(from_=date(2026, 11, 1), to=date(2026, 11, 30)):
@@ -38,7 +38,7 @@ from ._resources import Resources
 from ._version import API_BUILD, API_VERSION
 
 try:
-    __version__ = _metadata.version("churchtools-rs")
+    __version__ = _metadata.version("churchtools-api")
 except _metadata.PackageNotFoundError:  # pragma: no cover - not installed (e.g. plain source tree)
     __version__ = "0.0.0"
 

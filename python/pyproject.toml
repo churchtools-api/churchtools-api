@@ -3,7 +3,7 @@ requires = ["maturin>=1.8,<2"]
 build-backend = "maturin"
 
 [project]
-name = "churchtools-rs"
+name = "churchtools-api"
 description = "Synchronous ChurchTools REST API client with a Rust core and Pydantic models"
 requires-python = ">=3.10"
 dependencies = ["pydantic>=2.11", "typing_extensions>=4.12"]
@@ -14,8 +14,8 @@ classifiers = [
 ]
 
 [tool.maturin]
-module-name = "churchtools_rs._core"
-python-packages = ["churchtools_rs"]
+module-name = "churchtools_api._core"
+python-packages = ["churchtools_api"]
 features = ["pyo3/extension-module"]
 
 [dependency-groups]

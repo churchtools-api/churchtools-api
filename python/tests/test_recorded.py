@@ -12,9 +12,9 @@ import sys
 import typing as _t
 from pathlib import Path
 
-import churchtools_rs as ct
+import churchtools_api as ct
 import pytest
-from churchtools_rs._base import _parse
+from churchtools_api._base import _parse
 
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG = {e["op_id"]: e for e in json.loads((ROOT / "python" / "tests" / "live" / "operations.json").read_text())}

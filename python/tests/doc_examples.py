@@ -6,12 +6,12 @@ responses by `tests/test_doc_examples.py`.
 
 import datetime as dt
 
-import churchtools_rs as ct
+import churchtools_api as ct
 
 
 # guide: schnellstart
 def example_0(client: ct.Client) -> None:
-    import churchtools_rs as ct
+    import churchtools_api as ct
 
     client = ct.Client("https://demo.church.tools")
     info = client.info.get()
@@ -19,7 +19,7 @@ def example_0(client: ct.Client) -> None:
 
 # guide: anmeldung
 def example_1(client: ct.Client) -> None:
-    import churchtools_rs as ct
+    import churchtools_api as ct
 
     client = ct.Client("https://meinegemeinde.church.tools", token="DEIN_TOKEN")
 
@@ -121,7 +121,7 @@ def example_9(client: ct.Client) -> None:
 
 # guide: uploads
 def example_10(client: ct.Client) -> None:
-    import churchtools_rs as ct
+    import churchtools_api as ct
 
     # an eine Person anhängen
     client.files.create("person", "7", files=[ct.Upload.from_path("brief.pdf")])
@@ -155,7 +155,7 @@ def example_12(client: ct.Client) -> None:
 
 # guide: versionen
 def example_13(client: ct.Client) -> None:
-    import churchtools_rs as ct
+    import churchtools_api as ct
 
     info = client.info.get()
     if info.version != ct.API_VERSION:
@@ -234,7 +234,7 @@ def example_18(client: ct.Client) -> None:
 # guide: demo-instanz
 def example_19(client: ct.Client) -> None:
     import os
-    import churchtools_rs as ct
+    import churchtools_api as ct
 
     demo = ct.Client(os.environ["CT_URL"], min_interval=0.25)
     client = demo.login_with_password(os.environ["CT_USER"], os.environ["CT_PASSWORD"])

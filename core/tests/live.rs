@@ -8,8 +8,8 @@
 
 use std::time::{Duration, Instant};
 
-use churchtools_core::Client;
-use churchtools_core::queries::GetCalendarsAppointmentsQuery;
+use churchtools_api::Client;
+use churchtools_api::queries::GetCalendarsAppointmentsQuery;
 
 fn base_url() -> String {
     std::env::var("CT_URL").unwrap_or_else(|_| "https://demo.church.tools".into())
@@ -71,7 +71,7 @@ fn wrong_password_is_rejected() {
         .unwrap()
         .login_with_password("ctrs-test-unknown", "wrong")
         .unwrap_err();
-    let churchtools_core::Error::Api(api) = err else {
+    let churchtools_api::Error::Api(api) = err else {
         panic!("expected an API error, got {err}");
     };
     assert!((400..500).contains(&api.status), "status {}", api.status);

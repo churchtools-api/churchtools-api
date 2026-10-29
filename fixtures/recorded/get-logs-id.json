@@ -18,7 +18,7 @@
    "simulatePerson": null,
    "domainType": "login",
    "domainId": -1,
-   "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-rs/0.1.0"
+   "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
   }
  }
 }

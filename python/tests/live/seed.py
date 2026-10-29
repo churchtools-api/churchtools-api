@@ -18,7 +18,7 @@ import json
 import typing as _t
 import uuid
 
-import churchtools_rs as ct
+import churchtools_api as ct
 
 PREFIX = "ctrs-test"
 
@@ -158,7 +158,7 @@ class Seed:
     def person_data(self) -> None:
         """A file, an absence and an app device for the current user."""
         c, me = self.client, self.me
-        uploaded = c.files.create("person", me, files=[ct.Upload(f"{PREFIX}.txt", b"Testdatei von churchtools-rs")])
+        uploaded = c.files.create("person", me, files=[ct.Upload(f"{PREFIX}.txt", b"Testdatei von churchtools-api")])
         for f in uploaded:
             self.undo(f"file {f.id}", functools.partial(c.files.delete, f.id))
         reason = c.event.get_master_data().absence_reasons[0].id
