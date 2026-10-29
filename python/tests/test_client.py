@@ -245,3 +245,10 @@ def test_redirect_of_a_write_is_an_error(client):
         client._core.request("POST", "/groups", [], '{"name": "x"}')
     assert (info.value.status, info.value.location) == (302, "/api/groups/1")
     assert [r["method"] for r in FakeServer.requests] == ["POST"]
+
+
+@pytest.mark.parametrize("option", ["timeout", "min_interval"])
+@pytest.mark.parametrize("value", [-1.0, float("nan"), float("inf"), 1e30])
+def test_invalid_durations_raise_value_error(option, value):
+    with pytest.raises(ValueError, match=f"{option} must be a non-negative number"):
+        ct.Client("https://x.church.tools", **{option: value})

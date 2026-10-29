@@ -43,6 +43,13 @@ mod _core {
             .map_err(|_| PyValueError::new_err(format!("invalid HTTP method: {method}")))
     }
 
+    /// Seconds as a `Duration`; `Duration::from_secs_f64` would panic on
+    /// negative, infinite or NaN values.
+    fn seconds(name: &str, value: f64) -> PyResult<Duration> {
+        Duration::try_from_secs_f64(value)
+            .map_err(|_| PyValueError::new_err(format!("{name} must be a non-negative number of seconds, got {value}")))
+    }
+
     fn parse_body(body: Option<&str>) -> PyResult<Option<serde_json::Value>> {
         body.map(serde_json::from_str)
             .transpose()
@@ -68,12 +75,12 @@ mod _core {
         ) -> PyResult<Self> {
             let mut inner = churchtools_core::Client::builder(base_url)
                 .token(token)
-                .timeout(Duration::from_secs_f64(timeout))
+                .timeout(seconds("timeout", timeout)?)
                 .allow_insecure_http(allow_insecure_http)
                 .build()
                 .map_err(|e| to_py_err(py, e))?;
-            if let Some(seconds) = min_interval {
-                inner = inner.with_min_interval(Duration::from_secs_f64(seconds));
+            if let Some(interval) = min_interval {
+                inner = inner.with_min_interval(seconds("min_interval", interval)?);
             }
             Ok(Self { inner })
         }
