@@ -1,4 +1,4 @@
-"""Removes credentials from recorded responses before they are stored.
+"""Removes credentials and the name of the test instance from recorded responses.
 
 Used by `conftest.record`; run as a script to clean the existing fixtures:
 
@@ -12,6 +12,7 @@ import re
 import sys
 import typing as _t
 from pathlib import Path
+from urllib.parse import urlsplit
 
 REDACTED = "<redacted>"
 
@@ -23,6 +24,25 @@ SECRET_KEY = re.compile(r"secret|token|passw(or)?d|api_?key|loginstring|private_
 
 # Credentials in URLs inside strings, e.g. `...&key=AIza...`.
 SECRET_QUERY = re.compile(r"([?&](?:key|token|secret|signature|api_?key|access_token)=)[^&\s\"'<>]+", re.IGNORECASE)
+
+# Host names of ChurchTools demo instances (`judas-1a2b3c4d.church.tools`) are
+# replaced, so recordings do not name the instance they come from.
+INSTANCE = "gemeinde.example"
+DEMO_HOST = re.compile(r"\b[a-z]+-[0-9a-f]{8}\.(?:church\.tools|dev\.churchtools\.website)\b")
+_hosts: _t.Set[str] = set()
+
+
+def add_instance(url: str) -> None:
+    """Also replaces the host of `url`, the instance the live tests run against."""
+    host = urlsplit(url).hostname
+    if host and host not in ("localhost", "127.0.0.1"):
+        _hosts.add(host)
+
+
+def hide_instance(text: str) -> str:
+    for host in _hosts:
+        text = text.replace(host, INSTANCE)
+    return DEMO_HOST.sub(INSTANCE, text)
 
 
 def _all_strings(value: _t.Any) -> _t.Any:
@@ -70,12 +90,12 @@ def _replace(value: _t.Any, key: str = "") -> _t.Any:
             return REDACTED
         for secret in _known:
             value = value.replace(secret, REDACTED)
-        return SECRET_QUERY.sub(rf"\1{REDACTED}", value)
+        return hide_instance(SECRET_QUERY.sub(rf"\1{REDACTED}", value))
     return value
 
 
 def scrub(value: _t.Any) -> _t.Any:
-    """Replaces string values of secret-looking keys and credentials in URLs."""
+    """Replaces string values of secret-looking keys, credentials in URLs and the instance host."""
     _collect(value)
     return _replace(value)
 
@@ -101,6 +121,12 @@ def main() -> int:
             path.write_text(json.dumps(cleaned, indent=1, ensure_ascii=False) + "\n")
             changed += 1
             print(f"redacted {path.name}")
+    results = recorded.parent / "live-results.json"
+    if results.exists():
+        text = results.read_text()
+        if hide_instance(text) != text:
+            results.write_text(hide_instance(text))
+            print(f"cleaned {results.name}")
     print(f"{changed} fixture(s) changed")
     return 0
 

@@ -23,7 +23,7 @@ import pytest
 
 import churchtools_rs as ct
 from churchtools_rs._resources import Resources
-from redact import redact, scrub
+from redact import add_instance, hide_instance, redact, scrub
 
 ROOT = Path(__file__).resolve().parents[3]
 RECORDED = ROOT / "fixtures" / "recorded"
@@ -116,6 +116,7 @@ class LiveClient(ct.Client):
 def client() -> LiveClient:
     interval = float(os.environ.get("CT_MIN_INTERVAL", "0.25"))
     base = ct.Client(os.environ["CT_URL"], os.environ.get("CT_TOKEN"), min_interval=interval)
+    add_instance(os.environ["CT_URL"])
     if os.environ.get("CT_USER"):
         base = base.login_with_password(os.environ["CT_USER"], os.environ.get("CT_PASSWORD", ""))
     live = LiveClient.__new__(LiveClient)
@@ -199,7 +200,8 @@ class Results:
     def write(self) -> None:
         old = json.loads(RESULTS.read_text()) if RESULTS.exists() else {}
         old.update(self.items)  # keep results of operations not run this time
-        RESULTS.write_text(json.dumps(dict(sorted(old.items())), indent=1, ensure_ascii=False) + "\n")
+        text = json.dumps(dict(sorted(old.items())), indent=1, ensure_ascii=False) + "\n"
+        RESULTS.write_text(hide_instance(text))
 
 
 @pytest.fixture(scope="session")

@@ -40,7 +40,7 @@ def test_recorded_response_decodes(path: Path) -> None:
 
 
 sys.path.insert(0, str(Path(__file__).parent / "live"))
-from redact import redact, scrub  # noqa: E402
+from redact import hide_instance, redact, scrub  # noqa: E402
 
 
 def test_redaction_of_credentials() -> None:
@@ -60,6 +60,12 @@ def test_redaction_of_credentials() -> None:
     assert data["url"] == "https://maps.example/api?x=1&key=<redacted>&signature=<redacted>&y=2"
     assert redact("get-persons-id-logintoken", {"data": "abc"}) == {"data": "<redacted>"}
     assert scrub({"password": "x", "username": "u"}) == {"password": "<redacted>", "username": "u"}
+
+
+def test_instance_host_is_replaced() -> None:
+    text = "https://petrus-0a1b2c3d.church.tools/files/1 und anna@paulus-9f8e7d6c.dev.churchtools.website"
+    assert hide_instance(text) == "https://gemeinde.example/files/1 und anna@gemeinde.example"
+    assert hide_instance("https://demo.church.tools/api") == "https://demo.church.tools/api"
 
 
 def test_fixtures_contain_no_credentials() -> None:
