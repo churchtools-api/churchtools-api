@@ -20,6 +20,9 @@ pub enum Error {
     },
     #[error("invalid base URL: {0}")]
     InvalidBaseUrl(String),
+    /// The token contains characters not allowed in an HTTP header.
+    #[error("invalid token: contains characters not allowed in an HTTP header")]
+    InvalidToken,
     /// A path parameter was empty, `.` or `..`; the request was not sent.
     #[error("invalid path (empty, `.` or `..` segment): {0}")]
     InvalidPath(String),

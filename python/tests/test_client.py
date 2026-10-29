@@ -206,3 +206,13 @@ def test_dot_segments_in_ids_are_rejected(client, member_id):
 def test_percent_encoded_dot_segments_in_raw_paths_are_rejected(client):
     with pytest.raises(ValueError, match="invalid path"):
         client._core.request("DELETE", "/groups/7/members/%2e%2E", [])
+
+
+def test_token_is_not_part_of_repr(client):
+    assert "secret" not in repr(client) and "secret" not in repr(client._core)
+
+
+def test_token_with_line_break_is_rejected(client):
+    broken = ct.Client(client.api_url, token="abc\r\nX-Injected: 1")
+    with pytest.raises(ValueError, match="invalid token"):
+        broken.persons.get(7)

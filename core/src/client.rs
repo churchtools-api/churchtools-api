@@ -21,13 +21,25 @@ const MAX_RETRY_WAIT: Duration = Duration::from_secs(60);
 /// Synchronous ChurchTools API client.
 ///
 /// Cloning is cheap: the connection pool and the rate limit are shared.
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 pub struct Client {
     http: reqwest::blocking::Client,
     api_url: String,
     token: Option<String>,
     timeout: Duration,
     throttle: Option<Arc<Throttle>>,
+}
+
+impl std::fmt::Debug for Client {
+    // Hand-written so the token never ends up in logs.
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Client")
+            .field("api_url", &self.api_url)
+            .field("token", &self.token.as_ref().map(|_| "<redacted>"))
+            .field("timeout", &self.timeout)
+            .field("throttle", &self.throttle)
+            .finish_non_exhaustive()
+    }
 }
 
 /// A file for an upload endpoint.
@@ -240,7 +252,11 @@ impl Client {
                 .header("Accept", "application/json")
                 .query(query);
             if let Some(token) = &self.token {
-                builder = builder.header("Authorization", format!("Login {token}"));
+                let mut value = reqwest::header::HeaderValue::try_from(format!("Login {token}"))
+                    .map_err(|_| Error::InvalidToken)?;
+                // Keeps the token out of reqwest's own debug output.
+                value.set_sensitive(true);
+                builder = builder.header(reqwest::header::AUTHORIZATION, value);
             }
             let response = with_body(builder)?.send()?;
             let status = response.status().as_u16();
@@ -485,6 +501,14 @@ mod tests {
         }
         // First call is immediate, the next three wait one interval each.
         assert!(start.elapsed() >= Duration::from_millis(90));
+    }
+
+    #[test]
+    fn debug_output_hides_the_token() {
+        let client = Client::new("https://x.church.tools", Some("geheim123".into())).unwrap();
+        let debug = format!("{client:?}");
+        assert!(!debug.contains("geheim123"), "{debug}");
+        assert!(debug.contains("<redacted>") && debug.contains("https://x.church.tools/api"));
     }
 
     #[test]
