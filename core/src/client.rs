@@ -574,22 +574,37 @@ pub fn decode<T: DeserializeOwned>(bytes: &[u8]) -> Result<T> {
     })
 }
 
+/// Parses the instance URL and returns the API root ending in `/api`.
+///
+/// Accepts a path prefix (`https://example.org/ct` becomes
+/// `https://example.org/ct/api`) and an existing `/api` suffix.
 fn normalize_base_url(base_url: &str, allow_insecure_http: bool) -> Result<String> {
-    let trimmed = base_url.trim().trim_end_matches('/');
-    if !(trimmed.starts_with("https://") || trimmed.starts_with("http://")) {
-        return Err(Error::InvalidBaseUrl(base_url.to_owned()));
+    let invalid = |why: &str| Error::InvalidBaseUrl(format!("{base_url}: {why}"));
+    let mut url = reqwest::Url::parse(base_url.trim()).map_err(|e| invalid(&e.to_string()))?;
+    match url.scheme() {
+        "https" => {}
+        "http" if allow_insecure_http || is_loopback(&url) => {}
+        "http" => {
+            return Err(invalid(
+                "http:// would send the token unencrypted; use https:// \
+                 (or allow_insecure_http for a trusted network)",
+            ));
+        }
+        _ => return Err(invalid("expected https://")),
     }
-    if trimmed.starts_with("http://") && !allow_insecure_http && !is_loopback(trimmed) {
-        return Err(Error::InvalidBaseUrl(format!(
-            "{base_url}: http:// would send the token unencrypted; use https:// \
-             (or allow_insecure_http for a trusted network)"
-        )));
+    if url.host_str().is_none_or(str::is_empty) {
+        return Err(invalid("no host"));
     }
-    Ok(if trimmed.ends_with("/api") {
-        trimmed.to_owned()
-    } else {
-        format!("{trimmed}/api")
-    })
+    if url.query().is_some() || url.fragment().is_some() {
+        return Err(invalid("must not contain `?` or `#`"));
+    }
+    if !url.username().is_empty() || url.password().is_some() {
+        return Err(invalid("must not contain user name or password; pass a token instead"));
+    }
+    let path = url.path().trim_end_matches('/');
+    let path = path.strip_suffix("/api").unwrap_or(path).to_owned();
+    url.set_path(&format!("{path}/api"));
+    Ok(url.into())
 }
 
 /// Rejects paths the URL parser would rewrite or that address a different
@@ -605,10 +620,8 @@ fn check_path(path: &str) -> Result<()> {
     if valid { Ok(()) } else { Err(Error::InvalidPath(path.to_owned())) }
 }
 
-fn is_loopback(url: &str) -> bool {
-    let Some(host) = reqwest::Url::parse(url).ok().and_then(|u| u.host_str().map(str::to_owned)) else {
-        return false;
-    };
+fn is_loopback(url: &reqwest::Url) -> bool {
+    let host = url.host_str().unwrap_or_default();
     host == "localhost"
         || host
             .trim_start_matches('[')
@@ -741,6 +754,18 @@ mod tests {
             assert_eq!(normalize_base_url(input, false).unwrap(), "https://x.church.tools/api");
         }
         assert!(normalize_base_url("x.church.tools", false).is_err());
+        assert_eq!(normalize_base_url(" https://X.Church.Tools ", false).unwrap(), "https://x.church.tools/api");
+        assert_eq!(normalize_base_url("https://example.org/ct/", false).unwrap(), "https://example.org/ct/api");
+        assert_eq!(normalize_base_url("https://example.org:8443/ct/api", false).unwrap(), "https://example.org:8443/ct/api");
+        for bad in [
+            "https://x.church.tools?a=b",
+            "https://x.church.tools/#top",
+            "https://user:pw@x.church.tools",
+            "ftp://x.church.tools",
+            "https://",
+        ] {
+            assert!(normalize_base_url(bad, false).is_err(), "{bad}");
+        }
     }
 
     #[test]
