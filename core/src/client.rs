@@ -18,8 +18,13 @@ pub const DEFAULT_MAX_RESPONSE_SIZE: u64 = 256 * 1024 * 1024;
 
 const DEFAULT_CONNECT_TIMEOUT: Duration = Duration::from_secs(10);
 
-/// How often a request answered with `429 Too Many Requests` is retried.
-const MAX_RETRIES_ON_429: u32 = 3;
+/// How often a request answered with a retryable status is repeated.
+const MAX_RETRIES: u32 = 3;
+/// Statuses after which an idempotent request is repeated: the gateway or
+/// the server was briefly unavailable. `429` is repeated for every method.
+const RETRY_STATUSES: [u16; 3] = [502, 503, 504];
+/// Wait before repeating a request whose connection could not be established.
+const CONNECT_RETRY_WAIT: Duration = Duration::from_secs(1);
 /// Upper bound for waiting on a `Retry-After` header.
 const MAX_RETRY_WAIT: Duration = Duration::from_secs(60);
 
@@ -232,7 +237,9 @@ impl Client {
     ///
     /// Useful for bulk jobs and tests, so the instance is not flooded. Independent
     /// of this, a `429 Too Many Requests` answer is retried after the time the
-    /// server asks for (`Retry-After`, at most 60 s, up to 3 times).
+    /// server asks for (`Retry-After`, at most 60 s, up to 3 times); so are
+    /// `502`/`503`/`504` for idempotent methods (GET, HEAD, PUT, DELETE,
+    /// OPTIONS). A failed connection is retried once after 1 s.
     pub fn with_min_interval(mut self, min_interval: Duration) -> Self {
         self.throttle = Some(Arc::new(Throttle {
             interval: min_interval,
@@ -340,7 +347,7 @@ impl Client {
         })
     }
 
-    /// Common part of all requests: rate limit, auth, retry on 429, error mapping.
+    /// Common part of all requests: rate limit, auth, retries, error mapping.
     fn send(
         &self,
         method: Method,
@@ -350,6 +357,7 @@ impl Client {
     ) -> Result<Vec<u8>> {
         check_path(path)?;
         let mut attempt = 0;
+        let mut connect_retried = false;
         loop {
             if let Some(throttle) = &self.throttle {
                 throttle.wait();
@@ -366,9 +374,20 @@ impl Client {
                 value.set_sensitive(true);
                 builder = builder.header(reqwest::header::AUTHORIZATION, value);
             }
-            let response = with_body(builder)?.send()?;
+            let response = match with_body(builder)?.send() {
+                Ok(response) => response,
+                // Not connected means the request did not reach the server, so
+                // repeating it is safe for every method.
+                Err(err) if err.is_connect() && !connect_retried => {
+                    connect_retried = true;
+                    std::thread::sleep(CONNECT_RETRY_WAIT);
+                    continue;
+                }
+                Err(err) => return Err(err.into()),
+            };
             let status = response.status().as_u16();
-            if status == 429 && attempt < MAX_RETRIES_ON_429 {
+            let retryable = status == 429 || (RETRY_STATUSES.contains(&status) && is_idempotent(&method));
+            if retryable && attempt < MAX_RETRIES {
                 attempt += 1;
                 std::thread::sleep(retry_after(response.headers(), attempt));
                 continue;
@@ -495,16 +514,28 @@ fn next_page_number(body: &[u8], requested: u64) -> Option<u64> {
         .then_some(requested + 1)
 }
 
-/// Wait time before retrying a 429: the server's `Retry-After` seconds, or an
-/// exponential backoff (2, 4, 8 s) when the header is missing.
+fn is_idempotent(method: &Method) -> bool {
+    [Method::GET, Method::HEAD, Method::PUT, Method::DELETE, Method::OPTIONS].contains(method)
+}
+
+/// Wait time before a retry: the server's `Retry-After` (seconds or an HTTP
+/// date), or an exponential backoff (2, 4, 8 s) when the header is missing.
 fn retry_after(headers: &reqwest::header::HeaderMap, attempt: u32) -> Duration {
     headers
         .get(reqwest::header::RETRY_AFTER)
         .and_then(|v| v.to_str().ok())
-        .and_then(|v| v.trim().parse::<u64>().ok())
-        .map(Duration::from_secs)
+        .and_then(|v| parse_retry_after(v.trim(), chrono::Utc::now()))
         .unwrap_or(Duration::from_secs(1 << attempt))
         .min(MAX_RETRY_WAIT)
+}
+
+fn parse_retry_after(value: &str, now: chrono::DateTime<chrono::Utc>) -> Option<Duration> {
+    if let Ok(seconds) = value.parse::<u64>() {
+        return Some(Duration::from_secs(seconds));
+    }
+    // `Wed, 21 Oct 2026 07:28:00 GMT`; a date in the past means no wait.
+    let at = chrono::DateTime::parse_from_rfc2822(value).ok()?;
+    Some((at.to_utc() - now).to_std().unwrap_or_default())
 }
 
 /// Decodes the `data` field of a response envelope.
@@ -755,6 +786,34 @@ mod tests {
         assert_eq!(retry_after(&headers, 1), Duration::from_secs(5));
         headers.insert(reqwest::header::RETRY_AFTER, "3600".parse().unwrap());
         assert_eq!(retry_after(&headers, 1), MAX_RETRY_WAIT);
+        headers.insert(reqwest::header::RETRY_AFTER, "soon".parse().unwrap());
+        assert_eq!(retry_after(&headers, 2), Duration::from_secs(4));
+
+        let now = "2026-10-21T07:28:00Z".parse().unwrap();
+        assert_eq!(parse_retry_after("Wed, 21 Oct 2026 07:28:10 GMT", now), Some(Duration::from_secs(10)));
+        assert_eq!(parse_retry_after("Wed, 21 Oct 2026 07:27:00 GMT", now), Some(Duration::ZERO));
+    }
+
+    #[test]
+    fn unavailable_server_is_retried_for_idempotent_methods_only() {
+        let unavailable = || reply("503 Service Unavailable", "Retry-After: 0\r\n", "");
+        let (url, seen) = serve(vec![unavailable(), reply("200 OK", "", r#"{"data":1}"#), unavailable()]);
+        let client = Client::new(&url, None).unwrap();
+        assert_eq!(client.request(Method::GET, "/x", &[], None).unwrap(), br#"{"data":1}"#);
+        let err = client.request(Method::POST, "/x", &[], None).unwrap_err();
+        assert!(matches!(&err, Error::Api(api) if api.status == 503), "{err}");
+        assert_eq!(*seen.lock().unwrap(), ["GET /api/x", "GET /api/x", "POST /api/x"]);
+    }
+
+    #[test]
+    fn refused_connection_is_retried_once() {
+        // Nothing listens on the port: both attempts are refused, after one wait.
+        let port = std::net::TcpListener::bind("127.0.0.1:0").unwrap().local_addr().unwrap().port();
+        let client = Client::new(&format!("http://127.0.0.1:{port}"), None).unwrap();
+        let start = Instant::now();
+        let err = client.request(Method::POST, "/x", &[], None).unwrap_err();
+        assert!(matches!(&err, Error::Transport(e) if e.is_connect()), "{err}");
+        assert!(start.elapsed() >= CONNECT_RETRY_WAIT);
     }
 
     #[test]

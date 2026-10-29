@@ -27,7 +27,7 @@ Alle Aufrufe stehen in [`codegen/OPERATIONS.md`](codegen/OPERATIONS.md).
 
 Für Skripte mit vielen Anfragen lässt sich ein Mindestabstand setzen: `ct.Client(..., min_interval=0.25)` bzw.
 `Client::new(..)?.with_min_interval(Duration::from_millis(250))`. Antwortet der Server mit `429`, wartet der Client
-die verlangte Zeit und versucht es erneut. Für Tests gibt es `login_with_password(user, password)`.
+die verlangte Zeit und versucht es erneut, ebenso bei `502`/`503`/`504` für idempotente Methoden (nicht bei POST). Für Tests gibt es `login_with_password(user, password)`.
 
 Der Client verlangt `https://`, damit der Token nicht unverschlüsselt übertragen wird. `http://` ist nur für `localhost`
 und Loopback-Adressen erlaubt, für andere Hosts nur ausdrücklich mit `allow_insecure_http=True` bzw.
@@ -49,7 +49,7 @@ Die Aufgaben sind so aufgeteilt:
 | | Rust (`core`) | Python (`churchtools_rs`) |
 |---|---|---|
 | HTTP, Login-Token, Timeouts | ✔ (auch für Python) | |
-| Rate-Limit (`min_interval`), Retry bei `429` | ✔ (auch für Python) | |
+| Rate-Limit (`min_interval`), Retry bei `429`/`5xx` | ✔ (auch für Python) | |
 | Paginierung (`meta.pagination`) | ✔ (auch für Python) | Iterator darüber |
 | Fehler aus dem Response-Body | `ApiError` | `NotFound`, `Unauthorized`, ... |
 | Typen | serde-Structs (generiert) | Pydantic-Modelle (generiert) |

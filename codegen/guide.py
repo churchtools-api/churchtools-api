@@ -151,7 +151,10 @@ festlegen. So belastest du die Instanz nicht unnötig. Der Abstand gilt auch fü
 
 Antwortet der Server mit `429 Too Many Requests`, wartet der Client die verlangte Zeit
 (`Retry-After`, höchstens 60 Sekunden) und versucht es bis zu dreimal erneut. Das passiert immer,
-auch ohne Mindestabstand.
+auch ohne Mindestabstand. Bei `502`, `503` und `504` wiederholt er lesende und andere idempotente
+Anfragen (GET, PUT, DELETE) genauso; ein POST wird nicht wiederholt, weil er sonst doppelt
+ausgeführt werden könnte. Kommt keine Verbindung zustande, versucht er es nach einer Sekunde
+einmal erneut.
 
 Für Tests gegen eine Demo-Instanz gibt es außerdem `login_with_password`. Es meldet sich mit
 Benutzername und Passwort an und holt das Login-Token der Person. In eigenen Skripten ist ein

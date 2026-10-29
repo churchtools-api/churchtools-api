@@ -42,7 +42,8 @@ class Client(Resources):
             it for large downloads, uploads or slow exports.
         min_interval: Minimum time in seconds between two requests (rate limit),
             e.g. `0.25` for at most four requests per second. Answers with
-            `429 Too Many Requests` are retried regardless of this setting.
+            `429 Too Many Requests` are retried regardless of this setting, and so
+            are `502`/`503`/`504` for idempotent methods (not POST).
         allow_insecure_http: Allows `http://` for hosts other than localhost. The
             token then travels unencrypted; only for instances in a trusted network.
         max_response_size: Largest response body in bytes that is read (default

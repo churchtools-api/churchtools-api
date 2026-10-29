@@ -79,6 +79,15 @@ class FakeServer(BaseHTTPRequestHandler):
             self.send_header("Location", "/api/groups/1")
             self.send_header("Content-Length", "0")
             self.end_headers()
+        elif url.path == "/api/flaky":
+            FakeServer.busy_calls += 1
+            if FakeServer.busy_calls == 1 or method == "POST":
+                self.send_response(503)
+                self.send_header("Retry-After", "0")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+            else:
+                self._reply(200, {"data": 1})
         elif url.path == "/api/busy":
             FakeServer.busy_calls += 1
             if FakeServer.busy_calls == 1:
@@ -258,3 +267,10 @@ def test_responses_above_the_size_limit_raise(client):
     limited = ct.Client(client.api_url, max_response_size=50)
     with pytest.raises(ct.TransportError, match="larger than the limit of 50 bytes"):
         limited.persons.get(7)
+
+
+def test_unavailable_server_is_retried_for_get_but_not_post(client):
+    assert client._core.request("GET", "/flaky", []) == b'{"data": 1}'
+    with pytest.raises(ct.ServerError):
+        client._core.request("POST", "/flaky", [])
+    assert [r["method"] for r in FakeServer.requests] == ["GET", "GET", "POST"]
