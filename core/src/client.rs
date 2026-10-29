@@ -86,6 +86,53 @@ fn guess_content_type(filename: &str) -> &'static str {
     }
 }
 
+/// Options for a [`Client`], created with [`Client::builder`].
+#[derive(Clone)]
+pub struct ClientBuilder {
+    base_url: String,
+    token: Option<String>,
+    timeout: Duration,
+    allow_insecure_http: bool,
+}
+
+impl ClientBuilder {
+    /// The login token, sent as `Authorization: Login <token>`.
+    pub fn token(mut self, token: impl Into<Option<String>>) -> Self {
+        self.token = token.into();
+        self
+    }
+
+    /// Timeout for a whole request (default 30 s).
+    pub fn timeout(mut self, timeout: Duration) -> Self {
+        self.timeout = timeout;
+        self
+    }
+
+    /// Allows `http://` for hosts other than `localhost` and loopback addresses.
+    ///
+    /// The token then travels unencrypted; only for instances in a trusted network.
+    pub fn allow_insecure_http(mut self, allow: bool) -> Self {
+        self.allow_insecure_http = allow;
+        self
+    }
+
+    pub fn build(self) -> Result<Client> {
+        let http = reqwest::blocking::Client::builder()
+            .timeout(self.timeout)
+            .user_agent(USER_AGENT)
+            .build()?;
+        Ok(Client {
+            http,
+            api_url: normalize_base_url(&self.base_url, self.allow_insecure_http)?,
+            token: self.token,
+            timeout: self.timeout,
+            throttle: None,
+        })
+    }
+}
+
+const USER_AGENT: &str = concat!("churchtools-rs/", env!("CARGO_PKG_VERSION"));
+
 /// Spaces requests at least `interval` apart, across all clones of a client.
 #[derive(Debug)]
 struct Throttle {
@@ -109,23 +156,23 @@ impl Throttle {
 impl Client {
     /// Creates a client for `base_url`, e.g. `https://meinegemeinde.church.tools`.
     ///
-    /// A trailing `/api` is optional.
+    /// A trailing `/api` is optional. See [`Client::builder`] for more options.
     pub fn new(base_url: &str, token: Option<String>) -> Result<Self> {
-        Self::with_timeout(base_url, token, Duration::from_secs(30))
+        Self::builder(base_url).token(token).build()
     }
 
     pub fn with_timeout(base_url: &str, token: Option<String>, timeout: Duration) -> Result<Self> {
-        let http = reqwest::blocking::Client::builder()
-            .timeout(timeout)
-            .user_agent(concat!("churchtools-rs/", env!("CARGO_PKG_VERSION")))
-            .build()?;
-        Ok(Self {
-            http,
-            api_url: normalize_base_url(base_url)?,
-            token,
-            timeout,
-            throttle: None,
-        })
+        Self::builder(base_url).token(token).timeout(timeout).build()
+    }
+
+    /// Starts configuring a client for `base_url`.
+    pub fn builder(base_url: &str) -> ClientBuilder {
+        ClientBuilder {
+            base_url: base_url.to_owned(),
+            token: None,
+            timeout: Duration::from_secs(30),
+            allow_insecure_http: false,
+        }
     }
 
     /// Limits this client (and its clones) to one request per `min_interval`.
@@ -152,7 +199,7 @@ impl Client {
         let session = Self {
             http: reqwest::blocking::Client::builder()
                 .timeout(self.timeout)
-                .user_agent(concat!("churchtools-rs/", env!("CARGO_PKG_VERSION")))
+                .user_agent(USER_AGENT)
                 .cookie_store(true)
                 .build()?,
             token: None,
@@ -411,10 +458,16 @@ pub fn decode<T: DeserializeOwned>(bytes: &[u8]) -> Result<T> {
     })
 }
 
-fn normalize_base_url(base_url: &str) -> Result<String> {
+fn normalize_base_url(base_url: &str, allow_insecure_http: bool) -> Result<String> {
     let trimmed = base_url.trim().trim_end_matches('/');
     if !(trimmed.starts_with("https://") || trimmed.starts_with("http://")) {
         return Err(Error::InvalidBaseUrl(base_url.to_owned()));
+    }
+    if trimmed.starts_with("http://") && !allow_insecure_http && !is_loopback(trimmed) {
+        return Err(Error::InvalidBaseUrl(format!(
+            "{base_url}: http:// would send the token unencrypted; use https:// \
+             (or allow_insecure_http for a trusted network)"
+        )));
     }
     Ok(if trimmed.ends_with("/api") {
         trimmed.to_owned()
@@ -436,6 +489,18 @@ fn check_path(path: &str) -> Result<()> {
     if valid { Ok(()) } else { Err(Error::InvalidPath(path.to_owned())) }
 }
 
+fn is_loopback(url: &str) -> bool {
+    let Some(host) = reqwest::Url::parse(url).ok().and_then(|u| u.host_str().map(str::to_owned)) else {
+        return false;
+    };
+    host == "localhost"
+        || host
+            .trim_start_matches('[')
+            .trim_end_matches(']')
+            .parse::<std::net::IpAddr>()
+            .is_ok_and(|ip| ip.is_loopback())
+}
+
 const PATH_SEGMENT: &AsciiSet = &NON_ALPHANUMERIC.remove(b'-').remove(b'_').remove(b'.').remove(b'~');
 
 /// Percent-encodes a value for use as a single path segment.
@@ -455,9 +520,25 @@ mod tests {
             "https://x.church.tools/api",
             "https://x.church.tools/api/",
         ] {
-            assert_eq!(normalize_base_url(input).unwrap(), "https://x.church.tools/api");
+            assert_eq!(normalize_base_url(input, false).unwrap(), "https://x.church.tools/api");
         }
-        assert!(normalize_base_url("x.church.tools").is_err());
+        assert!(normalize_base_url("x.church.tools", false).is_err());
+    }
+
+    #[test]
+    fn plain_http_only_for_loopback_or_when_allowed() {
+        for local in ["http://localhost:8080", "http://127.0.0.1:1", "http://[::1]:80", "http://LOCALHOST"] {
+            assert!(normalize_base_url(local, false).is_ok(), "{local}");
+        }
+        let err = normalize_base_url("http://x.church.tools", false).unwrap_err();
+        assert!(err.to_string().contains("unencrypted"), "{err}");
+        assert!(normalize_base_url("http://localhost.evil.org", false).is_err());
+        assert_eq!(
+            normalize_base_url("http://ct.intern", true).unwrap(),
+            "http://ct.intern/api"
+        );
+        let client = Client::builder("http://ct.intern").allow_insecure_http(true).build().unwrap();
+        assert_eq!(client.api_url(), "http://ct.intern/api");
     }
 
     #[test]

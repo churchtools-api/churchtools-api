@@ -7,6 +7,7 @@ class Client:
         token: _t.Optional[str] = None,
         timeout: float = 30.0,
         min_interval: _t.Optional[float] = None,
+        allow_insecure_http: bool = False,
     ) -> None: ...
     def login_with_password(self, username: str, password: str) -> Client: ...
     @property

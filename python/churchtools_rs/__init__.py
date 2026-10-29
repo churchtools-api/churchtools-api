@@ -41,6 +41,8 @@ class Client(Resources):
         min_interval: Minimum time in seconds between two requests (rate limit),
             e.g. `0.25` for at most four requests per second. Answers with
             `429 Too Many Requests` are retried regardless of this setting.
+        allow_insecure_http: Allows `http://` for hosts other than localhost. The
+            token then travels unencrypted; only for instances in a trusted network.
     """
 
     def __init__(
@@ -50,8 +52,9 @@ class Client(Resources):
         *,
         timeout: float = 30.0,
         min_interval: _t.Optional[float] = None,
+        allow_insecure_http: bool = False,
     ) -> None:
-        self._core = _CoreClient(base_url, token, timeout, min_interval)
+        self._core = _CoreClient(base_url, token, timeout, min_interval, allow_insecure_http)
         super().__init__(self._core)
 
     @classmethod

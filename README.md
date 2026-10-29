@@ -29,6 +29,10 @@ Für Skripte mit vielen Anfragen lässt sich ein Mindestabstand setzen: `ct.Clie
 `Client::new(..)?.with_min_interval(Duration::from_millis(250))`. Antwortet der Server mit `429`, wartet der Client
 die verlangte Zeit und versucht es erneut. Für Tests gibt es `login_with_password(user, password)`.
 
+Der Client verlangt `https://`, damit der Token nicht unverschlüsselt übertragen wird. `http://` ist nur für `localhost`
+und Loopback-Adressen erlaubt, für andere Hosts nur ausdrücklich mit `allow_insecure_http=True` bzw.
+`Client::builder(url).allow_insecure_http(true)`.
+
 ## Aufbau
 
 ```

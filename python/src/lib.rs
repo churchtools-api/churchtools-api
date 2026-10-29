@@ -54,17 +54,21 @@ mod _core {
     #[pymethods]
     impl Client {
         #[new]
-        #[pyo3(signature = (base_url, token=None, timeout=30.0, min_interval=None))]
+        #[pyo3(signature = (base_url, token=None, timeout=30.0, min_interval=None, allow_insecure_http=false))]
         fn new(
             py: Python<'_>,
             base_url: &str,
             token: Option<String>,
             timeout: f64,
             min_interval: Option<f64>,
+            allow_insecure_http: bool,
         ) -> PyResult<Self> {
-            let mut inner =
-                churchtools_core::Client::with_timeout(base_url, token, Duration::from_secs_f64(timeout))
-                    .map_err(|e| to_py_err(py, e))?;
+            let mut inner = churchtools_core::Client::builder(base_url)
+                .token(token)
+                .timeout(Duration::from_secs_f64(timeout))
+                .allow_insecure_http(allow_insecure_http)
+                .build()
+                .map_err(|e| to_py_err(py, e))?;
             if let Some(seconds) = min_interval {
                 inner = inner.with_min_interval(Duration::from_secs_f64(seconds));
             }

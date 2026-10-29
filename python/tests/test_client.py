@@ -216,3 +216,9 @@ def test_token_with_line_break_is_rejected(client):
     broken = ct.Client(client.api_url, token="abc\r\nX-Injected: 1")
     with pytest.raises(ValueError, match="invalid token"):
         broken.persons.get(7)
+
+
+def test_plain_http_needs_opt_in_outside_localhost():
+    with pytest.raises(ct.ChurchToolsError, match="unencrypted"):
+        ct.Client("http://ct.example.org", token="secret")
+    assert ct.Client("http://ct.example.org", allow_insecure_http=True).api_url == "http://ct.example.org/api"
