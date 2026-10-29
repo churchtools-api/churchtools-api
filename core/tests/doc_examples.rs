@@ -5,6 +5,7 @@
 #![allow(unused, deprecated, clippy::all)]
 
 use churchtools_core::*;
+use churchtools_core::queries::*;
 use std::result::Result;
 
 /// A client for the replay server; `CT_URL` points there too, for `Client::from_env()`.
@@ -179,7 +180,8 @@ fn example_8(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
     match client.persons().get(999999) {
         Ok(person) => println!("{:?}", person.first_name),
-        Err(Error::Api(e)) if e.status == 404 => println!("Diese Person gibt es nicht."),
+        Err(e) if e.is_not_found() => println!("Diese Person gibt es nicht."),
+        Err(e) if e.is_unauthorized() => println!("Token fehlt oder ist abgelaufen."),
         Err(Error::Api(e)) => println!("{} {:?}", e.status, e.translated_message),
         Err(e) => return Err(e.into()),
     }

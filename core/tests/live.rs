@@ -8,7 +8,8 @@
 
 use std::time::{Duration, Instant};
 
-use churchtools_core::{Client, GetCalendarsAppointmentsQuery};
+use churchtools_core::Client;
+use churchtools_core::queries::GetCalendarsAppointmentsQuery;
 
 fn base_url() -> String {
     std::env::var("CT_URL").unwrap_or_else(|_| "https://demo.church.tools".into())

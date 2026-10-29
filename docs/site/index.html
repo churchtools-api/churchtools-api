@@ -500,7 +500,7 @@ start = appointment.appointment.calculated.start_date
     <span class="t-type">DateOrDateTime</span>::<span class="t-type">Date</span>(d) =&gt; <span class="t-macro">println!</span>(<span class="t-string">&quot;ganztägig am {d}&quot;</span>),
 }</code></pre></div></div>
 </article>
-<article class="topic" id="fehler"><div class="prose"><h3>Fehler behandeln</h3><p>Antwortet ChurchTools mit einem Fehler, bekommst du die Meldung des Servers, auf Wunsch auch in der übersetzten Fassung (<code>translated_message</code>). In Python gibt es für die häufigsten Statuscodes eigene Ausnahmen, siehe die <a href="#fehlercodes">Fehlerübersicht</a>. In Rust prüfst du den <code>status</code>.</p></div>
+<article class="topic" id="fehler"><div class="prose"><h3>Fehler behandeln</h3><p>Antwortet ChurchTools mit einem Fehler, bekommst du die Meldung des Servers, auf Wunsch auch in der übersetzten Fassung (<code>translated_message</code>). In Python gibt es für die häufigsten Statuscodes eigene Ausnahmen, siehe die <a href="#fehlercodes">Fehlerübersicht</a>. In Rust gibt es dafür <code>is_not_found()</code>, <code>is_unauthorized()</code>, <code>is_forbidden()</code>, <code>is_timeout()</code> und <code>status()</code>. Weil neue Fehlerarten dazukommen können, braucht ein <code>match</code> über <code>Error</code> immer einen Zweig <code>_</code> bzw. <code>Err(e)</code>.</p></div>
 <div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">try</span>:
     person = client.persons.get(<span class="t-number">999999</span>)
 <span class="t-kw">except</span> ct.<span class="t-type">NotFound</span>:
@@ -512,7 +512,8 @@ start = appointment.appointment.calculated.start_date
 
 <span class="t-kw">match</span> client.persons().get(<span class="t-number">999999</span>) {
     <span class="t-kw">Ok</span>(person) =&gt; <span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, person.first_name),
-    <span class="t-kw">Err</span>(<span class="t-type">Error</span>::<span class="t-type">Api</span>(e)) <span class="t-kw">if</span> e.status == <span class="t-number">404</span> =&gt; <span class="t-macro">println!</span>(<span class="t-string">&quot;Diese Person gibt es nicht.&quot;</span>),
+    <span class="t-kw">Err</span>(e) <span class="t-kw">if</span> e.is_not_found() =&gt; <span class="t-macro">println!</span>(<span class="t-string">&quot;Diese Person gibt es nicht.&quot;</span>),
+    <span class="t-kw">Err</span>(e) <span class="t-kw">if</span> e.is_unauthorized() =&gt; <span class="t-macro">println!</span>(<span class="t-string">&quot;Token fehlt oder ist abgelaufen.&quot;</span>),
     <span class="t-kw">Err</span>(<span class="t-type">Error</span>::<span class="t-type">Api</span>(e)) =&gt; <span class="t-macro">println!</span>(<span class="t-string">&quot;{} {:?}&quot;</span>, e.status, e.translated_message),
     <span class="t-kw">Err</span>(e) =&gt; <span class="t-kw">return</span> <span class="t-kw">Err</span>(e.into()),
 }</code></pre></div></div>

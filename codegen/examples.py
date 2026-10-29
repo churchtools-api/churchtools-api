@@ -447,6 +447,7 @@ def write_check_files(examples: list[tuple[str, Example]], root) -> None:
         "//! Snippets that do not contact a fixed server run against recorded responses.\n",
         "#![allow(unused, deprecated, clippy::all)]\n",
         "use churchtools_core::*;",
+        "use churchtools_core::queries::*;",
         "use std::result::Result;\n",
         "/// A client for the replay server; `CT_URL` points there too, for `Client::from_env()`.",
         "fn replay_client() -> Client {",

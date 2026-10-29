@@ -38,6 +38,8 @@ mod _core {
                     errors.call_method1("ResponseTooLarge", (err.to_string(), *limit))?
                 }
                 Error::Transport(_) | Error::Read(_) => errors.call_method1("TransportError", (err.to_string(),))?,
+                // `Error` is non-exhaustive; anything new is at least a ChurchToolsError.
+                _ => errors.call_method1("ChurchToolsError", (err.to_string(),))?,
             };
             Ok(PyErr::from_value(exc))
         })();

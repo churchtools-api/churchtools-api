@@ -224,6 +224,8 @@ impl Client {
         Self::builder(base_url).token(token).build()
     }
 
+    /// Like [`Client::new`] with a request timeout.
+    #[deprecated = "use `Client::builder(base_url).token(token).timeout(timeout).build()`"]
     pub fn with_timeout(base_url: &str, token: Option<String>, timeout: Duration) -> Result<Self> {
         Self::builder(base_url).token(token).timeout(timeout).build()
     }
@@ -835,7 +837,7 @@ mod tests {
     fn connect_timeout_defaults_to_10s_but_not_above_timeout() {
         let client = Client::new("https://x.church.tools", None).unwrap();
         assert_eq!(client.connect_timeout, Duration::from_secs(10));
-        let short = Client::with_timeout("https://x.church.tools", None, Duration::from_secs(3)).unwrap();
+        let short = Client::builder("https://x.church.tools").timeout(Duration::from_secs(3)).build().unwrap();
         assert_eq!(short.connect_timeout, Duration::from_secs(3));
         let custom = Client::builder("https://x.church.tools")
             .timeout(Duration::from_secs(600))

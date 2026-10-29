@@ -32,7 +32,7 @@ CACHE = ROOT / "codegen" / ".cache" / "openapi.json"
 SPEC_URL = "https://demo.church.tools/system/runtime/swagger/openapi.json"
 INFO_URL = "https://demo.church.tools/api/info"
 # License of the spec, whose descriptions and structure end up in the generated files.
-SPEC_LICENSE = "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)"
+SPEC_LICENSE = "CC BY 4.0 (<https://creativecommons.org/licenses/by/4.0/>)"
 
 TAGS: set[str] | None = None  # None = all tags
 
@@ -1038,8 +1038,27 @@ def rust_type(t: T, boxed: bool = False, prefix: str = "") -> str:
     raise ValueError(k)
 
 
+def rustdoc_safe(line: str) -> str:
+    """Keeps spec text from turning into rustdoc links: `[eventId]` is escaped and
+    bare URLs are wrapped in `<...>`. Code spans and intra-doc links stay."""
+    # `startTimes`[`eventId`]: indexing, not an intra-doc link
+    line = re.sub(r"`\[(`[^`]*`)\]", r"`\\[\1\\]", line)
+    parts = re.split(r"(`[^`]*`)", line)
+    for i in range(0, len(parts), 2):
+        part = re.sub(r"\[([^\]`]*)\](?!\()", r"\\[\1\\]", parts[i])
+        parts[i] = re.sub(r"(?<![<(])\b(https?://[^\s<>)\]]*[^\s<>)\].,;:])", r"<\1>", part)
+    return "".join(parts)
+
+
 def rust_doc(text: str, indent: str) -> list[str]:
-    return [f"{indent}///{(' ' + line) if line else ''}".rstrip() for line in text.splitlines()]
+    out, in_code = [], False
+    for line in text.splitlines():
+        if line.startswith("```"):
+            in_code = not in_code
+        elif not in_code:
+            line = rustdoc_safe(line)
+        out.append(f"{indent}///{(' ' + line) if line else ''}".rstrip())
+    return out
 
 
 def direct_refs(model: Model) -> set[str]:
@@ -1122,7 +1141,7 @@ def rust_fields(schemas: Schemas, name: str) -> list[RustField]:
 
 
 def write_rust_models(schemas: Schemas, header: str, out: Path) -> None:
-    lines = [f"//! Generated ChurchTools models.\n//!\n//! {header}\n", "#![allow(clippy::all, rustdoc::all, deprecated)]\n",
+    lines = [f"//! Generated ChurchTools models.\n//!\n//! {header}\n", "#![allow(clippy::all, deprecated)]\n",
              "use serde::{Deserialize, Serialize};\n"]
     for name in sorted(schemas.models):
         model = schemas.models[name]
@@ -1202,21 +1221,33 @@ def write_rust_api(ops: list[Op], header: str, out: Path) -> None:
         by_chain.setdefault(op.chain, []).append(op)
 
     lines = [
-        f"//! Generated ChurchTools endpoints.\n//!\n//! {header}\n",
-        "#![allow(clippy::all, rustdoc::all, deprecated, unused_mut)]\n",
+        "//! Resource handles returned by the accessors of [`Client`](crate::Client), e.g.",
+        "//! `client.persons()`, with one method per endpoint.",
+        f"//!\n//! {header}\n",
+        "#![allow(clippy::all, deprecated, unused_mut)]\n",
         "use std::fmt::Display;\n",
         "use reqwest::Method;\n",
         "use super::models;",
+        "use super::queries::*;",
         "use crate::client::{Client, Items, Query, Upload, encode_path_segment as seg};",
-        "use crate::error::Result;",
-        "use crate::query::ToQuery;\n",
+        "use crate::error::Result;\n",
         "impl Client {",
     ]
     for c in sorted(c for c in chains if len(c) == 1):
+        count = sum(1 for op in ops if op.chain[:1] == c)
+        lines.append(f"    /// Endpoints under `/{c[0]}` ({count} operations), see [`{resource_class(c)}`].")
         lines.append(f"    pub fn {rust_ident(c[0])}(&self) -> {resource_class(c)}<'_> {{")
         lines.append(f"        {resource_class(c)} {{ client: self }}")
         lines.append("    }")
     lines.append("}\n")
+    queries = [
+        "//! Query parameters (`…Query`) and form fields (`…Form`) of the generated methods.",
+        "//! Unset fields are left out of the request; fill them with `..Default::default()`.",
+        f"//!\n//! {header}\n",
+        "#![allow(clippy::all, deprecated)]\n",
+        "use crate::client::Query;",
+        "use crate::query::ToQuery;\n",
+    ]
 
     for chain in sorted(chains):
         names = [op.name for op in by_chain.get(chain, [])]
@@ -1238,8 +1269,9 @@ def write_rust_api(ops: list[Op], header: str, out: Path) -> None:
             if qs:
                 query_structs += qs
         lines.append("}\n")
-        lines += query_structs
+        queries += query_structs
     out.write_text("\n".join(lines))
+    (out.parent / "queries.rs").write_text("\n".join(queries))
 
 
 def rust_doctest(op: Op) -> list[str]:
@@ -1260,6 +1292,7 @@ def rust_doctest(op: Op) -> list[str]:
         "",
         "```" if runs else "```no_run",
         "# use churchtools_core::*;",
+        "# use churchtools_core::queries::*;",
         "# fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {",
         client,
         *example.rust.splitlines(),
@@ -1301,7 +1334,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
             struct_lines.append(f"    pub {ident}: Option<{rust_param_type(p.type)}>,")
         struct_lines.append("}\n")
         struct_lines.append(f"impl {query_struct} {{")
-        struct_lines.append("    fn to_query(&self) -> Query {")
+        struct_lines.append("    pub(crate) fn to_query(&self) -> Query {")
         struct_lines.append("        let mut q = Query::new();")
         for ident, p in idents:
             struct_lines.append(f'        self.{ident}.push_query("{p.name}", &mut q);')
@@ -1330,7 +1363,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
                 struct_lines.append(f"    pub {ident}: Option<{rust_param_type(f.type)}>,")
             struct_lines.append("}\n")
             struct_lines.append(f"impl {form_struct} {{")
-            struct_lines.append("    fn to_query(&self) -> Query {")
+            struct_lines.append("    pub(crate) fn to_query(&self) -> Query {")
             struct_lines.append("        let mut q = Query::new();")
             for ident, f in fidents:
                 struct_lines.append(f'        self.{ident}.push_query("{f.json_name}", &mut q);')
@@ -1495,7 +1528,7 @@ def main() -> int:
     write_python_resources(ops, header, py_pkg / "_resources.py")
     write_rust_models(schemas, header, rs_gen / "models.rs")
     write_rust_api(ops, header, rs_gen / "api.rs")
-    (rs_gen / "mod.rs").write_text(f"//! {header}\n\npub mod api;\npub mod models;\n")
+    (rs_gen / "mod.rs").write_text(f"//! {header}\n\npub mod api;\npub mod models;\npub mod queries;\n")
     write_operations_md(ops, header, ROOT / "codegen" / "OPERATIONS.md")
     import docs  # imports this module, so only after everything above is defined
     import testgen

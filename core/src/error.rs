@@ -2,7 +2,12 @@ use serde::Deserialize;
 
 pub type Result<T> = std::result::Result<T, Error>;
 
+/// Everything that can go wrong with a request.
+///
+/// New variants may be added in minor versions, so a `match` needs a `_` arm.
+/// For the common checks there are helpers like [`Error::is_not_found`].
 #[derive(thiserror::Error)]
+#[non_exhaustive]
 pub enum Error {
     /// The server answered with a non-2xx status.
     #[error("{0}")]
@@ -79,6 +84,50 @@ impl std::fmt::Debug for Error {
     }
 }
 
+impl Error {
+    /// The error response of the server, if it answered with a non-2xx status.
+    pub fn api(&self) -> Option<&ApiError> {
+        match self {
+            Self::Api(api) => Some(api),
+            _ => None,
+        }
+    }
+
+    /// HTTP status of an error response or an unfollowed redirect.
+    pub fn status(&self) -> Option<u16> {
+        match self {
+            Self::Api(api) => Some(api.status),
+            Self::Redirect { status, .. } => Some(*status),
+            _ => None,
+        }
+    }
+
+    /// `404 Not Found`: the object does not exist or the person may not see it.
+    pub fn is_not_found(&self) -> bool {
+        self.status() == Some(404)
+    }
+
+    /// `401 Unauthorized`: no token, or an expired one.
+    pub fn is_unauthorized(&self) -> bool {
+        self.status() == Some(401)
+    }
+
+    /// `403 Forbidden`: logged in, but without permission.
+    pub fn is_forbidden(&self) -> bool {
+        self.status() == Some(403)
+    }
+
+    /// The request took longer than the timeout.
+    pub fn is_timeout(&self) -> bool {
+        matches!(self, Self::Transport(e) if e.is_timeout())
+    }
+
+    /// No connection to the server (wrong address, network down, connect timeout).
+    pub fn is_connect(&self) -> bool {
+        matches!(self, Self::Transport(e) if e.is_connect())
+    }
+}
+
 impl From<ApiError> for Error {
     fn from(err: ApiError) -> Self {
         Self::Api(Box::new(err))
@@ -145,6 +194,16 @@ impl ApiError {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn helpers_classify_errors() {
+        let not_found = Error::from(ApiError::from_response(404, br#"{"message":"nope"}"#.to_vec()));
+        assert!(not_found.is_not_found() && !not_found.is_forbidden());
+        assert_eq!(not_found.api().and_then(|a| a.message.as_deref()), Some("nope"));
+        let redirect = Error::Redirect { status: 302, location: None };
+        assert_eq!((redirect.status(), redirect.api().is_none()), (Some(302), true));
+        assert_eq!(Error::InvalidToken.status(), None);
+    }
 
     #[test]
     fn debug_shortens_long_bodies() {

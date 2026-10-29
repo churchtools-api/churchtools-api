@@ -389,7 +389,9 @@ match appointment.appointment.calculated.start_date {
             """
 Antwortet ChurchTools mit einem Fehler, bekommst du die Meldung des Servers, auf Wunsch auch in der
 übersetzten Fassung (`translated_message`). In Python gibt es für die häufigsten Statuscodes eigene
-Ausnahmen, siehe die [Fehlerübersicht](#fehlercodes). In Rust prüfst du den `status`.
+Ausnahmen, siehe die [Fehlerübersicht](#fehlercodes). In Rust gibt es dafür `is_not_found()`, `is_unauthorized()`,
+`is_forbidden()`, `is_timeout()` und `status()`. Weil neue Fehlerarten dazukommen können, braucht ein `match`
+über `Error` immer einen Zweig `_` bzw. `Err(e)`.
 """,
             python="""\
 try:
@@ -405,7 +407,8 @@ use churchtools_core::Error;
 
 match client.persons().get(999999) {
     Ok(person) => println!("{:?}", person.first_name),
-    Err(Error::Api(e)) if e.status == 404 => println!("Diese Person gibt es nicht."),
+    Err(e) if e.is_not_found() => println!("Diese Person gibt es nicht."),
+    Err(e) if e.is_unauthorized() => println!("Token fehlt oder ist abgelaufen."),
     Err(Error::Api(e)) => println!("{} {:?}", e.status, e.translated_message),
     Err(e) => return Err(e.into()),
 }""",

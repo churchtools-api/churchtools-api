@@ -1,7 +1,8 @@
 //! Synchronous client for the ChurchTools REST API.
 //!
 //! ```no_run
-//! use churchtools_core::{Client, GetEventsQuery};
+//! use churchtools_core::Client;
+//! use churchtools_core::queries::GetEventsQuery;
 //!
 //! let client = Client::new("https://meinegemeinde.church.tools", Some("token".into()))?;
 //! let query = GetEventsQuery {
@@ -32,6 +33,6 @@ pub use chrono;
 pub use client::{Client, ClientBuilder, DEFAULT_MAX_RESPONSE_SIZE, Items, Pages, Query, Upload, decode, decode_data, encode_path_segment};
 pub use datetime::DateOrDateTime;
 pub use error::{ApiError, Error, Result};
-pub use generated::api::*;
-pub use generated::models;
+pub use generated::api as resources;
+pub use generated::{models, queries};
 pub use reqwest::Method;
