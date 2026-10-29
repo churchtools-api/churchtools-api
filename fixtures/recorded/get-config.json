@@ -27,7 +27,7 @@
   "mail_smtp_args_host": "churchtools.de",
   "mail_smtp_args_port": "25",
   "mail_smtp_args_username": "relay@churchtools.de",
-  "mail_smtp_args_password": "*****",
+  "mail_smtp_args_password": "<redacted>",
   "mail_smtp_args_smtpsecure": "",
   "accept_datasecurity": true,
   "access_control_allow_credentials": false,

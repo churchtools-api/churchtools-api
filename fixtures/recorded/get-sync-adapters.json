@@ -12,13 +12,13 @@
     "id": 1,
     "name": "churchtools",
     "url": "https://sync-adapter-churchtools.ct-srv.de",
-    "token": "**********"
+    "token": "<redacted>"
    },
    {
     "id": 2,
     "name": "optigem",
     "url": "https://sync-adapter-optigem.ct-srv.de",
-    "token": "**********"
+    "token": "<redacted>"
    }
   ],
   "meta": {

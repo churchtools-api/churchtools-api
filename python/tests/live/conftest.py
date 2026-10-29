@@ -23,6 +23,7 @@ import pytest
 
 import churchtools_rs as ct
 from churchtools_rs._resources import Resources
+from redact import redact, scrub
 
 ROOT = Path(__file__).resolve().parents[3]
 RECORDED = ROOT / "fixtures" / "recorded"
@@ -124,20 +125,6 @@ def client() -> LiveClient:
     return live
 
 
-# Responses that contain credentials; their strings are replaced before recording.
-SECRET_OPERATIONS = {"get-persons-id-logintoken", "get-persons-id-loginstring"}
-
-
-def _redact(value: _t.Any) -> _t.Any:
-    if isinstance(value, str):
-        return "<redacted>"
-    if isinstance(value, dict):
-        return {k: _redact(v) for k, v in value.items()}
-    if isinstance(value, list):
-        return [_redact(v) for v in value]
-    return value
-
-
 MAX_RECORDED_ITEMS = 200
 
 
@@ -158,11 +145,9 @@ def record(op_id: str, recorder: Recorder) -> None:
         body = json.loads(recorder.last_body)
     except ValueError:
         return  # binary or text download
-    if op_id in SECRET_OPERATIONS:
-        body = _redact(body)
-    body = _shorten(body)
+    body = _shorten(redact(op_id, body))
     RECORDED.mkdir(parents=True, exist_ok=True)
-    fixture = {"operation": op_id, "request": recorder.last_request, "body": body}
+    fixture = {"operation": op_id, "request": scrub(recorder.last_request), "body": body}
     (RECORDED / f"{op_id}.json").write_text(json.dumps(fixture, indent=1, ensure_ascii=False) + "\n")
 
 
