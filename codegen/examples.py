@@ -290,6 +290,51 @@ def rs_value(t: g.T, value: object, *, display: bool = False) -> str:
     return f"serde_json::json!({json.dumps(value, ensure_ascii=False)})"
 
 
+def rs_expr(schemas: g.Schemas, t: g.T, value: object, indent: str = "") -> str:
+    """Rust expression of type `rust_type(t)` (without Option) for the JSON `value`."""
+    t = unwrap(t)
+    k = t.kind
+    if k == "union" and set(t.inner) == g.DATE_OR_DATETIME and isinstance(value, str):
+        variant = "DateTime" if "T" in value else "Date"
+        return f"DateOrDateTime::{variant}({json.dumps(value)}.parse()?)"
+    if k in ("int", "float", "bool", "str", "date", "datetime") and value is not None:
+        return rs_value(t, value)
+    if k == "list" and isinstance(value, list):
+        items = [rs_expr(schemas, t.inner[0], v, indent) for v in value]
+        return "vec![" + ", ".join(items) + "]"
+    if k == "map" and value == {}:
+        return "Default::default()"
+    if k == "model" and isinstance(value, dict):
+        return rs_struct(schemas, t.name, value, indent)
+    return f"serde_json::json!({json.dumps(value, ensure_ascii=False)})"
+
+
+def rs_struct(schemas: g.Schemas, name: str, value: dict, indent: str = "") -> str:
+    """Struct literal of model `name` with the fields of `value`, the rest from `Default`."""
+    inner = indent + "    "
+    lines = []
+    for rf in g.rust_fields(schemas, name):
+        if rf.field.json_name not in value:
+            continue
+        v = value[rf.field.json_name]
+        if rf.ty == "serde_json::Value":
+            expr = f"serde_json::json!({json.dumps(v, ensure_ascii=False)})"
+        elif v is None:
+            expr = "Some(None)" if rf.double else "None"
+        else:
+            expr = rs_expr(schemas, rf.field.type, v, inner)
+            if "Box<" in rf.ty:
+                expr = f"Box::new({expr})"
+            if rf.double:
+                expr = f"Some(Some({expr}))"
+            elif rf.ty.startswith("Option<"):
+                expr = f"Some({expr})"
+        lines.append(f"{inner}{rf.ident}: {expr},")
+    if not lines:
+        return f"models::{name}::default()"
+    return f"models::{name} {{\n" + "\n".join(lines) + f"\n{inner}..Default::default()\n{indent}}}"
+
+
 def rust_example(schemas: g.Schemas, op: g.Op) -> str:
     lines: list[str] = []
     args: list[str] = []
@@ -316,11 +361,13 @@ def rust_example(schemas: g.Schemas, op: g.Op) -> str:
             value = {f.json_name: json_example(schemas, f.type, f.json_name, f.example) for f in chosen}
             if op.body_required:
                 value = {**json_example(schemas, base, "body"), **value}  # type: ignore[dict-item]
-            pretty = json.dumps(value, ensure_ascii=False, indent=4)
-            lines.append(f"let body: models::{base.name} = serde_json::from_value(serde_json::json!({pretty}))?;")
+            lines.append(f"let body = {rs_struct(schemas, base.name, value)};")
         else:
             value = json_example(schemas, base, "body")
-            lines.append(f"let body = serde_json::json!({json.dumps(value, ensure_ascii=False, indent=4)});")
+            if base.kind == "union":
+                lines.append(f"let body = serde_json::json!({json.dumps(value, ensure_ascii=False, indent=4)});")
+            else:
+                lines.append(f"let body: {g.rust_body_type(base)} = {rs_expr(schemas, base, value)};")
         args.append("&body")
     if op.upload is not None:
         lines.append(f'let file = Upload::from_path("{upload_example(op)}")?;')

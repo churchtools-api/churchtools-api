@@ -21,6 +21,16 @@ pub(crate) fn serialize_opt_utc<S: Serializer>(value: &Option<DateTime<Utc>>, s:
     }
 }
 
+pub(crate) fn serialize_double_opt_utc<S: Serializer>(
+    value: &Option<Option<DateTime<Utc>>>,
+    s: S,
+) -> Result<S::Ok, S::Error> {
+    match value {
+        Some(v) => serialize_opt_utc(v, s),
+        None => s.serialize_none(),
+    }
+}
+
 /// A value that is a date for all-day entries and a UTC timestamp otherwise.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -41,6 +51,14 @@ impl DateOrDateTime {
 
     pub fn is_all_day(&self) -> bool {
         matches!(self, Self::Date(_))
+    }
+}
+
+/// `1970-01-01`; only there so models can derive `Default` for
+/// `..Default::default()` in struct literals.
+impl Default for DateOrDateTime {
+    fn default() -> Self {
+        Self::Date(NaiveDate::default())
     }
 }
 

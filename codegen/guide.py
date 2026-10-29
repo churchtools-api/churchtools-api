@@ -232,7 +232,7 @@ Es gibt drei Arten von Parametern:
   In Rust gibt es dafür eine `…Query`-Struktur. Sind alle Filter optional, hat die Methode zwei Varianten:
   `list()` ohne Filter und `list_with(&query)` mit Filtern. `..Default::default()` füllt alles, was du nicht setzt.
 - **Body**: Daten zum Anlegen oder Ändern. In Python sind es ebenfalls Schlüsselwort-Argumente, in Rust ein
-  Modell, das du am einfachsten aus JSON erzeugst.
+  Modell als Struct-Literal. Auch hier füllt `..Default::default()` alle Felder, die du nicht setzt.
 
 Die Namen sind in Python im üblichen snake_case geschrieben (`first_name` statt `firstName`). Wo ein Name ein
 Python-Schlüsselwort ist, kommt ein Unterstrich dazu: `from_`.
@@ -265,10 +265,11 @@ let query = GetEventsQuery {
 };
 let events = client.events().list_with(&query)?;
 
-let body: models::PatchPersonsIdBody = serde_json::from_value(serde_json::json!({
-    "city": "Esslingen",
-    "zip": "73728"
-}))?;
+let body = models::PatchPersonsIdBody {
+    city: Some("Esslingen".into()),
+    zip: Some("73728".into()),
+    ..Default::default()
+};
 client.persons().patch(7, &body)?;""",
         ),
         Section(
@@ -409,10 +410,12 @@ match client.persons().get(999999) {
 Beim Ändern macht es einen Unterschied, ob ein Feld fehlt oder leer ist:
 
 - **Weggelassen**: Das Feld bleibt, wie es ist. In Python ist das der Standard (`UNSET`), in Rust
-  lässt du den Schlüssel im JSON weg.
-- **`None` / `null`**: Das Feld wird geleert.
+  `None`, das `..Default::default()` setzt.
+- **`None` / `null`**: Das Feld wird geleert. In Rust haben Felder, die man leeren kann, den Typ
+  `Option<Option<T>>`; `Some(None)` schickt `null`.
 
-Felder, die der Client nicht kennt (z. B. eigene DB-Felder), übergibst du in Python mit `extra_body`.
+Felder, die der Client nicht kennt (z. B. eigene DB-Felder), übergibst du in Python mit `extra_body`, in Rust
+über das Feld `extra`.
 """,
             python="""\
 # nur die Stadt ändern, alles andere bleibt
@@ -424,10 +427,17 @@ client.persons.patch(7, birthday=None)
 # eigenes Datenbankfeld setzen
 client.persons.patch(7, extra_body={"konfession": "evangelisch"})""",
             rust="""\
-let body: models::PatchPersonsIdBody = serde_json::from_value(serde_json::json!({
-    "birthday": null,
-    "konfession": "evangelisch"
-}))?;
+// nur die Stadt ändern, alles andere bleibt
+let body = models::PatchPersonsIdBody { city: Some("Esslingen".into()), ..Default::default() };
+client.persons().patch(7, &body)?;
+
+// Geburtstag löschen
+let body = models::PatchPersonsIdBody { birthday: Some(None), ..Default::default() };
+client.persons().patch(7, &body)?;
+
+// eigenes Datenbankfeld setzen
+let mut body = models::PatchPersonsIdBody::default();
+body.extra.insert("konfession".into(), "evangelisch".into());
 client.persons().patch(7, &body)?;""",
         ),
     ],
@@ -614,16 +624,19 @@ person = client.persons.create(
 client.groups.members.update(42, person.id, group_member_status="active")
 print(f"{person.first_name} angelegt (ID {person.id}) und Gruppe 42 zugeordnet")""",
             rust="""\
-let body: models::PostPersonsBody = serde_json::from_value(serde_json::json!({
-    "departmentIds": [1],
-    "firstName": "Ben",
-    "lastName": "Beispiel",
-    "email": "ben@example.org"
-}))?;
+let body = models::PostPersonsBody {
+    department_ids: vec![1],
+    first_name: Some("Ben".into()),
+    last_name: Some("Beispiel".into()),
+    email: Some("ben@example.org".into()),
+    ..Default::default()
+};
 let person = client.persons().create(&body)?;
 
-let membership: models::MembershipCreate =
-    serde_json::from_value(serde_json::json!({ "groupMemberStatus": "active" }))?;
+let membership = models::MembershipCreate {
+    group_member_status: Some(Some("active".into())),
+    ..Default::default()
+};
 client.groups().members().update(42, person.id, &membership)?;
 println!("{:?} angelegt (ID {})", person.first_name, person.id);""",
         ),

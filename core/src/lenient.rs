@@ -116,6 +116,16 @@ pub fn opt_datetime<'de, D: Deserializer<'de>>(d: D) -> Result<Option<DateTime<U
     }
 }
 
+/// `Option<Option<T>>` of request bodies: a present `null` becomes
+/// `Some(None)`, a missing field `None` (with `#[serde(default)]`).
+pub fn double_option<'de, D, T>(d: D) -> Result<Option<Option<T>>, D::Error>
+where
+    D: Deserializer<'de>,
+    T: Deserialize<'de>,
+{
+    Option::<T>::deserialize(d).map(Some)
+}
+
 #[cfg(test)]
 mod tests {
     #[derive(serde::Deserialize)]
@@ -174,6 +184,22 @@ mod tests {
         assert_eq!(d.at.unwrap().to_rfc3339(), "2026-10-28T08:00:00+00:00");
         let d: D = serde_json::from_str("{}").unwrap();
         assert_eq!(d.at, None);
+    }
+
+    #[derive(serde::Deserialize, serde::Serialize)]
+    struct Body {
+        #[serde(default, deserialize_with = "super::double_option", skip_serializing_if = "Option::is_none")]
+        birthday: Option<Option<String>>,
+    }
+
+    #[test]
+    fn double_option_tells_null_from_missing() {
+        let b: Body = serde_json::from_str(r#"{"birthday": null}"#).unwrap();
+        assert_eq!(b.birthday, Some(None));
+        assert_eq!(serde_json::to_string(&b).unwrap(), r#"{"birthday":null}"#);
+        let b: Body = serde_json::from_str("{}").unwrap();
+        assert_eq!(b.birthday, None);
+        assert_eq!(serde_json::to_string(&b).unwrap(), "{}");
     }
 
     #[test]

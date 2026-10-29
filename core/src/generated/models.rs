@@ -7,7 +7,7 @@
 use serde::{Deserialize, Serialize};
 
 /// An absence from service planning for one person, such as vacation or sickness. Both boundaries are stored in the application time zone. If both are midnight, startTime and endTime are `null`; otherwise both contain full UTC timestamps. startDate and endDate always contain the local calendar dates.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Absence {
     /// Installation-specific category of absence, such as vacation or sickness. Use its id as absenceReasonId. Labels are configurable and must not be treated as an enum.
     #[serde(rename = "absenceReason")]
@@ -39,14 +39,16 @@ pub struct Absence {
 }
 
 /// Creates an absence for the person identified by the path. A Time field takes precedence over the corresponding Date field, but every supplied boundary participates in chronological validation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AbsenceCreate {
     /// ID of an existing, installation-specific absence reason. Reasons are master data and are not a fixed enum.
     #[serde(rename = "absenceReasonId", deserialize_with = "crate::lenient::number")]
     pub absence_reason_id: i64,
     /// Comment about the absence.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Calendar date (`YYYY-MM-DD`), interpreted at midnight in the application time zone, or a UTC timestamp ending in `Z`. Timestamp values for `startDate` and `endDate` use whole-minute precision.
     #[serde(rename = "endDate", default, skip_serializing_if = "Option::is_none")]
     pub end_date: Option<crate::DateOrDateTime>,
@@ -65,7 +67,7 @@ pub struct AbsenceCreate {
 }
 
 /// Installation-specific category of absence, such as vacation or sickness. Use its id as absenceReasonId. Labels are configurable and must not be treated as an enum.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AbsenceReason {
     /// ID of the absence reason.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -85,14 +87,16 @@ pub struct AbsenceReason {
 }
 
 /// Replaces an existing absence belonging to the person identified by the path.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AbsenceUpdate {
     /// ID of an existing, installation-specific absence reason. Reasons are master data and are not a fixed enum.
     #[serde(rename = "absenceReasonId", deserialize_with = "crate::lenient::number")]
     pub absence_reason_id: i64,
     /// Comment about the absence.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Calendar date (`YYYY-MM-DD`), interpreted at midnight in the application time zone, or a UTC timestamp ending in `Z`. Timestamp values for `startDate` and `endDate` use whole-minute precision.
     #[serde(rename = "endDate", default, skip_serializing_if = "Option::is_none")]
     pub end_date: Option<crate::DateOrDateTime>,
@@ -111,7 +115,7 @@ pub struct AbsenceUpdate {
 }
 
 /// A ledger account belongs to one accounting period and one account group. The group links it to an account class and account type. Transactions post amounts between an account and a contra account. Amounts and budgets use integer minor currency units, for example cents.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Account {
     #[serde(rename = "accountGroupId", deserialize_with = "crate::lenient::number")]
     pub account_group_id: i64,
@@ -163,7 +167,7 @@ pub struct Account {
 }
 
 /// Account classes group account groups within one account type. The hierarchy is account type → account class → account group → account.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountClass {
     /// ID of the related account type.
     #[serde(rename = "accountTypeId", deserialize_with = "crate::lenient::number")]
@@ -186,7 +190,7 @@ pub struct AccountClass {
 }
 
 /// Account classes group account groups within one account type. The hierarchy is account type → account class → account group → account.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountClassCreate {
     /// ID of the related account type.
     #[serde(rename = "accountTypeId", deserialize_with = "crate::lenient::number")]
@@ -206,7 +210,7 @@ pub struct AccountClassCreate {
 }
 
 /// Replacement values for an existing account class. Optional fields use the creation defaults when omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountClassUpdate {
     /// ID of the related account type.
     #[serde(rename = "accountTypeId", deserialize_with = "crate::lenient::number")]
@@ -226,20 +230,26 @@ pub struct AccountClassUpdate {
 }
 
 /// A ledger account belongs to one accounting period and one account group. The group links it to an account class and account type. Transactions post amounts between an account and a contra account. Amounts and budgets use integer minor currency units, for example cents.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountCreate {
     /// Existing parent account group from /finance/accountgroups.
     #[serde(rename = "accountGroupId", deserialize_with = "crate::lenient::number")]
     pub account_group_id: i64,
     /// Optional trimmed note. Omitted, null or blank clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub annotation: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub annotation: Option<Option<String>>,
     /// Budget in minor currency units. Omitted or null clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub budget: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub budget: Option<Option<i64>>,
     /// Optional account identifier, for example an IBAN. All spaces are removed before storage; no IBAN-format validation is performed. Omitted or null clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub identifier: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub identifier: Option<Option<String>>,
     /// Whether transactions on this account can be recorded as donations. Omission resets the flag to false.
     #[serde(rename = "isDonationAccount", default, skip_serializing_if = "Option::is_none")]
     pub is_donation_account: Option<bool>,
@@ -256,8 +266,10 @@ pub struct AccountCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub number: String,
     /// Optional default tax rate from /finance/taxrates. Omitted or null clears it.
-    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tax_rate_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tax_rate_id: Option<Option<i64>>,
     /// Existing, open accounting period. Required for creation and cannot be changed by PUT.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
@@ -270,7 +282,7 @@ pub struct AccountCreate {
 }
 
 /// Account groups collect individual ledger accounts within one account class. isCashAssetAccount identifies groups of cash or bank accounts.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountGroup {
     /// Existing parent account class, obtainable from /finance/accountclasses.
     #[serde(rename = "accountClassId", deserialize_with = "crate::lenient::number")]
@@ -293,7 +305,7 @@ pub struct AccountGroup {
 }
 
 /// Account groups collect individual ledger accounts within one account class. isCashAssetAccount identifies groups of cash or bank accounts.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountGroupCreate {
     /// Existing parent account class, obtainable from /finance/accountclasses.
     #[serde(rename = "accountClassId", deserialize_with = "crate::lenient::number")]
@@ -313,7 +325,7 @@ pub struct AccountGroupCreate {
 }
 
 /// Replacement values for an existing account group. Optional fields use the creation defaults when omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountGroupUpdate {
     /// Existing parent account class, obtainable from /finance/accountclasses.
     #[serde(rename = "accountClassId", deserialize_with = "crate::lenient::number")]
@@ -333,27 +345,33 @@ pub struct AccountGroupUpdate {
 }
 
 /// Selection for an XLSX account-import workbook. All fields are optional.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountImportTemplateCreate {
     /// Filter existing accounts by client. Ignored when templateId is supplied.
-    #[serde(rename = "clientId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub client_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "clientId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub client_id: Option<Option<i64>>,
     /// Finance-template file ID. Takes precedence over year and clientId; account rows are read from the template.
-    #[serde(rename = "templateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub template_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "templateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub template_id: Option<Option<i64>>,
     /// Prepend client and booking-year columns. With templateId, these cells are left blank.
     #[serde(rename = "withClients", default, skip_serializing_if = "Option::is_none")]
     pub with_clients: Option<bool>,
     /// Calendar year of the accounting-period start date. Without year or templateId, the workbook contains headings and instructions but no accounts.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub year: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub year: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Posting permission for the current caller, separate from permission to view or edit account definitions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountPermissions {
     /// Flag, if user can use this account to post a transaction.
     #[serde(rename = "allowPosting")]
@@ -364,7 +382,7 @@ pub struct AccountPermissions {
 }
 
 /// Imported bank statement with balances and movement counts. Actual finance transactions are created separately when movements are booked.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountStatement {
     /// Number of source movements skipped as duplicates during import.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -395,7 +413,7 @@ pub struct AccountStatement {
 }
 
 /// Parsed statement preview. Amounts are in minor currency units.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountStatementPreview {
     /// Movements matching existing movements across all accounts in the parsed date range.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -433,25 +451,29 @@ pub struct AccountStatementPreview {
 }
 
 /// Optional account-report options. A missing body selects the entire accounting period as a PDF.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountStatementReportCreate {
     /// Last document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
-    #[serde(rename = "endDate", default, skip_serializing_if = "Option::is_none")]
-    pub end_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "endDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub end_date: Option<Option<chrono::NaiveDate>>,
     /// PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
     /// Allowed values: `csv`, `pdf`, `xlsx`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub format: Option<String>,
     /// First document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
-    #[serde(rename = "startDate", default, skip_serializing_if = "Option::is_none")]
-    pub start_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "startDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub start_date: Option<Option<chrono::NaiveDate>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Movement counts for one account. States without movements are omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountStatementStatistics {
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
     pub account_id: i64,
@@ -470,7 +492,7 @@ pub struct AccountStatementStatistics {
 }
 
 /// New display name for an imported statement.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountStatementUpdate {
     /// Stored as supplied; whitespace and an empty string are accepted.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -481,7 +503,7 @@ pub struct AccountStatementUpdate {
 }
 
 /// Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountType {
     /// Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
     /// Allowed values: `assets`, `liabilities`.
@@ -506,12 +528,14 @@ pub struct AccountType {
 }
 
 /// Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountTypeCreate {
     /// Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
     /// Allowed values: `assets`, `liabilities`.
-    #[serde(rename = "balanceType", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub balance_type: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "balanceType", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub balance_type: Option<Option<String>>,
     /// Unique account-type name. The controller does not trim the name or enforce a length limit.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -524,12 +548,14 @@ pub struct AccountTypeCreate {
 }
 
 /// Replacement values for an existing account type. Optional fields use the creation defaults when omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountTypeUpdate {
     /// Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
     /// Allowed values: `assets`, `liabilities`.
-    #[serde(rename = "balanceType", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub balance_type: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "balanceType", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub balance_type: Option<Option<String>>,
     /// Unique account-type name. The controller does not trim the name or enforce a length limit.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -542,20 +568,26 @@ pub struct AccountTypeUpdate {
 }
 
 /// Replacement values for an account in an open accounting period. The period cannot be changed here. Omitted optional fields reset to false or null. A donation account with existing donation transactions cannot have isDonationAccount disabled through this single-update endpoint.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountUpdate {
     /// Existing parent account group from /finance/accountgroups.
     #[serde(rename = "accountGroupId", deserialize_with = "crate::lenient::number")]
     pub account_group_id: i64,
     /// Optional trimmed note. Omitted, null or blank clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub annotation: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub annotation: Option<Option<String>>,
     /// Budget in minor currency units. Omitted or null clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub budget: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub budget: Option<Option<i64>>,
     /// Optional account identifier, for example an IBAN. All spaces are removed before storage; no IBAN-format validation is performed. Omitted or null clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub identifier: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub identifier: Option<Option<String>>,
     /// Whether transactions on this account can be recorded as donations. Omission resets the flag to false.
     #[serde(rename = "isDonationAccount", default, skip_serializing_if = "Option::is_none")]
     pub is_donation_account: Option<bool>,
@@ -572,15 +604,17 @@ pub struct AccountUpdate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub number: String,
     /// Optional default tax rate from /finance/taxrates. Omitted or null clears it.
-    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tax_rate_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tax_rate_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// An accounting period is the date range for one finance client’s books, usually a financial year. Accounts and cost centers belong to a period. Closing a period prevents ordinary account and transaction changes; it is separate from making individual transactions immutable.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountingPeriod {
     /// Finance client owning this period.
     #[serde(rename = "clientId", deserialize_with = "crate::lenient::number")]
@@ -610,21 +644,23 @@ pub struct AccountingPeriod {
 }
 
 /// Optional opening-balance transfer. Both an openingBalanceAccount and a nonempty from list are needed to start a transfer. The previous period must have the same client and a start date exactly one year earlier.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountingPeriodBalanceTransfer {
     /// Source balance-sheet account IDs from the previous period. Matching target accounts must have the same numbers. Profit-and-loss accounts are not allowed. The transfer posts only the difference between closing balances and already existing opening balances; zero differences are skipped.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub from: Option<Vec<i64>>,
     /// ID of an existing account whose number identifies an opening-balance account in the target period. The source ID itself need not belong to the target period; its number is used for matching.
-    #[serde(rename = "openingBalanceAccount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub opening_balance_account: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "openingBalanceAccount", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub opening_balance_account: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// An accounting period is the date range for one finance client’s books, usually a financial year. Accounts and cost centers belong to a period. Closing a period prevents ordinary account and transaction changes; it is separate from making individual transactions immutable.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountingPeriodCreate {
     /// Finance client owning this period.
     #[serde(rename = "clientId", deserialize_with = "crate::lenient::number")]
@@ -652,7 +688,7 @@ pub struct AccountingPeriodCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountingPeriodPermissions {
     /// Whether the caller has resolved edit permission for finance expert-mode operations in this period. This does not replace finance master-data permission for changing period settings.
     #[serde(rename = "canUseExpertMode")]
@@ -669,7 +705,7 @@ pub struct AccountingPeriodPermissions {
 }
 
 /// Replacement period settings. All AccountingPeriodBase fields are required. Optional balance transfer and transaction immutability are applied after saving the period.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AccountingPeriodUpdate {
     /// Finance client owning this period.
     #[serde(rename = "clientId", deserialize_with = "crate::lenient::number")]
@@ -697,7 +733,7 @@ pub struct AccountingPeriodUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Action {
     #[serde(rename = "actionMetaData")]
     pub action_meta_data: ActionMetaData,
@@ -713,7 +749,7 @@ pub struct Action {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ActionGroup {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub key: String,
@@ -724,7 +760,7 @@ pub struct ActionGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ActionMetaData {
     /// A color in ChurchTools
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -741,7 +777,7 @@ pub struct ActionMetaData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Address {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub addition: Option<String>,
@@ -820,7 +856,7 @@ pub struct Address {
 }
 
 /// Legacy field mappings emitted by the address serializer.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AddressDeprecated {
     #[serde(rename = "geoLat", deserialize_with = "crate::lenient::string")]
     pub geo_lat: String,
@@ -841,7 +877,7 @@ pub struct AddressDeprecated {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AddressInterface {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub addition: Option<String>,
@@ -866,7 +902,7 @@ pub struct AddressInterface {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AddressSearchResult {
     pub address: AddressInterface,
     #[serde(rename = "domainObject", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -877,7 +913,7 @@ pub struct AddressSearchResult {
 }
 
 /// An age range used to describe the intended ages for a group, for example ages 3 to 5. A group can reference several ranges through information.ageGroupIds. These are configured ranges, not the calculated ages of its current members.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgeGroup {
     /// Upper age boundary in years, inclusive.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -902,7 +938,7 @@ pub struct AgeGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgeGroupCreate {
     /// Upper age boundary in years, inclusive.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -922,7 +958,7 @@ pub struct AgeGroupCreate {
 }
 
 /// Ordered running plan for an event, such as a worship service, or a reusable agenda template. Several events can share the same agenda and item IDs. Their dates and hidden items can differ, so item `startTimes` are calculated separately for each event. Changes to shared content and the lock state affect every linked event.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Agenda {
     /// Compatibility mapping included in the response.
     #[serde(rename = "@deprecated")]
@@ -961,7 +997,7 @@ pub struct Agenda {
 }
 
 /// Create an agenda without copying a template or another event. Supply `calendarId` explicitly; it is not inferred from the event. Items are optional, so an empty agenda can be created.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaCreate {
     /// Calendar assigned to this agenda. It is not automatically taken from the event.
     #[serde(rename = "calendarId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -973,15 +1009,17 @@ pub struct AgendaCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub items: Option<Vec<AgendaItemListUpdate>>,
     /// Free-text series name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub series: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub series: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Compatibility mapping included in the response.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaDeprecated {
     /// Allowed values: `isLocked`.
     #[serde(rename = "isFinal", deserialize_with = "crate::lenient::string")]
@@ -992,7 +1030,7 @@ pub struct AgendaDeprecated {
 }
 
 /// Generated presenter archive and information about ambiguous song-file choices. The response is JSON, not the archive itself.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaExport {
     /// Labels in the form "song title - arrangement name" for agenda items whose selected arrangement has multiple files matching the target format. The exporter still selects the first file.
     #[serde(rename = "songsWithMultipleFiles")]
@@ -1006,7 +1044,7 @@ pub struct AgendaExport {
 }
 
 /// Options for generating a presenter archive.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaExportCreate {
     /// Append the selected arrangement name to exported song captions and generated fallback file names. Existing attached files retain their file names.
     #[serde(rename = "appendArrangement")]
@@ -1023,7 +1061,7 @@ pub struct AgendaExportCreate {
 }
 
 /// Response fields shared by header, text and song items. Positions and timing are calculated by ChurchTools from the shared item order and the linked events.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemHeader {
     /// Compatibility marker included in each serialized agenda item.
     #[serde(rename = "@deprecated")]
@@ -1060,14 +1098,16 @@ pub struct AgendaItemHeader {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemInputHeader {
     /// Duration in seconds. For headers, zero selects automatic calculation from the section's visible items; a positive value overrides it. Header duration does not contribute to the running time.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub duration: Option<i64>,
     /// Responses represent a missing title as an empty string.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub title: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub title: Option<Option<String>>,
     /// Allowed values: `header`.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub r#type: String,
@@ -1076,20 +1116,26 @@ pub struct AgendaItemInputHeader {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemInputSong {
     /// Duration in seconds
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub duration: Option<i64>,
     /// Responses represent a missing title as an empty string.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub title: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub title: Option<Option<String>>,
     /// Note text.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Free text with optional service placeholders, such as [Worship Leader].
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub responsible: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub responsible: Option<Option<String>>,
     /// Notes to associate with service groups.
     #[serde(rename = "serviceGroupNotes", default, skip_serializing_if = "Option::is_none")]
     pub service_group_notes: Option<Vec<AgendaServiceGroupNoteCreate>>,
@@ -1104,20 +1150,26 @@ pub struct AgendaItemInputSong {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemInputText {
     /// Duration in seconds
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub duration: Option<i64>,
     /// Responses represent a missing title as an empty string.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub title: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub title: Option<Option<String>>,
     /// Note text.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Free text with optional service placeholders, such as [Worship Leader].
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub responsible: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub responsible: Option<Option<String>>,
     /// Notes to associate with service groups.
     #[serde(rename = "serviceGroupNotes", default, skip_serializing_if = "Option::is_none")]
     pub service_group_notes: Option<Vec<AgendaServiceGroupNoteCreate>>,
@@ -1130,18 +1182,20 @@ pub struct AgendaItemInputText {
 }
 
 /// One entry in a complete replacement list. Each existing ID may occur only once. Array order determines the final item order.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemListUpdate {
     /// Existing item ID in this agenda. Unknown IDs, IDs from another agenda and repeated existing IDs cause `422`.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Response fields shared by header, text and song items. Positions and timing are calculated by ChurchTools from the shared item order and the linked events.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemSong {
     /// Compatibility marker included in each serialized agenda item.
     #[serde(rename = "@deprecated")]
@@ -1186,7 +1240,7 @@ pub struct AgendaItemSong {
 }
 
 /// Selected arrangement of a song for this agenda item. A song can have multiple arrangements with different musical settings.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemSongArrangement {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub arrangement: String,
@@ -1212,7 +1266,7 @@ pub struct AgendaItemSongArrangement {
 }
 
 /// Response fields shared by header, text and song items. Positions and timing are calculated by ChurchTools from the shared item order and the linked events.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemText {
     /// Compatibility marker included in each serialized agenda item.
     #[serde(rename = "@deprecated")]
@@ -1254,7 +1308,7 @@ pub struct AgendaItemText {
 }
 
 /// Compatibility marker included in each serialized agenda item.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaItemTextDeprecated {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub position: serde_json::Value,
@@ -1264,7 +1318,7 @@ pub struct AgendaItemTextDeprecated {
 }
 
 /// Legacy agenda-email request. Prefer `POST /events/send` with EventMailCreate.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaMailCreate {
     /// HTML email body. ChurchTools appends buttons for all supplied events and any requested, available agenda and file links.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -1292,7 +1346,7 @@ pub struct AgendaMailCreate {
 }
 
 /// Raw responsibility text and optional resolved service assignments. `GET /events/{eventId}/agenda` resolves placeholders against that event; write responses do not perform this resolution and can return an empty persons array.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaResponsible {
     /// Assignments resolved from bracketed service names. Multiple slots can produce several entries for one placeholder. An unknown or unassigned service can produce a `null` person. An empty array can mean that this endpoint did not resolve responsibilities.
     pub persons: Vec<AgendaResponsiblePerson>,
@@ -1304,7 +1358,7 @@ pub struct AgendaResponsible {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaResponsiblePerson {
     /// Flag to indicate if the person has accepted the service or is requested.
     pub accepted: bool,
@@ -1319,7 +1373,7 @@ pub struct AgendaResponsiblePerson {
 }
 
 /// Note intended for one service group, such as sound or music.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaServiceGroupNote {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub note: String,
@@ -1330,7 +1384,7 @@ pub struct AgendaServiceGroupNote {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaServiceGroupNoteCreate {
     /// The note text for the service group
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -1343,18 +1397,20 @@ pub struct AgendaServiceGroupNoteCreate {
 }
 
 /// Update or remove the note for the service group in the path. Other service-group notes on the item remain unchanged.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaServiceGroupNoteUpdate {
     /// Note text for the service group.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Reusable running-plan template. Items use the same header, text and song types as event agendas. Templates have no event date; copying one into an event creates independent agenda items.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaTemplateCreate {
     /// Calendar that determines template visibility and editing permissions.
     #[serde(rename = "calendarId", deserialize_with = "crate::lenient::number")]
@@ -1369,15 +1425,17 @@ pub struct AgendaTemplateCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Optional free-text series name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub series: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub series: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Update an existing template. The optional items array replaces the complete list.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaTemplateUpdate {
     /// Calendar that determines template visibility and editing permissions.
     #[serde(rename = "calendarId", deserialize_with = "crate::lenient::number")]
@@ -1392,15 +1450,17 @@ pub struct AgendaTemplateUpdate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Optional free-text series name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub series: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub series: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Fields accepted when updating an existing event agenda or copying an agenda. The optional items array replaces the complete item list.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AgendaUpdate {
     /// Calendar assigned to this agenda. It is not automatically taken from the event.
     #[serde(rename = "calendarId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -1412,15 +1472,17 @@ pub struct AgendaUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub items: Option<Vec<AgendaItemListUpdate>>,
     /// Free-text series name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub series: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub series: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// An additional occurrence on a calendar date, using the base appointment’s local start time and duration. With isRepeated=true, the recurrence rule also runs from this additional date, for example to add a second weekday to a weekly series.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentAdditionalCreate {
     /// A simple date in ISO format, e.g. '2022-10-19'
     pub date: chrono::NaiveDate,
@@ -1432,7 +1494,7 @@ pub struct AppointmentAdditionalCreate {
 }
 
 /// Stored additional date for a series.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentAdditionals {
     /// A simple date in ISO format, e.g. '2022-10-19'
     pub date: chrono::NaiveDate,
@@ -1448,40 +1510,54 @@ pub struct AppointmentAdditionals {
 }
 
 /// Location entered with an appointment.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentAddressCreate {
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub addition: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub city: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub addition: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub city: Option<Option<String>>,
     /// A country's ISO-code
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub country: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub district: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub country: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub district: Option<Option<String>>,
     /// Latitude of the appointment location.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub latitude: Option<f64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub latitude: Option<Option<f64>>,
     /// Longitude of the appointment location.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub longitude: Option<f64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub longitude: Option<Option<f64>>,
     /// Legacy alias for name.
-    #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
-    pub meeting_at: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub street: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub zip: Option<String>,
+    pub meeting_at: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub street: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub zip: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Stored calendar appointment defining a single occurrence or a series. id identifies the whole stored appointment; pair it with a local occurrence start date to address a particular occurrence. startDate/endDate are the base occurrence, not necessarily the occurrence currently being displayed. Service-planning events, registration groups, bookings and meeting requests are separate linked resources.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentBase {
     pub additionals: Vec<AppointmentAdditionals>,
     /// Use 'additionals' instead
@@ -1558,7 +1634,7 @@ pub struct AppointmentBase {
 }
 
 /// Calendar containing the appointment.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentBaseCalendar {
     /// Campus associated with this calendar, or null for no campus. A campus represents a ChurchTools location/site, not a calendar permission group.
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -1614,7 +1690,7 @@ pub struct AppointmentBaseCalendar {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentBooking {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
@@ -1632,7 +1708,7 @@ pub struct AppointmentBooking {
 }
 
 /// A reported conflict involving a resource reservation. base and conflict describe booking occurrences and may be null.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentBookingChangeImpact {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub base: Option<AppointmentBookingImpactOccurrence>,
@@ -1652,7 +1728,7 @@ pub struct AppointmentBookingChangeImpact {
 }
 
 /// Book one resource for the appointment and its recurrence pattern. leadTimeMinutes and afterwardMinutes extend the resource reservation around each occurrence.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentBookingCreate {
     /// Minutes after the appointment during which the resource is blocked.
     #[serde(rename = "afterwardMinutes", deserialize_with = "crate::lenient::number")]
@@ -1674,7 +1750,7 @@ pub struct AppointmentBookingCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentBookingImpactOccurrence {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "endDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -1691,7 +1767,7 @@ pub struct AppointmentBookingImpactOccurrence {
 }
 
 /// A stored appointment plus all calculated occurrence dates keyed by local YYYY-MM-DD. Unlike occurrence endpoints, dates inside calculatedDates are always UTC timestamps, including all-day appointments. Optional enrichments are attached to their occurrence; tags are returned in additionalInfos.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentCalculated {
     /// Series-level enrichments, currently tags when requested.
     #[serde(rename = "additionalInfos", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -1706,7 +1782,7 @@ pub struct AppointmentCalculated {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentCalculatedCalculatedDatesVariant1Value {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub bookings: Option<Vec<BookingCalculated>>,
@@ -1731,7 +1807,7 @@ pub struct AppointmentCalculatedCalculatedDatesVariant1Value {
 }
 
 /// Proposed schedule to inspect without saving the appointment. This endpoint reports supported impacts, not a complete validation of an update.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentChangeImpactCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -1741,34 +1817,44 @@ pub struct AppointmentChangeImpactCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
     /// Optional local date at which the series would be split.
-    #[serde(rename = "splitDate", default, skip_serializing_if = "Option::is_none")]
-    pub split_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "splitDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub split_date: Option<Option<chrono::NaiveDate>>,
     /// When splitting, use true for this and future occurrences or false for this occurrence only.
-    #[serde(rename = "splitUntilEnd", default, skip_serializing_if = "Option::is_none")]
-    pub split_until_end: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "splitUntilEnd", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub split_until_end: Option<Option<bool>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Create the base appointment and optional linked resources in the calendar selected by the path.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -1778,18 +1864,24 @@ pub struct AppointmentCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -1800,8 +1892,10 @@ pub struct AppointmentCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub bookings: Option<Vec<AppointmentBookingCreate>>,
     /// Description of the appointment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Only new service-planning events to create. Existing linked events are updated separately when the appointment changes; events no longer matching the series may be deleted.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub events: Option<Vec<AppointmentEventCreate>>,
@@ -1811,19 +1905,23 @@ pub struct AppointmentCreate {
     /// Set `false` for a regular appointment. Use `true` only when the appointment is intended to be visible exclusively to signed-in users.
     #[serde(rename = "isInternal")]
     pub is_internal: bool,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub link: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub link: Option<Option<String>>,
     /// Invitees for the appointment or series. The field name is lowercase.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub meetingrequests: Option<Vec<MeetingRequestCreate>>,
     /// Person ID on whose behalf the appointment is created. This person is also used as inviter for meeting requests.
-    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub on_behalf_of_pid: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub on_behalf_of_pid: Option<Option<i64>>,
     /// Configure groups used to collect registrations for individual appointment occurrences. These are separate ChurchTools groups, not meeting invitations or service-planning events.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub signup: Option<AppointmentSignupCreate>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Appointment tags to add, as IDs, names or objects containing id.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<serde_json::Value>>,
@@ -1834,7 +1932,7 @@ pub struct AppointmentCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentEvent {
     #[serde(rename = "eventTemplate", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub event_template: Option<String>,
@@ -1844,7 +1942,7 @@ pub struct AppointmentEvent {
 }
 
 /// An existing service-planning event would no longer match the resulting series.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentEventChangeImpact {
     /// Allowed values: `event`.
     #[serde(rename = "domainType", deserialize_with = "crate::lenient::string")]
@@ -1858,7 +1956,7 @@ pub struct AppointmentEventChangeImpact {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentEventChangeImpactEvent {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub guid: String,
@@ -1873,13 +1971,14 @@ pub struct AppointmentEventChangeImpactEvent {
 }
 
 /// Create a service-planning event for one occurrence. This is a separate ChurchTools resource linked to the calendar appointment; existing events must not be submitted again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentEventCreate {
     /// Person IDs of the event administrators.
     #[serde(rename = "adminIds", default, skip_serializing_if = "Option::is_none")]
     pub admin_ids: Option<Vec<i64>>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Optional service-planning event template to apply.
     #[serde(rename = "eventTemplateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub event_template_id: Option<i64>,
@@ -1887,9 +1986,11 @@ pub struct AppointmentEventCreate {
     #[serde(deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub facts: Option<std::collections::BTreeMap<String, serde_json::Value>>,
     /// Use `description` instead.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "Use `description` instead."]
-    pub note: Option<String>,
+    pub note: Option<Option<String>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub services: Option<Vec<AppointmentEventCreateServicesItem>>,
     /// Exact UTC start of an occurrence in the resulting appointment; seconds are discarded. A duplicate event or a date outside the series produces 422.
@@ -1900,7 +2001,7 @@ pub struct AppointmentEventCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentEventCreateServicesItem {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub count: i64,
@@ -1912,7 +2013,7 @@ pub struct AppointmentEventCreateServicesItem {
 }
 
 /// An accepted service assignment associated with the appointment. The calculator reports these as move impacts; this is not a detailed before/after diff.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentEventServiceChangeImpact {
     /// Allowed values: `eventService`.
     #[serde(rename = "domainType", deserialize_with = "crate::lenient::string")]
@@ -1931,7 +2032,7 @@ pub struct AppointmentEventServiceChangeImpact {
 }
 
 /// Exclude occurrences starting on this local calendar date, including matches generated from additionals.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentExceptionCreate {
     /// A simple date in ISO format, e.g. '2022-10-19'
     pub date: chrono::NaiveDate,
@@ -1941,7 +2042,7 @@ pub struct AppointmentExceptionCreate {
 }
 
 /// Stored exclusion date for a series.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentExeptions {
     /// A simple date in ISO format, e.g. '2022-10-19'
     pub date: chrono::NaiveDate,
@@ -1955,7 +2056,7 @@ pub struct AppointmentExeptions {
 }
 
 /// One calculated occurrence and optional linked resources.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentOccurrence {
     pub appointment: AppointmentOccurrenceListAppointment,
     /// Resource-booking occurrences, when requested and visible.
@@ -1982,7 +2083,7 @@ pub struct AppointmentOccurrence {
 }
 
 /// Calculated start/end for one occurrence. All-day dates use YYYY-MM-DD with an inclusive end; timed dates use UTC timestamps.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentOccurrenceDate {
     /// Use a UTC timestamp for a timed appointment or YYYY-MM-DD for an all-day appointment. ChurchTools interprets dates in the installation’s timezone. Seconds on appointment input are discarded.
     #[serde(rename = "endDate")]
@@ -1999,7 +2100,7 @@ pub struct AppointmentOccurrenceDate {
 }
 
 /// Calculated occurrence returned by appointment list endpoints.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentOccurrenceList {
     pub appointment: AppointmentOccurrenceListAppointment,
     /// Resource-booking occurrences, when requested and visible.
@@ -2033,7 +2134,7 @@ pub struct AppointmentOccurrenceList {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentOccurrenceListAppointment {
     /// Stored calendar appointment defining a single occurrence or a series. id identifies the whole stored appointment; pair it with a local occurrence start date to address a particular occurrence. startDate/endDate are the base occurrence, not necessarily the occurrence currently being displayed. Service-planning events, registration groups, bookings and meeting requests are separate linked resources.
     pub base: AppointmentBase,
@@ -2045,7 +2146,7 @@ pub struct AppointmentOccurrenceListAppointment {
 }
 
 /// Legacy alias for appointment.base.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentOccurrenceListBase {
     pub additionals: Vec<AppointmentAdditionals>,
     /// Use 'additionals' instead
@@ -2122,7 +2223,7 @@ pub struct AppointmentOccurrenceListBase {
 }
 
 /// Legacy alias for appointment.calculated.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentOccurrenceListCalculated {
     /// Use a UTC timestamp for a timed appointment or YYYY-MM-DD for an all-day appointment. ChurchTools interprets dates in the installation’s timezone. Seconds on appointment input are discarded.
     #[serde(rename = "endDate")]
@@ -2138,7 +2239,7 @@ pub struct AppointmentOccurrenceListCalculated {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentSignup {
     #[serde(rename = "signupDaysArchiveGroupNo", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub signup_days_archive_group_no: Option<i64>,
@@ -2158,7 +2259,7 @@ pub struct AppointmentSignup {
 }
 
 /// Configure groups used to collect registrations for individual appointment occurrences. These are separate ChurchTools groups, not meeting invitations or service-planning events.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentSignupCreate {
     /// How many days after the appointment registration groups are archived.
     #[serde(rename = "signupDaysArchiveGroupNo", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -2178,7 +2279,7 @@ pub struct AppointmentSignupCreate {
 }
 
 /// New appointment data plus the scope removed from the original series. The response identifies the newly created appointment; the original retains the unaffected dates.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentSplitUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -2188,18 +2289,24 @@ pub struct AppointmentSplitUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -2210,8 +2317,10 @@ pub struct AppointmentSplitUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub bookings: Option<Vec<AppointmentBookingCreate>>,
     /// Description of the appointment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Only new service-planning events to create. Existing linked events are updated separately when the appointment changes; events no longer matching the series may be deleted.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub events: Option<Vec<AppointmentEventCreate>>,
@@ -2221,19 +2330,23 @@ pub struct AppointmentSplitUpdate {
     /// Set `false` for a regular appointment. Use `true` only when the appointment is intended to be visible exclusively to signed-in users.
     #[serde(rename = "isInternal")]
     pub is_internal: bool,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub link: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub link: Option<Option<String>>,
     /// Invitees for the appointment or series. The field name is lowercase.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub meetingrequests: Option<Vec<MeetingRequestCreate>>,
     /// Person ID on whose behalf the appointment is created. This person is also used as inviter for meeting requests.
-    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub on_behalf_of_pid: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub on_behalf_of_pid: Option<Option<i64>>,
     /// Configure groups used to collect registrations for individual appointment occurrences. These are separate ChurchTools groups, not meeting invitations or service-planning events.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub signup: Option<AppointmentSignupCreate>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Appointment tags to add, as IDs, names or objects containing id.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<serde_json::Value>>,
@@ -2254,7 +2367,7 @@ pub struct AppointmentSplitUpdate {
 }
 
 /// Saved appointment defaults plus the template ID and metadata.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentTemplate {
     /// Location entered with an appointment template.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -2334,7 +2447,7 @@ pub struct AppointmentTemplate {
 }
 
 /// Location entered with an appointment template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentTemplateAddressCreate {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub addition: Option<String>,
@@ -2367,67 +2480,94 @@ pub struct AppointmentTemplateAddressCreate {
 }
 
 /// Save reusable appointment defaults without creating appointments or their linked resources.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentTemplateCreate {
     /// Location entered with an appointment template.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub address: Option<AppointmentTemplateAddressCreate>,
     /// Whether the template proposes an all-day appointment.
-    #[serde(rename = "allDay", default, skip_serializing_if = "Option::is_none")]
-    pub all_day: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "allDay", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub all_day: Option<Option<bool>>,
     /// Stored resource-booking defaults in the legacy template format.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub bookings: Option<Vec<AppointmentBooking>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub bookings: Option<Option<Vec<AppointmentBooking>>>,
     /// Calendar for which the template provides defaults.
     #[serde(rename = "calendarId", deserialize_with = "crate::lenient::number")]
     pub calendar_id: i64,
     /// Days after the appointment for archiving registration groups.
-    #[serde(rename = "daysArchiveGroupNo", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub days_archive_group_no: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "daysArchiveGroupNo", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub days_archive_group_no: Option<Option<i64>>,
     /// Days ahead for creating registration groups.
-    #[serde(rename = "daysForwardNo", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub days_forward_no: Option<i64>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "daysForwardNo", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub days_forward_no: Option<Option<i64>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Difference between end and start in seconds. With allDay=true, 0 represents one all-day date because the appointment end date is inclusive.
     #[serde(deserialize_with = "crate::lenient::number")]
     pub duration: i64,
     /// Stored service-planning event template selections. Applying them is part of appointment creation, not saving this template.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub events: Option<Vec<AppointmentEvent>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub events: Option<Option<Vec<AppointmentEvent>>>,
     /// Group type for registration groups created for appointment occurrences.
-    #[serde(rename = "grouptypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub grouptype_id: Option<i64>,
-    #[serde(rename = "isInternal", default, skip_serializing_if = "Option::is_none")]
-    pub is_internal: Option<bool>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub link: Option<String>,
-    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub on_behalf_of_pid: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "grouptypeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub grouptype_id: Option<Option<i64>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "isInternal", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub is_internal: Option<Option<bool>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub link: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub on_behalf_of_pid: Option<Option<i64>>,
     /// Seconds from the chosen appointment start to the series end used when applying this template.
-    #[serde(rename = "repeatDuration", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_duration: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatDuration", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_duration: Option<Option<i64>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// Monthly-by-weekday ordinal, using the template field name repeatOptionId. The resulting appointment uses repeatOption.
-    #[serde(rename = "repeatOptionId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOptionId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option_id: Option<Option<i64>>,
     /// Local start time used when applying the template, conventionally HH:mm.
     #[serde(rename = "startTime", deserialize_with = "crate::lenient::string")]
     pub start_time: String,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Existing appointment-tag IDs saved in the template.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub tags: Option<Vec<i64>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Option<Vec<i64>>>,
     /// Group used as a template for registration groups.
-    #[serde(rename = "templateGroupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub template_group_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "templateGroupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub template_group_id: Option<Option<i64>>,
     /// Title proposed for appointments created from this template.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
@@ -2437,7 +2577,7 @@ pub struct AppointmentTemplateCreate {
 }
 
 /// Image file associated with an appointment template, managed separately from template create/update.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentTemplateImage {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::string")]
     pub domain_id: String,
@@ -2457,67 +2597,94 @@ pub struct AppointmentTemplateImage {
 }
 
 /// Replace the saved appointment-template defaults.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentTemplateUpdate {
     /// Location entered with an appointment template.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub address: Option<AppointmentTemplateAddressCreate>,
     /// Whether the template proposes an all-day appointment.
-    #[serde(rename = "allDay", default, skip_serializing_if = "Option::is_none")]
-    pub all_day: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "allDay", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub all_day: Option<Option<bool>>,
     /// Stored resource-booking defaults in the legacy template format.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub bookings: Option<Vec<AppointmentBooking>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub bookings: Option<Option<Vec<AppointmentBooking>>>,
     /// Calendar for which the template provides defaults.
     #[serde(rename = "calendarId", deserialize_with = "crate::lenient::number")]
     pub calendar_id: i64,
     /// Days after the appointment for archiving registration groups.
-    #[serde(rename = "daysArchiveGroupNo", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub days_archive_group_no: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "daysArchiveGroupNo", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub days_archive_group_no: Option<Option<i64>>,
     /// Days ahead for creating registration groups.
-    #[serde(rename = "daysForwardNo", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub days_forward_no: Option<i64>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "daysForwardNo", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub days_forward_no: Option<Option<i64>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Difference between end and start in seconds. With allDay=true, 0 represents one all-day date because the appointment end date is inclusive.
     #[serde(deserialize_with = "crate::lenient::number")]
     pub duration: i64,
     /// Stored service-planning event template selections. Applying them is part of appointment creation, not saving this template.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub events: Option<Vec<AppointmentEvent>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub events: Option<Option<Vec<AppointmentEvent>>>,
     /// Group type for registration groups created for appointment occurrences.
-    #[serde(rename = "grouptypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub grouptype_id: Option<i64>,
-    #[serde(rename = "isInternal", default, skip_serializing_if = "Option::is_none")]
-    pub is_internal: Option<bool>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub link: Option<String>,
-    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub on_behalf_of_pid: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "grouptypeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub grouptype_id: Option<Option<i64>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "isInternal", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub is_internal: Option<Option<bool>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub link: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub on_behalf_of_pid: Option<Option<i64>>,
     /// Seconds from the chosen appointment start to the series end used when applying this template.
-    #[serde(rename = "repeatDuration", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_duration: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatDuration", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_duration: Option<Option<i64>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// Monthly-by-weekday ordinal, using the template field name repeatOptionId. The resulting appointment uses repeatOption.
-    #[serde(rename = "repeatOptionId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOptionId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option_id: Option<Option<i64>>,
     /// Local start time used when applying the template, conventionally HH:mm.
     #[serde(rename = "startTime", deserialize_with = "crate::lenient::string")]
     pub start_time: String,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Existing appointment-tag IDs saved in the template.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub tags: Option<Vec<i64>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Option<Vec<i64>>>,
     /// Group used as a template for registration groups.
-    #[serde(rename = "templateGroupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub template_group_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "templateGroupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub template_group_id: Option<Option<i64>>,
     /// Title proposed for appointments created from this template.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
@@ -2527,7 +2694,7 @@ pub struct AppointmentTemplateUpdate {
 }
 
 /// Appointment template returned immediately after a write.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentTemplateWritten {
     /// Location entered with an appointment template.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -2607,7 +2774,7 @@ pub struct AppointmentTemplateWritten {
 }
 
 /// Full update of an appointment or series. Existing linked bookings and events follow the new schedule. The events list contains only new events; meetingrequests has separate replacement semantics.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct AppointmentUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -2617,18 +2784,24 @@ pub struct AppointmentUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -2639,8 +2812,10 @@ pub struct AppointmentUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub bookings: Option<Vec<AppointmentBookingCreate>>,
     /// Description of the appointment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Only new service-planning events to create. Existing linked events are updated separately when the appointment changes; events no longer matching the series may be deleted.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub events: Option<Vec<AppointmentEventCreate>>,
@@ -2650,19 +2825,23 @@ pub struct AppointmentUpdate {
     /// Set `false` for a regular appointment. Use `true` only when the appointment is intended to be visible exclusively to signed-in users.
     #[serde(rename = "isInternal")]
     pub is_internal: bool,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub link: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub link: Option<Option<String>>,
     /// Invitees for the appointment or series. The field name is lowercase.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub meetingrequests: Option<Vec<MeetingRequestCreate>>,
     /// Person ID on whose behalf the appointment is created. This person is also used as inviter for meeting requests.
-    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub on_behalf_of_pid: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub on_behalf_of_pid: Option<Option<i64>>,
     /// Configure groups used to collect registrations for individual appointment occurrences. These are separate ChurchTools groups, not meeting invitations or service-planning events.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub signup: Option<AppointmentSignupCreate>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Appointment tags to add, as IDs, names or objects containing id.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<serde_json::Value>>,
@@ -2677,7 +2856,7 @@ pub struct AppointmentUpdate {
 }
 
 /// One musical version of a song. Event agenda song items refer to an arrangement ID, allowing different keys, instruments or sources for the same song.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Arrangement {
     /// Free-text time signature, such as `4/4` or `6/8`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -2742,33 +2921,47 @@ pub struct Arrangement {
 }
 
 /// A new musical version of a song, optionally assigning existing files.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ArrangementCreate {
     /// Free-text time signature, such as `4/4` or `6/8`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub beat: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub beat: Option<Option<String>>,
     /// Notes about performing this arrangement.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Expected duration in seconds.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub duration: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub duration: Option<Option<i64>>,
     /// Musical key using the API spelling.
     /// Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub key: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub key: Option<Option<String>>,
     /// Name distinguishing this version from other arrangements.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// ID of a song source, such as a hymnal or songbook, from GET /song/sources.
-    #[serde(rename = "sourceId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub source_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sourceId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub source_id: Option<Option<i64>>,
     /// Location within the selected source, such as a song number or page. Only used with sourceId.
-    #[serde(rename = "sourceReference", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub source_reference: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sourceReference", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub source_reference: Option<Option<String>>,
     /// Tempo in beats per minute.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tempo: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tempo: Option<Option<i64>>,
     /// IDs of existing files to assign to the arrangement.
     #[serde(rename = "fileIds", default, skip_serializing_if = "Option::is_none")]
     pub file_ids: Option<Vec<i64>>,
@@ -2780,7 +2973,7 @@ pub struct ArrangementCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ArrangementDeprecated {
     /// Allowed values: `tempo`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -2800,7 +2993,7 @@ pub struct ArrangementDeprecated {
 }
 
 /// Result of synchronous audio transposition. These fields are returned directly at the top level, without a data or meta wrapper.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ArrangementFileTranspose {
     /// Display filename with the signed semitone count inserted before the original extension. For example, down2 changes Rehearsal.mp3 to Rehearsal-2.mp3.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -2825,7 +3018,7 @@ pub struct ArrangementFileTranspose {
 }
 
 /// Creates a transposed audio copy from an existing file. No file upload is included in this request.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ArrangementFileTransposeCreate {
     /// Pitch shift in semitones: up1 through up6 raise the pitch by one to six semitones, down1 through down6 lower it. For example, up2 moves C to D. Zero and shifts beyond six semitones are not accepted.
     /// Allowed values: `down1`, `down2`, `down3`, `down4`, `down5`, `down6`, `up1`, `up2`, `up3`, `up4`, `up5`, `up6`.
@@ -2837,39 +3030,53 @@ pub struct ArrangementFileTransposeCreate {
 }
 
 /// Musical details of one song version. Files, links and the default flag are managed separately.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ArrangementUpdate {
     /// Free-text time signature, such as `4/4` or `6/8`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub beat: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub beat: Option<Option<String>>,
     /// Notes about performing this arrangement.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Expected duration in seconds.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub duration: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub duration: Option<Option<i64>>,
     /// Musical key using the API spelling.
     /// Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub key: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub key: Option<Option<String>>,
     /// Name distinguishing this version from other arrangements.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// ID of a song source, such as a hymnal or songbook, from GET /song/sources.
-    #[serde(rename = "sourceId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub source_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sourceId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub source_id: Option<Option<i64>>,
     /// Location within the selected source, such as a song number or page. Only used with sourceId.
-    #[serde(rename = "sourceReference", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub source_reference: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sourceReference", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub source_reference: Option<Option<String>>,
     /// Tempo in beats per minute.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tempo: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tempo: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Association {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub abbreviation: String,
@@ -2888,11 +3095,13 @@ pub struct Association {
 }
 
 /// Balance-sheet selection. The API parses both dates but does not reject reversed or out-of-period ranges.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BalanceReportCreate {
     /// Account-type IDs. Omission, null or [] selects all types. Existing IDs must be JSON integers; numeric strings do not match. Unknown IDs are ignored.
-    #[serde(rename = "accountTypes", default, skip_serializing_if = "Option::is_none")]
-    pub account_types: Option<Vec<i64>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "accountTypes", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub account_types: Option<Option<Vec<i64>>>,
     /// Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
@@ -2918,7 +3127,7 @@ pub struct BalanceReportCreate {
 }
 
 /// Supporting document (Beleg) attached to a finance booking or booking suggestion. This represents the uploaded evidence, not an invoice or payment request.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Bill {
     /// Accounting period shared by the linked booking or suggestion.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
@@ -2948,7 +3157,7 @@ pub struct Bill {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BillCreateWithSplit {
     /// Accounting period shared by the linked booking or suggestion.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
@@ -2957,8 +3166,10 @@ pub struct BillCreateWithSplit {
     #[serde(rename = "fileId", deserialize_with = "crate::lenient::number")]
     pub file_id: i64,
     /// Optional new display name for the attached file. Omission or null retains its name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub filename: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub filename: Option<Option<String>>,
     #[serde(rename = "splitTransactionId", deserialize_with = "crate::lenient::number")]
     pub split_transaction_id: i64,
     /// Date the supporting document was submitted, independently of the booking date.
@@ -2978,7 +3189,7 @@ pub struct BillCreateWithSplit {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BillCreateWithSuggestion {
     /// Accounting period shared by the linked booking or suggestion.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
@@ -2987,8 +3198,10 @@ pub struct BillCreateWithSuggestion {
     #[serde(rename = "fileId", deserialize_with = "crate::lenient::number")]
     pub file_id: i64,
     /// Optional new display name for the attached file. Omission or null retains its name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub filename: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub filename: Option<Option<String>>,
     /// Must be omitted or null when another booking link is selected.
     #[serde(rename = "splitTransactionId", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub split_transaction_id: serde_json::Value,
@@ -3008,7 +3221,7 @@ pub struct BillCreateWithSuggestion {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BillCreateWithTransaction {
     /// Accounting period shared by the linked booking or suggestion.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
@@ -3017,8 +3230,10 @@ pub struct BillCreateWithTransaction {
     #[serde(rename = "fileId", deserialize_with = "crate::lenient::number")]
     pub file_id: i64,
     /// Optional new display name for the attached file. Omission or null retains its name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub filename: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub filename: Option<Option<String>>,
     /// Must be omitted or null when another booking link is selected.
     #[serde(rename = "splitTransactionId", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub split_transaction_id: serde_json::Value,
@@ -3039,7 +3254,7 @@ pub struct BillCreateWithTransaction {
 }
 
 /// File attached to a bill. This embedded representation has no file ID; use its fileUrl to download the document.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BillFile {
     /// Bill ID stored as a file-domain string.
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -3065,7 +3280,7 @@ pub struct BillFile {
 }
 
 /// File modification metadata. Creation metadata is not serialized.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BillFileMetaData {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "modifiedDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -3078,14 +3293,18 @@ pub struct BillFileMetaData {
 }
 
 /// Updates submission details and optionally changes the booking link. Omitted or null link IDs retain the current link. Supply at most one new link: when multiple IDs are supplied, the service gives splitTransactionId precedence over transactionId over transactionSuggestionId. Setting only a suggestion currently does not clear existing transaction links. The accounting period and attached file cannot be replaced here.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BillUpdate {
     /// Optional new display name for the attached file. Omission or null retains its name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub filename: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub filename: Option<Option<String>>,
     /// Linked split transaction, covering its component transactions.
-    #[serde(rename = "splitTransactionId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub split_transaction_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "splitTransactionId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub split_transaction_id: Option<Option<i64>>,
     /// Date the supporting document was submitted, independently of the booking date.
     #[serde(rename = "submittedDate")]
     pub submitted_date: chrono::NaiveDate,
@@ -3093,17 +3312,21 @@ pub struct BillUpdate {
     #[serde(rename = "submittedPid", deserialize_with = "crate::lenient::number")]
     pub submitted_pid: i64,
     /// Linked ordinary transaction.
-    #[serde(rename = "transactionId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub transaction_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "transactionId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub transaction_id: Option<Option<i64>>,
     /// Linked booking suggestion from an account statement.
-    #[serde(rename = "transactionSuggestionId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub transaction_suggestion_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "transactionSuggestionId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub transaction_suggestion_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BlogItem {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub author: Option<String>,
@@ -3125,7 +3348,7 @@ pub struct BlogItem {
 }
 
 /// Stored additional booking date. Its legacy metadata contains the modifier ID directly.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingAdditional {
     /// A simple date in ISO format, e.g. '2022-10-19'
     pub date: chrono::NaiveDate,
@@ -3139,7 +3362,7 @@ pub struct BookingAdditional {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingAdditionalMeta {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "modifiedDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -3152,11 +3375,13 @@ pub struct BookingAdditionalMeta {
 }
 
 /// For an appointment-linked booking, only status and description can be changed here. Change the resource and schedule through the linked appointment.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingAppointmentUpdate {
     /// Booking notes.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Booking status: 1 = pending approval, 2 = approved, 3 = rejected. Rejected bookings are excluded from conflict checks.
     /// Allowed values: `1`, `2`, `3`.
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -3167,7 +3392,7 @@ pub struct BookingAppointmentUpdate {
 }
 
 /// Stored resource booking, which may represent a recurring series. A booking reserves one resource. `appointment` links it to a calendar appointment; `null` identifies an independent booking. Use calculated occurrence dates when displaying a series in a date range.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingBase {
     pub additionals: Vec<BookingAdditional>,
     #[serde(rename = "allDay")]
@@ -3258,7 +3483,7 @@ pub struct BookingBase {
 }
 
 /// One occurrence: base describes the stored series, calculated contains the dates of this occurrence.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCalculated {
     /// Stored resource booking, which may represent a recurring series. A booking reserves one resource. `appointment` links it to a calendar appointment; `null` identifies an independent booking. Use calculated occurrence dates when displaying a series in a date range.
     pub base: BookingBase,
@@ -3268,7 +3493,7 @@ pub struct BookingCalculated {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCalculatedCalculated {
     #[serde(rename = "endDate")]
     pub end_date: crate::DateOrDateTime,
@@ -3279,7 +3504,7 @@ pub struct BookingCalculatedCalculated {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCalculatedWithIncludes {
     /// Use booking.base.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -3300,7 +3525,7 @@ pub struct BookingCalculatedWithIncludes {
 }
 
 /// Use booking.base.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCalculatedWithIncludesBase {
     pub additionals: Vec<BookingAdditional>,
     #[serde(rename = "allDay")]
@@ -3391,7 +3616,7 @@ pub struct BookingCalculatedWithIncludesBase {
 }
 
 /// Included with `include[]=involvedPersonsDomainObjects`. The person for whom the booking was made and the person who answered can be null.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCalculatedWithIncludesBaseInvolvedPersonsDomainObjects {
     #[serde(rename = "answeredBy", default, skip_serializing_if = "Option::is_none")]
     pub answered_by: Option<DomainObjectPerson>,
@@ -3409,7 +3634,7 @@ pub struct BookingCalculatedWithIncludesBaseInvolvedPersonsDomainObjects {
 }
 
 /// Use `resourceId` instead.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCalculatedWithIncludesBaseResource {
     /// Persons responsible for this resource. Resource administrators can view and administer its bookings; changing resource settings still requires permission to edit resource master data.
     #[serde(rename = "adminIds")]
@@ -3466,7 +3691,7 @@ pub struct BookingCalculatedWithIncludesBaseResource {
 }
 
 /// Included with `include[]=involvedPersonsDomainObjects`. Contains person references for resolvable `adminIds`; missing persons are omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCalculatedWithIncludesBaseResourceInvolvedPersonsDomainObjects {
     pub admins: Vec<DomainObjectPerson>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -3475,7 +3700,7 @@ pub struct BookingCalculatedWithIncludesBaseResourceInvolvedPersonsDomainObjects
 }
 
 /// Use booking.calculated.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCalculatedWithIncludesCalculated {
     #[serde(rename = "endDate")]
     pub end_date: crate::DateOrDateTime,
@@ -3487,7 +3712,7 @@ pub struct BookingCalculatedWithIncludesCalculated {
 }
 
 /// An overlapping occurrence of another pending or approved booking for the same resource. Adjacent timed bookings do not conflict. Dates retain their timezone offset.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingConflict {
     #[serde(rename = "bookingId", deserialize_with = "crate::lenient::number")]
     pub booking_id: i64,
@@ -3510,7 +3735,7 @@ pub struct BookingConflict {
 }
 
 /// Preview conflicts for a proposed booking without saving it.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingConflictRequestBody {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -3520,18 +3745,24 @@ pub struct BookingConflictRequestBody {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -3547,7 +3778,7 @@ pub struct BookingConflictRequestBody {
 }
 
 /// Replacement schedule to preview against the stored booking’s resource. The current booking is excluded from conflicts. No data is saved and resourceId is not used.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingConflictUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -3557,18 +3788,24 @@ pub struct BookingConflictUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -3581,7 +3818,7 @@ pub struct BookingConflictUpdate {
 }
 
 /// Create an independent resource booking. A resource requiring an appointment must instead be booked through the appointment APIs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -3591,18 +3828,24 @@ pub struct BookingCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -3610,11 +3853,15 @@ pub struct BookingCreate {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub quantity: Option<i64>,
     /// Booking notes.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Person for whom the booking is made.
-    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub on_behalf_of_pid: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub on_behalf_of_pid: Option<Option<i64>>,
     /// Resource to reserve, such as a room, vehicle or piece of equipment.
     #[serde(rename = "resourceId", deserialize_with = "crate::lenient::number")]
     pub resource_id: i64,
@@ -3626,8 +3873,10 @@ pub struct BookingCreate {
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::number")]
     pub status_id: i64,
     /// Optional booking subtitle.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Booking title shown in resource planning.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
@@ -3637,7 +3886,7 @@ pub struct BookingCreate {
 }
 
 /// Stored date excluded from a booking series.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingException {
     /// A simple date in ISO format, e.g. '2022-10-19'
     pub date: chrono::NaiveDate,
@@ -3650,7 +3899,7 @@ pub struct BookingException {
 }
 
 /// Replacement booking and the scope to remove from the original series. The returned booking has a new ID.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingSplitCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -3660,18 +3909,24 @@ pub struct BookingSplitCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -3679,11 +3934,15 @@ pub struct BookingSplitCreate {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub quantity: Option<i64>,
     /// Booking notes.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Person for whom the booking is made.
-    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub on_behalf_of_pid: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub on_behalf_of_pid: Option<Option<i64>>,
     /// Resource to reserve, such as a room, vehicle or piece of equipment.
     #[serde(rename = "resourceId", deserialize_with = "crate::lenient::number")]
     pub resource_id: i64,
@@ -3695,8 +3954,10 @@ pub struct BookingSplitCreate {
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::number")]
     pub status_id: i64,
     /// Optional booking subtitle.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Booking title shown in resource planning.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
@@ -3712,7 +3973,7 @@ pub struct BookingSplitCreate {
 }
 
 /// Complete replacement input for a booking without a linked appointment. Include every recurrence entry to retain.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingStandaloneUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -3722,18 +3983,24 @@ pub struct BookingStandaloneUpdate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -3741,11 +4008,15 @@ pub struct BookingStandaloneUpdate {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub quantity: Option<i64>,
     /// Booking notes.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Person for whom the booking is made.
-    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub on_behalf_of_pid: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub on_behalf_of_pid: Option<Option<i64>>,
     /// Resource to reserve, such as a room, vehicle or piece of equipment.
     #[serde(rename = "resourceId", deserialize_with = "crate::lenient::number")]
     pub resource_id: i64,
@@ -3757,8 +4028,10 @@ pub struct BookingStandaloneUpdate {
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::number")]
     pub status_id: i64,
     /// Optional booking subtitle.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Booking title shown in resource planning.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
@@ -3767,7 +4040,7 @@ pub struct BookingStandaloneUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingWithIncludes {
     /// With `include[]=conflicts`, contains conflicts across the complete series. Otherwise serialized as []. Person includes are attached to booking itself.
     #[serde(rename = "additionalInfos", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -3782,7 +4055,7 @@ pub struct BookingWithIncludes {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingWithIncludesAdditionalInfosVariant1 {
     pub conflicts: Vec<BookingConflict>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -3790,7 +4063,7 @@ pub struct BookingWithIncludesAdditionalInfosVariant1 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BookingWithIncludesCalculatedDatesVariant1Value {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "endDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -3804,7 +4077,7 @@ pub struct BookingWithIncludesCalculatedDatesVariant1Value {
 }
 
 /// `event`/`declineEvent`: Cancels or deletes service-planning events. Selected IDs are event IDs, not appointment IDs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkEventDeclineUpdate {
     /// Delete the event when true; otherwise invalidate it. Deletion delegates to the event service.
     #[serde(rename = "deleteCalEntry")]
@@ -3818,7 +4091,7 @@ pub struct BulkEventDeclineUpdate {
 }
 
 /// `event`/`addPersonToService`: Assigns a person or free-text name to a service position in each event. Exactly one of `personId` or `personName` must be specified.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkEventServiceAssignmentCreate {
     /// never requires a reusable slot; newIfNeeded creates one if needed; alwaysNew adds a slot unless the same assignee already has a valid assignment.
     /// Allowed values: `alwaysNew`, `never`, `newIfNeeded`.
@@ -3839,33 +4112,42 @@ pub struct BulkEventServiceAssignmentCreate {
 }
 
 /// For `create-follow-up`. Supply exactly one of `dueDate` or `duration`; `duration` must contain a supported day, month, or year count. `actionContext.groupId` is the originating group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkFollowUpActionCreate {
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub color: Option<Option<String>>,
     /// Allowed values: `immediately`, `when-completed`.
     #[serde(rename = "continuationType", deserialize_with = "crate::lenient::string")]
     pub continuation_type: String,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Exactly one of `dueDate` or `duration` must be specified.
     #[serde(rename = "dueDate", default, skip_serializing_if = "Option::is_none")]
     pub due_date: Option<chrono::NaiveDate>,
     /// Exactly one of `dueDate` or `duration` must be specified. Within `duration`, at least one of `numDays`, `numMonths`, or `numYears` must be specified.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub duration: Option<BulkFollowUpActionCreateDuration>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub icon: Option<String>,
-    #[serde(rename = "successGroupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub icon: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_id: Option<Option<i64>>,
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
-    #[serde(rename = "successGroupMemberStatus", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_member_status: Option<String>,
-    #[serde(rename = "successGroupOfGroupTypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_of_group_type_id: Option<i64>,
-    #[serde(rename = "successRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_role_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupMemberStatus", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_member_status: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupOfGroupTypeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_of_group_type_id: Option<Option<i64>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successRoleId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_role_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -3874,7 +4156,7 @@ pub struct BulkFollowUpActionCreate {
 }
 
 /// Exactly one of `dueDate` or `duration` must be specified. Within `duration`, at least one of `numDays`, `numMonths`, or `numYears` must be specified.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkFollowUpActionCreateDuration {
     #[serde(rename = "numDays", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub num_days: Option<i64>,
@@ -3888,7 +4170,7 @@ pub struct BulkFollowUpActionCreateDuration {
 }
 
 /// `group`/`addParentGroup`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupAddParentGroupUpdate {
     /// Parent group ID to add.
     #[serde(rename = "parentGroupId", deserialize_with = "crate::lenient::number")]
@@ -3899,7 +4181,7 @@ pub struct BulkGroupAddParentGroupUpdate {
 }
 
 /// `group`/`setAgeGroups`: Changes selected age groups.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupAgeGroupsUpdate {
     #[serde(rename = "ageGroupIds")]
     pub age_group_ids: Vec<i64>,
@@ -3913,7 +4195,7 @@ pub struct BulkGroupAgeGroupsUpdate {
 }
 
 /// `group`/`delTag`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupDelTagUpdate {
     /// Existing group-tag ID to remove.
     #[serde(rename = "tagId", deserialize_with = "crate::lenient::number")]
@@ -3924,7 +4206,7 @@ pub struct BulkGroupDelTagUpdate {
 }
 
 /// `group`/`setMeetingTime`: Changes the free-text meeting time.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupMeetingTimeUpdate {
     /// Free-text meeting time, not a structured timestamp.
     #[serde(rename = "meetingTime", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -3935,7 +4217,7 @@ pub struct BulkGroupMeetingTimeUpdate {
 }
 
 /// `group`/`setCampus`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupSetCampusUpdate {
     /// Campus ID.
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -3946,7 +4228,7 @@ pub struct BulkGroupSetCampusUpdate {
 }
 
 /// `group`/`setGroupCategory`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupSetGroupCategoryUpdate {
     /// Group-category ID.
     #[serde(rename = "groupCategoryId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -3957,7 +4239,7 @@ pub struct BulkGroupSetGroupCategoryUpdate {
 }
 
 /// `group`/`setInformLeader`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupSetInformLeaderUpdate {
     /// Enable leader notifications.
     #[serde(rename = "informLeader")]
@@ -3968,7 +4250,7 @@ pub struct BulkGroupSetInformLeaderUpdate {
 }
 
 /// `group`/`setMaxMembers`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupSetMaxMembersUpdate {
     /// Maximum number of members.
     #[serde(rename = "maxMembers", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -3979,7 +4261,7 @@ pub struct BulkGroupSetMaxMembersUpdate {
 }
 
 /// `group`/`setShowInMemberStatistic`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupSetShowInMemberStatisticUpdate {
     /// Include the group in membership statistics.
     #[serde(rename = "inStatistic")]
@@ -3990,7 +4272,7 @@ pub struct BulkGroupSetShowInMemberStatisticUpdate {
 }
 
 /// `group`/`setSignUpOpen`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupSetSignUpOpenUpdate {
     /// Open or close signup now by updating the group’s signup dates; this is not a persistent independent boolean.
     #[serde(rename = "isOpenForMembers")]
@@ -4001,7 +4283,7 @@ pub struct BulkGroupSetSignUpOpenUpdate {
 }
 
 /// `group`/`setTargetGroup`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupSetTargetGroupUpdate {
     /// Target-group masterdata ID.
     #[serde(rename = "targetGroupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4012,7 +4294,7 @@ pub struct BulkGroupSetTargetGroupUpdate {
 }
 
 /// `group`/`setWeeklyMeeting`: Applies the setting to each selected group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupSetWeeklyMeetingUpdate {
     /// Enable weekly meeting generation.
     #[serde(rename = "createWeeklyGroupMeetings")]
@@ -4023,7 +4305,7 @@ pub struct BulkGroupSetWeeklyMeetingUpdate {
 }
 
 /// `group`/`setStatus`: Changes group status; identical status leaves the group and side-effect settings unchanged.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupStatusUpdate {
     /// Deactivate the chat when finishing the group.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -4040,7 +4322,7 @@ pub struct BulkGroupStatusUpdate {
 }
 
 /// `group`/`setVisibility`: Changes group visibility.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupVisibilityUpdate {
     /// Passes the visibility-change option for the current user’s posts to the group update.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -4055,7 +4337,7 @@ pub struct BulkGroupVisibilityUpdate {
 }
 
 /// `group`/`setWeekday`: Changes the meeting weekday.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkGroupWeekdayUpdate {
     /// Weekday numbered 0–6.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4066,7 +4348,7 @@ pub struct BulkGroupWeekdayUpdate {
 }
 
 /// Permission-preview result. Targets without permission are omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkInfos {
     /// Allowed IDs in original order, with duplicates retained and native bulk IDs cast to integers.
     #[serde(rename = "allowedDomainObjectIdentifiers")]
@@ -4150,7 +4432,7 @@ pub struct BulkInfos {
 /// | person | invite-person | BulkEmptyData |
 /// | person | archive-person | BulkEmptyData |
 /// | person | edit-tags-for-person | BulkPersonTagsActionUpdate |
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkJobCreate {
     /// Context for action-based operations. Membership actions commonly require `groupId`.
     #[serde(rename = "actionContext", default, skip_serializing_if = "Option::is_none")]
@@ -4167,7 +4449,7 @@ pub struct BulkJobCreate {
 }
 
 /// Context for action-based operations. Membership actions commonly require `groupId`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkJobCreateActionContext {
     /// Group of the selected memberships for context-dependent membership actions.
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4178,7 +4460,7 @@ pub struct BulkJobCreateActionContext {
 }
 
 /// Queue acknowledgment, not execution results. No allowed targets still produces a GUID/group and zero queued jobs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkJobQueued {
     /// Queue group formed from the resolved domain, job key and GUID.
     #[serde(rename = "jobGroup", deserialize_with = "crate::lenient::string")]
@@ -4195,7 +4477,7 @@ pub struct BulkJobQueued {
 }
 
 /// Payload for `send-member-email`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkMemberEmailActionCreate {
     /// Include a sign-out URL when available.
     #[serde(rename = "addSignOutUrl", default, skip_serializing_if = "Option::is_none")]
@@ -4219,11 +4501,13 @@ pub struct BulkMemberEmailActionCreate {
 }
 
 /// For add-person-to-group and add-member-to-group. groupId selects the destination; custom field keys are destination-field reference names. Existing membership leaves the person unchanged. The member variant resolves the person from the selected membership IDs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkMembershipActionCreate {
     /// Membership comment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Member-field values keyed by reference name.
     #[serde(deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub fields: Option<std::collections::BTreeMap<String, serde_json::Value>>,
@@ -4255,11 +4539,13 @@ pub struct BulkMembershipActionCreate {
 }
 
 /// For edit-group-membership. actionContext.groupId must identify the actual group of every selected membership. Custom fields are keyed by reference name, not numeric field ID.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkMembershipActionUpdate {
     /// Membership comment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Member-field values keyed by reference name.
     #[serde(deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub fields: Option<std::collections::BTreeMap<String, serde_json::Value>>,
@@ -4284,7 +4570,7 @@ pub struct BulkMembershipActionUpdate {
 }
 
 /// person/addDepartment: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonAddDepartmentUpdate {
     /// Department ID to add. Note the key department, unlike departmentId used for removal.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -4295,7 +4581,7 @@ pub struct BulkPersonAddDepartmentUpdate {
 }
 
 /// person/addPersonAuth: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonAddPersonAuthUpdate {
     /// Authorization ID to assign.
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
@@ -4306,7 +4592,7 @@ pub struct BulkPersonAddPersonAuthUpdate {
 }
 
 /// person/changeCampus: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonChangeCampusUpdate {
     /// Campus ID.
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::number")]
@@ -4317,7 +4603,7 @@ pub struct BulkPersonChangeCampusUpdate {
 }
 
 /// `person`/`changeFamilyStatus`: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonChangeFamilyStatusUpdate {
     /// Family-status masterdata ID.
     #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4328,7 +4614,7 @@ pub struct BulkPersonChangeFamilyStatusUpdate {
 }
 
 /// `person`/`changeNationality`: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonChangeNationalityUpdate {
     /// Nationality masterdata ID.
     #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4339,7 +4625,7 @@ pub struct BulkPersonChangeNationalityUpdate {
 }
 
 /// `person`/`changeSex`: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonChangeSexUpdate {
     /// Sex masterdata ID.
     #[serde(rename = "sexId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4350,7 +4636,7 @@ pub struct BulkPersonChangeSexUpdate {
 }
 
 /// person/changeStatus: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonChangeStatusUpdate {
     /// Person-status ID.
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::number")]
@@ -4361,7 +4647,7 @@ pub struct BulkPersonChangeStatusUpdate {
 }
 
 /// person/delPersonTag: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonDelPersonTagUpdate {
     /// Person-tag ID to remove.
     #[serde(rename = "tagId", deserialize_with = "crate::lenient::number")]
@@ -4372,7 +4658,7 @@ pub struct BulkPersonDelPersonTagUpdate {
 }
 
 /// person/deleteDepartment: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonDeleteDepartmentUpdate {
     /// Department ID to remove. The last remaining department is retained.
     #[serde(rename = "departmentId", deserialize_with = "crate::lenient::number")]
@@ -4383,7 +4669,7 @@ pub struct BulkPersonDeleteDepartmentUpdate {
 }
 
 /// person/deleteFromGroup: Applies this operation to each selected person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonDeleteFromGroupUpdate {
     /// Group ID from which to remove the selected persons.
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -4394,7 +4680,7 @@ pub struct BulkPersonDeleteFromGroupUpdate {
 }
 
 /// `person`/`addToGroup`: Adds persons to the selected group; existing memberships are unchanged.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonMembershipCreate {
     /// Target group ID.
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -4412,7 +4698,7 @@ pub struct BulkPersonMembershipCreate {
 }
 
 /// `person`/`changeGroupMemberField`: Changes a group-member custom field. Selected identifiers are person IDs, not membership IDs. The value is validated against the actual field at execution time. For multiselect, use an array; other fields use the scalar or first nonempty array element.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonMembershipFieldUpdate {
     /// Group-member field ID belonging to the group.
     #[serde(rename = "customFieldId", deserialize_with = "crate::lenient::number")]
@@ -4433,7 +4719,7 @@ pub struct BulkPersonMembershipFieldUpdate {
 }
 
 /// `person`/`changeGroupRoleAndStatus`: Changes only memberships matching `oldStatus` and, when set, `oldRoleId`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonMembershipUpdate {
     /// Group ID.
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -4458,7 +4744,7 @@ pub struct BulkPersonMembershipUpdate {
 }
 
 /// For `edit-tags-for-person` and `edit-tags-for-member`. Supply either tag IDs or tag names.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkPersonTagsActionUpdate {
     #[serde(rename = "tagIds", default, skip_serializing_if = "Option::is_none")]
     pub tag_ids: Option<Vec<i64>>,
@@ -4473,7 +4759,7 @@ pub struct BulkPersonTagsActionUpdate {
 }
 
 /// For `group`/`addTag` and `person`/`addPersonTag`. Supply an existing tag ID or a name for a new tag.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkTagCreate {
     /// Existing tag ID.
     #[serde(rename = "tagId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4487,7 +4773,7 @@ pub struct BulkTagCreate {
 }
 
 /// A mail-merge rendering job. Generates one PDF per selected recipient (or address group) and makes those PDFs available together in a ZIP archive. It does not send email or postal mail. The legacy response uses mixed snake_case and camelCase fields.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Bulkletter {
     /// HTML content of the bulkletter, may contain placeholders.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -4527,7 +4813,7 @@ pub struct Bulkletter {
 }
 
 /// Creates a mail-merge job using an HTML template and selected person IDs. Requires edit bulkletter permission and visibility of the template. Successful creation only schedules rendering.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkletterCreate {
     /// HTML inserted into the template’s {{content}} slot. Supports person/group placeholders. Non-empty; the literal string 0 is rejected.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -4536,8 +4822,10 @@ pub struct BulkletterCreate {
     #[serde(rename = "groupByHousehold")]
     pub group_by_household: bool,
     /// Optional group used as placeholder context, not as a restriction on personIds.
-    #[serde(rename = "groupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub group_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "groupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<Option<i64>>,
     /// ID of the HTML template used to render the bulkletter.
     #[serde(rename = "htmlTemplateId", deserialize_with = "crate::lenient::number")]
     pub html_template_id: i64,
@@ -4553,7 +4841,7 @@ pub struct BulkletterCreate {
 }
 
 /// Acknowledges the newly scheduled job. Read its Location URL for status and the eventual ZIP download.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkletterCreated {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -4563,7 +4851,7 @@ pub struct BulkletterCreated {
 }
 
 /// Legacy address fields for a scheduled recipient. Values are read from the current person record, not a saved address snapshot.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct BulkletterReceiver {
     /// Person ID (returned as string).
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -4592,7 +4880,7 @@ pub struct BulkletterReceiver {
 }
 
 /// Calendar containing appointments and their series. Calendar settings, appointment editing and calendar administration are separate concerns. The type selects the applicable administration category; effective visibility depends on permissions. This object is also embedded in appointment responses.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Calendar {
     /// Campus associated with this calendar, or null for no campus. A campus represents a ChurchTools location/site, not a calendar permission group.
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4649,23 +4937,33 @@ pub struct Calendar {
 }
 
 /// Create a calendar with its category and settings. The creator receives permission to edit its appointments. Calendar creation does not itself create appointments, except when an iCalSourceUrl initiates a feed import.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CalendarCreate {
     /// Campus associated with this calendar, or null for no campus. A campus represents a ChurchTools location/site, not a calendar permission group.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Display color, normally a CSS hex color such as #336699.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub color: Option<Option<String>>,
     /// Event type ID used by the Evangelische Termine integration, or null. This is an external event classification, not a ChurchTools calendar type.
-    #[serde(rename = "evTermineEventTypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub ev_termine_event_type_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "evTermineEventTypeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub ev_termine_event_type_id: Option<Option<i64>>,
     /// Configured service-planning event template ID for this calendar, or null. This differs from an appointment template.
-    #[serde(rename = "eventTemplateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub event_template_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "eventTemplateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub event_template_id: Option<Option<i64>>,
     /// External iCalendar feed to import. webcal:// and ical:// are normalized to https://; addresses without a scheme receive https://.
-    #[serde(rename = "iCalSourceUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub i_cal_source_url: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "iCalSourceUrl", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub i_cal_source_url: Option<Option<String>>,
     /// Calendar display name.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -4685,23 +4983,33 @@ pub struct CalendarCreate {
 }
 
 /// Editable calendar settings. The calendar type cannot be changed here. A supplied iCalSourceUrl triggers an external calendar import.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CalendarUpdate {
     /// Campus associated with this calendar, or null for no campus. A campus represents a ChurchTools location/site, not a calendar permission group.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Display color, normally a CSS hex color such as #336699.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub color: Option<Option<String>>,
     /// Event type ID used by the Evangelische Termine integration, or null. This is an external event classification, not a ChurchTools calendar type.
-    #[serde(rename = "evTermineEventTypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub ev_termine_event_type_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "evTermineEventTypeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub ev_termine_event_type_id: Option<Option<i64>>,
     /// Configured service-planning event template ID for this calendar, or null. This differs from an appointment template.
-    #[serde(rename = "eventTemplateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub event_template_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "eventTemplateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub event_template_id: Option<Option<i64>>,
     /// External iCalendar feed to import. webcal:// and ical:// are normalized to https://; addresses without a scheme receive https://.
-    #[serde(rename = "iCalSourceUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub i_cal_source_url: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "iCalSourceUrl", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub i_cal_source_url: Option<Option<String>>,
     /// Calendar display name.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -4717,7 +5025,7 @@ pub struct CalendarUpdate {
 }
 
 /// A campus represents one location or congregation within a ChurchTools installation. Persons, groups, calendars and other resources can reference its numeric ID. This is the compact campus master-data representation; the detailed campus profile is a separate API representation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Campus {
     /// Address associated with the campus profile, or null when none is assigned. Campus create/update requests do not set this field.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -4750,7 +5058,7 @@ pub struct Campus {
 }
 
 /// Stored address associated with a campus profile.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CampusAddress {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub addition: Option<String>,
@@ -4828,7 +5136,7 @@ pub struct CampusAddress {
 }
 
 /// Creates a campus (a location or congregation within the same ChurchTools installation). Name and abbreviation are required. Other profile details are managed separately.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CampusCreate {
     /// Campus name. Whitespace is trimmed; at least one character must remain.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -4845,24 +5153,30 @@ pub struct CampusCreate {
 }
 
 /// Partial campus update despite the PUT method. Every field is optional. Omitted or null values retain their existing values; an empty object leaves the campus unchanged. The ID comes from the URL.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CampusUpdate {
     /// New name. Omitted or null retains the current value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// New abbreviation. Omitted or null retains the current value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub shorty: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub shorty: Option<Option<String>>,
     /// New display-order value. Omitted or null retains the current value.
-    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sort_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sort_key: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// A cash discount defines a percentage for early-payment discounts and the ledger account to which the discount is posted. Its accounting period is determined by that account.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CashDiscount {
     /// ID of the existing ledger account receiving this amount. It also determines the accounting period.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -4882,7 +5196,7 @@ pub struct CashDiscount {
 }
 
 /// A cash discount defines a percentage for early-payment discounts and the ledger account to which the discount is posted. Its accounting period is determined by that account.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CashDiscountCreate {
     /// ID of the existing ledger account receiving this amount. It also determines the accounting period.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -4899,7 +5213,7 @@ pub struct CashDiscountCreate {
 }
 
 /// Replacement values for this cash discount.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CashDiscountUpdate {
     /// ID of the existing ledger account receiving this amount. It also determines the accounting period.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -4916,7 +5230,7 @@ pub struct CashDiscountUpdate {
 }
 
 /// Group or event chat room synchronized with Matrix.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Chat {
     /// Person ID recorded as the room creator. `0` represents a system user.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4943,7 +5257,7 @@ pub struct Chat {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ChatCreate {
     /// ID of the group (`ctg`) or service-planning event (`cte`) associated with the room.
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
@@ -4964,7 +5278,7 @@ pub struct ChatCreate {
 }
 
 /// Fields used to update chat metadata or change its lifecycle status. When `status` is set, the request performs a lifecycle transition.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ChatUpdate {
     /// Person ID recorded as the room creator.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -4992,7 +5306,7 @@ pub struct ChatUpdate {
 }
 
 /// Attendance confirmation for an existing person. The embedded meeting contains refreshed attendance statistics.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Checkin {
     pub group: DomainObjectGroup,
     /// One dated occurrence of a group meeting, used to record attendance, guest counts and feedback. It is separate from the group itself and its memberships. No independent end time is stored. Cancellation and completion are separate flags; completion locks check-in changes.
@@ -5009,14 +5323,18 @@ pub struct Checkin {
 }
 
 /// Records attendance for one existing person at one group meeting. Supply exactly one non-null date or groupMeetingId; the other may be omitted or null.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CheckinCreate {
     /// Exact start timestamp of a meeting in this group. An existing meeting at that timestamp is reused; otherwise a meeting is created.
-    #[serde(deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date: Option<chrono::DateTime<chrono::Utc>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// ID of an existing meeting belonging to the path group.
-    #[serde(rename = "groupMeetingId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub group_meeting_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "groupMeetingId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub group_meeting_id: Option<Option<i64>>,
     /// optional printer ID, if a name tag should be printed out
     #[serde(rename = "printerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub printer_id: Option<i64>,
@@ -5029,7 +5347,7 @@ pub struct CheckinCreate {
 }
 
 /// Membership to create before a separate attendance check-in. The group’s default role and normal active membership status are used; the origin is check-in. No meeting attendance or label printing is performed here.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CheckinMembershipCreate {
     /// Group-member custom field values keyed by field ID. Definitions and allowed options belong to the selected group. Omitted fields use membership defaults. POST and PUT currently differ in validation, so clients should submit correctly typed values for the field definition.
     #[serde(deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
@@ -5049,7 +5367,7 @@ pub struct CheckinMembershipCreate {
 }
 
 /// Legacy person-model response used only by check-in admission. It differs from the regular, permission-filtered Person API resource: coordinates are strings, emails currently serialize as an object, and security-level properties are absent. Additional implementation properties may be present; clients should consume only the fields needed for admission and use the regular person endpoint for subsequent reads.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CheckinPerson {
     #[serde(rename = "departmentIds")]
     pub department_ids: Vec<i64>,
@@ -5076,22 +5394,24 @@ pub struct CheckinPerson {
 }
 
 /// Creates a new person, adds a check-in creation note, optionally tags the person and creates a group membership.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CheckinPersonCreate {
     /// Membership to create before a separate attendance check-in. The group’s default role and normal active membership status are used; the origin is check-in. No meeting attendance or label printing is performed here.
     pub group: CheckinMembershipCreate,
     /// Person fields for creation during check-in admission. Uses the normal new-person field validation, including installation-specific masterdata and custom fields. Unlike ordinary creation, this flow forces duplicate creation and ignores visibility. Optional fields depend on configured field security and new-person settings.
     pub person: CheckinPersonDataCreate,
     /// Optional person-tag ID. Omitted/null behaves as 0 and normally adds no tag. Nonexistent IDs are silently ignored; use a tag belonging to the person domain.
-    #[serde(rename = "tagId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tag_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "tagId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tag_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Person fields for creation during check-in admission. Uses the normal new-person field validation, including installation-specific masterdata and custom fields. Unlike ordinary creation, this flow forces duplicate creation and ignores visibility. Optional fields depend on configured field security and new-person settings.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CheckinPersonDataCreate {
     #[serde(rename = "addressAddition", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub address_addition: Option<String>,
@@ -5099,8 +5419,9 @@ pub struct CheckinPersonDataCreate {
     pub baptised_by: Option<String>,
     #[serde(rename = "birthName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub birth_name: Option<String>,
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub birthday: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub birthday: Option<Option<chrono::NaiveDate>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub birthplace: Option<String>,
     /// ID of a campus returned by `GET /person/masterdata`.
@@ -5112,16 +5433,21 @@ pub struct CheckinPersonDataCreate {
     pub cms_user_id: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub country: Option<String>,
-    #[serde(rename = "dateOfBaptism", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_baptism: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfBelonging", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_belonging: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfDeath", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_death: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfEntry", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_entry: Option<chrono::DateTime<chrono::Utc>>,
-    #[serde(rename = "dateOfResign", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_resign: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfBaptism", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_baptism: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfBelonging", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_belonging: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfDeath", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_death: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfEntry", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_entry: Option<Option<chrono::DateTime<chrono::Utc>>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfResign", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_resign: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// Department IDs returned by `GET /person/masterdata`. At least one department must be set.
     #[serde(rename = "departmentIds")]
     pub department_ids: Vec<i64>,
@@ -5130,12 +5456,14 @@ pub struct CheckinPersonDataCreate {
     /// Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub emails: Option<Vec<PersonEmail>>,
-    #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub family_status_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub family_status_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub fax: Option<String>,
-    #[serde(rename = "firstContact", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub first_contact: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "firstContact", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub first_contact: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// Required field; surrounding whitespace is removed, blank text becomes null.
     #[serde(rename = "firstName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub first_name: Option<String>,
@@ -5151,8 +5479,9 @@ pub struct CheckinPersonDataCreate {
     pub last_name: String,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub mobile: Option<String>,
-    #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub nationality_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub nationality_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub nickname: Option<String>,
     #[serde(rename = "optigemId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -5180,8 +5509,9 @@ pub struct CheckinPersonDataCreate {
     pub referred_by: Option<String>,
     #[serde(rename = "referredTo", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub referred_to: Option<String>,
-    #[serde(rename = "sexId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sex_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sexId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sex_id: Option<Option<i64>>,
     /// ID of a person status returned by `GET /person/masterdata`.
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::number")]
     pub status_id: i64,
@@ -5189,8 +5519,9 @@ pub struct CheckinPersonDataCreate {
     pub street: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub title: Option<String>,
-    #[serde(rename = "weddingDate", default, skip_serializing_if = "Option::is_none")]
-    pub wedding_date: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "weddingDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub wedding_date: Option<Option<chrono::NaiveDate>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub zip: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -5199,23 +5530,28 @@ pub struct CheckinPersonDataCreate {
 }
 
 /// Legacy representation of the privacy agreement. Use the three flat `privacyPolicyAgreement*` fields instead. When this object is used, all three values must be provided if privacy agreement fields are mandatory.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CheckinPersonDataCreatePrivacyPolicyAgreement {
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub date: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date: Option<Option<chrono::NaiveDate>>,
     /// How the agreement was obtained: 1 group registration, 2 self-confirmation, 3 outside ChurchTools, 4 check-in.
-    #[serde(rename = "typeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub type_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "typeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub type_id: Option<Option<i64>>,
     /// Who gave the agreement: 1 the person themself, 2 a parent, 10000 the person responsible for a group signup.
-    #[serde(rename = "whoId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub who_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "whoId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub who_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Admits an existing person to a group and updates the group’s configured person fields. This is not a general person update or an attendance check-in.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CheckinPersonUpdate {
     /// Membership to create before a separate attendance check-in. The group’s default role and normal active membership status are used; the origin is check-in. No meeting attendance or label printing is performed here.
     pub group: CheckinMembershipCreate,
@@ -5223,15 +5559,17 @@ pub struct CheckinPersonUpdate {
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
     /// Optional person-tag ID. Omitted/null behaves as 0 and normally adds no tag. Nonexistent IDs are silently ignored; use a tag belonging to the person domain.
-    #[serde(rename = "tagId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tag_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "tagId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tag_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// A finance client is the organizational entity whose books are kept separately, for example a congregation or a charitable organization. Each client owns accounting periods, and those periods own its accounts and cost centers. It is unrelated to an OAuth application client.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Client {
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -5281,11 +5619,13 @@ pub struct Client {
 }
 
 /// A finance client is the organizational entity whose books are kept separately, for example a congregation or a charitable organization. Each client owns accounting periods, and those periods own its accounts and cost centers. It is unrelated to an OAuth application client.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ClientCreate {
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub city: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub city: Option<Option<String>>,
     /// Optional numeric DATEV client identifier. Numeric strings or numbers are accepted and stored as strings. Empty string is also accepted; omission or null clears it.
     #[serde(rename = "datevClientNumber", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub datev_client_number: serde_json::Value,
@@ -5293,43 +5633,59 @@ pub struct ClientCreate {
     #[serde(rename = "datevConsultantNumber", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub datev_consultant_number: serde_json::Value,
     /// Optional valid email address. Use null or omit to clear it; an empty string is not accepted.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub email: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub email: Option<Option<String>>,
     /// Employer name used for electronically supported employer audits (euBP). Omitted or null clears it.
-    #[serde(rename = "eubpBusinessName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub eubp_business_name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "eubpBusinessName", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub eubp_business_name: Option<Option<String>>,
     /// German employer business number for euBP: eight digits with a valid checksum. The first three digits must not be 000 or 100–110. Omitted or null clears it; empty string is rejected.
-    #[serde(rename = "eubpBusinessNumber", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub eubp_business_number: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "eubpBusinessNumber", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub eubp_business_number: Option<Option<String>>,
     /// Trimmed client name, unique across finance clients.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub phone: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub phone: Option<Option<String>>,
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
-    #[serde(rename = "postalCode", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub postal_code: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "postalCode", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub postal_code: Option<Option<String>>,
     /// Ascending display order. Required for creation and update.
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::number")]
     pub sort_key: i64,
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub street: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub street: Option<Option<String>>,
     /// Optional person ID of the treasurer. Omitted or null clears the assignment.
-    #[serde(rename = "treasurerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub treasurer_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "treasurerId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub treasurer_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Replacement finance-client data. name and sortKey are required; omitted optional fields are cleared, including contact, DATEV and euBP fields.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ClientUpdate {
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub city: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub city: Option<Option<String>>,
     /// Optional numeric DATEV client identifier. Numeric strings or numbers are accepted and stored as strings. Empty string is also accepted; omission or null clears it.
     #[serde(rename = "datevClientNumber", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub datev_client_number: serde_json::Value,
@@ -5337,39 +5693,53 @@ pub struct ClientUpdate {
     #[serde(rename = "datevConsultantNumber", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub datev_consultant_number: serde_json::Value,
     /// Optional valid email address. Use null or omit to clear it; an empty string is not accepted.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub email: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub email: Option<Option<String>>,
     /// Employer name used for electronically supported employer audits (euBP). Omitted or null clears it.
-    #[serde(rename = "eubpBusinessName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub eubp_business_name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "eubpBusinessName", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub eubp_business_name: Option<Option<String>>,
     /// German employer business number for euBP: eight digits with a valid checksum. The first three digits must not be 000 or 100–110. Omitted or null clears it; empty string is rejected.
-    #[serde(rename = "eubpBusinessNumber", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub eubp_business_number: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "eubpBusinessNumber", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub eubp_business_number: Option<Option<String>>,
     /// Trimmed client name, unique across finance clients.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub phone: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub phone: Option<Option<String>>,
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
-    #[serde(rename = "postalCode", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub postal_code: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "postalCode", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub postal_code: Option<Option<String>>,
     /// Ascending display order. Required for creation and update.
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::number")]
     pub sort_key: i64,
     /// Optional contact information. Omitted or null clears it, including on update. These values are not trimmed by the controller.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub street: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub street: Option<Option<String>>,
     /// Optional person ID of the treasurer. Omitted or null clears the assignment.
-    #[serde(rename = "treasurerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub treasurer_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "treasurerId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub treasurer_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Value for Tailwind color
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Color {
     /// A color in ChurchTools
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -5383,7 +5753,7 @@ pub struct Color {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CombinedDonationReceipts {
     /// Separate attachment PDF in twofiles mode. Omitted in onefile mode when receipts exist; null when no matching receipts exist.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -5397,7 +5767,7 @@ pub struct CombinedDonationReceipts {
 }
 
 /// Visibility category for person comments and person-linked notes. This is a master-data label referenced by commentViewerId, not a ChurchTools group or a list of people. Access is assigned through the view comments permission for this ID.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CommentViewer {
     /// Category ID used as commentViewerId and as a selection of churchdb view comments.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -5417,7 +5787,7 @@ pub struct CommentViewer {
 }
 
 /// Create a visibility category for person comments/notes. Creating the category does not grant anyone permission to read its content.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CommentViewerCreate {
     /// Trimmed display name or translation key, 1–50 characters. No uniqueness constraint is applied.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -5431,7 +5801,7 @@ pub struct CommentViewerCreate {
 }
 
 /// Updates a visibility category. The category ID comes from the URL. name is required; sortKey is optional and preserves its value when omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CommentViewerUpdate {
     /// Trimmed display name or translation key, 1–50 characters. No uniqueness constraint is applied.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -5444,7 +5814,7 @@ pub struct CommentViewerUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Config {
     #[serde(rename = "_current_config_file", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub current_config_file: Option<String>,
@@ -6182,7 +6552,7 @@ pub struct Config {
 }
 
 /// Shared label for person email addresses. Renaming a label changes its display wherever that label is used.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ContactLabel {
     /// Whether this label is preferred for new email addresses. Setting `true` unsets an existing default label.
     #[serde(rename = "isDefault")]
@@ -6205,7 +6575,7 @@ pub struct ContactLabel {
 }
 
 /// Label used to distinguish a person’s email addresses, for example private and work. Names must be unique.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ContactLabelCreate {
     /// Whether this label is preferred for new email addresses. Setting `true` unsets an existing default label.
     #[serde(rename = "isDefault")]
@@ -6222,7 +6592,7 @@ pub struct ContactLabelCreate {
 }
 
 /// Replacement values for an existing contact label.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ContactLabelUpdate {
     /// Whether this label is preferred for new email addresses. Setting `true` unsets an existing default label.
     #[serde(rename = "isDefault")]
@@ -6239,7 +6609,7 @@ pub struct ContactLabelUpdate {
 }
 
 /// A cost center assigns income and expenses to a purpose, project or group within one accounting period. Budgets and balances use integer minor currency units (for example cents). Linking a group also enables access through group-internal finance permissions. Includes the linked group, or null when there is none.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CostCenter {
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
@@ -6276,7 +6646,7 @@ pub struct CostCenter {
 }
 
 /// Cost centers to create. Each item may select its own accounting period and group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CostCenterBulkCreate {
     #[serde(rename = "costCenters")]
     pub cost_centers: Vec<CostCenterCreate>,
@@ -6286,20 +6656,26 @@ pub struct CostCenterBulkCreate {
 }
 
 /// A cost center assigns income and expenses to a purpose, project or group within one accounting period. Budgets and balances use integer minor currency units (for example cents). Linking a group also enables access through group-internal finance permissions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CostCenterCreate {
     /// Existing, open accounting period owning this cost center.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
     /// Optional trimmed note. Omitted, null or blank clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub annotation: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub annotation: Option<Option<String>>,
     /// Optional budget in minor currency units, for example 3200 for EUR 32.00. Omitted or null removes the budget.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub budget: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub budget: Option<Option<i64>>,
     /// Optional linked group. Omitted or null removes the link, including on update.
-    #[serde(rename = "groupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub group_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "groupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<Option<i64>>,
     /// Trimmed name, unique within the accounting period. Supply a nonblank name when creating.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -6312,18 +6688,22 @@ pub struct CostCenterCreate {
 }
 
 /// Optional account-report options. A missing body selects the entire accounting period as a PDF.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CostCenterStatementReportCreate {
     /// Last document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
-    #[serde(rename = "endDate", default, skip_serializing_if = "Option::is_none")]
-    pub end_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "endDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub end_date: Option<Option<chrono::NaiveDate>>,
     /// PDF creates a file and returns its URL with HTTP 201. CSV/XLSX return the file directly with HTTP 200. Accept: text/html overrides this selection.
     /// Allowed values: `csv`, `pdf`, `xlsx`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub format: Option<String>,
     /// First document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
-    #[serde(rename = "startDate", default, skip_serializing_if = "Option::is_none")]
-    pub start_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "startDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub start_date: Option<Option<chrono::NaiveDate>>,
     /// Include transactions classified as internal rebookings in the cost-center report.
     #[serde(rename = "includeRebookings", default, skip_serializing_if = "Option::is_none")]
     pub include_rebookings: Option<bool>,
@@ -6338,7 +6718,7 @@ pub struct CostCenterStatementReportCreate {
 }
 
 /// A cost center assigns income and expenses to a purpose, project or group within one accounting period. Budgets and balances use integer minor currency units (for example cents). Linking a group also enables access through group-internal finance permissions. Serialized entity without the expanded group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CostCenterStored {
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
@@ -6372,23 +6752,31 @@ pub struct CostCenterStored {
 }
 
 /// Replacement values for a cost center. number and accountingPeriodId are required; omitted name, annotation, budget and groupId are cleared. The target accounting period must be open. Both name and number must remain unique in that period.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CostCenterUpdate {
     /// Existing, open accounting period owning this cost center.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
     /// Optional trimmed note. Omitted, null or blank clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub annotation: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub annotation: Option<Option<String>>,
     /// Optional budget in minor currency units, for example 3200 for EUR 32.00. Omitted or null removes the budget.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub budget: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub budget: Option<Option<i64>>,
     /// Optional linked group. Omitted or null removes the link, including on update.
-    #[serde(rename = "groupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub group_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "groupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<Option<i64>>,
     /// Trimmed name. Unlike creation, updating accepts omitted, null or blank names and stores null.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Trimmed identifier, unique within the accounting period. Leading zeros are preserved; letters are accepted, although list ordering compares the integer value.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub number: String,
@@ -6398,7 +6786,7 @@ pub struct CostCenterUpdate {
 }
 
 /// Metadata for a stored file or URL attachment. `domainType` and `domainId` identify the owning attachment context.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CtFile {
     /// Domain-specific extra data. Empty for most files (serialized as an empty array), but some domains add a key-value object (e.g. statement uploads return `{ "statementId": 1 }`).
     #[serde(rename = "additionalInfos", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
@@ -6461,7 +6849,7 @@ pub struct CtFile {
 }
 
 /// Image dimensions calculated from the file.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CtFileImageMetadata {
     #[serde(rename = "aspectRatio", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub aspect_ratio: Option<f64>,
@@ -6474,7 +6862,7 @@ pub struct CtFileImageMetadata {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CtFileImageOption {
     pub crop: CtFileImageOptionCrop,
     pub focus: CtFileImageOptionFocus,
@@ -6483,7 +6871,7 @@ pub struct CtFileImageOption {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CtFileImageOptionCrop {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub bottom: f64,
@@ -6498,7 +6886,7 @@ pub struct CtFileImageOptionCrop {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct CtFileImageOptionFocus {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub x: f64,
@@ -6510,7 +6898,7 @@ pub struct CtFileImageOptionFocus {
 }
 
 /// Database-field definition. key is the API property name used when reading or writing a person/group value; column is its underlying database column. fieldCategory and fieldType describe ownership and value behavior. Installation-created fields have createdByChurch=true; built-in fields expose fewer editable settings.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbField {
     /// Whether a person field’s value is cleared on archiving. Cannot be true for a non-nullable field.
     #[serde(rename = "deleteOnArchive")]
@@ -6600,7 +6988,7 @@ pub struct DbField {
 }
 
 /// Stored field category and its underlying entity table. Use internCode when creating a field.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldCategory {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -6618,7 +7006,7 @@ pub struct DbFieldCategory {
 }
 
 /// Creates a custom database column and field definition, plus an option table for selection types. Checkbox fields require `deleteOnArchive=false`. Column names are generated from the label and may receive a numeric suffix.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldCreate {
     /// Whether a person field’s value is cleared on archiving. Cannot be true for a non-nullable field.
     #[serde(rename = "deleteOnArchive")]
@@ -6636,9 +7024,11 @@ pub struct DbFieldCreate {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub length: Option<i64>,
     /// Legacy display-layout setting retained for compatibility.
-    #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
-    pub line_ending: Option<String>,
+    pub line_ending: Option<Option<String>>,
     /// Stored display name or translation key. nameTranslated is its localized display text.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -6646,8 +7036,10 @@ pub struct DbFieldCreate {
     #[serde(rename = "securityLevel", deserialize_with = "crate::lenient::number")]
     pub security_level: i64,
     /// Abbreviated display label.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub shorty: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub shorty: Option<Option<String>>,
     /// Display-order value within its category.
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::number")]
     pub sort_key: i64,
@@ -6664,7 +7056,7 @@ pub struct DbFieldCreate {
 }
 
 /// Compatibility mappings emitted by the backend.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldDeprecated {
     /// Allowed values: `isNotConfigurable`.
     #[serde(rename = "notConfigurable", deserialize_with = "crate::lenient::string")]
@@ -6678,7 +7070,7 @@ pub struct DbFieldDeprecated {
 }
 
 /// Option row. Keys and value types depend on the selected masterdata table. Integer SQL columns are returned as JSON integers (including null values coerced to 0); other columns retain their database-returned value. name and sortKey are common aliases, not universal fields.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldOption {
     /// Option identifier; group-visibility expansions use string IDs.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -6693,7 +7085,7 @@ pub struct DbFieldOption {
 }
 
 /// One writable option-table column. Names are API keys; `bezeichnung`, `sortkey`, `kuerzel` and `securitylevel_id` are mapped to `name`, `sortKey`, `shorty` and `securityLevel`. Audit columns are omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldOptionColumn {
     /// Generated by the database; omit this column from create/update payloads.
     #[serde(rename = "isAutoIncrement")]
@@ -6719,7 +7111,7 @@ pub struct DbFieldOptionColumn {
 }
 
 /// Option row for the selected field’s underlying masterdata table. Read `/dbfields/{fieldId}/options/metadata` first: provide every column whose `isAutoIncrement` is `false`, using its API name. There is no universal set of writable keys across all fields. For custom selection tables, `name` and `sortKey` are both required.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldOptionCreate {
     /// Common option label. Custom selection-table labels contain 1–30 characters.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -6733,7 +7125,7 @@ pub struct DbFieldOptionCreate {
 }
 
 /// Full option-row update based on the selected field’s metadata. All non-auto-increment columns are required, even if only one value changes. The option ID comes from the path.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldOptionUpdate {
     /// Common option label. Custom selection-table labels contain 1–30 characters.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -6747,7 +7139,7 @@ pub struct DbFieldOptionUpdate {
 }
 
 /// Database-field type definition. internCode selects the input/validation behavior; the numeric ID is referenced by field definitions. The name can be a translation key.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldType {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -6766,7 +7158,7 @@ pub struct DbFieldType {
 }
 
 /// Updates an existing field. Only installation-created fields can change their name, active state, line ending and configured length. Type, nullability and column/key cannot be changed.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DbFieldUpdate {
     /// Whether a person field’s value is cleared on archiving. Cannot be true for a non-nullable field.
     #[serde(rename = "deleteOnArchive")]
@@ -6784,9 +7176,11 @@ pub struct DbFieldUpdate {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub length: Option<i64>,
     /// Legacy display-layout setting retained for compatibility.
-    #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
-    pub line_ending: Option<String>,
+    pub line_ending: Option<Option<String>>,
     /// Stored display name or translation key. nameTranslated is its localized display text.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
@@ -6794,8 +7188,10 @@ pub struct DbFieldUpdate {
     #[serde(rename = "securityLevel", deserialize_with = "crate::lenient::number")]
     pub security_level: i64,
     /// Abbreviated display label.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub shorty: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub shorty: Option<Option<String>>,
     /// Display-order value within its category.
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::number")]
     pub sort_key: i64,
@@ -6811,7 +7207,7 @@ pub struct DbFieldUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DeleteGroupsGroupIdMeetingsMeetingIdMembersMemberIdBody {
     /// Attendance state after revoking the check-in.
     /// Allowed values: `absent`, `unsure`.
@@ -6822,7 +7218,7 @@ pub struct DeleteGroupsGroupIdMeetingsMeetingIdMembersMemberIdBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DeleteSimulateData {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub redirect: String,
@@ -6832,7 +7228,7 @@ pub struct DeleteSimulateData {
 }
 
 /// Denomination of a church
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Denomination {
     /// Technical enum case name used by ChurchTools.
     /// Allowed values: `CATHOLIC`, `ECUMENICAL`, `FREE_EVANGELICAL`, `NONE`, `ORTHODOX`, `PROTESTANT`.
@@ -6851,7 +7247,7 @@ pub struct Denomination {
 }
 
 /// Person-related department used to organize the directory and its access rules. It is distinct from campuses, groups and service groups.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Department {
     #[serde(rename = "@deprecated")]
     pub deprecated: DepartmentDeprecated,
@@ -6874,7 +7270,7 @@ pub struct Department {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DepartmentDeprecated {
     /// Allowed values: `shorty`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -6885,7 +7281,7 @@ pub struct DepartmentDeprecated {
 }
 
 /// Compatibility metadata describing legacy date fields.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Deprecated {
     #[serde(rename = "dateFrom", deserialize_with = "crate::lenient::string")]
     pub date_from: String,
@@ -6899,7 +7295,7 @@ pub struct Deprecated {
 }
 
 /// One app-device registration belonging to a person. deviceId identifies the registration; pushId is the delivery token. Reading devices does not extend their lifetime.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Device {
     /// Compatibility mapping for legacy fields; id actually contains pushId.
     #[serde(rename = "@deprecated")]
@@ -6949,7 +7345,7 @@ pub struct Device {
 }
 
 /// Compatibility mapping for legacy fields; id actually contains pushId.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DeviceDeprecated {
     #[serde(rename = "createdAt", deserialize_with = "crate::lenient::string")]
     pub created_at: String,
@@ -6967,29 +7363,35 @@ pub struct DeviceDeprecated {
 }
 
 /// Creates or refreshes a device registration. personId and deviceId come from the URL. Omitted values do not uniformly preserve the previous registration.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DeviceUpdate {
     /// App version accepted by the version validator, such as 1.2.3. Omission or null clears the stored version.
-    #[serde(rename = "appVersion", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub app_version: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "appVersion", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub app_version: Option<Option<String>>,
     /// Trimmed push token. Omission replaces the token with deviceId; null clears it; an empty or whitespace-only string preserves the previous token (null on a new device).
-    #[serde(rename = "pushId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub push_id: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "pushId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub push_id: Option<Option<String>>,
     /// Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging.
     /// Allowed values: `APN`, `FCM`.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub r#type: String,
     /// Legacy alias of appVersion; use appVersion. The canonical field takes precedence if both are present.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
-    pub version: Option<String>,
+    pub version: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Action as Domain Object
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectAction {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7027,7 +7429,7 @@ pub struct DomainObjectAction {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectActionDomainAttributes {
     #[serde(rename = "createDomainType", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub create_domain_type: Option<String>,
@@ -7037,7 +7439,7 @@ pub struct DomainObjectActionDomainAttributes {
 }
 
 /// Appointment as Domain Object
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectAppointment {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7077,7 +7479,7 @@ pub struct DomainObjectAppointment {
 }
 
 /// One dated occurrence of an appointment series, identified by appointment ID and occurrence date.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectAppointmentOccurrence {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7116,7 +7518,7 @@ pub struct DomainObjectAppointmentOccurrence {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectAppointmentOccurrenceDomainAttributes {
     /// Occurrence date used in the compound identifier.
     #[serde(rename = "startDate")]
@@ -7127,7 +7529,7 @@ pub struct DomainObjectAppointmentOccurrenceDomainAttributes {
 }
 
 /// Calendar as Domain Object
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectCalendar {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7166,7 +7568,7 @@ pub struct DomainObjectCalendar {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectCalendarDomainAttributes {
     #[serde(rename = "campusName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub campus_name: Option<String>,
@@ -7176,7 +7578,7 @@ pub struct DomainObjectCalendarDomainAttributes {
 }
 
 /// Event as Domain Object
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectEvent {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7215,7 +7617,7 @@ pub struct DomainObjectEvent {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectEventDomainAttributes {
     /// Start of this service-planning event.
     #[serde(rename = "startDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -7226,7 +7628,7 @@ pub struct DomainObjectEventDomainAttributes {
 }
 
 /// External person as Domain Object
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectExternalPerson {
     #[serde(rename = "apiUrl", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub api_url: serde_json::Value,
@@ -7256,7 +7658,7 @@ pub struct DomainObjectExternalPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectExternalPersonDomainAttributes {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub email: Option<String>,
@@ -7266,7 +7668,7 @@ pub struct DomainObjectExternalPersonDomainAttributes {
 }
 
 /// Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectFile {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7306,7 +7708,7 @@ pub struct DomainObjectFile {
 }
 
 /// Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectFurtherLink {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7346,7 +7748,7 @@ pub struct DomainObjectFurtherLink {
 }
 
 /// Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectGroup {
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::string")]
     pub api_url: String,
@@ -7384,7 +7786,7 @@ pub struct DomainObjectGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectGroupDomainAttributes {
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub campus_id: Option<f64>,
@@ -7406,7 +7808,7 @@ pub struct DomainObjectGroupDomainAttributes {
 }
 
 /// A person’s membership in a group. Its `domainIdentifier` is the membership row ID; `domainAttributes` contains the group, person, and role IDs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectGroupMembership {
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::string")]
     pub api_url: String,
@@ -7442,7 +7844,7 @@ pub struct DomainObjectGroupMembership {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectGroupMembershipDomainAttributes {
     /// A simple date in ISO format, e.g. '2022-10-19'
     #[serde(rename = "dateOfDeath", default, skip_serializing_if = "Option::is_none")]
@@ -7468,7 +7870,7 @@ pub struct DomainObjectGroupMembershipDomainAttributes {
 }
 
 /// Public directory entry for an enabled group homepage. domainIdentifier is the numeric homepage record ID as a string, while apiUrl/frontendUrl contain its random URL hash. childGroupIds are hierarchy descendants, not necessarily the groups actually displayed by the page.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectGrouphomepage {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7507,7 +7909,7 @@ pub struct DomainObjectGrouphomepage {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectGrouphomepageDomainAttributes {
     /// All reachable active, non-hidden descendants, across every hierarchy depth. This may include internal groups, repeated IDs along multiple hierarchy paths, and groups omitted by the public-page feature filter.
     #[serde(rename = "childGroupIds")]
@@ -7521,7 +7923,7 @@ pub struct DomainObjectGrouphomepageDomainAttributes {
 }
 
 /// Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectLogo {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7560,7 +7962,7 @@ pub struct DomainObjectLogo {
 }
 
 /// OSM Address as Domain Object
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectOsmAddress {
     #[serde(rename = "apiUrl", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub api_url: serde_json::Value,
@@ -7595,7 +7997,7 @@ pub struct DomainObjectOsmAddress {
 }
 
 /// Pairs domain types and identifiers by array index. The arrays must have equal lengths. Empty arrays are allowed.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectPayload {
     /// For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
     pub domain_identifiers: Vec<String>,
@@ -7608,7 +8010,7 @@ pub struct DomainObjectPayload {
 }
 
 /// Person as Domain Object
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectPerson {
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::string")]
     pub api_url: String,
@@ -7645,7 +8047,7 @@ pub struct DomainObjectPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectPersonDomainAttributes {
     /// A simple date in ISO format, e.g. '2022-10-19'
     #[serde(rename = "dateOfDeath", default, skip_serializing_if = "Option::is_none")]
@@ -7665,7 +8067,7 @@ pub struct DomainObjectPersonDomainAttributes {
 }
 
 /// Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectPost {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7703,7 +8105,7 @@ pub struct DomainObjectPost {
 }
 
 /// Compact display reference returned for responseFormat=domainObject. domainIdentifier is the role ID as a string, title is the stored role name, and infos contains the translated group-type name. apiUrl, imageUrl, color and initials are null.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectRole {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7745,7 +8147,7 @@ pub struct DomainObjectRole {
 }
 
 /// Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectSong {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7785,7 +8187,7 @@ pub struct DomainObjectSong {
 }
 
 /// Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectWikiPage {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -7824,7 +8226,7 @@ pub struct DomainObjectWikiPage {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DomainObjectWikiPageDomainAttributes {
     #[serde(rename = "wikiCategoryId", deserialize_with = "crate::lenient::number")]
     pub wiki_category_id: i64,
@@ -7834,7 +8236,7 @@ pub struct DomainObjectWikiPageDomainAttributes {
 }
 
 /// Download URLs for an individual donation receipt: cover letter and attachment. This representation has no receipt ID, sum or metadata.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DonationReceipt {
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
@@ -7857,7 +8259,7 @@ pub struct DonationReceipt {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DonationReceiptCreate {
     /// Accounting period for the requested donor or pair.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -7872,7 +8274,7 @@ pub struct DonationReceiptCreate {
 }
 
 /// Background generation job information. With total=0 both jobGroup and statusUrl are null.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DonationReceiptJobResult {
     #[serde(rename = "jobGroup", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub job_group: Option<String>,
@@ -7887,7 +8289,7 @@ pub struct DonationReceiptJobResult {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DonationReceiptsCreate {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
@@ -7903,7 +8305,7 @@ pub struct DonationReceiptsCreate {
 }
 
 /// Donation summary for one person or one donor/spouse pair in an accounting period. A single person and that person’s couple form separate aggregates. Canceled transactions and cancellation entries are excluded.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Donator {
     /// Serialized migration hint for the deprecated field.
     #[serde(rename = "@deprecated")]
@@ -7953,7 +8355,7 @@ pub struct Donator {
 }
 
 /// Serialized migration hint for the deprecated field.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DonatorDeprecated {
     /// Allowed values: `lastModifiedDate`.
     #[serde(rename = "lastModified", deserialize_with = "crate::lenient::string")]
@@ -7964,7 +8366,7 @@ pub struct DonatorDeprecated {
 }
 
 /// Presence of first name, last name, street, postcode and city for the single donor or, for a pair, the person with the smaller ID. These are presence flags, not validated addresses.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DonatorHasDonatorData {
     pub city: bool,
     #[serde(rename = "firstName")]
@@ -7979,7 +8381,7 @@ pub struct DonatorHasDonatorData {
 }
 
 /// Action definition for a source membership state. An empty object requests no action.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcess {
     /// Leaving out a value or setting it to null is handled identically: When creating a membership the default value is used, when updating a membership the value is left unchanged. Target groupMemberStatus none requests deletion of an existing membership. For queryResultOnly, use an actual membership state to create a membership.
     #[serde(rename = "handleMembership", default, skip_serializing_if = "Option::is_none")]
@@ -7990,7 +8392,7 @@ pub struct DynamicGroupProcess {
 }
 
 /// Leaving out a value or setting it to null is handled identically: When creating a membership the default value is used, when updating a membership the value is left unchanged. Target groupMemberStatus none requests deletion of an existing membership. For queryResultOnly, use an actual membership state to create a membership.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessHandleMembership {
     /// Omit or use null for context-dependent fallback (default on creation, unchanged on update). {unchanged: true} preserves a value; {default: true} requests the process default. Use a scalar or {value: ...} for an explicit value. An empty object passes request schema validation but fails when the rules execute. Explicit null cannot reliably clear every membership field in the current processor.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -8015,7 +8417,7 @@ pub struct DynamicGroupProcessHandleMembership {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessHandleMembershipCommentVariant5 {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub value: Option<String>,
@@ -8024,7 +8426,7 @@ pub struct DynamicGroupProcessHandleMembershipCommentVariant5 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessHandleMembershipGroupMemberStatusVariant5 {
     /// Allowed values: `active`, `none`, `requested`, `to_delete`, `waiting`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -8034,7 +8436,7 @@ pub struct DynamicGroupProcessHandleMembershipGroupMemberStatusVariant5 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessHandleMembershipGroupTypeRoleIdVariant5 {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub value: Option<i64>,
@@ -8043,7 +8445,7 @@ pub struct DynamicGroupProcessHandleMembershipGroupTypeRoleIdVariant5 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessHandleMembershipMemberStartDateVariant5 {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub value: Option<String>,
@@ -8053,7 +8455,7 @@ pub struct DynamicGroupProcessHandleMembershipMemberStartDateVariant5 {
 }
 
 /// Defines how a person is placed in the dynamic group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessSets {
     /// People who are both current members and part of this rule’s result.
     #[serde(rename = "groupAndQueryResult")]
@@ -8070,7 +8472,7 @@ pub struct DynamicGroupProcessSets {
 }
 
 /// People who are both current members and part of this rule’s result.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessSetsGroupAndQueryResult {
     /// Action definition for a source membership state. An empty object requests no action.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -8093,7 +8495,7 @@ pub struct DynamicGroupProcessSetsGroupAndQueryResult {
 }
 
 /// People who already belong to the group but are absent from this rule’s result.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessSetsGroupOnly {
     /// Action definition for a source membership state. An empty object requests no action.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -8116,7 +8518,7 @@ pub struct DynamicGroupProcessSetsGroupOnly {
 }
 
 /// People in the query result who are not current members; only the none source-state key is valid.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupProcessSetsQueryResultOnly {
     /// Action definition for a source membership state. An empty object requests no action.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -8127,7 +8529,7 @@ pub struct DynamicGroupProcessSetsQueryResultOnly {
 }
 
 /// ChurchQuery definition evaluated by the dynamic-group engine. params.responseFields must include the field named by personIdFieldName.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupQuery {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -8140,7 +8542,7 @@ pub struct DynamicGroupQuery {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupQueryParams {
     #[serde(rename = "computedFields", default, skip_serializing_if = "Option::is_none")]
     pub computed_fields: Option<Vec<DynamicGroupQueryParamsComputedFieldsItem>>,
@@ -8169,7 +8571,7 @@ pub struct DynamicGroupQueryParams {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupQueryParamsComputedFieldsItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -8181,7 +8583,7 @@ pub struct DynamicGroupQueryParamsComputedFieldsItem {
 }
 
 /// Only if the query is used in a unit test
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupQueryParamsTest {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub count: i64,
@@ -8191,7 +8593,7 @@ pub struct DynamicGroupQueryParamsTest {
 }
 
 /// Failure entry returned by refresh-all. It has no structured groupId; the human-readable error includes group context.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupRefreshError {
     /// Legacy failure marker; not the number of changes rolled back.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -8205,7 +8607,7 @@ pub struct DynamicGroupRefreshError {
 }
 
 /// Statistics for one synchronous group refresh. At most 500 actual membership changes are applied per execution; repeat refreshes may be needed.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupRefreshResult {
     /// Memberships created in this run.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -8231,7 +8633,7 @@ pub struct DynamicGroupRefreshResult {
 }
 
 /// One automatic-membership rule. Queries and processing modes are evaluated against the membership snapshot at the start of a refresh. Rules are ordered by increasing importance; any requested deletion takes precedence over updates, regardless of importance.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupRule {
     /// Human-readable explanation of what this rule does.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -8255,7 +8657,7 @@ pub struct DynamicGroupRule {
 }
 
 /// Replaces all stored rules. It does not activate the group or run a refresh. An empty array clears the stored rule set and reads back as null, while preserving the refresh status.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupRuleSetUpdate {
     #[serde(rename = "dynamicGroupRuleSet")]
     pub dynamic_group_rule_set: Vec<DynamicGroupRule>,
@@ -8265,7 +8667,7 @@ pub struct DynamicGroupRuleSetUpdate {
 }
 
 /// Set the refresh mode independently of the stored rule set. This does not evaluate or execute rules.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupStatusUpdate {
     /// Controls automatic membership refresh: active participates in scheduled and manual refreshes; manual allows explicit refresh only; inactive blocks both; none disables dynamic-group behavior without deleting stored rules or existing memberships.
     /// Allowed values: `active`, `inactive`, `manual`, `none`.
@@ -8276,7 +8678,7 @@ pub struct DynamicGroupStatusUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupValueDefault {
     pub default: bool,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -8284,7 +8686,7 @@ pub struct DynamicGroupValueDefault {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct DynamicGroupValueUnchanged {
     pub unchanged: bool,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -8293,7 +8695,7 @@ pub struct DynamicGroupValueUnchanged {
 }
 
 /// Placeholder lookups made while rendering one visible person’s content. Conditional branches affect which placeholders are evaluated.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EmailPlaceholderStatistics {
     /// Unique evaluated placeholder names in first-lookup order, excluding internal .all/.person names.
     pub order: Vec<String>,
@@ -8310,7 +8712,7 @@ pub struct EmailPlaceholderStatistics {
 }
 
 /// Read-only request for per-person placeholder availability. Only persons visible to the current user are considered.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EmailPlaceholderStatisticsCreate {
     /// HTML/text fragments concatenated in order without inserting whitespace. Empty array produces an empty body before optional template wrapping.
     pub content: Vec<String>,
@@ -8332,7 +8734,7 @@ pub struct EmailPlaceholderStatisticsCreate {
 }
 
 /// Flat rendering result; no data wrapper. The subject property is present only when the request included subject.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EmailPreview {
     /// Rendered email preview HTML
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -8346,7 +8748,7 @@ pub struct EmailPreview {
 }
 
 /// Render one visible person’s email content for preview. This does not create a draft or send an email.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EmailPreviewCreate {
     /// HTML/text fragments concatenated in order without inserting whitespace. Empty array produces an empty body before optional template wrapping.
     pub content: Vec<String>,
@@ -8371,7 +8773,7 @@ pub struct EmailPreviewCreate {
 }
 
 /// euBP service health information
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpHealthInfo {
     /// Configured service environment, normally test, production or mock. The configuration is returned verbatim.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -8387,7 +8789,7 @@ pub struct EubpHealthInfo {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpPeriodAccountsUpdate {
     /// Complete additional-account selection for this submission-period row. Duplicates are deduplicated; unknown IDs are ignored. [] removes additional selections.
     #[serde(rename = "accountIds")]
@@ -8398,7 +8800,7 @@ pub struct EubpPeriodAccountsUpdate {
 }
 
 /// Submission of finance data for an electronically supported audit (euBP), transmitted through the eXTra service to Deutsche Rentenversicherung (DRV). One submission groups a main finance client and optionally related clients across calendar years. Period rows link these years to CT accounting periods; they are not accounting periods themselves.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmission {
     /// ID of the finance client
     #[serde(rename = "clientId", deserialize_with = "crate::lenient::number")]
@@ -8471,7 +8873,7 @@ pub struct EubpSubmission {
 }
 
 /// An additional account linked to a submission period
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmissionAccount {
     /// ID of the account
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -8493,40 +8895,52 @@ pub struct EubpSubmissionAccount {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmissionAccountsUpdate {
     /// Complete selection by exact keys from the unified account list. [] clears optional selections; mandatory/transmitted accounts remain effectively selected.
     #[serde(rename = "accountKeys")]
     pub account_keys: Vec<String>,
     /// Restrict the update to one affected client; omitted/null applies to all clients. A non-participating client results in no changes.
-    #[serde(rename = "clientId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub client_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "clientId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub client_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Creates a draft audit submission. The main client needs a treasurer and a business number. An overlapping submission involving any selected client is rejected unless its status is cancelled or rejected. yearFrom must not exceed yearTo.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmissionCreate {
     /// Year-to-account-ID mapping for the main client only. Currently non-empty ID lists are rejected by a misplaced Unique validator; use the separate account-selection endpoints after creating the draft.
-    #[serde(rename = "additionalAccountsPerYear", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
-    pub additional_accounts_per_year: Option<std::collections::BTreeMap<String, Vec<i64>>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "additionalAccountsPerYear", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub additional_accounts_per_year: Option<Option<std::collections::BTreeMap<String, Vec<i64>>>>,
     /// IDs of finance clients that belong to the audited company and should get their own submission periods. The main clientId is always added automatically. Clients without an accounting period overlapping the requested years are omitted. Included clients must exist and have either no business number or the same number as the main client.
-    #[serde(rename = "affectedClientIds", default, skip_serializing_if = "Option::is_none")]
-    pub affected_client_ids: Option<Vec<i64>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "affectedClientIds", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub affected_client_ids: Option<Option<Vec<i64>>>,
     /// ID of the finance client
     #[serde(rename = "clientId", deserialize_with = "crate::lenient::number")]
     pub client_id: i64,
     /// Delivery deadline for the audit data Only retained for transmissionReason=1; cleared for software/provider changes. Only retained for transmissionReason=1; cleared for software/provider changes.
-    #[serde(rename = "deliveryDate", default, skip_serializing_if = "Option::is_none")]
-    pub delivery_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "deliveryDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub delivery_date: Option<Option<chrono::NaiveDate>>,
     /// Reference date for the audit (Stichtag der Prüfung) Only retained for transmissionReason=1; cleared for software/provider changes. Only retained for transmissionReason=1; cleared for software/provider changes.
-    #[serde(rename = "referenceDate", default, skip_serializing_if = "Option::is_none")]
-    pub reference_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "referenceDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub reference_date: Option<Option<chrono::NaiveDate>>,
     /// Title of the submission
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub title: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub title: Option<Option<String>>,
     /// Reason for transmission (1=audit, 2=software change, 3=provider change)
     /// Allowed values: `1`, `2`, `3`.
     #[serde(rename = "transmissionReason", deserialize_with = "crate::lenient::number")]
@@ -8543,7 +8957,7 @@ pub struct EubpSubmissionCreate {
 }
 
 /// A period (year) within an euBP submission
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmissionPeriod {
     /// ID of the linked accounting period
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -8581,7 +8995,7 @@ pub struct EubpSubmissionPeriod {
 }
 
 /// Structural client/year preview and missing-period warnings. This is not a validation of the complete generated transmission file.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmissionPreview {
     /// Preview data per period
     pub periods: Vec<EubpSubmissionPreviewPeriodsItem>,
@@ -8592,7 +9006,7 @@ pub struct EubpSubmissionPreview {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmissionPreviewPeriodsItem {
     #[serde(rename = "dateRange")]
     pub date_range: EubpSubmissionPreviewPeriodsItemDateRange,
@@ -8608,7 +9022,7 @@ pub struct EubpSubmissionPreviewPeriodsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmissionPreviewPeriodsItemDateRange {
     pub from: chrono::NaiveDate,
     pub to: chrono::NaiveDate,
@@ -8617,7 +9031,7 @@ pub struct EubpSubmissionPreviewPeriodsItemDateRange {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpSubmissionPreviewWarningsItem {
     /// Localized warning text.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -8636,7 +9050,7 @@ pub struct EubpSubmissionPreviewWarningsItem {
 }
 
 /// Accounts merged across selected client/year rows by exact number|name. Only accounts with bookings are listed; fields that differ by year/client are combined.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EubpUnifiedAccount {
     /// Account-group name of the first encountered merged account; other years/clients can have different groups.
     #[serde(rename = "accountGroupName", deserialize_with = "crate::lenient::string")]
@@ -8667,7 +9081,7 @@ pub struct EubpUnifiedAccount {
 }
 
 /// Event classification returned by the configured Evangelische Termine server. Keys and labels are supplied by that server and are not a fixed ChurchTools enum.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EvangelischeTermineEventType {
     /// External event-type identifier to use in integration settings.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -8681,7 +9095,7 @@ pub struct EvangelischeTermineEventType {
 }
 
 /// Connection settings to test against Evangelische Termine. Testing these values does not save settings or enable synchronization.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EvangelischeTermineSettingsValidateCreate {
     /// SOAP API key for the organizer. The literal value ***** reuses the API key already stored in ChurchTools. The supplied URL and organizer ID are still used for this check.
     #[serde(rename = "apiKey", deserialize_with = "crate::lenient::string")]
@@ -8698,7 +9112,7 @@ pub struct EvangelischeTermineSettingsValidateCreate {
 }
 
 /// An occurrence in service planning linked to a calendar appointment. id identifies the planning event, appointmentId the underlying appointment (possibly a recurring series). This enriched read representation differs from the response to PUT /events/{eventId}.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Event {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::string")]
     pub deprecated: String,
@@ -8751,7 +9165,7 @@ pub struct Event {
 }
 
 /// Change chat activation for an event, optionally sending invitation emails.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventChatUpdate {
     /// `true` starts or reactivates the event chat; `false` stops an existing chat.
     pub enabled: bool,
@@ -8764,14 +9178,16 @@ pub struct EventChatUpdate {
 }
 
 /// Update the event description, administrators and cancellation state. Event dates, the calendar appointment and service assignments are managed through their respective endpoints.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventDetailsUpdate {
     /// Replace the administrator list. A change to the set of IDs additionally requires the "edit masterdata" permission for the service planning domain.
     #[serde(rename = "adminIds", default, skip_serializing_if = "Option::is_none")]
     pub admin_ids: Option<Vec<i64>>,
     /// Event description.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Legacy input alias for `adminIds`.
     #[serde(rename = "eventAdminIds", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
@@ -8780,16 +9196,18 @@ pub struct EventDetailsUpdate {
     #[serde(rename = "isCanceled", default, skip_serializing_if = "Option::is_none")]
     pub is_canceled: Option<bool>,
     /// Deprecated alias for `description`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
-    pub note: Option<String>,
+    pub note: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Result of updating event details. This differs from the enriched event read response: it contains the stored appointment, description, administrators and cancellation flag, without services, event startDate or meta.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventDetailsUpdateResult {
     /// Stored administrator IDs.
     #[serde(rename = "adminIds", default, skip_serializing_if = "Option::is_none")]
@@ -8815,7 +9233,7 @@ pub struct EventDetailsUpdateResult {
 }
 
 /// Stored calendar appointment, including its recurrence definition. This is not an occurrence-specific appointment projection.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventDetailsUpdateResultAppointment {
     pub additionals: Vec<AppointmentAdditionals>,
     /// Use 'additionals' instead
@@ -8892,7 +9310,7 @@ pub struct EventDetailsUpdateResultAppointment {
 }
 
 /// A fact definition describes a metric or selection (for example attendance or service type). An event fact stores one value for that definition on a service-planning event. `eventId` identifies the event, not its calendar appointment; `factId` identifies the reusable definition from /facts. Values are returned as numbers for numeric facts and strings for select facts. Definitions and events are referenced by ID, not embedded.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventFact {
     /// Legacy response marker identifying the metadata replacements.
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::string")]
@@ -8921,7 +9339,7 @@ pub struct EventFact {
 }
 
 /// Calendar selection and optional event-start date range for a facts export. For a complete calendar month, use its first day as from and the first day of the next month as to.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventFactExportCreate {
     /// Calendars containing the appointments linked to the service-planning events. Only events visible to the current user are exported.
     pub calendar_ids: Vec<i64>,
@@ -8937,7 +9355,7 @@ pub struct EventFactExportCreate {
 }
 
 /// Replaces the value of an event fact, or creates it if none is stored yet. The same validation applies to creation and replacement.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventFactUpdate {
     /// For numeric facts, prefer a JSON number. For select facts, send the configured option text from /facts/{id}.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -8948,7 +9366,7 @@ pub struct EventFactUpdate {
 }
 
 /// Message and selected recipients for an event email. This creates a send operation, not a stored event or agenda.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventMailCreate {
     /// HTML email body. ChurchTools appends buttons for all supplied events and any requested, available agenda and file links.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -8975,7 +9393,7 @@ pub struct EventMailCreate {
 }
 
 /// Effective scope of an event email queue operation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventMailSendResult {
     /// Supplied event IDs for which an agenda button was included. An empty array means no requested agenda button could be included.
     #[serde(rename = "agendaEventIds")]
@@ -8995,7 +9413,7 @@ pub struct EventMailSendResult {
 }
 
 /// Reference records used by the Event module. IDs in assignments, event facts and song arrangements refer to these configurable records. Their names and IDs are installation-specific, not enums.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventMasterData {
     /// Configured reasons for absences, such as holidays or illness. Referenced by absence records.
     #[serde(rename = "absenceReasons")]
@@ -9019,7 +9437,7 @@ pub struct EventMasterData {
 }
 
 /// Computed UI permissions. startChat does not include all installation-level chat prerequisites; the chat action performs its own authorization checks.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventPermissions {
     #[serde(rename = "startChat")]
     pub start_chat: bool,
@@ -9031,7 +9449,7 @@ pub struct EventPermissions {
 }
 
 /// Enriched event with the eventServices include always present, possibly as an empty list.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventReadWithServices {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::string")]
     pub deprecated: String,
@@ -9083,7 +9501,7 @@ pub struct EventReadWithServices {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventService {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub deprecated: Option<std::collections::BTreeMap<String, String>>,
@@ -9138,7 +9556,7 @@ pub struct EventService {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventServiceCountUpdate {
     /// Desired total number of active slots for this service, including occupied slots. Use 0 to remove all slots, which succeeds only when all are unassigned.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -9151,7 +9569,7 @@ pub struct EventServiceCountUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventServiceEventVariant2 {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -9165,7 +9583,7 @@ pub struct EventServiceEventVariant2 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventServicePermissions {
     #[serde(rename = "enterSelfIfFree", default, skip_serializing_if = "Option::is_none")]
     pub enter_self_if_free: Option<bool>,
@@ -9175,7 +9593,7 @@ pub struct EventServicePermissions {
 }
 
 /// Change the number of service slots in one event.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventServicesUpdate {
     /// Desired counts for the listed services only. An empty array makes no changes. Supply each `serviceId` once: entries are processed against the initial slot snapshot, so repeated IDs do not represent successive updates.
     pub services: Vec<EventServiceCountUpdate>,
@@ -9185,7 +9603,7 @@ pub struct EventServicesUpdate {
 }
 
 /// This is separate from a calendar appointment template. When creating an event for an appointment with eventTemplateId, the current event-creation service copies description, `adminIds`, service slot counts and facts. The appointment and supplied startDate determine the new event’s appointment and time; the remaining scheduling fields are template metadata for clients.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventTemplate {
     /// Database storage can return numeric IDs as strings. `null` means no stored administrator list.
     #[serde(rename = "adminIds", default, skip_serializing_if = "Option::is_none")]
@@ -9231,7 +9649,7 @@ pub struct EventTemplate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct EventTemplateService {
     /// Number of unassigned slots to create for this service role when applying the template.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -9245,7 +9663,7 @@ pub struct EventTemplateService {
 }
 
 /// Sanitized provider configuration returned to settings administrators. OAuth/OIDC client secrets and SAML SP private keys are not included.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLogin {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub config: serde_json::Value,
@@ -9299,7 +9717,7 @@ pub struct ExternalLogin {
 }
 
 /// Browser-session-bound authorization request. Retain the session cookie, open url in that browser session and let the provider redirect to the callback.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginAuthorizationStart {
     /// Pending authorization expiry as Unix epoch seconds; normally 600 seconds after creation.
     #[serde(rename = "expiresAt", deserialize_with = "crate::lenient::number")]
@@ -9316,7 +9734,7 @@ pub struct ExternalLoginAuthorizationStart {
 }
 
 /// Creates an external login provider. SAML configuration requires the SAML settings feature flag.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginCreate {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub config: serde_json::Value,
@@ -9347,8 +9765,10 @@ pub struct ExternalLoginCreate {
     #[serde(rename = "primaryLogin", default, skip_serializing_if = "Option::is_none")]
     pub primary_login: Option<bool>,
     /// Secondary text on the login choice.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Configured login protocol.
     /// Allowed values: `oauth`, `oidc`, `saml`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -9362,7 +9782,7 @@ pub struct ExternalLoginCreate {
 }
 
 /// Credentials used to prove ownership of a local account for a pending external identity. The token must originate from the preceding external login in the same browser session.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginLinkCreate {
     /// Opaque, session-bound linking token from the account-linking redirect. Expires 600 seconds after creation.
     #[serde(rename = "linkToken", deserialize_with = "crate::lenient::string")]
@@ -9378,7 +9798,7 @@ pub struct ExternalLoginLinkCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginLinkResult {
     /// Absolute ChurchTools URL to navigate to. It can request two-factor verification; HTTP 200 alone does not mean login is complete.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -9389,7 +9809,7 @@ pub struct ExternalLoginLinkResult {
 }
 
 /// OAuth provider configuration.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginOAuthConfig {
     #[serde(rename = "accessTokenUrl", deserialize_with = "crate::lenient::string")]
     pub access_token_url: String,
@@ -9414,7 +9834,7 @@ pub struct ExternalLoginOAuthConfig {
 }
 
 /// OpenID Connect provider configuration.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginOidcConfig {
     /// Optional allowlist for the `ct_connection` claim. When configured, an ID token without an allowed connection is rejected.
     #[serde(rename = "allowedConnections", default, skip_serializing_if = "Option::is_none")]
@@ -9447,7 +9867,7 @@ pub struct ExternalLoginOidcConfig {
 }
 
 /// An OIDC authorization test could not be started or completed.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginOidcTestError {
     /// Sorted unique claim names from the validated ID token on success. Claim values and tokens are never returned.
     #[serde(rename = "claimNames", default, skip_serializing_if = "Option::is_none")]
@@ -9464,7 +9884,7 @@ pub struct ExternalLoginOidcTestError {
 }
 
 /// Session-bound OIDC test status. pending means the provider callback is outstanding; success means token and claim-policy validation succeeded; error contains a sanitized category; expired also covers unknown states or another administrator/session.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginOidcTestResult {
     /// Sorted unique claim names from the validated ID token on success. Claim values and tokens are never returned.
     #[serde(rename = "claimNames", default, skip_serializing_if = "Option::is_none")]
@@ -9482,7 +9902,7 @@ pub struct ExternalLoginOidcTestResult {
 }
 
 /// OIDC test authorization. The callback records diagnostics instead of creating a person, linking an identity or completing a ChurchTools login.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginOidcTestStart {
     /// Pending authorization expiry as Unix epoch seconds; normally 600 seconds after creation.
     #[serde(rename = "expiresAt", deserialize_with = "crate::lenient::number")]
@@ -9499,7 +9919,7 @@ pub struct ExternalLoginOidcTestStart {
 }
 
 /// Request to create a ChurchTools person from the identity already verified by the external provider and stored in this browser session. No person attributes are accepted from the client.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginPersonCreate {
     /// Opaque, session-bound linking token from the account-linking redirect. Expires 600 seconds after creation.
     #[serde(rename = "linkToken", deserialize_with = "crate::lenient::string")]
@@ -9510,7 +9930,7 @@ pub struct ExternalLoginPersonCreate {
 }
 
 /// Public summary of one external identity-provider link for a person. Provider configuration, secrets and the external identity identifier are not included.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginPersonMapping {
     /// ID of the linked external-login provider; used to unlink this mapping.
     #[serde(rename = "externalLoginId", deserialize_with = "crate::lenient::number")]
@@ -9527,7 +9947,7 @@ pub struct ExternalLoginPersonMapping {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginSamlCertificateMetadata {
     #[serde(rename = "fingerprintSha256", deserialize_with = "crate::lenient::string")]
     pub fingerprint_sha256: String,
@@ -9547,7 +9967,7 @@ pub struct ExternalLoginSamlCertificateMetadata {
 }
 
 /// SAML identity-provider settings. SP keys and certificates are managed by ChurchTools.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginSamlConfig {
     /// Retained for stored-data and API compatibility. Callback routing no longer depends on this value.
     /// Allowed values: `2`.
@@ -9609,7 +10029,7 @@ pub struct ExternalLoginSamlConfig {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginSamlConfigIdpX509certMulti {
     /// One or more IdP signing certificates in PEM format. Multiple certificates support signing key rollover; encryption certificates are not configured here.
     pub signing: Vec<String>,
@@ -9618,7 +10038,7 @@ pub struct ExternalLoginSamlConfigIdpX509certMulti {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginSamlTestMapping {
     /// Configured attribute name, or the SAML default for this ChurchTools field.
     #[serde(rename = "claimName", deserialize_with = "crate::lenient::string")]
@@ -9635,7 +10055,7 @@ pub struct ExternalLoginSamlTestMapping {
 }
 
 /// SAML protocol-test diagnostics. success means an authenticated SAML response was received; it does not imply that local person matching or required attribute values are valid. error carries no detailed error category. pending and expired contain only status.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginSamlTestResult {
     /// Sorted unique SAML attribute names on success; attribute values and the SAML assertion are not returned.
     #[serde(rename = "claimNames", default, skip_serializing_if = "Option::is_none")]
@@ -9652,7 +10072,7 @@ pub struct ExternalLoginSamlTestResult {
 }
 
 /// A SAML test bound to the current browser session, administrator and provider. Keep the session cookie when opening url and polling state.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginSamlTestStart {
     /// Unix timestamp in seconds, 600 seconds after creation; applies to pending and completed results.
     #[serde(rename = "expiresAt", deserialize_with = "crate::lenient::number")]
@@ -9669,7 +10089,7 @@ pub struct ExternalLoginSamlTestStart {
 }
 
 /// Updates provider settings. The protocol in `type` must match the existing provider.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalLoginUpdate {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub config: serde_json::Value,
@@ -9702,8 +10122,10 @@ pub struct ExternalLoginUpdate {
     #[serde(rename = "primaryLogin", default, skip_serializing_if = "Option::is_none")]
     pub primary_login: Option<bool>,
     /// Secondary text on the login choice.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub subtitle: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<Option<String>>,
     /// Configured login protocol.
     /// Allowed values: `oauth`, `oidc`, `saml`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -9717,7 +10139,7 @@ pub struct ExternalLoginUpdate {
 }
 
 /// Configured external connection with masked access credentials.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalSystem {
     /// Adapter-specific HTTP header values used to access the external system.
     #[serde(rename = "accessHeaderValues", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -9740,7 +10162,7 @@ pub struct ExternalSystem {
 }
 
 /// Connection to a specific external system through a registered adapter.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalSystemCreate {
     /// Adapter-specific HTTP header values used to access the external system.
     #[serde(rename = "accessHeaderValues", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -9757,7 +10179,7 @@ pub struct ExternalSystemCreate {
 }
 
 /// Updates the external connection. Supplied header keys are merged into existing headers.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ExternalSystemUpdate {
     /// Adapter-specific HTTP header values used to access the external system.
     #[serde(rename = "accessHeaderValues", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -9777,7 +10199,7 @@ pub struct ExternalSystemUpdate {
 }
 
 /// Stored numeric metric definition. `unit` can be `null` in existing data.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FactNumber {
     /// Deprecated response field that points clients from fieldType to type.
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::string")]
@@ -9811,7 +10233,7 @@ pub struct FactNumber {
 }
 
 /// Definition of a numeric metric, such as attendance. Recorded event values are returned as JSON numbers.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FactNumberCreate {
     /// Label of the metric or selection, trimmed before storage.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -9830,7 +10252,7 @@ pub struct FactNumberCreate {
 }
 
 /// Stored selection definition. options contains the literal labels accepted when writing event values; legacy definitions can have an empty list.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FactSelect {
     /// Deprecated response field that points clients from fieldType to type.
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::string")]
@@ -9863,7 +10285,7 @@ pub struct FactSelect {
 }
 
 /// Definition of a selection field, such as service type. Supply the complete list of non-empty option labels; event values use the label itself, not an option ID.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FactSelectCreate {
     /// Label of the metric or selection, trimmed before storage.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -9880,7 +10302,7 @@ pub struct FactSelectCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FeatureUsage {
     /// Value to decrement the metric by
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -9897,7 +10319,7 @@ pub struct FeatureUsage {
 }
 
 /// Field mapping for an external connection and domain. `GET` can return an unsaved mapping when none exists.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FieldMapping {
     /// ChurchTools domain types accepted by entity and field mapping validation. Adapter support can be a smaller subset.
     /// Allowed values: `account`, `account_class`, `account_group`, `account_type`, `accounting_period`, `agenda`, `agenda_item`, `appointment`, `appointment_image`, `appointment_occurrence`, `appointment_template_image`, `attachments`, `avatar`, `booking`, `bulkletter_template`, `client`, `cost_center`, `custom_module`, `donation_attachment_template`, `donation_cover_letter_template`, `eubp_attachment`, `eubp_submission`, `event`, `eventchat`, `familyavatar`, `file`, `finance_template`, `follow_up`, `further_link`, `group`, ….
@@ -9915,7 +10337,7 @@ pub struct FieldMapping {
 }
 
 /// Stored directional field mapping. No separate entry ID is returned.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FieldMappingEntry {
     /// Source field name supported by the adapter.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -9943,28 +10365,36 @@ pub struct FieldMappingEntry {
 }
 
 /// Display-metadata update for every attachment of a domain object.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FileDomainUpdate {
     /// Display name assigned to every matching file.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Sort key assigned to every matching file.
-    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sort_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sort_key: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Stores a URL as an attachment without downloading its target. The selected category’s file-save hooks still run.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FileLinkCreate {
     /// Display name. The URL is used when no name is supplied.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Attachment security level.
-    #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub security_level_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub security_level_id: Option<Option<i64>>,
     /// Absolute URL to store.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub url: String,
@@ -9973,7 +10403,7 @@ pub struct FileLinkCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FileMetaData {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -9991,7 +10421,7 @@ pub struct FileMetaData {
 }
 
 /// File or Link for a specific domain type. E.g. uploaded music file for songs or avatar of a person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FileOrLink {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub domain_id: Option<String>,
@@ -10015,14 +10445,18 @@ pub struct FileOrLink {
 }
 
 /// Updates one file and optionally copies it to another attachment context.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FileUpdate {
     /// Display name assigned to every matching file.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Sort key assigned to every matching file.
-    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sort_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sort_key: Option<Option<i64>>,
     /// Target attachment context to which the file is copied.
     #[serde(rename = "copyTo", default, skip_serializing_if = "Option::is_none")]
     pub copy_to: Option<FileUpdateCopyTo>,
@@ -10032,7 +10466,7 @@ pub struct FileUpdate {
 }
 
 /// Target attachment context to which the file is copied.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FileUpdateCopyTo {
     /// Target identifier.
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::string")]
@@ -10046,7 +10480,7 @@ pub struct FileUpdateCopyTo {
 }
 
 /// Metadata returned after upload. The `attachments` category does not create a database file record and returns `id: null`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FileUploadResult {
     /// Domain-specific extra data. Empty for most files (serialized as an empty array), but some domains add a key-value object (e.g. statement uploads return `{ "statementId": 1 }`).
     #[serde(rename = "additionalInfos", deserialize_with = "crate::lenient::map")]
@@ -10109,7 +10543,7 @@ pub struct FileUploadResult {
 }
 
 /// Finance definitions needed for one accounting period. Clients and periods include all entries visible to the caller; account types, classes, groups and tax types are installation-wide. Accounts, cost centers, tax rates, cash discounts and transaction purposes relate to the selected period.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceMasterData {
     #[serde(rename = "accountClasses")]
     pub account_classes: Vec<AccountClass>,
@@ -10142,7 +10576,7 @@ pub struct FinanceMasterData {
 }
 
 /// Stored finance-template JSON file, with counts of the definitions it contains. These files describe a chart of accounts for reuse in another accounting period.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplate {
     pub counts: FinanceTemplateCounts,
     /// File-domain identifier, if assigned.
@@ -10173,7 +10607,7 @@ pub struct FinanceTemplate {
 }
 
 /// Portable account definition in an exported finance template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateAccount {
     /// Parent account-group name.
     #[serde(rename = "accountGroup", deserialize_with = "crate::lenient::string")]
@@ -10200,7 +10634,7 @@ pub struct FinanceTemplateAccount {
 }
 
 /// Portable account class definition in an exported finance template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateAccountClass {
     /// Parent account-type name instead of an installation-specific ID.
     #[serde(rename = "accountType", deserialize_with = "crate::lenient::string")]
@@ -10217,7 +10651,7 @@ pub struct FinanceTemplateAccountClass {
 }
 
 /// Portable account group definition in an exported finance template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateAccountGroup {
     /// Parent account-class name.
     #[serde(rename = "accountClass", deserialize_with = "crate::lenient::string")]
@@ -10234,7 +10668,7 @@ pub struct FinanceTemplateAccountGroup {
 }
 
 /// Portable account type definition in an exported finance template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateAccountType {
     /// Allowed values: `assets`, `liabilities`.
     #[serde(rename = "balanceType", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -10249,7 +10683,7 @@ pub struct FinanceTemplateAccountType {
 }
 
 /// Portable cash discount definition in an exported finance template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateCashDiscount {
     /// Receiving account name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -10264,7 +10698,7 @@ pub struct FinanceTemplateCashDiscount {
 }
 
 /// Portable cost center definition in an exported finance template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateCostCenter {
     /// Budget in minor currency units.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -10278,7 +10712,7 @@ pub struct FinanceTemplateCostCenter {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateCounts {
     #[serde(rename = "accountClasses", deserialize_with = "crate::lenient::number")]
     pub account_classes: i64,
@@ -10300,7 +10734,7 @@ pub struct FinanceTemplateCounts {
 }
 
 /// Portable chart-of-accounts definitions. Relationships use names or account numbers instead of database IDs. No transactions, client objects or accounting-period objects are included. This export is not a full-fidelity backup.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateExport {
     #[serde(rename = "accountClasses")]
     pub account_classes: Vec<FinanceTemplateAccountClass>,
@@ -10323,7 +10757,7 @@ pub struct FinanceTemplateExport {
 }
 
 /// Portable tax rate definition in an exported finance template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateTaxRate {
     /// Receiving account name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -10340,7 +10774,7 @@ pub struct FinanceTemplateTaxRate {
 }
 
 /// Portable tax type definition in an exported finance template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceTemplateTaxType {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
@@ -10352,7 +10786,7 @@ pub struct FinanceTemplateTaxType {
 }
 
 /// Amounts in integer minor currency units for the selected date interval and its previous-year counterpart. A missing comparison value can be null; zero represents a calculated zero.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FinanceYearValueComparison {
     #[serde(rename = "lastYear", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub last_year: Option<i64>,
@@ -10364,7 +10798,7 @@ pub struct FinanceYearValueComparison {
 }
 
 /// A planned follow-up for a person, optionally associated with a group membership. dueDate is the original plan; effectiveDueDate is the currently scheduled date. doneDate marks both completed and dismissed follow-ups, which are distinguished in history rather than a separate response status. FollowUp is the older master-data type; this resource is FollowUp2 for compatibility.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUp2 {
     /// A color in ChurchTools
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -10424,51 +10858,73 @@ pub struct FollowUp2 {
 }
 
 /// Completion action payload. A configured fixed group is not selected automatically; `0` also completes without a membership action.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUpCompletionCreate {
     /// Selected destination group. Must match a configured fixed group and/or group-type restriction. Completion can create or overwrite this person’s membership using the configured role/status defaults.
-    #[serde(rename = "successGroupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Input for a follow-up concerning a person, optionally within an existing group membership. The person is the subject; ownerId is the person responsible for handling it. Date fields are calendar dates, not timestamps. Only title must be nonempty; omitted/blank description is normalized to null. duration is not read by these direct CRUD endpoints.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUpCreate {
     /// Optional color. Missing/null uses the yellow display fallback.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub color: Option<Option<String>>,
     /// Trimmed description; missing, null or blank becomes null.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Original planned date. May be absent/null; direct creation/update allows past dates. Omission on update clears it.
-    #[serde(rename = "dueDate", default, skip_serializing_if = "Option::is_none")]
-    pub due_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dueDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub due_date: Option<Option<chrono::NaiveDate>>,
     /// Current working due date. Defaults to dueDate when omitted/null; postponement changes this independently of the original dueDate.
-    #[serde(rename = "effectiveDueDate", default, skip_serializing_if = "Option::is_none")]
-    pub effective_due_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "effectiveDueDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub effective_due_date: Option<Option<chrono::NaiveDate>>,
     /// Optional icon name. Missing/null/blank is stored as null; responses display the handshake fallback.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub icon: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub icon: Option<Option<String>>,
     /// Responsible person ID. Personal creation defaults to the current user; group-member creation can remain unassigned. Omitted/null on update preserves the current owner.
-    #[serde(rename = "ownerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub owner_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "ownerId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub owner_id: Option<Option<i64>>,
     /// Optional fixed destination group for completion. Completion still requires the client to submit its selected successGroupId; it is not added automatically.
-    #[serde(rename = "successGroupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_id: Option<Option<i64>>,
     /// Membership status assigned in the selected success group; null uses the default active status.
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
-    #[serde(rename = "successGroupMemberStatus", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_member_status: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupMemberStatus", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_member_status: Option<Option<String>>,
     /// Optional group-type restriction for selecting a destination group on completion.
-    #[serde(rename = "successGroupOfGroupTypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_of_group_type_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupOfGroupTypeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_of_group_type_id: Option<Option<i64>>,
     /// Role assigned in the selected success group; null uses the membership service default.
-    #[serde(rename = "successRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_role_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successRoleId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_role_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -10476,20 +10932,22 @@ pub struct FollowUpCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUpNoteCreate {
     /// Note text.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub comment: String,
     /// Visibility category applied only to an additional person link when `also_apply_to_person=true`. Ignored for the follow-up link itself.
-    #[serde(rename = "commentViewerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub comment_viewer_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "commentViewerId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment_viewer_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUpPostponeCreate {
     /// New effective date, strictly after today in server date handling. The original `dueDate` is retained.
     #[serde(rename = "dueDate")]
@@ -10499,35 +10957,43 @@ pub struct FollowUpPostponeCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUpResetCreate {
     /// A future date overrides `effectiveDueDate`; otherwise it is restored from the original `dueDate`, which may be past or null.
-    #[serde(rename = "dueDate", default, skip_serializing_if = "Option::is_none")]
-    pub due_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dueDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub due_date: Option<Option<chrono::NaiveDate>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Mutable fields of a follow-up backed by a shared specification. The specification owns `title`, `description`, `icon`, `color` and success settings, so those fields cannot be changed through the follow-up endpoint.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUpSharedUpdate {
     /// Original planned date. Omission or null clears it.
-    #[serde(rename = "dueDate", default, skip_serializing_if = "Option::is_none")]
-    pub due_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dueDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub due_date: Option<Option<chrono::NaiveDate>>,
     /// Current working due date. Defaults to dueDate when omitted/null.
-    #[serde(rename = "effectiveDueDate", default, skip_serializing_if = "Option::is_none")]
-    pub effective_due_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "effectiveDueDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub effective_due_date: Option<Option<chrono::NaiveDate>>,
     /// Responsible person ID. Omitted/null preserves the current owner.
-    #[serde(rename = "ownerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub owner_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "ownerId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub owner_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Counts within the current user’s follow-up scope, excluding archived subject persons. Pending categories use the effective due date after postponements and the server’s current date. Completed and dismissed items both count as done. All counters are present, including zero.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUpStatistics {
     /// Number of completed or dismissed follow-ups (doneDate is set).
     #[serde(rename = "countDone", deserialize_with = "crate::lenient::number")]
@@ -10550,40 +11016,60 @@ pub struct FollowUpStatistics {
 }
 
 /// Update of a follow-up backed by an unshared specification. Updating a shared specification uses `FollowUpSharedUpdate` instead. The owner cannot be unassigned through this endpoint.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FollowUpUpdate {
     /// Optional color. Missing/null uses the yellow display fallback.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub color: Option<Option<String>>,
     /// Trimmed description; missing, null or blank becomes null.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Original planned date. May be absent/null; direct creation/update allows past dates. Omission on update clears it.
-    #[serde(rename = "dueDate", default, skip_serializing_if = "Option::is_none")]
-    pub due_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dueDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub due_date: Option<Option<chrono::NaiveDate>>,
     /// Current working due date. Defaults to dueDate when omitted/null; postponement changes this independently of the original dueDate.
-    #[serde(rename = "effectiveDueDate", default, skip_serializing_if = "Option::is_none")]
-    pub effective_due_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "effectiveDueDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub effective_due_date: Option<Option<chrono::NaiveDate>>,
     /// Optional icon name. Missing/null/blank is stored as null; responses display the handshake fallback.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub icon: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub icon: Option<Option<String>>,
     /// Responsible person ID. Personal creation defaults to the current user; group-member creation can remain unassigned. Omitted/null on update preserves the current owner.
-    #[serde(rename = "ownerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub owner_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "ownerId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub owner_id: Option<Option<i64>>,
     /// Optional fixed destination group for completion. Completion still requires the client to submit its selected successGroupId; it is not added automatically.
-    #[serde(rename = "successGroupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_id: Option<Option<i64>>,
     /// Membership status assigned in the selected success group; null uses the default active status.
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
-    #[serde(rename = "successGroupMemberStatus", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_member_status: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupMemberStatus", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_member_status: Option<Option<String>>,
     /// Optional group-type restriction for selecting a destination group on completion.
-    #[serde(rename = "successGroupOfGroupTypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_group_of_group_type_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successGroupOfGroupTypeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_group_of_group_type_id: Option<Option<i64>>,
     /// Role assigned in the selected success group; null uses the membership service default.
-    #[serde(rename = "successRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub success_role_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "successRoleId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub success_role_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -10591,7 +11077,7 @@ pub struct FollowUpUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FurtherLink {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -10610,7 +11096,7 @@ pub struct FurtherLink {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct FurtherLinkCreate {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -10627,7 +11113,7 @@ pub struct FurtherLinkCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetCaptchaResponse {
     pub parameters: GetCaptchaResponseParameters,
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -10637,7 +11123,7 @@ pub struct GetCaptchaResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetCaptchaResponseParameters {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub algorithm: String,
@@ -10660,7 +11146,7 @@ pub struct GetCaptchaResponseParameters {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetConfigResponse {
     #[serde(rename = "_current_config_file", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub current_config_file: Option<String>,
@@ -11395,7 +11881,7 @@ pub struct GetConfigResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetConfigResponseLicenseSettings {
     /// Allowed values: `0`, `1`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -11405,7 +11891,7 @@ pub struct GetConfigResponseLicenseSettings {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetGroupMemberstatusResponseItem {
     /// State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
@@ -11419,7 +11905,7 @@ pub struct GetGroupMemberstatusResponseItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetGroupsGroupIdMemberfieldsDataItemVariant1 {
     /// A global person field configured for this group’s membership/signup UI. id identifies the configuration row; dbField.id identifies the underlying person field used in the /memberfields/person/{fieldId} path.
     pub field: GroupMemberFieldPerson,
@@ -11431,7 +11917,7 @@ pub struct GetGroupsGroupIdMemberfieldsDataItemVariant1 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetGroupsGroupIdMemberfieldsDataItemVariant2 {
     /// A group-specific membership field definition. Values belong to a person’s membership in this group, rather than to the person globally.
     pub field: GroupMemberFieldGroup,
@@ -11443,7 +11929,7 @@ pub struct GetGroupsGroupIdMemberfieldsDataItemVariant2 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetGroupsIdQrcodecheckinPersonIdPdfData {
     /// Absolute URL of the generated PDF; contains the ticket credential in its filename.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -11453,7 +11939,7 @@ pub struct GetGroupsIdQrcodecheckinPersonIdPdfData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetInfoResponse {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub address: Option<Address>,
@@ -11472,7 +11958,7 @@ pub struct GetInfoResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetLogsStatisticsLoginDataItem {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "lastLogin", serialize_with = "crate::datetime::serialize_utc")]
@@ -11487,7 +11973,7 @@ pub struct GetLogsStatisticsLoginDataItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponse {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub admin: Option<GetMenuResponseAdmin>,
@@ -11518,7 +12004,7 @@ pub struct GetMenuResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseAdmin {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<GetMenuResponseAdminActionsItem>>,
@@ -11531,7 +12017,7 @@ pub struct GetMenuResponseAdmin {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseAdminActionsItem {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub href: Option<String>,
@@ -11546,7 +12032,7 @@ pub struct GetMenuResponseAdminActionsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseAdminPrimaryItem {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub href: Option<String>,
@@ -11559,7 +12045,7 @@ pub struct GetMenuResponseAdminPrimaryItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseFamilyItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub href: String,
@@ -11572,7 +12058,7 @@ pub struct GetMenuResponseFamilyItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseHelp {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<GetMenuResponseHelpActionsItem>>,
@@ -11587,7 +12073,7 @@ pub struct GetMenuResponseHelp {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseHelpActionsItem {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub icon: Option<String>,
@@ -11600,7 +12086,7 @@ pub struct GetMenuResponseHelpActionsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseHelpPrimaryItem {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub external: Option<bool>,
@@ -11617,7 +12103,7 @@ pub struct GetMenuResponseHelpPrimaryItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseHelpSecondaryItem {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub external: Option<bool>,
@@ -11632,7 +12118,7 @@ pub struct GetMenuResponseHelpSecondaryItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseModulesItem {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub href: Option<String>,
@@ -11643,7 +12129,7 @@ pub struct GetMenuResponseModulesItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponsePersonal {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<GetMenuResponseAdminPrimaryItem>>,
@@ -11656,7 +12142,7 @@ pub struct GetMenuResponsePersonal {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseStationsItem {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub address_id: Option<String>,
@@ -11713,7 +12199,7 @@ pub struct GetMenuResponseStationsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetMenuResponseUser {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub firstname: Option<String>,
@@ -11736,7 +12222,7 @@ pub struct GetMenuResponseUser {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPermissionsDefinitionsData {
     pub modules: Vec<PermissionDefinitionModule>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -11744,7 +12230,7 @@ pub struct GetPermissionsDefinitionsData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPermissionsGlobalPersonSummaryData {
     pub permissions: Vec<PermissionPersonSummaryEntry>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -11752,7 +12238,7 @@ pub struct GetPermissionsGlobalPersonSummaryData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPermissionsOriginsGlobalPersonsPersonIdData {
     pub permissions: Vec<PermissionWithOrigins>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
@@ -11762,7 +12248,7 @@ pub struct GetPermissionsOriginsGlobalPersonsPersonIdData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPermissionsOriginsInternalPersonsPersonIdData {
     pub groups: Vec<GetPermissionsOriginsInternalPersonsPersonIdDataGroupsItem>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
@@ -11772,7 +12258,7 @@ pub struct GetPermissionsOriginsInternalPersonsPersonIdData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPermissionsOriginsInternalPersonsPersonIdDataGroupsItem {
     /// ID of the target group the permissions apply to
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -11783,7 +12269,7 @@ pub struct GetPermissionsOriginsInternalPersonsPersonIdDataGroupsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPersonsBirthdaysDataItem {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub deprecated: Option<String>,
@@ -11811,7 +12297,7 @@ pub struct GetPersonsBirthdaysDataItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPersonsDuplicatesDataItem {
     #[serde(rename = "relationshipTypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub relationship_type_id: Option<i64>,
@@ -11821,7 +12307,7 @@ pub struct GetPersonsDuplicatesDataItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPersonsIdLoginstringResponse {
     /// Secret one-time credential; consume through a login link.
     #[serde(rename = "loginString", deserialize_with = "crate::lenient::string")]
@@ -11833,7 +12319,7 @@ pub struct GetPersonsIdLoginstringResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetPersonsRelationshipsDataItem {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub deprecated: Option<std::collections::BTreeMap<String, String>>,
@@ -11865,7 +12351,7 @@ pub struct GetPersonsRelationshipsDataItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetSearchDataItem {
     /// Allowed values: `action`, `domainObject`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -11875,7 +12361,7 @@ pub struct GetSearchDataItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetSyncExternalsystemsIdFieldmappingsDomaintypeNosuggestionsDataVariant1 {
     #[serde(deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub es: Option<std::collections::BTreeMap<String, bool>>,
@@ -11886,7 +12372,7 @@ pub struct GetSyncExternalsystemsIdFieldmappingsDomaintypeNosuggestionsDataVaria
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GetWidgetsBlogData {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -11904,7 +12390,7 @@ pub struct GetWidgetsBlogData {
 }
 
 /// Current user’s global permission values, keyed by active module and registered permission key. Missing grants are false for flags and [] for selections. Maximum-level permissions return a single-element array containing the maximum (99999 for unrestricted); multiple-selection permissions expand unrestricted grants into current IDs, losing the distinction from explicit grants to all current values. Compatibility aliases can be null when their source module is absent.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissions {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub churchcal: Option<GlobalPermissionsChurchcal>,
@@ -11935,7 +12421,7 @@ pub struct GlobalPermissions {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchcal {
     #[serde(rename = "admin appointment tags", default, skip_serializing_if = "Option::is_none")]
     pub admin_appointment_tags: Option<bool>,
@@ -11963,7 +12449,7 @@ pub struct GlobalPermissionsChurchcal {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchcheckin {
     #[serde(rename = "create person")]
     pub create_person: bool,
@@ -11975,7 +12461,7 @@ pub struct GlobalPermissionsChurchcheckin {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchcore {
     #[serde(rename = "administer church html templates")]
     pub administer_church_html_templates: bool,
@@ -12016,7 +12502,7 @@ pub struct GlobalPermissionsChurchcore {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchdb {
     #[serde(rename = "administer global filters")]
     pub administer_global_filters: bool,
@@ -12131,7 +12617,7 @@ pub struct GlobalPermissionsChurchdb {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchgroup {
     #[serde(rename = "administer global views")]
     pub administer_global_views: bool,
@@ -12169,7 +12655,7 @@ pub struct GlobalPermissionsChurchgroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchreport {
     pub view: bool,
     #[serde(rename = "view query")]
@@ -12179,7 +12665,7 @@ pub struct GlobalPermissionsChurchreport {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchresource {
     #[serde(rename = "administer bookings")]
     pub administer_bookings: Vec<i64>,
@@ -12199,7 +12685,7 @@ pub struct GlobalPermissionsChurchresource {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchservice {
     #[serde(rename = "edit agenda")]
     pub edit_agenda: Vec<i64>,
@@ -12243,7 +12729,7 @@ pub struct GlobalPermissionsChurchservice {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchsync {
     pub view: bool,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -12251,7 +12737,7 @@ pub struct GlobalPermissionsChurchsync {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsChurchwiki {
     #[serde(rename = "edit category")]
     pub edit_category: Vec<i64>,
@@ -12265,7 +12751,7 @@ pub struct GlobalPermissionsChurchwiki {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsFinance {
     #[serde(rename = "edit accounting period")]
     pub edit_accounting_period: Vec<i64>,
@@ -12279,7 +12765,7 @@ pub struct GlobalPermissionsFinance {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GlobalPermissionsPost {
     #[serde(rename = "moderate posts")]
     pub moderate_posts: bool,
@@ -12289,7 +12775,7 @@ pub struct GlobalPermissionsPost {
 }
 
 /// The group model structures all information in different objects: `information`, `settings`, `followUp`, and `roles`. Custom group fields are added to the root level of this model.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Group {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub deprecated: Option<std::collections::BTreeMap<String, String>>,
@@ -12336,27 +12822,37 @@ pub struct Group {
 }
 
 /// Address attached to a group, used as a meeting place. All body fields are optional and default to null. Ownership is taken from the path. This operation stores coordinates supplied by the client; it does not look them up from the postal address.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupAddressCreate {
     /// Address addition. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub addition: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub addition: Option<Option<String>>,
     /// Address city. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub city: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub city: Option<Option<String>>,
     /// Optional ChurchTools color. The special values default and parent select the default or owning group color. Omitted or null clears the value.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub color: serde_json::Value,
     /// Country code, at most two characters. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub country: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub country: Option<Option<String>>,
     /// Address district. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub district: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub district: Option<Option<String>>,
     /// Address icon. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub icon: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub icon: Option<Option<String>>,
     /// Coordinate as a number or decimal string. Omitted or null clears it; geographic range limits are not validated.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub latitude: serde_json::Value,
@@ -12364,41 +12860,57 @@ pub struct GroupAddressCreate {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub longitude: serde_json::Value,
     /// Address name. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Address street. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub street: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub street: Option<Option<String>>,
     /// Address zip. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub zip: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub zip: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Replacement address details. Omitted fields are cleared, so send all values to retain. No body id is required; addressId comes from the URL.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupAddressUpdate {
     /// Address addition. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub addition: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub addition: Option<Option<String>>,
     /// Address city. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub city: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub city: Option<Option<String>>,
     /// Optional ChurchTools color. The special values default and parent select the default or owning group color. Omitted or null clears the value.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`, `default`, `parent`.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub color: serde_json::Value,
     /// Country code, at most two characters. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub country: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub country: Option<Option<String>>,
     /// Address district. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub district: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub district: Option<Option<String>>,
     /// Address icon. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub icon: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub icon: Option<Option<String>>,
     /// Coordinate as a number or decimal string. Omitted or null clears it; geographic range limits are not validated.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub latitude: serde_json::Value,
@@ -12406,21 +12918,27 @@ pub struct GroupAddressUpdate {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub longitude: serde_json::Value,
     /// Address name. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Address street. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub street: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub street: Option<Option<String>>,
     /// Address zip. Whitespace is trimmed; omitted, null or blank clears the value.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub zip: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub zip: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// A thematic classification for groups, such as worship services or community activities. A group can reference a category through information.groupCategoryId. Categories are separate from group types, which define shared settings and membership roles.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupCategory {
     /// ChurchTools color token used to display the category, such as blue.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -12448,15 +12966,17 @@ pub struct GroupCategory {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupCategoryCreate {
     /// ChurchTools color token used to display the category, such as blue.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub color: String,
     /// Optional explanation of the category. Omitted, null or blank input is stored as null, including on update.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -12469,7 +12989,7 @@ pub struct GroupCategoryCreate {
 }
 
 /// Creation and modification timestamps and person IDs for this category.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupCategoryMeta {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -12487,7 +13007,7 @@ pub struct GroupCategoryMeta {
 }
 
 /// Options for copying a group. newName must be supplied in the JSON body or query; query values take precedence. The copy flags default to false.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupDuplicateCreate {
     /// Copy memberships, including statuses, roles, comments and member field values. Archived persons are excluded; group capacity is ignored and leaders are not informed.
     #[serde(rename = "copyMembers", default, skip_serializing_if = "Option::is_none")]
@@ -12507,7 +13027,7 @@ pub struct GroupDuplicateCreate {
 }
 
 /// Selection for a group spreadsheet export. An empty selection produces no group rows.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupExportCreate {
     /// Group IDs to export. Unknown or invisible IDs are silently omitted; duplicates do not produce duplicate rows. Rows are sorted by group name, not by this array.
     pub ids: Vec<i64>,
@@ -12516,7 +13036,7 @@ pub struct GroupExportCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupFollowUp {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub reminder: Option<bool>,
@@ -12528,7 +13048,7 @@ pub struct GroupFollowUp {
 }
 
 /// The hierarchy of one group
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupHierarchy {
     pub children: Vec<i64>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -12542,7 +13062,7 @@ pub struct GroupHierarchy {
 }
 
 /// Public group homepage settings, filter definitions, and all public groups displayed on the page.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupHomepage {
     /// Maps deprecated response field names to their replacements.
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::map")]
@@ -12637,7 +13157,7 @@ pub struct GroupHomepage {
 }
 
 /// Filter definition for the homepage UI. All five types are returned, including hidden filters; options contain complete master-data catalogs rather than only options used by displayed groups.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupHomepageFilter {
     /// If true, this filter is enabled on the group homepage.
     pub show: bool,
@@ -12654,7 +13174,7 @@ pub struct GroupHomepageFilter {
 }
 
 /// Display setting for one of the five supported homepage filters. Only entries with show=true are stored.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupHomepageFilterCreate {
     /// If true, this filter is enabled on the group homepage.
     pub show: bool,
@@ -12668,14 +13188,18 @@ pub struct GroupHomepageFilterCreate {
 }
 
 /// Upsert settings. Omitted header modes/custom text are preserved, but omitted layout/order/collapse/depth fields reset to their defaults and omitted filters disables all filters.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupHomepageUpdate {
     /// Custom description. Trimmed; null or blank clears the value. Omission preserves the current value on update.
-    #[serde(rename = "customDescription", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub custom_description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "customDescription", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub custom_description: Option<Option<String>>,
     /// Custom heading. Trimmed; null or blank clears the value. Omission preserves the current value on update.
-    #[serde(rename = "customTitle", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub custom_title: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "customTitle", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub custom_title: Option<Option<String>>,
     /// Initial group display layout.
     /// Allowed values: `list`, `minitile`, `tile`.
     #[serde(rename = "defaultView", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -12725,7 +13249,7 @@ pub struct GroupHomepageUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupInformation {
     #[serde(rename = "ageGroupIds")]
     pub age_group_ids: Vec<i64>,
@@ -12782,7 +13306,7 @@ pub struct GroupInformation {
 }
 
 /// One dated occurrence of a group meeting, used to record attendance, guest counts and feedback. It is separate from the group itself and its memberships. No independent end time is stored. Cancellation and completion are separate flags; completion locks check-in changes.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMeeting {
     /// Compatibility metadata describing legacy date fields.
     #[serde(rename = "@deprecated", default, skip_serializing_if = "Option::is_none")]
@@ -12838,7 +13362,7 @@ pub struct GroupMeeting {
 }
 
 /// Group meeting as returned by the member history endpoint. Attendance statistics are not calculated here.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMeetingForMember {
     /// Compatibility metadata describing legacy date fields.
     #[serde(rename = "@deprecated")]
@@ -12891,7 +13415,7 @@ pub struct GroupMeetingForMember {
 }
 
 /// One person in the meeting attendance view. The person ID and attendance remain available even when a current visible active membership cannot be included.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMeetingMember {
     /// True exactly when status is present.
     #[serde(rename = "isCheckedIn")]
@@ -12912,7 +13436,7 @@ pub struct GroupMeetingMember {
 }
 
 /// Counts by attendance status. These are calculated for the meeting and are separate from numGuests.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMeetingStatistics {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub absent: Option<i64>,
@@ -12928,7 +13452,7 @@ pub struct GroupMeetingStatistics {
 }
 
 /// A person’s membership in one group. The membership has its own record ID, a role defined by the group type, and an independent membership status. Use person.domainIdentifier as personId in membership endpoint URLs; id identifies the membership record. Field visibility depends on the current user’s permissions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMember {
     /// Legacy response-field mapping emitted by the membership transformer.
     #[serde(rename = "@deprecated")]
@@ -12990,7 +13514,7 @@ pub struct GroupMember {
 }
 
 /// Group-wide capacity counters, independent of the caller’s individual member visibility. These counters have different role/status scopes and are not a partition of one common total.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberCounts {
     /// Non-archived memberships in non-hidden roles of this group type, excluding to_delete; includes requested/waiting memberships.
     #[serde(rename = "allPlaces", deserialize_with = "crate::lenient::number")]
@@ -13013,7 +13537,7 @@ pub struct GroupMemberCounts {
 }
 
 /// Legacy response-field mapping emitted by the membership transformer.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberDeprecated {
     #[serde(rename = "personId", deserialize_with = "crate::lenient::string")]
     pub person_id: String,
@@ -13023,7 +13547,7 @@ pub struct GroupMemberDeprecated {
 }
 
 /// One requested export column. Its header and format are derived from the referenced field; extra display metadata in the request is ignored.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberExportColumn {
     /// Column reference. Use person., groupMemberField., relation. or group_type.. Fixed membership columns are member.comment, member.groupMemberStatus, member.groupTypeRoleName, member.memberStartDate, member.memberEndDate, member.registeredBy, member.registeredBy_fullName and member.waitingListPosition. Special columns are special.age, special.Anrede1, special.Anrede2, special.id, special.__combined_name and special.growPath. Some person fields expand to multiple columns. Unknown keys are not reliably rejected.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -13034,7 +13558,7 @@ pub struct GroupMemberExportColumn {
 }
 
 /// Version 10 column selection. Columns are emitted in pinned order followed by unpinned order; person.id is prepended to pinned when absent from both lists. Pinned columns are frozen in XLSX; CSV only preserves their ordering. An empty pair of lists still exports person.id.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberExportConfig {
     /// Leading columns, frozen horizontally in XLSX.
     pub pinned: Vec<GroupMemberExportColumn>,
@@ -13050,7 +13574,7 @@ pub struct GroupMemberExportConfig {
 }
 
 /// Optional custom column selection. Omit config, send null or an empty object to use the default export.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberExportCreate {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub config: serde_json::Value,
@@ -13060,7 +13584,7 @@ pub struct GroupMemberExportCreate {
 }
 
 /// Built-in full export preset. Replaces any supplied column lists and version.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberExportTemplate {
     /// Select every discoverable person, relationship, group-type, special and accessible membership field.
     /// Allowed values: `allin`.
@@ -13072,7 +13596,7 @@ pub struct GroupMemberExportTemplate {
 }
 
 /// A group-specific membership field definition. Values belong to a person’s membership in this group, rather than to the person globally.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldGroup {
     /// Compatibility mapping returned by the serializer.
     #[serde(rename = "@deprecated")]
@@ -13135,7 +13659,7 @@ pub struct GroupMemberFieldGroup {
 }
 
 /// Creates a field on memberships of the path group. Its type is fixed after creation. The reference name is generated when omitted; defaults and choices are normalized to the field type.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldGroupCreate {
     /// Default value, validated according to fieldTypeCode. Checkbox accepts booleans and supported boolean strings; number accepts numbers or numeric strings. Date/datetime require date/Zulu date-time strings. Text and textarea accept up to 4000 characters; api accepts up to 255. Select/radioselect accept an option name or ID; multiselect accepts an array, comma-separated string or JSON-encoded array of option names/IDs. Responses normalize scalar values to strings and multiselect values to arrays of option-ID strings. Null clears the default.
     #[serde(rename = "defaultValue", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -13148,17 +13672,25 @@ pub struct GroupMemberFieldGroupCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Optional field name shown in the signup form. Null or text identical to the internal name/note is stored as null, allowing the internal text to be used.
-    #[serde(rename = "nameInSignupForm", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name_in_signup_form: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "nameInSignupForm", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name_in_signup_form: Option<Option<String>>,
     /// Internal field description.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Optional field description shown in the signup form. Null or text identical to the internal name/note is stored as null, allowing the internal text to be used.
-    #[serde(rename = "noteInSignupForm", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note_in_signup_form: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "noteInSignupForm", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note_in_signup_form: Option<Option<String>>,
     /// Choices for select, radioselect or multiselect, in display order. Only name is needed; submitted IDs are discarded and new IDs are allocated. Duplicate new names are deduplicated. Omitted/null/empty creates no choices; options for other field types are not retained.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub options: Option<Vec<GroupMemberFieldGroupOptionCreate>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub options: Option<Option<Vec<GroupMemberFieldGroupOptionCreate>>>,
     /// Optional stable machine-readable key. If omitted, it is generated from the field name.
     #[serde(rename = "referenceName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub reference_name: Option<String>,
@@ -13180,7 +13712,7 @@ pub struct GroupMemberFieldGroupCreate {
 }
 
 /// Compatibility mapping returned by the serializer.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldGroupDeprecated {
     #[serde(rename = "fieldName", deserialize_with = "crate::lenient::string")]
     pub field_name: String,
@@ -13189,7 +13721,7 @@ pub struct GroupMemberFieldGroupDeprecated {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldGroupOption {
     /// Backend-assigned option ID serialized as a string. Update requests accept its numeric value.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -13203,7 +13735,7 @@ pub struct GroupMemberFieldGroupOption {
 }
 
 /// A newly created choice. Use an object containing name; compact string entries are rejected by the current controller. Submitted compatibility IDs are discarded on create.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldGroupOptionCreate {
     /// Option display value, trimmed before storage.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -13214,11 +13746,13 @@ pub struct GroupMemberFieldGroupOptionCreate {
 }
 
 /// Choice in a replacement option list. Include the existing numeric ID to retain a choice; omit it or use null to create a new choice.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldGroupOptionPatch {
     /// Existing option ID belonging to this field, or null for a new option.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub id: Option<Option<i64>>,
     /// Display label, trimmed before storage.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -13228,7 +13762,7 @@ pub struct GroupMemberFieldGroupOptionPatch {
 }
 
 /// Partial membership field update. Omitted fields are preserved. options, when supplied, replaces the full list and can modify stored member selections. Field type cannot be changed.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldGroupPatch {
     /// Default value, validated according to fieldTypeCode. Checkbox accepts booleans and supported boolean strings; number accepts numbers or numeric strings. Date/datetime require date/Zulu date-time strings. Text and textarea accept up to 4000 characters; api accepts up to 255. Select/radioselect accept an option name or ID; multiselect accepts an array, comma-separated string or JSON-encoded array of option names/IDs. Responses normalize scalar values to strings and multiselect values to arrays of option-ID strings. Null clears the default.
     #[serde(rename = "defaultValue", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -13237,17 +13771,25 @@ pub struct GroupMemberFieldGroupPatch {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     /// Optional field name shown in the signup form. Null or text identical to the internal name/note is stored as null, allowing the internal text to be used.
-    #[serde(rename = "nameInSignupForm", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name_in_signup_form: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "nameInSignupForm", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name_in_signup_form: Option<Option<String>>,
     /// Internal field description.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Optional field description shown in the signup form. Null or text identical to the internal name/note is stored as null, allowing the internal text to be used.
-    #[serde(rename = "noteInSignupForm", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note_in_signup_form: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "noteInSignupForm", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note_in_signup_form: Option<Option<String>>,
     /// Full replacement list. Retain numeric IDs of existing choices; omitted choices are deleted and removed from member values. [] removes all choices. Current backend behavior for null rebuilds existing labels with new IDs, which also clears selections using the previous IDs; preserve the list by omitting options instead.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub options: Option<Vec<GroupMemberFieldGroupOptionPatch>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub options: Option<Option<Vec<GroupMemberFieldGroupOptionPatch>>>,
     /// Machine-readable key, unique within this group. Changing it changes the key used by reference-name clients; existing numeric field IDs remain unchanged.
     #[serde(rename = "referenceName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub reference_name: Option<String>,
@@ -13269,7 +13811,7 @@ pub struct GroupMemberFieldGroupPatch {
 }
 
 /// Full update of a membership field. Requires name, referenceName, securityLevel and both registration flags. Omitted notes, signup labels and defaultValue are cleared; sortKey resets to zero. Supply options with existing IDs to preserve selections.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldGroupUpdate {
     /// Default value, validated according to fieldTypeCode. Checkbox accepts booleans and supported boolean strings; number accepts numbers or numeric strings. Date/datetime require date/Zulu date-time strings. Text and textarea accept up to 4000 characters; api accepts up to 255. Select/radioselect accept an option name or ID; multiselect accepts an array, comma-separated string or JSON-encoded array of option names/IDs. Responses normalize scalar values to strings and multiselect values to arrays of option-ID strings. Null clears the default.
     #[serde(rename = "defaultValue", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -13278,17 +13820,25 @@ pub struct GroupMemberFieldGroupUpdate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Optional field name shown in the signup form. Null or text identical to the internal name/note is stored as null, allowing the internal text to be used.
-    #[serde(rename = "nameInSignupForm", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name_in_signup_form: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "nameInSignupForm", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name_in_signup_form: Option<Option<String>>,
     /// Internal field description.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Optional field description shown in the signup form. Null or text identical to the internal name/note is stored as null, allowing the internal text to be used.
-    #[serde(rename = "noteInSignupForm", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note_in_signup_form: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "noteInSignupForm", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note_in_signup_form: Option<Option<String>>,
     /// Full replacement list; include IDs of choices to retain. [] removes all choices and their selections. Omission or null currently rebuilds the existing labels with new IDs and can clear previous selections. Always send existing IDs when preserving choices in PUT.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub options: Option<Vec<GroupMemberFieldGroupOptionPatch>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub options: Option<Option<Vec<GroupMemberFieldGroupOptionPatch>>>,
     /// Machine-readable key, unique within this group. Changing it changes the key used by reference-name clients; existing numeric field IDs remain unchanged.
     #[serde(rename = "referenceName", deserialize_with = "crate::lenient::string")]
     pub reference_name: String,
@@ -13310,7 +13860,7 @@ pub struct GroupMemberFieldGroupUpdate {
 }
 
 /// A global person field configured for this group’s membership/signup UI. id identifies the configuration row; dbField.id identifies the underlying person field used in the /memberfields/person/{fieldId} path.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldPerson {
     /// Whether the person field is required in this group’s signup form.
     #[serde(rename = "requiredInRegistrationForm")]
@@ -13333,7 +13883,7 @@ pub struct GroupMemberFieldPerson {
 }
 
 /// Underlying global field definition. Its id, rather than this resource’s id, identifies the person-field link in the API path.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldPersonDbField {
     /// Whether a person field’s value is cleared on archiving. Cannot be true for a non-nullable field.
     #[serde(rename = "deleteOnArchive")]
@@ -13423,7 +13973,7 @@ pub struct GroupMemberFieldPersonDbField {
 }
 
 /// Upsert settings for the person-field link. Both settings are required and replace their current values.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldPersonUpdate {
     /// Whether the person field is required in this group’s signup form.
     #[serde(rename = "requiredInRegistrationForm")]
@@ -13436,7 +13986,7 @@ pub struct GroupMemberFieldPersonUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberFieldsItem {
     /// ID of the group member field definition.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -13456,7 +14006,7 @@ pub struct GroupMemberFieldsItem {
 }
 
 /// Group to which this membership belongs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberGroup {
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::string")]
     pub api_url: String,
@@ -13495,7 +14045,7 @@ pub struct GroupMemberGroup {
 }
 
 /// Legacy membership history with snapshots immediately after and before an event. This endpoint is separate from the general history API. current/previous are both objects even for creation/removal; null fields represent absent membership state.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberHistoryEntry {
     /// State after this change.
     pub current: GroupMemberHistoryEntryCurrent,
@@ -13521,7 +14071,7 @@ pub struct GroupMemberHistoryEntry {
 }
 
 /// State after this change.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberHistoryEntryCurrent {
     /// Membership comment at this point; empty strings and the string 0 serialize as null.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -13548,7 +14098,7 @@ pub struct GroupMemberHistoryEntryCurrent {
 }
 
 /// State from the linked previous history entry, independently of filters and pagination. All fields are null when no previous snapshot exists.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberHistoryEntryPrevious {
     /// Membership comment at this point; empty strings and the string 0 serialize as null.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -13575,7 +14125,7 @@ pub struct GroupMemberHistoryEntryPrevious {
 }
 
 /// One group meeting paired with the requested person’s recorded attendance, if any.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberMeeting {
     /// Group meeting as returned by the member history endpoint. Attendance statistics are not calculated here.
     #[serde(rename = "groupMeeting")]
@@ -13590,7 +14140,7 @@ pub struct GroupMemberMeeting {
 }
 
 /// Newsletter subscription information, included when the member list is requested with include=newsletter.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberNewsletter {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -13601,7 +14151,7 @@ pub struct GroupMemberNewsletter {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberNewsletterPersonStatus {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "doiDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -13618,7 +14168,7 @@ pub struct GroupMemberNewsletterPersonStatus {
 }
 
 /// Person who belongs to the group. domainIdentifier is the person ID as a string.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberPerson {
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::string")]
     pub api_url: String,
@@ -13655,7 +14205,7 @@ pub struct GroupMemberPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberShort {
     /// Whether this row represents a deleted historical membership
     pub deleted: bool,
@@ -13677,7 +14227,7 @@ pub struct GroupMemberShort {
 }
 
 /// Statistics for one authorized requested field. Group membership fields precede person fields; request order is preserved within each set.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberStatistic {
     /// Person date fields return earliest/latest records. Other fields return frequency buckets, normally sorted by descending count.
     pub data: Vec<serde_json::Value>,
@@ -13704,7 +14254,7 @@ pub struct GroupMemberStatistic {
 }
 
 /// Frequency of a stored value or option label. Multiselect memberships can contribute to several buckets.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberStatisticBucket {
     /// Number of occurrences of this value.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -13718,7 +14268,7 @@ pub struct GroupMemberStatisticBucket {
 }
 
 /// Earliest or latest non-null value of a person date field.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberStatisticDateExtreme {
     /// Person as Domain Object
     #[serde(rename = "domainObject")]
@@ -13737,7 +14287,7 @@ pub struct GroupMemberStatisticDateExtreme {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberStatistics {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub active: f64,
@@ -13760,7 +14310,7 @@ pub struct GroupMemberStatistics {
 }
 
 /// Binds a routine to one group, group-type role and membership status. Matching memberships use this binding to select their automation; the nested routine contains configuration, not execution history.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMembershipRoutine {
     /// Group using this routine.
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -13783,7 +14333,7 @@ pub struct GroupMembershipRoutine {
 }
 
 /// Create-if-missing binding request. On an existing binding the current backend ignores routineId and returns the original routine. For a new binding routineId is required to avoid a server error.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupMembershipRoutineUpdate {
     /// ID of an existing routine with no steps. Needed when creating a binding; ignored if a binding already exists for this path.
     #[serde(rename = "routineId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -13793,7 +14343,7 @@ pub struct GroupMembershipRoutineUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupModifiedPerson {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -13802,7 +14352,7 @@ pub struct GroupModifiedPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupPermissions {
     /// Current user can start chat.
     #[serde(rename = "startChat")]
@@ -13816,7 +14366,7 @@ pub struct GroupPermissions {
 }
 
 /// Counts currently published, unexpired, non-banned posts by their configured group visibility. Both counters are always present.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupPostStatistics {
     /// Posts restricted to group members.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -13829,7 +14379,7 @@ pub struct GroupPostStatistics {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupPublicPostsStatistic {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub count: f64,
@@ -13842,7 +14392,7 @@ pub struct GroupPublicPostsStatistic {
 }
 
 /// Stored check-in ticket for one person and group. A ticket is distinct from membership and attendance: reading it does not create a membership or check the person in. Ticket lifecycle timestamps may remain null.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupQRCodeCheckin {
     /// ChurchTools group ID.
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
@@ -13878,7 +14428,7 @@ pub struct GroupQRCodeCheckin {
 }
 
 /// A shared group-type role combined with its settings for one concrete group. id identifies this group's role settings; groupTypeRoleId identifies the shared definition. growPathId is also group-specific. The inherited name, type and default/hidden flags describe the shared definition.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupRole {
     /// ID of the group type this role belongs to. Discover group types with GET /group/grouptypes.
     #[serde(rename = "groupTypeId", deserialize_with = "crate::lenient::number")]
@@ -13945,7 +14495,7 @@ pub struct GroupRole {
 }
 
 /// Change only the supplied settings for a role in one group; omitted fields retain their current values.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupRoleUpdate {
     /// Allow members in this role to read the group chat.
     #[serde(rename = "canReadChat", default, skip_serializing_if = "Option::is_none")]
@@ -13960,8 +14510,10 @@ pub struct GroupRoleUpdate {
     #[serde(rename = "forceTwoFactorAuth", default, skip_serializing_if = "Option::is_none")]
     pub force_two_factor_auth: Option<bool>,
     /// Set the growth-path association for this role in this group. Send null to clear it; omit the field to keep the current value.
-    #[serde(rename = "growPathId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub grow_path_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "growPathId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub grow_path_id: Option<Option<i64>>,
     /// Replace the list of HTML templates available for membership documents in this role. Send an empty array to clear the list; null is not accepted. Newly added templates must support group membership documents.
     #[serde(rename = "htmlTemplateIds", default, skip_serializing_if = "Option::is_none")]
     pub html_template_ids: Option<Vec<i64>>,
@@ -13976,7 +14528,7 @@ pub struct GroupRoleUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupSettings {
     /// Own children are listed as option during group sign up.
     #[serde(rename = "allowChildRegistration")]
@@ -14107,7 +14659,7 @@ pub struct GroupSettings {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupSettingsGroupMeeting {
     /// Automatically create group meetings.
     #[serde(rename = "autoCreate")]
@@ -14121,7 +14673,7 @@ pub struct GroupSettingsGroupMeeting {
 }
 
 /// Campus, status, and department for newly created persons.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupSettingsNewMember {
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub campus_id: Option<i64>,
@@ -14135,7 +14687,7 @@ pub struct GroupSettingsNewMember {
 }
 
 /// Specifies conditions required to sign up in this group. Not all conditions apply to any user, e.g. some of the conditions only apply to users that are not logged in.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupSignUpConditions {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::map")]
     pub deprecated: std::collections::BTreeMap<String, String>,
@@ -14200,7 +14752,7 @@ pub struct GroupSignUpConditions {
 }
 
 /// Options for sending or previewing the group sign-up notification. The body is optional.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupSignUpNotificationRequest {
     /// Preview recipient selection without sending or marking the group as notified. Can also be supplied as a query parameter; use only one location.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -14211,7 +14763,7 @@ pub struct GroupSignUpNotificationRequest {
 }
 
 /// Recipient selection count for a group sign-up push notification. This endpoint returns the object directly, without a data wrapper.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupSignUpNotificationResult {
     /// Number of selected recipient rows, also in dry runs. A person with multiple registered push devices can be counted multiple times. This is not a count of unique persons or confirmed deliveries.
     #[serde(rename = "sentToCount", deserialize_with = "crate::lenient::number")]
@@ -14221,7 +14773,7 @@ pub struct GroupSignUpNotificationResult {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupSignupConditions {
     #[serde(rename = "canContactLeader")]
     pub can_contact_leader: bool,
@@ -14269,7 +14821,7 @@ pub struct GroupSignupConditions {
 }
 
 /// Per-role/status counts restricted to visible members, alongside capacity counters for the full group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupStatistics {
     /// Histogram keyed by group-type-role ID and membership status, for example 8:active. Only visible persons/members contribute. Empty histogram serializes as [].
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -14281,7 +14833,7 @@ pub struct GroupStatistics {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupStatisticsMembersVariant1Value {
     /// Number of visible memberships in this role/status.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -14294,7 +14846,7 @@ pub struct GroupStatisticsMembersVariant1Value {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupStatus {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -14311,7 +14863,7 @@ pub struct GroupStatus {
 }
 
 /// A configurable type shared by groups, such as small groups or ministry teams. It defines common settings and the set of membership roles available to those groups. A group references its type through `information.groupTypeId`; a membership role describes a person's function within a group, such as leader or participant.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupType {
     /// Whether eligible groups of this type are offered for membership selection when creating a person in the ChurchTools UI. This does not automatically add the person to a group or grant membership permissions.
     #[serde(rename = "availableForNewPerson")]
@@ -14361,7 +14913,7 @@ pub struct GroupType {
 }
 
 /// Changes the group type and migrates type-specific role references. Keys and values are group-type role IDs, not group-role row IDs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupTypeChangeUpdate {
     /// ID of the target group type.
     #[serde(rename = "groupTypeId", deserialize_with = "crate::lenient::number")]
@@ -14374,7 +14926,7 @@ pub struct GroupTypeChangeUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupTypeCreate {
     /// Whether eligible groups of this type are offered for membership selection when creating a person in the ChurchTools UI. This does not automatically add the person to a group or grant membership permissions.
     #[serde(rename = "availableForNewPerson")]
@@ -14384,8 +14936,10 @@ pub struct GroupTypeCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub color: String,
     /// Optional explanatory text for this group type. Returned as null when no description is stored.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Whether groups of this type are expected to retain a leader. The ChurchTools UI uses this setting when removing leaders or deactivating leader roles.
     #[serde(rename = "isLeaderNecessary")]
     pub is_leader_necessary: bool,
@@ -14413,7 +14967,7 @@ pub struct GroupTypeCreate {
 }
 
 /// Creation and last modification timestamps and person IDs for this group type.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupTypeMeta {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -14431,7 +14985,7 @@ pub struct GroupTypeMeta {
 }
 
 /// One wiki category made available through the current user’s role in this group, with a limited list of latest page versions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupWikiCategoryPagesItem {
     /// Category metadata with edit/delete permissions for the current user.
     pub category: GroupWikiCategoryPagesItemCategory,
@@ -14446,7 +15000,7 @@ pub struct GroupWikiCategoryPagesItem {
 }
 
 /// Category metadata with edit/delete permissions for the current user.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupWikiCategoryPagesItemCategory {
     /// Campus association, or null when no campus is assigned.
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -14477,7 +15031,7 @@ pub struct GroupWikiCategoryPagesItemCategory {
 }
 
 /// Page-operation hints based on category edit rights. Populated by the category list; normally empty in create/update and embedded page categories.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupWikiCategoryPagesItemCategoryPermissions {
     #[serde(rename = "canDelete", default, skip_serializing_if = "Option::is_none")]
     pub can_delete: Option<bool>,
@@ -14488,7 +15042,7 @@ pub struct GroupWikiCategoryPagesItemCategoryPermissions {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupedGroups {
     /// Allowed values: `ageGroup`, `campus`, `groupCategory`, `groupStatus`, `groupType`, `isOpenForMembers`, `targetGroup`, `visibility`.
     #[serde(rename = "groupedBy", deserialize_with = "crate::lenient::string")]
@@ -14500,7 +15054,7 @@ pub struct GroupedGroups {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GroupedGroupsGroupedGroupsValue {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub all: i64,
@@ -14514,7 +15068,7 @@ pub struct GroupedGroupsGroupedGroupsValue {
 }
 
 /// A growth-path stage used to classify a person’s progress through group participation. Group-type roles and concrete group roles reference its ID. Person calculation selects the matching stage with the highest sortKey; this catalog is not a per-person activity history.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GrowPath {
     /// Stored display color key. Create/update accept CTColor values; existing rows serialize the stored string.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -14538,7 +15092,7 @@ pub struct GrowPath {
 }
 
 /// Create a stage used by role-based person growth-path calculation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GrowPathCreate {
     /// Color key accepted by the growth-path validator.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -14556,7 +15110,7 @@ pub struct GrowPathCreate {
 }
 
 /// Replacement stage fields. ID comes from the URL. name and color are required; omitting sortKey resets it to 0, unlike the comment-viewer update endpoint.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct GrowPathUpdate {
     /// Color key accepted by the growth-path validator.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -14573,7 +15127,7 @@ pub struct GrowPathUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct HistoryBeforeAfterValue {
     #[serde(rename = "afterValue", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub after_value: Option<String>,
@@ -14598,7 +15152,7 @@ pub struct HistoryBeforeAfterValue {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct HistoryEntry {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub action: String,
@@ -14621,7 +15175,7 @@ pub struct HistoryEntry {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct HistoryLink {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::string")]
     pub domain_id: String,
@@ -14637,7 +15191,7 @@ pub struct HistoryLink {
 }
 
 /// Stored template metadata. HTML and MJML content are separate file references; retrieve the corresponding content endpoints for source text. Image assets are stored separately.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct HtmlTemplate {
     /// Template purpose: email for group-member emails, bulkletter for mail-merged letters, groupmember-document for membership documents, and donation-receipt-letter/attachment for donation receipt output.
     /// Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
@@ -14668,7 +15222,7 @@ pub struct HtmlTemplate {
 }
 
 /// Editor asset descriptor for one stored image upload; does not include a file ID or general file metadata.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct HtmlTemplateAssetUpload {
     /// Original uploaded file name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -14686,7 +15240,7 @@ pub struct HtmlTemplateAssetUpload {
 }
 
 /// Creates template metadata owned by the current user, with independently optional HTML and MJML source files. The API stores both sources as supplied; it does not compile MJML into HTML. Membership-document and donation-receipt purposes require isGlobal=true.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct HtmlTemplateCreate {
     /// Template purpose: email for group-member emails, bulkletter for mail-merged letters, groupmember-document for membership documents, and donation-receipt-letter/attachment for donation receipt output.
     /// Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
@@ -14699,21 +15253,27 @@ pub struct HtmlTemplateCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Copy image asset files from this template ID after creating the new template. Does not copy HTML/MJML or rewrite embedded URLs; omit/null to copy none.
-    #[serde(rename = "copyAssetsFromId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub copy_assets_from_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "copyAssetsFromId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub copy_assets_from_id: Option<Option<i64>>,
     /// HTML source; omitted/null stores no HTML file. The nonempty string 0 is also treated as absent by the current service.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub html: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub html: Option<Option<String>>,
     /// MJML editor source; omitted/null stores no MJML file. This input is not compiled or validated as MJML by this endpoint.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub mjml: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub mjml: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Identifier and display name of an HTML document template. This does not include template content or a generated document.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct HtmlTemplateInfo {
     /// Template ID used when requesting the generated membership document.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -14726,29 +15286,39 @@ pub struct HtmlTemplateInfo {
 }
 
 /// Partial metadata/content update. Omission or null preserves existing values; null does not delete content. HTML/MJML are independent sources and are not rendered/compiled here.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct HtmlTemplateUpdate {
     /// Replace HTML source when nonempty and truthy; null/omission and the string 0 preserve existing content. Empty string fails validation.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub html: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub html: Option<Option<String>>,
     /// Attach a file in the html_template domain, either already belonging to this template or an unbound upload (domainId=-1) created by the current user. Evaluated after html/mjml updates; deletes other content files and clears mjmlFileId. Null/0/omission preserves the current reference.
-    #[serde(rename = "htmlFileId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub html_file_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "htmlFileId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub html_file_id: Option<Option<i64>>,
     /// Change shared availability; null/omission preserves it. Membership-document and donation-receipt templates must stay global.
-    #[serde(rename = "isGlobal", default, skip_serializing_if = "Option::is_none")]
-    pub is_global: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "isGlobal", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub is_global: Option<Option<bool>>,
     /// Replace MJML source independently; null/omission and the string 0 preserve it. Empty string fails validation.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub mjml: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub mjml: Option<Option<String>>,
     /// New trimmed display name; null/omission preserves it. The current service also ignores the otherwise valid name 0.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Image {
     #[serde(rename = "additionalInfos")]
     pub additional_infos: Vec<String>,
@@ -14784,7 +15354,7 @@ pub struct Image {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ImageImageOption {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub crop: Option<ImageImageOptionCrop>,
@@ -14795,7 +15365,7 @@ pub struct ImageImageOption {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ImageImageOptionCrop {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub bottom: Option<String>,
@@ -14810,7 +15380,7 @@ pub struct ImageImageOptionCrop {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ImageImageOptionFocus {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub x: Option<String>,
@@ -14822,7 +15392,7 @@ pub struct ImageImageOptionFocus {
 }
 
 /// Image metadata returned after an update.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ImageMetadataUpdateResult {
     /// Whether the image was generated with AI.
     #[serde(rename = "aiGenerated")]
@@ -14866,34 +15436,44 @@ pub struct ImageMetadataUpdateResult {
 }
 
 /// Image metadata update used by both image update routes.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ImageUpdate {
     /// Whether the image was generated with AI.
     #[serde(rename = "aiGenerated", default, skip_serializing_if = "Option::is_none")]
     pub ai_generated: Option<bool>,
     /// Image credit or attribution.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub annotation: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub annotation: Option<Option<String>>,
     /// Attribution link.
-    #[serde(rename = "annotationLink", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub annotation_link: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "annotationLink", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub annotation_link: Option<Option<String>>,
     /// Alternative text describing the image for screen readers.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Legacy alias for `options`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
-    pub image_options: Option<String>,
+    pub image_options: Option<Option<String>>,
     /// JSON-encoded image options. `crop` contains the `top`, `right`, `bottom` and `left` margins relative to the original dimensions. `focus` contains `x` and `y` coordinates relative to the original top-left corner.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub options: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub options: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Internal permissions derived from the current user's groups linked to service roles. Global rights and other policy grants, such as event administration, are not included. This is not a complete authorization result for an API action.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalEventPermissions {
     /// Event-level rights from connected groups with valid service assignments in this event. `+edit agenda` additionally requires an assignment to the current person in the relevant group. Empty when none were found.
     #[serde(rename = "internalPerms", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -14910,7 +15490,7 @@ pub struct InternalEventPermissions {
 }
 
 /// Sparse map of granted internal group permissions. Only present keys are granted by this calculation; values are always `true`. Absence does not evaluate grants from other authorization sources.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalEventRights {
     #[serde(rename = "+attach file", default, skip_serializing_if = "Option::is_none")]
     pub attach_file: Option<bool>,
@@ -14926,7 +15506,7 @@ pub struct InternalEventRights {
 }
 
 /// Sparse map of granted internal group permissions. Only present keys are granted by this calculation; values are always `true`. Absence does not evaluate grants from other authorization sources.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalEventServiceGroupRights {
     #[serde(rename = "+view absence", default, skip_serializing_if = "Option::is_none")]
     pub view_absence: Option<bool>,
@@ -14938,7 +15518,7 @@ pub struct InternalEventServiceGroupRights {
 }
 
 /// Sparse map of granted internal group permissions. Only present keys are granted by this calculation; values are always `true`. Absence does not evaluate grants from other authorization sources.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalEventServiceRights {
     #[serde(rename = "+admin service", default, skip_serializing_if = "Option::is_none")]
     pub admin_service: Option<bool>,
@@ -14962,7 +15542,7 @@ pub struct InternalEventServiceRights {
 }
 
 /// Current user’s group-internal values for a target group, grouped by active module. Grants come from direct role assignments and inherited superior-group assignments. Flags default to false, maximum levels to 0, and selectable permissions can be 0 when absent or integer arrays when granted. Maximum unrestricted access uses 99999. Global grants and object policies are not included.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalGroupPermissions {
     /// Group-internal permission values from the churchdb module.
     pub churchdb: InternalGroupPermissionsChurchdb,
@@ -14978,7 +15558,7 @@ pub struct InternalGroupPermissions {
 }
 
 /// Group-internal permission values from the churchdb module.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalGroupPermissionsChurchdb {
     #[serde(rename = "+add person", default, skip_serializing_if = "Option::is_none")]
     pub add_person: Option<bool>,
@@ -15085,7 +15665,7 @@ pub struct InternalGroupPermissionsChurchdb {
 }
 
 /// Group-internal permission values from the churchservice module.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalGroupPermissionsChurchservice {
     #[serde(rename = "+admin service", default, skip_serializing_if = "Option::is_none")]
     pub admin_service: Option<bool>,
@@ -15121,7 +15701,7 @@ pub struct InternalGroupPermissionsChurchservice {
 }
 
 /// Group-internal permission values from the finance module.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalGroupPermissionsFinance {
     #[serde(rename = "+allow posting", default, skip_serializing_if = "Option::is_none")]
     pub allow_posting: Option<bool>,
@@ -15137,7 +15717,7 @@ pub struct InternalGroupPermissionsFinance {
 }
 
 /// Current user’s internal permission values toward a target person. Combines grants over the target person’s non-archived groups, including pending/waiting/to-delete memberships in the target group selection. This is not the target person’s own permissions or a full authorization decision.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalPersonPermissions {
     pub churchdb: InternalPersonPermissionsChurchdb,
     /// Only present when the service module and its person-related definitions are active.
@@ -15148,7 +15728,7 @@ pub struct InternalPersonPermissions {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalPersonPermissionsChurchdb {
     #[serde(rename = "+do followup", default, skip_serializing_if = "Option::is_none")]
     pub do_followup: Option<bool>,
@@ -15170,7 +15750,7 @@ pub struct InternalPersonPermissionsChurchdb {
 }
 
 /// Only present when the service module and its person-related definitions are active.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct InternalPersonPermissionsChurchservice {
     #[serde(rename = "+see workload", default, skip_serializing_if = "Option::is_none")]
     pub see_workload: Option<bool>,
@@ -15180,7 +15760,7 @@ pub struct InternalPersonPermissionsChurchservice {
 }
 
 /// Persisted background-job summary. The identifier is a string generated when scheduling, not an integer database ID. Execution arguments and log entries are not included.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Job {
     /// Scheduling timestamp.
     #[serde(rename = "createdDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -15213,7 +15793,7 @@ pub struct Job {
 }
 
 /// Stored sync job configuration. master means ChurchTools; ES means the configured external system.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct JobConfigurationReturn {
     /// Whether the periodic scheduler can start this job.
     #[serde(rename = "autoScheduleEnabled")]
@@ -15273,7 +15853,7 @@ pub struct JobConfigurationReturn {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct JobGroupStatus {
     pub jobs: JobGroupStatusJobs,
     /// Name of Job Group. `__single__` is For Jobs Which don't Belong to a Group
@@ -15287,7 +15867,7 @@ pub struct JobGroupStatus {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct JobGroupStatusJobs {
     /// Number of Buried Jobs
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -15307,7 +15887,7 @@ pub struct JobGroupStatusJobs {
 }
 
 /// Message appended to the application log for an existing background job.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct JobLogCreate {
     /// Log message.
     #[serde(rename = "logMessage", deserialize_with = "crate::lenient::string")]
@@ -15318,7 +15898,7 @@ pub struct JobLogCreate {
 }
 
 /// One diagnostic entry produced by a background or bulk job. elementId and elementName identify the job element, whose domain depends on the job.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct JobLogEntry {
     /// Identifier of the processed element.
     #[serde(rename = "elementId", deserialize_with = "crate::lenient::number")]
@@ -15341,7 +15921,7 @@ pub struct JobLogEntry {
 }
 
 /// Assigns a stored job status and emits the status-change event. It does not enqueue, interrupt or restart a worker.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct JobStatusUpdate {
     /// Marks the status change as manual.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -15356,7 +15936,7 @@ pub struct JobStatusUpdate {
 }
 
 /// Creates an address-label PDF for the selected visible persons. Uses stored person fields and relationship data at generation time.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LabelCreate {
     /// Combine selected visible spouses linked by relationship type 2 into one label. Their addresses need not match. Birthday sorting always disables this option.
     #[serde(rename = "combineSpouses", default, skip_serializing_if = "Option::is_none")]
@@ -15377,7 +15957,7 @@ pub struct LabelCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LabelTotals {
     /// Counts regardless of missing address fields; PDF generation uses this population.
     #[serde(rename = "ignoreAddress")]
@@ -15391,7 +15971,7 @@ pub struct LabelTotals {
 }
 
 /// Counts regardless of missing address fields; PDF generation uses this population.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LabelTotalsIgnoreAddress {
     /// Count after combining selected visible spouses. It is the resulting label count, not the number of couples.
     #[serde(rename = "combinedLabels", deserialize_with = "crate::lenient::number")]
@@ -15405,7 +15985,7 @@ pub struct LabelTotalsIgnoreAddress {
 }
 
 /// Counts requiring nonempty street, postal code and city after optional spouse grouping. Completeness uses stored fields, not the requesting user’s field-level visibility.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LabelTotalsOnlyCompleteAddress {
     /// Count after combining selected visible spouses. It is the resulting label count, not the number of couples.
     #[serde(rename = "combinedLabels", deserialize_with = "crate::lenient::number")]
@@ -15419,7 +15999,7 @@ pub struct LabelTotalsOnlyCompleteAddress {
 }
 
 /// Read-only count request for address labels.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LabelTotalsRequest {
     /// Selected person IDs. Prefer an array of integers; legacy comma-separated strings and a single integer are also accepted. Duplicate IDs do not duplicate labels. Empty selection yields no persons; nonexistent or invisible persons are omitted.
     #[serde(rename = "personIds", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -15429,7 +16009,7 @@ pub struct LabelTotalsRequest {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Language {
     /// The language code is a two-letter code that represents the language. For example, "en" for English, "de" for German, and "fr" for French.
     /// Allowed values: `cn`, `de`, `en`, `es`, `fa`, `fi`, `fr`, `it`, `nl`, `pl`, `pt`, `ru`, `sv`, `tw`.
@@ -15449,7 +16029,7 @@ pub struct Language {
 }
 
 /// Deprecated raw cc_file database row with an added download URL. Numeric/boolean columns are strings, date columns use SQL datetime strings, JSON columns remain JSON text. SELECT * can expose further database columns as the schema evolves; use CtFile through /files/{id}/meta for a stable normalized contract.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LegacyFileMetadata {
     /// Raw database boolean flag (0 or 1 as string).
     /// Allowed values: `0`, `1`.
@@ -15518,7 +16098,7 @@ pub struct LegacyFileMetadata {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LinkingOpenGraph {
     /// Allowed values: `http-error`, `success`, `timeout-short`.
     #[serde(rename = "fetchStatus", deserialize_with = "crate::lenient::string")]
@@ -15535,7 +16115,7 @@ pub struct LinkingOpenGraph {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LinkingOpenGraphData {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub article: Option<OpenGraphArticle>,
@@ -15581,7 +16161,7 @@ pub struct LinkingOpenGraphData {
 }
 
 /// A global restriction on changing one permission selection, across assignment domains. It does not revoke existing grants. Authorized persons can still modify locked assignments.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LockedPermission {
     /// Numeric permission definition ID; locks may include group-internal (+) permissions as well as global permissions.
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
@@ -15595,20 +16175,22 @@ pub struct LockedPermission {
 }
 
 /// Permission selection to lock or unlock. dataId may be omitted for boolean permissions; selectable permissions require a non-null integer.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LockedPermissionChange {
     /// Numeric permission definition ID; locks may include group-internal (+) permissions as well as global permissions.
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
     pub auth_id: i64,
     /// Omit or use null for a boolean permission. For a selectable permission provide a concrete ID or -1 for all selections. Selection existence/range is currently not validated; do not send the internal storage sentinel -2147483648.
-    #[serde(rename = "dataId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub data_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dataId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub data_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LockedPermissionState {
     /// Whether the current person belongs to the installation’s authorized contact-person list. This is distinct from permission-administration rights.
     #[serde(rename = "isCurrentUserAuthorizedPerson")]
@@ -15621,7 +16203,7 @@ pub struct LockedPermissionState {
 }
 
 /// Atomic additions/removals, not replacement of the full lock list. Both lists are required; empty lists are valid.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LockedPermissionUpdate {
     /// Locks to add. Duplicates are collapsed and existing rows are retained.
     pub add: Vec<LockedPermissionChange>,
@@ -15633,7 +16215,7 @@ pub struct LockedPermissionUpdate {
 }
 
 /// ChurchTools writes log messages for many events and changes. This can be an update for a person or the deletion of an event. You can use the log to debug your system and follow error messages. This is a versitile tool.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Log {
     /// Timestamp of log
     #[serde(serialize_with = "crate::datetime::serialize_utc")]
@@ -15670,7 +16252,7 @@ pub struct Log {
 }
 
 /// Password credentials. The same username may be a ChurchTools login name or an email address. LDAP is tried first when configured, followed by local authentication.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LoginCreate {
     /// Account password; preserve spaces exactly.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -15679,15 +16261,17 @@ pub struct LoginCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub username: String,
     /// Request persistent browser login.
-    #[serde(rename = "rememberMe", default, skip_serializing_if = "Option::is_none")]
-    pub remember_me: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "rememberMe", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub remember_me: Option<Option<bool>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Password credentials. The same username may be a ChurchTools login name or an email address. LDAP is tried first when configured, followed by local authentication.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LoginCredentials {
     /// Account password; preserve spaces exactly.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -15701,7 +16285,7 @@ pub struct LoginCredentials {
 }
 
 /// Result of the password step. Only success completes the login; totp and twoFactorSetup require further requests using the same browser session.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LoginResult {
     /// Suggested navigation location. Pending TOTP uses ?q=twofactor and pending setup uses ?q=twofactorforce. Normal login may return a relative or absolute location, or null.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -15722,7 +16306,7 @@ pub struct LoginResult {
 }
 
 /// Persistent person login token. A previously issued token is reused rather than rotated by this endpoint.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LoginTokenResult {
     /// Person authenticated by the supplied credentials.
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
@@ -15735,7 +16319,7 @@ pub struct LoginTokenResult {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct LoginTotpVerify {
     /// Six-digit current authenticator code. Send it as a string to preserve leading zeroes. A code already accepted recently for this person cannot be reused.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -15749,7 +16333,7 @@ pub struct LoginTotpVerify {
 }
 
 /// Schema for validating markdown conversion requests
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MarkdownRequest {
     /// Global options for all sources
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -15761,7 +16345,7 @@ pub struct MarkdownRequest {
 }
 
 /// Global options for all sources
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MarkdownRequestOptions {
     #[serde(rename = "commonLanguage", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub common_language: Option<String>,
@@ -15773,7 +16357,7 @@ pub struct MarkdownRequestOptions {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MarkdownRequestSourcesItem {
     /// The scope of the input content
     /// Allowed values: `description`, `document`, `plaintext`, `richline`.
@@ -15802,7 +16386,7 @@ pub struct MarkdownRequestSourcesItem {
 }
 
 /// Additional processing options
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MarkdownRequestSourcesItemOptions {
     #[serde(rename = "allowHtml", default, skip_serializing_if = "Option::is_none")]
     pub allow_html: Option<bool>,
@@ -15816,7 +16400,7 @@ pub struct MarkdownRequestSourcesItemOptions {
 }
 
 /// Invitation of one person to the stored calendar appointment/series. The response state applies to that request, not to an individual occurrence. Meeting invitations are separate from registration groups and service assignments.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingRequest {
     /// Use `state` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -15866,7 +16450,7 @@ pub struct MeetingRequest {
 }
 
 /// One visible candidate for an appointment invitation. A person can appear through multiple sources; use person.domainIdentifier when selecting invitees.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingRequestCandidate {
     /// Source group name for groupMember candidates; null for other sources.
     #[serde(rename = "groupName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -15892,7 +16476,7 @@ pub struct MeetingRequestCandidate {
 }
 
 /// Invite one person to a calendar appointment or series.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingRequestCreate {
     /// ID of the person to invite.
     #[serde(rename = "inviteeId", deserialize_with = "crate::lenient::number")]
@@ -15903,7 +16487,7 @@ pub struct MeetingRequestCreate {
 }
 
 /// Reply forwarded by the external calendar-mail processor. The token alone identifies and authorizes one invitation; partstat is supplied separately from the ICS payload.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingRequestIcsReply {
     /// Raw ICS reply used to compare appointment scope.
     #[serde(rename = "icsContent", deserialize_with = "crate::lenient::string")]
@@ -15921,7 +16505,7 @@ pub struct MeetingRequestIcsReply {
 }
 
 /// Person invited to the appointment.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingRequestInvitee {
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::string")]
     pub api_url: String,
@@ -15959,7 +16543,7 @@ pub struct MeetingRequestInvitee {
 }
 
 /// Person issuing the invitation, derived from onBehalfOfPid when set or the user creating the request.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingRequestInviter {
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::string")]
     pub api_url: String,
@@ -15997,7 +16581,7 @@ pub struct MeetingRequestInviter {
 }
 
 /// Use `invitee` instead
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingRequestPerson {
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::string")]
     pub api_url: String,
@@ -16035,7 +16619,7 @@ pub struct MeetingRequestPerson {
 }
 
 /// Answer a meeting request as its invitee. This updates the series-level invitation response.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingRequestUpdate {
     /// Answer accepted by meeting-request response endpoints.
     /// Allowed values: `accept`, `decline`, `maybe`, `reset`, `tentative`.
@@ -16047,7 +16631,7 @@ pub struct MeetingRequestUpdate {
 }
 
 /// Reusable feedback form for group meetings. A group selects a template through settings.groupMeeting.templateId. The template defines form fields; a meeting's pollResult contains fields with the recorded answers. A template is not a meeting date, calendar event or attendance list.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingTemplate {
     /// Name used to select this feedback template in group settings.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -16064,7 +16648,7 @@ pub struct MeetingTemplate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingTemplateCreate {
     /// Name used to select this feedback template in group settings.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -16076,7 +16660,7 @@ pub struct MeetingTemplateCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingTemplateField {
     /// Visible field label, or section heading for caption fields.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -16097,7 +16681,7 @@ pub struct MeetingTemplateField {
 }
 
 /// Creation and modification timestamps and person IDs for the template.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MeetingTemplateMeta {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -16115,7 +16699,7 @@ pub struct MeetingTemplateMeta {
 }
 
 /// A role definition and a limited preview of its active, visible group members. Roles without matching members have an empty members array.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MemberPreview {
     /// Members selected for this role, limited by members_per_role. Entries omit fields, personFields and optional newsletter/tag enrichments.
     pub members: Vec<GroupMember>,
@@ -16127,7 +16711,7 @@ pub struct MemberPreview {
 }
 
 /// Role definition for the group type. Its id matches groupTypeRoleId on each member.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MemberPreviewRole {
     /// ID of the group type this role belongs to. Discover group types with GET /group/grouptypes.
     #[serde(rename = "groupTypeId", deserialize_with = "crate::lenient::number")]
@@ -16170,18 +16754,24 @@ pub struct MemberPreviewRole {
 }
 
 /// Creates a membership linking the group and person from the path. All properties are optional. Defaults select the group type’s standard role and active status; active membership starts at the current time unless a start is provided.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MembershipCreate {
     /// Membership comment; surrounding whitespace is trimmed. Null or empty text clears it. Omission clears an existing comment in the legacy update path.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Values keyed by numeric membership-field definition ID. Only submitted known fields are updated; unknown IDs are ignored. Null clears one field; an omitted/null fields container changes no fields. Field-specific validation applies: text up to 4000 characters, numeric values, dates, timestamps, checkbox booleans, option IDs or labels for select/radioselect, and arrays of option IDs or labels for multiselect.
-    #[serde(deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
-    pub fields: Option<std::collections::BTreeMap<String, serde_json::Value>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub fields: Option<Option<std::collections::BTreeMap<String, serde_json::Value>>>,
     /// New memberships default to active for omitted/null status. On legacy updates omitted/null preserves the previous status. A supplied waiting-list position can override the status to waiting.
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
-    #[serde(rename = "groupMemberStatus", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub group_member_status: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "groupMemberStatus", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub group_member_status: Option<Option<String>>,
     /// Role ID for this group type; 0 or omission selects its default role for creation. Existing memberships retain their role when 0/omitted.
     #[serde(rename = "groupTypeRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub group_type_role_id: Option<i64>,
@@ -16195,38 +16785,50 @@ pub struct MembershipCreate {
     #[serde(rename = "informLeader", default, skip_serializing_if = "Option::is_none")]
     pub inform_leader: Option<bool>,
     /// End date or null; omission clears an existing end date in the legacy update path.
-    #[serde(rename = "memberEndDate", default, skip_serializing_if = "Option::is_none")]
-    pub member_end_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "memberEndDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub member_end_date: Option<Option<chrono::NaiveDate>>,
     /// Date or UTC timestamp not in the future. Omitted/null defaults to now when a new membership becomes active, otherwise null. Explicit null is rejected if active is explicitly submitted. Legacy updates generally retain an existing start when omitted/null.
-    #[serde(rename = "memberStartDate", default, skip_serializing_if = "Option::is_none")]
-    pub member_start_date: Option<crate::DateOrDateTime>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "memberStartDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub member_start_date: Option<Option<crate::DateOrDateTime>>,
     /// Reject with 403 if the person already belongs to the group.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub only_add: Option<bool>,
     /// 0 selects the next free waiting-list position; a positive value selects that position. Supplied positions set status to waiting and can shift other positions. For creation, null/omission assigns no position. For legacy updates, null/omission preserves it and -1 removes it but also sets status to waiting; -1 on creation reaches an assertion.
-    #[serde(rename = "waitinglistPosition", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub waitinglist_position: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "waitinglistPosition", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub waitinglist_position: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Partial update of an existing membership. Omitted membership properties retain their current values; explicit null clears nullable values. This changes the membership, not the underlying person record.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MembershipUpdate {
     /// Membership comment; surrounding whitespace is trimmed. Null or empty text clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Values keyed by numeric membership-field definition ID. Only submitted known fields are updated; unknown IDs are ignored. Null clears one field; an omitted/null fields container changes no fields. Field-specific validation applies: text up to 4000 characters, numeric values, dates, timestamps, checkbox booleans, option IDs or labels for select/radioselect, and arrays of option IDs or labels for multiselect.
-    #[serde(deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
-    pub fields: Option<std::collections::BTreeMap<String, serde_json::Value>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub fields: Option<Option<std::collections::BTreeMap<String, serde_json::Value>>>,
     /// Target membership workflow status; omitted preserves the existing status. Explicit null is not a usable status.
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     #[serde(rename = "groupMemberStatus", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub group_member_status: Option<String>,
     /// Role definition ID belonging to the group type. Null resets to its default role.
-    #[serde(rename = "groupTypeRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub group_type_role_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "groupTypeRoleId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub group_type_role_id: Option<Option<i64>>,
     /// Allow the update even when it would exceed waiting-list capacity.
     #[serde(rename = "ignoreWaitingListFull", default, skip_serializing_if = "Option::is_none")]
     pub ignore_waiting_list_full: Option<bool>,
@@ -16234,20 +16836,26 @@ pub struct MembershipUpdate {
     #[serde(rename = "informLeader", default, skip_serializing_if = "Option::is_none")]
     pub inform_leader: Option<bool>,
     /// End date or null to clear. Must not precede the resulting start date.
-    #[serde(rename = "memberEndDate", default, skip_serializing_if = "Option::is_none")]
-    pub member_end_date: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "memberEndDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub member_end_date: Option<Option<chrono::NaiveDate>>,
     /// Start date or UTC timestamp, not in the future. If the resulting status is active, an explicitly submitted value must not be null; omission preserves the existing value.
-    #[serde(rename = "memberStartDate", default, skip_serializing_if = "Option::is_none")]
-    pub member_start_date: Option<crate::DateOrDateTime>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "memberStartDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub member_start_date: Option<Option<crate::DateOrDateTime>>,
     /// Waiting-list position; 0 selects the next free position, null removes it. Legacy -1 reaches a backend assertion and should be avoided. This PATCH does not automatically change status or shift other positions.
-    #[serde(rename = "waitinglistPosition", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub waitinglist_position: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "waitinglistPosition", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub waitinglist_position: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MetaDataCreatedId {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -16259,7 +16867,7 @@ pub struct MetaDataCreatedId {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MetaDataEntityId {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -16276,7 +16884,7 @@ pub struct MetaDataEntityId {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MetaDataEntityPerson {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -16293,7 +16901,7 @@ pub struct MetaDataEntityPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MetaDataPersonId {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -16303,7 +16911,7 @@ pub struct MetaDataPersonId {
 }
 
 /// Proposed booking field. Values are serialized as strings even for IDs, amounts, dates and booleans.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MovementSuggestion {
     /// Included only with include[]=bills. Suggestions other than the bills marker receive an empty array.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -16333,14 +16941,16 @@ pub struct MovementSuggestion {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MovementSuggestionUpdate {
     /// Field to add or modify. Existing entries are matched by name and splitKey.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Split-child key, or null/omitted for a global suggestion. Requires the split-booking feature when non-null.
-    #[serde(rename = "splitKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub split_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "splitKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub split_key: Option<Option<i64>>,
     /// String value; an empty string removes a matching suggestion. Dates use YYYY-MM-DD, amounts use minor units, IDs use decimal strings, booleans use true/false strings.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub value: String,
@@ -16349,7 +16959,7 @@ pub struct MovementSuggestionUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct MovementSuggestionsUpdate {
     /// Incremental changes. Omitted suggestions are retained; an empty array changes nothing.
     pub suggestions: Vec<MovementSuggestionUpdate>,
@@ -16359,7 +16969,7 @@ pub struct MovementSuggestionsUpdate {
 }
 
 /// Stored link between one ChurchTools group and one external newsletter list. The provider/list ID pair can be linked to at most one group. This is configuration, not live delivery or subscriber status.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NewsletterIntegrationGroupMapping {
     /// ChurchTools group whose members are synchronized.
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -16385,18 +16995,22 @@ pub struct NewsletterIntegrationGroupMapping {
 }
 
 /// Connects one existing or newly created external list to the path group and immediately synchronizes eligible existing members. Exactly one non-null listId/createListName is required.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NewsletterIntegrationGroupMappingCreate {
     /// Create an external list with this name; only use if the provider advertises canCreateLists=true.
-    #[serde(rename = "createListName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub create_list_name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "createListName", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub create_list_name: Option<Option<String>>,
     /// Controls the initial synchronization only. ignore_opt_in subscribes eligible existing members without double opt-in even when optInRequired=true; the stored flag still governs later synchronization.
     /// Allowed values: `ignore_opt_in`, `require_opt_in`.
     #[serde(rename = "existingMembersHandling", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub existing_members_handling: Option<String>,
     /// Existing provider list ID. The provider/list pair must not already be mapped to any group.
-    #[serde(rename = "listId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub list_id: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "listId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub list_id: Option<Option<String>>,
     /// Require double opt-in for subscriptions. Providers with doesDoubleOptIn=true handle confirmation; otherwise ChurchTools sends confirmation emails.
     #[serde(rename = "optInRequired")]
     pub opt_in_required: bool,
@@ -16409,7 +17023,7 @@ pub struct NewsletterIntegrationGroupMappingCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NewsletterIntegrationListOption {
     /// Name of the group associated with this list. Omitted when the list is unassigned or the current user cannot view the associated group.
     #[serde(rename = "assignedGroupName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -16429,7 +17043,7 @@ pub struct NewsletterIntegrationListOption {
 }
 
 /// An active configured newsletter provider and the remote lists available for group mappings.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NewsletterIntegrationOptions {
     /// Whether this provider implementation supports creating a remote list from the group-mapping API.
     #[serde(rename = "canCreateLists")]
@@ -16449,7 +17063,7 @@ pub struct NewsletterIntegrationOptions {
 }
 
 /// Stored subscription/consent state for a group. Collections use maps when populated and [] when empty; this response does not refresh live provider state.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NewsletterOptInData {
     /// Mappings for currently active providers, keyed by provider:listId.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -16463,7 +17077,7 @@ pub struct NewsletterOptInData {
 }
 
 /// One active provider/list mapping represented in the consent overview.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NewsletterOptInList {
     /// True when consent is required and the provider does not handle double opt-in itself.
     #[serde(rename = "ctDoesDoubleOptIn")]
@@ -16489,7 +17103,7 @@ pub struct NewsletterOptInList {
 }
 
 /// Person with one or more stored newsletter-person records.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NewsletterOptInPerson {
     /// ChurchTools person ID, not newsletter-person record ID.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -16503,7 +17117,7 @@ pub struct NewsletterOptInPerson {
 }
 
 /// Local synchronization and consent state, which can lag behind external changes.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NewsletterOptInStatus {
     /// Date the ChurchTools double opt-in was confirmed; null when not recorded. This does not represent every provider-managed consent.
     #[serde(rename = "doiDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -16523,7 +17137,7 @@ pub struct NewsletterOptInStatus {
 }
 
 /// A note can be linked to multiple business objects. The top-level `domainType`, `domainId`, `securityLevelId`, and `commentViewerId` come from the first stored link, which may differ from the requested route. The note text is shared by every link.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Note {
     /// Person-comment visibility category. Used for person-domain filtering, not for other note domains.
     #[serde(rename = "commentViewerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -16552,14 +17166,18 @@ pub struct Note {
 }
 
 /// Content and link visibility for a new note. The target domain and object ID come from the URL.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NoteCreate {
     /// Visibility category for person notes. Creating a person note requires permission for this category.
-    #[serde(rename = "commentViewerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub comment_viewer_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "commentViewerId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment_viewer_id: Option<Option<i64>>,
     /// Group-note security threshold; ignored for list filtering in the other domains. The create handler also accepts legacy string representations.
-    #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub security_level_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub security_level_id: Option<Option<i64>>,
     /// Note content shared by all links.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub text: String,
@@ -16569,7 +17187,7 @@ pub struct NoteCreate {
 }
 
 /// Link from a note to a business object, with the visibility settings for that domain. Several links can share the same note text.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NoteDomainObjectLink {
     /// Person-comment visibility category. Used for person-domain filtering, not for other note domains.
     #[serde(rename = "commentViewerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -16590,7 +17208,7 @@ pub struct NoteDomainObjectLink {
 }
 
 /// All linked domains, including links not independently authorized by the requested route. Only the last link for each domain type is serialized.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NoteLinks {
     /// Link from a note to a business object, with the visibility settings for that domain. Several links can share the same note text.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -16609,7 +17227,7 @@ pub struct NoteLinks {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NoteMetadata {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -16628,7 +17246,7 @@ pub struct NoteMetadata {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NoteMetadataCreatedPersonVariant2 {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -16638,14 +17256,18 @@ pub struct NoteMetadataCreatedPersonVariant2 {
 }
 
 /// Replaces note text and visibility values for the first link matching the path `domainType`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct NoteUpdate {
     /// Person-comment visibility category. The update handler does not repeat the category permission check used on create.
-    #[serde(rename = "commentViewerId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub comment_viewer_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "commentViewerId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment_viewer_id: Option<Option<i64>>,
     /// Group-note security level. Unlike create, the update does not accept legacy string representations.
-    #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub security_level_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub security_level_id: Option<Option<i64>>,
     /// Note content shared by all links.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub text: String,
@@ -16655,7 +17277,7 @@ pub struct NoteUpdate {
 }
 
 /// An application registered to use ChurchTools as an OAuth authorization server. This differs from an external-login provider used to sign into ChurchTools. Numeric id is internal; identifier is the OAuth client_id and the management path key. Hidden built-in clients are excluded from management lists.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OAuthClient {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -16679,7 +17301,7 @@ pub struct OAuthClient {
 }
 
 /// Registers a client application. The client identifier and any secret are generated by ChurchTools. Input accepts one redirect URI string; responses use an array.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OAuthClientCreate {
     /// true generates a secret for a server application able to keep it private; false creates a public client without a secret. This setting cannot be changed by the update endpoint.
     #[serde(rename = "isConfidential", default, skip_serializing_if = "Option::is_none")]
@@ -16696,7 +17318,7 @@ pub struct OAuthClientCreate {
 }
 
 /// Registered OAuth client. Only confidential clients receive clientSecret, and only in this creation response. Store it securely; management reads and updates cannot retrieve it again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OAuthClientCreated {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -16723,7 +17345,7 @@ pub struct OAuthClientCreated {
 }
 
 /// Replacement name and single redirect URI for a visible OAuth client. identifier comes from the URL. This endpoint does not change confidentiality or rotate a secret.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OAuthClientUpdate {
     /// Legacy compatibility field.
     #[serde(rename = "isConfidential", default, skip_serializing_if = "Option::is_none")]
@@ -16740,7 +17362,7 @@ pub struct OAuthClientUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphActor {
     /// The URL or an identifier for the actor's profile.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -16753,7 +17375,7 @@ pub struct OpenGraphActor {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphAlbum {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub disc: Option<i64>,
@@ -16765,7 +17387,7 @@ pub struct OpenGraphAlbum {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphArticle {
     /// The authors of the article.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -16790,7 +17412,7 @@ pub struct OpenGraphArticle {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphAudio {
     /// The secure URL of the audio.
     #[serde(rename = "secureUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -16806,7 +17428,7 @@ pub struct OpenGraphAudio {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphBook {
     /// The authors of the book.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -16825,7 +17447,7 @@ pub struct OpenGraphBook {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphImage {
     /// The height of the image in pixels.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -16847,7 +17469,7 @@ pub struct OpenGraphImage {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphMusic {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub album: Option<OpenGraphAlbum>,
@@ -16870,7 +17492,7 @@ pub struct OpenGraphMusic {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphProfile {
     /// The first name of the individual.
     #[serde(rename = "firstName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -16890,7 +17512,7 @@ pub struct OpenGraphProfile {
 }
 
 /// A model representing a song in the OpenGraph data structure.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphSong {
     /// The disc number on which the song appears, applicable for albums with multiple discs.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -16906,7 +17528,7 @@ pub struct OpenGraphSong {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenGraphVideo {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actors: Option<Vec<OpenGraphActor>>,
@@ -16944,7 +17566,7 @@ pub struct OpenGraphVideo {
 }
 
 /// Unanswered invitation with a remaining occurrence. The next occurrence dates are populated for this view; the embedded appointment retains the stored series data.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct OpenMeetingRequest {
     /// Use `state` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -16993,7 +17615,7 @@ pub struct OpenMeetingRequest {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PasswordResetCreate {
     /// Stored email address or login name.
     #[serde(rename = "emailOrUsername", deserialize_with = "crate::lenient::string")]
@@ -17003,16 +17625,20 @@ pub struct PasswordResetCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PatchGroupsIdBody {
     /// ID of the appointment this group is linked to. Set to `null` to unlink the group from any appointment.
-    #[serde(rename = "appointmentId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub appointment_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "appointmentId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub appointment_id: Option<Option<i64>>,
     #[serde(rename = "groupTypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub group_type_id: Option<i64>,
     /// Start date of the appointment occurrence this group is linked to (used together with `appointmentId` for repeating appointments). Set to `null` to clear.
-    #[serde(rename = "startDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub start_date: Option<chrono::DateTime<chrono::Utc>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "startDate", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub start_date: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// Membership statuses that occupy seats when their role counts towards seats. Defaults to active only. An empty array means no membership occupies a seat.
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
     #[serde(rename = "statusesCountedTowardsSeats", default, skip_serializing_if = "Option::is_none")]
@@ -17022,7 +17648,7 @@ pub struct PatchGroupsIdBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PatchPersonsIdBody {
     #[serde(rename = "addressAddition", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub address_addition: Option<String>,
@@ -17032,8 +17658,9 @@ pub struct PatchPersonsIdBody {
     pub baptised_by: Option<String>,
     #[serde(rename = "birthName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub birth_name: Option<String>,
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub birthday: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub birthday: Option<Option<chrono::NaiveDate>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub birthplace: Option<String>,
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17044,16 +17671,21 @@ pub struct PatchPersonsIdBody {
     pub cms_user_id: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub country: Option<String>,
-    #[serde(rename = "dateOfBaptism", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_baptism: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfBelonging", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_belonging: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfDeath", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_death: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfEntry", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_entry: Option<chrono::DateTime<chrono::Utc>>,
-    #[serde(rename = "dateOfResign", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_resign: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfBaptism", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_baptism: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfBelonging", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_belonging: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfDeath", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_death: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfEntry", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_entry: Option<Option<chrono::DateTime<chrono::Utc>>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfResign", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_resign: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// Department IDs. At least one department MUST be set for a person. The last department ID cannot be deleted.
     #[serde(rename = "departmentIds", default, skip_serializing_if = "Option::is_none")]
     pub department_ids: Option<Vec<i64>>,
@@ -17062,12 +17694,14 @@ pub struct PatchPersonsIdBody {
     /// Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub emails: Option<Vec<PersonEmail>>,
-    #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub family_status_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub family_status_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub fax: Option<String>,
-    #[serde(rename = "firstContact", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub first_contact: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "firstContact", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub first_contact: Option<Option<chrono::DateTime<chrono::Utc>>>,
     #[serde(rename = "firstName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub first_name: Option<String>,
     #[serde(rename = "growPathId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17078,8 +17712,9 @@ pub struct PatchPersonsIdBody {
     pub last_name: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub mobile: Option<String>,
-    #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub nationality_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub nationality_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub nickname: Option<String>,
     #[serde(rename = "optigemId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -17097,8 +17732,9 @@ pub struct PatchPersonsIdBody {
     pub referred_by: Option<String>,
     #[serde(rename = "referredTo", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub referred_to: Option<String>,
-    #[serde(rename = "sexId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sex_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sexId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sex_id: Option<Option<i64>>,
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub status_id: Option<i64>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -17109,8 +17745,9 @@ pub struct PatchPersonsIdBody {
     /// Allowed values: `hidden`, `visible`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub visibility: Option<String>,
-    #[serde(rename = "weddingDate", default, skip_serializing_if = "Option::is_none")]
-    pub wedding_date: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "weddingDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub wedding_date: Option<Option<chrono::NaiveDate>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub zip: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -17119,20 +17756,23 @@ pub struct PatchPersonsIdBody {
 }
 
 /// This object can be optional or required. Depending on your ChurchTools data security settings.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PatchPersonsIdBodyPrivacyPolicyAgreement {
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub date: Option<chrono::NaiveDate>,
-    #[serde(rename = "typeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub type_id: Option<i64>,
-    #[serde(rename = "whoId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub who_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "typeId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub type_id: Option<Option<i64>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "whoId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub who_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PatchPersonsPersonidMergeDuplicateidData {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub body: String,
@@ -17143,7 +17783,7 @@ pub struct PatchPersonsPersonidMergeDuplicateidData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PatchSecuritylevelsIdBody {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub forcereorder: Option<bool>,
@@ -17156,7 +17796,7 @@ pub struct PatchSecuritylevelsIdBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PatchSecuritylevelsIdResponse {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -17168,7 +17808,7 @@ pub struct PatchSecuritylevelsIdResponse {
 }
 
 /// One raw stored grant or revocation. Effective access also depends on other sources, inheritance and object policies. A selectable permission uses one row per dataId; write requests accept several data IDs at once.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Permission {
     /// Numeric permission key from the internal authorization table
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
@@ -17199,7 +17839,7 @@ pub struct Permission {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionAssignmentGroup {
     /// Group whose role grants the permission
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -17215,7 +17855,7 @@ pub struct PermissionAssignmentGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionAssignmentGroupType {
     /// Group type whose roles grant the permission
     #[serde(rename = "groupTypeId", deserialize_with = "crate::lenient::number")]
@@ -17231,7 +17871,7 @@ pub struct PermissionAssignmentGroupType {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionAssignmentPerson {
     /// Person with a direct permission assignment
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
@@ -17241,7 +17881,7 @@ pub struct PermissionAssignmentPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionAssignmentStatus {
     /// Number of distinct non-archived persons reached by this assignment
     #[serde(rename = "personCount", deserialize_with = "crate::lenient::number")]
@@ -17255,7 +17895,7 @@ pub struct PermissionAssignmentStatus {
 }
 
 /// Assignment breakdown for one global permission selection. effectivePersonCount includes all effective sources, but the breakdown only groups status, group-type-role, group-role and direct-person sources. Logged-in defaults, public-user rights and super-admin status can therefore contribute to the total without appearing in assignments.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionAssignmentSummary {
     /// Nonempty assignment sources only. Status, group-type and group entries are sorted numerically by their IDs; role IDs within them are unique and sorted. Counts are distinct per entry but overlap across entries.
     pub assignments: PermissionAssignmentSummaryAssignments,
@@ -17274,7 +17914,7 @@ pub struct PermissionAssignmentSummary {
 }
 
 /// Nonempty assignment sources only. Status, group-type and group entries are sorted numerically by their IDs; role IDs within them are unique and sorted. Counts are distinct per entry but overlap across entries.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionAssignmentSummaryAssignments {
     #[serde(rename = "groupTypes")]
     pub group_types: Vec<PermissionAssignmentGroupType>,
@@ -17287,7 +17927,7 @@ pub struct PermissionAssignmentSummaryAssignments {
 }
 
 /// Selectable assignment owner, including owners without existing permission assignments. The pair domainType and domainId identifies the target and can be passed to the permission write endpoints.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionAssignmentTarget {
     /// Status, role template, concrete group role, or person ID. For group_role this is neither the group ID nor the role template ID.
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
@@ -17304,7 +17944,7 @@ pub struct PermissionAssignmentTarget {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionBulkChange {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
     pub domain_id: i64,
@@ -17317,7 +17957,7 @@ pub struct PermissionBulkChange {
 }
 
 /// Definition of one assignable permission, not an effective grant. Combine the module key and permission key to identify it by name, or use authId in assignment endpoints.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionDefinition {
     /// Currently always lists status, group_type_role, group_role and person. This is generic metadata and does not establish that every combination is accepted by assignment validation.
     /// Allowed values: `group_role`, `group_type_role`, `person`, `status`.
@@ -17347,7 +17987,7 @@ pub struct PermissionDefinition {
 }
 
 /// Module containing at least one definition matching the requested scope. Modules follow the application module order; keys can include custom modules.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionDefinitionModule {
     /// Technical module key
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -17361,7 +18001,7 @@ pub struct PermissionDefinitionModule {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionDefinitionSelection {
     /// Selection ID; -1 represents unrestricted access to all current and future values
     #[serde(rename = "dataId", deserialize_with = "crate::lenient::number")]
@@ -17378,14 +18018,16 @@ pub struct PermissionDefinitionSelection {
 }
 
 /// Select raw assignments to delete. Omitting dataId, null or [] removes every data selection for the selected owner/authId/inheritance mode; this does not revoke access from other sources.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionDelete {
     /// Permission ID. status and person require values below 10000. Role domains also accept internal permission IDs. 10127 is obsolete and returns 410.
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
     pub auth_id: i64,
     /// Concrete selections to delete. Omission, null or an empty array removes all selection rows, including the null row. A nonempty array uses exact IDs; -1 only matches the unrestricted row.
-    #[serde(rename = "dataId", default, skip_serializing_if = "Option::is_none")]
-    pub data_id: Option<Vec<i64>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dataId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub data_id: Option<Option<Vec<i64>>>,
     /// Select inherited-source rows when true, otherwise direct rows. Only role domains allow true.
     #[serde(rename = "isInherited", default, skip_serializing_if = "Option::is_none")]
     pub is_inherited: Option<bool>,
@@ -17394,7 +18036,7 @@ pub struct PermissionDelete {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionModification {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "modifiedDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -17407,7 +18049,7 @@ pub struct PermissionModification {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonSelection {
     /// Permission selection value, or null for permissions without selection values
     #[serde(rename = "dataId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17424,7 +18066,7 @@ pub struct PermissionPersonSelection {
 }
 
 /// One registered global permission in definition order. Selections include zero-count values; data-field permissions start with -1 followed by configured IDs in numeric order.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonSummaryEntry {
     /// Numeric permission key from the internal authorization table
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
@@ -17435,7 +18077,7 @@ pub struct PermissionPersonSummaryEntry {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonSummarySelection {
     /// Configured selection ID, -1 for unrestricted access including future values, or null for a boolean permission.
     #[serde(rename = "dataId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17451,7 +18093,7 @@ pub struct PermissionPersonSummarySelection {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonWithOrigins {
     /// Sources that contribute the requested permission selection
     pub origins: Vec<serde_json::Value>,
@@ -17462,7 +18104,7 @@ pub struct PermissionPersonWithOrigins {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonWithOriginsOriginsItemVariant1 {
     /// If set, this group type role permission is revoked by the group role with this ID and does not contribute to the effective value
     #[serde(rename = "revokedByGroupRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17478,7 +18120,7 @@ pub struct PermissionPersonWithOriginsOriginsItemVariant1 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonWithOriginsOriginsItemVariant2 {
     /// If set, this group type role permission is revoked by the group role with this ID and does not contribute to the effective value
     #[serde(rename = "revokedByGroupRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17494,7 +18136,7 @@ pub struct PermissionPersonWithOriginsOriginsItemVariant2 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonWithOriginsOriginsItemVariant3 {
     /// If set, this group type role permission is revoked by the group role with this ID and does not contribute to the effective value
     #[serde(rename = "revokedByGroupRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17510,7 +18152,7 @@ pub struct PermissionPersonWithOriginsOriginsItemVariant3 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonWithOriginsOriginsItemVariant4 {
     /// If set, this group type role permission is revoked by the group role with this ID and does not contribute to the effective value
     #[serde(rename = "revokedByGroupRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17529,7 +18171,7 @@ pub struct PermissionPersonWithOriginsOriginsItemVariant4 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonWithOriginsOriginsItemVariant5 {
     /// If set, this group type role permission is revoked by the group role with this ID and does not contribute to the effective value
     #[serde(rename = "revokedByGroupRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17548,7 +18190,7 @@ pub struct PermissionPersonWithOriginsOriginsItemVariant5 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonWithOriginsOriginsItemVariant6 {
     /// If set, this group type role permission is revoked by the group role with this ID and does not contribute to the effective value
     #[serde(rename = "revokedByGroupRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17575,7 +18217,7 @@ pub struct PermissionPersonWithOriginsOriginsItemVariant6 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonWithOriginsOriginsItemVariant7 {
     /// If set, this group type role permission is revoked by the group role with this ID and does not contribute to the effective value
     #[serde(rename = "revokedByGroupRoleId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -17603,7 +18245,7 @@ pub struct PermissionPersonWithOriginsOriginsItemVariant7 {
 }
 
 /// Persons for one permission, grouped by selection. Global queries return one selection; internal data_id=-1 can return several. Pagination and per-person origins are available only for global queries.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersons {
     /// Numeric permission key from the internal authorization table
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
@@ -17619,7 +18261,7 @@ pub struct PermissionPersons {
 }
 
 /// Present when page, limit or include=origins enables pagination. Nested under data, not a top-level response meta field.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionPersonsMeta {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub limit: i64,
@@ -17633,7 +18275,7 @@ pub struct PermissionPersonsMeta {
 }
 
 /// Atomically replace all stored selection rows for one permission, inheritance mode and source owner. An empty dataId list removes the assignment.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionReplace {
     /// Permission ID. status and person require values below 10000. Role domains also accept internal permission IDs. 10127 is obsolete and returns 410.
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
@@ -17645,8 +18287,10 @@ pub struct PermissionReplace {
     #[serde(rename = "isInherited", default, skip_serializing_if = "Option::is_none")]
     pub is_inherited: Option<bool>,
     /// Optional explanation for the replacement assignment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub reason: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub reason: Option<Option<String>>,
     /// Grant a permission, or revoke a contribution for a concrete group_role. revoke is rejected for all other source domains.
     /// Allowed values: `grant`, `revoke`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -17657,20 +18301,24 @@ pub struct PermissionReplace {
 }
 
 /// Add or update stored assignment rows. This is not full replacement of the owner’s permissions. Path parameters identify the source owner.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionUpdate {
     /// Permission ID. status and person require values below 10000. Role domains also accept internal permission IDs. 10127 is obsolete and returns 410.
     #[serde(rename = "authId", deserialize_with = "crate::lenient::number")]
     pub auth_id: i64,
     /// Selections to add/update. Omission, null or [] writes a null-data row, normally used for boolean permissions. Use [-1] for unrestricted selection access. Existing other selections remain. If a -1 row already exists for this key/inheritance mode, any nonempty request currently returns without changing rows, type or reason.
-    #[serde(rename = "dataId", default, skip_serializing_if = "Option::is_none")]
-    pub data_id: Option<Vec<i64>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dataId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub data_id: Option<Option<Vec<i64>>>,
     /// Select inherited-source rows when true, otherwise direct rows. Only role domains allow true.
     #[serde(rename = "isInherited", default, skip_serializing_if = "Option::is_none")]
     pub is_inherited: Option<bool>,
     /// Trimmed optional explanation. Empty/whitespace input becomes null. No maximum length is validated by the controller.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub reason: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub reason: Option<Option<String>>,
     /// Grant a permission, or revoke a contribution for a concrete group_role. revoke is rejected for all other source domains.
     /// Allowed values: `grant`, `revoke`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -17681,7 +18329,7 @@ pub struct PermissionUpdate {
 }
 
 /// Permission with recorded origins and its effective value. A record can remain when all contributions were revoked, with false, 0 or [] as the effective value.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PermissionWithOrigins {
     /// Permission key within the module. Group internal permissions start with `+`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -17702,7 +18350,7 @@ pub struct PermissionWithOrigins {
 }
 
 /// A person object includes all fields the logged in user may see depending on the security level. Additional DB fields, created by the admin, are also part of the response. Those fields have the same name as the column name.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Person {
     /// A simple date in ISO format, e.g. '2022-10-19'
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -17861,7 +18509,7 @@ pub struct Person {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonDuplicate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub key: String,
@@ -17874,7 +18522,7 @@ pub struct PersonDuplicate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonEmail {
     #[serde(rename = "contactLabelId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub contact_label_id: Option<i64>,
@@ -17888,7 +18536,7 @@ pub struct PersonEmail {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonEmailsItem {
     #[serde(rename = "contactLabelId", deserialize_with = "crate::lenient::number")]
     pub contact_label_id: i64,
@@ -17902,7 +18550,7 @@ pub struct PersonEmailsItem {
 }
 
 /// Download information for a newly generated personal data sheet. The PDF is a separate download, not the body of this API response.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonInformationExport {
     /// Absolute download URL of the generated PDF. The stored file is scheduled for deletion after one day; this is not a permanent document URL.
     #[serde(rename = "pdfLink", deserialize_with = "crate::lenient::string")]
@@ -17913,7 +18561,7 @@ pub struct PersonInformationExport {
 }
 
 /// Reference catalogs for People & Groups. These are definitions such as role/status types, not memberships or person records. Each array is returned in full without pagination or per-object visibility filtering.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonMasterData {
     /// Age-range classifications for groups.
     #[serde(rename = "ageGroups")]
@@ -17960,7 +18608,7 @@ pub struct PersonMasterData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonMergeGroupDiff {
     /// State of a person's membership in a group, independent of their role. active is an active membership; requested awaits confirmation; waiting is on the waiting list; to_delete is pending removal. Use GET /group/memberstatus for localized display names. A pending-removal membership still exists.
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
@@ -17986,7 +18634,7 @@ pub struct PersonMergeGroupDiff {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonMergeGroupsDiff {
     /// IDs of groups in which both persons are members
     pub both: Vec<i64>,
@@ -17999,7 +18647,7 @@ pub struct PersonMergeGroupsDiff {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonMergeInfo {
     #[serde(rename = "groupsDiff")]
     pub groups_diff: PersonMergeGroupsDiff,
@@ -18010,7 +18658,7 @@ pub struct PersonMergeInfo {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonMergePersonDiff {
     /// Translation key of the person field
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -18033,7 +18681,7 @@ pub struct PersonMergePersonDiff {
 }
 
 /// Password inputs are not trimmed. The minimum length can be configured by the installation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPasswordUpdate {
     /// New password satisfying the installation’s length and strength rules.
     #[serde(rename = "newPassword", deserialize_with = "crate::lenient::string")]
@@ -18049,7 +18697,7 @@ pub struct PersonPasswordUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPostStatistics {
     #[serde(rename = "countBanned", deserialize_with = "crate::lenient::number")]
     pub count_banned: f64,
@@ -18070,7 +18718,7 @@ pub struct PersonPostStatistics {
 }
 
 /// Privacy-consent view for the selected person and their child relationships (relationship type 1). Privacy consent is separate from the confidentiality agreement. Display flags guide the consent UI; mutations still perform their own permission checks.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPrivacyPolicy {
     /// Minimum age for independent consent and self-registration, even when registration is disabled.
     #[serde(rename = "minimumAge", deserialize_with = "crate::lenient::number")]
@@ -18097,7 +18745,7 @@ pub struct PersonPrivacyPolicy {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPrivacyPolicyAgreement {
     /// A simple date in ISO format, e.g. '2022-10-19'
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -18112,7 +18760,7 @@ pub struct PersonPrivacyPolicyAgreement {
 }
 
 /// Outcome for one child marked accepted in the request. The HTTP 200 response can include non-successful outcomes.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPrivacyPolicyChildResult {
     /// Localized error text for error outcomes; empty string otherwise.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -18129,7 +18777,7 @@ pub struct PersonPrivacyPolicyChildResult {
 }
 
 /// Child-consent selection consumed by the service. Nested fields are not validated by the controller; supply all fields with the documented types.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPrivacyPolicyChildUpdate {
     /// Whether to request consent for this child.
     pub accepted: bool,
@@ -18147,7 +18795,7 @@ pub struct PersonPrivacyPolicyChildUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPrivacyPolicyOwner {
     pub accepted: bool,
     /// Stored consent timestamp, or null. Not normalized to a UTC timestamp by this transformer.
@@ -18183,7 +18831,7 @@ pub struct PersonPrivacyPolicyOwner {
 }
 
 /// Child-side person of a parent/child relationship, with consent flags. Relationships can include adults; their flags normally prevent child-consent actions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPrivacyPolicyRelationshipsItem {
     pub accepted: bool,
     /// Stored consent timestamp, or null. Not normalized to a UTC timestamp by this transformer.
@@ -18226,7 +18874,7 @@ pub struct PersonPrivacyPolicyRelationshipsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPrivacyPolicyRelationshipsItemRelationshipType {
     #[serde(rename = "degreeOfRelationship", deserialize_with = "crate::lenient::string")]
     pub degree_of_relationship: String,
@@ -18243,11 +18891,13 @@ pub struct PersonPrivacyPolicyRelationshipsItemRelationshipType {
 }
 
 /// Record own consent and/or consent for child relationships. All flags and the persons array are required, even when a branch is not used. This operation can partially change data before a later error.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonPrivacyPolicyUpdate {
     /// Birthday for the URL person if no birthday is stored. Prefer YYYY-MM-DD. Empty text becomes null; malformed date text is not reliably rejected as 400.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub birthday: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub birthday: Option<Option<String>>,
     /// Whether to process the persons array.
     #[serde(rename = "childrenAccepted")]
     pub children_accepted: bool,
@@ -18267,7 +18917,7 @@ pub struct PersonPrivacyPolicyUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonProperties {
     #[serde(rename = "canChat")]
     pub can_chat: bool,
@@ -18291,7 +18941,7 @@ pub struct PersonProperties {
 }
 
 /// Relationship information of a person. Notice, that a relationship has a security level. That means you only see those relationships, you are allowed to see.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonRelationship {
     /// Name of type, what this relative is for the user.
     #[serde(rename = "degreeOfRelationship", deserialize_with = "crate::lenient::string")]
@@ -18313,15 +18963,17 @@ pub struct PersonRelationship {
 }
 
 /// Update the assignment using personId from the path. The path already provides the assignee; do not supply an external name. The legacy agreed field is accepted as an alias for isAccepted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonServiceRequestUpdate {
     /// Legacy alias for isAccepted. Prefer isAccepted in new integrations.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
     pub agreed: Option<bool>,
     /// Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment. Use the accept or decline action for a response comment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Accepted for compatibility; this flag does not control notifications in the current implementation. Notifications follow the assignment workflow.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub inform_person: Option<bool>,
@@ -18334,7 +18986,7 @@ pub struct PersonServiceRequestUpdate {
 }
 
 /// One stored person preference, identified by module namespace and attribute key. Read endpoints include stored settings beyond the write allowlist. This is not a person master-data field.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonSetting {
     /// Setting key within the module namespace.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -18367,7 +19019,7 @@ pub struct PersonSetting {
 /// | global | `recent-searches` (array), `recent-persons` (array), `recent-groups` (array), `recent-wiki_pages` (array), `recent-songs` (array), `recent-appointments` (array), `simulatedPersons` (array), `station` (string) |
 /// | app | `excluded-calendars` (array), `excluded-widgets` (array), `sorted-widgets` (array) |
 /// | push | `birthday-type` (string), `disableGroupSignUpNotifications` (numeric), `groupSignUpNotificationsAgeGroupIds` (array), `groupSignUpNotificationsTargetGroupIds` (array), `groupSignUpNotificationsCategoryIds` (array) |
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonSettingUpdate {
     /// Value of the selected setting, using its required type. Calendar filters require a string containing a JSON array, not a JSON array directly.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -18378,7 +19030,7 @@ pub struct PersonSettingUpdate {
 }
 
 /// One stored person preference, identified by module namespace and attribute key. Read endpoints include stored settings beyond the write allowlist. This is not a person master-data field.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonTwoFactorEnabled {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub attribute: String,
@@ -18392,7 +19044,7 @@ pub struct PersonTwoFactorEnabled {
 }
 
 /// One stored person preference, identified by module namespace and attribute key. Read endpoints include stored settings beyond the write allowlist. This is not a person master-data field.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonTwoFactorForce {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub attribute: String,
@@ -18405,7 +19057,7 @@ pub struct PersonTwoFactorForce {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonTwoFactorForceUpdate {
     /// Whether the person must configure two-factor authentication.
     pub value: bool,
@@ -18414,7 +19066,7 @@ pub struct PersonTwoFactorForceUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonTwoFactorVerify {
     /// Six-digit current authenticator code. Send it as a string to preserve leading zeroes. A code already accepted recently for this person cannot be reused.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -18428,7 +19080,7 @@ pub struct PersonTwoFactorVerify {
 }
 
 /// Fields applicable to upate a person
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PersonUpdateable {
     #[serde(rename = "addressAddition", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub address_addition: Option<String>,
@@ -18438,8 +19090,9 @@ pub struct PersonUpdateable {
     pub baptised_by: Option<String>,
     #[serde(rename = "birthName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub birth_name: Option<String>,
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub birthday: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub birthday: Option<Option<chrono::NaiveDate>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub birthplace: Option<String>,
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -18450,16 +19103,21 @@ pub struct PersonUpdateable {
     pub cms_user_id: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub country: Option<String>,
-    #[serde(rename = "dateOfBaptism", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_baptism: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfBelonging", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_belonging: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfDeath", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_death: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfEntry", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_entry: Option<chrono::DateTime<chrono::Utc>>,
-    #[serde(rename = "dateOfResign", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_resign: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfBaptism", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_baptism: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfBelonging", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_belonging: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfDeath", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_death: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfEntry", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_entry: Option<Option<chrono::DateTime<chrono::Utc>>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfResign", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_resign: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// Department IDs. At least one department MUST be set for a person. The last department ID cannot be deleted.
     #[serde(rename = "departmentIds", default, skip_serializing_if = "Option::is_none")]
     pub department_ids: Option<Vec<i64>>,
@@ -18468,12 +19126,14 @@ pub struct PersonUpdateable {
     /// Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub emails: Option<Vec<PersonEmail>>,
-    #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub family_status_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub family_status_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub fax: Option<String>,
-    #[serde(rename = "firstContact", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub first_contact: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "firstContact", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub first_contact: Option<Option<chrono::DateTime<chrono::Utc>>>,
     #[serde(rename = "firstName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub first_name: Option<String>,
     #[serde(rename = "growPathId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -18484,8 +19144,9 @@ pub struct PersonUpdateable {
     pub last_name: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub mobile: Option<String>,
-    #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub nationality_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub nationality_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub nickname: Option<String>,
     #[serde(rename = "optigemId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -18503,8 +19164,9 @@ pub struct PersonUpdateable {
     pub referred_by: Option<String>,
     #[serde(rename = "referredTo", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub referred_to: Option<String>,
-    #[serde(rename = "sexId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sex_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sexId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sex_id: Option<Option<i64>>,
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub status_id: Option<i64>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -18515,8 +19177,9 @@ pub struct PersonUpdateable {
     /// Allowed values: `hidden`, `visible`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub visibility: Option<String>,
-    #[serde(rename = "weddingDate", default, skip_serializing_if = "Option::is_none")]
-    pub wedding_date: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "weddingDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub wedding_date: Option<Option<chrono::NaiveDate>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub zip: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -18525,7 +19188,7 @@ pub struct PersonUpdateable {
 }
 
 /// Entry in a recursive placeholder menu. Items with `items` are menu groups; items with `placeholder` and `label` are selectable placeholders.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PlaceholderItem {
     /// Nested placeholder menu entries. Entries have the same shape as PlaceholderItem, but are documented without a recursive $ref because some OpenAPI tooling cannot resolve recursive schemas.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -18547,7 +19210,7 @@ pub struct PlaceholderItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PlaceholderItemItemsItem {
     /// Further nested placeholder menu entries.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -18569,7 +19232,7 @@ pub struct PlaceholderItemItemsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PlaceholderMenuGroup {
     /// Selectable placeholders and further menu groups.
     pub items: Vec<PlaceholderItem>,
@@ -18581,7 +19244,7 @@ pub struct PlaceholderMenuGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PollForNewsResult {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
     pub domain_id: i64,
@@ -18597,7 +19260,7 @@ pub struct PollForNewsResult {
 }
 
 /// One visible candidate for assigning a service role at an event. Scores are advisory: even unavailable persons remain in the list. Higher scores indicate fewer penalties or stronger preferences. The endpoint does not sort by score.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PossibleEventPerson {
     /// Absences overlapping the event interval. Candidates with an absence are retained and receive a score penalty.
     pub absences: Vec<Absence>,
@@ -18640,7 +19303,7 @@ pub struct PossibleEventPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PossiblePostGroup {
     #[serde(rename = "favoriteGroup")]
     pub favorite_group: bool,
@@ -18657,7 +19320,7 @@ pub struct PossiblePostGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Post {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub content: Option<String>,
@@ -18714,7 +19377,7 @@ pub struct Post {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostActionsBody {
     /// One or more domain types to filter actions by.
     /// Allowed values: `group_membership`, `person`.
@@ -18727,7 +19390,7 @@ pub struct PostActionsBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostCaptchaBody {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub solution: String,
@@ -18736,7 +19399,7 @@ pub struct PostCaptchaBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostCaptchaResponse {
     #[serde(rename = "isValid")]
     pub is_valid: bool,
@@ -18745,7 +19408,7 @@ pub struct PostCaptchaResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostComment {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub content: String,
@@ -18764,12 +19427,13 @@ pub struct PostComment {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostCommentCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub content: String,
-    #[serde(rename = "parentCommentId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub parent_comment_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "parentCommentId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub parent_comment_id: Option<Option<i64>>,
     #[serde(rename = "postId", deserialize_with = "crate::lenient::number")]
     pub post_id: i64,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -18777,7 +19441,7 @@ pub struct PostCommentCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostCommentReaction {
     #[serde(rename = "commentId", deserialize_with = "crate::lenient::number")]
     pub comment_id: i64,
@@ -18791,7 +19455,7 @@ pub struct PostCommentReaction {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostCommentReactionCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub emoji: String,
@@ -18800,14 +19464,16 @@ pub struct PostCommentReactionCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostCreate {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub content: Option<String>,
-    #[serde(rename = "expirationDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub expiration_date: Option<chrono::DateTime<chrono::Utc>>,
-    #[serde(rename = "publicationDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub publication_date: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "expirationDate", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub expiration_date: Option<Option<chrono::DateTime<chrono::Utc>>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "publicationDate", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub publication_date: Option<Option<chrono::DateTime<chrono::Utc>>>,
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
     /// Allowed values: `group_intern`, `group_visible`.
@@ -18824,7 +19490,7 @@ pub struct PostCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostExternalloginsSamlMetadataParseData {
     pub descriptors: Vec<SamlIdpMetadataDescriptor>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -18832,7 +19498,7 @@ pub struct PostExternalloginsSamlMetadataParseData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostFeatureusageBody {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub data: Option<Vec<FeatureUsage>>,
@@ -18841,7 +19507,7 @@ pub struct PostFeatureusageBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostFinanceEubpSubmissionsIdGenerateData {
     /// URL to download the generated ZIP file
     #[serde(rename = "downloadUrl", deserialize_with = "crate::lenient::string")]
@@ -18851,7 +19517,7 @@ pub struct PostFinanceEubpSubmissionsIdGenerateData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostGroupsBody {
     /// Campus Id if group is connected to a campus
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -18886,7 +19552,7 @@ pub struct PostGroupsBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostGroupsGroupIdMeetingsMeetingIdMembersMissingBody {
     /// Attendance state to assign to currently unsure records.
     /// Allowed values: `absent`, `present`.
@@ -18897,7 +19563,7 @@ pub struct PostGroupsGroupIdMeetingsMeetingIdMembersMissingBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostGroupsIdMeetingsBody {
     /// Start of the meeting in UTC.
     #[serde(rename = "startDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -18907,7 +19573,7 @@ pub struct PostGroupsIdMeetingsBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostImageMeta {
     #[serde(rename = "aspectRatio", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub aspect_ratio: Option<f64>,
@@ -18918,7 +19584,7 @@ pub struct PostImageMeta {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostInstallationSyncOidcBody {
     /// Compact RS256 JWS containing the configuration.
     #[serde(rename = "configurationToken", deserialize_with = "crate::lenient::string")]
@@ -18928,7 +19594,7 @@ pub struct PostInstallationSyncOidcBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostInstallationSyncOidcData {
     #[serde(rename = "externalLoginId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub external_login_id: Option<i64>,
@@ -18941,7 +19607,7 @@ pub struct PostInstallationSyncOidcData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostInstance {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub guid: String,
@@ -18954,7 +19620,7 @@ pub struct PostInstance {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostLabelsData {
     /// Absolute URL of the generated file, scheduled to expire after one day.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -18965,7 +19631,7 @@ pub struct PostLabelsData {
 }
 
 /// Two-factor completion result. The legacy disabled-two-factor branch returns only status and does not complete login.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostLoginTwofactorSetupActivateData {
     #[serde(rename = "redirectTo", deserialize_with = "crate::lenient::string")]
     pub redirect_to: String,
@@ -18976,7 +19642,7 @@ pub struct PostLoginTwofactorSetupActivateData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostMarkdownCheckBody {
     /// Validates the provided Markdown content against the specified scope's rules and restrictions.
     /// This ensures the content adheres to the allowed formatting and elements for the given context.
@@ -18991,7 +19657,7 @@ pub struct PostMarkdownCheckBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostMarkdownCheckData {
     /// Indicates if the provided Markdown content adheres to the specified scope's rules. - `true`: The content is valid and contains only allowed elements for the given scope - `false`: The content contains unsupported elements or formatting. Check the `reason` array for specific validation errors.
     #[serde(rename = "isValid")]
@@ -19003,7 +19669,7 @@ pub struct PostMarkdownCheckData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostMarkdownCheckDataReasonItem {
     /// The details of the validation error
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -19019,7 +19685,7 @@ pub struct PostMarkdownCheckDataReasonItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostNpsBody {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub score: i64,
@@ -19028,7 +19694,7 @@ pub struct PostNpsBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostNpsResponse {
     #[serde(deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
     pub date: Option<chrono::DateTime<chrono::Utc>>,
@@ -19039,7 +19705,7 @@ pub struct PostNpsResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPermissionsBulkBody {
     pub changes: Vec<PermissionBulkChange>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -19048,7 +19714,7 @@ pub struct PostPermissionsBulkBody {
 }
 
 /// Required IDs must be resolved from this installation's masterdata; optional fields may be omitted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPersonsBody {
     #[serde(rename = "addressAddition", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub address_addition: Option<String>,
@@ -19056,8 +19722,9 @@ pub struct PostPersonsBody {
     pub baptised_by: Option<String>,
     #[serde(rename = "birthName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub birth_name: Option<String>,
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub birthday: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub birthday: Option<Option<chrono::NaiveDate>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub birthplace: Option<String>,
     /// ID of a campus returned by `GET /person/masterdata`.
@@ -19069,16 +19736,21 @@ pub struct PostPersonsBody {
     pub cms_user_id: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub country: Option<String>,
-    #[serde(rename = "dateOfBaptism", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_baptism: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfBelonging", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_belonging: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfDeath", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_death: Option<chrono::NaiveDate>,
-    #[serde(rename = "dateOfEntry", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_entry: Option<chrono::DateTime<chrono::Utc>>,
-    #[serde(rename = "dateOfResign", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub date_of_resign: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfBaptism", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_baptism: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfBelonging", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_belonging: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfDeath", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_death: Option<Option<chrono::NaiveDate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfEntry", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_entry: Option<Option<chrono::DateTime<chrono::Utc>>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "dateOfResign", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub date_of_resign: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// Department IDs returned by `GET /person/masterdata`. At least one department must be set.
     #[serde(rename = "departmentIds")]
     pub department_ids: Vec<i64>,
@@ -19087,12 +19759,14 @@ pub struct PostPersonsBody {
     /// Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub emails: Option<Vec<PersonEmail>>,
-    #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub family_status_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "familyStatusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub family_status_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub fax: Option<String>,
-    #[serde(rename = "firstContact", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub first_contact: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "firstContact", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub first_contact: Option<Option<chrono::DateTime<chrono::Utc>>>,
     #[serde(rename = "firstName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub first_name: Option<String>,
     #[serde(rename = "growPathId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -19103,8 +19777,9 @@ pub struct PostPersonsBody {
     pub last_name: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub mobile: Option<String>,
-    #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub nationality_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "nationalityId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub nationality_id: Option<Option<i64>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub nickname: Option<String>,
     #[serde(rename = "optigemId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -19132,8 +19807,9 @@ pub struct PostPersonsBody {
     pub referred_by: Option<String>,
     #[serde(rename = "referredTo", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub referred_to: Option<String>,
-    #[serde(rename = "sexId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sex_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sexId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sex_id: Option<Option<i64>>,
     /// ID of a person status returned by `GET /person/masterdata`.
     #[serde(rename = "statusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub status_id: Option<i64>,
@@ -19145,8 +19821,9 @@ pub struct PostPersonsBody {
     /// Allowed values: `hidden`, `visible`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub visibility: Option<String>,
-    #[serde(rename = "weddingDate", default, skip_serializing_if = "Option::is_none")]
-    pub wedding_date: Option<chrono::NaiveDate>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "weddingDate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub wedding_date: Option<Option<chrono::NaiveDate>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub zip: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -19154,7 +19831,7 @@ pub struct PostPersonsBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPersonsPersonIdArchiveBody {
     /// if true the person is archived, if false the archive operation is undone
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -19164,7 +19841,7 @@ pub struct PostPersonsPersonIdArchiveBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPersonsPersonIdRelationshipsBody {
     #[serde(rename = "otherPersonId", deserialize_with = "crate::lenient::number")]
     pub other_person_id: i64,
@@ -19175,7 +19852,7 @@ pub struct PostPersonsPersonIdRelationshipsBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPersonsPropertiesBody {
     /// Person IDs for which properties should be returned
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -19185,7 +19862,7 @@ pub struct PostPersonsPropertiesBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostProbesBody {
     /// One or more domain types to filter probes by.
     /// Allowed values: `person`.
@@ -19198,7 +19875,7 @@ pub struct PostProbesBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPublicgroupsGroupIdMailToLeadersData {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub success: String,
@@ -19207,7 +19884,7 @@ pub struct PostPublicgroupsGroupIdMailToLeadersData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPublicgroupsGroupIdSignupResponse {
     /// The hash of the group homepage. This allows the client to return to the group homepage.
     #[serde(rename = "groupHomepageHash", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -19220,7 +19897,7 @@ pub struct PostPublicgroupsGroupIdSignupResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPublicgroupsGroupIdTokenDataVariant2 {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub success: String,
@@ -19229,7 +19906,7 @@ pub struct PostPublicgroupsGroupIdTokenDataVariant2 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostPublicgroupsSignupConfirmConfirmationTokenData {
     #[serde(rename = "groupHomepageHash", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub group_homepage_hash: Option<String>,
@@ -19248,7 +19925,7 @@ pub struct PostPublicgroupsSignupConfirmConfirmationTokenData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostQueuesQueueData {
     /// Messages from Worker
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -19261,7 +19938,7 @@ pub struct PostQueuesQueueData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostReaction {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub emoji: String,
@@ -19276,7 +19953,7 @@ pub struct PostReaction {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostResetPasswordData {
     /// Translated confirmation messages intended for display; wording depends on the user language.
     pub infos: Vec<String>,
@@ -19285,7 +19962,7 @@ pub struct PostResetPasswordData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostSecuritylevelsIdBody {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
@@ -19294,7 +19971,7 @@ pub struct PostSecuritylevelsIdBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostSecuritylevelsIdResponse {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -19307,7 +19984,7 @@ pub struct PostSecuritylevelsIdResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostSimulateBody {
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -19316,7 +19993,7 @@ pub struct PostSimulateBody {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostSummarySubscriptionOptions {
     /// Which posts to include in the email summary.
     /// Allowed values: `all`, `featured_groups`, `my_campus`, `my_groups`.
@@ -19329,7 +20006,7 @@ pub struct PostSummarySubscriptionOptions {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostTwofactorTotpData {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub status: String,
@@ -19338,18 +20015,21 @@ pub struct PostTwofactorTotpData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PostUpdate {
     #[serde(rename = "commentsActive", default, skip_serializing_if = "Option::is_none")]
     pub comments_active: Option<bool>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub content: Option<String>,
-    #[serde(rename = "expirationDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub expiration_date: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub content: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "expirationDate", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub expiration_date: Option<Option<chrono::DateTime<chrono::Utc>>>,
     #[serde(rename = "imageIds", default, skip_serializing_if = "Option::is_none")]
     pub image_ids: Option<Vec<i64>>,
-    #[serde(rename = "publicationDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub publication_date: Option<chrono::DateTime<chrono::Utc>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "publicationDate", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub publication_date: Option<Option<chrono::DateTime<chrono::Utc>>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub title: Option<String>,
     /// Allowed values: `group_intern`, `group_visible`.
@@ -19361,7 +20041,7 @@ pub struct PostUpdate {
 }
 
 /// A printer designated to print check-in codes
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Printer {
     /// Whether this printer is active and available for check-in printing.
     pub active: bool,
@@ -19380,7 +20060,7 @@ pub struct Printer {
 }
 
 /// An operation that can evaluate domain objects as a predicate.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Probe {
     #[serde(rename = "actionMetaData")]
     pub action_meta_data: ActionMetaData,
@@ -19399,7 +20079,7 @@ pub struct Probe {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProbeInvocation {
     /// Probe-specific configuration.
     #[serde(deserialize_with = "crate::lenient::map")]
@@ -19413,7 +20093,7 @@ pub struct ProbeInvocation {
 }
 
 /// A logical probe expression. The complete expression may be at most 10 levels deep and contain at most 100 expression nodes.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProbeLogicalExpression {
     /// Nested expressions. The `not` operator requires exactly one child; all other operators accept between one and 20 children. Entries have the same shape as ProbeExpression, but are documented without a recursive $ref because some OpenAPI tooling cannot resolve recursive schemas.
     pub children: Vec<std::collections::BTreeMap<String, serde_json::Value>>,
@@ -19426,7 +20106,7 @@ pub struct ProbeLogicalExpression {
 }
 
 /// Matches each source person with any visible related target person. If `where` is supplied, at least one visible target must also match that nested expression.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProbeTraversalExpression {
     pub data: ProbeTraversalExpressionData,
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -19441,7 +20121,7 @@ pub struct ProbeTraversalExpression {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProbeTraversalExpressionData {
     /// Allowed values: `person-a-to-person-b`, `person-b-to-person-a`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -19454,7 +20134,7 @@ pub struct ProbeTraversalExpressionData {
 }
 
 /// Profiles are representing campuses and the church itself.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Profile {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub deprecated: Option<std::collections::BTreeMap<String, String>>,
@@ -19530,35 +20210,44 @@ pub struct Profile {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileAddressUpdate {
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub addition: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub city: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub country: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub district: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub addition: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub city: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub country: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub district: Option<Option<String>>,
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub latitude: serde_json::Value,
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub longitude: serde_json::Value,
     /// Alias for `name` in the API request.
-    #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub meeting_at: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub street: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub zip: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub meeting_at: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub street: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub zip: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileGroupsItem {
     pub group: DomainObjectGroup,
     #[serde(rename = "groupHomepageApi", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -19572,7 +20261,7 @@ pub struct ProfileGroupsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileServicesItem {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub day: i64,
@@ -19588,7 +20277,7 @@ pub struct ProfileServicesItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileSignUpGroupVariant1 {
     pub group: DomainObjectGroup,
     #[serde(rename = "groupHomepageApi", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -19600,7 +20289,7 @@ pub struct ProfileSignUpGroupVariant1 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileTagsItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub key: String,
@@ -19613,7 +20302,7 @@ pub struct ProfileTagsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileTeamItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub note: String,
@@ -19626,20 +20315,24 @@ pub struct ProfileTeamItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileUpdate {
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub address: Option<ProfileAddressUpdate>,
-    #[serde(rename = "associationId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub association_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub address: Option<Option<ProfileAddressUpdate>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "associationId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub association_id: Option<Option<i64>>,
     /// Either exact denomination key or denomination object with name property.
     /// Allowed values: `denomination.catholic`, `denomination.ecumenical`, `denomination.free.evangelical`, `denomination.none`, `denomination.orthodox`, `denomination.protestant`.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub denomination: serde_json::Value,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub email: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub email: Option<Option<String>>,
     /// List of group IDs shown on the profile.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub groups: Option<Vec<i64>>,
@@ -19647,19 +20340,24 @@ pub struct ProfileUpdate {
     pub is_published: Option<bool>,
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub phone: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub phone: Option<Option<String>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub services: Option<Vec<ProfileUpdateServicesItem>>,
-    #[serde(rename = "shortName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub short_name: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "shortName", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub short_name: Option<Option<String>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub shorty: Option<String>,
     /// Group ID used for profile sign-up or null to disable sign-up.
-    #[serde(rename = "signUpGroupId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sign_up_group_id: Option<i64>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub slug: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "signUpGroupId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sign_up_group_id: Option<Option<i64>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub slug: Option<Option<String>>,
     /// Key-Value Pair, where key is the name of the network and value is the absolute link
     #[serde(rename = "socialMedia", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub social_media: Option<std::collections::BTreeMap<String, String>>,
@@ -19670,14 +20368,16 @@ pub struct ProfileUpdate {
     pub tags: Option<Vec<String>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub team: Option<Vec<ProfileUpdateTeamItem>>,
-    #[serde(rename = "teamTitle", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub team_title: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "teamTitle", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub team_title: Option<Option<String>>,
     /// Single integer, which represents a range.
     /// Allowed values: `0`, `1`, `100`, `1000`, `250`, `50`, `500`.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub visitors: Option<i64>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub website: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub website: Option<Option<String>>,
     /// Campus profile ID. For `/profiles/church`, this is ignored.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
@@ -19686,7 +20386,7 @@ pub struct ProfileUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileUpdateDenominationVariant2 {
     /// Allowed values: `denomination.catholic`, `denomination.ecumenical`, `denomination.free.evangelical`, `denomination.none`, `denomination.orthodox`, `denomination.protestant`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -19696,12 +20396,13 @@ pub struct ProfileUpdateDenominationVariant2 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileUpdateServicesItem {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub day: i64,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Allowed values: `biweekly`, `every_fourth_week`, `every_third_week`, `monthly`, `weekly`.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub repetition: String,
@@ -19712,7 +20413,7 @@ pub struct ProfileUpdateServicesItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileUpdateTeamItem {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
@@ -19729,7 +20430,7 @@ pub struct ProfileUpdateTeamItem {
 }
 
 /// DomainObject
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileUpdateTeamItemPerson {
     #[serde(rename = "domainIdentifier", deserialize_with = "crate::lenient::number")]
     pub domain_identifier: i64,
@@ -19739,7 +20440,7 @@ pub struct ProfileUpdateTeamItemPerson {
 }
 
 /// Information about a public group, e.g. to be displayed on a group homepage.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroup {
     /// Compatibility aliases emitted by the transformer.
     #[serde(rename = "@deprecated")]
@@ -19808,7 +20509,7 @@ pub struct PublicGroup {
 }
 
 /// Public group meeting place. If showStreet=false, street/addition and precise latitude/longitude aliases are omitted; loose coordinates and the remaining location metadata remain.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupAddress {
     #[serde(rename = "@deprecated")]
     pub deprecated: StoredAddressDeprecated,
@@ -19886,7 +20587,7 @@ pub struct PublicGroupAddress {
 }
 
 /// Compatibility aliases emitted by the transformer.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupDeprecated {
     #[serde(rename = "requestedPlacesCount", deserialize_with = "crate::lenient::string")]
     pub requested_places_count: String,
@@ -19898,7 +20599,7 @@ pub struct PublicGroupDeprecated {
 }
 
 /// Single public-group response, including eligible signup persons.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupDetail {
     /// Compatibility aliases emitted by the transformer.
     #[serde(rename = "@deprecated")]
@@ -19966,7 +20667,7 @@ pub struct PublicGroupDetail {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupFormField {
     /// Configured default, including checkbox booleans; not necessarily a string.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -20009,7 +20710,7 @@ pub struct PublicGroupFormField {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupFormFieldOptionsItem {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub id: serde_json::Value,
@@ -20020,7 +20721,7 @@ pub struct PublicGroupFormFieldOptionsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupFormResult {
     #[serde(rename = "acceptPrivacyForChildForm")]
     pub accept_privacy_for_child_form: Vec<PublicGroupFormField>,
@@ -20055,7 +20756,7 @@ pub struct PublicGroupFormResult {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupFormResultSignUpPersonsItem {
     /// List of form field values
     #[serde(rename = "formData")]
@@ -20077,7 +20778,7 @@ pub struct PublicGroupFormResultSignUpPersonsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupFormResultSignUpPersonsItemFormDataItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -20090,7 +20791,7 @@ pub struct PublicGroupFormResultSignUpPersonsItemFormDataItem {
 }
 
 /// General information about the group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupInformation {
     /// List of target age groups for this group.
     #[serde(rename = "ageGroups")]
@@ -20143,7 +20844,7 @@ pub struct PublicGroupInformation {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupLeaderMailCreate {
     /// E-Mail Address of the sender.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -20162,7 +20863,7 @@ pub struct PublicGroupLeaderMailCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupPossibleRequesters {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub email: Option<String>,
@@ -20175,7 +20876,7 @@ pub struct PublicGroupPossibleRequesters {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupSettings {
     #[serde(rename = "allowChildRegistration")]
     pub allow_child_registration: bool,
@@ -20208,7 +20909,7 @@ pub struct PublicGroupSettings {
 }
 
 /// Select memberships to withdraw. Use an existing requester’s sign-up token, or omit token and use the current user’s permissions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupSignOutRequest {
     /// Person IDs, not membership IDs. Each person must be the requester or have been registered by the requester, and must be eligible for self sign-out. An empty list is accepted.
     #[serde(rename = "personIds")]
@@ -20221,7 +20922,7 @@ pub struct PublicGroupSignOutRequest {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupSignUpPersonsItem {
     /// Person as Domain Object
     pub person: DomainObjectPerson,
@@ -20234,7 +20935,7 @@ pub struct PublicGroupSignUpPersonsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupSignoutData {
     pub group: DomainObjectGroup,
     #[serde(rename = "groupHasAutoAccept")]
@@ -20257,7 +20958,7 @@ pub struct PublicGroupSignoutData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupSignupCreate {
     /// One entry per signup person; the controller does not enforce a nonempty list.
     pub forms: Vec<PublicGroupSignupCreateFormsItem>,
@@ -20275,7 +20976,7 @@ pub struct PublicGroupSignupCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupSignupCreateFormsItem {
     /// The form data for the current person.
     pub form: Vec<PublicGroupSignupCreateFormsItemFormItem>,
@@ -20287,7 +20988,7 @@ pub struct PublicGroupSignupCreateFormsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupSignupCreateFormsItemFormItem {
     /// Field ID paired with its type; use the IDs from the form response.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -20303,7 +21004,7 @@ pub struct PublicGroupSignupCreateFormsItemFormItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupToken {
     /// Provide eMail
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -20325,7 +21026,7 @@ pub struct PublicGroupToken {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicGroupTokenCreate {
     /// Array of person ids, which are clicked on group detail page. Those persons, will be also checked on the form site.
     /// The `clicked` field will be saved only in combination with `personId`.
@@ -20348,7 +21049,7 @@ pub struct PublicGroupTokenCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicRelationGroupHomepage {
     /// Absolute public URL of the group homepage.
     #[serde(rename = "groupHomepageUrl", deserialize_with = "crate::lenient::string")]
@@ -20361,7 +21062,7 @@ pub struct PublicRelationGroupHomepage {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicRelationTag {
     /// Technical enum case name used by ChurchTools.
     /// Allowed values: `ACTIVE`, `BIBLICALLY_DEVOTED`, `CHARISMATIC`, `CHILD_FRIENDLY`, `CLASSICAL`, `CONTEMPLATIVE`, `INTERNATIONAL`, `LIVELY`, `MISSIONARY`, `MODERN`, `OPEN_TO_GUESTS`, `PERSONAL`, `PROGRESSIVE`, `TRADITIONAL`.
@@ -20380,7 +21081,7 @@ pub struct PublicRelationTag {
 }
 
 /// Master data used by the public relations and public profile UI.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PublicRelationsMasterData {
     /// Associations that can be assigned to a public profile.
     pub associations: Vec<Association>,
@@ -20400,7 +21101,7 @@ pub struct PublicRelationsMasterData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PutConfigRequest {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub accept_datasecurity: Option<bool>,
@@ -20710,7 +21411,7 @@ pub struct PutConfigRequest {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PutDynamicgroupsIdRulesetResponse {
     #[serde(rename = "dynamicGroupRuleSet", default, skip_serializing_if = "Option::is_none")]
     pub dynamic_group_rule_set: Option<Vec<DynamicGroupRule>>,
@@ -20719,11 +21420,13 @@ pub struct PutDynamicgroupsIdRulesetResponse {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PutGroupsGroupIdMeetingsMeetingIdBody {
     /// Meeting notes; omitted, null or blank text clears them.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Whether the meeting was canceled. Canceling retains the meeting record.
     #[serde(rename = "isCanceled")]
     pub is_canceled: bool,
@@ -20731,11 +21434,15 @@ pub struct PutGroupsGroupIdMeetingsMeetingIdBody {
     #[serde(rename = "isCompleted")]
     pub is_completed: bool,
     /// Additional guest headcount entered for the meeting, or null when unspecified. This does not create person or attendance records.
-    #[serde(rename = "numGuests", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub num_guests: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "numGuests", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub num_guests: Option<Option<i64>>,
     /// Feedback data to store for this meeting, typically MeetingTemplateField objects with answer values. The endpoint validates the outer array but not individual field contents. Omit or send null to clear.
-    #[serde(rename = "pollResult", default, skip_serializing_if = "Option::is_none")]
-    pub poll_result: Option<Vec<serde_json::Value>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "pollResult", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub poll_result: Option<Option<Vec<serde_json::Value>>>,
     /// New start timestamp in UTC; dateFrom is a legacy alias.
     #[serde(rename = "startDate", serialize_with = "crate::datetime::serialize_utc")]
     pub start_date: chrono::DateTime<chrono::Utc>,
@@ -20745,7 +21452,7 @@ pub struct PutGroupsGroupIdMeetingsMeetingIdBody {
 }
 
 /// A person’s membership in one group. The membership has its own record ID, a role defined by the group type, and an independent membership status. Use person.domainIdentifier as personId in membership endpoint URLs; id identifies the membership record. Field visibility depends on the current user’s permissions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PutGroupsGroupIdMembersPersonIdData {
     /// Legacy response-field mapping emitted by the membership transformer.
     #[serde(rename = "@deprecated")]
@@ -20811,7 +21518,7 @@ pub struct PutGroupsGroupIdMembersPersonIdData {
 }
 
 /// Legacy duplicate of this membership.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PutGroupsGroupIdMembersPersonIdDataT0 {
     /// Legacy response-field mapping emitted by the membership transformer.
     #[serde(rename = "@deprecated")]
@@ -20872,7 +21579,7 @@ pub struct PutGroupsGroupIdMembersPersonIdDataT0 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct PutPermissionsLockedData {
     pub permissions: Vec<LockedPermission>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -20881,7 +21588,7 @@ pub struct PutPermissionsLockedData {
 }
 
 /// Pending self-registration.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Registration {
     /// Configuration GUID, despite the `configId` property name.
     #[serde(rename = "configId", deserialize_with = "crate::lenient::string")]
@@ -20906,7 +21613,7 @@ pub struct Registration {
 }
 
 /// Self-registration form configuration. Administrative properties are included for callers with "churchcore administer persons" permission.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfig {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub deprecated: Option<String>,
@@ -20953,7 +21660,7 @@ pub struct RegistrationConfig {
 }
 
 /// Configuration as returned to administrators; includes assignment settings and audit metadata.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfigAdmin {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::string")]
     pub deprecated: String,
@@ -20997,7 +21704,7 @@ pub struct RegistrationConfigAdmin {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfigCampusesItem {
     /// Profiles are representing campuses and the church itself.
     pub campus: Profile,
@@ -21011,7 +21718,7 @@ pub struct RegistrationConfigCampusesItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfigFieldsItem {
     /// Expanded database-field definition when resolvable.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -21026,7 +21733,7 @@ pub struct RegistrationConfigFieldsItem {
 }
 
 /// Expanded database-field definition when resolvable.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfigFieldsItemField {
     /// Whether a person field’s value is cleared on archiving. Cannot be true for a non-nullable field.
     #[serde(rename = "deleteOnArchive")]
@@ -21116,7 +21823,7 @@ pub struct RegistrationConfigFieldsItemField {
 }
 
 /// Partial self-registration configuration update.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfigUpdate {
     /// Case-insensitive email patterns; `*` is a wildcard. Replaces the full blacklist.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -21134,8 +21841,9 @@ pub struct RegistrationConfigUpdate {
     pub minimum_age: Option<i64>,
     #[serde(rename = "showButton", default, skip_serializing_if = "Option::is_none")]
     pub show_button: Option<bool>,
-    #[serde(rename = "statusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub status_id: Option<i64>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "statusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub status_id: Option<Option<i64>>,
     /// Legacy input alias; prefer `tagsForNewPersons`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
@@ -21149,7 +21857,7 @@ pub struct RegistrationConfigUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfigUpdateCampusesItem {
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::number")]
     pub campus_id: i64,
@@ -21160,7 +21868,7 @@ pub struct RegistrationConfigUpdateCampusesItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfigUpdateFieldsItem {
     #[serde(rename = "fieldId", deserialize_with = "crate::lenient::number")]
     pub field_id: i64,
@@ -21171,7 +21879,7 @@ pub struct RegistrationConfigUpdateFieldsItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConfirm {
     /// Confirmation token from the emailed link.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -21181,7 +21889,7 @@ pub struct RegistrationConfirm {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConvert {
     /// Consent fields plus configured person fields by numeric field ID or modern field name.
     #[serde(rename = "formData")]
@@ -21198,7 +21906,7 @@ pub struct RegistrationConvert {
 }
 
 /// Consent fields plus configured person fields by numeric field ID or modern field name.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationConvertFormData {
     /// Explicit acceptance of the data privacy policy.
     #[serde(rename = "acceptDataPrivacy")]
@@ -21214,7 +21922,7 @@ pub struct RegistrationConvertFormData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationCreate {
     /// GUID from `RegistrationConfig.guid`.
     #[serde(rename = "configId", deserialize_with = "crate::lenient::string")]
@@ -21235,14 +21943,16 @@ pub struct RegistrationCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub password: String,
     /// Destination for the client after completion.
-    #[serde(rename = "redirectAfterRegistration", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub redirect_after_registration: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "redirectAfterRegistration", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub redirect_after_registration: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RegistrationPossibleMatchesItem {
     /// Person as Domain Object
     #[serde(rename = "domainObject")]
@@ -21258,7 +21968,7 @@ pub struct RegistrationPossibleMatchesItem {
 }
 
 /// Definition of a relationship between two persons, such as Parent / Child or Friend / Friend. This is catalog metadata, not an actual relationship between named persons. The two role labels describe its sides; identical stored labels make it undirected in the backend. Security and export settings concern use of relationships of this type.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RelationshipType {
     /// Role label for side A. Identical labels on both sides make the type undirected.
     #[serde(rename = "degreeNameA", deserialize_with = "crate::lenient::string")]
@@ -21303,7 +22013,7 @@ pub struct RelationshipType {
 }
 
 /// Creates a relationship-type catalog definition, not a relationship between persons.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RelationshipTypeCreate {
     /// Role label for side A. Identical labels on both sides make the type undirected.
     #[serde(rename = "degreeNameA", deserialize_with = "crate::lenient::string")]
@@ -21312,27 +22022,35 @@ pub struct RelationshipTypeCreate {
     #[serde(rename = "degreeNameB", deserialize_with = "crate::lenient::string")]
     pub degree_name_b: String,
     /// Heading for the combined export column. The export otherwise uses the type name or synthesized role labels.
-    #[serde(rename = "exportTitle", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub export_title: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "exportTitle", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub export_title: Option<Option<String>>,
     /// Controls column aggregation when this relationship is selected for person export. `true` combines both directions into one column; `false` uses separate columns. It does not disable export.
-    #[serde(rename = "includeInExport", default, skip_serializing_if = "Option::is_none")]
-    pub include_in_export: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "includeInExport", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub include_in_export: Option<Option<bool>>,
     /// Stored name or translation key. The response derives `nameTranslated` from the side labels when necessary.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// ID of an existing, installation-specific security level for relationships of this type.
     #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::number")]
     pub security_level_id: i64,
     /// Ascending catalog sort key.
-    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sort_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sort_key: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Replacement fields for an existing relationship type.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RelationshipTypeUpdate {
     /// Role label for side A. Identical labels on both sides make the type undirected.
     #[serde(rename = "degreeNameA", deserialize_with = "crate::lenient::string")]
@@ -21341,27 +22059,35 @@ pub struct RelationshipTypeUpdate {
     #[serde(rename = "degreeNameB", deserialize_with = "crate::lenient::string")]
     pub degree_name_b: String,
     /// Heading for the combined export column. The export otherwise uses the type name or synthesized role labels.
-    #[serde(rename = "exportTitle", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub export_title: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "exportTitle", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub export_title: Option<Option<String>>,
     /// Controls column aggregation when this relationship is selected for person export. `true` combines both directions into one column; `false` uses separate columns. It does not disable export.
-    #[serde(rename = "includeInExport", default, skip_serializing_if = "Option::is_none")]
-    pub include_in_export: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "includeInExport", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub include_in_export: Option<Option<bool>>,
     /// Stored name or translation key. The response derives `nameTranslated` from the side labels when necessary.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// ID of an existing, installation-specific security level for relationships of this type.
     #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::number")]
     pub security_level_id: i64,
     /// Ascending catalog sort key.
-    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sort_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sort_key: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Echo of the transient recurrence definition.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RepeatCalculationBase {
     pub additions: Vec<std::collections::BTreeMap<String, serde_json::Value>>,
     #[serde(rename = "allDay")]
@@ -21396,7 +22122,7 @@ pub struct RepeatCalculationBase {
 }
 
 /// Calculate occurrence dates without persisting an appointment.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RepeatCalculationCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub additionals: Option<Vec<AppointmentAdditionalCreate>>,
@@ -21406,18 +22132,24 @@ pub struct RepeatCalculationCreate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub exceptions: Option<Vec<AppointmentExceptionCreate>>,
     /// Interval between repetitions; use a positive integer for automatic patterns, for example 2 with repeatId=7 for every two weeks. Irrelevant for once/manual patterns.
-    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_frequency: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatFrequency", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_frequency: Option<Option<i64>>,
     /// Recurrence pattern: 0 = once, 1 = daily, 7 = weekly, 31 = monthly by date, 32 = monthly by weekday, 365 = yearly, 999 = manually selected dates. Automatic patterns use repeatFrequency and repeatUntil; manual dates use additionals.
     /// Allowed values: `0`, `1`, `31`, `32`, `365`, `7`, `999`.
     #[serde(rename = "repeatId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub repeat_id: Option<i64>,
     /// For repeatId=32, ordinal of the weekday within the month: 1–5 for first through fifth, 6 for last. The weekday comes from startDate.
-    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_option: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatOption", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_option: Option<Option<i64>>,
     /// Inclusive last date of an automatic series. Supply this with automatic recurrence; omission does not represent an unlimited series in these write endpoints.
-    #[serde(rename = "repeatUntil", default, skip_serializing_if = "Option::is_none")]
-    pub repeat_until: Option<chrono::NaiveDate>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "repeatUntil", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub repeat_until: Option<Option<chrono::NaiveDate>>,
     /// Start of the base occurrence. For all-day appointments, send YYYY-MM-DD.
     #[serde(rename = "startDate")]
     pub start_date: crate::DateOrDateTime,
@@ -21427,7 +22159,7 @@ pub struct RepeatCalculationCreate {
 }
 
 /// One computed occurrence of a transient recurrence definition. No iCalendar UID is assigned.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RepeatCalculationOccurrence {
     /// Echo of the transient recurrence definition.
     pub base: RepeatCalculationBase,
@@ -21437,7 +22169,7 @@ pub struct RepeatCalculationOccurrence {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RepeatCalculationOccurrenceCalculated {
     /// Use a UTC timestamp for a timed appointment or YYYY-MM-DD for an all-day appointment. ChurchTools interprets dates in the installation’s timezone. Seconds on appointment input are discarded.
     #[serde(rename = "endDate")]
@@ -21450,7 +22182,7 @@ pub struct RepeatCalculationOccurrenceCalculated {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Report {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub comment: Option<String>,
@@ -21465,7 +22197,7 @@ pub struct Report {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ReportAnswer {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
     pub domain_id: i64,
@@ -21480,7 +22212,7 @@ pub struct ReportAnswer {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ReportCreate {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub captcha: Option<String>,
@@ -21498,7 +22230,7 @@ pub struct ReportCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ReportCreateReporter {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub email: String,
@@ -21511,7 +22243,7 @@ pub struct ReportCreateReporter {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ReportObjectPost {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub comment: Option<String>,
@@ -21534,7 +22266,7 @@ pub struct ReportObjectPost {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ReportObjectPostComment {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub comment: Option<String>,
@@ -21558,7 +22290,7 @@ pub struct ReportObjectPostComment {
 }
 
 /// A compact object returned by the registered domain resolver. Match results by `domainType` and `domainIdentifier`, not by array index.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ResolvedDomainObject {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -21581,7 +22313,7 @@ pub struct ResolvedDomainObject {
 }
 
 /// An individual bookable resource, such as a room, vehicle or item of equipment. A resource type groups similar resources. Bookings reserve this resource for specific dates.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Resource {
     /// Persons responsible for this resource. Resource administrators can view and administer its bookings; changing resource settings still requires permission to edit resource master data.
     #[serde(rename = "adminIds")]
@@ -21638,17 +22370,21 @@ pub struct Resource {
 }
 
 /// Configuration for an individual bookable resource.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ResourceCreate {
     /// Persons responsible for this resource. Resource administrators can view and administer its bookings; changing resource settings still requires permission to edit resource master data.
     #[serde(rename = "adminIds", default, skip_serializing_if = "Option::is_none")]
     pub admin_ids: Option<Vec<i64>>,
     /// Additional information about the resource, such as capacity or available equipment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Location text used in the resource’s iCalendar export.
-    #[serde(rename = "iCalLocation", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub i_cal_location: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "iCalLocation", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub i_cal_location: Option<Option<String>>,
     /// Automatically approves pending bookings when there are no conflicts. For virtual resources, automatic approval bypasses the conflict check. This does not grant permission to edit resource settings.
     #[serde(rename = "isAutoAccept", default, skip_serializing_if = "Option::is_none")]
     pub is_auto_accept: Option<bool>,
@@ -21656,8 +22392,10 @@ pub struct ResourceCreate {
     #[serde(rename = "isVirtual", default, skip_serializing_if = "Option::is_none")]
     pub is_virtual: Option<bool>,
     /// Internal location of the resource.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub location: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub location: Option<Option<String>>,
     /// Name of the individual resource, for example a room or vehicle.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -21665,8 +22403,10 @@ pub struct ResourceCreate {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub quantity: Option<i64>,
     /// Access token used by the legacy public iCalendar export. Changing or clearing it invalidates subscriptions using the previous token.
-    #[serde(rename = "randomString", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub random_string: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "randomString", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub random_string: Option<Option<String>>,
     /// Resource type used to group this resource, such as rooms or vehicles. Resource types are available from `/resourcetypes`.
     #[serde(rename = "resourceTypeId", deserialize_with = "crate::lenient::number")]
     pub resource_type_id: i64,
@@ -21682,7 +22422,7 @@ pub struct ResourceCreate {
 }
 
 /// Resource planning reference data: all resource types and the resources visible to the current user.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ResourceMasterData {
     /// All resource types ordered by sortKey ascending, including types without visible resources.
     #[serde(rename = "resourceTypes")]
@@ -21695,7 +22435,7 @@ pub struct ResourceMasterData {
 }
 
 /// Pending booking workload for one resource.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ResourceStatistics {
     /// Number of pending booking occurrences from now onward, rather than distinct booking IDs. Candidate series are selected in a ten-year lookahead window; their remaining occurrences are then expanded without an upper date limit.
     #[serde(rename = "numRequestedBookingsInFuture", deserialize_with = "crate::lenient::number")]
@@ -21706,7 +22446,7 @@ pub struct ResourceStatistics {
 }
 
 /// Category used by `Resource.resourceTypeId`. Resource types are returned even when the reader has no visible resources of that type.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ResourceType {
     /// Associated campus, or null for no campus assignment.
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -21735,11 +22475,13 @@ pub struct ResourceType {
 }
 
 /// A category for resources, such as rooms or vehicles. A campus is an organizational location in ChurchTools; `campusId` is optional.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ResourceTypeCreate {
     /// Associated campus, or null for no campus assignment.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Singular label for one resource of this type.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -21755,11 +22497,13 @@ pub struct ResourceTypeCreate {
 }
 
 /// Complete resource-type input. The resource type ID is supplied in the path.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ResourceTypeUpdate {
     /// Associated campus, or null for no campus assignment.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Singular label for one resource of this type.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -21775,17 +22519,21 @@ pub struct ResourceTypeUpdate {
 }
 
 /// Complete resource configuration. The resource ID is supplied in the path.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ResourceUpdate {
     /// Persons responsible for this resource. Resource administrators can view and administer its bookings; changing resource settings still requires permission to edit resource master data.
     #[serde(rename = "adminIds", default, skip_serializing_if = "Option::is_none")]
     pub admin_ids: Option<Vec<i64>>,
     /// Additional information about the resource, such as capacity or available equipment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Location text used in the resource’s iCalendar export.
-    #[serde(rename = "iCalLocation", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub i_cal_location: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "iCalLocation", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub i_cal_location: Option<Option<String>>,
     /// Automatically approves pending bookings when there are no conflicts. For virtual resources, automatic approval bypasses the conflict check. This does not grant permission to edit resource settings.
     #[serde(rename = "isAutoAccept", default, skip_serializing_if = "Option::is_none")]
     pub is_auto_accept: Option<bool>,
@@ -21793,8 +22541,10 @@ pub struct ResourceUpdate {
     #[serde(rename = "isVirtual", default, skip_serializing_if = "Option::is_none")]
     pub is_virtual: Option<bool>,
     /// Internal location of the resource.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub location: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub location: Option<Option<String>>,
     /// Name of the individual resource, for example a room or vehicle.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -21802,8 +22552,10 @@ pub struct ResourceUpdate {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub quantity: Option<i64>,
     /// Access token used by the legacy public iCalendar export. Changing or clearing it invalidates subscriptions using the previous token.
-    #[serde(rename = "randomString", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub random_string: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "randomString", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub random_string: Option<Option<String>>,
     /// Resource type used to group this resource, such as rooms or vehicles. Resource types are available from `/resourcetypes`.
     #[serde(rename = "resourceTypeId", deserialize_with = "crate::lenient::number")]
     pub resource_type_id: i64,
@@ -21819,7 +22571,7 @@ pub struct ResourceUpdate {
 }
 
 /// A membership role defined for a group type, such as leader or participant. Groups of that type use this definition and add their own settings through GroupRole. A role describes a person's function; MemberStatus separately describes whether their membership is active, requested, waiting or pending removal.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Role {
     /// ID of the group type this role belongs to. Discover group types with GET /group/grouptypes.
     #[serde(rename = "groupTypeId", deserialize_with = "crate::lenient::number")]
@@ -21861,7 +22613,7 @@ pub struct Role {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoleCreate {
     /// ID of the group type this role belongs to. Discover group types with GET /group/grouptypes.
     #[serde(rename = "groupTypeId", deserialize_with = "crate::lenient::number")]
@@ -21898,7 +22650,7 @@ pub struct RoleCreate {
 }
 
 /// Personal setting containing the secret used by a roster calendar subscription.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RosterICalSetting {
     /// Allowed values: `rosterICalSecret`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -21915,7 +22667,7 @@ pub struct RosterICalSetting {
 }
 
 /// Automation definition, including enabled and disabled steps as a nested tree. Domain context bindings and per-membership execution progress are separate resources.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Routine {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -21937,7 +22689,7 @@ pub struct Routine {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineActionValidation {
     /// Action-specific data. Omission defaults to an empty PHP array.
     #[serde(rename = "actionData", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
@@ -21950,10 +22702,11 @@ pub struct RoutineActionValidation {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineCreate {
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Context for the currently supported group_membership domain. Group and role IDs are required by the domain handler.
     #[serde(rename = "domainContext")]
     pub domain_context: RoutineCreateDomainContext,
@@ -21973,14 +22726,16 @@ pub struct RoutineCreate {
 }
 
 /// Context for the currently supported group_membership domain. Group and role IDs are required by the domain handler.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineCreateDomainContext {
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
     pub group_id: i64,
     /// Optional membership status for the binding; null means the active/default status representation.
     /// Allowed values: `active`, `requested`, `to_delete`, `waiting`.
-    #[serde(rename = "groupMemberStatus", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub group_member_status: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "groupMemberStatus", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub group_member_status: Option<Option<String>>,
     #[serde(rename = "groupTypeRoleId", deserialize_with = "crate::lenient::number")]
     pub group_type_role_id: i64,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -21988,7 +22743,7 @@ pub struct RoutineCreateDomainContext {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineRun {
     /// Current iteration while in a loop, otherwise this attribute is undefined
     #[serde(rename = "currentIteration", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -22028,7 +22783,7 @@ pub struct RoutineRun {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineRunBulkUpdate {
     /// Run IDs processed sequentially. Duplicates are not rejected.
     #[serde(rename = "runIds")]
@@ -22039,7 +22794,7 @@ pub struct RoutineRunBulkUpdate {
 }
 
 /// Only read for the update action. At most one state field can be supplied; an empty object is accepted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineRunUpdate {
     /// Update the current iteration for a special:repeat step
     #[serde(rename = "currentIteration", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -22053,7 +22808,7 @@ pub struct RoutineRunUpdate {
 }
 
 /// Persisted repeat step. Unlike the create payload, an empty children list is omitted in responses.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineStepRepeat {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -22074,7 +22829,7 @@ pub struct RoutineStepRepeat {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineStepRepeatActionData {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub count: Option<i64>,
@@ -22083,7 +22838,7 @@ pub struct RoutineStepRepeatActionData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineStepUpdateRepeat {
     #[serde(rename = "actionData")]
     pub action_data: RoutineStepRepeatActionData,
@@ -22109,7 +22864,7 @@ pub struct RoutineStepUpdateRepeat {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineStepUpdateWithoutRepeat {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
@@ -22121,7 +22876,7 @@ pub struct RoutineStepUpdateWithoutRepeat {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineStepWithoutRepeat {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -22132,10 +22887,11 @@ pub struct RoutineStepWithoutRepeat {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RoutineUpdate {
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Source step IDs or run status buckets. not-started materializes potential runs; this is not a list of run IDs.
     /// Allowed values: `finished`, `not-started`, `started`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -22158,7 +22914,7 @@ pub struct RoutineUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct RssFeed {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -22175,7 +22931,7 @@ pub struct RssFeed {
 }
 
 /// One usable IdP descriptor found in the uploaded document. This is parsed configuration data, not proof of metadata authenticity or a working login.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SamlIdpMetadataDescriptor {
     /// Deduplicated PEM certificate strings for this usage. A key descriptor with no use attribute can appear in both lists. Certificates must parse as X.509; this operation does not establish trust or verify metadata signatures.
     #[serde(rename = "encryptionCertificates")]
@@ -22198,7 +22954,7 @@ pub struct SamlIdpMetadataDescriptor {
 }
 
 /// An endpoint using the supported HTTP-Redirect binding. Unsupported bindings and invalid endpoint URLs are excluded.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SamlMetadataEndpoint {
     /// Allowed values: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -22211,7 +22967,7 @@ pub struct SamlMetadataEndpoint {
 }
 
 /// Read-only request to parse a SAML IdP metadata document. The server never fetches a metadata URL for this operation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SamlMetadataParseCreate {
     /// XML document with EntityDescriptor or EntitiesDescriptor root in the SAML metadata namespace. Trimmed UTF-8 input is limited to 1,048,576 bytes. DOCTYPE and ENTITY declarations are rejected.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -22221,7 +22977,7 @@ pub struct SamlMetadataParseCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SecurityLevel {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -22238,7 +22994,7 @@ pub struct SecurityLevel {
 }
 
 /// A reusable role in event planning, such as Lead vocals. It belongs to a service group. A person assigned to this role at a particular event is a separate service assignment.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Service {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::map")]
     pub deprecated: std::collections::BTreeMap<String, String>,
@@ -22311,7 +23067,7 @@ pub struct Service {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceCandidate {
     /// Person’s full name.
     #[serde(rename = "fullName", deserialize_with = "crate::lenient::string")]
@@ -22324,7 +23080,7 @@ pub struct ServiceCandidate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceCandidateAssignment {
     /// Event as Domain Object
     pub event: DomainObjectEvent,
@@ -22337,7 +23093,7 @@ pub struct ServiceCandidateAssignment {
 }
 
 /// Concrete assignment record. Serialized directly here, so comment is always `null` even when a comment is stored.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceCandidateAssignmentEventService {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::map")]
     pub deprecated: std::collections::BTreeMap<String, String>,
@@ -22398,7 +23154,7 @@ pub struct ServiceCandidateAssignmentEventService {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceCandidateScoreHint {
     /// Human-readable explanation in the current language.
     #[serde(rename = "nameTranslated", deserialize_with = "crate::lenient::string")]
@@ -22416,7 +23172,7 @@ pub struct ServiceCandidateScoreHint {
 }
 
 /// Fields for creating a reusable service role. Free-text fields are not restricted to predefined values.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceCreate {
     /// Enable chat for this service.
     #[serde(rename = "allowChat", default, skip_serializing_if = "Option::is_none")]
@@ -22434,15 +23190,21 @@ pub struct ServiceCreate {
     #[serde(rename = "allowExchange", default, skip_serializing_if = "Option::is_none")]
     pub allow_exchange: Option<bool>,
     /// Template for the calendar text of this service.
-    #[serde(rename = "calTextTemplate", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub cal_text_template: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "calTextTemplate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cal_text_template: Option<Option<String>>,
     /// Deprecated input alias for description. Use description for new integrations.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "Use description for new integrations."]
-    pub comment: Option<String>,
+    pub comment: Option<Option<String>>,
     /// Description of the role.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// IDs of connected person groups used for service planning. Nonexistent IDs are silently removed. Duplicates are retained. An empty list clears the connections.
     #[serde(rename = "groupIds", default, skip_serializing_if = "Option::is_none")]
     pub group_ids: Option<Vec<i64>>,
@@ -22478,7 +23240,7 @@ pub struct ServiceCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceExchangeCandidate {
     /// Start of the candidate event.
     #[serde(rename = "eventDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -22496,7 +23258,7 @@ pub struct ServiceExchangeCandidate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceExchangeEvent {
     /// ID of the event.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -22512,7 +23274,7 @@ pub struct ServiceExchangeEvent {
 }
 
 /// Legacy person object loaded for service exchanges, not the response schema of `/persons/{personId}` or a person domain object. Additional legacy model fields may be present.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceExchangePerson {
     #[serde(rename = "firstName", deserialize_with = "crate::lenient::string")]
     pub first_name: String,
@@ -22535,7 +23297,7 @@ pub struct ServiceExchangePerson {
 }
 
 /// A request to exchange two concrete event-service assignments. Creating it does not swap the persons; accepting it does. List operations enrich the event and person fields where available. Write responses are not enriched, so those fields can be `null`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceExchangeRequest {
     /// ID of the exchange request.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -22567,7 +23329,7 @@ pub struct ServiceExchangeRequest {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceExchangeRequestCreate {
     /// Target assignment to exchange with. Use eventServiceId from the candidates endpoint. ID of a concrete event-service assignment (service request), not the reusable service master-data ID from /services.
     #[serde(rename = "requestedServiceId", deserialize_with = "crate::lenient::number")]
@@ -22577,7 +23339,7 @@ pub struct ServiceExchangeRequestCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceExchangeRequestMeta {
     #[serde(rename = "modifiedDate", serialize_with = "crate::datetime::serialize_utc")]
     pub modified_date: chrono::DateTime<chrono::Utc>,
@@ -22587,7 +23349,7 @@ pub struct ServiceExchangeRequestMeta {
 }
 
 /// A category of service roles, such as Music or Technical team, optionally associated with a campus. It is not a group of persons.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceGroup {
     /// ID of an existing campus, or `null` for no campus association.
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -22619,14 +23381,18 @@ pub struct ServiceGroup {
 }
 
 /// Create a category that organizes service roles.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceGroupCreate {
     /// ID of an existing campus, or `null` for no campus association.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Description of the service group.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Name of a category of service roles, for example Technical team. This is separate from person groups.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -22644,7 +23410,7 @@ pub struct ServiceGroupCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceGroupPersonPreference {
     /// Reaching or exceeding it adds a score penalty; it is not an assignment limit.
     #[serde(rename = "maxPerMonth", deserialize_with = "crate::lenient::number")]
@@ -22671,7 +23437,7 @@ pub struct ServiceGroupPersonPreference {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceGroupPersonPreferenceModifiedPerson {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -22681,14 +23447,18 @@ pub struct ServiceGroupPersonPreferenceModifiedPerson {
 }
 
 /// Fields for updating a service group.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceGroupUpdate {
     /// ID of an existing campus, or `null` for no campus association.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Description of the service group.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Name of a category of service roles, for example Technical team. This is separate from person groups.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -22707,7 +23477,7 @@ pub struct ServiceGroupUpdate {
 }
 
 /// A concrete event-service assignment, also called a service request. This is separate from the reusable service role. A valid record may be unassigned, awaiting confirmation or confirmed. The comment is only exposed to authorized viewers; otherwise it is null. Historical records can still be fetched individually.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceRequest {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::map")]
     pub deprecated: std::collections::BTreeMap<String, String>,
@@ -22768,17 +23538,19 @@ pub struct ServiceRequest {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceRequestAnswer {
     /// Optional response comment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceRequestEvent {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -22793,7 +23565,7 @@ pub struct ServiceRequestEvent {
 }
 
 /// Optional computed assignment permissions. These request endpoints do not populate them and normally return null.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceRequestPermissions {
     #[serde(rename = "enterSelfIfFree", default, skip_serializing_if = "Option::is_none")]
     pub enter_self_if_free: Option<bool>,
@@ -22802,7 +23574,7 @@ pub struct ServiceRequestPermissions {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceRequestUndoCreate {
     /// ID of the person assigned to the record being undone. Must be the current user.
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
@@ -22813,7 +23585,7 @@ pub struct ServiceRequestUndoCreate {
 }
 
 /// Assignment returned after undoing an acceptance or decline.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceRequestUndoResult {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::map")]
     pub deprecated: std::collections::BTreeMap<String, String>,
@@ -22875,15 +23647,17 @@ pub struct ServiceRequestUndoResult {
 }
 
 /// Assign a person or external name to a service slot. The previous active record is invalidated and a new assignment record is returned.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceRequestUpdate {
     /// Legacy alias for isAccepted. Prefer isAccepted in new integrations.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "deprecated in the ChurchTools API"]
     pub agreed: Option<bool>,
     /// Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment. Use the accept or decline action for a response comment.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<Option<String>>,
     /// Accepted for compatibility; this flag does not control notifications in the current implementation. Notifications follow the assignment workflow.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub inform_person: Option<bool>,
@@ -22891,18 +23665,22 @@ pub struct ServiceRequestUpdate {
     #[serde(rename = "isAccepted", default, skip_serializing_if = "Option::is_none")]
     pub is_accepted: Option<bool>,
     /// Name of an external assignee without a person record.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Existing person to assign. Supply exactly one non-`null` value: `personId` or name.
-    #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub person_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "personId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub person_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Update a service role.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ServiceUpdate {
     /// Enable chat for this service.
     #[serde(rename = "allowChat", default, skip_serializing_if = "Option::is_none")]
@@ -22920,15 +23698,21 @@ pub struct ServiceUpdate {
     #[serde(rename = "allowExchange", default, skip_serializing_if = "Option::is_none")]
     pub allow_exchange: Option<bool>,
     /// Template for the calendar text of this service.
-    #[serde(rename = "calTextTemplate", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub cal_text_template: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "calTextTemplate", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cal_text_template: Option<Option<String>>,
     /// Deprecated input alias for description. Use description for new integrations.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
     #[deprecated = "Use description for new integrations."]
-    pub comment: Option<String>,
+    pub comment: Option<Option<String>>,
     /// Description of the role.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// IDs of connected person groups used for service planning. Nonexistent IDs are silently removed. Duplicates are retained. An empty list clears the connections.
     #[serde(rename = "groupIds", default, skip_serializing_if = "Option::is_none")]
     pub group_ids: Option<Vec<i64>>,
@@ -22965,7 +23749,7 @@ pub struct ServiceUpdate {
 }
 
 /// Configurable sex master-data entry, including localized salutations and audit metadata.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Sex {
     /// Stored name or translation key. Use nameTranslated for display in the current language.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -22998,46 +23782,58 @@ pub struct Sex {
 }
 
 /// Writable catalog values for a person’s sex and associated salutations. Text is trimmed; translation keys and literal display text are accepted.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SexCreate {
     /// Stored name or translation key. Use nameTranslated for display in the current language.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Stored salutation text or translation key. Omission, null, empty string and whitespace-only input all become null.
-    #[serde(rename = "salutationFormal", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub salutation_formal: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "salutationFormal", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub salutation_formal: Option<Option<String>>,
     /// Stored salutation text or translation key. Omission, null, empty string and whitespace-only input all become null.
-    #[serde(rename = "salutationInformal", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub salutation_informal: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "salutationInformal", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub salutation_informal: Option<Option<String>>,
     /// Sort order. Omission or null becomes 0.
-    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sort_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sort_key: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Replaces the catalog entry’s writable values. name is required; omitted sortKey becomes 0 and omitted salutations become null. The ID comes from the URL.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SexUpdate {
     /// Stored name or translation key. Use nameTranslated for display in the current language.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Stored salutation text or translation key. Omission, null, empty string and whitespace-only input all become null.
-    #[serde(rename = "salutationFormal", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub salutation_formal: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "salutationFormal", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub salutation_formal: Option<Option<String>>,
     /// Stored salutation text or translation key. Omission, null, empty string and whitespace-only input all become null.
-    #[serde(rename = "salutationInformal", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub salutation_informal: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "salutationInformal", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub salutation_informal: Option<Option<String>>,
     /// Sort order. Omission or null becomes 0.
-    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sort_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sort_key: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SimpleAppointment {
     #[serde(rename = "calendarId", deserialize_with = "crate::lenient::number")]
     pub calendar_id: i64,
@@ -23051,7 +23847,7 @@ pub struct SimpleAppointment {
 }
 
 /// Wiki page metadata for one version. Text and previews are optional enrichments depending on the endpoint. A page is addressed by category ID and stable GUID; version identifies its revision.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SimpleWikiPage {
     /// Compatibility marker used by existing clients.
     #[serde(rename = "@deprecated")]
@@ -23098,7 +23894,7 @@ pub struct SimpleWikiPage {
 }
 
 /// Compatibility marker used by existing clients.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SimpleWikiPageDeprecated {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub identifier: String,
@@ -23108,7 +23904,7 @@ pub struct SimpleWikiPageDeprecated {
 }
 
 /// Page editing/deletion capabilities for the current user; system pages have additional restrictions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SimpleWikiPagePermissions {
     #[serde(rename = "canDelete")]
     pub can_delete: bool,
@@ -23120,7 +23916,7 @@ pub struct SimpleWikiPagePermissions {
 }
 
 /// Song with its category and all arrangements. Agenda-specific selection, order and timing belong to agenda items, not to this song record.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Song {
     /// Compatibility markers included in serialized song records.
     #[serde(rename = "@deprecated")]
@@ -23159,7 +23955,7 @@ pub struct Song {
 }
 
 /// Configurable category for organizing songs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongCategory {
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub campus_id: Option<i64>,
@@ -23181,11 +23977,13 @@ pub struct SongCategory {
 }
 
 /// Input for a configurable song category.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongCategoryCreate {
     /// Existing campus ID associated with the category.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Configurable category name.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -23198,11 +23996,13 @@ pub struct SongCategoryCreate {
 }
 
 /// Input for replacing a song category.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongCategoryUpdate {
     /// Existing campus ID associated with the category.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Configurable category name.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -23215,20 +24015,26 @@ pub struct SongCategoryUpdate {
 }
 
 /// A song, optionally with initial arrangements and tags. A song is the composition; arrangements describe its musical versions and are selected by event agenda items.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongCreate {
     /// Author or composer credits.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub author: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub author: Option<Option<String>>,
     /// ID of an existing song category from GET /song/categories. Categories organize songs and determine access permissions. Changing it requires edit permission for both the old and the new category.
     #[serde(rename = "categoryId", deserialize_with = "crate::lenient::number")]
     pub category_id: i64,
     /// CCLI song number, stored as text.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub ccli: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub ccli: Option<Option<String>>,
     /// Copyright or licensing notice.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub copyright: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub copyright: Option<Option<String>>,
     /// Song title.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -23247,7 +24053,7 @@ pub struct SongCreate {
 }
 
 /// Compatibility markers included in serialized song records.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongDeprecated {
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub arrangements: serde_json::Value,
@@ -23259,7 +24065,7 @@ pub struct SongDeprecated {
 }
 
 /// Source associated with song arrangements, such as a hymnal or songbook.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongSource {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -23281,14 +24087,16 @@ pub struct SongSource {
 }
 
 /// Input for a song source, such as a hymnal or songbook.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongSourceCreate {
     /// Configurable source name.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Display abbreviation.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub shorty: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub shorty: Option<Option<String>>,
     /// Display order; lower values come first.
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub sort_key: Option<i64>,
@@ -23298,14 +24106,16 @@ pub struct SongSourceCreate {
 }
 
 /// Input for replacing a song source.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongSourceUpdate {
     /// Configurable source name.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     /// Display abbreviation.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub shorty: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub shorty: Option<Option<String>>,
     /// Display order; lower values come first.
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub sort_key: Option<i64>,
@@ -23315,20 +24125,26 @@ pub struct SongSourceUpdate {
 }
 
 /// Song details shared by creation and update. Inline arrangements are supported only during creation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SongUpdate {
     /// Author or composer credits.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub author: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub author: Option<Option<String>>,
     /// ID of an existing song category from GET /song/categories. Categories organize songs and determine access permissions. Changing it requires edit permission for both the old and the new category.
     #[serde(rename = "categoryId", deserialize_with = "crate::lenient::number")]
     pub category_id: i64,
     /// CCLI song number, stored as text.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub ccli: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub ccli: Option<Option<String>>,
     /// Copyright or licensing notice.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub copyright: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub copyright: Option<Option<String>>,
     /// Song title.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -23344,7 +24160,7 @@ pub struct SongUpdate {
 }
 
 /// A parent grouping ordinary accounting bookings into one gross amount. All submitted non-tax children share either their debit account or their credit account, and an account cannot occur on both sides. The parent is not itself an ordinary transaction row. Generated tax bookings also appear in splitChildren; their amounts plus the corresponding net children make up the gross total.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SplitTransaction {
     /// Total amount in the currency's smallest denomination (e.g. cents). Must equal the sum of all `splitChildren` amounts.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -23374,7 +24190,7 @@ pub struct SplitTransaction {
 }
 
 /// One non-tax part of a split booking. Parent documentDate/documentNumber are applied automatically. Supply its gross amount when taxRateId is present. Do not copy generated tax rows from a read response into a new request; they are created from their main rows. Use real JSON numbers and booleans because child normalization is currently discarded.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SplitTransactionChildCreate {
     /// ID of the debit account the amount is posted to.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -23383,26 +24199,38 @@ pub struct SplitTransactionChildCreate {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub amount: i64,
     /// Cash discount in the smallest currency unit. Used only together with cashDiscountId.
-    #[serde(rename = "cashDiscountAmount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cash_discount_amount: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "cashDiscountAmount", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cash_discount_amount: Option<Option<i64>>,
     /// Cash-discount definition from the same accounting period. When supplied, cashDiscountAmount must also be non-null.
-    #[serde(rename = "cashDiscountId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cash_discount_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "cashDiscountId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cash_discount_id: Option<Option<i64>>,
     /// ID of the credit (contra) account the amount is posted from. Must differ from `accountId`.
     #[serde(rename = "contraAccountId", deserialize_with = "crate::lenient::number")]
     pub contra_account_id: i64,
     /// Cost center from the same accounting period. Omission or null clears the assignment on update.
-    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cost_center_id: Option<Option<i64>>,
     /// Donor person ID. Normally required when only the credit account is a donation account. Donor assignments are retained only when exactly one side is a donation account.
-    #[serde(rename = "donatorId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub donator_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "donatorId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub donator_id: Option<Option<i64>>,
     /// Spouse for joint donation receipts. Requires a different donor person and an existing spouse relationship; inconsistent assignments return 422.
-    #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub donator_spouse_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub donator_spouse_id: Option<Option<i64>>,
     /// Existing ordinary booking to update/adopt. Omit or use null for a new booking. Existing children from another split cannot be moved through the regular multi-child update.
-    #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub id: Option<Option<i64>>,
     /// Sync marker used for newly created children; existing children retain their marker.
     #[serde(rename = "isSynced", default, skip_serializing_if = "Option::is_none")]
     pub is_synced: Option<bool>,
@@ -23413,15 +24241,17 @@ pub struct SplitTransactionChildCreate {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
     /// Tax rate from the same period. On update an explicit null removes the existing tax booking; omission currently retains it because child defaults are discarded.
-    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tax_rate_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tax_rate_id: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Input for a grouped booking. At least one child is needed; child amounts must sum exactly to amount. All children must share one debit or one credit account, with no account used on both sides. Parent and child notes may be null. A single child is saved as an ordinary transaction and yields HTTP 204.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SplitTransactionCreate {
     /// Total gross amount in minor currency units, equal to the sum of submitted child amounts.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -23430,8 +24260,10 @@ pub struct SplitTransactionCreate {
     #[serde(rename = "documentDate")]
     pub document_date: chrono::NaiveDate,
     /// Parent number. Required unless the period generates numbers; omission or null then generates a number, including on update. Multi-child bookings receive suffixes -1, -2, and so on.
-    #[serde(rename = "documentNumber", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub document_number: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "documentNumber", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub document_number: Option<Option<String>>,
     /// Parent note; trimmed, with an empty result stored as null. For single-child conversion this replaces the child note.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
@@ -23443,7 +24275,7 @@ pub struct SplitTransactionCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SplitTransactionStornoCreate {
     /// Cancellation reason; trimmed before being added to parent and child notes.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -23454,7 +24286,7 @@ pub struct SplitTransactionStornoCreate {
 }
 
 /// Complete replacement of a split parent identified by the URL. Preserve IDs of existing children, omit IDs for new children and omit old rows to delete them. One remaining child converts the group to an ordinary booking and returns no body.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SplitTransactionUpdate {
     /// Total gross amount in minor currency units, equal to the sum of submitted child amounts.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -23463,8 +24295,10 @@ pub struct SplitTransactionUpdate {
     #[serde(rename = "documentDate")]
     pub document_date: chrono::NaiveDate,
     /// Parent number. Required unless the period generates numbers; omission or null then generates a number, including on update. Multi-child bookings receive suffixes -1, -2, and so on.
-    #[serde(rename = "documentNumber", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub document_number: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "documentNumber", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub document_number: Option<Option<String>>,
     /// Parent note; trimmed, with an empty result stored as null. For single-child conversion this replaces the child note.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
@@ -23477,7 +24311,7 @@ pub struct SplitTransactionUpdate {
 }
 
 /// Public login-screen entry for a visible OAuth, OpenID Connect or SAML provider.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SsoLogin {
     /// Whether account registration is configured for this provider.
     #[serde(rename = "hasRegistration")]
@@ -23509,7 +24343,7 @@ pub struct SsoLogin {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StartStopChat {
     pub enabled: bool,
     #[serde(rename = "triggerChatInviteMail", default, skip_serializing_if = "Option::is_none")]
@@ -23520,7 +24354,7 @@ pub struct StartStopChat {
 }
 
 /// One imported bank-statement movement and its proposed booking fields. Suggestions are always included; include[]=bills additionally expands supporting documents on the suggestions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StatementMovement {
     /// Movement amount in minor currency units. isDebit distinguishes outgoing from incoming funds.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -23563,7 +24397,7 @@ pub struct StatementMovement {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StatementMovementUpdate {
     /// Target movement state. Returning from booked to another state does not undo or delete the existing transaction.
     /// Allowed values: `booked`, `ignored`, `open`.
@@ -23574,7 +24408,7 @@ pub struct StatementMovementUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StatementStatistics {
     /// Sum of open, booked and ignored movements.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -23594,7 +24428,7 @@ pub struct StatementStatistics {
 }
 
 /// Configurable person status, independent of a person’s memberships in groups. Status IDs are installation-specific and are not an enum.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Status {
     /// ID of status
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -23629,14 +24463,18 @@ pub struct Status {
 }
 
 /// Person status definition, such as member or guest.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StatusCreate {
     /// Whether this status marks a person as a church member.
-    #[serde(rename = "isMember", default, skip_serializing_if = "Option::is_none")]
-    pub is_member: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "isMember", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub is_member: Option<Option<bool>>,
     /// Whether persons with this status are eligible for the corresponding free-text person selection. This flag does not replace person visibility permissions.
-    #[serde(rename = "isSearchable", default, skip_serializing_if = "Option::is_none")]
-    pub is_searchable: Option<bool>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "isSearchable", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub is_searchable: Option<Option<bool>>,
     /// Status name.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -23644,18 +24482,22 @@ pub struct StatusCreate {
     #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::number")]
     pub security_level_id: i64,
     /// Abbreviation of the status name.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub shorty: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub shorty: Option<Option<String>>,
     /// Display-order value.
-    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub sort_key: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sortKey", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub sort_key: Option<Option<i64>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Fields to update; omitted fields remain unchanged.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StatusUpdate {
     #[serde(rename = "isMember", default, skip_serializing_if = "Option::is_none")]
     pub is_member: Option<bool>,
@@ -23666,8 +24508,9 @@ pub struct StatusUpdate {
     /// Existing security-level definition associated with this status.
     #[serde(rename = "securityLevelId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub security_level_id: Option<i64>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub shorty: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub shorty: Option<Option<String>>,
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub sort_key: Option<i64>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -23676,7 +24519,7 @@ pub struct StatusUpdate {
 }
 
 /// Stored address with its numeric ID, owning domain object and legacy compatibility fields. Coordinates are serialized as strings or null. The current serializer also returns a stored coordinate of zero as null.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StoredAddress {
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub addition: Option<String>,
@@ -23753,7 +24596,7 @@ pub struct StoredAddress {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StoredAddressDeprecated {
     /// Allowed values: `latitude`.
     #[serde(rename = "geoLat", deserialize_with = "crate::lenient::string")]
@@ -23782,7 +24625,7 @@ pub struct StoredAddressDeprecated {
 }
 
 /// Effective notification subscription. origin=default means an explicit stored override; other origins are computed defaults. Deleting an explicit override may reveal an active default again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionGroup {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -23821,7 +24664,7 @@ pub struct SubscriptionGroup {
 }
 
 /// Audit metadata for explicit overrides; null for implicit defaults and legacy aliases.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionGroupMeta {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(rename = "createdDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -23838,7 +24681,7 @@ pub struct SubscriptionGroupMeta {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionGroupMetaCreatedPerson {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
@@ -23848,7 +24691,7 @@ pub struct SubscriptionGroupMetaCreatedPerson {
 }
 
 /// Legacy list alias for the corresponding canonical root subscription. Prefer the singular canonical subject for new clients.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionLegacyMeetingRequests {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -23885,7 +24728,7 @@ pub struct SubscriptionLegacyMeetingRequests {
 }
 
 /// Legacy list alias for the corresponding canonical root subscription. Prefer the singular canonical subject for new clients.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionLegacyServiceRequests {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -23922,7 +24765,7 @@ pub struct SubscriptionLegacyServiceRequests {
 }
 
 /// Effective notification subscription. origin=default means an explicit stored override; other origins are computed defaults. Deleting an explicit override may reveal an active default again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionMeetingRequests {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -23961,7 +24804,7 @@ pub struct SubscriptionMeetingRequests {
 }
 
 /// Effective notification subscription. origin=default means an explicit stored override; other origins are computed defaults. Deleting an explicit override may reveal an active default again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionPost {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -24000,7 +24843,7 @@ pub struct SubscriptionPost {
 }
 
 /// Effective notification subscription. origin=default means an explicit stored override; other origins are computed defaults. Deleting an explicit override may reveal an active default again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionPostSummary {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -24036,7 +24879,7 @@ pub struct SubscriptionPostSummary {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionPostSummaryOptions {
     /// Allowed values: `all`, `featured_groups`, `my_campus`, `my_groups`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24048,7 +24891,7 @@ pub struct SubscriptionPostSummaryOptions {
 }
 
 /// Effective notification subscription. origin=default means an explicit stored override; other origins are computed defaults. Deleting an explicit override may reveal an active default again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionPublicChannel {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -24087,7 +24930,7 @@ pub struct SubscriptionPublicChannel {
 }
 
 /// Effective notification subscription. origin=default means an explicit stored override; other origins are computed defaults. Deleting an explicit override may reveal an active default again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionResource {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -24126,7 +24969,7 @@ pub struct SubscriptionResource {
 }
 
 /// Effective notification subscription. origin=default means an explicit stored override; other origins are computed defaults. Deleting an explicit override may reveal an active default again.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionServiceRequests {
     /// Translation key for a brief description addressed to the end user.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -24165,7 +25008,7 @@ pub struct SubscriptionServiceRequests {
 }
 
 /// Explicit override. Subject and identifier come from the path. post_summary requires PostSummarySubscriptionOptions; other subjects accept optional opaque options.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionUpdate {
     /// Omission enables the override, including when replacing an existing inactive setting.
     #[serde(rename = "isActive", default, skip_serializing_if = "Option::is_none")]
@@ -24178,11 +25021,13 @@ pub struct SubscriptionUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SumBalanceReportCreate {
     /// Accepted by the shared validator but ignored by the sum-balance report.
-    #[serde(rename = "accountTypes", default, skip_serializing_if = "Option::is_none")]
-    pub account_types: Option<Vec<i64>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "accountTypes", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub account_types: Option<Option<Vec<i64>>>,
     /// Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
@@ -24205,7 +25050,7 @@ pub struct SumBalanceReportCreate {
 }
 
 /// Registered adapter service with a masked `token`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncAdapter {
     /// Unique adapter lookup name used by external systems and the proxy.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24225,7 +25070,7 @@ pub struct SyncAdapter {
 }
 
 /// Registration of a sync adapter service. Names are configured by the installation, not a fixed list of vendors.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncAdapterCreate {
     /// Unique adapter lookup name used by external systems and the proxy.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24242,7 +25087,7 @@ pub struct SyncAdapterCreate {
 }
 
 /// Replaces the adapter name, URL and authentication token.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncAdapterUpdate {
     /// Unique adapter lookup name used by external systems and the proxy.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24258,7 +25103,7 @@ pub struct SyncAdapterUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncConflictCreate {
     pub data: Vec<SyncConflictDataCreate>,
     /// Relationship affected by the conflict.
@@ -24276,7 +25121,7 @@ pub struct SyncConflictCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncConflictData {
     /// Conflict-specific data key.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24289,7 +25134,7 @@ pub struct SyncConflictData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncConflictDataCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub key: String,
@@ -24301,7 +25146,7 @@ pub struct SyncConflictDataCreate {
 }
 
 /// Replace conflict classification, job, entity mapping and the complete data list.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncConflictUpdate {
     pub data: Vec<SyncConflictDataCreate>,
     /// Relationship affected by the conflict.
@@ -24320,7 +25165,7 @@ pub struct SyncConflictUpdate {
 }
 
 /// Stored conflict record. Updating or deleting this record does not itself synchronize or resolve the underlying entities.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncConflicts {
     pub data: Vec<SyncConflictData>,
     /// Relationship affected by the conflict.
@@ -24343,7 +25188,7 @@ pub struct SyncConflicts {
 }
 
 /// Stored link between a ChurchTools entity and an external record; deleting it does not delete either record.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncEntityMapping {
     /// ChurchTools entity ID as text.
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -24378,7 +25223,7 @@ pub struct SyncEntityMapping {
 }
 
 /// Persists a record relationship. Provided ChurchTools or external IDs must not be linked for the same domain and source.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncEntityMappingCreate {
     /// ChurchTools entity ID as text.
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -24388,11 +25233,15 @@ pub struct SyncEntityMappingCreate {
     #[serde(rename = "domainType", deserialize_with = "crate::lenient::string")]
     pub domain_type: String,
     /// Last synchronization timestamp. Prefer an explicit timezone.
-    #[serde(rename = "lastSyncedDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub last_synced_date: Option<chrono::DateTime<chrono::Utc>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "lastSyncedDate", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub last_synced_date: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// Adapter-specific context key.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub scope: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub scope: Option<Option<String>>,
     /// ID in the external system.
     #[serde(rename = "sourceEntityId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub source_entity_id: Option<String>,
@@ -24409,7 +25258,7 @@ pub struct SyncEntityMappingCreate {
 }
 
 /// Replaces a record relationship.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncEntityMappingUpdate {
     /// ChurchTools entity ID as text.
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -24419,11 +25268,15 @@ pub struct SyncEntityMappingUpdate {
     #[serde(rename = "domainType", deserialize_with = "crate::lenient::string")]
     pub domain_type: String,
     /// Last synchronization timestamp. Prefer an explicit timezone.
-    #[serde(rename = "lastSyncedDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    pub last_synced_date: Option<chrono::DateTime<chrono::Utc>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "lastSyncedDate", deserialize_with = "crate::lenient::double_option", serialize_with = "crate::datetime::serialize_double_opt_utc", default, skip_serializing_if = "Option::is_none")]
+    pub last_synced_date: Option<Option<chrono::DateTime<chrono::Utc>>>,
     /// Adapter-specific context key.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub scope: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub scope: Option<Option<String>>,
     /// ID in the external system.
     #[serde(rename = "sourceEntityId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub source_entity_id: Option<String>,
@@ -24439,7 +25292,7 @@ pub struct SyncEntityMappingUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionBehavior {
     pub create: SyncExecutionBehaviorCreate,
     pub delete: SyncExecutionBehaviorDelete,
@@ -24450,7 +25303,7 @@ pub struct SyncExecutionBehavior {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionBehaviorCreate {
     /// Whether records may be created or updated.
     /// Allowed values: `always`, `never`.
@@ -24471,7 +25324,7 @@ pub struct SyncExecutionBehaviorCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionBehaviorDelete {
     /// How deletions are handled on the specified side: retain, archive or delete.
     /// Allowed values: `alwaysArchive`, `alwaysDelete`, `never`.
@@ -24486,7 +25339,7 @@ pub struct SyncExecutionBehaviorDelete {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionBehaviorLink {
     /// Whether matching records are linked: never, use an existing record, or merge when linking.
     /// Allowed values: `alwaysMerge`, `alwaysUse`, `never`.
@@ -24501,7 +25354,7 @@ pub struct SyncExecutionBehaviorLink {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionBehaviorUpdate {
     /// Whether records may be created or updated.
     /// Allowed values: `always`, `never`.
@@ -24516,7 +25369,7 @@ pub struct SyncExecutionBehaviorUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionCounts {
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub create: Option<i64>,
@@ -24531,7 +25384,7 @@ pub struct SyncExecutionCounts {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionCreate {
     /// Schedule a dry run; the worker is instructed not to change synchronized records.
     #[serde(rename = "isDryRun", default, skip_serializing_if = "Option::is_none")]
@@ -24544,7 +25397,7 @@ pub struct SyncExecutionCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionDetails {
     /// Domain saved with this execution.
     #[serde(rename = "domainType", deserialize_with = "crate::lenient::string")]
@@ -24572,7 +25425,7 @@ pub struct SyncExecutionDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionDetailsFilterValue {
     #[serde(rename = "ES")]
     pub es: Vec<SyncJobFilter>,
@@ -24583,7 +25436,7 @@ pub struct SyncExecutionDetailsFilterValue {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionDetailsSystemES {
     /// External connection ID.
     #[serde(rename = "systemId", deserialize_with = "crate::lenient::number")]
@@ -24596,7 +25449,7 @@ pub struct SyncExecutionDetailsSystemES {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionMapping {
     #[serde(rename = "propertyMappingsESToMaster", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub property_mappings_es_to_master: serde_json::Value,
@@ -24608,7 +25461,7 @@ pub struct SyncExecutionMapping {
 }
 
 /// Stored directional field mapping. No separate entry ID is returned.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionProperty {
     /// Source field name supported by the adapter.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24635,7 +25488,7 @@ pub struct SyncExecutionProperty {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExecutionSummary {
     pub both: SyncExecutionCounts,
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
@@ -24669,7 +25522,7 @@ pub struct SyncExecutionSummary {
 }
 
 /// Proposed connection settings to test. `id` loads an existing connection and merges the supplied headers before testing; connection configuration is not saved.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncExternalSystemTestCreate {
     /// Adapter-specific HTTP header values used to access the external system.
     #[serde(rename = "accessHeaderValues", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -24688,7 +25541,7 @@ pub struct SyncExternalSystemTestCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncFieldMappingEntries {
     #[serde(rename = "propertyMappingsESToMaster")]
     pub property_mappings_es_to_master: Vec<FieldMappingEntry>,
@@ -24699,7 +25552,7 @@ pub struct SyncFieldMappingEntries {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncFieldMappingEntryCreate {
     /// Source field name supported by the adapter.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24725,7 +25578,7 @@ pub struct SyncFieldMappingEntryCreate {
 }
 
 /// Replaces both direction lists. The enclosing list sets `system`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncFieldMappingUpdate {
     #[serde(rename = "propertyMappingsESToMaster")]
     pub property_mappings_es_to_master: Vec<SyncFieldMappingEntryCreate>,
@@ -24736,7 +25589,7 @@ pub struct SyncFieldMappingUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobConfigurationCreate {
     /// Whether the periodic scheduler can start this job.
     #[serde(rename = "autoScheduleEnabled")]
@@ -24789,7 +25642,7 @@ pub struct SyncJobConfigurationCreate {
 }
 
 /// Updates the job configuration.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobConfigurationUpdate {
     /// Whether the periodic scheduler can start this job.
     #[serde(rename = "autoScheduleEnabled")]
@@ -24846,7 +25699,7 @@ pub struct SyncJobConfigurationUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobFilter {
     /// Adapter field to filter.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24866,7 +25719,7 @@ pub struct SyncJobFilter {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobFilterCreate {
     /// Adapter field to filter.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -24886,7 +25739,7 @@ pub struct SyncJobFilterCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobFilters {
     pub es: Vec<SyncJobFilter>,
     pub master: Vec<SyncJobFilter>,
@@ -24896,7 +25749,7 @@ pub struct SyncJobFilters {
 }
 
 /// Replaces all job filters, grouped by each entry's `system`.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobFiltersUpdate {
     pub es: Vec<SyncJobFilterCreate>,
     pub master: Vec<SyncJobFilterCreate>,
@@ -24905,7 +25758,7 @@ pub struct SyncJobFiltersUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobProperties {
     /// Domain configured for the job.
     #[serde(rename = "domainType", deserialize_with = "crate::lenient::string")]
@@ -24920,7 +25773,7 @@ pub struct SyncJobProperties {
 }
 
 /// Replaces the selected fields in both directions. Each entry's `system` determines its stored direction.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobPropertiesUpdate {
     #[serde(rename = "propertyMappingsESToMaster")]
     pub property_mappings_es_to_master: Vec<SyncJobPropertyCreate>,
@@ -24932,7 +25785,7 @@ pub struct SyncJobPropertiesUpdate {
 }
 
 /// Selected job field. `valueMapping` and `others` are resolved from the referenced field mapping.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobProperty {
     /// Field mapping whose domain must match the job.
     #[serde(rename = "fieldMappingId", deserialize_with = "crate::lenient::number")]
@@ -24962,7 +25815,7 @@ pub struct SyncJobProperty {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobPropertyCreate {
     /// Field mapping whose domain must match the job.
     #[serde(rename = "fieldMappingId", deserialize_with = "crate::lenient::number")]
@@ -24988,7 +25841,7 @@ pub struct SyncJobPropertyCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncJobPropertyLists {
     #[serde(rename = "propertyMappingsESToMaster")]
     pub property_mappings_es_to_master: Vec<SyncJobProperty>,
@@ -25000,7 +25853,7 @@ pub struct SyncJobPropertyLists {
 }
 
 /// Log entry during a sync execution.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncLog {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(serialize_with = "crate::datetime::serialize_utc")]
@@ -25041,7 +25894,7 @@ pub struct SyncLog {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncLogCreate {
     /// Translation arguments; keys and values are passed to the translation system.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -25051,10 +25904,12 @@ pub struct SyncLogCreate {
     /// A timestamp in Zulu time format, e.g. '2022-10-19T12:00:00Z'
     #[serde(serialize_with = "crate::datetime::serialize_utc")]
     pub date: chrono::DateTime<chrono::Utc>,
-    #[serde(rename = "domainId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub domain_id: Option<String>,
-    #[serde(rename = "domainType", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub domain_type: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "domainId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub domain_id: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "domainType", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub domain_type: Option<Option<String>>,
     /// Background execution identifier, not the job configuration ID.
     #[serde(rename = "executionId", deserialize_with = "crate::lenient::string")]
     pub execution_id: String,
@@ -25069,12 +25924,15 @@ pub struct SyncLogCreate {
     /// Translation Key
     #[serde(rename = "messageKey", deserialize_with = "crate::lenient::string")]
     pub message_key: String,
-    #[serde(rename = "sourceEntityId", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub source_entity_id: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "sourceEntityId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub source_entity_id: Option<Option<String>>,
     /// Affected side.
     /// Allowed values: `both`, `es`, `master`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub system: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub system: Option<Option<String>>,
     /// Operation described by a sync log entry.
     /// Allowed values: `create`, `delete`, `execution`, `link`, `update`.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -25084,24 +25942,28 @@ pub struct SyncLogCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncLogCreateChangesItem {
     /// Secondary value for FieldName. Used for Group Roles.
-    #[serde(rename = "fieldAttribute", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub field_attribute: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "fieldAttribute", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub field_attribute: Option<Option<String>>,
     /// Name of field. Translation Key allowed
     #[serde(rename = "fieldName", deserialize_with = "crate::lenient::string")]
     pub field_name: String,
-    #[serde(rename = "newValue", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub new_value: Option<String>,
-    #[serde(rename = "oldValue", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub old_value: Option<String>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "newValue", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub new_value: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "oldValue", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub old_value: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncLogJob {
     #[serde(rename = "externalSystem")]
     pub external_system: SyncLogJobExternalSystem,
@@ -25114,7 +25976,7 @@ pub struct SyncLogJob {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncLogJobExternalSystem {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -25125,7 +25987,7 @@ pub struct SyncLogJobExternalSystem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncLogsCreate {
     pub logs: Vec<SyncLogCreate>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -25133,7 +25995,7 @@ pub struct SyncLogsCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct SyncLogsPersisted {
     /// Number of stored entries.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -25144,7 +26006,7 @@ pub struct SyncLogsPersisted {
 }
 
 /// Tag label and display properties. The REST tag controller does not return the tag domain or audit metadata.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Tag {
     /// Stored semantic color, or `basic` when no color is stored.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -25173,7 +26035,7 @@ pub struct Tag {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TagAssignmentCreate {
     /// Name of an existing or newly created tag in this domain.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -25183,14 +26045,17 @@ pub struct TagAssignmentCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TagCreate {
     /// Semantic tag color; responses use `basic` when unset.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub color: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Tag name, unique within the domain.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -25200,14 +26065,17 @@ pub struct TagCreate {
 }
 
 /// Replacement tag properties. The tag’s domain cannot be changed.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TagUpdate {
     /// Semantic tag color; responses use `basic` when unset.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub color: Option<Option<String>>,
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<Option<String>>,
     /// Tag name, unique within the domain.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -25217,7 +26085,7 @@ pub struct TagUpdate {
 }
 
 /// Tag with contextual count. The domain-wide list computes its total links; creation returns `0`. Other operations normally return the serializer’s fallback `1`, not a freshly calculated total.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TagWithCount {
     /// Stored semantic color, or `basic` when no color is stored.
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -25238,7 +26106,7 @@ pub struct TagWithCount {
 }
 
 /// An intended audience for a group, such as families or students. A group can reference one audience through information.targetGroupId. This is descriptive master data, not a collection of person records or a group membership.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TargetGroup {
     /// Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -25257,7 +26125,7 @@ pub struct TargetGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TargetGroupCreate {
     /// Stored label configured in this installation. Use nameTranslated from the response for a localized display name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -25271,7 +26139,7 @@ pub struct TargetGroupCreate {
 }
 
 /// A tax rate combines a tax type, a percentage and the ledger account receiving the tax amount. Its accounting period is determined by that account.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TaxRate {
     /// ID of the existing ledger account receiving this amount. It also determines the accounting period.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -25294,14 +26162,16 @@ pub struct TaxRate {
 }
 
 /// A tax rate combines a tax type, a percentage and the ledger account receiving the tax amount. Its accounting period is determined by that account.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TaxRateCreate {
     /// ID of the existing ledger account receiving this amount. It also determines the accounting period.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
     pub account_id: i64,
     /// Description, trimmed before storage. Omitted, null or blank clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Percentage points: 7 means 7%, not 0.07. The API validates a number but does not enforce a percentage range.
     #[serde(deserialize_with = "crate::lenient::number")]
     pub rate: f64,
@@ -25314,14 +26184,16 @@ pub struct TaxRateCreate {
 }
 
 /// Replacement values for this tax rate. If transactions already reference it, only note may change; send the existing rate, taxTypeId and accountId unchanged.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TaxRateUpdate {
     /// ID of the existing ledger account receiving this amount. It also determines the accounting period.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
     pub account_id: i64,
     /// Description, trimmed before storage. Omitted, null or blank clears it.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub note: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<Option<String>>,
     /// Percentage points: 7 means 7%, not 0.07. The API validates a number but does not enforce a percentage range.
     #[serde(deserialize_with = "crate::lenient::number")]
     pub rate: f64,
@@ -25334,7 +26206,7 @@ pub struct TaxRateUpdate {
 }
 
 /// Tax types group tax rates by their accounting purpose, for example input tax or output tax. The percentage and receiving ledger account are configured on each tax rate.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TaxType {
     /// Unique name, trimmed before storage. Omitted, null or blank becomes null, including on update.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -25351,11 +26223,13 @@ pub struct TaxType {
 }
 
 /// Tax types group tax rates by their accounting purpose, for example input tax or output tax. The percentage and receiving ledger account are configured on each tax rate.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TaxTypeCreate {
     /// Unique name, trimmed before storage. Omitted, null or blank becomes null, including on update.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Ascending display order. Required for creation and update; there is no API default.
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::number")]
     pub sort_key: i64,
@@ -25365,11 +26239,13 @@ pub struct TaxTypeCreate {
 }
 
 /// Replacement values for this tax type.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TaxTypeUpdate {
     /// Unique name, trimmed before storage. Omitted, null or blank becomes null, including on update.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     /// Ascending display order. Required for creation and update; there is no API default.
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::number")]
     pub sort_key: i64,
@@ -25379,7 +26255,7 @@ pub struct TaxTypeUpdate {
 }
 
 /// A single accounting transaction (a booking). Every transaction posts a given `amount` between a debit account (`accountId`) and a credit account (`contraAccountId`) within one accounting period. Equal account IDs represent a transfer from `costCenterId` to `contraCostCenterId`. Monetary values are always integers in the currency's smallest denomination (e.g. cents). A transaction that belongs to a split transaction references its parent via `splitTransactionId` and cannot be edited or deleted on its own.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Transaction {
     /// Compatibility marker mapping the deprecated donor ID fields to their replacements.
     #[serde(rename = "@deprecated")]
@@ -25474,7 +26350,7 @@ pub struct Transaction {
 }
 
 /// One accounting-period scope. Conditions within it are combined with AND; filter objects are combined with OR. Empty includeIds/excludeIds arrays impose no ID restriction. Exclusions apply only inside their own filter.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionBatchFilter {
     /// Filter by account/contra account. All transactions match, where either account or contra account is in the list.
     #[serde(rename = "accountIds", default, skip_serializing_if = "Option::is_none")]
@@ -25533,7 +26409,7 @@ pub struct TransactionBatchFilter {
 }
 
 /// Result counters. They do not enumerate the affected booking IDs.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionBatchResult {
     /// Finalization: selected and automatically added related bookings. Deletion: initial selected rows, excluding additional rows removed through dependencies.
     #[serde(rename = "affectedRows", deserialize_with = "crate::lenient::number")]
@@ -25547,7 +26423,7 @@ pub struct TransactionBatchResult {
 }
 
 /// A batch action and its non-empty list of accounting-period scopes. Always provide at least one filter: the current backend does not safely scope an empty filters array.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionBatchUpdate {
     /// Use isImmutable=true to finalize or delete=true to delete. If both are true, finalization takes precedence. No recognized true trigger results in a no-op.
     pub changeset: TransactionBatchUpdateChangeset,
@@ -25559,7 +26435,7 @@ pub struct TransactionBatchUpdate {
 }
 
 /// Use isImmutable=true to finalize or delete=true to delete. If both are true, finalization takes precedence. No recognized true trigger results in a no-op.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionBatchUpdateChangeset {
     /// Delete matched bookings, including immutable ones. This is the period-cleanup operation, not ordinary per-booking deletion.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -25573,7 +26449,7 @@ pub struct TransactionBatchUpdateChangeset {
 }
 
 /// One booking in a bulk request. Unlike single creation, documentNumber is required even when the period normally generates numbers. Send actual JSON booleans and numbers: the bulk implementation uses the original body after validation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionBulkCreateItem {
     /// ID of the debit account the amount is posted to.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -25582,29 +26458,41 @@ pub struct TransactionBulkCreateItem {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub amount: i64,
     /// Cash discount in the smallest currency unit. Used only together with cashDiscountId.
-    #[serde(rename = "cashDiscountAmount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cash_discount_amount: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "cashDiscountAmount", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cash_discount_amount: Option<Option<i64>>,
     /// Cash-discount definition from the same accounting period. When supplied, cashDiscountAmount must also be non-null.
-    #[serde(rename = "cashDiscountId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cash_discount_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "cashDiscountId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cash_discount_id: Option<Option<i64>>,
     /// ID of the credit (contra) account the amount is posted from. Equal to `accountId` only for a cost center transfer.
     #[serde(rename = "contraAccountId", deserialize_with = "crate::lenient::number")]
     pub contra_account_id: i64,
     /// ID of the target cost center for a cost center transfer. Required when `accountId` and `contraAccountId` are equal, otherwise it must be omitted or `null`.
-    #[serde(rename = "contraCostCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub contra_cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "contraCostCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub contra_cost_center_id: Option<Option<i64>>,
     /// Cost center from the same accounting period. Omission or null clears the assignment on update. Required as the source cost center for a cost center transfer.
-    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cost_center_id: Option<Option<i64>>,
     /// Date printed on the underlying document/receipt.
     #[serde(rename = "documentDate")]
     pub document_date: chrono::NaiveDate,
     /// Donor person ID. Normally required when only the credit account is a donation account. Donor assignments are retained only when exactly one side is a donation account.
-    #[serde(rename = "donatorId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub donator_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "donatorId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub donator_id: Option<Option<i64>>,
     /// Spouse for joint donation receipts. Requires a different donor person and an existing spouse relationship; inconsistent assignments return 422.
-    #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub donator_spouse_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub donator_spouse_id: Option<Option<i64>>,
     /// Whether this is a donation through waived reimbursement of expenses. Defaults to false, including on update.
     #[serde(rename = "isWaiverOfReimbursementOfExpenses", default, skip_serializing_if = "Option::is_none")]
     pub is_waiver_of_reimbursement_of_expenses: Option<bool>,
@@ -25612,8 +26500,10 @@ pub struct TransactionBulkCreateItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub note: String,
     /// Tax rate from the same accounting period. Generates or updates a separate tax booking. On update, omission or null removes the existing tax booking.
-    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tax_rate_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tax_rate_id: Option<Option<i64>>,
     /// Explicit document number for this item.
     #[serde(rename = "documentNumber", deserialize_with = "crate::lenient::string")]
     pub document_number: String,
@@ -25626,7 +26516,7 @@ pub struct TransactionBulkCreateItem {
 }
 
 /// Creates one booking. The document date must lie within the open accounting period. Supply documentNumber unless the period generates numbers; omission or null then requests an automatically suggested number. Donation-validation bypass for this endpoint is a query parameter.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionCreate {
     /// ID of the debit account the amount is posted to.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -25635,29 +26525,41 @@ pub struct TransactionCreate {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub amount: i64,
     /// Cash discount in the smallest currency unit. Used only together with cashDiscountId.
-    #[serde(rename = "cashDiscountAmount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cash_discount_amount: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "cashDiscountAmount", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cash_discount_amount: Option<Option<i64>>,
     /// Cash-discount definition from the same accounting period. When supplied, cashDiscountAmount must also be non-null.
-    #[serde(rename = "cashDiscountId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cash_discount_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "cashDiscountId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cash_discount_id: Option<Option<i64>>,
     /// ID of the credit (contra) account the amount is posted from. Equal to `accountId` only for a cost center transfer.
     #[serde(rename = "contraAccountId", deserialize_with = "crate::lenient::number")]
     pub contra_account_id: i64,
     /// ID of the target cost center for a cost center transfer. Required when `accountId` and `contraAccountId` are equal, otherwise it must be omitted or `null`.
-    #[serde(rename = "contraCostCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub contra_cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "contraCostCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub contra_cost_center_id: Option<Option<i64>>,
     /// Cost center from the same accounting period. Omission or null clears the assignment on update. Required as the source cost center for a cost center transfer.
-    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cost_center_id: Option<Option<i64>>,
     /// Date printed on the underlying document/receipt.
     #[serde(rename = "documentDate")]
     pub document_date: chrono::NaiveDate,
     /// Donor person ID. Normally required when only the credit account is a donation account. Donor assignments are retained only when exactly one side is a donation account.
-    #[serde(rename = "donatorId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub donator_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "donatorId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub donator_id: Option<Option<i64>>,
     /// Spouse for joint donation receipts. Requires a different donor person and an existing spouse relationship; inconsistent assignments return 422.
-    #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub donator_spouse_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub donator_spouse_id: Option<Option<i64>>,
     /// Whether this is a donation through waived reimbursement of expenses. Defaults to false, including on update.
     #[serde(rename = "isWaiverOfReimbursementOfExpenses", default, skip_serializing_if = "Option::is_none")]
     pub is_waiver_of_reimbursement_of_expenses: Option<bool>,
@@ -25665,11 +26567,15 @@ pub struct TransactionCreate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub note: String,
     /// Tax rate from the same accounting period. Generates or updates a separate tax booking. On update, omission or null removes the existing tax booking.
-    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tax_rate_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tax_rate_id: Option<Option<i64>>,
     /// Document number, required unless automatic numbering is enabled. An explicitly supplied value is used as-is.
-    #[serde(rename = "documentNumber", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub document_number: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "documentNumber", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub document_number: Option<Option<String>>,
     /// Mark this booking as created through a sync.
     #[serde(rename = "isSynced", default, skip_serializing_if = "Option::is_none")]
     pub is_synced: Option<bool>,
@@ -25679,7 +26585,7 @@ pub struct TransactionCreate {
 }
 
 /// Compatibility marker mapping the deprecated donor ID fields to their replacements.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionDeprecated {
     /// Allowed values: `donator`.
     #[serde(rename = "donatorId", deserialize_with = "crate::lenient::string")]
@@ -25693,7 +26599,7 @@ pub struct TransactionDeprecated {
 }
 
 /// Permissions calculated for the current caller, or null when this booking was serialized without a permission collection, for example a newly generated tax child.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionPermissions {
     /// Flag if user can edit this transaction
     #[serde(rename = "canEdit", default, skip_serializing_if = "Option::is_none")]
@@ -25704,7 +26610,7 @@ pub struct TransactionPermissions {
 }
 
 /// A transaction purpose is a reusable preset for simplified bookkeeping. It fixes one ledger account, offers a list of accounts for the other side, and can assign a cost center. isIncome selects an income or expense preset; it is not the free-text note of a bank statement.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionPurpose {
     /// Resolved, distinct ledger account IDs. Can be empty when input IDs could not be resolved. No order is guaranteed.
     #[serde(rename = "accountIds")]
@@ -25733,14 +26639,16 @@ pub struct TransactionPurpose {
 }
 
 /// A transaction purpose is a reusable preset for simplified bookkeeping. It fixes one ledger account, offers a list of accounts for the other side, and can assign a cost center. isIncome selects an income or expense preset; it is not the free-text note of a bank statement.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionPurposeCreate {
     /// Accounts offered for the other side of the posting. Duplicate IDs are collapsed; unknown IDs are currently omitted by the lookup. Supply existing accounts.
     #[serde(rename = "accountIds")]
     pub account_ids: Vec<i64>,
     /// Optional cost center. Omitted or null removes it, including on update. If supplied, its period must match the fixed account and all resolved accountIds.
-    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cost_center_id: Option<Option<i64>>,
     /// True for income presets, false for expense presets. Determines which side of a transaction uses purposeAccountId.
     #[serde(rename = "isIncome")]
     pub is_income: bool,
@@ -25759,14 +26667,16 @@ pub struct TransactionPurposeCreate {
 }
 
 /// Replacement preset, including the complete accountIds selection. Omitted costCenterId clears the linked cost center.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionPurposeUpdate {
     /// Accounts offered for the other side of the posting. Duplicate IDs are collapsed; unknown IDs are currently omitted by the lookup. Supply existing accounts.
     #[serde(rename = "accountIds")]
     pub account_ids: Vec<i64>,
     /// Optional cost center. Omitted or null removes it, including on update. If supplied, its period must match the fixed account and all resolved accountIds.
-    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cost_center_id: Option<Option<i64>>,
     /// True for income presets, false for expense presets. Determines which side of a transaction uses purposeAccountId.
     #[serde(rename = "isIncome")]
     pub is_income: bool,
@@ -25785,7 +26695,7 @@ pub struct TransactionPurposeUpdate {
 }
 
 /// Reason to record when cancelling a booking.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionStornoCreate {
     /// Reason added to the original booking note in a localized cancellation prefix. A repeated cancellation keeps the existing cancellation note.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -25796,7 +26706,7 @@ pub struct TransactionStornoCreate {
 }
 
 /// Income, expense and net amount for the selected cost centers. Previous-year values are null when no previous period exists.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryCostCenter {
     pub periods: TransactionSummaryCostCenterPeriods,
     pub summary: TransactionSummaryCostCenterSummary,
@@ -25808,7 +26718,7 @@ pub struct TransactionSummaryCostCenter {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryCostCenterPeriods {
     #[serde(rename = "endDate")]
     pub end_date: TransactionSummaryCostCenterPeriodsEndDate,
@@ -25819,7 +26729,7 @@ pub struct TransactionSummaryCostCenterPeriods {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryCostCenterPeriodsEndDate {
     /// A simple date in ISO format, e.g. '2022-10-19'
     #[serde(rename = "lastYear")]
@@ -25832,7 +26742,7 @@ pub struct TransactionSummaryCostCenterPeriodsEndDate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryCostCenterSummary {
     /// Amounts in integer minor currency units for the selected date interval and its previous-year counterpart. A missing comparison value can be null; zero represents a calculated zero.
     pub income: FinanceYearValueComparison,
@@ -25846,7 +26756,7 @@ pub struct TransactionSummaryCostCenterSummary {
 }
 
 /// Debit, credit and balance totals for selected accounts. Accounts must share the same balance-account classification. Total previous-year values are null unless all selected accounts have a previous-year counterpart.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryCreditDebit {
     pub periods: TransactionSummaryCostCenterPeriods,
     pub summary: TransactionSummaryCreditDebitSummary,
@@ -25858,7 +26768,7 @@ pub struct TransactionSummaryCreditDebit {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryCreditDebitSummary {
     /// Selected accounts, with separate debit, credit and balance comparisons. Balance is debit minus credit for balance-sheet accounts and credit minus debit for other accounts.
     pub accounts: Vec<TransactionSummaryCreditDebitSummaryAccountsItem>,
@@ -25873,7 +26783,7 @@ pub struct TransactionSummaryCreditDebitSummary {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryCreditDebitSummaryAccountsItem {
     /// Amounts in integer minor currency units for the selected date interval and its previous-year counterpart. A missing comparison value can be null; zero represents a calculated zero.
     pub balance: FinanceYearValueComparison,
@@ -25893,7 +26803,7 @@ pub struct TransactionSummaryCreditDebitSummaryAccountsItem {
 }
 
 /// Net donations with repayments subtracted and cancellation pairs excluded. Missing previous-year donations are represented by zero.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryDonation {
     pub periods: TransactionSummaryCostCenterPeriods,
     pub summary: TransactionSummaryDonationSummary,
@@ -25905,7 +26815,7 @@ pub struct TransactionSummaryDonation {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryDonationSummary {
     /// Net donations grouped by primary donor. A spouse filter can select bookings attributed to the primary donor. Persons that cannot be resolved or viewed are omitted.
     pub donators: Vec<TransactionSummaryDonationSummaryDonatorsItem>,
@@ -25916,7 +26826,7 @@ pub struct TransactionSummaryDonationSummary {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSummaryDonationSummaryDonatorsItem {
     /// Person as Domain Object
     pub person: DomainObjectPerson,
@@ -25928,7 +26838,7 @@ pub struct TransactionSummaryDonationSummaryDonatorsItem {
 }
 
 /// Replaces required booking fields. Omitted cost center, donor/spouse and tax rate are cleared; waiver defaults to false. Cash-discount fields are retained when cashDiscountId is omitted or null. Existing immutable bookings, generated tax bookings, cancellations and split children cannot be updated through the ordinary endpoint.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TransactionUpdate {
     /// ID of the debit account the amount is posted to.
     #[serde(rename = "accountId", deserialize_with = "crate::lenient::number")]
@@ -25937,29 +26847,41 @@ pub struct TransactionUpdate {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub amount: i64,
     /// Cash discount in the smallest currency unit. Used only together with cashDiscountId.
-    #[serde(rename = "cashDiscountAmount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cash_discount_amount: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "cashDiscountAmount", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cash_discount_amount: Option<Option<i64>>,
     /// Cash-discount definition from the same accounting period. When supplied, cashDiscountAmount must also be non-null.
-    #[serde(rename = "cashDiscountId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cash_discount_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "cashDiscountId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cash_discount_id: Option<Option<i64>>,
     /// ID of the credit (contra) account the amount is posted from. Equal to `accountId` only for a cost center transfer.
     #[serde(rename = "contraAccountId", deserialize_with = "crate::lenient::number")]
     pub contra_account_id: i64,
     /// ID of the target cost center for a cost center transfer. Required when `accountId` and `contraAccountId` are equal, otherwise it must be omitted or `null`.
-    #[serde(rename = "contraCostCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub contra_cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "contraCostCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub contra_cost_center_id: Option<Option<i64>>,
     /// Cost center from the same accounting period. Omission or null clears the assignment on update. Required as the source cost center for a cost center transfer.
-    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub cost_center_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "costCenterId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub cost_center_id: Option<Option<i64>>,
     /// Date printed on the underlying document/receipt.
     #[serde(rename = "documentDate")]
     pub document_date: chrono::NaiveDate,
     /// Donor person ID. Normally required when only the credit account is a donation account. Donor assignments are retained only when exactly one side is a donation account.
-    #[serde(rename = "donatorId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub donator_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "donatorId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub donator_id: Option<Option<i64>>,
     /// Spouse for joint donation receipts. Requires a different donor person and an existing spouse relationship; inconsistent assignments return 422.
-    #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub donator_spouse_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub donator_spouse_id: Option<Option<i64>>,
     /// Whether this is a donation through waived reimbursement of expenses. Defaults to false, including on update.
     #[serde(rename = "isWaiverOfReimbursementOfExpenses", default, skip_serializing_if = "Option::is_none")]
     pub is_waiver_of_reimbursement_of_expenses: Option<bool>,
@@ -25967,8 +26889,10 @@ pub struct TransactionUpdate {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub note: String,
     /// Tax rate from the same accounting period. Generates or updates a separate tax booking. On update, omission or null removes the existing tax booking.
-    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub tax_rate_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "taxRateId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub tax_rate_id: Option<Option<i64>>,
     /// Replacement document number; never generated automatically on update.
     #[serde(rename = "documentNumber", deserialize_with = "crate::lenient::string")]
     pub document_number: String,
@@ -25984,7 +26908,7 @@ pub struct TransactionUpdate {
 }
 
 /// Text and maintenance flags for one language of a translation key. The enclosing map identifies the language code.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Translation {
     /// Whether this language entry is marked deleted.
     pub deleted: bool,
@@ -26006,7 +26930,7 @@ pub struct Translation {
 }
 
 /// Translation identifier and its texts by language code. Local keys are marked createdByChurch; supplied product keys cannot be renamed or deleted through these endpoints.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TranslationKey {
     /// Whether the key was created locally by this installation.
     #[serde(rename = "createdByChurch")]
@@ -26031,7 +26955,7 @@ pub struct TranslationKey {
 }
 
 /// Rename or move a locally created translation key to a module. Both fields are required; translation texts are unchanged.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TranslationKeyUpdate {
     /// Translation key, trimmed before validation.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -26044,11 +26968,13 @@ pub struct TranslationKeyUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TurnoverReportCreate {
     /// Account-type IDs. Omission, null or [] selects all types. Existing IDs must be JSON integers; numeric strings do not match. Unknown IDs are ignored. If no supplied ID matches, the turnover calculator falls back to all types.
-    #[serde(rename = "accountTypes", default, skip_serializing_if = "Option::is_none")]
-    pub account_types: Option<Vec<i64>>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "accountTypes", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub account_types: Option<Option<Vec<i64>>>,
     /// Accounting period owning the accounts. Requires finance edit masterdata or explicit view/edit permission for this period.
     #[serde(rename = "accountingPeriodId", deserialize_with = "crate::lenient::number")]
     pub accounting_period_id: i64,
@@ -26072,7 +26998,7 @@ pub struct TurnoverReportCreate {
 }
 
 /// Two-factor completion result. The legacy disabled-two-factor branch returns only status and does not complete login.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TwoFactorLoginResult {
     /// Suggested post-login navigation target from the pending session or external-link completion. Can be relative, absolute or empty. Absent in the legacy disabled-two-factor branch.
     #[serde(rename = "redirectTo", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -26084,7 +27010,7 @@ pub struct TwoFactorLoginResult {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TwoFactorSetupActivate {
     /// Six-digit current authenticator code. Send it as a string to preserve leading zeroes. A code already accepted recently for this person cannot be reused.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -26095,7 +27021,7 @@ pub struct TwoFactorSetupActivate {
 }
 
 /// New authenticator enrollment material. Both fields contain the same sensitive TOTP secret; initialize once and keep the result for activation.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TwoFactorSetupSecret {
     /// QR-code image as a data URI, suitable for an image element. It is not an HTTP URL.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -26109,7 +27035,7 @@ pub struct TwoFactorSetupSecret {
 }
 
 /// Stored statement suggestion rule. Historical values are returned as stored, including unsupported values accepted by the write validator.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct UserRule {
     /// Accounts whose statement movements are eligible when allAccounts is false. An empty list then matches no accounts.
     #[serde(rename = "accountIds")]
@@ -26150,7 +27076,7 @@ pub struct UserRule {
 }
 
 /// Rule for generating booking suggestions from imported statement movements. Rules belong to an accounting period, not to the currently logged-in person.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct UserRuleCreate {
     /// Accounts whose statement movements are eligible when allAccounts is false. An empty list then matches no accounts.
     #[serde(rename = "accountIds")]
@@ -26188,7 +27114,7 @@ pub struct UserRuleCreate {
 }
 
 /// Complete replacement of an accounting period’s rules. Existing rule IDs are discarded.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct UserRulesUpdate {
     /// All rules to retain. An empty array removes every rule for this period.
     pub rules: Vec<UserRuleCreate>,
@@ -26197,7 +27123,7 @@ pub struct UserRulesUpdate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WebsiteDataCalendar {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
     pub domain_id: i64,
@@ -26216,7 +27142,7 @@ pub struct WebsiteDataCalendar {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WebsiteDataCreate {
     #[serde(rename = "additionalId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub additional_id: Option<i64>,
@@ -26230,7 +27156,7 @@ pub struct WebsiteDataCreate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WebsiteDataPerson {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
     pub domain_id: i64,
@@ -26249,7 +27175,7 @@ pub struct WebsiteDataPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WebsiteDataPersonDomainData {
     pub group: DomainObjectGroup,
     pub members: Vec<DomainObjectPerson>,
@@ -26260,7 +27186,7 @@ pub struct WebsiteDataPersonDomainData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WebsiteDataPostsInGroup {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
     pub domain_id: i64,
@@ -26278,7 +27204,7 @@ pub struct WebsiteDataPostsInGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WebsiteDataPostsInGroupDomainData {
     pub group: DomainObjectGroup,
     #[serde(rename = "groupVisiblePostCount", deserialize_with = "crate::lenient::number")]
@@ -26288,7 +27214,7 @@ pub struct WebsiteDataPostsInGroupDomainData {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WebsiteDataStaff {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
     pub domain_id: i64,
@@ -26307,7 +27233,7 @@ pub struct WebsiteDataStaff {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WebsiteDataWithoutInclude {
     #[serde(rename = "domainId", deserialize_with = "crate::lenient::number")]
     pub domain_id: i64,
@@ -26323,7 +27249,7 @@ pub struct WebsiteDataWithoutInclude {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Weekday {
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -26338,7 +27264,7 @@ pub struct Weekday {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionAllBirthdaysAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26364,7 +27290,7 @@ pub struct WidgetActionAllBirthdaysAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionAppointmentsAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26390,7 +27316,7 @@ pub struct WidgetActionAppointmentsAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataAppointment {
     #[serde(rename = "appointmentId", deserialize_with = "crate::lenient::number")]
     pub appointment_id: i64,
@@ -26404,7 +27330,7 @@ pub struct WidgetActionDataAppointment {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataBooking {
     #[serde(rename = "bookingId", deserialize_with = "crate::lenient::number")]
     pub booking_id: i64,
@@ -26416,7 +27342,7 @@ pub struct WidgetActionDataBooking {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataEvent {
     #[serde(rename = "eventId", deserialize_with = "crate::lenient::number")]
     pub event_id: i64,
@@ -26425,7 +27351,7 @@ pub struct WidgetActionDataEvent {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataGroup {
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
     pub group_id: i64,
@@ -26434,7 +27360,7 @@ pub struct WidgetActionDataGroup {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataPerson {
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -26443,7 +27369,7 @@ pub struct WidgetActionDataPerson {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataPostExternal {
     #[serde(rename = "groupGuid", deserialize_with = "crate::lenient::string")]
     pub group_guid: String,
@@ -26458,7 +27384,7 @@ pub struct WidgetActionDataPostExternal {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataPostInternal {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub guid: String,
@@ -26469,7 +27395,7 @@ pub struct WidgetActionDataPostInternal {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataResource {
     #[serde(rename = "resourceId", deserialize_with = "crate::lenient::number")]
     pub resource_id: i64,
@@ -26478,7 +27404,7 @@ pub struct WidgetActionDataResource {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionDataUrl {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub url: String,
@@ -26487,7 +27413,7 @@ pub struct WidgetActionDataUrl {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionExchangeRequestsAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26513,7 +27439,7 @@ pub struct WidgetActionExchangeRequestsAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionFavoriteGroupsAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26539,7 +27465,7 @@ pub struct WidgetActionFavoriteGroupsAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionGeneralUrl {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26565,7 +27491,7 @@ pub struct WidgetActionGeneralUrl {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionGroupMeetingAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26591,7 +27517,7 @@ pub struct WidgetActionGroupMeetingAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionMyBookingsAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26617,7 +27543,7 @@ pub struct WidgetActionMyBookingsAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionMyGroupsAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26643,7 +27569,7 @@ pub struct WidgetActionMyGroupsAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionMyResourcesAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26669,7 +27595,7 @@ pub struct WidgetActionMyResourcesAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionPostsAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26695,7 +27621,7 @@ pub struct WidgetActionPostsAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionServiceRequestsAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26721,7 +27647,7 @@ pub struct WidgetActionServiceRequestsAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionSongsToLearnAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26747,7 +27673,7 @@ pub struct WidgetActionSongsToLearnAll {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetActionUpcomingServicesAll {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -26774,7 +27700,7 @@ pub struct WidgetActionUpcomingServicesAll {
 }
 
 /// Avatar for widget items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetAvatar {
     #[serde(rename = "primaryDomainObject", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub primary_domain_object: serde_json::Value,
@@ -26785,7 +27711,7 @@ pub struct WidgetAvatar {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetCommon {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<serde_json::Value>>,
@@ -26826,7 +27752,7 @@ pub struct WidgetCommon {
 }
 
 /// Common widget item structure
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetCommonItem {
     #[serde(rename = "actionData", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub action_data: serde_json::Value,
@@ -26848,7 +27774,7 @@ pub struct WidgetCommonItem {
 }
 
 /// Details for common widget items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetCommonItemDetails {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub avatar: Option<WidgetAvatar>,
@@ -26868,7 +27794,7 @@ pub struct WidgetCommonItemDetails {
 }
 
 /// Count display for widgets
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetCount {
     /// A color in ChurchTools
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -26884,7 +27810,7 @@ pub struct WidgetCount {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDate {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<serde_json::Value>>,
@@ -26920,7 +27846,7 @@ pub struct WidgetDate {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDateFilterVariant1 {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub options: Option<Vec<WidgetDateFilterVariant1OptionsItem>>,
@@ -26929,7 +27855,7 @@ pub struct WidgetDateFilterVariant1 {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDateFilterVariant1OptionsItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub id: String,
@@ -26944,7 +27870,7 @@ pub struct WidgetDateFilterVariant1OptionsItem {
 }
 
 /// Item for widget date lists
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDateItem {
     #[serde(rename = "actionData")]
     pub action_data: WidgetActionDataAppointment,
@@ -26962,7 +27888,7 @@ pub struct WidgetDateItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDateItemDetails {
     #[serde(rename = "allDay")]
     pub all_day: bool,
@@ -26976,7 +27902,7 @@ pub struct WidgetDateItemDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDateItemInfosItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub text: String,
@@ -26985,7 +27911,7 @@ pub struct WidgetDateItemInfosItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDateWidgetSettings {
     /// Value for Tailwind color
     #[serde(rename = "backgroundColor", default, skip_serializing_if = "Option::is_none")]
@@ -26995,7 +27921,7 @@ pub struct WidgetDateWidgetSettings {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetail {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<serde_json::Value>>,
@@ -27032,7 +27958,7 @@ pub struct WidgetDetail {
 }
 
 /// Item for widget detail lists
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailItem {
     #[serde(rename = "actionData", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub action_data: serde_json::Value,
@@ -27048,7 +27974,7 @@ pub struct WidgetDetailItem {
 }
 
 /// Entry row type for widget detail items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailItemRowEntry {
     /// Value for Tailwind color
     pub color: Color,
@@ -27065,7 +27991,7 @@ pub struct WidgetDetailItemRowEntry {
 }
 
 /// Domain objects row type for widget detail items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailRowDomainObjects {
     #[serde(rename = "domainObjects")]
     pub domain_objects: Vec<serde_json::Value>,
@@ -27080,7 +28006,7 @@ pub struct WidgetDetailRowDomainObjects {
 }
 
 /// Info line row type for widget detail items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailRowInfoLine {
     pub infos: Vec<String>,
     /// Allowed values: `info-line`.
@@ -27092,7 +28018,7 @@ pub struct WidgetDetailRowInfoLine {
 }
 
 /// Primary row type for widget detail items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailRowPrimary {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub text: String,
@@ -27105,7 +28031,7 @@ pub struct WidgetDetailRowPrimary {
 }
 
 /// Properties row type for widget detail items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailRowProperties {
     pub properties: Vec<WidgetDetailRowPropertiesPropertiesItem>,
     /// Allowed values: `properties`.
@@ -27116,7 +28042,7 @@ pub struct WidgetDetailRowProperties {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailRowPropertiesPropertiesItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub label: String,
@@ -27127,7 +28053,7 @@ pub struct WidgetDetailRowPropertiesPropertiesItem {
 }
 
 /// Status row type for widget detail items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailRowStatus {
     pub status: Vec<WidgetDetailRowStatusStatusItem>,
     /// Allowed values: `status`.
@@ -27138,7 +28064,7 @@ pub struct WidgetDetailRowStatus {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailRowStatusStatusItem {
     /// Value for Tailwind color
     pub color: Color,
@@ -27153,7 +28079,7 @@ pub struct WidgetDetailRowStatusStatusItem {
 }
 
 /// Top line row type for widget detail items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDetailRowTopLine {
     /// Value for Tailwind color
     pub color: Color,
@@ -27166,7 +28092,7 @@ pub struct WidgetDetailRowTopLine {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDomainObject {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<serde_json::Value>>,
@@ -27203,7 +28129,7 @@ pub struct WidgetDomainObject {
 }
 
 /// Item for widget domain object lists
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDomainObjectItem {
     #[serde(rename = "actionData", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub action_data: serde_json::Value,
@@ -27221,7 +28147,7 @@ pub struct WidgetDomainObjectItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDomainObjectItemDetails {
     #[serde(rename = "domainObject", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub domain_object: serde_json::Value,
@@ -27230,7 +28156,7 @@ pub struct WidgetDomainObjectItemDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetDomainObjectItemInfosItem {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub text: String,
@@ -27240,7 +28166,7 @@ pub struct WidgetDomainObjectItemInfosItem {
 }
 
 /// Individual grouping option configuration
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetGroupingOption {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub count: Option<WidgetCount>,
@@ -27256,7 +28182,7 @@ pub struct WidgetGroupingOption {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetHidden {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<serde_json::Value>>,
@@ -27292,7 +28218,7 @@ pub struct WidgetHidden {
 }
 
 /// Information item for widget lists
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetInfoItem {
     /// A color in ChurchTools
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -27312,7 +28238,7 @@ pub struct WidgetInfoItem {
 }
 
 /// List of information items for widgets
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetInfoList {
     /// Direction for widget info lists
     /// Allowed values: `horizontal`, `vertical`, `wrapped`.
@@ -27332,7 +28258,7 @@ pub struct WidgetInfoList {
 }
 
 /// Sub-item for widget information items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetInfoSubItem {
     /// A color in ChurchTools
     /// Allowed values: `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
@@ -27347,7 +28273,7 @@ pub struct WidgetInfoSubItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionAppointmentDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27373,7 +28299,7 @@ pub struct WidgetItemActionAppointmentDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionBirthdayDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27399,7 +28325,7 @@ pub struct WidgetItemActionBirthdayDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionBookingDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27425,7 +28351,7 @@ pub struct WidgetItemActionBookingDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionEventAgenda {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27451,7 +28377,7 @@ pub struct WidgetItemActionEventAgenda {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionEventDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27477,7 +28403,7 @@ pub struct WidgetItemActionEventDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionEventfactDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27503,7 +28429,7 @@ pub struct WidgetItemActionEventfactDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionExchangeRequests {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27529,7 +28455,7 @@ pub struct WidgetItemActionExchangeRequests {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionGroupDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27555,7 +28481,7 @@ pub struct WidgetItemActionGroupDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionMyResourcesDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27581,7 +28507,7 @@ pub struct WidgetItemActionMyResourcesDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionPostDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27607,7 +28533,7 @@ pub struct WidgetItemActionPostDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionServiceRequests {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27633,7 +28559,7 @@ pub struct WidgetItemActionServiceRequests {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetItemActionSongsToLearnDetails {
     /// Flavor of widget action
     /// Allowed values: `accent`, `basic`, `constructive`, `destructive`, `magic`.
@@ -27659,7 +28585,7 @@ pub struct WidgetItemActionSongsToLearnDetails {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetPost {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub actions: Option<Vec<serde_json::Value>>,
@@ -27696,7 +28622,7 @@ pub struct WidgetPost {
 }
 
 /// Item for widget post lists
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetPostItem {
     #[serde(rename = "actionData", default, skip_serializing_if = "serde_json::Value::is_null")]
     pub action_data: serde_json::Value,
@@ -27714,7 +28640,7 @@ pub struct WidgetPostItem {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetPostItemDetails {
     pub post: Post,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -27723,7 +28649,7 @@ pub struct WidgetPostItemDetails {
 }
 
 /// Settings specific to common widgets
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetSettingsCommon {
     /// Density options for common widgets
     /// Allowed values: `compact`, `default`, `divided`.
@@ -27735,7 +28661,7 @@ pub struct WidgetSettingsCommon {
 }
 
 /// Top line text for widget items
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WidgetTopLine {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub text: String,
@@ -27745,7 +28671,7 @@ pub struct WidgetTopLine {
 }
 
 /// A category organizes wiki pages and is the unit of wiki access permissions.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WikiCategory {
     /// Campus association, or null when no campus is assigned.
     #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -27775,11 +28701,13 @@ pub struct WikiCategory {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WikiCategoryCreate {
     /// Optional campus association. Omission/null clears it; an unknown ID currently also resolves to no campus.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Whether files in this wiki category can be read without category-view permission. This flag does not make the wiki pages themselves public.
     #[serde(rename = "fileAccessWithoutPermission")]
     pub file_access_without_permission: bool,
@@ -27798,11 +28726,13 @@ pub struct WikiCategoryCreate {
 }
 
 /// Replacement category settings. The optional campus association is cleared on omission.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WikiCategoryUpdate {
     /// Optional campus association. Omission/null clears it; an unknown ID currently also resolves to no campus.
-    #[serde(rename = "campusId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    pub campus_id: Option<i64>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(rename = "campusId", deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub campus_id: Option<Option<i64>>,
     /// Whether files in this wiki category can be read without category-view permission. This flag does not make the wiki pages themselves public.
     #[serde(rename = "fileAccessWithoutPermission")]
     pub file_access_without_permission: bool,
@@ -27821,7 +28751,7 @@ pub struct WikiCategoryUpdate {
 }
 
 /// Wiki page metadata for one version. Text and previews are optional enrichments depending on the endpoint. A page is addressed by category ID and stable GUID; version identifies its revision.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WikiPage {
     /// Compatibility marker used by existing clients.
     #[serde(rename = "@deprecated")]
@@ -27866,7 +28796,7 @@ pub struct WikiPage {
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WikiPageCreate {
     /// Whether text is Markdown. False selects legacy HTML, sanitized on normal text reads.
     #[serde(rename = "isMarkdown", default, skip_serializing_if = "Option::is_none")]
@@ -27875,8 +28805,10 @@ pub struct WikiPageCreate {
     #[serde(rename = "onStartpage", default, skip_serializing_if = "Option::is_none")]
     pub on_startpage: Option<bool>,
     /// Trimmed Markdown or legacy HTML according to isMarkdown. Omitted, null or blank content is stored as null and read back as an empty string.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub text: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub text: Option<Option<String>>,
     /// Trimmed unique page title; Unicode ellipsis is normalized to three periods.
     #[serde(deserialize_with = "crate::lenient::string")]
     pub title: String,
@@ -27886,22 +28818,24 @@ pub struct WikiPageCreate {
 }
 
 /// Partial page update; an empty object is accepted. The page title, GUID and category are not editable here.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WikiPageUpdate {
     #[serde(rename = "isMarkdown", default, skip_serializing_if = "Option::is_none")]
     pub is_markdown: Option<bool>,
     #[serde(rename = "onStartpage", default, skip_serializing_if = "Option::is_none")]
     pub on_startpage: Option<bool>,
     /// Trimmed replacement content. A different stored value creates a new version; null or blank clears the text. Omission leaves it unchanged.
-    #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    pub text: Option<String>,
+    ///
+    /// `None` leaves the field out, `Some(None)` sends `null`.
+    #[serde(deserialize_with = "crate::lenient::double_option", default, skip_serializing_if = "Option::is_none")]
+    pub text: Option<Option<String>>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
     pub extra: serde_json::Map<String, serde_json::Value>,
 }
 
 /// Compact, domain-independent representation for displaying a link to a ChurchTools object. It is not the full resource returned by the object’s own API.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct WikiSearchResult {
     /// URL for the full API resource, if available. Some legacy domain implementations produce inconsistent URLs.
     #[serde(rename = "apiUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]

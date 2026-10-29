@@ -338,11 +338,10 @@ impl<'a> ActionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostActionsBody = serde_json::from_value(serde_json::json!({
-    ///     "domain_type": [
-    ///         "group_membership"
-    ///     ]
-    /// }))?;
+    /// let body = models::PostActionsBody {
+    ///     domain_type: vec!["group_membership".into()],
+    ///     ..Default::default()
+    /// };
     /// for action in client.actions().create(&body)? {
     ///     println!("{}", action.domain_type);
     /// }
@@ -377,9 +376,10 @@ impl<'a> AddressesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-addresses-domainType-domainIdentifier");
-    /// let body: models::GroupAddressCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Retreat Center"
-    /// }))?;
+    /// let body = models::GroupAddressCreate {
+    ///     name: Some(Some("Retreat Center".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.addresses().create("group", "42", &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -478,9 +478,10 @@ impl<'a> AddressesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-addresses-domainType-domainIdentifier-addressId");
-    /// let body: models::GroupAddressUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Retreat Center"
-    /// }))?;
+    /// let body = models::GroupAddressUpdate {
+    ///     name: Some(Some("Retreat Center".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.addresses().update("group", "42", 7, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -529,18 +530,13 @@ impl<'a> AgendasResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AgendaMailCreate = serde_json::from_value(serde_json::json!({
-    ///     "body": "<p>Please review the updated agenda for Sunday.</p>",
-    ///     "eventIds": [
-    ///         31,
-    ///         32
-    ///     ],
-    ///     "recipients": [
-    ///         40,
-    ///         41
-    ///     ],
-    ///     "subject": "Updated Sunday agenda"
-    /// }))?;
+    /// let body = models::AgendaMailCreate {
+    ///     body: "<p>Please review the updated agenda for Sunday.</p>".into(),
+    ///     event_ids: vec![31, 32],
+    ///     recipients: vec![40, 41],
+    ///     subject: "Updated Sunday agenda".into(),
+    ///     ..Default::default()
+    /// };
     /// let agenda = client.agendas().send(&body)?;
     /// println!("{:?}", agenda);
     /// # Ok(())
@@ -579,10 +575,11 @@ impl<'a> AgendatemplatesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-agendatemplates");
-    /// let body: models::AgendaTemplateCreate = serde_json::from_value(serde_json::json!({
-    ///     "calendarId": 1,
-    ///     "name": "Sunday Service Template"
-    /// }))?;
+    /// let body = models::AgendaTemplateCreate {
+    ///     calendar_id: 1,
+    ///     name: "Sunday Service Template".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.agendatemplates().create(&body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -646,11 +643,12 @@ impl<'a> AgendatemplatesResource<'a> {
     ///     format: Some("SONG_BEAMER".into()),
     ///     ..Default::default()
     /// };
-    /// let body: models::AgendaExportCreate = serde_json::from_value(serde_json::json!({
-    ///     "appendArrangement": true,
-    ///     "exportSongs": true,
-    ///     "withCategory": false
-    /// }))?;
+    /// let body = models::AgendaExportCreate {
+    ///     append_arrangement: true,
+    ///     export_songs: true,
+    ///     with_category: false,
+    ///     ..Default::default()
+    /// };
     /// let agendatemplate = client.agendatemplates().export(35, &query, &body)?;
     /// println!("{}", agendatemplate.url);
     /// # Ok(())
@@ -722,10 +720,11 @@ impl<'a> AgendatemplatesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-agendatemplates-agendaId");
-    /// let body: models::AgendaTemplateUpdate = serde_json::from_value(serde_json::json!({
-    ///     "calendarId": 1,
-    ///     "name": "Sunday Service Template"
-    /// }))?;
+    /// let body = models::AgendaTemplateUpdate {
+    ///     calendar_id: 1,
+    ///     name: "Sunday Service Template".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.agendatemplates().update(35, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -972,9 +971,10 @@ impl<'a> AgendatemplatesItemsServicegroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AgendaServiceGroupNoteUpdate = serde_json::from_value(serde_json::json!({
-    ///     "note": "Remember to bring the sheet music"
-    /// }))?;
+    /// let body = models::AgendaServiceGroupNoteUpdate {
+    ///     note: Some(Some("Remember to bring the sheet music".into())),
+    ///     ..Default::default()
+    /// };
     /// client.agendatemplates().items().servicegroups().update(35, 123, 13, &body)?;
     /// # Ok(())
     /// # }
@@ -1030,14 +1030,15 @@ impl<'a> BookingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-bookings");
-    /// let body: models::BookingCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z",
-    ///     "resourceId": 7,
-    ///     "showInCal": true,
-    ///     "statusId": 1,
-    ///     "title": "Band rehearsal"
-    /// }))?;
+    /// let body = models::BookingCreate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     resource_id: 7,
+    ///     show_in_cal: true,
+    ///     status_id: 1,
+    ///     title: "Band rehearsal".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.bookings().create(&body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -1148,11 +1149,12 @@ impl<'a> BookingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-bookings-conflicts");
-    /// let body: models::BookingConflictRequestBody = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z",
-    ///     "resourceId": 7
-    /// }))?;
+    /// let body = models::BookingConflictRequestBody {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     resource_id: 7,
+    ///     ..Default::default()
+    /// };
     /// for booking in client.bookings().preview_conflicts(&body)? {
     ///     println!("{}", booking.title);
     /// }
@@ -1178,10 +1180,11 @@ impl<'a> BookingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-bookings-id-conflicts");
-    /// let body: models::BookingConflictUpdate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z"
-    /// }))?;
+    /// let body = models::BookingConflictUpdate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     ..Default::default()
+    /// };
     /// for booking in client.bookings().preview_conflicts_for(8, &body)? {
     ///     println!("{}", booking.title);
     /// }
@@ -1207,16 +1210,17 @@ impl<'a> BookingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::BookingSplitCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z",
-    ///     "resourceId": 7,
-    ///     "showInCal": true,
-    ///     "statusId": 1,
-    ///     "title": "Band rehearsal",
-    ///     "splitDate": "2026-09-20",
-    ///     "splitUntilEnd": false
-    /// }))?;
+    /// let body = models::BookingSplitCreate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     resource_id: 7,
+    ///     show_in_cal: true,
+    ///     status_id: 1,
+    ///     title: "Band rehearsal".into(),
+    ///     split_date: "2026-09-20".parse()?,
+    ///     split_until_end: false,
+    ///     ..Default::default()
+    /// };
     /// let booking = client.bookings().split(8, &body)?;
     /// println!("{}", booking.title);
     /// # Ok(())
@@ -1333,12 +1337,11 @@ impl<'a> BulkjobsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::BulkJobCreate = serde_json::from_value(serde_json::json!({
-    ///     "domainObjectIdentifiers": [
-    ///         42
-    ///     ],
-    ///     "jobData": {}
-    /// }))?;
+    /// let body = models::BulkJobCreate {
+    ///     domain_object_identifiers: vec![serde_json::json!(42)],
+    ///     job_data: serde_json::json!({}),
+    ///     ..Default::default()
+    /// };
     /// let bulkjob = client.bulkjobs().enqueue("group", "setMaxMembers", &body)?;
     /// println!("{}", bulkjob.job_group);
     /// # Ok(())
@@ -1363,12 +1366,11 @@ impl<'a> BulkjobsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::BulkJobCreate = serde_json::from_value(serde_json::json!({
-    ///     "domainObjectIdentifiers": [
-    ///         42
-    ///     ],
-    ///     "jobData": {}
-    /// }))?;
+    /// let body = models::BulkJobCreate {
+    ///     domain_object_identifiers: vec![serde_json::json!(42)],
+    ///     job_data: serde_json::json!({}),
+    ///     ..Default::default()
+    /// };
     /// let bulkjob = client.bulkjobs().infos("group", "setMaxMembers", &body)?;
     /// println!("{:?}", bulkjob);
     /// # Ok(())
@@ -1402,16 +1404,14 @@ impl<'a> BulklettersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::BulkletterCreate = serde_json::from_value(serde_json::json!({
-    ///     "content": "<p>Hello [Spitzname]!</p>",
-    ///     "groupByHousehold": true,
-    ///     "htmlTemplateId": 39,
-    ///     "name": "Newsletter April 2025",
-    ///     "personIds": [
-    ///         13,
-    ///         14
-    ///     ]
-    /// }))?;
+    /// let body = models::BulkletterCreate {
+    ///     content: "<p>Hello [Spitzname]!</p>".into(),
+    ///     group_by_household: true,
+    ///     html_template_id: 39,
+    ///     name: "Newsletter April 2025".into(),
+    ///     person_ids: vec![13, 14],
+    ///     ..Default::default()
+    /// };
     /// let result = client.bulkletters().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -1458,12 +1458,12 @@ impl<'a> BulklettersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// client.bulkletters().execute(&body)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn execute(&self, body: &serde_json::Value) -> Result<()> {
+    pub fn execute(&self, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<()> {
         let path = "/bulkletters/execute".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -1570,11 +1570,12 @@ impl<'a> CalendarsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-calendars");
-    /// let body: models::CalendarCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Community events",
-    ///     "sortKey": 10,
-    ///     "type": "church"
-    /// }))?;
+    /// let body = models::CalendarCreate {
+    ///     name: "Community events".into(),
+    ///     sort_key: 10,
+    ///     r#type: "church".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.calendars().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -1707,10 +1708,11 @@ impl<'a> CalendarsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-calendars-calendarId");
-    /// let body: models::CalendarUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Community events",
-    ///     "sortKey": 10
-    /// }))?;
+    /// let body = models::CalendarUpdate {
+    ///     name: "Community events".into(),
+    ///     sort_key: 10,
+    ///     ..Default::default()
+    /// };
     /// let result = client.calendars().update(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -1767,10 +1769,11 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-calendars-calendarId-appointments-appointmentId-changeimpact");
-    /// let body: models::AppointmentChangeImpactCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z"
-    /// }))?;
+    /// let body = models::AppointmentChangeImpactCreate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     ..Default::default()
+    /// };
     /// for appointment in client.calendars().appointments().changeimpact(42, 4, &body)? {
     ///     println!("{:?}", appointment);
     /// }
@@ -1796,12 +1799,13 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-calendars-calendarId-appointments");
-    /// let body: models::AppointmentCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z",
-    ///     "isInternal": true,
-    ///     "title": "Sunday service"
-    /// }))?;
+    /// let body = models::AppointmentCreate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     is_internal: true,
+    ///     title: "Sunday service".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.calendars().appointments().create(42, &body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -2044,14 +2048,15 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AppointmentSplitUpdate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z",
-    ///     "isInternal": true,
-    ///     "title": "Sunday service",
-    ///     "splitDate": "2026-10-04",
-    ///     "splitUntilEnd": true
-    /// }))?;
+    /// let body = models::AppointmentSplitUpdate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     is_internal: true,
+    ///     title: "Sunday service".into(),
+    ///     split_date: "2026-10-04".parse()?,
+    ///     split_until_end: true,
+    ///     ..Default::default()
+    /// };
     /// let appointment = client.calendars().appointments().split(42, 4, &body)?;
     /// println!("{}", appointment.title);
     /// # Ok(())
@@ -2076,12 +2081,13 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-calendars-calendarId-appointments-appointmentId");
-    /// let body: models::AppointmentUpdate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z",
-    ///     "isInternal": true,
-    ///     "title": "Sunday service"
-    /// }))?;
+    /// let body = models::AppointmentUpdate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     is_internal: true,
+    ///     title: "Sunday service".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.calendars().appointments().update(42, 4, &body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -2238,9 +2244,10 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::MeetingRequestCreate = serde_json::from_value(serde_json::json!({
-    ///     "inviteeId": 42
-    /// }))?;
+    /// let body = models::MeetingRequestCreate {
+    ///     invitee_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.calendars().appointments().meetingrequests().create(42, 4, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -2311,9 +2318,10 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::MeetingRequestUpdate = serde_json::from_value(serde_json::json!({
-    ///     "answer": "accept"
-    /// }))?;
+    /// let body = models::MeetingRequestUpdate {
+    ///     answer: "accept".into(),
+    ///     ..Default::default()
+    /// };
     /// client.calendars().appointments().meetingrequests().update(42, 4, 19, &body)?;
     /// # Ok(())
     /// # }
@@ -2347,12 +2355,13 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-calendars-appointments-templates");
-    /// let body: models::AppointmentTemplateCreate = serde_json::from_value(serde_json::json!({
-    ///     "calendarId": 1,
-    ///     "duration": 3600,
-    ///     "startTime": "10:00",
-    ///     "title": "Service"
-    /// }))?;
+    /// let body = models::AppointmentTemplateCreate {
+    ///     calendar_id: 1,
+    ///     duration: 3600,
+    ///     start_time: "10:00".into(),
+    ///     title: "Service".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.calendars().appointments().templates().create(&body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -2446,12 +2455,13 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-calendars-appointments-templates-id");
-    /// let body: models::AppointmentTemplateUpdate = serde_json::from_value(serde_json::json!({
-    ///     "calendarId": 1,
-    ///     "duration": 3600,
-    ///     "startTime": "10:00",
-    ///     "title": "Service"
-    /// }))?;
+    /// let body = models::AppointmentTemplateUpdate {
+    ///     calendar_id: 1,
+    ///     duration: 3600,
+    ///     start_time: "10:00".into(),
+    ///     title: "Service".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.calendars().appointments().templates().update(1, &body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -2546,10 +2556,11 @@ impl<'a> CampusesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-campuses");
-    /// let body: models::CampusCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hamburg Altona",
-    ///     "shorty": "ALT"
-    /// }))?;
+    /// let body = models::CampusCreate {
+    ///     name: "Hamburg Altona".into(),
+    ///     shorty: "ALT".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.campuses().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -2639,9 +2650,10 @@ impl<'a> CampusesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-campuses-id");
-    /// let body: models::CampusUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::CampusUpdate {
+    ///     name: Some(Some("Hauskreis Nord".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.campuses().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -2675,9 +2687,10 @@ impl<'a> CaptchaResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostCaptchaBody = serde_json::from_value(serde_json::json!({
-    ///     "solution": "beispiel"
-    /// }))?;
+    /// let body = models::PostCaptchaBody {
+    ///     solution: "beispiel".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.captcha().create(&body)?;
     /// println!("{}", result.is_valid);
     /// # Ok(())
@@ -2734,12 +2747,13 @@ impl<'a> ChatResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ChatCreate = serde_json::from_value(serde_json::json!({
-    ///     "domainId": 9,
-    ///     "guid": "681F54E3-2EB7-40A4-84F0-EFF8E8F05727",
-    ///     "prefix": "ctg",
-    ///     "roomname": "Technical team"
-    /// }))?;
+    /// let body = models::ChatCreate {
+    ///     domain_id: 9,
+    ///     guid: "681F54E3-2EB7-40A4-84F0-EFF8E8F05727".into(),
+    ///     prefix: "ctg".into(),
+    ///     roomname: "Technical team".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.chat().create(&body)?;
     /// println!("{:?}", result.creator);
     /// # Ok(())
@@ -2836,9 +2850,10 @@ impl<'a> ChatResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ChatUpdate = serde_json::from_value(serde_json::json!({
-    ///     "creator": 1
-    /// }))?;
+    /// let body = models::ChatUpdate {
+    ///     creator: Some(1),
+    ///     ..Default::default()
+    /// };
     /// let result = client.chat().patch("681F54E3-2EB7-40A4-84F0-EFF8E8F05727", &body)?;
     /// println!("{:?}", result.creator);
     /// # Ok(())
@@ -2904,21 +2919,22 @@ impl<'a> CheckinResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CheckinPersonCreate = serde_json::from_value(serde_json::json!({
-    ///     "group": {
-    ///         "id": 9,
-    ///         "personFields": {}
+    /// let body = models::CheckinPersonCreate {
+    ///     group: models::CheckinMembershipCreate {
+    ///         id: 9,
+    ///         person_fields: Default::default(),
+    ///         ..Default::default()
     ///     },
-    ///     "person": {
-    ///         "campusId": 42,
-    ///         "departmentIds": [
-    ///             42
-    ///         ],
-    ///         "firstName": "Alex",
-    ///         "lastName": "Example",
-    ///         "statusId": 42
-    ///     }
-    /// }))?;
+    ///     person: models::CheckinPersonDataCreate {
+    ///         campus_id: 42,
+    ///         department_ids: vec![42],
+    ///         first_name: Some("Alex".into()),
+    ///         last_name: "Example".into(),
+    ///         status_id: 42,
+    ///         ..Default::default()
+    ///     },
+    ///     ..Default::default()
+    /// };
     /// let result = client.checkin().create_persons(&body)?;
     /// println!("{:?}", result.first_name);
     /// # Ok(())
@@ -2954,13 +2970,15 @@ impl<'a> CheckinResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CheckinPersonUpdate = serde_json::from_value(serde_json::json!({
-    ///     "group": {
-    ///         "id": 9,
-    ///         "personFields": {}
+    /// let body = models::CheckinPersonUpdate {
+    ///     group: models::CheckinMembershipCreate {
+    ///         id: 9,
+    ///         person_fields: Default::default(),
+    ///         ..Default::default()
     ///     },
-    ///     "personId": 42
-    /// }))?;
+    ///     person_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.checkin().update_persons(&body)?;
     /// println!("{:?}", result.first_name);
     /// # Ok(())
@@ -3074,12 +3092,12 @@ impl<'a> ChurchqueryDebugResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!("beispiel");
+    /// let body: String = "beispiel".into();
     /// client.churchquery().debug().export(&body)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn export(&self, body: &serde_json::Value) -> Result<()> {
+    pub fn export(&self, body: &String) -> Result<()> {
         self.export_with(&Default::default(), body)
     }
 
@@ -3090,7 +3108,7 @@ impl<'a> ChurchqueryDebugResource<'a> {
     /// `POST /churchquery/debug/export`
     ///
     /// **Caution**: This is an preliminary API, and is subject to be changed. It provides a downloadfile with the result of a given query.
-    pub fn export_with(&self, query: &PostChurchqueryDebugExportQuery, body: &serde_json::Value) -> Result<()> {
+    pub fn export_with(&self, query: &PostChurchqueryDebugExportQuery, body: &String) -> Result<()> {
         let path = "/churchquery/debug/export".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -3163,9 +3181,10 @@ impl<'a> ConfigResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PutConfigRequest = serde_json::from_value(serde_json::json!({
-    ///     "accept_datasecurity": true
-    /// }))?;
+    /// let body = models::PutConfigRequest {
+    ///     accept_datasecurity: Some(true),
+    ///     ..Default::default()
+    /// };
     /// client.config().update(&body)?;
     /// # Ok(())
     /// # }
@@ -3213,11 +3232,12 @@ impl<'a> ContactlabelsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-contactlabels");
-    /// let body: models::ContactLabelCreate = serde_json::from_value(serde_json::json!({
-    ///     "isDefault": false,
-    ///     "name": "Private",
-    ///     "sortKey": 10
-    /// }))?;
+    /// let body = models::ContactLabelCreate {
+    ///     is_default: false,
+    ///     name: "Private".into(),
+    ///     sort_key: 10,
+    ///     ..Default::default()
+    /// };
     /// let result = client.contactlabels().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -3324,11 +3344,12 @@ impl<'a> ContactlabelsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-contactlabels-id");
-    /// let body: models::ContactLabelUpdate = serde_json::from_value(serde_json::json!({
-    ///     "isDefault": false,
-    ///     "name": "Private",
-    ///     "sortKey": 10
-    /// }))?;
+    /// let body = models::ContactLabelUpdate {
+    ///     is_default: false,
+    ///     name: "Private".into(),
+    ///     sort_key: 10,
+    ///     ..Default::default()
+    /// };
     /// let result = client.contactlabels().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -3413,16 +3434,17 @@ impl<'a> DbfieldsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DbFieldCreate = serde_json::from_value(serde_json::json!({
-    ///     "deleteOnArchive": true,
-    ///     "isActive": true,
-    ///     "isNewPersonField": true,
-    ///     "name": "Dietary notes",
-    ///     "securityLevel": 1,
-    ///     "sortKey": 50,
-    ///     "useAsPlaceholder": false,
-    ///     "fieldCategoryInternCode": "f_address"
-    /// }))?;
+    /// let body = models::DbFieldCreate {
+    ///     delete_on_archive: true,
+    ///     is_active: true,
+    ///     is_new_person_field: true,
+    ///     name: "Dietary notes".into(),
+    ///     security_level: 1,
+    ///     sort_key: 50,
+    ///     use_as_placeholder: false,
+    ///     field_category_intern_code: "f_address".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.dbfields().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -3529,13 +3551,14 @@ impl<'a> DbfieldsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DbFieldUpdate = serde_json::from_value(serde_json::json!({
-    ///     "deleteOnArchive": true,
-    ///     "isNewPersonField": true,
-    ///     "securityLevel": 1,
-    ///     "sortKey": 50,
-    ///     "useAsPlaceholder": false
-    /// }))?;
+    /// let body = models::DbFieldUpdate {
+    ///     delete_on_archive: true,
+    ///     is_new_person_field: true,
+    ///     security_level: 1,
+    ///     sort_key: 50,
+    ///     use_as_placeholder: false,
+    ///     ..Default::default()
+    /// };
     /// let result = client.dbfields().update(200, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -3589,9 +3612,10 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DbFieldOptionCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Vegetarian"
-    /// }))?;
+    /// let body = models::DbFieldOptionCreate {
+    ///     name: Some("Vegetarian".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.dbfields().options().create(200, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -3699,9 +3723,10 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DbFieldOptionUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Vegetarian"
-    /// }))?;
+    /// let body = models::DbFieldOptionUpdate {
+    ///     name: Some("Vegetarian".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.dbfields().options().update(200, 3, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -3816,16 +3841,11 @@ impl<'a> DomainobjectsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-domainobjects");
-    /// let body: models::DomainObjectPayload = serde_json::from_value(serde_json::json!({
-    ///     "domain_identifiers": [
-    ///         "42",
-    ///         "7"
-    ///     ],
-    ///     "domain_types": [
-    ///         "person",
-    ///         "group"
-    ///     ]
-    /// }))?;
+    /// let body = models::DomainObjectPayload {
+    ///     domain_identifiers: vec!["42".into(), "7".into()],
+    ///     domain_types: vec!["person".into(), "group".into()],
+    ///     ..Default::default()
+    /// };
     /// for domainobject in client.domainobjects().create(&body)? {
     ///     println!("{:?}", domainobject.api_url);
     /// }
@@ -4049,25 +4069,27 @@ impl<'a> DynamicgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DynamicGroupRuleSetUpdate = serde_json::from_value(serde_json::json!({
-    ///     "dynamicGroupRuleSet": [
-    ///         {
-    ///             "description": "Add selected people to the group.",
-    ///             "importance": 10,
-    ///             "personIdFieldName": "person.id",
-    ///             "process": {
-    ///                 "groupAndQueryResult": {},
-    ///                 "groupOnly": {},
-    ///                 "queryResultOnly": {}
-    ///             },
-    ///             "query": {
-    ///                 "method": "ChurchQuery",
-    ///                 "params": {}
-    ///             },
-    ///             "shorty": "selected-people"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::DynamicGroupRuleSetUpdate {
+    ///     dynamic_group_rule_set: vec![models::DynamicGroupRule {
+    ///         description: "Add selected people to the group.".into(),
+    ///         importance: 10,
+    ///         person_id_field_name: "person.id".into(),
+    ///         process: models::DynamicGroupProcessSets {
+    ///             group_and_query_result: models::DynamicGroupProcessSetsGroupAndQueryResult::default(),
+    ///             group_only: models::DynamicGroupProcessSetsGroupOnly::default(),
+    ///             query_result_only: models::DynamicGroupProcessSetsQueryResultOnly::default(),
+    ///             ..Default::default()
+    ///         },
+    ///         query: models::DynamicGroupQuery {
+    ///             method: "ChurchQuery".into(),
+    ///             params: models::DynamicGroupQueryParams::default(),
+    ///             ..Default::default()
+    ///         },
+    ///         shorty: "selected-people".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.dynamicgroups().update_ruleset(42, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -4092,9 +4114,10 @@ impl<'a> DynamicgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DynamicGroupStatusUpdate = serde_json::from_value(serde_json::json!({
-    ///     "dynamicGroupStatus": "manual"
-    /// }))?;
+    /// let body = models::DynamicGroupStatusUpdate {
+    ///     dynamic_group_status: "manual".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.dynamicgroups().update_status(42, &body)?;
     /// println!("{}", result.dynamic_group_status);
     /// # Ok(())
@@ -4128,15 +4151,11 @@ impl<'a> EmailsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EmailPlaceholderStatisticsCreate = serde_json::from_value(serde_json::json!({
-    ///     "content": [
-    ///         "Hello {{person.firstName}}"
-    ///     ],
-    ///     "personIds": [
-    ///         1,
-    ///         2
-    ///     ]
-    /// }))?;
+    /// let body = models::EmailPlaceholderStatisticsCreate {
+    ///     content: vec!["Hello {{person.firstName}}".into()],
+    ///     person_ids: vec![1, 2],
+    ///     ..Default::default()
+    /// };
     /// for email in client.emails().placeholderstatistics(&body)? {
     ///     println!("{}", email.person_id);
     /// }
@@ -4162,12 +4181,11 @@ impl<'a> EmailsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-emails-preview");
-    /// let body: models::EmailPreviewCreate = serde_json::from_value(serde_json::json!({
-    ///     "content": [
-    ///         "Hello {{person.firstName}}"
-    ///     ],
-    ///     "personId": 1
-    /// }))?;
+    /// let body = models::EmailPreviewCreate {
+    ///     content: vec!["Hello {{person.firstName}}".into()],
+    ///     person_id: 1,
+    ///     ..Default::default()
+    /// };
     /// let email = client.emails().preview(&body)?;
     /// println!("{}", email.html);
     /// # Ok(())
@@ -4247,11 +4265,12 @@ impl<'a> EvangelischetermineResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EvangelischeTermineSettingsValidateCreate = serde_json::from_value(serde_json::json!({
-    ///     "apiKey": "*****",
-    ///     "url": "https://www.evangelische-termine.de",
-    ///     "vid": "1234"
-    /// }))?;
+    /// let body = models::EvangelischeTermineSettingsValidateCreate {
+    ///     api_key: "*****".into(),
+    ///     url: "https://www.evangelische-termine.de".into(),
+    ///     vid: "1234".into(),
+    ///     ..Default::default()
+    /// };
     /// client.evangelischetermine().validatesettings(&body)?;
     /// # Ok(())
     /// # }
@@ -4336,9 +4355,10 @@ impl<'a> EventsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EventChatUpdate = serde_json::from_value(serde_json::json!({
-    ///     "enabled": true
-    /// }))?;
+    /// let body = models::EventChatUpdate {
+    ///     enabled: true,
+    ///     ..Default::default()
+    /// };
     /// client.events().chat(42, &body)?;
     /// # Ok(())
     /// # }
@@ -4535,22 +4555,15 @@ impl<'a> EventsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EventMailCreate = serde_json::from_value(serde_json::json!({
-    ///     "body": "<p>Please review the updated agenda for Sunday.</p>",
-    ///     "eventIds": [
-    ///         31,
-    ///         32
-    ///     ],
-    ///     "recipients": [
-    ///         40,
-    ///         41
-    ///     ],
-    ///     "subject": "Updated Sunday agenda",
-    ///     "appendAgendaButton": true,
-    ///     "files": [
-    ///         42
-    ///     ]
-    /// }))?;
+    /// let body = models::EventMailCreate {
+    ///     body: "<p>Please review the updated agenda for Sunday.</p>".into(),
+    ///     event_ids: vec![31, 32],
+    ///     recipients: vec![40, 41],
+    ///     subject: "Updated Sunday agenda".into(),
+    ///     append_agenda_button: true,
+    ///     files: vec![42],
+    ///     ..Default::default()
+    /// };
     /// let event = client.events().send(&body)?;
     /// println!("{:?}", event);
     /// # Ok(())
@@ -4575,9 +4588,10 @@ impl<'a> EventsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EventDetailsUpdate = serde_json::from_value(serde_json::json!({
-    ///     "description": "Sound check starts 30 minutes before the gathering."
-    /// }))?;
+    /// let body = models::EventDetailsUpdate {
+    ///     description: Some(Some("Sound check starts 30 minutes before the gathering.".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.events().update(42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -4720,11 +4734,12 @@ impl<'a> EventsAgendaResource<'a> {
     ///     format: Some("SONG_BEAMER".into()),
     ///     ..Default::default()
     /// };
-    /// let body: models::AgendaExportCreate = serde_json::from_value(serde_json::json!({
-    ///     "appendArrangement": true,
-    ///     "exportSongs": true,
-    ///     "withCategory": false
-    /// }))?;
+    /// let body = models::AgendaExportCreate {
+    ///     append_arrangement: true,
+    ///     export_songs: true,
+    ///     with_category: false,
+    ///     ..Default::default()
+    /// };
     /// let agenda = client.events().agenda().export(42, &query, &body)?;
     /// println!("{}", agenda.url);
     /// # Ok(())
@@ -5188,9 +5203,10 @@ impl<'a> EventsAgendaItemsServicegroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AgendaServiceGroupNoteUpdate = serde_json::from_value(serde_json::json!({
-    ///     "note": "Remember to bring the sheet music"
-    /// }))?;
+    /// let body = models::AgendaServiceGroupNoteUpdate {
+    ///     note: Some(Some("Remember to bring the sheet music".into())),
+    ///     ..Default::default()
+    /// };
     /// client.events().agenda().items().servicegroups().update(42, 123, 13, &body)?;
     /// # Ok(())
     /// # }
@@ -5223,9 +5239,10 @@ impl<'a> EventsEventservicesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
-    ///     "comment": "Hallo zusammen"
-    /// }))?;
+    /// let body = models::ServiceRequestAnswer {
+    ///     comment: Some(Some("Hallo zusammen".into())),
+    ///     ..Default::default()
+    /// };
     /// let eventservice = client.events().eventservices().delete(42, 42, &body)?;
     /// println!("{:?}", eventservice.name);
     /// # Ok(())
@@ -5251,9 +5268,10 @@ impl<'a> EventsEventservicesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ServiceRequestUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Guest musician"
-    /// }))?;
+    /// let body = models::ServiceRequestUpdate {
+    ///     name: Some(Some("Guest musician".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.events().eventservices().update(42, 42, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -5279,14 +5297,14 @@ impl<'a> EventsEventservicesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EventServicesUpdate = serde_json::from_value(serde_json::json!({
-    ///     "services": [
-    ///         {
-    ///             "count": 3,
-    ///             "serviceId": 2
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::EventServicesUpdate {
+    ///     services: vec![models::EventServiceCountUpdate {
+    ///         count: 3,
+    ///         service_id: 2,
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// client.events().eventservices().update_all(42, &body)?;
     /// # Ok(())
     /// # }
@@ -5344,11 +5362,10 @@ impl<'a> EventsFactsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EventFactExportCreate = serde_json::from_value(serde_json::json!({
-    ///     "calendar_ids": [
-    ///         42
-    ///     ]
-    /// }))?;
+    /// let body = models::EventFactExportCreate {
+    ///     calendar_ids: vec![42],
+    ///     ..Default::default()
+    /// };
     /// let data = client.events().facts().export(&body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -5468,9 +5485,10 @@ impl<'a> EventsFactsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EventFactUpdate = serde_json::from_value(serde_json::json!({
-    ///     "value": 1.5
-    /// }))?;
+    /// let body = models::EventFactUpdate {
+    ///     value: serde_json::json!(1.5),
+    ///     ..Default::default()
+    /// };
     /// let result = client.events().facts().update(42, 1, &body)?;
     /// println!("{}", result.deprecated);
     /// # Ok(())
@@ -5547,9 +5565,10 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
-    ///     "comment": "Hallo zusammen"
-    /// }))?;
+    /// let body = models::ServiceRequestAnswer {
+    ///     comment: Some(Some("Hallo zusammen".into())),
+    ///     ..Default::default()
+    /// };
     /// let servicerequest = client.events().servicerequests().accept(42, 42, &body)?;
     /// println!("{:?}", servicerequest.name);
     /// # Ok(())
@@ -5574,9 +5593,10 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ServiceRequestAnswer = serde_json::from_value(serde_json::json!({
-    ///     "comment": "Hallo zusammen"
-    /// }))?;
+    /// let body = models::ServiceRequestAnswer {
+    ///     comment: Some(Some("Hallo zusammen".into())),
+    ///     ..Default::default()
+    /// };
     /// let servicerequest = client.events().servicerequests().decline(42, 42, &body)?;
     /// println!("{:?}", servicerequest.name);
     /// # Ok(())
@@ -5601,9 +5621,10 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ServiceRequestUndoCreate = serde_json::from_value(serde_json::json!({
-    ///     "personId": 42
-    /// }))?;
+    /// let body = models::ServiceRequestUndoCreate {
+    ///     person_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let servicerequest = client.events().servicerequests().undo(42, 42, &body)?;
     /// println!("{:?}", servicerequest.name);
     /// # Ok(())
@@ -5628,9 +5649,10 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ServiceRequestUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Guest musician"
-    /// }))?;
+    /// let body = models::ServiceRequestUpdate {
+    ///     name: Some(Some("Guest musician".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.events().servicerequests().update(42, 42, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -5655,14 +5677,14 @@ impl<'a> EventsServicerequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EventServicesUpdate = serde_json::from_value(serde_json::json!({
-    ///     "services": [
-    ///         {
-    ///             "count": 3,
-    ///             "serviceId": 2
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::EventServicesUpdate {
+    ///     services: vec![models::EventServiceCountUpdate {
+    ///         count: 3,
+    ///         service_id: 2,
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// client.events().servicerequests().update_all(42, &body)?;
     /// # Ok(())
     /// # }
@@ -5773,22 +5795,18 @@ impl<'a> ExternalloginsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ExternalLoginCreate = serde_json::from_value(serde_json::json!({
-    ///     "config": {
-    ///         "accessTokenUrl": "https://identity.example.org/accessTokenUrl",
-    ///         "authorizeUrl": "https://identity.example.org/authorizeUrl",
-    ///         "clientId": "churchtools",
-    ///         "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"
-    ///     },
-    ///     "createNewPerson": true,
-    ///     "hasRegistration": true,
-    ///     "name": "Organization login",
-    ///     "newPersonCampusId": 42,
-    ///     "newPersonDepartmentId": 42,
-    ///     "newPersonStatusId": 42,
-    ///     "type": "oauth",
-    ///     "updateDataOnLogin": true
-    /// }))?;
+    /// let body = models::ExternalLoginCreate {
+    ///     config: serde_json::json!({"accessTokenUrl": "https://identity.example.org/accessTokenUrl", "authorizeUrl": "https://identity.example.org/authorizeUrl", "clientId": "churchtools", "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"}),
+    ///     create_new_person: true,
+    ///     has_registration: true,
+    ///     name: "Organization login".into(),
+    ///     new_person_campus_id: Some(42),
+    ///     new_person_department_id: Some(42),
+    ///     new_person_status_id: Some(42),
+    ///     r#type: "oauth".into(),
+    ///     update_data_on_login: true,
+    ///     ..Default::default()
+    /// };
     /// let result = client.externallogins().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -5882,22 +5900,18 @@ impl<'a> ExternalloginsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ExternalLoginUpdate = serde_json::from_value(serde_json::json!({
-    ///     "config": {
-    ///         "accessTokenUrl": "https://identity.example.org/accessTokenUrl",
-    ///         "authorizeUrl": "https://identity.example.org/authorizeUrl",
-    ///         "clientId": "churchtools",
-    ///         "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"
-    ///     },
-    ///     "createNewPerson": true,
-    ///     "hasRegistration": true,
-    ///     "name": "Nextcloud",
-    ///     "newPersonCampusId": 42,
-    ///     "newPersonDepartmentId": 42,
-    ///     "newPersonStatusId": 42,
-    ///     "type": "oauth",
-    ///     "updateDataOnLogin": true
-    /// }))?;
+    /// let body = models::ExternalLoginUpdate {
+    ///     config: serde_json::json!({"accessTokenUrl": "https://identity.example.org/accessTokenUrl", "authorizeUrl": "https://identity.example.org/authorizeUrl", "clientId": "churchtools", "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"}),
+    ///     create_new_person: true,
+    ///     has_registration: true,
+    ///     name: "Nextcloud".into(),
+    ///     new_person_campus_id: Some(42),
+    ///     new_person_department_id: Some(42),
+    ///     new_person_status_id: Some(42),
+    ///     r#type: "oauth".into(),
+    ///     update_data_on_login: true,
+    ///     ..Default::default()
+    /// };
     /// let result = client.externallogins().update(7, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -5931,11 +5945,12 @@ impl<'a> ExternalloginsLinkResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ExternalLoginLinkCreate = serde_json::from_value(serde_json::json!({
-    ///     "linkToken": "opaque-session-bound-link-token",
-    ///     "password": "geheim",
-    ///     "username": "alex@example.org"
-    /// }))?;
+    /// let body = models::ExternalLoginLinkCreate {
+    ///     link_token: "opaque-session-bound-link-token".into(),
+    ///     password: "geheim".into(),
+    ///     username: "alex@example.org".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.externallogins().link().create(7, &body)?;
     /// println!("{}", result.location);
     /// # Ok(())
@@ -5960,9 +5975,10 @@ impl<'a> ExternalloginsLinkResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ExternalLoginPersonCreate = serde_json::from_value(serde_json::json!({
-    ///     "linkToken": "opaque-session-bound-link-token"
-    /// }))?;
+    /// let body = models::ExternalLoginPersonCreate {
+    ///     link_token: "opaque-session-bound-link-token".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.externallogins().link().create_person(7, &body)?;
     /// println!("{}", result.location);
     /// # Ok(())
@@ -6656,9 +6672,10 @@ impl<'a> ExternalloginsSamlMetadataResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SamlMetadataParseCreate = serde_json::from_value(serde_json::json!({
-    ///     "xml": "beispiel"
-    /// }))?;
+    /// let body = models::SamlMetadataParseCreate {
+    ///     xml: "beispiel".into(),
+    ///     ..Default::default()
+    /// };
     /// let metadata = client.externallogins().saml().metadata().parse(&body)?;
     /// println!("{:?}", metadata);
     /// # Ok(())
@@ -7045,7 +7062,7 @@ impl<'a> FeatureusageResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostFeatureusageBody = serde_json::from_value(serde_json::json!({}))?;
+    /// let body = models::PostFeatureusageBody::default();
     /// client.featureusage().create(&body)?;
     /// # Ok(())
     /// # }
@@ -7243,9 +7260,10 @@ impl<'a> FilesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::FileLinkCreate = serde_json::from_value(serde_json::json!({
-    ///     "url": "https://example.org/service-notes"
-    /// }))?;
+    /// let body = models::FileLinkCreate {
+    ///     url: "https://example.org/service-notes".into(),
+    ///     ..Default::default()
+    /// };
     /// let file = client.files().link(serde_json::json!("agenda_PRO_PRESENTER_6"), "42", &body)?;
     /// println!("{}", file.name);
     /// # Ok(())
@@ -7317,9 +7335,10 @@ impl<'a> FilesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::FileUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Service notes.pdf"
-    /// }))?;
+    /// let body = models::FileUpdate {
+    ///     name: Some(Some("Service notes.pdf".into())),
+    ///     ..Default::default()
+    /// };
     /// client.files().patch(1, &body)?;
     /// # Ok(())
     /// # }
@@ -7343,9 +7362,10 @@ impl<'a> FilesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::FileDomainUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Service notes.pdf"
-    /// }))?;
+    /// let body = models::FileDomainUpdate {
+    ///     name: Some(Some("Service notes.pdf".into())),
+    ///     ..Default::default()
+    /// };
     /// client.files().update_for_object(serde_json::json!("agenda_PRO_PRESENTER_6"), "42", &body)?;
     /// # Ok(())
     /// # }
@@ -7522,10 +7542,11 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountClassCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountTypeId": 3,
-    ///     "name": "Anlagevermögen"
-    /// }))?;
+    /// let body = models::AccountClassCreate {
+    ///     account_type_id: 3,
+    ///     name: "Anlagevermögen".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accountclasses().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -7632,10 +7653,11 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountClassUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountTypeId": 3,
-    ///     "name": "Anlagevermögen"
-    /// }))?;
+    /// let body = models::AccountClassUpdate {
+    ///     account_type_id: 3,
+    ///     name: "Anlagevermögen".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accountclasses().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -7684,11 +7706,12 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountGroupCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountClassId": 2,
-    ///     "isCashAssetAccount": false,
-    ///     "name": "Sachanlagen"
-    /// }))?;
+    /// let body = models::AccountGroupCreate {
+    ///     account_class_id: 2,
+    ///     is_cash_asset_account: false,
+    ///     name: "Sachanlagen".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accountgroups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -7795,11 +7818,12 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountGroupUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountClassId": 2,
-    ///     "isCashAssetAccount": false,
-    ///     "name": "Sachanlagen"
-    /// }))?;
+    /// let body = models::AccountGroupUpdate {
+    ///     account_class_id: 2,
+    ///     is_cash_asset_account: false,
+    ///     name: "Sachanlagen".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accountgroups().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -7856,13 +7880,14 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountingPeriodCreate = serde_json::from_value(serde_json::json!({
-    ///     "clientId": 1,
-    ///     "endDate": "2026-12-31",
-    ///     "incrementDocumentNumber": true,
-    ///     "isClosed": false,
-    ///     "startDate": "2026-01-01"
-    /// }))?;
+    /// let body = models::AccountingPeriodCreate {
+    ///     client_id: 1,
+    ///     end_date: "2026-12-31".parse()?,
+    ///     increment_document_number: true,
+    ///     is_closed: false,
+    ///     start_date: "2026-01-01".parse()?,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accountingperiods().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -8052,13 +8077,14 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountingPeriodUpdate = serde_json::from_value(serde_json::json!({
-    ///     "clientId": 1,
-    ///     "endDate": "2026-12-31",
-    ///     "incrementDocumentNumber": true,
-    ///     "isClosed": false,
-    ///     "startDate": "2026-01-01"
-    /// }))?;
+    /// let body = models::AccountingPeriodUpdate {
+    ///     client_id: 1,
+    ///     end_date: "2026-12-31".parse()?,
+    ///     increment_document_number: true,
+    ///     is_closed: false,
+    ///     start_date: "2026-01-01".parse()?,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accountingperiods().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -8083,23 +8109,21 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::UserRulesUpdate = serde_json::from_value(serde_json::json!({
-    ///     "rules": [
-    ///         {
-    ///             "accountIds": [
-    ///                 5
-    ///             ],
-    ///             "allAccounts": false,
-    ///             "isIncome": true,
-    ///             "operator": "contains",
-    ///             "searchString": "Donation",
-    ///             "searchType": "purpose",
-    ///             "sortKey": 0,
-    ///             "suggestionType": "costCenterId",
-    ///             "suggestionValue": "8"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::UserRulesUpdate {
+    ///     rules: vec![models::UserRuleCreate {
+    ///         account_ids: vec![5],
+    ///         all_accounts: false,
+    ///         is_income: true,
+    ///         operator: "contains".into(),
+    ///         search_string: "Donation".into(),
+    ///         search_type: "purpose".into(),
+    ///         sort_key: 0,
+    ///         suggestion_type: "costCenterId".into(),
+    ///         suggestion_value: "8".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// for accountingperiod in client.finance().accountingperiods().update_userrules(1, &body)? {
     ///     println!("{}", accountingperiod.id);
     /// }
@@ -8331,9 +8355,10 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::StatementMovementUpdate = serde_json::from_value(serde_json::json!({
-    ///     "state": "booked"
-    /// }))?;
+    /// let body = models::StatementMovementUpdate {
+    ///     state: "booked".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accountingperiods().accounts().statements().movements().create(1, 42, 7, 123, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -8395,14 +8420,14 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::MovementSuggestionsUpdate = serde_json::from_value(serde_json::json!({
-    ///     "suggestions": [
-    ///         {
-    ///             "name": "costCenterId",
-    ///             "value": "8"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::MovementSuggestionsUpdate {
+    ///     suggestions: vec![models::MovementSuggestionUpdate {
+    ///         name: "costCenterId".into(),
+    ///         value: "8".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// client.finance().accountingperiods().accounts().statements().movements().patch_suggestions(1, 7, 7, 7, &body)?;
     /// # Ok(())
     /// # }
@@ -8531,9 +8556,10 @@ impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountStatementUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "September 2026"
-    /// }))?;
+    /// let body = models::AccountStatementUpdate {
+    ///     name: "September 2026".into(),
+    ///     ..Default::default()
+    /// };
     /// client.finance().accountingperiods().statements().update(1, 1, &body)?;
     /// # Ok(())
     /// # }
@@ -8566,21 +8592,20 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!([
-    ///     {
-    ///         "accountGroupId": 4,
-    ///         "name": "Donations",
-    ///         "number": "8200",
-    ///         "accountingPeriodId": 5
-    ///     }
-    /// ]);
+    /// let body: Vec<models::AccountCreate> = vec![models::AccountCreate {
+    ///     account_group_id: 4,
+    ///     name: "Donations".into(),
+    ///     number: "8200".into(),
+    ///     accounting_period_id: 5,
+    ///     ..Default::default()
+    /// }];
     /// for account in client.finance().accounts().bulkcreate(&body)? {
     ///     println!("{}", account.name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn bulkcreate(&self, body: &serde_json::Value) -> Result<Vec<models::Account>> {
+    pub fn bulkcreate(&self, body: &Vec<models::AccountCreate>) -> Result<Vec<models::Account>> {
         let path = "/finance/accounts/bulkcreate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -8599,12 +8624,13 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountGroupId": 4,
-    ///     "name": "Donations",
-    ///     "number": "8200",
-    ///     "accountingPeriodId": 5
-    /// }))?;
+    /// let body = models::AccountCreate {
+    ///     account_group_id: 4,
+    ///     name: "Donations".into(),
+    ///     number: "8200".into(),
+    ///     accounting_period_id: 5,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accounts().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -8664,9 +8690,10 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountImportTemplateCreate = serde_json::from_value(serde_json::json!({
-    ///     "clientId": 1
-    /// }))?;
+    /// let body = models::AccountImportTemplateCreate {
+    ///     client_id: Some(Some(1)),
+    ///     ..Default::default()
+    /// };
     /// let data = client.finance().accounts().exporttemplate(&body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -8805,11 +8832,12 @@ impl<'a> FinanceAccountsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountGroupId": 4,
-    ///     "name": "Donations",
-    ///     "number": "8200"
-    /// }))?;
+    /// let body = models::AccountUpdate {
+    ///     account_group_id: 4,
+    ///     name: "Donations".into(),
+    ///     number: "8200".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accounts().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -8915,9 +8943,10 @@ impl<'a> FinanceAccounttypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountTypeCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Aktiva"
-    /// }))?;
+    /// let body = models::AccountTypeCreate {
+    ///     name: "Aktiva".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accounttypes().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -9024,9 +9053,10 @@ impl<'a> FinanceAccounttypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountTypeUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Aktiva"
-    /// }))?;
+    /// let body = models::AccountTypeUpdate {
+    ///     name: "Aktiva".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().accounttypes().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -9164,10 +9194,11 @@ impl<'a> FinanceBillsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::BillUpdate = serde_json::from_value(serde_json::json!({
-    ///     "submittedDate": "2026-09-14",
-    ///     "submittedPid": 42
-    /// }))?;
+    /// let body = models::BillUpdate {
+    ///     submitted_date: "2026-09-14".parse()?,
+    ///     submitted_pid: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().bills().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -9216,11 +9247,12 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CashDiscountCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountId": 5,
-    ///     "note": "Skonto 2%",
-    ///     "rate": 2
-    /// }))?;
+    /// let body = models::CashDiscountCreate {
+    ///     account_id: 5,
+    ///     note: "Skonto 2%".into(),
+    ///     rate: 2,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().cashdiscounts().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -9340,11 +9372,12 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CashDiscountUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountId": 5,
-    ///     "note": "Skonto 2%",
-    ///     "rate": 2
-    /// }))?;
+    /// let body = models::CashDiscountUpdate {
+    ///     account_id: 5,
+    ///     note: "Skonto 2%".into(),
+    ///     rate: 2,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().cashdiscounts().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -9408,10 +9441,11 @@ impl<'a> FinanceClientsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ClientCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Example congregation",
-    ///     "sortKey": 0
-    /// }))?;
+    /// let body = models::ClientCreate {
+    ///     name: "Example congregation".into(),
+    ///     sort_key: 0,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().clients().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -9518,10 +9552,11 @@ impl<'a> FinanceClientsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ClientUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Example congregation",
-    ///     "sortKey": 0
-    /// }))?;
+    /// let body = models::ClientUpdate {
+    ///     name: "Example congregation".into(),
+    ///     sort_key: 0,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().clients().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -9570,15 +9605,15 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CostCenterBulkCreate = serde_json::from_value(serde_json::json!({
-    ///     "costCenters": [
-    ///         {
-    ///             "accountingPeriodId": 1,
-    ///             "name": "Kostenstelle Sonstige",
-    ///             "number": "802"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::CostCenterBulkCreate {
+    ///     cost_centers: vec![models::CostCenterCreate {
+    ///         accounting_period_id: 1,
+    ///         name: "Kostenstelle Sonstige".into(),
+    ///         number: "802".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// for costcenter in client.finance().costcenters().bulkcreate(&body)? {
     ///     println!("{:?}", costcenter.name);
     /// }
@@ -9604,11 +9639,12 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CostCenterCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountingPeriodId": 1,
-    ///     "name": "Kostenstelle Sonstige",
-    ///     "number": "802"
-    /// }))?;
+    /// let body = models::CostCenterCreate {
+    ///     accounting_period_id: 1,
+    ///     name: "Kostenstelle Sonstige".into(),
+    ///     number: "802".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().costcenters().create(&body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -9755,10 +9791,11 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CostCenterUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountingPeriodId": 1,
-    ///     "number": "802"
-    /// }))?;
+    /// let body = models::CostCenterUpdate {
+    ///     accounting_period_id: 1,
+    ///     number: "802".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().costcenters().update(1, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -9846,11 +9883,12 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DonationReceiptsCreate = serde_json::from_value(serde_json::json!({
-    ///     "accounting_period_id": 1,
-    ///     "donation_receipt_attachment_template_id": "abc123",
-    ///     "donation_receipt_letter_template_id": "abc123"
-    /// }))?;
+    /// let body = models::DonationReceiptsCreate {
+    ///     accounting_period_id: 1,
+    ///     donation_receipt_attachment_template_id: "abc123".into(),
+    ///     donation_receipt_letter_template_id: "abc123".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().donators().create_receipts(&body)?;
     /// println!("{:?}", result.job_group);
     /// # Ok(())
@@ -9875,9 +9913,10 @@ impl<'a> FinanceDonatorsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DonationReceiptCreate = serde_json::from_value(serde_json::json!({
-    ///     "accounting_period_id": 1
-    /// }))?;
+    /// let body = models::DonationReceiptCreate {
+    ///     accounting_period_id: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().donators().create_receipts_for("42-43", &body)?;
     /// println!("{}", result.accounting_period_id);
     /// # Ok(())
@@ -10212,12 +10251,13 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EubpSubmissionCreate = serde_json::from_value(serde_json::json!({
-    ///     "clientId": 1,
-    ///     "transmissionReason": 1,
-    ///     "yearFrom": 2020,
-    ///     "yearTo": 2023
-    /// }))?;
+    /// let body = models::EubpSubmissionCreate {
+    ///     client_id: 1,
+    ///     transmission_reason: 1,
+    ///     year_from: 2020,
+    ///     year_to: 2023,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().eubp().submissions().create(&body)?;
     /// println!("{:?}", result.title);
     /// # Ok(())
@@ -10287,13 +10327,13 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// let submission = client.finance().eubp().submissions().finish(1, &body)?;
     /// println!("{:?}", submission.title);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn finish(&self, id: impl Display, body: &serde_json::Value) -> Result<models::EubpSubmission> {
+    pub fn finish(&self, id: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}/finish", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -10455,13 +10495,13 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// let submission = client.finance().eubp().submissions().reopen(1, &body)?;
     /// println!("{:?}", submission.title);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn reopen(&self, id: impl Display, body: &serde_json::Value) -> Result<models::EubpSubmission> {
+    pub fn reopen(&self, id: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}/reopen", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -10502,11 +10542,10 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EubpSubmissionAccountsUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountKeys": [
-    ///         "1200|Bank"
-    ///     ]
-    /// }))?;
+    /// let body = models::EubpSubmissionAccountsUpdate {
+    ///     account_keys: vec!["1200|Bank".into()],
+    ///     ..Default::default()
+    /// };
     /// for submission in client.finance().eubp().submissions().update_accounts(1, &body)? {
     ///     println!("{}", submission.name);
     /// }
@@ -10571,12 +10610,10 @@ impl<'a> FinanceEubpSubmissionsPeriodsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::EubpPeriodAccountsUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountIds": [
-    ///         10,
-    ///         11
-    ///     ]
-    /// }))?;
+    /// let body = models::EubpPeriodAccountsUpdate {
+    ///     account_ids: vec![10, 11],
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().eubp().submissions().periods().update_accounts(1, 1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -10614,11 +10651,12 @@ impl<'a> FinanceReportsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::BalanceReportCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountingPeriodId": 1,
-    ///     "endDate": "2026-12-31",
-    ///     "startDate": "2026-01-01"
-    /// }))?;
+    /// let body = models::BalanceReportCreate {
+    ///     accounting_period_id: 1,
+    ///     end_date: "2026-12-31".parse()?,
+    ///     start_date: "2026-01-01".parse()?,
+    ///     ..Default::default()
+    /// };
     /// let data = client.finance().reports().balance(&body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -10643,11 +10681,12 @@ impl<'a> FinanceReportsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::BalanceReportCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountingPeriodId": 1,
-    ///     "endDate": "2026-12-31",
-    ///     "startDate": "2026-01-01"
-    /// }))?;
+    /// let body = models::BalanceReportCreate {
+    ///     accounting_period_id: 1,
+    ///     end_date: "2026-12-31".parse()?,
+    ///     start_date: "2026-01-01".parse()?,
+    ///     ..Default::default()
+    /// };
     /// let data = client.finance().reports().profit_loss(&body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -10672,10 +10711,11 @@ impl<'a> FinanceReportsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SumBalanceReportCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountingPeriodId": 1,
-    ///     "month": 9
-    /// }))?;
+    /// let body = models::SumBalanceReportCreate {
+    ///     accounting_period_id: 1,
+    ///     month: 9,
+    ///     ..Default::default()
+    /// };
     /// let data = client.finance().reports().sum_balance(&body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -10700,10 +10740,11 @@ impl<'a> FinanceReportsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TurnoverReportCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountingPeriodId": 1,
-    ///     "period": "monthly"
-    /// }))?;
+    /// let body = models::TurnoverReportCreate {
+    ///     accounting_period_id: 1,
+    ///     period: "monthly".into(),
+    ///     ..Default::default()
+    /// };
     /// let data = client.finance().reports().turnover(&body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -10754,9 +10795,10 @@ impl<'a> FinanceReportsStatementAccountsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AccountStatementReportCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-12-31"
-    /// }))?;
+    /// let body = models::AccountStatementReportCreate {
+    ///     end_date: Some(Some("2026-12-31".parse()?)),
+    ///     ..Default::default()
+    /// };
     /// let data = client.finance().reports().statement().accounts().create(21, &body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -10790,9 +10832,10 @@ impl<'a> FinanceReportsStatementCostcentersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CostCenterStatementReportCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-12-31"
-    /// }))?;
+    /// let body = models::CostCenterStatementReportCreate {
+    ///     end_date: Some(Some("2026-12-31".parse()?)),
+    ///     ..Default::default()
+    /// };
     /// let data = client.finance().reports().statement().costcenters().create(21, &body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -10828,19 +10871,19 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SplitTransactionCreate = serde_json::from_value(serde_json::json!({
-    ///     "amount": 30000,
-    ///     "documentDate": "2026-09-14",
-    ///     "note": "Offering and building fund",
-    ///     "splitChildren": [
-    ///         {
-    ///             "accountId": 10,
-    ///             "amount": 7812,
-    ///             "contraAccountId": 11,
-    ///             "note": "Building fund"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::SplitTransactionCreate {
+    ///     amount: 30000,
+    ///     document_date: "2026-09-14".parse()?,
+    ///     note: Some("Offering and building fund".into()),
+    ///     split_children: vec![models::SplitTransactionChildCreate {
+    ///         account_id: 10,
+    ///         amount: 7812,
+    ///         contra_account_id: 11,
+    ///         note: Some("Building fund".into()),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().splittransactions().create(&body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -10911,13 +10954,13 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// let splittransaction = client.finance().splittransactions().duplicate(1, &body)?;
     /// println!("{}", splittransaction.id);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn duplicate(&self, id: impl Display, body: &serde_json::Value) -> Result<models::SplitTransaction> {
+    pub fn duplicate(&self, id: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<models::SplitTransaction> {
         let path = format!("/finance/splittransactions/{}/duplicate", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -10974,19 +11017,19 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SplitTransactionUpdate = serde_json::from_value(serde_json::json!({
-    ///     "amount": 30000,
-    ///     "documentDate": "2026-09-14",
-    ///     "note": "Offering and building fund",
-    ///     "splitChildren": [
-    ///         {
-    ///             "accountId": 10,
-    ///             "amount": 7812,
-    ///             "contraAccountId": 11,
-    ///             "note": "Building fund"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::SplitTransactionUpdate {
+    ///     amount: 30000,
+    ///     document_date: "2026-09-14".parse()?,
+    ///     note: Some("Offering and building fund".into()),
+    ///     split_children: vec![models::SplitTransactionChildCreate {
+    ///         account_id: 10,
+    ///         amount: 7812,
+    ///         contra_account_id: 11,
+    ///         note: Some("Building fund".into()),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().splittransactions().update(1, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -11022,9 +11065,10 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SplitTransactionStornoCreate = serde_json::from_value(serde_json::json!({
-    ///     "note": "Incorrect allocation"
-    /// }))?;
+    /// let body = models::SplitTransactionStornoCreate {
+    ///     note: "Incorrect allocation".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().splittransactions().update_storno(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -11127,11 +11171,12 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TaxRateCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountId": 5,
-    ///     "rate": 7,
-    ///     "taxTypeId": 4
-    /// }))?;
+    /// let body = models::TaxRateCreate {
+    ///     account_id: 5,
+    ///     rate: 7.0,
+    ///     tax_type_id: 4,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().taxrates().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -11251,11 +11296,12 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TaxRateUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountId": 5,
-    ///     "rate": 7,
-    ///     "taxTypeId": 4
-    /// }))?;
+    /// let body = models::TaxRateUpdate {
+    ///     account_id: 5,
+    ///     rate: 7.0,
+    ///     tax_type_id: 4,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().taxrates().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -11319,9 +11365,10 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TaxTypeCreate = serde_json::from_value(serde_json::json!({
-    ///     "sortKey": 0
-    /// }))?;
+    /// let body = models::TaxTypeCreate {
+    ///     sort_key: 0,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().taxtypes().create(&body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -11428,9 +11475,10 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TaxTypeUpdate = serde_json::from_value(serde_json::json!({
-    ///     "sortKey": 0
-    /// }))?;
+    /// let body = models::TaxTypeUpdate {
+    ///     sort_key: 0,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().taxtypes().update(1, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -11595,16 +11643,14 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TransactionPurposeCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountIds": [
-    ///         1,
-    ///         2
-    ///     ],
-    ///     "isIncome": true,
-    ///     "name": "Donations for youth work",
-    ///     "purposeAccountId": 3,
-    ///     "sortKey": 0
-    /// }))?;
+    /// let body = models::TransactionPurposeCreate {
+    ///     account_ids: vec![1, 2],
+    ///     is_income: true,
+    ///     name: "Donations for youth work".into(),
+    ///     purpose_account_id: 3,
+    ///     sort_key: 0,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().transactionpurposes().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -11711,16 +11757,14 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TransactionPurposeUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountIds": [
-    ///         1,
-    ///         2
-    ///     ],
-    ///     "isIncome": true,
-    ///     "name": "Donations for youth work",
-    ///     "purposeAccountId": 3,
-    ///     "sortKey": 0
-    /// }))?;
+    /// let body = models::TransactionPurposeUpdate {
+    ///     account_ids: vec![1, 2],
+    ///     is_income: true,
+    ///     name: "Donations for youth work".into(),
+    ///     purpose_account_id: 3,
+    ///     sort_key: 0,
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().transactionpurposes().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -11771,23 +11815,22 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!([
-    ///     {
-    ///         "accountId": 10,
-    ///         "amount": 7812,
-    ///         "contraAccountId": 11,
-    ///         "documentDate": "2019-01-14",
-    ///         "note": "Donation service offering",
-    ///         "documentNumber": "2026-42"
-    ///     }
-    /// ]);
+    /// let body: Vec<models::TransactionBulkCreateItem> = vec![models::TransactionBulkCreateItem {
+    ///     account_id: 10,
+    ///     amount: 7812,
+    ///     contra_account_id: 11,
+    ///     document_date: "2019-01-14".parse()?,
+    ///     note: "Donation service offering".into(),
+    ///     document_number: "2026-42".into(),
+    ///     ..Default::default()
+    /// }];
     /// for transaction in client.finance().transactions().bulkcreate(&body)? {
     ///     println!("{}", transaction.id);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn bulkcreate(&self, body: &serde_json::Value) -> Result<Vec<models::Transaction>> {
+    pub fn bulkcreate(&self, body: &Vec<models::TransactionBulkCreateItem>) -> Result<Vec<models::Transaction>> {
         self.bulkcreate_with(&Default::default(), body)
     }
 
@@ -11798,7 +11841,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// `POST /finance/transactions/bulkcreate`
     ///
     /// Creates a non-empty JSON array of bookings in input order and returns the main bookings with meta.count. Each item supplies its own document number and accounts; items may belong to different accounting periods. Both accounts must allow posting and all related finance references within an item must belong to the same period. Periods must be open and contain each documentDate. Input validation runs before creation, followed by a shared database transaction. The optional query flag skips the normal donation-account/donor constraint for all items, but joint-donor consistency still applies. Use actual JSON boolean and integer values.
-    pub fn bulkcreate_with(&self, query: &PostFinanceTransactionsBulkcreateQuery, body: &serde_json::Value) -> Result<Vec<models::Transaction>> {
+    pub fn bulkcreate_with(&self, query: &PostFinanceTransactionsBulkcreateQuery, body: &Vec<models::TransactionBulkCreateItem>) -> Result<Vec<models::Transaction>> {
         let path = "/finance/transactions/bulkcreate".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -11819,13 +11862,14 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TransactionCreate = serde_json::from_value(serde_json::json!({
-    ///     "accountId": 10,
-    ///     "amount": 7812,
-    ///     "contraAccountId": 11,
-    ///     "documentDate": "2019-01-14",
-    ///     "note": "Donation service offering"
-    /// }))?;
+    /// let body = models::TransactionCreate {
+    ///     account_id: 10,
+    ///     amount: 7812,
+    ///     contra_account_id: 11,
+    ///     document_date: "2019-01-14".parse()?,
+    ///     note: "Donation service offering".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().transactions().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -11896,13 +11940,13 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// let transaction = client.finance().transactions().duplicate(1, &body)?;
     /// println!("{}", transaction.id);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn duplicate(&self, id: impl Display, body: &serde_json::Value) -> Result<models::Transaction> {
+    pub fn duplicate(&self, id: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<models::Transaction> {
         let path = format!("/finance/transactions/{}/duplicate", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -12184,14 +12228,14 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TransactionBatchUpdate = serde_json::from_value(serde_json::json!({
-    ///     "changeset": {},
-    ///     "filters": [
-    ///         {
-    ///             "accountingPeriodId": 1
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::TransactionBatchUpdate {
+    ///     changeset: models::TransactionBatchUpdateChangeset::default(),
+    ///     filters: vec![models::TransactionBatchFilter {
+    ///         accounting_period_id: 1,
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().transactions().patch(&body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -12218,14 +12262,15 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TransactionUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accountId": 10,
-    ///     "amount": 7812,
-    ///     "contraAccountId": 11,
-    ///     "documentDate": "2019-01-14",
-    ///     "note": "Donation service offering",
-    ///     "documentNumber": "2026-42"
-    /// }))?;
+    /// let body = models::TransactionUpdate {
+    ///     account_id: 10,
+    ///     amount: 7812,
+    ///     contra_account_id: 11,
+    ///     document_date: "2019-01-14".parse()?,
+    ///     note: "Donation service offering".into(),
+    ///     document_number: "2026-42".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.finance().transactions().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -12261,9 +12306,10 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TransactionStornoCreate = serde_json::from_value(serde_json::json!({
-    ///     "note": "Incorrect amount"
-    /// }))?;
+    /// let body = models::TransactionStornoCreate {
+    ///     note: "Incorrect amount".into(),
+    ///     ..Default::default()
+    /// };
     /// client.finance().transactions().update_storno(1, &body)?;
     /// # Ok(())
     /// # }
@@ -12763,9 +12809,10 @@ impl<'a> FollowupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-followups-followUpId-complete");
-    /// let body: models::FollowUpCompletionCreate = serde_json::from_value(serde_json::json!({
-    ///     "successGroupId": 42
-    /// }))?;
+    /// let body = models::FollowUpCompletionCreate {
+    ///     success_group_id: Some(Some(42)),
+    ///     ..Default::default()
+    /// };
     /// let followup = client.followups().complete(2, &body)?;
     /// println!("{}", followup.title);
     /// # Ok(())
@@ -12812,13 +12859,13 @@ impl<'a> FollowupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-followups-followUpId-dismiss");
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// let followup = client.followups().dismiss(2, &body)?;
     /// println!("{}", followup.title);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn dismiss(&self, follow_up_id: impl Display, body: &serde_json::Value) -> Result<models::FollowUp2> {
+    pub fn dismiss(&self, follow_up_id: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<models::FollowUp2> {
         let path = format!("/followups/{}/dismiss", seg(follow_up_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -12899,9 +12946,10 @@ impl<'a> FollowupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::FollowUpNoteCreate = serde_json::from_value(serde_json::json!({
-    ///     "comment": "Called Alex; another conversation is planned for next week."
-    /// }))?;
+    /// let body = models::FollowUpNoteCreate {
+    ///     comment: "Called Alex; another conversation is planned for next week.".into(),
+    ///     ..Default::default()
+    /// };
     /// client.followups().notes(2, &body)?;
     /// # Ok(())
     /// # }
@@ -12936,9 +12984,10 @@ impl<'a> FollowupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-followups-followUpId-postpone");
-    /// let body: models::FollowUpPostponeCreate = serde_json::from_value(serde_json::json!({
-    ///     "dueDate": "2026-12-01"
-    /// }))?;
+    /// let body = models::FollowUpPostponeCreate {
+    ///     due_date: "2026-12-01".parse()?,
+    ///     ..Default::default()
+    /// };
     /// let followup = client.followups().postpone(2, &body)?;
     /// println!("{}", followup.title);
     /// # Ok(())
@@ -12963,9 +13012,10 @@ impl<'a> FollowupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-followups-followUpId-reset");
-    /// let body: models::FollowUpResetCreate = serde_json::from_value(serde_json::json!({
-    ///     "dueDate": "2026-12-01"
-    /// }))?;
+    /// let body = models::FollowUpResetCreate {
+    ///     due_date: Some(Some("2026-12-01".parse()?)),
+    ///     ..Default::default()
+    /// };
     /// let followup = client.followups().reset(2, &body)?;
     /// println!("{}", followup.title);
     /// # Ok(())
@@ -13060,13 +13110,14 @@ impl<'a> FurtherlinksResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-furtherlinks");
-    /// let body: models::FurtherLinkCreate = serde_json::from_value(serde_json::json!({
-    ///     "description": "Our church's NextCloud",
-    ///     "imageUrl": "https://example.org",
-    ///     "name": "NextCloud",
-    ///     "sortKey": 1.5,
-    ///     "url": "https://example.org"
-    /// }))?;
+    /// let body = models::FurtherLinkCreate {
+    ///     description: Some("Our church's NextCloud".into()),
+    ///     image_url: Some("https://example.org".into()),
+    ///     name: "NextCloud".into(),
+    ///     sort_key: 1.5,
+    ///     url: "https://example.org".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.furtherlinks().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -13156,13 +13207,14 @@ impl<'a> FurtherlinksResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-furtherlinks-furtherLinkId");
-    /// let body: models::FurtherLinkCreate = serde_json::from_value(serde_json::json!({
-    ///     "description": "Our church's NextCloud",
-    ///     "imageUrl": "https://example.org",
-    ///     "name": "NextCloud",
-    ///     "sortKey": 1.5,
-    ///     "url": "https://example.org"
-    /// }))?;
+    /// let body = models::FurtherLinkCreate {
+    ///     description: Some("Our church's NextCloud".into()),
+    ///     image_url: Some("https://example.org".into()),
+    ///     name: "NextCloud".into(),
+    ///     sort_key: 1.5,
+    ///     url: "https://example.org".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.furtherlinks().update(1.5, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -13256,12 +13308,13 @@ impl<'a> GroupAgegroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-group-agegroups");
-    /// let body: models::AgeGroupCreate = serde_json::from_value(serde_json::json!({
-    ///     "end": 5,
-    ///     "name": "3-5",
-    ///     "sortKey": 3,
-    ///     "start": 3
-    /// }))?;
+    /// let body = models::AgeGroupCreate {
+    ///     end: 5,
+    ///     name: "3-5".into(),
+    ///     sort_key: 3,
+    ///     start: 3,
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().agegroups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -13363,12 +13416,13 @@ impl<'a> GroupAgegroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::AgeGroupCreate = serde_json::from_value(serde_json::json!({
-    ///     "end": 5,
-    ///     "name": "3-5",
-    ///     "sortKey": 3,
-    ///     "start": 3
-    /// }))?;
+    /// let body = models::AgeGroupCreate {
+    ///     end: 5,
+    ///     name: "3-5".into(),
+    ///     sort_key: 3,
+    ///     start: 3,
+    ///     ..Default::default()
+    /// };
     /// client.group().agegroups().update(2, &body)?;
     /// # Ok(())
     /// # }
@@ -13417,11 +13471,12 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-group-groupcategories");
-    /// let body: models::GroupCategoryCreate = serde_json::from_value(serde_json::json!({
-    ///     "color": "blue",
-    ///     "name": "Gottesdienst",
-    ///     "sortKey": 5
-    /// }))?;
+    /// let body = models::GroupCategoryCreate {
+    ///     color: "blue".into(),
+    ///     name: "Gottesdienst".into(),
+    ///     sort_key: 5,
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().groupcategories().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -13523,11 +13578,12 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-group-groupcategories-groupCategoryId");
-    /// let body: models::GroupCategoryCreate = serde_json::from_value(serde_json::json!({
-    ///     "color": "blue",
-    ///     "name": "Gottesdienst",
-    ///     "sortKey": 5
-    /// }))?;
+    /// let body = models::GroupCategoryCreate {
+    ///     color: "blue".into(),
+    ///     name: "Gottesdienst".into(),
+    ///     sort_key: 5,
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().groupcategories().update(2, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -13577,17 +13633,18 @@ impl<'a> GroupGrouptypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-group-grouptypes");
-    /// let body: models::GroupTypeCreate = serde_json::from_value(serde_json::json!({
-    ///     "availableForNewPerson": false,
-    ///     "color": "blue",
-    ///     "isLeaderNecessary": false,
-    ///     "name": "Kleingruppe",
-    ///     "namePlural": "Kleingruppen",
-    ///     "permissionDepth": 0,
-    ///     "postsEnabled": true,
-    ///     "shorty": "KG",
-    ///     "sortKey": 2
-    /// }))?;
+    /// let body = models::GroupTypeCreate {
+    ///     available_for_new_person: false,
+    ///     color: "blue".into(),
+    ///     is_leader_necessary: false,
+    ///     name: "Kleingruppe".into(),
+    ///     name_plural: "Kleingruppen".into(),
+    ///     permission_depth: 0,
+    ///     posts_enabled: true,
+    ///     shorty: "KG".into(),
+    ///     sort_key: 2,
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().grouptypes().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -13699,17 +13756,18 @@ impl<'a> GroupGrouptypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-group-grouptypes-groupTypeId");
-    /// let body: models::GroupTypeCreate = serde_json::from_value(serde_json::json!({
-    ///     "availableForNewPerson": false,
-    ///     "color": "blue",
-    ///     "isLeaderNecessary": false,
-    ///     "name": "Kleingruppe",
-    ///     "namePlural": "Kleingruppen",
-    ///     "permissionDepth": 0,
-    ///     "postsEnabled": true,
-    ///     "shorty": "KG",
-    ///     "sortKey": 2
-    /// }))?;
+    /// let body = models::GroupTypeCreate {
+    ///     available_for_new_person: false,
+    ///     color: "blue".into(),
+    ///     is_leader_necessary: false,
+    ///     name: "Kleingruppe".into(),
+    ///     name_plural: "Kleingruppen".into(),
+    ///     permission_depth: 0,
+    ///     posts_enabled: true,
+    ///     shorty: "KG".into(),
+    ///     sort_key: 2,
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().grouptypes().update(2, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -13759,15 +13817,15 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-group-meetingtemplates");
-    /// let body: models::MeetingTemplateCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Lowlights / Highlights",
-    ///     "template": [
-    ///         {
-    ///             "label": "Highlights",
-    ///             "type": "color"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::MeetingTemplateCreate {
+    ///     name: "Lowlights / Highlights".into(),
+    ///     template: vec![models::MeetingTemplateField {
+    ///         label: "Highlights".into(),
+    ///         r#type: "color".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().meetingtemplates().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -13868,15 +13926,15 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::MeetingTemplateCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Lowlights / Highlights",
-    ///     "template": [
-    ///         {
-    ///             "label": "Highlights",
-    ///             "type": "color"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::MeetingTemplateCreate {
+    ///     name: "Lowlights / Highlights".into(),
+    ///     template: vec![models::MeetingTemplateField {
+    ///         label: "Highlights".into(),
+    ///         r#type: "color".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// client.group().meetingtemplates().update(1, &body)?;
     /// # Ok(())
     /// # }
@@ -13925,16 +13983,17 @@ impl<'a> GroupRolesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-group-roles");
-    /// let body: models::RoleCreate = serde_json::from_value(serde_json::json!({
-    ///     "groupTypeId": 2,
-    ///     "growPathId": 4,
-    ///     "isDefault": false,
-    ///     "isHidden": false,
-    ///     "name": "Leiter",
-    ///     "shorty": "L",
-    ///     "sortKey": 1,
-    ///     "type": "leader"
-    /// }))?;
+    /// let body = models::RoleCreate {
+    ///     group_type_id: 2,
+    ///     grow_path_id: Some(4),
+    ///     is_default: false,
+    ///     is_hidden: false,
+    ///     name: "Leiter".into(),
+    ///     shorty: "L".into(),
+    ///     sort_key: 1,
+    ///     r#type: "leader".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().roles().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -14061,16 +14120,17 @@ impl<'a> GroupRolesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-group-roles-roleId");
-    /// let body: models::RoleCreate = serde_json::from_value(serde_json::json!({
-    ///     "groupTypeId": 2,
-    ///     "growPathId": 4,
-    ///     "isDefault": false,
-    ///     "isHidden": false,
-    ///     "name": "Leiter",
-    ///     "shorty": "L",
-    ///     "sortKey": 1,
-    ///     "type": "leader"
-    /// }))?;
+    /// let body = models::RoleCreate {
+    ///     group_type_id: 2,
+    ///     grow_path_id: Some(4),
+    ///     is_default: false,
+    ///     is_hidden: false,
+    ///     name: "Leiter".into(),
+    ///     shorty: "L".into(),
+    ///     sort_key: 1,
+    ///     r#type: "leader".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().roles().update(16, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -14139,10 +14199,11 @@ impl<'a> GroupTargetgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-group-targetgroups");
-    /// let body: models::TargetGroupCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "men",
-    ///     "sortKey": 2
-    /// }))?;
+    /// let body = models::TargetGroupCreate {
+    ///     name: "men".into(),
+    ///     sort_key: 2,
+    ///     ..Default::default()
+    /// };
     /// let result = client.group().targetgroups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -14244,10 +14305,11 @@ impl<'a> GroupTargetgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TargetGroupCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "men",
-    ///     "sortKey": 2
-    /// }))?;
+    /// let body = models::TargetGroupCreate {
+    ///     name: "men".into(),
+    ///     sort_key: 2,
+    ///     ..Default::default()
+    /// };
     /// client.group().targetgroups().update(2, &body)?;
     /// # Ok(())
     /// # }
@@ -14421,9 +14483,10 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::StartStopChat = serde_json::from_value(serde_json::json!({
-    ///     "enabled": true
-    /// }))?;
+    /// let body = models::StartStopChat {
+    ///     enabled: true,
+    ///     ..Default::default()
+    /// };
     /// client.groups().chat(42, &body)?;
     /// # Ok(())
     /// # }
@@ -14447,11 +14510,12 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-groups");
-    /// let body: models::PostGroupsBody = serde_json::from_value(serde_json::json!({
-    ///     "groupStatusId": 1,
-    ///     "groupTypeId": 42,
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::PostGroupsBody {
+    ///     group_status_id: 1,
+    ///     group_type_id: 42,
+    ///     name: "Hauskreis Nord".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -14535,9 +14599,10 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-groups-id-duplicate");
-    /// let body: models::GroupDuplicateCreate = serde_json::from_value(serde_json::json!({
-    ///     "copyMembers": true
-    /// }))?;
+    /// let body = models::GroupDuplicateCreate {
+    ///     copy_members: Some(true),
+    ///     ..Default::default()
+    /// };
     /// let group = client.groups().duplicate(42, &body)?;
     /// println!("{}", group.name);
     /// # Ok(())
@@ -14575,12 +14640,10 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::GroupExportCreate = serde_json::from_value(serde_json::json!({
-    ///     "ids": [
-    ///         12,
-    ///         34
-    ///     ]
-    /// }))?;
+    /// let body = models::GroupExportCreate {
+    ///     ids: vec![12, 34],
+    ///     ..Default::default()
+    /// };
     /// let data = client.groups().export(&body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -14767,10 +14830,11 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::GroupTypeChangeUpdate = serde_json::from_value(serde_json::json!({
-    ///     "groupTypeId": 3,
-    ///     "roleMapping": {}
-    /// }))?;
+    /// let body = models::GroupTypeChangeUpdate {
+    ///     group_type_id: 3,
+    ///     role_mapping: Default::default(),
+    ///     ..Default::default()
+    /// };
     /// client.groups().grouptype(42, &body)?;
     /// # Ok(())
     /// # }
@@ -15153,9 +15217,10 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::GroupSignUpNotificationRequest = serde_json::from_value(serde_json::json!({
-    ///     "dry_run": true
-    /// }))?;
+    /// let body = models::GroupSignUpNotificationRequest {
+    ///     dry_run: Some(true),
+    ///     ..Default::default()
+    /// };
     /// let group = client.groups().notification(42, &body)?;
     /// println!("{}", group.sent_to_count);
     /// # Ok(())
@@ -15193,9 +15258,10 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("patch-groups-id");
-    /// let body: models::PatchGroupsIdBody = serde_json::from_value(serde_json::json!({
-    ///     "appointmentId": 42
-    /// }))?;
+    /// let body = models::PatchGroupsIdBody {
+    ///     appointment_id: Some(Some(42)),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().patch(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -15231,13 +15297,14 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-groups-groupId-grouphomepage");
-    /// let body: models::GroupHomepageUpdate = serde_json::from_value(serde_json::json!({
-    ///     "isEnabled": true,
-    ///     "showFilters": true,
-    ///     "showGroupImages": true,
-    ///     "showLeaders": true,
-    ///     "showMap": true
-    /// }))?;
+    /// let body = models::GroupHomepageUpdate {
+    ///     is_enabled: true,
+    ///     show_filters: true,
+    ///     show_group_images: true,
+    ///     show_leaders: true,
+    ///     show_map: true,
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().update_grouphomepage(42, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -15829,9 +15896,10 @@ impl<'a> GroupsCheckinResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::CheckinCreate = serde_json::from_value(serde_json::json!({
-    ///     "date": "2022-10-19T12:00:00Z"
-    /// }))?;
+    /// let body = models::CheckinCreate {
+    ///     date: Some(Some("2022-10-19T12:00:00Z".parse()?)),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().checkin().create(42, 42, &body)?;
     /// println!("{}", result.total_checked_in);
     /// # Ok(())
@@ -15986,9 +16054,10 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-groups-id-meetings");
-    /// let body: models::PostGroupsIdMeetingsBody = serde_json::from_value(serde_json::json!({
-    ///     "startDate": "2026-09-20T08:00:00Z"
-    /// }))?;
+    /// let body = models::PostGroupsIdMeetingsBody {
+    ///     start_date: "2026-09-20T08:00:00Z".parse()?,
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().meetings().create(42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -16155,11 +16224,12 @@ impl<'a> GroupsMeetingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-groups-groupId-meetings-meetingId");
-    /// let body: models::PutGroupsGroupIdMeetingsMeetingIdBody = serde_json::from_value(serde_json::json!({
-    ///     "isCanceled": false,
-    ///     "isCompleted": false,
-    ///     "startDate": "2026-09-20T08:00:00Z"
-    /// }))?;
+    /// let body = models::PutGroupsGroupIdMeetingsMeetingIdBody {
+    ///     is_canceled: false,
+    ///     is_completed: false,
+    ///     start_date: "2026-09-20T08:00:00Z".parse()?,
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().meetings().update(42, 120, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -16266,9 +16336,10 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("delete-groups-groupId-meetings-meetingId-members-memberId");
-    /// let body: models::DeleteGroupsGroupIdMeetingsMeetingIdMembersMemberIdBody = serde_json::from_value(serde_json::json!({
-    ///     "status": "absent"
-    /// }))?;
+    /// let body = models::DeleteGroupsGroupIdMeetingsMeetingIdMembersMemberIdBody {
+    ///     status: Some("absent".into()),
+    ///     ..Default::default()
+    /// };
     /// let member = client.groups().meetings().members().delete(42, 120, 17, &body)?;
     /// println!("{}", member.id);
     /// # Ok(())
@@ -16321,9 +16392,10 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostGroupsGroupIdMeetingsMeetingIdMembersMissingBody = serde_json::from_value(serde_json::json!({
-    ///     "status": "absent"
-    /// }))?;
+    /// let body = models::PostGroupsGroupIdMeetingsMeetingIdMembersMissingBody {
+    ///     status: "absent".into(),
+    ///     ..Default::default()
+    /// };
     /// client.groups().meetings().members().missing(42, 120, &body)?;
     /// # Ok(())
     /// # }
@@ -16419,13 +16491,14 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-groups-groupId-memberfields-group");
-    /// let body: models::GroupMemberFieldGroupCreate = serde_json::from_value(serde_json::json!({
-    ///     "fieldTypeCode": "text",
-    ///     "name": "T-Shirt size",
-    ///     "requiredInRegistrationForm": false,
-    ///     "securityLevel": 1,
-    ///     "useInRegistrationForm": true
-    /// }))?;
+    /// let body = models::GroupMemberFieldGroupCreate {
+    ///     field_type_code: "text".into(),
+    ///     name: "T-Shirt size".into(),
+    ///     required_in_registration_form: false,
+    ///     security_level: 1,
+    ///     use_in_registration_form: true,
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().memberfields().group().create(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -16472,9 +16545,10 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("patch-groups-groupId-memberfields-group-groupMemberFieldId");
-    /// let body: models::GroupMemberFieldGroupPatch = serde_json::from_value(serde_json::json!({
-    ///     "name": "T-Shirt size"
-    /// }))?;
+    /// let body = models::GroupMemberFieldGroupPatch {
+    ///     name: Some("T-Shirt size".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().memberfields().group().patch(42, 42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -16499,13 +16573,14 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-groups-groupId-memberfields-group-groupMemberFieldId");
-    /// let body: models::GroupMemberFieldGroupUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "T-Shirt size",
-    ///     "referenceName": "t-shirt-size",
-    ///     "requiredInRegistrationForm": false,
-    ///     "securityLevel": 1,
-    ///     "useInRegistrationForm": true
-    /// }))?;
+    /// let body = models::GroupMemberFieldGroupUpdate {
+    ///     name: "T-Shirt size".into(),
+    ///     reference_name: "t-shirt-size".into(),
+    ///     required_in_registration_form: false,
+    ///     security_level: 1,
+    ///     use_in_registration_form: true,
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().memberfields().group().update(42, 42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -16561,10 +16636,11 @@ impl<'a> GroupsMemberfieldsPersonResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::GroupMemberFieldPersonUpdate = serde_json::from_value(serde_json::json!({
-    ///     "requiredInRegistrationForm": false,
-    ///     "sortKey": 20
-    /// }))?;
+    /// let body = models::GroupMemberFieldPersonUpdate {
+    ///     required_in_registration_form: false,
+    ///     sort_key: 20,
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().memberfields().person().update(42, 200, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -16612,7 +16688,7 @@ impl<'a> GroupsMembersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::GroupMemberExportCreate = serde_json::from_value(serde_json::json!({}))?;
+    /// let body = models::GroupMemberExportCreate::default();
     /// let data = client.groups().members().create_export(42, &body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
@@ -16855,9 +16931,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("patch-groups-groupId-members-personId");
-    /// let body: models::MembershipUpdate = serde_json::from_value(serde_json::json!({
-    ///     "comment": "Available on weekends."
-    /// }))?;
+    /// let body = models::MembershipUpdate {
+    ///     comment: Some(Some("Available on weekends.".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().members().patch(42, 42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -16882,9 +16959,10 @@ impl<'a> GroupsMembersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-groups-groupId-members-personId");
-    /// let body: models::MembershipCreate = serde_json::from_value(serde_json::json!({
-    ///     "comment": "Available on weekends."
-    /// }))?;
+    /// let body = models::MembershipCreate {
+    ///     comment: Some(Some("Available on weekends.".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().members().update(42, 42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -17108,9 +17186,10 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-groups-id-members-id-followups");
-    /// let body: models::FollowUpCreate = serde_json::from_value(serde_json::json!({
-    ///     "title": "Call Peter"
-    /// }))?;
+    /// let body = models::FollowUpCreate {
+    ///     title: "Call Peter".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().members().followups().create(42, 42, &body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -17269,9 +17348,10 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::GroupMembershipRoutineUpdate = serde_json::from_value(serde_json::json!({
-    ///     "routineId": 5
-    /// }))?;
+    /// let body = models::GroupMembershipRoutineUpdate {
+    ///     routine_id: Some(5),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().members().routines().update(42, 12, "active", &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -17305,10 +17385,11 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::NewsletterIntegrationGroupMappingCreate = serde_json::from_value(serde_json::json!({
-    ///     "optInRequired": true,
-    ///     "provider": "Mailjet"
-    /// }))?;
+    /// let body = models::NewsletterIntegrationGroupMappingCreate {
+    ///     opt_in_required: true,
+    ///     provider: "Mailjet".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().newsletter_integrations().create(42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -17381,12 +17462,12 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// client.groups().newsletter_integrations().resend_optins(42, "Mailjet", "12345", &body)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn resend_optins(&self, group_id: impl Display, provider: impl Display, list_id: impl Display, body: &serde_json::Value) -> Result<()> {
+    pub fn resend_optins(&self, group_id: impl Display, provider: impl Display, list_id: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<()> {
         self.resend_optins_with(group_id, provider, list_id, &Default::default(), body)
     }
 
@@ -17397,7 +17478,7 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// `POST /groups/{groupId}/newsletter-integrations/{provider}/{listId}/resend-optins`
     ///
     /// Sends ChurchTools confirmation emails again for eligible pending newsletter-person records in this mapping. Requires visibility of the group and members plus the global churchgroup permission "administer groups". Selecting one recipient with `person_id` additionally requires visibility of that person. Candidates must have an active membership, a non-archived person, no successful synchronization, no unsubscribe date and no confirmed double opt-in. Previously sent requests are included; each recipient gets a new token, invalidating the old link. Email addresses already synchronized for the same list are excluded and candidates are grouped by stored email. Without `person_id`, missing mappings and empty candidate sets return `204`. With `person_id`, no eligible candidate returns `404`. No count is returned. The current handler does not check `optInRequired`, provider activation or whether the provider handles double opt-in itself.
-    pub fn resend_optins_with(&self, group_id: impl Display, provider: impl Display, list_id: impl Display, query: &PostGroupsGroupIdNewsletterIntegrationsProviderListIdResendOptinsQuery, body: &serde_json::Value) -> Result<()> {
+    pub fn resend_optins_with(&self, group_id: impl Display, provider: impl Display, list_id: impl Display, query: &PostGroupsGroupIdNewsletterIntegrationsProviderListIdResendOptinsQuery, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<()> {
         let path = format!("/groups/{}/newsletter-integrations/{}/{}/resend-optins", seg(group_id), seg(provider), seg(list_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -17495,12 +17576,12 @@ impl<'a> GroupsParentsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// client.groups().parents().update(42, 12, &body)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn update(&self, group_id: impl Display, parent_group_id: impl Display, body: &serde_json::Value) -> Result<()> {
+    pub fn update(&self, group_id: impl Display, parent_group_id: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<()> {
         let path = format!("/groups/{}/parents/{}", seg(group_id), seg(parent_group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -17666,13 +17747,13 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// let qrcodecheckin = client.groups().qrcodecheckin().send(42, 42, &body)?;
     /// println!("{}", qrcodecheckin.domain_id);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn send(&self, group_id: impl Display, person_id: impl Display, body: &serde_json::Value) -> Result<models::GroupQRCodeCheckin> {
+    pub fn send(&self, group_id: impl Display, person_id: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<models::GroupQRCodeCheckin> {
         let path = format!("/groups/{}/qrcodecheckin/{}/send", seg(group_id), seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -17728,9 +17809,10 @@ impl<'a> GroupsRolesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::GroupRoleUpdate = serde_json::from_value(serde_json::json!({
-    ///     "canReadChat": true
-    /// }))?;
+    /// let body = models::GroupRoleUpdate {
+    ///     can_read_chat: Some(true),
+    ///     ..Default::default()
+    /// };
     /// let result = client.groups().roles().patch(42, 1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -17915,10 +17997,11 @@ impl<'a> HtmltemplatesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-htmltemplates");
-    /// let body: models::HtmlTemplateCreate = serde_json::from_value(serde_json::json!({
-    ///     "domainType": "email",
-    ///     "name": "Welcome email"
-    /// }))?;
+    /// let body = models::HtmlTemplateCreate {
+    ///     domain_type: "email".into(),
+    ///     name: "Welcome email".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.htmltemplates().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -18089,9 +18172,10 @@ impl<'a> HtmltemplatesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("patch-htmltemplates-templateId");
-    /// let body: models::HtmlTemplateUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Updated welcome email"
-    /// }))?;
+    /// let body = models::HtmlTemplateUpdate {
+    ///     name: Some(Some("Updated welcome email".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.htmltemplates().patch(2, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -18250,9 +18334,10 @@ impl<'a> ImagesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ImageUpdate = serde_json::from_value(serde_json::json!({
-    ///     "description": "Congregation gathered outside the church."
-    /// }))?;
+    /// let body = models::ImageUpdate {
+    ///     description: Some(Some("Congregation gathered outside the church.".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.images().patch(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -18277,9 +18362,10 @@ impl<'a> ImagesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ImageUpdate = serde_json::from_value(serde_json::json!({
-    ///     "description": "Congregation gathered outside the church."
-    /// }))?;
+    /// let body = models::ImageUpdate {
+    ///     description: Some(Some("Congregation gathered outside the church.".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.images().update_options(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -18379,9 +18465,10 @@ impl<'a> InstallationSyncResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostInstallationSyncOidcBody = serde_json::from_value(serde_json::json!({
-    ///     "configurationToken": "abc123"
-    /// }))?;
+    /// let body = models::PostInstallationSyncOidcBody {
+    ///     configuration_token: "abc123".into(),
+    ///     ..Default::default()
+    /// };
     /// let installation_sync = client.installation_sync().oidc(&body)?;
     /// println!("{:?}", installation_sync.external_login_id);
     /// # Ok(())
@@ -18504,9 +18591,10 @@ impl<'a> JobsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::JobLogCreate = serde_json::from_value(serde_json::json!({
-    ///     "logMessage": "Processed 25 records."
-    /// }))?;
+    /// let body = models::JobLogCreate {
+    ///     log_message: "Processed 25 records.".into(),
+    ///     ..Default::default()
+    /// };
     /// client.jobs().logs("1a9e9b86-78ee-4c8a-bf58-51e653073a0c", &body)?;
     /// # Ok(())
     /// # }
@@ -18530,9 +18618,10 @@ impl<'a> JobsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::JobStatusUpdate = serde_json::from_value(serde_json::json!({
-    ///     "status": "QUEUED"
-    /// }))?;
+    /// let body = models::JobStatusUpdate {
+    ///     status: "QUEUED".into(),
+    ///     ..Default::default()
+    /// };
     /// client.jobs().update_status("1a9e9b86-78ee-4c8a-bf58-51e653073a0c", &body)?;
     /// # Ok(())
     /// # }
@@ -18602,12 +18691,11 @@ impl<'a> LabelsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::LabelCreate = serde_json::from_value(serde_json::json!({
-    ///     "personIds": [
-    ///         42
-    ///     ],
-    ///     "type": "AveryLabels3475"
-    /// }))?;
+    /// let body = models::LabelCreate {
+    ///     person_ids: serde_json::json!([42]),
+    ///     r#type: "AveryLabels3475".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.labels().create(&body)?;
     /// println!("{}", result.pdf);
     /// # Ok(())
@@ -18632,11 +18720,10 @@ impl<'a> LabelsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-labels-totals");
-    /// let body: models::LabelTotalsRequest = serde_json::from_value(serde_json::json!({
-    ///     "personIds": [
-    ///         42
-    ///     ]
-    /// }))?;
+    /// let body = models::LabelTotalsRequest {
+    ///     person_ids: serde_json::json!([42]),
+    ///     ..Default::default()
+    /// };
     /// let label = client.labels().totals(&body)?;
     /// println!("{:?}", label);
     /// # Ok(())
@@ -18766,10 +18853,11 @@ impl<'a> LoginResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::LoginCreate = serde_json::from_value(serde_json::json!({
-    ///     "password": "example-password",
-    ///     "username": "alex@example.org"
-    /// }))?;
+    /// let body = models::LoginCreate {
+    ///     password: "example-password".into(),
+    ///     username: "alex@example.org".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.login().create(&body)?;
     /// println!("{:?}", result.location);
     /// # Ok(())
@@ -18794,10 +18882,11 @@ impl<'a> LoginResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::LoginCredentials = serde_json::from_value(serde_json::json!({
-    ///     "password": "example-password",
-    ///     "username": "alex@example.org"
-    /// }))?;
+    /// let body = models::LoginCredentials {
+    ///     password: "example-password".into(),
+    ///     username: "alex@example.org".into(),
+    ///     ..Default::default()
+    /// };
     /// let login = client.login().token(&body)?;
     /// println!("{}", login.person_id);
     /// # Ok(())
@@ -18822,10 +18911,11 @@ impl<'a> LoginResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::LoginTotpVerify = serde_json::from_value(serde_json::json!({
-    ///     "code": "012345",
-    ///     "personId": 42
-    /// }))?;
+    /// let body = models::LoginTotpVerify {
+    ///     code: "012345".into(),
+    ///     person_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let login = client.login().totp(&body)?;
     /// println!("{:?}", login.redirect_to);
     /// # Ok(())
@@ -18872,9 +18962,10 @@ impl<'a> LoginTwofactorSetupResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TwoFactorSetupActivate = serde_json::from_value(serde_json::json!({
-    ///     "code": "012345"
-    /// }))?;
+    /// let body = models::TwoFactorSetupActivate {
+    ///     code: "012345".into(),
+    ///     ..Default::default()
+    /// };
     /// let setup = client.login().twofactor().setup().activate(&body)?;
     /// println!("{}", setup.redirect_to);
     /// # Ok(())
@@ -19125,10 +19216,11 @@ impl<'a> MarkdownResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-markdown-check");
-    /// let body: models::PostMarkdownCheckBody = serde_json::from_value(serde_json::json!({
-    ///     "inputScope": "description",
-    ///     "markdown": "Hallo zusammen"
-    /// }))?;
+    /// let body = models::PostMarkdownCheckBody {
+    ///     input_scope: "description".into(),
+    ///     markdown: "Hallo zusammen".into(),
+    ///     ..Default::default()
+    /// };
     /// let markdown = client.markdown().check(&body)?;
     /// println!("{}", markdown.is_valid);
     /// # Ok(())
@@ -19153,21 +19245,17 @@ impl<'a> MarkdownResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::MarkdownRequest = serde_json::from_value(serde_json::json!({
-    ///     "sources": [
-    ///         {
-    ///             "inputScope": "description",
-    ///             "markdown": "Hallo zusammen",
-    ///             "outputFormats": [
-    ///                 "html"
-    ///             ],
-    ///             "outputScopes": [
-    ///                 "description"
-    ///             ],
-    ///             "shortName": "Hauskreis Nord"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::MarkdownRequest {
+    ///     sources: vec![models::MarkdownRequestSourcesItem {
+    ///         input_scope: "description".into(),
+    ///         markdown: "Hallo zusammen".into(),
+    ///         output_formats: vec!["html".into()],
+    ///         output_scopes: vec!["description".into()],
+    ///         short_name: "Hauskreis Nord".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let markdown = client.markdown().convert(&body)?;
     /// println!("{:?}", markdown.current_config_file);
     /// # Ok(())
@@ -19234,11 +19322,12 @@ impl<'a> MeetingrequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::MeetingRequestIcsReply = serde_json::from_value(serde_json::json!({
-    ///     "icsContent": "Hallo zusammen",
-    ///     "partstat": "ACCEPTED",
-    ///     "token": "example-reply-token"
-    /// }))?;
+    /// let body = models::MeetingRequestIcsReply {
+    ///     ics_content: "Hallo zusammen".into(),
+    ///     partstat: "ACCEPTED".into(),
+    ///     token: "example-reply-token".into(),
+    ///     ..Default::default()
+    /// };
     /// client.meetingrequests().reply(&body)?;
     /// # Ok(())
     /// # }
@@ -19334,9 +19423,10 @@ impl<'a> NotesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-notes-domainType-domainId");
-    /// let body: models::NoteCreate = serde_json::from_value(serde_json::json!({
-    ///     "text": "Please follow up next week."
-    /// }))?;
+    /// let body = models::NoteCreate {
+    ///     text: "Please follow up next week.".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.notes().create("group", 35, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -19429,9 +19519,10 @@ impl<'a> NotesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-notes-domainType-domainId-id");
-    /// let body: models::NoteUpdate = serde_json::from_value(serde_json::json!({
-    ///     "text": "Please follow up next week."
-    /// }))?;
+    /// let body = models::NoteUpdate {
+    ///     text: "Please follow up next week.".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.notes().update("group", 35, 101, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -19494,9 +19585,10 @@ impl<'a> NpsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostNpsBody = serde_json::from_value(serde_json::json!({
-    ///     "score": 42
-    /// }))?;
+    /// let body = models::PostNpsBody {
+    ///     score: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.nps().create(&body)?;
     /// println!("{:?}", result.date);
     /// # Ok(())
@@ -19530,10 +19622,11 @@ impl<'a> OauthclientsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-oauthclients");
-    /// let body: models::OAuthClientCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Parish website",
-    ///     "redirectUri": "https://parish.example.org/oauth/callback"
-    /// }))?;
+    /// let body = models::OAuthClientCreate {
+    ///     name: "Parish website".into(),
+    ///     redirect_uri: "https://parish.example.org/oauth/callback".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.oauthclients().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -19604,10 +19697,11 @@ impl<'a> OauthclientsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-oauthclients-identifier");
-    /// let body: models::OAuthClientUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Parish website",
-    ///     "redirectUri": "https://parish.example.org/oauth/callback"
-    /// }))?;
+    /// let body = models::OAuthClientUpdate {
+    ///     name: "Parish website".into(),
+    ///     redirect_uri: "https://parish.example.org/oauth/callback".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.oauthclients().update("abc123", &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -19653,14 +19747,14 @@ impl<'a> PermissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostPermissionsBulkBody = serde_json::from_value(serde_json::json!({
-    ///     "changes": [
-    ///         {
-    ///             "domainId": 7,
-    ///             "domainType": "group_type_role"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::PostPermissionsBulkBody {
+    ///     changes: vec![models::PermissionBulkChange {
+    ///         domain_id: 7,
+    ///         domain_type: "group_type_role".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// client.permissions().bulk(&body)?;
     /// # Ok(())
     /// # }
@@ -19684,9 +19778,10 @@ impl<'a> PermissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PermissionDelete = serde_json::from_value(serde_json::json!({
-    ///     "authId": 10130
-    /// }))?;
+    /// let body = models::PermissionDelete {
+    ///     auth_id: 10130,
+    ///     ..Default::default()
+    /// };
     /// client.permissions().delete("group_role", 1, &body)?;
     /// # Ok(())
     /// # }
@@ -19867,9 +19962,10 @@ impl<'a> PermissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PermissionUpdate = serde_json::from_value(serde_json::json!({
-    ///     "authId": 10130
-    /// }))?;
+    /// let body = models::PermissionUpdate {
+    ///     auth_id: 10130,
+    ///     ..Default::default()
+    /// };
     /// client.permissions().update("group_role", 1, &body)?;
     /// # Ok(())
     /// # }
@@ -19893,18 +19989,17 @@ impl<'a> PermissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::LockedPermissionUpdate = serde_json::from_value(serde_json::json!({
-    ///     "add": [
-    ///         {
-    ///             "authId": 1
-    ///         }
-    ///     ],
-    ///     "remove": [
-    ///         {
-    ///             "authId": 1
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::LockedPermissionUpdate {
+    ///     add: vec![models::LockedPermissionChange {
+    ///         auth_id: 1,
+    ///         ..Default::default()
+    ///     }],
+    ///     remove: vec![models::LockedPermissionChange {
+    ///         auth_id: 1,
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.permissions().update_locked(&body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -19929,13 +20024,11 @@ impl<'a> PermissionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PermissionReplace = serde_json::from_value(serde_json::json!({
-    ///     "authId": 10130,
-    ///     "dataId": [
-    ///         1,
-    ///         2
-    ///     ]
-    /// }))?;
+    /// let body = models::PermissionReplace {
+    ///     auth_id: 10130,
+    ///     data_id: vec![1, 2],
+    ///     ..Default::default()
+    /// };
     /// client.permissions().update_replace("group_role", 1, &body)?;
     /// # Ok(())
     /// # }
@@ -20591,9 +20684,10 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-person-commentviewers");
-    /// let body: models::CommentViewerCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Pastoral team"
-    /// }))?;
+    /// let body = models::CommentViewerCreate {
+    ///     name: "Pastoral team".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.person().commentviewers().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -20700,9 +20794,10 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-person-commentviewers-id");
-    /// let body: models::CommentViewerUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Pastoral team"
-    /// }))?;
+    /// let body = models::CommentViewerUpdate {
+    ///     name: "Pastoral team".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.person().commentviewers().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -20751,10 +20846,11 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-person-growpaths");
-    /// let body: models::GrowPathCreate = serde_json::from_value(serde_json::json!({
-    ///     "color": "accent",
-    ///     "name": "New Believer"
-    /// }))?;
+    /// let body = models::GrowPathCreate {
+    ///     color: serde_json::json!("accent"),
+    ///     name: "New Believer".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.person().growpaths().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -20861,10 +20957,11 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-person-growpaths-id");
-    /// let body: models::GrowPathUpdate = serde_json::from_value(serde_json::json!({
-    ///     "color": "accent",
-    ///     "name": "New Believer"
-    /// }))?;
+    /// let body = models::GrowPathUpdate {
+    ///     color: serde_json::json!("accent"),
+    ///     name: "New Believer".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.person().growpaths().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -20913,11 +21010,12 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-person-relationshiptypes");
-    /// let body: models::RelationshipTypeCreate = serde_json::from_value(serde_json::json!({
-    ///     "degreeNameA": "Parent",
-    ///     "degreeNameB": "Child",
-    ///     "securityLevelId": 1
-    /// }))?;
+    /// let body = models::RelationshipTypeCreate {
+    ///     degree_name_a: "Parent".into(),
+    ///     degree_name_b: "Child".into(),
+    ///     security_level_id: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.person().relationshiptypes().create(&body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -21024,11 +21122,12 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-person-relationshiptypes-id");
-    /// let body: models::RelationshipTypeUpdate = serde_json::from_value(serde_json::json!({
-    ///     "degreeNameA": "Parent",
-    ///     "degreeNameB": "Child",
-    ///     "securityLevelId": 1
-    /// }))?;
+    /// let body = models::RelationshipTypeUpdate {
+    ///     degree_name_a: "Parent".into(),
+    ///     degree_name_b: "Child".into(),
+    ///     security_level_id: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.person().relationshiptypes().update(4, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -21077,9 +21176,10 @@ impl<'a> PersonSexesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-person-sexes");
-    /// let body: models::SexCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "sex.other"
-    /// }))?;
+    /// let body = models::SexCreate {
+    ///     name: "sex.other".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.person().sexes().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -21186,9 +21286,10 @@ impl<'a> PersonSexesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-person-sexes-id");
-    /// let body: models::SexUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "sex.other"
-    /// }))?;
+    /// let body = models::SexUpdate {
+    ///     name: "sex.other".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.person().sexes().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -21275,9 +21376,10 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostPersonsPersonIdArchiveBody = serde_json::from_value(serde_json::json!({
-    ///     "archived": true
-    /// }))?;
+    /// let body = models::PostPersonsPersonIdArchiveBody {
+    ///     archived: Some(true),
+    ///     ..Default::default()
+    /// };
     /// client.persons().archive(42, &body)?;
     /// # Ok(())
     /// # }
@@ -21303,11 +21405,10 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-persons");
-    /// let body: models::PostPersonsBody = serde_json::from_value(serde_json::json!({
-    ///     "departmentIds": [
-    ///         42
-    ///     ]
-    /// }))?;
+    /// let body = models::PostPersonsBody {
+    ///     department_ids: vec![42],
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().create(&body)?;
     /// println!("{:?}", result.title);
     /// # Ok(())
@@ -21933,9 +22034,10 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("patch-persons-id");
-    /// let body: models::PatchPersonsIdBody = serde_json::from_value(serde_json::json!({
-    ///     "title": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::PatchPersonsIdBody {
+    ///     title: Some("Hauskreis Nord".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().patch(42, &body)?;
     /// println!("{:?}", result.title);
     /// # Ok(())
@@ -21960,7 +22062,7 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-persons-properties");
-    /// let body: models::PostPersonsPropertiesBody = serde_json::from_value(serde_json::json!({}))?;
+    /// let body = models::PostPersonsPropertiesBody::default();
     /// let result = client.persons().properties(&body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -22007,11 +22109,12 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PersonPasswordUpdate = serde_json::from_value(serde_json::json!({
-    ///     "newPassword": "ExamplePassword42",
-    ///     "newPasswordConfirm": "ExamplePassword42",
-    ///     "oldPassword": "PreviousPassword41"
-    /// }))?;
+    /// let body = models::PersonPasswordUpdate {
+    ///     new_password: "ExamplePassword42".into(),
+    ///     new_password_confirm: "ExamplePassword42".into(),
+    ///     old_password: "PreviousPassword41".into(),
+    ///     ..Default::default()
+    /// };
     /// client.persons().update_password(42, &body)?;
     /// # Ok(())
     /// # }
@@ -22035,20 +22138,20 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PersonPrivacyPolicyUpdate = serde_json::from_value(serde_json::json!({
-    ///     "childrenAccepted": false,
-    ///     "ownAccepted": true,
-    ///     "persons": [
-    ///         {
-    ///             "accepted": true,
-    ///             "birthday": "2016-05-14",
-    ///             "editBirthday": false,
-    ///             "id": 43
-    ///         }
-    ///     ],
-    ///     "typeId": 2,
-    ///     "whoId": 1
-    /// }))?;
+    /// let body = models::PersonPrivacyPolicyUpdate {
+    ///     children_accepted: false,
+    ///     own_accepted: true,
+    ///     persons: vec![models::PersonPrivacyPolicyChildUpdate {
+    ///         accepted: true,
+    ///         birthday: "2016-05-14".into(),
+    ///         edit_birthday: false,
+    ///         id: 43,
+    ///         ..Default::default()
+    ///     }],
+    ///     type_id: 2,
+    ///     who_id: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().update_privacypolicy(42, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -22282,9 +22385,10 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-persons-personId-absences");
-    /// let body: models::AbsenceCreate = serde_json::from_value(serde_json::json!({
-    ///     "absenceReasonId": 1
-    /// }))?;
+    /// let body = models::AbsenceCreate {
+    ///     absence_reason_id: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().absences().create(42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -22404,9 +22508,10 @@ impl<'a> PersonsAbsencesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-persons-personId-absences-id");
-    /// let body: models::AbsenceUpdate = serde_json::from_value(serde_json::json!({
-    ///     "absenceReasonId": 1
-    /// }))?;
+    /// let body = models::AbsenceUpdate {
+    ///     absence_reason_id: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().absences().update(42, 1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -22546,9 +22651,10 @@ impl<'a> PersonsDevicesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::DeviceUpdate = serde_json::from_value(serde_json::json!({
-    ///     "type": "FCM"
-    /// }))?;
+    /// let body = models::DeviceUpdate {
+    ///     r#type: "FCM".into(),
+    ///     ..Default::default()
+    /// };
     /// for device in client.persons().devices().update(42, "abc123", &body)? {
     ///     println!("{:?}", device.app_version);
     /// }
@@ -22685,9 +22791,10 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ServiceExchangeRequestCreate = serde_json::from_value(serde_json::json!({
-    ///     "requestedServiceId": 42
-    /// }))?;
+    /// let body = models::ServiceExchangeRequestCreate {
+    ///     requested_service_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().events().services().exchangerequests().create(42, 42, 42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -23009,9 +23116,10 @@ impl<'a> PersonsFollowupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-persons-personId-followups");
-    /// let body: models::FollowUpCreate = serde_json::from_value(serde_json::json!({
-    ///     "title": "Call Peter"
-    /// }))?;
+    /// let body = models::FollowUpCreate {
+    ///     title: "Call Peter".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().followups().create(42, &body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -23165,9 +23273,10 @@ impl<'a> PersonsMergeResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PersonUpdateable = serde_json::from_value(serde_json::json!({
-    ///     "title": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::PersonUpdateable {
+    ///     title: Some("Hauskreis Nord".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().merge().patch("abc123", "100", &body)?;
     /// println!("{}", result.body);
     /// # Ok(())
@@ -23201,10 +23310,11 @@ impl<'a> PersonsRelationshipsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-persons-personId-relationships");
-    /// let body: models::PostPersonsPersonIdRelationshipsBody = serde_json::from_value(serde_json::json!({
-    ///     "otherPersonId": 42,
-    ///     "relationshipTypeId": 42
-    /// }))?;
+    /// let body = models::PostPersonsPersonIdRelationshipsBody {
+    ///     other_person_id: 42,
+    ///     relationship_type_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().relationships().create(42, &body)?;
     /// println!("{:?}", result.id);
     /// # Ok(())
@@ -23403,9 +23513,10 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PersonServiceRequestUpdate = serde_json::from_value(serde_json::json!({
-    ///     "comment": "Hallo zusammen"
-    /// }))?;
+    /// let body = models::PersonServiceRequestUpdate {
+    ///     comment: Some(Some("Hallo zusammen".into())),
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().servicerequests().update(42, 42, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
@@ -23570,9 +23681,10 @@ impl<'a> PersonsSettingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-persons-id-settings-module-attribute");
-    /// let body: models::PersonSettingUpdate = serde_json::from_value(serde_json::json!({
-    ///     "value": "beispiel"
-    /// }))?;
+    /// let body = models::PersonSettingUpdate {
+    ///     value: serde_json::json!("beispiel"),
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().settings().update(42, "push", "disableGroupSignUpNotifications", &body)?;
     /// println!("{}", result.attribute);
     /// # Ok(())
@@ -23606,10 +23718,11 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::LoginCredentials = serde_json::from_value(serde_json::json!({
-    ///     "password": "example-password",
-    ///     "username": "alex@example.org"
-    /// }))?;
+    /// let body = models::LoginCredentials {
+    ///     password: "example-password".into(),
+    ///     username: "alex@example.org".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().settings().twofactor().create(42, &body)?;
     /// println!("{}", result.qrcode);
     /// # Ok(())
@@ -23725,9 +23838,10 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PersonTwoFactorForceUpdate = serde_json::from_value(serde_json::json!({
-    ///     "value": true
-    /// }))?;
+    /// let body = models::PersonTwoFactorForceUpdate {
+    ///     value: true,
+    ///     ..Default::default()
+    /// };
     /// let result = client.persons().settings().twofactor().update_force(42, &body)?;
     /// println!("{}", result.attribute);
     /// # Ok(())
@@ -24094,10 +24208,11 @@ impl<'a> PostReportsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ReportCreate = serde_json::from_value(serde_json::json!({
-    ///     "domainId": 42,
-    ///     "domainType": "post"
-    /// }))?;
+    /// let body = models::ReportCreate {
+    ///     domain_id: 42,
+    ///     domain_type: "post".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.post().reports().create(&body)?;
     /// println!("{:?}", result.comment);
     /// # Ok(())
@@ -24147,11 +24262,12 @@ impl<'a> PostReportsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ReportAnswer = serde_json::from_value(serde_json::json!({
-    ///     "domainId": 42,
-    ///     "domainType": "post",
-    ///     "response": "accept"
-    /// }))?;
+    /// let body = models::ReportAnswer {
+    ///     domain_id: 42,
+    ///     domain_type: "post".into(),
+    ///     response: "accept".into(),
+    ///     ..Default::default()
+    /// };
     /// client.post().reports().update_answer(&body)?;
     /// # Ok(())
     /// # }
@@ -24214,12 +24330,13 @@ impl<'a> PostsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-posts");
-    /// let body: models::PostCreate = serde_json::from_value(serde_json::json!({
-    ///     "content": "Hallo zusammen",
-    ///     "title": "Hauskreis Nord",
-    ///     "visibility": "group_intern",
-    ///     "groupId": 42
-    /// }))?;
+    /// let body = models::PostCreate {
+    ///     content: Some("Hallo zusammen".into()),
+    ///     title: "Hauskreis Nord".into(),
+    ///     visibility: "group_intern".into(),
+    ///     group_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.posts().create(&body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -24331,9 +24448,10 @@ impl<'a> PostsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("patch-posts-postId");
-    /// let body: models::PostUpdate = serde_json::from_value(serde_json::json!({
-    ///     "title": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::PostUpdate {
+    ///     title: Some("Hauskreis Nord".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.posts().patch(42, &body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -24472,10 +24590,11 @@ impl<'a> PostsCommentsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-posts-postId-comments");
-    /// let body: models::PostCommentCreate = serde_json::from_value(serde_json::json!({
-    ///     "content": "Hallo zusammen",
-    ///     "postId": 42
-    /// }))?;
+    /// let body = models::PostCommentCreate {
+    ///     content: "Hallo zusammen".into(),
+    ///     post_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.posts().comments().create(42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -24591,9 +24710,10 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-posts-postId-comments-commentId-reactions");
-    /// let body: models::PostCommentReactionCreate = serde_json::from_value(serde_json::json!({
-    ///     "emoji": "👍"
-    /// }))?;
+    /// let body = models::PostCommentReactionCreate {
+    ///     emoji: "👍".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.posts().comments().reactions().update(42, 42, &body)?;
     /// println!("{}", result.comment_id);
     /// # Ok(())
@@ -24806,11 +24926,10 @@ impl<'a> ProbesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostProbesBody = serde_json::from_value(serde_json::json!({
-    ///     "domain_type": [
-    ///         "person"
-    ///     ]
-    /// }))?;
+    /// let body = models::PostProbesBody {
+    ///     domain_type: vec!["person".into()],
+    ///     ..Default::default()
+    /// };
     /// for probe in client.probes().create(&body)? {
     ///     println!("{}", probe.domain_type);
     /// }
@@ -24900,9 +25019,10 @@ impl<'a> ProfilesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ProfileUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::ProfileUpdate {
+    ///     name: "Hauskreis Nord".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.profiles().update_church(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -24936,9 +25056,10 @@ impl<'a> ProfilesCampusesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ProfileUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::ProfileUpdate {
+    ///     name: "Hauskreis Nord".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.profiles().campuses().update(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -25184,11 +25305,12 @@ impl<'a> PublicgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PublicGroupLeaderMailCreate = serde_json::from_value(serde_json::json!({
-    ///     "email": "mara@example.org",
-    ///     "message": "Hallo zusammen",
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::PublicGroupLeaderMailCreate {
+    ///     email: "mara@example.org".into(),
+    ///     message: "Hallo zusammen".into(),
+    ///     name: "Hauskreis Nord".into(),
+    ///     ..Default::default()
+    /// };
     /// let publicgroup = client.publicgroups().mail_to_leaders(42, &body)?;
     /// println!("{}", publicgroup.success);
     /// # Ok(())
@@ -25213,12 +25335,10 @@ impl<'a> PublicgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PublicGroupSignOutRequest = serde_json::from_value(serde_json::json!({
-    ///     "personIds": [
-    ///         42,
-    ///         43
-    ///     ]
-    /// }))?;
+    /// let body = models::PublicGroupSignOutRequest {
+    ///     person_ids: vec![42, 43],
+    ///     ..Default::default()
+    /// };
     /// client.publicgroups().signout(42, &body)?;
     /// # Ok(())
     /// # }
@@ -25242,16 +25362,14 @@ impl<'a> PublicgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PublicGroupSignupCreate = serde_json::from_value(serde_json::json!({
-    ///     "forms": [
-    ///         {
-    ///             "form": [
-    ///                 {}
-    ///             ]
-    ///         }
-    ///     ],
-    ///     "token": "abc123"
-    /// }))?;
+    /// let body = models::PublicGroupSignupCreate {
+    ///     forms: vec![models::PublicGroupSignupCreateFormsItem {
+    ///         form: vec![models::PublicGroupSignupCreateFormsItemFormItem::default()],
+    ///         ..Default::default()
+    ///     }],
+    ///     token: "abc123".into(),
+    ///     ..Default::default()
+    /// };
     /// let publicgroup = client.publicgroups().submit_signup(42, &body)?;
     /// println!("{:?}", publicgroup.group_homepage_hash);
     /// # Ok(())
@@ -25276,9 +25394,10 @@ impl<'a> PublicgroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PublicGroupTokenCreate = serde_json::from_value(serde_json::json!({
-    ///     "email": "mara@example.org"
-    /// }))?;
+    /// let body = models::PublicGroupTokenCreate {
+    ///     email: Some("mara@example.org".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.publicgroups().token(42, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -25388,13 +25507,13 @@ impl<'a> PublicgroupsSignupConfirmResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = serde_json::json!({});
+    /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
     /// let result = client.publicgroups().signup().confirm().create("abc123", &body)?;
     /// println!("{:?}", result.group_homepage_hash);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn create(&self, confirmation_token: impl Display, body: &serde_json::Value) -> Result<models::PostPublicgroupsSignupConfirmConfirmationTokenData> {
+    pub fn create(&self, confirmation_token: impl Display, body: &std::collections::BTreeMap<String, serde_json::Value>) -> Result<models::PostPublicgroupsSignupConfirmConfirmationTokenData> {
         let path = format!("/publicgroups/signup/confirm/{}", seg(confirmation_token));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -25539,9 +25658,10 @@ impl<'a> RegistrationconfigResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RegistrationConfigUpdate = serde_json::from_value(serde_json::json!({
-    ///     "isActive": true
-    /// }))?;
+    /// let body = models::RegistrationConfigUpdate {
+    ///     is_active: Some(true),
+    ///     ..Default::default()
+    /// };
     /// let result = client.registrationconfig().patch(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -25575,9 +25695,10 @@ impl<'a> RegistrationsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RegistrationConfirm = serde_json::from_value(serde_json::json!({
-    ///     "token": "abc123"
-    /// }))?;
+    /// let body = models::RegistrationConfirm {
+    ///     token: "abc123".into(),
+    ///     ..Default::default()
+    /// };
     /// let registration = client.registrations().confirm("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", &body)?;
     /// println!("{}", registration.first_name);
     /// # Ok(())
@@ -25602,12 +25723,14 @@ impl<'a> RegistrationsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RegistrationConvert = serde_json::from_value(serde_json::json!({
-    ///     "formData": {
-    ///         "acceptDataPrivacy": true
+    /// let body = models::RegistrationConvert {
+    ///     form_data: models::RegistrationConvertFormData {
+    ///         accept_data_privacy: true,
+    ///         ..Default::default()
     ///     },
-    ///     "token": "abc123"
-    /// }))?;
+    ///     token: "abc123".into(),
+    ///     ..Default::default()
+    /// };
     /// client.registrations().convert("8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1", &body)?;
     /// # Ok(())
     /// # }
@@ -25631,13 +25754,14 @@ impl<'a> RegistrationsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RegistrationCreate = serde_json::from_value(serde_json::json!({
-    ///     "configId": "8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1",
-    ///     "email": "mara@example.org",
-    ///     "firstName": "Mara",
-    ///     "lastName": "Becker",
-    ///     "password": "geheim"
-    /// }))?;
+    /// let body = models::RegistrationCreate {
+    ///     config_id: "8c3bf5f0-305d-4e24-8e06-7c1d217fd3f1".into(),
+    ///     email: "mara@example.org".into(),
+    ///     first_name: "Mara".into(),
+    ///     last_name: "Becker".into(),
+    ///     password: "geheim".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.registrations().create(&body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -25715,10 +25839,11 @@ impl<'a> RepeatcalculationResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-repeatcalculation");
-    /// let body: models::RepeatCalculationCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z"
-    /// }))?;
+    /// let body = models::RepeatCalculationCreate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     ..Default::default()
+    /// };
     /// for repeatcalculation in client.repeatcalculation().create(&body)? {
     ///     println!("{:?}", repeatcalculation);
     /// }
@@ -25744,10 +25869,11 @@ impl<'a> RepeatcalculationResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RepeatCalculationCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z"
-    /// }))?;
+    /// let body = models::RepeatCalculationCreate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     ..Default::default()
+    /// };
     /// for repeatcalculation in client.repeatcalculation().delete(&body)? {
     ///     println!("{:?}", repeatcalculation);
     /// }
@@ -25802,10 +25928,11 @@ impl<'a> RepeatcalculationResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RepeatCalculationCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z"
-    /// }))?;
+    /// let body = models::RepeatCalculationCreate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     ..Default::default()
+    /// };
     /// for repeatcalculation in client.repeatcalculation().patch(&body)? {
     ///     println!("{:?}", repeatcalculation);
     /// }
@@ -25831,10 +25958,11 @@ impl<'a> RepeatcalculationResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RepeatCalculationCreate = serde_json::from_value(serde_json::json!({
-    ///     "endDate": "2026-09-20T09:30:00Z",
-    ///     "startDate": "2026-09-20T08:00:00Z"
-    /// }))?;
+    /// let body = models::RepeatCalculationCreate {
+    ///     end_date: DateOrDateTime::DateTime("2026-09-20T09:30:00Z".parse()?),
+    ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
+    ///     ..Default::default()
+    /// };
     /// for repeatcalculation in client.repeatcalculation().update(&body)? {
     ///     println!("{:?}", repeatcalculation);
     /// }
@@ -25906,9 +26034,10 @@ impl<'a> ResetPasswordResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PasswordResetCreate = serde_json::from_value(serde_json::json!({
-    ///     "emailOrUsername": "alex@example.org"
-    /// }))?;
+    /// let body = models::PasswordResetCreate {
+    ///     email_or_username: "alex@example.org".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.reset_password().create(&body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -26003,11 +26132,12 @@ impl<'a> ResourcesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-resources");
-    /// let body: models::ResourceCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Main Hall",
-    ///     "resourceTypeId": 2,
-    ///     "sortKey": 1
-    /// }))?;
+    /// let body = models::ResourceCreate {
+    ///     name: "Main Hall".into(),
+    ///     resource_type_id: 2,
+    ///     sort_key: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.resources().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -26150,11 +26280,12 @@ impl<'a> ResourcesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-resources-resourceId");
-    /// let body: models::ResourceUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Main Hall",
-    ///     "resourceTypeId": 2,
-    ///     "sortKey": 1
-    /// }))?;
+    /// let body = models::ResourceUpdate {
+    ///     name: "Main Hall".into(),
+    ///     resource_type_id: 2,
+    ///     sort_key: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.resources().update(7, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -26220,11 +26351,12 @@ impl<'a> ResourcetypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-resourcetypes");
-    /// let body: models::ResourceTypeCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Room",
-    ///     "namePlural": "Rooms",
-    ///     "sortKey": 1
-    /// }))?;
+    /// let body = models::ResourceTypeCreate {
+    ///     name: "Room".into(),
+    ///     name_plural: "Rooms".into(),
+    ///     sort_key: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.resourcetypes().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -26318,11 +26450,12 @@ impl<'a> ResourcetypesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-resourcetypes-resourceTypeId");
-    /// let body: models::ResourceTypeUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Room",
-    ///     "namePlural": "Rooms",
-    ///     "sortKey": 1
-    /// }))?;
+    /// let body = models::ResourceTypeUpdate {
+    ///     name: "Room".into(),
+    ///     name_plural: "Rooms".into(),
+    ///     sort_key: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.resourcetypes().update(2, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -26364,14 +26497,16 @@ impl<'a> RoutinesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RoutineCreate = serde_json::from_value(serde_json::json!({
-    ///     "domainContext": {
-    ///         "groupId": 42,
-    ///         "groupTypeRoleId": 42
+    /// let body = models::RoutineCreate {
+    ///     domain_context: models::RoutineCreateDomainContext {
+    ///         group_id: 42,
+    ///         group_type_role_id: 42,
+    ///         ..Default::default()
     ///     },
-    ///     "domainType": "group_membership",
-    ///     "name": "Welcome new members"
-    /// }))?;
+    ///     domain_type: "group_membership".into(),
+    ///     name: "Welcome new members".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.routines().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -26502,9 +26637,10 @@ impl<'a> RoutinesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RoutineUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Welcome new members"
-    /// }))?;
+    /// let body = models::RoutineUpdate {
+    ///     name: Some("Welcome new members".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.routines().patch(9, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -26584,9 +26720,10 @@ impl<'a> RoutinesRunsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RoutineRunUpdate = serde_json::from_value(serde_json::json!({
-    ///     "currentIteration": 42
-    /// }))?;
+    /// let body = models::RoutineRunUpdate {
+    ///     current_iteration: Some(42),
+    ///     ..Default::default()
+    /// };
     /// let result = client.routines().runs().create(9, 16, "pause", &body)?;
     /// println!("{:?}", result.id);
     /// # Ok(())
@@ -26676,11 +26813,10 @@ impl<'a> RoutinesRunsBulkResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RoutineRunBulkUpdate = serde_json::from_value(serde_json::json!({
-    ///     "runIds": [
-    ///         42
-    ///     ]
-    /// }))?;
+    /// let body = models::RoutineRunBulkUpdate {
+    ///     run_ids: vec![42],
+    ///     ..Default::default()
+    /// };
     /// for bulk in client.routines().runs().bulk().create(9, "pause", &body)? {
     ///     println!("{:?}", bulk.id);
     /// }
@@ -26715,9 +26851,10 @@ impl<'a> RoutinesStepsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::RoutineActionValidation = serde_json::from_value(serde_json::json!({
-    ///     "actionKey": "special:wait"
-    /// }))?;
+    /// let body = models::RoutineActionValidation {
+    ///     action_key: "special:wait".into(),
+    ///     ..Default::default()
+    /// };
     /// client.routines().steps().validate(42, &body)?;
     /// # Ok(())
     /// # }
@@ -26909,9 +27046,10 @@ impl<'a> SecuritylevelsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostSecuritylevelsIdBody = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::PostSecuritylevelsIdBody {
+    ///     name: Some("Hauskreis Nord".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.securitylevels().create(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27018,9 +27156,10 @@ impl<'a> SecuritylevelsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PatchSecuritylevelsIdBody = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::PatchSecuritylevelsIdBody {
+    ///     name: Some("Hauskreis Nord".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.securitylevels().patch(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27095,9 +27234,10 @@ impl<'a> ServicegroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-servicegroups");
-    /// let body: models::ServiceGroupCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::ServiceGroupCreate {
+    ///     name: "Hauskreis Nord".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.servicegroups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27191,9 +27331,10 @@ impl<'a> ServicegroupsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-servicegroups-id");
-    /// let body: models::ServiceGroupUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord"
-    /// }))?;
+    /// let body = models::ServiceGroupUpdate {
+    ///     name: "Hauskreis Nord".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.servicegroups().update(13, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27227,10 +27368,11 @@ impl<'a> ServicesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-services");
-    /// let body: models::ServiceCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord",
-    ///     "serviceGroupId": 42
-    /// }))?;
+    /// let body = models::ServiceCreate {
+    ///     name: "Hauskreis Nord".into(),
+    ///     service_group_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.services().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27324,10 +27466,11 @@ impl<'a> ServicesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-services-id");
-    /// let body: models::ServiceUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Hauskreis Nord",
-    ///     "serviceGroupId": 42
-    /// }))?;
+    /// let body = models::ServiceUpdate {
+    ///     name: "Hauskreis Nord".into(),
+    ///     service_group_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let result = client.services().update(2, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27361,9 +27504,10 @@ impl<'a> SimulateResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PostSimulateBody = serde_json::from_value(serde_json::json!({
-    ///     "personId": 42
-    /// }))?;
+    /// let body = models::PostSimulateBody {
+    ///     person_id: 42,
+    ///     ..Default::default()
+    /// };
     /// client.simulate().create(&body)?;
     /// # Ok(())
     /// # }
@@ -27436,9 +27580,10 @@ impl<'a> SongCategoriesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-song-categories");
-    /// let body: models::SongCategoryCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Worship"
-    /// }))?;
+    /// let body = models::SongCategoryCreate {
+    ///     name: "Worship".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.song().categories().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27532,9 +27677,10 @@ impl<'a> SongCategoriesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-song-categories-id");
-    /// let body: models::SongCategoryUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Worship"
-    /// }))?;
+    /// let body = models::SongCategoryUpdate {
+    ///     name: "Worship".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.song().categories().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27568,9 +27714,10 @@ impl<'a> SongSourcesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-song-sources");
-    /// let body: models::SongSourceCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Community hymnal"
-    /// }))?;
+    /// let body = models::SongSourceCreate {
+    ///     name: "Community hymnal".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.song().sources().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27664,9 +27811,10 @@ impl<'a> SongSourcesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-song-sources-id");
-    /// let body: models::SongSourceUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Community hymnal"
-    /// }))?;
+    /// let body = models::SongSourceUpdate {
+    ///     name: "Community hymnal".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.song().sources().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27704,10 +27852,11 @@ impl<'a> SongsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-songs");
-    /// let body: models::SongCreate = serde_json::from_value(serde_json::json!({
-    ///     "categoryId": 1,
-    ///     "name": "Hallelujah"
-    /// }))?;
+    /// let body = models::SongCreate {
+    ///     category_id: 1,
+    ///     name: "Hallelujah".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.songs().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27827,10 +27976,11 @@ impl<'a> SongsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-songs-songId");
-    /// let body: models::SongUpdate = serde_json::from_value(serde_json::json!({
-    ///     "categoryId": 1,
-    ///     "name": "Hallelujah"
-    /// }))?;
+    /// let body = models::SongUpdate {
+    ///     category_id: 1,
+    ///     name: "Hallelujah".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.songs().update(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -27922,9 +28072,10 @@ impl<'a> SongsArrangementsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-songs-songId-arrangements");
-    /// let body: models::ArrangementCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Men Voicing"
-    /// }))?;
+    /// let body = models::ArrangementCreate {
+    ///     name: "Men Voicing".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.songs().arrangements().create(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -28040,9 +28191,10 @@ impl<'a> SongsArrangementsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-songs-songId-arrangements-arrangementId");
-    /// let body: models::ArrangementUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Men Voicing"
-    /// }))?;
+    /// let body = models::ArrangementUpdate {
+    ///     name: "Men Voicing".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.songs().arrangements().update(42, 42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -28076,9 +28228,10 @@ impl<'a> SongsArrangementsFilesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ArrangementFileTransposeCreate = serde_json::from_value(serde_json::json!({
-    ///     "transpose-interval": "up2"
-    /// }))?;
+    /// let body = models::ArrangementFileTransposeCreate {
+    ///     transpose_interval: "up2".into(),
+    ///     ..Default::default()
+    /// };
     /// let file = client.songs().arrangements().files().transpose(42, 42, 42, &body)?;
     /// println!("{}", file.id);
     /// # Ok(())
@@ -28178,10 +28331,11 @@ impl<'a> StatusesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-statuses");
-    /// let body: models::StatusCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Member",
-    ///     "securityLevelId": 2
-    /// }))?;
+    /// let body = models::StatusCreate {
+    ///     name: "Member".into(),
+    ///     security_level_id: 2,
+    ///     ..Default::default()
+    /// };
     /// let result = client.statuses().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -28275,9 +28429,10 @@ impl<'a> StatusesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("patch-statuses-id");
-    /// let body: models::StatusUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Member"
-    /// }))?;
+    /// let body = models::StatusUpdate {
+    ///     name: Some("Member".into()),
+    ///     ..Default::default()
+    /// };
     /// let result = client.statuses().patch(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -28302,10 +28457,11 @@ impl<'a> StatusesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-statuses-id");
-    /// let body: models::StatusCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Member",
-    ///     "securityLevelId": 2
-    /// }))?;
+    /// let body = models::StatusCreate {
+    ///     name: "Member".into(),
+    ///     security_level_id: 2,
+    ///     ..Default::default()
+    /// };
     /// let result = client.statuses().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -28433,9 +28589,10 @@ impl<'a> SubscriptionsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SubscriptionUpdate = serde_json::from_value(serde_json::json!({
-    ///     "isActive": true
-    /// }))?;
+    /// let body = models::SubscriptionUpdate {
+    ///     is_active: Some(true),
+    ///     ..Default::default()
+    /// };
     /// let result = client.subscriptions().update(42, "group", "root", &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -28485,18 +28642,18 @@ impl<'a> SyncResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncLogsCreate = serde_json::from_value(serde_json::json!({
-    ///     "logs": [
-    ///         {
-    ///             "date": "2022-10-19T12:00:00Z",
-    ///             "executionId": "abc123",
-    ///             "jobId": 42,
-    ///             "level": "debug",
-    ///             "messageKey": "Hallo zusammen",
-    ///             "type": "create"
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::SyncLogsCreate {
+    ///     logs: vec![models::SyncLogCreate {
+    ///         date: "2022-10-19T12:00:00Z".parse()?,
+    ///         execution_id: "abc123".into(),
+    ///         job_id: 42,
+    ///         level: "debug".into(),
+    ///         message_key: "Hallo zusammen".into(),
+    ///         r#type: "create".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().create_logs(&body)?;
     /// println!("{}", result.persisted);
     /// # Ok(())
@@ -28738,11 +28895,12 @@ impl<'a> SyncAdaptersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncAdapterCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "churchtools",
-    ///     "token": "kfghsjdlkfigblszurglizeifuz4",
-    ///     "url": "http://localhost:8090"
-    /// }))?;
+    /// let body = models::SyncAdapterCreate {
+    ///     name: "churchtools".into(),
+    ///     token: "kfghsjdlkfigblszurglizeifuz4".into(),
+    ///     url: "http://localhost:8090".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().adapters().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -28849,11 +29007,12 @@ impl<'a> SyncAdaptersResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncAdapterUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "churchtools",
-    ///     "token": "kfghsjdlkfigblszurglizeifuz4",
-    ///     "url": "http://localhost:8090"
-    /// }))?;
+    /// let body = models::SyncAdapterUpdate {
+    ///     name: "churchtools".into(),
+    ///     token: "kfghsjdlkfigblszurglizeifuz4".into(),
+    ///     url: "http://localhost:8090".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().adapters().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -29021,17 +29180,17 @@ impl<'a> SyncConflictsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncConflictCreate = serde_json::from_value(serde_json::json!({
-    ///     "data": [
-    ///         {
-    ///             "key": "abc123",
-    ///             "value": "beispiel"
-    ///         }
-    ///     ],
-    ///     "entityMappingId": 1,
-    ///     "jobId": "7e31c399-91b1-4148-bfdd-6c05b557a25c",
-    ///     "type": "create"
-    /// }))?;
+    /// let body = models::SyncConflictCreate {
+    ///     data: vec![models::SyncConflictDataCreate {
+    ///         key: "abc123".into(),
+    ///         value: "beispiel".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     entity_mapping_id: 1,
+    ///     job_id: "7e31c399-91b1-4148-bfdd-6c05b557a25c".into(),
+    ///     r#type: "create".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().conflicts().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -29138,17 +29297,17 @@ impl<'a> SyncConflictsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncConflictUpdate = serde_json::from_value(serde_json::json!({
-    ///     "data": [
-    ///         {
-    ///             "key": "abc123",
-    ///             "value": "beispiel"
-    ///         }
-    ///     ],
-    ///     "entityMappingId": 1,
-    ///     "jobId": "7e31c399-91b1-4148-bfdd-6c05b557a25c",
-    ///     "type": "create"
-    /// }))?;
+    /// let body = models::SyncConflictUpdate {
+    ///     data: vec![models::SyncConflictDataCreate {
+    ///         key: "abc123".into(),
+    ///         value: "beispiel".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     entity_mapping_id: 1,
+    ///     job_id: "7e31c399-91b1-4148-bfdd-6c05b557a25c".into(),
+    ///     r#type: "create".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().conflicts().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -29208,13 +29367,14 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncEntityMappingCreate = serde_json::from_value(serde_json::json!({
-    ///     "domainId": "42",
-    ///     "domainType": "status",
-    ///     "sourceEntityId": "p-42",
-    ///     "sourceId": 1,
-    ///     "status": "synced"
-    /// }))?;
+    /// let body = models::SyncEntityMappingCreate {
+    ///     domain_id: Some("42".into()),
+    ///     domain_type: "status".into(),
+    ///     source_entity_id: Some("p-42".into()),
+    ///     source_id: 1,
+    ///     status: "synced".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().entitymappings().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -29321,13 +29481,14 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncEntityMappingUpdate = serde_json::from_value(serde_json::json!({
-    ///     "domainId": "42",
-    ///     "domainType": "status",
-    ///     "sourceEntityId": "p-42",
-    ///     "sourceId": 1,
-    ///     "status": "synced"
-    /// }))?;
+    /// let body = models::SyncEntityMappingUpdate {
+    ///     domain_id: Some("42".into()),
+    ///     domain_type: "status".into(),
+    ///     source_entity_id: Some("p-42".into()),
+    ///     source_id: 1,
+    ///     status: "synced".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().entitymappings().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -29404,11 +29565,12 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ExternalSystemCreate = serde_json::from_value(serde_json::json!({
-    ///     "accessHeaderValues": {},
-    ///     "adapter": "churchtools",
-    ///     "name": "Accounting system"
-    /// }))?;
+    /// let body = models::ExternalSystemCreate {
+    ///     access_header_values: serde_json::json!({}),
+    ///     adapter: "churchtools".into(),
+    ///     name: "Accounting system".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().externalsystems().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -29546,11 +29708,12 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncExternalSystemTestCreate = serde_json::from_value(serde_json::json!({
-    ///     "accessHeaderValues": {},
-    ///     "adapter": "churchtools",
-    ///     "name": "Accounting system"
-    /// }))?;
+    /// let body = models::SyncExternalSystemTestCreate {
+    ///     access_header_values: serde_json::json!({}),
+    ///     adapter: "churchtools".into(),
+    ///     name: "Accounting system".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().externalsystems().test_settings(&body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -29575,12 +29738,13 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::ExternalSystemUpdate = serde_json::from_value(serde_json::json!({
-    ///     "accessHeaderValues": {},
-    ///     "adapter": "churchtools",
-    ///     "name": "Accounting system",
-    ///     "id": 1
-    /// }))?;
+    /// let body = models::ExternalSystemUpdate {
+    ///     access_header_values: serde_json::json!({}),
+    ///     adapter: "churchtools".into(),
+    ///     name: "Accounting system".into(),
+    ///     id: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().externalsystems().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -29825,28 +29989,27 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncFieldMappingUpdate = serde_json::from_value(serde_json::json!({
-    ///     "propertyMappingsESToMaster": [
-    ///         {
-    ///             "from": "firstName",
-    ///             "fromFilter": "",
-    ///             "others": {},
-    ///             "to": "firstName",
-    ///             "toFilter": "",
-    ///             "valueMapping": {}
-    ///         }
-    ///     ],
-    ///     "propertyMappingsMasterToES": [
-    ///         {
-    ///             "from": "firstName",
-    ///             "fromFilter": "",
-    ///             "others": {},
-    ///             "to": "firstName",
-    ///             "toFilter": "",
-    ///             "valueMapping": {}
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::SyncFieldMappingUpdate {
+    ///     property_mappings_es_to_master: vec![models::SyncFieldMappingEntryCreate {
+    ///         from: "firstName".into(),
+    ///         from_filter: "".into(),
+    ///         others: serde_json::json!({}),
+    ///         to: "firstName".into(),
+    ///         to_filter: "".into(),
+    ///         value_mapping: serde_json::json!({}),
+    ///         ..Default::default()
+    ///     }],
+    ///     property_mappings_master_to_es: vec![models::SyncFieldMappingEntryCreate {
+    ///         from: "firstName".into(),
+    ///         from_filter: "".into(),
+    ///         others: serde_json::json!({}),
+    ///         to: "firstName".into(),
+    ///         to_filter: "".into(),
+    ///         value_mapping: serde_json::json!({}),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().externalsystems().fieldmappings().update(1, "status", &body)?;
     /// println!("{:?}", result.id);
     /// # Ok(())
@@ -29884,11 +30047,12 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncJobConfigurationCreate = serde_json::from_value(serde_json::json!({
-    ///     "autoScheduleEnabled": false,
-    ///     "domainType": "person",
-    ///     "name": "Synchronize people"
-    /// }))?;
+    /// let body = models::SyncJobConfigurationCreate {
+    ///     auto_schedule_enabled: false,
+    ///     domain_type: "person".into(),
+    ///     name: "Synchronize people".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().externalsystems().jobconfigs().create(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -30073,9 +30237,10 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncExecutionCreate = serde_json::from_value(serde_json::json!({
-    ///     "isDryRun": true
-    /// }))?;
+    /// let body = models::SyncExecutionCreate {
+    ///     is_dry_run: Some(true),
+    ///     ..Default::default()
+    /// };
     /// client.sync().externalsystems().jobconfigs().start(1, 1, &body)?;
     /// # Ok(())
     /// # }
@@ -30099,12 +30264,13 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncJobConfigurationUpdate = serde_json::from_value(serde_json::json!({
-    ///     "autoScheduleEnabled": false,
-    ///     "domainType": "person",
-    ///     "name": "Synchronize people",
-    ///     "id": 1
-    /// }))?;
+    /// let body = models::SyncJobConfigurationUpdate {
+    ///     auto_schedule_enabled: false,
+    ///     domain_type: "person".into(),
+    ///     name: "Synchronize people".into(),
+    ///     id: 1,
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().externalsystems().jobconfigs().update(1, 1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -30129,22 +30295,21 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncJobFiltersUpdate = serde_json::from_value(serde_json::json!({
-    ///     "es": [
-    ///         {
-    ///             "field": "statusId",
-    ///             "system": "master",
-    ///             "values": {}
-    ///         }
-    ///     ],
-    ///     "master": [
-    ///         {
-    ///             "field": "statusId",
-    ///             "system": "master",
-    ///             "values": {}
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::SyncJobFiltersUpdate {
+    ///     es: vec![models::SyncJobFilterCreate {
+    ///         field: "statusId".into(),
+    ///         system: "master".into(),
+    ///         values: serde_json::json!({}),
+    ///         ..Default::default()
+    ///     }],
+    ///     master: vec![models::SyncJobFilterCreate {
+    ///         field: "statusId".into(),
+    ///         system: "master".into(),
+    ///         values: serde_json::json!({}),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().externalsystems().jobconfigs().update_filter(1, 1, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
@@ -30169,28 +30334,27 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::SyncJobPropertiesUpdate = serde_json::from_value(serde_json::json!({
-    ///     "propertyMappingsESToMaster": [
-    ///         {
-    ///             "fieldMappingId": 1,
-    ///             "from": "firstName",
-    ///             "fromFilter": "",
-    ///             "system": "master",
-    ///             "to": "firstName",
-    ///             "toFilter": ""
-    ///         }
-    ///     ],
-    ///     "propertyMappingsMasterToES": [
-    ///         {
-    ///             "fieldMappingId": 1,
-    ///             "from": "firstName",
-    ///             "fromFilter": "",
-    ///             "system": "master",
-    ///             "to": "firstName",
-    ///             "toFilter": ""
-    ///         }
-    ///     ]
-    /// }))?;
+    /// let body = models::SyncJobPropertiesUpdate {
+    ///     property_mappings_es_to_master: vec![models::SyncJobPropertyCreate {
+    ///         field_mapping_id: 1,
+    ///         from: "firstName".into(),
+    ///         from_filter: "".into(),
+    ///         system: "master".into(),
+    ///         to: "firstName".into(),
+    ///         to_filter: "".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     property_mappings_master_to_es: vec![models::SyncJobPropertyCreate {
+    ///         field_mapping_id: 1,
+    ///         from: "firstName".into(),
+    ///         from_filter: "".into(),
+    ///         system: "master".into(),
+    ///         to: "firstName".into(),
+    ///         to_filter: "".into(),
+    ///         ..Default::default()
+    ///     }],
+    ///     ..Default::default()
+    /// };
     /// let result = client.sync().externalsystems().jobconfigs().update_properties(1, 1, &body)?;
     /// println!("{}", result.domain_type);
     /// # Ok(())
@@ -30279,9 +30443,10 @@ impl<'a> TagsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-tags-domainType-domainId");
-    /// let body: models::TagAssignmentCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Mission"
-    /// }))?;
+    /// let body = models::TagAssignmentCreate {
+    ///     name: "Mission".into(),
+    ///     ..Default::default()
+    /// };
     /// let tag = client.tags().attach_new("person", 35, &body)?;
     /// println!("{}", tag.name);
     /// # Ok(())
@@ -30306,9 +30471,10 @@ impl<'a> TagsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-tags-domainType");
-    /// let body: models::TagCreate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Mission"
-    /// }))?;
+    /// let body = models::TagCreate {
+    ///     name: "Mission".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.tags().create("person", &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -30448,9 +30614,10 @@ impl<'a> TagsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-tags-tagId");
-    /// let body: models::TagUpdate = serde_json::from_value(serde_json::json!({
-    ///     "name": "Mission"
-    /// }))?;
+    /// let body = models::TagUpdate {
+    ///     name: "Mission".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.tags().update(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -30575,10 +30742,11 @@ impl<'a> TranslationsResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::TranslationKeyUpdate = serde_json::from_value(serde_json::json!({
-    ///     "key": "mychurch.welcome",
-    ///     "module": "churchcore"
-    /// }))?;
+    /// let body = models::TranslationKeyUpdate {
+    ///     key: "mychurch.welcome".into(),
+    ///     module: "churchcore".into(),
+    ///     ..Default::default()
+    /// };
     /// client.translations().update(1, &body)?;
     /// # Ok(())
     /// # }
@@ -30675,10 +30843,11 @@ impl<'a> TwofactorResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::PersonTwoFactorVerify = serde_json::from_value(serde_json::json!({
-    ///     "code": "012345",
-    ///     "personId": 42
-    /// }))?;
+    /// let body = models::PersonTwoFactorVerify {
+    ///     code: "012345".into(),
+    ///     person_id: 42,
+    ///     ..Default::default()
+    /// };
     /// let twofactor = client.twofactor().totp(&body)?;
     /// println!("{}", twofactor.status);
     /// # Ok(())
@@ -30739,10 +30908,11 @@ impl<'a> WebsiteDataResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body: models::WebsiteDataCreate = serde_json::from_value(serde_json::json!({
-    ///     "domainId": 42,
-    ///     "domainType": "calendar"
-    /// }))?;
+    /// let body = models::WebsiteDataCreate {
+    ///     domain_id: 42,
+    ///     domain_type: "calendar".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.website().data().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
@@ -31086,12 +31256,13 @@ impl<'a> WikiCategoriesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-wiki-categories");
-    /// let body: models::WikiCategoryCreate = serde_json::from_value(serde_json::json!({
-    ///     "fileAccessWithoutPermission": false,
-    ///     "inMenu": true,
-    ///     "name": "Dokumentation",
-    ///     "sortKey": 10
-    /// }))?;
+    /// let body = models::WikiCategoryCreate {
+    ///     file_access_without_permission: false,
+    ///     in_menu: true,
+    ///     name: "Dokumentation".into(),
+    ///     sort_key: 10,
+    ///     ..Default::default()
+    /// };
     /// let result = client.wiki().categories().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -31162,12 +31333,13 @@ impl<'a> WikiCategoriesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("put-wiki-categories-id");
-    /// let body: models::WikiCategoryUpdate = serde_json::from_value(serde_json::json!({
-    ///     "fileAccessWithoutPermission": false,
-    ///     "inMenu": true,
-    ///     "name": "Dokumentation",
-    ///     "sortKey": 10
-    /// }))?;
+    /// let body = models::WikiCategoryUpdate {
+    ///     file_access_without_permission: false,
+    ///     in_menu: true,
+    ///     name: "Dokumentation".into(),
+    ///     sort_key: 10,
+    ///     ..Default::default()
+    /// };
     /// let result = client.wiki().categories().update(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
@@ -31205,9 +31377,10 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("post-wiki-categories-id-pages");
-    /// let body: models::WikiPageCreate = serde_json::from_value(serde_json::json!({
-    ///     "title": "My new wiki page"
-    /// }))?;
+    /// let body = models::WikiPageCreate {
+    ///     title: "My new wiki page".into(),
+    ///     ..Default::default()
+    /// };
     /// let result = client.wiki().categories().pages().create(42, &body)?;
     /// println!("{}", result.title);
     /// # Ok(())
@@ -31314,9 +31487,10 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     /// # use churchtools_core::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("patch-wiki-categories-id-pages-identifier");
-    /// let body: models::WikiPageUpdate = serde_json::from_value(serde_json::json!({
-    ///     "isMarkdown": true
-    /// }))?;
+    /// let body = models::WikiPageUpdate {
+    ///     is_markdown: Some(true),
+    ///     ..Default::default()
+    /// };
     /// let result = client.wiki().categories().pages().patch(42, "681F54E3-2EB7-40A4-84F0-EFF8E8F05727", &body)?;
     /// println!("{}", result.title);
     /// # Ok(())

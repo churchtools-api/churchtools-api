@@ -79,6 +79,9 @@ RESULT_FIXES: dict[str, dict[str, _t.Any]] = {
 # go into doc comments and run as doctests.
 EXAMPLES: dict[str, _t.Any] = {}
 RECORDED: set[str] = set()
+# Filled by main(): models that only occur in request bodies. Their nullable
+# optional fields are `Option<Option<T>>` in Rust, to tell "send null" from "leave out".
+BODY_ONLY: set[str] = set()
 
 # operationId -> (resource chain, method name) for cases the naming rules get wrong.
 NAME_OVERRIDES: dict[str, tuple[str, str]] = {
@@ -1049,8 +1052,46 @@ def direct_refs(model: Model) -> set[str]:
     return refs
 
 
-def write_rust_models(schemas: Schemas, header: str, out: Path) -> None:
-    graph = {n: direct_refs(m) for n, m in schemas.models.items()}
+def type_refs(schemas: Schemas, t: T | None, acc: set[str]) -> set[str]:
+    """All models reachable from `t`."""
+    if t is not None:
+        if t.kind == "model" and t.name not in acc:
+            acc.add(t.name)
+            for f in schemas.models[t.name].fields:
+                type_refs(schemas, f.type, acc)
+        for i in t.inner:
+            type_refs(schemas, i, acc)
+    return acc
+
+
+def body_only_models(schemas: Schemas, ops: list[Op]) -> set[str]:
+    in_bodies: set[str] = set()
+    in_responses: set[str] = set()
+    for op in ops:
+        type_refs(schemas, op.body, in_bodies)
+        type_refs(schemas, op.result_type, in_responses)
+    return in_bodies - in_responses
+
+
+@dataclass
+class RustField:
+    field: Field_
+    ident: str
+    ty: str
+    double: bool  # Option<Option<T>>: None leaves out, Some(None) sends null
+
+
+_rust_fields: dict[str, list[RustField]] = {}
+_model_graph: dict[str, set[str]] = {}
+
+
+def rust_fields(schemas: Schemas, name: str) -> list[RustField]:
+    """Field names and types of a generated Rust model."""
+    if name in _rust_fields:
+        return _rust_fields[name]
+    if not _model_graph:
+        _model_graph.update({n: direct_refs(m) for n, m in schemas.models.items()})
+    graph = _model_graph
 
     def reaches(start: str, target: str) -> bool:
         stack, seen = [start], set()
@@ -1063,25 +1104,45 @@ def write_rust_models(schemas: Schemas, header: str, out: Path) -> None:
                 stack.extend(graph.get(n, ()))
         return False
 
+    model = schemas.models[name]
+    out = []
+    for f, ident in zip(model.fields, field_names(model, rust_ident, {"extra"})):
+        base = f.type.inner[0] if f.type.kind == "opt" else f.type
+        boxed = base.kind == "model" and reaches(base.name, name)
+        ty = rust_type(f.type, boxed)
+        optional = not f.required or f.type.kind == "opt"
+        if optional and not ty.startswith("Option<") and ty != "serde_json::Value":
+            ty = f"Option<{ty}>"
+        double = name in BODY_ONLY and not f.required and f.type.kind == "opt" and ty.startswith("Option<")
+        if double:
+            ty = f"Option<{ty}>"
+        out.append(RustField(f, ident, ty, double))
+    _rust_fields[name] = out
+    return out
+
+
+def write_rust_models(schemas: Schemas, header: str, out: Path) -> None:
     lines = [f"//! Generated ChurchTools models.\n//!\n//! {header}\n", "#![allow(clippy::all, rustdoc::all, deprecated)]\n",
              "use serde::{Deserialize, Serialize};\n"]
     for name in sorted(schemas.models):
         model = schemas.models[name]
         lines += rust_doc(model.doc, "")
-        lines.append("#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]")
+        lines.append("#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]")
         lines.append(f"pub struct {name} {{")
-        for f, ident in zip(model.fields, field_names(model, rust_ident, {"extra"})):
-            base = f.type.inner[0] if f.type.kind == "opt" else f.type
-            boxed = base.kind == "model" and reaches(base.name, name)
-            ty = rust_type(f.type, boxed)
-            optional = not f.required or f.type.kind == "opt"
-            if optional and not ty.startswith("Option<") and ty != "serde_json::Value":
-                ty = f"Option<{ty}>"
-            lines += rust_doc(with_allowed(f.doc, f.type), "    ")
+        for rf in rust_fields(schemas, name):
+            f, ident, ty = rf.field, rf.ident, rf.ty
+            doc = with_allowed(f.doc, f.type)
+            if rf.double:
+                doc = f"{doc}\n\n`None` leaves the field out, `Some(None)` sends `null`.".lstrip()
+            lines += rust_doc(doc, "    ")
             attrs = []
             if ident.removeprefix("r#") != f.json_name:
                 attrs.append(f'rename = "{f.json_name}"')
-            if ty == "String":
+            if rf.double:
+                attrs.append('deserialize_with = "crate::lenient::double_option"')
+                if ty == "Option<Option<chrono::DateTime<chrono::Utc>>>":
+                    attrs.append('serialize_with = "crate::datetime::serialize_double_opt_utc"')
+            elif ty == "String":
                 attrs.append('deserialize_with = "crate::lenient::string"')
             elif ty == "Option<String>":
                 attrs.append('deserialize_with = "crate::lenient::opt_string"')
@@ -1112,6 +1173,12 @@ def write_rust_models(schemas: Schemas, header: str, out: Path) -> None:
         lines.append("    pub extra: serde_json::Map<String, serde_json::Value>,")
         lines.append("}\n")
     out.write_text("\n".join(lines))
+
+
+def rust_body_type(t: T) -> str:
+    """Type of the `body` argument; unions stay JSON (`serde_json::Value`)."""
+    base = t.inner[0] if t.kind == "opt" else t
+    return rust_type(base, prefix="models::")
 
 
 QUERY_SCALARS = ("str", "int", "float", "bool", "date", "datetime")
@@ -1242,9 +1309,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
         struct_lines.append("    }")
         struct_lines.append("}\n")
     if op.body is not None:
-        base = op.body.inner[0] if op.body.kind == "opt" else op.body
-        bty = f"models::{base.name}" if base.kind == "model" else "serde_json::Value"
-        args.append(f"body: &{bty}")
+        args.append(f"body: &{rust_body_type(op.body)}")
     form_struct = None
     if op.upload is not None:
         args.append("files: &[Upload]")
@@ -1383,6 +1448,8 @@ def load_spec(path: str | None, refresh: bool) -> tuple[dict, str]:
 
 
 def main() -> int:
+    # examples/docs/testgen `import generate`; share this module instead of loading a second copy.
+    sys.modules.setdefault("generate", sys.modules[__name__])
     ap = argparse.ArgumentParser()
     ap.add_argument("--spec")
     ap.add_argument("--refresh", action="store_true")
@@ -1404,6 +1471,7 @@ def main() -> int:
 
     import examples as ex
 
+    BODY_ONLY.update(body_only_models(schemas, ops))
     EXAMPLES.update({op.op_id: ex.example_for(schemas, op) for op in ops})
     RECORDED.update(p.stem for p in (ROOT / "fixtures" / "recorded").glob("*.json"))
 

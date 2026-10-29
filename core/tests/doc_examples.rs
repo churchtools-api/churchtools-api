@@ -99,10 +99,11 @@ fn example_4(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
     };
     let events = client.events().list_with(&query)?;
 
-    let body: models::PatchPersonsIdBody = serde_json::from_value(serde_json::json!({
-        "city": "Esslingen",
-        "zip": "73728"
-    }))?;
+    let body = models::PatchPersonsIdBody {
+        city: Some("Esslingen".into()),
+        zip: Some("73728".into()),
+        ..Default::default()
+    };
     client.persons().patch(7, &body)?;
     Ok(())
 }
@@ -186,10 +187,17 @@ fn guide_fehler() {
 
 // guide: weglassen
 fn example_9(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    let body: models::PatchPersonsIdBody = serde_json::from_value(serde_json::json!({
-        "birthday": null,
-        "konfession": "evangelisch"
-    }))?;
+    // nur die Stadt ändern, alles andere bleibt
+    let body = models::PatchPersonsIdBody { city: Some("Esslingen".into()), ..Default::default() };
+    client.persons().patch(7, &body)?;
+
+    // Geburtstag löschen
+    let body = models::PatchPersonsIdBody { birthday: Some(None), ..Default::default() };
+    client.persons().patch(7, &body)?;
+
+    // eigenes Datenbankfeld setzen
+    let mut body = models::PatchPersonsIdBody::default();
+    body.extra.insert("konfession".into(), "evangelisch".into());
     client.persons().patch(7, &body)?;
     Ok(())
 }
@@ -295,16 +303,19 @@ fn guide_projekt_csv() {
 
 // guide: projekt-neue-person
 fn example_14(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
-    let body: models::PostPersonsBody = serde_json::from_value(serde_json::json!({
-        "departmentIds": [1],
-        "firstName": "Ben",
-        "lastName": "Beispiel",
-        "email": "ben@example.org"
-    }))?;
+    let body = models::PostPersonsBody {
+        department_ids: vec![1],
+        first_name: Some("Ben".into()),
+        last_name: Some("Beispiel".into()),
+        email: Some("ben@example.org".into()),
+        ..Default::default()
+    };
     let person = client.persons().create(&body)?;
 
-    let membership: models::MembershipCreate =
-        serde_json::from_value(serde_json::json!({ "groupMemberStatus": "active" }))?;
+    let membership = models::MembershipCreate {
+        group_member_status: Some(Some("active".into())),
+        ..Default::default()
+    };
     client.groups().members().update(42, person.id, &membership)?;
     println!("{:?} angelegt (ID {})", person.first_name, person.id);
     Ok(())
