@@ -13,7 +13,8 @@ use std::process::{Child, Command, Stdio};
 use std::sync::Arc;
 use std::time::{Duration, Instant};
 
-use churchtools_core::{Client, GetPersonsQuery, Method, PostPersonsQuery, decode_data, models};
+use churchtools_core::queries::{GetPersonsQuery, PostPersonsQuery};
+use churchtools_core::{Client, Method, decode_data, models};
 
 /// Minimum time spent on warm-up before measuring.
 const WARMUP: Duration = Duration::from_millis(300);

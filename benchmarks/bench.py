@@ -11,8 +11,8 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
-import json
 import functools
+import json
 import statistics
 import subprocess
 import time
@@ -20,15 +20,14 @@ import typing as _t
 from pathlib import Path
 from urllib.parse import urlsplit
 
+import churchtools_rs as ct
 import httpx
 import orjson
 import requests
 import urllib3
-from pydantic import BaseModel, TypeAdapter
-
-import churchtools_rs as ct
 from churchtools_rs import models
 from churchtools_rs._base import _parse
+from pydantic import BaseModel, TypeAdapter
 
 ROOT = Path(__file__).resolve().parents[1]
 BENCH = ROOT / "benchmarks"

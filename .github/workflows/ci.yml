@@ -20,6 +20,8 @@ jobs:
         run: cargo clippy --workspace --all-targets -- -D warnings
       - name: Tests (unit, recorded responses, doc examples)
         run: cargo test --workspace
+      - name: Benchmarks still build
+        run: cargo check --release --manifest-path benchmarks/Cargo.toml
       - name: Docs without warnings
         run: cargo doc -p churchtools-core --no-deps
         env:
