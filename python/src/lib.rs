@@ -28,10 +28,16 @@ mod _core {
                 Error::Redirect { status, location } => {
                     errors.call_method1("RedirectError", (err.to_string(), *status, location.clone()))?
                 }
-                Error::InvalidPath(_) | Error::InvalidToken => return Ok(PyValueError::new_err(err.to_string())),
-                Error::Transport(_) | Error::Read(_) | Error::ResponseTooLarge { .. } | Error::InvalidBaseUrl(_) => {
-                    errors.call_method1("TransportError", (err.to_string(),))?
+                Error::InvalidPath(_) | Error::InvalidToken | Error::InvalidBaseUrl(_) => {
+                    errors.call_method1("InvalidArgument", (err.to_string(),))?
                 }
+                // A connect timeout is both; it counts as ConnectError (the host is unreachable).
+                Error::Transport(e) if e.is_connect() => errors.call_method1("ConnectError", (err.to_string(),))?,
+                Error::Transport(e) if e.is_timeout() => errors.call_method1("Timeout", (err.to_string(),))?,
+                Error::ResponseTooLarge { limit } => {
+                    errors.call_method1("ResponseTooLarge", (err.to_string(), *limit))?
+                }
+                Error::Transport(_) | Error::Read(_) => errors.call_method1("TransportError", (err.to_string(),))?,
             };
             Ok(PyErr::from_value(exc))
         })();
@@ -43,11 +49,20 @@ mod _core {
             .map_err(|_| PyValueError::new_err(format!("invalid HTTP method: {method}")))
     }
 
+    /// `churchtools_rs.InvalidArgument` (a `ValueError`) with `message`.
+    fn invalid_argument(py: Python<'_>, message: String) -> PyErr {
+        py.import("churchtools_rs._errors")
+            .and_then(|errors| errors.call_method1("InvalidArgument", (message,)))
+            .map(PyErr::from_value)
+            .unwrap_or_else(|e| e)
+    }
+
     /// Seconds as a `Duration`; `Duration::from_secs_f64` would panic on
     /// negative, infinite or NaN values.
-    fn seconds(name: &str, value: f64) -> PyResult<Duration> {
-        Duration::try_from_secs_f64(value)
-            .map_err(|_| PyValueError::new_err(format!("{name} must be a non-negative number of seconds, got {value}")))
+    fn seconds(py: Python<'_>, name: &str, value: f64) -> PyResult<Duration> {
+        Duration::try_from_secs_f64(value).map_err(|_| {
+            invalid_argument(py, format!("{name} must be a non-negative number of seconds, got {value}"))
+        })
     }
 
     fn parse_body(body: Option<&str>) -> PyResult<Option<serde_json::Value>> {
@@ -77,17 +92,17 @@ mod _core {
         ) -> PyResult<Self> {
             let mut builder = churchtools_core::Client::builder(base_url);
             if let Some(connect) = connect_timeout {
-                builder = builder.connect_timeout(seconds("connect_timeout", connect)?);
+                builder = builder.connect_timeout(seconds(py, "connect_timeout", connect)?);
             }
             let mut inner = builder
                 .token(token)
-                .timeout(seconds("timeout", timeout)?)
+                .timeout(seconds(py, "timeout", timeout)?)
                 .allow_insecure_http(allow_insecure_http)
                 .max_response_size(max_response_size.unwrap_or(churchtools_core::DEFAULT_MAX_RESPONSE_SIZE))
                 .build()
                 .map_err(|e| to_py_err(py, e))?;
             if let Some(interval) = min_interval {
-                inner = inner.with_min_interval(seconds("min_interval", interval)?);
+                inner = inner.with_min_interval(seconds(py, "min_interval", interval)?);
             }
             Ok(Self { inner })
         }

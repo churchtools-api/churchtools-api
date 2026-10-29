@@ -169,8 +169,31 @@ def test_query_values_are_formatted(client):
 
 
 def test_transport_error():
-    with pytest.raises(ct.TransportError):
+    with pytest.raises(ct.ConnectError) as info:
         ct.Client("http://127.0.0.1:1", timeout=2).persons.get(1)
+    assert isinstance(info.value, ct.TransportError)
+
+
+def test_timeout_is_its_own_error():
+    import socket
+
+    silent = socket.socket()
+    silent.bind(("127.0.0.1", 0))
+    silent.listen()  # accepts connections, never answers
+    try:
+        with pytest.raises(ct.Timeout):
+            ct.Client(f"http://127.0.0.1:{silent.getsockname()[1]}", timeout=0.3).persons.get(1)
+    finally:
+        silent.close()
+
+
+def test_invalid_arguments_are_value_errors(monkeypatch):
+    with pytest.raises(ct.InvalidArgument):
+        ct.Client("meinegemeinde.church.tools")
+    monkeypatch.delenv("CT_URL", raising=False)
+    with pytest.raises(ct.InvalidArgument, match="CT_URL is not set"):
+        ct.Client.from_env()
+    assert issubclass(ct.InvalidArgument, ValueError) and issubclass(ct.InvalidArgument, ct.ChurchToolsError)
 
 
 def test_upload_sends_multipart(client):
@@ -235,7 +258,7 @@ def test_token_with_line_break_is_rejected(client):
 
 
 def test_plain_http_needs_opt_in_outside_localhost():
-    with pytest.raises(ct.ChurchToolsError, match="unencrypted"):
+    with pytest.raises(ct.InvalidArgument, match="unencrypted"):
         ct.Client("http://ct.example.org", token="secret")
     assert ct.Client("http://ct.example.org", allow_insecure_http=True).api_url == "http://ct.example.org/api"
 
@@ -259,14 +282,15 @@ def test_redirect_of_a_write_is_an_error(client):
 @pytest.mark.parametrize("option", ["timeout", "min_interval", "connect_timeout"])
 @pytest.mark.parametrize("value", [-1.0, float("nan"), float("inf"), 1e30])
 def test_invalid_durations_raise_value_error(option, value):
-    with pytest.raises(ValueError, match=f"{option} must be a non-negative number"):
+    with pytest.raises(ct.InvalidArgument, match=f"{option} must be a non-negative number"):
         ct.Client("https://x.church.tools", **{option: value})
 
 
 def test_responses_above_the_size_limit_raise(client):
     limited = ct.Client(client.api_url, max_response_size=50)
-    with pytest.raises(ct.TransportError, match="larger than the limit of 50 bytes"):
+    with pytest.raises(ct.ResponseTooLarge, match="larger than the limit of 50 bytes") as info:
         limited.persons.get(7)
+    assert info.value.limit == 50
 
 
 def test_unavailable_server_is_retried_for_get_but_not_post(client):

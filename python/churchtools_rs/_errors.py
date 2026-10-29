@@ -10,8 +10,30 @@ class ChurchToolsError(Exception):
     """Base class of all errors raised by churchtools_rs."""
 
 
+class InvalidArgument(ChurchToolsError, ValueError):
+    """An argument is invalid before anything is sent: the base URL, the token,
+    a timeout, or a path parameter that is empty, `.` or `..`."""
+
+
 class TransportError(ChurchToolsError):
     """The server could not be reached or the connection failed."""
+
+
+class ConnectError(TransportError):
+    """No connection to the server: wrong address, network down, or the
+    connect timeout expired."""
+
+
+class Timeout(TransportError):
+    """The request took longer than `timeout`."""
+
+
+class ResponseTooLarge(TransportError):
+    """The response body is larger than `max_response_size`."""
+
+    def __init__(self, message: str, limit: int) -> None:
+        super().__init__(message)
+        self.limit = limit
 
 
 class DecodeError(ChurchToolsError):

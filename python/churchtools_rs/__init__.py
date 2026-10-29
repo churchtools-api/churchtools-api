@@ -20,11 +20,15 @@ from ._errors import (
     BadRequest,
     ChurchToolsError,
     Conflict,
+    ConnectError,
     DecodeError,
     Forbidden,
+    InvalidArgument,
     NotFound,
     RedirectError,
+    ResponseTooLarge,
     ServerError,
+    Timeout,
     TransportError,
     Unauthorized,
     UnprocessableEntity,
@@ -70,8 +74,11 @@ class Client(Resources):
 
     @classmethod
     def from_env(cls, *, timeout: float = 30.0, min_interval: _t.Optional[float] = None) -> "Client":
-        """Reads `CT_URL` and `CT_TOKEN`."""
-        return cls(os.environ["CT_URL"], os.environ.get("CT_TOKEN"), timeout=timeout, min_interval=min_interval)
+        """Reads `CT_URL` and `CT_TOKEN`; raises `InvalidArgument` if `CT_URL` is not set."""
+        url = os.environ.get("CT_URL")
+        if not url:
+            raise InvalidArgument("invalid base URL: CT_URL is not set")
+        return cls(url, os.environ.get("CT_TOKEN"), timeout=timeout, min_interval=min_interval)
 
     def login_with_password(self, username: str, password: str) -> "Client":
         """Logs in with username and password; returns a client using that person's login token.
@@ -102,13 +109,17 @@ __all__ = [
     "ChurchToolsError",
     "Client",
     "Conflict",
+    "ConnectError",
     "CTModel",
     "DecodeError",
     "Forbidden",
+    "InvalidArgument",
     "NotFound",
     "Paginator",
     "RedirectError",
+    "ResponseTooLarge",
     "ServerError",
+    "Timeout",
     "TransportError",
     "Unauthorized",
     "UnprocessableEntity",

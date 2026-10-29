@@ -442,7 +442,12 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
         + "</ul></li>"
         for c in guide.CHAPTERS
     )
-    RUST_ERRORS = {"TransportError": "Error::Transport", "DecodeError": "Error::Decode", "RedirectError": "Error::Redirect"}
+    RUST_ERRORS = {
+        "TransportError": "Error::Transport / Read / ResponseTooLarge",
+        "DecodeError": "Error::Decode",
+        "RedirectError": "Error::Redirect",
+        "InvalidArgument": "Error::InvalidBaseUrl / InvalidToken / InvalidPath",
+    }
     errors = "".join(
         f"<tr><td>{code}</td><td><code>{both('ct.' + name, rs)}</code></td><td>{inline(text)}</td></tr>"
         for code, name, text in guide.ERRORS

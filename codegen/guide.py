@@ -627,7 +627,8 @@ ERRORS = [
     ("409", "Conflict", "Konflikt mit vorhandenen Daten, z. B. eine mögliche Dublette."),
     ("422", "UnprocessableEntity", "Die Daten sind formal falsch. Details stehen in `errors`."),
     ("5xx", "ServerError", "Fehler auf dem Server. Später erneut versuchen."),
-    ("–", "TransportError", "Die Instanz war nicht erreichbar (Netzwerk, falsche Adresse, Timeout)."),
+    ("–", "TransportError", "Die Verbindung ist fehlgeschlagen. Genauer: `ConnectError` (Instanz nicht erreichbar, falsche Adresse, Netzwerk), `Timeout` (Anfrage dauerte länger als `timeout`), `ResponseTooLarge` (Antwort größer als `max_response_size`)."),
+    ("–", "InvalidArgument", "Ein Argument ist ungültig, bevor etwas gesendet wird: Adresse der Instanz, Token, Timeout oder eine leere bzw. `..`-ID. Ist auch ein `ValueError`."),
     ("–", "DecodeError", "Die Antwort passt nicht zur API-Beschreibung. Bitte als Fehler melden."),
     ("3xx", "RedirectError", "Der Server leitet um (301, 302, 303). Der Client folgt nicht, weil die Anfrage sonst als GET ohne Body wiederholt würde. Meist stimmt die Adresse der Instanz nicht."),
 ]
