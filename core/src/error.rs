@@ -20,6 +20,9 @@ pub enum Error {
     },
     #[error("invalid base URL: {0}")]
     InvalidBaseUrl(String),
+    /// A path parameter was empty, `.` or `..`; the request was not sent.
+    #[error("invalid path (empty, `.` or `..` segment): {0}")]
+    InvalidPath(String),
 }
 
 impl From<ApiError> for Error {

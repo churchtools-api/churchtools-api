@@ -25,6 +25,7 @@ mod _core {
                     "DecodeError",
                     (err.to_string(), PyBytes::new(py, body.as_bytes())),
                 )?,
+                Error::InvalidPath(_) => return Ok(PyValueError::new_err(err.to_string())),
                 Error::Transport(_) | Error::InvalidBaseUrl(_) => {
                     errors.call_method1("TransportError", (err.to_string(),))?
                 }

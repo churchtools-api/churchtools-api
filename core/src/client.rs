@@ -1,7 +1,7 @@
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
-use percent_encoding::{AsciiSet, NON_ALPHANUMERIC, utf8_percent_encode};
+use percent_encoding::{AsciiSet, NON_ALPHANUMERIC, percent_decode_str, utf8_percent_encode};
 use reqwest::Method;
 use reqwest::blocking::RequestBuilder;
 use serde::Deserialize;
@@ -228,6 +228,7 @@ impl Client {
         query: &[(String, String)],
         with_body: impl Fn(RequestBuilder) -> Result<RequestBuilder>,
     ) -> Result<Vec<u8>> {
+        check_path(path)?;
         let mut attempt = 0;
         loop {
             if let Some(throttle) = &self.throttle {
@@ -406,6 +407,19 @@ fn normalize_base_url(base_url: &str) -> Result<String> {
     })
 }
 
+/// Rejects paths the URL parser would rewrite or that address a different
+/// endpoint: `.` and `..` segments (also percent-encoded, which the parser
+/// resolves as well) and empty segments, e.g. from an ID `".."` or `""`.
+fn check_path(path: &str) -> Result<()> {
+    let valid = path.strip_prefix('/').is_some_and(|rest| {
+        rest.split('/').all(|segment| {
+            let decoded = percent_decode_str(segment).decode_utf8_lossy();
+            !segment.is_empty() && decoded != "." && decoded != ".."
+        })
+    });
+    if valid { Ok(()) } else { Err(Error::InvalidPath(path.to_owned())) }
+}
+
 const PATH_SEGMENT: &AsciiSet = &NON_ALPHANUMERIC.remove(b'-').remove(b'_').remove(b'.').remove(b'~');
 
 /// Percent-encodes a value for use as a single path segment.
@@ -471,6 +485,25 @@ mod tests {
         }
         // First call is immediate, the next three wait one interval each.
         assert!(start.elapsed() >= Duration::from_millis(90));
+    }
+
+    #[test]
+    fn dot_and_empty_segments_are_rejected() {
+        let client = Client::new("http://127.0.0.1:9", None).unwrap();
+        for id in ["..", ".", ""] {
+            let path = format!("/groups/7/members/{}", encode_path_segment(id));
+            let err = client.request(Method::DELETE, &path, &[], None).unwrap_err();
+            assert!(matches!(err, Error::InvalidPath(_)), "{id:?}: {err}");
+        }
+        // Raw paths: the URL parser treats percent-encoded dots as dots, too.
+        assert!(check_path("/groups/7/members/%2e%2E").is_err());
+        assert!(check_path("/groups/7/members/.%2e").is_err());
+        assert!(check_path("persons").is_err());
+        assert!(check_path("/persons/").is_err());
+        assert!(check_path("/persons/a.b/..x").is_ok());
+        // An ID `%2e%2e` is encoded to `%252e%252e` and reaches the server literally.
+        assert_eq!(encode_path_segment("%2e%2e"), "%252e%252e");
+        assert!(check_path("/files/%252e%252e").is_ok());
     }
 
     #[test]

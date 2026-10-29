@@ -193,3 +193,16 @@ def test_min_interval_spaces_requests():
     assert time.monotonic() - start >= 0.4
     server.shutdown()
 
+
+
+@pytest.mark.parametrize("member_id", ["..", ".", ""])
+def test_dot_segments_in_ids_are_rejected(client, member_id):
+    # `..` would turn DELETE /groups/7/members/.. into DELETE /groups/7
+    with pytest.raises(ValueError, match="invalid path"):
+        client.groups.members.delete(7, member_id)
+    assert FakeServer.requests == []
+
+
+def test_percent_encoded_dot_segments_in_raw_paths_are_rejected(client):
+    with pytest.raises(ValueError, match="invalid path"):
+        client._core.request("DELETE", "/groups/7/members/%2e%2E", [])
