@@ -1,0 +1,6 @@
+# Only for benchmarks/bench.py, on top of the package itself (maturin develop --release).
+# Versions of the measurements in README.md.
+requests==2.34.2
+httpx==0.28.1
+urllib3==2.8.0
+orjson==3.13.0

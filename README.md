@@ -116,6 +116,11 @@ Doku-Seite und die Tests:
   Replay-Server aus (`tests/replay.py`); `mypy --strict` prüft zusätzlich alle Beispiele statisch.
 - Beispiele aus Einstieg, Grundlagen und Projekten laufen genauso, außer sie sprechen bewusst einen festen Server an.
 
+### Benchmarks
+
+[`benchmarks/`](benchmarks/README.md) misst einige typische Aufrufe offline gegen einen lokalen Server, in Rust und
+Python, und vergleicht das Python-Paket mit reinen Python-Clients (requests, httpx, urllib3).
+
 ### Tests gegen eine echte Instanz
 
 ChurchTools bietet eine kostenlose [Test-Instanz](https://church.tools/en/test-churchtools/) an, die nach drei Tagen
