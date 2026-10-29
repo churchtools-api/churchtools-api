@@ -147,7 +147,7 @@ Dabei aufgefallen:
 Weiterhin ohne Daten: Zuwendungsbestätigungen (auf der Demo fehlt die konfigurierte Vorlage `HtmlTemplate 14`),
 Sync-Konflikte und -Ausführungen (brauchen einen echten Sync-Lauf), externe Beiträge, Bestätigungs-Token aus E-Mails.
 
-### 6. Im Client gefunden und behoben
+### 4. Im Client gefunden und behoben
 
 - Zeitstempel wurden mit `+00:00` gesendet (siehe oben). Das betraf alle Schreibaufrufe mit Datum und Uhrzeit.
 - Modelle mit `alias=` erzwangen für Typprüfer die JSON-Namen im Konstruktor (`Booking(startDate=…)`). Jetzt gelten

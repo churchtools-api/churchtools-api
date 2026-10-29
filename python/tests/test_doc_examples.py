@@ -24,7 +24,7 @@ import doc_examples
 from replay import ROOT, ReplayServer, recorded
 
 CATALOG = {e["op_id"]: e for e in json.loads((ROOT / "python" / "tests" / "live" / "operations.json").read_text())}
-FIXED_SERVER = ("ct.Client(", "login_with_password")
+FIXED_SERVER = ("ct.Client(", "login_with_password", "from_path(")
 
 
 @pytest.fixture(scope="module")
@@ -59,7 +59,7 @@ def test_reference_example(op_id: str, server: ReplayServer, tmp_path: Path, mon
 def test_guide_example(section: str, server: ReplayServer, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     example = doc_examples.GUIDE[section]
     if any(marker in inspect.getsource(example) for marker in FIXED_SERVER):
-        pytest.skip("contacts a fixed server")
+        pytest.skip("contacts a fixed server or reads a local file")
     monkeypatch.setenv("CT_URL", server.url)
     monkeypatch.setenv("CT_TOKEN", "replay")
     monkeypatch.chdir(tmp_path)

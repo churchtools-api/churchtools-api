@@ -1,7 +1,7 @@
 """Live tests against a ChurchTools test instance.
 
 Run only when credentials are set; they are meant for throwaway demo instances
-(https://church.tools/de/demo), because the write tests create and delete data:
+(https://church.tools/en/test-churchtools/), because the write tests create and delete data:
 
     CT_URL=https://xyz.church.tools CT_USER=... CT_PASSWORD=... pytest tests/live
 

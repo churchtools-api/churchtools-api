@@ -424,9 +424,9 @@ def example_for(schemas: g.Schemas, op: g.Op) -> Example:
 # Check files
 
 
-# Guide snippets that talk to a fixed server or log in with a password are only
+# Guide snippets that talk to a fixed server, log in with a password or read local files are only
 # compiled / type-checked; all others also run against recorded responses.
-FIXED_SERVER = ("Client::new(", "ct.Client(", "login_with_password")
+FIXED_SERVER = ("Client::new(", "ct.Client(", "login_with_password", "from_path(")
 
 
 def runs_offline(code: str) -> bool:

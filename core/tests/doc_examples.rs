@@ -215,8 +215,68 @@ fn guide_weglassen() {
     example_9(&replay_client()).unwrap();
 }
 
-// guide: projekt-monatsplan
+// guide: uploads
 fn example_10(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+    let file = Upload::from_path("brief.pdf")?;
+    client.files().create("person", 7, &[file])?;
+
+    let note = Upload::new("notiz.txt", b"Hallo".to_vec(), "text/plain");
+    client.files().create("person", 7, &[note])?;
+
+    let data = client.groups().members().get_export(42)?;
+    std::fs::write("mitglieder.xlsx", &data)?;
+    Ok(())
+}
+
+// guide: zeitlimits
+fn example_11(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+    use std::time::Duration;
+
+    let client = Client::builder("https://meinegemeinde.church.tools")
+        .token(Some("DEIN_TOKEN".into()))
+        .timeout(Duration::from_secs(300))
+        .connect_timeout(Duration::from_secs(5))
+        .max_response_size(1 << 30)
+        .build()?;
+    Ok(())
+}
+
+#[test]
+fn guide_zeitlimits() {
+    example_11(&replay_client()).unwrap();
+}
+
+// guide: rohzugriff
+fn example_12(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+    let query = vec![("include[]".to_string(), "tags".to_string())];
+    let person: models::Person = client.request_data(Method::GET, "/persons/7", &query, None)?;
+
+    let body = serde_json::json!({ "departmentIds": [1], "firstName": "Ben" });
+    client.request(Method::POST, "/persons", &[], Some(&body))?;
+    Ok(())
+}
+
+#[test]
+fn guide_rohzugriff() {
+    example_12(&replay_client()).unwrap();
+}
+
+// guide: versionen
+fn example_13(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+    let info = client.info().get()?;
+    if info.version.as_deref() != Some(churchtools_core::API_VERSION) {
+        println!("Instanz {:?}, Client erzeugt für {}", info.version, churchtools_core::API_VERSION);
+    }
+    Ok(())
+}
+
+#[test]
+fn guide_versionen() {
+    example_13(&replay_client()).unwrap();
+}
+
+// guide: projekt-monatsplan
+fn example_14(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use churchtools_core::chrono::Local;
 
     let calendars = client.calendars().list()?;
@@ -238,11 +298,11 @@ fn example_10(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_monatsplan() {
-    example_10(&replay_client()).unwrap();
+    example_14(&replay_client()).unwrap();
 }
 
 // guide: projekt-dienstplan
-fn example_11(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_15(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use std::collections::HashMap;
 
     let dienste: HashMap<i64, String> =
@@ -267,11 +327,11 @@ fn example_11(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_dienstplan() {
-    example_11(&replay_client()).unwrap();
+    example_15(&replay_client()).unwrap();
 }
 
 // guide: projekt-geburtstage
-fn example_12(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_16(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use churchtools_core::chrono::{Days, Local};
 
     let heute = Local::now().date_naive();
@@ -290,11 +350,11 @@ fn example_12(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_geburtstage() {
-    example_12(&replay_client()).unwrap();
+    example_16(&replay_client()).unwrap();
 }
 
 // guide: projekt-csv
-fn example_13(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_17(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let mut csv = String::from("Name;Status;Mitglied seit\n");
     for member in client.groups().members().list(42)? {
         let seit = member.member_start_date.map(|d| d.to_string()).unwrap_or_default();
@@ -306,11 +366,11 @@ fn example_13(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_csv() {
-    example_13(&replay_client()).unwrap();
+    example_17(&replay_client()).unwrap();
 }
 
 // guide: projekt-neue-person
-fn example_14(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_18(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let body = models::PostPersonsBody {
         department_ids: vec![1],
         first_name: Some("Ben".into()),
@@ -331,6 +391,19 @@ fn example_14(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_neue_person() {
-    example_14(&replay_client()).unwrap();
+    example_18(&replay_client()).unwrap();
+}
+
+// guide: demo-instanz
+fn example_19(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+    use std::{env, time::Duration};
+
+    let demo = Client::new(&env::var("CT_URL")?, None)?.with_min_interval(Duration::from_millis(250));
+    let client = demo.login_with_password(&env::var("CT_USER")?, &env::var("CT_PASSWORD")?)?;
+
+    let me = client.whoami().get()?;
+    println!("Angemeldet als {:?} {:?}", me.first_name, me.last_name);
+    println!("{} Personen in der Demo", client.persons().list()?.len());
+    Ok(())
 }
 

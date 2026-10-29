@@ -16,7 +16,7 @@ import generate as g
 import guide
 
 # Snippets that are not Python/Rust code (shell, Cargo.toml) are not type-checked.
-UNCHECKED_SECTIONS = {"installation"}
+UNCHECKED_SECTIONS = {"installation", "projekt-tests"}
 METHOD_ORDER = {"list": 0, "get": 1, "create": 2, "update": 3, "patch": 4, "delete": 5}
 
 

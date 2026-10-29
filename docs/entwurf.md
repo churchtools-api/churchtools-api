@@ -153,7 +153,8 @@ oder es bleibt bewusst außerhalb und gehört nur zu Monatsplan.
 1. **API-Stil:** A (Ressourcen)
 2. **Rückgabetypen:** Pydantic
 3. **Sync/Async:** erst sync; Async später als zweite generierte Variante
-4. **Umfang:** zunächst Event, Calendar, Service & Service Groups, Person, Group
+4. **Umfang:** zunächst Event, Calendar, Service & Service Groups, Person, Group. Später auf die
+   ganze API erweitert (849 Operationen, siehe README).
 5. **Spec-Version:** Die Spec hängt nur an der ChurchTools-Version (Demo und eigene
    Instanz sind bei 3.138.0 identisch). Der Generator schreibt die Version in die
    Kopfzeile des generierten Codes.

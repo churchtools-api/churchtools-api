@@ -64,16 +64,25 @@ Wähle oben rechts deine Sprache. Alle Beispiele auf dieser Seite wechseln mit.
             "installation",
             "Installation",
             """
-Das Python-Paket enthält einen kompilierten Rust-Kern und wird mit [maturin](https://www.maturin.rs) gebaut.
-In Rust bindest du die Crate `churchtools-core` als Abhängigkeit ein.
+Noch gibt es keine fertigen Pakete auf PyPI und crates.io. Du installierst direkt aus dem Quellcode:
+
+- **Python:** `pip` baut das Paket mit [maturin](https://www.maturin.rs). Dafür braucht es eine
+  [Rust-Toolchain](https://rustup.rs) (ab 1.88) und Python ab 3.10. Der Bau dauert beim ersten Mal ein paar Minuten.
+- **Rust:** Du bindest die Crate `churchtools-core` als Git- oder Pfad-Abhängigkeit ein.
+
+Wenn die Pakete veröffentlicht sind, reicht `pip install churchtools-rs` bzw. `cargo add churchtools-core`.
 """,
             python="""\
-# im Ordner python/ des Projekts
-pip install maturin
-maturin develop          # baut und installiert churchtools-rs ins aktive venv""",
+# aus einem Checkout des Projekts
+pip install ./churchtools-rs/python
+
+# oder direkt aus dem Git-Repository
+pip install "churchtools-rs @ git+https://<repository>#subdirectory=python\"""",
             rust="""\
 # Cargo.toml
 [dependencies]
+churchtools-core = { git = "https://<repository>" }
+# oder aus einem Checkout
 churchtools-core = { path = "../churchtools-rs/core" }""",
         ),
         Section(
@@ -459,6 +468,197 @@ let mut body = models::PatchPersonsIdBody::default();
 body.extra.insert("konfession".into(), "evangelisch".into());
 client.persons().patch(7, &body)?;""",
         ),
+        Section(
+            "uploads",
+            "Dateien hochladen und herunterladen",
+            """
+Endpunkte mit Datei-Upload nehmen eine Liste von `Upload`-Objekten. `Upload.from_path` liest eine Datei und
+leitet den Dateityp aus der Endung ab; `Upload(name, inhalt, typ)` nimmt Bytes aus dem Speicher.
+
+Downloads (PDF, CSV, Excel, Bilder) kommen als Bytes zurück, die du direkt speichern kannst.
+""",
+            python="""\
+import churchtools_rs as ct
+
+# an eine Person anhängen
+client.files.create("person", "7", files=[ct.Upload.from_path("brief.pdf")])
+
+# aus dem Speicher
+client.files.create("person", "7", files=[ct.Upload("notiz.txt", b"Hallo", "text/plain")])
+
+# herunterladen
+data = client.groups.members.get_export(42)
+with open("mitglieder.xlsx", "wb") as f:
+    f.write(data)""",
+            rust="""\
+let file = Upload::from_path("brief.pdf")?;
+client.files().create("person", 7, &[file])?;
+
+let note = Upload::new("notiz.txt", b"Hallo".to_vec(), "text/plain");
+client.files().create("person", 7, &[note])?;
+
+let data = client.groups().members().get_export(42)?;
+std::fs::write("mitglieder.xlsx", &data)?;""",
+        ),
+        Section(
+            "zeitlimits",
+            "Zeitlimits und große Antworten",
+            """
+Ohne weitere Angaben gelten diese Grenzen:
+
+| Einstellung | Standard | bedeutet |
+|---|---|---|
+| `timeout` | 30 s | die ganze Anfrage inklusive Antwort |
+| `connect_timeout` | 10 s | nur der Verbindungsaufbau, höchstens `timeout` |
+| `max_response_size` | 256 MiB | größere Antworten brechen mit `ResponseTooLarge` ab |
+
+Für große Exporte und Uploads lohnt ein längeres `timeout`. Ein kurzes `connect_timeout` sorgt dafür,
+dass eine nicht erreichbare Instanz schnell auffällt. Zu langsame Anfragen enden mit `Timeout`, fehlende
+Verbindungen mit `ConnectError`; in Rust prüfst du `is_timeout()` und `is_connect()`.
+""",
+            python="""\
+client = ct.Client(
+    "https://meinegemeinde.church.tools",
+    token="DEIN_TOKEN",
+    timeout=300,            # große Exporte
+    connect_timeout=5,
+    max_response_size=1024**3,
+)""",
+            rust="""\
+use std::time::Duration;
+
+let client = Client::builder("https://meinegemeinde.church.tools")
+    .token(Some("DEIN_TOKEN".into()))
+    .timeout(Duration::from_secs(300))
+    .connect_timeout(Duration::from_secs(5))
+    .max_response_size(1 << 30)
+    .build()?;""",
+        ),
+        Section(
+            "rohzugriff",
+            "Endpunkte ohne generierte Methode",
+            """
+Manche Endpunkte stehen nicht in der API-Beschreibung, etwa ganz neue oder interne. Für sie gibt es
+`client.request`: Methode, Pfad unterhalb von `/api`, Query und JSON-Body. Zurück kommen die rohen Bytes,
+Fehler sind dieselben Ausnahmen wie sonst. Login, Drosselung und Wiederholungen gelten auch hier.
+
+Die Antwort wandelst du mit `json.loads` oder direkt in ein Modell um.
+""",
+            python="""\
+import json
+
+body = client.request("GET", "/persons/7", query={"include": ["tags"]})
+person = ct.models.Person.model_validate(json.loads(body)["data"])
+
+client.request("POST", "/persons", json={"departmentIds": [1], "firstName": "Ben"})""",
+            rust="""\
+let query = vec![("include[]".to_string(), "tags".to_string())];
+let person: models::Person = client.request_data(Method::GET, "/persons/7", &query, None)?;
+
+let body = serde_json::json!({ "departmentIds": [1], "firstName": "Ben" });
+client.request(Method::POST, "/persons", &[], Some(&body))?;""",
+        ),
+        Section(
+            "versionen",
+            "ChurchTools-Versionen",
+            """
+Der Client ist aus der API-Beschreibung einer bestimmten ChurchTools-Version erzeugt. Welche das ist, steht in
+`API_VERSION` (z. B. `3.138.0`). Gegen andere Versionen funktioniert er, soweit die API gleich ist:
+
+- **Neue Felder** einer neueren Version gehen nicht verloren: Sie landen in `model_extra` bzw. `extra`.
+- **Neue Werte** in Feldern mit fester Auswahl führen nicht zu Fehlern, Antworten erlauben jeden `str`.
+- **Fehlende Endpunkte** einer älteren Version antworten mit `404`.
+- **Geänderte Pflichtfelder** können ein `DecodeError` auslösen. Dann hilft eine neuere Version des Clients.
+
+Die eigene Version (`__version__`, in Rust die Crate-Version) folgt SemVer. Was sich ändert, steht im
+`CHANGELOG.md`. Neue ChurchTools-Versionen bringen meist eine neue Minor-Version.
+""",
+            python="""\
+import churchtools_rs as ct
+
+info = client.info.get()
+if info.version != ct.API_VERSION:
+    print(f"Instanz {info.version}, Client erzeugt für {ct.API_VERSION} (Version {ct.__version__})")""",
+            rust="""\
+let info = client.info().get()?;
+if info.version.as_deref() != Some(churchtools_core::API_VERSION) {
+    println!("Instanz {:?}, Client erzeugt für {}", info.version, churchtools_core::API_VERSION);
+}""",
+        ),
+    ],
+)
+
+TESTING = Chapter(
+    "testen",
+    "Testen",
+    "Skripte ausprobieren, ohne echte Gemeindedaten anzufassen.",
+    [
+        Section(
+            "demo-instanz",
+            "Mit einer Demo-Instanz testen",
+            """
+Für eigene Versuche bietet ChurchTools eine kostenlose [Test-Instanz](https://church.tools/en/test-churchtools/)
+an. Sie ist mit erfundenen Beispieldaten einer Gemeinde gefüllt, du bist darin Administrator, und nach drei Tagen
+wird sie gelöscht. Dort kannst du auch schreibende Aufrufe ausprobieren, ohne etwas kaputtzumachen.
+
+1. Auf der Seite oben eine Test-Instanz anfordern. Adresse, Benutzername und Passwort kommen per E-Mail.
+2. Die Zugangsdaten als Umgebungsvariablen setzen, nicht in den Quelltext schreiben.
+3. Im Skript mit `login_with_password` anmelden und `min_interval` setzen, damit die Instanz nicht mit
+   Anfragen überflutet wird.
+
+`login_with_password` holt das dauerhafte Login-Token des Benutzers. Für eine Demo-Instanz ist das in Ordnung;
+in einer echten Instanz legst du besser einen eigenen Benutzer mit passenden Rechten an und speicherst dessen Token.
+
+Teste nie gegen eine Produktivinstanz, wenn dein Skript Daten anlegt oder löscht.
+""",
+            python="""\
+import os
+import churchtools_rs as ct
+
+demo = ct.Client(os.environ["CT_URL"], min_interval=0.25)
+client = demo.login_with_password(os.environ["CT_USER"], os.environ["CT_PASSWORD"])
+
+me = client.whoami.get()
+print(f"Angemeldet als {me.first_name} {me.last_name}")
+print(sum(1 for _ in client.persons.list()), "Personen in der Demo")""",
+            rust="""\
+use std::{env, time::Duration};
+
+let demo = Client::new(&env::var("CT_URL")?, None)?.with_min_interval(Duration::from_millis(250));
+let client = demo.login_with_password(&env::var("CT_USER")?, &env::var("CT_PASSWORD")?)?;
+
+let me = client.whoami().get()?;
+println!("Angemeldet als {:?} {:?}", me.first_name, me.last_name);
+println!("{} Personen in der Demo", client.persons().list()?.len());""",
+        ),
+        Section(
+            "projekt-tests",
+            "Die Tests dieses Projekts gegen eine Demo-Instanz",
+            """
+Das Projekt prüft jeden Endpunkt gegen eine echte Instanz. Diese Live-Tests legen Daten an und löschen sie
+wieder, deshalb laufen sie nur gegen eine Demo-Instanz. Sie dauern etwa vier Minuten.
+
+- `pytest tests/live` ruft jeden GET-Endpunkt auf und spielt Schreib-Szenarien durch (anlegen, ändern,
+  löschen). Ohne `CT_URL` und Zugangsdaten werden sie übersprungen.
+- Die Antworten landen in `fixtures/recorded/`. Zugangsdaten und der Name der Instanz werden dabei ersetzt
+  (`gemeinde.example`). Aus den Aufzeichnungen entstehen die Offline-Tests, die ohne Netz laufen.
+- `python tests/live/summary.py` fasst das Ergebnis zusammen, `fixtures/live-results.json` hält es pro
+  Endpunkt fest. Die [Testabdeckung](#testabdeckung) dieser Seite stammt daraus.
+
+Vor dem Einchecken neuer Aufzeichnungen lohnt ein Blick hinein: Die Demo enthält neben den erfundenen
+Personen auch öffentliche Inhalte von ChurchTools, etwa Blog- und News-Beiträge.
+""",
+            python="""\
+# im Ordner python/, mit den Zugangsdaten der Demo
+export CT_URL=https://xyz.church.tools CT_USER=... CT_PASSWORD=...
+export CT_MIN_INTERVAL=0.25
+pytest tests/live
+python tests/live/summary.py""",
+            rust="""\
+# Login, Drosselung und Kalender aus Rust
+export CT_URL=https://xyz.church.tools CT_USER=... CT_PASSWORD=...
+cargo test -p churchtools-core --test live -- --ignored""",
+        ),
     ],
 )
 
@@ -662,7 +862,7 @@ println!("{:?} angelegt (ID {})", person.first_name, person.id);""",
     ],
 )
 
-CHAPTERS = [START, BASICS, PROJECTS]
+CHAPTERS = [START, BASICS, PROJECTS, TESTING]
 
 ERRORS = [
     ("400", "BadRequest", "Die Anfrage ist ungültig, z. B. ein Pflichtfeld fehlt."),
