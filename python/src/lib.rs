@@ -65,11 +65,6 @@ mod _core {
         })
     }
 
-    fn parse_body(body: Option<&str>) -> PyResult<Option<serde_json::Value>> {
-        body.map(serde_json::from_str)
-            .transpose()
-            .map_err(|e| PyValueError::new_err(format!("request body is not valid JSON: {e}")))
-    }
 
     #[pyclass(frozen, module = "churchtools_rs._core")]
     struct Client {
@@ -130,8 +125,9 @@ mod _core {
             body: Option<&str>,
         ) -> PyResult<Bound<'py, PyBytes>> {
             let method = parse_method(method)?;
-            let body = parse_body(body)?;
-            let result = py.detach(|| self.inner.request(method, path, &query, body.as_ref()));
+            // The body is JSON from `json.dumps`; it is sent without parsing it again.
+            let result =
+                py.detach(|| self.inner.request_json_bytes(method, path, &query, body.map(str::as_bytes)));
             match result {
                 Ok(bytes) => Ok(PyBytes::new(py, &bytes)),
                 Err(e) => Err(to_py_err(py, e)),

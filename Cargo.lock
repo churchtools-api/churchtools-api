@@ -139,7 +139,6 @@ version = "0.1.0"
 dependencies = [
  "churchtools-core",
  "pyo3",
- "serde_json",
 ]
 
 [[package]]

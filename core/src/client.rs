@@ -324,6 +324,23 @@ impl Client {
         })
     }
 
+    /// Like [`request`](Self::request), with a body that is already encoded
+    /// JSON; it is sent as is, without parsing it again.
+    pub fn request_json_bytes(
+        &self,
+        method: Method,
+        path: &str,
+        query: &[(String, String)],
+        body: Option<&[u8]>,
+    ) -> Result<Vec<u8>> {
+        self.send(method, path, query, |builder| match body {
+            Some(body) => Ok(builder
+                .header(reqwest::header::CONTENT_TYPE, "application/json")
+                .body(body.to_vec())),
+            None => Ok(builder),
+        })
+    }
+
     /// Sends a `multipart/form-data` request: the text fields of `form` plus one
     /// part named `file_field` (e.g. `files[]`) per file.
     pub fn request_multipart(
@@ -452,9 +469,23 @@ impl Client {
 
     /// Fetches all pages and concatenates their `data` arrays.
     pub fn collect_pages<T: DeserializeOwned>(&self, path: &str, query: Query) -> Result<Vec<T>> {
+        #[derive(Deserialize)]
+        struct Page<T> {
+            data: Vec<T>,
+            // Kept loose: an unexpected `meta` only ends the pagination.
+            meta: Option<serde_json::Value>,
+        }
+        let query: Query = query.into_iter().filter(|(k, _)| k != "page").collect();
         let mut items = Vec::new();
-        for page in self.pages(path, query) {
-            items.extend(decode::<Envelope<Vec<T>>>(&page?)?.data);
+        let mut next = Some(1);
+        while let Some(page) = next {
+            let mut page_query = query.clone();
+            page_query.push(("page".into(), page.to_string()));
+            // One pass over the body for both the items and the page info.
+            let body: Page<T> = decode(&self.request(Method::GET, path, &page_query, None)?)?;
+            let meta = body.meta.and_then(|m| serde_json::from_value(m).ok());
+            next = next_page(meta, !body.data.is_empty(), page);
+            items.extend(body.data);
         }
         Ok(items)
     }
@@ -500,17 +531,29 @@ fn read_body(response: reqwest::blocking::Response, limit: u64) -> Result<Vec<u8
     Ok(bytes)
 }
 
+#[derive(Deserialize)]
+struct Meta {
+    pagination: Option<Pagination>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct Pagination {
+    current: u64,
+    last_page: u64,
+}
+
+/// Page number after `requested`, or `None` on the last page.
+fn next_page(meta: Option<Meta>, has_items: bool, requested: u64) -> Option<u64> {
+    let pagination = meta?.pagination?;
+    // Guard against servers that echo a page number we did not ask for, and
+    // against a `lastPage` that never comes (an empty page ends the list).
+    (has_items && pagination.current == requested && pagination.current < pagination.last_page)
+        .then_some(requested + 1)
+}
+
+/// [`next_page`] for a raw body; skips over `data` without decoding it.
 fn next_page_number(body: &[u8], requested: u64) -> Option<u64> {
-    #[derive(Deserialize)]
-    struct Meta {
-        pagination: Option<Pagination>,
-    }
-    #[derive(Deserialize)]
-    #[serde(rename_all = "camelCase")]
-    struct Pagination {
-        current: u64,
-        last_page: u64,
-    }
     #[derive(Deserialize)]
     struct Body {
         meta: Option<Meta>,
@@ -518,11 +561,7 @@ fn next_page_number(body: &[u8], requested: u64) -> Option<u64> {
         data: HasItems,
     }
     let body = serde_json::from_slice::<Body>(body).ok()?;
-    let pagination = body.meta?.pagination?;
-    // Guard against servers that echo a page number we did not ask for, and
-    // against a `lastPage` that never comes (an empty page ends the list).
-    (body.data.0 && pagination.current == requested && pagination.current < pagination.last_page)
-        .then_some(requested + 1)
+    next_page(body.meta, body.data.0, requested)
 }
 
 /// Whether `data` is anything but an empty list, without keeping its items.
@@ -859,6 +898,31 @@ mod tests {
         assert_eq!(next_page_number(empty, 1), None);
         let map = br#"{"data":{"a":1},"meta":{"pagination":{"current":1,"lastPage":2}}}"#;
         assert_eq!(next_page_number(map, 1), Some(2));
+    }
+
+    #[test]
+    fn collect_pages_decodes_each_page_once_and_follows_meta() {
+        let page = |c: u64, items: &str| {
+            reply("200 OK", "", &format!(r#"{{"data":[{items}],"meta":{{"pagination":{{"current":{c},"lastPage":3}}}}}}"#))
+        };
+        let (url, seen) = serve(vec![page(1, "1,2"), page(2, "3"), page(3, "4")]);
+        let client = Client::new(&url, None).unwrap();
+        let query = vec![("limit".into(), "2".into()), ("page".into(), "9".into())];
+        let items: Vec<i64> = client.collect_pages("/x", query).unwrap();
+        assert_eq!(items, [1, 2, 3, 4]);
+        assert_eq!(seen.lock().unwrap().len(), 3);
+        // `meta` that is not an object only ends the pagination.
+        let (url, _) = serve(vec![reply("200 OK", "", r#"{"data":[1],"meta":[]}"#)]);
+        let items: Vec<i64> = Client::new(&url, None).unwrap().collect_pages("/x", vec![]).unwrap();
+        assert_eq!(items, [1]);
+    }
+
+    #[test]
+    fn json_bytes_are_sent_unchanged() {
+        let (url, _) = serve(vec![reply("200 OK", "", r#"{"data":1}"#)]);
+        let client = Client::new(&url, None).unwrap();
+        let body = br#"{"firstName": "Ben"}"#;
+        assert_eq!(client.request_json_bytes(Method::POST, "/x", &[], Some(body)).unwrap(), br#"{"data":1}"#);
     }
 
     #[test]
