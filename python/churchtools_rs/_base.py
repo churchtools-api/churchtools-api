@@ -11,6 +11,7 @@ import mimetypes
 import os
 import pathlib
 import typing as _t
+import warnings
 from urllib.parse import quote
 
 from pydantic import BaseModel, BeforeValidator, ConfigDict, TypeAdapter
@@ -134,6 +135,12 @@ def _body(fields: _t.Any, extra: _t.Optional[_t.Dict[str, _t.Any]] = None) -> _t
         fields = {k: v for k, v in fields.items() if v is not UNSET}
         fields.update(extra or {})
     return json.dumps(_jsonable(fields))
+
+
+def _warn_deprecated(argument: str, hint: str) -> None:
+    """Warns that a generated method was called with an argument the API deprecates."""
+    message = f"argument {argument!r} is deprecated in the ChurchTools API"
+    warnings.warn(f"{message}. {hint}" if hint else message, DeprecationWarning, stacklevel=3)
 
 
 def _query_value(value: _t.Any) -> str:

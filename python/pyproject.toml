@@ -6,7 +6,7 @@ build-backend = "maturin"
 name = "churchtools-rs"
 description = "Synchronous ChurchTools REST API client with a Rust core and Pydantic models"
 requires-python = ">=3.10"
-dependencies = ["pydantic>=2.11"]
+dependencies = ["pydantic>=2.11", "typing_extensions>=4.12"]
 dynamic = ["version"]
 classifiers = [
     "Programming Language :: Rust",

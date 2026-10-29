@@ -225,8 +225,12 @@ def unique(name: str, taken: set[str]) -> str:
     return candidate
 
 
+# Summaries the spec has not filled in yet, e.g. "TODO 200".
+PLACEHOLDER_DOC = re.compile(r"\s*(TODO|FIXME|TBD)\b[\s\d]*", re.IGNORECASE)
+
+
 def clean_doc(text: str | None) -> str:
-    if not text:
+    if not text or PLACEHOLDER_DOC.fullmatch(text):
         return ""
     text = re.sub(r"<br\s*/?>", "\n", text)
     text = re.sub(r"<[^>]+>", "", text)
@@ -453,6 +457,7 @@ class Param:
     required: bool
     doc: str
     example: object = None
+    deprecated: bool = False
 
 
 @dataclass
@@ -507,6 +512,7 @@ def collect_ops(spec: dict, schemas: Schemas) -> list[Op]:
                         required=p.get("required", False) or p["in"] == "path",
                         doc=clean_doc(p.get("description") or p.get("schema", {}).get("description")),
                         example=p.get("example", p.get("schema", {}).get("example")),
+                        deprecated=bool(p.get("deprecated")),
                     )
                 )
             path_order = re.findall(r"{([^}]+)}", path)
@@ -788,8 +794,9 @@ def write_python_resources(ops: list[Op], header: str, out: Path) -> None:
         "from __future__ import annotations\n",
         "import datetime as _dt",
         "import typing as _t\n",
+        "from typing_extensions import deprecated as _deprecated\n",
         "from . import models",
-        "from ._base import UNSET, Paginator, Resource, StrMap, UnsetType, Upload, _body, _query, _seg\n",
+        "from ._base import UNSET, Paginator, Resource, StrMap, UnsetType, Upload, _body, _query, _seg, _warn_deprecated\n",
     ]
     by_chain: dict[tuple, list[Op]] = {}
     for op in ops:
@@ -836,6 +843,22 @@ class PyParam:
     required: bool
     doc: str
     example: object = None
+    deprecated: bool = False
+
+
+def deprecation_hint(doc: str) -> str:
+    """The sentence of a description that names the replacement, e.g. "Use `format`"."""
+    m = re.search(r"(?:^|(?<=[.!?]\s))((?:Use|Please use|Replaced by)\b[^.!?]*[.!?]?)", " ".join(doc.split()))
+    return m.group(1) if m else ""
+
+
+def deprecation_message(op: Op) -> str:
+    hint = deprecation_hint(op.doc)
+    return f"{op.method.upper()} {op.path} is deprecated in the ChurchTools API." + (f" {hint}" if hint else "")
+
+
+def deprecated_doc(doc: str, deprecated: bool) -> str:
+    return f"Deprecated. {doc}".rstrip() if deprecated else doc
 
 
 def python_params(op: Op) -> list[PyParam]:
@@ -845,11 +868,16 @@ def python_params(op: Op) -> list[PyParam]:
     for p in op.params:
         if p.location == "query" and op.paginated and p.name == "page":
             continue
-        out.append(PyParam(p.location, p.name, unique(py_ident(p.name), taken), p.type, p.required, p.doc, p.example))
+        out.append(
+            PyParam(p.location, p.name, unique(py_ident(p.name), taken), p.type, p.required, p.doc, p.example, p.deprecated)
+        )
     if op.body_model is not None:
         for f, attr in zip(op.body_model.fields, py_field_names(op.body_model)):
             out.append(
-                PyParam("field", f.json_name, unique(attr, taken), f.type, f.required and op.body_required, f.doc, f.example)
+                PyParam(
+                    "field", f.json_name, unique(attr, taken), f.type, f.required and op.body_required, f.doc, f.example,
+                    f.deprecated,
+                )
             )
     elif op.body is not None:
         out.append(PyParam("body", "", "body", op.body, op.body_required, ""))
@@ -869,6 +897,7 @@ def python_method(op: Op) -> list[str]:
     upload_expr = ""
     pairs = []
     body_expr = "None"
+    warn_lines = []
     for p in python_params(op):
         ann = model_type_for_resources(p.type, "strict")
         if p.kind == "path":
@@ -899,9 +928,13 @@ def python_method(op: Op) -> list[str]:
             else:
                 sig_kw.append((1, f"body: _t.Optional[{ann}] = None"))
             body_expr = "_body(body)"
-        doc = with_allowed(p.doc, p.type)
+        doc = deprecated_doc(with_allowed(p.doc, p.type), p.deprecated)
         if doc:
             doc_args.append((p.py, doc))
+        if p.deprecated and not p.required and p.kind in ("query", "field"):
+            unset = "UNSET" if p.kind == "field" else "None"
+            warn_lines.append(f"        if {p.py} is not {unset}:")
+            warn_lines.append(f"            _warn_deprecated({p.py!r}, {deprecation_hint(p.doc)!r})")
     if op.body_model is not None:
         sig_kw.append((1, "extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None"))
         body_expr = "_body({" + ", ".join(pairs) + "}, extra_body)"
@@ -917,9 +950,10 @@ def python_method(op: Op) -> list[str]:
     else:
         ret = "None"
 
-    doc_lines = [op.summary or op.op_id, "", f"`{op.method.upper()} {op.path}`"]
+    doc_lines = ([op.summary, ""] if op.summary else []) + [f"`{op.method.upper()} {op.path}`"]
     if op.deprecated:
-        doc_lines.append("\nDeprecated.")
+        hint = deprecation_hint(op.doc)
+        doc_lines.append(f"\nDeprecated.{' ' + hint if hint else ''}")
     if op.doc and op.doc != op.summary:
         doc_lines += ["", op.doc]
     if doc_args:
@@ -932,10 +966,12 @@ def python_method(op: Op) -> list[str]:
     if example is not None:
         doc_lines += ["", "Example::", ""] + [f"    {line}" if line else "" for line in example.python.splitlines()]
 
-    out = [f"    def {op.name}("]
+    out = [f"    @_deprecated({deprecation_message(op)!r})"] if op.deprecated else []
+    out.append(f"    def {op.name}(")
     out += [f"        {p}," for p in params]
     out.append(f"    ) -> {ret}:")
     out.append(py_docstring("\n".join(doc_lines), "        ").rstrip("\n"))
+    out += warn_lines
     q = "_query([" + ", ".join(query_items) + "])" if query_items else "[]"
     upload_kw = ""
     if upload_expr:
@@ -1069,7 +1105,7 @@ def write_rust_models(schemas: Schemas, header: str, out: Path) -> None:
             if attrs:
                 lines.append(f"    #[serde({', '.join(attrs)})]")
             if f.deprecated:
-                lines.append("    #[deprecated]")
+                lines.append(f"    #[deprecated = {json.dumps(deprecation_hint(f.doc) or 'deprecated in the ChurchTools API')}]")
             lines.append(f"    pub {ident}: {ty},")
         lines.append("    /// Fields not described by the spec, e.g. instance-specific DB fields.")
         lines.append("    #[serde(flatten)]")
@@ -1192,7 +1228,9 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
         for p in query_params:
             ident = unique(rust_ident(p.name), qtaken)
             idents.append((ident, p))
-            struct_lines += rust_doc(with_allowed(p.doc, p.type), "    ")
+            struct_lines += rust_doc(deprecated_doc(with_allowed(p.doc, p.type), p.deprecated), "    ")
+            if p.deprecated:
+                struct_lines.append(f"    #[deprecated = {json.dumps(deprecation_hint(p.doc) or 'deprecated in the ChurchTools API')}]")
             struct_lines.append(f"    pub {ident}: Option<{rust_param_type(p.type)}>,")
         struct_lines.append("}\n")
         struct_lines.append(f"impl {query_struct} {{")
@@ -1242,7 +1280,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
     else:
         rt = "()"
 
-    doc = [op.summary or op.op_id, "", f"`{op.method.upper()} {op.path}`"]
+    doc = ([op.summary, ""] if op.summary else []) + [f"`{op.method.upper()} {op.path}`"]
     if op.doc and op.doc != op.summary:
         doc += ["", op.doc]
     example_doc = rust_doctest(op)
@@ -1255,7 +1293,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
         lines += rust_doc("\n".join(doc + ["", f"Use [`Self::{op.name}_with`] to pass query parameters."] + example_doc), "    ")
         example_doc = []  # the example stays on the short variant
         if op.deprecated:
-            lines.append("    #[deprecated]")
+            lines.append(f"    #[deprecated = {json.dumps(deprecation_message(op))}]")
         lines.append(f"    pub fn {name}({', '.join(simple_args)}) -> Result<{rt}> {{")
         call_args = [*forward, *(["body"] if op.body is not None else []), "&Default::default()"]
         if options == "query":
@@ -1268,7 +1306,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
         doc = doc[:1] + ["", f"Like [`Self::{op.name}`], with {'form fields' if options == 'form' else 'query parameters'}."] + doc[1:]
     lines += rust_doc("\n".join(doc + example_doc), "    ")
     if op.deprecated:
-        lines.append("    #[deprecated]")
+        lines.append(f"    #[deprecated = {json.dumps(deprecation_message(op))}]")
     lines.append(f"    pub fn {name}({', '.join(args)}) -> Result<{rt}> {{")
     path = f'format!("{path_fmt}", {", ".join(path_args)})' if path_args else f'"{path_fmt}".to_owned()'
     lines.append(f"        let path = {path};")

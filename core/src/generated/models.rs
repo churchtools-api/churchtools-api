@@ -497,7 +497,7 @@ pub struct AccountType {
     pub id: i64,
     /// Legacy flag: true when balanceType is non-null. Use balanceType instead.
     #[serde(rename = "isBalanceAccount", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use balanceType instead."]
     pub is_balance_account: Option<bool>,
     pub meta: MetaDataEntityId,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
@@ -781,38 +781,38 @@ pub struct Address {
     pub deprecated: AddressDeprecated,
     /// Use `latitude` instead
     #[serde(rename = "geoLat", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `latitude` instead"]
     pub geo_lat: Option<String>,
     /// Use `longitude` instead
     #[serde(rename = "geoLng", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `longitude` instead"]
     pub geo_lng: Option<String>,
     /// Use `latitude` instead
     #[serde(rename = "latitudeLoose", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `latitude` instead"]
     pub latitude_loose: Option<String>,
     /// Use `longitude` instead
     #[serde(rename = "longitudeLoose", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `longitude` instead"]
     pub longitude_loose: Option<String>,
     /// Allowed values: `default`, `parent`, `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
     #[serde(rename = "markerColor", default, skip_serializing_if = "serde_json::Value::is_null")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub marker_color: serde_json::Value,
     /// Use `icon` instead
     #[serde(rename = "markerIcon", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `icon` instead"]
     pub marker_icon: Option<String>,
     #[serde(rename = "markerUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub marker_url: Option<String>,
     /// Use `name` instead
     #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `name` instead"]
     pub meeting_at: Option<String>,
     /// Use `zip` instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `zip` instead"]
     pub postalcode: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -938,7 +938,7 @@ pub struct Agenda {
     pub id: i64,
     /// Use `isLocked` instead.
     #[serde(rename = "isFinal", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `isLocked` instead."]
     pub is_final: Option<bool>,
     /// Shared lock state. Content editing is blocked while `true`; linking or detaching events is still possible.
     #[serde(rename = "isLocked")]
@@ -1039,7 +1039,7 @@ pub struct AgendaItemHeader {
     pub meta: MetaDataEntityId,
     /// Deprecated zero-based index in the complete shared items array, including headers and hidden items.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub position: Option<i64>,
     /// Calculated position time for the requested event, or the first linked event when no event context is selected. Can still contain a time when the item is hidden; use `startTimes`[`eventId`] to determine visibility. `null` when there is no event timing, as for templates.
     #[serde(deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -1157,7 +1157,7 @@ pub struct AgendaItemSong {
     pub meta: MetaDataEntityId,
     /// Deprecated zero-based index in the complete shared items array, including headers and hidden items.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub position: Option<i64>,
     /// Calculated position time for the requested event, or the first linked event when no event context is selected. Can still contain a time when the item is hidden; use `startTimes`[`eventId`] to determine visibility. `null` when there is no event timing, as for templates.
     #[serde(deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -1228,7 +1228,7 @@ pub struct AgendaItemText {
     pub meta: MetaDataEntityId,
     /// Deprecated zero-based index in the complete shared items array, including headers and hidden items.
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub position: Option<i64>,
     /// Calculated position time for the requested event, or the first linked event when no event context is selected. Can still contain a time when the item is hidden; use `startTimes`[`eventId`] to determine visibility. `null` when there is no event timing, as for templates.
     #[serde(deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -1467,7 +1467,7 @@ pub struct AppointmentAddressCreate {
     pub longitude: Option<f64>,
     /// Legacy alias for name.
     #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub meeting_at: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
@@ -1486,7 +1486,7 @@ pub struct AppointmentBase {
     pub additionals: Vec<AppointmentAdditionals>,
     /// Use 'additionals' instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'additionals' instead"]
     pub additions: Option<Vec<AppointmentAdditionals>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub address: Option<Address>,
@@ -1497,7 +1497,7 @@ pub struct AppointmentBase {
     pub calendar: AppointmentBaseCalendar,
     /// Use 'title' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'title' instead"]
     pub caption: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -1512,7 +1512,7 @@ pub struct AppointmentBase {
     pub image: Option<Image>,
     /// Use 'description' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'description' instead"]
     pub information: Option<String>,
     #[serde(rename = "isInternal")]
     pub is_internal: bool,
@@ -1521,7 +1521,7 @@ pub struct AppointmentBase {
     pub meta: MetaDataEntityId,
     /// Use 'subtitle' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'subtitle' instead"]
     pub note: Option<String>,
     /// Person on whose behalf the appointment was entered, or null.
     #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -1596,11 +1596,11 @@ pub struct AppointmentBaseCalendar {
     pub id: i64,
     /// Legacy category flag: true for personal calendars. Use type instead.
     #[serde(rename = "isPrivate", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use type instead."]
     pub is_private: Option<bool>,
     /// Legacy category flag: true for church calendars. Use type; this flag does not replace access-permission checks.
     #[serde(rename = "isPublic", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use type; this flag does not replace access-permission checks."]
     pub is_public: Option<bool>,
     pub meta: MetaDataEntityId,
     /// Localized display name, falling back to the stored name for ordinary calendar names.
@@ -1888,7 +1888,7 @@ pub struct AppointmentEventCreate {
     pub facts: Option<std::collections::BTreeMap<String, serde_json::Value>>,
     /// Use `description` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `description` instead."]
     pub note: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub services: Option<Vec<AppointmentEventCreateServicesItem>>,
@@ -2022,11 +2022,11 @@ pub struct AppointmentOccurrenceList {
     pub title_suffix: Option<String>,
     /// Legacy alias for appointment.base.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub base: Option<AppointmentOccurrenceListBase>,
     /// Legacy alias for appointment.calculated.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub calculated: Option<AppointmentOccurrenceListCalculated>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -2050,7 +2050,7 @@ pub struct AppointmentOccurrenceListBase {
     pub additionals: Vec<AppointmentAdditionals>,
     /// Use 'additionals' instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'additionals' instead"]
     pub additions: Option<Vec<AppointmentAdditionals>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub address: Option<Address>,
@@ -2061,7 +2061,7 @@ pub struct AppointmentOccurrenceListBase {
     pub calendar: AppointmentBaseCalendar,
     /// Use 'title' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'title' instead"]
     pub caption: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -2076,7 +2076,7 @@ pub struct AppointmentOccurrenceListBase {
     pub image: Option<Image>,
     /// Use 'description' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'description' instead"]
     pub information: Option<String>,
     #[serde(rename = "isInternal")]
     pub is_internal: bool,
@@ -2085,7 +2085,7 @@ pub struct AppointmentOccurrenceListBase {
     pub meta: MetaDataEntityId,
     /// Use 'subtitle' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'subtitle' instead"]
     pub note: Option<String>,
     /// Person on whose behalf the appointment was entered, or null.
     #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -2150,7 +2150,7 @@ pub struct AppointmentSignup {
     pub signup_template_group_id: Option<i64>,
     /// Use 'signupDaysForwardNo' instead. Misspelled legacy field.
     #[serde(rename = "singupDaysForwardNo", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'signupDaysForwardNo' instead."]
     pub singup_days_forward_no: Option<i64>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -2320,7 +2320,7 @@ pub struct AppointmentTemplate {
     pub title: Option<String>,
     /// Use `calendarId` instead.
     #[serde(rename = "categoryId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `calendarId` instead."]
     pub category_id: Option<i64>,
     /// Template ID; not an appointment ID.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -2353,7 +2353,7 @@ pub struct AppointmentTemplateAddressCreate {
     pub longitude: Option<String>,
     /// Legacy alias for name.
     #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub meeting_at: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
@@ -2593,7 +2593,7 @@ pub struct AppointmentTemplateWritten {
     pub title: String,
     /// Use `calendarId` instead.
     #[serde(rename = "categoryId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `calendarId` instead."]
     pub category_id: Option<i64>,
     /// Template ID; not an appointment ID.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -2708,7 +2708,7 @@ pub struct Arrangement {
     pub deprecated: ArrangementDeprecated,
     /// Compatibility alias for tempo, serialized as a string or `null`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub bpm: Option<String>,
     /// List of files uploaded to that arrangement
     pub files: Vec<FileOrLink>,
@@ -2720,21 +2720,21 @@ pub struct Arrangement {
     /// Use 'key' instead
     /// Allowed values: `A`, `A#`, `A#m`, `Ab`, `Abm`, `Am`, `B`, `B#`, `B#m`, `Bb`, `Bbm`, `Bm`, `C`, `C#`, `C#m`, `Cb`, `Cbm`, `Cm`, `D`, `D#`, `D#m`, `Db`, `Dbm`, `Dm`, `E`, `E#`, `E#m`, `Eb`, `Ebm`, `Em`, ….
     #[serde(rename = "keyOfArrangement", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'key' instead"]
     pub key_of_arrangement: Option<String>,
     /// List of links "uploaded" to that arrangement
     pub links: Vec<FileOrLink>,
     pub meta: MetaDataEntityId,
     /// Use 'description' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'description' instead"]
     pub note: Option<String>,
     /// Source associated with this arrangement, or `null` when none is assigned.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub source: Option<SongSource>,
     /// Source abbreviation if set, otherwise its name, or `null` when no source is assigned.
     #[serde(rename = "sourceName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub source_name: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -3183,11 +3183,11 @@ pub struct BookingBase {
     pub appointment: Option<SimpleAppointment>,
     /// Use `appointment` instead.
     #[serde(rename = "appointmentId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `appointment` instead."]
     pub appointment_id: Option<i64>,
     /// Use `title` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `title` instead."]
     pub caption: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -3204,12 +3204,12 @@ pub struct BookingBase {
     pub is_anonymized: bool,
     /// Use `subtitle` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `subtitle` instead."]
     pub location: Option<String>,
     pub meta: MetaDataEntityId,
     /// Use `description` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `description` instead."]
     pub note: Option<String>,
     /// Person for whom the booking is made.
     #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -3231,7 +3231,7 @@ pub struct BookingBase {
     pub repeat_until: Option<chrono::NaiveDate>,
     /// Use `resourceId` instead.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `resourceId` instead."]
     pub resource: Option<BookingCalculatedWithIncludesBaseResource>,
     /// Resource to reserve, such as a room, vehicle or piece of equipment.
     #[serde(rename = "resourceId", deserialize_with = "crate::lenient::number")]
@@ -3283,13 +3283,13 @@ pub struct BookingCalculatedCalculated {
 pub struct BookingCalculatedWithIncludes {
     /// Use booking.base.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use booking."]
     pub base: Option<BookingCalculatedWithIncludesBase>,
     /// One occurrence: base describes the stored series, calculated contains the dates of this occurrence.
     pub booking: BookingCalculated,
     /// Use booking.calculated.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use booking."]
     pub calculated: Option<BookingCalculatedWithIncludesCalculated>,
     /// Included with `include[]=conflicts`. Conflicts are collected for the booking ID across the requested range, so multiple occurrences of the same series can carry the same list.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -3316,11 +3316,11 @@ pub struct BookingCalculatedWithIncludesBase {
     pub appointment: Option<SimpleAppointment>,
     /// Use `appointment` instead.
     #[serde(rename = "appointmentId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `appointment` instead."]
     pub appointment_id: Option<i64>,
     /// Use `title` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `title` instead."]
     pub caption: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -3337,12 +3337,12 @@ pub struct BookingCalculatedWithIncludesBase {
     pub is_anonymized: bool,
     /// Use `subtitle` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `subtitle` instead."]
     pub location: Option<String>,
     pub meta: MetaDataEntityId,
     /// Use `description` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `description` instead."]
     pub note: Option<String>,
     /// Person for whom the booking is made.
     #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -3364,7 +3364,7 @@ pub struct BookingCalculatedWithIncludesBase {
     pub repeat_until: Option<chrono::NaiveDate>,
     /// Use `resourceId` instead.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `resourceId` instead."]
     pub resource: Option<BookingCalculatedWithIncludesBaseResource>,
     /// Resource to reserve, such as a room, vehicle or piece of equipment.
     #[serde(rename = "resourceId", deserialize_with = "crate::lenient::number")]
@@ -3446,7 +3446,7 @@ pub struct BookingCalculatedWithIncludesBaseResource {
     pub sort_key: i64,
     /// Use `needsAppointment` instead.
     #[serde(rename = "doesRequireCalEntry", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `needsAppointment` instead."]
     pub does_require_cal_entry: Option<bool>,
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -4630,11 +4630,11 @@ pub struct Calendar {
     pub id: i64,
     /// Legacy category flag: true for personal calendars. Use type instead.
     #[serde(rename = "isPrivate", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use type instead."]
     pub is_private: Option<bool>,
     /// Legacy category flag: true for church calendars. Use type; this flag does not replace access-permission checks.
     #[serde(rename = "isPublic", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use type; this flag does not replace access-permission checks."]
     pub is_public: Option<bool>,
     pub meta: MetaDataEntityId,
     /// Localized display name, falling back to the stored name for ordinary calendar names.
@@ -4789,38 +4789,38 @@ pub struct CampusAddress {
     pub deprecated: StoredAddressDeprecated,
     /// Use `latitude` instead
     #[serde(rename = "geoLat", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `latitude` instead"]
     pub geo_lat: Option<String>,
     /// Use `longitude` instead
     #[serde(rename = "geoLng", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `longitude` instead"]
     pub geo_lng: Option<String>,
     /// Use `latitude` instead
     #[serde(rename = "latitudeLoose", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `latitude` instead"]
     pub latitude_loose: Option<String>,
     /// Use `longitude` instead
     #[serde(rename = "longitudeLoose", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `longitude` instead"]
     pub longitude_loose: Option<String>,
     /// Allowed values: `default`, `parent`, `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
     #[serde(rename = "markerColor", default, skip_serializing_if = "serde_json::Value::is_null")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub marker_color: serde_json::Value,
     /// Use `icon` instead
     #[serde(rename = "markerIcon", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `icon` instead"]
     pub marker_icon: Option<String>,
     #[serde(rename = "markerUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub marker_url: Option<String>,
     /// Use `name` instead
     #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `name` instead"]
     pub meeting_at: Option<String>,
     /// Use `zip` instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `zip` instead"]
     pub postalcode: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -5165,7 +5165,7 @@ pub struct CheckinPersonDataCreate {
     pub place_of_baptism: Option<String>,
     /// Legacy representation of the privacy agreement. Use the three flat `privacyPolicyAgreement*` fields instead. When this object is used, all three values must be provided if privacy agreement fields are mandatory.
     #[serde(rename = "privacyPolicyAgreement", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use the three flat `privacyPolicyAgreement*` fields instead."]
     pub privacy_policy_agreement: Option<CheckinPersonDataCreatePrivacyPolicyAgreement>,
     /// Date of the privacy policy agreement. Required together with agreement type and person when `privacy_policy_fields_mandatory` is enabled.
     #[serde(rename = "privacyPolicyAgreementDate", default, skip_serializing_if = "Option::is_none")]
@@ -5839,7 +5839,7 @@ pub struct Config {
     pub feature_group: Option<String>,
     /// Deprecated compatibility flag that is always true.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub feature_markdown_group: Option<bool>,
     /// This is a string that can only be true or false.
     /// Allowed values: `0`, `1`.
@@ -5847,7 +5847,7 @@ pub struct Config {
     pub feature_mobile_groups: Option<String>,
     /// Deprecated compatibility flag that is always true.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub feature_newsfeed_comment_reactions: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub feature_old_group_module: Option<bool>,
@@ -6330,7 +6330,7 @@ pub struct CostCenterStatementReportCreate {
     /// Legacy alias for format.
     /// Allowed values: `csv`, `pdf`, `xlsx`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub r#type: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -6529,7 +6529,7 @@ pub struct DbField {
     pub length: Option<i64>,
     /// Legacy display-layout setting, retained for compatibility.
     #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub line_ending: Option<String>,
     /// Stored display name or translation key. nameTranslated is its localized display text.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -6551,7 +6551,7 @@ pub struct DbField {
     pub deprecated: DbFieldDeprecated,
     /// Underlying database column; prefer key for API requests.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub column: Option<String>,
     /// True for a custom field created by this ChurchTools installation.
     #[serde(rename = "createdByChurch")]
@@ -6585,11 +6585,11 @@ pub struct DbField {
     pub name_translated: String,
     /// Deprecated alias of isNotConfigurable.
     #[serde(rename = "notConfigurable", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub not_configurable: Option<bool>,
     /// Deprecated alias of isNullable.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub nullable: Option<bool>,
     /// Optional choices, included by an unfiltered list with include[]=options. The row shape depends on the field. Campus and group-visibility fields use specialized representations in this expansion.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -6637,7 +6637,7 @@ pub struct DbFieldCreate {
     pub length: Option<i64>,
     /// Legacy display-layout setting retained for compatibility.
     #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub line_ending: Option<String>,
     /// Stored display name or translation key. nameTranslated is its localized display text.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -6785,7 +6785,7 @@ pub struct DbFieldUpdate {
     pub length: Option<i64>,
     /// Legacy display-layout setting retained for compatibility.
     #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub line_ending: Option<String>,
     /// Stored display name or translation key. nameTranslated is its localized display text.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -6863,7 +6863,7 @@ pub struct Department {
     pub name_translated: String,
     /// Use `shorty` instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `shorty` instead"]
     pub short: Option<String>,
     #[serde(deserialize_with = "crate::lenient::string")]
     pub shorty: String,
@@ -6909,7 +6909,7 @@ pub struct Device {
     pub app_version: Option<String>,
     /// Use `meta.createdDate` instead
     #[serde(rename = "createdAt", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `meta."]
     pub created_at: Option<chrono::DateTime<chrono::Utc>>,
     /// Client-generated registration identifier, scoped to the person. Not necessarily a UUID and not the legacy id field.
     #[serde(rename = "deviceId", deserialize_with = "crate::lenient::string")]
@@ -6919,7 +6919,7 @@ pub struct Device {
     pub expiration_date: chrono::DateTime<chrono::Utc>,
     /// Legacy value equal to pushId, despite the compatibility marker naming deviceId as its replacement.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub id: Option<String>,
     pub meta: MetaDataEntityId,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
@@ -6929,7 +6929,7 @@ pub struct Device {
     pub push_id: Option<String>,
     /// Use `expirationDate` instead
     #[serde(deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `expirationDate` instead"]
     pub ttl: Option<chrono::DateTime<chrono::Utc>>,
     /// Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging.
     /// Allowed values: `APN`, `FCM`.
@@ -6937,11 +6937,11 @@ pub struct Device {
     pub r#type: String,
     /// Use `meta.modifiedDate` instead
     #[serde(rename = "updatedAt", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `meta."]
     pub updated_at: Option<chrono::DateTime<chrono::Utc>>,
     /// Legacy alias of appVersion.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub version: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -6981,7 +6981,7 @@ pub struct DeviceUpdate {
     pub r#type: String,
     /// Legacy alias of appVersion; use appVersion. The canonical field takes precedence if both are present.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub version: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -7934,7 +7934,7 @@ pub struct Donator {
     pub last_donation_date: chrono::DateTime<chrono::Utc>,
     /// Deprecated alias of lastModifiedDate.
     #[serde(rename = "lastModified", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub last_modified: Option<chrono::DateTime<chrono::Utc>>,
     /// Latest modification timestamp considered for the household’s donation records and cancellation tracking.
     #[serde(rename = "lastModifiedDate", serialize_with = "crate::datetime::serialize_utc")]
@@ -8718,7 +8718,7 @@ pub struct Event {
     #[serde(rename = "endDate", serialize_with = "crate::datetime::serialize_utc")]
     pub end_date: chrono::DateTime<chrono::Utc>,
     #[serde(rename = "eventAdminIds", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub event_admin_ids: Option<Vec<i64>>,
     #[serde(rename = "eventFiles")]
     pub event_files: Vec<DomainObjectFile>,
@@ -8738,7 +8738,7 @@ pub struct Event {
     pub name: String,
     /// Deprecated alias for description.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub note: Option<String>,
     /// Computed UI permissions. startChat does not include all installation-level chat prerequisites; the chat action performs its own authorization checks.
     pub permissions: EventPermissions,
@@ -8774,14 +8774,14 @@ pub struct EventDetailsUpdate {
     pub description: Option<String>,
     /// Legacy input alias for `adminIds`.
     #[serde(rename = "eventAdminIds", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub event_admin_ids: Option<Vec<i64>>,
     /// Whether the service-planning event is cancelled.
     #[serde(rename = "isCanceled", default, skip_serializing_if = "Option::is_none")]
     pub is_canceled: Option<bool>,
     /// Deprecated alias for `description`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub note: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -8807,7 +8807,7 @@ pub struct EventDetailsUpdateResult {
     pub is_canceled: bool,
     /// Deprecated alias for `description`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub note: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -8820,7 +8820,7 @@ pub struct EventDetailsUpdateResultAppointment {
     pub additionals: Vec<AppointmentAdditionals>,
     /// Use 'additionals' instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'additionals' instead"]
     pub additions: Option<Vec<AppointmentAdditionals>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub address: Option<Address>,
@@ -8831,7 +8831,7 @@ pub struct EventDetailsUpdateResultAppointment {
     pub calendar: AppointmentBaseCalendar,
     /// Use 'title' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'title' instead"]
     pub caption: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -8846,7 +8846,7 @@ pub struct EventDetailsUpdateResultAppointment {
     pub image: Option<Image>,
     /// Use 'description' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'description' instead"]
     pub information: Option<String>,
     #[serde(rename = "isInternal")]
     pub is_internal: bool,
@@ -8855,7 +8855,7 @@ pub struct EventDetailsUpdateResultAppointment {
     pub meta: MetaDataEntityId,
     /// Use 'subtitle' instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'subtitle' instead"]
     pub note: Option<String>,
     /// Person on whose behalf the appointment was entered, or null.
     #[serde(rename = "onBehalfOfPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -8906,11 +8906,11 @@ pub struct EventFact {
     pub meta: MetaDataEntityId,
     /// Last modification timestamp.
     #[serde(rename = "modifiedDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub modified_date: Option<chrono::DateTime<chrono::Utc>>,
     /// ID of the person who last modified the value.
     #[serde(rename = "modifiedPid", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub modified_pid: Option<i64>,
     /// Numeric facts are serialized as JSON numbers, select facts as their stored option text. A legacy empty stored value is returned as `null`; new values cannot be `null`.
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -9051,7 +9051,7 @@ pub struct EventReadWithServices {
     #[serde(rename = "endDate", serialize_with = "crate::datetime::serialize_utc")]
     pub end_date: chrono::DateTime<chrono::Utc>,
     #[serde(rename = "eventAdminIds", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub event_admin_ids: Option<Vec<i64>>,
     #[serde(rename = "eventFiles")]
     pub event_files: Vec<DomainObjectFile>,
@@ -9071,7 +9071,7 @@ pub struct EventReadWithServices {
     pub name: String,
     /// Deprecated alias for description.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub note: Option<String>,
     /// Computed UI permissions. startChat does not include all installation-level chat prerequisites; the chat action performs its own authorization checks.
     pub permissions: EventPermissions,
@@ -9089,7 +9089,7 @@ pub struct EventService {
     pub deprecated: Option<std::collections::BTreeMap<String, String>>,
     /// Use `isAccepted` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `isAccepted` instead"]
     pub agreed: Option<bool>,
     #[serde(rename = "allowChat", default, skip_serializing_if = "Option::is_none")]
     pub allow_chat: Option<bool>,
@@ -9097,7 +9097,7 @@ pub struct EventService {
     pub comment: Option<String>,
     /// Use `index` instead
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `index` instead"]
     pub counter: Option<i64>,
     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
     pub event: serde_json::Value,
@@ -9118,16 +9118,16 @@ pub struct EventService {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub person: Option<DomainObjectPerson>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub person_id: Option<i64>,
     /// Deprecated alias for `meta.modifiedDate`.
     #[serde(rename = "requestedDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub requested_date: Option<chrono::DateTime<chrono::Utc>>,
     #[serde(rename = "requesterPerson", default, skip_serializing_if = "Option::is_none")]
     pub requester_person: Option<DomainObjectPerson>,
     #[serde(rename = "requesterPersonId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub requester_person_id: Option<i64>,
     #[serde(rename = "serviceId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub service_id: Option<i64>,
@@ -9216,7 +9216,7 @@ pub struct EventTemplate {
     pub minute: Option<i64>,
     /// Deprecated alias for description.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub note: Option<String>,
     /// Service roles and their requested slot counts; an empty list is allowed.
     pub services: Vec<EventTemplateService>,
@@ -9422,7 +9422,7 @@ pub struct ExternalLoginOidcConfig {
     /// Retained for stored-data and API compatibility. Callback routing no longer depends on this value.
     /// Allowed values: `2`.
     #[serde(rename = "callbackUrlVersion", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub callback_url_version: Option<i64>,
     #[serde(rename = "clientId", deserialize_with = "crate::lenient::string")]
     pub client_id: String,
@@ -9552,7 +9552,7 @@ pub struct ExternalLoginSamlConfig {
     /// Retained for stored-data and API compatibility. Callback routing no longer depends on this value.
     /// Allowed values: `2`.
     #[serde(rename = "callbackUrlVersion", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub callback_url_version: Option<i64>,
     #[serde(rename = "emailAttribute", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub email_attribute: Option<String>,
@@ -9785,7 +9785,7 @@ pub struct FactNumber {
     /// Legacy alias for type.
     /// Allowed values: `number`, `select`.
     #[serde(rename = "fieldType", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub field_type: Option<String>,
     /// ID of the fact master data entry.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -9838,7 +9838,7 @@ pub struct FactSelect {
     /// Legacy alias for type.
     /// Allowed values: `number`, `select`.
     #[serde(rename = "fieldType", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub field_type: Option<String>,
     /// ID of the fact master data entry.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -11055,7 +11055,7 @@ pub struct GetConfigResponse {
     pub feature_group: Option<String>,
     /// Deprecated compatibility flag that is always true.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub feature_markdown_group: Option<bool>,
     /// This is a string that can only be true or false.
     /// Allowed values: `0`, `1`.
@@ -11063,7 +11063,7 @@ pub struct GetConfigResponse {
     pub feature_mobile_groups: Option<String>,
     /// Deprecated compatibility flag that is always true.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub feature_newsfeed_comment_reactions: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub feature_old_group_module: Option<bool>,
@@ -11798,7 +11798,7 @@ pub struct GetPersonsBirthdaysDataItem {
     pub anniversary_initial_date: Option<chrono::NaiveDate>,
     /// Actually birthday
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub date: Option<String>,
     /// Person as Domain Object
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -11838,7 +11838,7 @@ pub struct GetPersonsRelationshipsDataItem {
     #[serde(rename = "@deprecated", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub deprecated: Option<std::collections::BTreeMap<String, String>>,
     #[serde(rename = "degreeOfRelationship", default, skip_serializing_if = "serde_json::Value::is_null")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub degree_of_relationship: serde_json::Value,
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
@@ -11847,18 +11847,18 @@ pub struct GetPersonsRelationshipsDataItem {
     #[serde(rename = "personBId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub person_b_id: Option<i64>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub person_id: Option<i64>,
     #[serde(rename = "relationshipName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub relationship_name: Option<String>,
     #[serde(rename = "relationshipType", deserialize_with = "crate::lenient::opt_map", default, skip_serializing_if = "Option::is_none")]
     pub relationship_type: Option<std::collections::BTreeMap<String, serde_json::Value>>,
     #[serde(rename = "relationshipTypeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub relationship_type_id: Option<i64>,
     #[serde(rename = "relativeId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub relative_id: Option<i64>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -12022,13 +12022,13 @@ pub struct GlobalPermissionsChurchdb {
     pub administer_global_filters: bool,
     /// Compatibility alias of churchgroup administer groups. Null when the corresponding module/permission is absent.
     #[serde(rename = "administer groups", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub administer_groups: Option<bool>,
     #[serde(rename = "complex filter")]
     pub complex_filter: bool,
     /// Compatibility alias of churchgroup create groups of grouptype. Null when the corresponding module/permission is absent.
     #[serde(rename = "create groups of grouptype", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub create_groups_of_grouptype: Option<Vec<i64>>,
     #[serde(rename = "create person")]
     pub create_person: bool,
@@ -12036,11 +12036,11 @@ pub struct GlobalPermissionsChurchdb {
     pub create_print_labels: bool,
     /// Compatibility alias of churchgroup delete group. Null when the corresponding module/permission is absent.
     #[serde(rename = "delete group", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub delete_group: Option<Vec<i64>>,
     /// Compatibility alias of churchgroup delete groups of grouptype. Null when the corresponding module/permission is absent.
     #[serde(rename = "delete groups of grouptype", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub delete_groups_of_grouptype: Option<Vec<i64>>,
     #[serde(rename = "delete persons")]
     pub delete_persons: bool,
@@ -12048,21 +12048,21 @@ pub struct GlobalPermissionsChurchdb {
     pub edit_bulkletter: bool,
     /// Compatibility alias of churchgroup edit group. Null when the corresponding module/permission is absent.
     #[serde(rename = "edit group", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub edit_group: Option<Vec<i64>>,
     #[serde(rename = "edit group memberships")]
     pub edit_group_memberships: bool,
     /// Compatibility alias of churchgroup edit group memberships of group. Null when the corresponding module/permission is absent.
     #[serde(rename = "edit group memberships of group", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub edit_group_memberships_of_group: Option<Vec<i64>>,
     /// Compatibility alias of churchgroup edit group memberships of grouptype. Null when the corresponding module/permission is absent.
     #[serde(rename = "edit group memberships of grouptype", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub edit_group_memberships_of_grouptype: Option<Vec<i64>>,
     /// Compatibility alias of churchgroup edit groups of grouptype. Null when the corresponding module/permission is absent.
     #[serde(rename = "edit groups of grouptype", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub edit_groups_of_grouptype: Option<Vec<i64>>,
     #[serde(rename = "edit masterdata")]
     pub edit_masterdata: bool,
@@ -12079,7 +12079,7 @@ pub struct GlobalPermissionsChurchdb {
     pub security_level_edit_own_data: Vec<i64>,
     /// Compatibility alias of churchgroup security level group. Null when the corresponding module/permission is absent.
     #[serde(rename = "security level group", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub security_level_group: Option<Vec<i64>>,
     #[serde(rename = "security level person")]
     pub security_level_person: Vec<i64>,
@@ -12098,11 +12098,11 @@ pub struct GlobalPermissionsChurchdb {
     pub view_comments: Vec<i64>,
     /// Compatibility alias of churchgroup view group. Null when the corresponding module/permission is absent.
     #[serde(rename = "view group", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub view_group: Option<Vec<i64>>,
     /// Compatibility alias of churchgroup view groups of grouptype. Null when the corresponding module/permission is absent.
     #[serde(rename = "view groups of grouptype", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub view_groups_of_grouptype: Option<Vec<i64>>,
     #[serde(rename = "view hidden persons")]
     pub view_hidden_persons: bool,
@@ -12122,7 +12122,7 @@ pub struct GlobalPermissionsChurchdb {
     #[serde(rename = "view statistics")]
     pub view_statistics: bool,
     #[serde(rename = "view tags", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub view_tags: Option<bool>,
     #[serde(rename = "write access")]
     pub write_access: bool,
@@ -12308,10 +12308,10 @@ pub struct Group {
     pub member_statistics: Option<GroupMemberStatistics>,
     pub meta: MetaDataEntityId,
     #[serde(rename = "modifiedDate", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub modified_date: Option<String>,
     #[serde(rename = "modifiedPerson", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub modified_person: Option<GroupModifiedPerson>,
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
@@ -12569,7 +12569,7 @@ pub struct GroupHomepage {
     pub description_mode: String,
     /// Deprecated alias of filters.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub filter: Option<Vec<GroupHomepageFilter>>,
     /// Specifies all filters that can be applied for this group homepage.
     pub filters: Vec<GroupHomepageFilter>,
@@ -12604,7 +12604,7 @@ pub struct GroupHomepage {
     pub random_url: String,
     /// Deprecated alias of showFilters.
     #[serde(rename = "showFilter", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub show_filter: Option<bool>,
     /// If true, selected filters are displayed.
     #[serde(rename = "showFilters")]
@@ -12614,7 +12614,7 @@ pub struct GroupHomepage {
     pub show_group_images: bool,
     /// Deprecated alias of showLeaders.
     #[serde(rename = "showLeader", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub show_leader: Option<bool>,
     /// If true, the group homepage is set to display the leaders of each group.
     #[serde(rename = "showLeaders")]
@@ -12625,7 +12625,7 @@ pub struct GroupHomepage {
     /// Use 'orderBy' instead.
     /// Allowed values: `dateOfFoundation`, `name`.
     #[serde(rename = "sortBy", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use 'orderBy' instead."]
     pub sort_by: Option<String>,
     /// Header rendering choice: none hides the heading, group uses name, custom uses customTitle. The API returns the individual fields rather than a resolved display title.
     /// Allowed values: `custom`, `group`, `none`.
@@ -12763,7 +12763,7 @@ pub struct GroupInformation {
     pub image_url: Option<String>,
     /// Allowed maximal members
     #[serde(rename = "maxMembers", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub max_members: Option<i64>,
     #[serde(rename = "meetingTime", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub meeting_time: Option<String>,
@@ -12795,15 +12795,15 @@ pub struct GroupMeeting {
     pub comment: Option<String>,
     /// Deprecated compatibility value equal to startDate.
     #[serde(rename = "dateFrom", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub date_from: Option<chrono::DateTime<chrono::Utc>>,
     /// Deprecated compatibility value equal to startDate.
     #[serde(rename = "dateTo", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub date_to: Option<chrono::DateTime<chrono::Utc>>,
     /// Legacy compatibility value equal to startDate; this is not an actual end time.
     #[serde(rename = "endDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub end_date: Option<chrono::DateTime<chrono::Utc>>,
     /// ID of the group this meeting belongs to.
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -12848,15 +12848,15 @@ pub struct GroupMeetingForMember {
     pub comment: Option<String>,
     /// Deprecated compatibility value equal to startDate.
     #[serde(rename = "dateFrom", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub date_from: Option<chrono::DateTime<chrono::Utc>>,
     /// Deprecated compatibility value equal to startDate.
     #[serde(rename = "dateTo", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub date_to: Option<chrono::DateTime<chrono::Utc>>,
     /// Legacy compatibility value equal to startDate; this is not an actual end time.
     #[serde(rename = "endDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub end_date: Option<chrono::DateTime<chrono::Utc>>,
     /// ID of the group this meeting belongs to.
     #[serde(rename = "groupId", deserialize_with = "crate::lenient::number")]
@@ -12967,7 +12967,7 @@ pub struct GroupMember {
     pub person_fields: serde_json::Value,
     /// use person.domainIdentifier (type: string) instead.
     #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub person_id: Option<i64>,
     /// Person ID recorded as having registered this member, or null if none is recorded.
     #[serde(rename = "registeredBy", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -13082,7 +13082,7 @@ pub struct GroupMemberFieldGroup {
     pub default_value: serde_json::Value,
     /// Use `name` instead.
     #[serde(rename = "fieldName", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `name` instead."]
     pub field_name: Option<String>,
     /// Input/storage type. select and radioselect use one option, multiselect uses multiple options. text and textarea require a configured length when created. api identifies an application-specific field type.
     /// Allowed values: `api`, `checkbox`, `date`, `datetime`, `multiselect`, `number`, `radioselect`, `select`, `text`, `textarea`.
@@ -13352,7 +13352,7 @@ pub struct GroupMemberFieldPersonDbField {
     pub length: Option<i64>,
     /// Legacy display-layout setting, retained for compatibility.
     #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub line_ending: Option<String>,
     /// Stored display name or translation key. nameTranslated is its localized display text.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -13374,7 +13374,7 @@ pub struct GroupMemberFieldPersonDbField {
     pub deprecated: DbFieldDeprecated,
     /// Underlying database column; prefer key for API requests.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub column: Option<String>,
     /// True for a custom field created by this ChurchTools installation.
     #[serde(rename = "createdByChurch")]
@@ -13408,11 +13408,11 @@ pub struct GroupMemberFieldPersonDbField {
     pub name_translated: String,
     /// Deprecated alias of isNotConfigurable.
     #[serde(rename = "notConfigurable", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub not_configurable: Option<bool>,
     /// Deprecated alias of isNullable.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub nullable: Option<bool>,
     /// Optional choices, included by an unfiltered list with include[]=options. The row shape depends on the field. Campus and group-visibility fields use specialized representations in this expansion.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -13894,7 +13894,7 @@ pub struct GroupRole {
     pub is_hidden: bool,
     /// Legacy response field indicating whether type is leader. Use type instead; this field is not used to create or update a role.
     #[serde(rename = "isLeader", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use type instead; this field is not used to create or update a role."]
     pub is_leader: Option<bool>,
     /// Stored name of the role. Use nameTranslated from the response for a localized display name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -14149,7 +14149,7 @@ pub struct GroupSignUpConditions {
     #[serde(rename = "canSignUpAsNewPerson")]
     pub can_sign_up_as_new_person: bool,
     #[serde(rename = "defaultRoleSetInGroup", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub default_role_set_in_group: Option<bool>,
     /// If false, the group's end date has passed and nobody can sign up.
     #[serde(rename = "endDateNotPassed")]
@@ -14882,7 +14882,7 @@ pub struct ImageUpdate {
     pub description: Option<String>,
     /// Legacy alias for `options`.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub image_options: Option<String>,
     /// JSON-encoded image options. `crop` contains the `top`, `right`, `bottom` and `left` margins relative to the original dimensions. `focus` contains `x` and `y` coordinates relative to the original top-left corner.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -14990,7 +14990,7 @@ pub struct InternalGroupPermissionsChurchdb {
     pub admin_group_chat: Option<bool>,
     /// Use "+admin group member fields" instead.
     #[serde(rename = "+admin group fields", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use \"+admin group member fields\" instead."]
     pub admin_group_fields: Option<bool>,
     #[serde(rename = "+admin group member fields", default, skip_serializing_if = "Option::is_none")]
     pub admin_group_member_fields: Option<bool>,
@@ -15021,7 +15021,7 @@ pub struct InternalGroupPermissionsChurchdb {
     pub edit_group_basic_settings: Option<bool>,
     /// Use "edit group member fields" instead.
     #[serde(rename = "+edit group fields", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use \"edit group member fields\" instead."]
     pub edit_group_fields: Option<i64>,
     #[serde(rename = "+edit group hierarchy", default, skip_serializing_if = "Option::is_none")]
     pub edit_group_hierarchy: Option<bool>,
@@ -15031,7 +15031,7 @@ pub struct InternalGroupPermissionsChurchdb {
     pub edit_group_member_fields: Option<i64>,
     /// Compatibility flag derived from +edit basic group memberships OR +edit group member fields.
     #[serde(rename = "+edit group memberships", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub edit_group_memberships: Option<bool>,
     #[serde(rename = "+edit groupmemberstatus", default, skip_serializing_if = "Option::is_none")]
     pub edit_groupmemberstatus: Option<bool>,
@@ -15039,13 +15039,13 @@ pub struct InternalGroupPermissionsChurchdb {
     pub edit_own_group_member_fields: Option<i64>,
     /// Use "+edit own group member fields" instead.
     #[serde(rename = "+edit own groupmemberfields", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use \"+edit own group member fields\" instead."]
     pub edit_own_groupmemberfields: Option<i64>,
     #[serde(rename = "+edit person fields of group members", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
     pub edit_person_fields_of_group_members: Option<i64>,
     /// Use "+edit person fields of group members" instead.
     #[serde(rename = "+edit persons", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use \"+edit person fields of group members\" instead."]
     pub edit_persons: Option<bool>,
     #[serde(rename = "+exit group", default, skip_serializing_if = "Option::is_none")]
     pub exit_group: Option<bool>,
@@ -15067,7 +15067,7 @@ pub struct InternalGroupPermissionsChurchdb {
     pub see_group_tags: Option<bool>,
     /// Use "+see group member fields" instead.
     #[serde(rename = "+see groupmemberfields", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use \"+see group member fields\" instead."]
     pub see_groupmemberfields: Option<i64>,
     #[serde(rename = "+see hidden group", default, skip_serializing_if = "Option::is_none")]
     pub see_hidden_group: Option<bool>,
@@ -15156,7 +15156,7 @@ pub struct InternalPersonPermissionsChurchdb {
     pub edit_person_fields_of_group_members: Option<i64>,
     /// Compatibility flag derived from +edit person fields of group members > 0.
     #[serde(rename = "+edit persons", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub edit_persons: Option<bool>,
     #[serde(rename = "+invite person", default, skip_serializing_if = "Option::is_none")]
     pub invite_person: Option<bool>,
@@ -15820,17 +15820,17 @@ pub struct MarkdownRequestSourcesItemOptions {
 pub struct MeetingRequest {
     /// Use `state` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `state` instead"]
     pub accepted: Option<bool>,
     /// Stored calendar appointment defining a single occurrence or a series. id identifies the whole stored appointment; pair it with a local occurrence start date to address a particular occurrence. startDate/endDate are the base occurrence, not necessarily the occurrence currently being displayed. Service-planning events, registration groups, bookings and meeting requests are separate linked resources.
     pub appointment: AppointmentBase,
     /// Use `appointment` instead
     #[serde(rename = "appointmentId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `appointment` instead"]
     pub appointment_id: Option<i64>,
     /// Start of the stored appointment or series, not necessarily its next occurrence. Use nextStartDate when available.
     #[serde(rename = "eventDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use nextStartDate when available."]
     pub event_date: Option<chrono::DateTime<chrono::Utc>>,
     /// ID of this meeting request.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -15851,7 +15851,7 @@ pub struct MeetingRequest {
     pub next_start_date: Option<chrono::DateTime<chrono::Utc>>,
     /// Use `invitee` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `invitee` instead"]
     pub person: Option<MeetingRequestPerson>,
     /// When the invitee last responded, or null.
     #[serde(rename = "responseDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
@@ -16143,7 +16143,7 @@ pub struct MemberPreviewRole {
     pub is_hidden: bool,
     /// Legacy response field indicating whether type is leader. Use type instead; this field is not used to create or update a role.
     #[serde(rename = "isLeader", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use type instead; this field is not used to create or update a role."]
     pub is_leader: Option<bool>,
     /// Stored name of the role. Use nameTranslated from the response for a localized display name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -16727,7 +16727,7 @@ pub struct OAuthClientCreated {
 pub struct OAuthClientUpdate {
     /// Legacy compatibility field.
     #[serde(rename = "isConfidential", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub is_confidential: Option<bool>,
     /// Display name, unique across visible and hidden OAuth clients.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -16948,17 +16948,17 @@ pub struct OpenGraphVideo {
 pub struct OpenMeetingRequest {
     /// Use `state` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `state` instead"]
     pub accepted: Option<bool>,
     /// Stored calendar appointment defining a single occurrence or a series. id identifies the whole stored appointment; pair it with a local occurrence start date to address a particular occurrence. startDate/endDate are the base occurrence, not necessarily the occurrence currently being displayed. Service-planning events, registration groups, bookings and meeting requests are separate linked resources.
     pub appointment: AppointmentBase,
     /// Use `appointment` instead
     #[serde(rename = "appointmentId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `appointment` instead"]
     pub appointment_id: Option<i64>,
     /// Start of the stored appointment or series, not necessarily its next occurrence. Use nextStartDate when available.
     #[serde(rename = "eventDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use nextStartDate when available."]
     pub event_date: Option<chrono::DateTime<chrono::Utc>>,
     /// ID of this meeting request.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -16979,7 +16979,7 @@ pub struct OpenMeetingRequest {
     pub next_start_date: chrono::DateTime<chrono::Utc>,
     /// Use `invitee` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `invitee` instead"]
     pub person: Option<MeetingRequestPerson>,
     /// No answer has been recorded. Tentative answers have a response date and are excluded.
     #[serde(rename = "responseDate", default, skip_serializing_if = "serde_json::Value::is_null")]
@@ -17822,7 +17822,7 @@ pub struct Person {
     #[serde(rename = "placeOfBaptism", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub place_of_baptism: Option<String>,
     #[serde(rename = "privacyPolicyAgreement", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub privacy_policy_agreement: Option<PersonPrivacyPolicyAgreement>,
     /// A simple date in ISO format, e.g. '2022-10-19'
     #[serde(rename = "privacyPolicyAgreementDate", default, skip_serializing_if = "Option::is_none")]
@@ -18062,7 +18062,7 @@ pub struct PersonPostStatistics {
     #[serde(rename = "countPublished", deserialize_with = "crate::lenient::number")]
     pub count_published: f64,
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub total: Option<f64>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -18317,7 +18317,7 @@ pub struct PersonRelationship {
 pub struct PersonServiceRequestUpdate {
     /// Legacy alias for isAccepted. Prefer isAccepted in new integrations.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub agreed: Option<bool>,
     /// Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment. Use the accept or decline action for a response comment.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -19117,7 +19117,7 @@ pub struct PostPersonsBody {
     pub place_of_baptism: Option<String>,
     /// Legacy representation of the privacy agreement. Use the three flat `privacyPolicyAgreement*` fields instead. When this object is used, all three values must be provided if privacy agreement fields are mandatory.
     #[serde(rename = "privacyPolicyAgreement", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use the three flat `privacyPolicyAgreement*` fields instead."]
     pub privacy_policy_agreement: Option<CheckinPersonDataCreatePrivacyPolicyAgreement>,
     /// Date of the privacy policy agreement. Required together with agreement type and person when `privacy_policy_fields_mandatory` is enabled.
     #[serde(rename = "privacyPolicyAgreementDate", default, skip_serializing_if = "Option::is_none")]
@@ -19499,7 +19499,7 @@ pub struct Profile {
     pub profile_type: String,
     /// Use `serviceBanner_new` instead.
     #[serde(rename = "serviceBanner", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `serviceBanner_new` instead."]
     pub service_banner: Option<String>,
     #[serde(rename = "serviceBanner_new", default, skip_serializing_if = "Option::is_none")]
     pub service_banner_new: Option<DomainObjectFile>,
@@ -19772,14 +19772,14 @@ pub struct PublicGroup {
     pub name: String,
     /// Use `requestedSeatsCount` instead.
     #[serde(rename = "requestedPlacesCount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `requestedSeatsCount` instead."]
     pub requested_places_count: Option<i64>,
     /// Number of requested seats
     #[serde(rename = "requestedSeatsCount", deserialize_with = "crate::lenient::number")]
     pub requested_seats_count: i64,
     /// Use `requestedWaitinglistSeatsCount` instead.
     #[serde(rename = "requestedWaitinglistPlacesCount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `requestedWaitinglistSeatsCount` instead."]
     pub requested_waitinglist_places_count: Option<i64>,
     /// Number of requested seats with waiting list position
     #[serde(rename = "requestedWaitinglistSeatsCount", deserialize_with = "crate::lenient::number")]
@@ -19833,11 +19833,11 @@ pub struct PublicGroupAddress {
     pub domain_type: String,
     /// Use `latitude` instead
     #[serde(rename = "geoLat", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `latitude` instead"]
     pub geo_lat: Option<String>,
     /// Use `longitude` instead
     #[serde(rename = "geoLng", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `longitude` instead"]
     pub geo_lng: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub icon: Option<String>,
@@ -19847,34 +19847,34 @@ pub struct PublicGroupAddress {
     pub latitude: Option<String>,
     /// Use `latitude` instead
     #[serde(rename = "latitudeLoose", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `latitude` instead"]
     pub latitude_loose: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub longitude: Option<String>,
     /// Use `longitude` instead
     #[serde(rename = "longitudeLoose", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `longitude` instead"]
     pub longitude_loose: Option<String>,
     /// Allowed values: `default`, `parent`, `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
     #[serde(rename = "markerColor", default, skip_serializing_if = "serde_json::Value::is_null")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub marker_color: serde_json::Value,
     /// Use `icon` instead
     #[serde(rename = "markerIcon", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `icon` instead"]
     pub marker_icon: Option<String>,
     #[serde(rename = "markerUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub marker_url: Option<String>,
     /// Use `name` instead
     #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `name` instead"]
     pub meeting_at: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     /// Use `zip` instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `zip` instead"]
     pub postalcode: Option<String>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub street: Option<String>,
@@ -19931,14 +19931,14 @@ pub struct PublicGroupDetail {
     pub name: String,
     /// Use `requestedSeatsCount` instead.
     #[serde(rename = "requestedPlacesCount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `requestedSeatsCount` instead."]
     pub requested_places_count: Option<i64>,
     /// Number of requested seats
     #[serde(rename = "requestedSeatsCount", deserialize_with = "crate::lenient::number")]
     pub requested_seats_count: i64,
     /// Use `requestedWaitinglistSeatsCount` instead.
     #[serde(rename = "requestedWaitinglistPlacesCount", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `requestedWaitinglistSeatsCount` instead."]
     pub requested_waitinglist_places_count: Option<i64>,
     /// Number of requested seats with waiting list position
     #[serde(rename = "requestedWaitinglistSeatsCount", deserialize_with = "crate::lenient::number")]
@@ -20185,7 +20185,7 @@ pub struct PublicGroupSettings {
     pub allow_same_email_registration: Option<bool>,
     /// Use `allowSameEmailRegistration` instead.
     #[serde(rename = "allowSameemailRegistration", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `allowSameEmailRegistration` instead."]
     pub allow_sameemail_registration: Option<bool>,
     #[serde(rename = "allowSpouseRegistration")]
     pub allow_spouse_registration: bool,
@@ -20784,7 +20784,7 @@ pub struct PutGroupsGroupIdMembersPersonIdData {
     pub person_fields: serde_json::Value,
     /// use person.domainIdentifier (type: string) instead.
     #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub person_id: Option<i64>,
     /// Person ID recorded as having registered this member, or null if none is recorded.
     #[serde(rename = "registeredBy", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -20803,7 +20803,7 @@ pub struct PutGroupsGroupIdMembersPersonIdData {
     pub waitinglist_position: Option<i64>,
     /// Legacy duplicate of this membership.
     #[serde(rename = "0", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub f_0: Option<PutGroupsGroupIdMembersPersonIdDataT0>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -20850,7 +20850,7 @@ pub struct PutGroupsGroupIdMembersPersonIdDataT0 {
     pub person_fields: serde_json::Value,
     /// use person.domainIdentifier (type: string) instead.
     #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub person_id: Option<i64>,
     /// Person ID recorded as having registered this member, or null if none is recorded.
     #[serde(rename = "registeredBy", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
@@ -20939,7 +20939,7 @@ pub struct RegistrationConfig {
     pub status_id: Option<i64>,
     /// Administrative compatibility alias for `tagsForNewPersons`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub tags: Option<Vec<String>>,
     /// Administrators only. Person tag names added when linking an existing person.
     #[serde(rename = "tagsForExistingPersons", default, skip_serializing_if = "Option::is_none")]
@@ -20984,7 +20984,7 @@ pub struct RegistrationConfigAdmin {
     pub status_id: Option<i64>,
     /// Administrative compatibility alias for `tagsForNewPersons`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub tags: Option<Vec<String>>,
     /// Administrators only. Person tag names added when linking an existing person.
     #[serde(rename = "tagsForExistingPersons")]
@@ -21045,7 +21045,7 @@ pub struct RegistrationConfigFieldsItemField {
     pub length: Option<i64>,
     /// Legacy display-layout setting, retained for compatibility.
     #[serde(rename = "lineEnding", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub line_ending: Option<String>,
     /// Stored display name or translation key. nameTranslated is its localized display text.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -21067,7 +21067,7 @@ pub struct RegistrationConfigFieldsItemField {
     pub deprecated: DbFieldDeprecated,
     /// Underlying database column; prefer key for API requests.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub column: Option<String>,
     /// True for a custom field created by this ChurchTools installation.
     #[serde(rename = "createdByChurch")]
@@ -21101,11 +21101,11 @@ pub struct RegistrationConfigFieldsItemField {
     pub name_translated: String,
     /// Deprecated alias of isNotConfigurable.
     #[serde(rename = "notConfigurable", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub not_configurable: Option<bool>,
     /// Deprecated alias of isNullable.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub nullable: Option<bool>,
     /// Optional choices, included by an unfiltered list with include[]=options. The row shape depends on the field. Campus and group-visibility fields use specialized representations in this expansion.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -21138,7 +21138,7 @@ pub struct RegistrationConfigUpdate {
     pub status_id: Option<i64>,
     /// Legacy input alias; prefer `tagsForNewPersons`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "tagsForExistingPersons", default, skip_serializing_if = "Option::is_none")]
     pub tags_for_existing_persons: Option<Vec<String>>,
@@ -21618,7 +21618,7 @@ pub struct Resource {
     pub sort_key: i64,
     /// Use `needsAppointment` instead.
     #[serde(rename = "doesRequireCalEntry", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `needsAppointment` instead."]
     pub does_require_cal_entry: Option<bool>,
     #[serde(deserialize_with = "crate::lenient::number")]
     pub id: i64,
@@ -21835,7 +21835,7 @@ pub struct Role {
     pub is_hidden: bool,
     /// Legacy response field indicating whether type is leader. Use type instead; this field is not used to create or update a role.
     #[serde(rename = "isLeader", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use type instead; this field is not used to create or update a role."]
     pub is_leader: Option<bool>,
     /// Stored name of the role. Use nameTranslated from the response for a localized display name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -21877,7 +21877,7 @@ pub struct RoleCreate {
     pub is_hidden: bool,
     /// Legacy response field indicating whether type is leader. Use type instead; this field is not used to create or update a role.
     #[serde(rename = "isLeader", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use type instead; this field is not used to create or update a role."]
     pub is_leader: Option<bool>,
     /// Stored name of the role. Use nameTranslated from the response for a localized display name.
     #[serde(deserialize_with = "crate::lenient::string")]
@@ -22230,7 +22230,7 @@ pub struct SecurityLevel {
     #[serde(rename = "sortKey", deserialize_with = "crate::lenient::number")]
     pub sort_key: i64,
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub sortkey: Option<i64>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -22262,11 +22262,11 @@ pub struct Service {
     pub cal_text_template: Option<String>,
     /// Use `description` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `description` instead."]
     pub comment: Option<String>,
     /// use `allowCommentOnConfirmation` instead
     #[serde(rename = "commentOnConfirmation", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub comment_on_confirmation: Option<bool>,
     /// Description of the role.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -22343,7 +22343,7 @@ pub struct ServiceCandidateAssignmentEventService {
     pub deprecated: std::collections::BTreeMap<String, String>,
     /// Use `isAccepted` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `isAccepted` instead"]
     pub agreed: Option<bool>,
     #[serde(rename = "allowChat")]
     pub allow_chat: bool,
@@ -22352,7 +22352,7 @@ pub struct ServiceCandidateAssignmentEventService {
     pub comment: Option<String>,
     /// Use `index` instead
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `index` instead"]
     pub counter: Option<i64>,
     pub event: ServiceRequestEvent,
     /// ID of this particular assignment record. Updating or answering a request may create a new record; use the ID returned by the operation.
@@ -22376,17 +22376,17 @@ pub struct ServiceCandidateAssignmentEventService {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub person: Option<DomainObjectPerson>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub person_id: Option<i64>,
     /// Deprecated alias for `meta.modifiedDate`.
     #[serde(rename = "requestedDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub requested_date: Option<chrono::DateTime<chrono::Utc>>,
     /// Person as Domain Object
     #[serde(rename = "requesterPerson")]
     pub requester_person: DomainObjectPerson,
     #[serde(rename = "requesterPersonId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub requester_person_id: Option<i64>,
     /// ID of the reusable service role from /services, not the request ID.
     #[serde(rename = "serviceId", deserialize_with = "crate::lenient::number")]
@@ -22438,7 +22438,7 @@ pub struct ServiceCreate {
     pub cal_text_template: Option<String>,
     /// Deprecated input alias for description. Use description for new integrations.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use description for new integrations."]
     pub comment: Option<String>,
     /// Description of the role.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -22713,7 +22713,7 @@ pub struct ServiceRequest {
     pub deprecated: std::collections::BTreeMap<String, String>,
     /// Use `isAccepted` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `isAccepted` instead"]
     pub agreed: Option<bool>,
     #[serde(rename = "allowChat")]
     pub allow_chat: bool,
@@ -22722,7 +22722,7 @@ pub struct ServiceRequest {
     pub comment: Option<String>,
     /// Use `index` instead
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `index` instead"]
     pub counter: Option<i64>,
     pub event: ServiceRequestEvent,
     /// ID of this particular assignment record. Updating or answering a request may create a new record; use the ID returned by the operation.
@@ -22746,17 +22746,17 @@ pub struct ServiceRequest {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub person: Option<DomainObjectPerson>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub person_id: Option<i64>,
     /// Deprecated alias for `meta.modifiedDate`.
     #[serde(rename = "requestedDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub requested_date: Option<chrono::DateTime<chrono::Utc>>,
     /// Person as Domain Object
     #[serde(rename = "requesterPerson")]
     pub requester_person: DomainObjectPerson,
     #[serde(rename = "requesterPersonId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub requester_person_id: Option<i64>,
     /// ID of the reusable service role from /services, not the request ID.
     #[serde(rename = "serviceId", deserialize_with = "crate::lenient::number")]
@@ -22819,7 +22819,7 @@ pub struct ServiceRequestUndoResult {
     pub deprecated: std::collections::BTreeMap<String, String>,
     /// Use `isAccepted` instead
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `isAccepted` instead"]
     pub agreed: Option<bool>,
     #[serde(rename = "allowChat")]
     pub allow_chat: bool,
@@ -22828,7 +22828,7 @@ pub struct ServiceRequestUndoResult {
     pub comment: Option<String>,
     /// Use `index` instead
     #[serde(deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `index` instead"]
     pub counter: Option<i64>,
     pub event: ServiceRequestEvent,
     /// ID of this particular assignment record. Updating or answering a request may create a new record; use the ID returned by the operation.
@@ -22852,17 +22852,17 @@ pub struct ServiceRequestUndoResult {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub person: Option<DomainObjectPerson>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub person_id: Option<i64>,
     /// Deprecated alias for `meta.modifiedDate`.
     #[serde(rename = "requestedDate", deserialize_with = "crate::lenient::opt_datetime", serialize_with = "crate::datetime::serialize_opt_utc", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub requested_date: Option<chrono::DateTime<chrono::Utc>>,
     /// Person as Domain Object
     #[serde(rename = "requesterPerson")]
     pub requester_person: DomainObjectPerson,
     #[serde(rename = "requesterPersonId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub requester_person_id: Option<i64>,
     /// ID of the reusable service role from /services, not the request ID.
     #[serde(rename = "serviceId", deserialize_with = "crate::lenient::number")]
@@ -22879,7 +22879,7 @@ pub struct ServiceRequestUndoResult {
 pub struct ServiceRequestUpdate {
     /// Legacy alias for isAccepted. Prefer isAccepted in new integrations.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub agreed: Option<bool>,
     /// Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment. Use the accept or decline action for a response comment.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -22924,7 +22924,7 @@ pub struct ServiceUpdate {
     pub cal_text_template: Option<String>,
     /// Deprecated input alias for description. Use description for new integrations.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use description for new integrations."]
     pub comment: Option<String>,
     /// Description of the role.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
@@ -23061,7 +23061,7 @@ pub struct SimpleWikiPage {
     pub guid: String,
     /// Deprecated alias for `guid`. Use `guid` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `guid` instead."]
     pub identifier: Option<String>,
     /// Whether page text is Markdown rather than legacy HTML.
     #[serde(rename = "isMarkdown")]
@@ -23127,7 +23127,7 @@ pub struct Song {
     pub deprecated: SongDeprecated,
     /// All musical versions, always returned by the current API, even without include=arrangements. Each version has its own key, tempo and attachments.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub arrangements: Option<Vec<Arrangement>>,
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
     pub author: Option<String>,
@@ -23145,7 +23145,7 @@ pub struct Song {
     pub name: String,
     /// Deprecated compatibility field, returned as an empty string.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub note: Option<String>,
     /// Whether the song is marked for rehearsal.
     #[serde(rename = "shouldPractice")]
@@ -23715,38 +23715,38 @@ pub struct StoredAddress {
     pub deprecated: StoredAddressDeprecated,
     /// Use `latitude` instead
     #[serde(rename = "geoLat", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `latitude` instead"]
     pub geo_lat: Option<String>,
     /// Use `longitude` instead
     #[serde(rename = "geoLng", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `longitude` instead"]
     pub geo_lng: Option<String>,
     /// Use `latitude` instead
     #[serde(rename = "latitudeLoose", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `latitude` instead"]
     pub latitude_loose: Option<String>,
     /// Use `longitude` instead
     #[serde(rename = "longitudeLoose", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `longitude` instead"]
     pub longitude_loose: Option<String>,
     /// Allowed values: `default`, `parent`, `accent`, `amber`, `basic`, `blue`, `constructive`, `critical`, `cyan`, `destructive`, `emerald`, `error`, `fuchsia`, `gray`, `green`, `indigo`, `info`, `lime`, `magic`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `success`, `teal`, `violet`, `warning`, `yellow`.
     #[serde(rename = "markerColor", default, skip_serializing_if = "serde_json::Value::is_null")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub marker_color: serde_json::Value,
     /// Use `icon` instead
     #[serde(rename = "markerIcon", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `icon` instead"]
     pub marker_icon: Option<String>,
     #[serde(rename = "markerUrl", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub marker_url: Option<String>,
     /// Use `name` instead
     #[serde(rename = "meetingAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `name` instead"]
     pub meeting_at: Option<String>,
     /// Use `zip` instead
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `zip` instead"]
     pub postalcode: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -23802,7 +23802,7 @@ pub struct SubscriptionGroup {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -23868,7 +23868,7 @@ pub struct SubscriptionLegacyMeetingRequests {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -23905,7 +23905,7 @@ pub struct SubscriptionLegacyServiceRequests {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -23942,7 +23942,7 @@ pub struct SubscriptionMeetingRequests {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -23981,7 +23981,7 @@ pub struct SubscriptionPost {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -24020,7 +24020,7 @@ pub struct SubscriptionPostSummary {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -24068,7 +24068,7 @@ pub struct SubscriptionPublicChannel {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -24107,7 +24107,7 @@ pub struct SubscriptionResource {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -24146,7 +24146,7 @@ pub struct SubscriptionServiceRequests {
     pub origin: String,
     /// Deprecated alias for `hint`.
     #[serde(rename = "originHint", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub origin_hint: Option<String>,
     #[serde(rename = "personId", deserialize_with = "crate::lenient::number")]
     pub person_id: i64,
@@ -25157,16 +25157,16 @@ pub struct Tag {
     #[serde(deserialize_with = "crate::lenient::string")]
     pub name: String,
     #[serde(rename = "modifiedAt", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub modified_at: Option<String>,
     #[serde(rename = "modifiedBy", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub modified_by: Option<i64>,
     #[serde(rename = "modifiedDate", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub modified_date: Option<String>,
     #[serde(rename = "modifiedPid", deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub modified_pid: Option<String>,
     /// Fields not described by the spec, e.g. instance-specific DB fields.
     #[serde(flatten)]
@@ -25419,14 +25419,14 @@ pub struct Transaction {
     pub donator: Option<DomainObjectPerson>,
     /// Deprecated: use `donator` instead.
     #[serde(rename = "donatorId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub donator_id: Option<i64>,
     /// Resolved spouse for joint donation receipts, or null. Without donor visibility the response contains a censored person placeholder.
     #[serde(rename = "donatorSpouse", default, skip_serializing_if = "Option::is_none")]
     pub donator_spouse: Option<DomainObjectPerson>,
     /// Deprecated: use `donatorSpouse` instead.
     #[serde(rename = "donatorSpouseId", deserialize_with = "crate::lenient::opt_number", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub donator_spouse_id: Option<i64>,
     /// Unique ID of the transaction.
     #[serde(deserialize_with = "crate::lenient::number")]
@@ -25496,14 +25496,14 @@ pub struct TransactionBatchFilter {
     pub end_date: Option<chrono::NaiveDate>,
     /// Legacy alias for excludeIds. When both are present, this alias takes precedence.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub exclude: Option<Vec<i64>>,
     /// Filter by ids to exclude.
     #[serde(rename = "excludeIds", default, skip_serializing_if = "Option::is_none")]
     pub exclude_ids: Option<Vec<i64>>,
     /// Legacy alias for includeIds. When both are present, this alias takes precedence.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub include: Option<Vec<i64>>,
     /// Filter by ids to include.
     #[serde(rename = "includeIds", default, skip_serializing_if = "Option::is_none")]
@@ -27831,7 +27831,7 @@ pub struct WikiPage {
     pub guid: String,
     /// Deprecated alias for `guid`. Use `guid` instead.
     #[serde(deserialize_with = "crate::lenient::opt_string", default, skip_serializing_if = "Option::is_none")]
-    #[deprecated]
+    #[deprecated = "Use `guid` instead."]
     pub identifier: Option<String>,
     /// Whether page text is Markdown rather than legacy HTML.
     #[serde(rename = "isMarkdown")]

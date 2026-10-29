@@ -13,6 +13,7 @@ import inspect
 import io
 import json
 import typing as _t
+import warnings
 from pathlib import Path
 
 import pytest
@@ -34,7 +35,9 @@ def server() -> _t.Iterator[ReplayServer]:
 
 
 def run(example: _t.Callable[[ct.Client], None], client: ct.Client) -> None:
-    with contextlib.redirect_stdout(io.StringIO()):
+    # Examples of deprecated operations show the call anyway; the warning is tested elsewhere.
+    with contextlib.redirect_stdout(io.StringIO()), warnings.catch_warnings():
+        warnings.simplefilter("ignore", DeprecationWarning)
         example(client)
 
 

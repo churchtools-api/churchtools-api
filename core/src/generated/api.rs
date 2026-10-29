@@ -546,7 +546,7 @@ impl<'a> AgendasResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "POST /agendas/send is deprecated in the ChurchTools API."]
     pub fn send(&self, body: &models::AgendaMailCreate) -> Result<models::EventMailSendResult> {
         let path = "/agendas/send".to_owned();
         let query: Query = Query::new();
@@ -743,7 +743,8 @@ impl<'a> AgendatemplatesResource<'a> {
 /// Query parameters for `DELETE /agendatemplates/{agendaId}`.
 #[derive(Debug, Clone, Default)]
 pub struct DeleteAgendatemplatesAgendaIdQuery {
-    /// Accepted but ignored. Both `false` and `true` execute deletion; this parameter does not provide a dry run.
+    /// Deprecated. Accepted but ignored. Both `false` and `true` execute deletion; this parameter does not provide a dry run.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub dry_run: Option<bool>,
 }
 
@@ -893,7 +894,8 @@ pub struct PostAgendatemplatesAgendaIdItemsQuery {
     pub before_id: Option<i64>,
     /// Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
     pub after_id: Option<i64>,
-    /// Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+    /// Deprecated. Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+    #[deprecated = "Use `before_id` or `after_id` to position an item."]
     pub sort_key: Option<i64>,
 }
 
@@ -914,7 +916,8 @@ pub struct PutAgendatemplatesAgendaIdItemsItemIdQuery {
     pub before_id: Option<i64>,
     /// Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
     pub after_id: Option<i64>,
-    /// Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+    /// Deprecated. Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+    #[deprecated = "Use `before_id` or `after_id` to position an item."]
     pub sort_key: Option<i64>,
 }
 
@@ -1673,7 +1676,7 @@ impl<'a> CalendarsResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "GET /calendars/{calendarId}/meetingrequestpersons is deprecated in the ChurchTools API."]
     pub fn list_meetingrequestpersons(&self, calendar_id: impl Display) -> Result<Vec<models::MeetingRequestCandidate>> {
         self.list_meetingrequestpersons_with(calendar_id, &Default::default())
     }
@@ -1685,7 +1688,7 @@ impl<'a> CalendarsResource<'a> {
     /// `GET /calendars/{calendarId}/meetingrequestpersons`
     ///
     /// Deprecated alias for /calendars/{calendarId}/meetingrequest/candidates. Returns the same visible candidates.
-    #[deprecated]
+    #[deprecated = "GET /calendars/{calendarId}/meetingrequestpersons is deprecated in the ChurchTools API."]
     pub fn list_meetingrequestpersons_with(&self, calendar_id: impl Display, query: &GetCalendarsCalendarIdMeetingrequestpersonsQuery) -> Result<Vec<models::MeetingRequestCandidate>> {
         let path = format!("/calendars/{}/meetingrequestpersons", seg(calendar_id));
         let query: Query = query.to_query();
@@ -2315,7 +2318,7 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "PUT /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId} is deprecated in the ChurchTools API. Use POST on the path ending in /{answer}."]
     pub fn update(&self, calendar_id: impl Display, appointment_id: impl Display, meeting_request_id: impl Display, body: &models::MeetingRequestUpdate) -> Result<()> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests/{}", seg(calendar_id), seg(appointment_id), seg(meeting_request_id));
         let query: Query = Query::new();
@@ -5107,7 +5110,8 @@ pub struct PostEventsIdAgendaItemsQuery {
     pub before_id: Option<i64>,
     /// Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
     pub after_id: Option<i64>,
-    /// Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+    /// Deprecated. Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+    #[deprecated = "Use `before_id` or `after_id` to position an item."]
     pub sort_key: Option<i64>,
 }
 
@@ -5128,7 +5132,8 @@ pub struct PutEventsIdAgendaItemsIdQuery {
     pub before_id: Option<i64>,
     /// Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
     pub after_id: Option<i64>,
-    /// Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+    /// Deprecated. Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+    #[deprecated = "Use `before_id` or `after_id` to position an item."]
     pub sort_key: Option<i64>,
 }
 
@@ -5226,7 +5231,7 @@ impl<'a> EventsEventservicesResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "DELETE /events/{eventId}/eventservices/{serviceId} is deprecated in the ChurchTools API."]
     pub fn delete(&self, event_id: impl Display, service_id: impl Display, body: &models::ServiceRequestAnswer) -> Result<models::ServiceRequest> {
         let path = format!("/events/{}/eventservices/{}", seg(event_id), seg(service_id));
         let query: Query = Query::new();
@@ -5254,7 +5259,7 @@ impl<'a> EventsEventservicesResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "PUT /events/{eventId}/eventservices/{serviceId} is deprecated in the ChurchTools API."]
     pub fn update(&self, event_id: impl Display, service_id: impl Display, body: &models::ServiceRequestUpdate) -> Result<models::ServiceRequest> {
         let path = format!("/events/{}/eventservices/{}", seg(event_id), seg(service_id));
         let query: Query = Query::new();
@@ -5286,7 +5291,7 @@ impl<'a> EventsEventservicesResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "PUT /events/{eventId}/eventservices is deprecated in the ChurchTools API."]
     pub fn update_all(&self, event_id: impl Display, body: &models::EventServicesUpdate) -> Result<()> {
         let path = format!("/events/{}/eventservices", seg(event_id));
         let query: Query = Query::new();
@@ -6734,8 +6739,6 @@ impl<'a> ExternalpostsResource<'a> {
         ExternalpostsInstancesResource { client: self.client }
     }
 
-    /// get-externalposts
-    ///
     /// `GET /externalposts`
     ///
     /// Get a list of external posts. The posts are sorted by the `createdDate` field descending.
@@ -6758,11 +6761,9 @@ impl<'a> ExternalpostsResource<'a> {
         self.list_with(&Default::default())
     }
 
-    /// get-externalposts
+    /// `GET /externalposts`
     ///
     /// Like [`Self::list`], with query parameters.
-    ///
-    /// `GET /externalposts`
     ///
     /// Get a list of external posts. The posts are sorted by the `createdDate` field descending.
     pub fn list_with(&self, query: &GetExternalpostsQuery) -> Result<Vec<models::Post>> {
@@ -6840,8 +6841,6 @@ pub struct ExternalpostsInstancesChannelsPostsResource<'a> {
 }
 
 impl<'a> ExternalpostsInstancesChannelsPostsResource<'a> {
-    /// get-externalposts-instances-guid-channels-guid-posts-guid
-    ///
     /// `GET /externalposts/instances/{instanceGuid}/channels/{channelGuid}/posts/{postGuid}`
     ///
     /// Get one external Post
@@ -7036,8 +7035,6 @@ pub struct FeatureusageResource<'a> {
 }
 
 impl<'a> FeatureusageResource<'a> {
-    /// post-featureusage
-    ///
     /// `POST /featureusage`
     ///
     /// Send feature usage statistics in bulk.
@@ -7087,7 +7084,7 @@ impl<'a> FieldsResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "GET /fields is deprecated in the ChurchTools API."]
     pub fn list(&self) -> Result<Vec<std::collections::BTreeMap<String, serde_json::Value>>> {
         let path = "/fields".to_owned();
         let query: Query = Query::new();
@@ -7227,7 +7224,7 @@ impl<'a> FilesResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "GET /files/{fileId}/metadata is deprecated in the ChurchTools API. Use `GET /files/{id}/meta` for normalized file metadata."]
     pub fn get_metadata(&self, file_id: impl Display) -> Result<models::LegacyFileMetadata> {
         let path = format!("/files/{}/metadata", seg(file_id));
         let query: Query = Query::new();
@@ -8865,8 +8862,9 @@ pub struct GetFinanceAccountsExportQuery {
     /// Download format. Only CSV and XLSX generators are registered.
     /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
-    /// Compatibility alias for format.
+    /// Deprecated. Compatibility alias for format.
     /// Allowed values: `csv`, `xlsx`.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub r#type: Option<String>,
 }
 
@@ -9798,8 +9796,9 @@ pub struct GetFinanceCostcentersExportQuery {
     /// Download format. Only CSV and XLSX generators are registered.
     /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
-    /// Compatibility alias for format.
+    /// Deprecated. Compatibility alias for format.
     /// Allowed values: `csv`, `xlsx`.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub r#type: Option<String>,
 }
 
@@ -11967,7 +11966,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "GET /finance/transactions/csv is deprecated in the ChurchTools API. Use /finance/transactions/export for new integrations."]
     pub fn get_csv(&self, query: &GetFinanceTransactionsCsvQuery) -> Result<Vec<u8>> {
         let path = "/finance/transactions/csv".to_owned();
         let query: Query = query.to_query();
@@ -12532,8 +12531,9 @@ pub struct GetFinanceTransactionsExportQuery {
     /// File format.
     /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
-    /// Legacy alias for format. Use format for new integrations.
+    /// Deprecated. Legacy alias for format. Use format for new integrations.
     /// Allowed values: `csv`, `xlsx`.
+    #[deprecated = "Use format for new integrations."]
     pub r#type: Option<String>,
 }
 
@@ -13079,8 +13079,6 @@ impl<'a> FurtherlinksResource<'a> {
         self.client.request_data(Method::POST, &path, &query, Some(&body))
     }
 
-    /// delete-furtherlinks-furtherLinkId
-    ///
     /// `DELETE /furtherlinks/{furtherLinkId}`
     ///
     /// # Example
@@ -15299,8 +15297,9 @@ pub struct PostGroupsExportQuery {
     /// Export file format. Defaults to `csv` when omitted. The response content type depends on the selected format.
     /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
-    /// Use `format`
+    /// Deprecated. Use `format`
     /// Allowed values: `csv`, `xlsx`.
+    #[deprecated = "Use `format`"]
     pub r#type: Option<String>,
 }
 
@@ -15444,9 +15443,11 @@ pub struct GetGroupsAbsencesQuery {
     /// Order by absence start.
     /// Allowed values: `ASC`, `DESC`.
     pub order_direction: Option<String>,
-    /// Legacy alias for from.
+    /// Deprecated. Legacy alias for from.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub from_date: Option<serde_json::Value>,
-    /// Legacy alias for to.
+    /// Deprecated. Legacy alias for to.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub to_date: Option<serde_json::Value>,
 }
 
@@ -15852,8 +15853,6 @@ pub struct GroupsDocumentsResource<'a> {
 }
 
 impl<'a> GroupsDocumentsResource<'a> {
-    /// get-groups-groupId-documents-htmlTemplateId
-    ///
     /// `GET /groups/{groupId}/documents/{htmlTemplateId}`
     ///
     /// Get a group document for the current logged in User
@@ -16906,8 +16905,9 @@ pub struct PostGroupsIdMembersExportQuery {
     /// Output format; CSV by default.
     /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
-    /// Use `format`
+    /// Deprecated. Use `format`
     /// Allowed values: `csv`, `xlsx`.
+    #[deprecated = "Use `format`"]
     pub r#type: Option<String>,
 }
 
@@ -16926,8 +16926,9 @@ pub struct GetGroupsGroupIdMembersExportQuery {
     /// Output format; CSV by default.
     /// Allowed values: `csv`, `xlsx`.
     pub format: Option<String>,
-    /// Use `format`
+    /// Deprecated. Use `format`
     /// Allowed values: `csv`, `xlsx`.
+    #[deprecated = "Use `format`"]
     pub r#type: Option<String>,
 }
 
@@ -17013,7 +17014,8 @@ pub struct GetGroupsGroupIdMembersHistoryQuery {
     pub new_status: Option<String>,
     /// Whether the stored field snapshot changed; ignored when new_role_id or new_status is supplied.
     pub new_fields: Option<bool>,
-    /// Legacy alias used only if new_fields is absent.
+    /// Deprecated. Legacy alias used only if new_fields is absent.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub has_field_changed: Option<bool>,
     /// Exclusive upper entry-ID boundary; 0 yields an empty list.
     pub offset_id: Option<i64>,
@@ -17065,8 +17067,6 @@ pub struct GroupsMembersDocumentsResource<'a> {
 }
 
 impl<'a> GroupsMembersDocumentsResource<'a> {
-    /// get-groups-id-members-id-documents-id
-    ///
     /// `GET /groups/{groupId}/members/{memberId}/documents/{htmlTemplateId}`
     ///
     /// Get a document for a group member
@@ -18154,8 +18154,9 @@ pub struct GetHtmltemplatesQuery {
     /// Template purpose. Supply this canonical parameter, or the legacy type alias.
     /// Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
     pub domain_type: Option<String>,
-    /// Legacy alias for domain_type; domain_type wins if both are provided.
+    /// Deprecated. Legacy alias for domain_type; domain_type wins if both are provided.
     /// Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub r#type: Option<String>,
     /// Filter by the current owner, regardless of private/global visibility.
     pub only_own: Option<bool>,
@@ -19052,8 +19053,6 @@ pub struct LogsStatisticsResource<'a> {
 }
 
 impl<'a> LogsStatisticsResource<'a> {
-    /// get-logs-statistics-login
-    ///
     /// `GET /logs/statistics/login`
     ///
     /// Get statistics about login counts of users.
@@ -19076,11 +19075,9 @@ impl<'a> LogsStatisticsResource<'a> {
         self.list_login_with(&Default::default())
     }
 
-    /// get-logs-statistics-login
+    /// `GET /logs/statistics/login`
     ///
     /// Like [`Self::list_login`], with query parameters.
-    ///
-    /// `GET /logs/statistics/login`
     ///
     /// Get statistics about login counts of users.
     pub fn list_login_with(&self, query: &GetLogsStatisticsLoginQuery) -> Result<Vec<models::GetLogsStatisticsLoginDataItem>> {
@@ -19209,7 +19206,7 @@ impl<'a> MasterdataResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "GET /masterdata/person is deprecated in the ChurchTools API. Use `/person/masterdata` for new integrations."]
     pub fn get_person(&self) -> Result<models::PersonMasterData> {
         let path = "/masterdata/person".to_owned();
         let query: Query = Query::new();
@@ -21268,8 +21265,6 @@ impl<'a> PersonsResource<'a> {
         PersonsSettingsResource { client: self.client }
     }
 
-    /// post-persons-personId-archive
-    ///
     /// `POST /persons/{personId}/archive`
     ///
     /// archives or undos an archive of a person
@@ -21424,8 +21419,6 @@ impl<'a> PersonsResource<'a> {
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
     }
 
-    /// TODO 200
-    ///
     /// `POST /persons/export`
     ///
     /// # Example
@@ -21907,8 +21900,6 @@ impl<'a> PersonsResource<'a> {
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
-    /// TODO 200
-    ///
     /// `GET /persons/search_old`
     ///
     /// # Example
@@ -21923,7 +21914,7 @@ impl<'a> PersonsResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "GET /persons/search_old is deprecated in the ChurchTools API."]
     pub fn list_search_old(&self) -> Result<Vec<i64>> {
         let path = "/persons/search_old".to_owned();
         let query: Query = Query::new();
@@ -23449,7 +23440,8 @@ impl DeletePersonsIdServicerequestsIdQuery {
 pub struct GetPersonsIdServicerequestsQuery {
     /// Include only events starting at or after midnight today. Both outstanding and confirmed valid assignments are included.
     pub only_future: Option<bool>,
-    /// Legacy alias for only_future.
+    /// Deprecated. Legacy alias for only_future.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub get_all_in_future: Option<bool>,
 }
 
@@ -23827,8 +23819,6 @@ pub struct PollfornewsResource<'a> {
 }
 
 impl<'a> PollfornewsResource<'a> {
-    /// get-pollfornews
-    ///
     /// `GET /pollfornews`
     ///
     /// This endpoint returns the identifiers of changed entities since the last call.
@@ -23891,8 +23881,6 @@ impl<'a> PostResource<'a> {
         PostReportsResource { client: self.client }
     }
 
-    /// get-post-linkings
-    ///
     /// `GET /post/linkings`
     ///
     /// Use [`Self::get_linkings_with`] to pass query parameters.
@@ -23912,19 +23900,15 @@ impl<'a> PostResource<'a> {
         self.get_linkings_with(&Default::default())
     }
 
-    /// get-post-linkings
+    /// `GET /post/linkings`
     ///
     /// Like [`Self::get_linkings`], with query parameters.
-    ///
-    /// `GET /post/linkings`
     pub fn get_linkings_with(&self, query: &GetPostLinkingsQuery) -> Result<serde_json::Value> {
         let path = "/post/linkings".to_owned();
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
-    /// get-post-groups
-    ///
     /// `GET /post/groups`
     ///
     /// # Example
@@ -23945,8 +23929,6 @@ impl<'a> PostResource<'a> {
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
-    /// get-post-search
-    ///
     /// `GET /post/search`
     ///
     /// Search posts
@@ -23969,11 +23951,9 @@ impl<'a> PostResource<'a> {
         self.list_search_with(&Default::default())
     }
 
-    /// get-post-search
+    /// `GET /post/search`
     ///
     /// Like [`Self::list_search`], with query parameters.
-    ///
-    /// `GET /post/search`
     ///
     /// Search posts
     pub fn list_search_with(&self, query: &GetPostSearchQuery) -> Result<Vec<models::Post>> {
@@ -24059,8 +24039,6 @@ pub struct PostHiddenResource<'a> {
 }
 
 impl<'a> PostHiddenResource<'a> {
-    /// delete-post-hidden-domaintype-domainid
-    ///
     /// `DELETE /post/hidden/{domainType}/{domainId}`
     ///
     /// # Example
@@ -24079,8 +24057,6 @@ impl<'a> PostHiddenResource<'a> {
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
     }
 
-    /// get-post-hidden
-    ///
     /// `GET /post/hidden`
     ///
     /// # Example
@@ -24110,8 +24086,6 @@ pub struct PostReportsResource<'a> {
 }
 
 impl<'a> PostReportsResource<'a> {
-    /// post-post-reports
-    ///
     /// `POST /post/reports`
     ///
     /// # Example
@@ -24136,8 +24110,6 @@ impl<'a> PostReportsResource<'a> {
         self.client.request_data(Method::POST, &path, &query, Some(&body))
     }
 
-    /// get-post-reports
-    ///
     /// `GET /post/reports`
     ///
     /// Use [`Self::list_with`] to pass query parameters.
@@ -24158,19 +24130,15 @@ impl<'a> PostReportsResource<'a> {
         self.list_with(&Default::default())
     }
 
-    /// get-post-reports
+    /// `GET /post/reports`
     ///
     /// Like [`Self::list`], with query parameters.
-    ///
-    /// `GET /post/reports`
     pub fn list_with(&self, query: &GetPostReportsQuery) -> Result<Vec<serde_json::Value>> {
         let path = "/post/reports".to_owned();
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
-    /// put-post-reports-answer
-    ///
     /// `PUT /post/reports/answer`
     ///
     /// # Example
@@ -24236,8 +24204,6 @@ impl<'a> PostsResource<'a> {
         PostsReactionsResource { client: self.client }
     }
 
-    /// post-posts
-    ///
     /// `POST /posts`
     ///
     /// Create a new post. Images must be uploaded previously in a separate request.
@@ -24266,8 +24232,6 @@ impl<'a> PostsResource<'a> {
         self.client.request_data(Method::POST, &path, &query, Some(&body))
     }
 
-    /// delete-posts-postId
-    ///
     /// `DELETE /posts/{postId}`
     ///
     /// Delete a post.
@@ -24292,8 +24256,6 @@ impl<'a> PostsResource<'a> {
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
     }
 
-    /// get-posts-postId
-    ///
     /// `GET /posts/{postId}`
     ///
     /// Get a post.
@@ -24315,11 +24277,9 @@ impl<'a> PostsResource<'a> {
         self.get_with(post_id, &Default::default())
     }
 
-    /// get-posts-postId
+    /// `GET /posts/{postId}`
     ///
     /// Like [`Self::get`], with query parameters.
-    ///
-    /// `GET /posts/{postId}`
     ///
     /// Get a post.
     pub fn get_with(&self, post_id: impl Display, query: &GetPostsPostIdQuery) -> Result<models::Post> {
@@ -24328,8 +24288,6 @@ impl<'a> PostsResource<'a> {
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
-    /// get-posts
-    ///
     /// `GET /posts`
     ///
     /// Get a list of posts sorted by `publishedDate` descending. This endpoint uses cursor-based pagination because the result can contain posts from external ChurchTools instances. To load another batch, use `before` together with `last_post_identifier`; page-based pagination is not supported.
@@ -24352,11 +24310,9 @@ impl<'a> PostsResource<'a> {
         self.list_with(&Default::default())
     }
 
-    /// get-posts
+    /// `GET /posts`
     ///
     /// Like [`Self::list`], with query parameters.
-    ///
-    /// `GET /posts`
     ///
     /// Get a list of posts sorted by `publishedDate` descending. This endpoint uses cursor-based pagination because the result can contain posts from external ChurchTools instances. To load another batch, use `before` together with `last_post_identifier`; page-based pagination is not supported.
     pub fn list_with(&self, query: &GetPostsQuery) -> Result<Vec<models::Post>> {
@@ -24365,8 +24321,6 @@ impl<'a> PostsResource<'a> {
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
-    /// patch-posts-postId
-    ///
     /// `PATCH /posts/{postId}`
     ///
     /// Update a post.
@@ -24392,8 +24346,6 @@ impl<'a> PostsResource<'a> {
         self.client.request_data(Method::PATCH, &path, &query, Some(&body))
     }
 
-    /// put-posts-postId-expire
-    ///
     /// `PUT /posts/{postId}/expire`
     ///
     /// Expire the referenced post immediately.
@@ -24456,7 +24408,8 @@ pub struct GetPostsQuery {
     pub last_post_identifier: Option<String>,
     /// If set, only posts published at or after this date are returned. The date must be in RFC3339 format (Zulu-Date).
     pub after: Option<chrono::DateTime<chrono::Utc>>,
-    /// If set, only posts of this campus are returned. If not set, posts of all campuses are returned.
+    /// Deprecated. If set, only posts of this campus are returned. If not set, posts of all campuses are returned.
+    #[deprecated = "deprecated in the ChurchTools API"]
     pub campus_id: Option<i64>,
     /// If set, only posts of these campuses are returned. If not set, posts of all campuses are returned.
     pub campus_ids: Option<Vec<i64>>,
@@ -24509,8 +24462,6 @@ impl<'a> PostsCommentsResource<'a> {
         PostsCommentsReactionsResource { client: self.client }
     }
 
-    /// post-posts-postId-comments
-    ///
     /// `POST /posts/{postId}/comments`
     ///
     /// Create a new comment for a post.
@@ -24537,8 +24488,6 @@ impl<'a> PostsCommentsResource<'a> {
         self.client.request_data(Method::POST, &path, &query, Some(&body))
     }
 
-    /// delete-posts-postId-comments-commentId
-    ///
     /// `DELETE /posts/{postId}/comments/{commentId}`
     ///
     /// Delete a comment of a post.
@@ -24559,8 +24508,6 @@ impl<'a> PostsCommentsResource<'a> {
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
     }
 
-    /// get-posts-postId-comments
-    ///
     /// `GET /posts/{postId}/comments`
     ///
     /// Get a list of comments for a post.
@@ -24592,8 +24539,6 @@ pub struct PostsCommentsReactionsResource<'a> {
 }
 
 impl<'a> PostsCommentsReactionsResource<'a> {
-    /// delete-posts-postId-comments-commentId-reactions-emoji
-    ///
     /// `DELETE /posts/{postId}/comments/{commentId}/reactions/{emoji}`
     ///
     /// Delete a reaction of the current person for a post comment.
@@ -24614,8 +24559,6 @@ impl<'a> PostsCommentsReactionsResource<'a> {
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
     }
 
-    /// get-posts-postId-comments-commentId-reactions
-    ///
     /// `GET /posts/{postId}/comments/{commentId}/reactions`
     ///
     /// Get a list of reactions for a post comment.
@@ -24638,8 +24581,6 @@ impl<'a> PostsCommentsReactionsResource<'a> {
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
-    /// put-posts-postId-comments-commentId-reactions
-    ///
     /// `PUT /posts/{postId}/comments/{commentId}/reactions`
     ///
     /// Create a new reaction of the current person for a post comment.
@@ -24674,8 +24615,6 @@ pub struct PostsHiddenResource<'a> {
 }
 
 impl<'a> PostsHiddenResource<'a> {
-    /// put-posts-postId-hidden-domainType
-    ///
     /// `PUT /posts/{postId}/hidden/{domainType}`
     ///
     /// Hide a post. This endpoint is used to hide a post from the timeline of the user. The post is not deleted, but the user will not see it anymore. NB: If the supplied domain type is `group`, this will also deactivate post-related subscriptions for that group.
@@ -24709,8 +24648,6 @@ impl<'a> PostsReactionsResource<'a> {
         PostsReactionsPersonsResource { client: self.client }
     }
 
-    /// get-posts-postId-reactions
-    ///
     /// `GET /posts/{postId}/reactions`
     ///
     /// Get a list of reactions for a post.
@@ -24742,8 +24679,6 @@ pub struct PostsReactionsPersonsResource<'a> {
 }
 
 impl<'a> PostsReactionsPersonsResource<'a> {
-    /// delete-posts-postId-reactions-emoji-persons-personId
-    ///
     /// `DELETE /posts/{postId}/reactions/{emoji}/persons/{personId}`
     ///
     /// Delete a reaction of a person for a post.
@@ -24764,8 +24699,6 @@ impl<'a> PostsReactionsPersonsResource<'a> {
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
     }
 
-    /// put-posts-postId-reactions-emoji-persons-personId
-    ///
     /// `PUT /posts/{postId}/reactions/{emoji}/persons/{personId}`
     ///
     /// Create a new reaction of a person for a post.
@@ -28378,7 +28311,7 @@ impl<'a> StatusesResource<'a> {
     /// # Ok(())
     /// # }
     /// ```
-    #[deprecated]
+    #[deprecated = "PUT /statuses/{id} is deprecated in the ChurchTools API. Use `PATCH /statuses/{id}` instead."]
     pub fn update(&self, id: impl Display, body: &models::StatusCreate) -> Result<models::Status> {
         let path = format!("/statuses/{}", seg(id));
         let query: Query = Query::new();
@@ -30771,8 +30704,6 @@ impl<'a> WebsiteResource<'a> {
         WebsiteDataResource { client: self.client }
     }
 
-    /// TODO
-    ///
     /// `GET /website/starttest`
     ///
     /// # Example
@@ -30800,8 +30731,6 @@ pub struct WebsiteDataResource<'a> {
 }
 
 impl<'a> WebsiteDataResource<'a> {
-    /// post-website-data
-    ///
     /// `POST /website/data`
     ///
     /// # Example
@@ -30826,8 +30755,6 @@ impl<'a> WebsiteDataResource<'a> {
         self.client.request_data(Method::POST, &path, &query, Some(&body))
     }
 
-    /// delete-website-data
-    ///
     /// `DELETE /website/data/{id}`
     ///
     /// # Example
@@ -30846,8 +30773,6 @@ impl<'a> WebsiteDataResource<'a> {
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
     }
 
-    /// get-website-data
-    ///
     /// `GET /website/data`
     ///
     /// Get the data that is shared with the CT website
@@ -30870,11 +30795,9 @@ impl<'a> WebsiteDataResource<'a> {
         self.list_with(&Default::default())
     }
 
-    /// get-website-data
+    /// `GET /website/data`
     ///
     /// Like [`Self::list`], with query parameters.
-    ///
-    /// `GET /website/data`
     ///
     /// Get the data that is shared with the CT website
     pub fn list_with(&self, query: &GetWebsiteDataQuery) -> Result<Vec<serde_json::Value>> {
@@ -30968,8 +30891,6 @@ pub struct WidgetsResource<'a> {
 }
 
 impl<'a> WidgetsResource<'a> {
-    /// get-widgets-blog
-    ///
     /// `GET /widgets/blog`
     ///
     /// # Example
@@ -30989,8 +30910,6 @@ impl<'a> WidgetsResource<'a> {
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
-    /// get-widgets-rss
-    ///
     /// `GET /widgets/rss`
     ///
     /// # Example

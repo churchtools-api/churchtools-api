@@ -300,3 +300,12 @@ def test_unavailable_server_is_retried_for_get_but_not_post(client: ct.Client) -
     with pytest.raises(ct.ServerError):
         client._core.request("POST", "/flaky", [])
     assert [r["method"] for r in FakeServer.requests] == ["GET", "GET", "POST"]
+
+
+def test_deprecated_operations_and_arguments_warn(client: ct.Client) -> None:
+    with pytest.warns(DeprecationWarning, match="GET /persons/search_old is deprecated"):
+        with pytest.raises(ct.ServerError):
+            client.persons.list_search_old()
+    with pytest.warns(DeprecationWarning, match="argument .type_. is deprecated in the ChurchTools API. Use `format`"):
+        with pytest.raises(ct.ServerError):
+            client.groups.members.create_export(7, type_="csv")

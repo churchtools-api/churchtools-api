@@ -8,8 +8,10 @@ from __future__ import annotations
 import datetime as _dt
 import typing as _t
 
+from typing_extensions import deprecated as _deprecated
+
 from . import models
-from ._base import UNSET, Paginator, Resource, StrMap, UnsetType, Upload, _body, _query, _seg
+from ._base import UNSET, Paginator, Resource, StrMap, UnsetType, Upload, _body, _query, _seg, _warn_deprecated
 
 
 class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
@@ -197,8 +199,6 @@ class ExternalpostsInstancesChannelsPostsResource(Resource):
         post_guid: str,
     ) -> models.Post:
         """
-        get-externalposts-instances-guid-channels-guid-posts-guid
-
         `GET /externalposts/instances/{instanceGuid}/channels/{channelGuid}/posts/{postGuid}`
 
         Get one external Post
@@ -341,7 +341,7 @@ class FinanceReportsStatementCostcentersResource(Resource):
                 Allowed values: `csv`, `pdf`, `xlsx`.
             start_date: First document date to include. Omission or null defaults to the corresponding accounting-period boundary. The final endDate must be on or after startDate.
             include_rebookings: Include transactions classified as internal rebookings in the cost-center report.
-            type_: Legacy alias for format.
+            type_: Deprecated. Legacy alias for format.
                 Allowed values: `csv`, `pdf`, `xlsx`.
 
         Example::
@@ -350,6 +350,8 @@ class FinanceReportsStatementCostcentersResource(Resource):
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
+        if type_ is not UNSET:
+            _warn_deprecated('type_', '')
         return self._raw('POST', f"/finance/reports/statement/costcenters/{_seg(cost_center_id)}", [], _body({'endDate': end_date, 'format': format, 'startDate': start_date, 'includeRebookings': include_rebookings, 'type': type_}, extra_body))
 
 
@@ -802,6 +804,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
         """
         return _t.cast(_t.List[models.MeetingRequest], self._call('GET', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests", [], None, _t.List[models.MeetingRequest], envelope=True))
 
+    @_deprecated('PUT /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId} is deprecated in the ChurchTools API. Use POST on the path ending in /{answer}.')
     def update(
         self,
         calendar_id: int,
@@ -816,7 +819,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
 
         `PUT /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId}`
 
-        Deprecated.
+        Deprecated. Use POST on the path ending in /{answer}.
 
         Legacy body-based endpoint for answering a meeting request. Only the invited person may answer. Use POST on the path ending in /{answer}.
 
@@ -1058,7 +1061,7 @@ class EventsAgendaItemsResource(Resource):
             event_id: ID of Event
             before_id: Place the item before this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             after_id: Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
-            sort_key: Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+            sort_key: Deprecated. Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
 
         Example::
 
@@ -1068,6 +1071,8 @@ class EventsAgendaItemsResource(Resource):
             )
             print(result)
         """
+        if sort_key is not None:
+            _warn_deprecated('sort_key', 'Use `before_id` or `after_id` to position an item.')
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('POST', f"/events/{_seg(event_id)}/agenda/items", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
     def delete(
@@ -1158,7 +1163,7 @@ class EventsAgendaItemsResource(Resource):
             item_id: ID of agenda item
             before_id: Place the item before this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             after_id: Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
-            sort_key: Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+            sort_key: Deprecated. Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
 
         Example::
 
@@ -1169,6 +1174,8 @@ class EventsAgendaItemsResource(Resource):
             )
             print(result)
         """
+        if sort_key is not None:
+            _warn_deprecated('sort_key', 'Use `before_id` or `after_id` to position an item.')
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('PUT', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
 
@@ -2170,8 +2177,6 @@ class GroupsMembersDocumentsResource(Resource):
         html_template_id: int,
     ) -> None:
         """
-        get-groups-id-members-id-documents-id
-
         `GET /groups/{groupId}/members/{memberId}/documents/{htmlTemplateId}`
 
         Get a document for a group member
@@ -2798,8 +2803,6 @@ class PostsCommentsReactionsResource(Resource):
         emoji: str,
     ) -> None:
         """
-        delete-posts-postId-comments-commentId-reactions-emoji
-
         `DELETE /posts/{postId}/comments/{commentId}/reactions/{emoji}`
 
         Delete a reaction of the current person for a post comment.
@@ -2821,8 +2824,6 @@ class PostsCommentsReactionsResource(Resource):
         comment_id: int,
     ) -> _t.List[models.PostCommentReaction]:
         """
-        get-posts-postId-comments-commentId-reactions
-
         `GET /posts/{postId}/comments/{commentId}/reactions`
 
         Get a list of reactions for a post comment.
@@ -2847,8 +2848,6 @@ class PostsCommentsReactionsResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.PostCommentReaction:
         """
-        put-posts-postId-comments-commentId-reactions
-
         `PUT /posts/{postId}/comments/{commentId}/reactions`
 
         Create a new reaction of the current person for a post comment.
@@ -2875,8 +2874,6 @@ class PostsReactionsPersonsResource(Resource):
         person_id: str,
     ) -> None:
         """
-        delete-posts-postId-reactions-emoji-persons-personId
-
         `DELETE /posts/{postId}/reactions/{emoji}/persons/{personId}`
 
         Delete a reaction of a person for a post.
@@ -2897,8 +2894,6 @@ class PostsReactionsPersonsResource(Resource):
         person_id: str,
     ) -> models.PostReaction:
         """
-        put-posts-postId-reactions-emoji-persons-personId
-
         `PUT /posts/{postId}/reactions/{emoji}/persons/{personId}`
 
         Create a new reaction of a person for a post.
@@ -3938,7 +3933,7 @@ class AgendatemplatesItemsResource(Resource):
             agenda_id: ID of agenda
             before_id: Place the item before this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             after_id: Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
-            sort_key: Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+            sort_key: Deprecated. Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
 
         Example::
 
@@ -3948,6 +3943,8 @@ class AgendatemplatesItemsResource(Resource):
             )
             print(result)
         """
+        if sort_key is not None:
+            _warn_deprecated('sort_key', 'Use `before_id` or `after_id` to position an item.')
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('POST', f"/agendatemplates/{_seg(agenda_id)}/items", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
     def delete(
@@ -3994,7 +3991,7 @@ class AgendatemplatesItemsResource(Resource):
             item_id: ID of agenda item
             before_id: Place the item before this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
             after_id: Place the item after this existing item in the same agenda. Use at most one of `before_id` and `after_id`. These are item IDs, not zero-based positions.
-            sort_key: Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
+            sort_key: Deprecated. Accepted and validated as an integer, but not applied by the item service. Use `before_id` or `after_id` to position an item.
 
         Example::
 
@@ -4005,6 +4002,8 @@ class AgendatemplatesItemsResource(Resource):
             )
             print(result)
         """
+        if sort_key is not None:
+            _warn_deprecated('sort_key', 'Use `before_id` or `after_id` to position an item.')
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('PUT', f"/agendatemplates/{_seg(agenda_id)}/items/{_seg(item_id)}", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
 
@@ -4857,6 +4856,7 @@ class EventsAgendaResource(Resource):
 class EventsEventservicesResource(Resource):
     """`client.events.eventservices`"""
 
+    @_deprecated('DELETE /events/{eventId}/eventservices/{serviceId} is deprecated in the ChurchTools API.')
     def delete(
         self,
         event_id: int,
@@ -4886,6 +4886,7 @@ class EventsEventservicesResource(Resource):
         """
         return _t.cast(models.ServiceRequest, self._call('DELETE', f"/events/{_seg(event_id)}/eventservices/{_seg(service_id)}", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
 
+    @_deprecated('PUT /events/{eventId}/eventservices/{serviceId} is deprecated in the ChurchTools API.')
     def update(
         self,
         event_id: int,
@@ -4911,7 +4912,7 @@ class EventsEventservicesResource(Resource):
         Args:
             event_id: ID of Event
             service_id: ID of a concrete event-service assignment, exposed as `serviceId` on legacy routes
-            agreed: Legacy alias for isAccepted. Prefer isAccepted in new integrations.
+            agreed: Deprecated. Legacy alias for isAccepted. Prefer isAccepted in new integrations.
             comment: Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment. Use the accept or decline action for a response comment.
             inform_person: Accepted for compatibility; this flag does not control notifications in the current implementation. Notifications follow the assignment workflow.
             is_accepted: true creates a confirmed assignment; false creates an assignment awaiting confirmation. false does not decline it.
@@ -4923,8 +4924,11 @@ class EventsEventservicesResource(Resource):
             result = client.events.eventservices.update(42, 42, name="Guest musician")
             print(result.name)
         """
+        if agreed is not UNSET:
+            _warn_deprecated('agreed', '')
         return _t.cast(models.ServiceRequest, self._call('PUT', f"/events/{_seg(event_id)}/eventservices/{_seg(service_id)}", [], _body({'agreed': agreed, 'comment': comment, 'inform_person': inform_person, 'isAccepted': is_accepted, 'name': name, 'personId': person_id}, extra_body), models.ServiceRequest, envelope=True))
 
+    @_deprecated('PUT /events/{eventId}/eventservices is deprecated in the ChurchTools API.')
     def update_all(
         self,
         event_id: int,
@@ -5220,7 +5224,7 @@ class EventsServicerequestsResource(Resource):
         Args:
             event_id: ID of Event
             request_id: ID of a service request
-            agreed: Legacy alias for isAccepted. Prefer isAccepted in new integrations.
+            agreed: Deprecated. Legacy alias for isAccepted. Prefer isAccepted in new integrations.
             comment: Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment. Use the accept or decline action for a response comment.
             inform_person: Accepted for compatibility; this flag does not control notifications in the current implementation. Notifications follow the assignment workflow.
             is_accepted: true creates a confirmed assignment; false creates an assignment awaiting confirmation. false does not decline it.
@@ -5232,6 +5236,8 @@ class EventsServicerequestsResource(Resource):
             result = client.events.servicerequests.update(42, 42, name="Guest musician")
             print(result.name)
         """
+        if agreed is not UNSET:
+            _warn_deprecated('agreed', '')
         return _t.cast(models.ServiceRequest, self._call('PUT', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}", [], _body({'agreed': agreed, 'comment': comment, 'inform_person': inform_person, 'isAccepted': is_accepted, 'name': name, 'personId': person_id}, extra_body), models.ServiceRequest, envelope=True))
 
     def update_all(
@@ -6384,7 +6390,7 @@ class FinanceAccountsResource(Resource):
             accounting_period_id: Accounting period to export.
             format: Download format. Only CSV and XLSX generators are registered.
                 Allowed values: `csv`, `xlsx`.
-            type_: Compatibility alias for format.
+            type_: Deprecated. Compatibility alias for format.
                 Allowed values: `csv`, `xlsx`.
 
         Example::
@@ -6393,6 +6399,8 @@ class FinanceAccountsResource(Resource):
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
+        if type_ is not None:
+            _warn_deprecated('type_', '')
         return self._raw('GET', "/finance/accounts/export", _query([('accounting_period_id', accounting_period_id), ('format', format), ('type', type_)]), None)
 
     def list(
@@ -7097,7 +7105,7 @@ class FinanceCostcentersResource(Resource):
             accounting_period_id: Accounting period to export.
             format: Download format. Only CSV and XLSX generators are registered.
                 Allowed values: `csv`, `xlsx`.
-            type_: Compatibility alias for format.
+            type_: Deprecated. Compatibility alias for format.
                 Allowed values: `csv`, `xlsx`.
 
         Example::
@@ -7106,6 +7114,8 @@ class FinanceCostcentersResource(Resource):
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
+        if type_ is not None:
+            _warn_deprecated('type_', '')
         return self._raw('GET', "/finance/costcenters/export", _query([('accounting_period_id', accounting_period_id), ('format', format), ('type', type_)]), None)
 
     def list(
@@ -8352,6 +8362,7 @@ class FinanceTransactionsResource(Resource):
         """
         return _t.cast(models.Transaction, self._call('GET', f"/finance/transactions/{_seg(id)}", _query([('include[]', include)]), None, models.Transaction, envelope=True))
 
+    @_deprecated('GET /finance/transactions/csv is deprecated in the ChurchTools API. Use /finance/transactions/export for new integrations.')
     def get_csv(
         self,
         *,
@@ -8378,7 +8389,7 @@ class FinanceTransactionsResource(Resource):
 
         `GET /finance/transactions/csv`
 
-        Deprecated.
+        Deprecated. Use /finance/transactions/export for new integrations.
 
         Downloads all matching bookings without pagination or a JSON wrapper. Supports the listed booking filters; page, limit, include, exclude_stornos and exclude_paybacks are not evaluated. Both accounts must be visible. Without an explicit cost-center filter, users without permission for the whole period are restricted to their accessible cost centers. Donor details and notes are censored where required, but the donor-ID filter itself is accepted without the list endpoint’s additional filter-permission check. target selects the column layout. CSV uses semicolons, UTF-8 with BOM, localized column labels and locale-dependent amount formatting in major currency units. Use /finance/transactions/export for new integrations.
 
@@ -8546,7 +8557,7 @@ class FinanceTransactionsResource(Resource):
                 Allowed values: ``, `default`, `sage100`.
             format: File format.
                 Allowed values: `csv`, `xlsx`.
-            type_: Legacy alias for format. Use format for new integrations.
+            type_: Deprecated. Legacy alias for format. Use format for new integrations.
                 Allowed values: `csv`, `xlsx`.
 
         Example::
@@ -8555,6 +8566,8 @@ class FinanceTransactionsResource(Resource):
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
+        if type_ is not None:
+            _warn_deprecated('type_', 'Use format for new integrations.')
         return self._raw('GET', "/finance/transactions/export", _query([('accounting_period_id', accounting_period_id), ('created_pid', created_pid), ('cost_center_ids[]', cost_center_ids), ('donator_ids[]', donator_ids), ('include_ids[]', include_ids), ('exclude_ids[]', exclude_ids), ('account_ids[]', account_ids), ('is_donation', is_donation), ('is_income', is_income), ('start_date', start_date), ('end_date', end_date), ('is_immutable', is_immutable), ('order_by', order_by), ('order_direction', order_direction), ('query', query), ('is_waiver_of_reimbursement_of_expenses', is_waiver_of_reimbursement_of_expenses), ('target', target), ('format', format), ('type', type_)]), None)
 
     def get_ids(
@@ -9431,7 +9444,7 @@ class GroupRolesResource(Resource):
             grow_path_id: ID of the growth path associated with this role, or null for no association. Growth paths track steps in a person's development in ChurchTools.
             is_default: Whether this is the default role for its group type. Setting this to true clears the default flag on the other roles of that type.
             is_hidden: Whether this role is marked as hidden for displays that exclude hidden roles, such as leader listings. Hidden roles are still returned by this endpoint; this flag is not an access permission.
-            is_leader: Legacy response field indicating whether type is leader. Use type instead; this field is not used to create or update a role.
+            is_leader: Deprecated. Legacy response field indicating whether type is leader. Use type instead; this field is not used to create or update a role.
             name: Stored name of the role. Use nameTranslated from the response for a localized display name.
             shorty: Abbreviated label for the role, used in compact displays.
             sort_key: Display order among roles. Lower values come first.
@@ -9452,6 +9465,8 @@ class GroupRolesResource(Resource):
             )
             print(result.name)
         """
+        if is_leader is not UNSET:
+            _warn_deprecated('is_leader', 'Use type instead; this field is not used to create or update a role.')
         return _t.cast(models.Role, self._call('POST', "/group/roles", [], _body({'groupTypeId': group_type_id, 'growPathId': grow_path_id, 'isDefault': is_default, 'isHidden': is_hidden, 'isLeader': is_leader, 'name': name, 'shorty': shorty, 'sortKey': sort_key, 'type': type_}, extra_body), models.Role, envelope=True))
 
     def delete(
@@ -9556,7 +9571,7 @@ class GroupRolesResource(Resource):
             grow_path_id: ID of the growth path associated with this role, or null for no association. Growth paths track steps in a person's development in ChurchTools.
             is_default: Whether this is the default role for its group type. Setting this to true clears the default flag on the other roles of that type.
             is_hidden: Whether this role is marked as hidden for displays that exclude hidden roles, such as leader listings. Hidden roles are still returned by this endpoint; this flag is not an access permission.
-            is_leader: Legacy response field indicating whether type is leader. Use type instead; this field is not used to create or update a role.
+            is_leader: Deprecated. Legacy response field indicating whether type is leader. Use type instead; this field is not used to create or update a role.
             name: Stored name of the role. Use nameTranslated from the response for a localized display name.
             shorty: Abbreviated label for the role, used in compact displays.
             sort_key: Display order among roles. Lower values come first.
@@ -9578,6 +9593,8 @@ class GroupRolesResource(Resource):
             )
             print(result.name)
         """
+        if is_leader is not UNSET:
+            _warn_deprecated('is_leader', 'Use type instead; this field is not used to create or update a role.')
         return _t.cast(models.Role, self._call('PUT', f"/group/roles/{_seg(role_id)}", [], _body({'groupTypeId': group_type_id, 'growPathId': grow_path_id, 'isDefault': is_default, 'isHidden': is_hidden, 'isLeader': is_leader, 'name': name, 'shorty': shorty, 'sortKey': sort_key, 'type': type_}, extra_body), models.Role, envelope=True))
 
 
@@ -9752,8 +9769,6 @@ class GroupsDocumentsResource(Resource):
         html_template_id: str,
     ) -> None:
         """
-        get-groups-groupId-documents-htmlTemplateId
-
         `GET /groups/{groupId}/documents/{htmlTemplateId}`
 
         Get a group document for the current logged in User
@@ -10095,7 +10110,7 @@ class GroupsMembersResource(Resource):
             group_id: ID of group
             format: Output format; CSV by default.
                 Allowed values: `csv`, `xlsx`.
-            type_: Use `format`
+            type_: Deprecated. Use `format`
                 Allowed values: `csv`, `xlsx`.
 
         Example::
@@ -10104,6 +10119,8 @@ class GroupsMembersResource(Resource):
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
+        if type_ is not None:
+            _warn_deprecated('type_', 'Use `format`')
         return self._raw('POST', f"/groups/{_seg(group_id)}/members/export", _query([('format', format), ('type', type_)]), _body({'config': config}, extra_body))
 
     def delete(
@@ -10169,7 +10186,7 @@ class GroupsMembersResource(Resource):
             group_id: ID of group
             format: Output format; CSV by default.
                 Allowed values: `csv`, `xlsx`.
-            type_: Use `format`
+            type_: Deprecated. Use `format`
                 Allowed values: `csv`, `xlsx`.
 
         Example::
@@ -10178,6 +10195,8 @@ class GroupsMembersResource(Resource):
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
+        if type_ is not None:
+            _warn_deprecated('type_', 'Use `format`')
         return self._raw('GET', f"/groups/{_seg(group_id)}/members/export", _query([('format', format), ('type', type_)]), None)
 
     def list(
@@ -10263,7 +10282,7 @@ class GroupsMembersResource(Resource):
             new_role_id: Only changes to this role ID. Takes precedence over status/field-change filters.
             new_status: Only changes to this status, unless new_role_id is supplied. Unknown strings match no entries.
             new_fields: Whether the stored field snapshot changed; ignored when new_role_id or new_status is supplied.
-            has_field_changed: Legacy alias used only if new_fields is absent.
+            has_field_changed: Deprecated. Legacy alias used only if new_fields is absent.
             offset_id: Exclusive upper entry-ID boundary; 0 yields an empty list.
             limit: Maximum entries in this batch.
 
@@ -10272,6 +10291,8 @@ class GroupsMembersResource(Resource):
             for history in client.groups.members.list_history(42):
                 print(history.id)
         """
+        if has_field_changed is not None:
+            _warn_deprecated('has_field_changed', '')
         return _t.cast(_t.List[models.GroupMemberHistoryEntry], self._call('GET', f"/groups/{_seg(group_id)}/members/history", _query([('member_id', member_id), ('actor_id', actor_id), ('origin', origin), ('new_role_id', new_role_id), ('new_status', new_status), ('new_fields', new_fields), ('has_field_changed', has_field_changed), ('offset_id', offset_id), ('limit', limit)]), None, _t.List[models.GroupMemberHistoryEntry], envelope=True))
 
     def list_meetings(
@@ -10833,8 +10854,6 @@ class LogsStatisticsResource(Resource):
         limit: _t.Optional[int] = None,
     ) -> Paginator[models.GetLogsStatisticsLoginDataItem]:
         """
-        get-logs-statistics-login
-
         `GET /logs/statistics/login`
 
         Get statistics about login counts of users.
@@ -11667,13 +11686,15 @@ class PersonsDevicesResource(Resource):
             push_id: Trimmed push token. Omission replaces the token with deviceId; null clears it; an empty or whitespace-only string preserves the previous token (null on a new device).
             type_: Push platform: APN for Apple Push Notification service; FCM for Firebase Cloud Messaging.
                 Allowed values: `APN`, `FCM`.
-            version: Legacy alias of appVersion; use appVersion. The canonical field takes precedence if both are present.
+            version: Deprecated. Legacy alias of appVersion; use appVersion. The canonical field takes precedence if both are present.
 
         Example::
 
             for device in client.persons.devices.update(42, "abc123", type_="FCM"):
                 print(device.app_version)
         """
+        if version is not UNSET:
+            _warn_deprecated('version', '')
         return _t.cast(_t.List[models.Device], self._call('PUT', f"/persons/{_seg(person_id)}/devices/{_seg(device_id)}", [], _body({'appVersion': app_version, 'pushId': push_id, 'type': type_, 'version': version}, extra_body), _t.List[models.Device], envelope=True))
 
 
@@ -12185,13 +12206,15 @@ class PersonsServicerequestsResource(Resource):
         Args:
             person_id: ID of person
             only_future: Include only events starting at or after midnight today. Both outstanding and confirmed valid assignments are included.
-            get_all_in_future: Legacy alias for only_future.
+            get_all_in_future: Deprecated. Legacy alias for only_future.
 
         Example::
 
             for servicerequest in client.persons.servicerequests.list(42):
                 print(servicerequest.name)
         """
+        if get_all_in_future is not None:
+            _warn_deprecated('get_all_in_future', '')
         return _t.cast(_t.List[models.ServiceRequest], self._call('GET', f"/persons/{_seg(person_id)}/servicerequests", _query([('only_future', only_future), ('getAllInFuture', get_all_in_future)]), None, _t.List[models.ServiceRequest], envelope=True))
 
     def undo(
@@ -12238,7 +12261,7 @@ class PersonsServicerequestsResource(Resource):
         Args:
             person_id: ID of person
             request_id: ID of a service request
-            agreed: Legacy alias for isAccepted. Prefer isAccepted in new integrations.
+            agreed: Deprecated. Legacy alias for isAccepted. Prefer isAccepted in new integrations.
             comment: Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment. Use the accept or decline action for a response comment.
             inform_person: Accepted for compatibility; this flag does not control notifications in the current implementation. Notifications follow the assignment workflow.
             is_accepted: true creates a confirmed assignment; false creates an assignment awaiting confirmation. false does not decline it.
@@ -12248,6 +12271,8 @@ class PersonsServicerequestsResource(Resource):
             result = client.persons.servicerequests.update(42, 42, comment="Hallo zusammen")
             print(result.name)
         """
+        if agreed is not UNSET:
+            _warn_deprecated('agreed', '')
         return _t.cast(models.ServiceRequest, self._call('PUT', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}", [], _body({'agreed': agreed, 'comment': comment, 'inform_person': inform_person, 'isAccepted': is_accepted}, extra_body), models.ServiceRequest, envelope=True))
 
 
@@ -12422,8 +12447,6 @@ class PostHiddenResource(Resource):
         domain_id: int,
     ) -> None:
         """
-        delete-post-hidden-domaintype-domainid
-
         `DELETE /post/hidden/{domainType}/{domainId}`
 
         Args:
@@ -12439,8 +12462,6 @@ class PostHiddenResource(Resource):
         self,
     ) -> _t.List[_t.Union[models.DomainObjectGroup, models.DomainObjectPerson, models.DomainObjectPost]]:
         """
-        get-post-hidden
-
         `GET /post/hidden`
 
         Example::
@@ -12465,8 +12486,6 @@ class PostReportsResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Report:
         """
-        post-post-reports
-
         `POST /post/reports`
 
         Args:
@@ -12487,8 +12506,6 @@ class PostReportsResource(Resource):
         status: _t.Optional[_t.Literal['accepted', 'declined', 'pending', 'pending-again']] = None,
     ) -> _t.List[_t.Union[models.ReportObjectPost, models.ReportObjectPostComment]]:
         """
-        get-post-reports
-
         `GET /post/reports`
 
         Args:
@@ -12511,8 +12528,6 @@ class PostReportsResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
         """
-        put-post-reports-answer
-
         `PUT /post/reports/answer`
 
         Args:
@@ -12543,8 +12558,6 @@ class PostsCommentsResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.PostComment:
         """
-        post-posts-postId-comments
-
         `POST /posts/{postId}/comments`
 
         Create a new comment for a post.
@@ -12565,8 +12578,6 @@ class PostsCommentsResource(Resource):
         comment_id: int,
     ) -> None:
         """
-        delete-posts-postId-comments-commentId
-
         `DELETE /posts/{postId}/comments/{commentId}`
 
         Delete a comment of a post.
@@ -12586,8 +12597,6 @@ class PostsCommentsResource(Resource):
         post_id: int,
     ) -> _t.List[models.PostComment]:
         """
-        get-posts-postId-comments
-
         `GET /posts/{postId}/comments`
 
         Get a list of comments for a post.
@@ -12612,8 +12621,6 @@ class PostsHiddenResource(Resource):
         domain_type: _t.Literal['actor', 'group', 'post'],
     ) -> None:
         """
-        put-posts-postId-hidden-domainType
-
         `PUT /posts/{postId}/hidden/{domainType}`
 
         Hide a post. This endpoint is used to hide a post from the timeline of the user. The post is not deleted, but the user will not see it anymore. NB: If the supplied domain type is `group`, this will also deactivate post-related subscriptions for that group.
@@ -12642,8 +12649,6 @@ class PostsReactionsResource(Resource):
         post_id: int,
     ) -> _t.List[models.PostReaction]:
         """
-        get-posts-postId-reactions
-
         `GET /posts/{postId}/reactions`
 
         Get a list of reactions for a post.
@@ -13988,8 +13993,6 @@ class WebsiteDataResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.WebsiteDataWithoutInclude:
         """
-        post-website-data
-
         `POST /website/data`
 
         Args:
@@ -14007,8 +14010,6 @@ class WebsiteDataResource(Resource):
         id: int,
     ) -> None:
         """
-        delete-website-data
-
         `DELETE /website/data/{id}`
 
         Args:
@@ -14026,8 +14027,6 @@ class WebsiteDataResource(Resource):
         include: _t.Optional[_t.List[_t.Literal['domainData']]] = None,
     ) -> _t.List[_t.Union[models.WebsiteDataStaff, models.WebsiteDataCalendar, models.WebsiteDataPerson, models.WebsiteDataPostsInGroup]]:
         """
-        get-website-data
-
         `GET /website/data`
 
         Get the data that is shared with the CT website
@@ -14372,6 +14371,7 @@ class AddressesResource(Resource):
 class AgendasResource(Resource):
     """`client.agendas`"""
 
+    @_deprecated('POST /agendas/send is deprecated in the ChurchTools API.')
     def send(
         self,
         *,
@@ -14468,12 +14468,14 @@ class AgendatemplatesResource(Resource):
 
         Args:
             agenda_id: ID of agenda
-            dry_run: Accepted but ignored. Both `false` and `true` execute deletion; this parameter does not provide a dry run.
+            dry_run: Deprecated. Accepted but ignored. Both `false` and `true` execute deletion; this parameter does not provide a dry run.
 
         Example::
 
             client.agendatemplates.delete(35)
         """
+        if dry_run is not None:
+            _warn_deprecated('dry_run', '')
         self._raw('DELETE', f"/agendatemplates/{_seg(agenda_id)}", _query([('dryRun', dry_run)]), None)
 
     def export(
@@ -15264,6 +15266,7 @@ class CalendarsResource(Resource):
         """
         return _t.cast(_t.List[models.Calendar], self._call('GET', "/calendars", [], None, _t.List[models.Calendar], envelope=True))
 
+    @_deprecated('GET /calendars/{calendarId}/meetingrequestpersons is deprecated in the ChurchTools API.')
     def list_meetingrequestpersons(
         self,
         calendar_id: int,
@@ -16079,7 +16082,7 @@ class DbfieldsResource(Resource):
             is_available_in_routines: Whether routines may use this field.
             is_new_person_field: Whether the field is available on new-person forms; primarily relevant to person categories.
             length: Configured maximum length for text and textarea fields.
-            line_ending: Legacy display-layout setting retained for compatibility.
+            line_ending: Deprecated. Legacy display-layout setting retained for compatibility.
             name: Stored display name or translation key. nameTranslated is its localized display text.
             security_level: Security-level ID governing access to this field, resolved from installation masterdata.
             shorty: Abbreviated display label.
@@ -16102,6 +16105,8 @@ class DbfieldsResource(Resource):
             )
             print(result.name)
         """
+        if line_ending is not UNSET:
+            _warn_deprecated('line_ending', '')
         return _t.cast(models.DbField, self._call('POST', "/dbfields", [], _body({'deleteOnArchive': delete_on_archive, 'isActive': is_active, 'isAvailableInRoutines': is_available_in_routines, 'isNewPersonField': is_new_person_field, 'length': length, 'lineEnding': line_ending, 'name': name, 'securityLevel': security_level, 'shorty': shorty, 'sortKey': sort_key, 'useAsPlaceholder': use_as_placeholder, 'fieldCategoryInternCode': field_category_intern_code}, extra_body), models.DbField, envelope=True))
 
     def delete(
@@ -16203,7 +16208,7 @@ class DbfieldsResource(Resource):
             is_available_in_routines: Whether routines may use this field.
             is_new_person_field: Whether the field is available on new-person forms; primarily relevant to person categories.
             length: Configured maximum length for text and textarea fields.
-            line_ending: Legacy display-layout setting retained for compatibility.
+            line_ending: Deprecated. Legacy display-layout setting retained for compatibility.
             name: Stored display name or translation key. nameTranslated is its localized display text.
             security_level: Security-level ID governing access to this field, resolved from installation masterdata.
             shorty: Abbreviated display label.
@@ -16224,6 +16229,8 @@ class DbfieldsResource(Resource):
             )
             print(result.name)
         """
+        if line_ending is not UNSET:
+            _warn_deprecated('line_ending', '')
         return _t.cast(models.DbField, self._call('PUT', f"/dbfields/{_seg(field_id)}", [], _body({'deleteOnArchive': delete_on_archive, 'isActive': is_active, 'isAvailableInRoutines': is_available_in_routines, 'isNewPersonField': is_new_person_field, 'length': length, 'lineEnding': line_ending, 'name': name, 'securityLevel': security_level, 'shorty': shorty, 'sortKey': sort_key, 'useAsPlaceholder': use_as_placeholder, 'fieldCategoryInternCode': field_category_intern_code}, extra_body), models.DbField, envelope=True))
 
 
@@ -16908,9 +16915,9 @@ class EventsResource(Resource):
             event_id: ID of Event
             admin_ids: Replace the administrator list. A change to the set of IDs additionally requires the "edit masterdata" permission for the service planning domain.
             description: Event description.
-            event_admin_ids: Legacy input alias for `adminIds`.
+            event_admin_ids: Deprecated. Legacy input alias for `adminIds`.
             is_canceled: Whether the service-planning event is cancelled.
-            note: Deprecated alias for `description`.
+            note: Deprecated. Deprecated alias for `description`.
 
         Example::
 
@@ -16920,6 +16927,10 @@ class EventsResource(Resource):
             )
             print(result.id)
         """
+        if event_admin_ids is not UNSET:
+            _warn_deprecated('event_admin_ids', '')
+        if note is not UNSET:
+            _warn_deprecated('note', '')
         return _t.cast(models.EventDetailsUpdateResult, self._call('PUT', f"/events/{_seg(event_id)}", [], _body({'adminIds': admin_ids, 'description': description, 'eventAdminIds': event_admin_ids, 'isCanceled': is_canceled, 'note': note}, extra_body), models.EventDetailsUpdateResult, envelope=True))
 
 
@@ -17141,8 +17152,6 @@ class ExternalpostsResource(Resource):
         limit: _t.Optional[int] = None,
     ) -> _t.List[models.Post]:
         """
-        get-externalposts
-
         `GET /externalposts`
 
         Get a list of external posts. The posts are sorted by the `createdDate` field descending.
@@ -17287,8 +17296,6 @@ class FeatureusageResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
         """
-        post-featureusage
-
         `POST /featureusage`
 
         Send feature usage statistics in bulk.
@@ -17303,6 +17310,7 @@ class FeatureusageResource(Resource):
 class FieldsResource(Resource):
     """`client.fields`"""
 
+    @_deprecated('GET /fields is deprecated in the ChurchTools API.')
     def list(
         self,
     ) -> _t.List[StrMap[_t.Any]]:
@@ -17427,6 +17435,7 @@ class FilesResource(Resource):
         """
         return _t.cast(models.CtFile, self._call('GET', f"/files/{_seg(id)}/meta", [], None, models.CtFile, envelope=True))
 
+    @_deprecated('GET /files/{fileId}/metadata is deprecated in the ChurchTools API. Use `GET /files/{id}/meta` for normalized file metadata.')
     def get_metadata(
         self,
         file_id: int,
@@ -17436,7 +17445,7 @@ class FilesResource(Resource):
 
         `GET /files/{fileId}/metadata`
 
-        Deprecated.
+        Deprecated. Use `GET /files/{id}/meta` for normalized file metadata.
 
         Returns the raw file database record without a response envelope. Use `GET /files/{id}/meta` for normalized file metadata.
 
@@ -17900,8 +17909,6 @@ class FurtherlinksResource(Resource):
         further_link_id: float,
     ) -> None:
         """
-        delete-furtherlinks-furtherLinkId
-
         `DELETE /furtherlinks/{furtherLinkId}`
 
         Example::
@@ -18234,7 +18241,7 @@ class GroupsResource(Resource):
         Args:
             format: Export file format. Defaults to `csv` when omitted. The response content type depends on the selected format.
                 Allowed values: `csv`, `xlsx`.
-            type_: Use `format`
+            type_: Deprecated. Use `format`
                 Allowed values: `csv`, `xlsx`.
             ids: Group IDs to export. Unknown or invisible IDs are silently omitted; duplicates do not produce duplicate rows. Rows are sorted by group name, not by this array.
 
@@ -18244,6 +18251,8 @@ class GroupsResource(Resource):
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
+        if type_ is not None:
+            _warn_deprecated('type_', 'Use `format`')
         return self._raw('POST', "/groups/export", _query([('format', format), ('type', type_)]), _body({'ids': ids}, extra_body))
 
     def get(
@@ -18499,14 +18508,18 @@ class GroupsResource(Resource):
             to: End of the overlap window. Defaults to midnight two weeks from today.
             order_direction: Order by absence start.
                 Allowed values: `ASC`, `DESC`.
-            from_date: Legacy alias for from.
-            to_date: Legacy alias for to.
+            from_date: Deprecated. Legacy alias for from.
+            to_date: Deprecated. Legacy alias for to.
 
         Example::
 
             for absence in client.groups.list_absences(42):
                 print(absence.id)
         """
+        if from_date is not None:
+            _warn_deprecated('from_date', '')
+        if to_date is not None:
+            _warn_deprecated('to_date', '')
         return _t.cast(_t.List[models.Absence], self._call('GET', f"/groups/{_seg(group_id)}/absences", _query([('from', from_), ('to', to), ('order_direction', order_direction), ('from_date', from_date), ('to_date', to_date)]), None, _t.List[models.Absence], envelope=True))
 
     def list_children(
@@ -19161,7 +19174,7 @@ class HtmltemplatesResource(Resource):
         Args:
             domain_type: Template purpose. Supply this canonical parameter, or the legacy type alias.
                 Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
-            type_: Legacy alias for domain_type; domain_type wins if both are provided.
+            type_: Deprecated. Legacy alias for domain_type; domain_type wins if both are provided.
                 Allowed values: `bulkletter`, `donation-receipt-attachment`, `donation-receipt-letter`, `email`, `groupmember-document`.
             only_own: Filter by the current owner, regardless of private/global visibility.
 
@@ -19170,6 +19183,8 @@ class HtmltemplatesResource(Resource):
             for htmltemplate in client.htmltemplates.list(domain_type="email"):
                 print(htmltemplate.name)
         """
+        if type_ is not None:
+            _warn_deprecated('type_', '')
         return _t.cast(_t.List[models.HtmlTemplate], self._call('GET', "/htmltemplates", _query([('domain_type', domain_type), ('type', type_), ('onlyOwn', only_own)]), None, _t.List[models.HtmlTemplate], envelope=True))
 
     def patch(
@@ -19324,7 +19339,7 @@ class ImagesResource(Resource):
             annotation: Image credit or attribution.
             annotation_link: Attribution link.
             description: Alternative text describing the image for screen readers.
-            image_options: Legacy alias for `options`.
+            image_options: Deprecated. Legacy alias for `options`.
             options: JSON-encoded image options. `crop` contains the `top`, `right`, `bottom` and `left` margins relative to the original dimensions. `focus` contains `x` and `y` coordinates relative to the original top-left corner.
 
         Example::
@@ -19332,6 +19347,8 @@ class ImagesResource(Resource):
             result = client.images.patch(1, description="Congregation gathered outside the church.")
             print(result.name)
         """
+        if image_options is not UNSET:
+            _warn_deprecated('image_options', '')
         return _t.cast(models.ImageMetadataUpdateResult, self._call('PATCH', f"/images/{_seg(id)}", [], _body({'aiGenerated': ai_generated, 'annotation': annotation, 'annotationLink': annotation_link, 'description': description, 'image_options': image_options, 'options': options}, extra_body), models.ImageMetadataUpdateResult, envelope=True))
 
     def update_options(
@@ -19359,7 +19376,7 @@ class ImagesResource(Resource):
             annotation: Image credit or attribution.
             annotation_link: Attribution link.
             description: Alternative text describing the image for screen readers.
-            image_options: Legacy alias for `options`.
+            image_options: Deprecated. Legacy alias for `options`.
             options: JSON-encoded image options. `crop` contains the `top`, `right`, `bottom` and `left` margins relative to the original dimensions. `focus` contains `x` and `y` coordinates relative to the original top-left corner.
 
         Example::
@@ -19367,6 +19384,8 @@ class ImagesResource(Resource):
             result = client.images.update_options(1, description="Congregation gathered outside the church.")
             print(result.name)
         """
+        if image_options is not UNSET:
+            _warn_deprecated('image_options', '')
         return _t.cast(models.ImageMetadataUpdateResult, self._call('PUT', f"/images/{_seg(id)}/options", [], _body({'aiGenerated': ai_generated, 'annotation': annotation, 'annotationLink': annotation_link, 'description': description, 'image_options': image_options, 'options': options}, extra_body), models.ImageMetadataUpdateResult, envelope=True))
 
 
@@ -19869,6 +19888,7 @@ class MarkdownResource(Resource):
 class MasterdataResource(Resource):
     """`client.masterdata`"""
 
+    @_deprecated('GET /masterdata/person is deprecated in the ChurchTools API. Use `/person/masterdata` for new integrations.')
     def get_person(
         self,
     ) -> models.PersonMasterData:
@@ -19877,7 +19897,7 @@ class MasterdataResource(Resource):
 
         `GET /masterdata/person`
 
-        Deprecated.
+        Deprecated. Use `/person/masterdata` for new integrations.
 
         Deprecated alias of `GET /person/masterdata`. Use `/person/masterdata` for new integrations.
 
@@ -20232,7 +20252,7 @@ class OauthclientsResource(Resource):
 
         Args:
             identifier: OAuth client_id, not the internal numeric id. Visible clients only.
-            is_confidential: Legacy compatibility field.
+            is_confidential: Deprecated. Legacy compatibility field.
             name: Display name, unique across visible and hidden OAuth clients.
             redirect_uri: Single callback URI stored as the registered redirect entry.
 
@@ -20245,6 +20265,8 @@ class OauthclientsResource(Resource):
             )
             print(result.name)
         """
+        if is_confidential is not UNSET:
+            _warn_deprecated('is_confidential', '')
         return _t.cast(models.OAuthClient, self._call('PUT', f"/oauthclients/{_seg(identifier)}", [], _body({'isConfidential': is_confidential, 'name': name, 'redirectUri': redirect_uri}, extra_body), models.OAuthClient, envelope=True))
 
 
@@ -20580,8 +20602,6 @@ class PersonsResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> None:
         """
-        post-persons-personId-archive
-
         `POST /persons/{personId}/archive`
 
         archives or undos an archive of a person
@@ -20660,7 +20680,7 @@ class PersonsResource(Resource):
             campus_id: ID of a campus returned by `GET /person/masterdata`.
             department_ids: Department IDs returned by `GET /person/masterdata`. At least one department must be set.
             emails: Save many eMail addresses for person. If `emails` is present in request `email` is ignored.
-            privacy_policy_agreement: Legacy representation of the privacy agreement. Use the three flat `privacyPolicyAgreement*` fields instead. When this object is used, all three values must be provided if privacy agreement fields are mandatory.
+            privacy_policy_agreement: Deprecated. Legacy representation of the privacy agreement. Use the three flat `privacyPolicyAgreement*` fields instead. When this object is used, all three values must be provided if privacy agreement fields are mandatory.
             privacy_policy_agreement_date: Date of the privacy policy agreement. Required together with agreement type and person when `privacy_policy_fields_mandatory` is enabled.
             privacy_policy_agreement_type_id: ID of the configured agreement type describing how the agreement was obtained. This is independent from who gave the agreement. Required together with agreement date and person when `privacy_policy_fields_mandatory` is enabled.
             privacy_policy_agreement_who_id: ID of the configured agreement source describing who gave the agreement. This is independent from how the agreement was obtained. Required together with agreement date and type when `privacy_policy_fields_mandatory` is enabled.
@@ -20673,6 +20693,8 @@ class PersonsResource(Resource):
             result = client.persons.create(department_ids=[42])
             print(result.title)
         """
+        if privacy_policy_agreement is not UNSET:
+            _warn_deprecated('privacy_policy_agreement', 'Use the three flat `privacyPolicyAgreement*` fields instead.')
         return _t.cast(models.Person, self._call('POST', "/persons", _query([('force', force), ('without_privacy_policy_agreement', without_privacy_policy_agreement)]), _body({'addressAddition': address_addition, 'baptisedBy': baptised_by, 'birthName': birth_name, 'birthday': birthday, 'birthplace': birthplace, 'campusId': campus_id, 'city': city, 'cmsUserId': cms_user_id, 'country': country, 'dateOfBaptism': date_of_baptism, 'dateOfBelonging': date_of_belonging, 'dateOfDeath': date_of_death, 'dateOfEntry': date_of_entry, 'dateOfResign': date_of_resign, 'departmentIds': department_ids, 'email': email, 'emails': emails, 'familyStatusId': family_status_id, 'fax': fax, 'firstContact': first_contact, 'firstName': first_name, 'growPathId': grow_path_id, 'job': job, 'lastName': last_name, 'mobile': mobile, 'nationalityId': nationality_id, 'nickname': nickname, 'optigemId': optigem_id, 'phonePrivate': phone_private, 'phoneWork': phone_work, 'placeOfBaptism': place_of_baptism, 'privacyPolicyAgreement': privacy_policy_agreement, 'privacyPolicyAgreementDate': privacy_policy_agreement_date, 'privacyPolicyAgreementTypeId': privacy_policy_agreement_type_id, 'privacyPolicyAgreementWhoId': privacy_policy_agreement_who_id, 'referredBy': referred_by, 'referredTo': referred_to, 'sexId': sex_id, 'statusId': status_id, 'street': street, 'title': title, 'visibility': visibility, 'weddingDate': wedding_date, 'zip': zip}, extra_body), models.Person, envelope=True))
 
     def delete(
@@ -20759,8 +20781,6 @@ class PersonsResource(Resource):
         self,
     ) -> None:
         """
-        TODO 200
-
         `POST /persons/export`
 
         Example::
@@ -21157,12 +21177,11 @@ class PersonsResource(Resource):
         """
         return _t.cast(_t.List[models.GetPersonsRelationshipsDataItem], self._call('GET', "/persons/relationships", [], None, _t.List[models.GetPersonsRelationshipsDataItem], envelope=True))
 
+    @_deprecated('GET /persons/search_old is deprecated in the ChurchTools API.')
     def list_search_old(
         self,
     ) -> _t.List[int]:
         """
-        TODO 200
-
         `GET /persons/search_old`
 
         Deprecated.
@@ -21398,8 +21417,6 @@ class PollfornewsResource(Resource):
         since: _dt.datetime,
     ) -> _t.List[models.PollForNewsResult]:
         """
-        get-pollfornews
-
         `GET /pollfornews`
 
         This endpoint returns the identifiers of changed entities since the last call.
@@ -21433,8 +21450,6 @@ class PostResource(Resource):
         post_ids: _t.Optional[_t.List[int]] = None,
     ) -> _t.Any:
         """
-        get-post-linkings
-
         `GET /post/linkings`
 
         Args:
@@ -21451,8 +21466,6 @@ class PostResource(Resource):
         self,
     ) -> _t.List[models.PossiblePostGroup]:
         """
-        get-post-groups
-
         `GET /post/groups`
 
         Example::
@@ -21479,8 +21492,6 @@ class PostResource(Resource):
         only_my_groups: _t.Optional[bool] = None,
     ) -> _t.List[models.Post]:
         """
-        get-post-search
-
         `GET /post/search`
 
         Search posts
@@ -21535,8 +21546,6 @@ class PostsResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Post:
         """
-        post-posts
-
         `POST /posts`
 
         Create a new post. Images must be uploaded previously in a separate request.
@@ -21563,8 +21572,6 @@ class PostsResource(Resource):
         dry_run: bool,
     ) -> None:
         """
-        delete-posts-postId
-
         `DELETE /posts/{postId}`
 
         Delete a post.
@@ -21586,8 +21593,6 @@ class PostsResource(Resource):
         include: _t.Optional[_t.List[_t.Literal['comments', 'reactions']]] = None,
     ) -> models.Post:
         """
-        get-posts-postId
-
         `GET /posts/{postId}`
 
         Get a post.
@@ -21621,8 +21626,6 @@ class PostsResource(Resource):
         only_my_groups: _t.Optional[bool] = None,
     ) -> _t.List[models.Post]:
         """
-        get-posts
-
         `GET /posts`
 
         Get a list of posts sorted by `publishedDate` descending. This endpoint uses cursor-based pagination because the result can contain posts from external ChurchTools instances. To load another batch, use `before` together with `last_post_identifier`; page-based pagination is not supported.
@@ -21631,7 +21634,7 @@ class PostsResource(Resource):
             before: If set, only posts published before this date are returned. The date must be in RFC3339 format (Zulu-Date).
             last_post_identifier: If set, posts published at the `before` date are included in the result, if the guids of the posts are lexically smaller than the `last_post_identifier`. Will be ignored if `before` is not set.
             after: If set, only posts published at or after this date are returned. The date must be in RFC3339 format (Zulu-Date).
-            campus_id: If set, only posts of this campus are returned. If not set, posts of all campuses are returned.
+            campus_id: Deprecated. If set, only posts of this campus are returned. If not set, posts of all campuses are returned.
             campus_ids: If set, only posts of these campuses are returned. If not set, posts of all campuses are returned.
             actor_ids: If set, only posts by these persons are returned. If not set, posts by all persons are returned.
             group_visibility: If set, only posts are returned that belong to groups with this visibility.
@@ -21649,6 +21652,8 @@ class PostsResource(Resource):
             for post in client.posts.list():
                 print(post.title)
         """
+        if campus_id is not None:
+            _warn_deprecated('campus_id', '')
         return _t.cast(_t.List[models.Post], self._call('GET', "/posts", _query([('before', before), ('last_post_identifier', last_post_identifier), ('after', after), ('campus_id', campus_id), ('campus_ids[]', campus_ids), ('actor_ids[]', actor_ids), ('group_visibility', group_visibility), ('post_visibility', post_visibility), ('group_ids[]', group_ids), ('include[]', include), ('limit', limit), ('only_my_groups', only_my_groups)]), None, _t.List[models.Post], envelope=True))
 
     def patch(
@@ -21665,8 +21670,6 @@ class PostsResource(Resource):
         extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
     ) -> models.Post:
         """
-        patch-posts-postId
-
         `PATCH /posts/{postId}`
 
         Update a post.
@@ -21687,8 +21690,6 @@ class PostsResource(Resource):
         post_id: int,
     ) -> None:
         """
-        put-posts-postId-expire
-
         `PUT /posts/{postId}/expire`
 
         Expire the referenced post immediately.
@@ -22211,13 +22212,15 @@ class RegistrationconfigResource(Resource):
             id: ID of Entity
             blacklist: Case-insensitive email patterns; `*` is a wildcard. Replaces the full blacklist.
             fields: Complete replacement of configured person fields.
-            tags: Legacy input alias; prefer `tagsForNewPersons`.
+            tags: Deprecated. Legacy input alias; prefer `tagsForNewPersons`.
 
         Example::
 
             result = client.registrationconfig.patch(1, is_active=True)
             print(result.id)
         """
+        if tags is not UNSET:
+            _warn_deprecated('tags', '')
         return _t.cast(models.RegistrationConfigAdmin, self._call('PATCH', f"/registrationconfig/{_seg(id)}", [], _body({'blacklist': blacklist, 'campuses': campuses, 'departmentIds': department_ids, 'fields': fields, 'isActive': is_active, 'minimumAge': minimum_age, 'showButton': show_button, 'statusId': status_id, 'tags': tags, 'tagsForExistingPersons': tags_for_existing_persons, 'tagsForNewPersons': tags_for_new_persons}, extra_body), models.RegistrationConfigAdmin, envelope=True))
 
 
@@ -23457,7 +23460,7 @@ class ServicesResource(Resource):
             allow_decline: Allow assigned persons to decline service requests.
             allow_exchange: Allow assigned persons to request an exchange of their service assignment.
             cal_text_template: Template for the calendar text of this service.
-            comment: Deprecated input alias for description. Use description for new integrations.
+            comment: Deprecated. Deprecated input alias for description. Use description for new integrations.
             description: Description of the role.
             group_ids: IDs of connected person groups used for service planning. Nonexistent IDs are silently removed. Duplicates are retained. An empty list clears the connections.
             hide_person_name: Hide assigned persons from viewers without the service or service-group permissions needed to see them.
@@ -23475,6 +23478,8 @@ class ServicesResource(Resource):
             result = client.services.create(name="Hauskreis Nord", service_group_id=42)
             print(result.name)
         """
+        if comment is not UNSET:
+            _warn_deprecated('comment', 'Use description for new integrations.')
         return _t.cast(models.Service, self._call('POST', "/services", [], _body({'allowChat': allow_chat, 'allowCommentOnConfirmation': allow_comment_on_confirmation, 'allowControlLiveAgenda': allow_control_live_agenda, 'allowDecline': allow_decline, 'allowExchange': allow_exchange, 'calTextTemplate': cal_text_template, 'comment': comment, 'description': description, 'groupIds': group_ids, 'hidePersonName': hide_person_name, 'name': name, 'onlyAssignFromGroups': only_assign_from_groups, 'sendReminderMails': send_reminder_mails, 'sendServiceRequestEmails': send_service_request_emails, 'serviceGroupId': service_group_id, 'sortKey': sort_key, 'standard': standard, 'tagIds': tag_ids}, extra_body), models.Service, envelope=True))
 
     def delete(
@@ -23574,7 +23579,7 @@ class ServicesResource(Resource):
             allow_decline: Allow assigned persons to decline service requests.
             allow_exchange: Allow assigned persons to request an exchange of their service assignment.
             cal_text_template: Template for the calendar text of this service.
-            comment: Deprecated input alias for description. Use description for new integrations.
+            comment: Deprecated. Deprecated input alias for description. Use description for new integrations.
             description: Description of the role.
             group_ids: IDs of connected person groups used for service planning. Nonexistent IDs are silently removed. Duplicates are retained. An empty list clears the connections.
             hide_person_name: Hide assigned persons from viewers without the service or service-group permissions needed to see them.
@@ -23592,6 +23597,8 @@ class ServicesResource(Resource):
             result = client.services.update(2, name="Hauskreis Nord", service_group_id=42)
             print(result.name)
         """
+        if comment is not UNSET:
+            _warn_deprecated('comment', 'Use description for new integrations.')
         return _t.cast(models.Service, self._call('PUT', f"/services/{_seg(service_id)}", [], _body({'allowChat': allow_chat, 'allowCommentOnConfirmation': allow_comment_on_confirmation, 'allowControlLiveAgenda': allow_control_live_agenda, 'allowDecline': allow_decline, 'allowExchange': allow_exchange, 'calTextTemplate': cal_text_template, 'comment': comment, 'description': description, 'groupIds': group_ids, 'hidePersonName': hide_person_name, 'name': name, 'onlyAssignFromGroups': only_assign_from_groups, 'sendReminderMails': send_reminder_mails, 'sendServiceRequestEmails': send_service_request_emails, 'serviceGroupId': service_group_id, 'sortKey': sort_key, 'standard': standard, 'tagIds': tag_ids}, extra_body), models.Service, envelope=True))
 
 
@@ -23975,6 +23982,7 @@ class StatusesResource(Resource):
         """
         return _t.cast(models.Status, self._call('PATCH', f"/statuses/{_seg(id)}", [], _body({'isMember': is_member, 'isSearchable': is_searchable, 'name': name, 'securityLevelId': security_level_id, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.Status, envelope=True))
 
+    @_deprecated('PUT /statuses/{id} is deprecated in the ChurchTools API. Use `PATCH /statuses/{id}` instead.')
     def update(
         self,
         id: int,
@@ -23992,7 +24000,7 @@ class StatusesResource(Resource):
 
         `PUT /statuses/{id}`
 
-        Deprecated.
+        Deprecated. Use `PATCH /statuses/{id}` instead.
 
         Replaces a person-status definition. Requires "edit masterdata" permission in `churchdb`. Existing persons retain the status ID. Use `PATCH /statuses/{id}` instead.
 
@@ -24646,8 +24654,6 @@ class WebsiteResource(Resource):
         self,
     ) -> None:
         """
-        TODO
-
         `GET /website/starttest`
 
         Example::
@@ -24690,8 +24696,6 @@ class WidgetsResource(Resource):
         self,
     ) -> models.GetWidgetsBlogData:
         """
-        get-widgets-blog
-
         `GET /widgets/blog`
 
         Example::
@@ -24705,8 +24709,6 @@ class WidgetsResource(Resource):
         self,
     ) -> models.RssFeed:
         """
-        get-widgets-rss
-
         `GET /widgets/rss`
 
         Example::
