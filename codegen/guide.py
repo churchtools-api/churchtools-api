@@ -67,8 +67,11 @@ Wähle oben rechts deine Sprache. Alle Beispiele auf dieser Seite wechseln mit.
 Noch gibt es keine fertigen Pakete auf PyPI und crates.io. Du installierst direkt aus dem Quellcode:
 
 - **Python:** `pip` baut das Paket mit [maturin](https://www.maturin.rs). Dafür braucht es eine
-  [Rust-Toolchain](https://rustup.rs) (ab 1.88) und Python ab 3.10. Der Bau dauert beim ersten Mal ein paar Minuten.
-- **Rust:** Du bindest die Crate `churchtools-core` als Git- oder Pfad-Abhängigkeit ein.
+  [Rust-Toolchain](https://rustup.rs) (ab 1.88), einen C-Compiler (für die TLS-Bibliothek; unter Linux `gcc`
+  oder `clang`, unter macOS die Xcode-Kommandozeilenwerkzeuge, unter Windows die Visual-Studio-Build-Tools)
+  und Python ab 3.10. Der Bau dauert beim ersten Mal ein paar Minuten.
+- **Rust:** Du bindest die Crate `churchtools-core` als Git- oder Pfad-Abhängigkeit ein; auch hier wird ein
+  C-Compiler gebraucht.
 
 Wenn die Pakete veröffentlicht sind, reicht `pip install churchtools-rs` bzw. `cargo add churchtools-core`.
 """,
@@ -553,10 +556,10 @@ person = ct.models.Person.model_validate(json.loads(body)["data"])
 client.request("POST", "/persons", json={"departmentIds": [1], "firstName": "Ben"})""",
             rust="""\
 let query = vec![("include[]".to_string(), "tags".to_string())];
-let person: models::Person = client.request_data(Method::GET, "/persons/7", &query, None)?;
+let person: models::Person = client.request_data(Method::Get, "/persons/7", &query, None)?;
 
 let body = serde_json::json!({ "departmentIds": [1], "firstName": "Ben" });
-client.request(Method::POST, "/persons", &[], Some(&body))?;""",
+client.request(Method::Post, "/persons", &[], Some(&body))?;""",
         ),
         Section(
             "versionen",

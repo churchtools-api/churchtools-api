@@ -14,7 +14,7 @@ pub enum Error {
     Api(Box<ApiError>),
     /// The request did not reach the server or the response could not be read.
     #[error("transport error: {0}")]
-    Transport(#[from] reqwest::Error),
+    Transport(#[source] TransportError),
     /// The response body could not be read completely.
     #[error("could not read response body: {0}")]
     Read(#[source] std::io::Error),
@@ -131,6 +131,48 @@ impl Error {
 impl From<ApiError> for Error {
     fn from(err: ApiError) -> Self {
         Self::Api(Box::new(err))
+    }
+}
+
+impl Error {
+    pub(crate) fn transport(err: reqwest::Error) -> Self {
+        Self::Transport(TransportError(err))
+    }
+}
+
+/// Error of the HTTP layer: connection, TLS, timeout, or reading the response.
+///
+/// Wraps the error of the HTTP library, which is not part of this crate's
+/// public API; use the `is_*` helpers or `Display`/`source()`.
+pub struct TransportError(reqwest::Error);
+
+impl TransportError {
+    /// The request took longer than the timeout.
+    pub fn is_timeout(&self) -> bool {
+        self.0.is_timeout()
+    }
+
+    /// No connection to the server (wrong address, network down, connect timeout).
+    pub fn is_connect(&self) -> bool {
+        self.0.is_connect()
+    }
+}
+
+impl std::fmt::Display for TransportError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.0.fmt(f)
+    }
+}
+
+impl std::fmt::Debug for TransportError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        self.0.fmt(f)
+    }
+}
+
+impl std::error::Error for TransportError {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        self.0.source()
     }
 }
 

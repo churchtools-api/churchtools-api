@@ -7,11 +7,9 @@
 
 use std::fmt::Display;
 
-use reqwest::Method;
-
 use super::models;
 use super::queries::*;
-use crate::client::{Client, Items, Query, Upload, encode_path_segment as seg};
+use crate::client::{Client, Items, Method, Query, Upload, encode_path_segment as seg};
 use crate::error::Result;
 
 impl Client {
@@ -455,7 +453,7 @@ impl<'a> ActionsResource<'a> {
         let path = "/actions".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -493,7 +491,7 @@ impl<'a> AddressesResource<'a> {
         let path = format!("/addresses/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an address
@@ -516,7 +514,7 @@ impl<'a> AddressesResource<'a> {
     pub fn delete(&self, domain_type: impl Display, domain_identifier: impl Display, address_id: impl Display) -> Result<()> {
         let path = format!("/addresses/{}/{}/{}", seg(domain_type), seg(domain_identifier), seg(address_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get addresses by domain object
@@ -541,7 +539,7 @@ impl<'a> AddressesResource<'a> {
     pub fn get(&self, domain_type: impl Display, domain_identifier: impl Display) -> Result<Vec<models::StoredAddress>> {
         let path = format!("/addresses/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Search for addresses
@@ -570,7 +568,7 @@ impl<'a> AddressesResource<'a> {
     pub fn list_search(&self, query: &GetAddressesSearchQuery) -> Result<Vec<models::AddressSearchResult>> {
         let path = "/addresses/search".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update an address
@@ -599,7 +597,7 @@ impl<'a> AddressesResource<'a> {
         let path = format!("/addresses/{}/{}/{}", seg(domain_type), seg(domain_identifier), seg(address_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -642,7 +640,7 @@ impl<'a> AgendaTemplatesResource<'a> {
         let path = "/agendatemplates".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete agenda template
@@ -678,7 +676,7 @@ impl<'a> AgendaTemplatesResource<'a> {
     pub fn delete_with(&self, agenda_id: impl Display, query: &DeleteAgendatemplatesAgendaIdQuery) -> Result<()> {
         let path = format!("/agendatemplates/{}", seg(agenda_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Export agenda template
@@ -713,7 +711,7 @@ impl<'a> AgendaTemplatesResource<'a> {
         let path = format!("/agendatemplates/{}/export", seg(agenda_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get agenda template
@@ -737,7 +735,7 @@ impl<'a> AgendaTemplatesResource<'a> {
     pub fn get(&self, agenda_id: impl Display) -> Result<models::Agenda> {
         let path = format!("/agendatemplates/{}", seg(agenda_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all agenda templates
@@ -762,7 +760,7 @@ impl<'a> AgendaTemplatesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Agenda>> {
         let path = "/agendatemplates".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update agenda template
@@ -792,7 +790,7 @@ impl<'a> AgendaTemplatesResource<'a> {
         let path = format!("/agendatemplates/{}", seg(agenda_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -846,7 +844,7 @@ impl<'a> AgendaTemplatesItemsResource<'a> {
         let path = format!("/agendatemplates/{}/items", seg(agenda_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete agenda template item
@@ -869,7 +867,7 @@ impl<'a> AgendaTemplatesItemsResource<'a> {
     pub fn delete(&self, agenda_id: impl Display, item_id: impl Display) -> Result<()> {
         let path = format!("/agendatemplates/{}/items/{}", seg(agenda_id), seg(item_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Update agenda template item
@@ -910,7 +908,7 @@ impl<'a> AgendaTemplatesItemsResource<'a> {
         let path = format!("/agendatemplates/{}/items/{}", seg(agenda_id), seg(item_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -942,7 +940,7 @@ impl<'a> AgendaTemplatesItemsServiceGroupsResource<'a> {
     pub fn delete(&self, agenda_id: impl Display, item_id: impl Display, service_group_id: impl Display) -> Result<()> {
         let path = format!("/agendatemplates/{}/items/{}/servicegroups/{}", seg(agenda_id), seg(item_id), seg(service_group_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Add or update service group note for agenda template item
@@ -970,7 +968,7 @@ impl<'a> AgendaTemplatesItemsServiceGroupsResource<'a> {
         let path = format!("/agendatemplates/{}/items/{}/servicegroups/{}", seg(agenda_id), seg(item_id), seg(service_group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -1012,7 +1010,7 @@ impl<'a> AgendasResource<'a> {
         let path = "/agendas/send".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -1045,7 +1043,7 @@ impl<'a> BookingsResource<'a> {
     pub fn answer(&self, booking_id: impl Display, answer: impl Display) -> Result<models::BookingBase> {
         let path = format!("/bookings/{}/{}", seg(booking_id), seg(answer));
         let query: Query = Query::new();
-        self.client.request_data(Method::PUT, &path, &query, None)
+        self.client.request_data(Method::Put, &path, &query, None)
     }
 
     /// Create a resource booking
@@ -1079,7 +1077,7 @@ impl<'a> BookingsResource<'a> {
         let path = "/bookings".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a booking series
@@ -1102,7 +1100,7 @@ impl<'a> BookingsResource<'a> {
     pub fn delete(&self, booking_id: impl Display) -> Result<()> {
         let path = format!("/bookings/{}", seg(booking_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a booking series
@@ -1139,7 +1137,7 @@ impl<'a> BookingsResource<'a> {
     pub fn get_with(&self, booking_id: impl Display, query: &GetBookingsIdQuery) -> Result<models::BookingWithIncludes> {
         let path = format!("/bookings/{}", seg(booking_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List booking occurrences
@@ -1168,7 +1166,7 @@ impl<'a> BookingsResource<'a> {
     pub fn list(&self, query: &GetBookingsQuery) -> Result<Vec<models::BookingCalculatedWithIncludes>> {
         let path = "/bookings".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Preview conflicts for a new booking
@@ -1200,7 +1198,7 @@ impl<'a> BookingsResource<'a> {
         let path = "/bookings/conflicts".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Preview conflicts for an existing booking
@@ -1231,7 +1229,7 @@ impl<'a> BookingsResource<'a> {
         let path = format!("/bookings/{}/conflicts", seg(booking_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Split and replace a booking occurrence
@@ -1267,7 +1265,7 @@ impl<'a> BookingsResource<'a> {
         let path = format!("/bookings/{}", seg(booking_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Update a resource booking
@@ -1300,7 +1298,7 @@ impl<'a> BookingsResource<'a> {
         let path = format!("/bookings/{}", seg(booking_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -1339,7 +1337,7 @@ impl<'a> BulkJobsResource<'a> {
         let path = format!("/bulkjobs/{}/{}/enqueue", seg(domain_type), seg(job_key));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Preview permitted bulk targets
@@ -1369,7 +1367,7 @@ impl<'a> BulkJobsResource<'a> {
         let path = format!("/bulkjobs/{}/{}/infos", seg(domain_type), seg(job_key));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -1411,7 +1409,7 @@ impl<'a> BulkLettersResource<'a> {
         let path = "/bulkletters".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete bulkletter
@@ -1434,7 +1432,7 @@ impl<'a> BulkLettersResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/bulkletters/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Execute pending bulkletter jobs
@@ -1459,7 +1457,7 @@ impl<'a> BulkLettersResource<'a> {
         let path = "/bulkletters/execute".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Get bulkletter
@@ -1483,7 +1481,7 @@ impl<'a> BulkLettersResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::Bulkletter> {
         let path = format!("/bulkletters/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// Get all bulkletters
@@ -1508,7 +1506,7 @@ impl<'a> BulkLettersResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Bulkletter>> {
         let path = "/bulkletters".to_owned();
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// Get receivers of a bulkletter
@@ -1533,7 +1531,7 @@ impl<'a> BulkLettersResource<'a> {
     pub fn list_persons(&self, id: impl Display) -> Result<Vec<models::BulkletterReceiver>> {
         let path = format!("/bulkletters/{}/persons", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -1581,7 +1579,7 @@ impl<'a> CalendarsResource<'a> {
         let path = "/calendars".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a calendar and its contents
@@ -1604,7 +1602,7 @@ impl<'a> CalendarsResource<'a> {
     pub fn delete(&self, calendar_id: impl Display) -> Result<()> {
         let path = format!("/calendars/{}", seg(calendar_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get calendar settings
@@ -1628,7 +1626,7 @@ impl<'a> CalendarsResource<'a> {
     pub fn get(&self, calendar_id: impl Display) -> Result<models::Calendar> {
         let path = format!("/calendars/{}", seg(calendar_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List calendars accessible through calendar permissions
@@ -1653,7 +1651,7 @@ impl<'a> CalendarsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Calendar>> {
         let path = "/calendars".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get candidates for a meeting request (deprecated)
@@ -1693,7 +1691,7 @@ impl<'a> CalendarsResource<'a> {
     pub fn list_meeting_request_persons_with(&self, calendar_id: impl Display, query: &GetCalendarsCalendarIdMeetingrequestpersonsQuery) -> Result<Vec<models::MeetingRequestCandidate>> {
         let path = format!("/calendars/{}/meetingrequestpersons", seg(calendar_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update calendar settings
@@ -1723,7 +1721,7 @@ impl<'a> CalendarsResource<'a> {
         let path = format!("/calendars/{}", seg(calendar_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -1771,7 +1769,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
         let path = format!("/calendars/{}/appointments/{}/changeimpact", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create an appointment or series
@@ -1803,7 +1801,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
         let path = format!("/calendars/{}/appointments", seg(calendar_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an appointment or entire series
@@ -1826,7 +1824,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     pub fn delete(&self, calendar_id: impl Display, appointment_id: impl Display) -> Result<()> {
         let path = format!("/calendars/{}/appointments/{}", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get an appointment series and its dates
@@ -1863,7 +1861,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     pub fn get_with(&self, calendar_id: impl Display, appointment_id: impl Display, query: &GetCalendarsCalendarIdAppointmentsAppointmentIdQuery) -> Result<models::AppointmentCalculated> {
         let path = format!("/calendars/{}/appointments/{}", seg(calendar_id), seg(appointment_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Export an appointment or series as iCalendar
@@ -1887,7 +1885,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     pub fn get_ical(&self, calendar_id: impl Display, appointment_id: impl Display) -> Result<Vec<u8>> {
         let path = format!("/calendars/{}/appointments/{}/ical", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Get one appointment occurrence
@@ -1924,7 +1922,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     pub fn get_occurrence_with(&self, appointment_id: impl Display, start_date: impl Display, query: &GetCalendarsAppointmentsAppointmentIdStartDateQuery) -> Result<models::AppointmentOccurrence> {
         let path = format!("/calendars/appointments/{}/{}", seg(appointment_id), seg(start_date));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get one appointment occurrence
@@ -1961,7 +1959,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     pub fn get_occurrence_in_calendar_with(&self, calendar_id: impl Display, appointment_id: impl Display, start_date: impl Display, query: &GetCalendarsCalendarIdAppointmentsAppointmentIdStartDateQuery) -> Result<models::AppointmentOccurrence> {
         let path = format!("/calendars/{}/appointments/{}/{}", seg(calendar_id), seg(appointment_id), seg(start_date));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List appointment occurrences across calendars
@@ -1990,7 +1988,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     pub fn list(&self, query: &GetCalendarsAppointmentsQuery) -> Result<Vec<models::AppointmentOccurrenceList>> {
         let path = "/calendars/appointments".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List appointment occurrences in a calendar
@@ -2028,7 +2026,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     pub fn list_in_calendar_with(&self, calendar_id: impl Display, query: &GetCalendarsCalendarIdAppointmentsQuery) -> Result<Vec<models::AppointmentOccurrenceList>> {
         let path = format!("/calendars/{}/appointments", seg(calendar_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Split and update an appointment series
@@ -2062,7 +2060,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
         let path = format!("/calendars/{}/appointments/{}", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Update an appointment or series
@@ -2094,7 +2092,7 @@ impl<'a> CalendarsAppointmentsResource<'a> {
         let path = format!("/calendars/{}/appointments/{}", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -2126,7 +2124,7 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     pub fn answer(&self, calendar_id: impl Display, appointment_id: impl Display, meeting_request_id: impl Display, answer: impl Display) -> Result<()> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests/{}/{}", seg(calendar_id), seg(appointment_id), seg(meeting_request_id), seg(answer));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Invite a person to an appointment
@@ -2155,7 +2153,7 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a meeting invitation
@@ -2178,7 +2176,7 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     pub fn delete(&self, calendar_id: impl Display, appointment_id: impl Display, meeting_request_id: impl Display) -> Result<()> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests/{}", seg(calendar_id), seg(appointment_id), seg(meeting_request_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// List meeting invitations for an appointment
@@ -2203,7 +2201,7 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     pub fn list(&self, calendar_id: impl Display, appointment_id: impl Display) -> Result<Vec<models::MeetingRequest>> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Answer a meeting invitation
@@ -2232,7 +2230,7 @@ impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
         let path = format!("/calendars/{}/appointments/{}/meetingrequests/{}", seg(calendar_id), seg(appointment_id), seg(meeting_request_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -2273,7 +2271,7 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
         let path = "/calendars/appointments/templates".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an appointment template
@@ -2296,7 +2294,7 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     pub fn delete(&self, template_id: impl Display) -> Result<()> {
         let path = format!("/calendars/appointments/templates/{}", seg(template_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get an appointment template
@@ -2320,7 +2318,7 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     pub fn get(&self, template_id: impl Display) -> Result<models::AppointmentTemplate> {
         let path = format!("/calendars/appointments/templates/{}", seg(template_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List appointment templates
@@ -2345,7 +2343,7 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::AppointmentTemplate>> {
         let path = "/calendars/appointments/templates".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update an appointment template
@@ -2377,7 +2375,7 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
         let path = format!("/calendars/appointments/templates/{}", seg(template_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -2424,7 +2422,7 @@ impl<'a> CalendarsMeetingRequestResource<'a> {
     pub fn list_candidates_with(&self, calendar_id: impl Display, query: &GetCalendarsCalendarIdMeetingrequestCandidatesQuery) -> Result<Vec<models::MeetingRequestCandidate>> {
         let path = format!("/calendars/{}/meetingrequest/candidates", seg(calendar_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -2463,7 +2461,7 @@ impl<'a> CampusesResource<'a> {
         let path = "/campuses".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a campus
@@ -2484,7 +2482,7 @@ impl<'a> CampusesResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/campuses/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a campus
@@ -2508,7 +2506,7 @@ impl<'a> CampusesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::Campus> {
         let path = format!("/campuses/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all campuses
@@ -2533,7 +2531,7 @@ impl<'a> CampusesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Campus>> {
         let path = "/campuses".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update campus
@@ -2560,7 +2558,7 @@ impl<'a> CampusesResource<'a> {
         let path = format!("/campuses/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -2598,7 +2596,7 @@ impl<'a> CaptchaResource<'a> {
         let path = "/captcha".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
     /// Altcha Captcha Challenge
@@ -2622,7 +2620,7 @@ impl<'a> CaptchaResource<'a> {
     pub fn get(&self) -> Result<models::GetCaptchaResponse> {
         let path = "/captcha".to_owned();
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
 }
@@ -2663,7 +2661,7 @@ impl<'a> ChatResource<'a> {
         let path = "/chat".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a chat
@@ -2699,7 +2697,7 @@ impl<'a> ChatResource<'a> {
     pub fn delete_with(&self, guid: impl Display, query: &DeleteChatGuidQuery) -> Result<()> {
         let path = format!("/chat/{}", seg(guid));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get all chats
@@ -2737,7 +2735,7 @@ impl<'a> ChatResource<'a> {
     pub fn list_with(&self, query: &GetChatQuery) -> Result<Vec<models::Chat>> {
         let path = "/chat".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a chat
@@ -2766,7 +2764,7 @@ impl<'a> ChatResource<'a> {
         let path = format!("/chat/{}", seg(guid));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
 }
@@ -2829,7 +2827,7 @@ impl<'a> CheckinResource<'a> {
         let path = "/checkin/persons".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Put existing person into group
@@ -2863,7 +2861,7 @@ impl<'a> CheckinResource<'a> {
         let path = "/checkin/persons".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -2909,7 +2907,7 @@ impl<'a> ChurchQueryResource<'a> {
     pub fn get_metadata_with(&self, query: &GetChurchqueryMetadataQuery) -> Result<serde_json::Value> {
         let path = "/churchquery/metadata".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -2956,7 +2954,7 @@ impl<'a> ChurchQueryDebugResource<'a> {
         let path = "/churchquery/debug/export".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -2998,7 +2996,7 @@ impl<'a> ConfigResource<'a> {
     pub fn get_with(&self, query: &GetConfigQuery) -> Result<models::GetConfigResponse> {
         let path = "/config".to_owned();
         let query: Query = query.to_query();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// Change the ChurchTools-Config
@@ -3024,7 +3022,7 @@ impl<'a> ConfigResource<'a> {
         let path = "/config".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -3064,7 +3062,7 @@ impl<'a> ContactLabelsResource<'a> {
         let path = "/contactlabels".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete Contact Label
@@ -3100,7 +3098,7 @@ impl<'a> ContactLabelsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteContactlabelsIdQuery) -> Result<()> {
         let path = format!("/contactlabels/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get Contact Label
@@ -3124,7 +3122,7 @@ impl<'a> ContactLabelsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::ContactLabel> {
         let path = format!("/contactlabels/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get All Contact Labels
@@ -3149,7 +3147,7 @@ impl<'a> ContactLabelsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::ContactLabel>> {
         let path = "/contactlabels".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update Contact Label
@@ -3180,7 +3178,7 @@ impl<'a> ContactLabelsResource<'a> {
         let path = format!("/contactlabels/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -3213,7 +3211,7 @@ impl<'a> CsrfTokenResource<'a> {
     pub fn get(&self) -> Result<Option<String>> {
         let path = "/csrftoken".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -3247,7 +3245,7 @@ impl<'a> DbFieldTypesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::DbFieldType>> {
         let path = "/dbfieldtypes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -3296,7 +3294,7 @@ impl<'a> DbFieldsResource<'a> {
         let path = "/dbfields".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a database field
@@ -3319,7 +3317,7 @@ impl<'a> DbFieldsResource<'a> {
     pub fn delete(&self, field_id: impl Display) -> Result<()> {
         let path = format!("/dbfields/{}", seg(field_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a database-field definition
@@ -3343,7 +3341,7 @@ impl<'a> DbFieldsResource<'a> {
     pub fn get(&self, field_id: impl Display) -> Result<models::DbField> {
         let path = format!("/dbfields/{}", seg(field_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List database-field definitions
@@ -3381,7 +3379,7 @@ impl<'a> DbFieldsResource<'a> {
     pub fn list_with(&self, query: &GetDbfieldsQuery) -> Result<Vec<models::DbField>> {
         let path = "/dbfields".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a database field
@@ -3414,7 +3412,7 @@ impl<'a> DbFieldsResource<'a> {
         let path = format!("/dbfields/{}", seg(field_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -3452,7 +3450,7 @@ impl<'a> DbFieldsOptionsResource<'a> {
         let path = format!("/dbfields/{}/options", seg(field_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a database-field option
@@ -3488,7 +3486,7 @@ impl<'a> DbFieldsOptionsResource<'a> {
     pub fn delete_with(&self, field_id: impl Display, option_id: impl Display, query: &DeleteDbfieldsFieldIdOptionsOptionIdQuery) -> Result<()> {
         let path = format!("/dbfields/{}/options/{}", seg(field_id), seg(option_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// List options for a database field
@@ -3513,7 +3511,7 @@ impl<'a> DbFieldsOptionsResource<'a> {
     pub fn list(&self, field_id: impl Display) -> Result<Vec<models::DbFieldOption>> {
         let path = format!("/dbfields/{}/options", seg(field_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get metadata for field options
@@ -3538,7 +3536,7 @@ impl<'a> DbFieldsOptionsResource<'a> {
     pub fn list_metadata(&self, field_id: impl Display) -> Result<Vec<models::DbFieldOptionColumn>> {
         let path = format!("/dbfields/{}/options/metadata", seg(field_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a database-field option
@@ -3567,7 +3565,7 @@ impl<'a> DbFieldsOptionsResource<'a> {
         let path = format!("/dbfields/{}/options/{}", seg(field_id), seg(option_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -3601,7 +3599,7 @@ impl<'a> DepartmentsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Department>> {
         let path = "/departments".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -3640,7 +3638,7 @@ impl<'a> DomainObjectsResource<'a> {
     pub fn list(&self, query: &GetDomainobjectsQuery) -> Result<Vec<models::ResolvedDomainObject>> {
         let path = "/domainobjects".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Resolve domain objects from a JSON payload
@@ -3671,7 +3669,7 @@ impl<'a> DomainObjectsResource<'a> {
         let path = "/domainobjects".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -3703,7 +3701,7 @@ impl<'a> DynamicGroupsResource<'a> {
     pub fn delete_ruleset(&self, group_id: impl Display) -> Result<()> {
         let path = format!("/dynamicgroups/{}/ruleset", seg(group_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get the dynamic membership refresh mode
@@ -3727,7 +3725,7 @@ impl<'a> DynamicGroupsResource<'a> {
     pub fn get_status(&self, group_id: impl Display) -> Result<models::DynamicGroupStatusUpdate> {
         let path = format!("/dynamicgroups/{}/status", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// List groups with automatic membership refresh
@@ -3752,7 +3750,7 @@ impl<'a> DynamicGroupsResource<'a> {
     pub fn list(&self) -> Result<Vec<i64>> {
         let path = "/dynamicgroups".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get stored automatic membership rules
@@ -3777,7 +3775,7 @@ impl<'a> DynamicGroupsResource<'a> {
     pub fn list_ruleset(&self, group_id: impl Display) -> Result<Vec<models::DynamicGroupRule>> {
         let path = format!("/dynamicgroups/{}/ruleset", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// Refresh memberships of one dynamic group
@@ -3802,7 +3800,7 @@ impl<'a> DynamicGroupsResource<'a> {
     pub fn refresh(&self, group_id: impl Display) -> Result<Vec<models::DynamicGroupRefreshResult>> {
         let path = format!("/dynamicgroups/{}/refresh", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Refresh all active dynamic groups
@@ -3827,7 +3825,7 @@ impl<'a> DynamicGroupsResource<'a> {
     pub fn refresh_all(&self) -> Result<Vec<serde_json::Value>> {
         let path = "/dynamicgroups/refresh".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Replace automatic membership rules
@@ -3873,7 +3871,7 @@ impl<'a> DynamicGroupsResource<'a> {
         let path = format!("/dynamicgroups/{}/ruleset", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::PUT, &path, &query, Some(&body))
+        self.client.request_json(Method::Put, &path, &query, Some(&body))
     }
 
     /// Set the dynamic membership refresh mode
@@ -3902,7 +3900,7 @@ impl<'a> DynamicGroupsResource<'a> {
         let path = format!("/dynamicgroups/{}/status", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::PUT, &path, &query, Some(&body))
+        self.client.request_json(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -3942,7 +3940,7 @@ impl<'a> EmailsResource<'a> {
         let path = "/emails/placeholderstatistics".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Render an email preview
@@ -3972,7 +3970,7 @@ impl<'a> EmailsResource<'a> {
         let path = "/emails/preview".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -4004,7 +4002,7 @@ impl<'a> EvangelischeTermineResource<'a> {
     pub fn delete(&self) -> Result<()> {
         let path = "/evangelischetermine".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get external event classifications
@@ -4029,7 +4027,7 @@ impl<'a> EvangelischeTermineResource<'a> {
     pub fn list_event_types(&self) -> Result<Vec<models::EvangelischeTermineEventType>> {
         let path = "/evangelischetermine/eventtypes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Test external synchronization settings
@@ -4059,7 +4057,7 @@ impl<'a> EvangelischeTermineResource<'a> {
         let path = "/evangelischetermine/validatesettings".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -4092,7 +4090,7 @@ impl<'a> EventResource<'a> {
     pub fn get_master_data(&self) -> Result<models::EventMasterData> {
         let path = "/event/masterdata".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -4126,7 +4124,7 @@ impl<'a> EventTemplatesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::EventTemplate>> {
         let path = "/eventtemplates".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -4183,7 +4181,7 @@ impl<'a> EventsResource<'a> {
         let path = format!("/events/{}/chat", seg(event_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Create iCal roster link
@@ -4211,7 +4209,7 @@ impl<'a> EventsResource<'a> {
     pub fn create_ical(&self, query: &PostEventsIcalQuery) -> Result<models::RosterICalSetting> {
         let path = "/events/ical".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Delete a single event
@@ -4247,7 +4245,7 @@ impl<'a> EventsResource<'a> {
     pub fn delete_with(&self, event_id: impl Display, query: &DeleteEventsIdQuery) -> Result<()> {
         let path = format!("/events/{}", seg(event_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a single event
@@ -4271,7 +4269,7 @@ impl<'a> EventsResource<'a> {
     pub fn get(&self, event_id: impl Display) -> Result<models::EventReadWithServices> {
         let path = format!("/events/{}", seg(event_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get iCal roster link
@@ -4299,7 +4297,7 @@ impl<'a> EventsResource<'a> {
     pub fn get_ical(&self, query: &GetEventsIcalQuery) -> Result<models::RosterICalSetting> {
         let path = "/events/ical".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all events
@@ -4371,7 +4369,7 @@ impl<'a> EventsResource<'a> {
     pub fn list_possible_persons_for_service(&self, service_id: impl Display) -> Result<Vec<models::ServiceCandidate>> {
         let path = format!("/events/{}/possiblepersonsforservice", seg(service_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Send an email to selected event recipients
@@ -4405,7 +4403,7 @@ impl<'a> EventsResource<'a> {
         let path = "/events/send".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Update event details
@@ -4434,7 +4432,7 @@ impl<'a> EventsResource<'a> {
         let path = format!("/events/{}", seg(event_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -4470,7 +4468,7 @@ impl<'a> EventsAgendaResource<'a> {
     pub fn delete(&self, event_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda", seg(event_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Export event agenda
@@ -4505,7 +4503,7 @@ impl<'a> EventsAgendaResource<'a> {
         let path = format!("/events/{}/agenda/export", seg(event_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get agenda for event
@@ -4529,7 +4527,7 @@ impl<'a> EventsAgendaResource<'a> {
     pub fn get(&self, event_id: impl Display) -> Result<models::Agenda> {
         let path = format!("/events/{}/agenda", seg(event_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Integrate agenda with another event
@@ -4557,7 +4555,7 @@ impl<'a> EventsAgendaResource<'a> {
     pub fn integrate(&self, event_id: impl Display, query: &PostEventsIdAgendaIntegrateQuery) -> Result<models::Agenda> {
         let path = format!("/events/{}/agenda/integrate", seg(event_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Get songs referenced by an agenda
@@ -4582,7 +4580,7 @@ impl<'a> EventsAgendaResource<'a> {
     pub fn list_songs(&self, event_id: impl Display) -> Result<Vec<models::Song>> {
         let path = format!("/events/{}/agenda/songs", seg(event_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Lock a shared agenda
@@ -4605,7 +4603,7 @@ impl<'a> EventsAgendaResource<'a> {
     pub fn lock(&self, event_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/lock", seg(event_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Unlock a shared agenda
@@ -4628,7 +4626,7 @@ impl<'a> EventsAgendaResource<'a> {
     pub fn unlock(&self, event_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/unlock", seg(event_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Create or update agenda
@@ -4667,7 +4665,7 @@ impl<'a> EventsAgendaResource<'a> {
         let path = format!("/events/{}/agenda", seg(event_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -4721,7 +4719,7 @@ impl<'a> EventsAgendaItemsResource<'a> {
         let path = format!("/events/{}/agenda/items", seg(event_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an item from a shared agenda
@@ -4744,7 +4742,7 @@ impl<'a> EventsAgendaItemsResource<'a> {
     pub fn delete(&self, event_id: impl Display, item_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}", seg(event_id), seg(item_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Hide an agenda item for one event
@@ -4767,7 +4765,7 @@ impl<'a> EventsAgendaItemsResource<'a> {
     pub fn hide(&self, event_id: impl Display, item_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}/hide", seg(event_id), seg(item_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Show an agenda item for one event
@@ -4790,7 +4788,7 @@ impl<'a> EventsAgendaItemsResource<'a> {
     pub fn unhide(&self, event_id: impl Display, item_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}/unhide", seg(event_id), seg(item_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Update agenda item
@@ -4831,7 +4829,7 @@ impl<'a> EventsAgendaItemsResource<'a> {
         let path = format!("/events/{}/agenda/items/{}", seg(event_id), seg(item_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -4863,7 +4861,7 @@ impl<'a> EventsAgendaItemsServiceGroupsResource<'a> {
     pub fn delete(&self, event_id: impl Display, item_id: impl Display, service_group_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/agenda/items/{}/servicegroups/{}", seg(event_id), seg(item_id), seg(service_group_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Add or update service group note for agenda item
@@ -4891,7 +4889,7 @@ impl<'a> EventsAgendaItemsServiceGroupsResource<'a> {
         let path = format!("/events/{}/agenda/items/{}/servicegroups/{}", seg(event_id), seg(item_id), seg(service_group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -4930,7 +4928,7 @@ impl<'a> EventsEventServicesResource<'a> {
         let path = format!("/events/{}/eventservices/{}", seg(event_id), seg(service_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::DELETE, &path, &query, Some(&body))
+        self.client.request_data(Method::Delete, &path, &query, Some(&body))
     }
 
     /// Update a service assignment
@@ -4960,7 +4958,7 @@ impl<'a> EventsEventServicesResource<'a> {
         let path = format!("/events/{}/eventservices/{}", seg(event_id), seg(service_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
     /// Set service slot counts for an event
@@ -4993,7 +4991,7 @@ impl<'a> EventsEventServicesResource<'a> {
         let path = format!("/events/{}/eventservices", seg(event_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -5025,7 +5023,7 @@ impl<'a> EventsFactsResource<'a> {
     pub fn delete(&self, event_id: impl Display, fact_id: impl Display) -> Result<()> {
         let path = format!("/events/{}/facts/{}", seg(event_id), seg(fact_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Export event facts as a spreadsheet
@@ -5067,7 +5065,7 @@ impl<'a> EventsFactsResource<'a> {
         let path = "/events/facts/export".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get a recorded event fact
@@ -5091,7 +5089,7 @@ impl<'a> EventsFactsResource<'a> {
     pub fn get(&self, event_id: impl Display, fact_id: impl Display) -> Result<models::EventFact> {
         let path = format!("/events/{}/facts/{}", seg(event_id), seg(fact_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List recorded facts for an event
@@ -5116,7 +5114,7 @@ impl<'a> EventsFactsResource<'a> {
     pub fn list(&self, event_id: impl Display) -> Result<Vec<models::EventFact>> {
         let path = format!("/events/{}/facts", seg(event_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List recorded event facts
@@ -5192,7 +5190,7 @@ impl<'a> EventsFactsResource<'a> {
         let path = format!("/events/{}/facts/{}", seg(event_id), seg(fact_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -5230,7 +5228,7 @@ impl<'a> EventsServiceRequestsResource<'a> {
         let path = format!("/events/{}/servicerequests/{}/accept", seg(event_id), seg(request_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Decline service request
@@ -5259,7 +5257,7 @@ impl<'a> EventsServiceRequestsResource<'a> {
         let path = format!("/events/{}/servicerequests/{}/decline", seg(event_id), seg(request_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Undo service request
@@ -5288,7 +5286,7 @@ impl<'a> EventsServiceRequestsResource<'a> {
         let path = format!("/events/{}/servicerequests/{}/undo", seg(event_id), seg(request_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Update a service assignment
@@ -5317,7 +5315,7 @@ impl<'a> EventsServiceRequestsResource<'a> {
         let path = format!("/events/{}/servicerequests/{}", seg(event_id), seg(request_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
     /// Set service slot counts for an event
@@ -5349,7 +5347,7 @@ impl<'a> EventsServiceRequestsResource<'a> {
         let path = format!("/events/{}/servicerequests", seg(event_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -5383,7 +5381,7 @@ impl<'a> EventsServicesResource<'a> {
     pub fn list_possible_persons(&self, event_id: impl Display, service_id: impl Display) -> Result<Vec<models::PossibleEventPerson>> {
         let path = format!("/events/{}/services/{}/possiblepersons", seg(event_id), seg(service_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -5441,7 +5439,7 @@ impl<'a> ExternalLoginsResource<'a> {
         let path = "/externallogins".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an external login provider
@@ -5464,7 +5462,7 @@ impl<'a> ExternalLoginsResource<'a> {
     pub fn delete(&self, external_login_id: impl Display) -> Result<()> {
         let path = format!("/externallogins/{}", seg(external_login_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get an external login provider
@@ -5488,7 +5486,7 @@ impl<'a> ExternalLoginsResource<'a> {
     pub fn get(&self, external_login_id: impl Display) -> Result<models::ExternalLogin> {
         let path = format!("/externallogins/{}", seg(external_login_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List external login providers
@@ -5513,7 +5511,7 @@ impl<'a> ExternalLoginsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::ExternalLogin>> {
         let path = "/externallogins".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update an external login provider
@@ -5550,7 +5548,7 @@ impl<'a> ExternalLoginsResource<'a> {
         let path = format!("/externallogins/{}", seg(external_login_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -5590,7 +5588,7 @@ impl<'a> ExternalLoginsLinkResource<'a> {
         let path = format!("/externallogins/{}/link", seg(external_login_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create a person for an external identity
@@ -5619,7 +5617,7 @@ impl<'a> ExternalLoginsLinkResource<'a> {
         let path = format!("/externallogins/{}/link/create-person", seg(external_login_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -5655,7 +5653,7 @@ impl<'a> ExternalLoginsOidcResource<'a> {
     pub fn backchannel_logout(&self) -> Result<()> {
         let path = "/externallogins/oidc/backchannel-logout".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Complete OIDC login through the stable callback
@@ -5683,7 +5681,7 @@ impl<'a> ExternalLoginsOidcResource<'a> {
     pub fn callback(&self, query: &GetExternalloginsOidcCallbackQuery) -> Result<Vec<u8>> {
         let path = "/externallogins/oidc/callback".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Complete OIDC login
@@ -5711,7 +5709,7 @@ impl<'a> ExternalLoginsOidcResource<'a> {
     pub fn callback_for(&self, external_login_id: impl Display, query: &GetExternalloginsIdOidcCallbackQuery) -> Result<Vec<u8>> {
         let path = format!("/externallogins/{}/oidc/callback", seg(external_login_id));
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Start a browser-based OpenID Connect login
@@ -5748,7 +5746,7 @@ impl<'a> ExternalLoginsOidcResource<'a> {
     pub fn get_start_with(&self, external_login_id: impl Display, query: &GetExternalloginsIdOidcStartQuery) -> Result<models::ExternalLoginAuthorizationStart> {
         let path = format!("/externallogins/{}/oidc/start", seg(external_login_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -5781,7 +5779,7 @@ impl<'a> ExternalLoginsOidcTestResource<'a> {
     pub fn create(&self, external_login_id: impl Display) -> Result<serde_json::Value> {
         let path = format!("/externallogins/{}/oidc/test", seg(external_login_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Get OIDC login test result
@@ -5805,7 +5803,7 @@ impl<'a> ExternalLoginsOidcTestResource<'a> {
     pub fn get(&self, external_login_id: impl Display, state: impl Display) -> Result<models::ExternalLoginOidcTestResult> {
         let path = format!("/externallogins/{}/oidc/test/{}", seg(external_login_id), seg(state));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -5846,7 +5844,7 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     pub fn acs(&self, external_login_id: impl Display) -> Result<Vec<u8>> {
         let path = format!("/externallogins/{}/saml/acs", seg(external_login_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None)
+        self.client.request(Method::Post, &path, &query, None)
     }
 
     /// Process a SAML single-logout message
@@ -5882,7 +5880,7 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     pub fn create_sls_with(&self, external_login_id: impl Display, query: &PostExternalloginsExternalLoginIdSamlSlsQuery) -> Result<()> {
         let path = format!("/externallogins/{}/saml/sls", seg(external_login_id));
         let query: Query = query.to_query();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Process a SAML single-logout message
@@ -5918,7 +5916,7 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     pub fn delete_sls_with(&self, external_login_id: impl Display, query: &DeleteExternalloginsExternalLoginIdSamlSlsQuery) -> Result<()> {
         let path = format!("/externallogins/{}/saml/sls", seg(external_login_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Start a SAML browser login
@@ -5954,7 +5952,7 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     pub fn get_login_with(&self, external_login_id: impl Display, query: &GetExternalloginsExternalLoginIdSamlLoginQuery) -> Result<()> {
         let path = format!("/externallogins/{}/saml/login", seg(external_login_id));
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
     /// Get SAML service-provider metadata
@@ -5978,7 +5976,7 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     pub fn get_metadata(&self, external_login_id: impl Display) -> Result<Vec<u8>> {
         let path = format!("/externallogins/{}/saml/metadata", seg(external_login_id));
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Process a SAML single-logout message
@@ -6014,7 +6012,7 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     pub fn get_sls_with(&self, external_login_id: impl Display, query: &GetExternalloginsExternalLoginIdSamlSlsQuery) -> Result<()> {
         let path = format!("/externallogins/{}/saml/sls", seg(external_login_id));
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
     /// Process a SAML single-logout message
@@ -6050,7 +6048,7 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     pub fn patch_sls_with(&self, external_login_id: impl Display, query: &PatchExternalloginsExternalLoginIdSamlSlsQuery) -> Result<()> {
         let path = format!("/externallogins/{}/saml/sls", seg(external_login_id));
         let query: Query = query.to_query();
-        self.client.request(Method::PATCH, &path, &query, None).map(|_| ())
+        self.client.request(Method::Patch, &path, &query, None).map(|_| ())
     }
 
     /// Process a SAML single-logout message
@@ -6086,7 +6084,7 @@ impl<'a> ExternalLoginsSamlResource<'a> {
     pub fn update_sls_with(&self, external_login_id: impl Display, query: &PutExternalloginsExternalLoginIdSamlSlsQuery) -> Result<()> {
         let path = format!("/externallogins/{}/saml/sls", seg(external_login_id));
         let query: Query = query.to_query();
-        self.client.request(Method::PUT, &path, &query, None).map(|_| ())
+        self.client.request(Method::Put, &path, &query, None).map(|_| ())
     }
 
 }
@@ -6124,7 +6122,7 @@ impl<'a> ExternalLoginsSamlMetadataResource<'a> {
         let path = "/externallogins/saml/metadata/parse".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -6157,7 +6155,7 @@ impl<'a> ExternalLoginsSamlTestResource<'a> {
     pub fn create(&self, external_login_id: impl Display) -> Result<models::ExternalLoginSamlTestStart> {
         let path = format!("/externallogins/{}/saml/test", seg(external_login_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Get SAML login test result
@@ -6181,7 +6179,7 @@ impl<'a> ExternalLoginsSamlTestResource<'a> {
     pub fn get(&self, external_login_id: impl Display, state: impl Display) -> Result<models::ExternalLoginSamlTestResult> {
         let path = format!("/externallogins/{}/saml/test/{}", seg(external_login_id), seg(state));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -6228,7 +6226,7 @@ impl<'a> ExternalPostsResource<'a> {
     pub fn list_with(&self, query: &GetExternalpostsQuery) -> Result<Vec<models::Post>> {
         let path = "/externalposts".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -6285,7 +6283,7 @@ impl<'a> ExternalPostsInstancesChannelsPostsResource<'a> {
     pub fn get(&self, instance_guid: impl Display, channel_guid: impl Display, post_guid: impl Display) -> Result<models::Post> {
         let path = format!("/externalposts/instances/{}/channels/{}/posts/{}", seg(instance_guid), seg(channel_guid), seg(post_guid));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -6324,7 +6322,7 @@ impl<'a> FactsResource<'a> {
         let path = "/facts".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a fact definition
@@ -6360,7 +6358,7 @@ impl<'a> FactsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFactsIdQuery) -> Result<()> {
         let path = format!("/facts/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a fact definition
@@ -6384,7 +6382,7 @@ impl<'a> FactsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<serde_json::Value> {
         let path = format!("/facts/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List fact definitions
@@ -6409,7 +6407,7 @@ impl<'a> FactsResource<'a> {
     pub fn list(&self) -> Result<Vec<serde_json::Value>> {
         let path = "/facts".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Replace a fact definition
@@ -6439,7 +6437,7 @@ impl<'a> FactsResource<'a> {
         let path = format!("/facts/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -6471,7 +6469,7 @@ impl<'a> FeatureUsageResource<'a> {
         let path = "/featureusage".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -6506,7 +6504,7 @@ impl<'a> FieldsResource<'a> {
     pub fn list(&self) -> Result<Vec<std::collections::BTreeMap<String, serde_json::Value>>> {
         let path = "/fields".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -6555,7 +6553,7 @@ impl<'a> FilesResource<'a> {
         let path = format!("/files/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
         let form: Query = form.to_query();
-        let bytes = self.client.request_multipart(Method::POST, &path, &query, &form, "files[]", files)?;
+        let bytes = self.client.request_multipart(Method::Post, &path, &query, &form, "files[]", files)?;
         crate::decode_data(&bytes)
     }
 
@@ -6579,7 +6577,7 @@ impl<'a> FilesResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/files/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Delete all files for a domain object
@@ -6602,7 +6600,7 @@ impl<'a> FilesResource<'a> {
     pub fn delete_for_object(&self, domain_type: impl Display, domain_identifier: impl Display) -> Result<()> {
         let path = format!("/files/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get file metadata by ID
@@ -6626,7 +6624,7 @@ impl<'a> FilesResource<'a> {
     pub fn get_meta(&self, id: impl Display) -> Result<models::CtFile> {
         let path = format!("/files/{}/meta", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get legacy file metadata
@@ -6651,7 +6649,7 @@ impl<'a> FilesResource<'a> {
     pub fn get_metadata(&self, file_id: impl Display) -> Result<models::LegacyFileMetadata> {
         let path = format!("/files/{}/metadata", seg(file_id));
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// Add a link attachment
@@ -6680,7 +6678,7 @@ impl<'a> FilesResource<'a> {
         let path = format!("/files/{}/{}/link", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get all files for a specific domain object
@@ -6705,7 +6703,7 @@ impl<'a> FilesResource<'a> {
     pub fn list(&self, domain_type: impl Display, domain_identifier: impl Display) -> Result<Vec<models::CtFile>> {
         let path = format!("/files/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all files for a domain type
@@ -6729,7 +6727,7 @@ impl<'a> FilesResource<'a> {
     pub fn list_for_type(&self, domain_type: impl Display) -> Result<serde_json::Value> {
         let path = format!("/files/{}", seg(domain_type));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update file metadata by ID
@@ -6757,7 +6755,7 @@ impl<'a> FilesResource<'a> {
         let path = format!("/files/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PATCH, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Patch, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Update files for a domain object
@@ -6785,7 +6783,7 @@ impl<'a> FilesResource<'a> {
         let path = format!("/files/{}/{}", seg(domain_type), seg(domain_identifier));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PATCH, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Patch, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -6894,7 +6892,7 @@ impl<'a> FinanceResource<'a> {
     pub fn get_master_data(&self, query: &GetFinanceMasterdataQuery) -> Result<models::FinanceMasterData> {
         let path = "/finance/masterdata".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -6933,7 +6931,7 @@ impl<'a> FinanceAccountClassesResource<'a> {
         let path = "/finance/accountclasses".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an account class
@@ -6969,7 +6967,7 @@ impl<'a> FinanceAccountClassesResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceAccountclassesIdQuery) -> Result<()> {
         let path = format!("/finance/accountclasses/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get an account class by ID
@@ -6993,7 +6991,7 @@ impl<'a> FinanceAccountClassesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::AccountClass> {
         let path = format!("/finance/accountclasses/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all account classs
@@ -7018,7 +7016,7 @@ impl<'a> FinanceAccountClassesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::AccountClass>> {
         let path = "/finance/accountclasses".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update an account class
@@ -7048,7 +7046,7 @@ impl<'a> FinanceAccountClassesResource<'a> {
         let path = format!("/finance/accountclasses/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -7088,7 +7086,7 @@ impl<'a> FinanceAccountGroupsResource<'a> {
         let path = "/finance/accountgroups".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete account group
@@ -7124,7 +7122,7 @@ impl<'a> FinanceAccountGroupsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceAccountgroupsIdQuery) -> Result<()> {
         let path = format!("/finance/accountgroups/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a account group
@@ -7148,7 +7146,7 @@ impl<'a> FinanceAccountGroupsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::AccountGroup> {
         let path = format!("/finance/accountgroups/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all account groups
@@ -7173,7 +7171,7 @@ impl<'a> FinanceAccountGroupsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::AccountGroup>> {
         let path = "/finance/accountgroups".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update account group
@@ -7204,7 +7202,7 @@ impl<'a> FinanceAccountGroupsResource<'a> {
         let path = format!("/finance/accountgroups/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -7242,7 +7240,7 @@ impl<'a> FinanceAccountTypesResource<'a> {
         let path = "/finance/accounttypes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete account type
@@ -7278,7 +7276,7 @@ impl<'a> FinanceAccountTypesResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceAccounttypesIdQuery) -> Result<()> {
         let path = format!("/finance/accounttypes/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a account type
@@ -7302,7 +7300,7 @@ impl<'a> FinanceAccountTypesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::AccountType> {
         let path = format!("/finance/accounttypes/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all account types
@@ -7327,7 +7325,7 @@ impl<'a> FinanceAccountTypesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::AccountType>> {
         let path = "/finance/accounttypes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update account type
@@ -7356,7 +7354,7 @@ impl<'a> FinanceAccountTypesResource<'a> {
         let path = format!("/finance/accounttypes/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -7406,7 +7404,7 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
         let path = "/finance/accountingperiods".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete accounting period
@@ -7442,7 +7440,7 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceAccountingperiodsIdQuery) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Delete tax rates for accounting period
@@ -7465,7 +7463,7 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     pub fn delete_tax_rates(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/taxrates", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get an accounting period
@@ -7489,7 +7487,7 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::AccountingPeriod> {
         let path = format!("/finance/accountingperiods/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all accounting periods
@@ -7514,7 +7512,7 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::AccountingPeriod>> {
         let path = "/finance/accountingperiods".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get bills for accounting period
@@ -7586,7 +7584,7 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
     pub fn list_user_rules(&self, id: impl Display) -> Result<Vec<models::UserRule>> {
         let path = format!("/finance/accountingperiods/{}/userrules", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update accounting period
@@ -7619,7 +7617,7 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
         let path = format!("/finance/accountingperiods/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
     /// Replace statement suggestion rules
@@ -7660,7 +7658,7 @@ impl<'a> FinanceAccountingPeriodsResource<'a> {
         let path = format!("/finance/accountingperiods/{}/userrules", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -7696,7 +7694,7 @@ impl<'a> FinanceAccountingPeriodsAccountsResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/accounts", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get all movements of an account
@@ -7768,7 +7766,7 @@ impl<'a> FinanceAccountingPeriodsAccountsResource<'a> {
     pub fn list_statements(&self, id: impl Display) -> Result<Vec<models::AccountStatementStatistics>> {
         let path = format!("/finance/accountingperiods/{}/accounts/statements", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -7806,7 +7804,7 @@ impl<'a> FinanceAccountingPeriodsAccountsStatementsResource<'a> {
     pub fn list(&self, id: impl Display, account_id: impl Display) -> Result<Vec<models::AccountStatement>> {
         let path = format!("/finance/accountingperiods/{}/accounts/{}/statements", seg(id), seg(account_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -7844,7 +7842,7 @@ impl<'a> FinanceAccountingPeriodsAccountsStatementsMovementsResource<'a> {
         let path = format!("/finance/accountingperiods/{}/accounts/{}/statements/{}/movements/{}", seg(id), seg(account_id), seg(statement_id), seg(movement_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get all movements of a statement
@@ -7923,7 +7921,7 @@ impl<'a> FinanceAccountingPeriodsAccountsStatementsMovementsResource<'a> {
         let path = format!("/finance/accountingperiods/{}/accounts/{}/statements/{}/movements/{}/suggestions", seg(id), seg(account_id), seg(statement_id), seg(movement_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PATCH, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Patch, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -7955,7 +7953,7 @@ impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
     pub fn delete(&self, id: impl Display, statement_id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/statements/{}", seg(id), seg(statement_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Preview an uploaded bank statement file
@@ -7981,7 +7979,7 @@ impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
         let path = format!("/finance/accountingperiods/{}/statements", seg(id));
         let query: Query = Query::new();
         let form: Query = Query::new();
-        let bytes = self.client.request_multipart(Method::POST, &path, &query, &form, "files[]", files)?;
+        let bytes = self.client.request_multipart(Method::Post, &path, &query, &form, "files[]", files)?;
         crate::decode_data(&bytes)
     }
 
@@ -8005,7 +8003,7 @@ impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
     pub fn suggestions(&self, id: impl Display, statement_id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/statements/{}/suggestions", seg(id), seg(statement_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Rename a statement
@@ -8033,7 +8031,7 @@ impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
         let path = format!("/finance/accountingperiods/{}/statements/{}", seg(id), seg(statement_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -8075,7 +8073,7 @@ impl<'a> FinanceAccountsResource<'a> {
         let path = "/finance/accounts/bulkcreate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create new account
@@ -8107,7 +8105,7 @@ impl<'a> FinanceAccountsResource<'a> {
         let path = "/finance/accounts".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete account
@@ -8143,7 +8141,7 @@ impl<'a> FinanceAccountsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceAccountsIdQuery) -> Result<()> {
         let path = format!("/finance/accounts/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Download an account-import workbook
@@ -8172,7 +8170,7 @@ impl<'a> FinanceAccountsResource<'a> {
         let path = "/finance/accounts/exporttemplate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get an account
@@ -8196,7 +8194,7 @@ impl<'a> FinanceAccountsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::Account> {
         let path = format!("/finance/accounts/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Export accounts as CSV
@@ -8224,7 +8222,7 @@ impl<'a> FinanceAccountsResource<'a> {
     pub fn get_csv(&self, query: &GetFinanceAccountsCsvQuery) -> Result<Vec<u8>> {
         let path = "/finance/accounts/csv".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Export accounts
@@ -8252,7 +8250,7 @@ impl<'a> FinanceAccountsResource<'a> {
     pub fn get_export(&self, query: &GetFinanceAccountsExportQuery) -> Result<Vec<u8>> {
         let path = "/finance/accounts/export".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Get visible accounts
@@ -8290,7 +8288,7 @@ impl<'a> FinanceAccountsResource<'a> {
     pub fn list_with(&self, query: &GetFinanceAccountsQuery) -> Result<Vec<models::Account>> {
         let path = "/finance/accounts".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update account
@@ -8321,7 +8319,7 @@ impl<'a> FinanceAccountsResource<'a> {
         let path = format!("/finance/accounts/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -8362,7 +8360,7 @@ impl<'a> FinanceBillsResource<'a> {
         let path = "/finance/bills".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete bill
@@ -8398,7 +8396,7 @@ impl<'a> FinanceBillsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceBillsIdQuery) -> Result<()> {
         let path = format!("/finance/bills/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a bill
@@ -8422,7 +8420,7 @@ impl<'a> FinanceBillsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::Bill> {
         let path = format!("/finance/bills/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update bill
@@ -8452,7 +8450,7 @@ impl<'a> FinanceBillsResource<'a> {
         let path = format!("/finance/bills/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -8492,7 +8490,7 @@ impl<'a> FinanceCashDiscountsResource<'a> {
         let path = "/finance/cashdiscounts".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete cash discount
@@ -8528,7 +8526,7 @@ impl<'a> FinanceCashDiscountsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceCashdiscountsIdQuery) -> Result<()> {
         let path = format!("/finance/cashdiscounts/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a cash discount
@@ -8552,7 +8550,7 @@ impl<'a> FinanceCashDiscountsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::CashDiscount> {
         let path = format!("/finance/cashdiscounts/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all cash discounts
@@ -8590,7 +8588,7 @@ impl<'a> FinanceCashDiscountsResource<'a> {
     pub fn list_with(&self, query: &GetFinanceCashdiscountsQuery) -> Result<Vec<models::CashDiscount>> {
         let path = "/finance/cashdiscounts".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update cash discount
@@ -8621,7 +8619,7 @@ impl<'a> FinanceCashDiscountsResource<'a> {
         let path = format!("/finance/cashdiscounts/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -8660,7 +8658,7 @@ impl<'a> FinanceClientsResource<'a> {
         let path = "/finance/clients".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete client
@@ -8696,7 +8694,7 @@ impl<'a> FinanceClientsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceClientsIdQuery) -> Result<()> {
         let path = format!("/finance/clients/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a client
@@ -8720,7 +8718,7 @@ impl<'a> FinanceClientsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::Client> {
         let path = format!("/finance/clients/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all clients
@@ -8745,7 +8743,7 @@ impl<'a> FinanceClientsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Client>> {
         let path = "/finance/clients".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update client
@@ -8775,7 +8773,7 @@ impl<'a> FinanceClientsResource<'a> {
         let path = format!("/finance/clients/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -8819,7 +8817,7 @@ impl<'a> FinanceCostCentersResource<'a> {
         let path = "/finance/costcenters/bulkcreate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create new cost center
@@ -8850,7 +8848,7 @@ impl<'a> FinanceCostCentersResource<'a> {
         let path = "/finance/costcenters".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete cost center
@@ -8886,7 +8884,7 @@ impl<'a> FinanceCostCentersResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceCostcentersIdQuery) -> Result<()> {
         let path = format!("/finance/costcenters/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a cost center
@@ -8910,7 +8908,7 @@ impl<'a> FinanceCostCentersResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::CostCenter> {
         let path = format!("/finance/costcenters/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Export cost centers
@@ -8938,7 +8936,7 @@ impl<'a> FinanceCostCentersResource<'a> {
     pub fn get_export(&self, query: &GetFinanceCostcentersExportQuery) -> Result<Vec<u8>> {
         let path = "/finance/costcenters/export".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Get visible cost centers
@@ -8976,7 +8974,7 @@ impl<'a> FinanceCostCentersResource<'a> {
     pub fn list_with(&self, query: &GetFinanceCostcentersQuery) -> Result<Vec<models::CostCenter>> {
         let path = "/finance/costcenters".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update cost center
@@ -9006,7 +9004,7 @@ impl<'a> FinanceCostCentersResource<'a> {
         let path = format!("/finance/costcenters/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -9046,7 +9044,7 @@ impl<'a> FinanceDonatorsResource<'a> {
         let path = "/finance/donators/receipts".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create donation receipt PDFs (cover letter and attachment)
@@ -9075,7 +9073,7 @@ impl<'a> FinanceDonatorsResource<'a> {
         let path = format!("/finance/donators/{}/receipts", seg(donator_couple_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete the latest receipt for a donor
@@ -9102,7 +9100,7 @@ impl<'a> FinanceDonatorsResource<'a> {
     pub fn delete_latest_receipt_for(&self, donator_couple_id: impl Display, query: &DeleteFinanceDonatorsDonatorCoupleIdQuery) -> Result<()> {
         let path = format!("/finance/donators/{}/receipts", seg(donator_couple_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Delete all donation receipts
@@ -9129,7 +9127,7 @@ impl<'a> FinanceDonatorsResource<'a> {
     pub fn delete_receipts(&self, query: &DeleteFinanceDonatorsReceiptsQuery) -> Result<()> {
         let path = "/finance/donators/receipts".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get combined donation receipt PDFs
@@ -9157,7 +9155,7 @@ impl<'a> FinanceDonatorsResource<'a> {
     pub fn get_receipts(&self, query: &GetFinanceDonatorsReceiptsQuery) -> Result<models::CombinedDonationReceipts> {
         let path = "/finance/donators/receipts".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get existing donation receipt PDFs (cover letter and attachment)
@@ -9185,7 +9183,7 @@ impl<'a> FinanceDonatorsResource<'a> {
     pub fn get_receipts_for(&self, donator_couple_id: impl Display, query: &GetFinanceDonatorsDonatorCoupleIdQuery) -> Result<models::DonationReceipt> {
         let path = format!("/finance/donators/{}/receipts", seg(donator_couple_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get donor household donation summaries
@@ -9260,7 +9258,7 @@ impl<'a> FinanceEubpResource<'a> {
     pub fn get_health(&self) -> Result<models::EubpHealthInfo> {
         let path = "/finance/eubp/health".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -9297,7 +9295,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn cancel(&self, id: impl Display) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}/cancel", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Create new euBP submission
@@ -9329,7 +9327,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
         let path = "/finance/eubp/submissions".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete euBP submission
@@ -9352,7 +9350,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/eubp/submissions/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Fetch status from DRV for euBP submission
@@ -9376,7 +9374,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn fetch_status(&self, id: impl Display) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}/fetch-status", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Mark euBP submission as finished
@@ -9402,7 +9400,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
         let path = format!("/finance/eubp/submissions/{}/finish", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Generate euBP export files
@@ -9426,7 +9424,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn generate(&self, id: impl Display) -> Result<models::PostFinanceEubpSubmissionsIdGenerateData> {
         let path = format!("/finance/eubp/submissions/{}/generate", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Get euBP submission by ID
@@ -9450,7 +9448,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::EubpSubmission> {
         let path = format!("/finance/eubp/submissions/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get preview data for euBP submission
@@ -9474,7 +9472,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn get_preview(&self, id: impl Display) -> Result<models::EubpSubmissionPreview> {
         let path = format!("/finance/eubp/submissions/{}/preview", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all euBP submissions
@@ -9512,7 +9510,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn list_with(&self, query: &GetFinanceEubpSubmissionsQuery) -> Result<Vec<models::EubpSubmission>> {
         let path = "/finance/eubp/submissions".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get unified accounts for euBP submission
@@ -9550,7 +9548,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn list_accounts_with(&self, id: impl Display, query: &GetFinanceEubpSubmissionsIdAccountsQuery) -> Result<Vec<models::EubpUnifiedAccount>> {
         let path = format!("/finance/eubp/submissions/{}/accounts", seg(id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Reopen finished euBP submission
@@ -9576,7 +9574,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
         let path = format!("/finance/eubp/submissions/{}/reopen", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Send euBP submission to DRV
@@ -9599,7 +9597,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
     pub fn send(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/eubp/submissions/{}/send", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Update accounts for euBP submission
@@ -9629,7 +9627,7 @@ impl<'a> FinanceEubpSubmissionsResource<'a> {
         let path = format!("/finance/eubp/submissions/{}/accounts", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -9667,7 +9665,7 @@ impl<'a> FinanceEubpSubmissionsPeriodsResource<'a> {
         let path = format!("/finance/eubp/submissions/{}/periods/{}/accounts", seg(id), seg(period_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -9711,7 +9709,7 @@ impl<'a> FinanceReportsResource<'a> {
         let path = "/finance/reports/balance".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create profit and loss report
@@ -9742,7 +9740,7 @@ impl<'a> FinanceReportsResource<'a> {
         let path = "/finance/reports/profit-loss".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create summed balance report
@@ -9772,7 +9770,7 @@ impl<'a> FinanceReportsResource<'a> {
         let path = "/finance/reports/sum-balance".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
     /// Issue new turnover report
@@ -9802,7 +9800,7 @@ impl<'a> FinanceReportsResource<'a> {
         let path = "/finance/reports/turnover".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -9857,7 +9855,7 @@ impl<'a> FinanceReportsStatementAccountsResource<'a> {
         let path = format!("/finance/reports/statement/accounts/{}", seg(account_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -9895,7 +9893,7 @@ impl<'a> FinanceReportsStatementCostCentersResource<'a> {
         let path = format!("/finance/reports/statement/costcenters/{}", seg(cost_center_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -9955,7 +9953,7 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
         let path = "/finance/splittransactions".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete split transaction
@@ -9991,7 +9989,7 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceSplittransactionsIdQuery) -> Result<()> {
         let path = format!("/finance/splittransactions/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Duplicate split transaction
@@ -10017,7 +10015,7 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
         let path = format!("/finance/splittransactions/{}/duplicate", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get a split transaction
@@ -10054,7 +10052,7 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
     pub fn get_with(&self, id: impl Display, query: &GetFinanceSplittransactionsIdQuery) -> Result<models::SplitTransaction> {
         let path = format!("/finance/splittransactions/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update split transaction, or convert to normal transaction, if only one split child is given,
@@ -10105,7 +10103,7 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
         let path = format!("/finance/splittransactions/{}", seg(id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
     /// Cancel split transaction
@@ -10134,7 +10132,7 @@ impl<'a> FinanceSplitTransactionsResource<'a> {
         let path = format!("/finance/splittransactions/{}/storno", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -10174,7 +10172,7 @@ impl<'a> FinanceTaxRatesResource<'a> {
         let path = "/finance/taxrates".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete tax rate
@@ -10210,7 +10208,7 @@ impl<'a> FinanceTaxRatesResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceTaxratesIdQuery) -> Result<()> {
         let path = format!("/finance/taxrates/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a tax rate
@@ -10234,7 +10232,7 @@ impl<'a> FinanceTaxRatesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::TaxRate> {
         let path = format!("/finance/taxrates/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all tax rates
@@ -10272,7 +10270,7 @@ impl<'a> FinanceTaxRatesResource<'a> {
     pub fn list_with(&self, query: &GetFinanceTaxratesQuery) -> Result<Vec<models::TaxRate>> {
         let path = "/finance/taxrates".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update tax rate
@@ -10303,7 +10301,7 @@ impl<'a> FinanceTaxRatesResource<'a> {
         let path = format!("/finance/taxrates/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -10341,7 +10339,7 @@ impl<'a> FinanceTaxTypesResource<'a> {
         let path = "/finance/taxtypes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete tax type
@@ -10377,7 +10375,7 @@ impl<'a> FinanceTaxTypesResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceTaxtypesIdQuery) -> Result<()> {
         let path = format!("/finance/taxtypes/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a tax type
@@ -10401,7 +10399,7 @@ impl<'a> FinanceTaxTypesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::TaxType> {
         let path = format!("/finance/taxtypes/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all tax types
@@ -10426,7 +10424,7 @@ impl<'a> FinanceTaxTypesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::TaxType>> {
         let path = "/finance/taxtypes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update tax type
@@ -10455,7 +10453,7 @@ impl<'a> FinanceTaxTypesResource<'a> {
         let path = format!("/finance/taxtypes/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -10491,7 +10489,7 @@ impl<'a> FinanceTemplatesResource<'a> {
     pub fn create(&self, id: impl Display, query: &PostFinanceTemplatesIdQuery) -> Result<()> {
         let path = format!("/finance/templates/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Export a finance template
@@ -10519,7 +10517,7 @@ impl<'a> FinanceTemplatesResource<'a> {
     pub fn get_export(&self, query: &GetFinanceTemplatesExportQuery) -> Result<models::FinanceTemplateExport> {
         let path = "/finance/templates/export".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all finance templates
@@ -10544,7 +10542,7 @@ impl<'a> FinanceTemplatesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::FinanceTemplate>> {
         let path = "/finance/templates".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -10586,7 +10584,7 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
         let path = "/finance/transactionpurposes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete transaction purpose
@@ -10622,7 +10620,7 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceTransactionpurposesIdQuery) -> Result<()> {
         let path = format!("/finance/transactionpurposes/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a transaction purpose
@@ -10646,7 +10644,7 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::TransactionPurpose> {
         let path = format!("/finance/transactionpurposes/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all transaction purposes
@@ -10671,7 +10669,7 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::TransactionPurpose>> {
         let path = "/finance/transactionpurposes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update transaction purpose
@@ -10704,7 +10702,7 @@ impl<'a> FinanceTransactionPurposesResource<'a> {
         let path = format!("/finance/transactionpurposes/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -10761,7 +10759,7 @@ impl<'a> FinanceTransactionsResource<'a> {
         let path = "/finance/transactions/bulkcreate".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create new transaction
@@ -10807,7 +10805,7 @@ impl<'a> FinanceTransactionsResource<'a> {
         let path = "/finance/transactions".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete transaction
@@ -10843,7 +10841,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceTransactionsIdQuery) -> Result<()> {
         let path = format!("/finance/transactions/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Duplicate transaction
@@ -10869,7 +10867,7 @@ impl<'a> FinanceTransactionsResource<'a> {
         let path = format!("/finance/transactions/{}/duplicate", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get a transaction
@@ -10906,7 +10904,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn get_with(&self, id: impl Display, query: &GetFinanceTransactionsIdQuery) -> Result<models::Transaction> {
         let path = format!("/finance/transactions/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Export transactions as CSV
@@ -10935,7 +10933,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn get_csv(&self, query: &GetFinanceTransactionsCsvQuery) -> Result<Vec<u8>> {
         let path = "/finance/transactions/csv".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Export transactions in DATEV format
@@ -10963,7 +10961,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn get_datev_export(&self, query: &GetFinanceTransactionsDatevexportQuery) -> Result<Vec<u8>> {
         let path = "/finance/transactions/datevexport".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Check if a document number is available
@@ -10991,7 +10989,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn get_document_number_available(&self, query: &GetFinanceTransactionsDocumentnumberavailableQuery) -> Result<()> {
         let path = "/finance/transactions/documentnumberavailable".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
     /// Export transactions
@@ -11019,7 +11017,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn get_export(&self, query: &GetFinanceTransactionsExportQuery) -> Result<Vec<u8>> {
         let path = "/finance/transactions/export".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Get IDs of all transactions
@@ -11056,7 +11054,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn get_ids_with(&self, query: &GetFinanceTransactionsIdsQuery) -> Result<serde_json::Value> {
         let path = "/finance/transactions/ids".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get suggestion for next document number
@@ -11084,7 +11082,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn get_next_document_number(&self, query: &GetFinanceTransactionsNextdocumentnumberQuery) -> Result<String> {
         let path = "/finance/transactions/nextdocumentnumber".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Calculate a journal summary with previous-year comparison
@@ -11112,7 +11110,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     pub fn get_summary(&self, query: &GetFinanceTransactionsSummaryQuery) -> Result<serde_json::Value> {
         let path = "/finance/transactions/summary".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all transactions
@@ -11183,7 +11181,7 @@ impl<'a> FinanceTransactionsResource<'a> {
         let path = "/finance/transactions".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Update transaction
@@ -11230,7 +11228,7 @@ impl<'a> FinanceTransactionsResource<'a> {
         let path = format!("/finance/transactions/{}", seg(id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
     /// Cancel transaction
@@ -11258,7 +11256,7 @@ impl<'a> FinanceTransactionsResource<'a> {
         let path = format!("/finance/transactions/{}/storno", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -11296,7 +11294,7 @@ impl<'a> FollowupsResource<'a> {
         let path = format!("/followups/{}/complete", seg(follow_up_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete follow-up
@@ -11319,7 +11317,7 @@ impl<'a> FollowupsResource<'a> {
     pub fn delete(&self, follow_up_id: impl Display) -> Result<()> {
         let path = format!("/followups/{}", seg(follow_up_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Dismiss follow-up
@@ -11345,7 +11343,7 @@ impl<'a> FollowupsResource<'a> {
         let path = format!("/followups/{}/dismiss", seg(follow_up_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get follow-up
@@ -11369,7 +11367,7 @@ impl<'a> FollowupsResource<'a> {
     pub fn get(&self, follow_up_id: impl Display) -> Result<models::FollowUp2> {
         let path = format!("/followups/{}", seg(follow_up_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List follow-ups assigned to the current user or eligible groups
@@ -11457,7 +11455,7 @@ impl<'a> FollowupsResource<'a> {
         let path = format!("/followups/{}/notes", seg(follow_up_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Postpone follow-up
@@ -11486,7 +11484,7 @@ impl<'a> FollowupsResource<'a> {
         let path = format!("/followups/{}/postpone", seg(follow_up_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Reset follow-up
@@ -11515,7 +11513,7 @@ impl<'a> FollowupsResource<'a> {
         let path = format!("/followups/{}/reset", seg(follow_up_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Update follow-up
@@ -11543,7 +11541,7 @@ impl<'a> FollowupsResource<'a> {
         let path = format!("/followups/{}", seg(follow_up_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -11585,7 +11583,7 @@ impl<'a> FurtherLinksResource<'a> {
         let path = "/furtherlinks".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// `DELETE /furtherlinks/{furtherLinkId}`
@@ -11604,7 +11602,7 @@ impl<'a> FurtherLinksResource<'a> {
     pub fn delete(&self, further_link_id: impl Display) -> Result<()> {
         let path = format!("/furtherlinks/{}", seg(further_link_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get further link.
@@ -11628,7 +11626,7 @@ impl<'a> FurtherLinksResource<'a> {
     pub fn get(&self, further_link_id: impl Display) -> Result<models::FurtherLink> {
         let path = format!("/furtherlinks/{}", seg(further_link_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get further links
@@ -11653,7 +11651,7 @@ impl<'a> FurtherLinksResource<'a> {
     pub fn list(&self) -> Result<Vec<models::FurtherLink>> {
         let path = "/furtherlinks".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update further link
@@ -11686,7 +11684,7 @@ impl<'a> FurtherLinksResource<'a> {
         let path = format!("/furtherlinks/{}", seg(further_link_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -11746,7 +11744,7 @@ impl<'a> GroupResource<'a> {
     pub fn list_member_status(&self) -> Result<Vec<models::GetGroupMemberstatusResponseItem>> {
         let path = "/group/memberstatus".to_owned();
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
 }
@@ -11788,7 +11786,7 @@ impl<'a> GroupAgeGroupsResource<'a> {
         let path = "/group/agegroups".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete age range
@@ -11816,7 +11814,7 @@ impl<'a> GroupAgeGroupsResource<'a> {
     pub fn delete(&self, age_group_id: impl Display, query: &DeleteGroupAgegroupsAgeGroupIdQuery) -> Result<()> {
         let path = format!("/group/agegroups/{}", seg(age_group_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get age range
@@ -11841,7 +11839,7 @@ impl<'a> GroupAgeGroupsResource<'a> {
     pub fn get(&self, age_group_id: impl Display) -> Result<models::AgeGroup> {
         let path = format!("/group/agegroups/{}", seg(age_group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all age ranges
@@ -11867,7 +11865,7 @@ impl<'a> GroupAgeGroupsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::AgeGroup>> {
         let path = "/group/agegroups".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update age range
@@ -11899,7 +11897,7 @@ impl<'a> GroupAgeGroupsResource<'a> {
         let path = format!("/group/agegroups/{}", seg(age_group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -11940,7 +11938,7 @@ impl<'a> GroupGroupCategoriesResource<'a> {
         let path = "/group/groupcategories".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete group category
@@ -11968,7 +11966,7 @@ impl<'a> GroupGroupCategoriesResource<'a> {
     pub fn delete(&self, group_category_id: impl Display, query: &DeleteGroupGroupcategoriesGroupCategoryIdQuery) -> Result<()> {
         let path = format!("/group/groupcategories/{}", seg(group_category_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get group category
@@ -11993,7 +11991,7 @@ impl<'a> GroupGroupCategoriesResource<'a> {
     pub fn get(&self, group_category_id: impl Display) -> Result<models::GroupCategory> {
         let path = format!("/group/groupcategories/{}", seg(group_category_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all group categories
@@ -12019,7 +12017,7 @@ impl<'a> GroupGroupCategoriesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::GroupCategory>> {
         let path = "/group/groupcategories".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update group category
@@ -12051,7 +12049,7 @@ impl<'a> GroupGroupCategoriesResource<'a> {
         let path = format!("/group/groupcategories/{}", seg(group_category_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -12098,7 +12096,7 @@ impl<'a> GroupGroupTypesResource<'a> {
         let path = "/group/grouptypes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete grouptype
@@ -12136,7 +12134,7 @@ impl<'a> GroupGroupTypesResource<'a> {
     pub fn delete_with(&self, group_type_id: impl Display, query: &DeleteGroupGrouptypesGroupTypeIdQuery) -> Result<()> {
         let path = format!("/group/grouptypes/{}", seg(group_type_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get grouptype
@@ -12160,7 +12158,7 @@ impl<'a> GroupGroupTypesResource<'a> {
     pub fn get(&self, group_type_id: impl Display) -> Result<models::GroupType> {
         let path = format!("/group/grouptypes/{}", seg(group_type_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all group types
@@ -12187,7 +12185,7 @@ impl<'a> GroupGroupTypesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::GroupType>> {
         let path = "/group/grouptypes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update GroupType
@@ -12225,7 +12223,7 @@ impl<'a> GroupGroupTypesResource<'a> {
         let path = format!("/group/grouptypes/{}", seg(group_type_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -12269,7 +12267,7 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
         let path = "/group/meetingtemplates".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete group meeting feedback template
@@ -12297,7 +12295,7 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
     pub fn delete(&self, meeting_template_id: impl Display, query: &DeleteGroupMeetingtemplatesMeetingTemplateIdQuery) -> Result<()> {
         let path = format!("/group/meetingtemplates/{}", seg(meeting_template_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get group meeting feedback template
@@ -12321,7 +12319,7 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
     pub fn get(&self, meeting_template_id: impl Display) -> Result<models::MeetingTemplate> {
         let path = format!("/group/meetingtemplates/{}", seg(meeting_template_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all group meeting feedback templates
@@ -12347,7 +12345,7 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::MeetingTemplate>> {
         let path = "/group/meetingtemplates".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update group meeting feedback template
@@ -12381,7 +12379,7 @@ impl<'a> GroupMeetingTemplatesResource<'a> {
         let path = format!("/group/meetingtemplates/{}", seg(meeting_template_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -12427,7 +12425,7 @@ impl<'a> GroupRolesResource<'a> {
         let path = "/group/roles".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete role
@@ -12465,7 +12463,7 @@ impl<'a> GroupRolesResource<'a> {
     pub fn delete_with(&self, role_id: impl Display, query: &DeleteGroupRolesRoleIdQuery) -> Result<()> {
         let path = format!("/group/roles/{}", seg(role_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get role
@@ -12489,7 +12487,7 @@ impl<'a> GroupRolesResource<'a> {
     pub fn get(&self, role_id: impl Display) -> Result<models::Role> {
         let path = format!("/group/roles/{}", seg(role_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get roles
@@ -12530,7 +12528,7 @@ impl<'a> GroupRolesResource<'a> {
     pub fn list_with(&self, query: &GetGroupRolesQuery) -> Result<serde_json::Value> {
         let path = "/group/roles".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update Role
@@ -12568,7 +12566,7 @@ impl<'a> GroupRolesResource<'a> {
         let path = format!("/group/roles/{}", seg(role_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -12608,7 +12606,7 @@ impl<'a> GroupTargetGroupsResource<'a> {
         let path = "/group/targetgroups".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete target audience
@@ -12636,7 +12634,7 @@ impl<'a> GroupTargetGroupsResource<'a> {
     pub fn delete(&self, target_group_id: impl Display, query: &DeleteGroupTargetgroupsTargetGroupIdQuery) -> Result<()> {
         let path = format!("/group/targetgroups/{}", seg(target_group_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get target audience
@@ -12661,7 +12659,7 @@ impl<'a> GroupTargetGroupsResource<'a> {
     pub fn get(&self, target_group_id: impl Display) -> Result<models::TargetGroup> {
         let path = format!("/group/targetgroups/{}", seg(target_group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all target audiences
@@ -12687,7 +12685,7 @@ impl<'a> GroupTargetGroupsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::TargetGroup>> {
         let path = "/group/targetgroups".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update target audience
@@ -12717,7 +12715,7 @@ impl<'a> GroupTargetGroupsResource<'a> {
         let path = format!("/group/targetgroups/{}", seg(target_group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -12763,7 +12761,7 @@ impl<'a> GroupHomepagesResource<'a> {
     pub fn get_with(&self, hash: impl Display, query: &GetGrouphomepagesHashQuery) -> Result<models::GroupHomepage> {
         let path = format!("/grouphomepages/{}", seg(hash));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all enabled group homepages
@@ -12788,7 +12786,7 @@ impl<'a> GroupHomepagesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::DomainObjectGrouphomepage>> {
         let path = "/grouphomepages".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -12867,7 +12865,7 @@ impl<'a> GroupsResource<'a> {
         let path = format!("/groups/{}/chat", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Create Group
@@ -12898,7 +12896,7 @@ impl<'a> GroupsResource<'a> {
         let path = "/groups".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a group
@@ -12934,7 +12932,7 @@ impl<'a> GroupsResource<'a> {
     pub fn delete_with(&self, group_id: impl Display, query: &DeleteGroupsGroupIdQuery) -> Result<()> {
         let path = format!("/groups/{}", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Delete a group’s homepage configuration
@@ -12957,7 +12955,7 @@ impl<'a> GroupsResource<'a> {
     pub fn delete_group_homepage(&self, group_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/grouphomepage", seg(group_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Duplicate a group with selected related data
@@ -12999,7 +12997,7 @@ impl<'a> GroupsResource<'a> {
         let path = format!("/groups/{}/duplicate", seg(group_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Export groups
@@ -13041,7 +13039,7 @@ impl<'a> GroupsResource<'a> {
         let path = "/groups/export".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get a group
@@ -13074,7 +13072,7 @@ impl<'a> GroupsResource<'a> {
     pub fn get_with(&self, group_id: impl Display, query: &GetGroupsGroupIdQuery) -> Result<models::Group> {
         let path = format!("/groups/{}", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get a group’s homepage configuration
@@ -13098,7 +13096,7 @@ impl<'a> GroupsResource<'a> {
     pub fn get_group_homepage(&self, group_id: impl Display) -> Result<models::GroupHomepage> {
         let path = format!("/groups/{}/grouphomepage", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get grouped groups
@@ -13126,7 +13124,7 @@ impl<'a> GroupsResource<'a> {
     pub fn get_grouped(&self, query: &GetGroupsGroupedQuery) -> Result<models::GroupedGroups> {
         let path = "/groups/grouped".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get stored newsletter consent and synchronization states
@@ -13150,7 +13148,7 @@ impl<'a> GroupsResource<'a> {
     pub fn get_optins(&self, group_id: impl Display) -> Result<models::NewsletterOptInData> {
         let path = format!("/groups/{}/optins", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Count published group posts by visibility
@@ -13174,7 +13172,7 @@ impl<'a> GroupsResource<'a> {
     pub fn get_post_statistics(&self, group_id: impl Display) -> Result<models::GroupPostStatistics> {
         let path = format!("/groups/{}/poststatistics", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get group capacity and visible membership counts
@@ -13198,7 +13196,7 @@ impl<'a> GroupsResource<'a> {
     pub fn get_statistics(&self, group_id: impl Display) -> Result<models::GroupStatistics> {
         let path = format!("/groups/{}/statistics", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Change a group’s type and migrate its roles
@@ -13227,7 +13225,7 @@ impl<'a> GroupsResource<'a> {
         let path = format!("/groups/{}/grouptype", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Get all groups
@@ -13316,7 +13314,7 @@ impl<'a> GroupsResource<'a> {
     pub fn list_absences_with(&self, group_id: impl Display, query: &GetGroupsAbsencesQuery) -> Result<Vec<models::Absence>> {
         let path = format!("/groups/{}/absences", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get child groups
@@ -13384,7 +13382,7 @@ impl<'a> GroupsResource<'a> {
     pub fn list_document_templates(&self, group_id: impl Display) -> Result<Vec<models::HtmlTemplateInfo>> {
         let path = format!("/groups/{}/documenttemplates", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all group hierarchies
@@ -13516,7 +13514,7 @@ impl<'a> GroupsResource<'a> {
     pub fn list_member_ids_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMemberidsQuery) -> Result<Vec<i64>> {
         let path = format!("/groups/{}/memberids", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Preview active group members by role
@@ -13554,7 +13552,7 @@ impl<'a> GroupsResource<'a> {
     pub fn list_member_preview_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMemberpreviewQuery) -> Result<Vec<models::MemberPreview>> {
         let path = format!("/groups/{}/memberpreview", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all group members
@@ -13592,7 +13590,7 @@ impl<'a> GroupsResource<'a> {
     pub fn list_members_with(&self, query: &GetGroupsMembersQuery) -> Result<Vec<models::GroupMemberShort>> {
         let path = "/groups/members".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get visible posts of a group
@@ -13681,7 +13679,7 @@ impl<'a> GroupsResource<'a> {
         let path = format!("/groups/{}/notification", seg(group_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
     /// Update Group
@@ -13723,7 +13721,7 @@ impl<'a> GroupsResource<'a> {
         let path = format!("/groups/{}", seg(group_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Create or update a group’s homepage configuration
@@ -13756,7 +13754,7 @@ impl<'a> GroupsResource<'a> {
         let path = format!("/groups/{}/grouphomepage", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::PUT, &path, &query, Some(&body))
+        self.client.request_json(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -13794,7 +13792,7 @@ impl<'a> GroupsCheckinResource<'a> {
         let path = format!("/groups/{}/checkin/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -13824,7 +13822,7 @@ impl<'a> GroupsDocumentsResource<'a> {
     pub fn get(&self, group_id: impl Display, html_template_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/documents/{}", seg(group_id), seg(html_template_id));
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
 }
@@ -13857,7 +13855,7 @@ impl<'a> GroupsFollowupsResource<'a> {
     pub fn get_statistics(&self, group_id: impl Display) -> Result<models::FollowUpStatistics> {
         let path = format!("/groups/{}/followups/statistics", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List follow-ups for group memberships
@@ -13946,7 +13944,7 @@ impl<'a> GroupsMeetingsResource<'a> {
         let path = format!("/groups/{}/meetings", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a group meeting
@@ -13969,7 +13967,7 @@ impl<'a> GroupsMeetingsResource<'a> {
     pub fn delete(&self, group_id: impl Display, meeting_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/meetings/{}", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a group meeting
@@ -13993,7 +13991,7 @@ impl<'a> GroupsMeetingsResource<'a> {
     pub fn get(&self, group_id: impl Display, meeting_id: impl Display) -> Result<models::GroupMeeting> {
         let path = format!("/groups/{}/meetings/{}", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Export group meeting attendance or overview
@@ -14038,7 +14036,7 @@ impl<'a> GroupsMeetingsResource<'a> {
     pub fn get_export_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMeetingsExportQuery) -> Result<Vec<u8>> {
         let path = format!("/groups/{}/meetings/export", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Get meetings for a group
@@ -14132,7 +14130,7 @@ impl<'a> GroupsMeetingsResource<'a> {
         let path = format!("/groups/{}/meetings/{}", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -14172,7 +14170,7 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
         let path = format!("/groups/{}/meetings/{}/members/{}", seg(group_id), seg(meeting_id), seg(member_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::DELETE, &path, &query, Some(&body))
+        self.client.request_json(Method::Delete, &path, &query, Some(&body))
     }
 
     /// Get attendance for a group meeting
@@ -14201,7 +14199,7 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     pub fn list(&self, group_id: impl Display, meeting_id: impl Display) -> Result<Vec<models::GroupMeetingMember>> {
         let path = format!("/groups/{}/meetings/{}/members", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Set undecided meeting attendance
@@ -14229,7 +14227,7 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
         let path = format!("/groups/{}/meetings/{}/members/missing", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Reset meeting attendance
@@ -14252,7 +14250,7 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
     pub fn reset(&self, group_id: impl Display, meeting_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/meetings/{}/members/reset", seg(group_id), seg(meeting_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
 }
@@ -14294,7 +14292,7 @@ impl<'a> GroupsMemberFieldsResource<'a> {
     pub fn list(&self, group_id: impl Display) -> Result<Vec<serde_json::Value>> {
         let path = format!("/groups/{}/memberfields", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -14336,7 +14334,7 @@ impl<'a> GroupsMemberFieldsGroupResource<'a> {
         let path = format!("/groups/{}/memberfields/group", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a membership field and its stored values
@@ -14359,7 +14357,7 @@ impl<'a> GroupsMemberFieldsGroupResource<'a> {
     pub fn delete(&self, group_id: impl Display, group_member_field_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/memberfields/group/{}", seg(group_id), seg(group_member_field_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Partially update a membership field definition
@@ -14388,7 +14386,7 @@ impl<'a> GroupsMemberFieldsGroupResource<'a> {
         let path = format!("/groups/{}/memberfields/group/{}", seg(group_id), seg(group_member_field_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Replace a membership field definition
@@ -14421,7 +14419,7 @@ impl<'a> GroupsMemberFieldsGroupResource<'a> {
         let path = format!("/groups/{}/memberfields/group/{}", seg(group_id), seg(group_member_field_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -14453,7 +14451,7 @@ impl<'a> GroupsMemberFieldsPersonResource<'a> {
     pub fn delete(&self, group_id: impl Display, field_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/memberfields/person/{}", seg(group_id), seg(field_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Configure a person field for a group’s member form
@@ -14483,7 +14481,7 @@ impl<'a> GroupsMemberFieldsPersonResource<'a> {
         let path = format!("/groups/{}/memberfields/person/{}", seg(group_id), seg(field_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -14543,7 +14541,7 @@ impl<'a> GroupsMembersResource<'a> {
         let path = format!("/groups/{}/members/export", seg(group_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body))
+        self.client.request(Method::Post, &path, &query, Some(&body))
     }
 
     /// Remove a person’s group membership
@@ -14566,7 +14564,7 @@ impl<'a> GroupsMembersResource<'a> {
     pub fn delete(&self, group_id: impl Display, person_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/members/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a person’s group membership
@@ -14590,7 +14588,7 @@ impl<'a> GroupsMembersResource<'a> {
     pub fn get(&self, group_id: impl Display, person_id: impl Display) -> Result<models::GroupMember> {
         let path = format!("/groups/{}/members/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Export visible group members with the default columns
@@ -14627,7 +14625,7 @@ impl<'a> GroupsMembersResource<'a> {
     pub fn get_export_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMembersExportQuery) -> Result<Vec<u8>> {
         let path = format!("/groups/{}/members/export", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// List group memberships
@@ -14712,7 +14710,7 @@ impl<'a> GroupsMembersResource<'a> {
     pub fn list_history_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMembersHistoryQuery) -> Result<Vec<models::GroupMemberHistoryEntry>> {
         let path = format!("/groups/{}/members/history", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get group meetings with attendance for one person
@@ -14737,7 +14735,7 @@ impl<'a> GroupsMembersResource<'a> {
     pub fn list_meetings(&self, group_id: impl Display, person_id: impl Display) -> Result<Vec<models::GroupMemberMeeting>> {
         let path = format!("/groups/{}/members/{}/meetings", seg(group_id), seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get field statistics for selected group roles
@@ -14766,7 +14764,7 @@ impl<'a> GroupsMembersResource<'a> {
     pub fn list_statistics(&self, group_id: impl Display, query: &GetGroupsGroupIdMembersStatisticsQuery) -> Result<Vec<models::GroupMemberStatistic>> {
         let path = format!("/groups/{}/members/statistics", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update an existing group membership
@@ -14795,7 +14793,7 @@ impl<'a> GroupsMembersResource<'a> {
         let path = format!("/groups/{}/members/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Add a person to a group
@@ -14824,7 +14822,7 @@ impl<'a> GroupsMembersResource<'a> {
         let path = format!("/groups/{}/members/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -14854,7 +14852,7 @@ impl<'a> GroupsMembersDocumentsResource<'a> {
     pub fn get(&self, group_id: impl Display, member_id: impl Display, html_template_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/members/{}/documents/{}", seg(group_id), seg(member_id), seg(html_template_id));
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
 }
@@ -14892,7 +14890,7 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
         let path = format!("/groups/{}/members/{}/followups", seg(group_id), seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Count follow-ups for one membership by due state
@@ -14916,7 +14914,7 @@ impl<'a> GroupsMembersFollowupsResource<'a> {
     pub fn get_statistics(&self, group_id: impl Display, person_id: impl Display) -> Result<models::FollowUpStatistics> {
         let path = format!("/groups/{}/members/{}/followups/statistics", seg(group_id), seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List follow-ups for one group membership
@@ -14995,7 +14993,7 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     pub fn delete(&self, group_id: impl Display, role_id: impl Display, group_member_status: impl Display) -> Result<()> {
         let path = format!("/groups/{}/members/routines/{}/{}", seg(group_id), seg(role_id), seg(group_member_status));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// List routine bindings for membership roles and statuses
@@ -15020,7 +15018,7 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::GroupMembershipRoutine>> {
         let path = format!("/groups/{}/members/routines", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Create a membership routine binding if absent
@@ -15049,7 +15047,7 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
         let path = format!("/groups/{}/members/routines/{}/{}", seg(group_id), seg(role_id), seg(group_member_status));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -15088,7 +15086,7 @@ impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
         let path = format!("/groups/{}/newsletter-integrations", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Remove a newsletter mapping and unsubscribe its contacts
@@ -15111,7 +15109,7 @@ impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
     pub fn delete(&self, group_id: impl Display, provider: impl Display, list_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/newsletter-integrations/{}/{}", seg(group_id), seg(provider), seg(list_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// List a group’s newsletter list mappings
@@ -15136,7 +15134,7 @@ impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::NewsletterIntegrationGroupMapping>> {
         let path = format!("/groups/{}/newsletter-integrations", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Resend pending newsletter confirmation emails
@@ -15174,7 +15172,7 @@ impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
         let path = format!("/groups/{}/newsletter-integrations/{}/{}/resend-optins", seg(group_id), seg(provider), seg(list_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -15206,7 +15204,7 @@ impl<'a> GroupsParentsResource<'a> {
     pub fn delete(&self, group_id: impl Display, parent_group_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/parents/{}", seg(group_id), seg(parent_group_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get child groups
@@ -15274,7 +15272,7 @@ impl<'a> GroupsParentsResource<'a> {
         let path = format!("/groups/{}/parents/{}", seg(group_id), seg(parent_group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -15307,7 +15305,7 @@ impl<'a> GroupsQrcodeCheckinResource<'a> {
     pub fn get(&self, group_id: impl Display, person_id: impl Display) -> Result<models::GroupQRCodeCheckin> {
         let path = format!("/groups/{}/qrcodecheckin/{}", seg(group_id), seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Generate a PDF download link for an existing check-in ticket
@@ -15331,7 +15329,7 @@ impl<'a> GroupsQrcodeCheckinResource<'a> {
     pub fn get_pdf(&self, group_id: impl Display, person_id: impl Display) -> Result<models::GetGroupsIdQrcodecheckinPersonIdPdfData> {
         let path = format!("/groups/{}/qrcodecheckin/{}/pdf", seg(group_id), seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List accessible check-in tickets for a group
@@ -15355,7 +15353,7 @@ impl<'a> GroupsQrcodeCheckinResource<'a> {
     pub fn list(&self, group_id: impl Display) -> Result<Option<Vec<models::GroupQRCodeCheckin>>> {
         let path = format!("/groups/{}/qrcodecheckin", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Queue an existing check-in ticket for email
@@ -15381,7 +15379,7 @@ impl<'a> GroupsQrcodeCheckinResource<'a> {
         let path = format!("/groups/{}/qrcodecheckin/{}/send", seg(group_id), seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -15417,7 +15415,7 @@ impl<'a> GroupsRolesResource<'a> {
     pub fn list(&self, group_id: impl Display) -> Result<Vec<models::GroupRole>> {
         let path = format!("/groups/{}/roles", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update role settings for a group
@@ -15448,7 +15446,7 @@ impl<'a> GroupsRolesResource<'a> {
         let path = format!("/groups/{}/roles/{}", seg(group_id), seg(role_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
 }
@@ -15508,7 +15506,7 @@ impl<'a> GroupsWikiCategoriesResource<'a> {
     pub fn list_pages_with(&self, group_id: impl Display, query: &GetGroupsIdWikiCategoriesPagesQuery) -> Result<Vec<models::GroupWikiCategoryPagesItem>> {
         let path = format!("/groups/{}/wiki/categories/pages", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -15595,7 +15593,7 @@ impl<'a> HtmlTemplatesResource<'a> {
         let path = "/htmltemplates".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Check dependencies or delete an HTML template
@@ -15622,7 +15620,7 @@ impl<'a> HtmlTemplatesResource<'a> {
     pub fn delete(&self, template_id: impl Display, query: &DeleteHtmltemplatesTemplateIdQuery) -> Result<()> {
         let path = format!("/htmltemplates/{}", seg(template_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get HTML template metadata
@@ -15646,7 +15644,7 @@ impl<'a> HtmlTemplatesResource<'a> {
     pub fn get(&self, template_id: impl Display) -> Result<models::HtmlTemplate> {
         let path = format!("/htmltemplates/{}", seg(template_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Create a downloadable template export
@@ -15670,7 +15668,7 @@ impl<'a> HtmlTemplatesResource<'a> {
     pub fn get_export(&self, template_id: impl Display) -> Result<String> {
         let path = format!("/htmltemplates/{}/export", seg(template_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Read stored HTML template source
@@ -15694,7 +15692,7 @@ impl<'a> HtmlTemplatesResource<'a> {
     pub fn get_html(&self, template_id: impl Display) -> Result<Option<String>> {
         let path = format!("/htmltemplates/{}/html", seg(template_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Read stored MJML template source
@@ -15718,7 +15716,7 @@ impl<'a> HtmlTemplatesResource<'a> {
     pub fn get_mjml(&self, template_id: impl Display) -> Result<Option<String>> {
         let path = format!("/htmltemplates/{}/mjml", seg(template_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List visible templates for one purpose
@@ -15747,7 +15745,7 @@ impl<'a> HtmlTemplatesResource<'a> {
     pub fn list(&self, query: &GetHtmltemplatesQuery) -> Result<Vec<models::HtmlTemplate>> {
         let path = "/htmltemplates".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update template metadata or replace source content
@@ -15776,7 +15774,7 @@ impl<'a> HtmlTemplatesResource<'a> {
         let path = format!("/htmltemplates/{}", seg(template_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Upload image assets to a template
@@ -15803,7 +15801,7 @@ impl<'a> HtmlTemplatesResource<'a> {
         let path = format!("/htmltemplates/{}/uploadassets", seg(template_id));
         let query: Query = Query::new();
         let form: Query = Query::new();
-        let bytes = self.client.request_multipart(Method::POST, &path, &query, &form, "files[]", files)?;
+        let bytes = self.client.request_multipart(Method::Post, &path, &query, &form, "files[]", files)?;
         crate::decode_data(&bytes)
     }
 
@@ -15850,7 +15848,7 @@ impl<'a> ImagesResource<'a> {
     pub fn get_with(&self, file_id: impl Display, hash: impl Display, query: &GetImagesFileIdHashQuery) -> Result<Vec<u8>> {
         let path = format!("/images/{}/{}", seg(file_id), seg(hash));
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Get a public image with path-encoded parameters
@@ -15874,7 +15872,7 @@ impl<'a> ImagesResource<'a> {
     pub fn get_with_params(&self, file_id: impl Display, hash: impl Display, query_params: impl Display) -> Result<Vec<u8>> {
         let path = format!("/images/{}/{}/{}", seg(file_id), seg(hash), seg(query_params));
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
     /// Update image metadata
@@ -15903,7 +15901,7 @@ impl<'a> ImagesResource<'a> {
         let path = format!("/images/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Update image options and metadata
@@ -15932,7 +15930,7 @@ impl<'a> ImagesResource<'a> {
         let path = format!("/images/{}/options", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -15965,7 +15963,7 @@ impl<'a> InfoResource<'a> {
     pub fn get(&self) -> Result<models::GetInfoResponse> {
         let path = "/info".to_owned();
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
 }
@@ -16003,7 +16001,7 @@ impl<'a> InstallationSyncResource<'a> {
         let path = "/installation-sync/oidc".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -16041,7 +16039,7 @@ impl<'a> JobLogResource<'a> {
     pub fn list(&self, query: &GetJoblogQuery) -> Result<Vec<models::JobLogEntry>> {
         let path = "/joblog".to_owned();
         let query: Query = query.to_query();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
 }
@@ -16088,7 +16086,7 @@ impl<'a> JobsResource<'a> {
     pub fn list_with(&self, query: &GetJobsQuery) -> Result<Vec<models::Job>> {
         let path = "/jobs".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Append a background-job log message
@@ -16116,7 +16114,7 @@ impl<'a> JobsResource<'a> {
         let path = format!("/jobs/{}/logs", seg(identifier));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Update a background-job status
@@ -16144,7 +16142,7 @@ impl<'a> JobsResource<'a> {
         let path = format!("/jobs/{}/status", seg(identifier));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -16183,7 +16181,7 @@ impl<'a> LabelsResource<'a> {
         let path = "/labels".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Count address labels
@@ -16212,7 +16210,7 @@ impl<'a> LabelsResource<'a> {
         let path = "/labels/totals".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -16259,7 +16257,7 @@ impl<'a> LanguagesResource<'a> {
     pub fn list_with(&self, query: &GetLanguagesQuery) -> Result<Vec<models::Language>> {
         let path = "/languages".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -16291,7 +16289,7 @@ impl<'a> LicenseResource<'a> {
     pub fn get_fetch(&self) -> Result<()> {
         let path = "/license/fetch".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
 }
@@ -16334,7 +16332,7 @@ impl<'a> LoginResource<'a> {
         let path = "/login".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get or create a persistent login token
@@ -16364,7 +16362,7 @@ impl<'a> LoginResource<'a> {
         let path = "/login/token".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Complete login with an authenticator code
@@ -16394,7 +16392,7 @@ impl<'a> LoginResource<'a> {
         let path = "/login/totp".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -16445,7 +16443,7 @@ impl<'a> LoginTwoFactorSetupResource<'a> {
         let path = "/login/twofactor/setup/activate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Initialize required authenticator setup
@@ -16469,7 +16467,7 @@ impl<'a> LoginTwoFactorSetupResource<'a> {
     pub fn create(&self) -> Result<models::TwoFactorSetupSecret> {
         let path = "/login/twofactor/setup".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
 }
@@ -16501,7 +16499,7 @@ impl<'a> LogoutResource<'a> {
     pub fn create(&self) -> Result<()> {
         let path = "/logout".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
 }
@@ -16538,7 +16536,7 @@ impl<'a> LogsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::Log> {
         let path = format!("/logs/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all log messages
@@ -16676,7 +16674,7 @@ impl<'a> MarkdownResource<'a> {
         let path = "/markdown/check".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Convert Markdown to HTML etc.
@@ -16712,7 +16710,7 @@ impl<'a> MarkdownResource<'a> {
         let path = "/markdown/convert".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -16746,7 +16744,7 @@ impl<'a> MasterDataResource<'a> {
     pub fn get_person(&self) -> Result<models::PersonMasterData> {
         let path = "/masterdata/person".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -16785,7 +16783,7 @@ impl<'a> MeetingRequestsResource<'a> {
         let path = "/meetingrequests/reply".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -16816,7 +16814,7 @@ impl<'a> MenuResource<'a> {
     pub fn get(&self) -> Result<models::GetMenuResponse> {
         let path = "/menu".to_owned();
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
 }
@@ -16850,7 +16848,7 @@ impl<'a> NewsLetterIntegrationsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::NewsletterIntegrationOptions>> {
         let path = "/newsletter-integrations".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -16888,7 +16886,7 @@ impl<'a> NotesResource<'a> {
         let path = format!("/notes/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a note and all its links
@@ -16911,7 +16909,7 @@ impl<'a> NotesResource<'a> {
     pub fn delete(&self, note_id: impl Display) -> Result<()> {
         let path = format!("/notes/{}", seg(note_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Delete a note and all its links
@@ -16934,7 +16932,7 @@ impl<'a> NotesResource<'a> {
     pub fn delete_for_object(&self, domain_type: impl Display, domain_id: impl Display, note_id: impl Display) -> Result<()> {
         let path = format!("/notes/{}/{}/{}", seg(domain_type), seg(domain_id), seg(note_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// List visible notes attached to an object
@@ -16959,7 +16957,7 @@ impl<'a> NotesResource<'a> {
     pub fn get(&self, domain_type: impl Display, domain_id: impl Display) -> Result<Vec<models::Note>> {
         let path = format!("/notes/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Replace an authored note’s text and visibility
@@ -16988,7 +16986,7 @@ impl<'a> NotesResource<'a> {
         let path = format!("/notes/{}/{}/{}", seg(domain_type), seg(domain_id), seg(note_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -17020,7 +17018,7 @@ impl<'a> NotificationsResource<'a> {
     pub fn test(&self) -> Result<()> {
         let path = "/notifications/test".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
 }
@@ -17056,7 +17054,7 @@ impl<'a> NpsResource<'a> {
         let path = "/nps".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -17095,7 +17093,7 @@ impl<'a> OauthClientsResource<'a> {
         let path = "/oauthclients".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an OAuth client
@@ -17118,7 +17116,7 @@ impl<'a> OauthClientsResource<'a> {
     pub fn delete(&self, identifier: impl Display) -> Result<()> {
         let path = format!("/oauthclients/{}", seg(identifier));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// List registered OAuth clients
@@ -17143,7 +17141,7 @@ impl<'a> OauthClientsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::OAuthClient>> {
         let path = "/oauthclients".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update an OAuth client
@@ -17173,7 +17171,7 @@ impl<'a> OauthClientsResource<'a> {
         let path = format!("/oauthclients/{}", seg(identifier));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -17226,7 +17224,7 @@ impl<'a> PermissionsResource<'a> {
         let path = "/permissions/bulk".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Delete a raw permission assignment
@@ -17254,7 +17252,7 @@ impl<'a> PermissionsResource<'a> {
         let path = format!("/permissions/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::DELETE, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// List permission definitions
@@ -17291,7 +17289,7 @@ impl<'a> PermissionsResource<'a> {
     pub fn get_definitions_with(&self, query: &GetPermissionsDefinitionsQuery) -> Result<models::GetPermissionsDefinitionsData> {
         let path = "/permissions/definitions".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List locked permissions
@@ -17315,7 +17313,7 @@ impl<'a> PermissionsResource<'a> {
     pub fn get_locked(&self) -> Result<models::LockedPermissionState> {
         let path = "/permissions/locked".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List permissions for a domain object
@@ -17340,7 +17338,7 @@ impl<'a> PermissionsResource<'a> {
     pub fn list(&self, domain_type: impl Display, domain_id: impl Display) -> Result<Vec<models::Permission>> {
         let path = format!("/permissions/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Search selectable permission assignment targets
@@ -17425,7 +17423,7 @@ impl<'a> PermissionsResource<'a> {
     pub fn list_for_type_with(&self, domain_type: impl Display, query: &GetPermissionsPermissionDomainTypeQuery) -> Result<Vec<models::Permission>> {
         let path = format!("/permissions/{}", seg(domain_type));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Save a raw permission assignment
@@ -17453,7 +17451,7 @@ impl<'a> PermissionsResource<'a> {
         let path = format!("/permissions/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Update locked permissions
@@ -17489,7 +17487,7 @@ impl<'a> PermissionsResource<'a> {
         let path = "/permissions/locked".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
     /// Replace a raw permission assignment
@@ -17518,7 +17516,7 @@ impl<'a> PermissionsResource<'a> {
         let path = format!("/permissions/{}/{}/replace", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -17555,7 +17553,7 @@ impl<'a> PermissionsGlobalResource<'a> {
     pub fn get(&self) -> Result<models::GlobalPermissions> {
         let path = "/permissions/global".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Summarize Persons with Global Permissions
@@ -17579,7 +17577,7 @@ impl<'a> PermissionsGlobalResource<'a> {
     pub fn get_person_summary(&self) -> Result<models::GetPermissionsGlobalPersonSummaryData> {
         let path = "/permissions/global/person-summary".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -17625,7 +17623,7 @@ impl<'a> PermissionsGlobalAuthsResource<'a> {
     pub fn get_assignment_summary_with(&self, auth_id: impl Display, query: &GetPermissionsGlobalAuthsAuthIdAssignmentSummaryQuery) -> Result<models::PermissionAssignmentSummary> {
         let path = format!("/permissions/global/auths/{}/assignment-summary", seg(auth_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List Persons with a Global Permission
@@ -17662,7 +17660,7 @@ impl<'a> PermissionsGlobalAuthsResource<'a> {
     pub fn get_persons_with(&self, auth_id: impl Display, query: &GetPermissionsGlobalAuthsAuthIdPersonsQuery) -> Result<models::PermissionPersons> {
         let path = format!("/permissions/global/auths/{}/persons", seg(auth_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -17716,7 +17714,7 @@ impl<'a> PermissionsInternalEventsResource<'a> {
     pub fn get(&self, event_id: impl Display) -> Result<models::InternalEventPermissions> {
         let path = format!("/permissions/internal/events/{}", seg(event_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -17753,7 +17751,7 @@ impl<'a> PermissionsInternalGroupsResource<'a> {
     pub fn get(&self, group_id: impl Display) -> Result<models::InternalGroupPermissions> {
         let path = format!("/permissions/internal/groups/{}", seg(group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get the current user’s internal permissions by group
@@ -17777,7 +17775,7 @@ impl<'a> PermissionsInternalGroupsResource<'a> {
     pub fn list(&self) -> Result<serde_json::Value> {
         let path = "/permissions/internal/groups".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -17823,7 +17821,7 @@ impl<'a> PermissionsInternalGroupsAuthsResource<'a> {
     pub fn get_persons_with(&self, group_id: impl Display, auth_id: impl Display, query: &GetPermissionsInternalGroupsGroupIdAuthsAuthIdPersonsQuery) -> Result<models::PermissionPersons> {
         let path = format!("/permissions/internal/groups/{}/auths/{}/persons", seg(group_id), seg(auth_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -17856,7 +17854,7 @@ impl<'a> PermissionsInternalPersonsResource<'a> {
     pub fn get(&self, person_id: impl Display) -> Result<models::InternalPersonPermissions> {
         let path = format!("/permissions/internal/persons/{}", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -17919,7 +17917,7 @@ impl<'a> PermissionsOriginsGlobalPersonsResource<'a> {
     pub fn get(&self, person_id: impl Display) -> Result<models::GetPermissionsOriginsGlobalPersonsPersonIdData> {
         let path = format!("/permissions/origins/global/persons/{}", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -17978,7 +17976,7 @@ impl<'a> PermissionsOriginsInternalPersonsResource<'a> {
     pub fn get_with(&self, person_id: impl Display, query: &GetPermissionsOriginsInternalPersonsPersonIdQuery) -> Result<models::GetPermissionsOriginsInternalPersonsPersonIdData> {
         let path = format!("/permissions/origins/internal/persons/{}", seg(person_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -18027,7 +18025,7 @@ impl<'a> PersonResource<'a> {
     pub fn get_master_data(&self) -> Result<models::PersonMasterData> {
         let path = "/person/masterdata".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -18065,7 +18063,7 @@ impl<'a> PersonCommentViewersResource<'a> {
         let path = "/person/commentviewers".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a person-comment visibility category
@@ -18101,7 +18099,7 @@ impl<'a> PersonCommentViewersResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeletePersonCommentviewersIdQuery) -> Result<()> {
         let path = format!("/person/commentviewers/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a person-comment visibility category
@@ -18125,7 +18123,7 @@ impl<'a> PersonCommentViewersResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::CommentViewer> {
         let path = format!("/person/commentviewers/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List person-comment visibility categories
@@ -18150,7 +18148,7 @@ impl<'a> PersonCommentViewersResource<'a> {
     pub fn list(&self) -> Result<Vec<models::CommentViewer>> {
         let path = "/person/commentviewers".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a person-comment visibility category
@@ -18179,7 +18177,7 @@ impl<'a> PersonCommentViewersResource<'a> {
         let path = format!("/person/commentviewers/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -18218,7 +18216,7 @@ impl<'a> PersonGrowPathsResource<'a> {
         let path = "/person/growpaths".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a growth-path stage
@@ -18254,7 +18252,7 @@ impl<'a> PersonGrowPathsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeletePersonGrowpathsIdQuery) -> Result<()> {
         let path = format!("/person/growpaths/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a growth-path stage
@@ -18278,7 +18276,7 @@ impl<'a> PersonGrowPathsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::GrowPath> {
         let path = format!("/person/growpaths/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List growth-path stages
@@ -18303,7 +18301,7 @@ impl<'a> PersonGrowPathsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::GrowPath>> {
         let path = "/person/growpaths".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a growth-path stage
@@ -18333,7 +18331,7 @@ impl<'a> PersonGrowPathsResource<'a> {
         let path = format!("/person/growpaths/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -18373,7 +18371,7 @@ impl<'a> PersonRelationshipTypesResource<'a> {
         let path = "/person/relationshiptypes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a relationship type and its person relationships
@@ -18409,7 +18407,7 @@ impl<'a> PersonRelationshipTypesResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeletePersonRelationshiptypesIdQuery) -> Result<()> {
         let path = format!("/person/relationshiptypes/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a person relationship type
@@ -18433,7 +18431,7 @@ impl<'a> PersonRelationshipTypesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::RelationshipType> {
         let path = format!("/person/relationshiptypes/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List person relationship types
@@ -18458,7 +18456,7 @@ impl<'a> PersonRelationshipTypesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::RelationshipType>> {
         let path = "/person/relationshiptypes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a person relationship type
@@ -18489,7 +18487,7 @@ impl<'a> PersonRelationshipTypesResource<'a> {
         let path = format!("/person/relationshiptypes/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -18527,7 +18525,7 @@ impl<'a> PersonSexesResource<'a> {
         let path = "/person/sexes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete sex
@@ -18563,7 +18561,7 @@ impl<'a> PersonSexesResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeletePersonSexesIdQuery) -> Result<()> {
         let path = format!("/person/sexes/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get sex
@@ -18587,7 +18585,7 @@ impl<'a> PersonSexesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::Sex> {
         let path = format!("/person/sexes/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all sexes
@@ -18612,7 +18610,7 @@ impl<'a> PersonSexesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Sex>> {
         let path = "/person/sexes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a sex entry
@@ -18641,7 +18639,7 @@ impl<'a> PersonSexesResource<'a> {
         let path = format!("/person/sexes/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -18716,7 +18714,7 @@ impl<'a> PersonsResource<'a> {
         let path = format!("/persons/{}/archive", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Create new person
@@ -18758,7 +18756,7 @@ impl<'a> PersonsResource<'a> {
         let path = "/persons".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete person
@@ -18781,7 +18779,7 @@ impl<'a> PersonsResource<'a> {
     pub fn delete(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}", seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Revoke a person's confidentiality agreement
@@ -18804,7 +18802,7 @@ impl<'a> PersonsResource<'a> {
     pub fn delete_confidentiality_agreement(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/confidentialityagreement", seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Revoke the current person’s login token
@@ -18827,7 +18825,7 @@ impl<'a> PersonsResource<'a> {
     pub fn delete_login_token(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/logintoken", seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Revoke privacy consent
@@ -18850,7 +18848,7 @@ impl<'a> PersonsResource<'a> {
     pub fn delete_privacy_policy(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// `POST /persons/export`
@@ -18869,7 +18867,7 @@ impl<'a> PersonsResource<'a> {
     pub fn export(&self) -> Result<()> {
         let path = "/persons/export".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Filter persons with probes
@@ -18912,7 +18910,7 @@ impl<'a> PersonsResource<'a> {
         let path = "/persons/filter".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get a person by ID or GUID
@@ -18936,7 +18934,7 @@ impl<'a> PersonsResource<'a> {
     pub fn get(&self, person_id: impl Display) -> Result<models::Person> {
         let path = format!("/persons/{}", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Generate a personal data sheet PDF
@@ -18960,7 +18958,7 @@ impl<'a> PersonsResource<'a> {
     pub fn get_information(&self, person_id: impl Display) -> Result<models::PersonInformationExport> {
         let path = format!("/persons/{}/information", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Create a one-time login string for the current person
@@ -18984,7 +18982,7 @@ impl<'a> PersonsResource<'a> {
     pub fn get_login_string(&self, person_id: impl Display) -> Result<models::GetPersonsIdLoginstringResponse> {
         let path = format!("/persons/{}/loginstring", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// Get or create the current person’s login token
@@ -19008,7 +19006,7 @@ impl<'a> PersonsResource<'a> {
     pub fn get_login_token(&self, person_id: impl Display) -> Result<String> {
         let path = format!("/persons/{}/logintoken", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Returns the post statistics for a person
@@ -19030,7 +19028,7 @@ impl<'a> PersonsResource<'a> {
     pub fn get_post_statistics(&self, person_id: impl Display) -> Result<models::PersonPostStatistics> {
         let path = format!("/persons/{}/poststatistics", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get privacy-consent information
@@ -19054,7 +19052,7 @@ impl<'a> PersonsResource<'a> {
     pub fn get_privacy_policy(&self, person_id: impl Display) -> Result<models::PersonPrivacyPolicy> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Invite Person to ChurchTools
@@ -19077,7 +19075,7 @@ impl<'a> PersonsResource<'a> {
     pub fn invite(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/invite", seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Get all persons
@@ -19245,7 +19243,7 @@ impl<'a> PersonsResource<'a> {
     pub fn list_duplicates_with(&self, query: &GetPersonsDuplicatesQuery) -> Result<Vec<models::GetPersonsDuplicatesDataItem>> {
         let path = "/persons/duplicates".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all groups a member is in
@@ -19283,7 +19281,7 @@ impl<'a> PersonsResource<'a> {
     pub fn list_groups_with(&self, person_id: impl Display, query: &GetPersonsIdGroupsQuery) -> Result<Vec<models::GroupMember>> {
         let path = format!("/persons/{}/groups", seg(person_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get my unanswered meeting invitations
@@ -19308,7 +19306,7 @@ impl<'a> PersonsResource<'a> {
     pub fn list_open_meeting_requests(&self, person_id: impl Display) -> Result<Vec<models::OpenMeetingRequest>> {
         let path = format!("/persons/{}/openmeetingrequests", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Returns the posts authored by a person
@@ -19342,7 +19340,7 @@ impl<'a> PersonsResource<'a> {
     pub fn list_posts_with(&self, person_id: impl Display, query: &GetPersonsPersonIdPostsQuery) -> Result<Vec<models::Post>> {
         let path = format!("/persons/{}/posts", seg(person_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all relationships for all persons
@@ -19365,7 +19363,7 @@ impl<'a> PersonsResource<'a> {
     pub fn list_relationships(&self) -> Result<Vec<models::GetPersonsRelationshipsDataItem>> {
         let path = "/persons/relationships".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// `GET /persons/search_old`
@@ -19387,7 +19385,7 @@ impl<'a> PersonsResource<'a> {
     pub fn list_search_old(&self) -> Result<Vec<i64>> {
         let path = "/persons/search_old".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Updates a person
@@ -19416,7 +19414,7 @@ impl<'a> PersonsResource<'a> {
         let path = format!("/persons/{}", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Retrieve person account properties
@@ -19442,7 +19440,7 @@ impl<'a> PersonsResource<'a> {
         let path = "/persons/properties".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Accept the current person's confidentiality agreement
@@ -19465,7 +19463,7 @@ impl<'a> PersonsResource<'a> {
     pub fn update_confidentiality_agreement(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/confidentialityagreement", seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::PUT, &path, &query, None).map(|_| ())
+        self.client.request(Method::Put, &path, &query, None).map(|_| ())
     }
 
     /// Change the password for the active account
@@ -19495,7 +19493,7 @@ impl<'a> PersonsResource<'a> {
         let path = format!("/persons/{}/password", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Record privacy consent
@@ -19534,7 +19532,7 @@ impl<'a> PersonsResource<'a> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -19572,7 +19570,7 @@ impl<'a> PersonsAbsencesResource<'a> {
         let path = format!("/persons/{}/absences", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete absence
@@ -19608,7 +19606,7 @@ impl<'a> PersonsAbsencesResource<'a> {
     pub fn delete_with(&self, person_id: impl Display, id: impl Display, query: &DeletePersonsPersonIdAbsencesIdQuery) -> Result<()> {
         let path = format!("/persons/{}/absences/{}", seg(person_id), seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Fetch one absence
@@ -19632,7 +19630,7 @@ impl<'a> PersonsAbsencesResource<'a> {
     pub fn get(&self, person_id: impl Display, id: impl Display) -> Result<models::Absence> {
         let path = format!("/persons/{}/absences/{}", seg(person_id), seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Fetch all absences for a person
@@ -19670,7 +19668,7 @@ impl<'a> PersonsAbsencesResource<'a> {
     pub fn list_with(&self, person_id: impl Display, query: &GetPersonsPersonIdAbsencesQuery) -> Result<Vec<models::Absence>> {
         let path = format!("/persons/{}/absences", seg(person_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update absence
@@ -19699,7 +19697,7 @@ impl<'a> PersonsAbsencesResource<'a> {
         let path = format!("/persons/{}/absences/{}", seg(person_id), seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -19731,7 +19729,7 @@ impl<'a> PersonsDevicesResource<'a> {
     pub fn delete(&self, person_id: impl Display, device_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/devices/{}", seg(person_id), seg(device_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get specified device
@@ -19755,7 +19753,7 @@ impl<'a> PersonsDevicesResource<'a> {
     pub fn get(&self, person_id: impl Display, device_id: impl Display) -> Result<models::Device> {
         let path = format!("/persons/{}/devices/{}", seg(person_id), seg(device_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all registered devices for person
@@ -19780,7 +19778,7 @@ impl<'a> PersonsDevicesResource<'a> {
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::Device>> {
         let path = format!("/persons/{}/devices", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Create or update new device for person
@@ -19810,7 +19808,7 @@ impl<'a> PersonsDevicesResource<'a> {
         let path = format!("/persons/{}/devices/{}", seg(person_id), seg(device_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -19861,7 +19859,7 @@ impl<'a> PersonsEventsResource<'a> {
     pub fn list_with(&self, person_id: impl Display, query: &GetPersonsIdEventsQuery) -> Result<Vec<models::EventReadWithServices>> {
         let path = format!("/persons/{}/events", seg(person_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -19899,7 +19897,7 @@ impl<'a> PersonsEventsServicesResource<'a> {
     pub fn list(&self, person_id: impl Display, event_id: impl Display) -> Result<Vec<models::ServiceRequest>> {
         let path = format!("/persons/{}/events/{}/services", seg(person_id), seg(event_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -19937,7 +19935,7 @@ impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
         let path = format!("/persons/{}/events/{}/services/{}/exchangerequests", seg(person_id), seg(event_id), seg(service_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a service exchange request
@@ -19973,7 +19971,7 @@ impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
     pub fn delete_with(&self, person_id: impl Display, event_id: impl Display, service_id: impl Display, request_id: impl Display, query: &DeletePersonsIdEventsIdServicesIdExchangerequestsIdQuery) -> Result<()> {
         let path = format!("/persons/{}/events/{}/services/{}/exchangerequests/{}", seg(person_id), seg(event_id), seg(service_id), seg(request_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get all service exchange requests of a user for a service
@@ -20011,7 +20009,7 @@ impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
     pub fn list_with(&self, person_id: impl Display, event_id: impl Display, service_id: impl Display, query: &GetPersonsIdEventsIdServicesIdExchangerequestsQuery) -> Result<Vec<models::ServiceExchangeRequest>> {
         let path = format!("/persons/{}/events/{}/services/{}/exchangerequests", seg(person_id), seg(event_id), seg(service_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get candidates for service exchange request
@@ -20036,7 +20034,7 @@ impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
     pub fn list_candidates(&self, person_id: impl Display, event_id: impl Display, service_id: impl Display) -> Result<Vec<models::ServiceExchangeCandidate>> {
         let path = format!("/persons/{}/events/{}/services/{}/exchangerequests/candidates", seg(person_id), seg(event_id), seg(service_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -20069,7 +20067,7 @@ impl<'a> PersonsExchangeRequestsResource<'a> {
     pub fn delete(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceExchangeRequest> {
         let path = format!("/persons/{}/exchangerequests/{}", seg(person_id), seg(request_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::DELETE, &path, &query, None)
+        self.client.request_data(Method::Delete, &path, &query, None)
     }
 
     /// Get all service exchange requests for a user
@@ -20107,7 +20105,7 @@ impl<'a> PersonsExchangeRequestsResource<'a> {
     pub fn list_with(&self, person_id: impl Display, query: &GetPersonsIdExchangerequestsQuery) -> Result<Vec<models::ServiceExchangeRequest>> {
         let path = format!("/persons/{}/exchangerequests", seg(person_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Accept a service exchange request
@@ -20131,7 +20129,7 @@ impl<'a> PersonsExchangeRequestsResource<'a> {
     pub fn update(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceExchangeRequest> {
         let path = format!("/persons/{}/exchangerequests/{}", seg(person_id), seg(request_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::PUT, &path, &query, None)
+        self.client.request_data(Method::Put, &path, &query, None)
     }
 
 }
@@ -20163,7 +20161,7 @@ impl<'a> PersonsExternalLoginsResource<'a> {
     pub fn delete(&self, person_id: impl Display, external_login_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/external-logins/{}", seg(person_id), seg(external_login_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get linked external login providers
@@ -20188,7 +20186,7 @@ impl<'a> PersonsExternalLoginsResource<'a> {
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::ExternalLoginPersonMapping>> {
         let path = format!("/persons/{}/external-logins", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -20226,7 +20224,7 @@ impl<'a> PersonsFollowupsResource<'a> {
         let path = format!("/persons/{}/followups", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Get follow-up counts for a person
@@ -20250,7 +20248,7 @@ impl<'a> PersonsFollowupsResource<'a> {
     pub fn get_statistics(&self, person_id: impl Display) -> Result<models::FollowUpStatistics> {
         let path = format!("/persons/{}/followups/statistics", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get a person's follow-ups
@@ -20332,7 +20330,7 @@ impl<'a> PersonsMergeResource<'a> {
     pub fn get(&self, person_id: impl Display, duplicate_id: impl Display) -> Result<models::PersonMergeInfo> {
         let path = format!("/persons/{}/merge/{}", seg(person_id), seg(duplicate_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Merge two person records
@@ -20377,7 +20375,7 @@ impl<'a> PersonsMergeResource<'a> {
         let path = format!("/persons/{}/merge/{}", seg(person_id), seg(duplicate_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
 }
@@ -20416,7 +20414,7 @@ impl<'a> PersonsRelationshipsResource<'a> {
         let path = format!("/persons/{}/relationships", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete specified relationship
@@ -20439,7 +20437,7 @@ impl<'a> PersonsRelationshipsResource<'a> {
     pub fn delete(&self, person_id: impl Display, relationship_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/relationships/{}", seg(person_id), seg(relationship_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get all relationships linked to this person
@@ -20464,7 +20462,7 @@ impl<'a> PersonsRelationshipsResource<'a> {
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::PersonRelationship>> {
         let path = format!("/persons/{}/relationships", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -20510,7 +20508,7 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     pub fn delete_with(&self, person_id: impl Display, request_id: impl Display, query: &DeletePersonsIdServicerequestsIdQuery) -> Result<models::ServiceRequest> {
         let path = format!("/persons/{}/servicerequests/{}", seg(person_id), seg(request_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::DELETE, &path, &query, None)
+        self.client.request_data(Method::Delete, &path, &query, None)
     }
 
     /// Get a specific service request for a person
@@ -20534,7 +20532,7 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     pub fn get(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceRequest> {
         let path = format!("/persons/{}/servicerequests/{}", seg(person_id), seg(request_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all service requests for a person
@@ -20572,7 +20570,7 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     pub fn list_with(&self, person_id: impl Display, query: &GetPersonsIdServicerequestsQuery) -> Result<Vec<models::ServiceRequest>> {
         let path = format!("/persons/{}/servicerequests", seg(person_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Undo last service request action
@@ -20596,7 +20594,7 @@ impl<'a> PersonsServiceRequestsResource<'a> {
     pub fn undo(&self, person_id: impl Display, request_id: impl Display) -> Result<models::ServiceRequestUndoResult> {
         let path = format!("/persons/{}/servicerequests/{}/undo", seg(person_id), seg(request_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
     /// Update a service assignment
@@ -20625,7 +20623,7 @@ impl<'a> PersonsServiceRequestsResource<'a> {
         let path = format!("/persons/{}/servicerequests/{}", seg(person_id), seg(request_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -20661,7 +20659,7 @@ impl<'a> PersonsSettingsResource<'a> {
     pub fn delete(&self, person_id: impl Display, module: impl Display, attribute: impl Display) -> Result<()> {
         let path = format!("/persons/{}/settings/{}/{}", seg(person_id), seg(module), seg(attribute));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get person setting
@@ -20685,7 +20683,7 @@ impl<'a> PersonsSettingsResource<'a> {
     pub fn get(&self, person_id: impl Display, module: impl Display, attribute: impl Display) -> Result<models::PersonSetting> {
         let path = format!("/persons/{}/settings/{}/{}", seg(person_id), seg(module), seg(attribute));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all person settings of a module
@@ -20710,7 +20708,7 @@ impl<'a> PersonsSettingsResource<'a> {
     pub fn get_module(&self, person_id: impl Display, module: impl Display) -> Result<Vec<models::PersonSetting>> {
         let path = format!("/persons/{}/settings/{}", seg(person_id), seg(module));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all person settings
@@ -20735,7 +20733,7 @@ impl<'a> PersonsSettingsResource<'a> {
     pub fn list(&self, person_id: impl Display) -> Result<Vec<models::PersonSetting>> {
         let path = format!("/persons/{}/settings", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Create/Update person setting
@@ -20764,7 +20762,7 @@ impl<'a> PersonsSettingsResource<'a> {
         let path = format!("/persons/{}/settings/{}/{}", seg(person_id), seg(module), seg(attribute));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -20803,7 +20801,7 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
         let path = format!("/persons/{}/settings/twofactor", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Deactivate the current person’s authenticator
@@ -20826,7 +20824,7 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     pub fn delete(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/settings/twofactor", seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get the person’s two-factor activation setting
@@ -20850,7 +20848,7 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     pub fn get(&self, person_id: impl Display) -> Result<models::PersonTwoFactorEnabled> {
         let path = format!("/persons/{}/settings/twofactor", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get the person’s explicit two-factor requirement
@@ -20874,7 +20872,7 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     pub fn get_force(&self, person_id: impl Display) -> Result<models::PersonTwoFactorForce> {
         let path = format!("/persons/{}/settings/twofactor/force", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Activate the current person’s initialized authenticator
@@ -20898,7 +20896,7 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
     pub fn update(&self, person_id: impl Display) -> Result<models::PersonTwoFactorEnabled> {
         let path = format!("/persons/{}/settings/twofactor", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::PUT, &path, &query, None)
+        self.client.request_data(Method::Put, &path, &query, None)
     }
 
     /// Set the person’s explicit two-factor requirement
@@ -20927,7 +20925,7 @@ impl<'a> PersonsSettingsTwoFactorResource<'a> {
         let path = format!("/persons/{}/settings/twofactor/force", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -20965,7 +20963,7 @@ impl<'a> PlaceholdersResource<'a> {
     pub fn list_email(&self) -> Result<Vec<models::PlaceholderMenuGroup>> {
         let path = "/placeholders/email".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -20999,7 +20997,7 @@ impl<'a> PlaceholdersGroupResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<Vec<models::PlaceholderMenuGroup>> {
         let path = format!("/placeholders/group/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -21036,7 +21034,7 @@ impl<'a> PollForNewsResource<'a> {
     pub fn list(&self, query: &GetPollfornewsQuery) -> Result<Vec<models::PollForNewsResult>> {
         let path = "/pollfornews".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -21082,7 +21080,7 @@ impl<'a> PostResource<'a> {
     pub fn get_linkings_with(&self, query: &GetPostLinkingsQuery) -> Result<serde_json::Value> {
         let path = "/post/linkings".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// `GET /post/groups`
@@ -21103,7 +21101,7 @@ impl<'a> PostResource<'a> {
     pub fn list_groups(&self) -> Result<Vec<models::PossiblePostGroup>> {
         let path = "/post/groups".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// `GET /post/search`
@@ -21137,7 +21135,7 @@ impl<'a> PostResource<'a> {
     pub fn list_search_with(&self, query: &GetPostSearchQuery) -> Result<Vec<models::Post>> {
         let path = "/post/search".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -21165,7 +21163,7 @@ impl<'a> PostHiddenResource<'a> {
     pub fn delete(&self, domain_type: impl Display, domain_id: impl Display) -> Result<()> {
         let path = format!("/post/hidden/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// `GET /post/hidden`
@@ -21186,7 +21184,7 @@ impl<'a> PostHiddenResource<'a> {
     pub fn list(&self) -> Result<Vec<serde_json::Value>> {
         let path = "/post/hidden".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -21221,7 +21219,7 @@ impl<'a> PostReportsResource<'a> {
         let path = "/post/reports".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// `GET /post/reports`
@@ -21251,7 +21249,7 @@ impl<'a> PostReportsResource<'a> {
     pub fn list_with(&self, query: &GetPostReportsQuery) -> Result<Vec<serde_json::Value>> {
         let path = "/post/reports".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// `PUT /post/reports/answer`
@@ -21277,7 +21275,7 @@ impl<'a> PostReportsResource<'a> {
         let path = "/post/reports/answer".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -21328,7 +21326,7 @@ impl<'a> PostsResource<'a> {
         let path = "/posts".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// `DELETE /posts/{postId}`
@@ -21353,7 +21351,7 @@ impl<'a> PostsResource<'a> {
     pub fn delete(&self, post_id: impl Display, query: &DeletePostsPostIdQuery) -> Result<()> {
         let path = format!("/posts/{}", seg(post_id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// `GET /posts/{postId}`
@@ -21386,7 +21384,7 @@ impl<'a> PostsResource<'a> {
     pub fn get_with(&self, post_id: impl Display, query: &GetPostsPostIdQuery) -> Result<models::Post> {
         let path = format!("/posts/{}", seg(post_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// `GET /posts`
@@ -21420,7 +21418,7 @@ impl<'a> PostsResource<'a> {
     pub fn list_with(&self, query: &GetPostsQuery) -> Result<Vec<models::Post>> {
         let path = "/posts".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// `PATCH /posts/{postId}`
@@ -21447,7 +21445,7 @@ impl<'a> PostsResource<'a> {
         let path = format!("/posts/{}", seg(post_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// `PUT /posts/{postId}/expire`
@@ -21468,7 +21466,7 @@ impl<'a> PostsResource<'a> {
     pub fn update_expire(&self, post_id: impl Display) -> Result<()> {
         let path = format!("/posts/{}/expire", seg(post_id));
         let query: Query = Query::new();
-        self.client.request(Method::PUT, &path, &query, None).map(|_| ())
+        self.client.request(Method::Put, &path, &query, None).map(|_| ())
     }
 
 }
@@ -21509,7 +21507,7 @@ impl<'a> PostsCommentsResource<'a> {
         let path = format!("/posts/{}/comments", seg(post_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// `DELETE /posts/{postId}/comments/{commentId}`
@@ -21530,7 +21528,7 @@ impl<'a> PostsCommentsResource<'a> {
     pub fn delete(&self, post_id: impl Display, comment_id: impl Display) -> Result<()> {
         let path = format!("/posts/{}/comments/{}", seg(post_id), seg(comment_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// `GET /posts/{postId}/comments`
@@ -21553,7 +21551,7 @@ impl<'a> PostsCommentsResource<'a> {
     pub fn list(&self, post_id: impl Display) -> Result<Vec<models::PostComment>> {
         let path = format!("/posts/{}/comments", seg(post_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -21583,7 +21581,7 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     pub fn delete(&self, post_id: impl Display, comment_id: impl Display, emoji: impl Display) -> Result<()> {
         let path = format!("/posts/{}/comments/{}/reactions/{}", seg(post_id), seg(comment_id), seg(emoji));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// `GET /posts/{postId}/comments/{commentId}/reactions`
@@ -21606,7 +21604,7 @@ impl<'a> PostsCommentsReactionsResource<'a> {
     pub fn list(&self, post_id: impl Display, comment_id: impl Display) -> Result<Vec<models::PostCommentReaction>> {
         let path = format!("/posts/{}/comments/{}/reactions", seg(post_id), seg(comment_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// `PUT /posts/{postId}/comments/{commentId}/reactions`
@@ -21633,7 +21631,7 @@ impl<'a> PostsCommentsReactionsResource<'a> {
         let path = format!("/posts/{}/comments/{}/reactions", seg(post_id), seg(comment_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -21663,7 +21661,7 @@ impl<'a> PostsHiddenResource<'a> {
     pub fn update(&self, post_id: impl Display, domain_type: impl Display) -> Result<()> {
         let path = format!("/posts/{}/hidden/{}", seg(post_id), seg(domain_type));
         let query: Query = Query::new();
-        self.client.request(Method::PUT, &path, &query, None).map(|_| ())
+        self.client.request(Method::Put, &path, &query, None).map(|_| ())
     }
 
 }
@@ -21699,7 +21697,7 @@ impl<'a> PostsReactionsResource<'a> {
     pub fn list(&self, post_id: impl Display) -> Result<Vec<models::PostReaction>> {
         let path = format!("/posts/{}/reactions", seg(post_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -21729,7 +21727,7 @@ impl<'a> PostsReactionsPersonsResource<'a> {
     pub fn delete(&self, post_id: impl Display, emoji: impl Display, person_id: impl Display) -> Result<()> {
         let path = format!("/posts/{}/reactions/{}/persons/{}", seg(post_id), seg(emoji), seg(person_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// `PUT /posts/{postId}/reactions/{emoji}/persons/{personId}`
@@ -21751,7 +21749,7 @@ impl<'a> PostsReactionsPersonsResource<'a> {
     pub fn update(&self, post_id: impl Display, emoji: impl Display, person_id: impl Display) -> Result<models::PostReaction> {
         let path = format!("/posts/{}/reactions/{}/persons/{}", seg(post_id), seg(emoji), seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::PUT, &path, &query, None)
+        self.client.request_data(Method::Put, &path, &query, None)
     }
 
 }
@@ -21784,7 +21782,7 @@ impl<'a> PrResource<'a> {
     pub fn get_master_data(&self) -> Result<models::PublicRelationsMasterData> {
         let path = "/pr/masterdata".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -21818,7 +21816,7 @@ impl<'a> PrintersResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Printer>> {
         let path = "/printers".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -21857,7 +21855,7 @@ impl<'a> ProbesResource<'a> {
         let path = "/probes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -21898,7 +21896,7 @@ impl<'a> ProfilesResource<'a> {
     pub fn get_church(&self) -> Result<models::Profile> {
         let path = "/profiles/church".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all profiles
@@ -21923,7 +21921,7 @@ impl<'a> ProfilesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Profile>> {
         let path = "/profiles".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update the church profile
@@ -21952,7 +21950,7 @@ impl<'a> ProfilesResource<'a> {
         let path = "/profiles/church".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -21990,7 +21988,7 @@ impl<'a> ProfilesCampusesResource<'a> {
         let path = format!("/profiles/campuses/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -22035,7 +22033,7 @@ impl<'a> ProfilesSlugCheckResource<'a> {
     pub fn get_with(&self, slug: impl Display, query: &GetProfilesSlugcheckSlugQuery) -> Result<()> {
         let path = format!("/profiles/slugcheck/{}", seg(slug));
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
 }
@@ -22085,7 +22083,7 @@ impl<'a> PublicGroupsResource<'a> {
     pub fn get_with(&self, group_id: impl Display, query: &GetPublicgroupsIdQuery) -> Result<models::PublicGroupDetail> {
         let path = format!("/publicgroups/{}", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get group signup form
@@ -22113,7 +22111,7 @@ impl<'a> PublicGroupsResource<'a> {
     pub fn get_form(&self, group_id: impl Display, query: &GetPublicgroupsGroupIdFormQuery) -> Result<models::PublicGroupFormResult> {
         let path = format!("/publicgroups/{}/form", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List possible signup requesters
@@ -22141,7 +22139,7 @@ impl<'a> PublicGroupsResource<'a> {
     pub fn get_possible_requesters(&self, group_id: impl Display, query: &GetPublicgroupsGroupIdPossiblerequestersQuery) -> Result<models::PublicGroupPossibleRequesters> {
         let path = format!("/publicgroups/{}/possiblerequesters", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get group withdrawal options
@@ -22178,7 +22176,7 @@ impl<'a> PublicGroupsResource<'a> {
     pub fn get_signout_data_with(&self, group_id: impl Display, query: &GetPublicgroupsIdSignoutdataQuery) -> Result<models::PublicGroupSignoutData> {
         let path = format!("/publicgroups/{}/signoutdata", seg(group_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get public group details
@@ -22202,7 +22200,7 @@ impl<'a> PublicGroupsResource<'a> {
     pub fn get_with_hash(&self, group_id: impl Display, hash: impl Display) -> Result<models::PublicGroupDetail> {
         let path = format!("/publicgroups/{}/{}", seg(group_id), seg(hash));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Contact public group leaders
@@ -22233,7 +22231,7 @@ impl<'a> PublicGroupsResource<'a> {
         let path = format!("/publicgroups/{}/mailToLeaders", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Withdraw group registrations
@@ -22261,7 +22259,7 @@ impl<'a> PublicGroupsResource<'a> {
         let path = format!("/publicgroups/{}/signout", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Submit group signup forms
@@ -22294,7 +22292,7 @@ impl<'a> PublicGroupsResource<'a> {
         let path = format!("/publicgroups/{}/signup", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create group signup token
@@ -22323,7 +22321,7 @@ impl<'a> PublicGroupsResource<'a> {
         let path = format!("/publicgroups/{}/token", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -22371,7 +22369,7 @@ impl<'a> PublicGroupsSignupConfirmResource<'a> {
         let path = format!("/publicgroups/signup/confirm/{}", seg(confirmation_token));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Show the deferred public group signup confirmation page
@@ -22395,7 +22393,7 @@ impl<'a> PublicGroupsSignupConfirmResource<'a> {
     pub fn get(&self, confirmation_token: impl Display) -> Result<Vec<u8>> {
         let path = format!("/publicgroups/signup/confirm/{}", seg(confirmation_token));
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
 }
@@ -22432,7 +22430,7 @@ impl<'a> QueuesResource<'a> {
     pub fn create(&self, queue: impl Display) -> Result<models::PostQueuesQueueData> {
         let path = format!("/queues/{}", seg(queue));
         let query: Query = Query::new();
-        self.client.request_data(Method::POST, &path, &query, None)
+        self.client.request_data(Method::Post, &path, &query, None)
     }
 
 }
@@ -22468,7 +22466,7 @@ impl<'a> QueuesJobGroupsResource<'a> {
     pub fn get(&self, queue: impl Display, job_group: impl Display) -> Result<Vec<models::JobGroupStatus>> {
         let path = format!("/queues/{}/jobgroups/{}", seg(queue), seg(job_group));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -22501,7 +22499,7 @@ impl<'a> RegistrationConfigResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::RegistrationConfig> {
         let path = format!("/registrationconfig/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update self-registration configuration
@@ -22530,7 +22528,7 @@ impl<'a> RegistrationConfigResource<'a> {
         let path = format!("/registrationconfig/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
 }
@@ -22568,7 +22566,7 @@ impl<'a> RegistrationsResource<'a> {
         let path = format!("/registrations/{}/confirm", seg(registration_guid));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Complete self-registration
@@ -22600,7 +22598,7 @@ impl<'a> RegistrationsResource<'a> {
         let path = format!("/registrations/{}/convert", seg(registration_guid));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Start self-registration
@@ -22633,7 +22631,7 @@ impl<'a> RegistrationsResource<'a> {
         let path = "/registrations".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete self-registration
@@ -22656,7 +22654,7 @@ impl<'a> RegistrationsResource<'a> {
     pub fn delete(&self, registration_guid: impl Display) -> Result<()> {
         let path = format!("/registrations/{}", seg(registration_guid));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Resend self-registration confirmation
@@ -22679,7 +22677,7 @@ impl<'a> RegistrationsResource<'a> {
     pub fn resend(&self, registration_guid: impl Display) -> Result<()> {
         let path = format!("/registrations/{}/resend", seg(registration_guid));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
 }
@@ -22719,7 +22717,7 @@ impl<'a> RepeatCalculationResource<'a> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
     /// Calculate occurrence dates without saving an appointment
@@ -22750,7 +22748,7 @@ impl<'a> RepeatCalculationResource<'a> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::DELETE, &path, &query, Some(&body))
+        self.client.request_json(Method::Delete, &path, &query, Some(&body))
     }
 
     /// Calculate occurrence dates without saving an appointment
@@ -22780,7 +22778,7 @@ impl<'a> RepeatCalculationResource<'a> {
     pub fn list(&self, query: &GetRepeatcalculationQuery) -> Result<Vec<models::RepeatCalculationOccurrence>> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = query.to_query();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// Calculate occurrence dates without saving an appointment
@@ -22811,7 +22809,7 @@ impl<'a> RepeatCalculationResource<'a> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_json(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Calculate occurrence dates without saving an appointment
@@ -22842,7 +22840,7 @@ impl<'a> RepeatCalculationResource<'a> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::PUT, &path, &query, Some(&body))
+        self.client.request_json(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -22880,7 +22878,7 @@ impl<'a> ResetPasswordResource<'a> {
         let path = "/reset-password".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -22926,7 +22924,7 @@ impl<'a> ResourceResource<'a> {
     pub fn get_master_data_with(&self, query: &GetResourceMasterdataQuery) -> Result<models::ResourceMasterData> {
         let path = "/resource/masterdata".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -22966,7 +22964,7 @@ impl<'a> ResourceTypesResource<'a> {
         let path = "/resourcetypes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a resource type
@@ -22989,7 +22987,7 @@ impl<'a> ResourceTypesResource<'a> {
     pub fn delete(&self, resource_type_id: impl Display) -> Result<()> {
         let path = format!("/resourcetypes/{}", seg(resource_type_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a resource type
@@ -23013,7 +23011,7 @@ impl<'a> ResourceTypesResource<'a> {
     pub fn get(&self, resource_type_id: impl Display) -> Result<models::ResourceType> {
         let path = format!("/resourcetypes/{}", seg(resource_type_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List resource types
@@ -23038,7 +23036,7 @@ impl<'a> ResourceTypesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::ResourceType>> {
         let path = "/resourcetypes".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a resource type
@@ -23069,7 +23067,7 @@ impl<'a> ResourceTypesResource<'a> {
         let path = format!("/resourcetypes/{}", seg(resource_type_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -23109,7 +23107,7 @@ impl<'a> ResourcesResource<'a> {
         let path = "/resources".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a resource
@@ -23132,7 +23130,7 @@ impl<'a> ResourcesResource<'a> {
     pub fn delete(&self, resource_id: impl Display) -> Result<()> {
         let path = format!("/resources/{}", seg(resource_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a resource
@@ -23169,7 +23167,7 @@ impl<'a> ResourcesResource<'a> {
     pub fn get_with(&self, resource_id: impl Display, query: &GetResourcesResourceIdQuery) -> Result<models::Resource> {
         let path = format!("/resources/{}", seg(resource_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Count pending booking occurrences
@@ -23193,7 +23191,7 @@ impl<'a> ResourcesResource<'a> {
     pub fn get_statistics(&self, resource_id: impl Display) -> Result<models::ResourceStatistics> {
         let path = format!("/resources/{}/statistics", seg(resource_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List visible resources
@@ -23231,7 +23229,7 @@ impl<'a> ResourcesResource<'a> {
     pub fn list_with(&self, query: &GetResourcesQuery) -> Result<Vec<models::Resource>> {
         let path = "/resources".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a resource
@@ -23262,7 +23260,7 @@ impl<'a> ResourcesResource<'a> {
         let path = format!("/resources/{}", seg(resource_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -23314,7 +23312,7 @@ impl<'a> RoutinesResource<'a> {
         let path = "/routines".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete automation definition
@@ -23337,7 +23335,7 @@ impl<'a> RoutinesResource<'a> {
     pub fn delete(&self, routine_id: impl Display) -> Result<()> {
         let path = format!("/routines/{}", seg(routine_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Process pending automation runs
@@ -23360,7 +23358,7 @@ impl<'a> RoutinesResource<'a> {
     pub fn execute(&self) -> Result<()> {
         let path = "/routines/execute".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Get automation definition
@@ -23384,7 +23382,7 @@ impl<'a> RoutinesResource<'a> {
     pub fn get(&self, routine_id: impl Display) -> Result<models::Routine> {
         let path = format!("/routines/{}", seg(routine_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List visible automation definitions
@@ -23422,7 +23420,7 @@ impl<'a> RoutinesResource<'a> {
     pub fn list_with(&self, query: &GetRoutinesQuery) -> Result<Vec<models::Routine>> {
         let path = "/routines".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update automation and reposition runs
@@ -23464,7 +23462,7 @@ impl<'a> RoutinesResource<'a> {
         let path = format!("/routines/{}", seg(routine_id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
 }
@@ -23506,7 +23504,7 @@ impl<'a> RoutinesRunsResource<'a> {
         let path = format!("/routines/{}/runs/{}/{}", seg(routine_id), seg(run_id), seg(run_action));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// List automation runs and potential runs
@@ -23544,7 +23542,7 @@ impl<'a> RoutinesRunsResource<'a> {
     pub fn list_with(&self, routine_id: impl Display, query: &GetRoutinesRoutineIdRunsQuery) -> Result<Vec<models::RoutineRun>> {
         let path = format!("/routines/{}/runs", seg(routine_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -23583,7 +23581,7 @@ impl<'a> RoutinesRunsBulkResource<'a> {
         let path = format!("/routines/{}/runs/bulk/{}", seg(routine_id), seg(run_action));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -23620,7 +23618,7 @@ impl<'a> RoutinesStepsResource<'a> {
         let path = format!("/routines/{}/steps/validate", seg(routine_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -23653,7 +23651,7 @@ impl<'a> SamlResource<'a> {
     pub fn acs(&self) -> Result<Vec<u8>> {
         let path = "/saml/acs".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None)
+        self.client.request(Method::Post, &path, &query, None)
     }
 
     /// Start a SAML browser login
@@ -23689,7 +23687,7 @@ impl<'a> SamlResource<'a> {
     pub fn get_login_with(&self, query: &GetSamlLoginQuery) -> Result<()> {
         let path = "/saml/login".to_owned();
         let query: Query = query.to_query();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
     /// Get SAML service-provider metadata
@@ -23713,7 +23711,7 @@ impl<'a> SamlResource<'a> {
     pub fn get_metadata(&self) -> Result<Vec<u8>> {
         let path = "/saml/metadata".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None)
+        self.client.request(Method::Get, &path, &query, None)
     }
 
 }
@@ -23751,7 +23749,7 @@ impl<'a> SearchResource<'a> {
     pub fn list(&self, query: &GetSearchQuery) -> Result<Vec<models::GetSearchDataItem>> {
         let path = "/search".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -23789,7 +23787,7 @@ impl<'a> SecurityLevelsResource<'a> {
         let path = format!("/securitylevels/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete the Security Level
@@ -23825,7 +23823,7 @@ impl<'a> SecurityLevelsResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteSecuritylevelsIdQuery) -> Result<()> {
         let path = format!("/securitylevels/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a particular security level
@@ -23849,7 +23847,7 @@ impl<'a> SecurityLevelsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::SecurityLevel> {
         let path = format!("/securitylevels/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_json(Method::GET, &path, &query, None)
+        self.client.request_json(Method::Get, &path, &query, None)
     }
 
     /// get all securitylevels
@@ -23872,7 +23870,7 @@ impl<'a> SecurityLevelsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::SecurityLevel>> {
         let path = "/securitylevels".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update the security level
@@ -23914,7 +23912,7 @@ impl<'a> SecurityLevelsResource<'a> {
         let path = format!("/securitylevels/{}", seg(id));
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_json(Method::Patch, &path, &query, Some(&body))
     }
 
 }
@@ -23952,7 +23950,7 @@ impl<'a> ServiceGroupsResource<'a> {
         let path = "/servicegroups".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a service group
@@ -23975,7 +23973,7 @@ impl<'a> ServiceGroupsResource<'a> {
     pub fn delete(&self, service_group_id: impl Display) -> Result<()> {
         let path = format!("/servicegroups/{}", seg(service_group_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a service group
@@ -23999,7 +23997,7 @@ impl<'a> ServiceGroupsResource<'a> {
     pub fn get(&self, service_group_id: impl Display) -> Result<models::ServiceGroup> {
         let path = format!("/servicegroups/{}", seg(service_group_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all service groups
@@ -24024,7 +24022,7 @@ impl<'a> ServiceGroupsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::ServiceGroup>> {
         let path = "/servicegroups".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a service group
@@ -24053,7 +24051,7 @@ impl<'a> ServiceGroupsResource<'a> {
         let path = format!("/servicegroups/{}", seg(service_group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -24092,7 +24090,7 @@ impl<'a> ServicesResource<'a> {
         let path = "/services".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a service
@@ -24115,7 +24113,7 @@ impl<'a> ServicesResource<'a> {
     pub fn delete(&self, service_id: impl Display) -> Result<()> {
         let path = format!("/services/{}", seg(service_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a service
@@ -24139,7 +24137,7 @@ impl<'a> ServicesResource<'a> {
     pub fn get(&self, service_id: impl Display) -> Result<models::Service> {
         let path = format!("/services/{}", seg(service_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all services
@@ -24164,7 +24162,7 @@ impl<'a> ServicesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Service>> {
         let path = "/services".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a service
@@ -24194,7 +24192,7 @@ impl<'a> ServicesResource<'a> {
         let path = format!("/services/{}", seg(service_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -24231,7 +24229,7 @@ impl<'a> SimulateResource<'a> {
         let path = "/simulate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Stop person simulation
@@ -24255,7 +24253,7 @@ impl<'a> SimulateResource<'a> {
     pub fn delete(&self) -> Result<models::DeleteSimulateData> {
         let path = "/simulate".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::DELETE, &path, &query, None)
+        self.client.request_data(Method::Delete, &path, &query, None)
     }
 
 }
@@ -24310,7 +24308,7 @@ impl<'a> SongCategoriesResource<'a> {
         let path = "/song/categories".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete song category
@@ -24333,7 +24331,7 @@ impl<'a> SongCategoriesResource<'a> {
     pub fn delete(&self, song_category_id: impl Display) -> Result<()> {
         let path = format!("/song/categories/{}", seg(song_category_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a song category by ID
@@ -24357,7 +24355,7 @@ impl<'a> SongCategoriesResource<'a> {
     pub fn get(&self, song_category_id: impl Display) -> Result<models::SongCategory> {
         let path = format!("/song/categories/{}", seg(song_category_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all song categories
@@ -24382,7 +24380,7 @@ impl<'a> SongCategoriesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::SongCategory>> {
         let path = "/song/categories".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update song category
@@ -24411,7 +24409,7 @@ impl<'a> SongCategoriesResource<'a> {
         let path = format!("/song/categories/{}", seg(song_category_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -24449,7 +24447,7 @@ impl<'a> SongSourcesResource<'a> {
         let path = "/song/sources".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete song source
@@ -24472,7 +24470,7 @@ impl<'a> SongSourcesResource<'a> {
     pub fn delete(&self, song_source_id: impl Display) -> Result<()> {
         let path = format!("/song/sources/{}", seg(song_source_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get song source by ID
@@ -24496,7 +24494,7 @@ impl<'a> SongSourcesResource<'a> {
     pub fn get(&self, song_source_id: impl Display) -> Result<models::SongSource> {
         let path = format!("/song/sources/{}", seg(song_source_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all song sources
@@ -24521,7 +24519,7 @@ impl<'a> SongSourcesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::SongSource>> {
         let path = "/song/sources".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update song source
@@ -24550,7 +24548,7 @@ impl<'a> SongSourcesResource<'a> {
         let path = format!("/song/sources/{}", seg(song_source_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -24593,7 +24591,7 @@ impl<'a> SongsResource<'a> {
         let path = "/songs".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete song
@@ -24616,7 +24614,7 @@ impl<'a> SongsResource<'a> {
     pub fn delete(&self, song_id: impl Display) -> Result<()> {
         let path = format!("/songs/{}", seg(song_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get song
@@ -24653,7 +24651,7 @@ impl<'a> SongsResource<'a> {
     pub fn get_with(&self, song_id: impl Display, query: &GetSongsSongIdQuery) -> Result<models::Song> {
         let path = format!("/songs/{}", seg(song_id));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all songs
@@ -24730,7 +24728,7 @@ impl<'a> SongsResource<'a> {
         let path = format!("/songs/{}", seg(song_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -24772,7 +24770,7 @@ impl<'a> SongsArrangementsResource<'a> {
         let path = format!("/songs/{}/arrangements", seg(song_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete arrangement
@@ -24795,7 +24793,7 @@ impl<'a> SongsArrangementsResource<'a> {
     pub fn delete(&self, song_id: impl Display, arrangement_id: impl Display) -> Result<()> {
         let path = format!("/songs/{}/arrangements/{}", seg(song_id), seg(arrangement_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get arrangement of song
@@ -24819,7 +24817,7 @@ impl<'a> SongsArrangementsResource<'a> {
     pub fn get(&self, song_id: impl Display, arrangement_id: impl Display) -> Result<models::Arrangement> {
         let path = format!("/songs/{}/arrangements/{}", seg(song_id), seg(arrangement_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get arrangements of song
@@ -24844,7 +24842,7 @@ impl<'a> SongsArrangementsResource<'a> {
     pub fn list(&self, song_id: impl Display) -> Result<Vec<models::Arrangement>> {
         let path = format!("/songs/{}/arrangements", seg(song_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Make arrangement the default
@@ -24867,7 +24865,7 @@ impl<'a> SongsArrangementsResource<'a> {
     pub fn patch_default(&self, song_id: impl Display, arrangement_id: impl Display) -> Result<()> {
         let path = format!("/songs/{}/arrangements/{}/default", seg(song_id), seg(arrangement_id));
         let query: Query = Query::new();
-        self.client.request(Method::PATCH, &path, &query, None).map(|_| ())
+        self.client.request(Method::Patch, &path, &query, None).map(|_| ())
     }
 
     /// Update arrangement of song
@@ -24896,7 +24894,7 @@ impl<'a> SongsArrangementsResource<'a> {
         let path = format!("/songs/{}/arrangements/{}", seg(song_id), seg(arrangement_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -24934,7 +24932,7 @@ impl<'a> SongsArrangementsFilesResource<'a> {
         let path = format!("/songs/{}/arrangements/{}/files/{}/transpose", seg(song_id), seg(arrangement_id), seg(file_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_json(Method::POST, &path, &query, Some(&body))
+        self.client.request_json(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -24968,7 +24966,7 @@ impl<'a> SsoLoginsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::SsoLogin>> {
         let path = "/sso-logins".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -25002,7 +25000,7 @@ impl<'a> StartPageResource<'a> {
     pub fn list(&self) -> Result<Vec<serde_json::Value>> {
         let path = "/startpage".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -25041,7 +25039,7 @@ impl<'a> StatusesResource<'a> {
         let path = "/statuses".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a status
@@ -25064,7 +25062,7 @@ impl<'a> StatusesResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/statuses/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a specific status
@@ -25088,7 +25086,7 @@ impl<'a> StatusesResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::Status> {
         let path = format!("/statuses/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all statuses
@@ -25113,7 +25111,7 @@ impl<'a> StatusesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::Status>> {
         let path = "/statuses".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update status
@@ -25142,7 +25140,7 @@ impl<'a> StatusesResource<'a> {
         let path = format!("/statuses/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
     /// Update status
@@ -25173,7 +25171,7 @@ impl<'a> StatusesResource<'a> {
         let path = format!("/statuses/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -25205,7 +25203,7 @@ impl<'a> SubscriptionsResource<'a> {
     pub fn delete(&self, person_id: impl Display, subject: impl Display, subject_identifier: impl Display) -> Result<()> {
         let path = format!("/subscriptions/{}/{}/{}", seg(person_id), seg(subject), seg(subject_identifier));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get one effective subscription
@@ -25229,7 +25227,7 @@ impl<'a> SubscriptionsResource<'a> {
     pub fn get(&self, person_id: impl Display, subject: impl Display, subject_identifier: impl Display) -> Result<serde_json::Value> {
         let path = format!("/subscriptions/{}/{}/{}", seg(person_id), seg(subject), seg(subject_identifier));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List the current person’s effective subscriptions
@@ -25254,7 +25252,7 @@ impl<'a> SubscriptionsResource<'a> {
     pub fn list(&self, person_id: impl Display) -> Result<Vec<serde_json::Value>> {
         let path = format!("/subscriptions/{}", seg(person_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List effective subscriptions for one subject
@@ -25279,7 +25277,7 @@ impl<'a> SubscriptionsResource<'a> {
     pub fn list_for_subject(&self, person_id: impl Display, subject: impl Display) -> Result<Vec<serde_json::Value>> {
         let path = format!("/subscriptions/{}/{}", seg(person_id), seg(subject));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Create or replace an explicit subscription override
@@ -25308,7 +25306,7 @@ impl<'a> SubscriptionsResource<'a> {
         let path = format!("/subscriptions/{}/{}/{}", seg(person_id), seg(subject), seg(subject_identifier));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -25370,7 +25368,7 @@ impl<'a> SyncResource<'a> {
         let path = "/sync/logs".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// List sync execution summaries
@@ -25455,7 +25453,7 @@ impl<'a> SyncResource<'a> {
     pub fn list_job_configs_with(&self, query: &GetSyncJobconfigsQuery) -> Result<Vec<models::JobConfigurationReturn>> {
         let path = "/sync/jobconfigs".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List sync log entries
@@ -25546,7 +25544,7 @@ impl<'a> SyncAdaptersResource<'a> {
         let path = "/sync/adapters".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a sync adapter
@@ -25582,7 +25580,7 @@ impl<'a> SyncAdaptersResource<'a> {
     pub fn delete_with(&self, id: impl Display, query: &DeleteSyncAdaptersIdQuery) -> Result<()> {
         let path = format!("/sync/adapters/{}", seg(id));
         let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a sync adapter
@@ -25606,7 +25604,7 @@ impl<'a> SyncAdaptersResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::SyncAdapter> {
         let path = format!("/sync/adapters/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List sync adapters
@@ -25631,7 +25629,7 @@ impl<'a> SyncAdaptersResource<'a> {
     pub fn list(&self) -> Result<Vec<models::SyncAdapter>> {
         let path = "/sync/adapters".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Replace sync adapter settings
@@ -25662,7 +25660,7 @@ impl<'a> SyncAdaptersResource<'a> {
         let path = format!("/sync/adapters/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -25694,7 +25692,7 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     pub fn create(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Proxy DELETE to a sync adapter
@@ -25717,7 +25715,7 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     pub fn delete(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Proxy GET to a sync adapter
@@ -25740,7 +25738,7 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     pub fn get(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
     /// Proxy PATCH to a sync adapter
@@ -25763,7 +25761,7 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     pub fn patch(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::PATCH, &path, &query, None).map(|_| ())
+        self.client.request(Method::Patch, &path, &query, None).map(|_| ())
     }
 
     /// Proxy PUT to a sync adapter
@@ -25786,7 +25784,7 @@ impl<'a> SyncAdaptersProxyResource<'a> {
     pub fn update(&self, adapter_name: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/adapters/{}/proxy/{}", seg(adapter_name), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::PUT, &path, &query, None).map(|_| ())
+        self.client.request(Method::Put, &path, &query, None).map(|_| ())
     }
 
 }
@@ -25831,7 +25829,7 @@ impl<'a> SyncConflictsResource<'a> {
         let path = "/sync/conflicts".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a sync conflict
@@ -25854,7 +25852,7 @@ impl<'a> SyncConflictsResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/sync/conflicts/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a sync conflict
@@ -25878,7 +25876,7 @@ impl<'a> SyncConflictsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::SyncConflicts> {
         let path = format!("/sync/conflicts/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List sync conflicts
@@ -25961,7 +25959,7 @@ impl<'a> SyncConflictsResource<'a> {
         let path = format!("/sync/conflicts/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -26003,7 +26001,7 @@ impl<'a> SyncEntityMappingsResource<'a> {
         let path = "/sync/entitymappings".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an entity mapping
@@ -26026,7 +26024,7 @@ impl<'a> SyncEntityMappingsResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/sync/entitymappings/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get an entity mapping
@@ -26050,7 +26048,7 @@ impl<'a> SyncEntityMappingsResource<'a> {
     pub fn get(&self, id: impl Display) -> Result<models::SyncEntityMapping> {
         let path = format!("/sync/entitymappings/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List entity mappings
@@ -26130,7 +26128,7 @@ impl<'a> SyncEntityMappingsResource<'a> {
         let path = format!("/sync/entitymappings/{}", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -26182,7 +26180,7 @@ impl<'a> SyncExternalsystemsResource<'a> {
         let path = "/sync/externalsystems".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete an external connection
@@ -26205,7 +26203,7 @@ impl<'a> SyncExternalsystemsResource<'a> {
     pub fn delete(&self, external_system_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}", seg(external_system_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Delete all mappings for an external connection
@@ -26228,7 +26226,7 @@ impl<'a> SyncExternalsystemsResource<'a> {
     pub fn delete_entity_mappings(&self, external_system_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/entitymappings", seg(external_system_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get an external connection
@@ -26252,7 +26250,7 @@ impl<'a> SyncExternalsystemsResource<'a> {
     pub fn get(&self, external_system_id: impl Display) -> Result<models::ExternalSystem> {
         let path = format!("/sync/externalsystems/{}", seg(external_system_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List external connections
@@ -26277,7 +26275,7 @@ impl<'a> SyncExternalsystemsResource<'a> {
     pub fn list(&self) -> Result<Vec<models::ExternalSystem>> {
         let path = "/sync/externalsystems".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Test a saved external connection
@@ -26300,7 +26298,7 @@ impl<'a> SyncExternalsystemsResource<'a> {
     pub fn test(&self, external_system_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/test", seg(external_system_id));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Test proposed external connection settings
@@ -26331,7 +26329,7 @@ impl<'a> SyncExternalsystemsResource<'a> {
         let path = "/sync/externalsystems/test".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Update an external connection
@@ -26363,7 +26361,7 @@ impl<'a> SyncExternalsystemsResource<'a> {
         let path = format!("/sync/externalsystems/{}", seg(external_system_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -26395,7 +26393,7 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     pub fn create(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::POST, &path, &query, None).map(|_| ())
+        self.client.request(Method::Post, &path, &query, None).map(|_| ())
     }
 
     /// Proxy DELETE to a sync adapter
@@ -26418,7 +26416,7 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     pub fn delete(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Proxy GET to a sync adapter
@@ -26441,7 +26439,7 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     pub fn get(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
     /// Proxy PATCH to a sync adapter
@@ -26464,7 +26462,7 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     pub fn patch(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::PATCH, &path, &query, None).map(|_| ())
+        self.client.request(Method::Patch, &path, &query, None).map(|_| ())
     }
 
     /// Proxy PUT to a sync adapter
@@ -26487,7 +26485,7 @@ impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     pub fn update(&self, external_system_id: impl Display, uri: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/adapterproxy/{}", seg(external_system_id), seg(uri));
         let query: Query = Query::new();
-        self.client.request(Method::PUT, &path, &query, None).map(|_| ())
+        self.client.request(Method::Put, &path, &query, None).map(|_| ())
     }
 
 }
@@ -26519,7 +26517,7 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     pub fn delete(&self, external_system_id: impl Display, domain_type: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/fieldmappings/{}", seg(external_system_id), seg(domain_type));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get field mappings for a domain
@@ -26543,7 +26541,7 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     pub fn get(&self, external_system_id: impl Display, domain_type: impl Display) -> Result<models::FieldMapping> {
         let path = format!("/sync/externalsystems/{}/fieldmappings/{}", seg(external_system_id), seg(domain_type));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List fields without mapping suggestions
@@ -26567,7 +26565,7 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     pub fn get_nosuggestions(&self, external_system_id: impl Display, domain_type: impl Display) -> Result<serde_json::Value> {
         let path = format!("/sync/externalsystems/{}/fieldmappings/{}/nosuggestions", seg(external_system_id), seg(domain_type));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List field mappings for a connection
@@ -26592,7 +26590,7 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     pub fn list(&self, external_system_id: impl Display) -> Result<Vec<models::FieldMapping>> {
         let path = format!("/sync/externalsystems/{}/fieldmappings", seg(external_system_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Replace field mappings for a domain
@@ -26638,7 +26636,7 @@ impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
         let path = format!("/sync/externalsystems/{}/fieldmappings/{}", seg(external_system_id), seg(domain_type));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -26682,7 +26680,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
         let path = format!("/sync/externalsystems/{}/jobconfigs", seg(external_system_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a sync job configuration
@@ -26705,7 +26703,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     pub fn delete(&self, external_system_id: impl Display, job_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Clear sync job record filters
@@ -26728,7 +26726,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     pub fn delete_filter(&self, external_system_id: impl Display, job_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/filter", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Clear sync job selected fields
@@ -26751,7 +26749,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     pub fn delete_properties(&self, external_system_id: impl Display, job_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/properties", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Find a sync job configuration
@@ -26776,7 +26774,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     pub fn get(&self, external_system_id: impl Display, job_id: impl Display) -> Result<Vec<models::JobConfigurationReturn>> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get sync job record filters
@@ -26800,7 +26798,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     pub fn get_filter(&self, external_system_id: impl Display, job_id: impl Display) -> Result<models::SyncJobFilters> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/filter", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get sync job selected fields
@@ -26824,7 +26822,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     pub fn get_properties(&self, external_system_id: impl Display, job_id: impl Display) -> Result<models::SyncJobProperties> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/properties", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List jobs for an external connection
@@ -26849,7 +26847,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
     pub fn list(&self, external_system_id: impl Display) -> Result<Vec<models::JobConfigurationReturn>> {
         let path = format!("/sync/externalsystems/{}/jobconfigs", seg(external_system_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Schedule a sync execution
@@ -26877,7 +26875,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/start", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::POST, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Post, &path, &query, Some(&body)).map(|_| ())
     }
 
     /// Update a sync job configuration
@@ -26909,7 +26907,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
     /// Replace sync job record filters
@@ -26949,7 +26947,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/filter", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
     /// Replace sync job selected fields
@@ -26995,7 +26993,7 @@ impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/properties", seg(external_system_id), seg(job_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -27028,7 +27026,7 @@ impl<'a> SyncExternalsystemsJobConfigsExecutionsResource<'a> {
     pub fn get(&self, external_system_id: impl Display, job_id: impl Display, execution_id: impl Display) -> Result<models::SyncExecutionDetails> {
         let path = format!("/sync/externalsystems/{}/jobconfigs/{}/executions/{}", seg(external_system_id), seg(job_id), seg(execution_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -27061,7 +27059,7 @@ impl<'a> TagsResource<'a> {
     pub fn attach(&self, domain_type: impl Display, domain_id: impl Display, tag_id: impl Display) -> Result<models::TagWithCount> {
         let path = format!("/tags/{}/{}/{}", seg(domain_type), seg(domain_id), seg(tag_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::PUT, &path, &query, None)
+        self.client.request_data(Method::Put, &path, &query, None)
     }
 
     /// Find or create a tag and attach it to an object
@@ -27090,7 +27088,7 @@ impl<'a> TagsResource<'a> {
         let path = format!("/tags/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Create new tag
@@ -27119,7 +27117,7 @@ impl<'a> TagsResource<'a> {
         let path = format!("/tags/{}", seg(domain_type));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete tag
@@ -27142,7 +27140,7 @@ impl<'a> TagsResource<'a> {
     pub fn delete(&self, tag_id: impl Display) -> Result<()> {
         let path = format!("/tags/{}", seg(tag_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Remove tag from domain object
@@ -27165,7 +27163,7 @@ impl<'a> TagsResource<'a> {
     pub fn detach(&self, domain_type: impl Display, domain_id: impl Display, tag_id: impl Display) -> Result<()> {
         let path = format!("/tags/{}/{}/{}", seg(domain_type), seg(domain_id), seg(tag_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get tag
@@ -27189,7 +27187,7 @@ impl<'a> TagsResource<'a> {
     pub fn get(&self, tag_id: impl Display) -> Result<models::TagWithCount> {
         let path = format!("/tags/{}", seg(tag_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get tags for domain type
@@ -27214,7 +27212,7 @@ impl<'a> TagsResource<'a> {
     pub fn list(&self, domain_type: impl Display) -> Result<Vec<models::TagWithCount>> {
         let path = format!("/tags/{}", seg(domain_type));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get tags for domain object
@@ -27239,7 +27237,7 @@ impl<'a> TagsResource<'a> {
     pub fn list_for_object(&self, domain_type: impl Display, domain_id: impl Display) -> Result<Vec<models::TagWithCount>> {
         let path = format!("/tags/{}/{}", seg(domain_type), seg(domain_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Replace tag properties
@@ -27268,7 +27266,7 @@ impl<'a> TagsResource<'a> {
         let path = format!("/tags/{}", seg(tag_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -27304,7 +27302,7 @@ impl<'a> TranslationsResource<'a> {
     pub fn delete(&self, key_id: impl Display) -> Result<()> {
         let path = format!("/translations/{}", seg(key_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get all translations
@@ -27342,7 +27340,7 @@ impl<'a> TranslationsResource<'a> {
     pub fn list_with(&self, query: &GetTranslationsQuery) -> Result<Vec<models::TranslationKey>> {
         let path = "/translations".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Get all translation keys, which match a translation
@@ -27371,7 +27369,7 @@ impl<'a> TranslationsResource<'a> {
     pub fn list_keys_by_text(&self, query: &GetTranslationsKeysbytextQuery) -> Result<Vec<Vec<String>>> {
         let path = "/translations/keysbytext".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a local translation key
@@ -27400,7 +27398,7 @@ impl<'a> TranslationsResource<'a> {
         let path = format!("/translations/{}", seg(key_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+        self.client.request(Method::Put, &path, &query, Some(&body)).map(|_| ())
     }
 
 }
@@ -27432,7 +27430,7 @@ impl<'a> TranslationsLanguagesResource<'a> {
     pub fn delete(&self, key_id: impl Display, language_id: impl Display) -> Result<()> {
         let path = format!("/translations/{}/languages/{}", seg(key_id), seg(language_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
 }
@@ -27471,7 +27469,7 @@ impl<'a> TwoFactorResource<'a> {
         let path = "/twofactor/totp".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
 }
@@ -27503,7 +27501,7 @@ impl<'a> WebsiteResource<'a> {
     pub fn get_start_test(&self) -> Result<()> {
         let path = "/website/starttest".to_owned();
         let query: Query = Query::new();
-        self.client.request(Method::GET, &path, &query, None).map(|_| ())
+        self.client.request(Method::Get, &path, &query, None).map(|_| ())
     }
 
 }
@@ -27538,7 +27536,7 @@ impl<'a> WebsiteDataResource<'a> {
         let path = "/website/data".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// `DELETE /website/data/{id}`
@@ -27557,7 +27555,7 @@ impl<'a> WebsiteDataResource<'a> {
     pub fn delete(&self, id: impl Display) -> Result<()> {
         let path = format!("/website/data/{}", seg(id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// `GET /website/data`
@@ -27591,7 +27589,7 @@ impl<'a> WebsiteDataResource<'a> {
     pub fn list_with(&self, query: &GetWebsiteDataQuery) -> Result<Vec<serde_json::Value>> {
         let path = "/website/data".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -27637,7 +27635,7 @@ impl<'a> WhoamiResource<'a> {
     pub fn get_with(&self, query: &GetWhoamiQuery) -> Result<models::Person> {
         let path = "/whoami".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -27666,7 +27664,7 @@ impl<'a> WidgetsResource<'a> {
     pub fn get_blog(&self) -> Result<models::GetWidgetsBlogData> {
         let path = "/widgets/blog".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// `GET /widgets/rss`
@@ -27686,7 +27684,7 @@ impl<'a> WidgetsResource<'a> {
     pub fn get_rss(&self) -> Result<models::RssFeed> {
         let path = "/widgets/rss".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -27775,7 +27773,7 @@ impl<'a> WikiResource<'a> {
     pub fn list_search(&self, query: &GetWikiSearchQuery) -> Result<Vec<models::WikiSearchResult>> {
         let path = "/wiki/search".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }
@@ -27820,7 +27818,7 @@ impl<'a> WikiCategoriesResource<'a> {
         let path = "/wiki/categories".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a wiki category
@@ -27843,7 +27841,7 @@ impl<'a> WikiCategoriesResource<'a> {
     pub fn delete(&self, wiki_category_id: impl Display) -> Result<()> {
         let path = format!("/wiki/categories/{}", seg(wiki_category_id));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get all wiki categories
@@ -27868,7 +27866,7 @@ impl<'a> WikiCategoriesResource<'a> {
     pub fn list(&self) -> Result<Vec<models::WikiCategory>> {
         let path = "/wiki/categories".to_owned();
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a wiki category
@@ -27900,7 +27898,7 @@ impl<'a> WikiCategoriesResource<'a> {
         let path = format!("/wiki/categories/{}", seg(wiki_category_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+        self.client.request_data(Method::Put, &path, &query, Some(&body))
     }
 
 }
@@ -27942,7 +27940,7 @@ impl<'a> WikiCategoriesPagesResource<'a> {
         let path = format!("/wiki/categories/{}/pages", seg(wiki_category_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
+        self.client.request_data(Method::Post, &path, &query, Some(&body))
     }
 
     /// Delete a wiki page
@@ -27965,7 +27963,7 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     pub fn delete(&self, wiki_category_id: impl Display, identifier: impl Display) -> Result<()> {
         let path = format!("/wiki/categories/{}/pages/{}", seg(wiki_category_id), seg(identifier));
         let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+        self.client.request(Method::Delete, &path, &query, None).map(|_| ())
     }
 
     /// Get a wiki page
@@ -28002,7 +28000,7 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     pub fn get_with(&self, wiki_category_id: impl Display, identifier: impl Display, query: &GetWikiCategoriesIdPagesIdentifierQuery) -> Result<models::WikiPage> {
         let path = format!("/wiki/categories/{}/pages/{}", seg(wiki_category_id), seg(identifier));
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List wiki pages in a category
@@ -28027,7 +28025,7 @@ impl<'a> WikiCategoriesPagesResource<'a> {
     pub fn list(&self, wiki_category_id: impl Display) -> Result<Vec<models::SimpleWikiPage>> {
         let path = format!("/wiki/categories/{}/pages", seg(wiki_category_id));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// Update a wiki page
@@ -28056,7 +28054,7 @@ impl<'a> WikiCategoriesPagesResource<'a> {
         let path = format!("/wiki/categories/{}/pages/{}", seg(wiki_category_id), seg(identifier));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PATCH, &path, &query, Some(&body))
+        self.client.request_data(Method::Patch, &path, &query, Some(&body))
     }
 
 }
@@ -28089,7 +28087,7 @@ impl<'a> WikiCategoriesPagesVersionsResource<'a> {
     pub fn get(&self, wiki_category_id: impl Display, identifier: impl Display, version: impl Display) -> Result<models::WikiPage> {
         let path = format!("/wiki/categories/{}/pages/{}/versions/{}", seg(wiki_category_id), seg(identifier), seg(version));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
     /// List all versions of a wiki page
@@ -28114,7 +28112,7 @@ impl<'a> WikiCategoriesPagesVersionsResource<'a> {
     pub fn list(&self, wiki_category_id: impl Display, identifier: impl Display) -> Result<Vec<models::WikiPage>> {
         let path = format!("/wiki/categories/{}/pages/{}/versions", seg(wiki_category_id), seg(identifier));
         let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+        self.client.request_data(Method::Get, &path, &query, None)
     }
 
 }

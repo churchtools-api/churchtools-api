@@ -13,7 +13,12 @@ replay = []
 [dependencies]
 chrono = { version = "0.4.45", features = ["serde"] }
 percent-encoding = "2.3.2"
-reqwest = { version = "0.13", default-features = false, features = ["blocking", "rustls", "json", "query", "cookies", "multipart"] }
+# TLS: rustls with the `ring` crypto provider instead of the default aws-lc-rs.
+# Both compile C code, but ring needs only a C compiler (no CMake, no NASM:
+# its assembly is pre-assembled in the published crate) and builds much faster.
+# Certificates come from the system trust store (rustls-platform-verifier).
+reqwest = { version = "0.13", default-features = false, features = ["blocking", "rustls-no-provider", "json", "query", "cookies", "multipart", "system-proxy"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12", "logging"] }
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.154"
 thiserror = "2.0.21"

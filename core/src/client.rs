@@ -2,7 +2,6 @@ use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 use percent_encoding::{AsciiSet, NON_ALPHANUMERIC, percent_decode_str, utf8_percent_encode};
-use reqwest::Method;
 use reqwest::blocking::RequestBuilder;
 use serde::Deserialize;
 use serde::de::DeserializeOwned;
@@ -27,6 +26,80 @@ const RETRY_STATUSES: [u16; 3] = [502, 503, 504];
 const CONNECT_RETRY_WAIT: Duration = Duration::from_secs(1);
 /// Upper bound for waiting on a `Retry-After` header.
 const MAX_RETRY_WAIT: Duration = Duration::from_secs(60);
+
+/// HTTP method of a request.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub enum Method {
+    Get,
+    Post,
+    Put,
+    Patch,
+    Delete,
+}
+
+impl Method {
+    /// The method name as sent on the wire, e.g. `GET`.
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::Get => "GET",
+            Self::Post => "POST",
+            Self::Put => "PUT",
+            Self::Patch => "PATCH",
+            Self::Delete => "DELETE",
+        }
+    }
+
+    /// Whether a request may be repeated after the server was briefly
+    /// unavailable: all but POST and PATCH.
+    fn is_idempotent(self) -> bool {
+        !matches!(self, Self::Post | Self::Patch)
+    }
+
+    fn to_reqwest(self) -> reqwest::Method {
+        match self {
+            Self::Get => reqwest::Method::GET,
+            Self::Post => reqwest::Method::POST,
+            Self::Put => reqwest::Method::PUT,
+            Self::Patch => reqwest::Method::PATCH,
+            Self::Delete => reqwest::Method::DELETE,
+        }
+    }
+}
+
+impl std::fmt::Display for Method {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+
+/// Error of [`Method::from_str`](std::str::FromStr): not one of the supported methods.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct InvalidMethod(pub String);
+
+impl std::fmt::Display for InvalidMethod {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "invalid HTTP method: {}", self.0)
+    }
+}
+
+impl std::error::Error for InvalidMethod {}
+
+impl std::str::FromStr for Method {
+    type Err = InvalidMethod;
+
+    /// Parses the method name, case-insensitively.
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        match s.to_ascii_uppercase().as_str() {
+            "GET" => Ok(Self::Get),
+            "POST" => Ok(Self::Post),
+            "PUT" => Ok(Self::Put),
+            "PATCH" => Ok(Self::Patch),
+            "DELETE" => Ok(Self::Delete),
+            _ => Err(InvalidMethod(s.to_owned())),
+        }
+    }
+}
 
 /// Synchronous ChurchTools API client.
 ///
@@ -119,6 +192,13 @@ pub struct ClientBuilder {
 }
 
 impl ClientBuilder {
+    /// Reads the instance URL from `CT_URL` and the login token from `CT_TOKEN`,
+    /// leaving the other options to be set before [`build`](Self::build).
+    pub fn from_env() -> Result<Self> {
+        let url = std::env::var("CT_URL").map_err(|_| Error::InvalidBaseUrl("CT_URL is not set".into()))?;
+        Ok(Client::builder(&url).token(std::env::var("CT_TOKEN").ok()))
+    }
+
     /// The login token, sent as `Authorization: Login <token>`.
     pub fn token(mut self, token: impl Into<Option<String>>) -> Self {
         self.token = token.into();
@@ -159,12 +239,11 @@ impl ClientBuilder {
 
     pub fn build(self) -> Result<Client> {
         let connect_timeout = self.connect_timeout.unwrap_or(DEFAULT_CONNECT_TIMEOUT).min(self.timeout);
-        let http = reqwest::blocking::Client::builder()
+        let http = http_client()
             .timeout(self.timeout)
             .connect_timeout(connect_timeout)
-            .user_agent(USER_AGENT)
-            .redirect(redirect_policy())
-            .build()?;
+            .build()
+            .map_err(Error::transport)?;
         Ok(Client {
             http,
             api_url: normalize_base_url(&self.base_url, self.allow_insecure_http)?,
@@ -175,6 +254,19 @@ impl ClientBuilder {
             throttle: None,
         })
     }
+}
+
+/// The common settings of every HTTP client this crate creates.
+fn http_client() -> reqwest::blocking::ClientBuilder {
+    // reqwest is built without a default crypto provider (`rustls-no-provider`),
+    // so rustls does not pull in aws-lc-rs; `ring` is installed here instead,
+    // unless the application has already chosen a provider.
+    if rustls::crypto::CryptoProvider::get_default().is_none() {
+        let _ = rustls::crypto::ring::default_provider().install_default();
+    }
+    reqwest::blocking::Client::builder()
+        .user_agent(USER_AGENT)
+        .redirect(redirect_policy())
 }
 
 /// Follows only redirects that keep method and body (307, 308).
@@ -224,12 +316,6 @@ impl Client {
         Self::builder(base_url).token(token).build()
     }
 
-    /// Like [`Client::new`] with a request timeout.
-    #[deprecated = "use `Client::builder(base_url).token(token).timeout(timeout).build()`"]
-    pub fn with_timeout(base_url: &str, token: Option<String>, timeout: Duration) -> Result<Self> {
-        Self::builder(base_url).token(token).timeout(timeout).build()
-    }
-
     /// Starts configuring a client for `base_url`.
     pub fn builder(base_url: &str) -> ClientBuilder {
         ClientBuilder {
@@ -272,13 +358,12 @@ impl Client {
         // The password login answers with a session cookie, which is only needed
         // to fetch the token.
         let session = Self {
-            http: reqwest::blocking::Client::builder()
+            http: http_client()
                 .timeout(self.timeout)
                 .connect_timeout(self.connect_timeout)
-                .user_agent(USER_AGENT)
-                .redirect(redirect_policy())
                 .cookie_store(true)
-                .build()?,
+                .build()
+                .map_err(Error::transport)?,
             token: None,
             ..self.clone()
         };
@@ -288,9 +373,9 @@ impl Client {
             person_id: i64,
         }
         let body = serde_json::json!({ "username": username, "password": password, "rememberMe": false });
-        let login: LoginData = session.request_data(Method::POST, "/login", &[], Some(&body))?;
+        let login: LoginData = session.request_data(Method::Post, "/login", &[], Some(&body))?;
         let token: String = session.request_data(
-            Method::GET,
+            Method::Get,
             &format!("/persons/{}/logintoken", login.person_id),
             &[],
             None,
@@ -302,9 +387,10 @@ impl Client {
     }
 
     /// Reads the instance URL from `CT_URL` and the login token from `CT_TOKEN`.
+    ///
+    /// For other options use [`ClientBuilder::from_env`].
     pub fn from_env() -> Result<Self> {
-        let url = std::env::var("CT_URL").map_err(|_| Error::InvalidBaseUrl("CT_URL is not set".into()))?;
-        Self::new(&url, std::env::var("CT_TOKEN").ok())
+        ClientBuilder::from_env()?.build()
     }
 
     /// The API root, always ending in `/api`.
@@ -368,7 +454,8 @@ impl Client {
                 let reader = std::io::Cursor::new(file.content.clone());
                 let part = reqwest::blocking::multipart::Part::reader_with_length(reader, file.content.len() as u64)
                     .file_name(file.filename.clone())
-                    .mime_str(&file.content_type)?;
+                    .mime_str(&file.content_type)
+                    .map_err(Error::transport)?;
                 multipart = multipart.part(file_field.to_owned(), part);
             }
             Ok(builder.multipart(multipart))
@@ -392,7 +479,7 @@ impl Client {
             }
             let mut builder = self
                 .http
-                .request(method.clone(), format!("{}{}", self.api_url, path))
+                .request(method.to_reqwest(), format!("{}{}", self.api_url, path))
                 .header("Accept", "application/json")
                 .query(query);
             if let Some(token) = &self.token {
@@ -411,10 +498,10 @@ impl Client {
                     std::thread::sleep(CONNECT_RETRY_WAIT);
                     continue;
                 }
-                Err(err) => return Err(err.into()),
+                Err(err) => return Err(Error::transport(err)),
             };
             let status = response.status().as_u16();
-            let retryable = status == 429 || (RETRY_STATUSES.contains(&status) && is_idempotent(&method));
+            let retryable = status == 429 || (RETRY_STATUSES.contains(&status) && method.is_idempotent());
             if retryable && attempt < MAX_RETRIES {
                 attempt += 1;
                 std::thread::sleep(retry_after(response.headers(), attempt));
@@ -504,7 +591,7 @@ impl Client {
         let mut page_query = query.clone();
         page_query.push(("page".into(), page.to_string()));
         // One pass over the body for both the items and the page info.
-        let body: Page<T> = decode(&self.request(Method::GET, path, &page_query, None)?)?;
+        let body: Page<T> = decode(&self.request(Method::Get, path, &page_query, None)?)?;
         let meta = body.meta.and_then(|m| serde_json::from_value(m).ok());
         let next = next_page(meta, !body.data.is_empty(), page);
         Ok((body.data, next))
@@ -555,7 +642,7 @@ impl Iterator for Pages {
         let page = self.next_page.take()?;
         let mut query = self.query.clone();
         query.push(("page".into(), page.to_string()));
-        let result = self.client.request(Method::GET, &self.path, &query, None);
+        let result = self.client.request(Method::Get, &self.path, &query, None);
         if let Ok(bytes) = &result {
             self.next_page = next_page_number(bytes, page);
         }
@@ -661,10 +748,6 @@ impl<'de> Deserialize<'de> for HasItems {
         }
         d.deserialize_any(V)
     }
-}
-
-fn is_idempotent(method: &Method) -> bool {
-    [Method::GET, Method::HEAD, Method::PUT, Method::DELETE, Method::OPTIONS].contains(method)
 }
 
 /// Wait time before a retry: the server's `Retry-After` (seconds or an HTTP
@@ -849,7 +932,7 @@ mod tests {
         let start = Instant::now();
         let blackhole = Client::builder("http://10.255.255.1").allow_insecure_http(true);
         let blackhole = blackhole.timeout(Duration::from_secs(600)).connect_timeout(Duration::from_millis(200));
-        assert!(blackhole.build().unwrap().request(Method::GET, "/x", &[], None).is_err());
+        assert!(blackhole.build().unwrap().request(Method::Get, "/x", &[], None).is_err());
         assert!(start.elapsed() < Duration::from_secs(5));
     }
 
@@ -862,10 +945,10 @@ mod tests {
         let (url, _) = serve(vec![declared, undeclared, small]);
         let client = Client::builder(&url).max_response_size(12).build().unwrap();
         for _ in 0..2 {
-            let err = client.request(Method::GET, "/x", &[], None).unwrap_err();
+            let err = client.request(Method::Get, "/x", &[], None).unwrap_err();
             assert!(matches!(err, Error::ResponseTooLarge { limit: 12 }), "{err}");
         }
-        assert_eq!(client.request(Method::GET, "/x", &[], None).unwrap(), br#"{"data":1}"#);
+        assert_eq!(client.request(Method::Get, "/x", &[], None).unwrap(), br#"{"data":1}"#);
     }
 
     #[test]
@@ -873,7 +956,7 @@ mod tests {
         let (url, seen) = serve(vec![reply("302 Found", "Location: /api/elsewhere\r\n", "")]);
         let client = Client::new(&url, None).unwrap();
         let body = serde_json::json!({"name": "x"});
-        let err = client.request(Method::POST, "/groups", &[], Some(&body)).unwrap_err();
+        let err = client.request(Method::Post, "/groups", &[], Some(&body)).unwrap_err();
         let Error::Redirect { status, location } = err else { panic!("{err}") };
         assert_eq!((status, location.as_deref()), (302, Some("/api/elsewhere")));
         assert_eq!(*seen.lock().unwrap(), ["POST /api/groups"]); // no GET afterwards
@@ -887,7 +970,7 @@ mod tests {
         ]);
         let client = Client::new(&url, None).unwrap();
         let body = serde_json::json!({"name": "x"});
-        let data: i64 = client.request_data(Method::POST, "/groups", &[], Some(&body)).unwrap();
+        let data: i64 = client.request_data(Method::Post, "/groups", &[], Some(&body)).unwrap();
         assert_eq!(data, 1);
         assert_eq!(*seen.lock().unwrap(), ["POST /api/groups", "POST /api/moved"]);
     }
@@ -994,7 +1077,7 @@ mod tests {
         let copy = file.clone();
         assert!(Arc::ptr_eq(&file.content, &copy.content)); // cloning shares the bytes
         let form = [("sortKey".to_owned(), "3".to_owned())];
-        client.request_multipart(Method::POST, "/files/person/7", &[], &form, "files[]", &[file]).unwrap();
+        client.request_multipart(Method::Post, "/files/person/7", &[], &form, "files[]", &[file]).unwrap();
         assert_eq!(seen.lock().unwrap().len(), 2);
     }
 
@@ -1003,7 +1086,7 @@ mod tests {
         let (url, _) = serve(vec![reply("200 OK", "", r#"{"data":1}"#)]);
         let client = Client::new(&url, None).unwrap();
         let body = br#"{"firstName": "Ben"}"#;
-        assert_eq!(client.request_json_bytes(Method::POST, "/x", &[], Some(body)).unwrap(), br#"{"data":1}"#);
+        assert_eq!(client.request_json_bytes(Method::Post, "/x", &[], Some(body)).unwrap(), br#"{"data":1}"#);
     }
 
     #[test]
@@ -1035,8 +1118,8 @@ mod tests {
         let unavailable = || reply("503 Service Unavailable", "Retry-After: 0\r\n", "");
         let (url, seen) = serve(vec![unavailable(), reply("200 OK", "", r#"{"data":1}"#), unavailable()]);
         let client = Client::new(&url, None).unwrap();
-        assert_eq!(client.request(Method::GET, "/x", &[], None).unwrap(), br#"{"data":1}"#);
-        let err = client.request(Method::POST, "/x", &[], None).unwrap_err();
+        assert_eq!(client.request(Method::Get, "/x", &[], None).unwrap(), br#"{"data":1}"#);
+        let err = client.request(Method::Post, "/x", &[], None).unwrap_err();
         assert!(matches!(&err, Error::Api(api) if api.status == 503), "{err}");
         assert_eq!(*seen.lock().unwrap(), ["GET /api/x", "GET /api/x", "POST /api/x"]);
     }
@@ -1047,7 +1130,7 @@ mod tests {
         let port = std::net::TcpListener::bind("127.0.0.1:0").unwrap().local_addr().unwrap().port();
         let client = Client::new(&format!("http://127.0.0.1:{port}"), None).unwrap();
         let start = Instant::now();
-        let err = client.request(Method::POST, "/x", &[], None).unwrap_err();
+        let err = client.request(Method::Post, "/x", &[], None).unwrap_err();
         assert!(matches!(&err, Error::Transport(e) if e.is_connect()), "{err}");
         assert!(start.elapsed() >= CONNECT_RETRY_WAIT);
     }
@@ -1079,7 +1162,7 @@ mod tests {
         let client = Client::new("http://127.0.0.1:9", None).unwrap();
         for id in ["..", ".", ""] {
             let path = format!("/groups/7/members/{}", encode_path_segment(id));
-            let err = client.request(Method::DELETE, &path, &[], None).unwrap_err();
+            let err = client.request(Method::Delete, &path, &[], None).unwrap_err();
             assert!(matches!(err, Error::InvalidPath(_)), "{id:?}: {err}");
         }
         // Raw paths: the URL parser treats percent-encoded dots as dots, too.

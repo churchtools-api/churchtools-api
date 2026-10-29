@@ -249,10 +249,10 @@ fn guide_zeitlimits() {
 // guide: rohzugriff
 fn example_12(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let query = vec![("include[]".to_string(), "tags".to_string())];
-    let person: models::Person = client.request_data(Method::GET, "/persons/7", &query, None)?;
+    let person: models::Person = client.request_data(Method::Get, "/persons/7", &query, None)?;
 
     let body = serde_json::json!({ "departmentIds": [1], "firstName": "Ben" });
-    client.request(Method::POST, "/persons", &[], Some(&body))?;
+    client.request(Method::Post, "/persons", &[], Some(&body))?;
     Ok(())
 }
 

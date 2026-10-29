@@ -47,8 +47,7 @@ mod _core {
     }
 
     fn parse_method(method: &str) -> PyResult<Method> {
-        Method::from_bytes(method.to_ascii_uppercase().as_bytes())
-            .map_err(|_| PyValueError::new_err(format!("invalid HTTP method: {method}")))
+        method.parse().map_err(|e: churchtools_core::InvalidMethod| PyValueError::new_err(e.to_string()))
     }
 
     /// `churchtools_rs.InvalidArgument` (a `ValueError`) with `message`.

@@ -260,10 +260,9 @@ def write_rust_api(ops: list[Op], header: str, out: Path) -> None:
         f"//!\n//! {header}\n",
         "#![allow(clippy::all, deprecated, unused_mut)]\n",
         "use std::fmt::Display;\n",
-        "use reqwest::Method;\n",
         "use super::models;",
         "use super::queries::*;",
-        "use crate::client::{Client, Items, Query, Upload, encode_path_segment as seg};",
+        "use crate::client::{Client, Items, Method, Query, Upload, encode_path_segment as seg};",
         "use crate::error::Result;\n",
         "impl Client {",
     ]
@@ -448,7 +447,7 @@ def rust_method(op: Op) -> tuple[list[str], list[str]]:
         body = "Some(&body)"
     else:
         body = "None"
-    method = f"Method::{op.method.upper()}"
+    method = f"Method::{op.method.capitalize()}"
     if op.upload is not None:
         form_expr = "form.to_query()" if form_struct else "Query::new()"
         lines.append(f"        let form: Query = {form_expr};")

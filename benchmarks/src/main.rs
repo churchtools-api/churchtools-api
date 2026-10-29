@@ -94,7 +94,7 @@ fn run(rounds: usize, json: bool) {
     report(json, "get_person", "rust", &s);
     // Transport only, without decoding.
     let s = measure(rounds, || {
-        black_box(client.request(Method::GET, "/persons/1", &[], None).unwrap());
+        black_box(client.request(Method::Get, "/persons/1", &[], None).unwrap());
     });
     report(json, "get_person", "rust (nur HTTP)", &s);
 

@@ -5,8 +5,6 @@ from __future__ import annotations
 import json
 import typing as _t
 
-from typing_extensions import deprecated
-
 
 class ChurchToolsError(Exception):
     """Base class of all errors raised by churchtools_rs."""
@@ -81,11 +79,6 @@ class ApiError(ChurchToolsError):
         """`args` of the error body (placeholders of the message); `args` itself is the exception's."""
         self.errors: _t.Any = data.get("errors")
         super().__init__(f"HTTP {status}: {self.message or body[:200]!r}{_field_errors(self.errors)}")
-
-    @property
-    @deprecated("use `message_args`")
-    def args_(self) -> _t.Any:
-        return self.message_args
 
 
 def _field_errors(errors: _t.Any) -> str:
