@@ -74,6 +74,7 @@ mod _core {
     #[pymethods]
     impl Client {
         #[new]
+        #[allow(clippy::too_many_arguments)]
         #[pyo3(signature = (base_url, token=None, timeout=30.0, min_interval=None, allow_insecure_http=false, max_response_size=None, connect_timeout=None))]
         fn new(
             py: Python<'_>,

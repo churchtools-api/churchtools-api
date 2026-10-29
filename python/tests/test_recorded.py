@@ -43,7 +43,7 @@ sys.path.insert(0, str(Path(__file__).parent / "live"))
 from redact import redact, scrub  # noqa: E402
 
 
-def test_redaction_of_credentials():
+def test_redaction_of_credentials() -> None:
     body = {
         "data": {
             "clientSecret": "d7ff",
@@ -62,7 +62,7 @@ def test_redaction_of_credentials():
     assert scrub({"password": "x", "username": "u"}) == {"password": "<redacted>", "username": "u"}
 
 
-def test_fixtures_contain_no_credentials():
+def test_fixtures_contain_no_credentials() -> None:
     for path in FIXTURES:
         fixture = json.loads(path.read_text())
         assert redact(fixture["operation"], fixture["body"]) == fixture["body"], path.name

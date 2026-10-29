@@ -6,6 +6,7 @@ import datetime as dt
 import json
 import threading
 import time
+import typing as _t
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlsplit
 
@@ -174,7 +175,7 @@ def test_transport_error():
     assert isinstance(info.value, ct.TransportError)
 
 
-def test_timeout_is_its_own_error():
+def test_timeout_is_its_own_error() -> None:
     import socket
 
     silent = socket.socket()
@@ -187,7 +188,7 @@ def test_timeout_is_its_own_error():
         silent.close()
 
 
-def test_invalid_arguments_are_value_errors(monkeypatch):
+def test_invalid_arguments_are_value_errors(monkeypatch: pytest.MonkeyPatch) -> None:
     with pytest.raises(ct.InvalidArgument):
         ct.Client("meinegemeinde.church.tools")
     monkeypatch.delenv("CT_URL", raising=False)
@@ -235,35 +236,35 @@ def test_min_interval_spaces_requests():
 
 
 @pytest.mark.parametrize("member_id", ["..", ".", ""])
-def test_dot_segments_in_ids_are_rejected(client, member_id):
+def test_dot_segments_in_ids_are_rejected(client: ct.Client, member_id: str) -> None:
     # `..` would turn DELETE /groups/7/members/.. into DELETE /groups/7
     with pytest.raises(ValueError, match="invalid path"):
-        client.groups.members.delete(7, member_id)
+        client.groups.members.delete(7, member_id)  # type: ignore[arg-type]  # IDs from user input
     assert FakeServer.requests == []
 
 
-def test_percent_encoded_dot_segments_in_raw_paths_are_rejected(client):
+def test_percent_encoded_dot_segments_in_raw_paths_are_rejected(client: ct.Client) -> None:
     with pytest.raises(ValueError, match="invalid path"):
         client._core.request("DELETE", "/groups/7/members/%2e%2E", [])
 
 
-def test_token_is_not_part_of_repr(client):
+def test_token_is_not_part_of_repr(client: ct.Client) -> None:
     assert "secret" not in repr(client) and "secret" not in repr(client._core)
 
 
-def test_token_with_line_break_is_rejected(client):
+def test_token_with_line_break_is_rejected(client: ct.Client) -> None:
     broken = ct.Client(client.api_url, token="abc\r\nX-Injected: 1")
     with pytest.raises(ValueError, match="invalid token"):
         broken.persons.get(7)
 
 
-def test_plain_http_needs_opt_in_outside_localhost():
+def test_plain_http_needs_opt_in_outside_localhost() -> None:
     with pytest.raises(ct.InvalidArgument, match="unencrypted"):
         ct.Client("http://ct.example.org", token="secret")
     assert ct.Client("http://ct.example.org", allow_insecure_http=True).api_url == "http://ct.example.org/api"
 
 
-def test_decode_error_message_omits_input_values(client):
+def test_decode_error_message_omits_input_values(client: ct.Client) -> None:
     with pytest.raises(ct.DecodeError) as info:
         client.persons.get(8)
     assert "data.id" in str(info.value)
@@ -272,7 +273,7 @@ def test_decode_error_message_omits_input_values(client):
     assert b"geheim@example.org" in info.value.body
 
 
-def test_redirect_of_a_write_is_an_error(client):
+def test_redirect_of_a_write_is_an_error(client: ct.Client) -> None:
     with pytest.raises(ct.RedirectError) as info:
         client._core.request("POST", "/groups", [], '{"name": "x"}')
     assert (info.value.status, info.value.location) == (302, "/api/groups/1")
@@ -281,19 +282,20 @@ def test_redirect_of_a_write_is_an_error(client):
 
 @pytest.mark.parametrize("option", ["timeout", "min_interval", "connect_timeout"])
 @pytest.mark.parametrize("value", [-1.0, float("nan"), float("inf"), 1e30])
-def test_invalid_durations_raise_value_error(option, value):
+def test_invalid_durations_raise_value_error(option: str, value: float) -> None:
     with pytest.raises(ct.InvalidArgument, match=f"{option} must be a non-negative number"):
-        ct.Client("https://x.church.tools", **{option: value})
+        options: dict[str, _t.Any] = {option: value}
+        ct.Client("https://x.church.tools", **options)
 
 
-def test_responses_above_the_size_limit_raise(client):
+def test_responses_above_the_size_limit_raise(client: ct.Client) -> None:
     limited = ct.Client(client.api_url, max_response_size=50)
     with pytest.raises(ct.ResponseTooLarge, match="larger than the limit of 50 bytes") as info:
         limited.persons.get(7)
     assert info.value.limit == 50
 
 
-def test_unavailable_server_is_retried_for_get_but_not_post(client):
+def test_unavailable_server_is_retried_for_get_but_not_post(client: ct.Client) -> None:
     assert client._core.request("GET", "/flaky", []) == b'{"data": 1}'
     with pytest.raises(ct.ServerError):
         client._core.request("POST", "/flaky", [])
