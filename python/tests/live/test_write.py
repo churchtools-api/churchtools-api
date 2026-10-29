@@ -64,7 +64,7 @@ def test_person_details(client: LiveClient, me: int, masterdata: _t.Any, cleanup
     assert any(r.id == rel_id for r in client.persons.relationships.list(me))
     client.persons.relationships.delete(me, rel_id)
 
-    reason = client.event.get_masterdata().absence_reasons[0].id
+    reason = client.event.get_master_data().absence_reasons[0].id
     absence = client.persons.absences.create(
         other.id, absence_reason_id=reason, start_date=dt.date.today(), end_date=dt.date.today(), comment="Urlaub"
     )
@@ -98,7 +98,7 @@ def test_group_lifecycle(client: LiveClient, me: int, masterdata: _t.Any, cleanu
 
     member = client.groups.members.update(group.id, me, comment="hinzugefügt")
     assert member.person_id == me
-    assert me in client.groups.list_memberids(group.id)
+    assert me in client.groups.list_member_ids(group.id)
     client.groups.members.patch(group.id, me, comment="geändert")
     client.groups.members.delete(group.id, me)
 
@@ -154,7 +154,7 @@ def test_appointment_lifecycle(client: LiveClient, cleanup: Cleanup) -> None:
 
 
 def test_resource_booking(client: LiveClient, cleanup: Cleanup) -> None:
-    resource_type = client.resourcetypes.list()[0].id
+    resource_type = client.resource_types.list()[0].id
     resource = client.resources.create(name=name("Raum"), resource_type_id=resource_type, sort_key=999)
     cleanup(lambda: client.resources.delete(resource.id))
     client.resources.update(resource.id, name=resource.name + " neu", resource_type_id=resource_type, sort_key=998)
@@ -176,15 +176,15 @@ def test_resource_booking(client: LiveClient, cleanup: Cleanup) -> None:
 
 
 def test_services(client: LiveClient, cleanup: Cleanup) -> None:
-    group = client.servicegroups.create(name=name("Dienstgruppe"))
-    cleanup(lambda: client.servicegroups.delete(group.id))
-    client.servicegroups.update(group.id, name=group.name + " neu")
+    group = client.service_groups.create(name=name("Dienstgruppe"))
+    cleanup(lambda: client.service_groups.delete(group.id))
+    client.service_groups.update(group.id, name=group.name + " neu")
     service = client.services.create(name=name("Dienst"), service_group_id=group.id)
     cleanup(lambda: client.services.delete(service.id))
     assert client.services.get(service.id).service_group_id == group.id
     client.services.update(service.id, name=service.name + " neu", service_group_id=group.id)
     client.services.delete(service.id)
-    client.servicegroups.delete(group.id)
+    client.service_groups.delete(group.id)
 
 
 # --- songs, wiki, posts ---------------------------------------------------------
@@ -238,16 +238,16 @@ MASTERDATA: dict[str, tuple[dict[str, _t.Any], dict[str, _t.Any], dict[str, _t.A
     "contactlabels": ({"is_default": False, "sort_key": 999}, {"is_default": False, "sort_key": 998}, {}),
     "statuses": ({"security_level_id": 1, "shorty": "T"}, {"security_level_id": 1, "shorty": "T2"}, {}),
     "person.sexes": ({}, {}, {}),
-    "person.growpaths": ({"color": "red"}, {"color": "blue"}, {}),
-    "person.commentviewers": ({}, {}, {}),
-    "person.relationshiptypes": (
+    "person.grow_paths": ({"color": "red"}, {"color": "blue"}, {}),
+    "person.comment_viewers": ({}, {}, {}),
+    "person.relationship_types": (
         {"degree_name_a": "Pate", "degree_name_b": "Patenkind", "security_level_id": 1},
         {"degree_name_a": "Patin", "degree_name_b": "Patenkind", "security_level_id": 1},
         {},
     ),
-    "group.targetgroups": ({"sort_key": 999}, {"sort_key": 998}, {"dry_run": False}),
-    "group.agegroups": ({"sort_key": 999, "start": 10, "end": 12}, {"sort_key": 998, "start": 10, "end": 13}, {"dry_run": False}),
-    "group.groupcategories": ({"sort_key": 999, "color": "red"}, {"sort_key": 998, "color": "blue"}, {"dry_run": False}),
+    "group.target_groups": ({"sort_key": 999}, {"sort_key": 998}, {"dry_run": False}),
+    "group.age_groups": ({"sort_key": 999, "start": 10, "end": 12}, {"sort_key": 998, "start": 10, "end": 13}, {"dry_run": False}),
+    "group.group_categories": ({"sort_key": 999, "color": "red"}, {"sort_key": 998, "color": "blue"}, {"dry_run": False}),
 }
 
 

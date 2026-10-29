@@ -206,6 +206,15 @@ Der Methodenname richtet sich nach der HTTP-Methode:
 | DELETE | `delete` | löschen |
 
 Aktionen behalten ihren Namen, z. B. `client.persons.invite(7)` für `POST /persons/{personId}/invite`.
+POST-Aufrufe, die nichts anlegen, sondern nur lesen oder berechnen, heißen nach dem, was sie tun:
+`client.actions.filter()`, `client.repeat_calculation.calculate()`.
+
+Zusammengeschriebene Pfadteile werden in Wörter getrennt: `/agendatemplates` wird zu `agenda_templates`,
+genauso wie `/external-logins` zu `external_logins`.
+
+Einige Bereiche gibt es im Singular und im Plural. Der Plural enthält die Objekte selbst, der Singular die
+Stammdaten des Bereichs: `client.groups` sind die Gruppen, `client.group` ihre Gruppentypen, Rollen und
+Kategorien. Genauso `persons`/`person`, `events`/`event` und `posts`/`post`.
 """,
             python="""\
 group = client.groups.get(42)

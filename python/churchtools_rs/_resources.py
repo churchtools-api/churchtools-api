@@ -14,8 +14,8 @@ from . import models
 from ._base import UNSET, Paginator, Resource, StrMap, UnsetType, Upload, _body, _query, _seg, _warn_deprecated
 
 
-class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
-    """`client.finance.accountingperiods.accounts.statements.movements`"""
+class FinanceAccountingPeriodsAccountsStatementsMovementsResource(Resource):
+    """`client.finance.accounting_periods.accounts.statements.movements`"""
 
     def create(
         self,
@@ -44,7 +44,7 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
 
         Example::
 
-            result = client.finance.accountingperiods.accounts.statements.movements.create(
+            result = client.finance.accounting_periods.accounts.statements.movements.create(
                 1,
                 42,
                 7,
@@ -86,7 +86,7 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
 
         Example::
 
-            for movement in client.finance.accountingperiods.accounts.statements.movements.list(1, 42, 7):
+            for movement in client.finance.accounting_periods.accounts.statements.movements.list(1, 42, 7):
                 print(movement.id)
         """
         return Paginator(self._core, f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/statements/{_seg(statement_id)}/movements", _query([('limit', limit), ('state', state), ('query', query), ('include[]', include)]), models.StatementMovement)
@@ -117,7 +117,7 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
 
         Example::
 
-            client.finance.accountingperiods.accounts.statements.movements.patch_suggestions(
+            client.finance.accounting_periods.accounts.statements.movements.patch_suggestions(
                 1,
                 7,
                 7,
@@ -128,8 +128,8 @@ class FinanceAccountingperiodsAccountsStatementsMovementsResource(Resource):
         self._raw('PATCH', f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/statements/{_seg(statement_id)}/movements/{_seg(movement_id)}/suggestions", [], _body({'suggestions': suggestions}, extra_body))
 
 
-class EventsAgendaItemsServicegroupsResource(Resource):
-    """`client.events.agenda.items.servicegroups`"""
+class EventsAgendaItemsServiceGroupsResource(Resource):
+    """`client.events.agenda.items.service_groups`"""
 
     def delete(
         self,
@@ -151,7 +151,7 @@ class EventsAgendaItemsServicegroupsResource(Resource):
 
         Example::
 
-            client.events.agenda.items.servicegroups.delete(42, 123, 13)
+            client.events.agenda.items.service_groups.delete(42, 123, 13)
         """
         self._raw('DELETE', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}/servicegroups/{_seg(service_group_id)}", [], None)
 
@@ -179,7 +179,7 @@ class EventsAgendaItemsServicegroupsResource(Resource):
 
         Example::
 
-            client.events.agenda.items.servicegroups.update(
+            client.events.agenda.items.service_groups.update(
                 42,
                 123,
                 13,
@@ -189,8 +189,8 @@ class EventsAgendaItemsServicegroupsResource(Resource):
         self._raw('PUT', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}/servicegroups/{_seg(service_group_id)}", [], _body({'note': note}, extra_body))
 
 
-class ExternalpostsInstancesChannelsPostsResource(Resource):
-    """`client.externalposts.instances.channels.posts`"""
+class ExternalPostsInstancesChannelsPostsResource(Resource):
+    """`client.external_posts.instances.channels.posts`"""
 
     def get(
         self,
@@ -210,18 +210,18 @@ class ExternalpostsInstancesChannelsPostsResource(Resource):
 
         Example::
 
-            post = client.externalposts.instances.channels.posts.get("abc123", "abc123", "abc123")
+            post = client.external_posts.instances.channels.posts.get("abc123", "abc123", "abc123")
             print(post.title)
         """
         return _t.cast(models.Post, self._call('GET', f"/externalposts/instances/{_seg(instance_guid)}/channels/{_seg(channel_guid)}/posts/{_seg(post_guid)}", [], None, models.Post, envelope=True))
 
 
-class FinanceAccountingperiodsAccountsStatementsResource(Resource):
-    """`client.finance.accountingperiods.accounts.statements`"""
+class FinanceAccountingPeriodsAccountsStatementsResource(Resource):
+    """`client.finance.accounting_periods.accounts.statements`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.movements = FinanceAccountingperiodsAccountsStatementsMovementsResource(core)
+        self.movements = FinanceAccountingPeriodsAccountsStatementsMovementsResource(core)
 
     def list(
         self,
@@ -241,7 +241,7 @@ class FinanceAccountingperiodsAccountsStatementsResource(Resource):
 
         Example::
 
-            for statement in client.finance.accountingperiods.accounts.statements.list(1, 5):
+            for statement in client.finance.accounting_periods.accounts.statements.list(1, 5):
                 print(statement.name)
         """
         return _t.cast(_t.List[models.AccountStatement], self._call('GET', f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/statements", [], None, _t.List[models.AccountStatement], envelope=True))
@@ -313,8 +313,8 @@ class FinanceReportsStatementAccountsResource(Resource):
         return self._raw('POST', f"/finance/reports/statement/accounts/{_seg(account_id)}", [], _body({'endDate': end_date, 'format': format, 'startDate': start_date}, extra_body))
 
 
-class FinanceReportsStatementCostcentersResource(Resource):
-    """`client.finance.reports.statement.costcenters`"""
+class FinanceReportsStatementCostCentersResource(Resource):
+    """`client.finance.reports.statement.cost_centers`"""
 
     def create(
         self,
@@ -346,7 +346,7 @@ class FinanceReportsStatementCostcentersResource(Resource):
 
         Example::
 
-            data = client.finance.reports.statement.costcenters.create(21, end_date=dt.date(2026, 12, 31))
+            data = client.finance.reports.statement.cost_centers.create(21, end_date=dt.date(2026, 12, 31))
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
@@ -438,8 +438,8 @@ class PermissionsOriginsInternalPersonsResource(Resource):
         return _t.cast(models.GetPermissionsOriginsInternalPersonsPersonIdData, self._call('GET', f"/permissions/origins/internal/persons/{_seg(person_id)}", _query([('group_ids[]', group_ids)]), None, models.GetPermissionsOriginsInternalPersonsPersonIdData, envelope=True))
 
 
-class PersonsEventsServicesExchangerequestsResource(Resource):
-    """`client.persons.events.services.exchangerequests`"""
+class PersonsEventsServicesExchangeRequestsResource(Resource):
+    """`client.persons.events.services.exchange_requests`"""
 
     def create(
         self,
@@ -465,7 +465,7 @@ class PersonsEventsServicesExchangerequestsResource(Resource):
 
         Example::
 
-            result = client.persons.events.services.exchangerequests.create(
+            result = client.persons.events.services.exchange_requests.create(
                 42,
                 42,
                 42,
@@ -500,7 +500,7 @@ class PersonsEventsServicesExchangerequestsResource(Resource):
 
         Example::
 
-            client.persons.events.services.exchangerequests.delete(42, 42, 42, 42)
+            client.persons.events.services.exchange_requests.delete(42, 42, 42, 42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services/{_seg(service_id)}/exchangerequests/{_seg(request_id)}", _query([('hardDelete', hard_delete)]), None)
 
@@ -527,8 +527,8 @@ class PersonsEventsServicesExchangerequestsResource(Resource):
 
         Example::
 
-            for exchangerequest in client.persons.events.services.exchangerequests.list(42, 42, 42):
-                print(exchangerequest.id)
+            for exchange_request in client.persons.events.services.exchange_requests.list(42, 42, 42):
+                print(exchange_request.id)
         """
         return _t.cast(_t.List[models.ServiceExchangeRequest], self._call('GET', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services/{_seg(service_id)}/exchangerequests", _query([('incoming', incoming)]), None, _t.List[models.ServiceExchangeRequest], envelope=True))
 
@@ -552,14 +552,14 @@ class PersonsEventsServicesExchangerequestsResource(Resource):
 
         Example::
 
-            for candidate in client.persons.events.services.exchangerequests.list_candidates(42, 42, 42):
+            for candidate in client.persons.events.services.exchange_requests.list_candidates(42, 42, 42):
                 print(candidate.event_date)
         """
         return _t.cast(_t.List[models.ServiceExchangeCandidate], self._call('GET', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services/{_seg(service_id)}/exchangerequests/candidates", [], None, _t.List[models.ServiceExchangeCandidate], envelope=True))
 
 
-class SyncExternalsystemsJobconfigsExecutionsResource(Resource):
-    """`client.sync.externalsystems.jobconfigs.executions`"""
+class SyncExternalsystemsJobConfigsExecutionsResource(Resource):
+    """`client.sync.externalsystems.job_configs.executions`"""
 
     def get(
         self,
@@ -581,7 +581,7 @@ class SyncExternalsystemsJobconfigsExecutionsResource(Resource):
 
         Example::
 
-            execution = client.sync.externalsystems.jobconfigs.executions.get(1, 1, "run-123")
+            execution = client.sync.externalsystems.job_configs.executions.get(1, 1, "run-123")
             print(execution.domain_type)
         """
         return _t.cast(models.SyncExecutionDetails, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/executions/{_seg(execution_id)}", [], None, models.SyncExecutionDetails, envelope=True))
@@ -639,8 +639,8 @@ class WikiCategoriesPagesVersionsResource(Resource):
         return _t.cast(_t.List[models.WikiPage], self._call('GET', f"/wiki/categories/{_seg(wiki_category_id)}/pages/{_seg(identifier)}/versions", [], None, _t.List[models.WikiPage], envelope=True))
 
 
-class AgendatemplatesItemsServicegroupsResource(Resource):
-    """`client.agendatemplates.items.servicegroups`"""
+class AgendaTemplatesItemsServiceGroupsResource(Resource):
+    """`client.agenda_templates.items.service_groups`"""
 
     def delete(
         self,
@@ -662,7 +662,7 @@ class AgendatemplatesItemsServicegroupsResource(Resource):
 
         Example::
 
-            client.agendatemplates.items.servicegroups.delete(35, 123, 13)
+            client.agenda_templates.items.service_groups.delete(35, 123, 13)
         """
         self._raw('DELETE', f"/agendatemplates/{_seg(agenda_id)}/items/{_seg(item_id)}/servicegroups/{_seg(service_group_id)}", [], None)
 
@@ -690,7 +690,7 @@ class AgendatemplatesItemsServicegroupsResource(Resource):
 
         Example::
 
-            client.agendatemplates.items.servicegroups.update(
+            client.agenda_templates.items.service_groups.update(
                 35,
                 123,
                 13,
@@ -700,8 +700,8 @@ class AgendatemplatesItemsServicegroupsResource(Resource):
         self._raw('PUT', f"/agendatemplates/{_seg(agenda_id)}/items/{_seg(item_id)}/servicegroups/{_seg(service_group_id)}", [], _body({'note': note}, extra_body))
 
 
-class CalendarsAppointmentsMeetingrequestsResource(Resource):
-    """`client.calendars.appointments.meetingrequests`"""
+class CalendarsAppointmentsMeetingRequestsResource(Resource):
+    """`client.calendars.appointments.meeting_requests`"""
 
     def answer(
         self,
@@ -726,7 +726,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
 
         Example::
 
-            client.calendars.appointments.meetingrequests.answer(42, 4, 19, "accept")
+            client.calendars.appointments.meeting_requests.answer(42, 4, 19, "accept")
         """
         self._raw('POST', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests/{_seg(meeting_request_id)}/{_seg(answer)}", [], None)
 
@@ -752,7 +752,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
 
         Example::
 
-            result = client.calendars.appointments.meetingrequests.create(42, 4, invitee_id=42)
+            result = client.calendars.appointments.meeting_requests.create(42, 4, invitee_id=42)
             print(result.id)
         """
         return _t.cast(models.MeetingRequest, self._call('POST', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests", [], _body({'inviteeId': invitee_id}, extra_body), models.MeetingRequest, envelope=False))
@@ -777,7 +777,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
 
         Example::
 
-            client.calendars.appointments.meetingrequests.delete(42, 4, 19)
+            client.calendars.appointments.meeting_requests.delete(42, 4, 19)
         """
         self._raw('DELETE', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests/{_seg(meeting_request_id)}", [], None)
 
@@ -799,8 +799,8 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
 
         Example::
 
-            for meetingrequest in client.calendars.appointments.meetingrequests.list(42, 4):
-                print(meetingrequest.id)
+            for meeting_request in client.calendars.appointments.meeting_requests.list(42, 4):
+                print(meeting_request.id)
         """
         return _t.cast(_t.List[models.MeetingRequest], self._call('GET', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests", [], None, _t.List[models.MeetingRequest], envelope=True))
 
@@ -832,7 +832,7 @@ class CalendarsAppointmentsMeetingrequestsResource(Resource):
 
         Example::
 
-            client.calendars.appointments.meetingrequests.update(42, 4, 19, answer="accept")
+            client.calendars.appointments.meeting_requests.update(42, 4, 19, answer="accept")
         """
         self._raw('PUT', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}/meetingrequests/{_seg(meeting_request_id)}", [], _body({'answer': answer}, extra_body))
 
@@ -1039,7 +1039,7 @@ class EventsAgendaItemsResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.servicegroups = EventsAgendaItemsServicegroupsResource(core)
+        self.service_groups = EventsAgendaItemsServiceGroupsResource(core)
 
     def create(
         self,
@@ -1179,8 +1179,8 @@ class EventsAgendaItemsResource(Resource):
         return _t.cast(_t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], self._call('PUT', f"/events/{_seg(event_id)}/agenda/items/{_seg(item_id)}", _query([('before_id', before_id), ('after_id', after_id), ('sortKey', sort_key)]), _body(body), _t.Union[models.AgendaItemText, models.AgendaItemSong, models.AgendaItemHeader], envelope=True))
 
 
-class ExternalloginsOidcTestResource(Resource):
-    """`client.externallogins.oidc.test`"""
+class ExternalLoginsOidcTestResource(Resource):
+    """`client.external_logins.oidc.test`"""
 
     def create(
         self,
@@ -1195,7 +1195,7 @@ class ExternalloginsOidcTestResource(Resource):
 
         Example::
 
-            result = client.externallogins.oidc.test.create(7)
+            result = client.external_logins.oidc.test.create(7)
             print(result)
         """
         return _t.cast(_t.Union[models.ExternalLoginOidcTestStart, models.ExternalLoginOidcTestError], self._call('POST', f"/externallogins/{_seg(external_login_id)}/oidc/test", [], None, _t.Union[models.ExternalLoginOidcTestStart, models.ExternalLoginOidcTestError], envelope=True))
@@ -1217,14 +1217,14 @@ class ExternalloginsOidcTestResource(Resource):
 
         Example::
 
-            test = client.externallogins.oidc.test.get(7, "opaque-session-bound-state")
+            test = client.external_logins.oidc.test.get(7, "opaque-session-bound-state")
             print(test.error_code)
         """
         return _t.cast(models.ExternalLoginOidcTestResult, self._call('GET', f"/externallogins/{_seg(external_login_id)}/oidc/test/{_seg(state)}", [], None, models.ExternalLoginOidcTestResult, envelope=True))
 
 
-class ExternalloginsSamlMetadataResource(Resource):
-    """`client.externallogins.saml.metadata`"""
+class ExternalLoginsSamlMetadataResource(Resource):
+    """`client.external_logins.saml.metadata`"""
 
     def parse(
         self,
@@ -1244,14 +1244,14 @@ class ExternalloginsSamlMetadataResource(Resource):
 
         Example::
 
-            metadata = client.externallogins.saml.metadata.parse(xml="beispiel")
+            metadata = client.external_logins.saml.metadata.parse(xml="beispiel")
             print(metadata)
         """
         return _t.cast(models.PostExternalloginsSamlMetadataParseData, self._call('POST', "/externallogins/saml/metadata/parse", [], _body({'xml': xml}, extra_body), models.PostExternalloginsSamlMetadataParseData, envelope=True))
 
 
-class ExternalloginsSamlTestResource(Resource):
-    """`client.externallogins.saml.test`"""
+class ExternalLoginsSamlTestResource(Resource):
+    """`client.external_logins.saml.test`"""
 
     def create(
         self,
@@ -1266,7 +1266,7 @@ class ExternalloginsSamlTestResource(Resource):
 
         Example::
 
-            result = client.externallogins.saml.test.create(7)
+            result = client.external_logins.saml.test.create(7)
             print(result.expires_at)
         """
         return _t.cast(models.ExternalLoginSamlTestStart, self._call('POST', f"/externallogins/{_seg(external_login_id)}/saml/test", [], None, models.ExternalLoginSamlTestStart, envelope=True))
@@ -1288,26 +1288,26 @@ class ExternalloginsSamlTestResource(Resource):
 
         Example::
 
-            test = client.externallogins.saml.test.get(7, "beispiel")
+            test = client.external_logins.saml.test.get(7, "beispiel")
             print(test.status)
         """
         return _t.cast(models.ExternalLoginSamlTestResult, self._call('GET', f"/externallogins/{_seg(external_login_id)}/saml/test/{_seg(state)}", [], None, models.ExternalLoginSamlTestResult, envelope=True))
 
 
-class ExternalpostsInstancesChannelsResource(Resource):
-    """`client.externalposts.instances.channels`"""
+class ExternalPostsInstancesChannelsResource(Resource):
+    """`client.external_posts.instances.channels`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.posts = ExternalpostsInstancesChannelsPostsResource(core)
+        self.posts = ExternalPostsInstancesChannelsPostsResource(core)
 
 
-class FinanceAccountingperiodsAccountsResource(Resource):
-    """`client.finance.accountingperiods.accounts`"""
+class FinanceAccountingPeriodsAccountsResource(Resource):
+    """`client.finance.accounting_periods.accounts`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.statements = FinanceAccountingperiodsAccountsStatementsResource(core)
+        self.statements = FinanceAccountingPeriodsAccountsStatementsResource(core)
 
     def delete(
         self,
@@ -1325,7 +1325,7 @@ class FinanceAccountingperiodsAccountsResource(Resource):
 
         Example::
 
-            client.finance.accountingperiods.accounts.delete(1)
+            client.finance.accounting_periods.accounts.delete(1)
         """
         self._raw('DELETE', f"/finance/accountingperiods/{_seg(id)}/accounts", [], None)
 
@@ -1358,7 +1358,7 @@ class FinanceAccountingperiodsAccountsResource(Resource):
 
         Example::
 
-            for movement in client.finance.accountingperiods.accounts.list_movements(1, 42):
+            for movement in client.finance.accounting_periods.accounts.list_movements(1, 42):
                 print(movement.id)
         """
         return Paginator(self._core, f"/finance/accountingperiods/{_seg(id)}/accounts/{_seg(account_id)}/movements", _query([('limit', limit), ('state', state), ('query', query), ('include[]', include)]), models.StatementMovement)
@@ -1379,41 +1379,14 @@ class FinanceAccountingperiodsAccountsResource(Resource):
 
         Example::
 
-            for statement in client.finance.accountingperiods.accounts.list_statements(1):
+            for statement in client.finance.accounting_periods.accounts.list_statements(1):
                 print(statement.account_id)
         """
         return _t.cast(_t.List[models.AccountStatementStatistics], self._call('GET', f"/finance/accountingperiods/{_seg(id)}/accounts/statements", [], None, _t.List[models.AccountStatementStatistics], envelope=True))
 
 
-class FinanceAccountingperiodsStatementsResource(Resource):
-    """`client.finance.accountingperiods.statements`"""
-
-    def create(
-        self,
-        id: int,
-        *,
-        files: _t.Sequence[Upload],
-    ) -> models.AccountStatementPreview:
-        """
-        Preview an uploaded bank statement file
-
-        `POST /finance/accountingperiods/{id}/statements`
-
-        Parses the first uploaded bank statement file and returns a preview without importing it. Send the file in multipart field files[]. Supported formats are MT940, CAMT and PayPal CSV; a ZIP can combine top-level files of the same type and account identifier. Requires edit accounting period permission for the path ID. Duplicate comparison is currently performed across all stored accounts in the date range, so the counts can differ from a later account-specific import. To import, upload the file to /files/statement/{accountId}.
-
-        Args:
-            id: ID of Entity
-            files: Files to upload.
-
-        Example::
-
-            result = client.finance.accountingperiods.statements.create(
-                1,
-                files=[ct.Upload.from_path("kontoauszug.xml")],
-            )
-            print(result.duplicates)
-        """
-        return _t.cast(models.AccountStatementPreview, self._call('POST', f"/finance/accountingperiods/{_seg(id)}/statements", [], None, models.AccountStatementPreview, envelope=True, upload=('files[]', [], files)))
+class FinanceAccountingPeriodsStatementsResource(Resource):
+    """`client.finance.accounting_periods.statements`"""
 
     def delete(
         self,
@@ -1433,9 +1406,36 @@ class FinanceAccountingperiodsStatementsResource(Resource):
 
         Example::
 
-            client.finance.accountingperiods.statements.delete(1, 1)
+            client.finance.accounting_periods.statements.delete(1, 1)
         """
         self._raw('DELETE', f"/finance/accountingperiods/{_seg(id)}/statements/{_seg(statement_id)}", [], None)
+
+    def preview(
+        self,
+        id: int,
+        *,
+        files: _t.Sequence[Upload],
+    ) -> models.AccountStatementPreview:
+        """
+        Preview an uploaded bank statement file
+
+        `POST /finance/accountingperiods/{id}/statements`
+
+        Parses the first uploaded bank statement file and returns a preview without importing it. Send the file in multipart field files[]. Supported formats are MT940, CAMT and PayPal CSV; a ZIP can combine top-level files of the same type and account identifier. Requires edit accounting period permission for the path ID. Duplicate comparison is currently performed across all stored accounts in the date range, so the counts can differ from a later account-specific import. To import, upload the file to /files/statement/{accountId}.
+
+        Args:
+            id: ID of Entity
+            files: Files to upload.
+
+        Example::
+
+            statement = client.finance.accounting_periods.statements.preview(
+                1,
+                files=[ct.Upload.from_path("kontoauszug.xml")],
+            )
+            print(statement.duplicates)
+        """
+        return _t.cast(models.AccountStatementPreview, self._call('POST', f"/finance/accountingperiods/{_seg(id)}/statements", [], None, models.AccountStatementPreview, envelope=True, upload=('files[]', [], files)))
 
     def suggestions(
         self,
@@ -1455,7 +1455,7 @@ class FinanceAccountingperiodsStatementsResource(Resource):
 
         Example::
 
-            client.finance.accountingperiods.statements.suggestions(1, 7)
+            client.finance.accounting_periods.statements.suggestions(1, 7)
         """
         self._raw('POST', f"/finance/accountingperiods/{_seg(id)}/statements/{_seg(statement_id)}/suggestions", [], None)
 
@@ -1481,7 +1481,7 @@ class FinanceAccountingperiodsStatementsResource(Resource):
 
         Example::
 
-            client.finance.accountingperiods.statements.update(1, 1, name="September 2026")
+            client.finance.accounting_periods.statements.update(1, 1, name="September 2026")
         """
         self._raw('PUT', f"/finance/accountingperiods/{_seg(id)}/statements/{_seg(statement_id)}", [], _body({'name': name}, extra_body))
 
@@ -1809,7 +1809,7 @@ class FinanceReportsStatementResource(Resource):
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
         self.accounts = FinanceReportsStatementAccountsResource(core)
-        self.costcenters = FinanceReportsStatementCostcentersResource(core)
+        self.cost_centers = FinanceReportsStatementCostCentersResource(core)
 
 
 class GroupsMeetingsMembersResource(Resource):
@@ -1924,8 +1924,8 @@ class GroupsMeetingsMembersResource(Resource):
         self._raw('POST', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}/members/reset", [], None)
 
 
-class GroupsMemberfieldsGroupResource(Resource):
-    """`client.groups.memberfields.group`"""
+class GroupsMemberFieldsGroupResource(Resource):
+    """`client.groups.member_fields.group`"""
 
     def create(
         self,
@@ -1970,7 +1970,7 @@ class GroupsMemberfieldsGroupResource(Resource):
 
         Example::
 
-            result = client.groups.memberfields.group.create(
+            result = client.groups.member_fields.group.create(
                 42,
                 field_type_code="text",
                 name="T-Shirt size",
@@ -2000,7 +2000,7 @@ class GroupsMemberfieldsGroupResource(Resource):
 
         Example::
 
-            client.groups.memberfields.group.delete(42, 42)
+            client.groups.member_fields.group.delete(42, 42)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/memberfields/group/{_seg(group_member_field_id)}", [], None)
 
@@ -2046,7 +2046,7 @@ class GroupsMemberfieldsGroupResource(Resource):
 
         Example::
 
-            result = client.groups.memberfields.group.patch(42, 42, name="T-Shirt size")
+            result = client.groups.member_fields.group.patch(42, 42, name="T-Shirt size")
             print(result.name)
         """
         return _t.cast(models.GroupMemberFieldGroup, self._call('PATCH', f"/groups/{_seg(group_id)}/memberfields/group/{_seg(group_member_field_id)}", [], _body({'defaultValue': default_value, 'name': name, 'nameInSignupForm': name_in_signup_form, 'note': note, 'noteInSignupForm': note_in_signup_form, 'options': options, 'referenceName': reference_name, 'requiredInRegistrationForm': required_in_registration_form, 'securityLevel': security_level, 'sortKey': sort_key, 'useInRegistrationForm': use_in_registration_form}, extra_body), models.GroupMemberFieldGroup, envelope=True))
@@ -2093,7 +2093,7 @@ class GroupsMemberfieldsGroupResource(Resource):
 
         Example::
 
-            result = client.groups.memberfields.group.update(
+            result = client.groups.member_fields.group.update(
                 42,
                 42,
                 name="T-Shirt size",
@@ -2107,8 +2107,8 @@ class GroupsMemberfieldsGroupResource(Resource):
         return _t.cast(models.GroupMemberFieldGroup, self._call('PUT', f"/groups/{_seg(group_id)}/memberfields/group/{_seg(group_member_field_id)}", [], _body({'defaultValue': default_value, 'name': name, 'nameInSignupForm': name_in_signup_form, 'note': note, 'noteInSignupForm': note_in_signup_form, 'options': options, 'referenceName': reference_name, 'requiredInRegistrationForm': required_in_registration_form, 'securityLevel': security_level, 'sortKey': sort_key, 'useInRegistrationForm': use_in_registration_form}, extra_body), models.GroupMemberFieldGroup, envelope=True))
 
 
-class GroupsMemberfieldsPersonResource(Resource):
-    """`client.groups.memberfields.person`"""
+class GroupsMemberFieldsPersonResource(Resource):
+    """`client.groups.member_fields.person`"""
 
     def delete(
         self,
@@ -2128,7 +2128,7 @@ class GroupsMemberfieldsPersonResource(Resource):
 
         Example::
 
-            client.groups.memberfields.person.delete(42, 200)
+            client.groups.member_fields.person.delete(42, 200)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/memberfields/person/{_seg(field_id)}", [], None)
 
@@ -2156,7 +2156,7 @@ class GroupsMemberfieldsPersonResource(Resource):
 
         Example::
 
-            result = client.groups.memberfields.person.update(
+            result = client.groups.member_fields.person.update(
                 42,
                 200,
                 required_in_registration_form=False,
@@ -2404,8 +2404,8 @@ class GroupsWikiCategoriesResource(Resource):
         return _t.cast(_t.List[models.GroupWikiCategoryPagesItem], self._call('GET', f"/groups/{_seg(group_id)}/wiki/categories/pages", _query([('limit', limit)]), None, _t.List[models.GroupWikiCategoryPagesItem], envelope=True))
 
 
-class LoginTwofactorSetupResource(Resource):
-    """`client.login.twofactor.setup`"""
+class LoginTwoFactorSetupResource(Resource):
+    """`client.login.two_factor.setup`"""
 
     def activate(
         self,
@@ -2425,7 +2425,7 @@ class LoginTwofactorSetupResource(Resource):
 
         Example::
 
-            setup = client.login.twofactor.setup.activate(code="012345")
+            setup = client.login.two_factor.setup.activate(code="012345")
             print(setup.redirect_to)
         """
         return _t.cast(models.PostLoginTwofactorSetupActivateData, self._call('POST', "/login/twofactor/setup/activate", [], _body({'code': code}, extra_body), models.PostLoginTwofactorSetupActivateData, envelope=True))
@@ -2442,7 +2442,7 @@ class LoginTwofactorSetupResource(Resource):
 
         Example::
 
-            result = client.login.twofactor.setup.create()
+            result = client.login.two_factor.setup.create()
             print(result.qrcode)
         """
         return _t.cast(models.TwoFactorSetupSecret, self._call('POST', "/login/twofactor/setup", [], None, models.TwoFactorSetupSecret, envelope=True))
@@ -2624,7 +2624,7 @@ class PersonsEventsServicesResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.exchangerequests = PersonsEventsServicesExchangerequestsResource(core)
+        self.exchange_requests = PersonsEventsServicesExchangeRequestsResource(core)
 
     def list(
         self,
@@ -2650,8 +2650,8 @@ class PersonsEventsServicesResource(Resource):
         return _t.cast(_t.List[models.ServiceRequest], self._call('GET', f"/persons/{_seg(person_id)}/events/{_seg(event_id)}/services", [], None, _t.List[models.ServiceRequest], envelope=True))
 
 
-class PersonsSettingsTwofactorResource(Resource):
-    """`client.persons.settings.twofactor`"""
+class PersonsSettingsTwoFactorResource(Resource):
+    """`client.persons.settings.two_factor`"""
 
     def create(
         self,
@@ -2675,7 +2675,7 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Example::
 
-            result = client.persons.settings.twofactor.create(
+            result = client.persons.settings.two_factor.create(
                 42,
                 password="example-password",
                 username="alex@example.org",
@@ -2700,7 +2700,7 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Example::
 
-            client.persons.settings.twofactor.delete(42)
+            client.persons.settings.two_factor.delete(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/settings/twofactor", [], None)
 
@@ -2720,8 +2720,8 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Example::
 
-            twofactor = client.persons.settings.twofactor.get(42)
-            print(twofactor.attribute)
+            two_factor = client.persons.settings.two_factor.get(42)
+            print(two_factor.attribute)
         """
         return _t.cast(models.PersonTwoFactorEnabled, self._call('GET', f"/persons/{_seg(person_id)}/settings/twofactor", [], None, models.PersonTwoFactorEnabled, envelope=True))
 
@@ -2741,7 +2741,7 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Example::
 
-            force = client.persons.settings.twofactor.get_force(42)
+            force = client.persons.settings.two_factor.get_force(42)
             print(force.attribute)
         """
         return _t.cast(models.PersonTwoFactorForce, self._call('GET', f"/persons/{_seg(person_id)}/settings/twofactor/force", [], None, models.PersonTwoFactorForce, envelope=True))
@@ -2762,7 +2762,7 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Example::
 
-            result = client.persons.settings.twofactor.update(42)
+            result = client.persons.settings.two_factor.update(42)
             print(result.attribute)
         """
         return _t.cast(models.PersonTwoFactorEnabled, self._call('PUT', f"/persons/{_seg(person_id)}/settings/twofactor", [], None, models.PersonTwoFactorEnabled, envelope=True))
@@ -2787,7 +2787,7 @@ class PersonsSettingsTwofactorResource(Resource):
 
         Example::
 
-            result = client.persons.settings.twofactor.update_force(42, value=True)
+            result = client.persons.settings.two_factor.update_force(42, value=True)
             print(result.attribute)
         """
         return _t.cast(models.PersonTwoFactorForce, self._call('PUT', f"/persons/{_seg(person_id)}/settings/twofactor/force", [], _body({'value': value}, extra_body), models.PersonTwoFactorForce, envelope=True))
@@ -2909,8 +2909,8 @@ class PostsReactionsPersonsResource(Resource):
         return _t.cast(models.PostReaction, self._call('PUT', f"/posts/{_seg(post_id)}/reactions/{_seg(emoji)}/persons/{_seg(person_id)}", [], None, models.PostReaction, envelope=True))
 
 
-class PublicgroupsSignupConfirmResource(Resource):
-    """`client.publicgroups.signup.confirm`"""
+class PublicGroupsSignupConfirmResource(Resource):
+    """`client.public_groups.signup.confirm`"""
 
     def create(
         self,
@@ -2930,7 +2930,7 @@ class PublicgroupsSignupConfirmResource(Resource):
 
         Example::
 
-            result = client.publicgroups.signup.confirm.create("abc123", body={})
+            result = client.public_groups.signup.confirm.create("abc123", body={})
             print(result.group_homepage_hash)
         """
         return _t.cast(models.PostPublicgroupsSignupConfirmConfirmationTokenData, self._call('POST', f"/publicgroups/signup/confirm/{_seg(confirmation_token)}", [], _body(body), models.PostPublicgroupsSignupConfirmConfirmationTokenData, envelope=True))
@@ -2951,7 +2951,7 @@ class PublicgroupsSignupConfirmResource(Resource):
 
         Example::
 
-            data = client.publicgroups.signup.confirm.get("abc123")
+            data = client.public_groups.signup.confirm.get("abc123")
             with open("ergebnis.bin", "wb") as f:
                 f.write(data)
         """
@@ -3138,8 +3138,8 @@ class SyncAdaptersProxyResource(Resource):
         self._raw('PUT', f"/sync/adapters/{_seg(adapter_name)}/proxy/{_seg(uri)}", [], None)
 
 
-class SyncExternalsystemsAdapterproxyResource(Resource):
-    """`client.sync.externalsystems.adapterproxy`"""
+class SyncExternalsystemsAdapterProxyResource(Resource):
+    """`client.sync.externalsystems.adapter_proxy`"""
 
     def create(
         self,
@@ -3159,7 +3159,7 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.adapterproxy.create(1, "adapter/info")
+            client.sync.externalsystems.adapter_proxy.create(1, "adapter/info")
         """
         self._raw('POST', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -3181,7 +3181,7 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.adapterproxy.delete(1, "adapter/info")
+            client.sync.externalsystems.adapter_proxy.delete(1, "adapter/info")
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -3203,7 +3203,7 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.adapterproxy.get(1, "adapter/info")
+            client.sync.externalsystems.adapter_proxy.get(1, "adapter/info")
         """
         self._raw('GET', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -3225,7 +3225,7 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.adapterproxy.patch(1, "adapter/info")
+            client.sync.externalsystems.adapter_proxy.patch(1, "adapter/info")
         """
         self._raw('PATCH', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
@@ -3247,13 +3247,13 @@ class SyncExternalsystemsAdapterproxyResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.adapterproxy.update(1, "adapter/info")
+            client.sync.externalsystems.adapter_proxy.update(1, "adapter/info")
         """
         self._raw('PUT', f"/sync/externalsystems/{_seg(external_system_id)}/adapterproxy/{_seg(uri)}", [], None)
 
 
-class SyncExternalsystemsFieldmappingsResource(Resource):
-    """`client.sync.externalsystems.fieldmappings`"""
+class SyncExternalsystemsFieldMappingsResource(Resource):
+    """`client.sync.externalsystems.field_mappings`"""
 
     def delete(
         self,
@@ -3274,7 +3274,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.fieldmappings.delete(1, "status")
+            client.sync.externalsystems.field_mappings.delete(1, "status")
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings/{_seg(domain_type)}", [], None)
 
@@ -3297,8 +3297,8 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
 
         Example::
 
-            fieldmapping = client.sync.externalsystems.fieldmappings.get(1, "status")
-            print(fieldmapping.id)
+            field_mapping = client.sync.externalsystems.field_mappings.get(1, "status")
+            print(field_mapping.id)
         """
         return _t.cast(models.FieldMapping, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings/{_seg(domain_type)}", [], None, models.FieldMapping, envelope=True))
 
@@ -3321,7 +3321,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
 
         Example::
 
-            result = client.sync.externalsystems.fieldmappings.get_nosuggestions(1, "status")
+            result = client.sync.externalsystems.field_mappings.get_nosuggestions(1, "status")
             print(result)
         """
         return _t.cast(_t.Union[models.GetSyncExternalsystemsIdFieldmappingsDomaintypeNosuggestionsDataVariant1, _t.List[_t.Any]], self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings/{_seg(domain_type)}/nosuggestions", [], None, _t.Union[models.GetSyncExternalsystemsIdFieldmappingsDomaintypeNosuggestionsDataVariant1, _t.List[_t.Any]], envelope=True))
@@ -3342,8 +3342,8 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
 
         Example::
 
-            for fieldmapping in client.sync.externalsystems.fieldmappings.list(1):
-                print(fieldmapping.id)
+            for field_mapping in client.sync.externalsystems.field_mappings.list(1):
+                print(field_mapping.id)
         """
         return _t.cast(_t.List[models.FieldMapping], self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings", [], None, _t.List[models.FieldMapping], envelope=True))
 
@@ -3370,7 +3370,7 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
 
         Example::
 
-            result = client.sync.externalsystems.fieldmappings.update(
+            result = client.sync.externalsystems.field_mappings.update(
                 1,
                 "status",
                 property_mappings_es_to_master=[ct.models.SyncFieldMappingEntryCreate.model_validate({"from": "firstName", "fromFilter": "", "others": {}, "to": "firstName", "toFilter": "", "valueMapping": {}})],
@@ -3381,12 +3381,12 @@ class SyncExternalsystemsFieldmappingsResource(Resource):
         return _t.cast(models.FieldMapping, self._call('PUT', f"/sync/externalsystems/{_seg(external_system_id)}/fieldmappings/{_seg(domain_type)}", [], _body({'propertyMappingsESToMaster': property_mappings_es_to_master, 'propertyMappingsMasterToES': property_mappings_master_to_es}, extra_body), models.FieldMapping, envelope=True))
 
 
-class SyncExternalsystemsJobconfigsResource(Resource):
-    """`client.sync.externalsystems.jobconfigs`"""
+class SyncExternalsystemsJobConfigsResource(Resource):
+    """`client.sync.externalsystems.job_configs`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.executions = SyncExternalsystemsJobconfigsExecutionsResource(core)
+        self.executions = SyncExternalsystemsJobConfigsExecutionsResource(core)
 
     def create(
         self,
@@ -3438,7 +3438,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            result = client.sync.externalsystems.jobconfigs.create(
+            result = client.sync.externalsystems.job_configs.create(
                 1,
                 auto_schedule_enabled=False,
                 domain_type="person",
@@ -3466,7 +3466,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.jobconfigs.delete(1, 1)
+            client.sync.externalsystems.job_configs.delete(1, 1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}", [], None)
 
@@ -3488,7 +3488,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.jobconfigs.delete_filter(1, 1)
+            client.sync.externalsystems.job_configs.delete_filter(1, 1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/filter", [], None)
 
@@ -3510,7 +3510,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.jobconfigs.delete_properties(1, 1)
+            client.sync.externalsystems.job_configs.delete_properties(1, 1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/properties", [], None)
 
@@ -3532,8 +3532,8 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            for jobconfig in client.sync.externalsystems.jobconfigs.get(1, 1):
-                print(jobconfig.name)
+            for job_config in client.sync.externalsystems.job_configs.get(1, 1):
+                print(job_config.name)
         """
         return _t.cast(_t.List[models.JobConfigurationReturn], self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}", [], None, _t.List[models.JobConfigurationReturn], envelope=True))
 
@@ -3555,7 +3555,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            filter = client.sync.externalsystems.jobconfigs.get_filter(1, 1)
+            filter = client.sync.externalsystems.job_configs.get_filter(1, 1)
             print(filter)
         """
         return _t.cast(models.SyncJobFilters, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/filter", [], None, models.SyncJobFilters, envelope=True))
@@ -3578,7 +3578,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            property = client.sync.externalsystems.jobconfigs.get_properties(1, 1)
+            property = client.sync.externalsystems.job_configs.get_properties(1, 1)
             print(property.domain_type)
         """
         return _t.cast(models.SyncJobProperties, self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/properties", [], None, models.SyncJobProperties, envelope=True))
@@ -3599,8 +3599,8 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            for jobconfig in client.sync.externalsystems.jobconfigs.list(1):
-                print(jobconfig.name)
+            for job_config in client.sync.externalsystems.job_configs.list(1):
+                print(job_config.name)
         """
         return _t.cast(_t.List[models.JobConfigurationReturn], self._call('GET', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs", [], None, _t.List[models.JobConfigurationReturn], envelope=True))
 
@@ -3628,7 +3628,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.jobconfigs.start(1, 1, is_dry_run=True)
+            client.sync.externalsystems.job_configs.start(1, 1, is_dry_run=True)
         """
         self._raw('POST', f"/sync/externalsystems/{_seg(external_system_id)}/jobconfigs/{_seg(job_id)}/start", [], _body({'isDryRun': is_dry_run, 'isValidationOnly': is_validation_only}, extra_body))
 
@@ -3688,7 +3688,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            result = client.sync.externalsystems.jobconfigs.update(
+            result = client.sync.externalsystems.job_configs.update(
                 1,
                 1,
                 auto_schedule_enabled=False,
@@ -3722,7 +3722,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            result = client.sync.externalsystems.jobconfigs.update_filter(
+            result = client.sync.externalsystems.job_configs.update_filter(
                 1,
                 1,
                 es=[ct.models.SyncJobFilterCreate.model_validate({"field": "statusId", "system": "master", "values": {}})],
@@ -3754,7 +3754,7 @@ class SyncExternalsystemsJobconfigsResource(Resource):
 
         Example::
 
-            result = client.sync.externalsystems.jobconfigs.update_properties(
+            result = client.sync.externalsystems.job_configs.update_properties(
                 1,
                 1,
                 property_mappings_es_to_master=[ct.models.SyncJobPropertyCreate.model_validate({"fieldMappingId": 1, "from": "firstName", "fromFilter": "", "system": "master", "to": "firstName", "toFilter": ""})],
@@ -3906,12 +3906,12 @@ class WikiCategoriesPagesResource(Resource):
         return _t.cast(models.WikiPage, self._call('PATCH', f"/wiki/categories/{_seg(wiki_category_id)}/pages/{_seg(identifier)}", [], _body({'isMarkdown': is_markdown, 'onStartpage': on_startpage, 'text': text}, extra_body), models.WikiPage, envelope=True))
 
 
-class AgendatemplatesItemsResource(Resource):
-    """`client.agendatemplates.items`"""
+class AgendaTemplatesItemsResource(Resource):
+    """`client.agenda_templates.items`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.servicegroups = AgendatemplatesItemsServicegroupsResource(core)
+        self.service_groups = AgendaTemplatesItemsServiceGroupsResource(core)
 
     def create(
         self,
@@ -3937,7 +3937,7 @@ class AgendatemplatesItemsResource(Resource):
 
         Example::
 
-            result = client.agendatemplates.items.create(
+            result = client.agenda_templates.items.create(
                 35,
                 body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
             )
@@ -3965,7 +3965,7 @@ class AgendatemplatesItemsResource(Resource):
 
         Example::
 
-            client.agendatemplates.items.delete(35, 123)
+            client.agenda_templates.items.delete(35, 123)
         """
         self._raw('DELETE', f"/agendatemplates/{_seg(agenda_id)}/items/{_seg(item_id)}", [], None)
 
@@ -3995,7 +3995,7 @@ class AgendatemplatesItemsResource(Resource):
 
         Example::
 
-            result = client.agendatemplates.items.update(
+            result = client.agenda_templates.items.update(
                 35,
                 123,
                 body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
@@ -4012,10 +4012,10 @@ class CalendarsAppointmentsResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.meetingrequests = CalendarsAppointmentsMeetingrequestsResource(core)
+        self.meeting_requests = CalendarsAppointmentsMeetingRequestsResource(core)
         self.templates = CalendarsAppointmentsTemplatesResource(core)
 
-    def changeimpact(
+    def change_impact(
         self,
         calendar_id: int,
         appointment_id: int,
@@ -4054,7 +4054,7 @@ class CalendarsAppointmentsResource(Resource):
 
         Example::
 
-            for appointment in client.calendars.appointments.changeimpact(
+            for appointment in client.calendars.appointments.change_impact(
                 42,
                 4,
                 end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
@@ -4473,8 +4473,8 @@ class CalendarsAppointmentsResource(Resource):
         return _t.cast(models.AppointmentBase, self._call('PUT', f"/calendars/{_seg(calendar_id)}/appointments/{_seg(appointment_id)}", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date, 'address': address, 'bookings': bookings, 'description': description, 'events': events, 'informOwner': inform_owner, 'isInternal': is_internal, 'link': link, 'meetingrequests': meetingrequests, 'onBehalfOfPid': on_behalf_of_pid, 'signup': signup, 'subtitle': subtitle, 'tags': tags, 'title': title, 'bookingsToDelete': bookings_to_delete}, extra_body), models.AppointmentBase, envelope=True))
 
 
-class CalendarsMeetingrequestResource(Resource):
-    """`client.calendars.meetingrequest`"""
+class CalendarsMeetingRequestResource(Resource):
+    """`client.calendars.meeting_request`"""
 
     def list_candidates(
         self,
@@ -4495,14 +4495,14 @@ class CalendarsMeetingrequestResource(Resource):
 
         Example::
 
-            for candidate in client.calendars.meetingrequest.list_candidates(42):
+            for candidate in client.calendars.meeting_request.list_candidates(42):
                 print(candidate.group_name)
         """
         return _t.cast(_t.List[models.MeetingRequestCandidate], self._call('GET', f"/calendars/{_seg(calendar_id)}/meetingrequest/candidates", _query([('appointmentId', appointment_id)]), None, _t.List[models.MeetingRequestCandidate], envelope=True))
 
 
-class ChurchqueryDebugResource(Resource):
-    """`client.churchquery.debug`"""
+class ChurchQueryDebugResource(Resource):
+    """`client.church_query.debug`"""
 
     def export(
         self,
@@ -4522,13 +4522,13 @@ class ChurchqueryDebugResource(Resource):
 
         Example::
 
-            client.churchquery.debug.export(body="beispiel")
+            client.church_query.debug.export(body="beispiel")
         """
         self._raw('POST', "/churchquery/debug/export", _query([('type', type_)]), _body(body))
 
 
-class DbfieldsOptionsResource(Resource):
-    """`client.dbfields.options`"""
+class DbFieldsOptionsResource(Resource):
+    """`client.db_fields.options`"""
 
     def create(
         self,
@@ -4552,7 +4552,7 @@ class DbfieldsOptionsResource(Resource):
 
         Example::
 
-            result = client.dbfields.options.create(200, name="Vegetarian")
+            result = client.db_fields.options.create(200, name="Vegetarian")
             print(result.name)
         """
         return _t.cast(models.DbFieldOption, self._call('POST', f"/dbfields/{_seg(field_id)}/options", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.DbFieldOption, envelope=True))
@@ -4578,7 +4578,7 @@ class DbfieldsOptionsResource(Resource):
 
         Example::
 
-            client.dbfields.options.delete(200, 3)
+            client.db_fields.options.delete(200, 3)
         """
         self._raw('DELETE', f"/dbfields/{_seg(field_id)}/options/{_seg(option_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -4598,7 +4598,7 @@ class DbfieldsOptionsResource(Resource):
 
         Example::
 
-            for option in client.dbfields.options.list(200):
+            for option in client.db_fields.options.list(200):
                 print(option.name)
         """
         return _t.cast(_t.List[models.DbFieldOption], self._call('GET', f"/dbfields/{_seg(field_id)}/options", [], None, _t.List[models.DbFieldOption], envelope=True))
@@ -4619,7 +4619,7 @@ class DbfieldsOptionsResource(Resource):
 
         Example::
 
-            for metadata in client.dbfields.options.list_metadata(200):
+            for metadata in client.db_fields.options.list_metadata(200):
                 print(metadata.name)
         """
         return _t.cast(_t.List[models.DbFieldOptionColumn], self._call('GET', f"/dbfields/{_seg(field_id)}/options/metadata", [], None, _t.List[models.DbFieldOptionColumn], envelope=True))
@@ -4648,7 +4648,7 @@ class DbfieldsOptionsResource(Resource):
 
         Example::
 
-            result = client.dbfields.options.update(200, 3, name="Vegetarian")
+            result = client.db_fields.options.update(200, 3, name="Vegetarian")
             print(result.name)
         """
         return _t.cast(models.DbFieldOption, self._call('PUT', f"/dbfields/{_seg(field_id)}/options/{_seg(option_id)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.DbFieldOption, envelope=True))
@@ -4853,8 +4853,8 @@ class EventsAgendaResource(Resource):
         return _t.cast(models.Agenda, self._call('PUT', f"/events/{_seg(event_id)}/agenda", _query([('template_id', template_id), ('event_id', event_id_2)]), _body(body), models.Agenda, envelope=True))
 
 
-class EventsEventservicesResource(Resource):
-    """`client.events.eventservices`"""
+class EventsEventServicesResource(Resource):
+    """`client.events.event_services`"""
 
     @_deprecated('DELETE /events/{eventId}/eventservices/{serviceId} is deprecated in the ChurchTools API.')
     def delete(
@@ -4881,8 +4881,8 @@ class EventsEventservicesResource(Resource):
 
         Example::
 
-            eventservice = client.events.eventservices.delete(42, 42, comment="Hallo zusammen")
-            print(eventservice.name)
+            event_service = client.events.event_services.delete(42, 42, comment="Hallo zusammen")
+            print(event_service.name)
         """
         return _t.cast(models.ServiceRequest, self._call('DELETE', f"/events/{_seg(event_id)}/eventservices/{_seg(service_id)}", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -4921,7 +4921,7 @@ class EventsEventservicesResource(Resource):
 
         Example::
 
-            result = client.events.eventservices.update(42, 42, name="Guest musician")
+            result = client.events.event_services.update(42, 42, name="Guest musician")
             print(result.name)
         """
         if agreed is not UNSET:
@@ -4951,7 +4951,7 @@ class EventsEventservicesResource(Resource):
 
         Example::
 
-            client.events.eventservices.update_all(
+            client.events.event_services.update_all(
                 42,
                 services=[ct.models.EventServiceCountUpdate.model_validate({"count": 3, "serviceId": 2})],
             )
@@ -5117,8 +5117,8 @@ class EventsFactsResource(Resource):
         return _t.cast(models.EventFact, self._call('PUT', f"/events/{_seg(event_id)}/facts/{_seg(fact_id)}", [], _body({'value': value}, extra_body), models.EventFact, envelope=True))
 
 
-class EventsServicerequestsResource(Resource):
-    """`client.events.servicerequests`"""
+class EventsServiceRequestsResource(Resource):
+    """`client.events.service_requests`"""
 
     def accept(
         self,
@@ -5142,8 +5142,8 @@ class EventsServicerequestsResource(Resource):
 
         Example::
 
-            servicerequest = client.events.servicerequests.accept(42, 42, comment="Hallo zusammen")
-            print(servicerequest.name)
+            service_request = client.events.service_requests.accept(42, 42, comment="Hallo zusammen")
+            print(service_request.name)
         """
         return _t.cast(models.ServiceRequest, self._call('POST', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}/accept", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -5169,8 +5169,8 @@ class EventsServicerequestsResource(Resource):
 
         Example::
 
-            servicerequest = client.events.servicerequests.decline(42, 42, comment="Hallo zusammen")
-            print(servicerequest.name)
+            service_request = client.events.service_requests.decline(42, 42, comment="Hallo zusammen")
+            print(service_request.name)
         """
         return _t.cast(models.ServiceRequest, self._call('POST', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}/decline", [], _body({'comment': comment}, extra_body), models.ServiceRequest, envelope=True))
 
@@ -5196,8 +5196,8 @@ class EventsServicerequestsResource(Resource):
 
         Example::
 
-            servicerequest = client.events.servicerequests.undo(42, 42, person_id=42)
-            print(servicerequest.name)
+            service_request = client.events.service_requests.undo(42, 42, person_id=42)
+            print(service_request.name)
         """
         return _t.cast(models.ServiceRequestUndoResult, self._call('POST', f"/events/{_seg(event_id)}/servicerequests/{_seg(request_id)}/undo", [], _body({'personId': person_id}, extra_body), models.ServiceRequestUndoResult, envelope=True))
 
@@ -5233,7 +5233,7 @@ class EventsServicerequestsResource(Resource):
 
         Example::
 
-            result = client.events.servicerequests.update(42, 42, name="Guest musician")
+            result = client.events.service_requests.update(42, 42, name="Guest musician")
             print(result.name)
         """
         if agreed is not UNSET:
@@ -5260,7 +5260,7 @@ class EventsServicerequestsResource(Resource):
 
         Example::
 
-            client.events.servicerequests.update_all(
+            client.events.service_requests.update_all(
                 42,
                 services=[ct.models.EventServiceCountUpdate.model_validate({"count": 3, "serviceId": 2})],
             )
@@ -5271,7 +5271,7 @@ class EventsServicerequestsResource(Resource):
 class EventsServicesResource(Resource):
     """`client.events.services`"""
 
-    def list_possiblepersons(
+    def list_possible_persons(
         self,
         event_id: int,
         service_id: int,
@@ -5289,14 +5289,14 @@ class EventsServicesResource(Resource):
 
         Example::
 
-            for possibleperson in client.events.services.list_possiblepersons(42, 2):
-                print(possibleperson.partner_services)
+            for possible_person in client.events.services.list_possible_persons(42, 2):
+                print(possible_person.partner_services)
         """
         return _t.cast(_t.List[models.PossibleEventPerson], self._call('GET', f"/events/{_seg(event_id)}/services/{_seg(service_id)}/possiblepersons", [], None, _t.List[models.PossibleEventPerson], envelope=True))
 
 
-class ExternalloginsLinkResource(Resource):
-    """`client.externallogins.link`"""
+class ExternalLoginsLinkResource(Resource):
+    """`client.external_logins.link`"""
 
     def create(
         self,
@@ -5321,7 +5321,7 @@ class ExternalloginsLinkResource(Resource):
 
         Example::
 
-            result = client.externallogins.link.create(
+            result = client.external_logins.link.create(
                 7,
                 link_token="opaque-session-bound-link-token",
                 password="geheim",
@@ -5350,7 +5350,7 @@ class ExternalloginsLinkResource(Resource):
 
         Example::
 
-            result = client.externallogins.link.create_person(
+            result = client.external_logins.link.create_person(
                 7,
                 link_token="opaque-session-bound-link-token",
             )
@@ -5359,12 +5359,12 @@ class ExternalloginsLinkResource(Resource):
         return _t.cast(models.ExternalLoginLinkResult, self._call('POST', f"/externallogins/{_seg(external_login_id)}/link/create-person", [], _body({'linkToken': link_token}, extra_body), models.ExternalLoginLinkResult, envelope=True))
 
 
-class ExternalloginsOidcResource(Resource):
-    """`client.externallogins.oidc`"""
+class ExternalLoginsOidcResource(Resource):
+    """`client.external_logins.oidc`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.test = ExternalloginsOidcTestResource(core)
+        self.test = ExternalLoginsOidcTestResource(core)
 
     def backchannel_logout(
         self,
@@ -5378,7 +5378,7 @@ class ExternalloginsOidcResource(Resource):
 
         Example::
 
-            client.externallogins.oidc.backchannel_logout()
+            client.external_logins.oidc.backchannel_logout()
         """
         self._raw('POST', "/externallogins/oidc/backchannel-logout", [], None)
 
@@ -5403,7 +5403,7 @@ class ExternalloginsOidcResource(Resource):
 
         Example::
 
-            data = client.externallogins.oidc.callback(state="opaque-session-bound-state")
+            data = client.external_logins.oidc.callback(state="opaque-session-bound-state")
             with open("ergebnis.bin", "wb") as f:
                 f.write(data)
         """
@@ -5431,7 +5431,7 @@ class ExternalloginsOidcResource(Resource):
 
         Example::
 
-            data = client.externallogins.oidc.callback_for(7, state="opaque-session-bound-state")
+            data = client.external_logins.oidc.callback_for(7, state="opaque-session-bound-state")
             with open("ergebnis.bin", "wb") as f:
                 f.write(data)
         """
@@ -5455,19 +5455,19 @@ class ExternalloginsOidcResource(Resource):
 
         Example::
 
-            start = client.externallogins.oidc.get_start(7)
+            start = client.external_logins.oidc.get_start(7)
             print(start.expires_at)
         """
         return _t.cast(models.ExternalLoginAuthorizationStart, self._call('GET', f"/externallogins/{_seg(external_login_id)}/oidc/start", _query([('redirect', redirect)]), None, models.ExternalLoginAuthorizationStart, envelope=True))
 
 
-class ExternalloginsSamlResource(Resource):
-    """`client.externallogins.saml`"""
+class ExternalLoginsSamlResource(Resource):
+    """`client.external_logins.saml`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.metadata = ExternalloginsSamlMetadataResource(core)
-        self.test = ExternalloginsSamlTestResource(core)
+        self.metadata = ExternalLoginsSamlMetadataResource(core)
+        self.test = ExternalLoginsSamlTestResource(core)
 
     def acs(
         self,
@@ -5482,7 +5482,7 @@ class ExternalloginsSamlResource(Resource):
 
         Example::
 
-            data = client.externallogins.saml.acs(7)
+            data = client.external_logins.saml.acs(7)
             with open("ergebnis.bin", "wb") as f:
                 f.write(data)
         """
@@ -5514,7 +5514,7 @@ class ExternalloginsSamlResource(Resource):
 
         Example::
 
-            client.externallogins.saml.create_sls(7)
+            client.external_logins.saml.create_sls(7)
         """
         self._raw('POST', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -5544,7 +5544,7 @@ class ExternalloginsSamlResource(Resource):
 
         Example::
 
-            client.externallogins.saml.delete_sls(7)
+            client.external_logins.saml.delete_sls(7)
         """
         self._raw('DELETE', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -5566,7 +5566,7 @@ class ExternalloginsSamlResource(Resource):
 
         Example::
 
-            client.externallogins.saml.get_login(7)
+            client.external_logins.saml.get_login(7)
         """
         self._raw('GET', f"/externallogins/{_seg(external_login_id)}/saml/login", _query([('redirect', redirect)]), None)
 
@@ -5583,7 +5583,7 @@ class ExternalloginsSamlResource(Resource):
 
         Example::
 
-            data = client.externallogins.saml.get_metadata(7)
+            data = client.external_logins.saml.get_metadata(7)
             with open("ergebnis.bin", "wb") as f:
                 f.write(data)
         """
@@ -5615,7 +5615,7 @@ class ExternalloginsSamlResource(Resource):
 
         Example::
 
-            client.externallogins.saml.get_sls(7)
+            client.external_logins.saml.get_sls(7)
         """
         self._raw('GET', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -5645,7 +5645,7 @@ class ExternalloginsSamlResource(Resource):
 
         Example::
 
-            client.externallogins.saml.patch_sls(7)
+            client.external_logins.saml.patch_sls(7)
         """
         self._raw('PATCH', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
@@ -5675,21 +5675,21 @@ class ExternalloginsSamlResource(Resource):
 
         Example::
 
-            client.externallogins.saml.update_sls(7)
+            client.external_logins.saml.update_sls(7)
         """
         self._raw('PUT', f"/externallogins/{_seg(external_login_id)}/saml/sls", _query([('SAMLRequest', saml_request), ('SAMLResponse', saml_response), ('RelayState', relay_state), ('SigAlg', sig_alg), ('Signature', signature)]), None)
 
 
-class ExternalpostsInstancesResource(Resource):
-    """`client.externalposts.instances`"""
+class ExternalPostsInstancesResource(Resource):
+    """`client.external_posts.instances`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.channels = ExternalpostsInstancesChannelsResource(core)
+        self.channels = ExternalPostsInstancesChannelsResource(core)
 
 
-class FinanceAccountclassesResource(Resource):
-    """`client.finance.accountclasses`"""
+class FinanceAccountClassesResource(Resource):
+    """`client.finance.account_classes`"""
 
     def create(
         self,
@@ -5715,7 +5715,7 @@ class FinanceAccountclassesResource(Resource):
 
         Example::
 
-            result = client.finance.accountclasses.create(account_type_id=3, name="Anlagevermögen")
+            result = client.finance.account_classes.create(account_type_id=3, name="Anlagevermögen")
             print(result.name)
         """
         return _t.cast(models.AccountClass, self._call('POST', "/finance/accountclasses", [], _body({'accountTypeId': account_type_id, 'includeProfitLoss': include_profit_loss, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountClass, envelope=True))
@@ -5739,7 +5739,7 @@ class FinanceAccountclassesResource(Resource):
 
         Example::
 
-            client.finance.accountclasses.delete(1)
+            client.finance.account_classes.delete(1)
         """
         self._raw('DELETE', f"/finance/accountclasses/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -5759,8 +5759,8 @@ class FinanceAccountclassesResource(Resource):
 
         Example::
 
-            accountclass = client.finance.accountclasses.get(1)
-            print(accountclass.name)
+            account_class = client.finance.account_classes.get(1)
+            print(account_class.name)
         """
         return _t.cast(models.AccountClass, self._call('GET', f"/finance/accountclasses/{_seg(id)}", [], None, models.AccountClass, envelope=True))
 
@@ -5776,8 +5776,8 @@ class FinanceAccountclassesResource(Resource):
 
         Example::
 
-            for accountclass in client.finance.accountclasses.list():
-                print(accountclass.name)
+            for account_class in client.finance.account_classes.list():
+                print(account_class.name)
         """
         return _t.cast(_t.List[models.AccountClass], self._call('GET', "/finance/accountclasses", [], None, _t.List[models.AccountClass], envelope=True))
 
@@ -5807,14 +5807,14 @@ class FinanceAccountclassesResource(Resource):
 
         Example::
 
-            result = client.finance.accountclasses.update(1, account_type_id=3, name="Anlagevermögen")
+            result = client.finance.account_classes.update(1, account_type_id=3, name="Anlagevermögen")
             print(result.name)
         """
         return _t.cast(models.AccountClass, self._call('PUT', f"/finance/accountclasses/{_seg(id)}", [], _body({'accountTypeId': account_type_id, 'includeProfitLoss': include_profit_loss, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountClass, envelope=True))
 
 
-class FinanceAccountgroupsResource(Resource):
-    """`client.finance.accountgroups`"""
+class FinanceAccountGroupsResource(Resource):
+    """`client.finance.account_groups`"""
 
     def create(
         self,
@@ -5840,7 +5840,7 @@ class FinanceAccountgroupsResource(Resource):
 
         Example::
 
-            result = client.finance.accountgroups.create(
+            result = client.finance.account_groups.create(
                 account_class_id=2,
                 is_cash_asset_account=False,
                 name="Sachanlagen",
@@ -5868,7 +5868,7 @@ class FinanceAccountgroupsResource(Resource):
 
         Example::
 
-            client.finance.accountgroups.delete(1)
+            client.finance.account_groups.delete(1)
         """
         self._raw('DELETE', f"/finance/accountgroups/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -5888,8 +5888,8 @@ class FinanceAccountgroupsResource(Resource):
 
         Example::
 
-            accountgroup = client.finance.accountgroups.get(1)
-            print(accountgroup.name)
+            account_group = client.finance.account_groups.get(1)
+            print(account_group.name)
         """
         return _t.cast(models.AccountGroup, self._call('GET', f"/finance/accountgroups/{_seg(id)}", [], None, models.AccountGroup, envelope=True))
 
@@ -5905,8 +5905,8 @@ class FinanceAccountgroupsResource(Resource):
 
         Example::
 
-            for accountgroup in client.finance.accountgroups.list():
-                print(accountgroup.name)
+            for account_group in client.finance.account_groups.list():
+                print(account_group.name)
         """
         return _t.cast(_t.List[models.AccountGroup], self._call('GET', "/finance/accountgroups", [], None, _t.List[models.AccountGroup], envelope=True))
 
@@ -5936,7 +5936,7 @@ class FinanceAccountgroupsResource(Resource):
 
         Example::
 
-            result = client.finance.accountgroups.update(
+            result = client.finance.account_groups.update(
                 1,
                 account_class_id=2,
                 is_cash_asset_account=False,
@@ -5947,13 +5947,136 @@ class FinanceAccountgroupsResource(Resource):
         return _t.cast(models.AccountGroup, self._call('PUT', f"/finance/accountgroups/{_seg(id)}", [], _body({'accountClassId': account_class_id, 'isCashAssetAccount': is_cash_asset_account, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountGroup, envelope=True))
 
 
-class FinanceAccountingperiodsResource(Resource):
-    """`client.finance.accountingperiods`"""
+class FinanceAccountTypesResource(Resource):
+    """`client.finance.account_types`"""
+
+    def create(
+        self,
+        *,
+        name: str,
+        balance_type: _t.Union[_t.Optional[_t.Literal['assets', 'liabilities']], UnsetType] = UNSET,
+        sort_key: _t.Union[int, UnsetType] = UNSET,
+        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
+    ) -> models.AccountType:
+        """
+        Create new account type
+
+        `POST /finance/accounttypes`
+
+        Creates finance master data. Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Requires finance “edit masterdata”. Names must be unique across this resource. The successful response uses HTTP 200.
+
+        Args:
+            balance_type: Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
+                Allowed values: `assets`, `liabilities`.
+            name: Unique account-type name. The controller does not trim the name or enforce a length limit.
+            sort_key: Ascending display order. Omission resets it to 0, including on update.
+
+        Example::
+
+            result = client.finance.account_types.create(name="Aktiva")
+            print(result.name)
+        """
+        return _t.cast(models.AccountType, self._call('POST', "/finance/accounttypes", [], _body({'balanceType': balance_type, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountType, envelope=True))
+
+    def delete(
+        self,
+        id: int,
+        *,
+        dry_run: _t.Optional[bool] = None,
+    ) -> None:
+        """
+        Delete account type
+
+        `DELETE /finance/accounttypes/{id}`
+
+        Deletes this definition if no account classes reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
+
+        Args:
+            id: ID of Entity
+            dry_run: If set to true, the deletion is simulated but nothing will be deleted.
+
+        Example::
+
+            client.finance.account_types.delete(1)
+        """
+        self._raw('DELETE', f"/finance/accounttypes/{_seg(id)}", _query([('dry_run', dry_run)]), None)
+
+    def get(
+        self,
+        id: int,
+    ) -> models.AccountType:
+        """
+        Get a account type
+
+        `GET /finance/accounttypes/{id}`
+
+        Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns one definition by ID.
+
+        Args:
+            id: ID of Entity
+
+        Example::
+
+            account_type = client.finance.account_types.get(1)
+            print(account_type.name)
+        """
+        return _t.cast(models.AccountType, self._call('GET', f"/finance/accounttypes/{_seg(id)}", [], None, models.AccountType, envelope=True))
+
+    def list(
+        self,
+    ) -> _t.List[models.AccountType]:
+        """
+        Get all account types
+
+        `GET /finance/accounttypes`
+
+        Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
+
+        Example::
+
+            for account_type in client.finance.account_types.list():
+                print(account_type.name)
+        """
+        return _t.cast(_t.List[models.AccountType], self._call('GET', "/finance/accounttypes", [], None, _t.List[models.AccountType], envelope=True))
+
+    def update(
+        self,
+        id: int,
+        *,
+        name: str,
+        balance_type: _t.Union[_t.Optional[_t.Literal['assets', 'liabilities']], UnsetType] = UNSET,
+        sort_key: _t.Union[int, UnsetType] = UNSET,
+        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
+    ) -> models.AccountType:
+        """
+        Update account type
+
+        `PUT /finance/accounttypes/{id}`
+
+        Replaces the editable fields of this definition. Requires finance “edit masterdata”. Names must remain unique. Omitted optional fields are reset to their defaults. Omitting balanceType changes the type to profit-and-loss.
+
+        Args:
+            id: ID of Entity
+            balance_type: Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
+                Allowed values: `assets`, `liabilities`.
+            name: Unique account-type name. The controller does not trim the name or enforce a length limit.
+            sort_key: Ascending display order. Omission resets it to 0, including on update.
+
+        Example::
+
+            result = client.finance.account_types.update(1, name="Aktiva")
+            print(result.name)
+        """
+        return _t.cast(models.AccountType, self._call('PUT', f"/finance/accounttypes/{_seg(id)}", [], _body({'balanceType': balance_type, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountType, envelope=True))
+
+
+class FinanceAccountingPeriodsResource(Resource):
+    """`client.finance.accounting_periods`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.accounts = FinanceAccountingperiodsAccountsResource(core)
-        self.statements = FinanceAccountingperiodsStatementsResource(core)
+        self.accounts = FinanceAccountingPeriodsAccountsResource(core)
+        self.statements = FinanceAccountingPeriodsStatementsResource(core)
 
     def create(
         self,
@@ -5985,7 +6108,7 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            result = client.finance.accountingperiods.create(
+            result = client.finance.accounting_periods.create(
                 client_id=1,
                 end_date=dt.date(2026, 12, 31),
                 increment_document_number=True,
@@ -6015,11 +6138,11 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            client.finance.accountingperiods.delete(1)
+            client.finance.accounting_periods.delete(1)
         """
         self._raw('DELETE', f"/finance/accountingperiods/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
-    def delete_taxrates(
+    def delete_tax_rates(
         self,
         id: int,
     ) -> None:
@@ -6035,7 +6158,7 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            client.finance.accountingperiods.delete_taxrates(1)
+            client.finance.accounting_periods.delete_tax_rates(1)
         """
         self._raw('DELETE', f"/finance/accountingperiods/{_seg(id)}/taxrates", [], None)
 
@@ -6055,8 +6178,8 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            accountingperiod = client.finance.accountingperiods.get(1)
-            print(accountingperiod.id)
+            accounting_period = client.finance.accounting_periods.get(1)
+            print(accounting_period.id)
         """
         return _t.cast(models.AccountingPeriod, self._call('GET', f"/finance/accountingperiods/{_seg(id)}", [], None, models.AccountingPeriod, envelope=True))
 
@@ -6072,8 +6195,8 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            for accountingperiod in client.finance.accountingperiods.list():
-                print(accountingperiod.id)
+            for accounting_period in client.finance.accounting_periods.list():
+                print(accounting_period.id)
         """
         return _t.cast(_t.List[models.AccountingPeriod], self._call('GET', "/finance/accountingperiods", [], None, _t.List[models.AccountingPeriod], envelope=True))
 
@@ -6102,12 +6225,12 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            for bill in client.finance.accountingperiods.list_bills(1):
+            for bill in client.finance.accounting_periods.list_bills(1):
                 print(bill.id)
         """
         return Paginator(self._core, f"/finance/accountingperiods/{_seg(id)}/bills", _query([('limit', limit), ('order_by', order_by), ('order_direction', order_direction)]), models.Bill)
 
-    def list_userrules(
+    def list_user_rules(
         self,
         id: int,
     ) -> _t.List[models.UserRule]:
@@ -6123,8 +6246,8 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            for userrule in client.finance.accountingperiods.list_userrules(1):
-                print(userrule.id)
+            for user_rule in client.finance.accounting_periods.list_user_rules(1):
+                print(user_rule.id)
         """
         return _t.cast(_t.List[models.UserRule], self._call('GET', f"/finance/accountingperiods/{_seg(id)}/userrules", [], None, _t.List[models.UserRule], envelope=True))
 
@@ -6160,7 +6283,7 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            result = client.finance.accountingperiods.update(
+            result = client.finance.accounting_periods.update(
                 1,
                 client_id=1,
                 end_date=dt.date(2026, 12, 31),
@@ -6172,7 +6295,7 @@ class FinanceAccountingperiodsResource(Resource):
         """
         return _t.cast(models.AccountingPeriod, self._call('PUT', f"/finance/accountingperiods/{_seg(id)}", [], _body({'clientId': client_id, 'endDate': end_date, 'incrementDocumentNumber': increment_document_number, 'isClosed': is_closed, 'startDate': start_date, 'balances': balances, 'setImmutability': set_immutability}, extra_body), models.AccountingPeriod, envelope=True))
 
-    def update_userrules(
+    def update_user_rules(
         self,
         id: int,
         *,
@@ -6192,11 +6315,11 @@ class FinanceAccountingperiodsResource(Resource):
 
         Example::
 
-            for accountingperiod in client.finance.accountingperiods.update_userrules(
+            for accounting_period in client.finance.accounting_periods.update_user_rules(
                 1,
                 rules=[ct.models.UserRuleCreate.model_validate({"accountIds": [5], "allAccounts": False, "isIncome": True, "operator": "contains", "searchString": "Donation", "searchType": "purpose", "sortKey": 0, "suggestionType": "costCenterId", "suggestionValue": "8"})],
             ):
-                print(accountingperiod.id)
+                print(accounting_period.id)
         """
         return _t.cast(_t.List[models.UserRule], self._call('PUT', f"/finance/accountingperiods/{_seg(id)}/userrules", [], _body({'rules': rules}, extra_body), _t.List[models.UserRule], envelope=True))
 
@@ -6204,7 +6327,7 @@ class FinanceAccountingperiodsResource(Resource):
 class FinanceAccountsResource(Resource):
     """`client.finance.accounts`"""
 
-    def bulkcreate(
+    def bulk_create(
         self,
         *,
         body: _t.List[models.AccountCreate],
@@ -6218,7 +6341,7 @@ class FinanceAccountsResource(Resource):
 
         Example::
 
-            for account in client.finance.accounts.bulkcreate(
+            for account in client.finance.accounts.bulk_create(
                 body=[ct.models.AccountCreate.model_validate({"accountGroupId": 4, "name": "Donations", "number": "8200", "accountingPeriodId": 5})],
             ):
                 print(account.name)
@@ -6298,7 +6421,7 @@ class FinanceAccountsResource(Resource):
         """
         self._raw('DELETE', f"/finance/accounts/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
-    def exporttemplate(
+    def export_template(
         self,
         *,
         client_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
@@ -6322,7 +6445,7 @@ class FinanceAccountsResource(Resource):
 
         Example::
 
-            data = client.finance.accounts.exporttemplate(client_id=1)
+            data = client.finance.accounts.export_template(client_id=1)
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
@@ -6471,129 +6594,6 @@ class FinanceAccountsResource(Resource):
         return _t.cast(models.Account, self._call('PUT', f"/finance/accounts/{_seg(id)}", [], _body({'accountGroupId': account_group_id, 'annotation': annotation, 'budget': budget, 'identifier': identifier, 'isDonationAccount': is_donation_account, 'isMandatoryEubp': is_mandatory_eubp, 'isOpeningBalanceAccount': is_opening_balance_account, 'name': name, 'number': number, 'taxRateId': tax_rate_id}, extra_body), models.Account, envelope=True))
 
 
-class FinanceAccounttypesResource(Resource):
-    """`client.finance.accounttypes`"""
-
-    def create(
-        self,
-        *,
-        name: str,
-        balance_type: _t.Union[_t.Optional[_t.Literal['assets', 'liabilities']], UnsetType] = UNSET,
-        sort_key: _t.Union[int, UnsetType] = UNSET,
-        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
-    ) -> models.AccountType:
-        """
-        Create new account type
-
-        `POST /finance/accounttypes`
-
-        Creates finance master data. Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Requires finance “edit masterdata”. Names must be unique across this resource. The successful response uses HTTP 200.
-
-        Args:
-            balance_type: Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
-                Allowed values: `assets`, `liabilities`.
-            name: Unique account-type name. The controller does not trim the name or enforce a length limit.
-            sort_key: Ascending display order. Omission resets it to 0, including on update.
-
-        Example::
-
-            result = client.finance.accounttypes.create(name="Aktiva")
-            print(result.name)
-        """
-        return _t.cast(models.AccountType, self._call('POST', "/finance/accounttypes", [], _body({'balanceType': balance_type, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountType, envelope=True))
-
-    def delete(
-        self,
-        id: int,
-        *,
-        dry_run: _t.Optional[bool] = None,
-    ) -> None:
-        """
-        Delete account type
-
-        `DELETE /finance/accounttypes/{id}`
-
-        Deletes this definition if no account classes reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
-
-        Args:
-            id: ID of Entity
-            dry_run: If set to true, the deletion is simulated but nothing will be deleted.
-
-        Example::
-
-            client.finance.accounttypes.delete(1)
-        """
-        self._raw('DELETE', f"/finance/accounttypes/{_seg(id)}", _query([('dry_run', dry_run)]), None)
-
-    def get(
-        self,
-        id: int,
-    ) -> models.AccountType:
-        """
-        Get a account type
-
-        `GET /finance/accounttypes/{id}`
-
-        Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns one definition by ID.
-
-        Args:
-            id: ID of Entity
-
-        Example::
-
-            accounttype = client.finance.accounttypes.get(1)
-            print(accounttype.name)
-        """
-        return _t.cast(models.AccountType, self._call('GET', f"/finance/accounttypes/{_seg(id)}", [], None, models.AccountType, envelope=True))
-
-    def list(
-        self,
-    ) -> _t.List[models.AccountType]:
-        """
-        Get all account types
-
-        `GET /finance/accounttypes`
-
-        Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
-
-        Example::
-
-            for accounttype in client.finance.accounttypes.list():
-                print(accounttype.name)
-        """
-        return _t.cast(_t.List[models.AccountType], self._call('GET', "/finance/accounttypes", [], None, _t.List[models.AccountType], envelope=True))
-
-    def update(
-        self,
-        id: int,
-        *,
-        name: str,
-        balance_type: _t.Union[_t.Optional[_t.Literal['assets', 'liabilities']], UnsetType] = UNSET,
-        sort_key: _t.Union[int, UnsetType] = UNSET,
-        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
-    ) -> models.AccountType:
-        """
-        Update account type
-
-        `PUT /finance/accounttypes/{id}`
-
-        Replaces the editable fields of this definition. Requires finance “edit masterdata”. Names must remain unique. Omitted optional fields are reset to their defaults. Omitting balanceType changes the type to profit-and-loss.
-
-        Args:
-            id: ID of Entity
-            balance_type: Balance-sheet side: assets or liabilities. Omit this field for a profit-and-loss account type. On update, omission also clears the balance-sheet classification.
-                Allowed values: `assets`, `liabilities`.
-            name: Unique account-type name. The controller does not trim the name or enforce a length limit.
-            sort_key: Ascending display order. Omission resets it to 0, including on update.
-
-        Example::
-
-            result = client.finance.accounttypes.update(1, name="Aktiva")
-            print(result.name)
-        """
-        return _t.cast(models.AccountType, self._call('PUT', f"/finance/accounttypes/{_seg(id)}", [], _body({'balanceType': balance_type, 'name': name, 'sortKey': sort_key}, extra_body), models.AccountType, envelope=True))
-
-
 class FinanceBillsResource(Resource):
     """`client.finance.bills`"""
 
@@ -6698,8 +6698,8 @@ class FinanceBillsResource(Resource):
         return _t.cast(models.Bill, self._call('PUT', f"/finance/bills/{_seg(id)}", [], _body({'filename': filename, 'splitTransactionId': split_transaction_id, 'submittedDate': submitted_date, 'submittedPid': submitted_pid, 'transactionId': transaction_id, 'transactionSuggestionId': transaction_suggestion_id}, extra_body), models.Bill, envelope=True))
 
 
-class FinanceCashdiscountsResource(Resource):
-    """`client.finance.cashdiscounts`"""
+class FinanceCashDiscountsResource(Resource):
+    """`client.finance.cash_discounts`"""
 
     def create(
         self,
@@ -6723,7 +6723,7 @@ class FinanceCashdiscountsResource(Resource):
 
         Example::
 
-            result = client.finance.cashdiscounts.create(account_id=5, note="Skonto 2%", rate=2)
+            result = client.finance.cash_discounts.create(account_id=5, note="Skonto 2%", rate=2)
             print(result.id)
         """
         return _t.cast(models.CashDiscount, self._call('POST', "/finance/cashdiscounts", [], _body({'accountId': account_id, 'note': note, 'rate': rate}, extra_body), models.CashDiscount, envelope=True))
@@ -6747,7 +6747,7 @@ class FinanceCashdiscountsResource(Resource):
 
         Example::
 
-            client.finance.cashdiscounts.delete(1)
+            client.finance.cash_discounts.delete(1)
         """
         self._raw('DELETE', f"/finance/cashdiscounts/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -6767,8 +6767,8 @@ class FinanceCashdiscountsResource(Resource):
 
         Example::
 
-            cashdiscount = client.finance.cashdiscounts.get(1)
-            print(cashdiscount.id)
+            cash_discount = client.finance.cash_discounts.get(1)
+            print(cash_discount.id)
         """
         return _t.cast(models.CashDiscount, self._call('GET', f"/finance/cashdiscounts/{_seg(id)}", [], None, models.CashDiscount, envelope=True))
 
@@ -6789,8 +6789,8 @@ class FinanceCashdiscountsResource(Resource):
 
         Example::
 
-            for cashdiscount in client.finance.cashdiscounts.list():
-                print(cashdiscount.id)
+            for cash_discount in client.finance.cash_discounts.list():
+                print(cash_discount.id)
         """
         return _t.cast(_t.List[models.CashDiscount], self._call('GET', "/finance/cashdiscounts", _query([('accounting_period_id', accounting_period_id)]), None, _t.List[models.CashDiscount], envelope=True))
 
@@ -6818,7 +6818,7 @@ class FinanceCashdiscountsResource(Resource):
 
         Example::
 
-            result = client.finance.cashdiscounts.update(1, account_id=5, note="Skonto 2%", rate=2)
+            result = client.finance.cash_discounts.update(1, account_id=5, note="Skonto 2%", rate=2)
             print(result.id)
         """
         return _t.cast(models.CashDiscount, self._call('PUT', f"/finance/cashdiscounts/{_seg(id)}", [], _body({'accountId': account_id, 'note': note, 'rate': rate}, extra_body), models.CashDiscount, envelope=True))
@@ -6981,10 +6981,10 @@ class FinanceClientsResource(Resource):
         return _t.cast(models.Client, self._call('PUT', f"/finance/clients/{_seg(id)}", [], _body({'city': city, 'datevClientNumber': datev_client_number, 'datevConsultantNumber': datev_consultant_number, 'email': email, 'eubpBusinessName': eubp_business_name, 'eubpBusinessNumber': eubp_business_number, 'name': name, 'phone': phone, 'postalCode': postal_code, 'sortKey': sort_key, 'street': street, 'treasurerId': treasurer_id}, extra_body), models.Client, envelope=True))
 
 
-class FinanceCostcentersResource(Resource):
-    """`client.finance.costcenters`"""
+class FinanceCostCentersResource(Resource):
+    """`client.finance.cost_centers`"""
 
-    def bulkcreate(
+    def bulk_create(
         self,
         *,
         cost_centers: _t.List[models.CostCenterCreate],
@@ -6999,10 +6999,10 @@ class FinanceCostcentersResource(Resource):
 
         Example::
 
-            for costcenter in client.finance.costcenters.bulkcreate(
+            for cost_center in client.finance.cost_centers.bulk_create(
                 cost_centers=[ct.models.CostCenterCreate.model_validate({"accountingPeriodId": 1, "name": "Kostenstelle Sonstige", "number": "802"})],
             ):
-                print(costcenter.name)
+                print(cost_center.name)
         """
         return _t.cast(_t.List[models.CostCenterStored], self._call('POST', "/finance/costcenters/bulkcreate", [], _body({'costCenters': cost_centers}, extra_body), _t.List[models.CostCenterStored], envelope=True))
 
@@ -7034,7 +7034,7 @@ class FinanceCostcentersResource(Resource):
 
         Example::
 
-            result = client.finance.costcenters.create(
+            result = client.finance.cost_centers.create(
                 accounting_period_id=1,
                 name="Kostenstelle Sonstige",
                 number="802",
@@ -7062,7 +7062,7 @@ class FinanceCostcentersResource(Resource):
 
         Example::
 
-            client.finance.costcenters.delete(1)
+            client.finance.cost_centers.delete(1)
         """
         self._raw('DELETE', f"/finance/costcenters/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -7082,8 +7082,8 @@ class FinanceCostcentersResource(Resource):
 
         Example::
 
-            costcenter = client.finance.costcenters.get(1)
-            print(costcenter.name)
+            cost_center = client.finance.cost_centers.get(1)
+            print(cost_center.name)
         """
         return _t.cast(models.CostCenter, self._call('GET', f"/finance/costcenters/{_seg(id)}", [], None, models.CostCenter, envelope=True))
 
@@ -7110,7 +7110,7 @@ class FinanceCostcentersResource(Resource):
 
         Example::
 
-            data = client.finance.costcenters.get_export(accounting_period_id=1)
+            data = client.finance.cost_centers.get_export(accounting_period_id=1)
             with open("ergebnis.xlsx", "wb") as f:
                 f.write(data)
         """
@@ -7135,8 +7135,8 @@ class FinanceCostcentersResource(Resource):
 
         Example::
 
-            for costcenter in client.finance.costcenters.list():
-                print(costcenter.name)
+            for cost_center in client.finance.cost_centers.list():
+                print(cost_center.name)
         """
         return _t.cast(_t.List[models.CostCenter], self._call('GET', "/finance/costcenters", _query([('accounting_period_id', accounting_period_id)]), None, _t.List[models.CostCenter], envelope=True))
 
@@ -7170,7 +7170,7 @@ class FinanceCostcentersResource(Resource):
 
         Example::
 
-            result = client.finance.costcenters.update(1, accounting_period_id=1, number="802")
+            result = client.finance.cost_centers.update(1, accounting_period_id=1, number="802")
             print(result.name)
         """
         return _t.cast(models.CostCenter, self._call('PUT', f"/finance/costcenters/{_seg(id)}", [], _body({'accountingPeriodId': accounting_period_id, 'annotation': annotation, 'budget': budget, 'groupId': group_id, 'name': name, 'number': number}, extra_body), models.CostCenter, envelope=True))
@@ -7557,8 +7557,8 @@ class FinanceReportsResource(Resource):
         return self._raw('POST', "/finance/reports/turnover", [], _body({'accountTypes': account_types, 'accountingPeriodId': accounting_period_id, 'format': format, 'period': period, 'showAccountGroups': show_account_groups, 'showEmptyAccounts': show_empty_accounts}, extra_body))
 
 
-class FinanceSplittransactionsResource(Resource):
-    """`client.finance.splittransactions`"""
+class FinanceSplitTransactionsResource(Resource):
+    """`client.finance.split_transactions`"""
 
     def create(
         self,
@@ -7588,7 +7588,7 @@ class FinanceSplittransactionsResource(Resource):
 
         Example::
 
-            result = client.finance.splittransactions.create(
+            result = client.finance.split_transactions.create(
                 amount=30000,
                 document_date=dt.date(2026, 9, 14),
                 note="Offering and building fund",
@@ -7620,7 +7620,7 @@ class FinanceSplittransactionsResource(Resource):
 
         Example::
 
-            client.finance.splittransactions.delete(1)
+            client.finance.split_transactions.delete(1)
         """
         self._raw('DELETE', f"/finance/splittransactions/{_seg(id)}", _query([('dry_run', dry_run), ('include[]', include)]), None)
 
@@ -7642,8 +7642,8 @@ class FinanceSplittransactionsResource(Resource):
 
         Example::
 
-            splittransaction = client.finance.splittransactions.duplicate(1)
-            print(splittransaction.id)
+            split_transaction = client.finance.split_transactions.duplicate(1)
+            print(split_transaction.id)
         """
         return _t.cast(models.SplitTransaction, self._call('POST', f"/finance/splittransactions/{_seg(id)}/duplicate", [], _body(body), models.SplitTransaction, envelope=True))
 
@@ -7667,8 +7667,8 @@ class FinanceSplittransactionsResource(Resource):
 
         Example::
 
-            splittransaction = client.finance.splittransactions.get(1)
-            print(splittransaction.id)
+            split_transaction = client.finance.split_transactions.get(1)
+            print(split_transaction.id)
         """
         return _t.cast(models.SplitTransaction, self._call('GET', f"/finance/splittransactions/{_seg(id)}", _query([('include[]', include)]), None, models.SplitTransaction, envelope=True))
 
@@ -7705,7 +7705,7 @@ class FinanceSplittransactionsResource(Resource):
 
         Example::
 
-            result = client.finance.splittransactions.update(
+            result = client.finance.split_transactions.update(
                 1,
                 amount=30000,
                 document_date=dt.date(2026, 9, 14),
@@ -7736,14 +7736,14 @@ class FinanceSplittransactionsResource(Resource):
 
         Example::
 
-            result = client.finance.splittransactions.update_storno(1, note="Incorrect allocation")
+            result = client.finance.split_transactions.update_storno(1, note="Incorrect allocation")
             print(result.id)
         """
         return _t.cast(models.SplitTransaction, self._call('PUT', f"/finance/splittransactions/{_seg(id)}/storno", [], _body({'note': note}, extra_body), models.SplitTransaction, envelope=True))
 
 
-class FinanceTaxratesResource(Resource):
-    """`client.finance.taxrates`"""
+class FinanceTaxRatesResource(Resource):
+    """`client.finance.tax_rates`"""
 
     def create(
         self,
@@ -7769,7 +7769,7 @@ class FinanceTaxratesResource(Resource):
 
         Example::
 
-            result = client.finance.taxrates.create(account_id=5, rate=7, tax_type_id=4)
+            result = client.finance.tax_rates.create(account_id=5, rate=7, tax_type_id=4)
             print(result.id)
         """
         return _t.cast(models.TaxRate, self._call('POST', "/finance/taxrates", [], _body({'accountId': account_id, 'note': note, 'rate': rate, 'taxTypeId': tax_type_id}, extra_body), models.TaxRate, envelope=True))
@@ -7793,7 +7793,7 @@ class FinanceTaxratesResource(Resource):
 
         Example::
 
-            client.finance.taxrates.delete(1)
+            client.finance.tax_rates.delete(1)
         """
         self._raw('DELETE', f"/finance/taxrates/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -7813,8 +7813,8 @@ class FinanceTaxratesResource(Resource):
 
         Example::
 
-            taxrate = client.finance.taxrates.get(1)
-            print(taxrate.id)
+            tax_rate = client.finance.tax_rates.get(1)
+            print(tax_rate.id)
         """
         return _t.cast(models.TaxRate, self._call('GET', f"/finance/taxrates/{_seg(id)}", [], None, models.TaxRate, envelope=True))
 
@@ -7835,8 +7835,8 @@ class FinanceTaxratesResource(Resource):
 
         Example::
 
-            for taxrate in client.finance.taxrates.list():
-                print(taxrate.id)
+            for tax_rate in client.finance.tax_rates.list():
+                print(tax_rate.id)
         """
         return _t.cast(_t.List[models.TaxRate], self._call('GET', "/finance/taxrates", _query([('accounting_period_id', accounting_period_id)]), None, _t.List[models.TaxRate], envelope=True))
 
@@ -7866,14 +7866,14 @@ class FinanceTaxratesResource(Resource):
 
         Example::
 
-            result = client.finance.taxrates.update(1, account_id=5, rate=7, tax_type_id=4)
+            result = client.finance.tax_rates.update(1, account_id=5, rate=7, tax_type_id=4)
             print(result.id)
         """
         return _t.cast(models.TaxRate, self._call('PUT', f"/finance/taxrates/{_seg(id)}", [], _body({'accountId': account_id, 'note': note, 'rate': rate, 'taxTypeId': tax_type_id}, extra_body), models.TaxRate, envelope=True))
 
 
-class FinanceTaxtypesResource(Resource):
-    """`client.finance.taxtypes`"""
+class FinanceTaxTypesResource(Resource):
+    """`client.finance.tax_types`"""
 
     def create(
         self,
@@ -7895,7 +7895,7 @@ class FinanceTaxtypesResource(Resource):
 
         Example::
 
-            result = client.finance.taxtypes.create(sort_key=0)
+            result = client.finance.tax_types.create(sort_key=0)
             print(result.name)
         """
         return _t.cast(models.TaxType, self._call('POST', "/finance/taxtypes", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.TaxType, envelope=True))
@@ -7919,7 +7919,7 @@ class FinanceTaxtypesResource(Resource):
 
         Example::
 
-            client.finance.taxtypes.delete(1)
+            client.finance.tax_types.delete(1)
         """
         self._raw('DELETE', f"/finance/taxtypes/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -7939,8 +7939,8 @@ class FinanceTaxtypesResource(Resource):
 
         Example::
 
-            taxtype = client.finance.taxtypes.get(1)
-            print(taxtype.name)
+            tax_type = client.finance.tax_types.get(1)
+            print(tax_type.name)
         """
         return _t.cast(models.TaxType, self._call('GET', f"/finance/taxtypes/{_seg(id)}", [], None, models.TaxType, envelope=True))
 
@@ -7956,8 +7956,8 @@ class FinanceTaxtypesResource(Resource):
 
         Example::
 
-            for taxtype in client.finance.taxtypes.list():
-                print(taxtype.name)
+            for tax_type in client.finance.tax_types.list():
+                print(tax_type.name)
         """
         return _t.cast(_t.List[models.TaxType], self._call('GET', "/finance/taxtypes", [], None, _t.List[models.TaxType], envelope=True))
 
@@ -7983,7 +7983,7 @@ class FinanceTaxtypesResource(Resource):
 
         Example::
 
-            result = client.finance.taxtypes.update(1, sort_key=0)
+            result = client.finance.tax_types.update(1, sort_key=0)
             print(result.name)
         """
         return _t.cast(models.TaxType, self._call('PUT', f"/finance/taxtypes/{_seg(id)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.TaxType, envelope=True))
@@ -8055,8 +8055,8 @@ class FinanceTemplatesResource(Resource):
         return _t.cast(_t.List[models.FinanceTemplate], self._call('GET', "/finance/templates", [], None, _t.List[models.FinanceTemplate], envelope=True))
 
 
-class FinanceTransactionpurposesResource(Resource):
-    """`client.finance.transactionpurposes`"""
+class FinanceTransactionPurposesResource(Resource):
+    """`client.finance.transaction_purposes`"""
 
     def create(
         self,
@@ -8086,7 +8086,7 @@ class FinanceTransactionpurposesResource(Resource):
 
         Example::
 
-            result = client.finance.transactionpurposes.create(
+            result = client.finance.transaction_purposes.create(
                 account_ids=[1, 2],
                 is_income=True,
                 name="Donations for youth work",
@@ -8116,7 +8116,7 @@ class FinanceTransactionpurposesResource(Resource):
 
         Example::
 
-            client.finance.transactionpurposes.delete(1)
+            client.finance.transaction_purposes.delete(1)
         """
         self._raw('DELETE', f"/finance/transactionpurposes/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -8136,8 +8136,8 @@ class FinanceTransactionpurposesResource(Resource):
 
         Example::
 
-            transactionpurpose = client.finance.transactionpurposes.get(1)
-            print(transactionpurpose.name)
+            transaction_purpose = client.finance.transaction_purposes.get(1)
+            print(transaction_purpose.name)
         """
         return _t.cast(models.TransactionPurpose, self._call('GET', f"/finance/transactionpurposes/{_seg(id)}", [], None, models.TransactionPurpose, envelope=True))
 
@@ -8153,8 +8153,8 @@ class FinanceTransactionpurposesResource(Resource):
 
         Example::
 
-            for transactionpurpose in client.finance.transactionpurposes.list():
-                print(transactionpurpose.name)
+            for transaction_purpose in client.finance.transaction_purposes.list():
+                print(transaction_purpose.name)
         """
         return _t.cast(_t.List[models.TransactionPurpose], self._call('GET', "/finance/transactionpurposes", [], None, _t.List[models.TransactionPurpose], envelope=True))
 
@@ -8188,7 +8188,7 @@ class FinanceTransactionpurposesResource(Resource):
 
         Example::
 
-            result = client.finance.transactionpurposes.update(
+            result = client.finance.transaction_purposes.update(
                 1,
                 account_ids=[1, 2],
                 is_income=True,
@@ -8204,7 +8204,7 @@ class FinanceTransactionpurposesResource(Resource):
 class FinanceTransactionsResource(Resource):
     """`client.finance.transactions`"""
 
-    def bulkcreate(
+    def bulk_create(
         self,
         *,
         body: _t.List[models.TransactionBulkCreateItem],
@@ -8222,7 +8222,7 @@ class FinanceTransactionsResource(Resource):
 
         Example::
 
-            for transaction in client.finance.transactions.bulkcreate(
+            for transaction in client.finance.transactions.bulk_create(
                 body=[ct.models.TransactionBulkCreateItem.model_validate({"accountId": 10, "amount": 7812, "contraAccountId": 11, "documentDate": "2019-01-14", "note": "Donation service offering", "documentNumber": "2026-42"})],
             ):
                 print(transaction.id)
@@ -8423,7 +8423,7 @@ class FinanceTransactionsResource(Resource):
         """
         return self._raw('GET', "/finance/transactions/csv", _query([('accounting_period_id', accounting_period_id), ('created_pid', created_pid), ('cost_center_ids[]', cost_center_ids), ('donator_ids[]', donator_ids), ('include_ids[]', include_ids), ('exclude_ids[]', exclude_ids), ('account_ids[]', account_ids), ('is_donation', is_donation), ('is_income', is_income), ('start_date', start_date), ('end_date', end_date), ('is_immutable', is_immutable), ('order_by', order_by), ('order_direction', order_direction), ('query', query), ('is_waiver_of_reimbursement_of_expenses', is_waiver_of_reimbursement_of_expenses), ('target', target)]), None)
 
-    def get_datevexport(
+    def get_datev_export(
         self,
         *,
         accounting_period_id: int,
@@ -8472,13 +8472,13 @@ class FinanceTransactionsResource(Resource):
 
         Example::
 
-            data = client.finance.transactions.get_datevexport(accounting_period_id=1)
+            data = client.finance.transactions.get_datev_export(accounting_period_id=1)
             with open("ergebnis.csv", "wb") as f:
                 f.write(data)
         """
         return self._raw('GET', "/finance/transactions/datevexport", _query([('accounting_period_id', accounting_period_id), ('created_pid', created_pid), ('cost_center_ids[]', cost_center_ids), ('donator_ids[]', donator_ids), ('include_ids[]', include_ids), ('exclude_ids[]', exclude_ids), ('account_ids[]', account_ids), ('is_donation', is_donation), ('is_income', is_income), ('start_date', start_date), ('end_date', end_date), ('is_immutable', is_immutable), ('order_by', order_by), ('order_direction', order_direction), ('query', query), ('is_waiver_of_reimbursement_of_expenses', is_waiver_of_reimbursement_of_expenses)]), None)
 
-    def get_documentnumberavailable(
+    def get_document_number_available(
         self,
         *,
         accounting_period_id: int,
@@ -8497,7 +8497,7 @@ class FinanceTransactionsResource(Resource):
 
         Example::
 
-            client.finance.transactions.get_documentnumberavailable(
+            client.finance.transactions.get_document_number_available(
                 accounting_period_id=1,
                 document_number="2024-001",
             )
@@ -8592,7 +8592,7 @@ class FinanceTransactionsResource(Resource):
         """
         return _t.cast(_t.Optional[_t.Union[_t.List[str], StrMap[_t.List[str]]]], self._call('GET', "/finance/transactions/ids", _query([('accounting_period_id', accounting_period_id)]), None, _t.Optional[_t.Union[_t.List[str], StrMap[_t.List[str]]]], envelope=True))
 
-    def get_nextdocumentnumber(
+    def get_next_document_number(
         self,
         *,
         accounting_period_id: int,
@@ -8609,7 +8609,7 @@ class FinanceTransactionsResource(Resource):
 
         Example::
 
-            result = client.finance.transactions.get_nextdocumentnumber(accounting_period_id=1)
+            result = client.finance.transactions.get_next_document_number(accounting_period_id=1)
             print(result)
         """
         return _t.cast(str, self._call('GET', "/finance/transactions/nextdocumentnumber", _query([('accounting_period_id', accounting_period_id)]), None, str, envelope=True))
@@ -8849,8 +8849,8 @@ class FinanceTransactionsResource(Resource):
         self._raw('PUT', f"/finance/transactions/{_seg(id)}/storno", [], _body({'note': note}, extra_body))
 
 
-class GroupAgegroupsResource(Resource):
-    """`client.group.agegroups`"""
+class GroupAgeGroupsResource(Resource):
+    """`client.group.age_groups`"""
 
     def create(
         self,
@@ -8877,7 +8877,7 @@ class GroupAgegroupsResource(Resource):
 
         Example::
 
-            result = client.group.agegroups.create(end=5, name="3-5", sort_key=3, start=3)
+            result = client.group.age_groups.create(end=5, name="3-5", sort_key=3, start=3)
             print(result.name)
         """
         return _t.cast(models.AgeGroup, self._call('POST', "/group/agegroups", [], _body({'end': end, 'name': name, 'sortKey': sort_key, 'start': start}, extra_body), models.AgeGroup, envelope=True))
@@ -8902,7 +8902,7 @@ class GroupAgegroupsResource(Resource):
 
         Example::
 
-            client.group.agegroups.delete(2, dry_run=True)
+            client.group.age_groups.delete(2, dry_run=True)
         """
         self._raw('DELETE', f"/group/agegroups/{_seg(age_group_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -8923,8 +8923,8 @@ class GroupAgegroupsResource(Resource):
 
         Example::
 
-            agegroup = client.group.agegroups.get(2)
-            print(agegroup.name)
+            age_group = client.group.age_groups.get(2)
+            print(age_group.name)
         """
         return _t.cast(models.AgeGroup, self._call('GET', f"/group/agegroups/{_seg(age_group_id)}", [], None, models.AgeGroup, envelope=True))
 
@@ -8941,8 +8941,8 @@ class GroupAgegroupsResource(Resource):
 
         Example::
 
-            for agegroup in client.group.agegroups.list():
-                print(agegroup.name)
+            for age_group in client.group.age_groups.list():
+                print(age_group.name)
         """
         return _t.cast(_t.List[models.AgeGroup], self._call('GET', "/group/agegroups", [], None, _t.List[models.AgeGroup], envelope=True))
 
@@ -8973,13 +8973,13 @@ class GroupAgegroupsResource(Resource):
 
         Example::
 
-            client.group.agegroups.update(2, end=5, name="3-5", sort_key=3, start=3)
+            client.group.age_groups.update(2, end=5, name="3-5", sort_key=3, start=3)
         """
         self._raw('PUT', f"/group/agegroups/{_seg(age_group_id)}", [], _body({'end': end, 'name': name, 'sortKey': sort_key, 'start': start}, extra_body))
 
 
-class GroupGroupcategoriesResource(Resource):
-    """`client.group.groupcategories`"""
+class GroupGroupCategoriesResource(Resource):
+    """`client.group.group_categories`"""
 
     def create(
         self,
@@ -9007,7 +9007,7 @@ class GroupGroupcategoriesResource(Resource):
 
         Example::
 
-            result = client.group.groupcategories.create(color="blue", name="Gottesdienst", sort_key=5)
+            result = client.group.group_categories.create(color="blue", name="Gottesdienst", sort_key=5)
             print(result.name)
         """
         return _t.cast(models.GroupCategory, self._call('POST', "/group/groupcategories", [], _body({'color': color, 'description': description, 'name': name, 'sortKey': sort_key}, extra_body), models.GroupCategory, envelope=True))
@@ -9032,7 +9032,7 @@ class GroupGroupcategoriesResource(Resource):
 
         Example::
 
-            client.group.groupcategories.delete(2, dry_run=True)
+            client.group.group_categories.delete(2, dry_run=True)
         """
         self._raw('DELETE', f"/group/groupcategories/{_seg(group_category_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -9053,8 +9053,8 @@ class GroupGroupcategoriesResource(Resource):
 
         Example::
 
-            groupcategory = client.group.groupcategories.get(2)
-            print(groupcategory.name)
+            group_category = client.group.group_categories.get(2)
+            print(group_category.name)
         """
         return _t.cast(models.GroupCategory, self._call('GET', f"/group/groupcategories/{_seg(group_category_id)}", [], None, models.GroupCategory, envelope=True))
 
@@ -9071,8 +9071,8 @@ class GroupGroupcategoriesResource(Resource):
 
         Example::
 
-            for groupcategory in client.group.groupcategories.list():
-                print(groupcategory.name)
+            for group_category in client.group.group_categories.list():
+                print(group_category.name)
         """
         return _t.cast(_t.List[models.GroupCategory], self._call('GET', "/group/groupcategories", [], None, _t.List[models.GroupCategory], envelope=True))
 
@@ -9104,14 +9104,14 @@ class GroupGroupcategoriesResource(Resource):
 
         Example::
 
-            result = client.group.groupcategories.update(2, color="blue", name="Gottesdienst", sort_key=5)
+            result = client.group.group_categories.update(2, color="blue", name="Gottesdienst", sort_key=5)
             print(result.name)
         """
         return _t.cast(models.GroupCategory, self._call('PUT', f"/group/groupcategories/{_seg(group_category_id)}", [], _body({'color': color, 'description': description, 'name': name, 'sortKey': sort_key}, extra_body), models.GroupCategory, envelope=True))
 
 
-class GroupGrouptypesResource(Resource):
-    """`client.group.grouptypes`"""
+class GroupGroupTypesResource(Resource):
+    """`client.group.group_types`"""
 
     def create(
         self,
@@ -9151,7 +9151,7 @@ class GroupGrouptypesResource(Resource):
 
         Example::
 
-            result = client.group.grouptypes.create(
+            result = client.group.group_types.create(
                 available_for_new_person=False,
                 color="blue",
                 is_leader_necessary=False,
@@ -9186,7 +9186,7 @@ class GroupGrouptypesResource(Resource):
 
         Example::
 
-            client.group.grouptypes.delete(2)
+            client.group.group_types.delete(2)
         """
         self._raw('DELETE', f"/group/grouptypes/{_seg(group_type_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -9206,8 +9206,8 @@ class GroupGrouptypesResource(Resource):
 
         Example::
 
-            grouptype = client.group.grouptypes.get(2)
-            print(grouptype.name)
+            group_type = client.group.group_types.get(2)
+            print(group_type.name)
         """
         return _t.cast(models.GroupType, self._call('GET', f"/group/grouptypes/{_seg(group_type_id)}", [], None, models.GroupType, envelope=True))
 
@@ -9225,8 +9225,8 @@ class GroupGrouptypesResource(Resource):
 
         Example::
 
-            for grouptype in client.group.grouptypes.list():
-                print(grouptype.name)
+            for group_type in client.group.group_types.list():
+                print(group_type.name)
         """
         return _t.cast(_t.List[models.GroupType], self._call('GET', "/group/grouptypes", [], None, _t.List[models.GroupType], envelope=True))
 
@@ -9270,7 +9270,7 @@ class GroupGrouptypesResource(Resource):
 
         Example::
 
-            result = client.group.grouptypes.update(
+            result = client.group.group_types.update(
                 2,
                 available_for_new_person=False,
                 color="blue",
@@ -9287,8 +9287,8 @@ class GroupGrouptypesResource(Resource):
         return _t.cast(models.GroupType, self._call('PUT', f"/group/grouptypes/{_seg(group_type_id)}", [], _body({'availableForNewPerson': available_for_new_person, 'color': color, 'description': description, 'isLeaderNecessary': is_leader_necessary, 'name': name, 'namePlural': name_plural, 'permissionDepth': permission_depth, 'postsEnabled': posts_enabled, 'shorty': shorty, 'sortKey': sort_key}, extra_body), models.GroupType, envelope=True))
 
 
-class GroupMeetingtemplatesResource(Resource):
-    """`client.group.meetingtemplates`"""
+class GroupMeetingTemplatesResource(Resource):
+    """`client.group.meeting_templates`"""
 
     def create(
         self,
@@ -9311,7 +9311,7 @@ class GroupMeetingtemplatesResource(Resource):
 
         Example::
 
-            result = client.group.meetingtemplates.create(
+            result = client.group.meeting_templates.create(
                 name="Lowlights / Highlights",
                 template=[ct.models.MeetingTemplateField.model_validate({"label": "Highlights", "type": "color"})],
             )
@@ -9339,7 +9339,7 @@ class GroupMeetingtemplatesResource(Resource):
 
         Example::
 
-            client.group.meetingtemplates.delete(1, dry_run=True)
+            client.group.meeting_templates.delete(1, dry_run=True)
         """
         self._raw('DELETE', f"/group/meetingtemplates/{_seg(meeting_template_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -9359,8 +9359,8 @@ class GroupMeetingtemplatesResource(Resource):
 
         Example::
 
-            meetingtemplate = client.group.meetingtemplates.get(1)
-            print(meetingtemplate.name)
+            meeting_template = client.group.meeting_templates.get(1)
+            print(meeting_template.name)
         """
         return _t.cast(models.MeetingTemplate, self._call('GET', f"/group/meetingtemplates/{_seg(meeting_template_id)}", [], None, models.MeetingTemplate, envelope=True))
 
@@ -9377,8 +9377,8 @@ class GroupMeetingtemplatesResource(Resource):
 
         Example::
 
-            for meetingtemplate in client.group.meetingtemplates.list():
-                print(meetingtemplate.name)
+            for meeting_template in client.group.meeting_templates.list():
+                print(meeting_template.name)
         """
         return _t.cast(_t.List[models.MeetingTemplate], self._call('GET', "/group/meetingtemplates", [], None, _t.List[models.MeetingTemplate], envelope=True))
 
@@ -9405,7 +9405,7 @@ class GroupMeetingtemplatesResource(Resource):
 
         Example::
 
-            client.group.meetingtemplates.update(
+            client.group.meeting_templates.update(
                 1,
                 name="Lowlights / Highlights",
                 template=[ct.models.MeetingTemplateField.model_validate({"label": "Highlights", "type": "color"})],
@@ -9598,8 +9598,8 @@ class GroupRolesResource(Resource):
         return _t.cast(models.Role, self._call('PUT', f"/group/roles/{_seg(role_id)}", [], _body({'groupTypeId': group_type_id, 'growPathId': grow_path_id, 'isDefault': is_default, 'isHidden': is_hidden, 'isLeader': is_leader, 'name': name, 'shorty': shorty, 'sortKey': sort_key, 'type': type_}, extra_body), models.Role, envelope=True))
 
 
-class GroupTargetgroupsResource(Resource):
-    """`client.group.targetgroups`"""
+class GroupTargetGroupsResource(Resource):
+    """`client.group.target_groups`"""
 
     def create(
         self,
@@ -9622,7 +9622,7 @@ class GroupTargetgroupsResource(Resource):
 
         Example::
 
-            result = client.group.targetgroups.create(name="men", sort_key=2)
+            result = client.group.target_groups.create(name="men", sort_key=2)
             print(result.name)
         """
         return _t.cast(models.TargetGroup, self._call('POST', "/group/targetgroups", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.TargetGroup, envelope=True))
@@ -9647,7 +9647,7 @@ class GroupTargetgroupsResource(Resource):
 
         Example::
 
-            client.group.targetgroups.delete(2, dry_run=True)
+            client.group.target_groups.delete(2, dry_run=True)
         """
         self._raw('DELETE', f"/group/targetgroups/{_seg(target_group_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -9668,8 +9668,8 @@ class GroupTargetgroupsResource(Resource):
 
         Example::
 
-            targetgroup = client.group.targetgroups.get(2)
-            print(targetgroup.name)
+            target_group = client.group.target_groups.get(2)
+            print(target_group.name)
         """
         return _t.cast(models.TargetGroup, self._call('GET', f"/group/targetgroups/{_seg(target_group_id)}", [], None, models.TargetGroup, envelope=True))
 
@@ -9686,8 +9686,8 @@ class GroupTargetgroupsResource(Resource):
 
         Example::
 
-            for targetgroup in client.group.targetgroups.list():
-                print(targetgroup.name)
+            for target_group in client.group.target_groups.list():
+                print(target_group.name)
         """
         return _t.cast(_t.List[models.TargetGroup], self._call('GET', "/group/targetgroups", [], None, _t.List[models.TargetGroup], envelope=True))
 
@@ -9714,7 +9714,7 @@ class GroupTargetgroupsResource(Resource):
 
         Example::
 
-            client.group.targetgroups.update(2, name="men", sort_key=2)
+            client.group.target_groups.update(2, name="men", sort_key=2)
         """
         self._raw('PUT', f"/group/targetgroups/{_seg(target_group_id)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body))
 
@@ -10051,13 +10051,13 @@ class GroupsMeetingsResource(Resource):
         return _t.cast(models.GroupMeeting, self._call('PUT', f"/groups/{_seg(group_id)}/meetings/{_seg(meeting_id)}", [], _body({'comment': comment, 'isCanceled': is_canceled, 'isCompleted': is_completed, 'numGuests': num_guests, 'pollResult': poll_result, 'startDate': start_date}, extra_body), models.GroupMeeting, envelope=True))
 
 
-class GroupsMemberfieldsResource(Resource):
-    """`client.groups.memberfields`"""
+class GroupsMemberFieldsResource(Resource):
+    """`client.groups.member_fields`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.group = GroupsMemberfieldsGroupResource(core)
-        self.person = GroupsMemberfieldsPersonResource(core)
+        self.group = GroupsMemberFieldsGroupResource(core)
+        self.person = GroupsMemberFieldsPersonResource(core)
 
     def list(
         self,
@@ -10075,8 +10075,8 @@ class GroupsMemberfieldsResource(Resource):
 
         Example::
 
-            for memberfield in client.groups.memberfields.list(42):
-                print(memberfield)
+            for member_field in client.groups.member_fields.list(42):
+                print(member_field)
         """
         return _t.cast(_t.List[_t.Union[models.GetGroupsGroupIdMemberfieldsDataItemVariant1, models.GetGroupsGroupIdMemberfieldsDataItemVariant2]], self._call('GET', f"/groups/{_seg(group_id)}/memberfields", [], None, _t.List[_t.Union[models.GetGroupsGroupIdMemberfieldsDataItemVariant1, models.GetGroupsGroupIdMemberfieldsDataItemVariant2]], envelope=True))
 
@@ -10439,8 +10439,8 @@ class GroupsMembersResource(Resource):
         return _t.cast(models.PutGroupsGroupIdMembersPersonIdData, self._call('PUT', f"/groups/{_seg(group_id)}/members/{_seg(person_id)}", [], _body({'comment': comment, 'fields': fields, 'groupMemberStatus': group_member_status, 'groupTypeRoleId': group_type_role_id, 'ignoreGroupFull': ignore_group_full, 'ignoreWaitingListFull': ignore_waiting_list_full, 'informLeader': inform_leader, 'memberEndDate': member_end_date, 'memberStartDate': member_start_date, 'only_add': only_add, 'waitinglistPosition': waitinglist_position}, extra_body), models.PutGroupsGroupIdMembersPersonIdData, envelope=True))
 
 
-class GroupsNewsletterIntegrationsResource(Resource):
-    """`client.groups.newsletter_integrations`"""
+class GroupsNewsLetterIntegrationsResource(Resource):
+    """`client.groups.news_letter_integrations`"""
 
     def create(
         self,
@@ -10472,7 +10472,7 @@ class GroupsNewsletterIntegrationsResource(Resource):
 
         Example::
 
-            result = client.groups.newsletter_integrations.create(
+            result = client.groups.news_letter_integrations.create(
                 42,
                 opt_in_required=True,
                 provider="Mailjet",
@@ -10501,7 +10501,7 @@ class GroupsNewsletterIntegrationsResource(Resource):
 
         Example::
 
-            client.groups.newsletter_integrations.delete(42, "Mailjet", "12345")
+            client.groups.news_letter_integrations.delete(42, "Mailjet", "12345")
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/newsletter-integrations/{_seg(provider)}/{_seg(list_id)}", [], None)
 
@@ -10521,8 +10521,8 @@ class GroupsNewsletterIntegrationsResource(Resource):
 
         Example::
 
-            for newsletter_integration in client.groups.newsletter_integrations.list(42):
-                print(newsletter_integration.id)
+            for news_letter_integration in client.groups.news_letter_integrations.list(42):
+                print(news_letter_integration.id)
         """
         return _t.cast(_t.List[models.NewsletterIntegrationGroupMapping], self._call('GET', f"/groups/{_seg(group_id)}/newsletter-integrations", [], None, _t.List[models.NewsletterIntegrationGroupMapping], envelope=True))
 
@@ -10550,7 +10550,7 @@ class GroupsNewsletterIntegrationsResource(Resource):
 
         Example::
 
-            client.groups.newsletter_integrations.resend_optins(42, "Mailjet", "12345")
+            client.groups.news_letter_integrations.resend_optins(42, "Mailjet", "12345")
         """
         self._raw('POST', f"/groups/{_seg(group_id)}/newsletter-integrations/{_seg(provider)}/{_seg(list_id)}/resend-optins", _query([('person_id', person_id)]), _body(body))
 
@@ -10662,8 +10662,8 @@ class GroupsParentsResource(Resource):
         self._raw('PUT', f"/groups/{_seg(group_id)}/parents/{_seg(parent_group_id)}", [], _body(body))
 
 
-class GroupsQrcodecheckinResource(Resource):
-    """`client.groups.qrcodecheckin`"""
+class GroupsQrcodeCheckinResource(Resource):
+    """`client.groups.qrcode_checkin`"""
 
     def get(
         self,
@@ -10683,8 +10683,8 @@ class GroupsQrcodecheckinResource(Resource):
 
         Example::
 
-            qrcodecheckin = client.groups.qrcodecheckin.get(42, 42)
-            print(qrcodecheckin.domain_id)
+            qrcode_checkin = client.groups.qrcode_checkin.get(42, 42)
+            print(qrcode_checkin.domain_id)
         """
         return _t.cast(models.GroupQRCodeCheckin, self._call('GET', f"/groups/{_seg(group_id)}/qrcodecheckin/{_seg(person_id)}", [], None, models.GroupQRCodeCheckin, envelope=True))
 
@@ -10706,7 +10706,7 @@ class GroupsQrcodecheckinResource(Resource):
 
         Example::
 
-            pdf = client.groups.qrcodecheckin.get_pdf(42, 42)
+            pdf = client.groups.qrcode_checkin.get_pdf(42, 42)
             print(pdf.url)
         """
         return _t.cast(models.GetGroupsIdQrcodecheckinPersonIdPdfData, self._call('GET', f"/groups/{_seg(group_id)}/qrcodecheckin/{_seg(person_id)}/pdf", [], None, models.GetGroupsIdQrcodecheckinPersonIdPdfData, envelope=True))
@@ -10727,7 +10727,7 @@ class GroupsQrcodecheckinResource(Resource):
 
         Example::
 
-            result = client.groups.qrcodecheckin.list(42)
+            result = client.groups.qrcode_checkin.list(42)
             print(result)
         """
         return _t.cast(_t.Optional[_t.List[models.GroupQRCodeCheckin]], self._call('GET', f"/groups/{_seg(group_id)}/qrcodecheckin", [], None, _t.Optional[_t.List[models.GroupQRCodeCheckin]], envelope=True))
@@ -10752,8 +10752,8 @@ class GroupsQrcodecheckinResource(Resource):
 
         Example::
 
-            qrcodecheckin = client.groups.qrcodecheckin.send(42, 42)
-            print(qrcodecheckin.domain_id)
+            qrcode_checkin = client.groups.qrcode_checkin.send(42, 42)
+            print(qrcode_checkin.domain_id)
         """
         return _t.cast(models.GroupQRCodeCheckin, self._call('POST', f"/groups/{_seg(group_id)}/qrcodecheckin/{_seg(person_id)}/send", [], _body(body), models.GroupQRCodeCheckin, envelope=True))
 
@@ -10836,12 +10836,12 @@ class GroupsWikiResource(Resource):
         self.categories = GroupsWikiCategoriesResource(core)
 
 
-class LoginTwofactorResource(Resource):
-    """`client.login.twofactor`"""
+class LoginTwoFactorResource(Resource):
+    """`client.login.two_factor`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.setup = LoginTwofactorSetupResource(core)
+        self.setup = LoginTwoFactorSetupResource(core)
 
 
 class LogsStatisticsResource(Resource):
@@ -10931,8 +10931,8 @@ class PermissionsOriginsResource(Resource):
         self.internal = PermissionsOriginsInternalResource(core)
 
 
-class PersonCommentviewersResource(Resource):
-    """`client.person.commentviewers`"""
+class PersonCommentViewersResource(Resource):
+    """`client.person.comment_viewers`"""
 
     def create(
         self,
@@ -10954,7 +10954,7 @@ class PersonCommentviewersResource(Resource):
 
         Example::
 
-            result = client.person.commentviewers.create(name="Pastoral team")
+            result = client.person.comment_viewers.create(name="Pastoral team")
             print(result.name)
         """
         return _t.cast(models.CommentViewer, self._call('POST', "/person/commentviewers", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.CommentViewer, envelope=True))
@@ -10978,7 +10978,7 @@ class PersonCommentviewersResource(Resource):
 
         Example::
 
-            client.person.commentviewers.delete(1)
+            client.person.comment_viewers.delete(1)
         """
         self._raw('DELETE', f"/person/commentviewers/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -10998,8 +10998,8 @@ class PersonCommentviewersResource(Resource):
 
         Example::
 
-            commentviewer = client.person.commentviewers.get(1)
-            print(commentviewer.name)
+            comment_viewer = client.person.comment_viewers.get(1)
+            print(comment_viewer.name)
         """
         return _t.cast(models.CommentViewer, self._call('GET', f"/person/commentviewers/{_seg(id)}", [], None, models.CommentViewer, envelope=True))
 
@@ -11015,8 +11015,8 @@ class PersonCommentviewersResource(Resource):
 
         Example::
 
-            for commentviewer in client.person.commentviewers.list():
-                print(commentviewer.name)
+            for comment_viewer in client.person.comment_viewers.list():
+                print(comment_viewer.name)
         """
         return _t.cast(_t.List[models.CommentViewer], self._call('GET', "/person/commentviewers", [], None, _t.List[models.CommentViewer], envelope=True))
 
@@ -11042,14 +11042,14 @@ class PersonCommentviewersResource(Resource):
 
         Example::
 
-            result = client.person.commentviewers.update(1, name="Pastoral team")
+            result = client.person.comment_viewers.update(1, name="Pastoral team")
             print(result.name)
         """
         return _t.cast(models.CommentViewer, self._call('PUT', f"/person/commentviewers/{_seg(id)}", [], _body({'name': name, 'sortKey': sort_key}, extra_body), models.CommentViewer, envelope=True))
 
 
-class PersonGrowpathsResource(Resource):
-    """`client.person.growpaths`"""
+class PersonGrowPathsResource(Resource):
+    """`client.person.grow_paths`"""
 
     def create(
         self,
@@ -11074,7 +11074,7 @@ class PersonGrowpathsResource(Resource):
 
         Example::
 
-            result = client.person.growpaths.create(color="accent", name="New Believer")
+            result = client.person.grow_paths.create(color="accent", name="New Believer")
             print(result.name)
         """
         return _t.cast(models.GrowPath, self._call('POST', "/person/growpaths", [], _body({'color': color, 'name': name, 'sortKey': sort_key}, extra_body), models.GrowPath, envelope=True))
@@ -11098,7 +11098,7 @@ class PersonGrowpathsResource(Resource):
 
         Example::
 
-            client.person.growpaths.delete(1)
+            client.person.grow_paths.delete(1)
         """
         self._raw('DELETE', f"/person/growpaths/{_seg(id)}", _query([('dryRun', dry_run)]), None)
 
@@ -11118,8 +11118,8 @@ class PersonGrowpathsResource(Resource):
 
         Example::
 
-            growpath = client.person.growpaths.get(1)
-            print(growpath.name)
+            grow_path = client.person.grow_paths.get(1)
+            print(grow_path.name)
         """
         return _t.cast(models.GrowPath, self._call('GET', f"/person/growpaths/{_seg(id)}", [], None, models.GrowPath, envelope=True))
 
@@ -11135,8 +11135,8 @@ class PersonGrowpathsResource(Resource):
 
         Example::
 
-            for growpath in client.person.growpaths.list():
-                print(growpath.name)
+            for grow_path in client.person.grow_paths.list():
+                print(grow_path.name)
         """
         return _t.cast(_t.List[models.GrowPath], self._call('GET', "/person/growpaths", [], None, _t.List[models.GrowPath], envelope=True))
 
@@ -11165,14 +11165,14 @@ class PersonGrowpathsResource(Resource):
 
         Example::
 
-            result = client.person.growpaths.update(1, color="accent", name="New Believer")
+            result = client.person.grow_paths.update(1, color="accent", name="New Believer")
             print(result.name)
         """
         return _t.cast(models.GrowPath, self._call('PUT', f"/person/growpaths/{_seg(id)}", [], _body({'color': color, 'name': name, 'sortKey': sort_key}, extra_body), models.GrowPath, envelope=True))
 
 
-class PersonRelationshiptypesResource(Resource):
-    """`client.person.relationshiptypes`"""
+class PersonRelationshipTypesResource(Resource):
+    """`client.person.relationship_types`"""
 
     def create(
         self,
@@ -11204,7 +11204,7 @@ class PersonRelationshiptypesResource(Resource):
 
         Example::
 
-            result = client.person.relationshiptypes.create(
+            result = client.person.relationship_types.create(
                 degree_name_a="Parent",
                 degree_name_b="Child",
                 security_level_id=1,
@@ -11232,7 +11232,7 @@ class PersonRelationshiptypesResource(Resource):
 
         Example::
 
-            client.person.relationshiptypes.delete(4)
+            client.person.relationship_types.delete(4)
         """
         self._raw('DELETE', f"/person/relationshiptypes/{_seg(id)}", _query([('dryRun', dry_run)]), None)
 
@@ -11252,8 +11252,8 @@ class PersonRelationshiptypesResource(Resource):
 
         Example::
 
-            relationshiptype = client.person.relationshiptypes.get(4)
-            print(relationshiptype.name)
+            relationship_type = client.person.relationship_types.get(4)
+            print(relationship_type.name)
         """
         return _t.cast(models.RelationshipType, self._call('GET', f"/person/relationshiptypes/{_seg(id)}", [], None, models.RelationshipType, envelope=True))
 
@@ -11269,8 +11269,8 @@ class PersonRelationshiptypesResource(Resource):
 
         Example::
 
-            for relationshiptype in client.person.relationshiptypes.list():
-                print(relationshiptype.name)
+            for relationship_type in client.person.relationship_types.list():
+                print(relationship_type.name)
         """
         return _t.cast(_t.List[models.RelationshipType], self._call('GET', "/person/relationshiptypes", [], None, _t.List[models.RelationshipType], envelope=True))
 
@@ -11306,7 +11306,7 @@ class PersonRelationshiptypesResource(Resource):
 
         Example::
 
-            result = client.person.relationshiptypes.update(
+            result = client.person.relationship_types.update(
                 4,
                 degree_name_a="Parent",
                 degree_name_b="Child",
@@ -11730,8 +11730,8 @@ class PersonsEventsResource(Resource):
         return _t.cast(_t.List[models.EventReadWithServices], self._call('GET', f"/persons/{_seg(person_id)}/events", _query([('from', from_)]), None, _t.List[models.EventReadWithServices], envelope=True))
 
 
-class PersonsExchangerequestsResource(Resource):
-    """`client.persons.exchangerequests`"""
+class PersonsExchangeRequestsResource(Resource):
+    """`client.persons.exchange_requests`"""
 
     def delete(
         self,
@@ -11751,8 +11751,8 @@ class PersonsExchangerequestsResource(Resource):
 
         Example::
 
-            exchangerequest = client.persons.exchangerequests.delete(42, 42)
-            print(exchangerequest.id)
+            exchange_request = client.persons.exchange_requests.delete(42, 42)
+            print(exchange_request.id)
         """
         return _t.cast(models.ServiceExchangeRequest, self._call('DELETE', f"/persons/{_seg(person_id)}/exchangerequests/{_seg(request_id)}", [], None, models.ServiceExchangeRequest, envelope=True))
 
@@ -11775,8 +11775,8 @@ class PersonsExchangerequestsResource(Resource):
 
         Example::
 
-            for exchangerequest in client.persons.exchangerequests.list(42):
-                print(exchangerequest.id)
+            for exchange_request in client.persons.exchange_requests.list(42):
+                print(exchange_request.id)
         """
         return _t.cast(_t.List[models.ServiceExchangeRequest], self._call('GET', f"/persons/{_seg(person_id)}/exchangerequests", _query([('personIsRequester', person_is_requester)]), None, _t.List[models.ServiceExchangeRequest], envelope=True))
 
@@ -11798,7 +11798,7 @@ class PersonsExchangerequestsResource(Resource):
 
         Example::
 
-            result = client.persons.exchangerequests.update(42, 42)
+            result = client.persons.exchange_requests.update(42, 42)
             print(result.id)
         """
         return _t.cast(models.ServiceExchangeRequest, self._call('PUT', f"/persons/{_seg(person_id)}/exchangerequests/{_seg(request_id)}", [], None, models.ServiceExchangeRequest, envelope=True))
@@ -12137,8 +12137,8 @@ class PersonsRelationshipsResource(Resource):
         return _t.cast(_t.List[models.PersonRelationship], self._call('GET', f"/persons/{_seg(person_id)}/relationships", [], None, _t.List[models.PersonRelationship], envelope=True))
 
 
-class PersonsServicerequestsResource(Resource):
-    """`client.persons.servicerequests`"""
+class PersonsServiceRequestsResource(Resource):
+    """`client.persons.service_requests`"""
 
     def delete(
         self,
@@ -12161,8 +12161,8 @@ class PersonsServicerequestsResource(Resource):
 
         Example::
 
-            servicerequest = client.persons.servicerequests.delete(42, 42)
-            print(servicerequest.name)
+            service_request = client.persons.service_requests.delete(42, 42)
+            print(service_request.name)
         """
         return _t.cast(models.ServiceRequest, self._call('DELETE', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}", _query([('comment', comment)]), None, models.ServiceRequest, envelope=True))
 
@@ -12184,8 +12184,8 @@ class PersonsServicerequestsResource(Resource):
 
         Example::
 
-            servicerequest = client.persons.servicerequests.get(42, 42)
-            print(servicerequest.name)
+            service_request = client.persons.service_requests.get(42, 42)
+            print(service_request.name)
         """
         return _t.cast(models.ServiceRequest, self._call('GET', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}", [], None, models.ServiceRequest, envelope=True))
 
@@ -12210,8 +12210,8 @@ class PersonsServicerequestsResource(Resource):
 
         Example::
 
-            for servicerequest in client.persons.servicerequests.list(42):
-                print(servicerequest.name)
+            for service_request in client.persons.service_requests.list(42):
+                print(service_request.name)
         """
         if get_all_in_future is not None:
             _warn_deprecated('get_all_in_future', '')
@@ -12235,8 +12235,8 @@ class PersonsServicerequestsResource(Resource):
 
         Example::
 
-            servicerequest = client.persons.servicerequests.undo(42, 42)
-            print(servicerequest.name)
+            service_request = client.persons.service_requests.undo(42, 42)
+            print(service_request.name)
         """
         return _t.cast(models.ServiceRequestUndoResult, self._call('POST', f"/persons/{_seg(person_id)}/servicerequests/{_seg(request_id)}/undo", [], None, models.ServiceRequestUndoResult, envelope=True))
 
@@ -12268,7 +12268,7 @@ class PersonsServicerequestsResource(Resource):
 
         Example::
 
-            result = client.persons.servicerequests.update(42, 42, comment="Hallo zusammen")
+            result = client.persons.service_requests.update(42, 42, comment="Hallo zusammen")
             print(result.name)
         """
         if agreed is not UNSET:
@@ -12281,7 +12281,7 @@ class PersonsSettingsResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.twofactor = PersonsSettingsTwofactorResource(core)
+        self.two_factor = PersonsSettingsTwoFactorResource(core)
 
     def delete(
         self,
@@ -12722,8 +12722,8 @@ class ProfilesCampusesResource(Resource):
         return _t.cast(models.Profile, self._call('PUT', f"/profiles/campuses/{_seg(id)}", [], _body({'address': address, 'associationId': association_id, 'denomination': denomination, 'description': description, 'email': email, 'groups': groups, 'isPublished': is_published, 'name': name, 'phone': phone, 'services': services, 'shortName': short_name, 'shorty': shorty, 'signUpGroupId': sign_up_group_id, 'slug': slug, 'socialMedia': social_media, 'sortKey': sort_key, 'tags': tags, 'team': team, 'teamTitle': team_title, 'visitors': visitors, 'website': website, 'id': id2}, extra_body), models.Profile, envelope=True))
 
 
-class ProfilesSlugcheckResource(Resource):
-    """`client.profiles.slugcheck`"""
+class ProfilesSlugCheckResource(Resource):
+    """`client.profiles.slug_check`"""
 
     def get(
         self,
@@ -12744,21 +12744,21 @@ class ProfilesSlugcheckResource(Resource):
 
         Example::
 
-            client.profiles.slugcheck.get("my-church")
+            client.profiles.slug_check.get("my-church")
         """
         self._raw('GET', f"/profiles/slugcheck/{_seg(slug)}", _query([('guid', guid)]), None)
 
 
-class PublicgroupsSignupResource(Resource):
-    """`client.publicgroups.signup`"""
+class PublicGroupsSignupResource(Resource):
+    """`client.public_groups.signup`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.confirm = PublicgroupsSignupConfirmResource(core)
+        self.confirm = PublicGroupsSignupConfirmResource(core)
 
 
-class QueuesJobgroupsResource(Resource):
-    """`client.queues.jobgroups`"""
+class QueuesJobGroupsResource(Resource):
+    """`client.queues.job_groups`"""
 
     def get(
         self,
@@ -12779,8 +12779,8 @@ class QueuesJobgroupsResource(Resource):
 
         Example::
 
-            for jobgroup in client.queues.jobgroups.get("beispiel", "beispiel"):
-                print(jobgroup.name)
+            for job_group in client.queues.job_groups.get("beispiel", "beispiel"):
+                print(job_group.name)
         """
         return _t.cast(_t.List[models.JobGroupStatus], self._call('GET', f"/queues/{_seg(queue)}/jobgroups/{_seg(job_group)}", [], None, _t.List[models.JobGroupStatus], envelope=True))
 
@@ -13579,8 +13579,8 @@ class SyncConflictsResource(Resource):
         return _t.cast(models.SyncConflicts, self._call('PUT', f"/sync/conflicts/{_seg(id)}", [], _body({'data': data, 'entityMappingId': entity_mapping_id, 'jobId': job_id, 'type': type_}, extra_body), models.SyncConflicts, envelope=True))
 
 
-class SyncEntitymappingsResource(Resource):
-    """`client.sync.entitymappings`"""
+class SyncEntityMappingsResource(Resource):
+    """`client.sync.entity_mappings`"""
 
     def create(
         self,
@@ -13614,7 +13614,7 @@ class SyncEntitymappingsResource(Resource):
 
         Example::
 
-            result = client.sync.entitymappings.create(
+            result = client.sync.entity_mappings.create(
                 domain_id="42",
                 domain_type="status",
                 source_entity_id="p-42",
@@ -13641,7 +13641,7 @@ class SyncEntitymappingsResource(Resource):
 
         Example::
 
-            client.sync.entitymappings.delete(1)
+            client.sync.entity_mappings.delete(1)
         """
         self._raw('DELETE', f"/sync/entitymappings/{_seg(id)}", [], None)
 
@@ -13661,8 +13661,8 @@ class SyncEntitymappingsResource(Resource):
 
         Example::
 
-            entitymapping = client.sync.entitymappings.get(1)
-            print(entitymapping.id)
+            entity_mapping = client.sync.entity_mappings.get(1)
+            print(entity_mapping.id)
         """
         return _t.cast(models.SyncEntityMapping, self._call('GET', f"/sync/entitymappings/{_seg(id)}", [], None, models.SyncEntityMapping, envelope=True))
 
@@ -13694,8 +13694,8 @@ class SyncEntitymappingsResource(Resource):
 
         Example::
 
-            for entitymapping in client.sync.entitymappings.list():
-                print(entitymapping.id)
+            for entity_mapping in client.sync.entity_mappings.list():
+                print(entity_mapping.id)
         """
         return Paginator(self._core, "/sync/entitymappings", _query([('limit', limit), ('domain_type[]', domain_type), ('domain_id[]', domain_id), ('source_entity_id[]', source_entity_id), ('source_id', source_id), ('scope', scope)]), models.SyncEntityMapping)
 
@@ -13733,7 +13733,7 @@ class SyncEntitymappingsResource(Resource):
 
         Example::
 
-            result = client.sync.entitymappings.update(
+            result = client.sync.entity_mappings.update(
                 1,
                 domain_id="42",
                 domain_type="status",
@@ -13751,9 +13751,9 @@ class SyncExternalsystemsResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.adapterproxy = SyncExternalsystemsAdapterproxyResource(core)
-        self.fieldmappings = SyncExternalsystemsFieldmappingsResource(core)
-        self.jobconfigs = SyncExternalsystemsJobconfigsResource(core)
+        self.adapter_proxy = SyncExternalsystemsAdapterProxyResource(core)
+        self.field_mappings = SyncExternalsystemsFieldMappingsResource(core)
+        self.job_configs = SyncExternalsystemsJobConfigsResource(core)
 
     def create(
         self,
@@ -13806,7 +13806,7 @@ class SyncExternalsystemsResource(Resource):
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}", [], None)
 
-    def delete_entitymappings(
+    def delete_entity_mappings(
         self,
         external_system_id: int,
     ) -> None:
@@ -13822,7 +13822,7 @@ class SyncExternalsystemsResource(Resource):
 
         Example::
 
-            client.sync.externalsystems.delete_entitymappings(1)
+            client.sync.externalsystems.delete_entity_mappings(1)
         """
         self._raw('DELETE', f"/sync/externalsystems/{_seg(external_system_id)}/entitymappings", [], None)
 
@@ -14166,7 +14166,7 @@ class WikiCategoriesResource(Resource):
 class ActionsResource(Resource):
     """`client.actions`"""
 
-    def create(
+    def filter(
         self,
         *,
         domain_type: _t.List[_t.Literal['group_membership', 'person']],
@@ -14187,7 +14187,7 @@ class ActionsResource(Resource):
 
         Example::
 
-            for action in client.actions.create(domain_type=["group_membership"]):
+            for action in client.actions.filter(domain_type=["group_membership"]):
                 print(action.domain_type)
         """
         return _t.cast(_t.List[models.Action], self._call('POST', "/actions", [], _body({'domain_type': domain_type, 'filter': filter}, extra_body), _t.List[models.Action], envelope=True))
@@ -14368,6 +14368,179 @@ class AddressesResource(Resource):
         return _t.cast(models.StoredAddress, self._call('PUT', f"/addresses/{_seg(domain_type)}/{_seg(domain_identifier)}/{_seg(address_id)}", [], _body({'addition': addition, 'city': city, 'color': color, 'country': country, 'district': district, 'icon': icon, 'latitude': latitude, 'longitude': longitude, 'name': name, 'street': street, 'zip': zip}, extra_body), models.StoredAddress, envelope=True))
 
 
+class AgendaTemplatesResource(Resource):
+    """`client.agenda_templates`"""
+
+    def __init__(self, core: _t.Any) -> None:
+        super().__init__(core)
+        self.items = AgendaTemplatesItemsResource(core)
+
+    def create(
+        self,
+        *,
+        calendar_id: int,
+        name: str,
+        event_start_position: _t.Union[int, UnsetType] = UNSET,
+        items: _t.Union[_t.List[_t.Union[models.AgendaItemInputHeader, models.AgendaItemInputSong, models.AgendaItemInputText]], UnsetType] = UNSET,
+        series: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
+    ) -> models.Agenda:
+        """
+        Create agenda template
+
+        `POST /agendatemplates`
+
+        Creates a reusable agenda template and returns HTTP `200` with its complete representation. The caller must be a super administrator or have "edit agenda templates" for the supplied calendar. Items are optional and new templates start unlocked. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
+
+        Args:
+            calendar_id: Calendar that determines template visibility and editing permissions.
+            event_start_position: Zero-based index in the complete item list where the event begins when this template is copied.
+            items: Initial template items in their intended order. Items are not linked to any event.
+            name: Template name.
+            series: Optional free-text series name.
+
+        Example::
+
+            result = client.agenda_templates.create(calendar_id=1, name="Sunday Service Template")
+            print(result.name)
+        """
+        return _t.cast(models.Agenda, self._call('POST', "/agendatemplates", [], _body({'calendarId': calendar_id, 'eventStartPosition': event_start_position, 'items': items, 'name': name, 'series': series}, extra_body), models.Agenda, envelope=True))
+
+    def delete(
+        self,
+        agenda_id: int,
+        *,
+        dry_run: _t.Optional[bool] = None,
+    ) -> None:
+        """
+        Delete agenda template
+
+        `DELETE /agendatemplates/{agendaId}`
+
+        Deletes an unlocked agenda template. Previously copied event agendas retain their independent content. Requires a super administrator or "edit agenda templates" for the template calendar. Passing `dryRun`=`true` still deletes the template; this endpoint does not offer a deletion preview.
+
+        Args:
+            agenda_id: ID of agenda
+            dry_run: Deprecated. Accepted but ignored. Both `false` and `true` execute deletion; this parameter does not provide a dry run.
+
+        Example::
+
+            client.agenda_templates.delete(35)
+        """
+        if dry_run is not None:
+            _warn_deprecated('dry_run', '')
+        self._raw('DELETE', f"/agendatemplates/{_seg(agenda_id)}", _query([('dryRun', dry_run)]), None)
+
+    def export(
+        self,
+        agenda_id: int,
+        *,
+        format: _t.Literal['PRO_PRESENTER_6', 'PRO_PRESENTER_7', 'SONG_BEAMER'],
+        append_arrangement: bool,
+        export_songs: bool,
+        with_category: bool,
+        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
+    ) -> models.AgendaExport:
+        """
+        Export agenda template
+
+        `POST /agendatemplates/{agendaId}/export`
+
+        Generates a presenter import archive from an agenda template. Requires a super administrator or "view agenda", "edit agenda" or "edit agenda templates" for its calendar. Locked and unlocked agendas can be exported. Exports of unlocked agendas have a DRAFT label in the generated export name.
+
+        Args:
+            agenda_id: ID of agenda
+            format: Target presenter format. The generated archive is returned through a download URL in the JSON response.
+                Allowed values: `PRO_PRESENTER_6`, `PRO_PRESENTER_7`, `SONG_BEAMER`.
+            append_arrangement: Append the selected arrangement name to exported song captions and generated fallback file names. Existing attached files retain their file names.
+            export_songs: Include available song files for the target software. The first matching file of the selected arrangement is used. For SongBeamer, the song's default arrangement can provide a fallback `.sng` file. When disabled, song references point to files expected in the presenter library. No song-file conversion is performed.
+            with_category: For `SONG_BEAMER` with `exportSongs`=`false`, prefix generated song file references with the song category as a directory. Has no effect with embedded song files or for either ProPresenter format.
+
+        Example::
+
+            agenda_template = client.agenda_templates.export(
+                35,
+                format="SONG_BEAMER",
+                append_arrangement=True,
+                export_songs=True,
+                with_category=False,
+            )
+            print(agenda_template.url)
+        """
+        return _t.cast(models.AgendaExport, self._call('POST', f"/agendatemplates/{_seg(agenda_id)}/export", _query([('format', format)]), _body({'appendArrangement': append_arrangement, 'exportSongs': export_songs, 'withCategory': with_category}, extra_body), models.AgendaExport, envelope=True))
+
+    def get(
+        self,
+        agenda_id: int,
+    ) -> models.Agenda:
+        """
+        Get agenda template
+
+        `GET /agendatemplates/{agendaId}`
+
+        Returns one agenda template with its complete ordered item list. An ID belonging to an event agenda is not a template and returns `404`. Visibility requires a super administrator or one of "view agenda", "edit agenda" or "edit agenda templates" for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
+
+        Args:
+            agenda_id: ID of agenda
+
+        Example::
+
+            agenda_template = client.agenda_templates.get(35)
+            print(agenda_template.name)
+        """
+        return _t.cast(models.Agenda, self._call('GET', f"/agendatemplates/{_seg(agenda_id)}", [], None, models.Agenda, envelope=True))
+
+    def list(
+        self,
+    ) -> _t.List[models.Agenda]:
+        """
+        Get all agenda templates
+
+        `GET /agendatemplates`
+
+        Returns every agenda template visible to the caller, including its items. Visibility requires a super administrator or one of "view agenda", "edit agenda" or "edit agenda templates" for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
+
+        Example::
+
+            for agenda_template in client.agenda_templates.list():
+                print(agenda_template.name)
+        """
+        return _t.cast(_t.List[models.Agenda], self._call('GET', "/agendatemplates", [], None, _t.List[models.Agenda], envelope=True))
+
+    def update(
+        self,
+        agenda_id: int,
+        *,
+        calendar_id: int,
+        name: str,
+        event_start_position: _t.Union[int, UnsetType] = UNSET,
+        items: _t.Union[_t.List[models.AgendaItemListUpdate], UnsetType] = UNSET,
+        series: _t.Union[_t.Optional[str], UnsetType] = UNSET,
+        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
+    ) -> models.Agenda:
+        """
+        Update agenda template
+
+        `PUT /agendatemplates/{agendaId}`
+
+        Updates the template metadata and, when supplied, replaces its complete item list. Existing item IDs may be supplied once each to retain those items. The template must be unlocked. Requires a super administrator or "edit agenda templates" for the template's existing calendar.
+
+        Args:
+            agenda_id: ID of agenda
+            calendar_id: Calendar that determines template visibility and editing permissions.
+            event_start_position: Zero-based index in the complete item list where the event begins when this template is copied.
+            items: Complete replacement list in the intended order. An empty array deletes all items.
+            name: Template name.
+            series: Optional free-text series name.
+
+        Example::
+
+            result = client.agenda_templates.update(35, calendar_id=1, name="Sunday Service Template")
+            print(result.name)
+        """
+        return _t.cast(models.Agenda, self._call('PUT', f"/agendatemplates/{_seg(agenda_id)}", [], _body({'calendarId': calendar_id, 'eventStartPosition': event_start_position, 'items': items, 'name': name, 'series': series}, extra_body), models.Agenda, envelope=True))
+
+
 class AgendasResource(Resource):
     """`client.agendas`"""
 
@@ -14413,179 +14586,6 @@ class AgendasResource(Resource):
             print(agenda)
         """
         return _t.cast(models.EventMailSendResult, self._call('POST', "/agendas/send", [], _body({'body': body, 'eventIds': event_ids, 'recipients': recipients, 'sendCopyToMe': send_copy_to_me, 'subject': subject, 'appendAgendaButton': append_agenda_button, 'files': files}, extra_body), models.EventMailSendResult, envelope=True))
-
-
-class AgendatemplatesResource(Resource):
-    """`client.agendatemplates`"""
-
-    def __init__(self, core: _t.Any) -> None:
-        super().__init__(core)
-        self.items = AgendatemplatesItemsResource(core)
-
-    def create(
-        self,
-        *,
-        calendar_id: int,
-        name: str,
-        event_start_position: _t.Union[int, UnsetType] = UNSET,
-        items: _t.Union[_t.List[_t.Union[models.AgendaItemInputHeader, models.AgendaItemInputSong, models.AgendaItemInputText]], UnsetType] = UNSET,
-        series: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
-    ) -> models.Agenda:
-        """
-        Create agenda template
-
-        `POST /agendatemplates`
-
-        Creates a reusable agenda template and returns HTTP `200` with its complete representation. The caller must be a super administrator or have "edit agenda templates" for the supplied calendar. Items are optional and new templates start unlocked. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
-
-        Args:
-            calendar_id: Calendar that determines template visibility and editing permissions.
-            event_start_position: Zero-based index in the complete item list where the event begins when this template is copied.
-            items: Initial template items in their intended order. Items are not linked to any event.
-            name: Template name.
-            series: Optional free-text series name.
-
-        Example::
-
-            result = client.agendatemplates.create(calendar_id=1, name="Sunday Service Template")
-            print(result.name)
-        """
-        return _t.cast(models.Agenda, self._call('POST', "/agendatemplates", [], _body({'calendarId': calendar_id, 'eventStartPosition': event_start_position, 'items': items, 'name': name, 'series': series}, extra_body), models.Agenda, envelope=True))
-
-    def delete(
-        self,
-        agenda_id: int,
-        *,
-        dry_run: _t.Optional[bool] = None,
-    ) -> None:
-        """
-        Delete agenda template
-
-        `DELETE /agendatemplates/{agendaId}`
-
-        Deletes an unlocked agenda template. Previously copied event agendas retain their independent content. Requires a super administrator or "edit agenda templates" for the template calendar. Passing `dryRun`=`true` still deletes the template; this endpoint does not offer a deletion preview.
-
-        Args:
-            agenda_id: ID of agenda
-            dry_run: Deprecated. Accepted but ignored. Both `false` and `true` execute deletion; this parameter does not provide a dry run.
-
-        Example::
-
-            client.agendatemplates.delete(35)
-        """
-        if dry_run is not None:
-            _warn_deprecated('dry_run', '')
-        self._raw('DELETE', f"/agendatemplates/{_seg(agenda_id)}", _query([('dryRun', dry_run)]), None)
-
-    def export(
-        self,
-        agenda_id: int,
-        *,
-        format: _t.Literal['PRO_PRESENTER_6', 'PRO_PRESENTER_7', 'SONG_BEAMER'],
-        append_arrangement: bool,
-        export_songs: bool,
-        with_category: bool,
-        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
-    ) -> models.AgendaExport:
-        """
-        Export agenda template
-
-        `POST /agendatemplates/{agendaId}/export`
-
-        Generates a presenter import archive from an agenda template. Requires a super administrator or "view agenda", "edit agenda" or "edit agenda templates" for its calendar. Locked and unlocked agendas can be exported. Exports of unlocked agendas have a DRAFT label in the generated export name.
-
-        Args:
-            agenda_id: ID of agenda
-            format: Target presenter format. The generated archive is returned through a download URL in the JSON response.
-                Allowed values: `PRO_PRESENTER_6`, `PRO_PRESENTER_7`, `SONG_BEAMER`.
-            append_arrangement: Append the selected arrangement name to exported song captions and generated fallback file names. Existing attached files retain their file names.
-            export_songs: Include available song files for the target software. The first matching file of the selected arrangement is used. For SongBeamer, the song's default arrangement can provide a fallback `.sng` file. When disabled, song references point to files expected in the presenter library. No song-file conversion is performed.
-            with_category: For `SONG_BEAMER` with `exportSongs`=`false`, prefix generated song file references with the song category as a directory. Has no effect with embedded song files or for either ProPresenter format.
-
-        Example::
-
-            agendatemplate = client.agendatemplates.export(
-                35,
-                format="SONG_BEAMER",
-                append_arrangement=True,
-                export_songs=True,
-                with_category=False,
-            )
-            print(agendatemplate.url)
-        """
-        return _t.cast(models.AgendaExport, self._call('POST', f"/agendatemplates/{_seg(agenda_id)}/export", _query([('format', format)]), _body({'appendArrangement': append_arrangement, 'exportSongs': export_songs, 'withCategory': with_category}, extra_body), models.AgendaExport, envelope=True))
-
-    def get(
-        self,
-        agenda_id: int,
-    ) -> models.Agenda:
-        """
-        Get agenda template
-
-        `GET /agendatemplates/{agendaId}`
-
-        Returns one agenda template with its complete ordered item list. An ID belonging to an event agenda is not a template and returns `404`. Visibility requires a super administrator or one of "view agenda", "edit agenda" or "edit agenda templates" for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
-
-        Args:
-            agenda_id: ID of agenda
-
-        Example::
-
-            agendatemplate = client.agendatemplates.get(35)
-            print(agendatemplate.name)
-        """
-        return _t.cast(models.Agenda, self._call('GET', f"/agendatemplates/{_seg(agenda_id)}", [], None, models.Agenda, envelope=True))
-
-    def list(
-        self,
-    ) -> _t.List[models.Agenda]:
-        """
-        Get all agenda templates
-
-        `GET /agendatemplates`
-
-        Returns every agenda template visible to the caller, including its items. Visibility requires a super administrator or one of "view agenda", "edit agenda" or "edit agenda templates" for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are `null` and `startTimes` objects are empty.
-
-        Example::
-
-            for agendatemplate in client.agendatemplates.list():
-                print(agendatemplate.name)
-        """
-        return _t.cast(_t.List[models.Agenda], self._call('GET', "/agendatemplates", [], None, _t.List[models.Agenda], envelope=True))
-
-    def update(
-        self,
-        agenda_id: int,
-        *,
-        calendar_id: int,
-        name: str,
-        event_start_position: _t.Union[int, UnsetType] = UNSET,
-        items: _t.Union[_t.List[models.AgendaItemListUpdate], UnsetType] = UNSET,
-        series: _t.Union[_t.Optional[str], UnsetType] = UNSET,
-        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
-    ) -> models.Agenda:
-        """
-        Update agenda template
-
-        `PUT /agendatemplates/{agendaId}`
-
-        Updates the template metadata and, when supplied, replaces its complete item list. Existing item IDs may be supplied once each to retain those items. The template must be unlocked. Requires a super administrator or "edit agenda templates" for the template's existing calendar.
-
-        Args:
-            agenda_id: ID of agenda
-            calendar_id: Calendar that determines template visibility and editing permissions.
-            event_start_position: Zero-based index in the complete item list where the event begins when this template is copied.
-            items: Complete replacement list in the intended order. An empty array deletes all items.
-            name: Template name.
-            series: Optional free-text series name.
-
-        Example::
-
-            result = client.agendatemplates.update(35, calendar_id=1, name="Sunday Service Template")
-            print(result.name)
-        """
-        return _t.cast(models.Agenda, self._call('PUT', f"/agendatemplates/{_seg(agenda_id)}", [], _body({'calendarId': calendar_id, 'eventStartPosition': event_start_position, 'items': items, 'name': name, 'series': series}, extra_body), models.Agenda, envelope=True))
 
 
 class BookingsResource(Resource):
@@ -14940,8 +14940,8 @@ class BookingsResource(Resource):
         return _t.cast(models.BookingBase, self._call('PUT', f"/bookings/{_seg(booking_id)}", [], _body(body), models.BookingBase, envelope=True))
 
 
-class BulkjobsResource(Resource):
-    """`client.bulkjobs`"""
+class BulkJobsResource(Resource):
+    """`client.bulk_jobs`"""
 
     def enqueue(
         self,
@@ -14971,13 +14971,13 @@ class BulkjobsResource(Resource):
 
         Example::
 
-            bulkjob = client.bulkjobs.enqueue(
+            bulk_job = client.bulk_jobs.enqueue(
                 "group",
                 "setMaxMembers",
                 domain_object_identifiers=[42],
                 job_data=ct.models.BulkGroupSetMaxMembersUpdate.model_validate({}),
             )
-            print(bulkjob.job_group)
+            print(bulk_job.job_group)
         """
         return _t.cast(models.BulkJobQueued, self._call('POST', f"/bulkjobs/{_seg(domain_type)}/{_seg(job_key)}/enqueue", [], _body({'actionContext': action_context, 'domainObjectIdentifiers': domain_object_identifiers, 'jobData': job_data}, extra_body), models.BulkJobQueued, envelope=True))
 
@@ -15009,19 +15009,19 @@ class BulkjobsResource(Resource):
 
         Example::
 
-            bulkjob = client.bulkjobs.infos(
+            bulk_job = client.bulk_jobs.infos(
                 "group",
                 "setMaxMembers",
                 domain_object_identifiers=[42],
                 job_data=ct.models.BulkGroupSetMaxMembersUpdate.model_validate({}),
             )
-            print(bulkjob)
+            print(bulk_job)
         """
         return _t.cast(models.BulkInfos, self._call('POST', f"/bulkjobs/{_seg(domain_type)}/{_seg(job_key)}/infos", [], _body({'actionContext': action_context, 'domainObjectIdentifiers': domain_object_identifiers, 'jobData': job_data}, extra_body), models.BulkInfos, envelope=True))
 
 
-class BulklettersResource(Resource):
-    """`client.bulkletters`"""
+class BulkLettersResource(Resource):
+    """`client.bulk_letters`"""
 
     def create(
         self,
@@ -15051,7 +15051,7 @@ class BulklettersResource(Resource):
 
         Example::
 
-            result = client.bulkletters.create(
+            result = client.bulk_letters.create(
                 content="<p>Hello [Spitzname]!</p>",
                 group_by_household=True,
                 html_template_id=39,
@@ -15078,7 +15078,7 @@ class BulklettersResource(Resource):
 
         Example::
 
-            client.bulkletters.delete(36)
+            client.bulk_letters.delete(36)
         """
         self._raw('DELETE', f"/bulkletters/{_seg(id)}", [], None)
 
@@ -15096,7 +15096,7 @@ class BulklettersResource(Resource):
 
         Example::
 
-            client.bulkletters.execute()
+            client.bulk_letters.execute()
         """
         self._raw('POST', "/bulkletters/execute", [], _body(body))
 
@@ -15116,8 +15116,8 @@ class BulklettersResource(Resource):
 
         Example::
 
-            bulkletter = client.bulkletters.get(36)
-            print(bulkletter.name)
+            bulk_letter = client.bulk_letters.get(36)
+            print(bulk_letter.name)
         """
         return _t.cast(models.Bulkletter, self._call('GET', f"/bulkletters/{_seg(id)}", [], None, models.Bulkletter, envelope=False))
 
@@ -15133,8 +15133,8 @@ class BulklettersResource(Resource):
 
         Example::
 
-            for bulkletter in client.bulkletters.list():
-                print(bulkletter.name)
+            for bulk_letter in client.bulk_letters.list():
+                print(bulk_letter.name)
         """
         return _t.cast(_t.List[models.Bulkletter], self._call('GET', "/bulkletters", [], None, _t.List[models.Bulkletter], envelope=False))
 
@@ -15154,7 +15154,7 @@ class BulklettersResource(Resource):
 
         Example::
 
-            for person in client.bulkletters.list_persons(36):
+            for person in client.bulk_letters.list_persons(36):
                 print(person.name)
         """
         return _t.cast(_t.List[models.BulkletterReceiver], self._call('GET', f"/bulkletters/{_seg(id)}/persons", [], None, _t.List[models.BulkletterReceiver], envelope=True))
@@ -15166,7 +15166,7 @@ class CalendarsResource(Resource):
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
         self.appointments = CalendarsAppointmentsResource(core)
-        self.meetingrequest = CalendarsMeetingrequestResource(core)
+        self.meeting_request = CalendarsMeetingRequestResource(core)
 
     def create(
         self,
@@ -15267,7 +15267,7 @@ class CalendarsResource(Resource):
         return _t.cast(_t.List[models.Calendar], self._call('GET', "/calendars", [], None, _t.List[models.Calendar], envelope=True))
 
     @_deprecated('GET /calendars/{calendarId}/meetingrequestpersons is deprecated in the ChurchTools API.')
-    def list_meetingrequestpersons(
+    def list_meeting_request_persons(
         self,
         calendar_id: int,
         *,
@@ -15288,8 +15288,8 @@ class CalendarsResource(Resource):
 
         Example::
 
-            for meetingrequestperson in client.calendars.list_meetingrequestpersons(42):
-                print(meetingrequestperson.group_name)
+            for meeting_request_person in client.calendars.list_meeting_request_persons(42):
+                print(meeting_request_person.group_name)
         """
         return _t.cast(_t.List[models.MeetingRequestCandidate], self._call('GET', f"/calendars/{_seg(calendar_id)}/meetingrequestpersons", _query([('appointmentId', appointment_id)]), None, _t.List[models.MeetingRequestCandidate], envelope=True))
 
@@ -15675,12 +15675,12 @@ class CheckinResource(Resource):
         return _t.cast(models.CheckinPerson, self._call('PUT', "/checkin/persons", [], _body({'group': group, 'personId': person_id, 'tagId': tag_id}, extra_body), models.CheckinPerson, envelope=True))
 
 
-class ChurchqueryResource(Resource):
-    """`client.churchquery`"""
+class ChurchQueryResource(Resource):
+    """`client.church_query`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.debug = ChurchqueryDebugResource(core)
+        self.debug = ChurchQueryDebugResource(core)
 
     def get_metadata(
         self,
@@ -15699,7 +15699,7 @@ class ChurchqueryResource(Resource):
 
         Example::
 
-            result = client.churchquery.get_metadata()
+            result = client.church_query.get_metadata()
             print(result)
         """
         return _t.cast(_t.Any, self._call('GET', "/churchquery/metadata", _query([('entity_to_search_for', entity_to_search_for), ('exclude_field_types[]', exclude_field_types)]), None, _t.Any, envelope=True))
@@ -15903,8 +15903,8 @@ class ConfigResource(Resource):
         self._raw('PUT', "/config", [], _body({'accept_datasecurity': accept_datasecurity, 'access_control_allow_origins': access_control_allow_origins, 'admin_mail': admin_mail, 'admin_message': admin_message, 'ai_description_available_generation_tests': ai_description_available_generation_tests, 'ai_description_generation_count': ai_description_generation_count, 'ai_description_generation_enabled': ai_description_generation_enabled, 'allowaiassistant': allowaiassistant, 'authorized_persons': authorized_persons, 'ccli_auto_reporting_enabled': ccli_auto_reporting_enabled, 'churchcal_active': churchcal_active, 'churchcal_css': churchcal_css, 'churchcal_entries_last_days': churchcal_entries_last_days, 'churchcal_firstdayinweek': churchcal_firstdayinweek, 'churchcal_maincalname': churchcal_maincalname, 'churchcal_name': churchcal_name, 'churchcal_sortcode': churchcal_sortcode, 'churchchat_allow_event_chat': churchchat_allow_event_chat, 'churchchat_allow_group_chat': churchchat_allow_group_chat, 'churchchat_allow_person_chat': churchchat_allow_person_chat, 'churchchat_delete_event_chat_after_x_days': churchchat_delete_event_chat_after_x_days, 'churchchat_invite_ct_event_chat': churchchat_invite_ct_event_chat, 'churchchat_invite_ct_group_chat': churchchat_invite_ct_group_chat, 'churchchat_start_event_chat_before_x_days': churchchat_start_event_chat_before_x_days, 'churchchat_start_event_chat_for_calendars': churchchat_start_event_chat_for_calendars, 'churchcheckin_active': churchcheckin_active, 'churchcheckin_label_child': churchcheckin_label_child, 'churchcheckin_label_parent': churchcheckin_label_parent, 'churchcheckin_label_standard': churchcheckin_label_standard, 'churchcheckin_name': churchcheckin_name, 'churchcheckin_sortcode': churchcheckin_sortcode, 'churchcheckin_tags': churchcheckin_tags, 'churchdb_active': churchdb_active, 'churchdb_archivedeletehistory': churchdb_archivedeletehistory, 'churchdb_birthdaylist_station': churchdb_birthdaylist_station, 'churchdb_birthdaylist_status': churchdb_birthdaylist_status, 'churchdb_cleverreach_connected': churchdb_cleverreach_connected, 'churchdb_emailseparator': churchdb_emailseparator, 'churchdb_groupnotchoosable': churchdb_groupnotchoosable, 'churchdb_home_lat': churchdb_home_lat, 'churchdb_home_lng': churchdb_home_lng, 'churchdb_mailchimp_apikey': churchdb_mailchimp_apikey, 'churchdb_mailchimp_connected': churchdb_mailchimp_connected, 'churchdb_mailjet_apikey': churchdb_mailjet_apikey, 'churchdb_mailjet_apisecret': churchdb_mailjet_apisecret, 'churchdb_mailjet_connected': churchdb_mailjet_connected, 'churchdb_memberlist_station': churchdb_memberlist_station, 'churchdb_memberlist_status': churchdb_memberlist_status, 'churchdb_name': churchdb_name, 'churchdb_sendgroupmails': churchdb_sendgroupmails, 'churchdb_smscmtelecom_apikey': churchdb_smscmtelecom_apikey, 'churchdb_sortcode': churchdb_sortcode, 'churchfinance_active': churchfinance_active, 'churchfinance_name': churchfinance_name, 'churchfinance_sortcode': churchfinance_sortcode, 'churchgroup_active': churchgroup_active, 'churchgroup_name': churchgroup_name, 'churchgroup_sortcode': churchgroup_sortcode, 'churchreport_active': churchreport_active, 'churchreport_name': churchreport_name, 'churchreport_sortcode': churchreport_sortcode, 'churchresource_active': churchresource_active, 'churchresource_anonymize_for_public_user': churchresource_anonymize_for_public_user, 'churchresource_entries_last_days': churchresource_entries_last_days, 'churchresource_name': churchresource_name, 'churchresource_send_emails': churchresource_send_emails, 'churchresource_sortcode': churchresource_sortcode, 'churchservice_active': churchservice_active, 'churchservice_agendashowenumeration': churchservice_agendashowenumeration, 'churchservice_ccli_token': churchservice_ccli_token, 'churchservice_ccli_token_secret': churchservice_ccli_token_secret, 'churchservice_entries_last_days': churchservice_entries_last_days, 'churchservice_invite_persons': churchservice_invite_persons, 'churchservice_name': churchservice_name, 'churchservice_openservice_rememberdays': churchservice_openservice_rememberdays, 'churchservice_reminderhours': churchservice_reminderhours, 'churchservice_songwithcategoryasdir': churchservice_songwithcategoryasdir, 'churchservice_sortcode': churchservice_sortcode, 'churchsync_active': churchsync_active, 'churchsync_name': churchsync_name, 'churchsync_sortcode': churchsync_sortcode, 'churchwiki_active': churchwiki_active, 'churchwiki_name': churchwiki_name, 'churchwiki_sortcode': churchwiki_sortcode, 'cronjob_delay': cronjob_delay, 'data_privacy_text': data_privacy_text, 'datasecurity_banner_enabled': datasecurity_banner_enabled, 'datasecurity_privacy_agreement_text': datasecurity_privacy_agreement_text, 'datasecurity_privacy_agreement_text_for_children': datasecurity_privacy_agreement_text_for_children, 'deactivate_default_login': deactivate_default_login, 'emailServer': email_server, 'evangelische_termine_api_key': evangelische_termine_api_key, 'evangelische_termine_enabled': evangelische_termine_enabled, 'evangelische_termine_name': evangelische_termine_name, 'evangelische_termine_url': evangelische_termine_url, 'evangelische_termine_vid': evangelische_termine_vid, 'feature_sessionless_login': feature_sessionless_login, 'hide_licensetab': hide_licensetab, 'impressum_external': impressum_external, 'impressum_external_link': impressum_external_link, 'impressum_internal': impressum_internal, 'invite_email_text': invite_email_text, 'is_churchtools_blog_widget_active': is_churchtools_blog_widget_active, 'is_churchtools_onboarding_widget_active': is_churchtools_onboarding_widget_active, 'is_pr_widget_active': is_pr_widget_active, 'is_rss_widget_active': is_rss_widget_active, 'ldap_otp_enabled': ldap_otp_enabled, 'login_message': login_message, 'mail_enabled': mail_enabled, 'mail_smtp_args_host': mail_smtp_args_host, 'mail_smtp_args_password': mail_smtp_args_password, 'mail_smtp_args_port': mail_smtp_args_port, 'mail_smtp_args_smtpsecure': mail_smtp_args_smtpsecure, 'mail_smtp_args_username': mail_smtp_args_username, 'matomo_uri': matomo_uri, 'max_uploadfile_size_kb': max_uploadfile_size_kb, 'post_active': post_active, 'post_edit_time_limited': post_edit_time_limited, 'post_email_summary_default_enabled': post_email_summary_default_enabled, 'post_email_summary_default_filter': post_email_summary_default_filter, 'post_email_summary_default_weekdays': post_email_summary_default_weekdays, 'post_featured_groups': post_featured_groups, 'post_inmenu': post_inmenu, 'post_name': post_name, 'post_sortcode': post_sortcode, 'post_wizard_completed': post_wizard_completed, 'post_wizard_groups': post_wizard_groups, 'prevent_export': prevent_export, 'privacy_policy_external': privacy_policy_external, 'privacy_policy_external_link': privacy_policy_external_link, 'privacy_policy_fields_mandatory': privacy_policy_fields_mandatory, 'privacy_policy_fields_mandatory_api': privacy_policy_fields_mandatory_api, 'privacy_policy_internal': privacy_policy_internal, 'rss_widget_link': rss_widget_link, 'send_data_security_mails': send_data_security_mails, 'show_remember_me': show_remember_me, 'site_licensekey': site_licensekey, 'site_logo': site_logo, 'site_mail': site_mail, 'site_name': site_name, 'site_offline': site_offline, 'site_region': site_region, 'site_startpage': site_startpage, 'support-user-active-since': support_user_active_since, 'timezone': timezone, 'welcome': welcome, 'welcome_subtext': welcome_subtext}, extra_body))
 
 
-class ContactlabelsResource(Resource):
-    """`client.contactlabels`"""
+class ContactLabelsResource(Resource):
+    """`client.contact_labels`"""
 
     def create(
         self,
@@ -15928,7 +15928,7 @@ class ContactlabelsResource(Resource):
 
         Example::
 
-            result = client.contactlabels.create(is_default=False, name="Private", sort_key=10)
+            result = client.contact_labels.create(is_default=False, name="Private", sort_key=10)
             print(result.name)
         """
         return _t.cast(models.ContactLabel, self._call('POST', "/contactlabels", [], _body({'isDefault': is_default, 'name': name, 'sortKey': sort_key}, extra_body), models.ContactLabel, envelope=True))
@@ -15952,7 +15952,7 @@ class ContactlabelsResource(Resource):
 
         Example::
 
-            client.contactlabels.delete(1)
+            client.contact_labels.delete(1)
         """
         self._raw('DELETE', f"/contactlabels/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -15972,8 +15972,8 @@ class ContactlabelsResource(Resource):
 
         Example::
 
-            contactlabel = client.contactlabels.get(1)
-            print(contactlabel.name)
+            contact_label = client.contact_labels.get(1)
+            print(contact_label.name)
         """
         return _t.cast(models.ContactLabel, self._call('GET', f"/contactlabels/{_seg(id)}", [], None, models.ContactLabel, envelope=True))
 
@@ -15989,8 +15989,8 @@ class ContactlabelsResource(Resource):
 
         Example::
 
-            for contactlabel in client.contactlabels.list():
-                print(contactlabel.name)
+            for contact_label in client.contact_labels.list():
+                print(contact_label.name)
         """
         return _t.cast(_t.List[models.ContactLabel], self._call('GET', "/contactlabels", [], None, _t.List[models.ContactLabel], envelope=True))
 
@@ -16018,14 +16018,14 @@ class ContactlabelsResource(Resource):
 
         Example::
 
-            result = client.contactlabels.update(1, is_default=False, name="Private", sort_key=10)
+            result = client.contact_labels.update(1, is_default=False, name="Private", sort_key=10)
             print(result.name)
         """
         return _t.cast(models.ContactLabel, self._call('PUT', f"/contactlabels/{_seg(id)}", [], _body({'isDefault': is_default, 'name': name, 'sortKey': sort_key}, extra_body), models.ContactLabel, envelope=True))
 
 
-class CsrftokenResource(Resource):
-    """`client.csrftoken`"""
+class CsrfTokenResource(Resource):
+    """`client.csrf_token`"""
 
     def get(
         self,
@@ -16039,18 +16039,39 @@ class CsrftokenResource(Resource):
 
         Example::
 
-            result = client.csrftoken.get()
+            result = client.csrf_token.get()
             print(result)
         """
         return _t.cast(_t.Optional[str], self._call('GET', "/csrftoken", [], None, _t.Optional[str], envelope=True))
 
 
-class DbfieldsResource(Resource):
-    """`client.dbfields`"""
+class DbFieldTypesResource(Resource):
+    """`client.db_field_types`"""
+
+    def list(
+        self,
+    ) -> _t.List[models.DbFieldType]:
+        """
+        Get available field types
+
+        `GET /dbfieldtypes`
+
+        Returns registered database-field types, ordered by sortKey and then name. These types describe the value and input behavior of configurable fields. Names are returned as stored and can be translation keys.
+
+        Example::
+
+            for db_field_type in client.db_field_types.list():
+                print(db_field_type.name)
+        """
+        return _t.cast(_t.List[models.DbFieldType], self._call('GET', "/dbfieldtypes", [], None, _t.List[models.DbFieldType], envelope=True))
+
+
+class DbFieldsResource(Resource):
+    """`client.db_fields`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.options = DbfieldsOptionsResource(core)
+        self.options = DbFieldsOptionsResource(core)
 
     def create(
         self,
@@ -16093,7 +16114,7 @@ class DbfieldsResource(Resource):
 
         Example::
 
-            result = client.dbfields.create(
+            result = client.db_fields.create(
                 delete_on_archive=True,
                 is_active=True,
                 is_new_person_field=True,
@@ -16125,7 +16146,7 @@ class DbfieldsResource(Resource):
 
         Example::
 
-            client.dbfields.delete(200)
+            client.db_fields.delete(200)
         """
         self._raw('DELETE', f"/dbfields/{_seg(field_id)}", [], None)
 
@@ -16145,8 +16166,8 @@ class DbfieldsResource(Resource):
 
         Example::
 
-            dbfield = client.dbfields.get(200)
-            print(dbfield.name)
+            db_field = client.db_fields.get(200)
+            print(db_field.name)
         """
         return _t.cast(models.DbField, self._call('GET', f"/dbfields/{_seg(field_id)}", [], None, models.DbField, envelope=True))
 
@@ -16171,8 +16192,8 @@ class DbfieldsResource(Resource):
 
         Example::
 
-            for dbfield in client.dbfields.list():
-                print(dbfield.name)
+            for db_field in client.db_fields.list():
+                print(db_field.name)
         """
         return _t.cast(_t.List[models.DbField], self._call('GET', "/dbfields", _query([('categories[]', categories), ('include[]', include)]), None, _t.List[models.DbField], envelope=True))
 
@@ -16219,7 +16240,7 @@ class DbfieldsResource(Resource):
 
         Example::
 
-            result = client.dbfields.update(
+            result = client.db_fields.update(
                 200,
                 delete_on_archive=True,
                 is_new_person_field=True,
@@ -16232,27 +16253,6 @@ class DbfieldsResource(Resource):
         if line_ending is not UNSET:
             _warn_deprecated('line_ending', '')
         return _t.cast(models.DbField, self._call('PUT', f"/dbfields/{_seg(field_id)}", [], _body({'deleteOnArchive': delete_on_archive, 'isActive': is_active, 'isAvailableInRoutines': is_available_in_routines, 'isNewPersonField': is_new_person_field, 'length': length, 'lineEnding': line_ending, 'name': name, 'securityLevel': security_level, 'shorty': shorty, 'sortKey': sort_key, 'useAsPlaceholder': use_as_placeholder, 'fieldCategoryInternCode': field_category_intern_code}, extra_body), models.DbField, envelope=True))
-
-
-class DbfieldtypesResource(Resource):
-    """`client.dbfieldtypes`"""
-
-    def list(
-        self,
-    ) -> _t.List[models.DbFieldType]:
-        """
-        Get available field types
-
-        `GET /dbfieldtypes`
-
-        Returns registered database-field types, ordered by sortKey and then name. These types describe the value and input behavior of configurable fields. Names are returned as stored and can be translation keys.
-
-        Example::
-
-            for dbfieldtype in client.dbfieldtypes.list():
-                print(dbfieldtype.name)
-        """
-        return _t.cast(_t.List[models.DbFieldType], self._call('GET', "/dbfieldtypes", [], None, _t.List[models.DbFieldType], envelope=True))
 
 
 class DepartmentsResource(Resource):
@@ -16276,37 +16276,8 @@ class DepartmentsResource(Resource):
         return _t.cast(_t.List[models.Department], self._call('GET', "/departments", [], None, _t.List[models.Department], envelope=True))
 
 
-class DomainobjectsResource(Resource):
-    """`client.domainobjects`"""
-
-    def create(
-        self,
-        *,
-        domain_identifiers: _t.List[str],
-        domain_types: _t.List[_t.Literal['appointment', 'appointment_occurrence', 'event', 'group', 'group_membership', 'person', 'song', 'wiki_page']],
-        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
-    ) -> _t.List[models.ResolvedDomainObject]:
-        """
-        Resolve domain objects from a JSON payload
-
-        `POST /domainobjects`
-
-        Read-only JSON alternative to `GET /domainobjects` with the same resolution and permission behavior. Output order and count may differ from the input. Missing or inaccessible objects are usually omitted, but an unresolved `appointment_occurrence` may fail the request.
-
-        Args:
-            domain_identifiers: For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
-            domain_types: Object types corresponding to the identifiers at the same indexes.
-                Allowed values: `appointment`, `appointment_occurrence`, `event`, `group`, `group_membership`, `person`, `song`, `wiki_page`.
-
-        Example::
-
-            for domainobject in client.domainobjects.create(
-                domain_identifiers=["42", "7"],
-                domain_types=["person", "group"],
-            ):
-                print(domainobject.api_url)
-        """
-        return _t.cast(_t.List[models.ResolvedDomainObject], self._call('POST', "/domainobjects", [], _body({'domain_identifiers': domain_identifiers, 'domain_types': domain_types}, extra_body), _t.List[models.ResolvedDomainObject], envelope=True))
+class DomainObjectsResource(Resource):
+    """`client.domain_objects`"""
 
     def list(
         self,
@@ -16328,17 +16299,46 @@ class DomainobjectsResource(Resource):
 
         Example::
 
-            for domainobject in client.domainobjects.list(
+            for domain_object in client.domain_objects.list(
                 domain_types=["person", "group"],
                 domain_identifiers=["42", "7"],
             ):
-                print(domainobject.api_url)
+                print(domain_object.api_url)
         """
         return _t.cast(_t.List[models.ResolvedDomainObject], self._call('GET', "/domainobjects", _query([('domain_types[]', domain_types), ('domain_identifiers[]', domain_identifiers)]), None, _t.List[models.ResolvedDomainObject], envelope=True))
 
+    def resolve(
+        self,
+        *,
+        domain_identifiers: _t.List[str],
+        domain_types: _t.List[_t.Literal['appointment', 'appointment_occurrence', 'event', 'group', 'group_membership', 'person', 'song', 'wiki_page']],
+        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
+    ) -> _t.List[models.ResolvedDomainObject]:
+        """
+        Resolve domain objects from a JSON payload
 
-class DynamicgroupsResource(Resource):
-    """`client.dynamicgroups`"""
+        `POST /domainobjects`
+
+        Read-only JSON alternative to `GET /domainobjects` with the same resolution and permission behavior. Output order and count may differ from the input. Missing or inaccessible objects are usually omitted, but an unresolved `appointment_occurrence` may fail the request.
+
+        Args:
+            domain_identifiers: For `person`, `group`, `song`, `event`, `group_membership`, and `appointment`, use a numeric database ID encoded as a string. `group_membership` uses the membership row ID, and `wiki_page` uses the page GUID. For `appointment_occurrence`, use `-`, for example `23-2026-09-14`.
+            domain_types: Object types corresponding to the identifiers at the same indexes.
+                Allowed values: `appointment`, `appointment_occurrence`, `event`, `group`, `group_membership`, `person`, `song`, `wiki_page`.
+
+        Example::
+
+            for domain_object in client.domain_objects.resolve(
+                domain_identifiers=["42", "7"],
+                domain_types=["person", "group"],
+            ):
+                print(domain_object.api_url)
+        """
+        return _t.cast(_t.List[models.ResolvedDomainObject], self._call('POST', "/domainobjects", [], _body({'domain_identifiers': domain_identifiers, 'domain_types': domain_types}, extra_body), _t.List[models.ResolvedDomainObject], envelope=True))
+
+
+class DynamicGroupsResource(Resource):
+    """`client.dynamic_groups`"""
 
     def delete_ruleset(
         self,
@@ -16356,7 +16356,7 @@ class DynamicgroupsResource(Resource):
 
         Example::
 
-            client.dynamicgroups.delete_ruleset(42)
+            client.dynamic_groups.delete_ruleset(42)
         """
         self._raw('DELETE', f"/dynamicgroups/{_seg(group_id)}/ruleset", [], None)
 
@@ -16376,7 +16376,7 @@ class DynamicgroupsResource(Resource):
 
         Example::
 
-            statu = client.dynamicgroups.get_status(42)
+            statu = client.dynamic_groups.get_status(42)
             print(statu.dynamic_group_status)
         """
         return _t.cast(models.DynamicGroupStatusUpdate, self._call('GET', f"/dynamicgroups/{_seg(group_id)}/status", [], None, models.DynamicGroupStatusUpdate, envelope=False))
@@ -16393,8 +16393,8 @@ class DynamicgroupsResource(Resource):
 
         Example::
 
-            for dynamicgroup in client.dynamicgroups.list():
-                print(dynamicgroup)
+            for dynamic_group in client.dynamic_groups.list():
+                print(dynamic_group)
         """
         return _t.cast(_t.List[int], self._call('GET', "/dynamicgroups", [], None, _t.List[int], envelope=True))
 
@@ -16414,7 +16414,7 @@ class DynamicgroupsResource(Resource):
 
         Example::
 
-            for ruleset in client.dynamicgroups.list_ruleset(42):
+            for ruleset in client.dynamic_groups.list_ruleset(42):
                 print(ruleset.description)
         """
         return _t.cast(_t.List[models.DynamicGroupRule], self._call('GET', f"/dynamicgroups/{_seg(group_id)}/ruleset", [], None, _t.List[models.DynamicGroupRule], envelope=False))
@@ -16435,8 +16435,8 @@ class DynamicgroupsResource(Resource):
 
         Example::
 
-            for dynamicgroup in client.dynamicgroups.refresh(42):
-                print(dynamicgroup.created)
+            for dynamic_group in client.dynamic_groups.refresh(42):
+                print(dynamic_group.created)
         """
         return _t.cast(_t.List[models.DynamicGroupRefreshResult], self._call('POST', f"/dynamicgroups/{_seg(group_id)}/refresh", [], None, _t.List[models.DynamicGroupRefreshResult], envelope=True))
 
@@ -16452,8 +16452,8 @@ class DynamicgroupsResource(Resource):
 
         Example::
 
-            for dynamicgroup in client.dynamicgroups.refresh_all():
-                print(dynamicgroup)
+            for dynamic_group in client.dynamic_groups.refresh_all():
+                print(dynamic_group)
         """
         return _t.cast(_t.List[_t.Union[models.DynamicGroupRefreshResult, models.DynamicGroupRefreshError]], self._call('POST', "/dynamicgroups/refresh", [], None, _t.List[_t.Union[models.DynamicGroupRefreshResult, models.DynamicGroupRefreshError]], envelope=True))
 
@@ -16476,7 +16476,7 @@ class DynamicgroupsResource(Resource):
 
         Example::
 
-            result = client.dynamicgroups.update_ruleset(
+            result = client.dynamic_groups.update_ruleset(
                 42,
                 dynamic_group_rule_set=[ct.models.DynamicGroupRule.model_validate({"description": "Add selected people to the group.", "importance": 10, "personIdFieldName": "person.id", "process": {"groupAndQueryResult": {}, "groupOnly": {}, "queryResultOnly": {}}, "query": {"method": "ChurchQuery", "params": {}}, "shorty": "selected-people"})],
             )
@@ -16505,7 +16505,7 @@ class DynamicgroupsResource(Resource):
 
         Example::
 
-            result = client.dynamicgroups.update_status(42, dynamic_group_status="manual")
+            result = client.dynamic_groups.update_status(42, dynamic_group_status="manual")
             print(result.dynamic_group_status)
         """
         return _t.cast(models.DynamicGroupStatusUpdate, self._call('PUT', f"/dynamicgroups/{_seg(group_id)}/status", [], _body({'dynamicGroupStatus': dynamic_group_status}, extra_body), models.DynamicGroupStatusUpdate, envelope=False))
@@ -16514,7 +16514,7 @@ class DynamicgroupsResource(Resource):
 class EmailsResource(Resource):
     """`client.emails`"""
 
-    def placeholderstatistics(
+    def placeholder_statistics(
         self,
         *,
         content: _t.List[str],
@@ -16540,7 +16540,7 @@ class EmailsResource(Resource):
 
         Example::
 
-            for email in client.emails.placeholderstatistics(
+            for email in client.emails.placeholder_statistics(
                 content=["Hello {{person.firstName}}"],
                 person_ids=[1, 2],
             ):
@@ -16582,8 +16582,8 @@ class EmailsResource(Resource):
         return _t.cast(models.EmailPreview, self._call('POST', "/emails/preview", [], _body({'content': content, 'emailTemplateId': email_template_id, 'groupId': group_id, 'personId': person_id, 'subject': subject, 'userId': user_id}, extra_body), models.EmailPreview, envelope=False))
 
 
-class EvangelischetermineResource(Resource):
-    """`client.evangelischetermine`"""
+class EvangelischeTermineResource(Resource):
+    """`client.evangelische_termine`"""
 
     def delete(
         self,
@@ -16597,11 +16597,11 @@ class EvangelischetermineResource(Resource):
 
         Example::
 
-            client.evangelischetermine.delete()
+            client.evangelische_termine.delete()
         """
         self._raw('DELETE', "/evangelischetermine", [], None)
 
-    def list_eventtypes(
+    def list_event_types(
         self,
     ) -> _t.List[models.EvangelischeTermineEventType]:
         """
@@ -16613,12 +16613,12 @@ class EvangelischetermineResource(Resource):
 
         Example::
 
-            for eventtype in client.evangelischetermine.list_eventtypes():
-                print(eventtype.key)
+            for event_type in client.evangelische_termine.list_event_types():
+                print(event_type.key)
         """
         return _t.cast(_t.List[models.EvangelischeTermineEventType], self._call('GET', "/evangelischetermine/eventtypes", [], None, _t.List[models.EvangelischeTermineEventType], envelope=True))
 
-    def validatesettings(
+    def validate_settings(
         self,
         *,
         api_key: str,
@@ -16640,7 +16640,7 @@ class EvangelischetermineResource(Resource):
 
         Example::
 
-            client.evangelischetermine.validatesettings(
+            client.evangelische_termine.validate_settings(
                 api_key="*****",
                 url="https://www.evangelische-termine.de",
                 vid="1234",
@@ -16652,7 +16652,7 @@ class EvangelischetermineResource(Resource):
 class EventResource(Resource):
     """`client.event`"""
 
-    def get_masterdata(
+    def get_master_data(
         self,
     ) -> models.EventMasterData:
         """
@@ -16664,10 +16664,31 @@ class EventResource(Resource):
 
         Example::
 
-            masterdata = client.event.get_masterdata()
-            print(masterdata)
+            master_data = client.event.get_master_data()
+            print(master_data)
         """
         return _t.cast(models.EventMasterData, self._call('GET', "/event/masterdata", [], None, models.EventMasterData, envelope=True))
+
+
+class EventTemplatesResource(Resource):
+    """`client.event_templates`"""
+
+    def list(
+        self,
+    ) -> _t.List[models.EventTemplate]:
+        """
+        Get all event templates
+
+        `GET /eventtemplates`
+
+        Returns all event templates as an unpaginated list, sorted by `sortKey` ascending. No per-template visibility filter is applied.
+
+        Example::
+
+            for event_template in client.event_templates.list():
+                print(event_template.id)
+        """
+        return _t.cast(_t.List[models.EventTemplate], self._call('GET', "/eventtemplates", [], None, _t.List[models.EventTemplate], envelope=True))
 
 
 class EventsResource(Resource):
@@ -16676,9 +16697,9 @@ class EventsResource(Resource):
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
         self.agenda = EventsAgendaResource(core)
-        self.eventservices = EventsEventservicesResource(core)
+        self.event_services = EventsEventServicesResource(core)
         self.facts = EventsFactsResource(core)
-        self.servicerequests = EventsServicerequestsResource(core)
+        self.service_requests = EventsServiceRequestsResource(core)
         self.services = EventsServicesResource(core)
 
     def chat(
@@ -16830,7 +16851,7 @@ class EventsResource(Resource):
         """
         return Paginator(self._core, "/events", _query([('from', from_), ('to', to), ('direction', direction), ('limit', limit), ('canceled', canceled), ('include', include)]), models.Event)
 
-    def list_possiblepersonsforservice(
+    def list_possible_persons_for_service(
         self,
         service_id: int,
     ) -> _t.List[models.ServiceCandidate]:
@@ -16846,8 +16867,8 @@ class EventsResource(Resource):
 
         Example::
 
-            for possiblepersonsforservice in client.events.list_possiblepersonsforservice(2):
-                print(possiblepersonsforservice.full_name)
+            for possible_persons_for_service in client.events.list_possible_persons_for_service(2):
+                print(possible_persons_for_service.full_name)
         """
         return _t.cast(_t.List[models.ServiceCandidate], self._call('GET', f"/events/{_seg(service_id)}/possiblepersonsforservice", [], None, _t.List[models.ServiceCandidate], envelope=True))
 
@@ -16934,35 +16955,14 @@ class EventsResource(Resource):
         return _t.cast(models.EventDetailsUpdateResult, self._call('PUT', f"/events/{_seg(event_id)}", [], _body({'adminIds': admin_ids, 'description': description, 'eventAdminIds': event_admin_ids, 'isCanceled': is_canceled, 'note': note}, extra_body), models.EventDetailsUpdateResult, envelope=True))
 
 
-class EventtemplatesResource(Resource):
-    """`client.eventtemplates`"""
-
-    def list(
-        self,
-    ) -> _t.List[models.EventTemplate]:
-        """
-        Get all event templates
-
-        `GET /eventtemplates`
-
-        Returns all event templates as an unpaginated list, sorted by `sortKey` ascending. No per-template visibility filter is applied.
-
-        Example::
-
-            for eventtemplate in client.eventtemplates.list():
-                print(eventtemplate.id)
-        """
-        return _t.cast(_t.List[models.EventTemplate], self._call('GET', "/eventtemplates", [], None, _t.List[models.EventTemplate], envelope=True))
-
-
-class ExternalloginsResource(Resource):
-    """`client.externallogins`"""
+class ExternalLoginsResource(Resource):
+    """`client.external_logins`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.link = ExternalloginsLinkResource(core)
-        self.oidc = ExternalloginsOidcResource(core)
-        self.saml = ExternalloginsSamlResource(core)
+        self.link = ExternalLoginsLinkResource(core)
+        self.oidc = ExternalLoginsOidcResource(core)
+        self.saml = ExternalLoginsSamlResource(core)
 
     def create(
         self,
@@ -17005,7 +17005,7 @@ class ExternalloginsResource(Resource):
 
         Example::
 
-            result = client.externallogins.create(
+            result = client.external_logins.create(
                 config=ct.models.ExternalLoginOAuthConfig.model_validate({"accessTokenUrl": "https://identity.example.org/accessTokenUrl", "authorizeUrl": "https://identity.example.org/authorizeUrl", "clientId": "churchtools", "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"}),
                 create_new_person=True,
                 has_registration=True,
@@ -17033,7 +17033,7 @@ class ExternalloginsResource(Resource):
 
         Example::
 
-            client.externallogins.delete(7)
+            client.external_logins.delete(7)
         """
         self._raw('DELETE', f"/externallogins/{_seg(external_login_id)}", [], None)
 
@@ -17050,8 +17050,8 @@ class ExternalloginsResource(Resource):
 
         Example::
 
-            externallogin = client.externallogins.get(7)
-            print(externallogin.name)
+            external_login = client.external_logins.get(7)
+            print(external_login.name)
         """
         return _t.cast(models.ExternalLogin, self._call('GET', f"/externallogins/{_seg(external_login_id)}", [], None, models.ExternalLogin, envelope=True))
 
@@ -17067,8 +17067,8 @@ class ExternalloginsResource(Resource):
 
         Example::
 
-            for externallogin in client.externallogins.list():
-                print(externallogin.name)
+            for external_login in client.external_logins.list():
+                print(external_login.name)
         """
         return _t.cast(_t.List[models.ExternalLogin], self._call('GET', "/externallogins", [], None, _t.List[models.ExternalLogin], envelope=True))
 
@@ -17116,7 +17116,7 @@ class ExternalloginsResource(Resource):
 
         Example::
 
-            result = client.externallogins.update(
+            result = client.external_logins.update(
                 7,
                 config=ct.models.ExternalLoginOAuthConfig.model_validate({"accessTokenUrl": "https://identity.example.org/accessTokenUrl", "authorizeUrl": "https://identity.example.org/authorizeUrl", "clientId": "churchtools", "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"}),
                 create_new_person=True,
@@ -17133,12 +17133,12 @@ class ExternalloginsResource(Resource):
         return _t.cast(models.ExternalLogin, self._call('PUT', f"/externallogins/{_seg(external_login_id)}", [], _body({'config': config, 'createNewPerson': create_new_person, 'hasRegistration': has_registration, 'isVisible': is_visible, 'matchingMode': matching_mode, 'name': name, 'newPersonCampusId': new_person_campus_id, 'newPersonDepartmentId': new_person_department_id, 'newPersonStatusId': new_person_status_id, 'primaryLogin': primary_login, 'subtitle': subtitle, 'type': type_, 'updateDataOnLogin': update_data_on_login}, extra_body), models.ExternalLogin, envelope=True))
 
 
-class ExternalpostsResource(Resource):
-    """`client.externalposts`"""
+class ExternalPostsResource(Resource):
+    """`client.external_posts`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.instances = ExternalpostsInstancesResource(core)
+        self.instances = ExternalPostsInstancesResource(core)
 
     def list(
         self,
@@ -17168,8 +17168,8 @@ class ExternalpostsResource(Resource):
 
         Example::
 
-            for externalpost in client.externalposts.list():
-                print(externalpost.title)
+            for external_post in client.external_posts.list():
+                print(external_post.title)
         """
         return _t.cast(_t.List[models.Post], self._call('GET', "/externalposts", _query([('before', before), ('last_post_indentifier', last_post_indentifier), ('after', after), ('external_group_guid[]', external_group_guid), ('external_instance_guid[]', external_instance_guid), ('include[]', include), ('limit', limit)]), None, _t.List[models.Post], envelope=True))
 
@@ -17286,8 +17286,8 @@ class FactsResource(Resource):
         return _t.cast(_t.Union[models.FactNumber, models.FactSelect], self._call('PUT', f"/facts/{_seg(id)}", [], _body(body), _t.Union[models.FactNumber, models.FactSelect], envelope=True))
 
 
-class FeatureusageResource(Resource):
-    """`client.featureusage`"""
+class FeatureUsageResource(Resource):
+    """`client.feature_usage`"""
 
     def create(
         self,
@@ -17302,7 +17302,7 @@ class FeatureusageResource(Resource):
 
         Example::
 
-            client.featureusage.create()
+            client.feature_usage.create()
         """
         self._raw('POST', "/featureusage", [], _body({'data': data}, extra_body))
 
@@ -17604,26 +17604,26 @@ class FinanceResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.accountclasses = FinanceAccountclassesResource(core)
-        self.accountgroups = FinanceAccountgroupsResource(core)
-        self.accountingperiods = FinanceAccountingperiodsResource(core)
+        self.account_classes = FinanceAccountClassesResource(core)
+        self.account_groups = FinanceAccountGroupsResource(core)
+        self.account_types = FinanceAccountTypesResource(core)
+        self.accounting_periods = FinanceAccountingPeriodsResource(core)
         self.accounts = FinanceAccountsResource(core)
-        self.accounttypes = FinanceAccounttypesResource(core)
         self.bills = FinanceBillsResource(core)
-        self.cashdiscounts = FinanceCashdiscountsResource(core)
+        self.cash_discounts = FinanceCashDiscountsResource(core)
         self.clients = FinanceClientsResource(core)
-        self.costcenters = FinanceCostcentersResource(core)
+        self.cost_centers = FinanceCostCentersResource(core)
         self.donators = FinanceDonatorsResource(core)
         self.eubp = FinanceEubpResource(core)
         self.reports = FinanceReportsResource(core)
-        self.splittransactions = FinanceSplittransactionsResource(core)
-        self.taxrates = FinanceTaxratesResource(core)
-        self.taxtypes = FinanceTaxtypesResource(core)
+        self.split_transactions = FinanceSplitTransactionsResource(core)
+        self.tax_rates = FinanceTaxRatesResource(core)
+        self.tax_types = FinanceTaxTypesResource(core)
         self.templates = FinanceTemplatesResource(core)
-        self.transactionpurposes = FinanceTransactionpurposesResource(core)
+        self.transaction_purposes = FinanceTransactionPurposesResource(core)
         self.transactions = FinanceTransactionsResource(core)
 
-    def get_masterdata(
+    def get_master_data(
         self,
         *,
         accounting_period_id: int,
@@ -17640,8 +17640,8 @@ class FinanceResource(Resource):
 
         Example::
 
-            masterdata = client.finance.get_masterdata(accounting_period_id=1)
-            print(masterdata)
+            master_data = client.finance.get_master_data(accounting_period_id=1)
+            print(master_data)
         """
         return _t.cast(models.FinanceMasterData, self._call('GET', "/finance/masterdata", _query([('accounting_period_id', accounting_period_id)]), None, models.FinanceMasterData, envelope=True))
 
@@ -17871,8 +17871,8 @@ class FollowupsResource(Resource):
         return _t.cast(models.FollowUp2, self._call('PUT', f"/followups/{_seg(follow_up_id)}", [], _body(body), models.FollowUp2, envelope=True))
 
 
-class FurtherlinksResource(Resource):
-    """`client.furtherlinks`"""
+class FurtherLinksResource(Resource):
+    """`client.further_links`"""
 
     def create(
         self,
@@ -17893,7 +17893,7 @@ class FurtherlinksResource(Resource):
 
         Example::
 
-            result = client.furtherlinks.create(
+            result = client.further_links.create(
                 description="Our church's NextCloud",
                 image_url="https://example.org",
                 name="NextCloud",
@@ -17913,7 +17913,7 @@ class FurtherlinksResource(Resource):
 
         Example::
 
-            client.furtherlinks.delete(1.5)
+            client.further_links.delete(1.5)
         """
         self._raw('DELETE', f"/furtherlinks/{_seg(further_link_id)}", [], None)
 
@@ -17930,8 +17930,8 @@ class FurtherlinksResource(Resource):
 
         Example::
 
-            furtherlink = client.furtherlinks.get(1.5)
-            print(furtherlink.name)
+            further_link = client.further_links.get(1.5)
+            print(further_link.name)
         """
         return _t.cast(models.FurtherLink, self._call('GET', f"/furtherlinks/{_seg(further_link_id)}", [], None, models.FurtherLink, envelope=True))
 
@@ -17947,8 +17947,8 @@ class FurtherlinksResource(Resource):
 
         Example::
 
-            for furtherlink in client.furtherlinks.list():
-                print(furtherlink.name)
+            for further_link in client.further_links.list():
+                print(further_link.name)
         """
         return _t.cast(_t.List[models.FurtherLink], self._call('GET', "/furtherlinks", [], None, _t.List[models.FurtherLink], envelope=True))
 
@@ -17972,7 +17972,7 @@ class FurtherlinksResource(Resource):
 
         Example::
 
-            result = client.furtherlinks.update(
+            result = client.further_links.update(
                 1.5,
                 description="Our church's NextCloud",
                 image_url="https://example.org",
@@ -17990,14 +17990,14 @@ class GroupResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.agegroups = GroupAgegroupsResource(core)
-        self.groupcategories = GroupGroupcategoriesResource(core)
-        self.grouptypes = GroupGrouptypesResource(core)
-        self.meetingtemplates = GroupMeetingtemplatesResource(core)
+        self.age_groups = GroupAgeGroupsResource(core)
+        self.group_categories = GroupGroupCategoriesResource(core)
+        self.group_types = GroupGroupTypesResource(core)
+        self.meeting_templates = GroupMeetingTemplatesResource(core)
         self.roles = GroupRolesResource(core)
-        self.targetgroups = GroupTargetgroupsResource(core)
+        self.target_groups = GroupTargetGroupsResource(core)
 
-    def list_memberstatus(
+    def list_member_status(
         self,
     ) -> _t.List[models.GetGroupMemberstatusResponseItem]:
         """
@@ -18011,14 +18011,14 @@ class GroupResource(Resource):
 
         Example::
 
-            for memberstatu in client.group.list_memberstatus():
-                print(memberstatu.name)
+            for member_statu in client.group.list_member_status():
+                print(member_statu.name)
         """
         return _t.cast(_t.List[models.GetGroupMemberstatusResponseItem], self._call('GET', "/group/memberstatus", [], None, _t.List[models.GetGroupMemberstatusResponseItem], envelope=False))
 
 
-class GrouphomepagesResource(Resource):
-    """`client.grouphomepages`"""
+class GroupHomepagesResource(Resource):
+    """`client.group_homepages`"""
 
     def get(
         self,
@@ -18039,8 +18039,8 @@ class GrouphomepagesResource(Resource):
 
         Example::
 
-            grouphomepage = client.grouphomepages.get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")
-            print(grouphomepage.name)
+            group_homepage = client.group_homepages.get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")
+            print(group_homepage.name)
         """
         return _t.cast(models.GroupHomepage, self._call('GET', f"/grouphomepages/{_seg(hash)}", _query([('depth', depth)]), None, models.GroupHomepage, envelope=True))
 
@@ -18056,8 +18056,8 @@ class GrouphomepagesResource(Resource):
 
         Example::
 
-            for grouphomepage in client.grouphomepages.list():
-                print(grouphomepage.title)
+            for group_homepage in client.group_homepages.list():
+                print(group_homepage.title)
         """
         return _t.cast(_t.List[models.DomainObjectGrouphomepage], self._call('GET', "/grouphomepages", [], None, _t.List[models.DomainObjectGrouphomepage], envelope=True))
 
@@ -18071,11 +18071,11 @@ class GroupsResource(Resource):
         self.documents = GroupsDocumentsResource(core)
         self.followups = GroupsFollowupsResource(core)
         self.meetings = GroupsMeetingsResource(core)
-        self.memberfields = GroupsMemberfieldsResource(core)
+        self.member_fields = GroupsMemberFieldsResource(core)
         self.members = GroupsMembersResource(core)
-        self.newsletter_integrations = GroupsNewsletterIntegrationsResource(core)
+        self.news_letter_integrations = GroupsNewsLetterIntegrationsResource(core)
         self.parents = GroupsParentsResource(core)
-        self.qrcodecheckin = GroupsQrcodecheckinResource(core)
+        self.qrcode_checkin = GroupsQrcodeCheckinResource(core)
         self.roles = GroupsRolesResource(core)
         self.wiki = GroupsWikiResource(core)
 
@@ -18164,7 +18164,7 @@ class GroupsResource(Resource):
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}", _query([('dry_run', dry_run)]), None)
 
-    def delete_grouphomepage(
+    def delete_group_homepage(
         self,
         group_id: int,
     ) -> None:
@@ -18180,7 +18180,7 @@ class GroupsResource(Resource):
 
         Example::
 
-            client.groups.delete_grouphomepage(42)
+            client.groups.delete_group_homepage(42)
         """
         self._raw('DELETE', f"/groups/{_seg(group_id)}/grouphomepage", [], None)
 
@@ -18278,6 +18278,27 @@ class GroupsResource(Resource):
         """
         return _t.cast(models.Group, self._call('GET', f"/groups/{_seg(group_id)}", _query([('include[]', include)]), None, models.Group, envelope=True))
 
+    def get_group_homepage(
+        self,
+        group_id: int,
+    ) -> models.GroupHomepage:
+        """
+        Get a group’s homepage configuration
+
+        `GET /groups/{groupId}/grouphomepage`
+
+        Returns the homepage configuration attached to this parent group, including disabled homepages. Requires permission to edit the parent group’s basic settings; ordinary group visibility is insufficient. A group without a homepage returns 404. This settings lookup does not populate the child groups or filter option catalogs: groups is empty and filter entries omit options. For the public page with its child groups and catalogs, use GET /grouphomepages/{hash}. showMap is combined with the global OpenStreetMap setting, so it can be false even when the stored page flag is true.
+
+        Args:
+            group_id: ID of group
+
+        Example::
+
+            group_homepage = client.groups.get_group_homepage(42)
+            print(group_homepage.name)
+        """
+        return _t.cast(models.GroupHomepage, self._call('GET', f"/groups/{_seg(group_id)}/grouphomepage", [], None, models.GroupHomepage, envelope=True))
+
     def get_grouped(
         self,
         *,
@@ -18303,27 +18324,6 @@ class GroupsResource(Resource):
         """
         return _t.cast(models.GroupedGroups, self._call('GET', "/groups/grouped", _query([('group_by', group_by), ('limit', limit)]), None, models.GroupedGroups, envelope=True))
 
-    def get_grouphomepage(
-        self,
-        group_id: int,
-    ) -> models.GroupHomepage:
-        """
-        Get a group’s homepage configuration
-
-        `GET /groups/{groupId}/grouphomepage`
-
-        Returns the homepage configuration attached to this parent group, including disabled homepages. Requires permission to edit the parent group’s basic settings; ordinary group visibility is insufficient. A group without a homepage returns 404. This settings lookup does not populate the child groups or filter option catalogs: groups is empty and filter entries omit options. For the public page with its child groups and catalogs, use GET /grouphomepages/{hash}. showMap is combined with the global OpenStreetMap setting, so it can be false even when the stored page flag is true.
-
-        Args:
-            group_id: ID of group
-
-        Example::
-
-            grouphomepage = client.groups.get_grouphomepage(42)
-            print(grouphomepage.name)
-        """
-        return _t.cast(models.GroupHomepage, self._call('GET', f"/groups/{_seg(group_id)}/grouphomepage", [], None, models.GroupHomepage, envelope=True))
-
     def get_optins(
         self,
         group_id: int,
@@ -18345,7 +18345,7 @@ class GroupsResource(Resource):
         """
         return _t.cast(models.NewsletterOptInData, self._call('GET', f"/groups/{_seg(group_id)}/optins", [], None, models.NewsletterOptInData, envelope=True))
 
-    def get_poststatistics(
+    def get_post_statistics(
         self,
         group_id: int,
     ) -> models.GroupPostStatistics:
@@ -18361,8 +18361,8 @@ class GroupsResource(Resource):
 
         Example::
 
-            poststatistic = client.groups.get_poststatistics(42)
-            print(poststatistic.group_intern)
+            post_statistic = client.groups.get_post_statistics(42)
+            print(post_statistic.group_intern)
         """
         return _t.cast(models.GroupPostStatistics, self._call('GET', f"/groups/{_seg(group_id)}/poststatistics", [], None, models.GroupPostStatistics, envelope=True))
 
@@ -18387,7 +18387,7 @@ class GroupsResource(Resource):
         """
         return _t.cast(models.GroupStatistics, self._call('GET', f"/groups/{_seg(group_id)}/statistics", [], None, models.GroupStatistics, envelope=True))
 
-    def grouptype(
+    def group_type(
         self,
         group_id: int,
         *,
@@ -18409,7 +18409,7 @@ class GroupsResource(Resource):
 
         Example::
 
-            client.groups.grouptype(42, group_type_id=3, role_mapping={})
+            client.groups.group_type(42, group_type_id=3, role_mapping={})
         """
         self._raw('POST', f"/groups/{_seg(group_id)}/grouptype", [], _body({'groupTypeId': group_type_id, 'roleMapping': role_mapping}, extra_body))
 
@@ -18580,7 +18580,7 @@ class GroupsResource(Resource):
         """
         return Paginator(self._core, f"/groups/{_seg(group_id)}/children", _query([('limit', limit), ('ids[]', ids), ('campus_ids[]', campus_ids), ('agegroup_ids[]', agegroup_ids), ('group_status_ids[]', group_status_ids), ('group_category_ids[]', group_category_ids), ('target_group_ids[]', target_group_ids), ('weekdays[]', weekdays), ('group_type_ids[]', group_type_ids), ('tag_ids[]', tag_ids), ('is_open_for_members', is_open_for_members), ('without_my_groups', without_my_groups), ('only_my_groups', only_my_groups), ('has_meeting_place', has_meeting_place), ('allow_posts', allow_posts), ('has_posts', has_posts), ('has_active_chat', has_active_chat), ('query', query), ('visibility', visibility)]), models.DomainObjectGroup)
 
-    def list_documenttemplates(
+    def list_document_templates(
         self,
         group_id: int,
     ) -> _t.List[models.HtmlTemplateInfo]:
@@ -18596,8 +18596,8 @@ class GroupsResource(Resource):
 
         Example::
 
-            for documenttemplate in client.groups.list_documenttemplates(42):
-                print(documenttemplate.name)
+            for document_template in client.groups.list_document_templates(42):
+                print(document_template.name)
         """
         return _t.cast(_t.List[models.HtmlTemplateInfo], self._call('GET', f"/groups/{_seg(group_id)}/documenttemplates", [], None, _t.List[models.HtmlTemplateInfo], envelope=True))
 
@@ -18721,7 +18721,7 @@ class GroupsResource(Resource):
         """
         return Paginator(self._core, "/groups/ids", _query([('limit', limit), ('ids[]', ids), ('parent_id', parent_id), ('child_id', child_id), ('campus_ids[]', campus_ids), ('agegroup_ids[]', agegroup_ids), ('group_status_ids[]', group_status_ids), ('group_category_ids[]', group_category_ids), ('target_group_ids[]', target_group_ids), ('weekdays[]', weekdays), ('group_type_ids[]', group_type_ids), ('tag_ids[]', tag_ids), ('is_open_for_members', is_open_for_members), ('without_my_groups', without_my_groups), ('only_my_groups', only_my_groups), ('has_meeting_place', has_meeting_place), ('allow_posts', allow_posts), ('has_posts', has_posts), ('has_active_chat', has_active_chat), ('query', query), ('visibility', visibility)]), int)
 
-    def list_memberids(
+    def list_member_ids(
         self,
         group_id: int,
         *,
@@ -18757,12 +18757,12 @@ class GroupsResource(Resource):
 
         Example::
 
-            for memberid in client.groups.list_memberids(42):
-                print(memberid)
+            for member_id in client.groups.list_member_ids(42):
+                print(member_id)
         """
         return _t.cast(_t.List[int], self._call('GET', f"/groups/{_seg(group_id)}/memberids", _query([('role_ids[]', role_ids), ('person_id[]', person_id), ('group_member_statuses[]', group_member_statuses), ('allowed_chat_users_only', allowed_chat_users_only), ('allowed_chat_writers_only', allowed_chat_writers_only), ('query', query), ('comment', comment), ('member_start_date_after', member_start_date_after), ('member_start_date_before', member_start_date_before)]), None, _t.List[int], envelope=True))
 
-    def list_memberpreview(
+    def list_member_preview(
         self,
         group_id: int,
         *,
@@ -18781,8 +18781,8 @@ class GroupsResource(Resource):
 
         Example::
 
-            for memberpreview in client.groups.list_memberpreview(42):
-                print(memberpreview)
+            for member_preview in client.groups.list_member_preview(42):
+                print(member_preview)
         """
         return _t.cast(_t.List[models.MemberPreview], self._call('GET', f"/groups/{_seg(group_id)}/memberpreview", _query([('members_per_role', members_per_role)]), None, _t.List[models.MemberPreview], envelope=True))
 
@@ -18905,7 +18905,7 @@ class GroupsResource(Resource):
         """
         return _t.cast(models.Group, self._call('PATCH', f"/groups/{_seg(group_id)}", _query([('skip_my_posts_reducing_visibility', skip_my_posts_reducing_visibility), ('deactivate_routines_on_status_finished', deactivate_routines_on_status_finished)]), _body({'appointmentId': appointment_id, 'groupTypeId': group_type_id, 'startDate': start_date, 'statusesCountedTowardsSeats': statuses_counted_towards_seats}, extra_body), models.Group, envelope=True))
 
-    def update_grouphomepage(
+    def update_group_homepage(
         self,
         group_id: int,
         *,
@@ -18958,7 +18958,7 @@ class GroupsResource(Resource):
 
         Example::
 
-            result = client.groups.update_grouphomepage(
+            result = client.groups.update_group_homepage(
                 42,
                 is_enabled=True,
                 show_filters=True,
@@ -19013,8 +19013,8 @@ class HistoryResource(Resource):
         return Paginator(self._core, "/history", _query([('domain_types[]', domain_types), ('domain_identifiers[]', domain_identifiers), ('action', action), ('query', query), ('from', from_), ('to', to), ('actor_id', actor_id), ('origin', origin), ('limit', limit)]), models.HistoryEntry)
 
 
-class HtmltemplatesResource(Resource):
-    """`client.htmltemplates`"""
+class HtmlTemplatesResource(Resource):
+    """`client.html_templates`"""
 
     def create(
         self,
@@ -19045,7 +19045,7 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            result = client.htmltemplates.create(domain_type="email", name="Welcome email")
+            result = client.html_templates.create(domain_type="email", name="Welcome email")
             print(result.name)
         """
         return _t.cast(models.HtmlTemplate, self._call('POST', "/htmltemplates", [], _body({'domainType': domain_type, 'isGlobal': is_global, 'name': name, 'copyAssetsFromId': copy_assets_from_id, 'html': html, 'mjml': mjml}, extra_body), models.HtmlTemplate, envelope=True))
@@ -19069,7 +19069,7 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            client.htmltemplates.delete(2, dry_run=True)
+            client.html_templates.delete(2, dry_run=True)
         """
         self._raw('DELETE', f"/htmltemplates/{_seg(template_id)}", _query([('dryRun', dry_run)]), None)
 
@@ -19089,8 +19089,8 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            htmltemplate = client.htmltemplates.get(2)
-            print(htmltemplate.name)
+            html_template = client.html_templates.get(2)
+            print(html_template.name)
         """
         return _t.cast(models.HtmlTemplate, self._call('GET', f"/htmltemplates/{_seg(template_id)}", [], None, models.HtmlTemplate, envelope=True))
 
@@ -19110,7 +19110,7 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            result = client.htmltemplates.get_export(2)
+            result = client.html_templates.get_export(2)
             print(result)
         """
         return _t.cast(str, self._call('GET', f"/htmltemplates/{_seg(template_id)}/export", [], None, str, envelope=True))
@@ -19131,7 +19131,7 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            result = client.htmltemplates.get_html(2)
+            result = client.html_templates.get_html(2)
             print(result)
         """
         return _t.cast(_t.Optional[str], self._call('GET', f"/htmltemplates/{_seg(template_id)}/html", [], None, _t.Optional[str], envelope=True))
@@ -19152,7 +19152,7 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            result = client.htmltemplates.get_mjml(2)
+            result = client.html_templates.get_mjml(2)
             print(result)
         """
         return _t.cast(_t.Optional[str], self._call('GET', f"/htmltemplates/{_seg(template_id)}/mjml", [], None, _t.Optional[str], envelope=True))
@@ -19180,8 +19180,8 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            for htmltemplate in client.htmltemplates.list(domain_type="email"):
-                print(htmltemplate.name)
+            for html_template in client.html_templates.list(domain_type="email"):
+                print(html_template.name)
         """
         if type_ is not None:
             _warn_deprecated('type_', '')
@@ -19215,12 +19215,12 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            result = client.htmltemplates.patch(2, name="Updated welcome email")
+            result = client.html_templates.patch(2, name="Updated welcome email")
             print(result.name)
         """
         return _t.cast(models.HtmlTemplate, self._call('PATCH', f"/htmltemplates/{_seg(template_id)}", [], _body({'html': html, 'htmlFileId': html_file_id, 'isGlobal': is_global, 'mjml': mjml, 'name': name}, extra_body), models.HtmlTemplate, envelope=True))
 
-    def uploadassets(
+    def upload_assets(
         self,
         template_id: int,
         *,
@@ -19239,8 +19239,8 @@ class HtmltemplatesResource(Resource):
 
         Example::
 
-            for htmltemplate in client.htmltemplates.uploadassets(2, files=[ct.Upload.from_path("logo.png")]):
-                print(htmltemplate.name)
+            for html_template in client.html_templates.upload_assets(2, files=[ct.Upload.from_path("logo.png")]):
+                print(html_template.name)
         """
         return _t.cast(_t.List[models.HtmlTemplateAssetUpload], self._call('POST', f"/htmltemplates/{_seg(template_id)}/uploadassets", [], None, _t.List[models.HtmlTemplateAssetUpload], envelope=True, upload=('files[]', [], files)))
 
@@ -19437,8 +19437,8 @@ class InstallationSyncResource(Resource):
         return _t.cast(models.PostInstallationSyncOidcData, self._call('POST', "/installation-sync/oidc", [], _body({'configurationToken': configuration_token}, extra_body), models.PostInstallationSyncOidcData, envelope=True))
 
 
-class JoblogResource(Resource):
-    """`client.joblog`"""
+class JobLogResource(Resource):
+    """`client.job_log`"""
 
     def list(
         self,
@@ -19457,8 +19457,8 @@ class JoblogResource(Resource):
 
         Example::
 
-            for joblog in client.joblog.list(guid="d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged"):
-                print(joblog.element_id)
+            for job_log in client.job_log.list(guid="d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged"):
+                print(job_log.element_id)
         """
         return _t.cast(_t.List[models.JobLogEntry], self._call('GET', "/joblog", _query([('guid', guid)]), None, _t.List[models.JobLogEntry], envelope=False))
 
@@ -19667,7 +19667,7 @@ class LoginResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.twofactor = LoginTwofactorResource(core)
+        self.two_factor = LoginTwoFactorResource(core)
 
     def create(
         self,
@@ -19885,8 +19885,8 @@ class MarkdownResource(Resource):
         return _t.cast(models.Config, self._call('POST', "/markdown/convert", [], _body({'options': options, 'sources': sources}, extra_body), models.Config, envelope=False))
 
 
-class MasterdataResource(Resource):
-    """`client.masterdata`"""
+class MasterDataResource(Resource):
+    """`client.master_data`"""
 
     @_deprecated('GET /masterdata/person is deprecated in the ChurchTools API. Use `/person/masterdata` for new integrations.')
     def get_person(
@@ -19903,14 +19903,14 @@ class MasterdataResource(Resource):
 
         Example::
 
-            person = client.masterdata.get_person()
+            person = client.master_data.get_person()
             print(person)
         """
         return _t.cast(models.PersonMasterData, self._call('GET', "/masterdata/person", [], None, models.PersonMasterData, envelope=True))
 
 
-class MeetingrequestsResource(Resource):
-    """`client.meetingrequests`"""
+class MeetingRequestsResource(Resource):
+    """`client.meeting_requests`"""
 
     def reply(
         self,
@@ -19935,7 +19935,7 @@ class MeetingrequestsResource(Resource):
 
         Example::
 
-            client.meetingrequests.reply(
+            client.meeting_requests.reply(
                 ics_content="Hallo zusammen",
                 partstat="ACCEPTED",
                 token="example-reply-token",
@@ -19963,8 +19963,8 @@ class MenuResource(Resource):
         return _t.cast(models.GetMenuResponse, self._call('GET', "/menu", [], None, models.GetMenuResponse, envelope=False))
 
 
-class NewsletterIntegrationsResource(Resource):
-    """`client.newsletter_integrations`"""
+class NewsLetterIntegrationsResource(Resource):
+    """`client.news_letter_integrations`"""
 
     def list(
         self,
@@ -19978,8 +19978,8 @@ class NewsletterIntegrationsResource(Resource):
 
         Example::
 
-            for newsletter_integration in client.newsletter_integrations.list():
-                print(newsletter_integration.can_create_lists)
+            for news_letter_integration in client.news_letter_integrations.list():
+                print(news_letter_integration.can_create_lists)
         """
         return _t.cast(_t.List[models.NewsletterIntegrationOptions], self._call('GET', "/newsletter-integrations", [], None, _t.List[models.NewsletterIntegrationOptions], envelope=True))
 
@@ -20164,8 +20164,8 @@ class NpsResource(Resource):
         return _t.cast(models.PostNpsResponse, self._call('POST', "/nps", [], _body({'score': score}, extra_body), models.PostNpsResponse, envelope=False))
 
 
-class OauthclientsResource(Resource):
-    """`client.oauthclients`"""
+class OauthClientsResource(Resource):
+    """`client.oauth_clients`"""
 
     def create(
         self,
@@ -20189,7 +20189,7 @@ class OauthclientsResource(Resource):
 
         Example::
 
-            result = client.oauthclients.create(
+            result = client.oauth_clients.create(
                 name="Parish website",
                 redirect_uri="https://parish.example.org/oauth/callback",
             )
@@ -20213,7 +20213,7 @@ class OauthclientsResource(Resource):
 
         Example::
 
-            client.oauthclients.delete("abc123")
+            client.oauth_clients.delete("abc123")
         """
         self._raw('DELETE', f"/oauthclients/{_seg(identifier)}", [], None)
 
@@ -20229,8 +20229,8 @@ class OauthclientsResource(Resource):
 
         Example::
 
-            for oauthclient in client.oauthclients.list():
-                print(oauthclient.name)
+            for oauth_client in client.oauth_clients.list():
+                print(oauth_client.name)
         """
         return _t.cast(_t.List[models.OAuthClient], self._call('GET', "/oauthclients", [], None, _t.List[models.OAuthClient], envelope=True))
 
@@ -20258,7 +20258,7 @@ class OauthclientsResource(Resource):
 
         Example::
 
-            result = client.oauthclients.update(
+            result = client.oauth_clients.update(
                 "abc123",
                 name="Parish website",
                 redirect_uri="https://parish.example.org/oauth/callback",
@@ -20555,12 +20555,12 @@ class PersonResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.commentviewers = PersonCommentviewersResource(core)
-        self.growpaths = PersonGrowpathsResource(core)
-        self.relationshiptypes = PersonRelationshiptypesResource(core)
+        self.comment_viewers = PersonCommentViewersResource(core)
+        self.grow_paths = PersonGrowPathsResource(core)
+        self.relationship_types = PersonRelationshipTypesResource(core)
         self.sexes = PersonSexesResource(core)
 
-    def get_masterdata(
+    def get_master_data(
         self,
     ) -> models.PersonMasterData:
         """
@@ -20572,8 +20572,8 @@ class PersonResource(Resource):
 
         Example::
 
-            masterdata = client.person.get_masterdata()
-            print(masterdata)
+            master_data = client.person.get_master_data()
+            print(master_data)
         """
         return _t.cast(models.PersonMasterData, self._call('GET', "/person/masterdata", [], None, models.PersonMasterData, envelope=True))
 
@@ -20586,12 +20586,12 @@ class PersonsResource(Resource):
         self.absences = PersonsAbsencesResource(core)
         self.devices = PersonsDevicesResource(core)
         self.events = PersonsEventsResource(core)
-        self.exchangerequests = PersonsExchangerequestsResource(core)
+        self.exchange_requests = PersonsExchangeRequestsResource(core)
         self.external_logins = PersonsExternalLoginsResource(core)
         self.followups = PersonsFollowupsResource(core)
         self.merge = PersonsMergeResource(core)
         self.relationships = PersonsRelationshipsResource(core)
-        self.servicerequests = PersonsServicerequestsResource(core)
+        self.service_requests = PersonsServiceRequestsResource(core)
         self.settings = PersonsSettingsResource(core)
 
     def archive(
@@ -20717,7 +20717,7 @@ class PersonsResource(Resource):
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}", [], None)
 
-    def delete_confidentialityagreement(
+    def delete_confidentiality_agreement(
         self,
         person_id: int,
     ) -> None:
@@ -20733,11 +20733,11 @@ class PersonsResource(Resource):
 
         Example::
 
-            client.persons.delete_confidentialityagreement(42)
+            client.persons.delete_confidentiality_agreement(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/confidentialityagreement", [], None)
 
-    def delete_logintoken(
+    def delete_login_token(
         self,
         person_id: int,
     ) -> None:
@@ -20753,11 +20753,11 @@ class PersonsResource(Resource):
 
         Example::
 
-            client.persons.delete_logintoken(42)
+            client.persons.delete_login_token(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/logintoken", [], None)
 
-    def delete_privacypolicy(
+    def delete_privacy_policy(
         self,
         person_id: int,
     ) -> None:
@@ -20773,7 +20773,7 @@ class PersonsResource(Resource):
 
         Example::
 
-            client.persons.delete_privacypolicy(42)
+            client.persons.delete_privacy_policy(42)
         """
         self._raw('DELETE', f"/persons/{_seg(person_id)}/privacypolicy", [], None)
 
@@ -20858,7 +20858,7 @@ class PersonsResource(Resource):
         """
         return _t.cast(models.PersonInformationExport, self._call('GET', f"/persons/{_seg(person_id)}/information", [], None, models.PersonInformationExport, envelope=True))
 
-    def get_loginstring(
+    def get_login_string(
         self,
         person_id: str,
     ) -> models.GetPersonsIdLoginstringResponse:
@@ -20871,12 +20871,12 @@ class PersonsResource(Resource):
 
         Example::
 
-            loginstring = client.persons.get_loginstring("abc123")
-            print(loginstring.login_string)
+            login_string = client.persons.get_login_string("abc123")
+            print(login_string.login_string)
         """
         return _t.cast(models.GetPersonsIdLoginstringResponse, self._call('GET', f"/persons/{_seg(person_id)}/loginstring", [], None, models.GetPersonsIdLoginstringResponse, envelope=False))
 
-    def get_logintoken(
+    def get_login_token(
         self,
         person_id: int,
     ) -> str:
@@ -20892,12 +20892,12 @@ class PersonsResource(Resource):
 
         Example::
 
-            result = client.persons.get_logintoken(42)
+            result = client.persons.get_login_token(42)
             print(result)
         """
         return _t.cast(str, self._call('GET', f"/persons/{_seg(person_id)}/logintoken", [], None, str, envelope=True))
 
-    def get_poststatistics(
+    def get_post_statistics(
         self,
         person_id: str,
     ) -> models.PersonPostStatistics:
@@ -20908,12 +20908,12 @@ class PersonsResource(Resource):
 
         Example::
 
-            poststatistic = client.persons.get_poststatistics("abc123")
-            print(poststatistic.count_banned)
+            post_statistic = client.persons.get_post_statistics("abc123")
+            print(post_statistic.count_banned)
         """
         return _t.cast(models.PersonPostStatistics, self._call('GET', f"/persons/{_seg(person_id)}/poststatistics", [], None, models.PersonPostStatistics, envelope=True))
 
-    def get_privacypolicy(
+    def get_privacy_policy(
         self,
         person_id: int,
     ) -> models.PersonPrivacyPolicy:
@@ -20929,8 +20929,8 @@ class PersonsResource(Resource):
 
         Example::
 
-            privacypolicy = client.persons.get_privacypolicy(42)
-            print(privacypolicy.minimum_age)
+            privacy_policy = client.persons.get_privacy_policy(42)
+            print(privacy_policy.minimum_age)
         """
         return _t.cast(models.PersonPrivacyPolicy, self._call('GET', f"/persons/{_seg(person_id)}/privacypolicy", [], None, models.PersonPrivacyPolicy, envelope=True))
 
@@ -21111,7 +21111,7 @@ class PersonsResource(Resource):
         """
         return _t.cast(_t.List[models.GroupMember], self._call('GET', f"/persons/{_seg(person_id)}/groups", _query([('show_overdue_groups', show_overdue_groups), ('show_inactive_groups', show_inactive_groups), ('show_to_delete_memberships', show_to_delete_memberships), ('show_requested_or_waiting_memberships', show_requested_or_waiting_memberships)]), None, _t.List[models.GroupMember], envelope=True))
 
-    def list_openmeetingrequests(
+    def list_open_meeting_requests(
         self,
         person_id: int,
     ) -> _t.List[models.OpenMeetingRequest]:
@@ -21127,8 +21127,8 @@ class PersonsResource(Resource):
 
         Example::
 
-            for openmeetingrequest in client.persons.list_openmeetingrequests(42):
-                print(openmeetingrequest.id)
+            for open_meeting_request in client.persons.list_open_meeting_requests(42):
+                print(open_meeting_request.id)
         """
         return _t.cast(_t.List[models.OpenMeetingRequest], self._call('GET', f"/persons/{_seg(person_id)}/openmeetingrequests", [], None, _t.List[models.OpenMeetingRequest], envelope=True))
 
@@ -21286,7 +21286,7 @@ class PersonsResource(Resource):
         """
         return _t.cast(StrMap[models.PersonProperties], self._call('POST', "/persons/properties", [], _body({'ids': ids}, extra_body), StrMap[models.PersonProperties], envelope=True))
 
-    def update_confidentialityagreement(
+    def update_confidentiality_agreement(
         self,
         person_id: int,
     ) -> None:
@@ -21302,7 +21302,7 @@ class PersonsResource(Resource):
 
         Example::
 
-            client.persons.update_confidentialityagreement(42)
+            client.persons.update_confidentiality_agreement(42)
         """
         self._raw('PUT', f"/persons/{_seg(person_id)}/confidentialityagreement", [], None)
 
@@ -21339,7 +21339,7 @@ class PersonsResource(Resource):
         """
         self._raw('PUT', f"/persons/{_seg(person_id)}/password", [], _body({'newPassword': new_password, 'newPasswordConfirm': new_password_confirm, 'oldPassword': old_password}, extra_body))
 
-    def update_privacypolicy(
+    def update_privacy_policy(
         self,
         person_id: int,
         *,
@@ -21369,7 +21369,7 @@ class PersonsResource(Resource):
 
         Example::
 
-            result = client.persons.update_privacypolicy(
+            result = client.persons.update_privacy_policy(
                 42,
                 children_accepted=False,
                 own_accepted=True,
@@ -21407,8 +21407,8 @@ class PlaceholdersResource(Resource):
         return _t.cast(_t.List[models.PlaceholderMenuGroup], self._call('GET', "/placeholders/email", [], None, _t.List[models.PlaceholderMenuGroup], envelope=True))
 
 
-class PollfornewsResource(Resource):
-    """`client.pollfornews`"""
+class PollForNewsResource(Resource):
+    """`client.poll_for_news`"""
 
     def list(
         self,
@@ -21427,11 +21427,11 @@ class PollfornewsResource(Resource):
 
         Example::
 
-            for pollfornew in client.pollfornews.list(
+            for poll_for_new in client.poll_for_news.list(
                 domain_types=["beispiel"],
                 since=dt.datetime(2022, 10, 19, 12, 0, tzinfo=dt.timezone.utc),
             ):
-                print(pollfornew.domain_id)
+                print(poll_for_new.domain_id)
         """
         return _t.cast(_t.List[models.PollForNewsResult], self._call('GET', "/pollfornews", _query([('domain_types[]', domain_types), ('since', since)]), None, _t.List[models.PollForNewsResult], envelope=True))
 
@@ -21707,7 +21707,7 @@ class PostsResource(Resource):
 class PrResource(Resource):
     """`client.pr`"""
 
-    def get_masterdata(
+    def get_master_data(
         self,
     ) -> models.PublicRelationsMasterData:
         """
@@ -21719,8 +21719,8 @@ class PrResource(Resource):
 
         Example::
 
-            masterdata = client.pr.get_masterdata()
-            print(masterdata)
+            master_data = client.pr.get_master_data()
+            print(master_data)
         """
         return _t.cast(models.PublicRelationsMasterData, self._call('GET', "/pr/masterdata", [], None, models.PublicRelationsMasterData, envelope=True))
 
@@ -21749,7 +21749,7 @@ class PrintersResource(Resource):
 class ProbesResource(Resource):
     """`client.probes`"""
 
-    def create(
+    def filter(
         self,
         *,
         domain_type: _t.List[_t.Literal['person']],
@@ -21770,7 +21770,7 @@ class ProbesResource(Resource):
 
         Example::
 
-            for probe in client.probes.create(domain_type=["person"]):
+            for probe in client.probes.filter(domain_type=["person"]):
                 print(probe.domain_type)
         """
         return _t.cast(_t.List[models.Probe], self._call('POST', "/probes", [], _body({'domain_type': domain_type, 'filter': filter}, extra_body), _t.List[models.Probe], envelope=True))
@@ -21782,7 +21782,7 @@ class ProfilesResource(Resource):
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
         self.campuses = ProfilesCampusesResource(core)
-        self.slugcheck = ProfilesSlugcheckResource(core)
+        self.slug_check = ProfilesSlugCheckResource(core)
 
     def get_church(
         self,
@@ -21871,12 +21871,12 @@ class ProfilesResource(Resource):
         return _t.cast(models.Profile, self._call('PUT', "/profiles/church", [], _body({'address': address, 'associationId': association_id, 'denomination': denomination, 'description': description, 'email': email, 'groups': groups, 'isPublished': is_published, 'name': name, 'phone': phone, 'services': services, 'shortName': short_name, 'shorty': shorty, 'signUpGroupId': sign_up_group_id, 'slug': slug, 'socialMedia': social_media, 'sortKey': sort_key, 'tags': tags, 'team': team, 'teamTitle': team_title, 'visitors': visitors, 'website': website, 'id': id}, extra_body), models.Profile, envelope=True))
 
 
-class PublicgroupsResource(Resource):
-    """`client.publicgroups`"""
+class PublicGroupsResource(Resource):
+    """`client.public_groups`"""
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.signup = PublicgroupsSignupResource(core)
+        self.signup = PublicGroupsSignupResource(core)
 
     def get(
         self,
@@ -21897,8 +21897,8 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            publicgroup = client.publicgroups.get(42)
-            print(publicgroup.name)
+            public_group = client.public_groups.get(42)
+            print(public_group.name)
         """
         return _t.cast(models.PublicGroupDetail, self._call('GET', f"/publicgroups/{_seg(group_id)}", _query([('hash', hash)]), None, models.PublicGroupDetail, envelope=True))
 
@@ -21923,12 +21923,12 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            form = client.publicgroups.get_form(42, token="abc123")
+            form = client.public_groups.get_form(42, token="abc123")
             print(form.email)
         """
         return _t.cast(models.PublicGroupFormResult, self._call('GET', f"/publicgroups/{_seg(group_id)}/form", _query([('token', token), ('personId', person_id)]), None, models.PublicGroupFormResult, envelope=True))
 
-    def get_possiblerequesters(
+    def get_possible_requesters(
         self,
         group_id: int,
         *,
@@ -21947,12 +21947,12 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            possiblerequester = client.publicgroups.get_possiblerequesters(42, token="abc123")
-            print(possiblerequester.email)
+            possible_requester = client.public_groups.get_possible_requesters(42, token="abc123")
+            print(possible_requester.email)
         """
         return _t.cast(models.PublicGroupPossibleRequesters, self._call('GET', f"/publicgroups/{_seg(group_id)}/possiblerequesters", _query([('token', token)]), None, models.PublicGroupPossibleRequesters, envelope=True))
 
-    def get_signoutdata(
+    def get_signout_data(
         self,
         group_id: int,
         *,
@@ -21971,8 +21971,8 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            signoutdata = client.publicgroups.get_signoutdata(42)
-            print(signoutdata.group_has_auto_accept)
+            signout_data = client.public_groups.get_signout_data(42)
+            print(signout_data.group_has_auto_accept)
         """
         return _t.cast(models.PublicGroupSignoutData, self._call('GET', f"/publicgroups/{_seg(group_id)}/signoutdata", _query([('token', token)]), None, models.PublicGroupSignoutData, envelope=True))
 
@@ -21994,7 +21994,7 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            with_hash = client.publicgroups.get_with_hash(42, "abc123")
+            with_hash = client.public_groups.get_with_hash(42, "abc123")
             print(with_hash.name)
         """
         return _t.cast(models.PublicGroupDetail, self._call('GET', f"/publicgroups/{_seg(group_id)}/{_seg(hash)}", [], None, models.PublicGroupDetail, envelope=True))
@@ -22025,13 +22025,13 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            publicgroup = client.publicgroups.mail_to_leaders(
+            public_group = client.public_groups.mail_to_leaders(
                 42,
                 email="mara@example.org",
                 message="Hallo zusammen",
                 name="Hauskreis Nord",
             )
-            print(publicgroup.success)
+            print(public_group.success)
         """
         return _t.cast(models.PostPublicgroupsGroupIdMailToLeadersData, self._call('POST', f"/publicgroups/{_seg(group_id)}/mailToLeaders", [], _body({'email': email, 'message': message, 'name': name, 'token': token}, extra_body), models.PostPublicgroupsGroupIdMailToLeadersData, envelope=True))
 
@@ -22057,7 +22057,7 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            client.publicgroups.signout(42, person_ids=[42, 43])
+            client.public_groups.signout(42, person_ids=[42, 43])
         """
         self._raw('POST', f"/publicgroups/{_seg(group_id)}/signout", [], _body({'personIds': person_ids, 'token': token}, extra_body))
 
@@ -22087,12 +22087,12 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            publicgroup = client.publicgroups.submit_signup(
+            public_group = client.public_groups.submit_signup(
                 42,
                 forms=[ct.models.PublicGroupSignupCreateFormsItem.model_validate({"form": [{}]})],
                 token="abc123",
             )
-            print(publicgroup.group_homepage_hash)
+            print(public_group.group_homepage_hash)
         """
         return _t.cast(models.PostPublicgroupsGroupIdSignupResponse, self._call('POST', f"/publicgroups/{_seg(group_id)}/signup", [], _body({'forms': forms, 'hasAcceptedPrivacyForOther': has_accepted_privacy_for_other, 'signOutUrlTemplate': sign_out_url_template, 'token': token}, extra_body), models.PostPublicgroupsGroupIdSignupResponse, envelope=False))
 
@@ -22125,7 +22125,7 @@ class PublicgroupsResource(Resource):
 
         Example::
 
-            result = client.publicgroups.token(42, email="mara@example.org")
+            result = client.public_groups.token(42, email="mara@example.org")
             print(result)
         """
         return _t.cast(_t.Union[models.PublicGroupToken, models.PostPublicgroupsGroupIdTokenDataVariant2], self._call('POST', f"/publicgroups/{_seg(group_id)}/token", [], _body({'clicked': clicked, 'email': email, 'groupHomepageHash': group_homepage_hash, 'personId': person_id, 'signUpUrlTemplate': sign_up_url_template}, extra_body), _t.Union[models.PublicGroupToken, models.PostPublicgroupsGroupIdTokenDataVariant2], envelope=True))
@@ -22136,7 +22136,7 @@ class QueuesResource(Resource):
 
     def __init__(self, core: _t.Any) -> None:
         super().__init__(core)
-        self.jobgroups = QueuesJobgroupsResource(core)
+        self.job_groups = QueuesJobGroupsResource(core)
 
     def create(
         self,
@@ -22160,8 +22160,8 @@ class QueuesResource(Resource):
         return _t.cast(models.PostQueuesQueueData, self._call('POST', f"/queues/{_seg(queue)}", [], None, models.PostQueuesQueueData, envelope=True))
 
 
-class RegistrationconfigResource(Resource):
-    """`client.registrationconfig`"""
+class RegistrationConfigResource(Resource):
+    """`client.registration_config`"""
 
     def get(
         self,
@@ -22179,8 +22179,8 @@ class RegistrationconfigResource(Resource):
 
         Example::
 
-            registrationconfig = client.registrationconfig.get(42)
-            print(registrationconfig.id)
+            registration_config = client.registration_config.get(42)
+            print(registration_config.id)
         """
         return _t.cast(models.RegistrationConfig, self._call('GET', f"/registrationconfig/{_seg(id)}", [], None, models.RegistrationConfig, envelope=True))
 
@@ -22216,7 +22216,7 @@ class RegistrationconfigResource(Resource):
 
         Example::
 
-            result = client.registrationconfig.patch(1, is_active=True)
+            result = client.registration_config.patch(1, is_active=True)
             print(result.id)
         """
         if tags is not UNSET:
@@ -22366,10 +22366,10 @@ class RegistrationsResource(Resource):
         self._raw('POST', f"/registrations/{_seg(registration_guid)}/resend", [], None)
 
 
-class RepeatcalculationResource(Resource):
-    """`client.repeatcalculation`"""
+class RepeatCalculationResource(Resource):
+    """`client.repeat_calculation`"""
 
-    def create(
+    def calculate(
         self,
         *,
         end_date: _t.Union[_dt.datetime, _dt.date],
@@ -22400,11 +22400,11 @@ class RepeatcalculationResource(Resource):
 
         Example::
 
-            for repeatcalculation in client.repeatcalculation.create(
+            for repeat_calculation in client.repeat_calculation.calculate(
                 end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
                 start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
             ):
-                print(repeatcalculation)
+                print(repeat_calculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('POST', "/repeatcalculation", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date}, extra_body), _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -22439,11 +22439,11 @@ class RepeatcalculationResource(Resource):
 
         Example::
 
-            for repeatcalculation in client.repeatcalculation.delete(
+            for repeat_calculation in client.repeat_calculation.delete(
                 end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
                 start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
             ):
-                print(repeatcalculation)
+                print(repeat_calculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('DELETE', "/repeatcalculation", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date}, extra_body), _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -22479,11 +22479,11 @@ class RepeatcalculationResource(Resource):
 
         Example::
 
-            for repeatcalculation in client.repeatcalculation.list(
+            for repeat_calculation in client.repeat_calculation.list(
                 end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
                 start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
             ):
-                print(repeatcalculation)
+                print(repeat_calculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('GET', "/repeatcalculation", _query([('additionals', additionals), ('endDate', end_date), ('exceptions', exceptions), ('repeatFrequency', repeat_frequency), ('repeatId', repeat_id), ('repeatOption', repeat_option), ('repeatUntil', repeat_until), ('startDate', start_date)]), None, _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -22518,11 +22518,11 @@ class RepeatcalculationResource(Resource):
 
         Example::
 
-            for repeatcalculation in client.repeatcalculation.patch(
+            for repeat_calculation in client.repeat_calculation.patch(
                 end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
                 start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
             ):
-                print(repeatcalculation)
+                print(repeat_calculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('PATCH', "/repeatcalculation", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date}, extra_body), _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -22557,11 +22557,11 @@ class RepeatcalculationResource(Resource):
 
         Example::
 
-            for repeatcalculation in client.repeatcalculation.update(
+            for repeat_calculation in client.repeat_calculation.update(
                 end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
                 start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
             ):
-                print(repeatcalculation)
+                print(repeat_calculation)
         """
         return _t.cast(_t.List[models.RepeatCalculationOccurrence], self._call('PUT', "/repeatcalculation", [], _body({'additionals': additionals, 'endDate': end_date, 'exceptions': exceptions, 'repeatFrequency': repeat_frequency, 'repeatId': repeat_id, 'repeatOption': repeat_option, 'repeatUntil': repeat_until, 'startDate': start_date}, extra_body), _t.List[models.RepeatCalculationOccurrence], envelope=False))
 
@@ -22596,7 +22596,7 @@ class ResetPasswordResource(Resource):
 class ResourceResource(Resource):
     """`client.resource`"""
 
-    def get_masterdata(
+    def get_master_data(
         self,
         *,
         include: _t.Optional[_t.List[_t.Literal['involvedPersonsDomainObjects']]] = None,
@@ -22614,10 +22614,132 @@ class ResourceResource(Resource):
 
         Example::
 
-            masterdata = client.resource.get_masterdata()
-            print(masterdata)
+            master_data = client.resource.get_master_data()
+            print(master_data)
         """
         return _t.cast(models.ResourceMasterData, self._call('GET', "/resource/masterdata", _query([('include[]', include)]), None, models.ResourceMasterData, envelope=True))
+
+
+class ResourceTypesResource(Resource):
+    """`client.resource_types`"""
+
+    def create(
+        self,
+        *,
+        name: str,
+        name_plural: str,
+        sort_key: int,
+        campus_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
+        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
+    ) -> models.ResourceType:
+        """
+        Create a resource type
+
+        `POST /resourcetypes`
+
+        Creates a category used to group resources. `campusId` optionally associates the type with an organizational campus.
+
+        Args:
+            campus_id: Associated campus, or null for no campus assignment.
+            name: Singular label for one resource of this type.
+            name_plural: Plural label for resources of this type.
+            sort_key: Sort value for displaying resource types.
+
+        Example::
+
+            result = client.resource_types.create(name="Room", name_plural="Rooms", sort_key=1)
+            print(result.name)
+        """
+        return _t.cast(models.ResourceType, self._call('POST', "/resourcetypes", [], _body({'campusId': campus_id, 'name': name, 'namePlural': name_plural, 'sortKey': sort_key}, extra_body), models.ResourceType, envelope=True))
+
+    def delete(
+        self,
+        resource_type_id: int,
+    ) -> None:
+        """
+        Delete a resource type
+
+        `DELETE /resourcetypes/{resourceTypeId}`
+
+        Deletes a resource category.
+
+        Args:
+            resource_type_id: ID of the resource category.
+
+        Example::
+
+            client.resource_types.delete(2)
+        """
+        self._raw('DELETE', f"/resourcetypes/{_seg(resource_type_id)}", [], None)
+
+    def get(
+        self,
+        resource_type_id: int,
+    ) -> models.ResourceType:
+        """
+        Get a resource type
+
+        `GET /resourcetypes/{resourceTypeId}`
+
+        Returns the resource category, its labels and optional campus assignment. It does not include the resources belonging to the type.
+
+        Args:
+            resource_type_id: ID of the resource category.
+
+        Example::
+
+            resource_type = client.resource_types.get(2)
+            print(resource_type.name)
+        """
+        return _t.cast(models.ResourceType, self._call('GET', f"/resourcetypes/{_seg(resource_type_id)}", [], None, models.ResourceType, envelope=True))
+
+    def list(
+        self,
+    ) -> _t.List[models.ResourceType]:
+        """
+        List resource types
+
+        `GET /resourcetypes`
+
+        Returns all resource categories, such as rooms or vehicles, without filtering by resource visibility. A type may have no resources visible to the reader.
+
+        Example::
+
+            for resource_type in client.resource_types.list():
+                print(resource_type.name)
+        """
+        return _t.cast(_t.List[models.ResourceType], self._call('GET', "/resourcetypes", [], None, _t.List[models.ResourceType], envelope=True))
+
+    def update(
+        self,
+        resource_type_id: int,
+        *,
+        name: str,
+        name_plural: str,
+        sort_key: int,
+        campus_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
+        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
+    ) -> models.ResourceType:
+        """
+        Update a resource type
+
+        `PUT /resourcetypes/{resourceTypeId}`
+
+        Replaces the resource category’s labels, sort value and campus assignment.
+
+        Args:
+            resource_type_id: ID of the resource category.
+            campus_id: Associated campus, or null for no campus assignment.
+            name: Singular label for one resource of this type.
+            name_plural: Plural label for resources of this type.
+            sort_key: Sort value for displaying resource types.
+
+        Example::
+
+            result = client.resource_types.update(2, name="Room", name_plural="Rooms", sort_key=1)
+            print(result.name)
+        """
+        return _t.cast(models.ResourceType, self._call('PUT', f"/resourcetypes/{_seg(resource_type_id)}", [], _body({'campusId': campus_id, 'name': name, 'namePlural': name_plural, 'sortKey': sort_key}, extra_body), models.ResourceType, envelope=True))
 
 
 class ResourcesResource(Resource):
@@ -22803,128 +22925,6 @@ class ResourcesResource(Resource):
             print(result.name)
         """
         return _t.cast(models.Resource, self._call('PUT', f"/resources/{_seg(resource_id)}", [], _body({'adminIds': admin_ids, 'description': description, 'iCalLocation': i_cal_location, 'isAutoAccept': is_auto_accept, 'isVirtual': is_virtual, 'location': location, 'name': name, 'quantity': quantity, 'randomString': random_string, 'resourceTypeId': resource_type_id, 'sortKey': sort_key, 'needsAppointment': needs_appointment}, extra_body), models.Resource, envelope=True))
-
-
-class ResourcetypesResource(Resource):
-    """`client.resourcetypes`"""
-
-    def create(
-        self,
-        *,
-        name: str,
-        name_plural: str,
-        sort_key: int,
-        campus_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
-    ) -> models.ResourceType:
-        """
-        Create a resource type
-
-        `POST /resourcetypes`
-
-        Creates a category used to group resources. `campusId` optionally associates the type with an organizational campus.
-
-        Args:
-            campus_id: Associated campus, or null for no campus assignment.
-            name: Singular label for one resource of this type.
-            name_plural: Plural label for resources of this type.
-            sort_key: Sort value for displaying resource types.
-
-        Example::
-
-            result = client.resourcetypes.create(name="Room", name_plural="Rooms", sort_key=1)
-            print(result.name)
-        """
-        return _t.cast(models.ResourceType, self._call('POST', "/resourcetypes", [], _body({'campusId': campus_id, 'name': name, 'namePlural': name_plural, 'sortKey': sort_key}, extra_body), models.ResourceType, envelope=True))
-
-    def delete(
-        self,
-        resource_type_id: int,
-    ) -> None:
-        """
-        Delete a resource type
-
-        `DELETE /resourcetypes/{resourceTypeId}`
-
-        Deletes a resource category.
-
-        Args:
-            resource_type_id: ID of the resource category.
-
-        Example::
-
-            client.resourcetypes.delete(2)
-        """
-        self._raw('DELETE', f"/resourcetypes/{_seg(resource_type_id)}", [], None)
-
-    def get(
-        self,
-        resource_type_id: int,
-    ) -> models.ResourceType:
-        """
-        Get a resource type
-
-        `GET /resourcetypes/{resourceTypeId}`
-
-        Returns the resource category, its labels and optional campus assignment. It does not include the resources belonging to the type.
-
-        Args:
-            resource_type_id: ID of the resource category.
-
-        Example::
-
-            resourcetype = client.resourcetypes.get(2)
-            print(resourcetype.name)
-        """
-        return _t.cast(models.ResourceType, self._call('GET', f"/resourcetypes/{_seg(resource_type_id)}", [], None, models.ResourceType, envelope=True))
-
-    def list(
-        self,
-    ) -> _t.List[models.ResourceType]:
-        """
-        List resource types
-
-        `GET /resourcetypes`
-
-        Returns all resource categories, such as rooms or vehicles, without filtering by resource visibility. A type may have no resources visible to the reader.
-
-        Example::
-
-            for resourcetype in client.resourcetypes.list():
-                print(resourcetype.name)
-        """
-        return _t.cast(_t.List[models.ResourceType], self._call('GET', "/resourcetypes", [], None, _t.List[models.ResourceType], envelope=True))
-
-    def update(
-        self,
-        resource_type_id: int,
-        *,
-        name: str,
-        name_plural: str,
-        sort_key: int,
-        campus_id: _t.Union[_t.Optional[int], UnsetType] = UNSET,
-        extra_body: _t.Optional[_t.Dict[str, _t.Any]] = None,
-    ) -> models.ResourceType:
-        """
-        Update a resource type
-
-        `PUT /resourcetypes/{resourceTypeId}`
-
-        Replaces the resource category’s labels, sort value and campus assignment.
-
-        Args:
-            resource_type_id: ID of the resource category.
-            campus_id: Associated campus, or null for no campus assignment.
-            name: Singular label for one resource of this type.
-            name_plural: Plural label for resources of this type.
-            sort_key: Sort value for displaying resource types.
-
-        Example::
-
-            result = client.resourcetypes.update(2, name="Room", name_plural="Rooms", sort_key=1)
-            print(result.name)
-        """
-        return _t.cast(models.ResourceType, self._call('PUT', f"/resourcetypes/{_seg(resource_type_id)}", [], _body({'campusId': campus_id, 'name': name, 'namePlural': name_plural, 'sortKey': sort_key}, extra_body), models.ResourceType, envelope=True))
 
 
 class RoutinesResource(Resource):
@@ -23175,8 +23175,8 @@ class SearchResource(Resource):
         return _t.cast(_t.List[models.GetSearchDataItem], self._call('GET', "/search", _query([('query', query), ('domain_types[]', domain_types)]), None, _t.List[models.GetSearchDataItem], envelope=True))
 
 
-class SecuritylevelsResource(Resource):
-    """`client.securitylevels`"""
+class SecurityLevelsResource(Resource):
+    """`client.security_levels`"""
 
     def create(
         self,
@@ -23197,7 +23197,7 @@ class SecuritylevelsResource(Resource):
 
         Example::
 
-            result = client.securitylevels.create(1, name="Hauskreis Nord")
+            result = client.security_levels.create(1, name="Hauskreis Nord")
             print(result.name)
         """
         return _t.cast(models.PostSecuritylevelsIdResponse, self._call('POST', f"/securitylevels/{_seg(id)}", [], _body({'name': name}, extra_body), models.PostSecuritylevelsIdResponse, envelope=False))
@@ -23221,7 +23221,7 @@ class SecuritylevelsResource(Resource):
 
         Example::
 
-            client.securitylevels.delete(1)
+            client.security_levels.delete(1)
         """
         self._raw('DELETE', f"/securitylevels/{_seg(id)}", _query([('dry_run', dry_run)]), None)
 
@@ -23241,8 +23241,8 @@ class SecuritylevelsResource(Resource):
 
         Example::
 
-            securitylevel = client.securitylevels.get(1)
-            print(securitylevel.name)
+            security_level = client.security_levels.get(1)
+            print(security_level.name)
         """
         return _t.cast(models.SecurityLevel, self._call('GET', f"/securitylevels/{_seg(id)}", [], None, models.SecurityLevel, envelope=False))
 
@@ -23256,8 +23256,8 @@ class SecuritylevelsResource(Resource):
 
         Example::
 
-            for securitylevel in client.securitylevels.list():
-                print(securitylevel.name)
+            for security_level in client.security_levels.list():
+                print(security_level.name)
         """
         return _t.cast(_t.List[models.SecurityLevel], self._call('GET', "/securitylevels", [], None, _t.List[models.SecurityLevel], envelope=True))
 
@@ -23284,14 +23284,14 @@ class SecuritylevelsResource(Resource):
 
         Example::
 
-            result = client.securitylevels.patch(1, name="Hauskreis Nord")
+            result = client.security_levels.patch(1, name="Hauskreis Nord")
             print(result.name)
         """
         return _t.cast(models.PatchSecuritylevelsIdResponse, self._call('PATCH', f"/securitylevels/{_seg(id)}", _query([('forcereorder', forcereorder)]), _body({'forcereorder': forcereorder2, 'name': name, 'newid': newid}, extra_body), models.PatchSecuritylevelsIdResponse, envelope=False))
 
 
-class ServicegroupsResource(Resource):
-    """`client.servicegroups`"""
+class ServiceGroupsResource(Resource):
+    """`client.service_groups`"""
 
     def create(
         self,
@@ -23321,7 +23321,7 @@ class ServicegroupsResource(Resource):
 
         Example::
 
-            result = client.servicegroups.create(name="Hauskreis Nord")
+            result = client.service_groups.create(name="Hauskreis Nord")
             print(result.name)
         """
         return _t.cast(models.ServiceGroup, self._call('POST', "/servicegroups", [], _body({'campusId': campus_id, 'description': description, 'name': name, 'onlyVisibleInCampusFilter': only_visible_in_campus_filter, 'sortKey': sort_key, 'viewAll': view_all}, extra_body), models.ServiceGroup, envelope=True))
@@ -23342,7 +23342,7 @@ class ServicegroupsResource(Resource):
 
         Example::
 
-            client.servicegroups.delete(13)
+            client.service_groups.delete(13)
         """
         self._raw('DELETE', f"/servicegroups/{_seg(service_group_id)}", [], None)
 
@@ -23362,8 +23362,8 @@ class ServicegroupsResource(Resource):
 
         Example::
 
-            servicegroup = client.servicegroups.get(13)
-            print(servicegroup.name)
+            service_group = client.service_groups.get(13)
+            print(service_group.name)
         """
         return _t.cast(models.ServiceGroup, self._call('GET', f"/servicegroups/{_seg(service_group_id)}", [], None, models.ServiceGroup, envelope=True))
 
@@ -23379,8 +23379,8 @@ class ServicegroupsResource(Resource):
 
         Example::
 
-            for servicegroup in client.servicegroups.list():
-                print(servicegroup.name)
+            for service_group in client.service_groups.list():
+                print(service_group.name)
         """
         return _t.cast(_t.List[models.ServiceGroup], self._call('GET', "/servicegroups", [], None, _t.List[models.ServiceGroup], envelope=True))
 
@@ -23414,7 +23414,7 @@ class ServicegroupsResource(Resource):
 
         Example::
 
-            result = client.servicegroups.update(13, name="Hauskreis Nord")
+            result = client.service_groups.update(13, name="Hauskreis Nord")
             print(result.name)
         """
         return _t.cast(models.ServiceGroup, self._call('PUT', f"/servicegroups/{_seg(service_group_id)}", [], _body({'campusId': campus_id, 'description': description, 'name': name, 'onlyVisibleInCampusFilter': only_visible_in_campus_filter, 'sortKey': sort_key, 'viewAll': view_all}, extra_body), models.ServiceGroup, envelope=True))
@@ -23837,8 +23837,8 @@ class SsoLoginsResource(Resource):
         return _t.cast(_t.List[models.SsoLogin], self._call('GET', "/sso-logins", [], None, _t.List[models.SsoLogin], envelope=True))
 
 
-class StartpageResource(Resource):
-    """`client.startpage`"""
+class StartPageResource(Resource):
+    """`client.start_page`"""
 
     def list(
         self,
@@ -23852,8 +23852,8 @@ class StartpageResource(Resource):
 
         Example::
 
-            for startpage in client.startpage.list():
-                print(startpage)
+            for start_page in client.start_page.list():
+                print(start_page)
         """
         return _t.cast(_t.List[_t.Union[models.WidgetDate, models.WidgetDetail, models.WidgetDomainObject, models.WidgetPost, models.WidgetCommon, models.WidgetHidden]], self._call('GET', "/startpage", [], None, _t.List[_t.Union[models.WidgetDate, models.WidgetDetail, models.WidgetDomainObject, models.WidgetPost, models.WidgetCommon, models.WidgetHidden]], envelope=True))
 
@@ -24160,7 +24160,7 @@ class SyncResource(Resource):
         super().__init__(core)
         self.adapters = SyncAdaptersResource(core)
         self.conflicts = SyncConflictsResource(core)
-        self.entitymappings = SyncEntitymappingsResource(core)
+        self.entity_mappings = SyncEntityMappingsResource(core)
         self.externalsystems = SyncExternalsystemsResource(core)
 
     def create_logs(
@@ -24220,7 +24220,7 @@ class SyncResource(Resource):
         """
         return Paginator(self._core, "/sync/executions", _query([('limit', limit), ('es_ids[]', es_ids), ('job_ids[]', job_ids), ('start_date', start_date), ('end_date', end_date), ('statuses[]', statuses), ('is_dry_run', is_dry_run)]), models.SyncExecutionSummary)
 
-    def list_jobconfigs(
+    def list_job_configs(
         self,
         *,
         external_system_ids: _t.Optional[_t.List[int]] = None,
@@ -24237,8 +24237,8 @@ class SyncResource(Resource):
 
         Example::
 
-            for jobconfig in client.sync.list_jobconfigs():
-                print(jobconfig.name)
+            for job_config in client.sync.list_job_configs():
+                print(job_config.name)
         """
         return _t.cast(_t.List[models.JobConfigurationReturn], self._call('GET', "/sync/jobconfigs", _query([('external_system_ids[]', external_system_ids)]), None, _t.List[models.JobConfigurationReturn], envelope=True))
 
@@ -24565,7 +24565,7 @@ class TranslationsResource(Resource):
         """
         return _t.cast(_t.List[models.TranslationKey], self._call('GET', "/translations", _query([('updated_by_church', updated_by_church), ('needs_check', needs_check)]), None, _t.List[models.TranslationKey], envelope=True))
 
-    def list_keysbytext(
+    def list_keys_by_text(
         self,
         *,
         query: str,
@@ -24582,8 +24582,8 @@ class TranslationsResource(Resource):
 
         Example::
 
-            for keysbytext in client.translations.list_keysbytext(query="Welcome"):
-                print(keysbytext)
+            for keys_by_text in client.translations.list_keys_by_text(query="Welcome"):
+                print(keys_by_text)
         """
         return _t.cast(_t.List[_t.List[str]], self._call('GET', "/translations/keysbytext", _query([('query', query)]), None, _t.List[_t.List[str]], envelope=True))
 
@@ -24614,8 +24614,8 @@ class TranslationsResource(Resource):
         self._raw('PUT', f"/translations/{_seg(key_id)}", [], _body({'key': key, 'module': module}, extra_body))
 
 
-class TwofactorResource(Resource):
-    """`client.twofactor`"""
+class TwoFactorResource(Resource):
+    """`client.two_factor`"""
 
     def totp(
         self,
@@ -24637,8 +24637,8 @@ class TwofactorResource(Resource):
 
         Example::
 
-            twofactor = client.twofactor.totp(code="012345", person_id=42)
-            print(twofactor.status)
+            two_factor = client.two_factor.totp(code="012345", person_id=42)
+            print(two_factor.status)
         """
         return _t.cast(models.PostTwofactorTotpData, self._call('POST', "/twofactor/totp", [], _body({'code': code, 'personId': person_id}, extra_body), models.PostTwofactorTotpData, envelope=True))
 
@@ -24650,7 +24650,7 @@ class WebsiteResource(Resource):
         super().__init__(core)
         self.data = WebsiteDataResource(core)
 
-    def get_starttest(
+    def get_start_test(
         self,
     ) -> None:
         """
@@ -24658,7 +24658,7 @@ class WebsiteResource(Resource):
 
         Example::
 
-            client.website.get_starttest()
+            client.website.get_start_test()
         """
         self._raw('GET', "/website/starttest", [], None)
 
@@ -24794,48 +24794,48 @@ class Resources:
     def __init__(self, core: _t.Any) -> None:
         self.actions = ActionsResource(core)
         self.addresses = AddressesResource(core)
+        self.agenda_templates = AgendaTemplatesResource(core)
         self.agendas = AgendasResource(core)
-        self.agendatemplates = AgendatemplatesResource(core)
         self.bookings = BookingsResource(core)
-        self.bulkjobs = BulkjobsResource(core)
-        self.bulkletters = BulklettersResource(core)
+        self.bulk_jobs = BulkJobsResource(core)
+        self.bulk_letters = BulkLettersResource(core)
         self.calendars = CalendarsResource(core)
         self.campuses = CampusesResource(core)
         self.captcha = CaptchaResource(core)
         self.chat = ChatResource(core)
         self.checkin = CheckinResource(core)
-        self.churchquery = ChurchqueryResource(core)
+        self.church_query = ChurchQueryResource(core)
         self.config = ConfigResource(core)
-        self.contactlabels = ContactlabelsResource(core)
-        self.csrftoken = CsrftokenResource(core)
-        self.dbfields = DbfieldsResource(core)
-        self.dbfieldtypes = DbfieldtypesResource(core)
+        self.contact_labels = ContactLabelsResource(core)
+        self.csrf_token = CsrfTokenResource(core)
+        self.db_field_types = DbFieldTypesResource(core)
+        self.db_fields = DbFieldsResource(core)
         self.departments = DepartmentsResource(core)
-        self.domainobjects = DomainobjectsResource(core)
-        self.dynamicgroups = DynamicgroupsResource(core)
+        self.domain_objects = DomainObjectsResource(core)
+        self.dynamic_groups = DynamicGroupsResource(core)
         self.emails = EmailsResource(core)
-        self.evangelischetermine = EvangelischetermineResource(core)
+        self.evangelische_termine = EvangelischeTermineResource(core)
         self.event = EventResource(core)
+        self.event_templates = EventTemplatesResource(core)
         self.events = EventsResource(core)
-        self.eventtemplates = EventtemplatesResource(core)
-        self.externallogins = ExternalloginsResource(core)
-        self.externalposts = ExternalpostsResource(core)
+        self.external_logins = ExternalLoginsResource(core)
+        self.external_posts = ExternalPostsResource(core)
         self.facts = FactsResource(core)
-        self.featureusage = FeatureusageResource(core)
+        self.feature_usage = FeatureUsageResource(core)
         self.fields = FieldsResource(core)
         self.files = FilesResource(core)
         self.finance = FinanceResource(core)
         self.followups = FollowupsResource(core)
-        self.furtherlinks = FurtherlinksResource(core)
+        self.further_links = FurtherLinksResource(core)
         self.group = GroupResource(core)
-        self.grouphomepages = GrouphomepagesResource(core)
+        self.group_homepages = GroupHomepagesResource(core)
         self.groups = GroupsResource(core)
         self.history = HistoryResource(core)
-        self.htmltemplates = HtmltemplatesResource(core)
+        self.html_templates = HtmlTemplatesResource(core)
         self.images = ImagesResource(core)
         self.info = InfoResource(core)
         self.installation_sync = InstallationSyncResource(core)
-        self.joblog = JoblogResource(core)
+        self.job_log = JobLogResource(core)
         self.jobs = JobsResource(core)
         self.labels = LabelsResource(core)
         self.languages = LanguagesResource(core)
@@ -24844,51 +24844,51 @@ class Resources:
         self.logout = LogoutResource(core)
         self.logs = LogsResource(core)
         self.markdown = MarkdownResource(core)
-        self.masterdata = MasterdataResource(core)
-        self.meetingrequests = MeetingrequestsResource(core)
+        self.master_data = MasterDataResource(core)
+        self.meeting_requests = MeetingRequestsResource(core)
         self.menu = MenuResource(core)
-        self.newsletter_integrations = NewsletterIntegrationsResource(core)
+        self.news_letter_integrations = NewsLetterIntegrationsResource(core)
         self.notes = NotesResource(core)
         self.notifications = NotificationsResource(core)
         self.nps = NpsResource(core)
-        self.oauthclients = OauthclientsResource(core)
+        self.oauth_clients = OauthClientsResource(core)
         self.permissions = PermissionsResource(core)
         self.person = PersonResource(core)
         self.persons = PersonsResource(core)
         self.placeholders = PlaceholdersResource(core)
-        self.pollfornews = PollfornewsResource(core)
+        self.poll_for_news = PollForNewsResource(core)
         self.post = PostResource(core)
         self.posts = PostsResource(core)
         self.pr = PrResource(core)
         self.printers = PrintersResource(core)
         self.probes = ProbesResource(core)
         self.profiles = ProfilesResource(core)
-        self.publicgroups = PublicgroupsResource(core)
+        self.public_groups = PublicGroupsResource(core)
         self.queues = QueuesResource(core)
-        self.registrationconfig = RegistrationconfigResource(core)
+        self.registration_config = RegistrationConfigResource(core)
         self.registrations = RegistrationsResource(core)
-        self.repeatcalculation = RepeatcalculationResource(core)
+        self.repeat_calculation = RepeatCalculationResource(core)
         self.reset_password = ResetPasswordResource(core)
         self.resource = ResourceResource(core)
+        self.resource_types = ResourceTypesResource(core)
         self.resources = ResourcesResource(core)
-        self.resourcetypes = ResourcetypesResource(core)
         self.routines = RoutinesResource(core)
         self.saml = SamlResource(core)
         self.search = SearchResource(core)
-        self.securitylevels = SecuritylevelsResource(core)
-        self.servicegroups = ServicegroupsResource(core)
+        self.security_levels = SecurityLevelsResource(core)
+        self.service_groups = ServiceGroupsResource(core)
         self.services = ServicesResource(core)
         self.simulate = SimulateResource(core)
         self.song = SongResource(core)
         self.songs = SongsResource(core)
         self.sso_logins = SsoLoginsResource(core)
-        self.startpage = StartpageResource(core)
+        self.start_page = StartPageResource(core)
         self.statuses = StatusesResource(core)
         self.subscriptions = SubscriptionsResource(core)
         self.sync = SyncResource(core)
         self.tags = TagsResource(core)
         self.translations = TranslationsResource(core)
-        self.twofactor = TwofactorResource(core)
+        self.two_factor = TwoFactorResource(core)
         self.website = WebsiteResource(core)
         self.whoami = WhoamiResource(core)
         self.widgets = WidgetsResource(core)

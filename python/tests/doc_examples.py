@@ -210,22 +210,22 @@ def example_18(client: ct.Client) -> None:
 
 # get-csrftoken
 def example_19(client: ct.Client) -> None:
-    result = client.csrftoken.get()
+    result = client.csrf_token.get()
     print(result)
 
 # get-externallogins
 def example_20(client: ct.Client) -> None:
-    for externallogin in client.externallogins.list():
-        print(externallogin.name)
+    for external_login in client.external_logins.list():
+        print(external_login.name)
 
 # get-externallogins-id
 def example_21(client: ct.Client) -> None:
-    externallogin = client.externallogins.get(7)
-    print(externallogin.name)
+    external_login = client.external_logins.get(7)
+    print(external_login.name)
 
 # post-externallogins
 def example_22(client: ct.Client) -> None:
-    result = client.externallogins.create(
+    result = client.external_logins.create(
         config=ct.models.ExternalLoginOAuthConfig.model_validate({"accessTokenUrl": "https://identity.example.org/accessTokenUrl", "authorizeUrl": "https://identity.example.org/authorizeUrl", "clientId": "churchtools", "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"}),
         create_new_person=True,
         has_registration=True,
@@ -240,7 +240,7 @@ def example_22(client: ct.Client) -> None:
 
 # put-externallogins-id
 def example_23(client: ct.Client) -> None:
-    result = client.externallogins.update(
+    result = client.external_logins.update(
         7,
         config=ct.models.ExternalLoginOAuthConfig.model_validate({"accessTokenUrl": "https://identity.example.org/accessTokenUrl", "authorizeUrl": "https://identity.example.org/authorizeUrl", "clientId": "churchtools", "urlResourceOwnerDetails": "https://identity.example.org/urlResourceOwnerDetails"}),
         create_new_person=True,
@@ -256,51 +256,51 @@ def example_23(client: ct.Client) -> None:
 
 # delete-externallogins-externalloginid
 def example_24(client: ct.Client) -> None:
-    client.externallogins.delete(7)
+    client.external_logins.delete(7)
 
 # post-externallogins-oidc-backchannel-logout
 def example_25(client: ct.Client) -> None:
-    client.externallogins.oidc.backchannel_logout()
+    client.external_logins.oidc.backchannel_logout()
 
 # get-externallogins-externalLoginId-saml-login
 def example_26(client: ct.Client) -> None:
-    client.externallogins.saml.get_login(7)
+    client.external_logins.saml.get_login(7)
 
 # get-externallogins-externalLoginId-saml-metadata
 def example_27(client: ct.Client) -> None:
-    data = client.externallogins.saml.get_metadata(7)
+    data = client.external_logins.saml.get_metadata(7)
     with open("ergebnis.bin", "wb") as f:
         f.write(data)
 
 # get-externallogins-externalLoginId-saml-sls
 def example_28(client: ct.Client) -> None:
-    client.externallogins.saml.get_sls(7)
+    client.external_logins.saml.get_sls(7)
 
 # post-externallogins-externalLoginId-saml-sls
 def example_29(client: ct.Client) -> None:
-    client.externallogins.saml.create_sls(7)
+    client.external_logins.saml.create_sls(7)
 
 # put-externallogins-externalLoginId-saml-sls
 def example_30(client: ct.Client) -> None:
-    client.externallogins.saml.update_sls(7)
+    client.external_logins.saml.update_sls(7)
 
 # patch-externallogins-externalLoginId-saml-sls
 def example_31(client: ct.Client) -> None:
-    client.externallogins.saml.patch_sls(7)
+    client.external_logins.saml.patch_sls(7)
 
 # delete-externallogins-externalLoginId-saml-sls
 def example_32(client: ct.Client) -> None:
-    client.externallogins.saml.delete_sls(7)
+    client.external_logins.saml.delete_sls(7)
 
 # post-externallogins-externalLoginId-saml-acs
 def example_33(client: ct.Client) -> None:
-    data = client.externallogins.saml.acs(7)
+    data = client.external_logins.saml.acs(7)
     with open("ergebnis.bin", "wb") as f:
         f.write(data)
 
 # post-externallogins-saml-metadata-parse
 def example_34(client: ct.Client) -> None:
-    metadata = client.externallogins.saml.metadata.parse(xml="beispiel")
+    metadata = client.external_logins.saml.metadata.parse(xml="beispiel")
     print(metadata)
 
 # get-info
@@ -325,12 +325,12 @@ def example_38(client: ct.Client) -> None:
 
 # post-login-twofactor-setup
 def example_39(client: ct.Client) -> None:
-    result = client.login.twofactor.setup.create()
+    result = client.login.two_factor.setup.create()
     print(result.qrcode)
 
 # post-login-twofactor-setup-activate
 def example_40(client: ct.Client) -> None:
-    setup = client.login.twofactor.setup.activate(code="012345")
+    setup = client.login.two_factor.setup.activate(code="012345")
     print(setup.redirect_to)
 
 # post-logout
@@ -351,11 +351,11 @@ def example_43(client: ct.Client) -> None:
 
 # get-pollfornews
 def example_44(client: ct.Client) -> None:
-    for pollfornew in client.pollfornews.list(
+    for poll_for_new in client.poll_for_news.list(
         domain_types=["beispiel"],
         since=dt.datetime(2022, 10, 19, 12, 0, tzinfo=dt.timezone.utc),
     ):
-        print(pollfornew.domain_id)
+        print(poll_for_new.domain_id)
 
 # post-reset-password
 def example_45(client: ct.Client) -> None:
@@ -418,51 +418,51 @@ def example_56(client: ct.Client) -> None:
 
 # get-person-commentviewers
 def example_57(client: ct.Client) -> None:
-    for commentviewer in client.person.commentviewers.list():
-        print(commentviewer.name)
+    for comment_viewer in client.person.comment_viewers.list():
+        print(comment_viewer.name)
 
 # get-person-commentviewers-id
 def example_58(client: ct.Client) -> None:
-    commentviewer = client.person.commentviewers.get(1)
-    print(commentviewer.name)
+    comment_viewer = client.person.comment_viewers.get(1)
+    print(comment_viewer.name)
 
 # post-person-commentviewers
 def example_59(client: ct.Client) -> None:
-    result = client.person.commentviewers.create(name="Pastoral team")
+    result = client.person.comment_viewers.create(name="Pastoral team")
     print(result.name)
 
 # put-person-commentviewers-id
 def example_60(client: ct.Client) -> None:
-    result = client.person.commentviewers.update(1, name="Pastoral team")
+    result = client.person.comment_viewers.update(1, name="Pastoral team")
     print(result.name)
 
 # delete-person-commentviewers-id
 def example_61(client: ct.Client) -> None:
-    client.person.commentviewers.delete(1)
+    client.person.comment_viewers.delete(1)
 
 # get-person-growpaths
 def example_62(client: ct.Client) -> None:
-    for growpath in client.person.growpaths.list():
-        print(growpath.name)
+    for grow_path in client.person.grow_paths.list():
+        print(grow_path.name)
 
 # get-person-growpaths-id
 def example_63(client: ct.Client) -> None:
-    growpath = client.person.growpaths.get(1)
-    print(growpath.name)
+    grow_path = client.person.grow_paths.get(1)
+    print(grow_path.name)
 
 # post-person-growpaths
 def example_64(client: ct.Client) -> None:
-    result = client.person.growpaths.create(color="accent", name="New Believer")
+    result = client.person.grow_paths.create(color="accent", name="New Believer")
     print(result.name)
 
 # put-person-growpaths-id
 def example_65(client: ct.Client) -> None:
-    result = client.person.growpaths.update(1, color="accent", name="New Believer")
+    result = client.person.grow_paths.update(1, color="accent", name="New Believer")
     print(result.name)
 
 # delete-person-growpaths-id
 def example_66(client: ct.Client) -> None:
-    client.person.growpaths.delete(1)
+    client.person.grow_paths.delete(1)
 
 # get-person-sexes
 def example_67(client: ct.Client) -> None:
@@ -505,8 +505,8 @@ def example_74(client: ct.Client) -> None:
 
 # get-persons-personId-openmeetingrequests
 def example_75(client: ct.Client) -> None:
-    for openmeetingrequest in client.persons.list_openmeetingrequests(42):
-        print(openmeetingrequest.id)
+    for open_meeting_request in client.persons.list_open_meeting_requests(42):
+        print(open_meeting_request.id)
 
 # get-persons-personId-posts
 def example_76(client: ct.Client) -> None:
@@ -530,18 +530,18 @@ def example_79(client: ct.Client) -> None:
 
 # get-persons-id-loginstring
 def example_80(client: ct.Client) -> None:
-    loginstring = client.persons.get_loginstring("abc123")
-    print(loginstring.login_string)
+    login_string = client.persons.get_login_string("abc123")
+    print(login_string.login_string)
 
 # get-persons-id-logintoken
 def example_81(client: ct.Client) -> None:
-    result = client.persons.get_logintoken(42)
+    result = client.persons.get_login_token(42)
     print(result)
 
 # get-persons-id-privacypolicy
 def example_82(client: ct.Client) -> None:
-    privacypolicy = client.persons.get_privacypolicy(42)
-    print(privacypolicy.minimum_age)
+    privacy_policy = client.persons.get_privacy_policy(42)
+    print(privacy_policy.minimum_age)
 
 # post-persons
 def example_83(client: ct.Client) -> None:
@@ -550,7 +550,7 @@ def example_83(client: ct.Client) -> None:
 
 # put-persons-personId-confidentialityagreement
 def example_84(client: ct.Client) -> None:
-    client.persons.update_confidentialityagreement(42)
+    client.persons.update_confidentiality_agreement(42)
 
 # put-persons-id-password
 def example_85(client: ct.Client) -> None:
@@ -563,7 +563,7 @@ def example_85(client: ct.Client) -> None:
 
 # put-persons-id-privacypolicy
 def example_86(client: ct.Client) -> None:
-    result = client.persons.update_privacypolicy(
+    result = client.persons.update_privacy_policy(
         42,
         children_accepted=False,
         own_accepted=True,
@@ -584,15 +584,15 @@ def example_88(client: ct.Client) -> None:
 
 # delete-persons-personId-confidentialityagreement
 def example_89(client: ct.Client) -> None:
-    client.persons.delete_confidentialityagreement(42)
+    client.persons.delete_confidentiality_agreement(42)
 
 # delete-persons-id-logintoken
 def example_90(client: ct.Client) -> None:
-    client.persons.delete_logintoken(42)
+    client.persons.delete_login_token(42)
 
 # delete-persons-id-privacypolicy
 def example_91(client: ct.Client) -> None:
-    client.persons.delete_privacypolicy(42)
+    client.persons.delete_privacy_policy(42)
 
 # post-persons-personId-archive
 def example_92(client: ct.Client) -> None:
@@ -666,28 +666,28 @@ def example_106(client: ct.Client) -> None:
 
 # get-persons-id-servicerequests
 def example_107(client: ct.Client) -> None:
-    for servicerequest in client.persons.servicerequests.list(42):
-        print(servicerequest.name)
+    for service_request in client.persons.service_requests.list(42):
+        print(service_request.name)
 
 # get-persons-id-servicerequests-id
 def example_108(client: ct.Client) -> None:
-    servicerequest = client.persons.servicerequests.get(42, 42)
-    print(servicerequest.name)
+    service_request = client.persons.service_requests.get(42, 42)
+    print(service_request.name)
 
 # put-persons-id-servicerequests-id
 def example_109(client: ct.Client) -> None:
-    result = client.persons.servicerequests.update(42, 42, comment="Hallo zusammen")
+    result = client.persons.service_requests.update(42, 42, comment="Hallo zusammen")
     print(result.name)
 
 # delete-persons-id-servicerequests-id
 def example_110(client: ct.Client) -> None:
-    servicerequest = client.persons.servicerequests.delete(42, 42)
-    print(servicerequest.name)
+    service_request = client.persons.service_requests.delete(42, 42)
+    print(service_request.name)
 
 # post-persons-id-servicerequests-id-undo
 def example_111(client: ct.Client) -> None:
-    servicerequest = client.persons.servicerequests.undo(42, 42)
-    print(servicerequest.name)
+    service_request = client.persons.service_requests.undo(42, 42)
+    print(service_request.name)
 
 # get-persons-id-settings
 def example_112(client: ct.Client) -> None:
@@ -720,17 +720,17 @@ def example_116(client: ct.Client) -> None:
 
 # get-persons-id-settings-twofactor
 def example_117(client: ct.Client) -> None:
-    twofactor = client.persons.settings.twofactor.get(42)
-    print(twofactor.attribute)
+    two_factor = client.persons.settings.two_factor.get(42)
+    print(two_factor.attribute)
 
 # get-persons-id-settings-twofactor-force
 def example_118(client: ct.Client) -> None:
-    force = client.persons.settings.twofactor.get_force(42)
+    force = client.persons.settings.two_factor.get_force(42)
     print(force.attribute)
 
 # post-persons-id-settings-twofactor
 def example_119(client: ct.Client) -> None:
-    result = client.persons.settings.twofactor.create(
+    result = client.persons.settings.two_factor.create(
         42,
         password="example-password",
         username="alex@example.org",
@@ -739,88 +739,88 @@ def example_119(client: ct.Client) -> None:
 
 # put-persons-id-settings-twofactor
 def example_120(client: ct.Client) -> None:
-    result = client.persons.settings.twofactor.update(42)
+    result = client.persons.settings.two_factor.update(42)
     print(result.attribute)
 
 # put-persons-id-settings-twofactor-force
 def example_121(client: ct.Client) -> None:
-    result = client.persons.settings.twofactor.update_force(42, value=True)
+    result = client.persons.settings.two_factor.update_force(42, value=True)
     print(result.attribute)
 
 # delete-persons-id-settings-twofactor
 def example_122(client: ct.Client) -> None:
-    client.persons.settings.twofactor.delete(42)
+    client.persons.settings.two_factor.delete(42)
 
 # post-twofactor-totp
 def example_123(client: ct.Client) -> None:
-    twofactor = client.twofactor.totp(code="012345", person_id=42)
-    print(twofactor.status)
+    two_factor = client.two_factor.totp(code="012345", person_id=42)
+    print(two_factor.status)
 
 # get-group-memberstatus
 def example_124(client: ct.Client) -> None:
-    for memberstatu in client.group.list_memberstatus():
-        print(memberstatu.name)
+    for member_statu in client.group.list_member_status():
+        print(member_statu.name)
 
 # get-group-agegroups
 def example_125(client: ct.Client) -> None:
-    for agegroup in client.group.agegroups.list():
-        print(agegroup.name)
+    for age_group in client.group.age_groups.list():
+        print(age_group.name)
 
 # get-group-agegroups-ageGroupId
 def example_126(client: ct.Client) -> None:
-    agegroup = client.group.agegroups.get(2)
-    print(agegroup.name)
+    age_group = client.group.age_groups.get(2)
+    print(age_group.name)
 
 # post-group-agegroups
 def example_127(client: ct.Client) -> None:
-    result = client.group.agegroups.create(end=5, name="3-5", sort_key=3, start=3)
+    result = client.group.age_groups.create(end=5, name="3-5", sort_key=3, start=3)
     print(result.name)
 
 # put-group-agegroups-ageGroupId
 def example_128(client: ct.Client) -> None:
-    client.group.agegroups.update(2, end=5, name="3-5", sort_key=3, start=3)
+    client.group.age_groups.update(2, end=5, name="3-5", sort_key=3, start=3)
 
 # delete-group-agegroups-ageGroupId
 def example_129(client: ct.Client) -> None:
-    client.group.agegroups.delete(2, dry_run=True)
+    client.group.age_groups.delete(2, dry_run=True)
 
 # get-group-groupcategories
 def example_130(client: ct.Client) -> None:
-    for groupcategory in client.group.groupcategories.list():
-        print(groupcategory.name)
+    for group_category in client.group.group_categories.list():
+        print(group_category.name)
 
 # get-group-groupcategories-groupCategoryId
 def example_131(client: ct.Client) -> None:
-    groupcategory = client.group.groupcategories.get(2)
-    print(groupcategory.name)
+    group_category = client.group.group_categories.get(2)
+    print(group_category.name)
 
 # post-group-groupcategories
 def example_132(client: ct.Client) -> None:
-    result = client.group.groupcategories.create(color="blue", name="Gottesdienst", sort_key=5)
+    result = client.group.group_categories.create(color="blue", name="Gottesdienst", sort_key=5)
     print(result.name)
 
 # put-group-groupcategories-groupCategoryId
 def example_133(client: ct.Client) -> None:
-    result = client.group.groupcategories.update(2, color="blue", name="Gottesdienst", sort_key=5)
+    result = client.group.group_categories.update(2, color="blue", name="Gottesdienst", sort_key=5)
     print(result.name)
 
 # delete-group-groupcategories-groupCategoryId
 def example_134(client: ct.Client) -> None:
-    client.group.groupcategories.delete(2, dry_run=True)
+    client.group.group_categories.delete(2, dry_run=True)
 
 # get-group-grouptypes
 def example_135(client: ct.Client) -> None:
-    for grouptype in client.group.grouptypes.list():
-        print(grouptype.name)
+    for group_type in client.group.group_types.list():
+        print(group_type.name)
 
 # get-group-grouptypes-groupTypeId
 def example_136(client: ct.Client) -> None:
-    grouptype = client.group.grouptypes.get(2)
-    print(grouptype.name)
+    group_type = client.group.group_types.get(2)
+    print(group_type.name)
 
 # post-group-grouptypes
 def example_137(client: ct.Client) -> None:
-    result = client.group.grouptypes.create(
+    result = client.group.group_types.create(
         available_for_new_person=False,
         color="blue",
         is_leader_necessary=False,
@@ -835,7 +835,7 @@ def example_137(client: ct.Client) -> None:
 
 # put-group-grouptypes-groupTypeId
 def example_138(client: ct.Client) -> None:
-    result = client.group.grouptypes.update(
+    result = client.group.group_types.update(
         2,
         available_for_new_person=False,
         color="blue",
@@ -851,21 +851,21 @@ def example_138(client: ct.Client) -> None:
 
 # delete-group-grouptypes-groupTypeId
 def example_139(client: ct.Client) -> None:
-    client.group.grouptypes.delete(2)
+    client.group.group_types.delete(2)
 
 # get-group-meetingtemplates
 def example_140(client: ct.Client) -> None:
-    for meetingtemplate in client.group.meetingtemplates.list():
-        print(meetingtemplate.name)
+    for meeting_template in client.group.meeting_templates.list():
+        print(meeting_template.name)
 
 # get-group-meetingtemplates-meetingTemplateId
 def example_141(client: ct.Client) -> None:
-    meetingtemplate = client.group.meetingtemplates.get(1)
-    print(meetingtemplate.name)
+    meeting_template = client.group.meeting_templates.get(1)
+    print(meeting_template.name)
 
 # post-group-meetingtemplates
 def example_142(client: ct.Client) -> None:
-    result = client.group.meetingtemplates.create(
+    result = client.group.meeting_templates.create(
         name="Lowlights / Highlights",
         template=[ct.models.MeetingTemplateField.model_validate({"label": "Highlights", "type": "color"})],
     )
@@ -873,7 +873,7 @@ def example_142(client: ct.Client) -> None:
 
 # put-group-meetingtemplates-meetingTemplateId
 def example_143(client: ct.Client) -> None:
-    client.group.meetingtemplates.update(
+    client.group.meeting_templates.update(
         1,
         name="Lowlights / Highlights",
         template=[ct.models.MeetingTemplateField.model_validate({"label": "Highlights", "type": "color"})],
@@ -881,7 +881,7 @@ def example_143(client: ct.Client) -> None:
 
 # delete-group-meetingtemplates-meetingTemplateId
 def example_144(client: ct.Client) -> None:
-    client.group.meetingtemplates.delete(1, dry_run=True)
+    client.group.meeting_templates.delete(1, dry_run=True)
 
 # get-group-roles
 def example_145(client: ct.Client) -> None:
@@ -928,26 +928,26 @@ def example_149(client: ct.Client) -> None:
 
 # get-group-targetgroups
 def example_150(client: ct.Client) -> None:
-    for targetgroup in client.group.targetgroups.list():
-        print(targetgroup.name)
+    for target_group in client.group.target_groups.list():
+        print(target_group.name)
 
 # get-group-targetgroups-targetGroupId
 def example_151(client: ct.Client) -> None:
-    targetgroup = client.group.targetgroups.get(2)
-    print(targetgroup.name)
+    target_group = client.group.target_groups.get(2)
+    print(target_group.name)
 
 # post-group-targetgroups
 def example_152(client: ct.Client) -> None:
-    result = client.group.targetgroups.create(name="men", sort_key=2)
+    result = client.group.target_groups.create(name="men", sort_key=2)
     print(result.name)
 
 # put-group-targetgroups-targetGroupId
 def example_153(client: ct.Client) -> None:
-    client.group.targetgroups.update(2, name="men", sort_key=2)
+    client.group.target_groups.update(2, name="men", sort_key=2)
 
 # delete-group-targetgroups-targetGroupId
 def example_154(client: ct.Client) -> None:
-    client.group.targetgroups.delete(2, dry_run=True)
+    client.group.target_groups.delete(2, dry_run=True)
 
 # get-groups
 def example_155(client: ct.Client) -> None:
@@ -961,8 +961,8 @@ def example_156(client: ct.Client) -> None:
 
 # get-groups-groupId-documenttemplates
 def example_157(client: ct.Client) -> None:
-    for documenttemplate in client.groups.list_documenttemplates(42):
-        print(documenttemplate.name)
+    for document_template in client.groups.list_document_templates(42):
+        print(document_template.name)
 
 # get-groups-hierarchies
 def example_158(client: ct.Client) -> None:
@@ -976,13 +976,13 @@ def example_159(client: ct.Client) -> None:
 
 # get-groups-groupId-memberids
 def example_160(client: ct.Client) -> None:
-    for memberid in client.groups.list_memberids(42):
-        print(memberid)
+    for member_id in client.groups.list_member_ids(42):
+        print(member_id)
 
 # get-groups-groupId-memberpreview
 def example_161(client: ct.Client) -> None:
-    for memberpreview in client.groups.list_memberpreview(42):
-        print(memberpreview)
+    for member_preview in client.groups.list_member_preview(42):
+        print(member_preview)
 
 # get-groups-members
 def example_162(client: ct.Client) -> None:
@@ -999,15 +999,15 @@ def example_164(client: ct.Client) -> None:
     group = client.groups.get(42)
     print(group.name)
 
-# get-groups-grouped
+# get-groups-groupId-grouphomepage
 def example_165(client: ct.Client) -> None:
+    group_homepage = client.groups.get_group_homepage(42)
+    print(group_homepage.name)
+
+# get-groups-grouped
+def example_166(client: ct.Client) -> None:
     grouped = client.groups.get_grouped(group_by="ageGroup")
     print(grouped.grouped_by)
-
-# get-groups-groupId-grouphomepage
-def example_166(client: ct.Client) -> None:
-    grouphomepage = client.groups.get_grouphomepage(42)
-    print(grouphomepage.name)
 
 # get-groups-optins
 def example_167(client: ct.Client) -> None:
@@ -1016,8 +1016,8 @@ def example_167(client: ct.Client) -> None:
 
 # get-groups-groupId-poststatistics
 def example_168(client: ct.Client) -> None:
-    poststatistic = client.groups.get_poststatistics(42)
-    print(poststatistic.group_intern)
+    post_statistic = client.groups.get_post_statistics(42)
+    print(post_statistic.group_intern)
 
 # get-groups-id-statistics
 def example_169(client: ct.Client) -> None:
@@ -1031,7 +1031,7 @@ def example_170(client: ct.Client) -> None:
 
 # put-groups-groupId-grouphomepage
 def example_171(client: ct.Client) -> None:
-    result = client.groups.update_grouphomepage(
+    result = client.groups.update_group_homepage(
         42,
         is_enabled=True,
         show_filters=True,
@@ -1052,7 +1052,7 @@ def example_173(client: ct.Client) -> None:
 
 # delete-groups-groupId-grouphomepage
 def example_174(client: ct.Client) -> None:
-    client.groups.delete_grouphomepage(42)
+    client.groups.delete_group_homepage(42)
 
 # post-groups-id-chat
 def example_175(client: ct.Client) -> None:
@@ -1071,7 +1071,7 @@ def example_177(client: ct.Client) -> None:
 
 # post-groups-id-grouptype
 def example_178(client: ct.Client) -> None:
-    client.groups.grouptype(42, group_type_id=3, role_mapping={})
+    client.groups.group_type(42, group_type_id=3, role_mapping={})
 
 # post-groups-groupId-notification
 def example_179(client: ct.Client) -> None:
@@ -1150,12 +1150,12 @@ def example_191(client: ct.Client) -> None:
 
 # get-groups-groupId-memberfields
 def example_192(client: ct.Client) -> None:
-    for memberfield in client.groups.memberfields.list(42):
-        print(memberfield)
+    for member_field in client.groups.member_fields.list(42):
+        print(member_field)
 
 # post-groups-groupId-memberfields-group
 def example_193(client: ct.Client) -> None:
-    result = client.groups.memberfields.group.create(
+    result = client.groups.member_fields.group.create(
         42,
         field_type_code="text",
         name="T-Shirt size",
@@ -1167,7 +1167,7 @@ def example_193(client: ct.Client) -> None:
 
 # put-groups-groupId-memberfields-group-groupMemberFieldId
 def example_194(client: ct.Client) -> None:
-    result = client.groups.memberfields.group.update(
+    result = client.groups.member_fields.group.update(
         42,
         42,
         name="T-Shirt size",
@@ -1180,16 +1180,16 @@ def example_194(client: ct.Client) -> None:
 
 # patch-groups-groupId-memberfields-group-groupMemberFieldId
 def example_195(client: ct.Client) -> None:
-    result = client.groups.memberfields.group.patch(42, 42, name="T-Shirt size")
+    result = client.groups.member_fields.group.patch(42, 42, name="T-Shirt size")
     print(result.name)
 
 # delete-groups-groupId-memberfields-group-groupMemberFieldId
 def example_196(client: ct.Client) -> None:
-    client.groups.memberfields.group.delete(42, 42)
+    client.groups.member_fields.group.delete(42, 42)
 
 # put-groups-groupId-memberfields-person-fieldId
 def example_197(client: ct.Client) -> None:
-    result = client.groups.memberfields.person.update(
+    result = client.groups.member_fields.person.update(
         42,
         200,
         required_in_registration_form=False,
@@ -1199,7 +1199,7 @@ def example_197(client: ct.Client) -> None:
 
 # delete-groups-groupId-memberfields-person-fieldId
 def example_198(client: ct.Client) -> None:
-    client.groups.memberfields.person.delete(42, 200)
+    client.groups.member_fields.person.delete(42, 200)
 
 # get-groups-id-members
 def example_199(client: ct.Client) -> None:
@@ -1273,12 +1273,12 @@ def example_212(client: ct.Client) -> None:
 
 # get-groups-groupId-newsletter-integrations
 def example_213(client: ct.Client) -> None:
-    for newsletter_integration in client.groups.newsletter_integrations.list(42):
-        print(newsletter_integration.id)
+    for news_letter_integration in client.groups.news_letter_integrations.list(42):
+        print(news_letter_integration.id)
 
 # post-groups-groupId-newsletter-integrations
 def example_214(client: ct.Client) -> None:
-    result = client.groups.newsletter_integrations.create(
+    result = client.groups.news_letter_integrations.create(
         42,
         opt_in_required=True,
         provider="Mailjet",
@@ -1287,11 +1287,11 @@ def example_214(client: ct.Client) -> None:
 
 # delete-groups-groupId-newsletter-integrations-provider-listId
 def example_215(client: ct.Client) -> None:
-    client.groups.newsletter_integrations.delete(42, "Mailjet", "12345")
+    client.groups.news_letter_integrations.delete(42, "Mailjet", "12345")
 
 # post-groups-groupId-newsletter-integrations-provider-listId-resend-optins
 def example_216(client: ct.Client) -> None:
-    client.groups.newsletter_integrations.resend_optins(42, "Mailjet", "12345")
+    client.groups.news_letter_integrations.resend_optins(42, "Mailjet", "12345")
 
 # get-groups-groupId-parents
 def example_217(client: ct.Client) -> None:
@@ -1308,23 +1308,23 @@ def example_219(client: ct.Client) -> None:
 
 # get-groups-id-qrcodecheckin
 def example_220(client: ct.Client) -> None:
-    result = client.groups.qrcodecheckin.list(42)
+    result = client.groups.qrcode_checkin.list(42)
     print(result)
 
 # get-groups-id-qrcodecheckin-personId
 def example_221(client: ct.Client) -> None:
-    qrcodecheckin = client.groups.qrcodecheckin.get(42, 42)
-    print(qrcodecheckin.domain_id)
+    qrcode_checkin = client.groups.qrcode_checkin.get(42, 42)
+    print(qrcode_checkin.domain_id)
 
 # get-groups-id-qrcodecheckin-personId-pdf
 def example_222(client: ct.Client) -> None:
-    pdf = client.groups.qrcodecheckin.get_pdf(42, 42)
+    pdf = client.groups.qrcode_checkin.get_pdf(42, 42)
     print(pdf.url)
 
 # post-groups-groupId-qrcodecheckin-personId-send
 def example_223(client: ct.Client) -> None:
-    qrcodecheckin = client.groups.qrcodecheckin.send(42, 42)
-    print(qrcodecheckin.domain_id)
+    qrcode_checkin = client.groups.qrcode_checkin.send(42, 42)
+    print(qrcode_checkin.domain_id)
 
 # get-groups-id-roles
 def example_224(client: ct.Client) -> None:
@@ -1343,8 +1343,8 @@ def example_226(client: ct.Client) -> None:
 
 # get-newsletter-integrations
 def example_227(client: ct.Client) -> None:
-    for newsletter_integration in client.newsletter_integrations.list():
-        print(newsletter_integration.can_create_lists)
+    for news_letter_integration in client.news_letter_integrations.list():
+        print(news_letter_integration.can_create_lists)
 
 # get-persons-id-groups
 def example_228(client: ct.Client) -> None:
@@ -1353,31 +1353,31 @@ def example_228(client: ct.Client) -> None:
 
 # get-publicgroups-id-hash
 def example_229(client: ct.Client) -> None:
-    with_hash = client.publicgroups.get_with_hash(42, "abc123")
+    with_hash = client.public_groups.get_with_hash(42, "abc123")
     print(with_hash.name)
 
 # post-publicgroups-groupId-mailToLeaders
 def example_230(client: ct.Client) -> None:
-    publicgroup = client.publicgroups.mail_to_leaders(
+    public_group = client.public_groups.mail_to_leaders(
         42,
         email="mara@example.org",
         message="Hallo zusammen",
         name="Hauskreis Nord",
     )
-    print(publicgroup.success)
+    print(public_group.success)
 
 # post-publicgroups-groupId-signout
 def example_231(client: ct.Client) -> None:
-    client.publicgroups.signout(42, person_ids=[42, 43])
+    client.public_groups.signout(42, person_ids=[42, 43])
 
 # post-publicgroups-groupId-signup
 def example_232(client: ct.Client) -> None:
-    publicgroup = client.publicgroups.submit_signup(
+    public_group = client.public_groups.submit_signup(
         42,
         forms=[ct.models.PublicGroupSignupCreateFormsItem.model_validate({"form": [{}]})],
         token="abc123",
     )
-    print(publicgroup.group_homepage_hash)
+    print(public_group.group_homepage_hash)
 
 # get-calendars
 def example_233(client: ct.Client) -> None:
@@ -1386,8 +1386,8 @@ def example_233(client: ct.Client) -> None:
 
 # get-calendars-calendarId-meetingrequestpersons
 def example_234(client: ct.Client) -> None:
-    for meetingrequestperson in client.calendars.list_meetingrequestpersons(42):
-        print(meetingrequestperson.group_name)
+    for meeting_request_person in client.calendars.list_meeting_request_persons(42):
+        print(meeting_request_person.group_name)
 
 # get-calendars-calendarId
 def example_235(client: ct.Client) -> None:
@@ -1468,7 +1468,7 @@ def example_247(client: ct.Client) -> None:
 
 # post-calendars-calendarId-appointments-appointmentId-changeimpact
 def example_248(client: ct.Client) -> None:
-    for appointment in client.calendars.appointments.changeimpact(
+    for appointment in client.calendars.appointments.change_impact(
         42,
         4,
         end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
@@ -1492,25 +1492,25 @@ def example_249(client: ct.Client) -> None:
 
 # get-calendars-calendarId-appointments-appointmentId-meetingrequests
 def example_250(client: ct.Client) -> None:
-    for meetingrequest in client.calendars.appointments.meetingrequests.list(42, 4):
-        print(meetingrequest.id)
+    for meeting_request in client.calendars.appointments.meeting_requests.list(42, 4):
+        print(meeting_request.id)
 
 # post-calendars-calendarId-appointments-appointmentId-meetingrequests
 def example_251(client: ct.Client) -> None:
-    result = client.calendars.appointments.meetingrequests.create(42, 4, invitee_id=42)
+    result = client.calendars.appointments.meeting_requests.create(42, 4, invitee_id=42)
     print(result.id)
 
 # put-calendars-calendarId-appointments-appointmentId-meetingrequests-meetingRequestId
 def example_252(client: ct.Client) -> None:
-    client.calendars.appointments.meetingrequests.update(42, 4, 19, answer="accept")
+    client.calendars.appointments.meeting_requests.update(42, 4, 19, answer="accept")
 
 # delete-calendars-calendarId-appointments-appointmentId-meetingrequests-meetingRequestId
 def example_253(client: ct.Client) -> None:
-    client.calendars.appointments.meetingrequests.delete(42, 4, 19)
+    client.calendars.appointments.meeting_requests.delete(42, 4, 19)
 
 # post-calendars-calendarId-appointments-appointmentId-meetingrequests-meetingRequestId-answer
 def example_254(client: ct.Client) -> None:
-    client.calendars.appointments.meetingrequests.answer(42, 4, 19, "accept")
+    client.calendars.appointments.meeting_requests.answer(42, 4, 19, "accept")
 
 # get-calendars-appointments-templates
 def example_255(client: ct.Client) -> None:
@@ -1549,12 +1549,12 @@ def example_259(client: ct.Client) -> None:
 
 # get-calendars-calendarId-meetingrequest-candidates
 def example_260(client: ct.Client) -> None:
-    for candidate in client.calendars.meetingrequest.list_candidates(42):
+    for candidate in client.calendars.meeting_request.list_candidates(42):
         print(candidate.group_name)
 
 # post-meetingrequests-reply
 def example_261(client: ct.Client) -> None:
-    client.meetingrequests.reply(
+    client.meeting_requests.reply(
         ics_content="Hallo zusammen",
         partstat="ACCEPTED",
         token="example-reply-token",
@@ -1562,71 +1562,76 @@ def example_261(client: ct.Client) -> None:
 
 # get-repeatcalculation
 def example_262(client: ct.Client) -> None:
-    for repeatcalculation in client.repeatcalculation.list(
+    for repeat_calculation in client.repeat_calculation.list(
         end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
         start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
     ):
-        print(repeatcalculation)
-
-# post-repeatcalculation
-def example_263(client: ct.Client) -> None:
-    for repeatcalculation in client.repeatcalculation.create(
-        end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
-        start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
-    ):
-        print(repeatcalculation)
+        print(repeat_calculation)
 
 # put-repeatcalculation
-def example_264(client: ct.Client) -> None:
-    for repeatcalculation in client.repeatcalculation.update(
+def example_263(client: ct.Client) -> None:
+    for repeat_calculation in client.repeat_calculation.update(
         end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
         start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
     ):
-        print(repeatcalculation)
+        print(repeat_calculation)
 
 # patch-repeatcalculation
-def example_265(client: ct.Client) -> None:
-    for repeatcalculation in client.repeatcalculation.patch(
+def example_264(client: ct.Client) -> None:
+    for repeat_calculation in client.repeat_calculation.patch(
         end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
         start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
     ):
-        print(repeatcalculation)
+        print(repeat_calculation)
 
 # delete-repeatcalculation
-def example_266(client: ct.Client) -> None:
-    for repeatcalculation in client.repeatcalculation.delete(
+def example_265(client: ct.Client) -> None:
+    for repeat_calculation in client.repeat_calculation.delete(
         end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
         start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
     ):
-        print(repeatcalculation)
+        print(repeat_calculation)
+
+# post-repeatcalculation
+def example_266(client: ct.Client) -> None:
+    for repeat_calculation in client.repeat_calculation.calculate(
+        end_date=dt.datetime(2026, 9, 20, 9, 30, tzinfo=dt.timezone.utc),
+        start_date=dt.datetime(2026, 9, 20, 8, 0, tzinfo=dt.timezone.utc),
+    ):
+        print(repeat_calculation)
+
+# get-eventtemplates
+def example_267(client: ct.Client) -> None:
+    for event_template in client.event_templates.list():
+        print(event_template.id)
 
 # get-events
-def example_267(client: ct.Client) -> None:
+def example_268(client: ct.Client) -> None:
     for event in client.events.list():
         print(event.name)
 
 # get-events-id-possiblepersonsforservice
-def example_268(client: ct.Client) -> None:
-    for possiblepersonsforservice in client.events.list_possiblepersonsforservice(2):
-        print(possiblepersonsforservice.full_name)
+def example_269(client: ct.Client) -> None:
+    for possible_persons_for_service in client.events.list_possible_persons_for_service(2):
+        print(possible_persons_for_service.full_name)
 
 # get-events-id
-def example_269(client: ct.Client) -> None:
+def example_270(client: ct.Client) -> None:
     event = client.events.get(42)
     print(event.name)
 
 # get-events-ical
-def example_270(client: ct.Client) -> None:
+def example_271(client: ct.Client) -> None:
     ical = client.events.get_ical(person_id=42)
     print(ical.attribute)
 
 # post-events-ical
-def example_271(client: ct.Client) -> None:
+def example_272(client: ct.Client) -> None:
     result = client.events.create_ical(person_id=42)
     print(result.attribute)
 
 # put-events-id
-def example_272(client: ct.Client) -> None:
+def example_273(client: ct.Client) -> None:
     result = client.events.update(
         42,
         description="Sound check starts 30 minutes before the gathering.",
@@ -1634,15 +1639,15 @@ def example_272(client: ct.Client) -> None:
     print(result.id)
 
 # delete-events-id
-def example_273(client: ct.Client) -> None:
+def example_274(client: ct.Client) -> None:
     client.events.delete(42)
 
 # post-events-id-chat
-def example_274(client: ct.Client) -> None:
+def example_275(client: ct.Client) -> None:
     client.events.chat(42, enabled=True)
 
 # post-events-send
-def example_275(client: ct.Client) -> None:
+def example_276(client: ct.Client) -> None:
     event = client.events.send(
         body="<p>Please review the updated agenda for Sunday.</p>",
         event_ids=[31, 32],
@@ -1654,88 +1659,83 @@ def example_275(client: ct.Client) -> None:
     print(event)
 
 # put-events-id-eventservices-id
-def example_276(client: ct.Client) -> None:
-    result = client.events.eventservices.update(42, 42, name="Guest musician")
+def example_277(client: ct.Client) -> None:
+    result = client.events.event_services.update(42, 42, name="Guest musician")
     print(result.name)
 
 # put-events-id-eventservices
-def example_277(client: ct.Client) -> None:
-    client.events.eventservices.update_all(
+def example_278(client: ct.Client) -> None:
+    client.events.event_services.update_all(
         42,
         services=[ct.models.EventServiceCountUpdate.model_validate({"count": 3, "serviceId": 2})],
     )
 
 # delete-events-id-eventservices-id
-def example_278(client: ct.Client) -> None:
-    eventservice = client.events.eventservices.delete(42, 42, comment="Hallo zusammen")
-    print(eventservice.name)
+def example_279(client: ct.Client) -> None:
+    event_service = client.events.event_services.delete(42, 42, comment="Hallo zusammen")
+    print(event_service.name)
 
 # get-events-eventId-facts
-def example_279(client: ct.Client) -> None:
+def example_280(client: ct.Client) -> None:
     for fact in client.events.facts.list(42):
         print(fact.deprecated)
 
 # get-events-facts
-def example_280(client: ct.Client) -> None:
+def example_281(client: ct.Client) -> None:
     for all in client.events.facts.list_all():
         print(all.deprecated)
 
 # get-events-eventId-facts-factId
-def example_281(client: ct.Client) -> None:
+def example_282(client: ct.Client) -> None:
     fact = client.events.facts.get(42, 1)
     print(fact.deprecated)
 
 # put-events-eventId-facts-factId
-def example_282(client: ct.Client) -> None:
+def example_283(client: ct.Client) -> None:
     result = client.events.facts.update(42, 1, value=1.5)
     print(result.deprecated)
 
 # delete-events-eventId-facts-factId
-def example_283(client: ct.Client) -> None:
+def example_284(client: ct.Client) -> None:
     client.events.facts.delete(42, 1)
 
 # post-events-facts-export
-def example_284(client: ct.Client) -> None:
+def example_285(client: ct.Client) -> None:
     data = client.events.facts.export(calendar_ids=[42])
     with open("ergebnis.xlsx", "wb") as f:
         f.write(data)
 
 # put-events-eventId-servicerequests-requestId
-def example_285(client: ct.Client) -> None:
-    result = client.events.servicerequests.update(42, 42, name="Guest musician")
+def example_286(client: ct.Client) -> None:
+    result = client.events.service_requests.update(42, 42, name="Guest musician")
     print(result.name)
 
 # put-events-eventId-servicerequests
-def example_286(client: ct.Client) -> None:
-    client.events.servicerequests.update_all(
+def example_287(client: ct.Client) -> None:
+    client.events.service_requests.update_all(
         42,
         services=[ct.models.EventServiceCountUpdate.model_validate({"count": 3, "serviceId": 2})],
     )
 
 # post-events-id-servicerequests-id-accept
-def example_287(client: ct.Client) -> None:
-    servicerequest = client.events.servicerequests.accept(42, 42, comment="Hallo zusammen")
-    print(servicerequest.name)
+def example_288(client: ct.Client) -> None:
+    service_request = client.events.service_requests.accept(42, 42, comment="Hallo zusammen")
+    print(service_request.name)
 
 # post-events-id-servicerequests-id-decline
-def example_288(client: ct.Client) -> None:
-    servicerequest = client.events.servicerequests.decline(42, 42, comment="Hallo zusammen")
-    print(servicerequest.name)
+def example_289(client: ct.Client) -> None:
+    service_request = client.events.service_requests.decline(42, 42, comment="Hallo zusammen")
+    print(service_request.name)
 
 # post-events-id-servicerequests-id-undo
-def example_289(client: ct.Client) -> None:
-    servicerequest = client.events.servicerequests.undo(42, 42, person_id=42)
-    print(servicerequest.name)
+def example_290(client: ct.Client) -> None:
+    service_request = client.events.service_requests.undo(42, 42, person_id=42)
+    print(service_request.name)
 
 # get-events-eventId-services-serviceId-possiblepersons
-def example_290(client: ct.Client) -> None:
-    for possibleperson in client.events.services.list_possiblepersons(42, 2):
-        print(possibleperson.partner_services)
-
-# get-eventtemplates
 def example_291(client: ct.Client) -> None:
-    for eventtemplate in client.eventtemplates.list():
-        print(eventtemplate.id)
+    for possible_person in client.events.services.list_possible_persons(42, 2):
+        print(possible_person.partner_services)
 
 # get-persons-id-events
 def example_292(client: ct.Client) -> None:
@@ -1749,17 +1749,17 @@ def example_293(client: ct.Client) -> None:
 
 # get-persons-id-events-id-services-id-exchangerequests
 def example_294(client: ct.Client) -> None:
-    for exchangerequest in client.persons.events.services.exchangerequests.list(42, 42, 42):
-        print(exchangerequest.id)
+    for exchange_request in client.persons.events.services.exchange_requests.list(42, 42, 42):
+        print(exchange_request.id)
 
 # get-persons-id-events-id-services-id-exchangerequests-candidates
 def example_295(client: ct.Client) -> None:
-    for candidate in client.persons.events.services.exchangerequests.list_candidates(42, 42, 42):
+    for candidate in client.persons.events.services.exchange_requests.list_candidates(42, 42, 42):
         print(candidate.event_date)
 
 # post-persons-id-events-id-services-id-exchangerequests
 def example_296(client: ct.Client) -> None:
-    result = client.persons.events.services.exchangerequests.create(
+    result = client.persons.events.services.exchange_requests.create(
         42,
         42,
         42,
@@ -1769,46 +1769,46 @@ def example_296(client: ct.Client) -> None:
 
 # delete-persons-id-events-id-services-id-exchangerequests-id
 def example_297(client: ct.Client) -> None:
-    client.persons.events.services.exchangerequests.delete(42, 42, 42, 42)
+    client.persons.events.services.exchange_requests.delete(42, 42, 42, 42)
 
 # get-persons-id-exchangerequests
 def example_298(client: ct.Client) -> None:
-    for exchangerequest in client.persons.exchangerequests.list(42):
-        print(exchangerequest.id)
+    for exchange_request in client.persons.exchange_requests.list(42):
+        print(exchange_request.id)
 
 # put-persons-id-exchangerequests-id
 def example_299(client: ct.Client) -> None:
-    result = client.persons.exchangerequests.update(42, 42)
+    result = client.persons.exchange_requests.update(42, 42)
     print(result.id)
 
 # delete-persons-id-exchangerequests-id
 def example_300(client: ct.Client) -> None:
-    exchangerequest = client.persons.exchangerequests.delete(42, 42)
-    print(exchangerequest.id)
+    exchange_request = client.persons.exchange_requests.delete(42, 42)
+    print(exchange_request.id)
 
 # get-servicegroups
 def example_301(client: ct.Client) -> None:
-    for servicegroup in client.servicegroups.list():
-        print(servicegroup.name)
+    for service_group in client.service_groups.list():
+        print(service_group.name)
 
 # get-servicegroups-id
 def example_302(client: ct.Client) -> None:
-    servicegroup = client.servicegroups.get(13)
-    print(servicegroup.name)
+    service_group = client.service_groups.get(13)
+    print(service_group.name)
 
 # post-servicegroups
 def example_303(client: ct.Client) -> None:
-    result = client.servicegroups.create(name="Hauskreis Nord")
+    result = client.service_groups.create(name="Hauskreis Nord")
     print(result.name)
 
 # put-servicegroups-id
 def example_304(client: ct.Client) -> None:
-    result = client.servicegroups.update(13, name="Hauskreis Nord")
+    result = client.service_groups.update(13, name="Hauskreis Nord")
     print(result.name)
 
 # delete-servicegroups-id
 def example_305(client: ct.Client) -> None:
-    client.servicegroups.delete(13)
+    client.service_groups.delete(13)
 
 # get-services
 def example_306(client: ct.Client) -> None:
@@ -1834,62 +1834,52 @@ def example_309(client: ct.Client) -> None:
 def example_310(client: ct.Client) -> None:
     client.services.delete(2)
 
-# post-agendas-send
-def example_311(client: ct.Client) -> None:
-    agenda = client.agendas.send(
-        body="<p>Please review the updated agenda for Sunday.</p>",
-        event_ids=[31, 32],
-        recipients=[40, 41],
-        subject="Updated Sunday agenda",
-    )
-    print(agenda)
-
 # get-agendatemplates
-def example_312(client: ct.Client) -> None:
-    for agendatemplate in client.agendatemplates.list():
-        print(agendatemplate.name)
+def example_311(client: ct.Client) -> None:
+    for agenda_template in client.agenda_templates.list():
+        print(agenda_template.name)
 
 # get-agendatemplates-agendaId
-def example_313(client: ct.Client) -> None:
-    agendatemplate = client.agendatemplates.get(35)
-    print(agendatemplate.name)
+def example_312(client: ct.Client) -> None:
+    agenda_template = client.agenda_templates.get(35)
+    print(agenda_template.name)
 
 # post-agendatemplates
-def example_314(client: ct.Client) -> None:
-    result = client.agendatemplates.create(calendar_id=1, name="Sunday Service Template")
+def example_313(client: ct.Client) -> None:
+    result = client.agenda_templates.create(calendar_id=1, name="Sunday Service Template")
     print(result.name)
 
 # put-agendatemplates-agendaId
-def example_315(client: ct.Client) -> None:
-    result = client.agendatemplates.update(35, calendar_id=1, name="Sunday Service Template")
+def example_314(client: ct.Client) -> None:
+    result = client.agenda_templates.update(35, calendar_id=1, name="Sunday Service Template")
     print(result.name)
 
 # delete-agendatemplates-agendaId
-def example_316(client: ct.Client) -> None:
-    client.agendatemplates.delete(35)
+def example_315(client: ct.Client) -> None:
+    client.agenda_templates.delete(35)
 
 # post-agendatemplates-agendaId-export
-def example_317(client: ct.Client) -> None:
-    agendatemplate = client.agendatemplates.export(
+def example_316(client: ct.Client) -> None:
+    agenda_template = client.agenda_templates.export(
         35,
         format="SONG_BEAMER",
         append_arrangement=True,
         export_songs=True,
         with_category=False,
     )
-    print(agendatemplate.url)
+    print(agenda_template.url)
 
 # post-agendatemplates-agendaId-items
-def example_318(client: ct.Client) -> None:
-    result = client.agendatemplates.items.create(
+def example_317(client: ct.Client) -> None:
+    result = client.agenda_templates.items.create(
         35,
         body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
     )
     print(result)
 
 # put-agendatemplates-agendaId-items-itemId
-def example_319(client: ct.Client) -> None:
-    result = client.agendatemplates.items.update(
+def example_318(client: ct.Client) -> None:
+    result = client.agenda_templates.items.update(
         35,
         123,
         body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
@@ -1897,12 +1887,12 @@ def example_319(client: ct.Client) -> None:
     print(result)
 
 # delete-agendatemplates-agendaId-items-itemId
-def example_320(client: ct.Client) -> None:
-    client.agendatemplates.items.delete(35, 123)
+def example_319(client: ct.Client) -> None:
+    client.agenda_templates.items.delete(35, 123)
 
 # put-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId
-def example_321(client: ct.Client) -> None:
-    client.agendatemplates.items.servicegroups.update(
+def example_320(client: ct.Client) -> None:
+    client.agenda_templates.items.service_groups.update(
         35,
         123,
         13,
@@ -1910,8 +1900,18 @@ def example_321(client: ct.Client) -> None:
     )
 
 # delete-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId
+def example_321(client: ct.Client) -> None:
+    client.agenda_templates.items.service_groups.delete(35, 123, 13)
+
+# post-agendas-send
 def example_322(client: ct.Client) -> None:
-    client.agendatemplates.items.servicegroups.delete(35, 123, 13)
+    agenda = client.agendas.send(
+        body="<p>Please review the updated agenda for Sunday.</p>",
+        event_ids=[31, 32],
+        recipients=[40, 41],
+        subject="Updated Sunday agenda",
+    )
+    print(agenda)
 
 # get-events-id-agenda-songs
 def example_323(client: ct.Client) -> None:
@@ -1987,7 +1987,7 @@ def example_335(client: ct.Client) -> None:
 
 # put-events-id-agenda-items-id-servicegroups-id
 def example_336(client: ct.Client) -> None:
-    client.events.agenda.items.servicegroups.update(
+    client.events.agenda.items.service_groups.update(
         42,
         123,
         13,
@@ -1996,7 +1996,7 @@ def example_336(client: ct.Client) -> None:
 
 # delete-events-id-agenda-items-id-servicegroups-id
 def example_337(client: ct.Client) -> None:
-    client.events.agenda.items.servicegroups.delete(42, 123, 13)
+    client.events.agenda.items.service_groups.delete(42, 123, 13)
 
 # get-song-categories
 def example_338(client: ct.Client) -> None:
@@ -2177,61 +2177,61 @@ def example_368(client: ct.Client) -> None:
 
 # get-resource-masterdata
 def example_369(client: ct.Client) -> None:
-    masterdata = client.resource.get_masterdata()
-    print(masterdata)
+    master_data = client.resource.get_master_data()
+    print(master_data)
+
+# get-resourcetypes
+def example_370(client: ct.Client) -> None:
+    for resource_type in client.resource_types.list():
+        print(resource_type.name)
+
+# get-resourcetypes-resourceTypeId
+def example_371(client: ct.Client) -> None:
+    resource_type = client.resource_types.get(2)
+    print(resource_type.name)
+
+# post-resourcetypes
+def example_372(client: ct.Client) -> None:
+    result = client.resource_types.create(name="Room", name_plural="Rooms", sort_key=1)
+    print(result.name)
+
+# put-resourcetypes-resourceTypeId
+def example_373(client: ct.Client) -> None:
+    result = client.resource_types.update(2, name="Room", name_plural="Rooms", sort_key=1)
+    print(result.name)
+
+# delete-resourcetypes-resourceTypeId
+def example_374(client: ct.Client) -> None:
+    client.resource_types.delete(2)
 
 # get-resources
-def example_370(client: ct.Client) -> None:
+def example_375(client: ct.Client) -> None:
     for resource in client.resources.list():
         print(resource.name)
 
 # get-resources-resourceId
-def example_371(client: ct.Client) -> None:
+def example_376(client: ct.Client) -> None:
     resource = client.resources.get(7)
     print(resource.name)
 
 # get-resources-resourceId-statistics
-def example_372(client: ct.Client) -> None:
+def example_377(client: ct.Client) -> None:
     statistic = client.resources.get_statistics(7)
     print(statistic.num_requested_bookings_in_future)
 
 # post-resources
-def example_373(client: ct.Client) -> None:
+def example_378(client: ct.Client) -> None:
     result = client.resources.create(name="Main Hall", resource_type_id=2, sort_key=1)
     print(result.name)
 
 # put-resources-resourceId
-def example_374(client: ct.Client) -> None:
+def example_379(client: ct.Client) -> None:
     result = client.resources.update(7, name="Main Hall", resource_type_id=2, sort_key=1)
     print(result.name)
 
 # delete-resources-resourceId
-def example_375(client: ct.Client) -> None:
-    client.resources.delete(7)
-
-# get-resourcetypes
-def example_376(client: ct.Client) -> None:
-    for resourcetype in client.resourcetypes.list():
-        print(resourcetype.name)
-
-# get-resourcetypes-resourceTypeId
-def example_377(client: ct.Client) -> None:
-    resourcetype = client.resourcetypes.get(2)
-    print(resourcetype.name)
-
-# post-resourcetypes
-def example_378(client: ct.Client) -> None:
-    result = client.resourcetypes.create(name="Room", name_plural="Rooms", sort_key=1)
-    print(result.name)
-
-# put-resourcetypes-resourceTypeId
-def example_379(client: ct.Client) -> None:
-    result = client.resourcetypes.update(2, name="Room", name_plural="Rooms", sort_key=1)
-    print(result.name)
-
-# delete-resourcetypes-resourceTypeId
 def example_380(client: ct.Client) -> None:
-    client.resourcetypes.delete(2)
+    client.resources.delete(7)
 
 # get-groups-absences
 def example_381(client: ct.Client) -> None:
@@ -2461,12 +2461,12 @@ def example_422(client: ct.Client) -> None:
 
 # get-externalposts
 def example_423(client: ct.Client) -> None:
-    for externalpost in client.externalposts.list():
-        print(externalpost.title)
+    for external_post in client.external_posts.list():
+        print(external_post.title)
 
 # get-externalposts-instances-guid-channels-guid-posts-guid
 def example_424(client: ct.Client) -> None:
-    post = client.externalposts.instances.channels.posts.get("abc123", "abc123", "abc123")
+    post = client.external_posts.instances.channels.posts.get("abc123", "abc123", "abc123")
     print(post.title)
 
 # get-post-groups
@@ -2773,41 +2773,41 @@ def example_483(client: ct.Client) -> None:
 
 # get-contactlabels
 def example_484(client: ct.Client) -> None:
-    for contactlabel in client.contactlabels.list():
-        print(contactlabel.name)
+    for contact_label in client.contact_labels.list():
+        print(contact_label.name)
 
 # get-contactlabels-id
 def example_485(client: ct.Client) -> None:
-    contactlabel = client.contactlabels.get(1)
-    print(contactlabel.name)
+    contact_label = client.contact_labels.get(1)
+    print(contact_label.name)
 
 # post-contactlabels
 def example_486(client: ct.Client) -> None:
-    result = client.contactlabels.create(is_default=False, name="Private", sort_key=10)
+    result = client.contact_labels.create(is_default=False, name="Private", sort_key=10)
     print(result.name)
 
 # put-contactlabels-id
 def example_487(client: ct.Client) -> None:
-    result = client.contactlabels.update(1, is_default=False, name="Private", sort_key=10)
+    result = client.contact_labels.update(1, is_default=False, name="Private", sort_key=10)
     print(result.name)
 
 # delete-contactlabels-id
 def example_488(client: ct.Client) -> None:
-    client.contactlabels.delete(1)
+    client.contact_labels.delete(1)
 
 # get-person-relationshiptypes
 def example_489(client: ct.Client) -> None:
-    for relationshiptype in client.person.relationshiptypes.list():
-        print(relationshiptype.name)
+    for relationship_type in client.person.relationship_types.list():
+        print(relationship_type.name)
 
 # get-person-relationshiptypes-id
 def example_490(client: ct.Client) -> None:
-    relationshiptype = client.person.relationshiptypes.get(4)
-    print(relationshiptype.name)
+    relationship_type = client.person.relationship_types.get(4)
+    print(relationship_type.name)
 
 # post-person-relationshiptypes
 def example_491(client: ct.Client) -> None:
-    result = client.person.relationshiptypes.create(
+    result = client.person.relationship_types.create(
         degree_name_a="Parent",
         degree_name_b="Child",
         security_level_id=1,
@@ -2816,7 +2816,7 @@ def example_491(client: ct.Client) -> None:
 
 # put-person-relationshiptypes-id
 def example_492(client: ct.Client) -> None:
-    result = client.person.relationshiptypes.update(
+    result = client.person.relationship_types.update(
         4,
         degree_name_a="Parent",
         degree_name_b="Child",
@@ -2826,7 +2826,7 @@ def example_492(client: ct.Client) -> None:
 
 # delete-person-relationshiptypes-id
 def example_493(client: ct.Client) -> None:
-    client.person.relationshiptypes.delete(4)
+    client.person.relationship_types.delete(4)
 
 # get-statuses
 def example_494(client: ct.Client) -> None:
@@ -2935,19 +2935,24 @@ def example_513(client: ct.Client) -> None:
 def example_514(client: ct.Client) -> None:
     client.facts.delete(3)
 
-# get-dbfields
+# get-dbfieldtypes
 def example_515(client: ct.Client) -> None:
-    for dbfield in client.dbfields.list():
-        print(dbfield.name)
+    for db_field_type in client.db_field_types.list():
+        print(db_field_type.name)
+
+# get-dbfields
+def example_516(client: ct.Client) -> None:
+    for db_field in client.db_fields.list():
+        print(db_field.name)
 
 # get-dbfields-fieldId
-def example_516(client: ct.Client) -> None:
-    dbfield = client.dbfields.get(200)
-    print(dbfield.name)
+def example_517(client: ct.Client) -> None:
+    db_field = client.db_fields.get(200)
+    print(db_field.name)
 
 # post-dbfields
-def example_517(client: ct.Client) -> None:
-    result = client.dbfields.create(
+def example_518(client: ct.Client) -> None:
+    result = client.db_fields.create(
         delete_on_archive=True,
         is_active=True,
         is_new_person_field=True,
@@ -2960,8 +2965,8 @@ def example_517(client: ct.Client) -> None:
     print(result.name)
 
 # put-dbfields-fieldId
-def example_518(client: ct.Client) -> None:
-    result = client.dbfields.update(
+def example_519(client: ct.Client) -> None:
+    result = client.db_fields.update(
         200,
         delete_on_archive=True,
         is_new_person_field=True,
@@ -2972,56 +2977,51 @@ def example_518(client: ct.Client) -> None:
     print(result.name)
 
 # delete-dbfields-fieldId
-def example_519(client: ct.Client) -> None:
-    client.dbfields.delete(200)
+def example_520(client: ct.Client) -> None:
+    client.db_fields.delete(200)
 
 # get-dbfields-fieldId-options
-def example_520(client: ct.Client) -> None:
-    for option in client.dbfields.options.list(200):
+def example_521(client: ct.Client) -> None:
+    for option in client.db_fields.options.list(200):
         print(option.name)
 
 # get-dbfields-fieldId-options-metadata
-def example_521(client: ct.Client) -> None:
-    for metadata in client.dbfields.options.list_metadata(200):
+def example_522(client: ct.Client) -> None:
+    for metadata in client.db_fields.options.list_metadata(200):
         print(metadata.name)
 
 # post-dbfields-id-options
-def example_522(client: ct.Client) -> None:
-    result = client.dbfields.options.create(200, name="Vegetarian")
+def example_523(client: ct.Client) -> None:
+    result = client.db_fields.options.create(200, name="Vegetarian")
     print(result.name)
 
 # put-dbfields-fieldId-options-optionId
-def example_523(client: ct.Client) -> None:
-    result = client.dbfields.options.update(200, 3, name="Vegetarian")
+def example_524(client: ct.Client) -> None:
+    result = client.db_fields.options.update(200, 3, name="Vegetarian")
     print(result.name)
 
 # delete-dbfields-fieldId-options-optionId
-def example_524(client: ct.Client) -> None:
-    client.dbfields.options.delete(200, 3)
-
-# get-dbfieldtypes
 def example_525(client: ct.Client) -> None:
-    for dbfieldtype in client.dbfieldtypes.list():
-        print(dbfieldtype.name)
+    client.db_fields.options.delete(200, 3)
 
 # get-dynamicgroups
 def example_526(client: ct.Client) -> None:
-    for dynamicgroup in client.dynamicgroups.list():
-        print(dynamicgroup)
+    for dynamic_group in client.dynamic_groups.list():
+        print(dynamic_group)
 
 # get-dynamicgroups-id-ruleset
 def example_527(client: ct.Client) -> None:
-    for ruleset in client.dynamicgroups.list_ruleset(42):
+    for ruleset in client.dynamic_groups.list_ruleset(42):
         print(ruleset.description)
 
 # get-dynamicgroups-id-status
 def example_528(client: ct.Client) -> None:
-    statu = client.dynamicgroups.get_status(42)
+    statu = client.dynamic_groups.get_status(42)
     print(statu.dynamic_group_status)
 
 # put-dynamicgroups-id-ruleset
 def example_529(client: ct.Client) -> None:
-    result = client.dynamicgroups.update_ruleset(
+    result = client.dynamic_groups.update_ruleset(
         42,
         dynamic_group_rule_set=[ct.models.DynamicGroupRule.model_validate({"description": "Add selected people to the group.", "importance": 10, "personIdFieldName": "person.id", "process": {"groupAndQueryResult": {}, "groupOnly": {}, "queryResultOnly": {}}, "query": {"method": "ChurchQuery", "params": {}}, "shorty": "selected-people"})],
     )
@@ -3029,107 +3029,107 @@ def example_529(client: ct.Client) -> None:
 
 # put-dynamicgroups-id-status
 def example_530(client: ct.Client) -> None:
-    result = client.dynamicgroups.update_status(42, dynamic_group_status="manual")
+    result = client.dynamic_groups.update_status(42, dynamic_group_status="manual")
     print(result.dynamic_group_status)
 
 # delete-dynamicgroups-id-ruleset
 def example_531(client: ct.Client) -> None:
-    client.dynamicgroups.delete_ruleset(42)
+    client.dynamic_groups.delete_ruleset(42)
 
 # post-dynamicgroups-id-refresh
 def example_532(client: ct.Client) -> None:
-    for dynamicgroup in client.dynamicgroups.refresh(42):
-        print(dynamicgroup.created)
+    for dynamic_group in client.dynamic_groups.refresh(42):
+        print(dynamic_group.created)
 
 # post-dynamicgroups
 def example_533(client: ct.Client) -> None:
-    for dynamicgroup in client.dynamicgroups.refresh_all():
-        print(dynamicgroup)
+    for dynamic_group in client.dynamic_groups.refresh_all():
+        print(dynamic_group)
 
 # get-grouphomepages
 def example_534(client: ct.Client) -> None:
-    for grouphomepage in client.grouphomepages.list():
-        print(grouphomepage.title)
+    for group_homepage in client.group_homepages.list():
+        print(group_homepage.title)
 
 # get-grouphomepages-hash
 def example_535(client: ct.Client) -> None:
-    grouphomepage = client.grouphomepages.get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")
-    print(grouphomepage.name)
+    group_homepage = client.group_homepages.get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")
+    print(group_homepage.name)
 
 # get-publicgroups-id
 def example_536(client: ct.Client) -> None:
-    publicgroup = client.publicgroups.get(42)
-    print(publicgroup.name)
+    public_group = client.public_groups.get(42)
+    print(public_group.name)
 
 # get-publicgroups-groupId-form
 def example_537(client: ct.Client) -> None:
-    form = client.publicgroups.get_form(42, token="abc123")
+    form = client.public_groups.get_form(42, token="abc123")
     print(form.email)
 
 # get-publicgroups-groupId-possiblerequesters
 def example_538(client: ct.Client) -> None:
-    possiblerequester = client.publicgroups.get_possiblerequesters(42, token="abc123")
-    print(possiblerequester.email)
+    possible_requester = client.public_groups.get_possible_requesters(42, token="abc123")
+    print(possible_requester.email)
 
 # get-publicgroups-id-signoutdata
 def example_539(client: ct.Client) -> None:
-    signoutdata = client.publicgroups.get_signoutdata(42)
-    print(signoutdata.group_has_auto_accept)
+    signout_data = client.public_groups.get_signout_data(42)
+    print(signout_data.group_has_auto_accept)
 
 # post-publicgroups-groupId-token
 def example_540(client: ct.Client) -> None:
-    result = client.publicgroups.token(42, email="mara@example.org")
+    result = client.public_groups.token(42, email="mara@example.org")
     print(result)
 
 # get-publicgroups-signup-confirm-confirmationToken
 def example_541(client: ct.Client) -> None:
-    data = client.publicgroups.signup.confirm.get("abc123")
+    data = client.public_groups.signup.confirm.get("abc123")
     with open("ergebnis.bin", "wb") as f:
         f.write(data)
 
 # post-publicgroups-signup-confirm-confirmationToken
 def example_542(client: ct.Client) -> None:
-    result = client.publicgroups.signup.confirm.create("abc123", body={})
+    result = client.public_groups.signup.confirm.create("abc123", body={})
     print(result.group_homepage_hash)
 
 # get-event-masterdata
 def example_543(client: ct.Client) -> None:
-    masterdata = client.event.get_masterdata()
-    print(masterdata)
+    master_data = client.event.get_master_data()
+    print(master_data)
 
 # get-masterdata-person
 def example_544(client: ct.Client) -> None:
-    person = client.masterdata.get_person()
+    person = client.master_data.get_person()
     print(person)
 
 # get-person-masterdata
 def example_545(client: ct.Client) -> None:
-    masterdata = client.person.get_masterdata()
-    print(masterdata)
+    master_data = client.person.get_master_data()
+    print(master_data)
 
 # get-pr-masterdata
 def example_546(client: ct.Client) -> None:
-    masterdata = client.pr.get_masterdata()
-    print(masterdata)
+    master_data = client.pr.get_master_data()
+    print(master_data)
 
 # get-bulkletters
 def example_547(client: ct.Client) -> None:
-    for bulkletter in client.bulkletters.list():
-        print(bulkletter.name)
+    for bulk_letter in client.bulk_letters.list():
+        print(bulk_letter.name)
 
 # get-bulkletters-id-persons
 def example_548(client: ct.Client) -> None:
-    for person in client.bulkletters.list_persons(36):
+    for person in client.bulk_letters.list_persons(36):
         print(person.name)
 
 # get-bulkletters-id
 def example_549(client: ct.Client) -> None:
-    bulkletter = client.bulkletters.get(36)
-    print(bulkletter.name)
+    bulk_letter = client.bulk_letters.get(36)
+    print(bulk_letter.name)
 
 # post-bulkletters
 def example_550(client: ct.Client) -> None:
-    result = client.bulkletters.create(
+    result = client.bulk_letters.create(
         content="<p>Hello [Spitzname]!</p>",
         group_by_household=True,
         html_template_id=39,
@@ -3140,15 +3140,15 @@ def example_550(client: ct.Client) -> None:
 
 # delete-bulkletters-id
 def example_551(client: ct.Client) -> None:
-    client.bulkletters.delete(36)
+    client.bulk_letters.delete(36)
 
 # post-bulkletters-execute
 def example_552(client: ct.Client) -> None:
-    client.bulkletters.execute()
+    client.bulk_letters.execute()
 
 # post-emails-placeholderstatistics
 def example_553(client: ct.Client) -> None:
-    for email in client.emails.placeholderstatistics(
+    for email in client.emails.placeholder_statistics(
         content=["Hello {{person.firstName}}"],
         person_ids=[1, 2],
     ):
@@ -3161,46 +3161,46 @@ def example_554(client: ct.Client) -> None:
 
 # get-finance-masterdata
 def example_555(client: ct.Client) -> None:
-    masterdata = client.finance.get_masterdata(accounting_period_id=1)
-    print(masterdata)
+    master_data = client.finance.get_master_data(accounting_period_id=1)
+    print(master_data)
 
 # get-finance-accountclasses
 def example_556(client: ct.Client) -> None:
-    for accountclass in client.finance.accountclasses.list():
-        print(accountclass.name)
+    for account_class in client.finance.account_classes.list():
+        print(account_class.name)
 
 # get-finance-accountclasses-id
 def example_557(client: ct.Client) -> None:
-    accountclass = client.finance.accountclasses.get(1)
-    print(accountclass.name)
+    account_class = client.finance.account_classes.get(1)
+    print(account_class.name)
 
 # post-finance-accountclasses
 def example_558(client: ct.Client) -> None:
-    result = client.finance.accountclasses.create(account_type_id=3, name="Anlagevermögen")
+    result = client.finance.account_classes.create(account_type_id=3, name="Anlagevermögen")
     print(result.name)
 
 # put-finance-accountclasses-id
 def example_559(client: ct.Client) -> None:
-    result = client.finance.accountclasses.update(1, account_type_id=3, name="Anlagevermögen")
+    result = client.finance.account_classes.update(1, account_type_id=3, name="Anlagevermögen")
     print(result.name)
 
 # delete-finance-accountclasses-id
 def example_560(client: ct.Client) -> None:
-    client.finance.accountclasses.delete(1)
+    client.finance.account_classes.delete(1)
 
 # get-finance-accountgroups
 def example_561(client: ct.Client) -> None:
-    for accountgroup in client.finance.accountgroups.list():
-        print(accountgroup.name)
+    for account_group in client.finance.account_groups.list():
+        print(account_group.name)
 
 # get-finance-accountgroups-id
 def example_562(client: ct.Client) -> None:
-    accountgroup = client.finance.accountgroups.get(1)
-    print(accountgroup.name)
+    account_group = client.finance.account_groups.get(1)
+    print(account_group.name)
 
 # post-finance-accountgroups
 def example_563(client: ct.Client) -> None:
-    result = client.finance.accountgroups.create(
+    result = client.finance.account_groups.create(
         account_class_id=2,
         is_cash_asset_account=False,
         name="Sachanlagen",
@@ -3209,7 +3209,7 @@ def example_563(client: ct.Client) -> None:
 
 # put-finance-accountgroups-id
 def example_564(client: ct.Client) -> None:
-    result = client.finance.accountgroups.update(
+    result = client.finance.account_groups.update(
         1,
         account_class_id=2,
         is_cash_asset_account=False,
@@ -3219,31 +3219,55 @@ def example_564(client: ct.Client) -> None:
 
 # delete-finance-accountgroups-id
 def example_565(client: ct.Client) -> None:
-    client.finance.accountgroups.delete(1)
+    client.finance.account_groups.delete(1)
+
+# get-finance-accounttypes
+def example_566(client: ct.Client) -> None:
+    for account_type in client.finance.account_types.list():
+        print(account_type.name)
+
+# get-finance-accounttypes-id
+def example_567(client: ct.Client) -> None:
+    account_type = client.finance.account_types.get(1)
+    print(account_type.name)
+
+# post-finance-accounttypes
+def example_568(client: ct.Client) -> None:
+    result = client.finance.account_types.create(name="Aktiva")
+    print(result.name)
+
+# put-finance-accounttypes-id
+def example_569(client: ct.Client) -> None:
+    result = client.finance.account_types.update(1, name="Aktiva")
+    print(result.name)
+
+# delete-finance-accounttypes-id
+def example_570(client: ct.Client) -> None:
+    client.finance.account_types.delete(1)
 
 # get-finance-accountingperiods
-def example_566(client: ct.Client) -> None:
-    for accountingperiod in client.finance.accountingperiods.list():
-        print(accountingperiod.id)
+def example_571(client: ct.Client) -> None:
+    for accounting_period in client.finance.accounting_periods.list():
+        print(accounting_period.id)
 
 # get-finance-accountingperiods-id-bills
-def example_567(client: ct.Client) -> None:
-    for bill in client.finance.accountingperiods.list_bills(1):
+def example_572(client: ct.Client) -> None:
+    for bill in client.finance.accounting_periods.list_bills(1):
         print(bill.id)
 
 # get-finance-accountingperiods-id-userrules
-def example_568(client: ct.Client) -> None:
-    for userrule in client.finance.accountingperiods.list_userrules(1):
-        print(userrule.id)
+def example_573(client: ct.Client) -> None:
+    for user_rule in client.finance.accounting_periods.list_user_rules(1):
+        print(user_rule.id)
 
 # get-finance-accountingperiods-id
-def example_569(client: ct.Client) -> None:
-    accountingperiod = client.finance.accountingperiods.get(1)
-    print(accountingperiod.id)
+def example_574(client: ct.Client) -> None:
+    accounting_period = client.finance.accounting_periods.get(1)
+    print(accounting_period.id)
 
 # post-finance-accountingperiods
-def example_570(client: ct.Client) -> None:
-    result = client.finance.accountingperiods.create(
+def example_575(client: ct.Client) -> None:
+    result = client.finance.accounting_periods.create(
         client_id=1,
         end_date=dt.date(2026, 12, 31),
         increment_document_number=True,
@@ -3253,8 +3277,8 @@ def example_570(client: ct.Client) -> None:
     print(result.id)
 
 # put-finance-accountingperiods-id
-def example_571(client: ct.Client) -> None:
-    result = client.finance.accountingperiods.update(
+def example_576(client: ct.Client) -> None:
+    result = client.finance.accounting_periods.update(
         1,
         client_id=1,
         end_date=dt.date(2026, 12, 31),
@@ -3265,48 +3289,48 @@ def example_571(client: ct.Client) -> None:
     print(result.id)
 
 # put-finance-accountingperiods-id-userrules
-def example_572(client: ct.Client) -> None:
-    for accountingperiod in client.finance.accountingperiods.update_userrules(
+def example_577(client: ct.Client) -> None:
+    for accounting_period in client.finance.accounting_periods.update_user_rules(
         1,
         rules=[ct.models.UserRuleCreate.model_validate({"accountIds": [5], "allAccounts": False, "isIncome": True, "operator": "contains", "searchString": "Donation", "searchType": "purpose", "sortKey": 0, "suggestionType": "costCenterId", "suggestionValue": "8"})],
     ):
-        print(accountingperiod.id)
+        print(accounting_period.id)
 
 # delete-finance-accountingperiods-id
-def example_573(client: ct.Client) -> None:
-    client.finance.accountingperiods.delete(1)
+def example_578(client: ct.Client) -> None:
+    client.finance.accounting_periods.delete(1)
 
 # delete-finance-accountingperiods-id-taxrates
-def example_574(client: ct.Client) -> None:
-    client.finance.accountingperiods.delete_taxrates(1)
+def example_579(client: ct.Client) -> None:
+    client.finance.accounting_periods.delete_tax_rates(1)
 
 # get-finance-accountingperiods-id-accounts-id-movements
-def example_575(client: ct.Client) -> None:
-    for movement in client.finance.accountingperiods.accounts.list_movements(1, 42):
+def example_580(client: ct.Client) -> None:
+    for movement in client.finance.accounting_periods.accounts.list_movements(1, 42):
         print(movement.id)
 
 # get-finance-accountingperiods-id-accounts-statements
-def example_576(client: ct.Client) -> None:
-    for statement in client.finance.accountingperiods.accounts.list_statements(1):
+def example_581(client: ct.Client) -> None:
+    for statement in client.finance.accounting_periods.accounts.list_statements(1):
         print(statement.account_id)
 
 # delete-finance-accountingperiods-id-accounts
-def example_577(client: ct.Client) -> None:
-    client.finance.accountingperiods.accounts.delete(1)
+def example_582(client: ct.Client) -> None:
+    client.finance.accounting_periods.accounts.delete(1)
 
 # get-finance-accountingperiods-id-accounts-id-statements
-def example_578(client: ct.Client) -> None:
-    for statement in client.finance.accountingperiods.accounts.statements.list(1, 5):
+def example_583(client: ct.Client) -> None:
+    for statement in client.finance.accounting_periods.accounts.statements.list(1, 5):
         print(statement.name)
 
 # get-finance-accountingperiods-id-accounts-id-statements-id-movements
-def example_579(client: ct.Client) -> None:
-    for movement in client.finance.accountingperiods.accounts.statements.movements.list(1, 42, 7):
+def example_584(client: ct.Client) -> None:
+    for movement in client.finance.accounting_periods.accounts.statements.movements.list(1, 42, 7):
         print(movement.id)
 
 # post-finance-accountingperiods-id-accounts-id-statements-id-movements-id
-def example_580(client: ct.Client) -> None:
-    result = client.finance.accountingperiods.accounts.statements.movements.create(
+def example_585(client: ct.Client) -> None:
+    result = client.finance.accounting_periods.accounts.statements.movements.create(
         1,
         42,
         7,
@@ -3316,8 +3340,8 @@ def example_580(client: ct.Client) -> None:
     print(result)
 
 # patch-finance-accountingperiods-id-accounts-id-statements-id-movements-id-suggestions
-def example_581(client: ct.Client) -> None:
-    client.finance.accountingperiods.accounts.statements.movements.patch_suggestions(
+def example_586(client: ct.Client) -> None:
+    client.finance.accounting_periods.accounts.statements.movements.patch_suggestions(
         1,
         7,
         7,
@@ -3325,50 +3349,50 @@ def example_581(client: ct.Client) -> None:
         suggestions=[ct.models.MovementSuggestionUpdate.model_validate({"name": "costCenterId", "value": "8"})],
     )
 
+# put-finance-accountingperiods-id-statements-id
+def example_587(client: ct.Client) -> None:
+    client.finance.accounting_periods.statements.update(1, 1, name="September 2026")
+
+# delete-finance-accountingperiods-id-statements-id
+def example_588(client: ct.Client) -> None:
+    client.finance.accounting_periods.statements.delete(1, 1)
+
 # post-finance-accountingperiods-id-statements
-def example_582(client: ct.Client) -> None:
-    result = client.finance.accountingperiods.statements.create(
+def example_589(client: ct.Client) -> None:
+    statement = client.finance.accounting_periods.statements.preview(
         1,
         files=[ct.Upload.from_path("kontoauszug.xml")],
     )
-    print(result.duplicates)
-
-# put-finance-accountingperiods-id-statements-id
-def example_583(client: ct.Client) -> None:
-    client.finance.accountingperiods.statements.update(1, 1, name="September 2026")
-
-# delete-finance-accountingperiods-id-statements-id
-def example_584(client: ct.Client) -> None:
-    client.finance.accountingperiods.statements.delete(1, 1)
+    print(statement.duplicates)
 
 # post-finance-accountingperiods-id-statements-id-suggestions
-def example_585(client: ct.Client) -> None:
-    client.finance.accountingperiods.statements.suggestions(1, 7)
+def example_590(client: ct.Client) -> None:
+    client.finance.accounting_periods.statements.suggestions(1, 7)
 
 # get-finance-accounts
-def example_586(client: ct.Client) -> None:
+def example_591(client: ct.Client) -> None:
     for account in client.finance.accounts.list():
         print(account.name)
 
 # get-finance-accounts-id
-def example_587(client: ct.Client) -> None:
+def example_592(client: ct.Client) -> None:
     account = client.finance.accounts.get(1)
     print(account.name)
 
 # get-finance-accounts-csv
-def example_588(client: ct.Client) -> None:
+def example_593(client: ct.Client) -> None:
     data = client.finance.accounts.get_csv(accounting_period_id=1)
     with open("ergebnis.csv", "wb") as f:
         f.write(data)
 
 # get-finance-accounts-export
-def example_589(client: ct.Client) -> None:
+def example_594(client: ct.Client) -> None:
     data = client.finance.accounts.get_export(accounting_period_id=1)
     with open("ergebnis.xlsx", "wb") as f:
         f.write(data)
 
 # post-finance-accounts
-def example_590(client: ct.Client) -> None:
+def example_595(client: ct.Client) -> None:
     result = client.finance.accounts.create(
         account_group_id=4,
         name="Donations",
@@ -3378,50 +3402,26 @@ def example_590(client: ct.Client) -> None:
     print(result.name)
 
 # put-finance-accounts-id
-def example_591(client: ct.Client) -> None:
+def example_596(client: ct.Client) -> None:
     result = client.finance.accounts.update(1, account_group_id=4, name="Donations", number="8200")
     print(result.name)
 
 # delete-finance-accounts-id
-def example_592(client: ct.Client) -> None:
+def example_597(client: ct.Client) -> None:
     client.finance.accounts.delete(1)
 
 # post-finance-accounts-bulkcreate
-def example_593(client: ct.Client) -> None:
-    for account in client.finance.accounts.bulkcreate(
+def example_598(client: ct.Client) -> None:
+    for account in client.finance.accounts.bulk_create(
         body=[ct.models.AccountCreate.model_validate({"accountGroupId": 4, "name": "Donations", "number": "8200", "accountingPeriodId": 5})],
     ):
         print(account.name)
 
 # post-finance-accounts-exporttemplate
-def example_594(client: ct.Client) -> None:
-    data = client.finance.accounts.exporttemplate(client_id=1)
+def example_599(client: ct.Client) -> None:
+    data = client.finance.accounts.export_template(client_id=1)
     with open("ergebnis.xlsx", "wb") as f:
         f.write(data)
-
-# get-finance-accounttypes
-def example_595(client: ct.Client) -> None:
-    for accounttype in client.finance.accounttypes.list():
-        print(accounttype.name)
-
-# get-finance-accounttypes-id
-def example_596(client: ct.Client) -> None:
-    accounttype = client.finance.accounttypes.get(1)
-    print(accounttype.name)
-
-# post-finance-accounttypes
-def example_597(client: ct.Client) -> None:
-    result = client.finance.accounttypes.create(name="Aktiva")
-    print(result.name)
-
-# put-finance-accounttypes-id
-def example_598(client: ct.Client) -> None:
-    result = client.finance.accounttypes.update(1, name="Aktiva")
-    print(result.name)
-
-# delete-finance-accounttypes-id
-def example_599(client: ct.Client) -> None:
-    client.finance.accounttypes.delete(1)
 
 # get-finance-bills-id
 def example_600(client: ct.Client) -> None:
@@ -3446,27 +3446,27 @@ def example_603(client: ct.Client) -> None:
 
 # get-finance-cashdiscounts
 def example_604(client: ct.Client) -> None:
-    for cashdiscount in client.finance.cashdiscounts.list():
-        print(cashdiscount.id)
+    for cash_discount in client.finance.cash_discounts.list():
+        print(cash_discount.id)
 
 # get-finance-cashdiscounts-id
 def example_605(client: ct.Client) -> None:
-    cashdiscount = client.finance.cashdiscounts.get(1)
-    print(cashdiscount.id)
+    cash_discount = client.finance.cash_discounts.get(1)
+    print(cash_discount.id)
 
 # post-finance-cashdiscounts
 def example_606(client: ct.Client) -> None:
-    result = client.finance.cashdiscounts.create(account_id=5, note="Skonto 2%", rate=2)
+    result = client.finance.cash_discounts.create(account_id=5, note="Skonto 2%", rate=2)
     print(result.id)
 
 # put-finance-cashdiscounts-id
 def example_607(client: ct.Client) -> None:
-    result = client.finance.cashdiscounts.update(1, account_id=5, note="Skonto 2%", rate=2)
+    result = client.finance.cash_discounts.update(1, account_id=5, note="Skonto 2%", rate=2)
     print(result.id)
 
 # delete-finance-cashdiscounts-id
 def example_608(client: ct.Client) -> None:
-    client.finance.cashdiscounts.delete(1)
+    client.finance.cash_discounts.delete(1)
 
 # get-finance-clients
 def example_609(client: ct.Client) -> None:
@@ -3494,23 +3494,23 @@ def example_613(client: ct.Client) -> None:
 
 # get-finance-costcenters
 def example_614(client: ct.Client) -> None:
-    for costcenter in client.finance.costcenters.list():
-        print(costcenter.name)
+    for cost_center in client.finance.cost_centers.list():
+        print(cost_center.name)
 
 # get-finance-costcenters-id
 def example_615(client: ct.Client) -> None:
-    costcenter = client.finance.costcenters.get(1)
-    print(costcenter.name)
+    cost_center = client.finance.cost_centers.get(1)
+    print(cost_center.name)
 
 # get-finance-costcenters-export
 def example_616(client: ct.Client) -> None:
-    data = client.finance.costcenters.get_export(accounting_period_id=1)
+    data = client.finance.cost_centers.get_export(accounting_period_id=1)
     with open("ergebnis.xlsx", "wb") as f:
         f.write(data)
 
 # post-finance-costcenters
 def example_617(client: ct.Client) -> None:
-    result = client.finance.costcenters.create(
+    result = client.finance.cost_centers.create(
         accounting_period_id=1,
         name="Kostenstelle Sonstige",
         number="802",
@@ -3519,19 +3519,19 @@ def example_617(client: ct.Client) -> None:
 
 # put-finance-costcenters-id
 def example_618(client: ct.Client) -> None:
-    result = client.finance.costcenters.update(1, accounting_period_id=1, number="802")
+    result = client.finance.cost_centers.update(1, accounting_period_id=1, number="802")
     print(result.name)
 
 # delete-finance-costcenters-id
 def example_619(client: ct.Client) -> None:
-    client.finance.costcenters.delete(1)
+    client.finance.cost_centers.delete(1)
 
 # post-finance-costcenters-bulkcreate
 def example_620(client: ct.Client) -> None:
-    for costcenter in client.finance.costcenters.bulkcreate(
+    for cost_center in client.finance.cost_centers.bulk_create(
         cost_centers=[ct.models.CostCenterCreate.model_validate({"accountingPeriodId": 1, "name": "Kostenstelle Sonstige", "number": "802"})],
     ):
-        print(costcenter.name)
+        print(cost_center.name)
 
 # get-finance-donators
 def example_621(client: ct.Client) -> None:
@@ -3688,18 +3688,18 @@ def example_647(client: ct.Client) -> None:
 
 # post-finance-reports-statement-costcenters-costCenterId
 def example_648(client: ct.Client) -> None:
-    data = client.finance.reports.statement.costcenters.create(21, end_date=dt.date(2026, 12, 31))
+    data = client.finance.reports.statement.cost_centers.create(21, end_date=dt.date(2026, 12, 31))
     with open("ergebnis.xlsx", "wb") as f:
         f.write(data)
 
 # get-finance-splittransactions-id
 def example_649(client: ct.Client) -> None:
-    splittransaction = client.finance.splittransactions.get(1)
-    print(splittransaction.id)
+    split_transaction = client.finance.split_transactions.get(1)
+    print(split_transaction.id)
 
 # post-finance-splittransactions
 def example_650(client: ct.Client) -> None:
-    result = client.finance.splittransactions.create(
+    result = client.finance.split_transactions.create(
         amount=30000,
         document_date=dt.date(2026, 9, 14),
         note="Offering and building fund",
@@ -3709,7 +3709,7 @@ def example_650(client: ct.Client) -> None:
 
 # put-finance-splittransactions-id
 def example_651(client: ct.Client) -> None:
-    result = client.finance.splittransactions.update(
+    result = client.finance.split_transactions.update(
         1,
         amount=30000,
         document_date=dt.date(2026, 9, 14),
@@ -3720,65 +3720,65 @@ def example_651(client: ct.Client) -> None:
 
 # put-finance-splittransactions-id-storno
 def example_652(client: ct.Client) -> None:
-    result = client.finance.splittransactions.update_storno(1, note="Incorrect allocation")
+    result = client.finance.split_transactions.update_storno(1, note="Incorrect allocation")
     print(result.id)
 
 # delete-finance-splittransactions-id
 def example_653(client: ct.Client) -> None:
-    client.finance.splittransactions.delete(1)
+    client.finance.split_transactions.delete(1)
 
 # post-finance-splittransactions-id-duplicate
 def example_654(client: ct.Client) -> None:
-    splittransaction = client.finance.splittransactions.duplicate(1)
-    print(splittransaction.id)
+    split_transaction = client.finance.split_transactions.duplicate(1)
+    print(split_transaction.id)
 
 # get-finance-taxrates
 def example_655(client: ct.Client) -> None:
-    for taxrate in client.finance.taxrates.list():
-        print(taxrate.id)
+    for tax_rate in client.finance.tax_rates.list():
+        print(tax_rate.id)
 
 # get-finance-taxrates-id
 def example_656(client: ct.Client) -> None:
-    taxrate = client.finance.taxrates.get(1)
-    print(taxrate.id)
+    tax_rate = client.finance.tax_rates.get(1)
+    print(tax_rate.id)
 
 # post-finance-taxrates
 def example_657(client: ct.Client) -> None:
-    result = client.finance.taxrates.create(account_id=5, rate=7, tax_type_id=4)
+    result = client.finance.tax_rates.create(account_id=5, rate=7, tax_type_id=4)
     print(result.id)
 
 # put-finance-taxrates-id
 def example_658(client: ct.Client) -> None:
-    result = client.finance.taxrates.update(1, account_id=5, rate=7, tax_type_id=4)
+    result = client.finance.tax_rates.update(1, account_id=5, rate=7, tax_type_id=4)
     print(result.id)
 
 # delete-finance-taxrates-id
 def example_659(client: ct.Client) -> None:
-    client.finance.taxrates.delete(1)
+    client.finance.tax_rates.delete(1)
 
 # get-finance-taxtypes
 def example_660(client: ct.Client) -> None:
-    for taxtype in client.finance.taxtypes.list():
-        print(taxtype.name)
+    for tax_type in client.finance.tax_types.list():
+        print(tax_type.name)
 
 # get-finance-taxtypes-id
 def example_661(client: ct.Client) -> None:
-    taxtype = client.finance.taxtypes.get(1)
-    print(taxtype.name)
+    tax_type = client.finance.tax_types.get(1)
+    print(tax_type.name)
 
 # post-finance-taxtypes
 def example_662(client: ct.Client) -> None:
-    result = client.finance.taxtypes.create(sort_key=0)
+    result = client.finance.tax_types.create(sort_key=0)
     print(result.name)
 
 # put-finance-taxtypes-id
 def example_663(client: ct.Client) -> None:
-    result = client.finance.taxtypes.update(1, sort_key=0)
+    result = client.finance.tax_types.update(1, sort_key=0)
     print(result.name)
 
 # delete-finance-taxtypes-id
 def example_664(client: ct.Client) -> None:
-    client.finance.taxtypes.delete(1)
+    client.finance.tax_types.delete(1)
 
 # get-finance-templates
 def example_665(client: ct.Client) -> None:
@@ -3796,17 +3796,17 @@ def example_667(client: ct.Client) -> None:
 
 # get-finance-transactionpurposes
 def example_668(client: ct.Client) -> None:
-    for transactionpurpose in client.finance.transactionpurposes.list():
-        print(transactionpurpose.name)
+    for transaction_purpose in client.finance.transaction_purposes.list():
+        print(transaction_purpose.name)
 
 # get-finance-transactionpurposes-id
 def example_669(client: ct.Client) -> None:
-    transactionpurpose = client.finance.transactionpurposes.get(1)
-    print(transactionpurpose.name)
+    transaction_purpose = client.finance.transaction_purposes.get(1)
+    print(transaction_purpose.name)
 
 # post-finance-transactionpurposes
 def example_670(client: ct.Client) -> None:
-    result = client.finance.transactionpurposes.create(
+    result = client.finance.transaction_purposes.create(
         account_ids=[1, 2],
         is_income=True,
         name="Donations for youth work",
@@ -3817,7 +3817,7 @@ def example_670(client: ct.Client) -> None:
 
 # put-finance-transactionpurposes-id
 def example_671(client: ct.Client) -> None:
-    result = client.finance.transactionpurposes.update(
+    result = client.finance.transaction_purposes.update(
         1,
         account_ids=[1, 2],
         is_income=True,
@@ -3829,7 +3829,7 @@ def example_671(client: ct.Client) -> None:
 
 # delete-finance-transactionpurposes-id
 def example_672(client: ct.Client) -> None:
-    client.finance.transactionpurposes.delete(1)
+    client.finance.transaction_purposes.delete(1)
 
 # get-finance-transactions
 def example_673(client: ct.Client) -> None:
@@ -3849,13 +3849,13 @@ def example_675(client: ct.Client) -> None:
 
 # get-finance-transactions-datevexport
 def example_676(client: ct.Client) -> None:
-    data = client.finance.transactions.get_datevexport(accounting_period_id=1)
+    data = client.finance.transactions.get_datev_export(accounting_period_id=1)
     with open("ergebnis.csv", "wb") as f:
         f.write(data)
 
 # get-finance-transactions-documentnumberavailable
 def example_677(client: ct.Client) -> None:
-    client.finance.transactions.get_documentnumberavailable(
+    client.finance.transactions.get_document_number_available(
         accounting_period_id=1,
         document_number="2024-001",
     )
@@ -3873,7 +3873,7 @@ def example_679(client: ct.Client) -> None:
 
 # get-finance-transactions-nextdocumentnumber
 def example_680(client: ct.Client) -> None:
-    result = client.finance.transactions.get_nextdocumentnumber(accounting_period_id=1)
+    result = client.finance.transactions.get_next_document_number(accounting_period_id=1)
     print(result)
 
 # get-finance-transactions-summary
@@ -3923,7 +3923,7 @@ def example_686(client: ct.Client) -> None:
 
 # post-finance-transactions-bulkcreate
 def example_687(client: ct.Client) -> None:
-    for transaction in client.finance.transactions.bulkcreate(
+    for transaction in client.finance.transactions.bulk_create(
         body=[ct.models.TransactionBulkCreateItem.model_validate({"accountId": 10, "amount": 7812, "contraAccountId": 11, "documentDate": "2019-01-14", "note": "Donation service offering", "documentNumber": "2026-42"})],
     ):
         print(transaction.id)
@@ -4056,27 +4056,27 @@ def example_712(client: ct.Client) -> None:
 
 # get-securitylevels
 def example_713(client: ct.Client) -> None:
-    for securitylevel in client.securitylevels.list():
-        print(securitylevel.name)
+    for security_level in client.security_levels.list():
+        print(security_level.name)
 
 # get-securitylevels-id
 def example_714(client: ct.Client) -> None:
-    securitylevel = client.securitylevels.get(1)
-    print(securitylevel.name)
+    security_level = client.security_levels.get(1)
+    print(security_level.name)
 
 # post-securitylevels-id
 def example_715(client: ct.Client) -> None:
-    result = client.securitylevels.create(1, name="Hauskreis Nord")
+    result = client.security_levels.create(1, name="Hauskreis Nord")
     print(result.name)
 
 # patch-securitylevels-id
 def example_716(client: ct.Client) -> None:
-    result = client.securitylevels.patch(1, name="Hauskreis Nord")
+    result = client.security_levels.patch(1, name="Hauskreis Nord")
     print(result.name)
 
 # delete-securitylevels-id
 def example_717(client: ct.Client) -> None:
-    client.securitylevels.delete(1)
+    client.security_levels.delete(1)
 
 # get-sync-executions
 def example_718(client: ct.Client) -> None:
@@ -4085,8 +4085,8 @@ def example_718(client: ct.Client) -> None:
 
 # get-sync-jobconfigs
 def example_719(client: ct.Client) -> None:
-    for jobconfig in client.sync.list_jobconfigs():
-        print(jobconfig.name)
+    for job_config in client.sync.list_job_configs():
+        print(job_config.name)
 
 # get-sync-logs
 def example_720(client: ct.Client) -> None:
@@ -4190,17 +4190,17 @@ def example_736(client: ct.Client) -> None:
 
 # get-sync-entitymappings
 def example_737(client: ct.Client) -> None:
-    for entitymapping in client.sync.entitymappings.list():
-        print(entitymapping.id)
+    for entity_mapping in client.sync.entity_mappings.list():
+        print(entity_mapping.id)
 
 # get-sync-entitymappings-id
 def example_738(client: ct.Client) -> None:
-    entitymapping = client.sync.entitymappings.get(1)
-    print(entitymapping.id)
+    entity_mapping = client.sync.entity_mappings.get(1)
+    print(entity_mapping.id)
 
 # post-sync-entitymappings
 def example_739(client: ct.Client) -> None:
-    result = client.sync.entitymappings.create(
+    result = client.sync.entity_mappings.create(
         domain_id="42",
         domain_type="status",
         source_entity_id="p-42",
@@ -4211,7 +4211,7 @@ def example_739(client: ct.Client) -> None:
 
 # put-sync-entitymappings-id
 def example_740(client: ct.Client) -> None:
-    result = client.sync.entitymappings.update(
+    result = client.sync.entity_mappings.update(
         1,
         domain_id="42",
         domain_type="status",
@@ -4223,7 +4223,7 @@ def example_740(client: ct.Client) -> None:
 
 # delete-sync-entitymappings-id
 def example_741(client: ct.Client) -> None:
-    client.sync.entitymappings.delete(1)
+    client.sync.entity_mappings.delete(1)
 
 # get-sync-externalsystems
 def example_742(client: ct.Client) -> None:
@@ -4261,7 +4261,7 @@ def example_746(client: ct.Client) -> None:
 
 # delete-sync-externalsystems-externalSystemId-entitymappings
 def example_747(client: ct.Client) -> None:
-    client.sync.externalsystems.delete_entitymappings(1)
+    client.sync.externalsystems.delete_entity_mappings(1)
 
 # post-sync-externalsystems-id-test
 def example_748(client: ct.Client) -> None:
@@ -4278,42 +4278,42 @@ def example_749(client: ct.Client) -> None:
 
 # get-sync-externalsystems-externalSystemId-adapterproxy-uri
 def example_750(client: ct.Client) -> None:
-    client.sync.externalsystems.adapterproxy.get(1, "adapter/info")
+    client.sync.externalsystems.adapter_proxy.get(1, "adapter/info")
 
 # post-sync-externalsystems-externalSystemId-adapterproxy-uri
 def example_751(client: ct.Client) -> None:
-    client.sync.externalsystems.adapterproxy.create(1, "adapter/info")
+    client.sync.externalsystems.adapter_proxy.create(1, "adapter/info")
 
 # put-sync-externalsystems-externalSystemId-adapterproxy-uri
 def example_752(client: ct.Client) -> None:
-    client.sync.externalsystems.adapterproxy.update(1, "adapter/info")
+    client.sync.externalsystems.adapter_proxy.update(1, "adapter/info")
 
 # patch-sync-externalsystems-externalSystemId-adapterproxy-uri
 def example_753(client: ct.Client) -> None:
-    client.sync.externalsystems.adapterproxy.patch(1, "adapter/info")
+    client.sync.externalsystems.adapter_proxy.patch(1, "adapter/info")
 
 # delete-sync-externalsystems-externalSystemId-adapterproxy-uri
 def example_754(client: ct.Client) -> None:
-    client.sync.externalsystems.adapterproxy.delete(1, "adapter/info")
+    client.sync.externalsystems.adapter_proxy.delete(1, "adapter/info")
 
 # get-sync-externalsystems-externalSystemId-fieldmappings
 def example_755(client: ct.Client) -> None:
-    for fieldmapping in client.sync.externalsystems.fieldmappings.list(1):
-        print(fieldmapping.id)
+    for field_mapping in client.sync.externalsystems.field_mappings.list(1):
+        print(field_mapping.id)
 
 # get-sync-externalsystems-id-fieldmappings-domaintype
 def example_756(client: ct.Client) -> None:
-    fieldmapping = client.sync.externalsystems.fieldmappings.get(1, "status")
-    print(fieldmapping.id)
+    field_mapping = client.sync.externalsystems.field_mappings.get(1, "status")
+    print(field_mapping.id)
 
 # get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions
 def example_757(client: ct.Client) -> None:
-    result = client.sync.externalsystems.fieldmappings.get_nosuggestions(1, "status")
+    result = client.sync.externalsystems.field_mappings.get_nosuggestions(1, "status")
     print(result)
 
 # put-sync-externalsystems-id-fieldmappings-domainType
 def example_758(client: ct.Client) -> None:
-    result = client.sync.externalsystems.fieldmappings.update(
+    result = client.sync.externalsystems.field_mappings.update(
         1,
         "status",
         property_mappings_es_to_master=[ct.models.SyncFieldMappingEntryCreate.model_validate({"from": "firstName", "fromFilter": "", "others": {}, "to": "firstName", "toFilter": "", "valueMapping": {}})],
@@ -4323,31 +4323,31 @@ def example_758(client: ct.Client) -> None:
 
 # delete-sync-externalsystems-id-fieldmappings-domainType
 def example_759(client: ct.Client) -> None:
-    client.sync.externalsystems.fieldmappings.delete(1, "status")
+    client.sync.externalsystems.field_mappings.delete(1, "status")
 
 # get-sync-externalsystems-id-jobconfigs
 def example_760(client: ct.Client) -> None:
-    for jobconfig in client.sync.externalsystems.jobconfigs.list(1):
-        print(jobconfig.name)
+    for job_config in client.sync.externalsystems.job_configs.list(1):
+        print(job_config.name)
 
 # get-sync-externalsystems-externalSystemId-jobconfigs-jobId
 def example_761(client: ct.Client) -> None:
-    for jobconfig in client.sync.externalsystems.jobconfigs.get(1, 1):
-        print(jobconfig.name)
+    for job_config in client.sync.externalsystems.job_configs.get(1, 1):
+        print(job_config.name)
 
 # get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter
 def example_762(client: ct.Client) -> None:
-    filter = client.sync.externalsystems.jobconfigs.get_filter(1, 1)
+    filter = client.sync.externalsystems.job_configs.get_filter(1, 1)
     print(filter)
 
 # get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties
 def example_763(client: ct.Client) -> None:
-    property = client.sync.externalsystems.jobconfigs.get_properties(1, 1)
+    property = client.sync.externalsystems.job_configs.get_properties(1, 1)
     print(property.domain_type)
 
 # post-sync-externalsystems-externalSystemId-jobconfigs
 def example_764(client: ct.Client) -> None:
-    result = client.sync.externalsystems.jobconfigs.create(
+    result = client.sync.externalsystems.job_configs.create(
         1,
         auto_schedule_enabled=False,
         domain_type="person",
@@ -4357,7 +4357,7 @@ def example_764(client: ct.Client) -> None:
 
 # put-sync-externalsystems-externalSystemId-jobconfigs
 def example_765(client: ct.Client) -> None:
-    result = client.sync.externalsystems.jobconfigs.update(
+    result = client.sync.externalsystems.job_configs.update(
         1,
         1,
         auto_schedule_enabled=False,
@@ -4369,7 +4369,7 @@ def example_765(client: ct.Client) -> None:
 
 # put-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter
 def example_766(client: ct.Client) -> None:
-    result = client.sync.externalsystems.jobconfigs.update_filter(
+    result = client.sync.externalsystems.job_configs.update_filter(
         1,
         1,
         es=[ct.models.SyncJobFilterCreate.model_validate({"field": "statusId", "system": "master", "values": {}})],
@@ -4379,7 +4379,7 @@ def example_766(client: ct.Client) -> None:
 
 # put-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties
 def example_767(client: ct.Client) -> None:
-    result = client.sync.externalsystems.jobconfigs.update_properties(
+    result = client.sync.externalsystems.job_configs.update_properties(
         1,
         1,
         property_mappings_es_to_master=[ct.models.SyncJobPropertyCreate.model_validate({"fieldMappingId": 1, "from": "firstName", "fromFilter": "", "system": "master", "to": "firstName", "toFilter": ""})],
@@ -4389,29 +4389,29 @@ def example_767(client: ct.Client) -> None:
 
 # delete-sync-externalsystems-externalSystemId-jobconfigs-jobId
 def example_768(client: ct.Client) -> None:
-    client.sync.externalsystems.jobconfigs.delete(1, 1)
+    client.sync.externalsystems.job_configs.delete(1, 1)
 
 # delete-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter
 def example_769(client: ct.Client) -> None:
-    client.sync.externalsystems.jobconfigs.delete_filter(1, 1)
+    client.sync.externalsystems.job_configs.delete_filter(1, 1)
 
 # delete-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties
 def example_770(client: ct.Client) -> None:
-    client.sync.externalsystems.jobconfigs.delete_properties(1, 1)
+    client.sync.externalsystems.job_configs.delete_properties(1, 1)
 
 # post-sync-externalsystems-externalSystemId-jobconfigs-jobId-start
 def example_771(client: ct.Client) -> None:
-    client.sync.externalsystems.jobconfigs.start(1, 1, is_dry_run=True)
+    client.sync.externalsystems.job_configs.start(1, 1, is_dry_run=True)
 
 # get-sync-externalsystems-externalSystemId-jobconfigs-jobId-executions-executionId
 def example_772(client: ct.Client) -> None:
-    execution = client.sync.externalsystems.jobconfigs.executions.get(1, 1, "run-123")
+    execution = client.sync.externalsystems.job_configs.executions.get(1, 1, "run-123")
     print(execution.domain_type)
 
 # get-joblog
 def example_773(client: ct.Client) -> None:
-    for joblog in client.joblog.list(guid="d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged"):
-        print(joblog.element_id)
+    for job_log in client.job_log.list(guid="d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged"):
+        print(job_log.element_id)
 
 # get-jobs
 def example_774(client: ct.Client) -> None:
@@ -4436,8 +4436,8 @@ def example_777(client: ct.Client) -> None:
 
 # get-queues-queue-jobgroups-jobGroup
 def example_778(client: ct.Client) -> None:
-    for jobgroup in client.queues.jobgroups.get("beispiel", "beispiel"):
-        print(jobgroup.name)
+    for job_group in client.queues.job_groups.get("beispiel", "beispiel"):
+        print(job_group.name)
 
 # get-groups-groupId-members-routines
 def example_779(client: ct.Client) -> None:
@@ -4455,47 +4455,47 @@ def example_781(client: ct.Client) -> None:
 
 # get-htmltemplates
 def example_782(client: ct.Client) -> None:
-    for htmltemplate in client.htmltemplates.list(domain_type="email"):
-        print(htmltemplate.name)
+    for html_template in client.html_templates.list(domain_type="email"):
+        print(html_template.name)
 
 # get-htmltemplates-templateId
 def example_783(client: ct.Client) -> None:
-    htmltemplate = client.htmltemplates.get(2)
-    print(htmltemplate.name)
+    html_template = client.html_templates.get(2)
+    print(html_template.name)
 
 # get-htmltemplates-templateId-export
 def example_784(client: ct.Client) -> None:
-    result = client.htmltemplates.get_export(2)
+    result = client.html_templates.get_export(2)
     print(result)
 
 # get-htmltemplates-templateId-html
 def example_785(client: ct.Client) -> None:
-    result = client.htmltemplates.get_html(2)
+    result = client.html_templates.get_html(2)
     print(result)
 
 # get-htmltemplates-templateId-mjml
 def example_786(client: ct.Client) -> None:
-    result = client.htmltemplates.get_mjml(2)
+    result = client.html_templates.get_mjml(2)
     print(result)
 
 # post-htmltemplates
 def example_787(client: ct.Client) -> None:
-    result = client.htmltemplates.create(domain_type="email", name="Welcome email")
+    result = client.html_templates.create(domain_type="email", name="Welcome email")
     print(result.name)
 
 # patch-htmltemplates-templateId
 def example_788(client: ct.Client) -> None:
-    result = client.htmltemplates.patch(2, name="Updated welcome email")
+    result = client.html_templates.patch(2, name="Updated welcome email")
     print(result.name)
 
 # delete-htmltemplates-templateId
 def example_789(client: ct.Client) -> None:
-    client.htmltemplates.delete(2, dry_run=True)
+    client.html_templates.delete(2, dry_run=True)
 
 # post-htmltemplates-id-uploadassets
 def example_790(client: ct.Client) -> None:
-    for htmltemplate in client.htmltemplates.uploadassets(2, files=[ct.Upload.from_path("logo.png")]):
-        print(htmltemplate.name)
+    for html_template in client.html_templates.upload_assets(2, files=[ct.Upload.from_path("logo.png")]):
+        print(html_template.name)
 
 # get-placeholders-email
 def example_791(client: ct.Client) -> None:
@@ -4531,8 +4531,8 @@ def example_797(client: ct.Client) -> None:
 
 # get-startpage
 def example_798(client: ct.Client) -> None:
-    for startpage in client.startpage.list():
-        print(startpage)
+    for start_page in client.start_page.list():
+        print(start_page)
 
 # get-widgets-blog
 def example_799(client: ct.Client) -> None:
@@ -4546,17 +4546,17 @@ def example_800(client: ct.Client) -> None:
 
 # get-furtherlinks
 def example_801(client: ct.Client) -> None:
-    for furtherlink in client.furtherlinks.list():
-        print(furtherlink.name)
+    for further_link in client.further_links.list():
+        print(further_link.name)
 
 # get-furtherlinks-furtherLinkId
 def example_802(client: ct.Client) -> None:
-    furtherlink = client.furtherlinks.get(1.5)
-    print(furtherlink.name)
+    further_link = client.further_links.get(1.5)
+    print(further_link.name)
 
 # post-furtherlinks
 def example_803(client: ct.Client) -> None:
-    result = client.furtherlinks.create(
+    result = client.further_links.create(
         description="Our church's NextCloud",
         image_url="https://example.org",
         name="NextCloud",
@@ -4567,7 +4567,7 @@ def example_803(client: ct.Client) -> None:
 
 # put-furtherlinks-furtherLinkId
 def example_804(client: ct.Client) -> None:
-    result = client.furtherlinks.update(
+    result = client.further_links.update(
         1.5,
         description="Our church's NextCloud",
         image_url="https://example.org",
@@ -4579,20 +4579,20 @@ def example_804(client: ct.Client) -> None:
 
 # delete-furtherlinks-furtherLinkId
 def example_805(client: ct.Client) -> None:
-    client.furtherlinks.delete(1.5)
+    client.further_links.delete(1.5)
 
 # get-evangelischetermine-eventtypes
 def example_806(client: ct.Client) -> None:
-    for eventtype in client.evangelischetermine.list_eventtypes():
-        print(eventtype.key)
+    for event_type in client.evangelische_termine.list_event_types():
+        print(event_type.key)
 
 # delete-evangelischetermine
 def example_807(client: ct.Client) -> None:
-    client.evangelischetermine.delete()
+    client.evangelische_termine.delete()
 
 # post-evangelischetermine-validatesettings
 def example_808(client: ct.Client) -> None:
-    client.evangelischetermine.validatesettings(
+    client.evangelische_termine.validate_settings(
         api_key="*****",
         url="https://www.evangelische-termine.de",
         vid="1234",
@@ -4600,39 +4600,39 @@ def example_808(client: ct.Client) -> None:
 
 # post-bulkjobs
 def example_809(client: ct.Client) -> None:
-    bulkjob = client.bulkjobs.enqueue(
+    bulk_job = client.bulk_jobs.enqueue(
         "group",
         "setMaxMembers",
         domain_object_identifiers=[42],
         job_data=ct.models.BulkGroupSetMaxMembersUpdate.model_validate({}),
     )
-    print(bulkjob.job_group)
+    print(bulk_job.job_group)
 
 # post-bulkjobs-infos
 def example_810(client: ct.Client) -> None:
-    bulkjob = client.bulkjobs.infos(
+    bulk_job = client.bulk_jobs.infos(
         "group",
         "setMaxMembers",
         domain_object_identifiers=[42],
         job_data=ct.models.BulkGroupSetMaxMembersUpdate.model_validate({}),
     )
-    print(bulkjob)
+    print(bulk_job)
 
 # get-domainobjects
 def example_811(client: ct.Client) -> None:
-    for domainobject in client.domainobjects.list(
+    for domain_object in client.domain_objects.list(
         domain_types=["person", "group"],
         domain_identifiers=["42", "7"],
     ):
-        print(domainobject.api_url)
+        print(domain_object.api_url)
 
 # post-domainobjects
 def example_812(client: ct.Client) -> None:
-    for domainobject in client.domainobjects.create(
+    for domain_object in client.domain_objects.resolve(
         domain_identifiers=["42", "7"],
         domain_types=["person", "group"],
     ):
-        print(domainobject.api_url)
+        print(domain_object.api_url)
 
 # get-fields
 def example_813(client: ct.Client) -> None:
@@ -4641,21 +4641,21 @@ def example_813(client: ct.Client) -> None:
 
 # post-actions
 def example_814(client: ct.Client) -> None:
-    for action in client.actions.create(domain_type=["group_membership"]):
+    for action in client.actions.filter(domain_type=["group_membership"]):
         print(action.domain_type)
 
 # get-churchquery-metadata
 def example_815(client: ct.Client) -> None:
-    result = client.churchquery.get_metadata()
+    result = client.church_query.get_metadata()
     print(result)
 
 # post-churchquery-debug-export
 def example_816(client: ct.Client) -> None:
-    client.churchquery.debug.export(body="beispiel")
+    client.church_query.debug.export(body="beispiel")
 
 # post-externallogins-id-link
 def example_817(client: ct.Client) -> None:
-    result = client.externallogins.link.create(
+    result = client.external_logins.link.create(
         7,
         link_token="opaque-session-bound-link-token",
         password="geheim",
@@ -4665,7 +4665,7 @@ def example_817(client: ct.Client) -> None:
 
 # post-externallogins-id-link-create-person
 def example_818(client: ct.Client) -> None:
-    result = client.externallogins.link.create_person(
+    result = client.external_logins.link.create_person(
         7,
         link_token="opaque-session-bound-link-token",
     )
@@ -4673,44 +4673,44 @@ def example_818(client: ct.Client) -> None:
 
 # get-externallogins-id-oidc-start
 def example_819(client: ct.Client) -> None:
-    start = client.externallogins.oidc.get_start(7)
+    start = client.external_logins.oidc.get_start(7)
     print(start.expires_at)
 
 # get-externallogins-oidc-callback
 def example_820(client: ct.Client) -> None:
-    data = client.externallogins.oidc.callback(state="opaque-session-bound-state")
+    data = client.external_logins.oidc.callback(state="opaque-session-bound-state")
     with open("ergebnis.bin", "wb") as f:
         f.write(data)
 
 # get-externallogins-id-oidc-callback
 def example_821(client: ct.Client) -> None:
-    data = client.externallogins.oidc.callback_for(7, state="opaque-session-bound-state")
+    data = client.external_logins.oidc.callback_for(7, state="opaque-session-bound-state")
     with open("ergebnis.bin", "wb") as f:
         f.write(data)
 
 # get-externallogins-id-oidc-test-state
 def example_822(client: ct.Client) -> None:
-    test = client.externallogins.oidc.test.get(7, "opaque-session-bound-state")
+    test = client.external_logins.oidc.test.get(7, "opaque-session-bound-state")
     print(test.error_code)
 
 # post-externallogins-id-oidc-test
 def example_823(client: ct.Client) -> None:
-    result = client.externallogins.oidc.test.create(7)
+    result = client.external_logins.oidc.test.create(7)
     print(result)
 
 # get-externallogins-id-saml-test-state
 def example_824(client: ct.Client) -> None:
-    test = client.externallogins.saml.test.get(7, "beispiel")
+    test = client.external_logins.saml.test.get(7, "beispiel")
     print(test.status)
 
 # post-externallogins-id-saml-test
 def example_825(client: ct.Client) -> None:
-    result = client.externallogins.saml.test.create(7)
+    result = client.external_logins.saml.test.create(7)
     print(result.expires_at)
 
 # post-featureusage
 def example_826(client: ct.Client) -> None:
-    client.featureusage.create()
+    client.feature_usage.create()
 
 # get-history
 def example_827(client: ct.Client) -> None:
@@ -4738,12 +4738,12 @@ def example_831(client: ct.Client) -> None:
 
 # get-oauthclients
 def example_832(client: ct.Client) -> None:
-    for oauthclient in client.oauthclients.list():
-        print(oauthclient.name)
+    for oauth_client in client.oauth_clients.list():
+        print(oauth_client.name)
 
 # post-oauthclients
 def example_833(client: ct.Client) -> None:
-    result = client.oauthclients.create(
+    result = client.oauth_clients.create(
         name="Parish website",
         redirect_uri="https://parish.example.org/oauth/callback",
     )
@@ -4751,7 +4751,7 @@ def example_833(client: ct.Client) -> None:
 
 # put-oauthclients-identifier
 def example_834(client: ct.Client) -> None:
-    result = client.oauthclients.update(
+    result = client.oauth_clients.update(
         "abc123",
         name="Parish website",
         redirect_uri="https://parish.example.org/oauth/callback",
@@ -4760,7 +4760,7 @@ def example_834(client: ct.Client) -> None:
 
 # delete-oauthclients-identifier
 def example_835(client: ct.Client) -> None:
-    client.oauthclients.delete("abc123")
+    client.oauth_clients.delete("abc123")
 
 # get-persons-search_old
 def example_836(client: ct.Client) -> None:
@@ -4769,8 +4769,8 @@ def example_836(client: ct.Client) -> None:
 
 # get-persons-personId-poststatistics
 def example_837(client: ct.Client) -> None:
-    poststatistic = client.persons.get_poststatistics("abc123")
-    print(poststatistic.count_banned)
+    post_statistic = client.persons.get_post_statistics("abc123")
+    print(post_statistic.count_banned)
 
 # post-persons-export
 def example_838(client: ct.Client) -> None:
@@ -4785,21 +4785,21 @@ def example_839(client: ct.Client) -> None:
 
 # post-probes
 def example_840(client: ct.Client) -> None:
-    for probe in client.probes.create(domain_type=["person"]):
+    for probe in client.probes.filter(domain_type=["person"]):
         print(probe.domain_type)
 
 # get-profiles-slugcheck-slug
 def example_841(client: ct.Client) -> None:
-    client.profiles.slugcheck.get("my-church")
+    client.profiles.slug_check.get("my-church")
 
 # get-registrationconfig-id
 def example_842(client: ct.Client) -> None:
-    registrationconfig = client.registrationconfig.get(42)
-    print(registrationconfig.id)
+    registration_config = client.registration_config.get(42)
+    print(registration_config.id)
 
 # patch-registrationconfig-id
 def example_843(client: ct.Client) -> None:
-    result = client.registrationconfig.patch(1, is_active=True)
+    result = client.registration_config.patch(1, is_active=True)
     print(result.id)
 
 # post-registrations
@@ -4887,12 +4887,12 @@ def example_858(client: ct.Client) -> None:
 
 # get-translations-keysbytext
 def example_859(client: ct.Client) -> None:
-    for keysbytext in client.translations.list_keysbytext(query="Welcome"):
-        print(keysbytext)
+    for keys_by_text in client.translations.list_keys_by_text(query="Welcome"):
+        print(keys_by_text)
 
 # get-website-starttest
 def example_860(client: ct.Client) -> None:
-    client.website.get_starttest()
+    client.website.get_start_test()
 
 # get-website-data
 def example_861(client: ct.Client) -> None:
@@ -5061,8 +5061,8 @@ REFERENCE = {
     'get-groups-members': example_162,
     'get-groups-groupId-posts': example_163,
     'get-groups-groupId': example_164,
-    'get-groups-grouped': example_165,
-    'get-groups-groupId-grouphomepage': example_166,
+    'get-groups-groupId-grouphomepage': example_165,
+    'get-groups-grouped': example_166,
     'get-groups-optins': example_167,
     'get-groups-groupId-poststatistics': example_168,
     'get-groups-id-statistics': example_169,
@@ -5159,35 +5159,35 @@ REFERENCE = {
     'get-calendars-calendarId-meetingrequest-candidates': example_260,
     'post-meetingrequests-reply': example_261,
     'get-repeatcalculation': example_262,
-    'post-repeatcalculation': example_263,
-    'put-repeatcalculation': example_264,
-    'patch-repeatcalculation': example_265,
-    'delete-repeatcalculation': example_266,
-    'get-events': example_267,
-    'get-events-id-possiblepersonsforservice': example_268,
-    'get-events-id': example_269,
-    'get-events-ical': example_270,
-    'post-events-ical': example_271,
-    'put-events-id': example_272,
-    'delete-events-id': example_273,
-    'post-events-id-chat': example_274,
-    'post-events-send': example_275,
-    'put-events-id-eventservices-id': example_276,
-    'put-events-id-eventservices': example_277,
-    'delete-events-id-eventservices-id': example_278,
-    'get-events-eventId-facts': example_279,
-    'get-events-facts': example_280,
-    'get-events-eventId-facts-factId': example_281,
-    'put-events-eventId-facts-factId': example_282,
-    'delete-events-eventId-facts-factId': example_283,
-    'post-events-facts-export': example_284,
-    'put-events-eventId-servicerequests-requestId': example_285,
-    'put-events-eventId-servicerequests': example_286,
-    'post-events-id-servicerequests-id-accept': example_287,
-    'post-events-id-servicerequests-id-decline': example_288,
-    'post-events-id-servicerequests-id-undo': example_289,
-    'get-events-eventId-services-serviceId-possiblepersons': example_290,
-    'get-eventtemplates': example_291,
+    'put-repeatcalculation': example_263,
+    'patch-repeatcalculation': example_264,
+    'delete-repeatcalculation': example_265,
+    'post-repeatcalculation': example_266,
+    'get-eventtemplates': example_267,
+    'get-events': example_268,
+    'get-events-id-possiblepersonsforservice': example_269,
+    'get-events-id': example_270,
+    'get-events-ical': example_271,
+    'post-events-ical': example_272,
+    'put-events-id': example_273,
+    'delete-events-id': example_274,
+    'post-events-id-chat': example_275,
+    'post-events-send': example_276,
+    'put-events-id-eventservices-id': example_277,
+    'put-events-id-eventservices': example_278,
+    'delete-events-id-eventservices-id': example_279,
+    'get-events-eventId-facts': example_280,
+    'get-events-facts': example_281,
+    'get-events-eventId-facts-factId': example_282,
+    'put-events-eventId-facts-factId': example_283,
+    'delete-events-eventId-facts-factId': example_284,
+    'post-events-facts-export': example_285,
+    'put-events-eventId-servicerequests-requestId': example_286,
+    'put-events-eventId-servicerequests': example_287,
+    'post-events-id-servicerequests-id-accept': example_288,
+    'post-events-id-servicerequests-id-decline': example_289,
+    'post-events-id-servicerequests-id-undo': example_290,
+    'get-events-eventId-services-serviceId-possiblepersons': example_291,
     'get-persons-id-events': example_292,
     'get-persons-id-events-id-services': example_293,
     'get-persons-id-events-id-services-id-exchangerequests': example_294,
@@ -5207,18 +5207,18 @@ REFERENCE = {
     'post-services': example_308,
     'put-services-id': example_309,
     'delete-services-id': example_310,
-    'post-agendas-send': example_311,
-    'get-agendatemplates': example_312,
-    'get-agendatemplates-agendaId': example_313,
-    'post-agendatemplates': example_314,
-    'put-agendatemplates-agendaId': example_315,
-    'delete-agendatemplates-agendaId': example_316,
-    'post-agendatemplates-agendaId-export': example_317,
-    'post-agendatemplates-agendaId-items': example_318,
-    'put-agendatemplates-agendaId-items-itemId': example_319,
-    'delete-agendatemplates-agendaId-items-itemId': example_320,
-    'put-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId': example_321,
-    'delete-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId': example_322,
+    'get-agendatemplates': example_311,
+    'get-agendatemplates-agendaId': example_312,
+    'post-agendatemplates': example_313,
+    'put-agendatemplates-agendaId': example_314,
+    'delete-agendatemplates-agendaId': example_315,
+    'post-agendatemplates-agendaId-export': example_316,
+    'post-agendatemplates-agendaId-items': example_317,
+    'put-agendatemplates-agendaId-items-itemId': example_318,
+    'delete-agendatemplates-agendaId-items-itemId': example_319,
+    'put-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId': example_320,
+    'delete-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId': example_321,
+    'post-agendas-send': example_322,
     'get-events-id-agenda-songs': example_323,
     'get-events-id-agenda': example_324,
     'put-events-id-agenda': example_325,
@@ -5266,17 +5266,17 @@ REFERENCE = {
     'post-bookings-id-conflicts': example_367,
     'post-bookings-id': example_368,
     'get-resource-masterdata': example_369,
-    'get-resources': example_370,
-    'get-resources-resourceId': example_371,
-    'get-resources-resourceId-statistics': example_372,
-    'post-resources': example_373,
-    'put-resources-resourceId': example_374,
-    'delete-resources-resourceId': example_375,
-    'get-resourcetypes': example_376,
-    'get-resourcetypes-resourceTypeId': example_377,
-    'post-resourcetypes': example_378,
-    'put-resourcetypes-resourceTypeId': example_379,
-    'delete-resourcetypes-resourceTypeId': example_380,
+    'get-resourcetypes': example_370,
+    'get-resourcetypes-resourceTypeId': example_371,
+    'post-resourcetypes': example_372,
+    'put-resourcetypes-resourceTypeId': example_373,
+    'delete-resourcetypes-resourceTypeId': example_374,
+    'get-resources': example_375,
+    'get-resources-resourceId': example_376,
+    'get-resources-resourceId-statistics': example_377,
+    'post-resources': example_378,
+    'put-resources-resourceId': example_379,
+    'delete-resources-resourceId': example_380,
     'get-groups-absences': example_381,
     'get-persons-personId-absences': example_382,
     'get-persons-personId-absences-id': example_383,
@@ -5411,17 +5411,17 @@ REFERENCE = {
     'post-facts': example_512,
     'put-facts-id': example_513,
     'delete-facts-id': example_514,
-    'get-dbfields': example_515,
-    'get-dbfields-fieldId': example_516,
-    'post-dbfields': example_517,
-    'put-dbfields-fieldId': example_518,
-    'delete-dbfields-fieldId': example_519,
-    'get-dbfields-fieldId-options': example_520,
-    'get-dbfields-fieldId-options-metadata': example_521,
-    'post-dbfields-id-options': example_522,
-    'put-dbfields-fieldId-options-optionId': example_523,
-    'delete-dbfields-fieldId-options-optionId': example_524,
-    'get-dbfieldtypes': example_525,
+    'get-dbfieldtypes': example_515,
+    'get-dbfields': example_516,
+    'get-dbfields-fieldId': example_517,
+    'post-dbfields': example_518,
+    'put-dbfields-fieldId': example_519,
+    'delete-dbfields-fieldId': example_520,
+    'get-dbfields-fieldId-options': example_521,
+    'get-dbfields-fieldId-options-metadata': example_522,
+    'post-dbfields-id-options': example_523,
+    'put-dbfields-fieldId-options-optionId': example_524,
+    'delete-dbfields-fieldId-options-optionId': example_525,
     'get-dynamicgroups': example_526,
     'get-dynamicgroups-id-ruleset': example_527,
     'get-dynamicgroups-id-status': example_528,
@@ -5462,40 +5462,40 @@ REFERENCE = {
     'post-finance-accountgroups': example_563,
     'put-finance-accountgroups-id': example_564,
     'delete-finance-accountgroups-id': example_565,
-    'get-finance-accountingperiods': example_566,
-    'get-finance-accountingperiods-id-bills': example_567,
-    'get-finance-accountingperiods-id-userrules': example_568,
-    'get-finance-accountingperiods-id': example_569,
-    'post-finance-accountingperiods': example_570,
-    'put-finance-accountingperiods-id': example_571,
-    'put-finance-accountingperiods-id-userrules': example_572,
-    'delete-finance-accountingperiods-id': example_573,
-    'delete-finance-accountingperiods-id-taxrates': example_574,
-    'get-finance-accountingperiods-id-accounts-id-movements': example_575,
-    'get-finance-accountingperiods-id-accounts-statements': example_576,
-    'delete-finance-accountingperiods-id-accounts': example_577,
-    'get-finance-accountingperiods-id-accounts-id-statements': example_578,
-    'get-finance-accountingperiods-id-accounts-id-statements-id-movements': example_579,
-    'post-finance-accountingperiods-id-accounts-id-statements-id-movements-id': example_580,
-    'patch-finance-accountingperiods-id-accounts-id-statements-id-movements-id-suggestions': example_581,
-    'post-finance-accountingperiods-id-statements': example_582,
-    'put-finance-accountingperiods-id-statements-id': example_583,
-    'delete-finance-accountingperiods-id-statements-id': example_584,
-    'post-finance-accountingperiods-id-statements-id-suggestions': example_585,
-    'get-finance-accounts': example_586,
-    'get-finance-accounts-id': example_587,
-    'get-finance-accounts-csv': example_588,
-    'get-finance-accounts-export': example_589,
-    'post-finance-accounts': example_590,
-    'put-finance-accounts-id': example_591,
-    'delete-finance-accounts-id': example_592,
-    'post-finance-accounts-bulkcreate': example_593,
-    'post-finance-accounts-exporttemplate': example_594,
-    'get-finance-accounttypes': example_595,
-    'get-finance-accounttypes-id': example_596,
-    'post-finance-accounttypes': example_597,
-    'put-finance-accounttypes-id': example_598,
-    'delete-finance-accounttypes-id': example_599,
+    'get-finance-accounttypes': example_566,
+    'get-finance-accounttypes-id': example_567,
+    'post-finance-accounttypes': example_568,
+    'put-finance-accounttypes-id': example_569,
+    'delete-finance-accounttypes-id': example_570,
+    'get-finance-accountingperiods': example_571,
+    'get-finance-accountingperiods-id-bills': example_572,
+    'get-finance-accountingperiods-id-userrules': example_573,
+    'get-finance-accountingperiods-id': example_574,
+    'post-finance-accountingperiods': example_575,
+    'put-finance-accountingperiods-id': example_576,
+    'put-finance-accountingperiods-id-userrules': example_577,
+    'delete-finance-accountingperiods-id': example_578,
+    'delete-finance-accountingperiods-id-taxrates': example_579,
+    'get-finance-accountingperiods-id-accounts-id-movements': example_580,
+    'get-finance-accountingperiods-id-accounts-statements': example_581,
+    'delete-finance-accountingperiods-id-accounts': example_582,
+    'get-finance-accountingperiods-id-accounts-id-statements': example_583,
+    'get-finance-accountingperiods-id-accounts-id-statements-id-movements': example_584,
+    'post-finance-accountingperiods-id-accounts-id-statements-id-movements-id': example_585,
+    'patch-finance-accountingperiods-id-accounts-id-statements-id-movements-id-suggestions': example_586,
+    'put-finance-accountingperiods-id-statements-id': example_587,
+    'delete-finance-accountingperiods-id-statements-id': example_588,
+    'post-finance-accountingperiods-id-statements': example_589,
+    'post-finance-accountingperiods-id-statements-id-suggestions': example_590,
+    'get-finance-accounts': example_591,
+    'get-finance-accounts-id': example_592,
+    'get-finance-accounts-csv': example_593,
+    'get-finance-accounts-export': example_594,
+    'post-finance-accounts': example_595,
+    'put-finance-accounts-id': example_596,
+    'delete-finance-accounts-id': example_597,
+    'post-finance-accounts-bulkcreate': example_598,
+    'post-finance-accounts-exporttemplate': example_599,
     'get-finance-bills-id': example_600,
     'post-finance-bills': example_601,
     'put-finance-bills-id': example_602,

@@ -75,7 +75,7 @@ class Seed:
         return errors
 
     def group(self, name: str) -> int:
-        md = self.client.person.get_masterdata()
+        md = self.client.person.get_master_data()
         group = self.client.groups.create(
             name=f"{PREFIX} {name} {uuid.uuid4().hex[:6]}",
             group_type_id=md.group_types[0].id,
@@ -102,7 +102,7 @@ class Seed:
             self.paths[(path, "groupId")] = gid
             self.paths[(path, "personId")] = me
 
-        c.dynamicgroups.update_status(gid, dynamic_group_status="manual")
+        c.dynamic_groups.update_status(gid, dynamic_group_status="manual")
         rule = {
             "description": f"{PREFIX}: nur Person {me}",
             "shorty": "T",
@@ -114,8 +114,8 @@ class Seed:
             },
             "process": {"groupOnly": {}, "groupAndQueryResult": {}, "queryResultOnly": {}},
         }
-        c.dynamicgroups.update_ruleset(gid, dynamic_group_rule_set=[rule])
-        self.undo("dynamic ruleset", lambda: c.dynamicgroups.delete_ruleset(gid))
+        c.dynamic_groups.update_ruleset(gid, dynamic_group_rule_set=[rule])
+        self.undo("dynamic ruleset", lambda: c.dynamic_groups.delete_ruleset(gid))
         for path in ("/dynamicgroups/{groupId}/ruleset", "/dynamicgroups/{groupId}/status"):
             self.paths[(path, "groupId")] = gid
 
@@ -123,8 +123,8 @@ class Seed:
 
     def document_template(self, gid: int) -> None:
         c, me = self.client, self.me
-        template = c.htmltemplates.create(domain_type="groupmember-document", name=f"{PREFIX} Bescheinigung", is_global=True)
-        self.undo("html template", lambda: c.htmltemplates.delete(template.id, dry_run=False))
+        template = c.html_templates.create(domain_type="groupmember-document", name=f"{PREFIX} Bescheinigung", is_global=True)
+        self.undo("html template", lambda: c.html_templates.delete(template.id, dry_run=False))
         # Documents are available for roles that list the template, and only to group leaders.
         leader = next(r for r in c.groups.roles.list(gid) if r.is_leader)
         c.groups.roles.patch(gid, leader.id, html_template_ids=[template.id])
@@ -150,7 +150,7 @@ class Seed:
                 "signUpClosingDate": (now + dt.timedelta(days=30)).isoformat().replace("+00:00", "Z"),
             },
         )
-        token = c.publicgroups.token(gid, person_id=me)
+        token = c.public_groups.token(gid, person_id=me)
         for path in ("/publicgroups/{groupId}/form", "/publicgroups/{groupId}/possiblerequesters"):
             self.paths[(path, "groupId")] = gid
             self.queries[(path, "token")] = token.token
@@ -161,7 +161,7 @@ class Seed:
         uploaded = c.files.create("person", me, files=[ct.Upload(f"{PREFIX}.txt", b"Testdatei von churchtools-rs")])
         for f in uploaded:
             self.undo(f"file {f.id}", functools.partial(c.files.delete, f.id))
-        reason = c.event.get_masterdata().absence_reasons[0].id
+        reason = c.event.get_master_data().absence_reasons[0].id
         absence = c.persons.absences.create(me, absence_reason_id=reason, start_date=dt.date.today(), end_date=dt.date.today())
         self.undo("absence", lambda: c.persons.absences.delete(me, absence.id))
         c.persons.devices.update(me, f"{PREFIX}-device", type_="FCM")
@@ -169,8 +169,8 @@ class Seed:
 
     def further_link(self) -> None:
         c = self.client
-        link = c.furtherlinks.create(name=PREFIX, url="https://example.org", description=None, image_url=None, sort_key=999)
-        self.undo("further link", lambda: c.furtherlinks.delete(link.id))
+        link = c.further_links.create(name=PREFIX, url="https://example.org", description=None, image_url=None, sort_key=999)
+        self.undo("further link", lambda: c.further_links.delete(link.id))
 
     def post_comment(self) -> None:
         c = self.client
@@ -183,16 +183,16 @@ class Seed:
 
     def finance(self) -> None:
         c = self.client
-        period = c.finance.accountingperiods.list()[0].id
+        period = c.finance.accounting_periods.list()[0].id
         accounts = c.finance.accounts.list(accounting_period_id=period)
-        discount = c.finance.cashdiscounts.create(account_id=accounts[0].id, note=PREFIX, rate=2)
-        self.undo("cash discount", lambda: c.finance.cashdiscounts.delete(discount.id, dry_run=False))
+        discount = c.finance.cash_discounts.create(account_id=accounts[0].id, note=PREFIX, rate=2)
+        self.undo("cash discount", lambda: c.finance.cash_discounts.delete(discount.id, dry_run=False))
         split = self.raw(
             "POST",
             "/finance/splittransactions",
             {
                 "amount": 3000,
-                "documentDate": f"{c.finance.accountingperiods.get(period).start_date}",
+                "documentDate": f"{c.finance.accounting_periods.get(period).start_date}",
                 "documentNumber": f"{PREFIX}-{uuid.uuid4().hex[:4]}",
                 "note": PREFIX,
                 "splitChildren": [
@@ -201,7 +201,7 @@ class Seed:
                 ],
             },
         )["data"]
-        self.undo("split transaction", lambda: c.finance.splittransactions.delete(split["id"]))
+        self.undo("split transaction", lambda: c.finance.split_transactions.delete(split["id"]))
         self.paths[("/finance/splittransactions/{id}", "id")] = split["id"]
         self.step("bill", lambda: self.bill(period, split["id"]))
         self.step("eUBP submission", lambda: self.eubp(period))
@@ -209,7 +209,7 @@ class Seed:
 
     def eubp(self, period: int) -> None:
         c = self.client
-        client = c.finance.clients.get(c.finance.accountingperiods.get(period).client_id)
+        client = c.finance.clients.get(c.finance.accounting_periods.get(period).client_id)
         if not client.eubp_business_number:
             # A valid German Betriebsnummer (8 digits, check digit); restored afterwards.
             self._update_finance_client(client, "12345671", f"{PREFIX} GmbH")
@@ -253,15 +253,15 @@ class Seed:
 
     def statement(self, period: int, account_id: int) -> None:
         c = self.client
-        start = c.finance.accountingperiods.get(period).start_date
+        start = c.finance.accounting_periods.get(period).start_date
         camt = CAMT.format(d0=start, d1=start + dt.timedelta(days=1)).encode()
         upload = ct.Upload(f"{PREFIX}-auszug.xml", camt, "text/xml")
-        c.finance.accountingperiods.statements.create(period, files=[upload])  # preview only
+        c.finance.accounting_periods.statements.preview(period, files=[upload])
         # Importing means uploading the file to the account's statement files.
         c.files.create("statement", account_id, files=[upload])
-        statement = next(s for s in c.finance.accountingperiods.accounts.statements.list(period, account_id) if s.name == upload.filename)
+        statement = next(s for s in c.finance.accounting_periods.accounts.statements.list(period, account_id) if s.name == upload.filename)
         # Deleting the statement deletes its file too.
-        self.undo("bank statement", lambda: c.finance.accountingperiods.statements.delete(period, statement.id))
+        self.undo("bank statement", lambda: c.finance.accounting_periods.statements.delete(period, statement.id))
         path = "/finance/accountingperiods/{id}/accounts/{accountId}/statements/{statementId}/movements"
         self.paths[(path, "id")] = period
         self.paths[(path, "accountId")] = account_id
@@ -275,12 +275,12 @@ class Seed:
             self.undo("sync module", lambda: self.raw("PUT", "/config", {"churchsync_active": False}))
         system = c.sync.externalsystems.create(name=PREFIX, adapter="churchtools", access_header_values={})
         self.undo("sync connection", lambda: c.sync.externalsystems.delete(system.id))
-        job = c.sync.externalsystems.jobconfigs.create(system.id, name=f"{PREFIX} Job", domain_type="person", auto_schedule_enabled=False)
-        self.undo("sync job", lambda: c.sync.externalsystems.jobconfigs.delete(system.id, job.id))
-        mapping = c.sync.entitymappings.create(
+        job = c.sync.externalsystems.job_configs.create(system.id, name=f"{PREFIX} Job", domain_type="person", auto_schedule_enabled=False)
+        self.undo("sync job", lambda: c.sync.externalsystems.job_configs.delete(system.id, job.id))
+        mapping = c.sync.entity_mappings.create(
             domain_type="person", domain_id=str(me), source_id=system.id, source_entity_id=f"{PREFIX}-1", status="synced"
         )
-        self.undo("entity mapping", lambda: c.sync.entitymappings.delete(mapping.id))
+        self.undo("entity mapping", lambda: c.sync.entity_mappings.delete(mapping.id))
         # jobId is the GUID of a sync run, not the job configuration id.
         # Conflicts need the GUID of a real sync run, which only a running adapter produces.
         self.step(
@@ -312,7 +312,7 @@ class Seed:
             "/externallogins",
             {"name": f"{PREFIX} SAML", "type": "saml", "config": {}, **{_camel(k): v for k, v in common.items()}},
         )["data"]
-        self.undo("SAML provider", lambda: c.externallogins.delete(saml["id"]))
+        self.undo("SAML provider", lambda: c.external_logins.delete(saml["id"]))
         oidc = self.raw(
             "POST",
             "/externallogins",
@@ -324,7 +324,7 @@ class Seed:
                 **{_camel(k): v for k, v in common.items()},
             },
         )["data"]
-        self.undo("OIDC provider", lambda: c.externallogins.delete(oidc["id"]))
+        self.undo("OIDC provider", lambda: c.external_logins.delete(oidc["id"]))
         for path in ("saml/login", "saml/metadata", "saml/sls", "saml/test/{state}"):
             self.paths[(f"/externallogins/{{externalLoginId}}/{path}", "externalLoginId")] = saml["id"]
         for path in ("oidc/callback", "oidc/start", "oidc/test/{state}"):

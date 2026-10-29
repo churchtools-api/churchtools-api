@@ -3,7 +3,7 @@
   "op_id": "post-actions",
   "method": "POST",
   "path": "/actions",
-  "call": "actions.create",
+  "call": "actions.filter",
   "tags": [
    "Hidden"
   ],
@@ -544,7 +544,7 @@
   "op_id": "get-agendatemplates",
   "method": "GET",
   "path": "/agendatemplates",
-  "call": "agendatemplates.list",
+  "call": "agenda_templates.list",
   "tags": [
    "Agenda"
   ],
@@ -558,7 +558,7 @@
   "op_id": "post-agendatemplates",
   "method": "POST",
   "path": "/agendatemplates",
-  "call": "agendatemplates.create",
+  "call": "agenda_templates.create",
   "tags": [
    "Agenda"
   ],
@@ -623,7 +623,7 @@
   "op_id": "get-agendatemplates-agendaId",
   "method": "GET",
   "path": "/agendatemplates/{agendaId}",
-  "call": "agendatemplates.get",
+  "call": "agenda_templates.get",
   "tags": [
    "Agenda"
   ],
@@ -648,7 +648,7 @@
   "op_id": "put-agendatemplates-agendaId",
   "method": "PUT",
   "path": "/agendatemplates/{agendaId}",
-  "call": "agendatemplates.update",
+  "call": "agenda_templates.update",
   "tags": [
    "Agenda"
   ],
@@ -723,7 +723,7 @@
   "op_id": "delete-agendatemplates-agendaId",
   "method": "DELETE",
   "path": "/agendatemplates/{agendaId}",
-  "call": "agendatemplates.delete",
+  "call": "agenda_templates.delete",
   "tags": [
    "Agenda"
   ],
@@ -758,7 +758,7 @@
   "op_id": "post-agendatemplates-agendaId-export",
   "method": "POST",
   "path": "/agendatemplates/{agendaId}/export",
-  "call": "agendatemplates.export",
+  "call": "agenda_templates.export",
   "tags": [
    "Agenda"
   ],
@@ -827,7 +827,7 @@
   "op_id": "post-agendatemplates-agendaId-items",
   "method": "POST",
   "path": "/agendatemplates/{agendaId}/items",
-  "call": "agendatemplates.items.create",
+  "call": "agenda_templates.items.create",
   "tags": [
    "Agenda"
   ],
@@ -892,7 +892,7 @@
   "op_id": "put-agendatemplates-agendaId-items-itemId",
   "method": "PUT",
   "path": "/agendatemplates/{agendaId}/items/{itemId}",
-  "call": "agendatemplates.items.update",
+  "call": "agenda_templates.items.update",
   "tags": [
    "Agenda"
   ],
@@ -967,7 +967,7 @@
   "op_id": "delete-agendatemplates-agendaId-items-itemId",
   "method": "DELETE",
   "path": "/agendatemplates/{agendaId}/items/{itemId}",
-  "call": "agendatemplates.items.delete",
+  "call": "agenda_templates.items.delete",
   "tags": [
    "Agenda"
   ],
@@ -1002,7 +1002,7 @@
   "op_id": "put-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId",
   "method": "PUT",
   "path": "/agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}",
-  "call": "agendatemplates.items.servicegroups.update",
+  "call": "agenda_templates.items.service_groups.update",
   "tags": [
    "Agenda"
   ],
@@ -1057,7 +1057,7 @@
   "op_id": "delete-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId",
   "method": "DELETE",
   "path": "/agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}",
-  "call": "agendatemplates.items.servicegroups.delete",
+  "call": "agenda_templates.items.service_groups.delete",
   "tags": [
    "Agenda"
   ],
@@ -1945,7 +1945,7 @@
   "op_id": "post-bulkjobs",
   "method": "POST",
   "path": "/bulkjobs/{domainType}/{jobKey}/enqueue",
-  "call": "bulkjobs.enqueue",
+  "call": "bulk_jobs.enqueue",
   "tags": [
    "Bulk"
   ],
@@ -2084,7 +2084,7 @@
   "op_id": "post-bulkjobs-infos",
   "method": "POST",
   "path": "/bulkjobs/{domainType}/{jobKey}/infos",
-  "call": "bulkjobs.infos",
+  "call": "bulk_jobs.infos",
   "tags": [
    "Bulk"
   ],
@@ -2223,7 +2223,7 @@
   "op_id": "get-bulkletters",
   "method": "GET",
   "path": "/bulkletters",
-  "call": "bulkletters.list",
+  "call": "bulk_letters.list",
   "tags": [
    "Bulkletter"
   ],
@@ -2237,7 +2237,7 @@
   "op_id": "post-bulkletters",
   "method": "POST",
   "path": "/bulkletters",
-  "call": "bulkletters.create",
+  "call": "bulk_letters.create",
   "tags": [
    "Bulkletter"
   ],
@@ -2315,7 +2315,7 @@
   "op_id": "post-bulkletters-execute",
   "method": "POST",
   "path": "/bulkletters/execute",
-  "call": "bulkletters.execute",
+  "call": "bulk_letters.execute",
   "tags": [
    "Bulkletter"
   ],
@@ -2340,7 +2340,7 @@
   "op_id": "get-bulkletters-id",
   "method": "GET",
   "path": "/bulkletters/{id}",
-  "call": "bulkletters.get",
+  "call": "bulk_letters.get",
   "tags": [
    "Bulkletter"
   ],
@@ -2365,7 +2365,7 @@
   "op_id": "delete-bulkletters-id",
   "method": "DELETE",
   "path": "/bulkletters/{id}",
-  "call": "bulkletters.delete",
+  "call": "bulk_letters.delete",
   "tags": [
    "Bulkletter"
   ],
@@ -2390,7 +2390,7 @@
   "op_id": "get-bulkletters-id-persons",
   "method": "GET",
   "path": "/bulkletters/{id}/persons",
-  "call": "bulkletters.list_persons",
+  "call": "bulk_letters.list_persons",
   "tags": [
    "Bulkletter"
   ],
@@ -4303,7 +4303,7 @@
   "op_id": "post-calendars-calendarId-appointments-appointmentId-changeimpact",
   "method": "POST",
   "path": "/calendars/{calendarId}/appointments/{appointmentId}/changeimpact",
-  "call": "calendars.appointments.changeimpact",
+  "call": "calendars.appointments.change_impact",
   "tags": [
    "Calendar"
   ],
@@ -4473,7 +4473,7 @@
   "op_id": "get-calendars-calendarId-appointments-appointmentId-meetingrequests",
   "method": "GET",
   "path": "/calendars/{calendarId}/appointments/{appointmentId}/meetingrequests",
-  "call": "calendars.appointments.meetingrequests.list",
+  "call": "calendars.appointments.meeting_requests.list",
   "tags": [
    "Calendar"
   ],
@@ -4508,7 +4508,7 @@
   "op_id": "post-calendars-calendarId-appointments-appointmentId-meetingrequests",
   "method": "POST",
   "path": "/calendars/{calendarId}/appointments/{appointmentId}/meetingrequests",
-  "call": "calendars.appointments.meetingrequests.create",
+  "call": "calendars.appointments.meeting_requests.create",
   "tags": [
    "Calendar"
   ],
@@ -4553,7 +4553,7 @@
   "op_id": "put-calendars-calendarId-appointments-appointmentId-meetingrequests-meetingRequestId",
   "method": "PUT",
   "path": "/calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId}",
-  "call": "calendars.appointments.meetingrequests.update",
+  "call": "calendars.appointments.meeting_requests.update",
   "tags": [
    "Calendar"
   ],
@@ -4608,7 +4608,7 @@
   "op_id": "delete-calendars-calendarId-appointments-appointmentId-meetingrequests-meetingRequestId",
   "method": "DELETE",
   "path": "/calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId}",
-  "call": "calendars.appointments.meetingrequests.delete",
+  "call": "calendars.appointments.meeting_requests.delete",
   "tags": [
    "Calendar"
   ],
@@ -4653,7 +4653,7 @@
   "op_id": "post-calendars-calendarId-appointments-appointmentId-meetingrequests-meetingRequestId-answer",
   "method": "POST",
   "path": "/calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId}/{answer}",
-  "call": "calendars.appointments.meetingrequests.answer",
+  "call": "calendars.appointments.meeting_requests.answer",
   "tags": [
    "Calendar"
   ],
@@ -4784,7 +4784,7 @@
   "op_id": "get-calendars-calendarId-meetingrequest-candidates",
   "method": "GET",
   "path": "/calendars/{calendarId}/meetingrequest/candidates",
-  "call": "calendars.meetingrequest.list_candidates",
+  "call": "calendars.meeting_request.list_candidates",
   "tags": [
    "Calendar"
   ],
@@ -4819,7 +4819,7 @@
   "op_id": "get-calendars-calendarId-meetingrequestpersons",
   "method": "GET",
   "path": "/calendars/{calendarId}/meetingrequestpersons",
-  "call": "calendars.list_meetingrequestpersons",
+  "call": "calendars.list_meeting_request_persons",
   "tags": [
    "Calendar"
   ],
@@ -5357,7 +5357,7 @@
   "op_id": "post-churchquery-debug-export",
   "method": "POST",
   "path": "/churchquery/debug/export",
-  "call": "churchquery.debug.export",
+  "call": "church_query.debug.export",
   "tags": [
    "Hidden"
   ],
@@ -5392,7 +5392,7 @@
   "op_id": "get-churchquery-metadata",
   "method": "GET",
   "path": "/churchquery/metadata",
-  "call": "churchquery.get_metadata",
+  "call": "church_query.get_metadata",
   "tags": [
    "Hidden"
   ],
@@ -6937,7 +6937,7 @@
   "op_id": "get-contactlabels",
   "method": "GET",
   "path": "/contactlabels",
-  "call": "contactlabels.list",
+  "call": "contact_labels.list",
   "tags": [
    "Contact Label"
   ],
@@ -6951,7 +6951,7 @@
   "op_id": "post-contactlabels",
   "method": "POST",
   "path": "/contactlabels",
-  "call": "contactlabels.create",
+  "call": "contact_labels.create",
   "tags": [
    "Contact Label"
   ],
@@ -6996,7 +6996,7 @@
   "op_id": "get-contactlabels-id",
   "method": "GET",
   "path": "/contactlabels/{id}",
-  "call": "contactlabels.get",
+  "call": "contact_labels.get",
   "tags": [
    "Contact Label"
   ],
@@ -7021,7 +7021,7 @@
   "op_id": "put-contactlabels-id",
   "method": "PUT",
   "path": "/contactlabels/{id}",
-  "call": "contactlabels.update",
+  "call": "contact_labels.update",
   "tags": [
    "Contact Label"
   ],
@@ -7076,7 +7076,7 @@
   "op_id": "delete-contactlabels-id",
   "method": "DELETE",
   "path": "/contactlabels/{id}",
-  "call": "contactlabels.delete",
+  "call": "contact_labels.delete",
   "tags": [
    "Contact Label"
   ],
@@ -7111,7 +7111,7 @@
   "op_id": "get-csrftoken",
   "method": "GET",
   "path": "/csrftoken",
-  "call": "csrftoken.get",
+  "call": "csrf_token.get",
   "tags": [
    "General"
   ],
@@ -7125,7 +7125,7 @@
   "op_id": "get-dbfields",
   "method": "GET",
   "path": "/dbfields",
-  "call": "dbfields.list",
+  "call": "db_fields.list",
   "tags": [
    "DB Fields"
   ],
@@ -7170,7 +7170,7 @@
   "op_id": "post-dbfields",
   "method": "POST",
   "path": "/dbfields",
-  "call": "dbfields.create",
+  "call": "db_fields.create",
   "tags": [
    "DB Fields"
   ],
@@ -7305,7 +7305,7 @@
   "op_id": "get-dbfields-fieldId",
   "method": "GET",
   "path": "/dbfields/{fieldId}",
-  "call": "dbfields.get",
+  "call": "db_fields.get",
   "tags": [
    "DB Fields"
   ],
@@ -7330,7 +7330,7 @@
   "op_id": "put-dbfields-fieldId",
   "method": "PUT",
   "path": "/dbfields/{fieldId}",
-  "call": "dbfields.update",
+  "call": "db_fields.update",
   "tags": [
    "DB Fields"
   ],
@@ -7475,7 +7475,7 @@
   "op_id": "delete-dbfields-fieldId",
   "method": "DELETE",
   "path": "/dbfields/{fieldId}",
-  "call": "dbfields.delete",
+  "call": "db_fields.delete",
   "tags": [
    "DB Fields"
   ],
@@ -7500,7 +7500,7 @@
   "op_id": "get-dbfields-fieldId-options",
   "method": "GET",
   "path": "/dbfields/{fieldId}/options",
-  "call": "dbfields.options.list",
+  "call": "db_fields.options.list",
   "tags": [
    "DB Fields"
   ],
@@ -7525,7 +7525,7 @@
   "op_id": "post-dbfields-id-options",
   "method": "POST",
   "path": "/dbfields/{fieldId}/options",
-  "call": "dbfields.options.create",
+  "call": "db_fields.options.create",
   "tags": [
    "DB Fields"
   ],
@@ -7570,7 +7570,7 @@
   "op_id": "get-dbfields-fieldId-options-metadata",
   "method": "GET",
   "path": "/dbfields/{fieldId}/options/metadata",
-  "call": "dbfields.options.list_metadata",
+  "call": "db_fields.options.list_metadata",
   "tags": [
    "DB Fields"
   ],
@@ -7595,7 +7595,7 @@
   "op_id": "put-dbfields-fieldId-options-optionId",
   "method": "PUT",
   "path": "/dbfields/{fieldId}/options/{optionId}",
-  "call": "dbfields.options.update",
+  "call": "db_fields.options.update",
   "tags": [
    "DB Fields"
   ],
@@ -7650,7 +7650,7 @@
   "op_id": "delete-dbfields-fieldId-options-optionId",
   "method": "DELETE",
   "path": "/dbfields/{fieldId}/options/{optionId}",
-  "call": "dbfields.options.delete",
+  "call": "db_fields.options.delete",
   "tags": [
    "DB Fields"
   ],
@@ -7695,7 +7695,7 @@
   "op_id": "get-dbfieldtypes",
   "method": "GET",
   "path": "/dbfieldtypes",
-  "call": "dbfieldtypes.list",
+  "call": "db_field_types.list",
   "tags": [
    "DB Fields"
   ],
@@ -7723,7 +7723,7 @@
   "op_id": "get-domainobjects",
   "method": "GET",
   "path": "/domainobjects",
-  "call": "domainobjects.list",
+  "call": "domain_objects.list",
   "tags": [
    "DomainObjects"
   ],
@@ -7773,7 +7773,7 @@
   "op_id": "post-domainobjects",
   "method": "POST",
   "path": "/domainobjects",
-  "call": "domainobjects.create",
+  "call": "domain_objects.resolve",
   "tags": [
    "DomainObjects"
   ],
@@ -7814,7 +7814,7 @@
   "op_id": "get-dynamicgroups",
   "method": "GET",
   "path": "/dynamicgroups",
-  "call": "dynamicgroups.list",
+  "call": "dynamic_groups.list",
   "tags": [
    "DynamicGroups"
   ],
@@ -7828,7 +7828,7 @@
   "op_id": "post-dynamicgroups",
   "method": "POST",
   "path": "/dynamicgroups/refresh",
-  "call": "dynamicgroups.refresh_all",
+  "call": "dynamic_groups.refresh_all",
   "tags": [
    "DynamicGroups"
   ],
@@ -7842,7 +7842,7 @@
   "op_id": "post-dynamicgroups-id-refresh",
   "method": "POST",
   "path": "/dynamicgroups/{groupId}/refresh",
-  "call": "dynamicgroups.refresh",
+  "call": "dynamic_groups.refresh",
   "tags": [
    "DynamicGroups"
   ],
@@ -7867,7 +7867,7 @@
   "op_id": "get-dynamicgroups-id-ruleset",
   "method": "GET",
   "path": "/dynamicgroups/{groupId}/ruleset",
-  "call": "dynamicgroups.list_ruleset",
+  "call": "dynamic_groups.list_ruleset",
   "tags": [
    "DynamicGroups"
   ],
@@ -7892,7 +7892,7 @@
   "op_id": "put-dynamicgroups-id-ruleset",
   "method": "PUT",
   "path": "/dynamicgroups/{groupId}/ruleset",
-  "call": "dynamicgroups.update_ruleset",
+  "call": "dynamic_groups.update_ruleset",
   "tags": [
    "DynamicGroups"
   ],
@@ -7927,7 +7927,7 @@
   "op_id": "delete-dynamicgroups-id-ruleset",
   "method": "DELETE",
   "path": "/dynamicgroups/{groupId}/ruleset",
-  "call": "dynamicgroups.delete_ruleset",
+  "call": "dynamic_groups.delete_ruleset",
   "tags": [
    "DynamicGroups"
   ],
@@ -7952,7 +7952,7 @@
   "op_id": "get-dynamicgroups-id-status",
   "method": "GET",
   "path": "/dynamicgroups/{groupId}/status",
-  "call": "dynamicgroups.get_status",
+  "call": "dynamic_groups.get_status",
   "tags": [
    "DynamicGroups"
   ],
@@ -7977,7 +7977,7 @@
   "op_id": "put-dynamicgroups-id-status",
   "method": "PUT",
   "path": "/dynamicgroups/{groupId}/status",
-  "call": "dynamicgroups.update_status",
+  "call": "dynamic_groups.update_status",
   "tags": [
    "DynamicGroups"
   ],
@@ -8012,7 +8012,7 @@
   "op_id": "post-emails-placeholderstatistics",
   "method": "POST",
   "path": "/emails/placeholderstatistics",
-  "call": "emails.placeholderstatistics",
+  "call": "emails.placeholder_statistics",
   "tags": [
    "Email"
   ],
@@ -8159,7 +8159,7 @@
   "op_id": "delete-evangelischetermine",
   "method": "DELETE",
   "path": "/evangelischetermine",
-  "call": "evangelischetermine.delete",
+  "call": "evangelische_termine.delete",
   "tags": [
    "EvangelischeTermine"
   ],
@@ -8173,7 +8173,7 @@
   "op_id": "get-evangelischetermine-eventtypes",
   "method": "GET",
   "path": "/evangelischetermine/eventtypes",
-  "call": "evangelischetermine.list_eventtypes",
+  "call": "evangelische_termine.list_event_types",
   "tags": [
    "EvangelischeTermine"
   ],
@@ -8187,7 +8187,7 @@
   "op_id": "post-evangelischetermine-validatesettings",
   "method": "POST",
   "path": "/evangelischetermine/validatesettings",
-  "call": "evangelischetermine.validatesettings",
+  "call": "evangelische_termine.validate_settings",
   "tags": [
    "EvangelischeTermine"
   ],
@@ -8232,7 +8232,7 @@
   "op_id": "get-event-masterdata",
   "method": "GET",
   "path": "/event/masterdata",
-  "call": "event.get_masterdata",
+  "call": "event.get_master_data",
   "tags": [
    "MasterData",
    "Event"
@@ -9157,7 +9157,7 @@
   "op_id": "put-events-id-agenda-items-id-servicegroups-id",
   "method": "PUT",
   "path": "/events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}",
-  "call": "events.agenda.items.servicegroups.update",
+  "call": "events.agenda.items.service_groups.update",
   "tags": [
    "Agenda"
   ],
@@ -9212,7 +9212,7 @@
   "op_id": "delete-events-id-agenda-items-id-servicegroups-id",
   "method": "DELETE",
   "path": "/events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}",
-  "call": "events.agenda.items.servicegroups.delete",
+  "call": "events.agenda.items.service_groups.delete",
   "tags": [
    "Agenda"
   ],
@@ -9412,7 +9412,7 @@
   "op_id": "put-events-id-eventservices",
   "method": "PUT",
   "path": "/events/{eventId}/eventservices",
-  "call": "events.eventservices.update_all",
+  "call": "events.event_services.update_all",
   "tags": [
    "Event"
   ],
@@ -9447,7 +9447,7 @@
   "op_id": "put-events-id-eventservices-id",
   "method": "PUT",
   "path": "/events/{eventId}/eventservices/{serviceId}",
-  "call": "events.eventservices.update",
+  "call": "events.event_services.update",
   "tags": [
    "Event"
   ],
@@ -9542,7 +9542,7 @@
   "op_id": "delete-events-id-eventservices-id",
   "method": "DELETE",
   "path": "/events/{eventId}/eventservices/{serviceId}",
-  "call": "events.eventservices.delete",
+  "call": "events.event_services.delete",
   "tags": [
    "Event"
   ],
@@ -9731,7 +9731,7 @@
   "op_id": "put-events-eventId-servicerequests",
   "method": "PUT",
   "path": "/events/{eventId}/servicerequests",
-  "call": "events.servicerequests.update_all",
+  "call": "events.service_requests.update_all",
   "tags": [
    "Event"
   ],
@@ -9766,7 +9766,7 @@
   "op_id": "put-events-eventId-servicerequests-requestId",
   "method": "PUT",
   "path": "/events/{eventId}/servicerequests/{requestId}",
-  "call": "events.servicerequests.update",
+  "call": "events.service_requests.update",
   "tags": [
    "Event"
   ],
@@ -9861,7 +9861,7 @@
   "op_id": "post-events-id-servicerequests-id-accept",
   "method": "POST",
   "path": "/events/{eventId}/servicerequests/{requestId}/accept",
-  "call": "events.servicerequests.accept",
+  "call": "events.service_requests.accept",
   "tags": [
    "Event"
   ],
@@ -9906,7 +9906,7 @@
   "op_id": "post-events-id-servicerequests-id-decline",
   "method": "POST",
   "path": "/events/{eventId}/servicerequests/{requestId}/decline",
-  "call": "events.servicerequests.decline",
+  "call": "events.service_requests.decline",
   "tags": [
    "Event"
   ],
@@ -9951,7 +9951,7 @@
   "op_id": "post-events-id-servicerequests-id-undo",
   "method": "POST",
   "path": "/events/{eventId}/servicerequests/{requestId}/undo",
-  "call": "events.servicerequests.undo",
+  "call": "events.service_requests.undo",
   "tags": [
    "Event"
   ],
@@ -9996,7 +9996,7 @@
   "op_id": "get-events-eventId-services-serviceId-possiblepersons",
   "method": "GET",
   "path": "/events/{eventId}/services/{serviceId}/possiblepersons",
-  "call": "events.services.list_possiblepersons",
+  "call": "events.services.list_possible_persons",
   "tags": [
    "Event"
   ],
@@ -10031,7 +10031,7 @@
   "op_id": "get-events-id-possiblepersonsforservice",
   "method": "GET",
   "path": "/events/{serviceId}/possiblepersonsforservice",
-  "call": "events.list_possiblepersonsforservice",
+  "call": "events.list_possible_persons_for_service",
   "tags": [
    "Event"
   ],
@@ -10056,7 +10056,7 @@
   "op_id": "get-eventtemplates",
   "method": "GET",
   "path": "/eventtemplates",
-  "call": "eventtemplates.list",
+  "call": "event_templates.list",
   "tags": [
    "Event"
   ],
@@ -10070,7 +10070,7 @@
   "op_id": "get-externallogins",
   "method": "GET",
   "path": "/externallogins",
-  "call": "externallogins.list",
+  "call": "external_logins.list",
   "tags": [
    "General"
   ],
@@ -10084,7 +10084,7 @@
   "op_id": "post-externallogins",
   "method": "POST",
   "path": "/externallogins",
-  "call": "externallogins.create",
+  "call": "external_logins.create",
   "tags": [
    "General"
   ],
@@ -10229,7 +10229,7 @@
   "op_id": "post-externallogins-oidc-backchannel-logout",
   "method": "POST",
   "path": "/externallogins/oidc/backchannel-logout",
-  "call": "externallogins.oidc.backchannel_logout",
+  "call": "external_logins.oidc.backchannel_logout",
   "tags": [
    "General"
   ],
@@ -10243,7 +10243,7 @@
   "op_id": "get-externallogins-oidc-callback",
   "method": "GET",
   "path": "/externallogins/oidc/callback",
-  "call": "externallogins.oidc.callback",
+  "call": "external_logins.oidc.callback",
   "tags": [
    "Hidden"
   ],
@@ -10288,7 +10288,7 @@
   "op_id": "post-externallogins-saml-metadata-parse",
   "method": "POST",
   "path": "/externallogins/saml/metadata/parse",
-  "call": "externallogins.saml.metadata.parse",
+  "call": "external_logins.saml.metadata.parse",
   "tags": [
    "General"
   ],
@@ -10313,7 +10313,7 @@
   "op_id": "get-externallogins-id",
   "method": "GET",
   "path": "/externallogins/{externalLoginId}",
-  "call": "externallogins.get",
+  "call": "external_logins.get",
   "tags": [
    "General"
   ],
@@ -10338,7 +10338,7 @@
   "op_id": "put-externallogins-id",
   "method": "PUT",
   "path": "/externallogins/{externalLoginId}",
-  "call": "externallogins.update",
+  "call": "external_logins.update",
   "tags": [
    "General"
   ],
@@ -10493,7 +10493,7 @@
   "op_id": "delete-externallogins-externalloginid",
   "method": "DELETE",
   "path": "/externallogins/{externalLoginId}",
-  "call": "externallogins.delete",
+  "call": "external_logins.delete",
   "tags": [
    "General"
   ],
@@ -10518,7 +10518,7 @@
   "op_id": "post-externallogins-id-link",
   "method": "POST",
   "path": "/externallogins/{externalLoginId}/link",
-  "call": "externallogins.link.create",
+  "call": "external_logins.link.create",
   "tags": [
    "Hidden"
   ],
@@ -10573,7 +10573,7 @@
   "op_id": "post-externallogins-id-link-create-person",
   "method": "POST",
   "path": "/externallogins/{externalLoginId}/link/create-person",
-  "call": "externallogins.link.create_person",
+  "call": "external_logins.link.create_person",
   "tags": [
    "Hidden"
   ],
@@ -10608,7 +10608,7 @@
   "op_id": "get-externallogins-id-oidc-callback",
   "method": "GET",
   "path": "/externallogins/{externalLoginId}/oidc/callback",
-  "call": "externallogins.oidc.callback_for",
+  "call": "external_logins.oidc.callback_for",
   "tags": [
    "Hidden"
   ],
@@ -10663,7 +10663,7 @@
   "op_id": "get-externallogins-id-oidc-start",
   "method": "GET",
   "path": "/externallogins/{externalLoginId}/oidc/start",
-  "call": "externallogins.oidc.get_start",
+  "call": "external_logins.oidc.get_start",
   "tags": [
    "Hidden"
   ],
@@ -10698,7 +10698,7 @@
   "op_id": "post-externallogins-id-oidc-test",
   "method": "POST",
   "path": "/externallogins/{externalLoginId}/oidc/test",
-  "call": "externallogins.oidc.test.create",
+  "call": "external_logins.oidc.test.create",
   "tags": [
    "Hidden"
   ],
@@ -10723,7 +10723,7 @@
   "op_id": "get-externallogins-id-oidc-test-state",
   "method": "GET",
   "path": "/externallogins/{externalLoginId}/oidc/test/{state}",
-  "call": "externallogins.oidc.test.get",
+  "call": "external_logins.oidc.test.get",
   "tags": [
    "Hidden"
   ],
@@ -10758,7 +10758,7 @@
   "op_id": "post-externallogins-externalLoginId-saml-acs",
   "method": "POST",
   "path": "/externallogins/{externalLoginId}/saml/acs",
-  "call": "externallogins.saml.acs",
+  "call": "external_logins.saml.acs",
   "tags": [
    "General"
   ],
@@ -10783,7 +10783,7 @@
   "op_id": "get-externallogins-externalLoginId-saml-login",
   "method": "GET",
   "path": "/externallogins/{externalLoginId}/saml/login",
-  "call": "externallogins.saml.get_login",
+  "call": "external_logins.saml.get_login",
   "tags": [
    "General"
   ],
@@ -10818,7 +10818,7 @@
   "op_id": "get-externallogins-externalLoginId-saml-metadata",
   "method": "GET",
   "path": "/externallogins/{externalLoginId}/saml/metadata",
-  "call": "externallogins.saml.get_metadata",
+  "call": "external_logins.saml.get_metadata",
   "tags": [
    "General"
   ],
@@ -10843,7 +10843,7 @@
   "op_id": "get-externallogins-externalLoginId-saml-sls",
   "method": "GET",
   "path": "/externallogins/{externalLoginId}/saml/sls",
-  "call": "externallogins.saml.get_sls",
+  "call": "external_logins.saml.get_sls",
   "tags": [
    "General"
   ],
@@ -10918,7 +10918,7 @@
   "op_id": "post-externallogins-externalLoginId-saml-sls",
   "method": "POST",
   "path": "/externallogins/{externalLoginId}/saml/sls",
-  "call": "externallogins.saml.create_sls",
+  "call": "external_logins.saml.create_sls",
   "tags": [
    "General"
   ],
@@ -10993,7 +10993,7 @@
   "op_id": "put-externallogins-externalLoginId-saml-sls",
   "method": "PUT",
   "path": "/externallogins/{externalLoginId}/saml/sls",
-  "call": "externallogins.saml.update_sls",
+  "call": "external_logins.saml.update_sls",
   "tags": [
    "General"
   ],
@@ -11068,7 +11068,7 @@
   "op_id": "patch-externallogins-externalLoginId-saml-sls",
   "method": "PATCH",
   "path": "/externallogins/{externalLoginId}/saml/sls",
-  "call": "externallogins.saml.patch_sls",
+  "call": "external_logins.saml.patch_sls",
   "tags": [
    "General"
   ],
@@ -11143,7 +11143,7 @@
   "op_id": "delete-externallogins-externalLoginId-saml-sls",
   "method": "DELETE",
   "path": "/externallogins/{externalLoginId}/saml/sls",
-  "call": "externallogins.saml.delete_sls",
+  "call": "external_logins.saml.delete_sls",
   "tags": [
    "General"
   ],
@@ -11218,7 +11218,7 @@
   "op_id": "post-externallogins-id-saml-test",
   "method": "POST",
   "path": "/externallogins/{externalLoginId}/saml/test",
-  "call": "externallogins.saml.test.create",
+  "call": "external_logins.saml.test.create",
   "tags": [
    "Hidden"
   ],
@@ -11243,7 +11243,7 @@
   "op_id": "get-externallogins-id-saml-test-state",
   "method": "GET",
   "path": "/externallogins/{externalLoginId}/saml/test/{state}",
-  "call": "externallogins.saml.test.get",
+  "call": "external_logins.saml.test.get",
   "tags": [
    "Hidden"
   ],
@@ -11278,7 +11278,7 @@
   "op_id": "get-externalposts",
   "method": "GET",
   "path": "/externalposts",
-  "call": "externalposts.list",
+  "call": "external_posts.list",
   "tags": [
    "Post"
   ],
@@ -11365,7 +11365,7 @@
   "op_id": "get-externalposts-instances-guid-channels-guid-posts-guid",
   "method": "GET",
   "path": "/externalposts/instances/{instanceGuid}/channels/{channelGuid}/posts/{postGuid}",
-  "call": "externalposts.instances.channels.posts.get",
+  "call": "external_posts.instances.channels.posts.get",
   "tags": [
    "Post"
   ],
@@ -11544,7 +11544,7 @@
   "op_id": "post-featureusage",
   "method": "POST",
   "path": "/featureusage",
-  "call": "featureusage.create",
+  "call": "feature_usage.create",
   "tags": [
    "Hidden"
   ],
@@ -12003,7 +12003,7 @@
   "op_id": "get-finance-accountclasses",
   "method": "GET",
   "path": "/finance/accountclasses",
-  "call": "finance.accountclasses.list",
+  "call": "finance.account_classes.list",
   "tags": [
    "Finance"
   ],
@@ -12017,7 +12017,7 @@
   "op_id": "post-finance-accountclasses",
   "method": "POST",
   "path": "/finance/accountclasses",
-  "call": "finance.accountclasses.create",
+  "call": "finance.account_classes.create",
   "tags": [
    "Finance"
   ],
@@ -12072,7 +12072,7 @@
   "op_id": "get-finance-accountclasses-id",
   "method": "GET",
   "path": "/finance/accountclasses/{id}",
-  "call": "finance.accountclasses.get",
+  "call": "finance.account_classes.get",
   "tags": [
    "Finance"
   ],
@@ -12097,7 +12097,7 @@
   "op_id": "put-finance-accountclasses-id",
   "method": "PUT",
   "path": "/finance/accountclasses/{id}",
-  "call": "finance.accountclasses.update",
+  "call": "finance.account_classes.update",
   "tags": [
    "Finance"
   ],
@@ -12162,7 +12162,7 @@
   "op_id": "delete-finance-accountclasses-id",
   "method": "DELETE",
   "path": "/finance/accountclasses/{id}",
-  "call": "finance.accountclasses.delete",
+  "call": "finance.account_classes.delete",
   "tags": [
    "Finance"
   ],
@@ -12197,7 +12197,7 @@
   "op_id": "get-finance-accountgroups",
   "method": "GET",
   "path": "/finance/accountgroups",
-  "call": "finance.accountgroups.list",
+  "call": "finance.account_groups.list",
   "tags": [
    "Finance"
   ],
@@ -12211,7 +12211,7 @@
   "op_id": "post-finance-accountgroups",
   "method": "POST",
   "path": "/finance/accountgroups",
-  "call": "finance.accountgroups.create",
+  "call": "finance.account_groups.create",
   "tags": [
    "Finance"
   ],
@@ -12266,7 +12266,7 @@
   "op_id": "get-finance-accountgroups-id",
   "method": "GET",
   "path": "/finance/accountgroups/{id}",
-  "call": "finance.accountgroups.get",
+  "call": "finance.account_groups.get",
   "tags": [
    "Finance"
   ],
@@ -12291,7 +12291,7 @@
   "op_id": "put-finance-accountgroups-id",
   "method": "PUT",
   "path": "/finance/accountgroups/{id}",
-  "call": "finance.accountgroups.update",
+  "call": "finance.account_groups.update",
   "tags": [
    "Finance"
   ],
@@ -12356,7 +12356,7 @@
   "op_id": "delete-finance-accountgroups-id",
   "method": "DELETE",
   "path": "/finance/accountgroups/{id}",
-  "call": "finance.accountgroups.delete",
+  "call": "finance.account_groups.delete",
   "tags": [
    "Finance"
   ],
@@ -12391,7 +12391,7 @@
   "op_id": "get-finance-accountingperiods",
   "method": "GET",
   "path": "/finance/accountingperiods",
-  "call": "finance.accountingperiods.list",
+  "call": "finance.accounting_periods.list",
   "tags": [
    "Finance"
   ],
@@ -12405,7 +12405,7 @@
   "op_id": "post-finance-accountingperiods",
   "method": "POST",
   "path": "/finance/accountingperiods",
-  "call": "finance.accountingperiods.create",
+  "call": "finance.accounting_periods.create",
   "tags": [
    "Finance"
   ],
@@ -12490,7 +12490,7 @@
   "op_id": "get-finance-accountingperiods-id",
   "method": "GET",
   "path": "/finance/accountingperiods/{id}",
-  "call": "finance.accountingperiods.get",
+  "call": "finance.accounting_periods.get",
   "tags": [
    "Finance"
   ],
@@ -12515,7 +12515,7 @@
   "op_id": "put-finance-accountingperiods-id",
   "method": "PUT",
   "path": "/finance/accountingperiods/{id}",
-  "call": "finance.accountingperiods.update",
+  "call": "finance.accounting_periods.update",
   "tags": [
    "Finance"
   ],
@@ -12610,7 +12610,7 @@
   "op_id": "delete-finance-accountingperiods-id",
   "method": "DELETE",
   "path": "/finance/accountingperiods/{id}",
-  "call": "finance.accountingperiods.delete",
+  "call": "finance.accounting_periods.delete",
   "tags": [
    "Finance"
   ],
@@ -12645,7 +12645,7 @@
   "op_id": "delete-finance-accountingperiods-id-accounts",
   "method": "DELETE",
   "path": "/finance/accountingperiods/{id}/accounts",
-  "call": "finance.accountingperiods.accounts.delete",
+  "call": "finance.accounting_periods.accounts.delete",
   "tags": [
    "Finance"
   ],
@@ -12670,7 +12670,7 @@
   "op_id": "get-finance-accountingperiods-id-accounts-statements",
   "method": "GET",
   "path": "/finance/accountingperiods/{id}/accounts/statements",
-  "call": "finance.accountingperiods.accounts.list_statements",
+  "call": "finance.accounting_periods.accounts.list_statements",
   "tags": [
    "Finance"
   ],
@@ -12695,7 +12695,7 @@
   "op_id": "get-finance-accountingperiods-id-accounts-id-movements",
   "method": "GET",
   "path": "/finance/accountingperiods/{id}/accounts/{accountId}/movements",
-  "call": "finance.accountingperiods.accounts.list_movements",
+  "call": "finance.accounting_periods.accounts.list_movements",
   "tags": [
    "Finance"
   ],
@@ -12776,7 +12776,7 @@
   "op_id": "get-finance-accountingperiods-id-accounts-id-statements",
   "method": "GET",
   "path": "/finance/accountingperiods/{id}/accounts/{accountId}/statements",
-  "call": "finance.accountingperiods.accounts.statements.list",
+  "call": "finance.accounting_periods.accounts.statements.list",
   "tags": [
    "Finance"
   ],
@@ -12811,7 +12811,7 @@
   "op_id": "get-finance-accountingperiods-id-accounts-id-statements-id-movements",
   "method": "GET",
   "path": "/finance/accountingperiods/{id}/accounts/{accountId}/statements/{statementId}/movements",
-  "call": "finance.accountingperiods.accounts.statements.movements.list",
+  "call": "finance.accounting_periods.accounts.statements.movements.list",
   "tags": [
    "Finance"
   ],
@@ -12902,7 +12902,7 @@
   "op_id": "post-finance-accountingperiods-id-accounts-id-statements-id-movements-id",
   "method": "POST",
   "path": "/finance/accountingperiods/{id}/accounts/{accountId}/statements/{statementId}/movements/{movementId}",
-  "call": "finance.accountingperiods.accounts.statements.movements.create",
+  "call": "finance.accounting_periods.accounts.statements.movements.create",
   "tags": [
    "Finance"
   ],
@@ -12967,7 +12967,7 @@
   "op_id": "patch-finance-accountingperiods-id-accounts-id-statements-id-movements-id-suggestions",
   "method": "PATCH",
   "path": "/finance/accountingperiods/{id}/accounts/{accountId}/statements/{statementId}/movements/{movementId}/suggestions",
-  "call": "finance.accountingperiods.accounts.statements.movements.patch_suggestions",
+  "call": "finance.accounting_periods.accounts.statements.movements.patch_suggestions",
   "tags": [
    "Finance"
   ],
@@ -13032,7 +13032,7 @@
   "op_id": "get-finance-accountingperiods-id-bills",
   "method": "GET",
   "path": "/finance/accountingperiods/{id}/bills",
-  "call": "finance.accountingperiods.list_bills",
+  "call": "finance.accounting_periods.list_bills",
   "tags": [
    "Finance"
   ],
@@ -13092,7 +13092,7 @@
   "op_id": "post-finance-accountingperiods-id-statements",
   "method": "POST",
   "path": "/finance/accountingperiods/{id}/statements",
-  "call": "finance.accountingperiods.statements.create",
+  "call": "finance.accounting_periods.statements.preview",
   "tags": [
    "Finance"
   ],
@@ -13127,7 +13127,7 @@
   "op_id": "put-finance-accountingperiods-id-statements-id",
   "method": "PUT",
   "path": "/finance/accountingperiods/{id}/statements/{statementId}",
-  "call": "finance.accountingperiods.statements.update",
+  "call": "finance.accounting_periods.statements.update",
   "tags": [
    "Finance"
   ],
@@ -13172,7 +13172,7 @@
   "op_id": "delete-finance-accountingperiods-id-statements-id",
   "method": "DELETE",
   "path": "/finance/accountingperiods/{id}/statements/{statementId}",
-  "call": "finance.accountingperiods.statements.delete",
+  "call": "finance.accounting_periods.statements.delete",
   "tags": [
    "Finance"
   ],
@@ -13207,7 +13207,7 @@
   "op_id": "post-finance-accountingperiods-id-statements-id-suggestions",
   "method": "POST",
   "path": "/finance/accountingperiods/{id}/statements/{statementId}/suggestions",
-  "call": "finance.accountingperiods.statements.suggestions",
+  "call": "finance.accounting_periods.statements.suggestions",
   "tags": [
    "Finance"
   ],
@@ -13242,7 +13242,7 @@
   "op_id": "delete-finance-accountingperiods-id-taxrates",
   "method": "DELETE",
   "path": "/finance/accountingperiods/{id}/taxrates",
-  "call": "finance.accountingperiods.delete_taxrates",
+  "call": "finance.accounting_periods.delete_tax_rates",
   "tags": [
    "Finance"
   ],
@@ -13267,7 +13267,7 @@
   "op_id": "get-finance-accountingperiods-id-userrules",
   "method": "GET",
   "path": "/finance/accountingperiods/{id}/userrules",
-  "call": "finance.accountingperiods.list_userrules",
+  "call": "finance.accounting_periods.list_user_rules",
   "tags": [
    "Finance"
   ],
@@ -13292,7 +13292,7 @@
   "op_id": "put-finance-accountingperiods-id-userrules",
   "method": "PUT",
   "path": "/finance/accountingperiods/{id}/userrules",
-  "call": "finance.accountingperiods.update_userrules",
+  "call": "finance.accounting_periods.update_user_rules",
   "tags": [
    "Finance"
   ],
@@ -13497,7 +13497,7 @@
   "op_id": "post-finance-accounts-bulkcreate",
   "method": "POST",
   "path": "/finance/accounts/bulkcreate",
-  "call": "finance.accounts.bulkcreate",
+  "call": "finance.accounts.bulk_create",
   "tags": [
    "Finance"
   ],
@@ -13598,7 +13598,7 @@
   "op_id": "post-finance-accounts-exporttemplate",
   "method": "POST",
   "path": "/finance/accounts/exporttemplate",
-  "call": "finance.accounts.exporttemplate",
+  "call": "finance.accounts.export_template",
   "tags": [
    "Finance"
   ],
@@ -13838,7 +13838,7 @@
   "op_id": "get-finance-accounttypes",
   "method": "GET",
   "path": "/finance/accounttypes",
-  "call": "finance.accounttypes.list",
+  "call": "finance.account_types.list",
   "tags": [
    "Finance"
   ],
@@ -13852,7 +13852,7 @@
   "op_id": "post-finance-accounttypes",
   "method": "POST",
   "path": "/finance/accounttypes",
-  "call": "finance.accounttypes.create",
+  "call": "finance.account_types.create",
   "tags": [
    "Finance"
   ],
@@ -13897,7 +13897,7 @@
   "op_id": "get-finance-accounttypes-id",
   "method": "GET",
   "path": "/finance/accounttypes/{id}",
-  "call": "finance.accounttypes.get",
+  "call": "finance.account_types.get",
   "tags": [
    "Finance"
   ],
@@ -13922,7 +13922,7 @@
   "op_id": "put-finance-accounttypes-id",
   "method": "PUT",
   "path": "/finance/accounttypes/{id}",
-  "call": "finance.accounttypes.update",
+  "call": "finance.account_types.update",
   "tags": [
    "Finance"
   ],
@@ -13977,7 +13977,7 @@
   "op_id": "delete-finance-accounttypes-id",
   "method": "DELETE",
   "path": "/finance/accounttypes/{id}",
-  "call": "finance.accounttypes.delete",
+  "call": "finance.account_types.delete",
   "tags": [
    "Finance"
   ],
@@ -14182,7 +14182,7 @@
   "op_id": "get-finance-cashdiscounts",
   "method": "GET",
   "path": "/finance/cashdiscounts",
-  "call": "finance.cashdiscounts.list",
+  "call": "finance.cash_discounts.list",
   "tags": [
    "Finance"
   ],
@@ -14207,7 +14207,7 @@
   "op_id": "post-finance-cashdiscounts",
   "method": "POST",
   "path": "/finance/cashdiscounts",
-  "call": "finance.cashdiscounts.create",
+  "call": "finance.cash_discounts.create",
   "tags": [
    "Finance"
   ],
@@ -14252,7 +14252,7 @@
   "op_id": "get-finance-cashdiscounts-id",
   "method": "GET",
   "path": "/finance/cashdiscounts/{id}",
-  "call": "finance.cashdiscounts.get",
+  "call": "finance.cash_discounts.get",
   "tags": [
    "Finance"
   ],
@@ -14277,7 +14277,7 @@
   "op_id": "put-finance-cashdiscounts-id",
   "method": "PUT",
   "path": "/finance/cashdiscounts/{id}",
-  "call": "finance.cashdiscounts.update",
+  "call": "finance.cash_discounts.update",
   "tags": [
    "Finance"
   ],
@@ -14332,7 +14332,7 @@
   "op_id": "delete-finance-cashdiscounts-id",
   "method": "DELETE",
   "path": "/finance/cashdiscounts/{id}",
-  "call": "finance.cashdiscounts.delete",
+  "call": "finance.cash_discounts.delete",
   "tags": [
    "Finance"
   ],
@@ -14721,7 +14721,7 @@
   "op_id": "get-finance-costcenters",
   "method": "GET",
   "path": "/finance/costcenters",
-  "call": "finance.costcenters.list",
+  "call": "finance.cost_centers.list",
   "tags": [
    "Finance"
   ],
@@ -14746,7 +14746,7 @@
   "op_id": "post-finance-costcenters",
   "method": "POST",
   "path": "/finance/costcenters",
-  "call": "finance.costcenters.create",
+  "call": "finance.cost_centers.create",
   "tags": [
    "Finance"
   ],
@@ -14821,7 +14821,7 @@
   "op_id": "post-finance-costcenters-bulkcreate",
   "method": "POST",
   "path": "/finance/costcenters/bulkcreate",
-  "call": "finance.costcenters.bulkcreate",
+  "call": "finance.cost_centers.bulk_create",
   "tags": [
    "Finance"
   ],
@@ -14846,7 +14846,7 @@
   "op_id": "get-finance-costcenters-export",
   "method": "GET",
   "path": "/finance/costcenters/export",
-  "call": "finance.costcenters.get_export",
+  "call": "finance.cost_centers.get_export",
   "tags": [
    "Finance"
   ],
@@ -14897,7 +14897,7 @@
   "op_id": "get-finance-costcenters-id",
   "method": "GET",
   "path": "/finance/costcenters/{id}",
-  "call": "finance.costcenters.get",
+  "call": "finance.cost_centers.get",
   "tags": [
    "Finance"
   ],
@@ -14922,7 +14922,7 @@
   "op_id": "put-finance-costcenters-id",
   "method": "PUT",
   "path": "/finance/costcenters/{id}",
-  "call": "finance.costcenters.update",
+  "call": "finance.cost_centers.update",
   "tags": [
    "Finance"
   ],
@@ -15007,7 +15007,7 @@
   "op_id": "delete-finance-costcenters-id",
   "method": "DELETE",
   "path": "/finance/costcenters/{id}",
-  "call": "finance.costcenters.delete",
+  "call": "finance.cost_centers.delete",
   "tags": [
    "Finance"
   ],
@@ -15912,7 +15912,7 @@
   "op_id": "get-finance-masterdata",
   "method": "GET",
   "path": "/finance/masterdata",
-  "call": "finance.get_masterdata",
+  "call": "finance.get_master_data",
   "tags": [
    "Finance",
    "MasterData"
@@ -16169,7 +16169,7 @@
   "op_id": "post-finance-reports-statement-costcenters-costCenterId",
   "method": "POST",
   "path": "/finance/reports/statement/costcenters/{costCenterId}",
-  "call": "finance.reports.statement.costcenters.create",
+  "call": "finance.reports.statement.cost_centers.create",
   "tags": [
    "Finance"
   ],
@@ -16400,7 +16400,7 @@
   "op_id": "post-finance-splittransactions",
   "method": "POST",
   "path": "/finance/splittransactions",
-  "call": "finance.splittransactions.create",
+  "call": "finance.split_transactions.create",
   "tags": [
    "Finance"
   ],
@@ -16475,7 +16475,7 @@
   "op_id": "get-finance-splittransactions-id",
   "method": "GET",
   "path": "/finance/splittransactions/{id}",
-  "call": "finance.splittransactions.get",
+  "call": "finance.split_transactions.get",
   "tags": [
    "Finance"
   ],
@@ -16512,7 +16512,7 @@
   "op_id": "put-finance-splittransactions-id",
   "method": "PUT",
   "path": "/finance/splittransactions/{id}",
-  "call": "finance.splittransactions.update",
+  "call": "finance.split_transactions.update",
   "tags": [
    "Finance"
   ],
@@ -16609,7 +16609,7 @@
   "op_id": "delete-finance-splittransactions-id",
   "method": "DELETE",
   "path": "/finance/splittransactions/{id}",
-  "call": "finance.splittransactions.delete",
+  "call": "finance.split_transactions.delete",
   "tags": [
    "Finance"
   ],
@@ -16656,7 +16656,7 @@
   "op_id": "post-finance-splittransactions-id-duplicate",
   "method": "POST",
   "path": "/finance/splittransactions/{id}/duplicate",
-  "call": "finance.splittransactions.duplicate",
+  "call": "finance.split_transactions.duplicate",
   "tags": [
    "Finance"
   ],
@@ -16691,7 +16691,7 @@
   "op_id": "put-finance-splittransactions-id-storno",
   "method": "PUT",
   "path": "/finance/splittransactions/{id}/storno",
-  "call": "finance.splittransactions.update_storno",
+  "call": "finance.split_transactions.update_storno",
   "tags": [
    "Finance"
   ],
@@ -16726,7 +16726,7 @@
   "op_id": "get-finance-taxrates",
   "method": "GET",
   "path": "/finance/taxrates",
-  "call": "finance.taxrates.list",
+  "call": "finance.tax_rates.list",
   "tags": [
    "Finance"
   ],
@@ -16751,7 +16751,7 @@
   "op_id": "post-finance-taxrates",
   "method": "POST",
   "path": "/finance/taxrates",
-  "call": "finance.taxrates.create",
+  "call": "finance.tax_rates.create",
   "tags": [
    "Finance"
   ],
@@ -16806,7 +16806,7 @@
   "op_id": "get-finance-taxrates-id",
   "method": "GET",
   "path": "/finance/taxrates/{id}",
-  "call": "finance.taxrates.get",
+  "call": "finance.tax_rates.get",
   "tags": [
    "Finance"
   ],
@@ -16831,7 +16831,7 @@
   "op_id": "put-finance-taxrates-id",
   "method": "PUT",
   "path": "/finance/taxrates/{id}",
-  "call": "finance.taxrates.update",
+  "call": "finance.tax_rates.update",
   "tags": [
    "Finance"
   ],
@@ -16896,7 +16896,7 @@
   "op_id": "delete-finance-taxrates-id",
   "method": "DELETE",
   "path": "/finance/taxrates/{id}",
-  "call": "finance.taxrates.delete",
+  "call": "finance.tax_rates.delete",
   "tags": [
    "Finance"
   ],
@@ -16931,7 +16931,7 @@
   "op_id": "get-finance-taxtypes",
   "method": "GET",
   "path": "/finance/taxtypes",
-  "call": "finance.taxtypes.list",
+  "call": "finance.tax_types.list",
   "tags": [
    "Finance"
   ],
@@ -16945,7 +16945,7 @@
   "op_id": "post-finance-taxtypes",
   "method": "POST",
   "path": "/finance/taxtypes",
-  "call": "finance.taxtypes.create",
+  "call": "finance.tax_types.create",
   "tags": [
    "Finance"
   ],
@@ -16980,7 +16980,7 @@
   "op_id": "get-finance-taxtypes-id",
   "method": "GET",
   "path": "/finance/taxtypes/{id}",
-  "call": "finance.taxtypes.get",
+  "call": "finance.tax_types.get",
   "tags": [
    "Finance"
   ],
@@ -17005,7 +17005,7 @@
   "op_id": "put-finance-taxtypes-id",
   "method": "PUT",
   "path": "/finance/taxtypes/{id}",
-  "call": "finance.taxtypes.update",
+  "call": "finance.tax_types.update",
   "tags": [
    "Finance"
   ],
@@ -17050,7 +17050,7 @@
   "op_id": "delete-finance-taxtypes-id",
   "method": "DELETE",
   "path": "/finance/taxtypes/{id}",
-  "call": "finance.taxtypes.delete",
+  "call": "finance.tax_types.delete",
   "tags": [
    "Finance"
   ],
@@ -17159,7 +17159,7 @@
   "op_id": "get-finance-transactionpurposes",
   "method": "GET",
   "path": "/finance/transactionpurposes",
-  "call": "finance.transactionpurposes.list",
+  "call": "finance.transaction_purposes.list",
   "tags": [
    "Finance"
   ],
@@ -17173,7 +17173,7 @@
   "op_id": "post-finance-transactionpurposes",
   "method": "POST",
   "path": "/finance/transactionpurposes",
-  "call": "finance.transactionpurposes.create",
+  "call": "finance.transaction_purposes.create",
   "tags": [
    "Finance"
   ],
@@ -17251,7 +17251,7 @@
   "op_id": "get-finance-transactionpurposes-id",
   "method": "GET",
   "path": "/finance/transactionpurposes/{id}",
-  "call": "finance.transactionpurposes.get",
+  "call": "finance.transaction_purposes.get",
   "tags": [
    "Finance"
   ],
@@ -17276,7 +17276,7 @@
   "op_id": "put-finance-transactionpurposes-id",
   "method": "PUT",
   "path": "/finance/transactionpurposes/{id}",
-  "call": "finance.transactionpurposes.update",
+  "call": "finance.transaction_purposes.update",
   "tags": [
    "Finance"
   ],
@@ -17364,7 +17364,7 @@
   "op_id": "delete-finance-transactionpurposes-id",
   "method": "DELETE",
   "path": "/finance/transactionpurposes/{id}",
-  "call": "finance.transactionpurposes.delete",
+  "call": "finance.transaction_purposes.delete",
   "tags": [
    "Finance"
   ],
@@ -17857,7 +17857,7 @@
   "op_id": "post-finance-transactions-bulkcreate",
   "method": "POST",
   "path": "/finance/transactions/bulkcreate",
-  "call": "finance.transactions.bulkcreate",
+  "call": "finance.transactions.bulk_create",
   "tags": [
    "Finance"
   ],
@@ -18112,7 +18112,7 @@
   "op_id": "get-finance-transactions-datevexport",
   "method": "GET",
   "path": "/finance/transactions/datevexport",
-  "call": "finance.transactions.get_datevexport",
+  "call": "finance.transactions.get_datev_export",
   "tags": [
    "Finance"
   ],
@@ -18318,7 +18318,7 @@
   "op_id": "get-finance-transactions-documentnumberavailable",
   "method": "GET",
   "path": "/finance/transactions/documentnumberavailable",
-  "call": "finance.transactions.get_documentnumberavailable",
+  "call": "finance.transactions.get_document_number_available",
   "tags": [
    "Finance"
   ],
@@ -18624,7 +18624,7 @@
   "op_id": "get-finance-transactions-nextdocumentnumber",
   "method": "GET",
   "path": "/finance/transactions/nextdocumentnumber",
-  "call": "finance.transactions.get_nextdocumentnumber",
+  "call": "finance.transactions.get_next_document_number",
   "tags": [
    "Finance"
   ],
@@ -19515,7 +19515,7 @@
   "op_id": "get-furtherlinks",
   "method": "GET",
   "path": "/furtherlinks",
-  "call": "furtherlinks.list",
+  "call": "further_links.list",
   "tags": [
    "FurtherLink"
   ],
@@ -19529,7 +19529,7 @@
   "op_id": "post-furtherlinks",
   "method": "POST",
   "path": "/furtherlinks",
-  "call": "furtherlinks.create",
+  "call": "further_links.create",
   "tags": [
    "FurtherLink"
   ],
@@ -19594,7 +19594,7 @@
   "op_id": "get-furtherlinks-furtherLinkId",
   "method": "GET",
   "path": "/furtherlinks/{furtherLinkId}",
-  "call": "furtherlinks.get",
+  "call": "further_links.get",
   "tags": [
    "FurtherLink"
   ],
@@ -19619,7 +19619,7 @@
   "op_id": "put-furtherlinks-furtherLinkId",
   "method": "PUT",
   "path": "/furtherlinks/{furtherLinkId}",
-  "call": "furtherlinks.update",
+  "call": "further_links.update",
   "tags": [
    "FurtherLink"
   ],
@@ -19694,7 +19694,7 @@
   "op_id": "delete-furtherlinks-furtherLinkId",
   "method": "DELETE",
   "path": "/furtherlinks/{furtherLinkId}",
-  "call": "furtherlinks.delete",
+  "call": "further_links.delete",
   "tags": [
    "FurtherLink"
   ],
@@ -19719,7 +19719,7 @@
   "op_id": "get-group-agegroups",
   "method": "GET",
   "path": "/group/agegroups",
-  "call": "group.agegroups.list",
+  "call": "group.age_groups.list",
   "tags": [
    "Group"
   ],
@@ -19733,7 +19733,7 @@
   "op_id": "post-group-agegroups",
   "method": "POST",
   "path": "/group/agegroups",
-  "call": "group.agegroups.create",
+  "call": "group.age_groups.create",
   "tags": [
    "Group"
   ],
@@ -19788,7 +19788,7 @@
   "op_id": "get-group-agegroups-ageGroupId",
   "method": "GET",
   "path": "/group/agegroups/{ageGroupId}",
-  "call": "group.agegroups.get",
+  "call": "group.age_groups.get",
   "tags": [
    "Group"
   ],
@@ -19813,7 +19813,7 @@
   "op_id": "put-group-agegroups-ageGroupId",
   "method": "PUT",
   "path": "/group/agegroups/{ageGroupId}",
-  "call": "group.agegroups.update",
+  "call": "group.age_groups.update",
   "tags": [
    "Group"
   ],
@@ -19878,7 +19878,7 @@
   "op_id": "delete-group-agegroups-ageGroupId",
   "method": "DELETE",
   "path": "/group/agegroups/{ageGroupId}",
-  "call": "group.agegroups.delete",
+  "call": "group.age_groups.delete",
   "tags": [
    "Group"
   ],
@@ -19913,7 +19913,7 @@
   "op_id": "get-group-groupcategories",
   "method": "GET",
   "path": "/group/groupcategories",
-  "call": "group.groupcategories.list",
+  "call": "group.group_categories.list",
   "tags": [
    "Group"
   ],
@@ -19927,7 +19927,7 @@
   "op_id": "post-group-groupcategories",
   "method": "POST",
   "path": "/group/groupcategories",
-  "call": "group.groupcategories.create",
+  "call": "group.group_categories.create",
   "tags": [
    "Group"
   ],
@@ -19982,7 +19982,7 @@
   "op_id": "get-group-groupcategories-groupCategoryId",
   "method": "GET",
   "path": "/group/groupcategories/{groupCategoryId}",
-  "call": "group.groupcategories.get",
+  "call": "group.group_categories.get",
   "tags": [
    "Group"
   ],
@@ -20007,7 +20007,7 @@
   "op_id": "put-group-groupcategories-groupCategoryId",
   "method": "PUT",
   "path": "/group/groupcategories/{groupCategoryId}",
-  "call": "group.groupcategories.update",
+  "call": "group.group_categories.update",
   "tags": [
    "Group"
   ],
@@ -20072,7 +20072,7 @@
   "op_id": "delete-group-groupcategories-groupCategoryId",
   "method": "DELETE",
   "path": "/group/groupcategories/{groupCategoryId}",
-  "call": "group.groupcategories.delete",
+  "call": "group.group_categories.delete",
   "tags": [
    "Group"
   ],
@@ -20107,7 +20107,7 @@
   "op_id": "get-group-grouptypes",
   "method": "GET",
   "path": "/group/grouptypes",
-  "call": "group.grouptypes.list",
+  "call": "group.group_types.list",
   "tags": [
    "Group"
   ],
@@ -20121,7 +20121,7 @@
   "op_id": "post-group-grouptypes",
   "method": "POST",
   "path": "/group/grouptypes",
-  "call": "group.grouptypes.create",
+  "call": "group.group_types.create",
   "tags": [
    "Group"
   ],
@@ -20236,7 +20236,7 @@
   "op_id": "get-group-grouptypes-groupTypeId",
   "method": "GET",
   "path": "/group/grouptypes/{groupTypeId}",
-  "call": "group.grouptypes.get",
+  "call": "group.group_types.get",
   "tags": [
    "Group"
   ],
@@ -20261,7 +20261,7 @@
   "op_id": "put-group-grouptypes-groupTypeId",
   "method": "PUT",
   "path": "/group/grouptypes/{groupTypeId}",
-  "call": "group.grouptypes.update",
+  "call": "group.group_types.update",
   "tags": [
    "Group"
   ],
@@ -20386,7 +20386,7 @@
   "op_id": "delete-group-grouptypes-groupTypeId",
   "method": "DELETE",
   "path": "/group/grouptypes/{groupTypeId}",
-  "call": "group.grouptypes.delete",
+  "call": "group.group_types.delete",
   "tags": [
    "Group"
   ],
@@ -20421,7 +20421,7 @@
   "op_id": "get-group-meetingtemplates",
   "method": "GET",
   "path": "/group/meetingtemplates",
-  "call": "group.meetingtemplates.list",
+  "call": "group.meeting_templates.list",
   "tags": [
    "Group"
   ],
@@ -20435,7 +20435,7 @@
   "op_id": "post-group-meetingtemplates",
   "method": "POST",
   "path": "/group/meetingtemplates",
-  "call": "group.meetingtemplates.create",
+  "call": "group.meeting_templates.create",
   "tags": [
    "Group"
   ],
@@ -20483,7 +20483,7 @@
   "op_id": "get-group-meetingtemplates-meetingTemplateId",
   "method": "GET",
   "path": "/group/meetingtemplates/{meetingTemplateId}",
-  "call": "group.meetingtemplates.get",
+  "call": "group.meeting_templates.get",
   "tags": [
    "Group"
   ],
@@ -20508,7 +20508,7 @@
   "op_id": "put-group-meetingtemplates-meetingTemplateId",
   "method": "PUT",
   "path": "/group/meetingtemplates/{meetingTemplateId}",
-  "call": "group.meetingtemplates.update",
+  "call": "group.meeting_templates.update",
   "tags": [
    "Group"
   ],
@@ -20566,7 +20566,7 @@
   "op_id": "delete-group-meetingtemplates-meetingTemplateId",
   "method": "DELETE",
   "path": "/group/meetingtemplates/{meetingTemplateId}",
-  "call": "group.meetingtemplates.delete",
+  "call": "group.meeting_templates.delete",
   "tags": [
    "Group"
   ],
@@ -20601,7 +20601,7 @@
   "op_id": "get-group-memberstatus",
   "method": "GET",
   "path": "/group/memberstatus",
-  "call": "group.list_memberstatus",
+  "call": "group.list_member_status",
   "tags": [
    "Group"
   ],
@@ -20933,7 +20933,7 @@
   "op_id": "get-group-targetgroups",
   "method": "GET",
   "path": "/group/targetgroups",
-  "call": "group.targetgroups.list",
+  "call": "group.target_groups.list",
   "tags": [
    "Group"
   ],
@@ -20947,7 +20947,7 @@
   "op_id": "post-group-targetgroups",
   "method": "POST",
   "path": "/group/targetgroups",
-  "call": "group.targetgroups.create",
+  "call": "group.target_groups.create",
   "tags": [
    "Group"
   ],
@@ -20982,7 +20982,7 @@
   "op_id": "get-group-targetgroups-targetGroupId",
   "method": "GET",
   "path": "/group/targetgroups/{targetGroupId}",
-  "call": "group.targetgroups.get",
+  "call": "group.target_groups.get",
   "tags": [
    "Group"
   ],
@@ -21007,7 +21007,7 @@
   "op_id": "put-group-targetgroups-targetGroupId",
   "method": "PUT",
   "path": "/group/targetgroups/{targetGroupId}",
-  "call": "group.targetgroups.update",
+  "call": "group.target_groups.update",
   "tags": [
    "Group"
   ],
@@ -21052,7 +21052,7 @@
   "op_id": "delete-group-targetgroups-targetGroupId",
   "method": "DELETE",
   "path": "/group/targetgroups/{targetGroupId}",
-  "call": "group.targetgroups.delete",
+  "call": "group.target_groups.delete",
   "tags": [
    "Group"
   ],
@@ -21087,7 +21087,7 @@
   "op_id": "get-grouphomepages",
   "method": "GET",
   "path": "/grouphomepages",
-  "call": "grouphomepages.list",
+  "call": "group_homepages.list",
   "tags": [
    "GroupHomepage"
   ],
@@ -21101,7 +21101,7 @@
   "op_id": "get-grouphomepages-hash",
   "method": "GET",
   "path": "/grouphomepages/{hash}",
-  "call": "grouphomepages.get",
+  "call": "group_homepages.get",
   "tags": [
    "GroupHomepage"
   ],
@@ -22704,7 +22704,7 @@
   "op_id": "get-groups-groupId-documenttemplates",
   "method": "GET",
   "path": "/groups/{groupId}/documenttemplates",
-  "call": "groups.list_documenttemplates",
+  "call": "groups.list_document_templates",
   "tags": [
    "Group",
    "HtmlTemplate"
@@ -22913,7 +22913,7 @@
   "op_id": "get-groups-groupId-grouphomepage",
   "method": "GET",
   "path": "/groups/{groupId}/grouphomepage",
-  "call": "groups.get_grouphomepage",
+  "call": "groups.get_group_homepage",
   "tags": [
    "Group",
    "GroupHomepage"
@@ -22939,7 +22939,7 @@
   "op_id": "put-groups-groupId-grouphomepage",
   "method": "PUT",
   "path": "/groups/{groupId}/grouphomepage",
-  "call": "groups.update_grouphomepage",
+  "call": "groups.update_group_homepage",
   "tags": [
    "Group",
    "GroupHomepage"
@@ -23115,7 +23115,7 @@
   "op_id": "delete-groups-groupId-grouphomepage",
   "method": "DELETE",
   "path": "/groups/{groupId}/grouphomepage",
-  "call": "groups.delete_grouphomepage",
+  "call": "groups.delete_group_homepage",
   "tags": [
    "Group",
    "GroupHomepage"
@@ -23141,7 +23141,7 @@
   "op_id": "post-groups-id-grouptype",
   "method": "POST",
   "path": "/groups/{groupId}/grouptype",
-  "call": "groups.grouptype",
+  "call": "groups.group_type",
   "tags": [
    "Group"
   ],
@@ -23761,7 +23761,7 @@
   "op_id": "get-groups-groupId-memberfields",
   "method": "GET",
   "path": "/groups/{groupId}/memberfields",
-  "call": "groups.memberfields.list",
+  "call": "groups.member_fields.list",
   "tags": [
    "Group"
   ],
@@ -23786,7 +23786,7 @@
   "op_id": "post-groups-groupId-memberfields-group",
   "method": "POST",
   "path": "/groups/{groupId}/memberfields/group",
-  "call": "groups.memberfields.group.create",
+  "call": "groups.member_fields.group.create",
   "tags": [
    "Group"
   ],
@@ -23931,7 +23931,7 @@
   "op_id": "put-groups-groupId-memberfields-group-groupMemberFieldId",
   "method": "PUT",
   "path": "/groups/{groupId}/memberfields/group/{groupMemberFieldId}",
-  "call": "groups.memberfields.group.update",
+  "call": "groups.member_fields.group.update",
   "tags": [
    "Group"
   ],
@@ -24076,7 +24076,7 @@
   "op_id": "patch-groups-groupId-memberfields-group-groupMemberFieldId",
   "method": "PATCH",
   "path": "/groups/{groupId}/memberfields/group/{groupMemberFieldId}",
-  "call": "groups.memberfields.group.patch",
+  "call": "groups.member_fields.group.patch",
   "tags": [
    "Group"
   ],
@@ -24221,7 +24221,7 @@
   "op_id": "delete-groups-groupId-memberfields-group-groupMemberFieldId",
   "method": "DELETE",
   "path": "/groups/{groupId}/memberfields/group/{groupMemberFieldId}",
-  "call": "groups.memberfields.group.delete",
+  "call": "groups.member_fields.group.delete",
   "tags": [
    "Group"
   ],
@@ -24256,7 +24256,7 @@
   "op_id": "put-groups-groupId-memberfields-person-fieldId",
   "method": "PUT",
   "path": "/groups/{groupId}/memberfields/person/{fieldId}",
-  "call": "groups.memberfields.person.update",
+  "call": "groups.member_fields.person.update",
   "tags": [
    "Group"
   ],
@@ -24311,7 +24311,7 @@
   "op_id": "delete-groups-groupId-memberfields-person-fieldId",
   "method": "DELETE",
   "path": "/groups/{groupId}/memberfields/person/{fieldId}",
-  "call": "groups.memberfields.person.delete",
+  "call": "groups.member_fields.person.delete",
   "tags": [
    "Group"
   ],
@@ -24346,7 +24346,7 @@
   "op_id": "get-groups-groupId-memberids",
   "method": "GET",
   "path": "/groups/{groupId}/memberids",
-  "call": "groups.list_memberids",
+  "call": "groups.list_member_ids",
   "tags": [
    "Group"
   ],
@@ -24466,7 +24466,7 @@
   "op_id": "get-groups-groupId-memberpreview",
   "method": "GET",
   "path": "/groups/{groupId}/memberpreview",
-  "call": "groups.list_memberpreview",
+  "call": "groups.list_member_preview",
   "tags": [
    "Group"
   ],
@@ -25790,7 +25790,7 @@
   "op_id": "get-groups-groupId-newsletter-integrations",
   "method": "GET",
   "path": "/groups/{groupId}/newsletter-integrations",
-  "call": "groups.newsletter_integrations.list",
+  "call": "groups.news_letter_integrations.list",
   "tags": [
    "Group"
   ],
@@ -25815,7 +25815,7 @@
   "op_id": "post-groups-groupId-newsletter-integrations",
   "method": "POST",
   "path": "/groups/{groupId}/newsletter-integrations",
-  "call": "groups.newsletter_integrations.create",
+  "call": "groups.news_letter_integrations.create",
   "tags": [
    "Group"
   ],
@@ -25890,7 +25890,7 @@
   "op_id": "delete-groups-groupId-newsletter-integrations-provider-listId",
   "method": "DELETE",
   "path": "/groups/{groupId}/newsletter-integrations/{provider}/{listId}",
-  "call": "groups.newsletter_integrations.delete",
+  "call": "groups.news_letter_integrations.delete",
   "tags": [
    "Group"
   ],
@@ -25935,7 +25935,7 @@
   "op_id": "post-groups-groupId-newsletter-integrations-provider-listId-resend-optins",
   "method": "POST",
   "path": "/groups/{groupId}/newsletter-integrations/{provider}/{listId}/resend-optins",
-  "call": "groups.newsletter_integrations.resend_optins",
+  "call": "groups.news_letter_integrations.resend_optins",
   "tags": [
    "Group"
   ],
@@ -26453,7 +26453,7 @@
   "op_id": "get-groups-groupId-poststatistics",
   "method": "GET",
   "path": "/groups/{groupId}/poststatistics",
-  "call": "groups.get_poststatistics",
+  "call": "groups.get_post_statistics",
   "tags": [
    "Group"
   ],
@@ -26478,7 +26478,7 @@
   "op_id": "get-groups-id-qrcodecheckin",
   "method": "GET",
   "path": "/groups/{groupId}/qrcodecheckin",
-  "call": "groups.qrcodecheckin.list",
+  "call": "groups.qrcode_checkin.list",
   "tags": [
    "Group",
    "Checkin"
@@ -26504,7 +26504,7 @@
   "op_id": "get-groups-id-qrcodecheckin-personId",
   "method": "GET",
   "path": "/groups/{groupId}/qrcodecheckin/{personId}",
-  "call": "groups.qrcodecheckin.get",
+  "call": "groups.qrcode_checkin.get",
   "tags": [
    "Group",
    "Checkin"
@@ -26540,7 +26540,7 @@
   "op_id": "get-groups-id-qrcodecheckin-personId-pdf",
   "method": "GET",
   "path": "/groups/{groupId}/qrcodecheckin/{personId}/pdf",
-  "call": "groups.qrcodecheckin.get_pdf",
+  "call": "groups.qrcode_checkin.get_pdf",
   "tags": [
    "Group",
    "Checkin"
@@ -26576,7 +26576,7 @@
   "op_id": "post-groups-groupId-qrcodecheckin-personId-send",
   "method": "POST",
   "path": "/groups/{groupId}/qrcodecheckin/{personId}/send",
-  "call": "groups.qrcodecheckin.send",
+  "call": "groups.qrcode_checkin.send",
   "tags": [
    "Group",
    "Checkin"
@@ -26930,7 +26930,7 @@
   "op_id": "get-htmltemplates",
   "method": "GET",
   "path": "/htmltemplates",
-  "call": "htmltemplates.list",
+  "call": "html_templates.list",
   "tags": [
    "HtmlTemplate"
   ],
@@ -26987,7 +26987,7 @@
   "op_id": "post-htmltemplates",
   "method": "POST",
   "path": "/htmltemplates",
-  "call": "htmltemplates.create",
+  "call": "html_templates.create",
   "tags": [
    "HtmlTemplate"
   ],
@@ -27062,7 +27062,7 @@
   "op_id": "get-htmltemplates-templateId",
   "method": "GET",
   "path": "/htmltemplates/{templateId}",
-  "call": "htmltemplates.get",
+  "call": "html_templates.get",
   "tags": [
    "HtmlTemplate"
   ],
@@ -27087,7 +27087,7 @@
   "op_id": "patch-htmltemplates-templateId",
   "method": "PATCH",
   "path": "/htmltemplates/{templateId}",
-  "call": "htmltemplates.patch",
+  "call": "html_templates.patch",
   "tags": [
    "HtmlTemplate"
   ],
@@ -27162,7 +27162,7 @@
   "op_id": "delete-htmltemplates-templateId",
   "method": "DELETE",
   "path": "/htmltemplates/{templateId}",
-  "call": "htmltemplates.delete",
+  "call": "html_templates.delete",
   "tags": [
    "HtmlTemplate"
   ],
@@ -27197,7 +27197,7 @@
   "op_id": "get-htmltemplates-templateId-export",
   "method": "GET",
   "path": "/htmltemplates/{templateId}/export",
-  "call": "htmltemplates.get_export",
+  "call": "html_templates.get_export",
   "tags": [
    "HtmlTemplate"
   ],
@@ -27222,7 +27222,7 @@
   "op_id": "get-htmltemplates-templateId-html",
   "method": "GET",
   "path": "/htmltemplates/{templateId}/html",
-  "call": "htmltemplates.get_html",
+  "call": "html_templates.get_html",
   "tags": [
    "HtmlTemplate"
   ],
@@ -27247,7 +27247,7 @@
   "op_id": "get-htmltemplates-templateId-mjml",
   "method": "GET",
   "path": "/htmltemplates/{templateId}/mjml",
-  "call": "htmltemplates.get_mjml",
+  "call": "html_templates.get_mjml",
   "tags": [
    "HtmlTemplate"
   ],
@@ -27272,7 +27272,7 @@
   "op_id": "post-htmltemplates-id-uploadassets",
   "method": "POST",
   "path": "/htmltemplates/{templateId}/uploadassets",
-  "call": "htmltemplates.uploadassets",
+  "call": "html_templates.upload_assets",
   "tags": [
    "HtmlTemplate"
   ],
@@ -27675,7 +27675,7 @@
   "op_id": "get-joblog",
   "method": "GET",
   "path": "/joblog",
-  "call": "joblog.list",
+  "call": "job_log.list",
   "tags": [
    "Job"
   ],
@@ -28117,7 +28117,7 @@
   "op_id": "post-login-twofactor-setup",
   "method": "POST",
   "path": "/login/twofactor/setup",
-  "call": "login.twofactor.setup.create",
+  "call": "login.two_factor.setup.create",
   "tags": [
    "General"
   ],
@@ -28131,7 +28131,7 @@
   "op_id": "post-login-twofactor-setup-activate",
   "method": "POST",
   "path": "/login/twofactor/setup/activate",
-  "call": "login.twofactor.setup.activate",
+  "call": "login.two_factor.setup.activate",
   "tags": [
    "General"
   ],
@@ -28375,7 +28375,7 @@
   "op_id": "get-masterdata-person",
   "method": "GET",
   "path": "/masterdata/person",
-  "call": "masterdata.get_person",
+  "call": "master_data.get_person",
   "tags": [
    "MasterData"
   ],
@@ -28389,7 +28389,7 @@
   "op_id": "post-meetingrequests-reply",
   "method": "POST",
   "path": "/meetingrequests/reply",
-  "call": "meetingrequests.reply",
+  "call": "meeting_requests.reply",
   "tags": [
    "Calendar"
   ],
@@ -28448,7 +28448,7 @@
   "op_id": "get-newsletter-integrations",
   "method": "GET",
   "path": "/newsletter-integrations",
-  "call": "newsletter_integrations.list",
+  "call": "news_letter_integrations.list",
   "tags": [
    "Group"
   ],
@@ -28761,7 +28761,7 @@
   "op_id": "get-oauthclients",
   "method": "GET",
   "path": "/oauthclients",
-  "call": "oauthclients.list",
+  "call": "oauth_clients.list",
   "tags": [
    "Hidden"
   ],
@@ -28775,7 +28775,7 @@
   "op_id": "post-oauthclients",
   "method": "POST",
   "path": "/oauthclients",
-  "call": "oauthclients.create",
+  "call": "oauth_clients.create",
   "tags": [
    "Hidden"
   ],
@@ -28820,7 +28820,7 @@
   "op_id": "put-oauthclients-identifier",
   "method": "PUT",
   "path": "/oauthclients/{identifier}",
-  "call": "oauthclients.update",
+  "call": "oauth_clients.update",
   "tags": [
    "Hidden"
   ],
@@ -28875,7 +28875,7 @@
   "op_id": "delete-oauthclients-identifier",
   "method": "DELETE",
   "path": "/oauthclients/{identifier}",
-  "call": "oauthclients.delete",
+  "call": "oauth_clients.delete",
   "tags": [
    "Hidden"
   ],
@@ -29736,7 +29736,7 @@
   "op_id": "get-person-commentviewers",
   "method": "GET",
   "path": "/person/commentviewers",
-  "call": "person.commentviewers.list",
+  "call": "person.comment_viewers.list",
   "tags": [
    "Person"
   ],
@@ -29750,7 +29750,7 @@
   "op_id": "post-person-commentviewers",
   "method": "POST",
   "path": "/person/commentviewers",
-  "call": "person.commentviewers.create",
+  "call": "person.comment_viewers.create",
   "tags": [
    "Person"
   ],
@@ -29785,7 +29785,7 @@
   "op_id": "get-person-commentviewers-id",
   "method": "GET",
   "path": "/person/commentviewers/{id}",
-  "call": "person.commentviewers.get",
+  "call": "person.comment_viewers.get",
   "tags": [
    "Person"
   ],
@@ -29810,7 +29810,7 @@
   "op_id": "put-person-commentviewers-id",
   "method": "PUT",
   "path": "/person/commentviewers/{id}",
-  "call": "person.commentviewers.update",
+  "call": "person.comment_viewers.update",
   "tags": [
    "Person"
   ],
@@ -29855,7 +29855,7 @@
   "op_id": "delete-person-commentviewers-id",
   "method": "DELETE",
   "path": "/person/commentviewers/{id}",
-  "call": "person.commentviewers.delete",
+  "call": "person.comment_viewers.delete",
   "tags": [
    "Person"
   ],
@@ -29890,7 +29890,7 @@
   "op_id": "get-person-growpaths",
   "method": "GET",
   "path": "/person/growpaths",
-  "call": "person.growpaths.list",
+  "call": "person.grow_paths.list",
   "tags": [
    "Person"
   ],
@@ -29904,7 +29904,7 @@
   "op_id": "post-person-growpaths",
   "method": "POST",
   "path": "/person/growpaths",
-  "call": "person.growpaths.create",
+  "call": "person.grow_paths.create",
   "tags": [
    "Person"
   ],
@@ -29949,7 +29949,7 @@
   "op_id": "get-person-growpaths-id",
   "method": "GET",
   "path": "/person/growpaths/{id}",
-  "call": "person.growpaths.get",
+  "call": "person.grow_paths.get",
   "tags": [
    "Person"
   ],
@@ -29974,7 +29974,7 @@
   "op_id": "put-person-growpaths-id",
   "method": "PUT",
   "path": "/person/growpaths/{id}",
-  "call": "person.growpaths.update",
+  "call": "person.grow_paths.update",
   "tags": [
    "Person"
   ],
@@ -30029,7 +30029,7 @@
   "op_id": "delete-person-growpaths-id",
   "method": "DELETE",
   "path": "/person/growpaths/{id}",
-  "call": "person.growpaths.delete",
+  "call": "person.grow_paths.delete",
   "tags": [
    "Person"
   ],
@@ -30064,7 +30064,7 @@
   "op_id": "get-person-masterdata",
   "method": "GET",
   "path": "/person/masterdata",
-  "call": "person.get_masterdata",
+  "call": "person.get_master_data",
   "tags": [
    "MasterData",
    "Person",
@@ -30080,7 +30080,7 @@
   "op_id": "get-person-relationshiptypes",
   "method": "GET",
   "path": "/person/relationshiptypes",
-  "call": "person.relationshiptypes.list",
+  "call": "person.relationship_types.list",
   "tags": [
    "Relationship Type"
   ],
@@ -30094,7 +30094,7 @@
   "op_id": "post-person-relationshiptypes",
   "method": "POST",
   "path": "/person/relationshiptypes",
-  "call": "person.relationshiptypes.create",
+  "call": "person.relationship_types.create",
   "tags": [
    "Relationship Type"
   ],
@@ -30179,7 +30179,7 @@
   "op_id": "get-person-relationshiptypes-id",
   "method": "GET",
   "path": "/person/relationshiptypes/{id}",
-  "call": "person.relationshiptypes.get",
+  "call": "person.relationship_types.get",
   "tags": [
    "Relationship Type"
   ],
@@ -30204,7 +30204,7 @@
   "op_id": "put-person-relationshiptypes-id",
   "method": "PUT",
   "path": "/person/relationshiptypes/{id}",
-  "call": "person.relationshiptypes.update",
+  "call": "person.relationship_types.update",
   "tags": [
    "Relationship Type"
   ],
@@ -30299,7 +30299,7 @@
   "op_id": "delete-person-relationshiptypes-id",
   "method": "DELETE",
   "path": "/person/relationshiptypes/{id}",
-  "call": "person.relationshiptypes.delete",
+  "call": "person.relationship_types.delete",
   "tags": [
    "Relationship Type"
   ],
@@ -32265,7 +32265,7 @@
   "op_id": "put-persons-personId-confidentialityagreement",
   "method": "PUT",
   "path": "/persons/{personId}/confidentialityagreement",
-  "call": "persons.update_confidentialityagreement",
+  "call": "persons.update_confidentiality_agreement",
   "tags": [
    "Person"
   ],
@@ -32290,7 +32290,7 @@
   "op_id": "delete-persons-personId-confidentialityagreement",
   "method": "DELETE",
   "path": "/persons/{personId}/confidentialityagreement",
-  "call": "persons.delete_confidentialityagreement",
+  "call": "persons.delete_confidentiality_agreement",
   "tags": [
    "Person"
   ],
@@ -32556,7 +32556,7 @@
   "op_id": "get-persons-id-events-id-services-id-exchangerequests",
   "method": "GET",
   "path": "/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests",
-  "call": "persons.events.services.exchangerequests.list",
+  "call": "persons.events.services.exchange_requests.list",
   "tags": [
    "Event"
   ],
@@ -32611,7 +32611,7 @@
   "op_id": "post-persons-id-events-id-services-id-exchangerequests",
   "method": "POST",
   "path": "/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests",
-  "call": "persons.events.services.exchangerequests.create",
+  "call": "persons.events.services.exchange_requests.create",
   "tags": [
    "Event"
   ],
@@ -32666,7 +32666,7 @@
   "op_id": "get-persons-id-events-id-services-id-exchangerequests-candidates",
   "method": "GET",
   "path": "/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests/candidates",
-  "call": "persons.events.services.exchangerequests.list_candidates",
+  "call": "persons.events.services.exchange_requests.list_candidates",
   "tags": [
    "Event"
   ],
@@ -32711,7 +32711,7 @@
   "op_id": "delete-persons-id-events-id-services-id-exchangerequests-id",
   "method": "DELETE",
   "path": "/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests/{requestId}",
-  "call": "persons.events.services.exchangerequests.delete",
+  "call": "persons.events.services.exchange_requests.delete",
   "tags": [
    "Event"
   ],
@@ -32776,7 +32776,7 @@
   "op_id": "get-persons-id-exchangerequests",
   "method": "GET",
   "path": "/persons/{personId}/exchangerequests",
-  "call": "persons.exchangerequests.list",
+  "call": "persons.exchange_requests.list",
   "tags": [
    "Event"
   ],
@@ -32811,7 +32811,7 @@
   "op_id": "put-persons-id-exchangerequests-id",
   "method": "PUT",
   "path": "/persons/{personId}/exchangerequests/{requestId}",
-  "call": "persons.exchangerequests.update",
+  "call": "persons.exchange_requests.update",
   "tags": [
    "Event"
   ],
@@ -32846,7 +32846,7 @@
   "op_id": "delete-persons-id-exchangerequests-id",
   "method": "DELETE",
   "path": "/persons/{personId}/exchangerequests/{requestId}",
-  "call": "persons.exchangerequests.delete",
+  "call": "persons.exchange_requests.delete",
   "tags": [
    "Event"
   ],
@@ -33271,7 +33271,7 @@
   "op_id": "get-persons-id-loginstring",
   "method": "GET",
   "path": "/persons/{personId}/loginstring",
-  "call": "persons.get_loginstring",
+  "call": "persons.get_login_string",
   "tags": [
    "Person"
   ],
@@ -33296,7 +33296,7 @@
   "op_id": "get-persons-id-logintoken",
   "method": "GET",
   "path": "/persons/{personId}/logintoken",
-  "call": "persons.get_logintoken",
+  "call": "persons.get_login_token",
   "tags": [
    "Person"
   ],
@@ -33321,7 +33321,7 @@
   "op_id": "delete-persons-id-logintoken",
   "method": "DELETE",
   "path": "/persons/{personId}/logintoken",
-  "call": "persons.delete_logintoken",
+  "call": "persons.delete_login_token",
   "tags": [
    "Person"
   ],
@@ -33836,7 +33836,7 @@
   "op_id": "get-persons-personId-openmeetingrequests",
   "method": "GET",
   "path": "/persons/{personId}/openmeetingrequests",
-  "call": "persons.list_openmeetingrequests",
+  "call": "persons.list_open_meeting_requests",
   "tags": [
    "Person",
    "Calendar"
@@ -33998,7 +33998,7 @@
   "op_id": "get-persons-personId-poststatistics",
   "method": "GET",
   "path": "/persons/{personId}/poststatistics",
-  "call": "persons.get_poststatistics",
+  "call": "persons.get_post_statistics",
   "tags": [
    "Hidden"
   ],
@@ -34023,7 +34023,7 @@
   "op_id": "get-persons-id-privacypolicy",
   "method": "GET",
   "path": "/persons/{personId}/privacypolicy",
-  "call": "persons.get_privacypolicy",
+  "call": "persons.get_privacy_policy",
   "tags": [
    "Person"
   ],
@@ -34048,7 +34048,7 @@
   "op_id": "put-persons-id-privacypolicy",
   "method": "PUT",
   "path": "/persons/{personId}/privacypolicy",
-  "call": "persons.update_privacypolicy",
+  "call": "persons.update_privacy_policy",
   "tags": [
    "Person"
   ],
@@ -34133,7 +34133,7 @@
   "op_id": "delete-persons-id-privacypolicy",
   "method": "DELETE",
   "path": "/persons/{personId}/privacypolicy",
-  "call": "persons.delete_privacypolicy",
+  "call": "persons.delete_privacy_policy",
   "tags": [
    "Person"
   ],
@@ -34263,7 +34263,7 @@
   "op_id": "get-persons-id-servicerequests",
   "method": "GET",
   "path": "/persons/{personId}/servicerequests",
-  "call": "persons.servicerequests.list",
+  "call": "persons.service_requests.list",
   "tags": [
    "Person",
    "Service & Service Groups"
@@ -34309,7 +34309,7 @@
   "op_id": "get-persons-id-servicerequests-id",
   "method": "GET",
   "path": "/persons/{personId}/servicerequests/{requestId}",
-  "call": "persons.servicerequests.get",
+  "call": "persons.service_requests.get",
   "tags": [
    "Person",
    "Service & Service Groups"
@@ -34345,7 +34345,7 @@
   "op_id": "put-persons-id-servicerequests-id",
   "method": "PUT",
   "path": "/persons/{personId}/servicerequests/{requestId}",
-  "call": "persons.servicerequests.update",
+  "call": "persons.service_requests.update",
   "tags": [
    "Person",
    "Service & Service Groups"
@@ -34421,7 +34421,7 @@
   "op_id": "delete-persons-id-servicerequests-id",
   "method": "DELETE",
   "path": "/persons/{personId}/servicerequests/{requestId}",
-  "call": "persons.servicerequests.delete",
+  "call": "persons.service_requests.delete",
   "tags": [
    "Person",
    "Service & Service Groups"
@@ -34467,7 +34467,7 @@
   "op_id": "post-persons-id-servicerequests-id-undo",
   "method": "POST",
   "path": "/persons/{personId}/servicerequests/{requestId}/undo",
-  "call": "persons.servicerequests.undo",
+  "call": "persons.service_requests.undo",
   "tags": [
    "Person",
    "Service & Service Groups"
@@ -34528,7 +34528,7 @@
   "op_id": "get-persons-id-settings-twofactor",
   "method": "GET",
   "path": "/persons/{personId}/settings/twofactor",
-  "call": "persons.settings.twofactor.get",
+  "call": "persons.settings.two_factor.get",
   "tags": [
    "Person"
   ],
@@ -34553,7 +34553,7 @@
   "op_id": "post-persons-id-settings-twofactor",
   "method": "POST",
   "path": "/persons/{personId}/settings/twofactor",
-  "call": "persons.settings.twofactor.create",
+  "call": "persons.settings.two_factor.create",
   "tags": [
    "Person"
   ],
@@ -34598,7 +34598,7 @@
   "op_id": "put-persons-id-settings-twofactor",
   "method": "PUT",
   "path": "/persons/{personId}/settings/twofactor",
-  "call": "persons.settings.twofactor.update",
+  "call": "persons.settings.two_factor.update",
   "tags": [
    "Person"
   ],
@@ -34623,7 +34623,7 @@
   "op_id": "delete-persons-id-settings-twofactor",
   "method": "DELETE",
   "path": "/persons/{personId}/settings/twofactor",
-  "call": "persons.settings.twofactor.delete",
+  "call": "persons.settings.two_factor.delete",
   "tags": [
    "Person"
   ],
@@ -34648,7 +34648,7 @@
   "op_id": "get-persons-id-settings-twofactor-force",
   "method": "GET",
   "path": "/persons/{personId}/settings/twofactor/force",
-  "call": "persons.settings.twofactor.get_force",
+  "call": "persons.settings.two_factor.get_force",
   "tags": [
    "Person"
   ],
@@ -34673,7 +34673,7 @@
   "op_id": "put-persons-id-settings-twofactor-force",
   "method": "PUT",
   "path": "/persons/{personId}/settings/twofactor/force",
-  "call": "persons.settings.twofactor.update_force",
+  "call": "persons.settings.two_factor.update_force",
   "tags": [
    "Person"
   ],
@@ -35003,7 +35003,7 @@
   "op_id": "get-pollfornews",
   "method": "GET",
   "path": "/pollfornews",
-  "call": "pollfornews.list",
+  "call": "poll_for_news.list",
   "tags": [
    "General"
   ],
@@ -36268,7 +36268,7 @@
   "op_id": "get-pr-masterdata",
   "method": "GET",
   "path": "/pr/masterdata",
-  "call": "pr.get_masterdata",
+  "call": "pr.get_master_data",
   "tags": [
    "MasterData",
    "Profile"
@@ -36297,7 +36297,7 @@
   "op_id": "post-probes",
   "method": "POST",
   "path": "/probes",
-  "call": "probes.create",
+  "call": "probes.filter",
   "tags": [
    "Hidden"
   ],
@@ -36842,7 +36842,7 @@
   "op_id": "get-profiles-slugcheck-slug",
   "method": "GET",
   "path": "/profiles/slugcheck/{slug}",
-  "call": "profiles.slugcheck.get",
+  "call": "profiles.slug_check.get",
   "tags": [
    "Hidden"
   ],
@@ -36877,7 +36877,7 @@
   "op_id": "get-publicgroups-signup-confirm-confirmationToken",
   "method": "GET",
   "path": "/publicgroups/signup/confirm/{confirmationToken}",
-  "call": "publicgroups.signup.confirm.get",
+  "call": "public_groups.signup.confirm.get",
   "tags": [
    "GroupHomepage"
   ],
@@ -36902,7 +36902,7 @@
   "op_id": "post-publicgroups-signup-confirm-confirmationToken",
   "method": "POST",
   "path": "/publicgroups/signup/confirm/{confirmationToken}",
-  "call": "publicgroups.signup.confirm.create",
+  "call": "public_groups.signup.confirm.create",
   "tags": [
    "GroupHomepage"
   ],
@@ -36937,7 +36937,7 @@
   "op_id": "get-publicgroups-id",
   "method": "GET",
   "path": "/publicgroups/{groupId}",
-  "call": "publicgroups.get",
+  "call": "public_groups.get",
   "tags": [
    "GroupHomepage"
   ],
@@ -36972,7 +36972,7 @@
   "op_id": "get-publicgroups-groupId-form",
   "method": "GET",
   "path": "/publicgroups/{groupId}/form",
-  "call": "publicgroups.get_form",
+  "call": "public_groups.get_form",
   "tags": [
    "GroupHomepage",
    "Group"
@@ -37018,7 +37018,7 @@
   "op_id": "post-publicgroups-groupId-mailToLeaders",
   "method": "POST",
   "path": "/publicgroups/{groupId}/mailToLeaders",
-  "call": "publicgroups.mail_to_leaders",
+  "call": "public_groups.mail_to_leaders",
   "tags": [
    "Group",
    "GroupHomepage"
@@ -37084,7 +37084,7 @@
   "op_id": "get-publicgroups-groupId-possiblerequesters",
   "method": "GET",
   "path": "/publicgroups/{groupId}/possiblerequesters",
-  "call": "publicgroups.get_possiblerequesters",
+  "call": "public_groups.get_possible_requesters",
   "tags": [
    "GroupHomepage"
   ],
@@ -37119,7 +37119,7 @@
   "op_id": "post-publicgroups-groupId-signout",
   "method": "POST",
   "path": "/publicgroups/{groupId}/signout",
-  "call": "publicgroups.signout",
+  "call": "public_groups.signout",
   "tags": [
    "Group"
   ],
@@ -37167,7 +37167,7 @@
   "op_id": "get-publicgroups-id-signoutdata",
   "method": "GET",
   "path": "/publicgroups/{groupId}/signoutdata",
-  "call": "publicgroups.get_signoutdata",
+  "call": "public_groups.get_signout_data",
   "tags": [
    "GroupHomepage"
   ],
@@ -37202,7 +37202,7 @@
   "op_id": "post-publicgroups-groupId-signup",
   "method": "POST",
   "path": "/publicgroups/{groupId}/signup",
-  "call": "publicgroups.submit_signup",
+  "call": "public_groups.submit_signup",
   "tags": [
    "Group",
    "GroupHomepage"
@@ -37268,7 +37268,7 @@
   "op_id": "post-publicgroups-groupId-token",
   "method": "POST",
   "path": "/publicgroups/{groupId}/token",
-  "call": "publicgroups.token",
+  "call": "public_groups.token",
   "tags": [
    "GroupHomepage",
    "Group"
@@ -37344,7 +37344,7 @@
   "op_id": "get-publicgroups-id-hash",
   "method": "GET",
   "path": "/publicgroups/{groupId}/{hash}",
-  "call": "publicgroups.get_with_hash",
+  "call": "public_groups.get_with_hash",
   "tags": [
    "Group",
    "GroupHomepage"
@@ -37407,7 +37407,7 @@
   "op_id": "get-queues-queue-jobgroups-jobGroup",
   "method": "GET",
   "path": "/queues/{queue}/jobgroups/{jobGroup}",
-  "call": "queues.jobgroups.get",
+  "call": "queues.job_groups.get",
   "tags": [
    "Queue"
   ],
@@ -37442,7 +37442,7 @@
   "op_id": "get-registrationconfig-id",
   "method": "GET",
   "path": "/registrationconfig/{id}",
-  "call": "registrationconfig.get",
+  "call": "registration_config.get",
   "tags": [
    "Hidden"
   ],
@@ -37467,7 +37467,7 @@
   "op_id": "patch-registrationconfig-id",
   "method": "PATCH",
   "path": "/registrationconfig/{id}",
-  "call": "registrationconfig.patch",
+  "call": "registration_config.patch",
   "tags": [
    "Hidden"
   ],
@@ -37827,7 +37827,7 @@
   "op_id": "get-repeatcalculation",
   "method": "GET",
   "path": "/repeatcalculation",
-  "call": "repeatcalculation.list",
+  "call": "repeat_calculation.list",
   "tags": [
    "Calendar"
   ],
@@ -37930,7 +37930,7 @@
   "op_id": "post-repeatcalculation",
   "method": "POST",
   "path": "/repeatcalculation",
-  "call": "repeatcalculation.create",
+  "call": "repeat_calculation.calculate",
   "tags": [
    "Calendar"
   ],
@@ -38025,7 +38025,7 @@
   "op_id": "put-repeatcalculation",
   "method": "PUT",
   "path": "/repeatcalculation",
-  "call": "repeatcalculation.update",
+  "call": "repeat_calculation.update",
   "tags": [
    "Calendar"
   ],
@@ -38120,7 +38120,7 @@
   "op_id": "patch-repeatcalculation",
   "method": "PATCH",
   "path": "/repeatcalculation",
-  "call": "repeatcalculation.patch",
+  "call": "repeat_calculation.patch",
   "tags": [
    "Calendar"
   ],
@@ -38215,7 +38215,7 @@
   "op_id": "delete-repeatcalculation",
   "method": "DELETE",
   "path": "/repeatcalculation",
-  "call": "repeatcalculation.delete",
+  "call": "repeat_calculation.delete",
   "tags": [
    "Calendar"
   ],
@@ -38335,7 +38335,7 @@
   "op_id": "get-resource-masterdata",
   "method": "GET",
   "path": "/resource/masterdata",
-  "call": "resource.get_masterdata",
+  "call": "resource.get_master_data",
   "tags": [
    "Resource",
    "MasterData"
@@ -38761,7 +38761,7 @@
   "op_id": "get-resourcetypes",
   "method": "GET",
   "path": "/resourcetypes",
-  "call": "resourcetypes.list",
+  "call": "resource_types.list",
   "tags": [
    "Resource"
   ],
@@ -38775,7 +38775,7 @@
   "op_id": "post-resourcetypes",
   "method": "POST",
   "path": "/resourcetypes",
-  "call": "resourcetypes.create",
+  "call": "resource_types.create",
   "tags": [
    "Resource"
   ],
@@ -38830,7 +38830,7 @@
   "op_id": "get-resourcetypes-resourceTypeId",
   "method": "GET",
   "path": "/resourcetypes/{resourceTypeId}",
-  "call": "resourcetypes.get",
+  "call": "resource_types.get",
   "tags": [
    "Resource"
   ],
@@ -38855,7 +38855,7 @@
   "op_id": "put-resourcetypes-resourceTypeId",
   "method": "PUT",
   "path": "/resourcetypes/{resourceTypeId}",
-  "call": "resourcetypes.update",
+  "call": "resource_types.update",
   "tags": [
    "Resource"
   ],
@@ -38920,7 +38920,7 @@
   "op_id": "delete-resourcetypes-resourceTypeId",
   "method": "DELETE",
   "path": "/resourcetypes/{resourceTypeId}",
-  "call": "resourcetypes.delete",
+  "call": "resource_types.delete",
   "tags": [
    "Resource"
   ],
@@ -39528,7 +39528,7 @@
   "op_id": "get-securitylevels",
   "method": "GET",
   "path": "/securitylevels",
-  "call": "securitylevels.list",
+  "call": "security_levels.list",
   "tags": [
    "Admin"
   ],
@@ -39542,7 +39542,7 @@
   "op_id": "get-securitylevels-id",
   "method": "GET",
   "path": "/securitylevels/{id}",
-  "call": "securitylevels.get",
+  "call": "security_levels.get",
   "tags": [
    "Admin"
   ],
@@ -39567,7 +39567,7 @@
   "op_id": "post-securitylevels-id",
   "method": "POST",
   "path": "/securitylevels/{id}",
-  "call": "securitylevels.create",
+  "call": "security_levels.create",
   "tags": [
    "Admin"
   ],
@@ -39602,7 +39602,7 @@
   "op_id": "patch-securitylevels-id",
   "method": "PATCH",
   "path": "/securitylevels/{id}",
-  "call": "securitylevels.patch",
+  "call": "security_levels.patch",
   "tags": [
    "Admin"
   ],
@@ -39667,7 +39667,7 @@
   "op_id": "delete-securitylevels-id",
   "method": "DELETE",
   "path": "/securitylevels/{id}",
-  "call": "securitylevels.delete",
+  "call": "security_levels.delete",
   "tags": [
    "Admin"
   ],
@@ -39702,7 +39702,7 @@
   "op_id": "get-servicegroups",
   "method": "GET",
   "path": "/servicegroups",
-  "call": "servicegroups.list",
+  "call": "service_groups.list",
   "tags": [
    "Service & Service Groups"
   ],
@@ -39716,7 +39716,7 @@
   "op_id": "post-servicegroups",
   "method": "POST",
   "path": "/servicegroups",
-  "call": "servicegroups.create",
+  "call": "service_groups.create",
   "tags": [
    "Service & Service Groups"
   ],
@@ -39791,7 +39791,7 @@
   "op_id": "get-servicegroups-id",
   "method": "GET",
   "path": "/servicegroups/{serviceGroupId}",
-  "call": "servicegroups.get",
+  "call": "service_groups.get",
   "tags": [
    "Service & Service Groups"
   ],
@@ -39816,7 +39816,7 @@
   "op_id": "put-servicegroups-id",
   "method": "PUT",
   "path": "/servicegroups/{serviceGroupId}",
-  "call": "servicegroups.update",
+  "call": "service_groups.update",
   "tags": [
    "Service & Service Groups"
   ],
@@ -39901,7 +39901,7 @@
   "op_id": "delete-servicegroups-id",
   "method": "DELETE",
   "path": "/servicegroups/{serviceGroupId}",
-  "call": "servicegroups.delete",
+  "call": "service_groups.delete",
   "tags": [
    "Service & Service Groups"
   ],
@@ -41609,7 +41609,7 @@
   "op_id": "get-startpage",
   "method": "GET",
   "path": "/startpage",
-  "call": "startpage.list",
+  "call": "start_page.list",
   "tags": [
    "Widgets"
   ],
@@ -42841,7 +42841,7 @@
   "op_id": "get-sync-entitymappings",
   "method": "GET",
   "path": "/sync/entitymappings",
-  "call": "sync.entitymappings.list",
+  "call": "sync.entity_mappings.list",
   "tags": [
    "Sync"
   ],
@@ -42989,7 +42989,7 @@
   "op_id": "post-sync-entitymappings",
   "method": "POST",
   "path": "/sync/entitymappings",
-  "call": "sync.entitymappings.create",
+  "call": "sync.entity_mappings.create",
   "tags": [
    "Sync"
   ],
@@ -43074,7 +43074,7 @@
   "op_id": "get-sync-entitymappings-id",
   "method": "GET",
   "path": "/sync/entitymappings/{id}",
-  "call": "sync.entitymappings.get",
+  "call": "sync.entity_mappings.get",
   "tags": [
    "Sync"
   ],
@@ -43099,7 +43099,7 @@
   "op_id": "put-sync-entitymappings-id",
   "method": "PUT",
   "path": "/sync/entitymappings/{id}",
-  "call": "sync.entitymappings.update",
+  "call": "sync.entity_mappings.update",
   "tags": [
    "Sync"
   ],
@@ -43194,7 +43194,7 @@
   "op_id": "delete-sync-entitymappings-id",
   "method": "DELETE",
   "path": "/sync/entitymappings/{id}",
-  "call": "sync.entitymappings.delete",
+  "call": "sync.entity_mappings.delete",
   "tags": [
    "Sync"
   ],
@@ -43539,7 +43539,7 @@
   "op_id": "get-sync-externalsystems-externalSystemId-adapterproxy-uri",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/adapterproxy/{uri}",
-  "call": "sync.externalsystems.adapterproxy.get",
+  "call": "sync.externalsystems.adapter_proxy.get",
   "tags": [
    "Sync"
   ],
@@ -43574,7 +43574,7 @@
   "op_id": "post-sync-externalsystems-externalSystemId-adapterproxy-uri",
   "method": "POST",
   "path": "/sync/externalsystems/{externalSystemId}/adapterproxy/{uri}",
-  "call": "sync.externalsystems.adapterproxy.create",
+  "call": "sync.externalsystems.adapter_proxy.create",
   "tags": [
    "Sync"
   ],
@@ -43609,7 +43609,7 @@
   "op_id": "put-sync-externalsystems-externalSystemId-adapterproxy-uri",
   "method": "PUT",
   "path": "/sync/externalsystems/{externalSystemId}/adapterproxy/{uri}",
-  "call": "sync.externalsystems.adapterproxy.update",
+  "call": "sync.externalsystems.adapter_proxy.update",
   "tags": [
    "Sync"
   ],
@@ -43644,7 +43644,7 @@
   "op_id": "patch-sync-externalsystems-externalSystemId-adapterproxy-uri",
   "method": "PATCH",
   "path": "/sync/externalsystems/{externalSystemId}/adapterproxy/{uri}",
-  "call": "sync.externalsystems.adapterproxy.patch",
+  "call": "sync.externalsystems.adapter_proxy.patch",
   "tags": [
    "Sync"
   ],
@@ -43679,7 +43679,7 @@
   "op_id": "delete-sync-externalsystems-externalSystemId-adapterproxy-uri",
   "method": "DELETE",
   "path": "/sync/externalsystems/{externalSystemId}/adapterproxy/{uri}",
-  "call": "sync.externalsystems.adapterproxy.delete",
+  "call": "sync.externalsystems.adapter_proxy.delete",
   "tags": [
    "Sync"
   ],
@@ -43714,7 +43714,7 @@
   "op_id": "delete-sync-externalsystems-externalSystemId-entitymappings",
   "method": "DELETE",
   "path": "/sync/externalsystems/{externalSystemId}/entitymappings",
-  "call": "sync.externalsystems.delete_entitymappings",
+  "call": "sync.externalsystems.delete_entity_mappings",
   "tags": [
    "Sync"
   ],
@@ -43739,7 +43739,7 @@
   "op_id": "get-sync-externalsystems-externalSystemId-fieldmappings",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/fieldmappings",
-  "call": "sync.externalsystems.fieldmappings.list",
+  "call": "sync.externalsystems.field_mappings.list",
   "tags": [
    "Sync"
   ],
@@ -43764,7 +43764,7 @@
   "op_id": "get-sync-externalsystems-id-fieldmappings-domaintype",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}",
-  "call": "sync.externalsystems.fieldmappings.get",
+  "call": "sync.externalsystems.field_mappings.get",
   "tags": [
    "Sync"
   ],
@@ -43872,7 +43872,7 @@
   "op_id": "put-sync-externalsystems-id-fieldmappings-domainType",
   "method": "PUT",
   "path": "/sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}",
-  "call": "sync.externalsystems.fieldmappings.update",
+  "call": "sync.externalsystems.field_mappings.update",
   "tags": [
    "Sync"
   ],
@@ -44000,7 +44000,7 @@
   "op_id": "delete-sync-externalsystems-id-fieldmappings-domainType",
   "method": "DELETE",
   "path": "/sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}",
-  "call": "sync.externalsystems.fieldmappings.delete",
+  "call": "sync.externalsystems.field_mappings.delete",
   "tags": [
    "Sync"
   ],
@@ -44108,7 +44108,7 @@
   "op_id": "get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}/nosuggestions",
-  "call": "sync.externalsystems.fieldmappings.get_nosuggestions",
+  "call": "sync.externalsystems.field_mappings.get_nosuggestions",
   "tags": [
    "Sync"
   ],
@@ -44216,7 +44216,7 @@
   "op_id": "get-sync-externalsystems-id-jobconfigs",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs",
-  "call": "sync.externalsystems.jobconfigs.list",
+  "call": "sync.externalsystems.job_configs.list",
   "tags": [
    "Sync"
   ],
@@ -44241,7 +44241,7 @@
   "op_id": "post-sync-externalsystems-externalSystemId-jobconfigs",
   "method": "POST",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs",
-  "call": "sync.externalsystems.jobconfigs.create",
+  "call": "sync.externalsystems.job_configs.create",
   "tags": [
    "Sync"
   ],
@@ -44396,7 +44396,7 @@
   "op_id": "get-sync-externalsystems-externalSystemId-jobconfigs-jobId",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}",
-  "call": "sync.externalsystems.jobconfigs.get",
+  "call": "sync.externalsystems.job_configs.get",
   "tags": [
    "Sync"
   ],
@@ -44431,7 +44431,7 @@
   "op_id": "put-sync-externalsystems-externalSystemId-jobconfigs",
   "method": "PUT",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}",
-  "call": "sync.externalsystems.jobconfigs.update",
+  "call": "sync.externalsystems.job_configs.update",
   "tags": [
    "Sync"
   ],
@@ -44606,7 +44606,7 @@
   "op_id": "delete-sync-externalsystems-externalSystemId-jobconfigs-jobId",
   "method": "DELETE",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}",
-  "call": "sync.externalsystems.jobconfigs.delete",
+  "call": "sync.externalsystems.job_configs.delete",
   "tags": [
    "Sync"
   ],
@@ -44641,7 +44641,7 @@
   "op_id": "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-executions-executionId",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/executions/{executionId}",
-  "call": "sync.externalsystems.jobconfigs.executions.get",
+  "call": "sync.externalsystems.job_configs.executions.get",
   "tags": [
    "Sync"
   ],
@@ -44686,7 +44686,7 @@
   "op_id": "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/filter",
-  "call": "sync.externalsystems.jobconfigs.get_filter",
+  "call": "sync.externalsystems.job_configs.get_filter",
   "tags": [
    "Sync"
   ],
@@ -44721,7 +44721,7 @@
   "op_id": "put-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter",
   "method": "PUT",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/filter",
-  "call": "sync.externalsystems.jobconfigs.update_filter",
+  "call": "sync.externalsystems.job_configs.update_filter",
   "tags": [
    "Sync"
   ],
@@ -44776,7 +44776,7 @@
   "op_id": "delete-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter",
   "method": "DELETE",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/filter",
-  "call": "sync.externalsystems.jobconfigs.delete_filter",
+  "call": "sync.externalsystems.job_configs.delete_filter",
   "tags": [
    "Sync"
   ],
@@ -44811,7 +44811,7 @@
   "op_id": "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties",
   "method": "GET",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/properties",
-  "call": "sync.externalsystems.jobconfigs.get_properties",
+  "call": "sync.externalsystems.job_configs.get_properties",
   "tags": [
    "Sync"
   ],
@@ -44846,7 +44846,7 @@
   "op_id": "put-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties",
   "method": "PUT",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/properties",
-  "call": "sync.externalsystems.jobconfigs.update_properties",
+  "call": "sync.externalsystems.job_configs.update_properties",
   "tags": [
    "Sync"
   ],
@@ -44901,7 +44901,7 @@
   "op_id": "delete-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties",
   "method": "DELETE",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/properties",
-  "call": "sync.externalsystems.jobconfigs.delete_properties",
+  "call": "sync.externalsystems.job_configs.delete_properties",
   "tags": [
    "Sync"
   ],
@@ -44936,7 +44936,7 @@
   "op_id": "post-sync-externalsystems-externalSystemId-jobconfigs-jobId-start",
   "method": "POST",
   "path": "/sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/start",
-  "call": "sync.externalsystems.jobconfigs.start",
+  "call": "sync.externalsystems.job_configs.start",
   "tags": [
    "Sync"
   ],
@@ -45016,7 +45016,7 @@
   "op_id": "get-sync-jobconfigs",
   "method": "GET",
   "path": "/sync/jobconfigs",
-  "call": "sync.list_jobconfigs",
+  "call": "sync.list_job_configs",
   "tags": [
    "Sync"
   ],
@@ -45616,7 +45616,7 @@
   "op_id": "get-translations-keysbytext",
   "method": "GET",
   "path": "/translations/keysbytext",
-  "call": "translations.list_keysbytext",
+  "call": "translations.list_keys_by_text",
   "tags": [
    "Hidden"
   ],
@@ -45746,7 +45746,7 @@
   "op_id": "post-twofactor-totp",
   "method": "POST",
   "path": "/twofactor/totp",
-  "call": "twofactor.totp",
+  "call": "two_factor.totp",
   "tags": [
    "Person"
   ],
@@ -45878,7 +45878,7 @@
   "op_id": "get-website-starttest",
   "method": "GET",
   "path": "/website/starttest",
-  "call": "website.get_starttest",
+  "call": "website.get_start_test",
   "tags": [
    "Hidden"
   ],

@@ -104,6 +104,12 @@ NAME_OVERRIDES: dict[str, tuple[str, str]] = {
     "put-events-eventId-servicerequests": ("events.servicerequests", "update_all"),
     "get-group-roles": ("group.roles", "list"),
     "get-persons-id-settings-module": ("persons.settings", "get_module"),
+    # POST requests that only read or compute something
+    "post-actions": ("actions", "filter"),
+    "post-probes": ("probes", "filter"),
+    "post-domainobjects": ("domainobjects", "resolve"),
+    "post-finance-accountingperiods-id-statements": ("finance.accountingperiods.statements", "preview"),
+    "post-repeatcalculation": ("repeatcalculation", "calculate"),
     # Bookings
     "post-bookings-id": ("bookings", "split"),
     "post-bookings-conflicts": ("bookings", "preview_conflicts"),
@@ -162,6 +168,52 @@ NAME_OVERRIDES: dict[str, tuple[str, str]] = {
     "delete-tags-domainType-domainId-tagId": ("tags", "detach"),
     "delete-tags-tagId": ("tags", "delete"),
 }
+
+# Many path segments are written as one word (`/agendatemplates`, `/externallogins`),
+# others with separators (`/external-logins`). Names split joined words into these
+# words, so both become `external_logins`. A segment is only split if it consists
+# entirely of known words (singular or plural); everything else stays as is.
+WORDS = set("""
+account accounting adapter age agenda agreement assets available bulk by cash category change check checkin church
+class client comment confidentiality config contact cost center create csrf data datev db discount document domain
+dynamic entity evangelische event exchange export external factor feature field for further group grow homepage html
+ids impact job key label letter link log login mapping master meeting member news next no number oauth object open
+page path period person placeholder policy poll possible post preview privacy proxy public purpose qrcode query rate
+registration relationship repeat calculation request requester resource rule security level service settings signout
+slug split start statistics status string target template termine test text token tax transaction translation two
+type upload usage user validate viewer
+""".split())
+
+
+def _word_forms() -> dict[str, str]:
+    forms: dict[str, str] = {}
+    for w in WORDS:
+        for f in (w, w + "s", w + "es", w[:-1] + "ies" if w.endswith("y") else w):
+            forms.setdefault(f, w)
+    return forms
+
+
+WORD_FORMS = _word_forms()
+
+
+def split_words(segment: str) -> str:
+    """`agendatemplates` -> `agenda_templates`; unknown words leave the segment unchanged."""
+
+    def best(rest: str) -> tuple[str, ...] | None:
+        if not rest:
+            return ()
+        found = None
+        for i in range(len(rest), 0, -1):
+            if rest[:i] in WORD_FORMS and (tail := best(rest[i:])) is not None:
+                candidate = (rest[:i], *tail)
+                if found is None or len(candidate) < len(found):
+                    found = candidate
+        return found
+
+    return "_".join(
+        "_".join(best(part) or (part,)) if part.isalpha() else part for part in segment.split("_")
+    )
+
 
 HTTP_METHODS = ("get", "post", "put", "patch", "delete")
 
@@ -627,12 +679,13 @@ def assign_names(ops: list[Op]) -> None:
         methods_by_path.setdefault(op.path, set()).add(op.method)
 
     def static(path: str) -> list[str]:
-        return [snake(s) for s in path.strip("/").split("/") if s and not s.startswith("{")]
+        return [split_words(snake(s)) for s in path.strip("/").split("/") if s and not s.startswith("{")]
 
     for op in ops:
         if op.op_id in NAME_OVERRIDES:
             chain, op.name = NAME_OVERRIDES[op.op_id]
-            op.chain = tuple(chain.split("."))
+            op.chain = tuple(split_words(c) for c in chain.split("."))
+            op.name = split_words(op.name)
             continue
         statics = static(op.path)
         last_is_param = op.path.rstrip("/").endswith("}")

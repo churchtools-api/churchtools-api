@@ -23,25 +23,25 @@ impl Client {
     pub fn addresses(&self) -> AddressesResource<'_> {
         AddressesResource { client: self }
     }
+    /// Endpoints under `/agenda_templates` (11 operations), see [`AgendaTemplatesResource`].
+    pub fn agenda_templates(&self) -> AgendaTemplatesResource<'_> {
+        AgendaTemplatesResource { client: self }
+    }
     /// Endpoints under `/agendas` (1 operations), see [`AgendasResource`].
     pub fn agendas(&self) -> AgendasResource<'_> {
         AgendasResource { client: self }
-    }
-    /// Endpoints under `/agendatemplates` (11 operations), see [`AgendatemplatesResource`].
-    pub fn agendatemplates(&self) -> AgendatemplatesResource<'_> {
-        AgendatemplatesResource { client: self }
     }
     /// Endpoints under `/bookings` (9 operations), see [`BookingsResource`].
     pub fn bookings(&self) -> BookingsResource<'_> {
         BookingsResource { client: self }
     }
-    /// Endpoints under `/bulkjobs` (2 operations), see [`BulkjobsResource`].
-    pub fn bulkjobs(&self) -> BulkjobsResource<'_> {
-        BulkjobsResource { client: self }
+    /// Endpoints under `/bulk_jobs` (2 operations), see [`BulkJobsResource`].
+    pub fn bulk_jobs(&self) -> BulkJobsResource<'_> {
+        BulkJobsResource { client: self }
     }
-    /// Endpoints under `/bulkletters` (6 operations), see [`BulklettersResource`].
-    pub fn bulkletters(&self) -> BulklettersResource<'_> {
-        BulklettersResource { client: self }
+    /// Endpoints under `/bulk_letters` (6 operations), see [`BulkLettersResource`].
+    pub fn bulk_letters(&self) -> BulkLettersResource<'_> {
+        BulkLettersResource { client: self }
     }
     /// Endpoints under `/calendars` (28 operations), see [`CalendarsResource`].
     pub fn calendars(&self) -> CalendarsResource<'_> {
@@ -63,77 +63,77 @@ impl Client {
     pub fn checkin(&self) -> CheckinResource<'_> {
         CheckinResource { client: self }
     }
-    /// Endpoints under `/churchquery` (2 operations), see [`ChurchqueryResource`].
-    pub fn churchquery(&self) -> ChurchqueryResource<'_> {
-        ChurchqueryResource { client: self }
+    /// Endpoints under `/church_query` (2 operations), see [`ChurchQueryResource`].
+    pub fn church_query(&self) -> ChurchQueryResource<'_> {
+        ChurchQueryResource { client: self }
     }
     /// Endpoints under `/config` (2 operations), see [`ConfigResource`].
     pub fn config(&self) -> ConfigResource<'_> {
         ConfigResource { client: self }
     }
-    /// Endpoints under `/contactlabels` (5 operations), see [`ContactlabelsResource`].
-    pub fn contactlabels(&self) -> ContactlabelsResource<'_> {
-        ContactlabelsResource { client: self }
+    /// Endpoints under `/contact_labels` (5 operations), see [`ContactLabelsResource`].
+    pub fn contact_labels(&self) -> ContactLabelsResource<'_> {
+        ContactLabelsResource { client: self }
     }
-    /// Endpoints under `/csrftoken` (1 operations), see [`CsrftokenResource`].
-    pub fn csrftoken(&self) -> CsrftokenResource<'_> {
-        CsrftokenResource { client: self }
+    /// Endpoints under `/csrf_token` (1 operations), see [`CsrfTokenResource`].
+    pub fn csrf_token(&self) -> CsrfTokenResource<'_> {
+        CsrfTokenResource { client: self }
     }
-    /// Endpoints under `/dbfields` (10 operations), see [`DbfieldsResource`].
-    pub fn dbfields(&self) -> DbfieldsResource<'_> {
-        DbfieldsResource { client: self }
+    /// Endpoints under `/db_field_types` (1 operations), see [`DbFieldTypesResource`].
+    pub fn db_field_types(&self) -> DbFieldTypesResource<'_> {
+        DbFieldTypesResource { client: self }
     }
-    /// Endpoints under `/dbfieldtypes` (1 operations), see [`DbfieldtypesResource`].
-    pub fn dbfieldtypes(&self) -> DbfieldtypesResource<'_> {
-        DbfieldtypesResource { client: self }
+    /// Endpoints under `/db_fields` (10 operations), see [`DbFieldsResource`].
+    pub fn db_fields(&self) -> DbFieldsResource<'_> {
+        DbFieldsResource { client: self }
     }
     /// Endpoints under `/departments` (1 operations), see [`DepartmentsResource`].
     pub fn departments(&self) -> DepartmentsResource<'_> {
         DepartmentsResource { client: self }
     }
-    /// Endpoints under `/domainobjects` (2 operations), see [`DomainobjectsResource`].
-    pub fn domainobjects(&self) -> DomainobjectsResource<'_> {
-        DomainobjectsResource { client: self }
+    /// Endpoints under `/domain_objects` (2 operations), see [`DomainObjectsResource`].
+    pub fn domain_objects(&self) -> DomainObjectsResource<'_> {
+        DomainObjectsResource { client: self }
     }
-    /// Endpoints under `/dynamicgroups` (8 operations), see [`DynamicgroupsResource`].
-    pub fn dynamicgroups(&self) -> DynamicgroupsResource<'_> {
-        DynamicgroupsResource { client: self }
+    /// Endpoints under `/dynamic_groups` (8 operations), see [`DynamicGroupsResource`].
+    pub fn dynamic_groups(&self) -> DynamicGroupsResource<'_> {
+        DynamicGroupsResource { client: self }
     }
     /// Endpoints under `/emails` (2 operations), see [`EmailsResource`].
     pub fn emails(&self) -> EmailsResource<'_> {
         EmailsResource { client: self }
     }
-    /// Endpoints under `/evangelischetermine` (3 operations), see [`EvangelischetermineResource`].
-    pub fn evangelischetermine(&self) -> EvangelischetermineResource<'_> {
-        EvangelischetermineResource { client: self }
+    /// Endpoints under `/evangelische_termine` (3 operations), see [`EvangelischeTermineResource`].
+    pub fn evangelische_termine(&self) -> EvangelischeTermineResource<'_> {
+        EvangelischeTermineResource { client: self }
     }
     /// Endpoints under `/event` (1 operations), see [`EventResource`].
     pub fn event(&self) -> EventResource<'_> {
         EventResource { client: self }
     }
+    /// Endpoints under `/event_templates` (1 operations), see [`EventTemplatesResource`].
+    pub fn event_templates(&self) -> EventTemplatesResource<'_> {
+        EventTemplatesResource { client: self }
+    }
     /// Endpoints under `/events` (39 operations), see [`EventsResource`].
     pub fn events(&self) -> EventsResource<'_> {
         EventsResource { client: self }
     }
-    /// Endpoints under `/eventtemplates` (1 operations), see [`EventtemplatesResource`].
-    pub fn eventtemplates(&self) -> EventtemplatesResource<'_> {
-        EventtemplatesResource { client: self }
+    /// Endpoints under `/external_logins` (24 operations), see [`ExternalLoginsResource`].
+    pub fn external_logins(&self) -> ExternalLoginsResource<'_> {
+        ExternalLoginsResource { client: self }
     }
-    /// Endpoints under `/externallogins` (24 operations), see [`ExternalloginsResource`].
-    pub fn externallogins(&self) -> ExternalloginsResource<'_> {
-        ExternalloginsResource { client: self }
-    }
-    /// Endpoints under `/externalposts` (2 operations), see [`ExternalpostsResource`].
-    pub fn externalposts(&self) -> ExternalpostsResource<'_> {
-        ExternalpostsResource { client: self }
+    /// Endpoints under `/external_posts` (2 operations), see [`ExternalPostsResource`].
+    pub fn external_posts(&self) -> ExternalPostsResource<'_> {
+        ExternalPostsResource { client: self }
     }
     /// Endpoints under `/facts` (5 operations), see [`FactsResource`].
     pub fn facts(&self) -> FactsResource<'_> {
         FactsResource { client: self }
     }
-    /// Endpoints under `/featureusage` (1 operations), see [`FeatureusageResource`].
-    pub fn featureusage(&self) -> FeatureusageResource<'_> {
-        FeatureusageResource { client: self }
+    /// Endpoints under `/feature_usage` (1 operations), see [`FeatureUsageResource`].
+    pub fn feature_usage(&self) -> FeatureUsageResource<'_> {
+        FeatureUsageResource { client: self }
     }
     /// Endpoints under `/fields` (1 operations), see [`FieldsResource`].
     pub fn fields(&self) -> FieldsResource<'_> {
@@ -151,17 +151,17 @@ impl Client {
     pub fn followups(&self) -> FollowupsResource<'_> {
         FollowupsResource { client: self }
     }
-    /// Endpoints under `/furtherlinks` (5 operations), see [`FurtherlinksResource`].
-    pub fn furtherlinks(&self) -> FurtherlinksResource<'_> {
-        FurtherlinksResource { client: self }
+    /// Endpoints under `/further_links` (5 operations), see [`FurtherLinksResource`].
+    pub fn further_links(&self) -> FurtherLinksResource<'_> {
+        FurtherLinksResource { client: self }
     }
     /// Endpoints under `/group` (31 operations), see [`GroupResource`].
     pub fn group(&self) -> GroupResource<'_> {
         GroupResource { client: self }
     }
-    /// Endpoints under `/grouphomepages` (2 operations), see [`GrouphomepagesResource`].
-    pub fn grouphomepages(&self) -> GrouphomepagesResource<'_> {
-        GrouphomepagesResource { client: self }
+    /// Endpoints under `/group_homepages` (2 operations), see [`GroupHomepagesResource`].
+    pub fn group_homepages(&self) -> GroupHomepagesResource<'_> {
+        GroupHomepagesResource { client: self }
     }
     /// Endpoints under `/groups` (78 operations), see [`GroupsResource`].
     pub fn groups(&self) -> GroupsResource<'_> {
@@ -171,9 +171,9 @@ impl Client {
     pub fn history(&self) -> HistoryResource<'_> {
         HistoryResource { client: self }
     }
-    /// Endpoints under `/htmltemplates` (9 operations), see [`HtmltemplatesResource`].
-    pub fn htmltemplates(&self) -> HtmltemplatesResource<'_> {
-        HtmltemplatesResource { client: self }
+    /// Endpoints under `/html_templates` (9 operations), see [`HtmlTemplatesResource`].
+    pub fn html_templates(&self) -> HtmlTemplatesResource<'_> {
+        HtmlTemplatesResource { client: self }
     }
     /// Endpoints under `/images` (4 operations), see [`ImagesResource`].
     pub fn images(&self) -> ImagesResource<'_> {
@@ -187,9 +187,9 @@ impl Client {
     pub fn installation_sync(&self) -> InstallationSyncResource<'_> {
         InstallationSyncResource { client: self }
     }
-    /// Endpoints under `/joblog` (1 operations), see [`JoblogResource`].
-    pub fn joblog(&self) -> JoblogResource<'_> {
-        JoblogResource { client: self }
+    /// Endpoints under `/job_log` (1 operations), see [`JobLogResource`].
+    pub fn job_log(&self) -> JobLogResource<'_> {
+        JobLogResource { client: self }
     }
     /// Endpoints under `/jobs` (3 operations), see [`JobsResource`].
     pub fn jobs(&self) -> JobsResource<'_> {
@@ -223,21 +223,21 @@ impl Client {
     pub fn markdown(&self) -> MarkdownResource<'_> {
         MarkdownResource { client: self }
     }
-    /// Endpoints under `/masterdata` (1 operations), see [`MasterdataResource`].
-    pub fn masterdata(&self) -> MasterdataResource<'_> {
-        MasterdataResource { client: self }
+    /// Endpoints under `/master_data` (1 operations), see [`MasterDataResource`].
+    pub fn master_data(&self) -> MasterDataResource<'_> {
+        MasterDataResource { client: self }
     }
-    /// Endpoints under `/meetingrequests` (1 operations), see [`MeetingrequestsResource`].
-    pub fn meetingrequests(&self) -> MeetingrequestsResource<'_> {
-        MeetingrequestsResource { client: self }
+    /// Endpoints under `/meeting_requests` (1 operations), see [`MeetingRequestsResource`].
+    pub fn meeting_requests(&self) -> MeetingRequestsResource<'_> {
+        MeetingRequestsResource { client: self }
     }
     /// Endpoints under `/menu` (1 operations), see [`MenuResource`].
     pub fn menu(&self) -> MenuResource<'_> {
         MenuResource { client: self }
     }
-    /// Endpoints under `/newsletter_integrations` (1 operations), see [`NewsletterIntegrationsResource`].
-    pub fn newsletter_integrations(&self) -> NewsletterIntegrationsResource<'_> {
-        NewsletterIntegrationsResource { client: self }
+    /// Endpoints under `/news_letter_integrations` (1 operations), see [`NewsLetterIntegrationsResource`].
+    pub fn news_letter_integrations(&self) -> NewsLetterIntegrationsResource<'_> {
+        NewsLetterIntegrationsResource { client: self }
     }
     /// Endpoints under `/notes` (5 operations), see [`NotesResource`].
     pub fn notes(&self) -> NotesResource<'_> {
@@ -251,9 +251,9 @@ impl Client {
     pub fn nps(&self) -> NpsResource<'_> {
         NpsResource { client: self }
     }
-    /// Endpoints under `/oauthclients` (4 operations), see [`OauthclientsResource`].
-    pub fn oauthclients(&self) -> OauthclientsResource<'_> {
-        OauthclientsResource { client: self }
+    /// Endpoints under `/oauth_clients` (4 operations), see [`OauthClientsResource`].
+    pub fn oauth_clients(&self) -> OauthClientsResource<'_> {
+        OauthClientsResource { client: self }
     }
     /// Endpoints under `/permissions` (21 operations), see [`PermissionsResource`].
     pub fn permissions(&self) -> PermissionsResource<'_> {
@@ -271,9 +271,9 @@ impl Client {
     pub fn placeholders(&self) -> PlaceholdersResource<'_> {
         PlaceholdersResource { client: self }
     }
-    /// Endpoints under `/pollfornews` (1 operations), see [`PollfornewsResource`].
-    pub fn pollfornews(&self) -> PollfornewsResource<'_> {
-        PollfornewsResource { client: self }
+    /// Endpoints under `/poll_for_news` (1 operations), see [`PollForNewsResource`].
+    pub fn poll_for_news(&self) -> PollForNewsResource<'_> {
+        PollForNewsResource { client: self }
     }
     /// Endpoints under `/post` (8 operations), see [`PostResource`].
     pub fn post(&self) -> PostResource<'_> {
@@ -299,25 +299,25 @@ impl Client {
     pub fn profiles(&self) -> ProfilesResource<'_> {
         ProfilesResource { client: self }
     }
-    /// Endpoints under `/publicgroups` (11 operations), see [`PublicgroupsResource`].
-    pub fn publicgroups(&self) -> PublicgroupsResource<'_> {
-        PublicgroupsResource { client: self }
+    /// Endpoints under `/public_groups` (11 operations), see [`PublicGroupsResource`].
+    pub fn public_groups(&self) -> PublicGroupsResource<'_> {
+        PublicGroupsResource { client: self }
     }
     /// Endpoints under `/queues` (2 operations), see [`QueuesResource`].
     pub fn queues(&self) -> QueuesResource<'_> {
         QueuesResource { client: self }
     }
-    /// Endpoints under `/registrationconfig` (2 operations), see [`RegistrationconfigResource`].
-    pub fn registrationconfig(&self) -> RegistrationconfigResource<'_> {
-        RegistrationconfigResource { client: self }
+    /// Endpoints under `/registration_config` (2 operations), see [`RegistrationConfigResource`].
+    pub fn registration_config(&self) -> RegistrationConfigResource<'_> {
+        RegistrationConfigResource { client: self }
     }
     /// Endpoints under `/registrations` (5 operations), see [`RegistrationsResource`].
     pub fn registrations(&self) -> RegistrationsResource<'_> {
         RegistrationsResource { client: self }
     }
-    /// Endpoints under `/repeatcalculation` (5 operations), see [`RepeatcalculationResource`].
-    pub fn repeatcalculation(&self) -> RepeatcalculationResource<'_> {
-        RepeatcalculationResource { client: self }
+    /// Endpoints under `/repeat_calculation` (5 operations), see [`RepeatCalculationResource`].
+    pub fn repeat_calculation(&self) -> RepeatCalculationResource<'_> {
+        RepeatCalculationResource { client: self }
     }
     /// Endpoints under `/reset_password` (1 operations), see [`ResetPasswordResource`].
     pub fn reset_password(&self) -> ResetPasswordResource<'_> {
@@ -327,13 +327,13 @@ impl Client {
     pub fn resource(&self) -> ResourceResource<'_> {
         ResourceResource { client: self }
     }
+    /// Endpoints under `/resource_types` (5 operations), see [`ResourceTypesResource`].
+    pub fn resource_types(&self) -> ResourceTypesResource<'_> {
+        ResourceTypesResource { client: self }
+    }
     /// Endpoints under `/resources` (6 operations), see [`ResourcesResource`].
     pub fn resources(&self) -> ResourcesResource<'_> {
         ResourcesResource { client: self }
-    }
-    /// Endpoints under `/resourcetypes` (5 operations), see [`ResourcetypesResource`].
-    pub fn resourcetypes(&self) -> ResourcetypesResource<'_> {
-        ResourcetypesResource { client: self }
     }
     /// Endpoints under `/routines` (10 operations), see [`RoutinesResource`].
     pub fn routines(&self) -> RoutinesResource<'_> {
@@ -347,13 +347,13 @@ impl Client {
     pub fn search(&self) -> SearchResource<'_> {
         SearchResource { client: self }
     }
-    /// Endpoints under `/securitylevels` (5 operations), see [`SecuritylevelsResource`].
-    pub fn securitylevels(&self) -> SecuritylevelsResource<'_> {
-        SecuritylevelsResource { client: self }
+    /// Endpoints under `/security_levels` (5 operations), see [`SecurityLevelsResource`].
+    pub fn security_levels(&self) -> SecurityLevelsResource<'_> {
+        SecurityLevelsResource { client: self }
     }
-    /// Endpoints under `/servicegroups` (5 operations), see [`ServicegroupsResource`].
-    pub fn servicegroups(&self) -> ServicegroupsResource<'_> {
-        ServicegroupsResource { client: self }
+    /// Endpoints under `/service_groups` (5 operations), see [`ServiceGroupsResource`].
+    pub fn service_groups(&self) -> ServiceGroupsResource<'_> {
+        ServiceGroupsResource { client: self }
     }
     /// Endpoints under `/services` (5 operations), see [`ServicesResource`].
     pub fn services(&self) -> ServicesResource<'_> {
@@ -375,9 +375,9 @@ impl Client {
     pub fn sso_logins(&self) -> SsoLoginsResource<'_> {
         SsoLoginsResource { client: self }
     }
-    /// Endpoints under `/startpage` (1 operations), see [`StartpageResource`].
-    pub fn startpage(&self) -> StartpageResource<'_> {
-        StartpageResource { client: self }
+    /// Endpoints under `/start_page` (1 operations), see [`StartPageResource`].
+    pub fn start_page(&self) -> StartPageResource<'_> {
+        StartPageResource { client: self }
     }
     /// Endpoints under `/statuses` (6 operations), see [`StatusesResource`].
     pub fn statuses(&self) -> StatusesResource<'_> {
@@ -399,9 +399,9 @@ impl Client {
     pub fn translations(&self) -> TranslationsResource<'_> {
         TranslationsResource { client: self }
     }
-    /// Endpoints under `/twofactor` (1 operations), see [`TwofactorResource`].
-    pub fn twofactor(&self) -> TwofactorResource<'_> {
-        TwofactorResource { client: self }
+    /// Endpoints under `/two_factor` (1 operations), see [`TwoFactorResource`].
+    pub fn two_factor(&self) -> TwoFactorResource<'_> {
+        TwoFactorResource { client: self }
     }
     /// Endpoints under `/website` (4 operations), see [`WebsiteResource`].
     pub fn website(&self) -> WebsiteResource<'_> {
@@ -445,13 +445,13 @@ impl<'a> ActionsResource<'a> {
     ///     domain_type: vec!["group_membership".into()],
     ///     ..Default::default()
     /// };
-    /// for action in client.actions().create(&body)? {
+    /// for action in client.actions().filter(&body)? {
     ///     println!("{}", action.domain_type);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn create(&self, body: &models::PostActionsBody) -> Result<Vec<models::Action>> {
+    pub fn filter(&self, body: &models::PostActionsBody) -> Result<Vec<models::Action>> {
         let path = "/actions".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -604,57 +604,15 @@ impl<'a> AddressesResource<'a> {
 
 }
 
-/// `client.agendas()`
+/// `client.agenda_templates()`
 #[derive(Clone, Copy)]
-pub struct AgendasResource<'a> {
+pub struct AgendaTemplatesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> AgendasResource<'a> {
-    /// Send agenda email to recipients
-    ///
-    /// `POST /agendas/send`
-    ///
-    /// Deprecated compatibility endpoint for `POST /events/send`. Recipients are filtered to selected participants in visible service groups or other selected people the sender may view and the response reports the effective scope. `sendCopyToMe` can add the sender. Events do not have to share an agenda. Agenda links are included for events whose agenda the sender may view.
-    ///
-    /// # Example
-    ///
-    /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = models::AgendaMailCreate {
-    ///     body: "<p>Please review the updated agenda for Sunday.</p>".into(),
-    ///     event_ids: vec![31, 32],
-    ///     recipients: vec![40, 41],
-    ///     subject: "Updated Sunday agenda".into(),
-    ///     ..Default::default()
-    /// };
-    /// let agenda = client.agendas().send(&body)?;
-    /// println!("{:?}", agenda);
-    /// # Ok(())
-    /// # }
-    /// ```
-    #[deprecated = "POST /agendas/send is deprecated in the ChurchTools API."]
-    pub fn send(&self, body: &models::AgendaMailCreate) -> Result<models::EventMailSendResult> {
-        let path = "/agendas/send".to_owned();
-        let query: Query = Query::new();
-        let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
-    }
-
-}
-
-/// `client.agendatemplates()`
-#[derive(Clone, Copy)]
-pub struct AgendatemplatesResource<'a> {
-    client: &'a Client,
-}
-
-impl<'a> AgendatemplatesResource<'a> {
-    pub fn items(&self) -> AgendatemplatesItemsResource<'a> {
-        AgendatemplatesItemsResource { client: self.client }
+impl<'a> AgendaTemplatesResource<'a> {
+    pub fn items(&self) -> AgendaTemplatesItemsResource<'a> {
+        AgendaTemplatesItemsResource { client: self.client }
     }
 
     /// Create agenda template
@@ -675,7 +633,7 @@ impl<'a> AgendatemplatesResource<'a> {
     ///     name: "Sunday Service Template".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.agendatemplates().create(&body)?;
+    /// let result = client.agenda_templates().create(&body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -702,7 +660,7 @@ impl<'a> AgendatemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.agendatemplates().delete(35)?;
+    /// client.agenda_templates().delete(35)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -746,8 +704,8 @@ impl<'a> AgendatemplatesResource<'a> {
     ///     with_category: false,
     ///     ..Default::default()
     /// };
-    /// let agendatemplate = client.agendatemplates().export(35, &query, &body)?;
-    /// println!("{}", agendatemplate.url);
+    /// let agenda_template = client.agenda_templates().export(35, &query, &body)?;
+    /// println!("{}", agenda_template.url);
     /// # Ok(())
     /// # }
     /// ```
@@ -771,8 +729,8 @@ impl<'a> AgendatemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-agendatemplates-agendaId");
-    /// let agendatemplate = client.agendatemplates().get(35)?;
-    /// println!("{:?}", agendatemplate.name);
+    /// let agenda_template = client.agenda_templates().get(35)?;
+    /// println!("{:?}", agenda_template.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -795,8 +753,8 @@ impl<'a> AgendatemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-agendatemplates");
-    /// for agendatemplate in client.agendatemplates().list()? {
-    ///     println!("{:?}", agendatemplate.name);
+    /// for agenda_template in client.agenda_templates().list()? {
+    ///     println!("{:?}", agenda_template.name);
     /// }
     /// # Ok(())
     /// # }
@@ -825,7 +783,7 @@ impl<'a> AgendatemplatesResource<'a> {
     ///     name: "Sunday Service Template".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.agendatemplates().update(35, &body)?;
+    /// let result = client.agenda_templates().update(35, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -839,15 +797,15 @@ impl<'a> AgendatemplatesResource<'a> {
 
 }
 
-/// `client.agendatemplates().items()`
+/// `client.agenda_templates().items()`
 #[derive(Clone, Copy)]
-pub struct AgendatemplatesItemsResource<'a> {
+pub struct AgendaTemplatesItemsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> AgendatemplatesItemsResource<'a> {
-    pub fn servicegroups(&self) -> AgendatemplatesItemsServicegroupsResource<'a> {
-        AgendatemplatesItemsServicegroupsResource { client: self.client }
+impl<'a> AgendaTemplatesItemsResource<'a> {
+    pub fn service_groups(&self) -> AgendaTemplatesItemsServiceGroupsResource<'a> {
+        AgendaTemplatesItemsServiceGroupsResource { client: self.client }
     }
 
     /// Create agenda template item
@@ -868,7 +826,7 @@ impl<'a> AgendatemplatesItemsResource<'a> {
     /// let body = serde_json::json!({
     ///     "type": "header"
     /// });
-    /// let result = client.agendatemplates().items().create(35, &body)?;
+    /// let result = client.agenda_templates().items().create(35, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -904,7 +862,7 @@ impl<'a> AgendatemplatesItemsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.agendatemplates().items().delete(35, 123)?;
+    /// client.agenda_templates().items().delete(35, 123)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -932,7 +890,7 @@ impl<'a> AgendatemplatesItemsResource<'a> {
     /// let body = serde_json::json!({
     ///     "type": "header"
     /// });
-    /// let result = client.agendatemplates().items().update(35, 123, &body)?;
+    /// let result = client.agenda_templates().items().update(35, 123, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -957,13 +915,13 @@ impl<'a> AgendatemplatesItemsResource<'a> {
 
 }
 
-/// `client.agendatemplates().items().servicegroups()`
+/// `client.agenda_templates().items().service_groups()`
 #[derive(Clone, Copy)]
-pub struct AgendatemplatesItemsServicegroupsResource<'a> {
+pub struct AgendaTemplatesItemsServiceGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> AgendatemplatesItemsServicegroupsResource<'a> {
+impl<'a> AgendaTemplatesItemsServiceGroupsResource<'a> {
     /// Delete service group note from agenda template item
     ///
     /// `DELETE /agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}`
@@ -977,7 +935,7 @@ impl<'a> AgendatemplatesItemsServicegroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.agendatemplates().items().servicegroups().delete(35, 123, 13)?;
+    /// client.agenda_templates().items().service_groups().delete(35, 123, 13)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -1004,7 +962,7 @@ impl<'a> AgendatemplatesItemsServicegroupsResource<'a> {
     ///     note: Some(Some("Remember to bring the sheet music".into())),
     ///     ..Default::default()
     /// };
-    /// client.agendatemplates().items().servicegroups().update(35, 123, 13, &body)?;
+    /// client.agenda_templates().items().service_groups().update(35, 123, 13, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -1013,6 +971,48 @@ impl<'a> AgendatemplatesItemsServicegroupsResource<'a> {
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
         self.client.request(Method::PUT, &path, &query, Some(&body)).map(|_| ())
+    }
+
+}
+
+/// `client.agendas()`
+#[derive(Clone, Copy)]
+pub struct AgendasResource<'a> {
+    client: &'a Client,
+}
+
+impl<'a> AgendasResource<'a> {
+    /// Send agenda email to recipients
+    ///
+    /// `POST /agendas/send`
+    ///
+    /// Deprecated compatibility endpoint for `POST /events/send`. Recipients are filtered to selected participants in visible service groups or other selected people the sender may view and the response reports the effective scope. `sendCopyToMe` can add the sender. Events do not have to share an agenda. Agenda links are included for events whose agenda the sender may view.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = models::AgendaMailCreate {
+    ///     body: "<p>Please review the updated agenda for Sunday.</p>".into(),
+    ///     event_ids: vec![31, 32],
+    ///     recipients: vec![40, 41],
+    ///     subject: "Updated Sunday agenda".into(),
+    ///     ..Default::default()
+    /// };
+    /// let agenda = client.agendas().send(&body)?;
+    /// println!("{:?}", agenda);
+    /// # Ok(())
+    /// # }
+    /// ```
+    #[deprecated = "POST /agendas/send is deprecated in the ChurchTools API."]
+    pub fn send(&self, body: &models::AgendaMailCreate) -> Result<models::EventMailSendResult> {
+        let path = "/agendas/send".to_owned();
+        let query: Query = Query::new();
+        let body = serde_json::to_value(body).expect("request body serializes");
+        self.client.request_data(Method::POST, &path, &query, Some(&body))
     }
 
 }
@@ -1305,13 +1305,13 @@ impl<'a> BookingsResource<'a> {
 
 }
 
-/// `client.bulkjobs()`
+/// `client.bulk_jobs()`
 #[derive(Clone, Copy)]
-pub struct BulkjobsResource<'a> {
+pub struct BulkJobsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> BulkjobsResource<'a> {
+impl<'a> BulkJobsResource<'a> {
     /// Enqueue a bulk operation
     ///
     /// `POST /bulkjobs/{domainType}/{jobKey}/enqueue`
@@ -1330,8 +1330,8 @@ impl<'a> BulkjobsResource<'a> {
     ///     job_data: serde_json::json!({}),
     ///     ..Default::default()
     /// };
-    /// let bulkjob = client.bulkjobs().enqueue("group", "setMaxMembers", &body)?;
-    /// println!("{}", bulkjob.job_group);
+    /// let bulk_job = client.bulk_jobs().enqueue("group", "setMaxMembers", &body)?;
+    /// println!("{}", bulk_job.job_group);
     /// # Ok(())
     /// # }
     /// ```
@@ -1360,8 +1360,8 @@ impl<'a> BulkjobsResource<'a> {
     ///     job_data: serde_json::json!({}),
     ///     ..Default::default()
     /// };
-    /// let bulkjob = client.bulkjobs().infos("group", "setMaxMembers", &body)?;
-    /// println!("{:?}", bulkjob);
+    /// let bulk_job = client.bulk_jobs().infos("group", "setMaxMembers", &body)?;
+    /// println!("{:?}", bulk_job);
     /// # Ok(())
     /// # }
     /// ```
@@ -1374,13 +1374,13 @@ impl<'a> BulkjobsResource<'a> {
 
 }
 
-/// `client.bulkletters()`
+/// `client.bulk_letters()`
 #[derive(Clone, Copy)]
-pub struct BulklettersResource<'a> {
+pub struct BulkLettersResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> BulklettersResource<'a> {
+impl<'a> BulkLettersResource<'a> {
     /// Create a bulkletter
     ///
     /// `POST /bulkletters`
@@ -1402,7 +1402,7 @@ impl<'a> BulklettersResource<'a> {
     ///     person_ids: vec![13, 14],
     ///     ..Default::default()
     /// };
-    /// let result = client.bulkletters().create(&body)?;
+    /// let result = client.bulk_letters().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -1427,7 +1427,7 @@ impl<'a> BulklettersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.bulkletters().delete(36)?;
+    /// client.bulk_letters().delete(36)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -1451,7 +1451,7 @@ impl<'a> BulklettersResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
-    /// client.bulkletters().execute(&body)?;
+    /// client.bulk_letters().execute(&body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -1475,8 +1475,8 @@ impl<'a> BulklettersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-bulkletters-id");
-    /// let bulkletter = client.bulkletters().get(36)?;
-    /// println!("{}", bulkletter.name);
+    /// let bulk_letter = client.bulk_letters().get(36)?;
+    /// println!("{}", bulk_letter.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -1499,8 +1499,8 @@ impl<'a> BulklettersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-bulkletters");
-    /// for bulkletter in client.bulkletters().list()? {
-    ///     println!("{}", bulkletter.name);
+    /// for bulk_letter in client.bulk_letters().list()? {
+    ///     println!("{}", bulk_letter.name);
     /// }
     /// # Ok(())
     /// # }
@@ -1524,7 +1524,7 @@ impl<'a> BulklettersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-bulkletters-id-persons");
-    /// for person in client.bulkletters().list_persons(36)? {
+    /// for person in client.bulk_letters().list_persons(36)? {
     ///     println!("{:?}", person.name);
     /// }
     /// # Ok(())
@@ -1549,8 +1549,8 @@ impl<'a> CalendarsResource<'a> {
         CalendarsAppointmentsResource { client: self.client }
     }
 
-    pub fn meetingrequest(&self) -> CalendarsMeetingrequestResource<'a> {
-        CalendarsMeetingrequestResource { client: self.client }
+    pub fn meeting_request(&self) -> CalendarsMeetingRequestResource<'a> {
+        CalendarsMeetingRequestResource { client: self.client }
     }
 
     /// Create a calendar
@@ -1662,7 +1662,7 @@ impl<'a> CalendarsResource<'a> {
     ///
     /// Deprecated alias for /calendars/{calendarId}/meetingrequest/candidates. Returns the same visible candidates.
     ///
-    /// Use [`Self::list_meetingrequestpersons_with`] to pass query parameters.
+    /// Use [`Self::list_meeting_request_persons_with`] to pass query parameters.
     ///
     /// # Example
     ///
@@ -1671,26 +1671,26 @@ impl<'a> CalendarsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-calendars-calendarId-meetingrequestpersons");
-    /// for meetingrequestperson in client.calendars().list_meetingrequestpersons(42)? {
-    ///     println!("{:?}", meetingrequestperson.group_name);
+    /// for meeting_request_person in client.calendars().list_meeting_request_persons(42)? {
+    ///     println!("{:?}", meeting_request_person.group_name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
     #[deprecated = "GET /calendars/{calendarId}/meetingrequestpersons is deprecated in the ChurchTools API."]
-    pub fn list_meetingrequestpersons(&self, calendar_id: impl Display) -> Result<Vec<models::MeetingRequestCandidate>> {
-        self.list_meetingrequestpersons_with(calendar_id, &Default::default())
+    pub fn list_meeting_request_persons(&self, calendar_id: impl Display) -> Result<Vec<models::MeetingRequestCandidate>> {
+        self.list_meeting_request_persons_with(calendar_id, &Default::default())
     }
 
     /// Get candidates for a meeting request (deprecated)
     ///
-    /// Like [`Self::list_meetingrequestpersons`], with query parameters.
+    /// Like [`Self::list_meeting_request_persons`], with query parameters.
     ///
     /// `GET /calendars/{calendarId}/meetingrequestpersons`
     ///
     /// Deprecated alias for /calendars/{calendarId}/meetingrequest/candidates. Returns the same visible candidates.
     #[deprecated = "GET /calendars/{calendarId}/meetingrequestpersons is deprecated in the ChurchTools API."]
-    pub fn list_meetingrequestpersons_with(&self, calendar_id: impl Display, query: &GetCalendarsCalendarIdMeetingrequestpersonsQuery) -> Result<Vec<models::MeetingRequestCandidate>> {
+    pub fn list_meeting_request_persons_with(&self, calendar_id: impl Display, query: &GetCalendarsCalendarIdMeetingrequestpersonsQuery) -> Result<Vec<models::MeetingRequestCandidate>> {
         let path = format!("/calendars/{}/meetingrequestpersons", seg(calendar_id));
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -1735,8 +1735,8 @@ pub struct CalendarsAppointmentsResource<'a> {
 }
 
 impl<'a> CalendarsAppointmentsResource<'a> {
-    pub fn meetingrequests(&self) -> CalendarsAppointmentsMeetingrequestsResource<'a> {
-        CalendarsAppointmentsMeetingrequestsResource { client: self.client }
+    pub fn meeting_requests(&self) -> CalendarsAppointmentsMeetingRequestsResource<'a> {
+        CalendarsAppointmentsMeetingRequestsResource { client: self.client }
     }
 
     pub fn templates(&self) -> CalendarsAppointmentsTemplatesResource<'a> {
@@ -1761,13 +1761,13 @@ impl<'a> CalendarsAppointmentsResource<'a> {
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
     ///     ..Default::default()
     /// };
-    /// for appointment in client.calendars().appointments().changeimpact(42, 4, &body)? {
+    /// for appointment in client.calendars().appointments().change_impact(42, 4, &body)? {
     ///     println!("{:?}", appointment);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn changeimpact(&self, calendar_id: impl Display, appointment_id: impl Display, body: &models::AppointmentChangeImpactCreate) -> Result<Vec<serde_json::Value>> {
+    pub fn change_impact(&self, calendar_id: impl Display, appointment_id: impl Display, body: &models::AppointmentChangeImpactCreate) -> Result<Vec<serde_json::Value>> {
         let path = format!("/calendars/{}/appointments/{}/changeimpact", seg(calendar_id), seg(appointment_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -2099,13 +2099,13 @@ impl<'a> CalendarsAppointmentsResource<'a> {
 
 }
 
-/// `client.calendars().appointments().meetingrequests()`
+/// `client.calendars().appointments().meeting_requests()`
 #[derive(Clone, Copy)]
-pub struct CalendarsAppointmentsMeetingrequestsResource<'a> {
+pub struct CalendarsAppointmentsMeetingRequestsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
+impl<'a> CalendarsAppointmentsMeetingRequestsResource<'a> {
     /// Answer a meeting invitation
     ///
     /// `POST /calendars/{calendarId}/appointments/{appointmentId}/meetingrequests/{meetingRequestId}/{answer}`
@@ -2119,7 +2119,7 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.calendars().appointments().meetingrequests().answer(42, 4, 19, "accept")?;
+    /// client.calendars().appointments().meeting_requests().answer(42, 4, 19, "accept")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -2146,7 +2146,7 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     ///     invitee_id: 42,
     ///     ..Default::default()
     /// };
-    /// let result = client.calendars().appointments().meetingrequests().create(42, 4, &body)?;
+    /// let result = client.calendars().appointments().meeting_requests().create(42, 4, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -2171,7 +2171,7 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.calendars().appointments().meetingrequests().delete(42, 4, 19)?;
+    /// client.calendars().appointments().meeting_requests().delete(42, 4, 19)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -2194,8 +2194,8 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-calendars-calendarId-appointments-appointmentId-meetingrequests");
-    /// for meetingrequest in client.calendars().appointments().meetingrequests().list(42, 4)? {
-    ///     println!("{}", meetingrequest.id);
+    /// for meeting_request in client.calendars().appointments().meeting_requests().list(42, 4)? {
+    ///     println!("{}", meeting_request.id);
     /// }
     /// # Ok(())
     /// # }
@@ -2223,7 +2223,7 @@ impl<'a> CalendarsAppointmentsMeetingrequestsResource<'a> {
     ///     answer: "accept".into(),
     ///     ..Default::default()
     /// };
-    /// client.calendars().appointments().meetingrequests().update(42, 4, 19, &body)?;
+    /// client.calendars().appointments().meeting_requests().update(42, 4, 19, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -2382,13 +2382,13 @@ impl<'a> CalendarsAppointmentsTemplatesResource<'a> {
 
 }
 
-/// `client.calendars().meetingrequest()`
+/// `client.calendars().meeting_request()`
 #[derive(Clone, Copy)]
-pub struct CalendarsMeetingrequestResource<'a> {
+pub struct CalendarsMeetingRequestResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> CalendarsMeetingrequestResource<'a> {
+impl<'a> CalendarsMeetingRequestResource<'a> {
     /// Get candidates for a meeting request
     ///
     /// `GET /calendars/{calendarId}/meetingrequest/candidates`
@@ -2404,7 +2404,7 @@ impl<'a> CalendarsMeetingrequestResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-calendars-calendarId-meetingrequest-candidates");
-    /// for candidate in client.calendars().meetingrequest().list_candidates(42)? {
+    /// for candidate in client.calendars().meeting_request().list_candidates(42)? {
     ///     println!("{:?}", candidate.group_name);
     /// }
     /// # Ok(())
@@ -2868,15 +2868,15 @@ impl<'a> CheckinResource<'a> {
 
 }
 
-/// `client.churchquery()`
+/// `client.church_query()`
 #[derive(Clone, Copy)]
-pub struct ChurchqueryResource<'a> {
+pub struct ChurchQueryResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ChurchqueryResource<'a> {
-    pub fn debug(&self) -> ChurchqueryDebugResource<'a> {
-        ChurchqueryDebugResource { client: self.client }
+impl<'a> ChurchQueryResource<'a> {
+    pub fn debug(&self) -> ChurchQueryDebugResource<'a> {
+        ChurchQueryDebugResource { client: self.client }
     }
 
     /// Get masterdata for ChurchQuery
@@ -2892,7 +2892,7 @@ impl<'a> ChurchqueryResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-churchquery-metadata");
-    /// let result = client.churchquery().get_metadata()?;
+    /// let result = client.church_query().get_metadata()?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -2914,13 +2914,13 @@ impl<'a> ChurchqueryResource<'a> {
 
 }
 
-/// `client.churchquery().debug()`
+/// `client.church_query().debug()`
 #[derive(Clone, Copy)]
-pub struct ChurchqueryDebugResource<'a> {
+pub struct ChurchQueryDebugResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ChurchqueryDebugResource<'a> {
+impl<'a> ChurchQueryDebugResource<'a> {
     /// Export result of ChurchQuery
     ///
     /// `POST /churchquery/debug/export`
@@ -2937,7 +2937,7 @@ impl<'a> ChurchqueryDebugResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: String = "beispiel".into();
-    /// client.churchquery().debug().export(&body)?;
+    /// client.church_query().debug().export(&body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -3029,13 +3029,13 @@ impl<'a> ConfigResource<'a> {
 
 }
 
-/// `client.contactlabels()`
+/// `client.contact_labels()`
 #[derive(Clone, Copy)]
-pub struct ContactlabelsResource<'a> {
+pub struct ContactLabelsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ContactlabelsResource<'a> {
+impl<'a> ContactLabelsResource<'a> {
     /// Create new Contact Label
     ///
     /// `POST /contactlabels`
@@ -3055,7 +3055,7 @@ impl<'a> ContactlabelsResource<'a> {
     ///     sort_key: 10,
     ///     ..Default::default()
     /// };
-    /// let result = client.contactlabels().create(&body)?;
+    /// let result = client.contact_labels().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -3082,7 +3082,7 @@ impl<'a> ContactlabelsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.contactlabels().delete(1)?;
+    /// client.contact_labels().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -3116,8 +3116,8 @@ impl<'a> ContactlabelsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-contactlabels-id");
-    /// let contactlabel = client.contactlabels().get(1)?;
-    /// println!("{}", contactlabel.name);
+    /// let contact_label = client.contact_labels().get(1)?;
+    /// println!("{}", contact_label.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -3140,8 +3140,8 @@ impl<'a> ContactlabelsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-contactlabels");
-    /// for contactlabel in client.contactlabels().list()? {
-    ///     println!("{}", contactlabel.name);
+    /// for contact_label in client.contact_labels().list()? {
+    ///     println!("{}", contact_label.name);
     /// }
     /// # Ok(())
     /// # }
@@ -3171,7 +3171,7 @@ impl<'a> ContactlabelsResource<'a> {
     ///     sort_key: 10,
     ///     ..Default::default()
     /// };
-    /// let result = client.contactlabels().update(1, &body)?;
+    /// let result = client.contact_labels().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -3185,13 +3185,13 @@ impl<'a> ContactlabelsResource<'a> {
 
 }
 
-/// `client.csrftoken()`
+/// `client.csrf_token()`
 #[derive(Clone, Copy)]
-pub struct CsrftokenResource<'a> {
+pub struct CsrfTokenResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> CsrftokenResource<'a> {
+impl<'a> CsrfTokenResource<'a> {
     /// CSRF token for the current user
     ///
     /// `GET /csrftoken`
@@ -3205,7 +3205,7 @@ impl<'a> CsrftokenResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-csrftoken");
-    /// let result = client.csrftoken().get()?;
+    /// let result = client.csrf_token().get()?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -3218,15 +3218,49 @@ impl<'a> CsrftokenResource<'a> {
 
 }
 
-/// `client.dbfields()`
+/// `client.db_field_types()`
 #[derive(Clone, Copy)]
-pub struct DbfieldsResource<'a> {
+pub struct DbFieldTypesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> DbfieldsResource<'a> {
-    pub fn options(&self) -> DbfieldsOptionsResource<'a> {
-        DbfieldsOptionsResource { client: self.client }
+impl<'a> DbFieldTypesResource<'a> {
+    /// Get available field types
+    ///
+    /// `GET /dbfieldtypes`
+    ///
+    /// Returns registered database-field types, ordered by sortKey and then name. These types describe the value and input behavior of configurable fields. Names are returned as stored and can be translation keys.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-dbfieldtypes");
+    /// for db_field_type in client.db_field_types().list()? {
+    ///     println!("{}", db_field_type.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn list(&self) -> Result<Vec<models::DbFieldType>> {
+        let path = "/dbfieldtypes".to_owned();
+        let query: Query = Query::new();
+        self.client.request_data(Method::GET, &path, &query, None)
+    }
+
+}
+
+/// `client.db_fields()`
+#[derive(Clone, Copy)]
+pub struct DbFieldsResource<'a> {
+    client: &'a Client,
+}
+
+impl<'a> DbFieldsResource<'a> {
+    pub fn options(&self) -> DbFieldsOptionsResource<'a> {
+        DbFieldsOptionsResource { client: self.client }
     }
 
     /// Create a database field
@@ -3253,7 +3287,7 @@ impl<'a> DbfieldsResource<'a> {
     ///     field_category_intern_code: "f_address".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.dbfields().create(&body)?;
+    /// let result = client.db_fields().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -3278,7 +3312,7 @@ impl<'a> DbfieldsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.dbfields().delete(200)?;
+    /// client.db_fields().delete(200)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -3301,8 +3335,8 @@ impl<'a> DbfieldsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-dbfields-fieldId");
-    /// let dbfield = client.dbfields().get(200)?;
-    /// println!("{}", dbfield.name);
+    /// let db_field = client.db_fields().get(200)?;
+    /// println!("{}", db_field.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -3327,8 +3361,8 @@ impl<'a> DbfieldsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-dbfields");
-    /// for dbfield in client.dbfields().list()? {
-    ///     println!("{}", dbfield.name);
+    /// for db_field in client.db_fields().list()? {
+    ///     println!("{}", db_field.name);
     /// }
     /// # Ok(())
     /// # }
@@ -3371,7 +3405,7 @@ impl<'a> DbfieldsResource<'a> {
     ///     use_as_placeholder: false,
     ///     ..Default::default()
     /// };
-    /// let result = client.dbfields().update(200, &body)?;
+    /// let result = client.db_fields().update(200, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -3385,13 +3419,13 @@ impl<'a> DbfieldsResource<'a> {
 
 }
 
-/// `client.dbfields().options()`
+/// `client.db_fields().options()`
 #[derive(Clone, Copy)]
-pub struct DbfieldsOptionsResource<'a> {
+pub struct DbFieldsOptionsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> DbfieldsOptionsResource<'a> {
+impl<'a> DbFieldsOptionsResource<'a> {
     /// Create a database-field option
     ///
     /// `POST /dbfields/{fieldId}/options`
@@ -3409,7 +3443,7 @@ impl<'a> DbfieldsOptionsResource<'a> {
     ///     name: Some("Vegetarian".into()),
     ///     ..Default::default()
     /// };
-    /// let result = client.dbfields().options().create(200, &body)?;
+    /// let result = client.db_fields().options().create(200, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -3436,7 +3470,7 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.dbfields().options().delete(200, 3)?;
+    /// client.db_fields().options().delete(200, 3)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -3470,7 +3504,7 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-dbfields-fieldId-options");
-    /// for option in client.dbfields().options().list(200)? {
+    /// for option in client.db_fields().options().list(200)? {
     ///     println!("{:?}", option.name);
     /// }
     /// # Ok(())
@@ -3495,7 +3529,7 @@ impl<'a> DbfieldsOptionsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// for metadata in client.dbfields().options().list_metadata(200)? {
+    /// for metadata in client.db_fields().options().list_metadata(200)? {
     ///     println!("{}", metadata.name);
     /// }
     /// # Ok(())
@@ -3524,7 +3558,7 @@ impl<'a> DbfieldsOptionsResource<'a> {
     ///     name: Some("Vegetarian".into()),
     ///     ..Default::default()
     /// };
-    /// let result = client.dbfields().options().update(200, 3, &body)?;
+    /// let result = client.db_fields().options().update(200, 3, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -3534,40 +3568,6 @@ impl<'a> DbfieldsOptionsResource<'a> {
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
         self.client.request_data(Method::PUT, &path, &query, Some(&body))
-    }
-
-}
-
-/// `client.dbfieldtypes()`
-#[derive(Clone, Copy)]
-pub struct DbfieldtypesResource<'a> {
-    client: &'a Client,
-}
-
-impl<'a> DbfieldtypesResource<'a> {
-    /// Get available field types
-    ///
-    /// `GET /dbfieldtypes`
-    ///
-    /// Returns registered database-field types, ordered by sortKey and then name. These types describe the value and input behavior of configurable fields. Names are returned as stored and can be translation keys.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-dbfieldtypes");
-    /// for dbfieldtype in client.dbfieldtypes().list()? {
-    ///     println!("{}", dbfieldtype.name);
-    /// }
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn list(&self) -> Result<Vec<models::DbFieldType>> {
-        let path = "/dbfieldtypes".to_owned();
-        let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
     }
 
 }
@@ -3606,44 +3606,13 @@ impl<'a> DepartmentsResource<'a> {
 
 }
 
-/// `client.domainobjects()`
+/// `client.domain_objects()`
 #[derive(Clone, Copy)]
-pub struct DomainobjectsResource<'a> {
+pub struct DomainObjectsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> DomainobjectsResource<'a> {
-    /// Resolve domain objects from a JSON payload
-    ///
-    /// `POST /domainobjects`
-    ///
-    /// Read-only JSON alternative to `GET /domainobjects` with the same resolution and permission behavior. Output order and count may differ from the input. Missing or inaccessible objects are usually omitted, but an unresolved `appointment_occurrence` may fail the request.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-domainobjects");
-    /// let body = models::DomainObjectPayload {
-    ///     domain_identifiers: vec!["42".into(), "7".into()],
-    ///     domain_types: vec!["person".into(), "group".into()],
-    ///     ..Default::default()
-    /// };
-    /// for domainobject in client.domainobjects().create(&body)? {
-    ///     println!("{:?}", domainobject.api_url);
-    /// }
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn create(&self, body: &models::DomainObjectPayload) -> Result<Vec<models::ResolvedDomainObject>> {
-        let path = "/domainobjects".to_owned();
-        let query: Query = Query::new();
-        let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
-    }
-
+impl<'a> DomainObjectsResource<'a> {
     /// Get domain objects
     ///
     /// `GET /domainobjects`
@@ -3662,8 +3631,8 @@ impl<'a> DomainobjectsResource<'a> {
     ///     domain_identifiers: Some(vec!["42".into(), "7".into()]),
     ///     ..Default::default()
     /// };
-    /// for domainobject in client.domainobjects().list(&query)? {
-    ///     println!("{:?}", domainobject.api_url);
+    /// for domain_object in client.domain_objects().list(&query)? {
+    ///     println!("{:?}", domain_object.api_url);
     /// }
     /// # Ok(())
     /// # }
@@ -3674,15 +3643,46 @@ impl<'a> DomainobjectsResource<'a> {
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
+    /// Resolve domain objects from a JSON payload
+    ///
+    /// `POST /domainobjects`
+    ///
+    /// Read-only JSON alternative to `GET /domainobjects` with the same resolution and permission behavior. Output order and count may differ from the input. Missing or inaccessible objects are usually omitted, but an unresolved `appointment_occurrence` may fail the request.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-domainobjects");
+    /// let body = models::DomainObjectPayload {
+    ///     domain_identifiers: vec!["42".into(), "7".into()],
+    ///     domain_types: vec!["person".into(), "group".into()],
+    ///     ..Default::default()
+    /// };
+    /// for domain_object in client.domain_objects().resolve(&body)? {
+    ///     println!("{:?}", domain_object.api_url);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn resolve(&self, body: &models::DomainObjectPayload) -> Result<Vec<models::ResolvedDomainObject>> {
+        let path = "/domainobjects".to_owned();
+        let query: Query = Query::new();
+        let body = serde_json::to_value(body).expect("request body serializes");
+        self.client.request_data(Method::POST, &path, &query, Some(&body))
+    }
+
 }
 
-/// `client.dynamicgroups()`
+/// `client.dynamic_groups()`
 #[derive(Clone, Copy)]
-pub struct DynamicgroupsResource<'a> {
+pub struct DynamicGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> DynamicgroupsResource<'a> {
+impl<'a> DynamicGroupsResource<'a> {
     /// Remove automatic membership rules
     ///
     /// `DELETE /dynamicgroups/{groupId}/ruleset`
@@ -3696,7 +3696,7 @@ impl<'a> DynamicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.dynamicgroups().delete_ruleset(42)?;
+    /// client.dynamic_groups().delete_ruleset(42)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -3719,7 +3719,7 @@ impl<'a> DynamicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-dynamicgroups-id-status");
-    /// let statu = client.dynamicgroups().get_status(42)?;
+    /// let statu = client.dynamic_groups().get_status(42)?;
     /// println!("{}", statu.dynamic_group_status);
     /// # Ok(())
     /// # }
@@ -3743,8 +3743,8 @@ impl<'a> DynamicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-dynamicgroups");
-    /// for dynamicgroup in client.dynamicgroups().list()? {
-    ///     println!("{:?}", dynamicgroup);
+    /// for dynamic_group in client.dynamic_groups().list()? {
+    ///     println!("{:?}", dynamic_group);
     /// }
     /// # Ok(())
     /// # }
@@ -3768,7 +3768,7 @@ impl<'a> DynamicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-dynamicgroups-id-ruleset");
-    /// for ruleset in client.dynamicgroups().list_ruleset(42)? {
+    /// for ruleset in client.dynamic_groups().list_ruleset(42)? {
     ///     println!("{}", ruleset.description);
     /// }
     /// # Ok(())
@@ -3793,8 +3793,8 @@ impl<'a> DynamicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// for dynamicgroup in client.dynamicgroups().refresh(42)? {
-    ///     println!("{}", dynamicgroup.created);
+    /// for dynamic_group in client.dynamic_groups().refresh(42)? {
+    ///     println!("{}", dynamic_group.created);
     /// }
     /// # Ok(())
     /// # }
@@ -3818,8 +3818,8 @@ impl<'a> DynamicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// for dynamicgroup in client.dynamicgroups().refresh_all()? {
-    ///     println!("{:?}", dynamicgroup);
+    /// for dynamic_group in client.dynamic_groups().refresh_all()? {
+    ///     println!("{:?}", dynamic_group);
     /// }
     /// # Ok(())
     /// # }
@@ -3864,7 +3864,7 @@ impl<'a> DynamicgroupsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// let result = client.dynamicgroups().update_ruleset(42, &body)?;
+    /// let result = client.dynamic_groups().update_ruleset(42, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -3893,7 +3893,7 @@ impl<'a> DynamicgroupsResource<'a> {
     ///     dynamic_group_status: "manual".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.dynamicgroups().update_status(42, &body)?;
+    /// let result = client.dynamic_groups().update_status(42, &body)?;
     /// println!("{}", result.dynamic_group_status);
     /// # Ok(())
     /// # }
@@ -3932,13 +3932,13 @@ impl<'a> EmailsResource<'a> {
     ///     person_ids: vec![1, 2],
     ///     ..Default::default()
     /// };
-    /// for email in client.emails().placeholderstatistics(&body)? {
+    /// for email in client.emails().placeholder_statistics(&body)? {
     ///     println!("{}", email.person_id);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn placeholderstatistics(&self, body: &models::EmailPlaceholderStatisticsCreate) -> Result<Vec<models::EmailPlaceholderStatistics>> {
+    pub fn placeholder_statistics(&self, body: &models::EmailPlaceholderStatisticsCreate) -> Result<Vec<models::EmailPlaceholderStatistics>> {
         let path = "/emails/placeholderstatistics".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -3977,13 +3977,13 @@ impl<'a> EmailsResource<'a> {
 
 }
 
-/// `client.evangelischetermine()`
+/// `client.evangelische_termine()`
 #[derive(Clone, Copy)]
-pub struct EvangelischetermineResource<'a> {
+pub struct EvangelischeTermineResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> EvangelischetermineResource<'a> {
+impl<'a> EvangelischeTermineResource<'a> {
     /// Queue deletion of published external appointments
     ///
     /// `DELETE /evangelischetermine`
@@ -3997,7 +3997,7 @@ impl<'a> EvangelischetermineResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.evangelischetermine().delete()?;
+    /// client.evangelische_termine().delete()?;
     /// # Ok(())
     /// # }
     /// ```
@@ -4020,13 +4020,13 @@ impl<'a> EvangelischetermineResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// for eventtype in client.evangelischetermine().list_eventtypes()? {
-    ///     println!("{}", eventtype.key);
+    /// for event_type in client.evangelische_termine().list_event_types()? {
+    ///     println!("{}", event_type.key);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_eventtypes(&self) -> Result<Vec<models::EvangelischeTermineEventType>> {
+    pub fn list_event_types(&self) -> Result<Vec<models::EvangelischeTermineEventType>> {
         let path = "/evangelischetermine/eventtypes".to_owned();
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -4051,11 +4051,11 @@ impl<'a> EvangelischetermineResource<'a> {
     ///     vid: "1234".into(),
     ///     ..Default::default()
     /// };
-    /// client.evangelischetermine().validatesettings(&body)?;
+    /// client.evangelische_termine().validate_settings(&body)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn validatesettings(&self, body: &models::EvangelischeTermineSettingsValidateCreate) -> Result<()> {
+    pub fn validate_settings(&self, body: &models::EvangelischeTermineSettingsValidateCreate) -> Result<()> {
         let path = "/evangelischetermine/validatesettings".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -4084,13 +4084,47 @@ impl<'a> EventResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-event-masterdata");
-    /// let masterdata = client.event().get_masterdata()?;
-    /// println!("{:?}", masterdata);
+    /// let master_data = client.event().get_master_data()?;
+    /// println!("{:?}", master_data);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_masterdata(&self) -> Result<models::EventMasterData> {
+    pub fn get_master_data(&self) -> Result<models::EventMasterData> {
         let path = "/event/masterdata".to_owned();
+        let query: Query = Query::new();
+        self.client.request_data(Method::GET, &path, &query, None)
+    }
+
+}
+
+/// `client.event_templates()`
+#[derive(Clone, Copy)]
+pub struct EventTemplatesResource<'a> {
+    client: &'a Client,
+}
+
+impl<'a> EventTemplatesResource<'a> {
+    /// Get all event templates
+    ///
+    /// `GET /eventtemplates`
+    ///
+    /// Returns all event templates as an unpaginated list, sorted by `sortKey` ascending. No per-template visibility filter is applied.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-eventtemplates");
+    /// for event_template in client.event_templates().list()? {
+    ///     println!("{}", event_template.id);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn list(&self) -> Result<Vec<models::EventTemplate>> {
+        let path = "/eventtemplates".to_owned();
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
     }
@@ -4108,16 +4142,16 @@ impl<'a> EventsResource<'a> {
         EventsAgendaResource { client: self.client }
     }
 
-    pub fn eventservices(&self) -> EventsEventservicesResource<'a> {
-        EventsEventservicesResource { client: self.client }
+    pub fn event_services(&self) -> EventsEventServicesResource<'a> {
+        EventsEventServicesResource { client: self.client }
     }
 
     pub fn facts(&self) -> EventsFactsResource<'a> {
         EventsFactsResource { client: self.client }
     }
 
-    pub fn servicerequests(&self) -> EventsServicerequestsResource<'a> {
-        EventsServicerequestsResource { client: self.client }
+    pub fn service_requests(&self) -> EventsServiceRequestsResource<'a> {
+        EventsServiceRequestsResource { client: self.client }
     }
 
     pub fn services(&self) -> EventsServicesResource<'a> {
@@ -4328,13 +4362,13 @@ impl<'a> EventsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-events-id-possiblepersonsforservice");
-    /// for possiblepersonsforservice in client.events().list_possiblepersonsforservice(2)? {
-    ///     println!("{}", possiblepersonsforservice.full_name);
+    /// for possible_persons_for_service in client.events().list_possible_persons_for_service(2)? {
+    ///     println!("{}", possible_persons_for_service.full_name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_possiblepersonsforservice(&self, service_id: impl Display) -> Result<Vec<models::ServiceCandidate>> {
+    pub fn list_possible_persons_for_service(&self, service_id: impl Display) -> Result<Vec<models::ServiceCandidate>> {
         let path = format!("/events/{}/possiblepersonsforservice", seg(service_id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -4645,8 +4679,8 @@ pub struct EventsAgendaItemsResource<'a> {
 }
 
 impl<'a> EventsAgendaItemsResource<'a> {
-    pub fn servicegroups(&self) -> EventsAgendaItemsServicegroupsResource<'a> {
-        EventsAgendaItemsServicegroupsResource { client: self.client }
+    pub fn service_groups(&self) -> EventsAgendaItemsServiceGroupsResource<'a> {
+        EventsAgendaItemsServiceGroupsResource { client: self.client }
     }
 
     /// Create agenda item
@@ -4802,13 +4836,13 @@ impl<'a> EventsAgendaItemsResource<'a> {
 
 }
 
-/// `client.events().agenda().items().servicegroups()`
+/// `client.events().agenda().items().service_groups()`
 #[derive(Clone, Copy)]
-pub struct EventsAgendaItemsServicegroupsResource<'a> {
+pub struct EventsAgendaItemsServiceGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> EventsAgendaItemsServicegroupsResource<'a> {
+impl<'a> EventsAgendaItemsServiceGroupsResource<'a> {
     /// Delete service group note from agenda item
     ///
     /// `DELETE /events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}`
@@ -4822,7 +4856,7 @@ impl<'a> EventsAgendaItemsServicegroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.events().agenda().items().servicegroups().delete(42, 123, 13)?;
+    /// client.events().agenda().items().service_groups().delete(42, 123, 13)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -4849,7 +4883,7 @@ impl<'a> EventsAgendaItemsServicegroupsResource<'a> {
     ///     note: Some(Some("Remember to bring the sheet music".into())),
     ///     ..Default::default()
     /// };
-    /// client.events().agenda().items().servicegroups().update(42, 123, 13, &body)?;
+    /// client.events().agenda().items().service_groups().update(42, 123, 13, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -4862,13 +4896,13 @@ impl<'a> EventsAgendaItemsServicegroupsResource<'a> {
 
 }
 
-/// `client.events().eventservices()`
+/// `client.events().event_services()`
 #[derive(Clone, Copy)]
-pub struct EventsEventservicesResource<'a> {
+pub struct EventsEventServicesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> EventsEventservicesResource<'a> {
+impl<'a> EventsEventServicesResource<'a> {
     /// Decline service request
     ///
     /// `DELETE /events/{eventId}/eventservices/{serviceId}`
@@ -4886,8 +4920,8 @@ impl<'a> EventsEventservicesResource<'a> {
     ///     comment: Some(Some("Hallo zusammen".into())),
     ///     ..Default::default()
     /// };
-    /// let eventservice = client.events().eventservices().delete(42, 42, &body)?;
-    /// println!("{:?}", eventservice.name);
+    /// let event_service = client.events().event_services().delete(42, 42, &body)?;
+    /// println!("{:?}", event_service.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -4916,7 +4950,7 @@ impl<'a> EventsEventservicesResource<'a> {
     ///     name: Some(Some("Guest musician".into())),
     ///     ..Default::default()
     /// };
-    /// let result = client.events().eventservices().update(42, 42, &body)?;
+    /// let result = client.events().event_services().update(42, 42, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -4950,7 +4984,7 @@ impl<'a> EventsEventservicesResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// client.events().eventservices().update_all(42, &body)?;
+    /// client.events().event_services().update_all(42, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -5163,13 +5197,13 @@ impl<'a> EventsFactsResource<'a> {
 
 }
 
-/// `client.events().servicerequests()`
+/// `client.events().service_requests()`
 #[derive(Clone, Copy)]
-pub struct EventsServicerequestsResource<'a> {
+pub struct EventsServiceRequestsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> EventsServicerequestsResource<'a> {
+impl<'a> EventsServiceRequestsResource<'a> {
     /// Accept service request
     ///
     /// `POST /events/{eventId}/servicerequests/{requestId}/accept`
@@ -5187,8 +5221,8 @@ impl<'a> EventsServicerequestsResource<'a> {
     ///     comment: Some(Some("Hallo zusammen".into())),
     ///     ..Default::default()
     /// };
-    /// let servicerequest = client.events().servicerequests().accept(42, 42, &body)?;
-    /// println!("{:?}", servicerequest.name);
+    /// let service_request = client.events().service_requests().accept(42, 42, &body)?;
+    /// println!("{:?}", service_request.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -5216,8 +5250,8 @@ impl<'a> EventsServicerequestsResource<'a> {
     ///     comment: Some(Some("Hallo zusammen".into())),
     ///     ..Default::default()
     /// };
-    /// let servicerequest = client.events().servicerequests().decline(42, 42, &body)?;
-    /// println!("{:?}", servicerequest.name);
+    /// let service_request = client.events().service_requests().decline(42, 42, &body)?;
+    /// println!("{:?}", service_request.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -5245,8 +5279,8 @@ impl<'a> EventsServicerequestsResource<'a> {
     ///     person_id: 42,
     ///     ..Default::default()
     /// };
-    /// let servicerequest = client.events().servicerequests().undo(42, 42, &body)?;
-    /// println!("{:?}", servicerequest.name);
+    /// let service_request = client.events().service_requests().undo(42, 42, &body)?;
+    /// println!("{:?}", service_request.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -5274,7 +5308,7 @@ impl<'a> EventsServicerequestsResource<'a> {
     ///     name: Some(Some("Guest musician".into())),
     ///     ..Default::default()
     /// };
-    /// let result = client.events().servicerequests().update(42, 42, &body)?;
+    /// let result = client.events().service_requests().update(42, 42, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -5307,7 +5341,7 @@ impl<'a> EventsServicerequestsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// client.events().servicerequests().update_all(42, &body)?;
+    /// client.events().service_requests().update_all(42, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -5340,13 +5374,13 @@ impl<'a> EventsServicesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-events-eventId-services-serviceId-possiblepersons");
-    /// for possibleperson in client.events().services().list_possiblepersons(42, 2)? {
-    ///     println!("{}", possibleperson.partner_services);
+    /// for possible_person in client.events().services().list_possible_persons(42, 2)? {
+    ///     println!("{}", possible_person.partner_services);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_possiblepersons(&self, event_id: impl Display, service_id: impl Display) -> Result<Vec<models::PossibleEventPerson>> {
+    pub fn list_possible_persons(&self, event_id: impl Display, service_id: impl Display) -> Result<Vec<models::PossibleEventPerson>> {
         let path = format!("/events/{}/services/{}/possiblepersons", seg(event_id), seg(service_id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -5354,57 +5388,23 @@ impl<'a> EventsServicesResource<'a> {
 
 }
 
-/// `client.eventtemplates()`
+/// `client.external_logins()`
 #[derive(Clone, Copy)]
-pub struct EventtemplatesResource<'a> {
+pub struct ExternalLoginsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> EventtemplatesResource<'a> {
-    /// Get all event templates
-    ///
-    /// `GET /eventtemplates`
-    ///
-    /// Returns all event templates as an unpaginated list, sorted by `sortKey` ascending. No per-template visibility filter is applied.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-eventtemplates");
-    /// for eventtemplate in client.eventtemplates().list()? {
-    ///     println!("{}", eventtemplate.id);
-    /// }
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn list(&self) -> Result<Vec<models::EventTemplate>> {
-        let path = "/eventtemplates".to_owned();
-        let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
+impl<'a> ExternalLoginsResource<'a> {
+    pub fn link(&self) -> ExternalLoginsLinkResource<'a> {
+        ExternalLoginsLinkResource { client: self.client }
     }
 
-}
-
-/// `client.externallogins()`
-#[derive(Clone, Copy)]
-pub struct ExternalloginsResource<'a> {
-    client: &'a Client,
-}
-
-impl<'a> ExternalloginsResource<'a> {
-    pub fn link(&self) -> ExternalloginsLinkResource<'a> {
-        ExternalloginsLinkResource { client: self.client }
+    pub fn oidc(&self) -> ExternalLoginsOidcResource<'a> {
+        ExternalLoginsOidcResource { client: self.client }
     }
 
-    pub fn oidc(&self) -> ExternalloginsOidcResource<'a> {
-        ExternalloginsOidcResource { client: self.client }
-    }
-
-    pub fn saml(&self) -> ExternalloginsSamlResource<'a> {
-        ExternalloginsSamlResource { client: self.client }
+    pub fn saml(&self) -> ExternalLoginsSamlResource<'a> {
+        ExternalLoginsSamlResource { client: self.client }
     }
 
     /// Create an external login provider
@@ -5432,7 +5432,7 @@ impl<'a> ExternalloginsResource<'a> {
     ///     update_data_on_login: true,
     ///     ..Default::default()
     /// };
-    /// let result = client.externallogins().create(&body)?;
+    /// let result = client.external_logins().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -5457,7 +5457,7 @@ impl<'a> ExternalloginsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.externallogins().delete(7)?;
+    /// client.external_logins().delete(7)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -5480,8 +5480,8 @@ impl<'a> ExternalloginsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-externallogins-id");
-    /// let externallogin = client.externallogins().get(7)?;
-    /// println!("{}", externallogin.name);
+    /// let external_login = client.external_logins().get(7)?;
+    /// println!("{}", external_login.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -5504,8 +5504,8 @@ impl<'a> ExternalloginsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-externallogins");
-    /// for externallogin in client.externallogins().list()? {
-    ///     println!("{}", externallogin.name);
+    /// for external_login in client.external_logins().list()? {
+    ///     println!("{}", external_login.name);
     /// }
     /// # Ok(())
     /// # }
@@ -5541,7 +5541,7 @@ impl<'a> ExternalloginsResource<'a> {
     ///     update_data_on_login: true,
     ///     ..Default::default()
     /// };
-    /// let result = client.externallogins().update(7, &body)?;
+    /// let result = client.external_logins().update(7, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -5555,13 +5555,13 @@ impl<'a> ExternalloginsResource<'a> {
 
 }
 
-/// `client.externallogins().link()`
+/// `client.external_logins().link()`
 #[derive(Clone, Copy)]
-pub struct ExternalloginsLinkResource<'a> {
+pub struct ExternalLoginsLinkResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalloginsLinkResource<'a> {
+impl<'a> ExternalLoginsLinkResource<'a> {
     /// Verify and link an external identity
     ///
     /// `POST /externallogins/{externalLoginId}/link`
@@ -5581,7 +5581,7 @@ impl<'a> ExternalloginsLinkResource<'a> {
     ///     username: "alex@example.org".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.externallogins().link().create(7, &body)?;
+    /// let result = client.external_logins().link().create(7, &body)?;
     /// println!("{}", result.location);
     /// # Ok(())
     /// # }
@@ -5610,7 +5610,7 @@ impl<'a> ExternalloginsLinkResource<'a> {
     ///     link_token: "opaque-session-bound-link-token".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.externallogins().link().create_person(7, &body)?;
+    /// let result = client.external_logins().link().create_person(7, &body)?;
     /// println!("{}", result.location);
     /// # Ok(())
     /// # }
@@ -5624,15 +5624,15 @@ impl<'a> ExternalloginsLinkResource<'a> {
 
 }
 
-/// `client.externallogins().oidc()`
+/// `client.external_logins().oidc()`
 #[derive(Clone, Copy)]
-pub struct ExternalloginsOidcResource<'a> {
+pub struct ExternalLoginsOidcResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalloginsOidcResource<'a> {
-    pub fn test(&self) -> ExternalloginsOidcTestResource<'a> {
-        ExternalloginsOidcTestResource { client: self.client }
+impl<'a> ExternalLoginsOidcResource<'a> {
+    pub fn test(&self) -> ExternalLoginsOidcTestResource<'a> {
+        ExternalLoginsOidcTestResource { client: self.client }
     }
 
     /// Receive an OIDC back-channel logout
@@ -5648,7 +5648,7 @@ impl<'a> ExternalloginsOidcResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.externallogins().oidc().backchannel_logout()?;
+    /// client.external_logins().oidc().backchannel_logout()?;
     /// # Ok(())
     /// # }
     /// ```
@@ -5675,7 +5675,7 @@ impl<'a> ExternalloginsOidcResource<'a> {
     ///     state: Some("opaque-session-bound-state".into()),
     ///     ..Default::default()
     /// };
-    /// let data = client.externallogins().oidc().callback(&query)?;
+    /// let data = client.external_logins().oidc().callback(&query)?;
     /// std::fs::write("ergebnis.bin", &data)?;
     /// # Ok(())
     /// # }
@@ -5703,7 +5703,7 @@ impl<'a> ExternalloginsOidcResource<'a> {
     ///     state: Some("opaque-session-bound-state".into()),
     ///     ..Default::default()
     /// };
-    /// let data = client.externallogins().oidc().callback_for(7, &query)?;
+    /// let data = client.external_logins().oidc().callback_for(7, &query)?;
     /// std::fs::write("ergebnis.bin", &data)?;
     /// # Ok(())
     /// # }
@@ -5729,7 +5729,7 @@ impl<'a> ExternalloginsOidcResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let start = client.externallogins().oidc().get_start(7)?;
+    /// let start = client.external_logins().oidc().get_start(7)?;
     /// println!("{}", start.expires_at);
     /// # Ok(())
     /// # }
@@ -5753,13 +5753,13 @@ impl<'a> ExternalloginsOidcResource<'a> {
 
 }
 
-/// `client.externallogins().oidc().test()`
+/// `client.external_logins().oidc().test()`
 #[derive(Clone, Copy)]
-pub struct ExternalloginsOidcTestResource<'a> {
+pub struct ExternalLoginsOidcTestResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalloginsOidcTestResource<'a> {
+impl<'a> ExternalLoginsOidcTestResource<'a> {
     /// Start OIDC login test
     ///
     /// `POST /externallogins/{externalLoginId}/oidc/test`
@@ -5773,7 +5773,7 @@ impl<'a> ExternalloginsOidcTestResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let result = client.externallogins().oidc().test().create(7)?;
+    /// let result = client.external_logins().oidc().test().create(7)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -5797,7 +5797,7 @@ impl<'a> ExternalloginsOidcTestResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-externallogins-id-oidc-test-state");
-    /// let test = client.externallogins().oidc().test().get(7, "opaque-session-bound-state")?;
+    /// let test = client.external_logins().oidc().test().get(7, "opaque-session-bound-state")?;
     /// println!("{:?}", test.error_code);
     /// # Ok(())
     /// # }
@@ -5810,19 +5810,19 @@ impl<'a> ExternalloginsOidcTestResource<'a> {
 
 }
 
-/// `client.externallogins().saml()`
+/// `client.external_logins().saml()`
 #[derive(Clone, Copy)]
-pub struct ExternalloginsSamlResource<'a> {
+pub struct ExternalLoginsSamlResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalloginsSamlResource<'a> {
-    pub fn metadata(&self) -> ExternalloginsSamlMetadataResource<'a> {
-        ExternalloginsSamlMetadataResource { client: self.client }
+impl<'a> ExternalLoginsSamlResource<'a> {
+    pub fn metadata(&self) -> ExternalLoginsSamlMetadataResource<'a> {
+        ExternalLoginsSamlMetadataResource { client: self.client }
     }
 
-    pub fn test(&self) -> ExternalloginsSamlTestResource<'a> {
-        ExternalloginsSamlTestResource { client: self.client }
+    pub fn test(&self) -> ExternalLoginsSamlTestResource<'a> {
+        ExternalLoginsSamlTestResource { client: self.client }
     }
 
     /// Consume a SAML authentication response
@@ -5838,7 +5838,7 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let data = client.externallogins().saml().acs(7)?;
+    /// let data = client.external_logins().saml().acs(7)?;
     /// std::fs::write("ergebnis.bin", &data)?;
     /// # Ok(())
     /// # }
@@ -5864,7 +5864,7 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.externallogins().saml().create_sls(7)?;
+    /// client.external_logins().saml().create_sls(7)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -5900,7 +5900,7 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.externallogins().saml().delete_sls(7)?;
+    /// client.external_logins().saml().delete_sls(7)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -5936,7 +5936,7 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.externallogins().saml().get_login(7)?;
+    /// client.external_logins().saml().get_login(7)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -5970,7 +5970,7 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let data = client.externallogins().saml().get_metadata(7)?;
+    /// let data = client.external_logins().saml().get_metadata(7)?;
     /// std::fs::write("ergebnis.bin", &data)?;
     /// # Ok(())
     /// # }
@@ -5996,7 +5996,7 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.externallogins().saml().get_sls(7)?;
+    /// client.external_logins().saml().get_sls(7)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -6032,7 +6032,7 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.externallogins().saml().patch_sls(7)?;
+    /// client.external_logins().saml().patch_sls(7)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -6068,7 +6068,7 @@ impl<'a> ExternalloginsSamlResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.externallogins().saml().update_sls(7)?;
+    /// client.external_logins().saml().update_sls(7)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -6091,13 +6091,13 @@ impl<'a> ExternalloginsSamlResource<'a> {
 
 }
 
-/// `client.externallogins().saml().metadata()`
+/// `client.external_logins().saml().metadata()`
 #[derive(Clone, Copy)]
-pub struct ExternalloginsSamlMetadataResource<'a> {
+pub struct ExternalLoginsSamlMetadataResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalloginsSamlMetadataResource<'a> {
+impl<'a> ExternalLoginsSamlMetadataResource<'a> {
     /// Parse uploaded SAML identity-provider metadata
     ///
     /// `POST /externallogins/saml/metadata/parse`
@@ -6115,7 +6115,7 @@ impl<'a> ExternalloginsSamlMetadataResource<'a> {
     ///     xml: "beispiel".into(),
     ///     ..Default::default()
     /// };
-    /// let metadata = client.externallogins().saml().metadata().parse(&body)?;
+    /// let metadata = client.external_logins().saml().metadata().parse(&body)?;
     /// println!("{:?}", metadata);
     /// # Ok(())
     /// # }
@@ -6129,13 +6129,13 @@ impl<'a> ExternalloginsSamlMetadataResource<'a> {
 
 }
 
-/// `client.externallogins().saml().test()`
+/// `client.external_logins().saml().test()`
 #[derive(Clone, Copy)]
-pub struct ExternalloginsSamlTestResource<'a> {
+pub struct ExternalLoginsSamlTestResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalloginsSamlTestResource<'a> {
+impl<'a> ExternalLoginsSamlTestResource<'a> {
     /// Start SAML login test
     ///
     /// `POST /externallogins/{externalLoginId}/saml/test`
@@ -6149,7 +6149,7 @@ impl<'a> ExternalloginsSamlTestResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let result = client.externallogins().saml().test().create(7)?;
+    /// let result = client.external_logins().saml().test().create(7)?;
     /// println!("{}", result.expires_at);
     /// # Ok(())
     /// # }
@@ -6173,7 +6173,7 @@ impl<'a> ExternalloginsSamlTestResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-externallogins-id-saml-test-state");
-    /// let test = client.externallogins().saml().test().get(7, "beispiel")?;
+    /// let test = client.external_logins().saml().test().get(7, "beispiel")?;
     /// println!("{}", test.status);
     /// # Ok(())
     /// # }
@@ -6186,15 +6186,15 @@ impl<'a> ExternalloginsSamlTestResource<'a> {
 
 }
 
-/// `client.externalposts()`
+/// `client.external_posts()`
 #[derive(Clone, Copy)]
-pub struct ExternalpostsResource<'a> {
+pub struct ExternalPostsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalpostsResource<'a> {
-    pub fn instances(&self) -> ExternalpostsInstancesResource<'a> {
-        ExternalpostsInstancesResource { client: self.client }
+impl<'a> ExternalPostsResource<'a> {
+    pub fn instances(&self) -> ExternalPostsInstancesResource<'a> {
+        ExternalPostsInstancesResource { client: self.client }
     }
 
     /// `GET /externalposts`
@@ -6210,8 +6210,8 @@ impl<'a> ExternalpostsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-externalposts");
-    /// for externalpost in client.externalposts().list()? {
-    ///     println!("{}", externalpost.title);
+    /// for external_post in client.external_posts().list()? {
+    ///     println!("{}", external_post.title);
     /// }
     /// # Ok(())
     /// # }
@@ -6233,39 +6233,39 @@ impl<'a> ExternalpostsResource<'a> {
 
 }
 
-/// `client.externalposts().instances()`
+/// `client.external_posts().instances()`
 #[derive(Clone, Copy)]
-pub struct ExternalpostsInstancesResource<'a> {
+pub struct ExternalPostsInstancesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalpostsInstancesResource<'a> {
-    pub fn channels(&self) -> ExternalpostsInstancesChannelsResource<'a> {
-        ExternalpostsInstancesChannelsResource { client: self.client }
+impl<'a> ExternalPostsInstancesResource<'a> {
+    pub fn channels(&self) -> ExternalPostsInstancesChannelsResource<'a> {
+        ExternalPostsInstancesChannelsResource { client: self.client }
     }
 
 }
 
-/// `client.externalposts().instances().channels()`
+/// `client.external_posts().instances().channels()`
 #[derive(Clone, Copy)]
-pub struct ExternalpostsInstancesChannelsResource<'a> {
+pub struct ExternalPostsInstancesChannelsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalpostsInstancesChannelsResource<'a> {
-    pub fn posts(&self) -> ExternalpostsInstancesChannelsPostsResource<'a> {
-        ExternalpostsInstancesChannelsPostsResource { client: self.client }
+impl<'a> ExternalPostsInstancesChannelsResource<'a> {
+    pub fn posts(&self) -> ExternalPostsInstancesChannelsPostsResource<'a> {
+        ExternalPostsInstancesChannelsPostsResource { client: self.client }
     }
 
 }
 
-/// `client.externalposts().instances().channels().posts()`
+/// `client.external_posts().instances().channels().posts()`
 #[derive(Clone, Copy)]
-pub struct ExternalpostsInstancesChannelsPostsResource<'a> {
+pub struct ExternalPostsInstancesChannelsPostsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ExternalpostsInstancesChannelsPostsResource<'a> {
+impl<'a> ExternalPostsInstancesChannelsPostsResource<'a> {
     /// `GET /externalposts/instances/{instanceGuid}/channels/{channelGuid}/posts/{postGuid}`
     ///
     /// Get one external Post
@@ -6277,7 +6277,7 @@ impl<'a> ExternalpostsInstancesChannelsPostsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let post = client.externalposts().instances().channels().posts().get("abc123", "abc123", "abc123")?;
+    /// let post = client.external_posts().instances().channels().posts().get("abc123", "abc123", "abc123")?;
     /// println!("{}", post.title);
     /// # Ok(())
     /// # }
@@ -6444,13 +6444,13 @@ impl<'a> FactsResource<'a> {
 
 }
 
-/// `client.featureusage()`
+/// `client.feature_usage()`
 #[derive(Clone, Copy)]
-pub struct FeatureusageResource<'a> {
+pub struct FeatureUsageResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FeatureusageResource<'a> {
+impl<'a> FeatureUsageResource<'a> {
     /// `POST /featureusage`
     ///
     /// Send feature usage statistics in bulk.
@@ -6463,7 +6463,7 @@ impl<'a> FeatureusageResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body = models::PostFeatureusageBody::default();
-    /// client.featureusage().create(&body)?;
+    /// client.feature_usage().create(&body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -6797,40 +6797,40 @@ pub struct FinanceResource<'a> {
 }
 
 impl<'a> FinanceResource<'a> {
-    pub fn accountclasses(&self) -> FinanceAccountclassesResource<'a> {
-        FinanceAccountclassesResource { client: self.client }
+    pub fn account_classes(&self) -> FinanceAccountClassesResource<'a> {
+        FinanceAccountClassesResource { client: self.client }
     }
 
-    pub fn accountgroups(&self) -> FinanceAccountgroupsResource<'a> {
-        FinanceAccountgroupsResource { client: self.client }
+    pub fn account_groups(&self) -> FinanceAccountGroupsResource<'a> {
+        FinanceAccountGroupsResource { client: self.client }
     }
 
-    pub fn accountingperiods(&self) -> FinanceAccountingperiodsResource<'a> {
-        FinanceAccountingperiodsResource { client: self.client }
+    pub fn account_types(&self) -> FinanceAccountTypesResource<'a> {
+        FinanceAccountTypesResource { client: self.client }
+    }
+
+    pub fn accounting_periods(&self) -> FinanceAccountingPeriodsResource<'a> {
+        FinanceAccountingPeriodsResource { client: self.client }
     }
 
     pub fn accounts(&self) -> FinanceAccountsResource<'a> {
         FinanceAccountsResource { client: self.client }
     }
 
-    pub fn accounttypes(&self) -> FinanceAccounttypesResource<'a> {
-        FinanceAccounttypesResource { client: self.client }
-    }
-
     pub fn bills(&self) -> FinanceBillsResource<'a> {
         FinanceBillsResource { client: self.client }
     }
 
-    pub fn cashdiscounts(&self) -> FinanceCashdiscountsResource<'a> {
-        FinanceCashdiscountsResource { client: self.client }
+    pub fn cash_discounts(&self) -> FinanceCashDiscountsResource<'a> {
+        FinanceCashDiscountsResource { client: self.client }
     }
 
     pub fn clients(&self) -> FinanceClientsResource<'a> {
         FinanceClientsResource { client: self.client }
     }
 
-    pub fn costcenters(&self) -> FinanceCostcentersResource<'a> {
-        FinanceCostcentersResource { client: self.client }
+    pub fn cost_centers(&self) -> FinanceCostCentersResource<'a> {
+        FinanceCostCentersResource { client: self.client }
     }
 
     pub fn donators(&self) -> FinanceDonatorsResource<'a> {
@@ -6845,24 +6845,24 @@ impl<'a> FinanceResource<'a> {
         FinanceReportsResource { client: self.client }
     }
 
-    pub fn splittransactions(&self) -> FinanceSplittransactionsResource<'a> {
-        FinanceSplittransactionsResource { client: self.client }
+    pub fn split_transactions(&self) -> FinanceSplitTransactionsResource<'a> {
+        FinanceSplitTransactionsResource { client: self.client }
     }
 
-    pub fn taxrates(&self) -> FinanceTaxratesResource<'a> {
-        FinanceTaxratesResource { client: self.client }
+    pub fn tax_rates(&self) -> FinanceTaxRatesResource<'a> {
+        FinanceTaxRatesResource { client: self.client }
     }
 
-    pub fn taxtypes(&self) -> FinanceTaxtypesResource<'a> {
-        FinanceTaxtypesResource { client: self.client }
+    pub fn tax_types(&self) -> FinanceTaxTypesResource<'a> {
+        FinanceTaxTypesResource { client: self.client }
     }
 
     pub fn templates(&self) -> FinanceTemplatesResource<'a> {
         FinanceTemplatesResource { client: self.client }
     }
 
-    pub fn transactionpurposes(&self) -> FinanceTransactionpurposesResource<'a> {
-        FinanceTransactionpurposesResource { client: self.client }
+    pub fn transaction_purposes(&self) -> FinanceTransactionPurposesResource<'a> {
+        FinanceTransactionPurposesResource { client: self.client }
     }
 
     pub fn transactions(&self) -> FinanceTransactionsResource<'a> {
@@ -6886,12 +6886,12 @@ impl<'a> FinanceResource<'a> {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
     /// };
-    /// let masterdata = client.finance().get_masterdata(&query)?;
-    /// println!("{:?}", masterdata);
+    /// let master_data = client.finance().get_master_data(&query)?;
+    /// println!("{:?}", master_data);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_masterdata(&self, query: &GetFinanceMasterdataQuery) -> Result<models::FinanceMasterData> {
+    pub fn get_master_data(&self, query: &GetFinanceMasterdataQuery) -> Result<models::FinanceMasterData> {
         let path = "/finance/masterdata".to_owned();
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -6899,13 +6899,13 @@ impl<'a> FinanceResource<'a> {
 
 }
 
-/// `client.finance().accountclasses()`
+/// `client.finance().account_classes()`
 #[derive(Clone, Copy)]
-pub struct FinanceAccountclassesResource<'a> {
+pub struct FinanceAccountClassesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceAccountclassesResource<'a> {
+impl<'a> FinanceAccountClassesResource<'a> {
     /// Create a new account class
     ///
     /// `POST /finance/accountclasses`
@@ -6924,7 +6924,7 @@ impl<'a> FinanceAccountclassesResource<'a> {
     ///     name: "Anlagevermögen".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().accountclasses().create(&body)?;
+    /// let result = client.finance().account_classes().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -6951,7 +6951,7 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().accountclasses().delete(1)?;
+    /// client.finance().account_classes().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -6985,8 +6985,8 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountclasses-id");
-    /// let accountclass = client.finance().accountclasses().get(1)?;
-    /// println!("{}", accountclass.name);
+    /// let account_class = client.finance().account_classes().get(1)?;
+    /// println!("{}", account_class.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -7009,8 +7009,8 @@ impl<'a> FinanceAccountclassesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountclasses");
-    /// for accountclass in client.finance().accountclasses().list()? {
-    ///     println!("{}", accountclass.name);
+    /// for account_class in client.finance().account_classes().list()? {
+    ///     println!("{}", account_class.name);
     /// }
     /// # Ok(())
     /// # }
@@ -7039,7 +7039,7 @@ impl<'a> FinanceAccountclassesResource<'a> {
     ///     name: "Anlagevermögen".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().accountclasses().update(1, &body)?;
+    /// let result = client.finance().account_classes().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -7053,13 +7053,13 @@ impl<'a> FinanceAccountclassesResource<'a> {
 
 }
 
-/// `client.finance().accountgroups()`
+/// `client.finance().account_groups()`
 #[derive(Clone, Copy)]
-pub struct FinanceAccountgroupsResource<'a> {
+pub struct FinanceAccountGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceAccountgroupsResource<'a> {
+impl<'a> FinanceAccountGroupsResource<'a> {
     /// Create new account group
     ///
     /// `POST /finance/accountgroups`
@@ -7079,7 +7079,7 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     ///     name: "Sachanlagen".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().accountgroups().create(&body)?;
+    /// let result = client.finance().account_groups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -7106,7 +7106,7 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().accountgroups().delete(1)?;
+    /// client.finance().account_groups().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -7140,8 +7140,8 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountgroups-id");
-    /// let accountgroup = client.finance().accountgroups().get(1)?;
-    /// println!("{}", accountgroup.name);
+    /// let account_group = client.finance().account_groups().get(1)?;
+    /// println!("{}", account_group.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -7164,8 +7164,8 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountgroups");
-    /// for accountgroup in client.finance().accountgroups().list()? {
-    ///     println!("{}", accountgroup.name);
+    /// for account_group in client.finance().account_groups().list()? {
+    ///     println!("{}", account_group.name);
     /// }
     /// # Ok(())
     /// # }
@@ -7195,7 +7195,7 @@ impl<'a> FinanceAccountgroupsResource<'a> {
     ///     name: "Sachanlagen".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().accountgroups().update(1, &body)?;
+    /// let result = client.finance().account_groups().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -7209,19 +7209,171 @@ impl<'a> FinanceAccountgroupsResource<'a> {
 
 }
 
-/// `client.finance().accountingperiods()`
+/// `client.finance().account_types()`
 #[derive(Clone, Copy)]
-pub struct FinanceAccountingperiodsResource<'a> {
+pub struct FinanceAccountTypesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceAccountingperiodsResource<'a> {
-    pub fn accounts(&self) -> FinanceAccountingperiodsAccountsResource<'a> {
-        FinanceAccountingperiodsAccountsResource { client: self.client }
+impl<'a> FinanceAccountTypesResource<'a> {
+    /// Create new account type
+    ///
+    /// `POST /finance/accounttypes`
+    ///
+    /// Creates finance master data. Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Requires finance “edit masterdata”. Names must be unique across this resource. The successful response uses HTTP 200.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = models::AccountTypeCreate {
+    ///     name: "Aktiva".into(),
+    ///     ..Default::default()
+    /// };
+    /// let result = client.finance().account_types().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn create(&self, body: &models::AccountTypeCreate) -> Result<models::AccountType> {
+        let path = "/finance/accounttypes".to_owned();
+        let query: Query = Query::new();
+        let body = serde_json::to_value(body).expect("request body serializes");
+        self.client.request_data(Method::POST, &path, &query, Some(&body))
     }
 
-    pub fn statements(&self) -> FinanceAccountingperiodsStatementsResource<'a> {
-        FinanceAccountingperiodsStatementsResource { client: self.client }
+    /// Delete account type
+    ///
+    /// `DELETE /finance/accounttypes/{id}`
+    ///
+    /// Deletes this definition if no account classes reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
+    ///
+    /// Use [`Self::delete_with`] to pass query parameters.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().account_types().delete(1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn delete(&self, id: impl Display) -> Result<()> {
+        self.delete_with(id, &Default::default())
+    }
+
+    /// Delete account type
+    ///
+    /// Like [`Self::delete`], with query parameters.
+    ///
+    /// `DELETE /finance/accounttypes/{id}`
+    ///
+    /// Deletes this definition if no account classes reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
+    pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceAccounttypesIdQuery) -> Result<()> {
+        let path = format!("/finance/accounttypes/{}", seg(id));
+        let query: Query = query.to_query();
+        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+    }
+
+    /// Get a account type
+    ///
+    /// `GET /finance/accounttypes/{id}`
+    ///
+    /// Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns one definition by ID.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accounttypes-id");
+    /// let account_type = client.finance().account_types().get(1)?;
+    /// println!("{}", account_type.name);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn get(&self, id: impl Display) -> Result<models::AccountType> {
+        let path = format!("/finance/accounttypes/{}", seg(id));
+        let query: Query = Query::new();
+        self.client.request_data(Method::GET, &path, &query, None)
+    }
+
+    /// Get all account types
+    ///
+    /// `GET /finance/accounttypes`
+    ///
+    /// Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-finance-accounttypes");
+    /// for account_type in client.finance().account_types().list()? {
+    ///     println!("{}", account_type.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn list(&self) -> Result<Vec<models::AccountType>> {
+        let path = "/finance/accounttypes".to_owned();
+        let query: Query = Query::new();
+        self.client.request_data(Method::GET, &path, &query, None)
+    }
+
+    /// Update account type
+    ///
+    /// `PUT /finance/accounttypes/{id}`
+    ///
+    /// Replaces the editable fields of this definition. Requires finance “edit masterdata”. Names must remain unique. Omitted optional fields are reset to their defaults. Omitting balanceType changes the type to profit-and-loss.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// let body = models::AccountTypeUpdate {
+    ///     name: "Aktiva".into(),
+    ///     ..Default::default()
+    /// };
+    /// let result = client.finance().account_types().update(1, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn update(&self, id: impl Display, body: &models::AccountTypeUpdate) -> Result<models::AccountType> {
+        let path = format!("/finance/accounttypes/{}", seg(id));
+        let query: Query = Query::new();
+        let body = serde_json::to_value(body).expect("request body serializes");
+        self.client.request_data(Method::PUT, &path, &query, Some(&body))
+    }
+
+}
+
+/// `client.finance().accounting_periods()`
+#[derive(Clone, Copy)]
+pub struct FinanceAccountingPeriodsResource<'a> {
+    client: &'a Client,
+}
+
+impl<'a> FinanceAccountingPeriodsResource<'a> {
+    pub fn accounts(&self) -> FinanceAccountingPeriodsAccountsResource<'a> {
+        FinanceAccountingPeriodsAccountsResource { client: self.client }
+    }
+
+    pub fn statements(&self) -> FinanceAccountingPeriodsStatementsResource<'a> {
+        FinanceAccountingPeriodsStatementsResource { client: self.client }
     }
 
     /// Create new accounting period
@@ -7245,7 +7397,7 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     ///     start_date: "2026-01-01".parse()?,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().accountingperiods().create(&body)?;
+    /// let result = client.finance().accounting_periods().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -7272,7 +7424,7 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().accountingperiods().delete(1)?;
+    /// client.finance().accounting_periods().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -7306,11 +7458,11 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().accountingperiods().delete_taxrates(1)?;
+    /// client.finance().accounting_periods().delete_tax_rates(1)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn delete_taxrates(&self, id: impl Display) -> Result<()> {
+    pub fn delete_tax_rates(&self, id: impl Display) -> Result<()> {
         let path = format!("/finance/accountingperiods/{}/taxrates", seg(id));
         let query: Query = Query::new();
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
@@ -7329,8 +7481,8 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id");
-    /// let accountingperiod = client.finance().accountingperiods().get(1)?;
-    /// println!("{}", accountingperiod.id);
+    /// let accounting_period = client.finance().accounting_periods().get(1)?;
+    /// println!("{}", accounting_period.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -7353,8 +7505,8 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountingperiods");
-    /// for accountingperiod in client.finance().accountingperiods().list()? {
-    ///     println!("{}", accountingperiod.id);
+    /// for accounting_period in client.finance().accounting_periods().list()? {
+    ///     println!("{}", accounting_period.id);
     /// }
     /// # Ok(())
     /// # }
@@ -7380,7 +7532,7 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-bills");
-    /// for bill in client.finance().accountingperiods().list_bills(1)? {
+    /// for bill in client.finance().accounting_periods().list_bills(1)? {
     ///     println!("{}", bill.id);
     /// }
     /// # Ok(())
@@ -7425,13 +7577,13 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-userrules");
-    /// for userrule in client.finance().accountingperiods().list_userrules(1)? {
-    ///     println!("{}", userrule.id);
+    /// for user_rule in client.finance().accounting_periods().list_user_rules(1)? {
+    ///     println!("{}", user_rule.id);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_userrules(&self, id: impl Display) -> Result<Vec<models::UserRule>> {
+    pub fn list_user_rules(&self, id: impl Display) -> Result<Vec<models::UserRule>> {
         let path = format!("/finance/accountingperiods/{}/userrules", seg(id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -7458,7 +7610,7 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     ///     start_date: "2026-01-01".parse()?,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().accountingperiods().update(1, &body)?;
+    /// let result = client.finance().accounting_periods().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -7498,13 +7650,13 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// for accountingperiod in client.finance().accountingperiods().update_userrules(1, &body)? {
-    ///     println!("{}", accountingperiod.id);
+    /// for accounting_period in client.finance().accounting_periods().update_user_rules(1, &body)? {
+    ///     println!("{}", accounting_period.id);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn update_userrules(&self, id: impl Display, body: &models::UserRulesUpdate) -> Result<Vec<models::UserRule>> {
+    pub fn update_user_rules(&self, id: impl Display, body: &models::UserRulesUpdate) -> Result<Vec<models::UserRule>> {
         let path = format!("/finance/accountingperiods/{}/userrules", seg(id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -7513,15 +7665,15 @@ impl<'a> FinanceAccountingperiodsResource<'a> {
 
 }
 
-/// `client.finance().accountingperiods().accounts()`
+/// `client.finance().accounting_periods().accounts()`
 #[derive(Clone, Copy)]
-pub struct FinanceAccountingperiodsAccountsResource<'a> {
+pub struct FinanceAccountingPeriodsAccountsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
-    pub fn statements(&self) -> FinanceAccountingperiodsAccountsStatementsResource<'a> {
-        FinanceAccountingperiodsAccountsStatementsResource { client: self.client }
+impl<'a> FinanceAccountingPeriodsAccountsResource<'a> {
+    pub fn statements(&self) -> FinanceAccountingPeriodsAccountsStatementsResource<'a> {
+        FinanceAccountingPeriodsAccountsStatementsResource { client: self.client }
     }
 
     /// Delete accounts for accounting period
@@ -7537,7 +7689,7 @@ impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().accountingperiods().accounts().delete(1)?;
+    /// client.finance().accounting_periods().accounts().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -7562,7 +7714,7 @@ impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-movements");
-    /// for movement in client.finance().accountingperiods().accounts().list_movements(1, 42)? {
+    /// for movement in client.finance().accounting_periods().accounts().list_movements(1, 42)? {
     ///     println!("{}", movement.id);
     /// }
     /// # Ok(())
@@ -7607,7 +7759,7 @@ impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-statements");
-    /// for statement in client.finance().accountingperiods().accounts().list_statements(1)? {
+    /// for statement in client.finance().accounting_periods().accounts().list_statements(1)? {
     ///     println!("{}", statement.account_id);
     /// }
     /// # Ok(())
@@ -7621,15 +7773,15 @@ impl<'a> FinanceAccountingperiodsAccountsResource<'a> {
 
 }
 
-/// `client.finance().accountingperiods().accounts().statements()`
+/// `client.finance().accounting_periods().accounts().statements()`
 #[derive(Clone, Copy)]
-pub struct FinanceAccountingperiodsAccountsStatementsResource<'a> {
+pub struct FinanceAccountingPeriodsAccountsStatementsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceAccountingperiodsAccountsStatementsResource<'a> {
-    pub fn movements(&self) -> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
-        FinanceAccountingperiodsAccountsStatementsMovementsResource { client: self.client }
+impl<'a> FinanceAccountingPeriodsAccountsStatementsResource<'a> {
+    pub fn movements(&self) -> FinanceAccountingPeriodsAccountsStatementsMovementsResource<'a> {
+        FinanceAccountingPeriodsAccountsStatementsMovementsResource { client: self.client }
     }
 
     /// Get imported statements for an account
@@ -7645,7 +7797,7 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-statements");
-    /// for statement in client.finance().accountingperiods().accounts().statements().list(1, 5)? {
+    /// for statement in client.finance().accounting_periods().accounts().statements().list(1, 5)? {
     ///     println!("{}", statement.name);
     /// }
     /// # Ok(())
@@ -7659,13 +7811,13 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsResource<'a> {
 
 }
 
-/// `client.finance().accountingperiods().accounts().statements().movements()`
+/// `client.finance().accounting_periods().accounts().statements().movements()`
 #[derive(Clone, Copy)]
-pub struct FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
+pub struct FinanceAccountingPeriodsAccountsStatementsMovementsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
+impl<'a> FinanceAccountingPeriodsAccountsStatementsMovementsResource<'a> {
     /// Update the state of a movement
     ///
     /// `POST /finance/accountingperiods/{id}/accounts/{accountId}/statements/{statementId}/movements/{movementId}`
@@ -7683,7 +7835,7 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     ///     state: "booked".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().accountingperiods().accounts().statements().movements().create(1, 42, 7, 123, &body)?;
+    /// let result = client.finance().accounting_periods().accounts().statements().movements().create(1, 42, 7, 123, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -7710,7 +7862,7 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-accountingperiods-id-accounts-id-statements-id-movements");
-    /// for movement in client.finance().accountingperiods().accounts().statements().movements().list(1, 42, 7)? {
+    /// for movement in client.finance().accounting_periods().accounts().statements().movements().list(1, 42, 7)? {
     ///     println!("{}", movement.id);
     /// }
     /// # Ok(())
@@ -7763,7 +7915,7 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// client.finance().accountingperiods().accounts().statements().movements().patch_suggestions(1, 7, 7, 7, &body)?;
+    /// client.finance().accounting_periods().accounts().statements().movements().patch_suggestions(1, 7, 7, 7, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -7776,13 +7928,36 @@ impl<'a> FinanceAccountingperiodsAccountsStatementsMovementsResource<'a> {
 
 }
 
-/// `client.finance().accountingperiods().statements()`
+/// `client.finance().accounting_periods().statements()`
 #[derive(Clone, Copy)]
-pub struct FinanceAccountingperiodsStatementsResource<'a> {
+pub struct FinanceAccountingPeriodsStatementsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
+impl<'a> FinanceAccountingPeriodsStatementsResource<'a> {
+    /// Delete a statement
+    ///
+    /// `DELETE /finance/accountingperiods/{id}/statements/{statementId}`
+    ///
+    /// Deletes an imported statement, its movements, suggestions and source file. Finance transactions already created from the movements remain. Bills linked to deleted suggestions are also deleted. Requires edit accounting period permission for the statement’s actual period; the period ID in the URL is not cross-checked. There is no dry-run mode.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.finance().accounting_periods().statements().delete(1, 1)?;
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn delete(&self, id: impl Display, statement_id: impl Display) -> Result<()> {
+        let path = format!("/finance/accountingperiods/{}/statements/{}", seg(id), seg(statement_id));
+        let query: Query = Query::new();
+        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+    }
+
     /// Preview an uploaded bank statement file
     ///
     /// `POST /finance/accountingperiods/{id}/statements`
@@ -7797,40 +7972,17 @@ impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let file = Upload::from_path("kontoauszug.xml")?;
-    /// let result = client.finance().accountingperiods().statements().create(1, &[file])?;
-    /// println!("{}", result.duplicates);
+    /// let statement = client.finance().accounting_periods().statements().preview(1, &[file])?;
+    /// println!("{}", statement.duplicates);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn create(&self, id: impl Display, files: &[Upload]) -> Result<models::AccountStatementPreview> {
+    pub fn preview(&self, id: impl Display, files: &[Upload]) -> Result<models::AccountStatementPreview> {
         let path = format!("/finance/accountingperiods/{}/statements", seg(id));
         let query: Query = Query::new();
         let form: Query = Query::new();
         let bytes = self.client.request_multipart(Method::POST, &path, &query, &form, "files[]", files)?;
         crate::decode_data(&bytes)
-    }
-
-    /// Delete a statement
-    ///
-    /// `DELETE /finance/accountingperiods/{id}/statements/{statementId}`
-    ///
-    /// Deletes an imported statement, its movements, suggestions and source file. Finance transactions already created from the movements remain. Bills linked to deleted suggestions are also deleted. Requires edit accounting period permission for the statement’s actual period; the period ID in the URL is not cross-checked. There is no dry-run mode.
-    ///
-    /// # Example
-    ///
-    /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().accountingperiods().statements().delete(1, 1)?;
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn delete(&self, id: impl Display, statement_id: impl Display) -> Result<()> {
-        let path = format!("/finance/accountingperiods/{}/statements/{}", seg(id), seg(statement_id));
-        let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
     }
 
     /// Generate suggestions for a statement
@@ -7846,7 +7998,7 @@ impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().accountingperiods().statements().suggestions(1, 7)?;
+    /// client.finance().accounting_periods().statements().suggestions(1, 7)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -7873,7 +8025,7 @@ impl<'a> FinanceAccountingperiodsStatementsResource<'a> {
     ///     name: "September 2026".into(),
     ///     ..Default::default()
     /// };
-    /// client.finance().accountingperiods().statements().update(1, 1, &body)?;
+    /// client.finance().accounting_periods().statements().update(1, 1, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -7913,13 +8065,13 @@ impl<'a> FinanceAccountsResource<'a> {
     ///     accounting_period_id: 5,
     ///     ..Default::default()
     /// }];
-    /// for account in client.finance().accounts().bulkcreate(&body)? {
+    /// for account in client.finance().accounts().bulk_create(&body)? {
     ///     println!("{}", account.name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn bulkcreate(&self, body: &Vec<models::AccountCreate>) -> Result<Vec<models::Account>> {
+    pub fn bulk_create(&self, body: &Vec<models::AccountCreate>) -> Result<Vec<models::Account>> {
         let path = "/finance/accounts/bulkcreate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -8011,12 +8163,12 @@ impl<'a> FinanceAccountsResource<'a> {
     ///     client_id: Some(Some(1)),
     ///     ..Default::default()
     /// };
-    /// let data = client.finance().accounts().exporttemplate(&body)?;
+    /// let data = client.finance().accounts().export_template(&body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn exporttemplate(&self, body: &models::AccountImportTemplateCreate) -> Result<Vec<u8>> {
+    pub fn export_template(&self, body: &models::AccountImportTemplateCreate) -> Result<Vec<u8>> {
         let path = "/finance/accounts/exporttemplate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -8174,158 +8326,6 @@ impl<'a> FinanceAccountsResource<'a> {
 
 }
 
-/// `client.finance().accounttypes()`
-#[derive(Clone, Copy)]
-pub struct FinanceAccounttypesResource<'a> {
-    client: &'a Client,
-}
-
-impl<'a> FinanceAccounttypesResource<'a> {
-    /// Create new account type
-    ///
-    /// `POST /finance/accounttypes`
-    ///
-    /// Creates finance master data. Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Requires finance “edit masterdata”. Names must be unique across this resource. The successful response uses HTTP 200.
-    ///
-    /// # Example
-    ///
-    /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = models::AccountTypeCreate {
-    ///     name: "Aktiva".into(),
-    ///     ..Default::default()
-    /// };
-    /// let result = client.finance().accounttypes().create(&body)?;
-    /// println!("{}", result.name);
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn create(&self, body: &models::AccountTypeCreate) -> Result<models::AccountType> {
-        let path = "/finance/accounttypes".to_owned();
-        let query: Query = Query::new();
-        let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
-    }
-
-    /// Delete account type
-    ///
-    /// `DELETE /finance/accounttypes/{id}`
-    ///
-    /// Deletes this definition if no account classes reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
-    ///
-    /// Use [`Self::delete_with`] to pass query parameters.
-    ///
-    /// # Example
-    ///
-    /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().accounttypes().delete(1)?;
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn delete(&self, id: impl Display) -> Result<()> {
-        self.delete_with(id, &Default::default())
-    }
-
-    /// Delete account type
-    ///
-    /// Like [`Self::delete`], with query parameters.
-    ///
-    /// `DELETE /finance/accounttypes/{id}`
-    ///
-    /// Deletes this definition if no account classes reference it. Requires finance “edit masterdata”. With dry_run=true no deletion occurs and HTTP 409 returns the conflict report, including when deletion would be allowed.
-    pub fn delete_with(&self, id: impl Display, query: &DeleteFinanceAccounttypesIdQuery) -> Result<()> {
-        let path = format!("/finance/accounttypes/{}", seg(id));
-        let query: Query = query.to_query();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
-    }
-
-    /// Get a account type
-    ///
-    /// `GET /finance/accounttypes/{id}`
-    ///
-    /// Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns one definition by ID.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accounttypes-id");
-    /// let accounttype = client.finance().accounttypes().get(1)?;
-    /// println!("{}", accounttype.name);
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn get(&self, id: impl Display) -> Result<models::AccountType> {
-        let path = format!("/finance/accounttypes/{}", seg(id));
-        let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
-    }
-
-    /// Get all account types
-    ///
-    /// `GET /finance/accounttypes`
-    ///
-    /// Account types are the top level of the finance chart of accounts. They distinguish assets, liabilities and profit-and-loss accounts. Each account class belongs to one account type. Returns the complete, unpaginated list ordered by sortKey, then name, ascending. meta.count is the number returned.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-finance-accounttypes");
-    /// for accounttype in client.finance().accounttypes().list()? {
-    ///     println!("{}", accounttype.name);
-    /// }
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn list(&self) -> Result<Vec<models::AccountType>> {
-        let path = "/finance/accounttypes".to_owned();
-        let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
-    }
-
-    /// Update account type
-    ///
-    /// `PUT /finance/accounttypes/{id}`
-    ///
-    /// Replaces the editable fields of this definition. Requires finance “edit masterdata”. Names must remain unique. Omitted optional fields are reset to their defaults. Omitting balanceType changes the type to profit-and-loss.
-    ///
-    /// # Example
-    ///
-    /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let body = models::AccountTypeUpdate {
-    ///     name: "Aktiva".into(),
-    ///     ..Default::default()
-    /// };
-    /// let result = client.finance().accounttypes().update(1, &body)?;
-    /// println!("{}", result.name);
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn update(&self, id: impl Display, body: &models::AccountTypeUpdate) -> Result<models::AccountType> {
-        let path = format!("/finance/accounttypes/{}", seg(id));
-        let query: Query = Query::new();
-        let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
-    }
-
-}
-
 /// `client.finance().bills()`
 #[derive(Clone, Copy)]
 pub struct FinanceBillsResource<'a> {
@@ -8457,13 +8457,13 @@ impl<'a> FinanceBillsResource<'a> {
 
 }
 
-/// `client.finance().cashdiscounts()`
+/// `client.finance().cash_discounts()`
 #[derive(Clone, Copy)]
-pub struct FinanceCashdiscountsResource<'a> {
+pub struct FinanceCashDiscountsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceCashdiscountsResource<'a> {
+impl<'a> FinanceCashDiscountsResource<'a> {
     /// Create a cash discount
     ///
     /// `POST /finance/cashdiscounts`
@@ -8483,7 +8483,7 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     ///     rate: 2,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().cashdiscounts().create(&body)?;
+    /// let result = client.finance().cash_discounts().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -8510,7 +8510,7 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().cashdiscounts().delete(1)?;
+    /// client.finance().cash_discounts().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -8544,8 +8544,8 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-cashdiscounts-id");
-    /// let cashdiscount = client.finance().cashdiscounts().get(1)?;
-    /// println!("{}", cashdiscount.id);
+    /// let cash_discount = client.finance().cash_discounts().get(1)?;
+    /// println!("{}", cash_discount.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -8570,8 +8570,8 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-cashdiscounts");
-    /// for cashdiscount in client.finance().cashdiscounts().list()? {
-    ///     println!("{}", cashdiscount.id);
+    /// for cash_discount in client.finance().cash_discounts().list()? {
+    ///     println!("{}", cash_discount.id);
     /// }
     /// # Ok(())
     /// # }
@@ -8612,7 +8612,7 @@ impl<'a> FinanceCashdiscountsResource<'a> {
     ///     rate: 2,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().cashdiscounts().update(1, &body)?;
+    /// let result = client.finance().cash_discounts().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -8780,13 +8780,13 @@ impl<'a> FinanceClientsResource<'a> {
 
 }
 
-/// `client.finance().costcenters()`
+/// `client.finance().cost_centers()`
 #[derive(Clone, Copy)]
-pub struct FinanceCostcentersResource<'a> {
+pub struct FinanceCostCentersResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceCostcentersResource<'a> {
+impl<'a> FinanceCostCentersResource<'a> {
     /// Import many cost centers
     ///
     /// `POST /finance/costcenters/bulkcreate`
@@ -8809,13 +8809,13 @@ impl<'a> FinanceCostcentersResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// for costcenter in client.finance().costcenters().bulkcreate(&body)? {
-    ///     println!("{:?}", costcenter.name);
+    /// for cost_center in client.finance().cost_centers().bulk_create(&body)? {
+    ///     println!("{:?}", cost_center.name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn bulkcreate(&self, body: &models::CostCenterBulkCreate) -> Result<Vec<models::CostCenterStored>> {
+    pub fn bulk_create(&self, body: &models::CostCenterBulkCreate) -> Result<Vec<models::CostCenterStored>> {
         let path = "/finance/costcenters/bulkcreate".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -8841,7 +8841,7 @@ impl<'a> FinanceCostcentersResource<'a> {
     ///     number: "802".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().costcenters().create(&body)?;
+    /// let result = client.finance().cost_centers().create(&body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -8868,7 +8868,7 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().costcenters().delete(1)?;
+    /// client.finance().cost_centers().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -8902,8 +8902,8 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-costcenters-id");
-    /// let costcenter = client.finance().costcenters().get(1)?;
-    /// println!("{:?}", costcenter.name);
+    /// let cost_center = client.finance().cost_centers().get(1)?;
+    /// println!("{:?}", cost_center.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -8930,7 +8930,7 @@ impl<'a> FinanceCostcentersResource<'a> {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
     /// };
-    /// let data = client.finance().costcenters().get_export(&query)?;
+    /// let data = client.finance().cost_centers().get_export(&query)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
     /// # }
@@ -8956,8 +8956,8 @@ impl<'a> FinanceCostcentersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-costcenters");
-    /// for costcenter in client.finance().costcenters().list()? {
-    ///     println!("{:?}", costcenter.name);
+    /// for cost_center in client.finance().cost_centers().list()? {
+    ///     println!("{:?}", cost_center.name);
     /// }
     /// # Ok(())
     /// # }
@@ -8997,7 +8997,7 @@ impl<'a> FinanceCostcentersResource<'a> {
     ///     number: "802".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().costcenters().update(1, &body)?;
+    /// let result = client.finance().cost_centers().update(1, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -9818,8 +9818,8 @@ impl<'a> FinanceReportsStatementResource<'a> {
         FinanceReportsStatementAccountsResource { client: self.client }
     }
 
-    pub fn costcenters(&self) -> FinanceReportsStatementCostcentersResource<'a> {
-        FinanceReportsStatementCostcentersResource { client: self.client }
+    pub fn cost_centers(&self) -> FinanceReportsStatementCostCentersResource<'a> {
+        FinanceReportsStatementCostCentersResource { client: self.client }
     }
 
 }
@@ -9862,13 +9862,13 @@ impl<'a> FinanceReportsStatementAccountsResource<'a> {
 
 }
 
-/// `client.finance().reports().statement().costcenters()`
+/// `client.finance().reports().statement().cost_centers()`
 #[derive(Clone, Copy)]
-pub struct FinanceReportsStatementCostcentersResource<'a> {
+pub struct FinanceReportsStatementCostCentersResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceReportsStatementCostcentersResource<'a> {
+impl<'a> FinanceReportsStatementCostCentersResource<'a> {
     /// Create cost center statement report
     ///
     /// `POST /finance/reports/statement/costcenters/{costCenterId}`
@@ -9886,7 +9886,7 @@ impl<'a> FinanceReportsStatementCostcentersResource<'a> {
     ///     end_date: Some(Some("2026-12-31".parse()?)),
     ///     ..Default::default()
     /// };
-    /// let data = client.finance().reports().statement().costcenters().create(21, &body)?;
+    /// let data = client.finance().reports().statement().cost_centers().create(21, &body)?;
     /// std::fs::write("ergebnis.xlsx", &data)?;
     /// # Ok(())
     /// # }
@@ -9900,13 +9900,13 @@ impl<'a> FinanceReportsStatementCostcentersResource<'a> {
 
 }
 
-/// `client.finance().splittransactions()`
+/// `client.finance().split_transactions()`
 #[derive(Clone, Copy)]
-pub struct FinanceSplittransactionsResource<'a> {
+pub struct FinanceSplitTransactionsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceSplittransactionsResource<'a> {
+impl<'a> FinanceSplitTransactionsResource<'a> {
     /// Create new split transaction
     ///
     /// `POST /finance/splittransactions`
@@ -9935,7 +9935,7 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().splittransactions().create(&body)?;
+    /// let result = client.finance().split_transactions().create(&body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -9973,7 +9973,7 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().splittransactions().delete(1)?;
+    /// client.finance().split_transactions().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -10008,8 +10008,8 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
-    /// let splittransaction = client.finance().splittransactions().duplicate(1, &body)?;
-    /// println!("{}", splittransaction.id);
+    /// let split_transaction = client.finance().split_transactions().duplicate(1, &body)?;
+    /// println!("{}", split_transaction.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -10035,8 +10035,8 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-splittransactions-id");
-    /// let splittransaction = client.finance().splittransactions().get(1)?;
-    /// println!("{}", splittransaction.id);
+    /// let split_transaction = client.finance().split_transactions().get(1)?;
+    /// println!("{}", split_transaction.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -10085,7 +10085,7 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().splittransactions().update(1, &body)?;
+    /// let result = client.finance().split_transactions().update(1, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -10125,7 +10125,7 @@ impl<'a> FinanceSplittransactionsResource<'a> {
     ///     note: "Incorrect allocation".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().splittransactions().update_storno(1, &body)?;
+    /// let result = client.finance().split_transactions().update_storno(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -10139,13 +10139,13 @@ impl<'a> FinanceSplittransactionsResource<'a> {
 
 }
 
-/// `client.finance().taxrates()`
+/// `client.finance().tax_rates()`
 #[derive(Clone, Copy)]
-pub struct FinanceTaxratesResource<'a> {
+pub struct FinanceTaxRatesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceTaxratesResource<'a> {
+impl<'a> FinanceTaxRatesResource<'a> {
     /// Create a tax rate
     ///
     /// `POST /finance/taxrates`
@@ -10165,7 +10165,7 @@ impl<'a> FinanceTaxratesResource<'a> {
     ///     tax_type_id: 4,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().taxrates().create(&body)?;
+    /// let result = client.finance().tax_rates().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -10192,7 +10192,7 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().taxrates().delete(1)?;
+    /// client.finance().tax_rates().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -10226,8 +10226,8 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-taxrates-id");
-    /// let taxrate = client.finance().taxrates().get(1)?;
-    /// println!("{}", taxrate.id);
+    /// let tax_rate = client.finance().tax_rates().get(1)?;
+    /// println!("{}", tax_rate.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -10252,8 +10252,8 @@ impl<'a> FinanceTaxratesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-taxrates");
-    /// for taxrate in client.finance().taxrates().list()? {
-    ///     println!("{}", taxrate.id);
+    /// for tax_rate in client.finance().tax_rates().list()? {
+    ///     println!("{}", tax_rate.id);
     /// }
     /// # Ok(())
     /// # }
@@ -10294,7 +10294,7 @@ impl<'a> FinanceTaxratesResource<'a> {
     ///     tax_type_id: 4,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().taxrates().update(1, &body)?;
+    /// let result = client.finance().tax_rates().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -10308,13 +10308,13 @@ impl<'a> FinanceTaxratesResource<'a> {
 
 }
 
-/// `client.finance().taxtypes()`
+/// `client.finance().tax_types()`
 #[derive(Clone, Copy)]
-pub struct FinanceTaxtypesResource<'a> {
+pub struct FinanceTaxTypesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceTaxtypesResource<'a> {
+impl<'a> FinanceTaxTypesResource<'a> {
     /// Create a tax type
     ///
     /// `POST /finance/taxtypes`
@@ -10332,7 +10332,7 @@ impl<'a> FinanceTaxtypesResource<'a> {
     ///     sort_key: 0,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().taxtypes().create(&body)?;
+    /// let result = client.finance().tax_types().create(&body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -10359,7 +10359,7 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().taxtypes().delete(1)?;
+    /// client.finance().tax_types().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -10393,8 +10393,8 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-taxtypes-id");
-    /// let taxtype = client.finance().taxtypes().get(1)?;
-    /// println!("{:?}", taxtype.name);
+    /// let tax_type = client.finance().tax_types().get(1)?;
+    /// println!("{:?}", tax_type.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -10417,8 +10417,8 @@ impl<'a> FinanceTaxtypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-taxtypes");
-    /// for taxtype in client.finance().taxtypes().list()? {
-    ///     println!("{:?}", taxtype.name);
+    /// for tax_type in client.finance().tax_types().list()? {
+    ///     println!("{:?}", tax_type.name);
     /// }
     /// # Ok(())
     /// # }
@@ -10446,7 +10446,7 @@ impl<'a> FinanceTaxtypesResource<'a> {
     ///     sort_key: 0,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().taxtypes().update(1, &body)?;
+    /// let result = client.finance().tax_types().update(1, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -10549,13 +10549,13 @@ impl<'a> FinanceTemplatesResource<'a> {
 
 }
 
-/// `client.finance().transactionpurposes()`
+/// `client.finance().transaction_purposes()`
 #[derive(Clone, Copy)]
-pub struct FinanceTransactionpurposesResource<'a> {
+pub struct FinanceTransactionPurposesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FinanceTransactionpurposesResource<'a> {
+impl<'a> FinanceTransactionPurposesResource<'a> {
     /// Create new transaction purpose
     ///
     /// `POST /finance/transactionpurposes`
@@ -10577,7 +10577,7 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     ///     sort_key: 0,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().transactionpurposes().create(&body)?;
+    /// let result = client.finance().transaction_purposes().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -10604,7 +10604,7 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.finance().transactionpurposes().delete(1)?;
+    /// client.finance().transaction_purposes().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -10638,8 +10638,8 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-transactionpurposes-id");
-    /// let transactionpurpose = client.finance().transactionpurposes().get(1)?;
-    /// println!("{}", transactionpurpose.name);
+    /// let transaction_purpose = client.finance().transaction_purposes().get(1)?;
+    /// println!("{}", transaction_purpose.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -10662,8 +10662,8 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-finance-transactionpurposes");
-    /// for transactionpurpose in client.finance().transactionpurposes().list()? {
-    ///     println!("{}", transactionpurpose.name);
+    /// for transaction_purpose in client.finance().transaction_purposes().list()? {
+    ///     println!("{}", transaction_purpose.name);
     /// }
     /// # Ok(())
     /// # }
@@ -10695,7 +10695,7 @@ impl<'a> FinanceTransactionpurposesResource<'a> {
     ///     sort_key: 0,
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().transactionpurposes().update(1, &body)?;
+    /// let result = client.finance().transaction_purposes().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -10722,7 +10722,7 @@ impl<'a> FinanceTransactionsResource<'a> {
     ///
     /// Creates a non-empty JSON array of bookings in input order and returns the main bookings with meta.count. Each item supplies its own document number and accounts; items may belong to different accounting periods. Both accounts must allow posting and all related finance references within an item must belong to the same period. Periods must be open and contain each documentDate. Input validation runs before creation, followed by a shared database transaction. The optional query flag skips the normal donation-account/donor constraint for all items, but joint-donor consistency still applies. Use actual JSON boolean and integer values.
     ///
-    /// Use [`Self::bulkcreate_with`] to pass query parameters.
+    /// Use [`Self::bulk_create_with`] to pass query parameters.
     ///
     /// # Example
     ///
@@ -10740,24 +10740,24 @@ impl<'a> FinanceTransactionsResource<'a> {
     ///     document_number: "2026-42".into(),
     ///     ..Default::default()
     /// }];
-    /// for transaction in client.finance().transactions().bulkcreate(&body)? {
+    /// for transaction in client.finance().transactions().bulk_create(&body)? {
     ///     println!("{}", transaction.id);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn bulkcreate(&self, body: &Vec<models::TransactionBulkCreateItem>) -> Result<Vec<models::Transaction>> {
-        self.bulkcreate_with(&Default::default(), body)
+    pub fn bulk_create(&self, body: &Vec<models::TransactionBulkCreateItem>) -> Result<Vec<models::Transaction>> {
+        self.bulk_create_with(&Default::default(), body)
     }
 
     /// Create multiple transactions
     ///
-    /// Like [`Self::bulkcreate`], with query parameters.
+    /// Like [`Self::bulk_create`], with query parameters.
     ///
     /// `POST /finance/transactions/bulkcreate`
     ///
     /// Creates a non-empty JSON array of bookings in input order and returns the main bookings with meta.count. Each item supplies its own document number and accounts; items may belong to different accounting periods. Both accounts must allow posting and all related finance references within an item must belong to the same period. Periods must be open and contain each documentDate. Input validation runs before creation, followed by a shared database transaction. The optional query flag skips the normal donation-account/donor constraint for all items, but joint-donor consistency still applies. Use actual JSON boolean and integer values.
-    pub fn bulkcreate_with(&self, query: &PostFinanceTransactionsBulkcreateQuery, body: &Vec<models::TransactionBulkCreateItem>) -> Result<Vec<models::Transaction>> {
+    pub fn bulk_create_with(&self, query: &PostFinanceTransactionsBulkcreateQuery, body: &Vec<models::TransactionBulkCreateItem>) -> Result<Vec<models::Transaction>> {
         let path = "/finance/transactions/bulkcreate".to_owned();
         let query: Query = query.to_query();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -10955,12 +10955,12 @@ impl<'a> FinanceTransactionsResource<'a> {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
     /// };
-    /// let data = client.finance().transactions().get_datevexport(&query)?;
+    /// let data = client.finance().transactions().get_datev_export(&query)?;
     /// std::fs::write("ergebnis.csv", &data)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_datevexport(&self, query: &GetFinanceTransactionsDatevexportQuery) -> Result<Vec<u8>> {
+    pub fn get_datev_export(&self, query: &GetFinanceTransactionsDatevexportQuery) -> Result<Vec<u8>> {
         let path = "/finance/transactions/datevexport".to_owned();
         let query: Query = query.to_query();
         self.client.request(Method::GET, &path, &query, None)
@@ -10984,11 +10984,11 @@ impl<'a> FinanceTransactionsResource<'a> {
     ///     document_number: Some("2024-001".into()),
     ///     ..Default::default()
     /// };
-    /// client.finance().transactions().get_documentnumberavailable(&query)?;
+    /// client.finance().transactions().get_document_number_available(&query)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_documentnumberavailable(&self, query: &GetFinanceTransactionsDocumentnumberavailableQuery) -> Result<()> {
+    pub fn get_document_number_available(&self, query: &GetFinanceTransactionsDocumentnumberavailableQuery) -> Result<()> {
         let path = "/finance/transactions/documentnumberavailable".to_owned();
         let query: Query = query.to_query();
         self.client.request(Method::GET, &path, &query, None).map(|_| ())
@@ -11076,12 +11076,12 @@ impl<'a> FinanceTransactionsResource<'a> {
     ///     accounting_period_id: Some(1),
     ///     ..Default::default()
     /// };
-    /// let result = client.finance().transactions().get_nextdocumentnumber(&query)?;
+    /// let result = client.finance().transactions().get_next_document_number(&query)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_nextdocumentnumber(&self, query: &GetFinanceTransactionsNextdocumentnumberQuery) -> Result<String> {
+    pub fn get_next_document_number(&self, query: &GetFinanceTransactionsNextdocumentnumberQuery) -> Result<String> {
         let path = "/finance/transactions/nextdocumentnumber".to_owned();
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -11548,13 +11548,13 @@ impl<'a> FollowupsResource<'a> {
 
 }
 
-/// `client.furtherlinks()`
+/// `client.further_links()`
 #[derive(Clone, Copy)]
-pub struct FurtherlinksResource<'a> {
+pub struct FurtherLinksResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> FurtherlinksResource<'a> {
+impl<'a> FurtherLinksResource<'a> {
     /// Create further link
     ///
     /// `POST /furtherlinks`
@@ -11576,7 +11576,7 @@ impl<'a> FurtherlinksResource<'a> {
     ///     url: "https://example.org".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.furtherlinks().create(&body)?;
+    /// let result = client.further_links().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -11597,7 +11597,7 @@ impl<'a> FurtherlinksResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.furtherlinks().delete(1.5)?;
+    /// client.further_links().delete(1.5)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -11620,8 +11620,8 @@ impl<'a> FurtherlinksResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-furtherlinks-furtherLinkId");
-    /// let furtherlink = client.furtherlinks().get(1.5)?;
-    /// println!("{}", furtherlink.name);
+    /// let further_link = client.further_links().get(1.5)?;
+    /// println!("{}", further_link.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -11644,8 +11644,8 @@ impl<'a> FurtherlinksResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-furtherlinks");
-    /// for furtherlink in client.furtherlinks().list()? {
-    ///     println!("{}", furtherlink.name);
+    /// for further_link in client.further_links().list()? {
+    ///     println!("{}", further_link.name);
     /// }
     /// # Ok(())
     /// # }
@@ -11677,7 +11677,7 @@ impl<'a> FurtherlinksResource<'a> {
     ///     url: "https://example.org".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.furtherlinks().update(1.5, &body)?;
+    /// let result = client.further_links().update(1.5, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -11698,28 +11698,28 @@ pub struct GroupResource<'a> {
 }
 
 impl<'a> GroupResource<'a> {
-    pub fn agegroups(&self) -> GroupAgegroupsResource<'a> {
-        GroupAgegroupsResource { client: self.client }
+    pub fn age_groups(&self) -> GroupAgeGroupsResource<'a> {
+        GroupAgeGroupsResource { client: self.client }
     }
 
-    pub fn groupcategories(&self) -> GroupGroupcategoriesResource<'a> {
-        GroupGroupcategoriesResource { client: self.client }
+    pub fn group_categories(&self) -> GroupGroupCategoriesResource<'a> {
+        GroupGroupCategoriesResource { client: self.client }
     }
 
-    pub fn grouptypes(&self) -> GroupGrouptypesResource<'a> {
-        GroupGrouptypesResource { client: self.client }
+    pub fn group_types(&self) -> GroupGroupTypesResource<'a> {
+        GroupGroupTypesResource { client: self.client }
     }
 
-    pub fn meetingtemplates(&self) -> GroupMeetingtemplatesResource<'a> {
-        GroupMeetingtemplatesResource { client: self.client }
+    pub fn meeting_templates(&self) -> GroupMeetingTemplatesResource<'a> {
+        GroupMeetingTemplatesResource { client: self.client }
     }
 
     pub fn roles(&self) -> GroupRolesResource<'a> {
         GroupRolesResource { client: self.client }
     }
 
-    pub fn targetgroups(&self) -> GroupTargetgroupsResource<'a> {
-        GroupTargetgroupsResource { client: self.client }
+    pub fn target_groups(&self) -> GroupTargetGroupsResource<'a> {
+        GroupTargetGroupsResource { client: self.client }
     }
 
     /// Get all group member statuses
@@ -11737,13 +11737,13 @@ impl<'a> GroupResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-memberstatus");
-    /// for memberstatu in client.group().list_memberstatus()? {
-    ///     println!("{}", memberstatu.name);
+    /// for member_statu in client.group().list_member_status()? {
+    ///     println!("{}", member_statu.name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_memberstatus(&self) -> Result<Vec<models::GetGroupMemberstatusResponseItem>> {
+    pub fn list_member_status(&self) -> Result<Vec<models::GetGroupMemberstatusResponseItem>> {
         let path = "/group/memberstatus".to_owned();
         let query: Query = Query::new();
         self.client.request_json(Method::GET, &path, &query, None)
@@ -11751,13 +11751,13 @@ impl<'a> GroupResource<'a> {
 
 }
 
-/// `client.group().agegroups()`
+/// `client.group().age_groups()`
 #[derive(Clone, Copy)]
-pub struct GroupAgegroupsResource<'a> {
+pub struct GroupAgeGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupAgegroupsResource<'a> {
+impl<'a> GroupAgeGroupsResource<'a> {
     /// Create age range
     ///
     /// `POST /group/agegroups`
@@ -11779,7 +11779,7 @@ impl<'a> GroupAgegroupsResource<'a> {
     ///     start: 3,
     ///     ..Default::default()
     /// };
-    /// let result = client.group().agegroups().create(&body)?;
+    /// let result = client.group().age_groups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -11809,7 +11809,7 @@ impl<'a> GroupAgegroupsResource<'a> {
     ///     dry_run: Some(true),
     ///     ..Default::default()
     /// };
-    /// client.group().agegroups().delete(2, &query)?;
+    /// client.group().age_groups().delete(2, &query)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -11833,8 +11833,8 @@ impl<'a> GroupAgegroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-agegroups-ageGroupId");
-    /// let agegroup = client.group().agegroups().get(2)?;
-    /// println!("{}", agegroup.name);
+    /// let age_group = client.group().age_groups().get(2)?;
+    /// println!("{}", age_group.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -11858,8 +11858,8 @@ impl<'a> GroupAgegroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-agegroups");
-    /// for agegroup in client.group().agegroups().list()? {
-    ///     println!("{}", agegroup.name);
+    /// for age_group in client.group().age_groups().list()? {
+    ///     println!("{}", age_group.name);
     /// }
     /// # Ok(())
     /// # }
@@ -11891,7 +11891,7 @@ impl<'a> GroupAgegroupsResource<'a> {
     ///     start: 3,
     ///     ..Default::default()
     /// };
-    /// client.group().agegroups().update(2, &body)?;
+    /// client.group().age_groups().update(2, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -11904,13 +11904,13 @@ impl<'a> GroupAgegroupsResource<'a> {
 
 }
 
-/// `client.group().groupcategories()`
+/// `client.group().group_categories()`
 #[derive(Clone, Copy)]
-pub struct GroupGroupcategoriesResource<'a> {
+pub struct GroupGroupCategoriesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupGroupcategoriesResource<'a> {
+impl<'a> GroupGroupCategoriesResource<'a> {
     /// Create group category
     ///
     /// `POST /group/groupcategories`
@@ -11931,7 +11931,7 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     ///     sort_key: 5,
     ///     ..Default::default()
     /// };
-    /// let result = client.group().groupcategories().create(&body)?;
+    /// let result = client.group().group_categories().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -11961,7 +11961,7 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     ///     dry_run: Some(true),
     ///     ..Default::default()
     /// };
-    /// client.group().groupcategories().delete(2, &query)?;
+    /// client.group().group_categories().delete(2, &query)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -11985,8 +11985,8 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-groupcategories-groupCategoryId");
-    /// let groupcategory = client.group().groupcategories().get(2)?;
-    /// println!("{}", groupcategory.name);
+    /// let group_category = client.group().group_categories().get(2)?;
+    /// println!("{}", group_category.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -12010,8 +12010,8 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-groupcategories");
-    /// for groupcategory in client.group().groupcategories().list()? {
-    ///     println!("{}", groupcategory.name);
+    /// for group_category in client.group().group_categories().list()? {
+    ///     println!("{}", group_category.name);
     /// }
     /// # Ok(())
     /// # }
@@ -12042,7 +12042,7 @@ impl<'a> GroupGroupcategoriesResource<'a> {
     ///     sort_key: 5,
     ///     ..Default::default()
     /// };
-    /// let result = client.group().groupcategories().update(2, &body)?;
+    /// let result = client.group().group_categories().update(2, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -12056,13 +12056,13 @@ impl<'a> GroupGroupcategoriesResource<'a> {
 
 }
 
-/// `client.group().grouptypes()`
+/// `client.group().group_types()`
 #[derive(Clone, Copy)]
-pub struct GroupGrouptypesResource<'a> {
+pub struct GroupGroupTypesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupGrouptypesResource<'a> {
+impl<'a> GroupGroupTypesResource<'a> {
     /// Create group type
     ///
     /// `POST /group/grouptypes`
@@ -12089,7 +12089,7 @@ impl<'a> GroupGrouptypesResource<'a> {
     ///     sort_key: 2,
     ///     ..Default::default()
     /// };
-    /// let result = client.group().grouptypes().create(&body)?;
+    /// let result = client.group().group_types().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -12117,7 +12117,7 @@ impl<'a> GroupGrouptypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.group().grouptypes().delete(2)?;
+    /// client.group().group_types().delete(2)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -12152,8 +12152,8 @@ impl<'a> GroupGrouptypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-grouptypes-groupTypeId");
-    /// let grouptype = client.group().grouptypes().get(2)?;
-    /// println!("{}", grouptype.name);
+    /// let group_type = client.group().group_types().get(2)?;
+    /// println!("{}", group_type.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -12178,8 +12178,8 @@ impl<'a> GroupGrouptypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-grouptypes");
-    /// for grouptype in client.group().grouptypes().list()? {
-    ///     println!("{}", grouptype.name);
+    /// for group_type in client.group().group_types().list()? {
+    ///     println!("{}", group_type.name);
     /// }
     /// # Ok(())
     /// # }
@@ -12216,7 +12216,7 @@ impl<'a> GroupGrouptypesResource<'a> {
     ///     sort_key: 2,
     ///     ..Default::default()
     /// };
-    /// let result = client.group().grouptypes().update(2, &body)?;
+    /// let result = client.group().group_types().update(2, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -12230,13 +12230,13 @@ impl<'a> GroupGrouptypesResource<'a> {
 
 }
 
-/// `client.group().meetingtemplates()`
+/// `client.group().meeting_templates()`
 #[derive(Clone, Copy)]
-pub struct GroupMeetingtemplatesResource<'a> {
+pub struct GroupMeetingTemplatesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupMeetingtemplatesResource<'a> {
+impl<'a> GroupMeetingTemplatesResource<'a> {
     /// Create group meeting feedback template
     ///
     /// `POST /group/meetingtemplates`
@@ -12260,7 +12260,7 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// let result = client.group().meetingtemplates().create(&body)?;
+    /// let result = client.group().meeting_templates().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -12290,7 +12290,7 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     ///     dry_run: Some(true),
     ///     ..Default::default()
     /// };
-    /// client.group().meetingtemplates().delete(1, &query)?;
+    /// client.group().meeting_templates().delete(1, &query)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -12313,8 +12313,8 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-meetingtemplates-meetingTemplateId");
-    /// let meetingtemplate = client.group().meetingtemplates().get(1)?;
-    /// println!("{}", meetingtemplate.name);
+    /// let meeting_template = client.group().meeting_templates().get(1)?;
+    /// println!("{}", meeting_template.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -12338,8 +12338,8 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-meetingtemplates");
-    /// for meetingtemplate in client.group().meetingtemplates().list()? {
-    ///     println!("{}", meetingtemplate.name);
+    /// for meeting_template in client.group().meeting_templates().list()? {
+    ///     println!("{}", meeting_template.name);
     /// }
     /// # Ok(())
     /// # }
@@ -12373,7 +12373,7 @@ impl<'a> GroupMeetingtemplatesResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// client.group().meetingtemplates().update(1, &body)?;
+    /// client.group().meeting_templates().update(1, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -12573,13 +12573,13 @@ impl<'a> GroupRolesResource<'a> {
 
 }
 
-/// `client.group().targetgroups()`
+/// `client.group().target_groups()`
 #[derive(Clone, Copy)]
-pub struct GroupTargetgroupsResource<'a> {
+pub struct GroupTargetGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupTargetgroupsResource<'a> {
+impl<'a> GroupTargetGroupsResource<'a> {
     /// Create target audience
     ///
     /// `POST /group/targetgroups`
@@ -12599,7 +12599,7 @@ impl<'a> GroupTargetgroupsResource<'a> {
     ///     sort_key: 2,
     ///     ..Default::default()
     /// };
-    /// let result = client.group().targetgroups().create(&body)?;
+    /// let result = client.group().target_groups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -12629,7 +12629,7 @@ impl<'a> GroupTargetgroupsResource<'a> {
     ///     dry_run: Some(true),
     ///     ..Default::default()
     /// };
-    /// client.group().targetgroups().delete(2, &query)?;
+    /// client.group().target_groups().delete(2, &query)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -12653,8 +12653,8 @@ impl<'a> GroupTargetgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-targetgroups-targetGroupId");
-    /// let targetgroup = client.group().targetgroups().get(2)?;
-    /// println!("{}", targetgroup.name);
+    /// let target_group = client.group().target_groups().get(2)?;
+    /// println!("{}", target_group.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -12678,8 +12678,8 @@ impl<'a> GroupTargetgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-group-targetgroups");
-    /// for targetgroup in client.group().targetgroups().list()? {
-    ///     println!("{}", targetgroup.name);
+    /// for target_group in client.group().target_groups().list()? {
+    ///     println!("{}", target_group.name);
     /// }
     /// # Ok(())
     /// # }
@@ -12709,7 +12709,7 @@ impl<'a> GroupTargetgroupsResource<'a> {
     ///     sort_key: 2,
     ///     ..Default::default()
     /// };
-    /// client.group().targetgroups().update(2, &body)?;
+    /// client.group().target_groups().update(2, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -12722,13 +12722,13 @@ impl<'a> GroupTargetgroupsResource<'a> {
 
 }
 
-/// `client.grouphomepages()`
+/// `client.group_homepages()`
 #[derive(Clone, Copy)]
-pub struct GrouphomepagesResource<'a> {
+pub struct GroupHomepagesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GrouphomepagesResource<'a> {
+impl<'a> GroupHomepagesResource<'a> {
     /// Get a public group homepage by hash
     ///
     /// `GET /grouphomepages/{hash}`
@@ -12744,8 +12744,8 @@ impl<'a> GrouphomepagesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-grouphomepages-hash");
-    /// let grouphomepage = client.grouphomepages().get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")?;
-    /// println!("{}", grouphomepage.name);
+    /// let group_homepage = client.group_homepages().get("RNdjTK0tGp1N1afoblczGbFb8ikLfa9b")?;
+    /// println!("{}", group_homepage.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -12779,8 +12779,8 @@ impl<'a> GrouphomepagesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-grouphomepages");
-    /// for grouphomepage in client.grouphomepages().list()? {
-    ///     println!("{}", grouphomepage.title);
+    /// for group_homepage in client.group_homepages().list()? {
+    ///     println!("{}", group_homepage.title);
     /// }
     /// # Ok(())
     /// # }
@@ -12816,24 +12816,24 @@ impl<'a> GroupsResource<'a> {
         GroupsMeetingsResource { client: self.client }
     }
 
-    pub fn memberfields(&self) -> GroupsMemberfieldsResource<'a> {
-        GroupsMemberfieldsResource { client: self.client }
+    pub fn member_fields(&self) -> GroupsMemberFieldsResource<'a> {
+        GroupsMemberFieldsResource { client: self.client }
     }
 
     pub fn members(&self) -> GroupsMembersResource<'a> {
         GroupsMembersResource { client: self.client }
     }
 
-    pub fn newsletter_integrations(&self) -> GroupsNewsletterIntegrationsResource<'a> {
-        GroupsNewsletterIntegrationsResource { client: self.client }
+    pub fn news_letter_integrations(&self) -> GroupsNewsLetterIntegrationsResource<'a> {
+        GroupsNewsLetterIntegrationsResource { client: self.client }
     }
 
     pub fn parents(&self) -> GroupsParentsResource<'a> {
         GroupsParentsResource { client: self.client }
     }
 
-    pub fn qrcodecheckin(&self) -> GroupsQrcodecheckinResource<'a> {
-        GroupsQrcodecheckinResource { client: self.client }
+    pub fn qrcode_checkin(&self) -> GroupsQrcodeCheckinResource<'a> {
+        GroupsQrcodeCheckinResource { client: self.client }
     }
 
     pub fn roles(&self) -> GroupsRolesResource<'a> {
@@ -12950,11 +12950,11 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.groups().delete_grouphomepage(42)?;
+    /// client.groups().delete_group_homepage(42)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn delete_grouphomepage(&self, group_id: impl Display) -> Result<()> {
+    pub fn delete_group_homepage(&self, group_id: impl Display) -> Result<()> {
         let path = format!("/groups/{}/grouphomepage", seg(group_id));
         let query: Query = Query::new();
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
@@ -13077,6 +13077,30 @@ impl<'a> GroupsResource<'a> {
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
+    /// Get a group’s homepage configuration
+    ///
+    /// `GET /groups/{groupId}/grouphomepage`
+    ///
+    /// Returns the homepage configuration attached to this parent group, including disabled homepages. Requires permission to edit the parent group’s basic settings; ordinary group visibility is insufficient. A group without a homepage returns 404. This settings lookup does not populate the child groups or filter option catalogs: groups is empty and filter entries omit options. For the public page with its child groups and catalogs, use GET /grouphomepages/{hash}. showMap is combined with the global OpenStreetMap setting, so it can be false even when the stored page flag is true.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-groups-groupId-grouphomepage");
+    /// let group_homepage = client.groups().get_group_homepage(42)?;
+    /// println!("{}", group_homepage.name);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn get_group_homepage(&self, group_id: impl Display) -> Result<models::GroupHomepage> {
+        let path = format!("/groups/{}/grouphomepage", seg(group_id));
+        let query: Query = Query::new();
+        self.client.request_data(Method::GET, &path, &query, None)
+    }
+
     /// Get grouped groups
     ///
     /// `GET /groups/grouped`
@@ -13102,30 +13126,6 @@ impl<'a> GroupsResource<'a> {
     pub fn get_grouped(&self, query: &GetGroupsGroupedQuery) -> Result<models::GroupedGroups> {
         let path = "/groups/grouped".to_owned();
         let query: Query = query.to_query();
-        self.client.request_data(Method::GET, &path, &query, None)
-    }
-
-    /// Get a group’s homepage configuration
-    ///
-    /// `GET /groups/{groupId}/grouphomepage`
-    ///
-    /// Returns the homepage configuration attached to this parent group, including disabled homepages. Requires permission to edit the parent group’s basic settings; ordinary group visibility is insufficient. A group without a homepage returns 404. This settings lookup does not populate the child groups or filter option catalogs: groups is empty and filter entries omit options. For the public page with its child groups and catalogs, use GET /grouphomepages/{hash}. showMap is combined with the global OpenStreetMap setting, so it can be false even when the stored page flag is true.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-groups-groupId-grouphomepage");
-    /// let grouphomepage = client.groups().get_grouphomepage(42)?;
-    /// println!("{}", grouphomepage.name);
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn get_grouphomepage(&self, group_id: impl Display) -> Result<models::GroupHomepage> {
-        let path = format!("/groups/{}/grouphomepage", seg(group_id));
-        let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
     }
 
@@ -13166,12 +13166,12 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-groupId-poststatistics");
-    /// let poststatistic = client.groups().get_poststatistics(42)?;
-    /// println!("{}", poststatistic.group_intern);
+    /// let post_statistic = client.groups().get_post_statistics(42)?;
+    /// println!("{}", post_statistic.group_intern);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_poststatistics(&self, group_id: impl Display) -> Result<models::GroupPostStatistics> {
+    pub fn get_post_statistics(&self, group_id: impl Display) -> Result<models::GroupPostStatistics> {
         let path = format!("/groups/{}/poststatistics", seg(group_id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -13219,11 +13219,11 @@ impl<'a> GroupsResource<'a> {
     ///     role_mapping: Default::default(),
     ///     ..Default::default()
     /// };
-    /// client.groups().grouptype(42, &body)?;
+    /// client.groups().group_type(42, &body)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn grouptype(&self, group_id: impl Display, body: &models::GroupTypeChangeUpdate) -> Result<()> {
+    pub fn group_type(&self, group_id: impl Display, body: &models::GroupTypeChangeUpdate) -> Result<()> {
         let path = format!("/groups/{}/grouptype", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -13375,13 +13375,13 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-groupId-documenttemplates");
-    /// for documenttemplate in client.groups().list_documenttemplates(42)? {
-    ///     println!("{}", documenttemplate.name);
+    /// for document_template in client.groups().list_document_templates(42)? {
+    ///     println!("{}", document_template.name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_documenttemplates(&self, group_id: impl Display) -> Result<Vec<models::HtmlTemplateInfo>> {
+    pub fn list_document_templates(&self, group_id: impl Display) -> Result<Vec<models::HtmlTemplateInfo>> {
         let path = format!("/groups/{}/documenttemplates", seg(group_id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -13487,7 +13487,7 @@ impl<'a> GroupsResource<'a> {
     ///
     /// Returns the person IDs of all visible memberships matching the filters. These IDs can be used as personId in /groups/{groupId}/members/{personId}; they are not membership record IDs. Results are not paginated, and meta.count is the number of returned IDs. Filters are combined, and visibility restrictions still apply. Additional filters can use a group member field’s reference name or display name (=fieldValue), or a person-field key (person_=fieldValue).
     ///
-    /// Use [`Self::list_memberids_with`] to pass query parameters.
+    /// Use [`Self::list_member_ids_with`] to pass query parameters.
     ///
     /// # Example
     ///
@@ -13496,24 +13496,24 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-groupId-memberids");
-    /// for memberid in client.groups().list_memberids(42)? {
-    ///     println!("{:?}", memberid);
+    /// for member_id in client.groups().list_member_ids(42)? {
+    ///     println!("{:?}", member_id);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_memberids(&self, group_id: impl Display) -> Result<Vec<i64>> {
-        self.list_memberids_with(group_id, &Default::default())
+    pub fn list_member_ids(&self, group_id: impl Display) -> Result<Vec<i64>> {
+        self.list_member_ids_with(group_id, &Default::default())
     }
 
     /// Get person IDs of group members
     ///
-    /// Like [`Self::list_memberids`], with query parameters.
+    /// Like [`Self::list_member_ids`], with query parameters.
     ///
     /// `GET /groups/{groupId}/memberids`
     ///
     /// Returns the person IDs of all visible memberships matching the filters. These IDs can be used as personId in /groups/{groupId}/members/{personId}; they are not membership record IDs. Results are not paginated, and meta.count is the number of returned IDs. Filters are combined, and visibility restrictions still apply. Additional filters can use a group member field’s reference name or display name (=fieldValue), or a person-field key (person_=fieldValue).
-    pub fn list_memberids_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMemberidsQuery) -> Result<Vec<i64>> {
+    pub fn list_member_ids_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMemberidsQuery) -> Result<Vec<i64>> {
         let path = format!("/groups/{}/memberids", seg(group_id));
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -13525,7 +13525,7 @@ impl<'a> GroupsResource<'a> {
     ///
     /// Returns each role of the group’s group type with a limited selection of active, visible members. Roles are ordered by type and sort key, including roles with no matching members. Within each role, persons with an avatar come first, followed by last name and first name. members_per_role limits each role separately; meta.count counts role entries, not members. Use GET /groups/{groupId}/members for the paginated membership list and additional fields.
     ///
-    /// Use [`Self::list_memberpreview_with`] to pass query parameters.
+    /// Use [`Self::list_member_preview_with`] to pass query parameters.
     ///
     /// # Example
     ///
@@ -13534,24 +13534,24 @@ impl<'a> GroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-groupId-memberpreview");
-    /// for memberpreview in client.groups().list_memberpreview(42)? {
-    ///     println!("{:?}", memberpreview);
+    /// for member_preview in client.groups().list_member_preview(42)? {
+    ///     println!("{:?}", member_preview);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_memberpreview(&self, group_id: impl Display) -> Result<Vec<models::MemberPreview>> {
-        self.list_memberpreview_with(group_id, &Default::default())
+    pub fn list_member_preview(&self, group_id: impl Display) -> Result<Vec<models::MemberPreview>> {
+        self.list_member_preview_with(group_id, &Default::default())
     }
 
     /// Preview active group members by role
     ///
-    /// Like [`Self::list_memberpreview`], with query parameters.
+    /// Like [`Self::list_member_preview`], with query parameters.
     ///
     /// `GET /groups/{groupId}/memberpreview`
     ///
     /// Returns each role of the group’s group type with a limited selection of active, visible members. Roles are ordered by type and sort key, including roles with no matching members. Within each role, persons with an avatar come first, followed by last name and first name. members_per_role limits each role separately; meta.count counts role entries, not members. Use GET /groups/{groupId}/members for the paginated membership list and additional fields.
-    pub fn list_memberpreview_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMemberpreviewQuery) -> Result<Vec<models::MemberPreview>> {
+    pub fn list_member_preview_with(&self, group_id: impl Display, query: &GetGroupsGroupIdMemberpreviewQuery) -> Result<Vec<models::MemberPreview>> {
         let path = format!("/groups/{}/memberpreview", seg(group_id));
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -13747,12 +13747,12 @@ impl<'a> GroupsResource<'a> {
     ///     show_map: true,
     ///     ..Default::default()
     /// };
-    /// let result = client.groups().update_grouphomepage(42, &body)?;
+    /// let result = client.groups().update_group_homepage(42, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn update_grouphomepage(&self, group_id: impl Display, body: &models::GroupHomepageUpdate) -> Result<std::collections::BTreeMap<String, serde_json::Value>> {
+    pub fn update_group_homepage(&self, group_id: impl Display, body: &models::GroupHomepageUpdate) -> Result<std::collections::BTreeMap<String, serde_json::Value>> {
         let path = format!("/groups/{}/grouphomepage", seg(group_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -14257,19 +14257,19 @@ impl<'a> GroupsMeetingsMembersResource<'a> {
 
 }
 
-/// `client.groups().memberfields()`
+/// `client.groups().member_fields()`
 #[derive(Clone, Copy)]
-pub struct GroupsMemberfieldsResource<'a> {
+pub struct GroupsMemberFieldsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupsMemberfieldsResource<'a> {
-    pub fn group(&self) -> GroupsMemberfieldsGroupResource<'a> {
-        GroupsMemberfieldsGroupResource { client: self.client }
+impl<'a> GroupsMemberFieldsResource<'a> {
+    pub fn group(&self) -> GroupsMemberFieldsGroupResource<'a> {
+        GroupsMemberFieldsGroupResource { client: self.client }
     }
 
-    pub fn person(&self) -> GroupsMemberfieldsPersonResource<'a> {
-        GroupsMemberfieldsPersonResource { client: self.client }
+    pub fn person(&self) -> GroupsMemberFieldsPersonResource<'a> {
+        GroupsMemberFieldsPersonResource { client: self.client }
     }
 
     /// List configured membership and person fields
@@ -14285,8 +14285,8 @@ impl<'a> GroupsMemberfieldsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-groupId-memberfields");
-    /// for memberfield in client.groups().memberfields().list(42)? {
-    ///     println!("{:?}", memberfield);
+    /// for member_field in client.groups().member_fields().list(42)? {
+    ///     println!("{:?}", member_field);
     /// }
     /// # Ok(())
     /// # }
@@ -14299,13 +14299,13 @@ impl<'a> GroupsMemberfieldsResource<'a> {
 
 }
 
-/// `client.groups().memberfields().group()`
+/// `client.groups().member_fields().group()`
 #[derive(Clone, Copy)]
-pub struct GroupsMemberfieldsGroupResource<'a> {
+pub struct GroupsMemberFieldsGroupResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupsMemberfieldsGroupResource<'a> {
+impl<'a> GroupsMemberFieldsGroupResource<'a> {
     /// Create a group-specific membership field
     ///
     /// `POST /groups/{groupId}/memberfields/group`
@@ -14327,7 +14327,7 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     ///     use_in_registration_form: true,
     ///     ..Default::default()
     /// };
-    /// let result = client.groups().memberfields().group().create(42, &body)?;
+    /// let result = client.groups().member_fields().group().create(42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -14352,7 +14352,7 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.groups().memberfields().group().delete(42, 42)?;
+    /// client.groups().member_fields().group().delete(42, 42)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -14379,7 +14379,7 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     ///     name: Some("T-Shirt size".into()),
     ///     ..Default::default()
     /// };
-    /// let result = client.groups().memberfields().group().patch(42, 42, &body)?;
+    /// let result = client.groups().member_fields().group().patch(42, 42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -14412,7 +14412,7 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
     ///     use_in_registration_form: true,
     ///     ..Default::default()
     /// };
-    /// let result = client.groups().memberfields().group().update(42, 42, &body)?;
+    /// let result = client.groups().member_fields().group().update(42, 42, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -14426,13 +14426,13 @@ impl<'a> GroupsMemberfieldsGroupResource<'a> {
 
 }
 
-/// `client.groups().memberfields().person()`
+/// `client.groups().member_fields().person()`
 #[derive(Clone, Copy)]
-pub struct GroupsMemberfieldsPersonResource<'a> {
+pub struct GroupsMemberFieldsPersonResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupsMemberfieldsPersonResource<'a> {
+impl<'a> GroupsMemberFieldsPersonResource<'a> {
     /// Remove a person field from a group’s member form
     ///
     /// `DELETE /groups/{groupId}/memberfields/person/{fieldId}`
@@ -14446,7 +14446,7 @@ impl<'a> GroupsMemberfieldsPersonResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.groups().memberfields().person().delete(42, 200)?;
+    /// client.groups().member_fields().person().delete(42, 200)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -14474,7 +14474,7 @@ impl<'a> GroupsMemberfieldsPersonResource<'a> {
     ///     sort_key: 20,
     ///     ..Default::default()
     /// };
-    /// let result = client.groups().memberfields().person().update(42, 200, &body)?;
+    /// let result = client.groups().member_fields().person().update(42, 200, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -15054,13 +15054,13 @@ impl<'a> GroupsMembersRoutinesResource<'a> {
 
 }
 
-/// `client.groups().newsletter_integrations()`
+/// `client.groups().news_letter_integrations()`
 #[derive(Clone, Copy)]
-pub struct GroupsNewsletterIntegrationsResource<'a> {
+pub struct GroupsNewsLetterIntegrationsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupsNewsletterIntegrationsResource<'a> {
+impl<'a> GroupsNewsLetterIntegrationsResource<'a> {
     /// Connect a group to an external newsletter list
     ///
     /// `POST /groups/{groupId}/newsletter-integrations`
@@ -15079,7 +15079,7 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     ///     provider: "Mailjet".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.groups().newsletter_integrations().create(42, &body)?;
+    /// let result = client.groups().news_letter_integrations().create(42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -15104,7 +15104,7 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.groups().newsletter_integrations().delete(42, "Mailjet", "12345")?;
+    /// client.groups().news_letter_integrations().delete(42, "Mailjet", "12345")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -15127,8 +15127,8 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-groupId-newsletter-integrations");
-    /// for newsletter_integration in client.groups().newsletter_integrations().list(42)? {
-    ///     println!("{}", newsletter_integration.id);
+    /// for news_letter_integration in client.groups().news_letter_integrations().list(42)? {
+    ///     println!("{}", news_letter_integration.id);
     /// }
     /// # Ok(())
     /// # }
@@ -15155,7 +15155,7 @@ impl<'a> GroupsNewsletterIntegrationsResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
-    /// client.groups().newsletter_integrations().resend_optins(42, "Mailjet", "12345", &body)?;
+    /// client.groups().news_letter_integrations().resend_optins(42, "Mailjet", "12345", &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -15279,13 +15279,13 @@ impl<'a> GroupsParentsResource<'a> {
 
 }
 
-/// `client.groups().qrcodecheckin()`
+/// `client.groups().qrcode_checkin()`
 #[derive(Clone, Copy)]
-pub struct GroupsQrcodecheckinResource<'a> {
+pub struct GroupsQrcodeCheckinResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> GroupsQrcodecheckinResource<'a> {
+impl<'a> GroupsQrcodeCheckinResource<'a> {
     /// Get an existing check-in ticket for a person
     ///
     /// `GET /groups/{groupId}/qrcodecheckin/{personId}`
@@ -15299,8 +15299,8 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin-personId");
-    /// let qrcodecheckin = client.groups().qrcodecheckin().get(42, 42)?;
-    /// println!("{}", qrcodecheckin.domain_id);
+    /// let qrcode_checkin = client.groups().qrcode_checkin().get(42, 42)?;
+    /// println!("{}", qrcode_checkin.domain_id);
     /// # Ok(())
     /// # }
     /// ```
@@ -15323,7 +15323,7 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin-personId-pdf");
-    /// let pdf = client.groups().qrcodecheckin().get_pdf(42, 42)?;
+    /// let pdf = client.groups().qrcode_checkin().get_pdf(42, 42)?;
     /// println!("{}", pdf.url);
     /// # Ok(())
     /// # }
@@ -15347,7 +15347,7 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-groups-id-qrcodecheckin");
-    /// let result = client.groups().qrcodecheckin().list(42)?;
+    /// let result = client.groups().qrcode_checkin().list(42)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -15372,8 +15372,8 @@ impl<'a> GroupsQrcodecheckinResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
-    /// let qrcodecheckin = client.groups().qrcodecheckin().send(42, 42, &body)?;
-    /// println!("{}", qrcodecheckin.domain_id);
+    /// let qrcode_checkin = client.groups().qrcode_checkin().send(42, 42, &body)?;
+    /// println!("{}", qrcode_checkin.domain_id);
     /// # Ok(())
     /// # }
     /// ```
@@ -15561,13 +15561,13 @@ impl<'a> HistoryResource<'a> {
 
 }
 
-/// `client.htmltemplates()`
+/// `client.html_templates()`
 #[derive(Clone, Copy)]
-pub struct HtmltemplatesResource<'a> {
+pub struct HtmlTemplatesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> HtmltemplatesResource<'a> {
+impl<'a> HtmlTemplatesResource<'a> {
     /// Create a private or shared HTML template
     ///
     /// `POST /htmltemplates`
@@ -15586,7 +15586,7 @@ impl<'a> HtmltemplatesResource<'a> {
     ///     name: "Welcome email".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.htmltemplates().create(&body)?;
+    /// let result = client.html_templates().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -15615,7 +15615,7 @@ impl<'a> HtmltemplatesResource<'a> {
     ///     dry_run: Some(true),
     ///     ..Default::default()
     /// };
-    /// client.htmltemplates().delete(2, &query)?;
+    /// client.html_templates().delete(2, &query)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -15638,8 +15638,8 @@ impl<'a> HtmltemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId");
-    /// let htmltemplate = client.htmltemplates().get(2)?;
-    /// println!("{}", htmltemplate.name);
+    /// let html_template = client.html_templates().get(2)?;
+    /// println!("{}", html_template.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -15662,7 +15662,7 @@ impl<'a> HtmltemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-export");
-    /// let result = client.htmltemplates().get_export(2)?;
+    /// let result = client.html_templates().get_export(2)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -15686,7 +15686,7 @@ impl<'a> HtmltemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-html");
-    /// let result = client.htmltemplates().get_html(2)?;
+    /// let result = client.html_templates().get_html(2)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -15710,7 +15710,7 @@ impl<'a> HtmltemplatesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-htmltemplates-templateId-mjml");
-    /// let result = client.htmltemplates().get_mjml(2)?;
+    /// let result = client.html_templates().get_mjml(2)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -15738,8 +15738,8 @@ impl<'a> HtmltemplatesResource<'a> {
     ///     domain_type: Some("email".into()),
     ///     ..Default::default()
     /// };
-    /// for htmltemplate in client.htmltemplates().list(&query)? {
-    ///     println!("{}", htmltemplate.name);
+    /// for html_template in client.html_templates().list(&query)? {
+    ///     println!("{}", html_template.name);
     /// }
     /// # Ok(())
     /// # }
@@ -15767,7 +15767,7 @@ impl<'a> HtmltemplatesResource<'a> {
     ///     name: Some(Some("Updated welcome email".into())),
     ///     ..Default::default()
     /// };
-    /// let result = client.htmltemplates().patch(2, &body)?;
+    /// let result = client.html_templates().patch(2, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -15793,13 +15793,13 @@ impl<'a> HtmltemplatesResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let file = Upload::from_path("logo.png")?;
-    /// for htmltemplate in client.htmltemplates().uploadassets(2, &[file])? {
-    ///     println!("{}", htmltemplate.name);
+    /// for html_template in client.html_templates().upload_assets(2, &[file])? {
+    ///     println!("{}", html_template.name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn uploadassets(&self, template_id: impl Display, files: &[Upload]) -> Result<Vec<models::HtmlTemplateAssetUpload>> {
+    pub fn upload_assets(&self, template_id: impl Display, files: &[Upload]) -> Result<Vec<models::HtmlTemplateAssetUpload>> {
         let path = format!("/htmltemplates/{}/uploadassets", seg(template_id));
         let query: Query = Query::new();
         let form: Query = Query::new();
@@ -16008,13 +16008,13 @@ impl<'a> InstallationSyncResource<'a> {
 
 }
 
-/// `client.joblog()`
+/// `client.job_log()`
 #[derive(Clone, Copy)]
-pub struct JoblogResource<'a> {
+pub struct JobLogResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> JoblogResource<'a> {
+impl<'a> JobLogResource<'a> {
     /// Get diagnostic entries for a job
     ///
     /// `GET /joblog`
@@ -16032,8 +16032,8 @@ impl<'a> JoblogResource<'a> {
     ///     guid: Some("d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged".into()),
     ///     ..Default::default()
     /// };
-    /// for joblog in client.joblog().list(&query)? {
-    ///     println!("{}", joblog.element_id);
+    /// for job_log in client.job_log().list(&query)? {
+    ///     println!("{}", job_log.element_id);
     /// }
     /// # Ok(())
     /// # }
@@ -16303,8 +16303,8 @@ pub struct LoginResource<'a> {
 }
 
 impl<'a> LoginResource<'a> {
-    pub fn twofactor(&self) -> LoginTwofactorResource<'a> {
-        LoginTwofactorResource { client: self.client }
+    pub fn two_factor(&self) -> LoginTwoFactorResource<'a> {
+        LoginTwoFactorResource { client: self.client }
     }
 
     /// Start password-based login
@@ -16399,26 +16399,26 @@ impl<'a> LoginResource<'a> {
 
 }
 
-/// `client.login().twofactor()`
+/// `client.login().two_factor()`
 #[derive(Clone, Copy)]
-pub struct LoginTwofactorResource<'a> {
+pub struct LoginTwoFactorResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> LoginTwofactorResource<'a> {
-    pub fn setup(&self) -> LoginTwofactorSetupResource<'a> {
-        LoginTwofactorSetupResource { client: self.client }
+impl<'a> LoginTwoFactorResource<'a> {
+    pub fn setup(&self) -> LoginTwoFactorSetupResource<'a> {
+        LoginTwoFactorSetupResource { client: self.client }
     }
 
 }
 
-/// `client.login().twofactor().setup()`
+/// `client.login().two_factor().setup()`
 #[derive(Clone, Copy)]
-pub struct LoginTwofactorSetupResource<'a> {
+pub struct LoginTwoFactorSetupResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> LoginTwofactorSetupResource<'a> {
+impl<'a> LoginTwoFactorSetupResource<'a> {
     /// Activate authenticator and complete required setup
     ///
     /// `POST /login/twofactor/setup/activate`
@@ -16436,7 +16436,7 @@ impl<'a> LoginTwofactorSetupResource<'a> {
     ///     code: "012345".into(),
     ///     ..Default::default()
     /// };
-    /// let setup = client.login().twofactor().setup().activate(&body)?;
+    /// let setup = client.login().two_factor().setup().activate(&body)?;
     /// println!("{}", setup.redirect_to);
     /// # Ok(())
     /// # }
@@ -16461,7 +16461,7 @@ impl<'a> LoginTwofactorSetupResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let result = client.login().twofactor().setup().create()?;
+    /// let result = client.login().two_factor().setup().create()?;
     /// println!("{}", result.qrcode);
     /// # Ok(())
     /// # }
@@ -16717,13 +16717,13 @@ impl<'a> MarkdownResource<'a> {
 
 }
 
-/// `client.masterdata()`
+/// `client.master_data()`
 #[derive(Clone, Copy)]
-pub struct MasterdataResource<'a> {
+pub struct MasterDataResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> MasterdataResource<'a> {
+impl<'a> MasterDataResource<'a> {
     /// Fetch all master data for the module "People & Groups"
     ///
     /// `GET /masterdata/person`
@@ -16737,7 +16737,7 @@ impl<'a> MasterdataResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-masterdata-person");
-    /// let person = client.masterdata().get_person()?;
+    /// let person = client.master_data().get_person()?;
     /// println!("{:?}", person);
     /// # Ok(())
     /// # }
@@ -16751,13 +16751,13 @@ impl<'a> MasterdataResource<'a> {
 
 }
 
-/// `client.meetingrequests()`
+/// `client.meeting_requests()`
 #[derive(Clone, Copy)]
-pub struct MeetingrequestsResource<'a> {
+pub struct MeetingRequestsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> MeetingrequestsResource<'a> {
+impl<'a> MeetingRequestsResource<'a> {
     /// Handle ICS reply for meeting requests
     ///
     /// `POST /meetingrequests/reply`
@@ -16777,7 +16777,7 @@ impl<'a> MeetingrequestsResource<'a> {
     ///     token: "example-reply-token".into(),
     ///     ..Default::default()
     /// };
-    /// client.meetingrequests().reply(&body)?;
+    /// client.meeting_requests().reply(&body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -16821,13 +16821,13 @@ impl<'a> MenuResource<'a> {
 
 }
 
-/// `client.newsletter_integrations()`
+/// `client.news_letter_integrations()`
 #[derive(Clone, Copy)]
-pub struct NewsletterIntegrationsResource<'a> {
+pub struct NewsLetterIntegrationsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> NewsletterIntegrationsResource<'a> {
+impl<'a> NewsLetterIntegrationsResource<'a> {
     /// Get newsletter integration options
     ///
     /// `GET /newsletter-integrations`
@@ -16841,8 +16841,8 @@ impl<'a> NewsletterIntegrationsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-newsletter-integrations");
-    /// for newsletter_integration in client.newsletter_integrations().list()? {
-    ///     println!("{}", newsletter_integration.can_create_lists);
+    /// for news_letter_integration in client.news_letter_integrations().list()? {
+    ///     println!("{}", news_letter_integration.can_create_lists);
     /// }
     /// # Ok(())
     /// # }
@@ -17061,13 +17061,13 @@ impl<'a> NpsResource<'a> {
 
 }
 
-/// `client.oauthclients()`
+/// `client.oauth_clients()`
 #[derive(Clone, Copy)]
-pub struct OauthclientsResource<'a> {
+pub struct OauthClientsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> OauthclientsResource<'a> {
+impl<'a> OauthClientsResource<'a> {
     /// Register an OAuth client
     ///
     /// `POST /oauthclients`
@@ -17086,7 +17086,7 @@ impl<'a> OauthclientsResource<'a> {
     ///     redirect_uri: "https://parish.example.org/oauth/callback".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.oauthclients().create(&body)?;
+    /// let result = client.oauth_clients().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -17111,7 +17111,7 @@ impl<'a> OauthclientsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.oauthclients().delete("abc123")?;
+    /// client.oauth_clients().delete("abc123")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -17134,8 +17134,8 @@ impl<'a> OauthclientsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-oauthclients");
-    /// for oauthclient in client.oauthclients().list()? {
-    ///     println!("{}", oauthclient.name);
+    /// for oauth_client in client.oauth_clients().list()? {
+    ///     println!("{}", oauth_client.name);
     /// }
     /// # Ok(())
     /// # }
@@ -17164,7 +17164,7 @@ impl<'a> OauthclientsResource<'a> {
     ///     redirect_uri: "https://parish.example.org/oauth/callback".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.oauthclients().update("abc123", &body)?;
+    /// let result = client.oauth_clients().update("abc123", &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -17990,16 +17990,16 @@ pub struct PersonResource<'a> {
 }
 
 impl<'a> PersonResource<'a> {
-    pub fn commentviewers(&self) -> PersonCommentviewersResource<'a> {
-        PersonCommentviewersResource { client: self.client }
+    pub fn comment_viewers(&self) -> PersonCommentViewersResource<'a> {
+        PersonCommentViewersResource { client: self.client }
     }
 
-    pub fn growpaths(&self) -> PersonGrowpathsResource<'a> {
-        PersonGrowpathsResource { client: self.client }
+    pub fn grow_paths(&self) -> PersonGrowPathsResource<'a> {
+        PersonGrowPathsResource { client: self.client }
     }
 
-    pub fn relationshiptypes(&self) -> PersonRelationshiptypesResource<'a> {
-        PersonRelationshiptypesResource { client: self.client }
+    pub fn relationship_types(&self) -> PersonRelationshipTypesResource<'a> {
+        PersonRelationshipTypesResource { client: self.client }
     }
 
     pub fn sexes(&self) -> PersonSexesResource<'a> {
@@ -18019,12 +18019,12 @@ impl<'a> PersonResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-person-masterdata");
-    /// let masterdata = client.person().get_masterdata()?;
-    /// println!("{:?}", masterdata);
+    /// let master_data = client.person().get_master_data()?;
+    /// println!("{:?}", master_data);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_masterdata(&self) -> Result<models::PersonMasterData> {
+    pub fn get_master_data(&self) -> Result<models::PersonMasterData> {
         let path = "/person/masterdata".to_owned();
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -18032,13 +18032,13 @@ impl<'a> PersonResource<'a> {
 
 }
 
-/// `client.person().commentviewers()`
+/// `client.person().comment_viewers()`
 #[derive(Clone, Copy)]
-pub struct PersonCommentviewersResource<'a> {
+pub struct PersonCommentViewersResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PersonCommentviewersResource<'a> {
+impl<'a> PersonCommentViewersResource<'a> {
     /// Create a person-comment visibility category
     ///
     /// `POST /person/commentviewers`
@@ -18056,7 +18056,7 @@ impl<'a> PersonCommentviewersResource<'a> {
     ///     name: "Pastoral team".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.person().commentviewers().create(&body)?;
+    /// let result = client.person().comment_viewers().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -18083,7 +18083,7 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.person().commentviewers().delete(1)?;
+    /// client.person().comment_viewers().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -18117,8 +18117,8 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-person-commentviewers-id");
-    /// let commentviewer = client.person().commentviewers().get(1)?;
-    /// println!("{}", commentviewer.name);
+    /// let comment_viewer = client.person().comment_viewers().get(1)?;
+    /// println!("{}", comment_viewer.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -18141,8 +18141,8 @@ impl<'a> PersonCommentviewersResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-person-commentviewers");
-    /// for commentviewer in client.person().commentviewers().list()? {
-    ///     println!("{}", commentviewer.name);
+    /// for comment_viewer in client.person().comment_viewers().list()? {
+    ///     println!("{}", comment_viewer.name);
     /// }
     /// # Ok(())
     /// # }
@@ -18170,7 +18170,7 @@ impl<'a> PersonCommentviewersResource<'a> {
     ///     name: "Pastoral team".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.person().commentviewers().update(1, &body)?;
+    /// let result = client.person().comment_viewers().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -18184,13 +18184,13 @@ impl<'a> PersonCommentviewersResource<'a> {
 
 }
 
-/// `client.person().growpaths()`
+/// `client.person().grow_paths()`
 #[derive(Clone, Copy)]
-pub struct PersonGrowpathsResource<'a> {
+pub struct PersonGrowPathsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PersonGrowpathsResource<'a> {
+impl<'a> PersonGrowPathsResource<'a> {
     /// Create a growth-path stage
     ///
     /// `POST /person/growpaths`
@@ -18209,7 +18209,7 @@ impl<'a> PersonGrowpathsResource<'a> {
     ///     name: "New Believer".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.person().growpaths().create(&body)?;
+    /// let result = client.person().grow_paths().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -18236,7 +18236,7 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.person().growpaths().delete(1)?;
+    /// client.person().grow_paths().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -18270,8 +18270,8 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-person-growpaths-id");
-    /// let growpath = client.person().growpaths().get(1)?;
-    /// println!("{}", growpath.name);
+    /// let grow_path = client.person().grow_paths().get(1)?;
+    /// println!("{}", grow_path.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -18294,8 +18294,8 @@ impl<'a> PersonGrowpathsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-person-growpaths");
-    /// for growpath in client.person().growpaths().list()? {
-    ///     println!("{}", growpath.name);
+    /// for grow_path in client.person().grow_paths().list()? {
+    ///     println!("{}", grow_path.name);
     /// }
     /// # Ok(())
     /// # }
@@ -18324,7 +18324,7 @@ impl<'a> PersonGrowpathsResource<'a> {
     ///     name: "New Believer".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.person().growpaths().update(1, &body)?;
+    /// let result = client.person().grow_paths().update(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -18338,13 +18338,13 @@ impl<'a> PersonGrowpathsResource<'a> {
 
 }
 
-/// `client.person().relationshiptypes()`
+/// `client.person().relationship_types()`
 #[derive(Clone, Copy)]
-pub struct PersonRelationshiptypesResource<'a> {
+pub struct PersonRelationshipTypesResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PersonRelationshiptypesResource<'a> {
+impl<'a> PersonRelationshipTypesResource<'a> {
     /// Create a person relationship type
     ///
     /// `POST /person/relationshiptypes`
@@ -18364,7 +18364,7 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     ///     security_level_id: 1,
     ///     ..Default::default()
     /// };
-    /// let result = client.person().relationshiptypes().create(&body)?;
+    /// let result = client.person().relationship_types().create(&body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -18391,7 +18391,7 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.person().relationshiptypes().delete(4)?;
+    /// client.person().relationship_types().delete(4)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -18425,8 +18425,8 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-person-relationshiptypes-id");
-    /// let relationshiptype = client.person().relationshiptypes().get(4)?;
-    /// println!("{:?}", relationshiptype.name);
+    /// let relationship_type = client.person().relationship_types().get(4)?;
+    /// println!("{:?}", relationship_type.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -18449,8 +18449,8 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-person-relationshiptypes");
-    /// for relationshiptype in client.person().relationshiptypes().list()? {
-    ///     println!("{:?}", relationshiptype.name);
+    /// for relationship_type in client.person().relationship_types().list()? {
+    ///     println!("{:?}", relationship_type.name);
     /// }
     /// # Ok(())
     /// # }
@@ -18480,7 +18480,7 @@ impl<'a> PersonRelationshiptypesResource<'a> {
     ///     security_level_id: 1,
     ///     ..Default::default()
     /// };
-    /// let result = client.person().relationshiptypes().update(4, &body)?;
+    /// let result = client.person().relationship_types().update(4, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -18665,8 +18665,8 @@ impl<'a> PersonsResource<'a> {
         PersonsEventsResource { client: self.client }
     }
 
-    pub fn exchangerequests(&self) -> PersonsExchangerequestsResource<'a> {
-        PersonsExchangerequestsResource { client: self.client }
+    pub fn exchange_requests(&self) -> PersonsExchangeRequestsResource<'a> {
+        PersonsExchangeRequestsResource { client: self.client }
     }
 
     pub fn external_logins(&self) -> PersonsExternalLoginsResource<'a> {
@@ -18685,8 +18685,8 @@ impl<'a> PersonsResource<'a> {
         PersonsRelationshipsResource { client: self.client }
     }
 
-    pub fn servicerequests(&self) -> PersonsServicerequestsResource<'a> {
-        PersonsServicerequestsResource { client: self.client }
+    pub fn service_requests(&self) -> PersonsServiceRequestsResource<'a> {
+        PersonsServiceRequestsResource { client: self.client }
     }
 
     pub fn settings(&self) -> PersonsSettingsResource<'a> {
@@ -18797,11 +18797,11 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.persons().delete_confidentialityagreement(42)?;
+    /// client.persons().delete_confidentiality_agreement(42)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn delete_confidentialityagreement(&self, person_id: impl Display) -> Result<()> {
+    pub fn delete_confidentiality_agreement(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/confidentialityagreement", seg(person_id));
         let query: Query = Query::new();
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
@@ -18820,11 +18820,11 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.persons().delete_logintoken(42)?;
+    /// client.persons().delete_login_token(42)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn delete_logintoken(&self, person_id: impl Display) -> Result<()> {
+    pub fn delete_login_token(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/logintoken", seg(person_id));
         let query: Query = Query::new();
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
@@ -18843,11 +18843,11 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.persons().delete_privacypolicy(42)?;
+    /// client.persons().delete_privacy_policy(42)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn delete_privacypolicy(&self, person_id: impl Display) -> Result<()> {
+    pub fn delete_privacy_policy(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
@@ -18976,12 +18976,12 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-loginstring");
-    /// let loginstring = client.persons().get_loginstring("abc123")?;
-    /// println!("{}", loginstring.login_string);
+    /// let login_string = client.persons().get_login_string("abc123")?;
+    /// println!("{}", login_string.login_string);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_loginstring(&self, person_id: impl Display) -> Result<models::GetPersonsIdLoginstringResponse> {
+    pub fn get_login_string(&self, person_id: impl Display) -> Result<models::GetPersonsIdLoginstringResponse> {
         let path = format!("/persons/{}/loginstring", seg(person_id));
         let query: Query = Query::new();
         self.client.request_json(Method::GET, &path, &query, None)
@@ -19000,12 +19000,12 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-logintoken");
-    /// let result = client.persons().get_logintoken(42)?;
+    /// let result = client.persons().get_login_token(42)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_logintoken(&self, person_id: impl Display) -> Result<String> {
+    pub fn get_login_token(&self, person_id: impl Display) -> Result<String> {
         let path = format!("/persons/{}/logintoken", seg(person_id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -19022,12 +19022,12 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-personId-poststatistics");
-    /// let poststatistic = client.persons().get_poststatistics("abc123")?;
-    /// println!("{}", poststatistic.count_banned);
+    /// let post_statistic = client.persons().get_post_statistics("abc123")?;
+    /// println!("{}", post_statistic.count_banned);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_poststatistics(&self, person_id: impl Display) -> Result<models::PersonPostStatistics> {
+    pub fn get_post_statistics(&self, person_id: impl Display) -> Result<models::PersonPostStatistics> {
         let path = format!("/persons/{}/poststatistics", seg(person_id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -19046,12 +19046,12 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-privacypolicy");
-    /// let privacypolicy = client.persons().get_privacypolicy(42)?;
-    /// println!("{}", privacypolicy.minimum_age);
+    /// let privacy_policy = client.persons().get_privacy_policy(42)?;
+    /// println!("{}", privacy_policy.minimum_age);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_privacypolicy(&self, person_id: impl Display) -> Result<models::PersonPrivacyPolicy> {
+    pub fn get_privacy_policy(&self, person_id: impl Display) -> Result<models::PersonPrivacyPolicy> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -19299,13 +19299,13 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-personId-openmeetingrequests");
-    /// for openmeetingrequest in client.persons().list_openmeetingrequests(42)? {
-    ///     println!("{}", openmeetingrequest.id);
+    /// for open_meeting_request in client.persons().list_open_meeting_requests(42)? {
+    ///     println!("{}", open_meeting_request.id);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_openmeetingrequests(&self, person_id: impl Display) -> Result<Vec<models::OpenMeetingRequest>> {
+    pub fn list_open_meeting_requests(&self, person_id: impl Display) -> Result<Vec<models::OpenMeetingRequest>> {
         let path = format!("/persons/{}/openmeetingrequests", seg(person_id));
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -19458,11 +19458,11 @@ impl<'a> PersonsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.persons().update_confidentialityagreement(42)?;
+    /// client.persons().update_confidentiality_agreement(42)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn update_confidentialityagreement(&self, person_id: impl Display) -> Result<()> {
+    pub fn update_confidentiality_agreement(&self, person_id: impl Display) -> Result<()> {
         let path = format!("/persons/{}/confidentialityagreement", seg(person_id));
         let query: Query = Query::new();
         self.client.request(Method::PUT, &path, &query, None).map(|_| ())
@@ -19525,12 +19525,12 @@ impl<'a> PersonsResource<'a> {
     ///     who_id: 1,
     ///     ..Default::default()
     /// };
-    /// let result = client.persons().update_privacypolicy(42, &body)?;
+    /// let result = client.persons().update_privacy_policy(42, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn update_privacypolicy(&self, person_id: impl Display, body: &models::PersonPrivacyPolicyUpdate) -> Result<Option<Vec<models::PersonPrivacyPolicyChildResult>>> {
+    pub fn update_privacy_policy(&self, person_id: impl Display, body: &models::PersonPrivacyPolicyUpdate) -> Result<Option<Vec<models::PersonPrivacyPolicyChildResult>>> {
         let path = format!("/persons/{}/privacypolicy", seg(person_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -19873,8 +19873,8 @@ pub struct PersonsEventsServicesResource<'a> {
 }
 
 impl<'a> PersonsEventsServicesResource<'a> {
-    pub fn exchangerequests(&self) -> PersonsEventsServicesExchangerequestsResource<'a> {
-        PersonsEventsServicesExchangerequestsResource { client: self.client }
+    pub fn exchange_requests(&self) -> PersonsEventsServicesExchangeRequestsResource<'a> {
+        PersonsEventsServicesExchangeRequestsResource { client: self.client }
     }
 
     /// Get a person’s assignments in an event
@@ -19904,13 +19904,13 @@ impl<'a> PersonsEventsServicesResource<'a> {
 
 }
 
-/// `client.persons().events().services().exchangerequests()`
+/// `client.persons().events().services().exchange_requests()`
 #[derive(Clone, Copy)]
-pub struct PersonsEventsServicesExchangerequestsResource<'a> {
+pub struct PersonsEventsServicesExchangeRequestsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
+impl<'a> PersonsEventsServicesExchangeRequestsResource<'a> {
     /// Create a new service exchange request
     ///
     /// `POST /persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests`
@@ -19928,7 +19928,7 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     ///     requested_service_id: 42,
     ///     ..Default::default()
     /// };
-    /// let result = client.persons().events().services().exchangerequests().create(42, 42, 42, &body)?;
+    /// let result = client.persons().events().services().exchange_requests().create(42, 42, 42, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -19955,7 +19955,7 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.persons().events().services().exchangerequests().delete(42, 42, 42, 42)?;
+    /// client.persons().events().services().exchange_requests().delete(42, 42, 42, 42)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -19991,8 +19991,8 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-events-id-services-id-exchangerequests");
-    /// for exchangerequest in client.persons().events().services().exchangerequests().list(42, 42, 42)? {
-    ///     println!("{}", exchangerequest.id);
+    /// for exchange_request in client.persons().events().services().exchange_requests().list(42, 42, 42)? {
+    ///     println!("{}", exchange_request.id);
     /// }
     /// # Ok(())
     /// # }
@@ -20027,7 +20027,7 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-events-id-services-id-exchangerequests-candidates");
-    /// for candidate in client.persons().events().services().exchangerequests().list_candidates(42, 42, 42)? {
+    /// for candidate in client.persons().events().services().exchange_requests().list_candidates(42, 42, 42)? {
     ///     println!("{}", candidate.event_date);
     /// }
     /// # Ok(())
@@ -20041,13 +20041,13 @@ impl<'a> PersonsEventsServicesExchangerequestsResource<'a> {
 
 }
 
-/// `client.persons().exchangerequests()`
+/// `client.persons().exchange_requests()`
 #[derive(Clone, Copy)]
-pub struct PersonsExchangerequestsResource<'a> {
+pub struct PersonsExchangeRequestsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PersonsExchangerequestsResource<'a> {
+impl<'a> PersonsExchangeRequestsResource<'a> {
     /// Decline a service exchange request
     ///
     /// `DELETE /persons/{personId}/exchangerequests/{requestId}`
@@ -20061,8 +20061,8 @@ impl<'a> PersonsExchangerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let exchangerequest = client.persons().exchangerequests().delete(42, 42)?;
-    /// println!("{}", exchangerequest.id);
+    /// let exchange_request = client.persons().exchange_requests().delete(42, 42)?;
+    /// println!("{}", exchange_request.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -20087,8 +20087,8 @@ impl<'a> PersonsExchangerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-exchangerequests");
-    /// for exchangerequest in client.persons().exchangerequests().list(42)? {
-    ///     println!("{}", exchangerequest.id);
+    /// for exchange_request in client.persons().exchange_requests().list(42)? {
+    ///     println!("{}", exchange_request.id);
     /// }
     /// # Ok(())
     /// # }
@@ -20123,7 +20123,7 @@ impl<'a> PersonsExchangerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let result = client.persons().exchangerequests().update(42, 42)?;
+    /// let result = client.persons().exchange_requests().update(42, 42)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -20469,13 +20469,13 @@ impl<'a> PersonsRelationshipsResource<'a> {
 
 }
 
-/// `client.persons().servicerequests()`
+/// `client.persons().service_requests()`
 #[derive(Clone, Copy)]
-pub struct PersonsServicerequestsResource<'a> {
+pub struct PersonsServiceRequestsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PersonsServicerequestsResource<'a> {
+impl<'a> PersonsServiceRequestsResource<'a> {
     /// Decline a service request for a person
     ///
     /// `DELETE /persons/{personId}/servicerequests/{requestId}`
@@ -20491,8 +20491,8 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let servicerequest = client.persons().servicerequests().delete(42, 42)?;
-    /// println!("{:?}", servicerequest.name);
+    /// let service_request = client.persons().service_requests().delete(42, 42)?;
+    /// println!("{:?}", service_request.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -20526,8 +20526,8 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-servicerequests-id");
-    /// let servicerequest = client.persons().servicerequests().get(42, 42)?;
-    /// println!("{:?}", servicerequest.name);
+    /// let service_request = client.persons().service_requests().get(42, 42)?;
+    /// println!("{:?}", service_request.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -20552,8 +20552,8 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-servicerequests");
-    /// for servicerequest in client.persons().servicerequests().list(42)? {
-    ///     println!("{:?}", servicerequest.name);
+    /// for service_request in client.persons().service_requests().list(42)? {
+    ///     println!("{:?}", service_request.name);
     /// }
     /// # Ok(())
     /// # }
@@ -20588,8 +20588,8 @@ impl<'a> PersonsServicerequestsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let servicerequest = client.persons().servicerequests().undo(42, 42)?;
-    /// println!("{:?}", servicerequest.name);
+    /// let service_request = client.persons().service_requests().undo(42, 42)?;
+    /// println!("{:?}", service_request.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -20616,7 +20616,7 @@ impl<'a> PersonsServicerequestsResource<'a> {
     ///     comment: Some(Some("Hallo zusammen".into())),
     ///     ..Default::default()
     /// };
-    /// let result = client.persons().servicerequests().update(42, 42, &body)?;
+    /// let result = client.persons().service_requests().update(42, 42, &body)?;
     /// println!("{:?}", result.name);
     /// # Ok(())
     /// # }
@@ -20637,8 +20637,8 @@ pub struct PersonsSettingsResource<'a> {
 }
 
 impl<'a> PersonsSettingsResource<'a> {
-    pub fn twofactor(&self) -> PersonsSettingsTwofactorResource<'a> {
-        PersonsSettingsTwofactorResource { client: self.client }
+    pub fn two_factor(&self) -> PersonsSettingsTwoFactorResource<'a> {
+        PersonsSettingsTwoFactorResource { client: self.client }
     }
 
     /// Delete a person setting
@@ -20769,13 +20769,13 @@ impl<'a> PersonsSettingsResource<'a> {
 
 }
 
-/// `client.persons().settings().twofactor()`
+/// `client.persons().settings().two_factor()`
 #[derive(Clone, Copy)]
-pub struct PersonsSettingsTwofactorResource<'a> {
+pub struct PersonsSettingsTwoFactorResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PersonsSettingsTwofactorResource<'a> {
+impl<'a> PersonsSettingsTwoFactorResource<'a> {
     /// Initialize an authenticator for the current person
     ///
     /// `POST /persons/{personId}/settings/twofactor`
@@ -20794,7 +20794,7 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     ///     username: "alex@example.org".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.persons().settings().twofactor().create(42, &body)?;
+    /// let result = client.persons().settings().two_factor().create(42, &body)?;
     /// println!("{}", result.qrcode);
     /// # Ok(())
     /// # }
@@ -20819,7 +20819,7 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.persons().settings().twofactor().delete(42)?;
+    /// client.persons().settings().two_factor().delete(42)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -20842,8 +20842,8 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-settings-twofactor");
-    /// let twofactor = client.persons().settings().twofactor().get(42)?;
-    /// println!("{}", twofactor.attribute);
+    /// let two_factor = client.persons().settings().two_factor().get(42)?;
+    /// println!("{}", two_factor.attribute);
     /// # Ok(())
     /// # }
     /// ```
@@ -20866,7 +20866,7 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-persons-id-settings-twofactor-force");
-    /// let force = client.persons().settings().twofactor().get_force(42)?;
+    /// let force = client.persons().settings().two_factor().get_force(42)?;
     /// println!("{}", force.attribute);
     /// # Ok(())
     /// # }
@@ -20890,7 +20890,7 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let result = client.persons().settings().twofactor().update(42)?;
+    /// let result = client.persons().settings().two_factor().update(42)?;
     /// println!("{}", result.attribute);
     /// # Ok(())
     /// # }
@@ -20918,7 +20918,7 @@ impl<'a> PersonsSettingsTwofactorResource<'a> {
     ///     value: true,
     ///     ..Default::default()
     /// };
-    /// let result = client.persons().settings().twofactor().update_force(42, &body)?;
+    /// let result = client.persons().settings().two_factor().update_force(42, &body)?;
     /// println!("{}", result.attribute);
     /// # Ok(())
     /// # }
@@ -21004,13 +21004,13 @@ impl<'a> PlaceholdersGroupResource<'a> {
 
 }
 
-/// `client.pollfornews()`
+/// `client.poll_for_news()`
 #[derive(Clone, Copy)]
-pub struct PollfornewsResource<'a> {
+pub struct PollForNewsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PollfornewsResource<'a> {
+impl<'a> PollForNewsResource<'a> {
     /// `GET /pollfornews`
     ///
     /// This endpoint returns the identifiers of changed entities since the last call.
@@ -21027,8 +21027,8 @@ impl<'a> PollfornewsResource<'a> {
     ///     since: Some("2022-10-19T12:00:00Z".parse()?),
     ///     ..Default::default()
     /// };
-    /// for pollfornew in client.pollfornews().list(&query)? {
-    ///     println!("{}", pollfornew.domain_id);
+    /// for poll_for_new in client.poll_for_news().list(&query)? {
+    ///     println!("{}", poll_for_new.domain_id);
     /// }
     /// # Ok(())
     /// # }
@@ -21776,12 +21776,12 @@ impl<'a> PrResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-pr-masterdata");
-    /// let masterdata = client.pr().get_masterdata()?;
-    /// println!("{:?}", masterdata);
+    /// let master_data = client.pr().get_master_data()?;
+    /// println!("{:?}", master_data);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_masterdata(&self) -> Result<models::PublicRelationsMasterData> {
+    pub fn get_master_data(&self) -> Result<models::PublicRelationsMasterData> {
         let path = "/pr/masterdata".to_owned();
         let query: Query = Query::new();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -21847,13 +21847,13 @@ impl<'a> ProbesResource<'a> {
     ///     domain_type: vec!["person".into()],
     ///     ..Default::default()
     /// };
-    /// for probe in client.probes().create(&body)? {
+    /// for probe in client.probes().filter(&body)? {
     ///     println!("{}", probe.domain_type);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn create(&self, body: &models::PostProbesBody) -> Result<Vec<models::Probe>> {
+    pub fn filter(&self, body: &models::PostProbesBody) -> Result<Vec<models::Probe>> {
         let path = "/probes".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -21873,8 +21873,8 @@ impl<'a> ProfilesResource<'a> {
         ProfilesCampusesResource { client: self.client }
     }
 
-    pub fn slugcheck(&self) -> ProfilesSlugcheckResource<'a> {
-        ProfilesSlugcheckResource { client: self.client }
+    pub fn slug_check(&self) -> ProfilesSlugCheckResource<'a> {
+        ProfilesSlugCheckResource { client: self.client }
     }
 
     /// Get a profile
@@ -21995,13 +21995,13 @@ impl<'a> ProfilesCampusesResource<'a> {
 
 }
 
-/// `client.profiles().slugcheck()`
+/// `client.profiles().slug_check()`
 #[derive(Clone, Copy)]
-pub struct ProfilesSlugcheckResource<'a> {
+pub struct ProfilesSlugCheckResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ProfilesSlugcheckResource<'a> {
+impl<'a> ProfilesSlugCheckResource<'a> {
     /// Check if a finder slug is free
     ///
     /// `GET /profiles/slugcheck/{slug}`
@@ -22017,7 +22017,7 @@ impl<'a> ProfilesSlugcheckResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.profiles().slugcheck().get("my-church")?;
+    /// client.profiles().slug_check().get("my-church")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -22040,15 +22040,15 @@ impl<'a> ProfilesSlugcheckResource<'a> {
 
 }
 
-/// `client.publicgroups()`
+/// `client.public_groups()`
 #[derive(Clone, Copy)]
-pub struct PublicgroupsResource<'a> {
+pub struct PublicGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PublicgroupsResource<'a> {
-    pub fn signup(&self) -> PublicgroupsSignupResource<'a> {
-        PublicgroupsSignupResource { client: self.client }
+impl<'a> PublicGroupsResource<'a> {
+    pub fn signup(&self) -> PublicGroupsSignupResource<'a> {
+        PublicGroupsSignupResource { client: self.client }
     }
 
     /// Get public group details
@@ -22066,8 +22066,8 @@ impl<'a> PublicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-publicgroups-id");
-    /// let publicgroup = client.publicgroups().get(42)?;
-    /// println!("{}", publicgroup.name);
+    /// let public_group = client.public_groups().get(42)?;
+    /// println!("{}", public_group.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -22105,7 +22105,7 @@ impl<'a> PublicgroupsResource<'a> {
     ///     token: Some("abc123".into()),
     ///     ..Default::default()
     /// };
-    /// let form = client.publicgroups().get_form(42, &query)?;
+    /// let form = client.public_groups().get_form(42, &query)?;
     /// println!("{:?}", form.email);
     /// # Ok(())
     /// # }
@@ -22133,12 +22133,12 @@ impl<'a> PublicgroupsResource<'a> {
     ///     token: Some("abc123".into()),
     ///     ..Default::default()
     /// };
-    /// let possiblerequester = client.publicgroups().get_possiblerequesters(42, &query)?;
-    /// println!("{:?}", possiblerequester.email);
+    /// let possible_requester = client.public_groups().get_possible_requesters(42, &query)?;
+    /// println!("{:?}", possible_requester.email);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_possiblerequesters(&self, group_id: impl Display, query: &GetPublicgroupsGroupIdPossiblerequestersQuery) -> Result<models::PublicGroupPossibleRequesters> {
+    pub fn get_possible_requesters(&self, group_id: impl Display, query: &GetPublicgroupsGroupIdPossiblerequestersQuery) -> Result<models::PublicGroupPossibleRequesters> {
         let path = format!("/publicgroups/{}/possiblerequesters", seg(group_id));
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -22150,7 +22150,7 @@ impl<'a> PublicgroupsResource<'a> {
     ///
     /// Returns requester information and the persons whose group participation may be withdrawn directly or requires contacting leaders. A supplied signup token must belong to this group; without token the current user is used and signup access is required. For requesterId=-1 (no person created), requester and both person lists are null and noUserCreated=true is included. For a normal requester that flag is omitted. This GET does not withdraw anyone.
     ///
-    /// Use [`Self::get_signoutdata_with`] to pass query parameters.
+    /// Use [`Self::get_signout_data_with`] to pass query parameters.
     ///
     /// # Example
     ///
@@ -22159,23 +22159,23 @@ impl<'a> PublicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-publicgroups-id-signoutdata");
-    /// let signoutdata = client.publicgroups().get_signoutdata(42)?;
-    /// println!("{}", signoutdata.group_has_auto_accept);
+    /// let signout_data = client.public_groups().get_signout_data(42)?;
+    /// println!("{}", signout_data.group_has_auto_accept);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_signoutdata(&self, group_id: impl Display) -> Result<models::PublicGroupSignoutData> {
-        self.get_signoutdata_with(group_id, &Default::default())
+    pub fn get_signout_data(&self, group_id: impl Display) -> Result<models::PublicGroupSignoutData> {
+        self.get_signout_data_with(group_id, &Default::default())
     }
 
     /// Get group withdrawal options
     ///
-    /// Like [`Self::get_signoutdata`], with query parameters.
+    /// Like [`Self::get_signout_data`], with query parameters.
     ///
     /// `GET /publicgroups/{groupId}/signoutdata`
     ///
     /// Returns requester information and the persons whose group participation may be withdrawn directly or requires contacting leaders. A supplied signup token must belong to this group; without token the current user is used and signup access is required. For requesterId=-1 (no person created), requester and both person lists are null and noUserCreated=true is included. For a normal requester that flag is omitted. This GET does not withdraw anyone.
-    pub fn get_signoutdata_with(&self, group_id: impl Display, query: &GetPublicgroupsIdSignoutdataQuery) -> Result<models::PublicGroupSignoutData> {
+    pub fn get_signout_data_with(&self, group_id: impl Display, query: &GetPublicgroupsIdSignoutdataQuery) -> Result<models::PublicGroupSignoutData> {
         let path = format!("/publicgroups/{}/signoutdata", seg(group_id));
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -22194,7 +22194,7 @@ impl<'a> PublicgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-publicgroups-id-hash");
-    /// let with_hash = client.publicgroups().get_with_hash(42, "abc123")?;
+    /// let with_hash = client.public_groups().get_with_hash(42, "abc123")?;
     /// println!("{}", with_hash.name);
     /// # Ok(())
     /// # }
@@ -22224,8 +22224,8 @@ impl<'a> PublicgroupsResource<'a> {
     ///     name: "Hauskreis Nord".into(),
     ///     ..Default::default()
     /// };
-    /// let publicgroup = client.publicgroups().mail_to_leaders(42, &body)?;
-    /// println!("{}", publicgroup.success);
+    /// let public_group = client.public_groups().mail_to_leaders(42, &body)?;
+    /// println!("{}", public_group.success);
     /// # Ok(())
     /// # }
     /// ```
@@ -22253,7 +22253,7 @@ impl<'a> PublicgroupsResource<'a> {
     ///     person_ids: vec![42, 43],
     ///     ..Default::default()
     /// };
-    /// client.publicgroups().signout(42, &body)?;
+    /// client.public_groups().signout(42, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -22285,8 +22285,8 @@ impl<'a> PublicgroupsResource<'a> {
     ///     token: "abc123".into(),
     ///     ..Default::default()
     /// };
-    /// let publicgroup = client.publicgroups().submit_signup(42, &body)?;
-    /// println!("{:?}", publicgroup.group_homepage_hash);
+    /// let public_group = client.public_groups().submit_signup(42, &body)?;
+    /// println!("{:?}", public_group.group_homepage_hash);
     /// # Ok(())
     /// # }
     /// ```
@@ -22314,7 +22314,7 @@ impl<'a> PublicgroupsResource<'a> {
     ///     email: Some("mara@example.org".into()),
     ///     ..Default::default()
     /// };
-    /// let result = client.publicgroups().token(42, &body)?;
+    /// let result = client.public_groups().token(42, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -22328,26 +22328,26 @@ impl<'a> PublicgroupsResource<'a> {
 
 }
 
-/// `client.publicgroups().signup()`
+/// `client.public_groups().signup()`
 #[derive(Clone, Copy)]
-pub struct PublicgroupsSignupResource<'a> {
+pub struct PublicGroupsSignupResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PublicgroupsSignupResource<'a> {
-    pub fn confirm(&self) -> PublicgroupsSignupConfirmResource<'a> {
-        PublicgroupsSignupConfirmResource { client: self.client }
+impl<'a> PublicGroupsSignupResource<'a> {
+    pub fn confirm(&self) -> PublicGroupsSignupConfirmResource<'a> {
+        PublicGroupsSignupConfirmResource { client: self.client }
     }
 
 }
 
-/// `client.publicgroups().signup().confirm()`
+/// `client.public_groups().signup().confirm()`
 #[derive(Clone, Copy)]
-pub struct PublicgroupsSignupConfirmResource<'a> {
+pub struct PublicGroupsSignupConfirmResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> PublicgroupsSignupConfirmResource<'a> {
+impl<'a> PublicGroupsSignupConfirmResource<'a> {
     /// Confirm a deferred public group signup
     ///
     /// `POST /publicgroups/signup/confirm/{confirmationToken}`
@@ -22362,7 +22362,7 @@ impl<'a> PublicgroupsSignupConfirmResource<'a> {
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
     /// let body: std::collections::BTreeMap<String, serde_json::Value> = Default::default();
-    /// let result = client.publicgroups().signup().confirm().create("abc123", &body)?;
+    /// let result = client.public_groups().signup().confirm().create("abc123", &body)?;
     /// println!("{:?}", result.group_homepage_hash);
     /// # Ok(())
     /// # }
@@ -22387,7 +22387,7 @@ impl<'a> PublicgroupsSignupConfirmResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let data = client.publicgroups().signup().confirm().get("abc123")?;
+    /// let data = client.public_groups().signup().confirm().get("abc123")?;
     /// std::fs::write("ergebnis.bin", &data)?;
     /// # Ok(())
     /// # }
@@ -22407,8 +22407,8 @@ pub struct QueuesResource<'a> {
 }
 
 impl<'a> QueuesResource<'a> {
-    pub fn jobgroups(&self) -> QueuesJobgroupsResource<'a> {
-        QueuesJobgroupsResource { client: self.client }
+    pub fn job_groups(&self) -> QueuesJobGroupsResource<'a> {
+        QueuesJobGroupsResource { client: self.client }
     }
 
     /// Start Worker For Queue
@@ -22437,13 +22437,13 @@ impl<'a> QueuesResource<'a> {
 
 }
 
-/// `client.queues().jobgroups()`
+/// `client.queues().job_groups()`
 #[derive(Clone, Copy)]
-pub struct QueuesJobgroupsResource<'a> {
+pub struct QueuesJobGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> QueuesJobgroupsResource<'a> {
+impl<'a> QueuesJobGroupsResource<'a> {
     /// Status Information About Job Groups in Queue
     ///
     /// `GET /queues/{queue}/jobgroups/{jobGroup}`
@@ -22459,8 +22459,8 @@ impl<'a> QueuesJobgroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-queues-queue-jobgroups-jobGroup");
-    /// for jobgroup in client.queues().jobgroups().get("beispiel", "beispiel")? {
-    ///     println!("{}", jobgroup.name);
+    /// for job_group in client.queues().job_groups().get("beispiel", "beispiel")? {
+    ///     println!("{}", job_group.name);
     /// }
     /// # Ok(())
     /// # }
@@ -22473,13 +22473,13 @@ impl<'a> QueuesJobgroupsResource<'a> {
 
 }
 
-/// `client.registrationconfig()`
+/// `client.registration_config()`
 #[derive(Clone, Copy)]
-pub struct RegistrationconfigResource<'a> {
+pub struct RegistrationConfigResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> RegistrationconfigResource<'a> {
+impl<'a> RegistrationConfigResource<'a> {
     /// Get self-registration configuration
     ///
     /// `GET /registrationconfig/{id}`
@@ -22493,8 +22493,8 @@ impl<'a> RegistrationconfigResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-registrationconfig-id");
-    /// let registrationconfig = client.registrationconfig().get(serde_json::json!(42))?;
-    /// println!("{}", registrationconfig.id);
+    /// let registration_config = client.registration_config().get(serde_json::json!(42))?;
+    /// println!("{}", registration_config.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -22521,7 +22521,7 @@ impl<'a> RegistrationconfigResource<'a> {
     ///     is_active: Some(true),
     ///     ..Default::default()
     /// };
-    /// let result = client.registrationconfig().patch(1, &body)?;
+    /// let result = client.registration_config().patch(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -22684,13 +22684,13 @@ impl<'a> RegistrationsResource<'a> {
 
 }
 
-/// `client.repeatcalculation()`
+/// `client.repeat_calculation()`
 #[derive(Clone, Copy)]
-pub struct RepeatcalculationResource<'a> {
+pub struct RepeatCalculationResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> RepeatcalculationResource<'a> {
+impl<'a> RepeatCalculationResource<'a> {
     /// Calculate occurrence dates without saving an appointment
     ///
     /// `POST /repeatcalculation`
@@ -22709,13 +22709,13 @@ impl<'a> RepeatcalculationResource<'a> {
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
     ///     ..Default::default()
     /// };
-    /// for repeatcalculation in client.repeatcalculation().create(&body)? {
-    ///     println!("{:?}", repeatcalculation);
+    /// for repeat_calculation in client.repeat_calculation().calculate(&body)? {
+    ///     println!("{:?}", repeat_calculation);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn create(&self, body: &models::RepeatCalculationCreate) -> Result<Vec<models::RepeatCalculationOccurrence>> {
+    pub fn calculate(&self, body: &models::RepeatCalculationCreate) -> Result<Vec<models::RepeatCalculationOccurrence>> {
         let path = "/repeatcalculation".to_owned();
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
@@ -22740,8 +22740,8 @@ impl<'a> RepeatcalculationResource<'a> {
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
     ///     ..Default::default()
     /// };
-    /// for repeatcalculation in client.repeatcalculation().delete(&body)? {
-    ///     println!("{:?}", repeatcalculation);
+    /// for repeat_calculation in client.repeat_calculation().delete(&body)? {
+    ///     println!("{:?}", repeat_calculation);
     /// }
     /// # Ok(())
     /// # }
@@ -22771,8 +22771,8 @@ impl<'a> RepeatcalculationResource<'a> {
     ///     start_date: Some(serde_json::json!("2026-09-20T08:00:00Z")),
     ///     ..Default::default()
     /// };
-    /// for repeatcalculation in client.repeatcalculation().list(&query)? {
-    ///     println!("{:?}", repeatcalculation);
+    /// for repeat_calculation in client.repeat_calculation().list(&query)? {
+    ///     println!("{:?}", repeat_calculation);
     /// }
     /// # Ok(())
     /// # }
@@ -22801,8 +22801,8 @@ impl<'a> RepeatcalculationResource<'a> {
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
     ///     ..Default::default()
     /// };
-    /// for repeatcalculation in client.repeatcalculation().patch(&body)? {
-    ///     println!("{:?}", repeatcalculation);
+    /// for repeat_calculation in client.repeat_calculation().patch(&body)? {
+    ///     println!("{:?}", repeat_calculation);
     /// }
     /// # Ok(())
     /// # }
@@ -22832,8 +22832,8 @@ impl<'a> RepeatcalculationResource<'a> {
     ///     start_date: DateOrDateTime::DateTime("2026-09-20T08:00:00Z".parse()?),
     ///     ..Default::default()
     /// };
-    /// for repeatcalculation in client.repeatcalculation().update(&body)? {
-    ///     println!("{:?}", repeatcalculation);
+    /// for repeat_calculation in client.repeat_calculation().update(&body)? {
+    ///     println!("{:?}", repeat_calculation);
     /// }
     /// # Ok(())
     /// # }
@@ -22898,7 +22898,7 @@ impl<'a> ResourceResource<'a> {
     ///
     /// Returns all resource types ordered by `sortKey` and all resources visible to the current user. A resource is visible when the user has permission to view it or administer its bookings, or is listed in its `adminIds`. Resource types are not filtered, so some may have no visible resources. Use `include[]` to resolve resource administrators.
     ///
-    /// Use [`Self::get_masterdata_with`] to pass query parameters.
+    /// Use [`Self::get_master_data_with`] to pass query parameters.
     ///
     /// # Example
     ///
@@ -22907,26 +22907,169 @@ impl<'a> ResourceResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-resource-masterdata");
-    /// let masterdata = client.resource().get_masterdata()?;
-    /// println!("{:?}", masterdata);
+    /// let master_data = client.resource().get_master_data()?;
+    /// println!("{:?}", master_data);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_masterdata(&self) -> Result<models::ResourceMasterData> {
-        self.get_masterdata_with(&Default::default())
+    pub fn get_master_data(&self) -> Result<models::ResourceMasterData> {
+        self.get_master_data_with(&Default::default())
     }
 
     /// Get resource planning master data
     ///
-    /// Like [`Self::get_masterdata`], with query parameters.
+    /// Like [`Self::get_master_data`], with query parameters.
     ///
     /// `GET /resource/masterdata`
     ///
     /// Returns all resource types ordered by `sortKey` and all resources visible to the current user. A resource is visible when the user has permission to view it or administer its bookings, or is listed in its `adminIds`. Resource types are not filtered, so some may have no visible resources. Use `include[]` to resolve resource administrators.
-    pub fn get_masterdata_with(&self, query: &GetResourceMasterdataQuery) -> Result<models::ResourceMasterData> {
+    pub fn get_master_data_with(&self, query: &GetResourceMasterdataQuery) -> Result<models::ResourceMasterData> {
         let path = "/resource/masterdata".to_owned();
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
+    }
+
+}
+
+/// `client.resource_types()`
+#[derive(Clone, Copy)]
+pub struct ResourceTypesResource<'a> {
+    client: &'a Client,
+}
+
+impl<'a> ResourceTypesResource<'a> {
+    /// Create a resource type
+    ///
+    /// `POST /resourcetypes`
+    ///
+    /// Creates a category used to group resources. `campusId` optionally associates the type with an organizational campus.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("post-resourcetypes");
+    /// let body = models::ResourceTypeCreate {
+    ///     name: "Room".into(),
+    ///     name_plural: "Rooms".into(),
+    ///     sort_key: 1,
+    ///     ..Default::default()
+    /// };
+    /// let result = client.resource_types().create(&body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn create(&self, body: &models::ResourceTypeCreate) -> Result<models::ResourceType> {
+        let path = "/resourcetypes".to_owned();
+        let query: Query = Query::new();
+        let body = serde_json::to_value(body).expect("request body serializes");
+        self.client.request_data(Method::POST, &path, &query, Some(&body))
+    }
+
+    /// Delete a resource type
+    ///
+    /// `DELETE /resourcetypes/{resourceTypeId}`
+    ///
+    /// Deletes a resource category.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
+    /// client.resource_types().delete(2)?;
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn delete(&self, resource_type_id: impl Display) -> Result<()> {
+        let path = format!("/resourcetypes/{}", seg(resource_type_id));
+        let query: Query = Query::new();
+        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
+    }
+
+    /// Get a resource type
+    ///
+    /// `GET /resourcetypes/{resourceTypeId}`
+    ///
+    /// Returns the resource category, its labels and optional campus assignment. It does not include the resources belonging to the type.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-resourcetypes-resourceTypeId");
+    /// let resource_type = client.resource_types().get(2)?;
+    /// println!("{}", resource_type.name);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn get(&self, resource_type_id: impl Display) -> Result<models::ResourceType> {
+        let path = format!("/resourcetypes/{}", seg(resource_type_id));
+        let query: Query = Query::new();
+        self.client.request_data(Method::GET, &path, &query, None)
+    }
+
+    /// List resource types
+    ///
+    /// `GET /resourcetypes`
+    ///
+    /// Returns all resource categories, such as rooms or vehicles, without filtering by resource visibility. A type may have no resources visible to the reader.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("get-resourcetypes");
+    /// for resource_type in client.resource_types().list()? {
+    ///     println!("{}", resource_type.name);
+    /// }
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn list(&self) -> Result<Vec<models::ResourceType>> {
+        let path = "/resourcetypes".to_owned();
+        let query: Query = Query::new();
+        self.client.request_data(Method::GET, &path, &query, None)
+    }
+
+    /// Update a resource type
+    ///
+    /// `PUT /resourcetypes/{resourceTypeId}`
+    ///
+    /// Replaces the resource category’s labels, sort value and campus assignment.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use churchtools_core::*;
+    /// # use churchtools_core::queries::*;
+    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
+    /// # let client = churchtools_core::replay::client("put-resourcetypes-resourceTypeId");
+    /// let body = models::ResourceTypeUpdate {
+    ///     name: "Room".into(),
+    ///     name_plural: "Rooms".into(),
+    ///     sort_key: 1,
+    ///     ..Default::default()
+    /// };
+    /// let result = client.resource_types().update(2, &body)?;
+    /// println!("{}", result.name);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn update(&self, resource_type_id: impl Display, body: &models::ResourceTypeUpdate) -> Result<models::ResourceType> {
+        let path = format!("/resourcetypes/{}", seg(resource_type_id));
+        let query: Query = Query::new();
+        let body = serde_json::to_value(body).expect("request body serializes");
+        self.client.request_data(Method::PUT, &path, &query, Some(&body))
     }
 
 }
@@ -23117,149 +23260,6 @@ impl<'a> ResourcesResource<'a> {
     /// ```
     pub fn update(&self, resource_id: impl Display, body: &models::ResourceUpdate) -> Result<models::Resource> {
         let path = format!("/resources/{}", seg(resource_id));
-        let query: Query = Query::new();
-        let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::PUT, &path, &query, Some(&body))
-    }
-
-}
-
-/// `client.resourcetypes()`
-#[derive(Clone, Copy)]
-pub struct ResourcetypesResource<'a> {
-    client: &'a Client,
-}
-
-impl<'a> ResourcetypesResource<'a> {
-    /// Create a resource type
-    ///
-    /// `POST /resourcetypes`
-    ///
-    /// Creates a category used to group resources. `campusId` optionally associates the type with an organizational campus.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("post-resourcetypes");
-    /// let body = models::ResourceTypeCreate {
-    ///     name: "Room".into(),
-    ///     name_plural: "Rooms".into(),
-    ///     sort_key: 1,
-    ///     ..Default::default()
-    /// };
-    /// let result = client.resourcetypes().create(&body)?;
-    /// println!("{}", result.name);
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn create(&self, body: &models::ResourceTypeCreate) -> Result<models::ResourceType> {
-        let path = "/resourcetypes".to_owned();
-        let query: Query = Query::new();
-        let body = serde_json::to_value(body).expect("request body serializes");
-        self.client.request_data(Method::POST, &path, &query, Some(&body))
-    }
-
-    /// Delete a resource type
-    ///
-    /// `DELETE /resourcetypes/{resourceTypeId}`
-    ///
-    /// Deletes a resource category.
-    ///
-    /// # Example
-    ///
-    /// ```no_run
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.resourcetypes().delete(2)?;
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn delete(&self, resource_type_id: impl Display) -> Result<()> {
-        let path = format!("/resourcetypes/{}", seg(resource_type_id));
-        let query: Query = Query::new();
-        self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
-    }
-
-    /// Get a resource type
-    ///
-    /// `GET /resourcetypes/{resourceTypeId}`
-    ///
-    /// Returns the resource category, its labels and optional campus assignment. It does not include the resources belonging to the type.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-resourcetypes-resourceTypeId");
-    /// let resourcetype = client.resourcetypes().get(2)?;
-    /// println!("{}", resourcetype.name);
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn get(&self, resource_type_id: impl Display) -> Result<models::ResourceType> {
-        let path = format!("/resourcetypes/{}", seg(resource_type_id));
-        let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
-    }
-
-    /// List resource types
-    ///
-    /// `GET /resourcetypes`
-    ///
-    /// Returns all resource categories, such as rooms or vehicles, without filtering by resource visibility. A type may have no resources visible to the reader.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("get-resourcetypes");
-    /// for resourcetype in client.resourcetypes().list()? {
-    ///     println!("{}", resourcetype.name);
-    /// }
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn list(&self) -> Result<Vec<models::ResourceType>> {
-        let path = "/resourcetypes".to_owned();
-        let query: Query = Query::new();
-        self.client.request_data(Method::GET, &path, &query, None)
-    }
-
-    /// Update a resource type
-    ///
-    /// `PUT /resourcetypes/{resourceTypeId}`
-    ///
-    /// Replaces the resource category’s labels, sort value and campus assignment.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use churchtools_core::*;
-    /// # use churchtools_core::queries::*;
-    /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    /// # let client = churchtools_core::replay::client("put-resourcetypes-resourceTypeId");
-    /// let body = models::ResourceTypeUpdate {
-    ///     name: "Room".into(),
-    ///     name_plural: "Rooms".into(),
-    ///     sort_key: 1,
-    ///     ..Default::default()
-    /// };
-    /// let result = client.resourcetypes().update(2, &body)?;
-    /// println!("{}", result.name);
-    /// # Ok(())
-    /// # }
-    /// ```
-    pub fn update(&self, resource_type_id: impl Display, body: &models::ResourceTypeUpdate) -> Result<models::ResourceType> {
-        let path = format!("/resourcetypes/{}", seg(resource_type_id));
         let query: Query = Query::new();
         let body = serde_json::to_value(body).expect("request body serializes");
         self.client.request_data(Method::PUT, &path, &query, Some(&body))
@@ -23756,13 +23756,13 @@ impl<'a> SearchResource<'a> {
 
 }
 
-/// `client.securitylevels()`
+/// `client.security_levels()`
 #[derive(Clone, Copy)]
-pub struct SecuritylevelsResource<'a> {
+pub struct SecurityLevelsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> SecuritylevelsResource<'a> {
+impl<'a> SecurityLevelsResource<'a> {
     /// Create a new security Level
     ///
     /// `POST /securitylevels/{id}`
@@ -23780,7 +23780,7 @@ impl<'a> SecuritylevelsResource<'a> {
     ///     name: Some("Hauskreis Nord".into()),
     ///     ..Default::default()
     /// };
-    /// let result = client.securitylevels().create(1, &body)?;
+    /// let result = client.security_levels().create(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -23807,7 +23807,7 @@ impl<'a> SecuritylevelsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.securitylevels().delete(1)?;
+    /// client.security_levels().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -23841,8 +23841,8 @@ impl<'a> SecuritylevelsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-securitylevels-id");
-    /// let securitylevel = client.securitylevels().get(1)?;
-    /// println!("{}", securitylevel.name);
+    /// let security_level = client.security_levels().get(1)?;
+    /// println!("{}", security_level.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -23863,8 +23863,8 @@ impl<'a> SecuritylevelsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-securitylevels");
-    /// for securitylevel in client.securitylevels().list()? {
-    ///     println!("{}", securitylevel.name);
+    /// for security_level in client.security_levels().list()? {
+    ///     println!("{}", security_level.name);
     /// }
     /// # Ok(())
     /// # }
@@ -23894,7 +23894,7 @@ impl<'a> SecuritylevelsResource<'a> {
     ///     name: Some("Hauskreis Nord".into()),
     ///     ..Default::default()
     /// };
-    /// let result = client.securitylevels().patch(1, &body)?;
+    /// let result = client.security_levels().patch(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -23919,13 +23919,13 @@ impl<'a> SecuritylevelsResource<'a> {
 
 }
 
-/// `client.servicegroups()`
+/// `client.service_groups()`
 #[derive(Clone, Copy)]
-pub struct ServicegroupsResource<'a> {
+pub struct ServiceGroupsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> ServicegroupsResource<'a> {
+impl<'a> ServiceGroupsResource<'a> {
     /// Create a service group
     ///
     /// `POST /servicegroups`
@@ -23943,7 +23943,7 @@ impl<'a> ServicegroupsResource<'a> {
     ///     name: "Hauskreis Nord".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.servicegroups().create(&body)?;
+    /// let result = client.service_groups().create(&body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -23968,7 +23968,7 @@ impl<'a> ServicegroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.servicegroups().delete(13)?;
+    /// client.service_groups().delete(13)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -23991,8 +23991,8 @@ impl<'a> ServicegroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-servicegroups-id");
-    /// let servicegroup = client.servicegroups().get(13)?;
-    /// println!("{}", servicegroup.name);
+    /// let service_group = client.service_groups().get(13)?;
+    /// println!("{}", service_group.name);
     /// # Ok(())
     /// # }
     /// ```
@@ -24015,8 +24015,8 @@ impl<'a> ServicegroupsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-servicegroups");
-    /// for servicegroup in client.servicegroups().list()? {
-    ///     println!("{}", servicegroup.name);
+    /// for service_group in client.service_groups().list()? {
+    ///     println!("{}", service_group.name);
     /// }
     /// # Ok(())
     /// # }
@@ -24044,7 +24044,7 @@ impl<'a> ServicegroupsResource<'a> {
     ///     name: "Hauskreis Nord".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.servicegroups().update(13, &body)?;
+    /// let result = client.service_groups().update(13, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -24973,13 +24973,13 @@ impl<'a> SsoLoginsResource<'a> {
 
 }
 
-/// `client.startpage()`
+/// `client.start_page()`
 #[derive(Clone, Copy)]
-pub struct StartpageResource<'a> {
+pub struct StartPageResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> StartpageResource<'a> {
+impl<'a> StartPageResource<'a> {
     /// Widgets and data for startpage
     ///
     /// `GET /startpage`
@@ -24993,8 +24993,8 @@ impl<'a> StartpageResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-startpage");
-    /// for startpage in client.startpage().list()? {
-    ///     println!("{:?}", startpage);
+    /// for start_page in client.start_page().list()? {
+    ///     println!("{:?}", start_page);
     /// }
     /// # Ok(())
     /// # }
@@ -25328,8 +25328,8 @@ impl<'a> SyncResource<'a> {
         SyncConflictsResource { client: self.client }
     }
 
-    pub fn entitymappings(&self) -> SyncEntitymappingsResource<'a> {
-        SyncEntitymappingsResource { client: self.client }
+    pub fn entity_mappings(&self) -> SyncEntityMappingsResource<'a> {
+        SyncEntityMappingsResource { client: self.client }
     }
 
     pub fn externalsystems(&self) -> SyncExternalsystemsResource<'a> {
@@ -25426,7 +25426,7 @@ impl<'a> SyncResource<'a> {
     ///
     /// Lists job configurations ordered by name.
     ///
-    /// Use [`Self::list_jobconfigs_with`] to pass query parameters.
+    /// Use [`Self::list_job_configs_with`] to pass query parameters.
     ///
     /// # Example
     ///
@@ -25435,24 +25435,24 @@ impl<'a> SyncResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-jobconfigs");
-    /// for jobconfig in client.sync().list_jobconfigs()? {
-    ///     println!("{}", jobconfig.name);
+    /// for job_config in client.sync().list_job_configs()? {
+    ///     println!("{}", job_config.name);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_jobconfigs(&self) -> Result<Vec<models::JobConfigurationReturn>> {
-        self.list_jobconfigs_with(&Default::default())
+    pub fn list_job_configs(&self) -> Result<Vec<models::JobConfigurationReturn>> {
+        self.list_job_configs_with(&Default::default())
     }
 
     /// List sync job configurations
     ///
-    /// Like [`Self::list_jobconfigs`], with query parameters.
+    /// Like [`Self::list_job_configs`], with query parameters.
     ///
     /// `GET /sync/jobconfigs`
     ///
     /// Lists job configurations ordered by name.
-    pub fn list_jobconfigs_with(&self, query: &GetSyncJobconfigsQuery) -> Result<Vec<models::JobConfigurationReturn>> {
+    pub fn list_job_configs_with(&self, query: &GetSyncJobconfigsQuery) -> Result<Vec<models::JobConfigurationReturn>> {
         let path = "/sync/jobconfigs".to_owned();
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -25966,13 +25966,13 @@ impl<'a> SyncConflictsResource<'a> {
 
 }
 
-/// `client.sync().entitymappings()`
+/// `client.sync().entity_mappings()`
 #[derive(Clone, Copy)]
-pub struct SyncEntitymappingsResource<'a> {
+pub struct SyncEntityMappingsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> SyncEntitymappingsResource<'a> {
+impl<'a> SyncEntityMappingsResource<'a> {
     /// Create an entity mapping
     ///
     /// `POST /sync/entitymappings`
@@ -25994,7 +25994,7 @@ impl<'a> SyncEntitymappingsResource<'a> {
     ///     status: "synced".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.sync().entitymappings().create(&body)?;
+    /// let result = client.sync().entity_mappings().create(&body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -26019,7 +26019,7 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().entitymappings().delete(1)?;
+    /// client.sync().entity_mappings().delete(1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26042,8 +26042,8 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-entitymappings-id");
-    /// let entitymapping = client.sync().entitymappings().get(1)?;
-    /// println!("{}", entitymapping.id);
+    /// let entity_mapping = client.sync().entity_mappings().get(1)?;
+    /// println!("{}", entity_mapping.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -26068,8 +26068,8 @@ impl<'a> SyncEntitymappingsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-entitymappings");
-    /// for entitymapping in client.sync().entitymappings().list()? {
-    ///     println!("{}", entitymapping.id);
+    /// for entity_mapping in client.sync().entity_mappings().list()? {
+    ///     println!("{}", entity_mapping.id);
     /// }
     /// # Ok(())
     /// # }
@@ -26121,7 +26121,7 @@ impl<'a> SyncEntitymappingsResource<'a> {
     ///     status: "synced".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.sync().entitymappings().update(1, &body)?;
+    /// let result = client.sync().entity_mappings().update(1, &body)?;
     /// println!("{}", result.id);
     /// # Ok(())
     /// # }
@@ -26142,16 +26142,16 @@ pub struct SyncExternalsystemsResource<'a> {
 }
 
 impl<'a> SyncExternalsystemsResource<'a> {
-    pub fn adapterproxy(&self) -> SyncExternalsystemsAdapterproxyResource<'a> {
-        SyncExternalsystemsAdapterproxyResource { client: self.client }
+    pub fn adapter_proxy(&self) -> SyncExternalsystemsAdapterProxyResource<'a> {
+        SyncExternalsystemsAdapterProxyResource { client: self.client }
     }
 
-    pub fn fieldmappings(&self) -> SyncExternalsystemsFieldmappingsResource<'a> {
-        SyncExternalsystemsFieldmappingsResource { client: self.client }
+    pub fn field_mappings(&self) -> SyncExternalsystemsFieldMappingsResource<'a> {
+        SyncExternalsystemsFieldMappingsResource { client: self.client }
     }
 
-    pub fn jobconfigs(&self) -> SyncExternalsystemsJobconfigsResource<'a> {
-        SyncExternalsystemsJobconfigsResource { client: self.client }
+    pub fn job_configs(&self) -> SyncExternalsystemsJobConfigsResource<'a> {
+        SyncExternalsystemsJobConfigsResource { client: self.client }
     }
 
     /// Create an external connection
@@ -26221,11 +26221,11 @@ impl<'a> SyncExternalsystemsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().delete_entitymappings(1)?;
+    /// client.sync().externalsystems().delete_entity_mappings(1)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn delete_entitymappings(&self, external_system_id: impl Display) -> Result<()> {
+    pub fn delete_entity_mappings(&self, external_system_id: impl Display) -> Result<()> {
         let path = format!("/sync/externalsystems/{}/entitymappings", seg(external_system_id));
         let query: Query = Query::new();
         self.client.request(Method::DELETE, &path, &query, None).map(|_| ())
@@ -26368,13 +26368,13 @@ impl<'a> SyncExternalsystemsResource<'a> {
 
 }
 
-/// `client.sync().externalsystems().adapterproxy()`
+/// `client.sync().externalsystems().adapter_proxy()`
 #[derive(Clone, Copy)]
-pub struct SyncExternalsystemsAdapterproxyResource<'a> {
+pub struct SyncExternalsystemsAdapterProxyResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
+impl<'a> SyncExternalsystemsAdapterProxyResource<'a> {
     /// Proxy POST to a sync adapter
     ///
     /// `POST /sync/externalsystems/{externalSystemId}/adapterproxy/{uri}`
@@ -26388,7 +26388,7 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().adapterproxy().create(1, "adapter/info")?;
+    /// client.sync().externalsystems().adapter_proxy().create(1, "adapter/info")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26411,7 +26411,7 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().adapterproxy().delete(1, "adapter/info")?;
+    /// client.sync().externalsystems().adapter_proxy().delete(1, "adapter/info")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26434,7 +26434,7 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().adapterproxy().get(1, "adapter/info")?;
+    /// client.sync().externalsystems().adapter_proxy().get(1, "adapter/info")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26457,7 +26457,7 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().adapterproxy().patch(1, "adapter/info")?;
+    /// client.sync().externalsystems().adapter_proxy().patch(1, "adapter/info")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26480,7 +26480,7 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().adapterproxy().update(1, "adapter/info")?;
+    /// client.sync().externalsystems().adapter_proxy().update(1, "adapter/info")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26492,13 +26492,13 @@ impl<'a> SyncExternalsystemsAdapterproxyResource<'a> {
 
 }
 
-/// `client.sync().externalsystems().fieldmappings()`
+/// `client.sync().externalsystems().field_mappings()`
 #[derive(Clone, Copy)]
-pub struct SyncExternalsystemsFieldmappingsResource<'a> {
+pub struct SyncExternalsystemsFieldMappingsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
+impl<'a> SyncExternalsystemsFieldMappingsResource<'a> {
     /// Delete field mappings for a domain
     ///
     /// `DELETE /sync/externalsystems/{externalSystemId}/fieldmappings/{domainType}`
@@ -26512,7 +26512,7 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().fieldmappings().delete(1, "status")?;
+    /// client.sync().externalsystems().field_mappings().delete(1, "status")?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26535,8 +26535,8 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-fieldmappings-domaintype");
-    /// let fieldmapping = client.sync().externalsystems().fieldmappings().get(1, "status")?;
-    /// println!("{:?}", fieldmapping.id);
+    /// let field_mapping = client.sync().externalsystems().field_mappings().get(1, "status")?;
+    /// println!("{:?}", field_mapping.id);
     /// # Ok(())
     /// # }
     /// ```
@@ -26559,7 +26559,7 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions");
-    /// let result = client.sync().externalsystems().fieldmappings().get_nosuggestions(1, "status")?;
+    /// let result = client.sync().externalsystems().field_mappings().get_nosuggestions(1, "status")?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -26583,8 +26583,8 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-fieldmappings");
-    /// for fieldmapping in client.sync().externalsystems().fieldmappings().list(1)? {
-    ///     println!("{:?}", fieldmapping.id);
+    /// for field_mapping in client.sync().externalsystems().field_mappings().list(1)? {
+    ///     println!("{:?}", field_mapping.id);
     /// }
     /// # Ok(())
     /// # }
@@ -26629,7 +26629,7 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// let result = client.sync().externalsystems().fieldmappings().update(1, "status", &body)?;
+    /// let result = client.sync().externalsystems().field_mappings().update(1, "status", &body)?;
     /// println!("{:?}", result.id);
     /// # Ok(())
     /// # }
@@ -26643,15 +26643,15 @@ impl<'a> SyncExternalsystemsFieldmappingsResource<'a> {
 
 }
 
-/// `client.sync().externalsystems().jobconfigs()`
+/// `client.sync().externalsystems().job_configs()`
 #[derive(Clone, Copy)]
-pub struct SyncExternalsystemsJobconfigsResource<'a> {
+pub struct SyncExternalsystemsJobConfigsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
-    pub fn executions(&self) -> SyncExternalsystemsJobconfigsExecutionsResource<'a> {
-        SyncExternalsystemsJobconfigsExecutionsResource { client: self.client }
+impl<'a> SyncExternalsystemsJobConfigsResource<'a> {
+    pub fn executions(&self) -> SyncExternalsystemsJobConfigsExecutionsResource<'a> {
+        SyncExternalsystemsJobConfigsExecutionsResource { client: self.client }
     }
 
     /// Create a sync job configuration
@@ -26673,7 +26673,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     ///     name: "Synchronize people".into(),
     ///     ..Default::default()
     /// };
-    /// let result = client.sync().externalsystems().jobconfigs().create(1, &body)?;
+    /// let result = client.sync().externalsystems().job_configs().create(1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -26698,7 +26698,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().jobconfigs().delete(1, 1)?;
+    /// client.sync().externalsystems().job_configs().delete(1, 1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26721,7 +26721,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().jobconfigs().delete_filter(1, 1)?;
+    /// client.sync().externalsystems().job_configs().delete_filter(1, 1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26744,7 +26744,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// client.sync().externalsystems().jobconfigs().delete_properties(1, 1)?;
+    /// client.sync().externalsystems().job_configs().delete_properties(1, 1)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26767,8 +26767,8 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId");
-    /// for jobconfig in client.sync().externalsystems().jobconfigs().get(1, 1)? {
-    ///     println!("{}", jobconfig.name);
+    /// for job_config in client.sync().externalsystems().job_configs().get(1, 1)? {
+    ///     println!("{}", job_config.name);
     /// }
     /// # Ok(())
     /// # }
@@ -26792,7 +26792,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter");
-    /// let filter = client.sync().externalsystems().jobconfigs().get_filter(1, 1)?;
+    /// let filter = client.sync().externalsystems().job_configs().get_filter(1, 1)?;
     /// println!("{:?}", filter);
     /// # Ok(())
     /// # }
@@ -26816,7 +26816,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties");
-    /// let property = client.sync().externalsystems().jobconfigs().get_properties(1, 1)?;
+    /// let property = client.sync().externalsystems().job_configs().get_properties(1, 1)?;
     /// println!("{}", property.domain_type);
     /// # Ok(())
     /// # }
@@ -26840,8 +26840,8 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-sync-externalsystems-id-jobconfigs");
-    /// for jobconfig in client.sync().externalsystems().jobconfigs().list(1)? {
-    ///     println!("{}", jobconfig.name);
+    /// for job_config in client.sync().externalsystems().job_configs().list(1)? {
+    ///     println!("{}", job_config.name);
     /// }
     /// # Ok(())
     /// # }
@@ -26869,7 +26869,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     ///     is_dry_run: Some(true),
     ///     ..Default::default()
     /// };
-    /// client.sync().externalsystems().jobconfigs().start(1, 1, &body)?;
+    /// client.sync().externalsystems().job_configs().start(1, 1, &body)?;
     /// # Ok(())
     /// # }
     /// ```
@@ -26900,7 +26900,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     ///     id: 1,
     ///     ..Default::default()
     /// };
-    /// let result = client.sync().externalsystems().jobconfigs().update(1, 1, &body)?;
+    /// let result = client.sync().externalsystems().job_configs().update(1, 1, &body)?;
     /// println!("{}", result.name);
     /// # Ok(())
     /// # }
@@ -26940,7 +26940,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// let result = client.sync().externalsystems().jobconfigs().update_filter(1, 1, &body)?;
+    /// let result = client.sync().externalsystems().job_configs().update_filter(1, 1, &body)?;
     /// println!("{:?}", result);
     /// # Ok(())
     /// # }
@@ -26986,7 +26986,7 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
     ///     }],
     ///     ..Default::default()
     /// };
-    /// let result = client.sync().externalsystems().jobconfigs().update_properties(1, 1, &body)?;
+    /// let result = client.sync().externalsystems().job_configs().update_properties(1, 1, &body)?;
     /// println!("{}", result.domain_type);
     /// # Ok(())
     /// # }
@@ -27000,13 +27000,13 @@ impl<'a> SyncExternalsystemsJobconfigsResource<'a> {
 
 }
 
-/// `client.sync().externalsystems().jobconfigs().executions()`
+/// `client.sync().externalsystems().job_configs().executions()`
 #[derive(Clone, Copy)]
-pub struct SyncExternalsystemsJobconfigsExecutionsResource<'a> {
+pub struct SyncExternalsystemsJobConfigsExecutionsResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> SyncExternalsystemsJobconfigsExecutionsResource<'a> {
+impl<'a> SyncExternalsystemsJobConfigsExecutionsResource<'a> {
     /// Get a sync execution configuration snapshot
     ///
     /// `GET /sync/externalsystems/{externalSystemId}/jobconfigs/{jobId}/executions/{executionId}`
@@ -27020,7 +27020,7 @@ impl<'a> SyncExternalsystemsJobconfigsExecutionsResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = Client::new("https://meinegemeinde.church.tools", None)?;
-    /// let execution = client.sync().externalsystems().jobconfigs().executions().get(1, 1, "run-123")?;
+    /// let execution = client.sync().externalsystems().job_configs().executions().get(1, 1, "run-123")?;
     /// println!("{}", execution.domain_type);
     /// # Ok(())
     /// # }
@@ -27362,13 +27362,13 @@ impl<'a> TranslationsResource<'a> {
     ///     query: Some("Welcome".into()),
     ///     ..Default::default()
     /// };
-    /// for keysbytext in client.translations().list_keysbytext(&query)? {
-    ///     println!("{:?}", keysbytext);
+    /// for keys_by_text in client.translations().list_keys_by_text(&query)? {
+    ///     println!("{:?}", keys_by_text);
     /// }
     /// # Ok(())
     /// # }
     /// ```
-    pub fn list_keysbytext(&self, query: &GetTranslationsKeysbytextQuery) -> Result<Vec<Vec<String>>> {
+    pub fn list_keys_by_text(&self, query: &GetTranslationsKeysbytextQuery) -> Result<Vec<Vec<String>>> {
         let path = "/translations/keysbytext".to_owned();
         let query: Query = query.to_query();
         self.client.request_data(Method::GET, &path, &query, None)
@@ -27437,13 +27437,13 @@ impl<'a> TranslationsLanguagesResource<'a> {
 
 }
 
-/// `client.twofactor()`
+/// `client.two_factor()`
 #[derive(Clone, Copy)]
-pub struct TwofactorResource<'a> {
+pub struct TwoFactorResource<'a> {
     client: &'a Client,
 }
 
-impl<'a> TwofactorResource<'a> {
+impl<'a> TwoFactorResource<'a> {
     /// Verify an authenticator code during enrollment
     ///
     /// `POST /twofactor/totp`
@@ -27462,8 +27462,8 @@ impl<'a> TwofactorResource<'a> {
     ///     person_id: 42,
     ///     ..Default::default()
     /// };
-    /// let twofactor = client.twofactor().totp(&body)?;
-    /// println!("{}", twofactor.status);
+    /// let two_factor = client.two_factor().totp(&body)?;
+    /// println!("{}", two_factor.status);
     /// # Ok(())
     /// # }
     /// ```
@@ -27496,11 +27496,11 @@ impl<'a> WebsiteResource<'a> {
     /// # use churchtools_core::queries::*;
     /// # fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     /// # let client = churchtools_core::replay::client("get-website-starttest");
-    /// client.website().get_starttest()?;
+    /// client.website().get_start_test()?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn get_starttest(&self) -> Result<()> {
+    pub fn get_start_test(&self) -> Result<()> {
         let path = "/website/starttest".to_owned();
         let query: Query = Query::new();
         self.client.request(Method::GET, &path, &query, None).map(|_| ())

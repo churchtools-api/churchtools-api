@@ -239,5 +239,5 @@ def me(client: LiveClient) -> int:
 
 @pytest.fixture(scope="session")
 def masterdata(client: LiveClient) -> ct.models.PersonMasterData:
-    return client.person.get_masterdata()
+    return client.person.get_master_data()
 

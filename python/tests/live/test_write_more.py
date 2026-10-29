@@ -33,7 +33,7 @@ MASTERDATA: dict[str, tuple[dict[str, _t.Any], dict[str, _t.Any], dict[str, _t.A
         {"description": "Beschreibung", "image_url": None, "sort_key": 998, "url": "https://example.org/neu"},
         {},
     ),
-    "group.meetingtemplates": (
+    "group.meeting_templates": (
         {"template": [m.MeetingTemplateField(label="Thema", type_="input")]},
         {"template": [m.MeetingTemplateField(label="Thema", type_="input"), m.MeetingTemplateField(label="Notiz", type_="textarea")]},
         {"dry_run": False},
@@ -63,7 +63,7 @@ def test_status_patch(client: LiveClient, cleanup: Cleanup) -> None:
 
 
 def test_group_type_with_role(client: LiveClient, cleanup: Cleanup) -> None:
-    group_type = client.group.grouptypes.create(
+    group_type = client.group.group_types.create(
         name=name("GT")[-14:],  # at most 30 characters
         name_plural="Testgruppen",
         shorty="TG",
@@ -74,8 +74,8 @@ def test_group_type_with_role(client: LiveClient, cleanup: Cleanup) -> None:
         available_for_new_person=False,
         posts_enabled=False,
     )
-    cleanup(lambda: client.group.grouptypes.delete(group_type.id))
-    client.group.grouptypes.update(
+    cleanup(lambda: client.group.group_types.delete(group_type.id))
+    client.group.group_types.update(
         group_type.id,
         name=group_type.name + " 2",
         name_plural="Testgruppen",
@@ -111,15 +111,15 @@ def test_group_type_with_role(client: LiveClient, cleanup: Cleanup) -> None:
     )
     assert client.group.roles.get(role.id).name == role.name + " neu"
     client.group.roles.delete(role.id)
-    client.group.grouptypes.delete(group_type.id)
+    client.group.group_types.delete(group_type.id)
 
 
 def test_oauth_client(client: LiveClient, cleanup: Cleanup) -> None:
-    created = client.oauthclients.create(name=name("OAuth"), redirect_uri="https://example.org/callback")
+    created = client.oauth_clients.create(name=name("OAuth"), redirect_uri="https://example.org/callback")
     identifier = created.identifier
-    cleanup(lambda: client.oauthclients.delete(identifier))
-    client.oauthclients.update(identifier, name=created.name + " neu", redirect_uri="https://example.org/cb2")
-    client.oauthclients.delete(identifier)
+    cleanup(lambda: client.oauth_clients.delete(identifier))
+    client.oauth_clients.update(identifier, name=created.name + " neu", redirect_uri="https://example.org/cb2")
+    client.oauth_clients.delete(identifier)
 
 
 def test_facts(client: LiveClient, cleanup: Cleanup) -> None:
@@ -131,14 +131,14 @@ def test_facts(client: LiveClient, cleanup: Cleanup) -> None:
 
 
 def test_html_template(client: LiveClient, cleanup: Cleanup) -> None:
-    template = client.htmltemplates.create(domain_type="bulkletter", name=name("Vorlage"))
-    cleanup(lambda: client.htmltemplates.delete(template.id, dry_run=False))
-    client.htmltemplates.patch(template.id, name=template.name + " neu")
-    client.htmltemplates.get_html(template.id)
+    template = client.html_templates.create(domain_type="bulkletter", name=name("Vorlage"))
+    cleanup(lambda: client.html_templates.delete(template.id, dry_run=False))
+    client.html_templates.patch(template.id, name=template.name + " neu")
+    client.html_templates.get_html(template.id)
     # A dry run answers 409 Conflict with what would be deleted.
     with pytest.raises(ct.Conflict):
-        client.htmltemplates.delete(template.id, dry_run=True)
-    client.htmltemplates.delete(template.id, dry_run=False)
+        client.html_templates.delete(template.id, dry_run=True)
+    client.html_templates.delete(template.id, dry_run=False)
 
 
 # --- calendar templates ------------------------------------------------------------
@@ -159,17 +159,17 @@ def test_appointment_template(client: LiveClient, cleanup: Cleanup) -> None:
 
 def test_agenda_template(client: LiveClient, cleanup: Cleanup) -> None:
     calendar_id = client.calendars.list()[0].id
-    agenda = client.agendatemplates.create(calendar_id=calendar_id, name=name("Ablauf"))
-    cleanup(lambda: client.agendatemplates.delete(agenda.id))
-    client.agendatemplates.update(agenda.id, calendar_id=calendar_id, name=f"{agenda.name} neu")
+    agenda = client.agenda_templates.create(calendar_id=calendar_id, name=name("Ablauf"))
+    cleanup(lambda: client.agenda_templates.delete(agenda.id))
+    client.agenda_templates.update(agenda.id, calendar_id=calendar_id, name=f"{agenda.name} neu")
 
-    item = client.agendatemplates.items.create(agenda.id, body=m.AgendaItemInputHeader(type_="header", title="Begrüßung"))
-    cleanup(lambda: client.agendatemplates.items.delete(agenda.id, item.id))
-    client.agendatemplates.items.update(
+    item = client.agenda_templates.items.create(agenda.id, body=m.AgendaItemInputHeader(type_="header", title="Begrüßung"))
+    cleanup(lambda: client.agenda_templates.items.delete(agenda.id, item.id))
+    client.agenda_templates.items.update(
         agenda.id, item.id, body=m.AgendaItemInputHeader(type_="header", title="Begrüßung und Ankündigungen")
     )
-    client.agendatemplates.items.delete(agenda.id, item.id)
-    client.agendatemplates.delete(agenda.id)
+    client.agenda_templates.items.delete(agenda.id, item.id)
+    client.agenda_templates.delete(agenda.id)
 
 
 # --- groups -----------------------------------------------------------------------
@@ -194,7 +194,7 @@ def test_group_extras(client: LiveClient, me: int, masterdata: _t.Any, cleanup: 
     client.addresses.update("group", str(group.id), address.id, name="Gemeindehaus", city="Hamburg-Mitte")
     client.addresses.delete("group", str(group.id), address.id)
 
-    field = client.groups.memberfields.group.create(
+    field = client.groups.member_fields.group.create(
         group.id,
         name="T-Shirt-Größe",
         field_type_code="text",
@@ -202,8 +202,8 @@ def test_group_extras(client: LiveClient, me: int, masterdata: _t.Any, cleanup: 
         use_in_registration_form=False,
         required_in_registration_form=False,
     )
-    cleanup(lambda: client.groups.memberfields.group.delete(group.id, field.id))
-    client.groups.memberfields.group.update(
+    cleanup(lambda: client.groups.member_fields.group.delete(group.id, field.id))
+    client.groups.member_fields.group.update(
         group.id,
         field.id,
         name="Größe",
@@ -212,13 +212,13 @@ def test_group_extras(client: LiveClient, me: int, masterdata: _t.Any, cleanup: 
         use_in_registration_form=False,
         required_in_registration_form=False,
     )
-    client.groups.memberfields.group.patch(group.id, field.id, name="Shirt")
-    client.groups.memberfields.group.delete(group.id, field.id)
+    client.groups.member_fields.group.patch(group.id, field.id, name="Shirt")
+    client.groups.member_fields.group.delete(group.id, field.id)
 
-    client.groups.update_grouphomepage(
+    client.groups.update_group_homepage(
         group.id, is_enabled=True, show_filters=False, show_group_images=False, show_leaders=True, show_map=False
     )
-    client.groups.delete_grouphomepage(group.id)
+    client.groups.delete_group_homepage(group.id)
 
     tag = client.tags.attach_new("group", group.id, name=name("Tag"))
     cleanup(lambda: client.tags.delete(tag.id))
@@ -287,25 +287,25 @@ def test_person_agreements(client: LiveClient, masterdata: _t.Any, cleanup: Clea
     cleanup(lambda: client.persons.delete(person.id))
     # Only the person can accept; an administrator can revoke.
     with pytest.raises(ct.Forbidden):
-        client.persons.update_confidentialityagreement(person.id)
-    client.persons.delete_confidentialityagreement(person.id)
-    client.persons.update_privacypolicy(person.id, own_accepted=True, children_accepted=False, persons=[], type_id=1, who_id=1)
-    client.persons.get_privacypolicy(person.id)
-    client.persons.delete_privacypolicy(person.id)
+        client.persons.update_confidentiality_agreement(person.id)
+    client.persons.delete_confidentiality_agreement(person.id)
+    client.persons.update_privacy_policy(person.id, own_accepted=True, children_accepted=False, persons=[], type_id=1, who_id=1)
+    client.persons.get_privacy_policy(person.id)
+    client.persons.delete_privacy_policy(person.id)
     client.persons.delete(person.id)
 
 
 def test_lookups(client: LiveClient, me: int) -> None:
     """POST operations that only compute or look something up."""
     assert str(me) in client.persons.properties(ids=[me])
-    resolved = client.domainobjects.create(domain_types=["person"], domain_identifiers=[str(me)])
+    resolved = client.domain_objects.resolve(domain_types=["person"], domain_identifiers=[str(me)])
     # title, domainType and domainIdentifier are sent but missing in the spec model.
     assert (resolved[0].model_extra or {}).get("domainIdentifier") == str(me)
     client.labels.totals(person_ids=[me])
     client.emails.preview(content=["Hallo [Vorname]"], person_id=me)
     client.markdown.check(input_scope="description", markdown="**fett** und _kursiv_")
     start = dt.date.today()
-    occurrences = client.repeatcalculation.create(start_date=start, end_date=start, repeat_id=7, repeat_frequency=1, repeat_until=start + dt.timedelta(days=21))
+    occurrences = client.repeat_calculation.calculate(start_date=start, end_date=start, repeat_id=7, repeat_frequency=1, repeat_until=start + dt.timedelta(days=21))
     assert len(occurrences) >= 3
 
 
@@ -353,7 +353,7 @@ def test_song_default_arrangement_is_idempotent(client: LiveClient, cleanup: Cle
 
 
 def test_booking_conflicts(client: LiveClient, cleanup: Cleanup) -> None:
-    resource_type = client.resourcetypes.list()[0].id
+    resource_type = client.resource_types.list()[0].id
     resource = client.resources.create(name=name("Raum"), resource_type_id=resource_type, sort_key=999)
     cleanup(lambda: client.resources.delete(resource.id))
     start = NOW + dt.timedelta(days=5)
@@ -386,7 +386,7 @@ def test_appointment_change_impact(client: LiveClient, cleanup: Cleanup) -> None
     )
     appointment = created.appointment if hasattr(created, "appointment") else created
     appointment_id = appointment.base.id if hasattr(appointment, "base") else appointment.id
-    client.calendars.appointments.changeimpact(
+    client.calendars.appointments.change_impact(
         calendar.id, appointment_id, start_date=start + dt.timedelta(days=1), end_date=start + dt.timedelta(days=1, hours=1)
     )
     client.calendars.delete(calendar.id)

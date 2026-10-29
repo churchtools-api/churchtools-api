@@ -980,6 +980,21 @@ impl DeleteFinanceAccountgroupsIdQuery {
     }
 }
 
+/// Query parameters for `DELETE /finance/accounttypes/{id}`.
+#[derive(Debug, Clone, Default)]
+pub struct DeleteFinanceAccounttypesIdQuery {
+    /// If set to true, the deletion is simulated but nothing will be deleted.
+    pub dry_run: Option<bool>,
+}
+
+impl DeleteFinanceAccounttypesIdQuery {
+    pub(crate) fn to_query(&self) -> Query {
+        let mut q = Query::new();
+        self.dry_run.push_query("dry_run", &mut q);
+        q
+    }
+}
+
 /// Query parameters for `DELETE /finance/accountingperiods/{id}`.
 #[derive(Debug, Clone, Default)]
 pub struct DeleteFinanceAccountingperiodsIdQuery {
@@ -1138,21 +1153,6 @@ impl GetFinanceAccountsQuery {
         let mut q = Query::new();
         self.accounting_period_id.push_query("accounting_period_id", &mut q);
         self.calculate_balance.push_query("calculate_balance", &mut q);
-        q
-    }
-}
-
-/// Query parameters for `DELETE /finance/accounttypes/{id}`.
-#[derive(Debug, Clone, Default)]
-pub struct DeleteFinanceAccounttypesIdQuery {
-    /// If set to true, the deletion is simulated but nothing will be deleted.
-    pub dry_run: Option<bool>,
-}
-
-impl DeleteFinanceAccounttypesIdQuery {
-    pub(crate) fn to_query(&self) -> Query {
-        let mut q = Query::new();
-        self.dry_run.push_query("dry_run", &mut q);
         q
     }
 }
