@@ -40,7 +40,12 @@ generiert (`codegen/generate.py`); handgeschrieben sind nur Transport, Fehler, T
 ## Vorgehen und Pflege
 
 - Vor der ersten Veröffentlichung fanden Reviews zu API-Form, Fehlerbehandlung, Sicherheit und Umgang mit
-  Zugangsdaten statt; Ergebnisse sind eingearbeitet (siehe `CHANGELOG.md`).
+  Zugangsdaten statt; Ergebnisse sind eingearbeitet. Das Projekt ist trotzdem noch nicht in der Breite
+  erprobt: Das README rät Nutzern, ihre Aufrufe vor produktiver Verwendung gegen eine Demo-Instanz zu prüfen.
+  Diese Einschätzung nicht aufweichen, solange es keine Erfahrung mit echten Instanzen gibt.
+- Der Generator ist projekteigen (kein `openapi-generator`), weil die Spec Schemas ohne `$ref` einsetzt, der
+  Server von der Spec abweicht und Python und Rust dieselbe Form haben sollen; Hintergrund im README unter
+  „Stand und Vorgehen“ und in `docs/entwicklung.md`.
 - **Neue ChurchTools-Versionen:** `python3 codegen/generate.py --refresh` lädt die aktuelle Spec von der
   Demo-Instanz; danach zeigen Generator-Diff, Offline-Tests und ein Live-Lauf gegen eine Demo-Instanz, was sich
   geändert hat. Eine Version lässt sich nicht vorab testen; die Prüfung passiert, sobald die Demo-Instanz die

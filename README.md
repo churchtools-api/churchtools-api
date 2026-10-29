@@ -82,11 +82,19 @@ erzeugt wird. Änderungen stehen in [`CHANGELOG.md`](CHANGELOG.md).
 
 Das Projekt ist jung und experimentell. Was bisher geschehen ist und was geplant ist:
 
-- Alle Lese-Endpunkte und 188 Schreib-Endpunkte sind gegen eine ChurchTools-Demo-Instanz getestet; die
-  aufgezeichneten Antworten dienen als Offline-Tests für Python und Rust. Der Testbericht steht in
-  [`docs/testbericht.md`](docs/testbericht.md).
-- Der Code wurde mehrfach durchgesehen (Code-Reviews zu API-Form, Fehlerbehandlung, Sicherheit und Umgang mit
-  Zugangsdaten).
+- **Eigener Generator statt eines fertigen:** Der Code entsteht mit einem projekteigenen Generator
+  (`codegen/`) aus der OpenAPI-Beschreibung von ChurchTools, nicht mit `openapi-generator` o. Ä. Der Grund:
+  Die Spec setzt Schemas ohne `$ref` ein (der Generator gewinnt die Namen wie `Person` oder `Event` zurück),
+  die API weicht an einigen Stellen vom Server ab (der Generator gleicht das aus), und Python und Rust sollen
+  dieselbe Form haben. Aus derselben Zwischendarstellung entstehen auch Doku und Tests. Das ist bei gepflegten
+  SDKs üblich, bedeutet aber auch, dass der Generator selbst gepflegt werden muss.
+- **Getestet und durchgesehen, aber nicht in der Breite erprobt:** Alle Lese-Endpunkte und 188
+  Schreib-Endpunkte sind gegen eine ChurchTools-Demo-Instanz getestet; die aufgezeichneten Antworten dienen als
+  Offline-Tests für Python und Rust ([`docs/testbericht.md`](docs/testbericht.md)). Der Code wurde zu API-Form,
+  Fehlerbehandlung und Umgang mit Zugangsdaten durchgesehen. Das ersetzt aber keine Erfahrung mit echten
+  Instanzen und echten Daten: Vor einer produktiven Verwendung solltest du die Aufrufe, die du brauchst, selbst
+  gegen eine [Demo-Instanz](https://church.tools/en/test-churchtools/) oder eine Testkopie deiner Instanz prüfen,
+  insbesondere alles, was schreibt.
 - Mit jeder neuen ChurchTools-Version soll die Kompatibilität erneut geprüft werden. Eine Möglichkeit, eine
   Version vor ihrer Veröffentlichung zu testen, gibt es derzeit nicht; die Prüfung geschieht also, sobald die
   Demo-Instanz die neue Version hat.
