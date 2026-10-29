@@ -26,7 +26,7 @@ mod query;
 pub mod replay;
 
 pub use chrono;
-pub use client::{Client, ClientBuilder, Pages, Query, Upload, decode, decode_data, encode_path_segment};
+pub use client::{Client, ClientBuilder, DEFAULT_MAX_RESPONSE_SIZE, Pages, Query, Upload, decode, decode_data, encode_path_segment};
 pub use datetime::DateOrDateTime;
 pub use error::{ApiError, Error, Result};
 pub use generated::api::*;

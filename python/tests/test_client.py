@@ -252,3 +252,9 @@ def test_redirect_of_a_write_is_an_error(client):
 def test_invalid_durations_raise_value_error(option, value):
     with pytest.raises(ValueError, match=f"{option} must be a non-negative number"):
         ct.Client("https://x.church.tools", **{option: value})
+
+
+def test_responses_above_the_size_limit_raise(client):
+    limited = ct.Client(client.api_url, max_response_size=50)
+    with pytest.raises(ct.TransportError, match="larger than the limit of 50 bytes"):
+        limited.persons.get(7)

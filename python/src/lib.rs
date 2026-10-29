@@ -29,7 +29,7 @@ mod _core {
                     errors.call_method1("RedirectError", (err.to_string(), *status, location.clone()))?
                 }
                 Error::InvalidPath(_) | Error::InvalidToken => return Ok(PyValueError::new_err(err.to_string())),
-                Error::Transport(_) | Error::InvalidBaseUrl(_) => {
+                Error::Transport(_) | Error::Read(_) | Error::ResponseTooLarge { .. } | Error::InvalidBaseUrl(_) => {
                     errors.call_method1("TransportError", (err.to_string(),))?
                 }
             };
@@ -64,7 +64,7 @@ mod _core {
     #[pymethods]
     impl Client {
         #[new]
-        #[pyo3(signature = (base_url, token=None, timeout=30.0, min_interval=None, allow_insecure_http=false))]
+        #[pyo3(signature = (base_url, token=None, timeout=30.0, min_interval=None, allow_insecure_http=false, max_response_size=None))]
         fn new(
             py: Python<'_>,
             base_url: &str,
@@ -72,11 +72,13 @@ mod _core {
             timeout: f64,
             min_interval: Option<f64>,
             allow_insecure_http: bool,
+            max_response_size: Option<u64>,
         ) -> PyResult<Self> {
             let mut inner = churchtools_core::Client::builder(base_url)
                 .token(token)
                 .timeout(seconds("timeout", timeout)?)
                 .allow_insecure_http(allow_insecure_http)
+                .max_response_size(max_response_size.unwrap_or(churchtools_core::DEFAULT_MAX_RESPONSE_SIZE))
                 .build()
                 .map_err(|e| to_py_err(py, e))?;
             if let Some(interval) = min_interval {

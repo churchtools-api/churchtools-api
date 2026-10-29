@@ -44,6 +44,8 @@ class Client(Resources):
             `429 Too Many Requests` are retried regardless of this setting.
         allow_insecure_http: Allows `http://` for hosts other than localhost. The
             token then travels unencrypted; only for instances in a trusted network.
+        max_response_size: Largest response body in bytes that is read (default
+            256 MiB); larger ones raise `TransportError`.
     """
 
     def __init__(
@@ -54,8 +56,9 @@ class Client(Resources):
         timeout: float = 30.0,
         min_interval: _t.Optional[float] = None,
         allow_insecure_http: bool = False,
+        max_response_size: _t.Optional[int] = None,
     ) -> None:
-        self._core = _CoreClient(base_url, token, timeout, min_interval, allow_insecure_http)
+        self._core = _CoreClient(base_url, token, timeout, min_interval, allow_insecure_http, max_response_size)
         super().__init__(self._core)
 
     @classmethod

@@ -13,6 +13,9 @@ use crate::error::{ApiError, Error, Result};
 /// (`ids[]=1&ids[]=2`).
 pub type Query = Vec<(String, String)>;
 
+/// Default for [`ClientBuilder::max_response_size`]: 256 MiB.
+pub const DEFAULT_MAX_RESPONSE_SIZE: u64 = 256 * 1024 * 1024;
+
 /// How often a request answered with `429 Too Many Requests` is retried.
 const MAX_RETRIES_ON_429: u32 = 3;
 /// Upper bound for waiting on a `Retry-After` header.
@@ -27,6 +30,7 @@ pub struct Client {
     api_url: String,
     token: Option<String>,
     timeout: Duration,
+    max_response_size: u64,
     throttle: Option<Arc<Throttle>>,
 }
 
@@ -37,6 +41,7 @@ impl std::fmt::Debug for Client {
             .field("api_url", &self.api_url)
             .field("token", &self.token.as_ref().map(|_| "<redacted>"))
             .field("timeout", &self.timeout)
+            .field("max_response_size", &self.max_response_size)
             .field("throttle", &self.throttle)
             .finish_non_exhaustive()
     }
@@ -92,6 +97,7 @@ pub struct ClientBuilder {
     base_url: String,
     token: Option<String>,
     timeout: Duration,
+    max_response_size: u64,
     allow_insecure_http: bool,
 }
 
@@ -105,6 +111,14 @@ impl ClientBuilder {
     /// Timeout for a whole request (default 30 s).
     pub fn timeout(mut self, timeout: Duration) -> Self {
         self.timeout = timeout;
+        self
+    }
+
+    /// Largest response body that is read (default
+    /// [`DEFAULT_MAX_RESPONSE_SIZE`]); larger ones fail with
+    /// [`Error::ResponseTooLarge`] instead of filling the memory.
+    pub fn max_response_size(mut self, bytes: u64) -> Self {
+        self.max_response_size = bytes;
         self
     }
 
@@ -127,6 +141,7 @@ impl ClientBuilder {
             api_url: normalize_base_url(&self.base_url, self.allow_insecure_http)?,
             token: self.token,
             timeout: self.timeout,
+            max_response_size: self.max_response_size,
             throttle: None,
         })
     }
@@ -189,6 +204,7 @@ impl Client {
             base_url: base_url.to_owned(),
             token: None,
             timeout: Duration::from_secs(30),
+            max_response_size: DEFAULT_MAX_RESPONSE_SIZE,
             allow_insecure_http: false,
         }
     }
@@ -344,7 +360,7 @@ impl Client {
                     location: location.and_then(|v| v.to_str().ok()).map(str::to_owned),
                 });
             }
-            let bytes = response.bytes()?.to_vec();
+            let bytes = read_body(response, self.max_response_size)?;
             if !(200..300).contains(&status) {
                 return Err(ApiError::from_response(status, bytes).into());
             }
@@ -419,6 +435,23 @@ impl Iterator for Pages {
         }
         Some(result)
     }
+}
+
+/// Reads the whole body, but at most `limit` bytes.
+fn read_body(response: reqwest::blocking::Response, limit: u64) -> Result<Vec<u8>> {
+    use std::io::Read;
+
+    let too_large = || Error::ResponseTooLarge { limit };
+    if response.content_length().is_some_and(|len| len > limit) {
+        return Err(too_large());
+    }
+    // Reserve what the server announces, but not more than 1 MiB up front.
+    let mut bytes = Vec::with_capacity(response.content_length().unwrap_or(0).min(1 << 20) as usize);
+    response.take(limit.saturating_add(1)).read_to_end(&mut bytes).map_err(Error::Read)?;
+    if bytes.len() as u64 > limit {
+        return Err(too_large());
+    }
+    Ok(bytes)
 }
 
 fn next_page_number(body: &[u8], requested: u64) -> Option<u64> {
@@ -585,6 +618,21 @@ mod tests {
             "HTTP/1.1 {status}\r\n{headers}Content-Length: {}\r\nConnection: close\r\n\r\n{body}",
             body.len()
         )
+    }
+
+    #[test]
+    fn responses_above_the_size_limit_are_rejected() {
+        let declared = reply("200 OK", "", r#"{"data":"0123456789"}"#);
+        // Without Content-Length the body ends when the connection closes.
+        let undeclared = "HTTP/1.1 200 OK\r\nConnection: close\r\n\r\n{\"data\":\"0123456789\"}".to_owned();
+        let small = reply("200 OK", "", r#"{"data":1}"#);
+        let (url, _) = serve(vec![declared, undeclared, small]);
+        let client = Client::builder(&url).max_response_size(12).build().unwrap();
+        for _ in 0..2 {
+            let err = client.request(Method::GET, "/x", &[], None).unwrap_err();
+            assert!(matches!(err, Error::ResponseTooLarge { limit: 12 }), "{err}");
+        }
+        assert_eq!(client.request(Method::GET, "/x", &[], None).unwrap(), br#"{"data":1}"#);
     }
 
     #[test]

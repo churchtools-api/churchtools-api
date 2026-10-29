@@ -10,6 +10,12 @@ pub enum Error {
     /// The request did not reach the server or the response could not be read.
     #[error("transport error: {0}")]
     Transport(#[from] reqwest::Error),
+    /// The response body could not be read completely.
+    #[error("could not read response body: {0}")]
+    Read(#[source] std::io::Error),
+    /// The response body is larger than `ClientBuilder::max_response_size`.
+    #[error("response body larger than the limit of {limit} bytes")]
+    ResponseTooLarge { limit: u64 },
     /// The response body did not match the expected shape.
     #[error("could not decode response: {source}")]
     Decode {
@@ -59,6 +65,8 @@ impl std::fmt::Debug for Error {
                 .field("source", source)
                 .field("body", &Preview(body.as_bytes()))
                 .finish(),
+            Self::Read(err) => f.debug_tuple("Read").field(err).finish(),
+            Self::ResponseTooLarge { limit } => f.debug_struct("ResponseTooLarge").field("limit", limit).finish(),
             Self::InvalidBaseUrl(url) => f.debug_tuple("InvalidBaseUrl").field(url).finish(),
             Self::Redirect { status, location } => f
                 .debug_struct("Redirect")
