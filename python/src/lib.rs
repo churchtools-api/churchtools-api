@@ -144,12 +144,13 @@ mod _core {
             query: Vec<(String, String)>,
             form: Vec<(String, String)>,
             file_field: &str,
-            files: Vec<(String, Vec<u8>, String)>,
+            files: Vec<(String, Bound<'py, PyBytes>, String)>,
         ) -> PyResult<Bound<'py, PyBytes>> {
             let method = parse_method(method)?;
+            // One copy out of the Python object (needed to release the GIL), none per retry.
             let files: Vec<Upload> = files
                 .into_iter()
-                .map(|(name, content, content_type)| Upload::new(name, content, content_type))
+                .map(|(name, content, content_type)| Upload::new(name, content.as_bytes(), content_type))
                 .collect();
             let result =
                 py.detach(|| self.inner.request_multipart(method, path, &query, &form, file_field, &files));

@@ -61,16 +61,19 @@ impl std::fmt::Debug for Client {
 }
 
 /// A file for an upload endpoint.
+///
+/// The content is shared: cloning an `Upload` or retrying the request does
+/// not copy it.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Upload {
     pub filename: String,
-    pub content: Vec<u8>,
+    pub content: Arc<[u8]>,
     /// MIME type, e.g. `application/pdf`.
     pub content_type: String,
 }
 
 impl Upload {
-    pub fn new(filename: impl Into<String>, content: impl Into<Vec<u8>>, content_type: impl Into<String>) -> Self {
+    pub fn new(filename: impl Into<String>, content: impl Into<Arc<[u8]>>, content_type: impl Into<String>) -> Self {
         Self {
             filename: filename.into(),
             content: content.into(),
@@ -359,7 +362,9 @@ impl Client {
                 multipart = multipart.text(key.clone(), value.clone());
             }
             for file in files {
-                let part = reqwest::blocking::multipart::Part::bytes(file.content.clone())
+                // A reader over the shared content: no copy per attempt.
+                let reader = std::io::Cursor::new(file.content.clone());
+                let part = reqwest::blocking::multipart::Part::reader_with_length(reader, file.content.len() as u64)
                     .file_name(file.filename.clone())
                     .mime_str(&file.content_type)?;
                 multipart = multipart.part(file_field.to_owned(), part);
@@ -915,6 +920,21 @@ mod tests {
         let (url, _) = serve(vec![reply("200 OK", "", r#"{"data":[1],"meta":[]}"#)]);
         let items: Vec<i64> = Client::new(&url, None).unwrap().collect_pages("/x", vec![]).unwrap();
         assert_eq!(items, [1]);
+    }
+
+    #[test]
+    fn uploads_are_sent_with_content_and_retried() {
+        let (url, seen) = serve(vec![
+            reply("429 Too Many Requests", "Retry-After: 0\r\n", ""),
+            reply("200 OK", "", r#"{"data":[]}"#),
+        ]);
+        let client = Client::new(&url, None).unwrap();
+        let file = Upload::new("brief.txt", b"Hallo Gemeinde".as_slice(), "text/plain");
+        let copy = file.clone();
+        assert!(Arc::ptr_eq(&file.content, &copy.content)); // cloning shares the bytes
+        let form = [("sortKey".to_owned(), "3".to_owned())];
+        client.request_multipart(Method::POST, "/files/person/7", &[], &form, "files[]", &[file]).unwrap();
+        assert_eq!(seen.lock().unwrap().len(), 2);
     }
 
     #[test]
