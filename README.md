@@ -159,3 +159,12 @@ Ein späterer Async-Client lässt sich also ergänzen, ohne die synchrone API zu
 8. **Doppelte Parameter:** Einige Endpunkte nehmen denselben Wert in Query und Body (`groups.duplicate`: `new_name` und
    `new_name_2`) oder im Pfad und im Body (`posts.comments.create`: `post_id` und `post_id_2`). Man könnte das Body-Feld
    in solchen Fällen automatisch aus dem anderen füllen.
+
+## Lizenz
+
+Der Code steht unter der [MIT-Lizenz](LICENSE). Die generierten Dateien beruhen auf der API-Beschreibung
+„ChurchTools REST API“ von ChurchTools, die unter [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+steht; für sie gilt zusätzlich diese Lizenz. Welche Dateien das sind und was geändert wurde, steht in
+[`NOTICE`](NOTICE). Lizenzangabe der Pakete: `MIT AND CC-BY-4.0`.
+
+churchtools-rs ist kein offizielles Produkt der ChurchTools Innovations GmbH.

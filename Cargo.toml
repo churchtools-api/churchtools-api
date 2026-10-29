@@ -5,4 +5,4 @@ members = ["core", "python"]
 [workspace.package]
 version = "0.1.0"
 edition = "2024"
-license = "MIT"
+license = "MIT AND CC-BY-4.0"

@@ -286,6 +286,7 @@ a.untested:hover { text-decoration: underline; }
         <li><a href="#modelle">Modelle <span class="count">1110</span></a></li>
         <li><a href="#fehlercodes">Fehlercodes</a></li>
         <li><a href="#testabdeckung">Testabdeckung</a></li>
+        <li><a href="#lizenz">Lizenz</a></li>
         <li><a href="#weiter">Nächste Schritte</a></li>
       </ul>
     </nav>
@@ -6575,6 +6576,18 @@ print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span>
           <div class="table-wrap"><table><thead><tr><th>Methode</th><th>getestet</th><th>getestet, Fehler der API</th><th>keine Testdaten</th><th>kein Testszenario</th><th>Test fehlgeschlagen</th><th>gesamt</th></tr></thead><tbody><tr><td>GET</td><td>348</td><td>11</td><td>6</td><td>–</td><td>–</td><td>365</td></tr><tr><td>POST</td><td>72</td><td>–</td><td>–</td><td>144</td><td>–</td><td>216</td></tr><tr><td>PUT</td><td>49</td><td>1</td><td>–</td><td>68</td><td>–</td><td>118</td></tr><tr><td>PATCH</td><td>9</td><td>–</td><td>–</td><td>15</td><td>–</td><td>24</td></tr><tr><td>DELETE</td><td>57</td><td>–</td><td>–</td><td>69</td><td>–</td><td>126</td></tr></tbody></table></div>
         </section>
 
+        <section class="reference hide-search" id="lizenz">
+          <h2>Lizenz</h2>
+          <p>Der Code von churchtools-rs steht unter der MIT-Lizenz. Die Referenz, die Modelle und die
+          englischen Beschreibungen stammen aus der API-Beschreibung „ChurchTools REST API“ von ChurchTools
+          (<a href="https://demo.church.tools/system/runtime/swagger/openapi.json" target="_blank" rel="noopener">OpenAPI-Spec</a>),
+          lizenziert unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank" rel="noopener">CC BY 4.0</a>.
+          Sie wurde in Code und diese Seite umgewandelt, an einigen Stellen korrigiert und um Beispiele ergänzt.
+          Details stehen in <code>NOTICE</code>.</p>
+          <p>churchtools-rs ist kein offizielles Produkt der ChurchTools Innovations GmbH und wird von ihr weder
+          unterstützt noch geprüft.</p>
+        </section>
+
         <section class="reference hide-search" id="weiter">
           <h2>Nächste Schritte</h2>
           <div class="next">
@@ -6671,7 +6684,7 @@ print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span>
 
   // Highlight the current area in the navigation
   const links = new Map(Array.from(nav.querySelectorAll('a[href^="#"]')).map((a) => [a.getAttribute("href").slice(1), a]));
-  const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #weiter"));
+  const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #lizenz, #weiter"));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {

@@ -279,6 +279,7 @@ a.untested:hover { text-decoration: underline; }
         <li><a href="#modelle">Modelle <span class="count">%%MODELS%%</span></a></li>
         <li><a href="#fehlercodes">Fehlercodes</a></li>
         <li><a href="#testabdeckung">Testabdeckung</a></li>
+        <li><a href="#lizenz">Lizenz</a></li>
         <li><a href="#weiter">Nächste Schritte</a></li>
       </ul>
     </nav>
@@ -339,6 +340,18 @@ a.untested:hover { text-decoration: underline; }
           <p>Ohne Sternchen heißt: Der Aufruf lief erfolgreich, und die Antwort passte zu den Typen in Python und Rust.
           Das garantiert nicht jede Kombination von Parametern. Details stehen im Testbericht (<code>docs/testbericht.md</code>).</p>
           <div class="table-wrap"><table>%%COVERAGE%%</table></div>
+        </section>
+
+        <section class="reference hide-search" id="lizenz">
+          <h2>Lizenz</h2>
+          <p>Der Code von churchtools-rs steht unter der MIT-Lizenz. Die Referenz, die Modelle und die
+          englischen Beschreibungen stammen aus der API-Beschreibung „ChurchTools REST API“ von ChurchTools
+          (<a href="https://demo.church.tools/system/runtime/swagger/openapi.json" target="_blank" rel="noopener">OpenAPI-Spec</a>),
+          lizenziert unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank" rel="noopener">CC BY 4.0</a>.
+          Sie wurde in Code und diese Seite umgewandelt, an einigen Stellen korrigiert und um Beispiele ergänzt.
+          Details stehen in <code>NOTICE</code>.</p>
+          <p>churchtools-rs ist kein offizielles Produkt der ChurchTools Innovations GmbH und wird von ihr weder
+          unterstützt noch geprüft.</p>
         </section>
 
         <section class="reference hide-search" id="weiter">
@@ -437,7 +450,7 @@ a.untested:hover { text-decoration: underline; }
 
   // Highlight the current area in the navigation
   const links = new Map(Array.from(nav.querySelectorAll('a[href^="#"]')).map((a) => [a.getAttribute("href").slice(1), a]));
-  const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #weiter"));
+  const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #lizenz, #weiter"));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {

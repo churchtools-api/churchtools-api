@@ -1,0 +1,37 @@
+churchtools-rs
+==============
+
+The code of this project (the generator in codegen/, the handwritten Rust and
+Python code and the tests) is licensed under the MIT License, see LICENSE.
+
+ChurchTools REST API specification
+----------------------------------
+
+The generated files are derived from the OpenAPI specification "ChurchTools
+REST API" published by ChurchTools at
+
+    https://demo.church.tools/system/runtime/swagger/openapi.json
+
+which is licensed under the Creative Commons Attribution 4.0 International
+License (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/). The
+specification is provided as is, without warranties.
+
+Changes: the specification was converted into Rust and Python code. Type
+names, structure and the English descriptions of endpoints, parameters and
+fields are taken from it; schema names were recovered, some types and required
+fields were corrected where real responses differ (see FIELD_FIXES and
+RESULT_FIXES in codegen/generate.py), and the examples were added.
+
+These parts are licensed under CC BY 4.0 as well:
+
+    core/src/generated/            Rust models and endpoints
+    core/tests/recorded.rs
+    python/churchtools_rs/models.py
+    python/churchtools_rs/_resources.py
+    python/tests/doc_examples.py, core/tests/doc_examples.rs
+    python/tests/live/operations.json
+    codegen/OPERATIONS.md
+    docs/site/index.html           API reference part
+
+ChurchTools is a product of ChurchTools Innovations GmbH. This project is not
+affiliated with or endorsed by ChurchTools Innovations GmbH.
