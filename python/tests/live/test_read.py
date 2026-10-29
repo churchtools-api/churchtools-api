@@ -11,10 +11,8 @@ import json
 import operator
 import typing as _t
 
-import pytest
-
 import churchtools_rs as ct
-
+import pytest
 from conftest import CATALOG, ROOT, LiveClient, Results, record
 from expectations import EXPECTED_ERRORS, SKIP
 from resolve import Resolver, Unresolved

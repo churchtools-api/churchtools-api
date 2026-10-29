@@ -21,7 +21,7 @@ for person in client.persons.list(last_name="Müller"):        # paginiert, Seit
 
 client.groups.members.list(42)                                 # Unterressourcen
 client.persons.create(department_ids=[1], first_name="Ben")   # Body als Keyword-Argumente
-client.files.create("person", 7, files=[ct.Upload.from_path("brief.pdf")])   # Datei hochladen
+client.files.create("person", "7", files=[ct.Upload.from_path("brief.pdf")])   # Datei hochladen
 ```
 
 Alle Aufrufe stehen in [`codegen/OPERATIONS.md`](codegen/OPERATIONS.md).

@@ -10,12 +10,11 @@ import typing as _t
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlsplit
 
+import churchtools_rs as ct
 import pytest
 
-import churchtools_rs as ct
 
-
-def person(id: int, first_name: str) -> dict:
+def person(id: int, first_name: str) -> dict[str, _t.Any]:
     return {
         "id": id,
         "guid": f"guid-{id}",
@@ -27,13 +26,13 @@ def person(id: int, first_name: str) -> dict:
 
 
 class FakeServer(BaseHTTPRequestHandler):
-    requests: list[dict] = []
+    requests: list[dict[str, _t.Any]] = []
     busy_calls = 0
 
-    def log_message(self, *args) -> None:
+    def log_message(self, *args: _t.Any) -> None:
         pass
 
-    def _reply(self, status: int, payload) -> None:
+    def _reply(self, status: int, payload: _t.Any) -> None:
         body = json.dumps(payload).encode()
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
@@ -46,7 +45,7 @@ class FakeServer(BaseHTTPRequestHandler):
         length = int(self.headers.get("Content-Length") or 0)
         raw = self.rfile.read(length) if length else b""
         content_type = self.headers.get("Content-Type") or ""
-        body = json.loads(raw) if raw and content_type.startswith("application/json") else raw or None
+        body: _t.Any = json.loads(raw) if raw and content_type.startswith("application/json") else raw or None
         query = parse_qs(url.query)
         FakeServer.requests.append(
             {
@@ -109,7 +108,7 @@ class FakeServer(BaseHTTPRequestHandler):
 
 
 @pytest.fixture
-def client():
+def client() -> _t.Iterator[ct.Client]:
     server = HTTPServer(("127.0.0.1", 0), FakeServer)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
@@ -119,7 +118,7 @@ def client():
     server.shutdown()
 
 
-def test_pagination_fetches_all_pages_lazily(client):
+def test_pagination_fetches_all_pages_lazily(client: ct.Client) -> None:
     persons = client.persons.list(limit=2, ids=[1, 2])
     assert FakeServer.requests == []  # nothing sent before iterating
 
@@ -134,7 +133,7 @@ def test_pagination_fetches_all_pages_lazily(client):
     assert FakeServer.requests[0]["auth"] == "Login secret"
 
 
-def test_typed_fields_and_unknown_fields(client):
+def test_typed_fields_and_unknown_fields(client: ct.Client) -> None:
     person = client.persons.get(7)
     assert isinstance(person, ct.models.Person)
     assert person.first_name == "Anna"
@@ -142,7 +141,7 @@ def test_typed_fields_and_unknown_fields(client):
     assert person.model_extra == {"customField": 7}
 
 
-def test_api_errors_map_to_exceptions(client):
+def test_api_errors_map_to_exceptions(client: ct.Client) -> None:
     with pytest.raises(ct.NotFound) as info:
         client.groups.get(404)
     assert info.value.status == 404
@@ -150,7 +149,7 @@ def test_api_errors_map_to_exceptions(client):
     assert info.value.translated_message == "Gruppe nicht gefunden"
 
 
-def test_body_omits_unset_and_uses_api_names(client):
+def test_body_omits_unset_and_uses_api_names(client: ct.Client) -> None:
     person = client.persons.create(
         department_ids=[1], first_name="Ben", birthday=None, extra_body={"customField": "x"}, force=True
     )
@@ -161,7 +160,7 @@ def test_body_omits_unset_and_uses_api_names(client):
     assert request["query"] == {"force": ["true"]}
 
 
-def test_query_values_are_formatted(client):
+def test_query_values_are_formatted(client: ct.Client) -> None:
     events = client.events.list(from_=dt.date(2026, 11, 1), canceled=True)
     with pytest.raises(ct.ServerError):
         events.to_list()
@@ -169,7 +168,7 @@ def test_query_values_are_formatted(client):
     assert query == {"from": ["2026-11-01"], "canceled": ["true"], "page": ["1"]}
 
 
-def test_transport_error():
+def test_transport_error() -> None:
     with pytest.raises(ct.ConnectError) as info:
         ct.Client("http://127.0.0.1:1", timeout=2).persons.get(1)
     assert isinstance(info.value, ct.TransportError)
@@ -197,8 +196,8 @@ def test_invalid_arguments_are_value_errors(monkeypatch: pytest.MonkeyPatch) -> 
     assert issubclass(ct.InvalidArgument, ValueError) and issubclass(ct.InvalidArgument, ct.ChurchToolsError)
 
 
-def test_upload_sends_multipart(client):
-    client.files.create("person", 7, files=[ct.Upload("brief.txt", b"Hallo Gemeinde")], sort_key=3)
+def test_upload_sends_multipart(client: ct.Client) -> None:
+    client.files.create("person", "7", files=[ct.Upload("brief.txt", b"Hallo Gemeinde")], sort_key=3)
     request = FakeServer.requests[-1]
     assert request["content_type"].startswith("multipart/form-data; boundary=")
     assert b'name="files[]"; filename="brief.txt"' in request["body"]
@@ -207,7 +206,7 @@ def test_upload_sends_multipart(client):
     assert b'name="sortKey"' in request["body"]
 
 
-def test_datetimes_are_sent_as_utc_with_z(client):
+def test_datetimes_are_sent_as_utc_with_z(client: ct.Client) -> None:
     berlin = dt.timezone(dt.timedelta(hours=1))
     with pytest.raises(ct.BadRequest) as info:
         client.groups.meetings.create(7, start_date=dt.datetime(2026, 11, 1, 10, 30, 15, 123456, tzinfo=berlin))
@@ -216,14 +215,14 @@ def test_datetimes_are_sent_as_utc_with_z(client):
     assert "startDate: Bitte das Datum" in str(info.value)
 
 
-def test_too_many_requests_is_retried(client):
+def test_too_many_requests_is_retried(client: ct.Client) -> None:
     start = time.monotonic()
     assert client._core.request("GET", "/busy", []) == b'{"data": {"build": "1", "version": "3.138.0"}}'
     assert FakeServer.busy_calls == 2
     assert time.monotonic() - start >= 1.0  # waited for Retry-After
 
 
-def test_min_interval_spaces_requests():
+def test_min_interval_spaces_requests() -> None:
     server = HTTPServer(("127.0.0.1", 0), FakeServer)
     threading.Thread(target=server.serve_forever, daemon=True).start()
     client = ct.Client(f"http://127.0.0.1:{server.server_port}", min_interval=0.2)

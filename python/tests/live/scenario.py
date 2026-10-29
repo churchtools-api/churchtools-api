@@ -7,7 +7,6 @@ import typing as _t
 import uuid
 
 import churchtools_rs as ct
-
 from conftest import Recorder
 
 PREFIX = "ctrs-test"

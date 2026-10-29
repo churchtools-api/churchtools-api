@@ -12,9 +12,8 @@ import sys
 import typing as _t
 from pathlib import Path
 
-import pytest
-
 import churchtools_rs as ct
+import pytest
 from churchtools_rs._base import _parse
 
 ROOT = Path(__file__).resolve().parents[2]

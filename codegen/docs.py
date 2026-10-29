@@ -53,9 +53,9 @@ def md(text: str) -> str:
     blocks = re.split(r"\n\s*\n", text.strip())
     out = []
     for block in blocks:
-        lines = [l.rstrip() for l in block.splitlines()]
-        if all(l.lstrip().startswith("|") for l in lines):
-            rows = [[c.strip() for c in l.strip().strip("|").split("|")] for l in lines if not re.match(r"^\|[-|\s:]+\|$", l.strip())]
+        lines = [ln.rstrip() for ln in block.splitlines()]
+        if all(ln.lstrip().startswith("|") for ln in lines):
+            rows = [[c.strip() for c in ln.strip().strip("|").split("|")] for ln in lines if not re.match(r"^\|[-|\s:]+\|$", ln.strip())]
             head, *body = rows
             out.append(
                 '<div class="table-wrap"><table><thead><tr>'
@@ -67,14 +67,14 @@ def md(text: str) -> str:
         elif re.match(r"^(- |\d+\. )", lines[0]):
             tag = "ol" if lines[0][0].isdigit() else "ul"
             items: list[str] = []
-            for l in lines:
-                if re.match(r"^(- |\d+\. )", l):
-                    items.append(re.sub(r"^(- |\d+\. )", "", l))
+            for ln in lines:
+                if re.match(r"^(- |\d+\. )", ln):
+                    items.append(re.sub(r"^(- |\d+\. )", "", ln))
                 else:
-                    items[-1] += " " + l.strip()
+                    items[-1] += " " + ln.strip()
             out.append(f"<{tag}>" + "".join(f"<li>{inline(i)}</li>" for i in items) + f"</{tag}>")
         else:
-            out.append(f"<p>{inline(' '.join(l.strip() for l in lines))}</p>")
+            out.append(f"<p>{inline(' '.join(ln.strip() for ln in lines))}</p>")
     return "\n".join(out)
 
 
@@ -280,6 +280,9 @@ def untested_reason(op: g.Op) -> str | None:
     return f"Test fehlgeschlagen ({outcome})"
 
 
+UNTESTED_STAR = '<span class="untested">*</span>'
+
+
 def untested_mark(op: g.Op) -> str:
     reason = untested_reason(op)
     if reason is None:
@@ -383,7 +386,7 @@ def models_html(schemas: g.Schemas) -> str:
             f'<td>{"ja" if f.required and f.type.kind != "opt" else ""}</td>'
             f"<td>{inline(first_sentence(f.doc)) if f.doc else ''}{' <em>veraltet</em>' if f.deprecated else ''}</td>"
             "</tr>"
-            for f, pn, rn in zip(m.fields, py_names, rs_names)
+            for f, pn, rn in zip(m.fields, py_names, rs_names, strict=True)
         )
         doc = f'<p class="model-doc">{inline(first_sentence(m.doc))}</p>' if m.doc else ""
         parts.append(
@@ -420,7 +423,7 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
         intro = guide.TAG_INTROS.get(tag, "")
         index = "".join(
             f'<li><a href="#op-{o.op_id}"><span class="verb v-{o.method}">{o.method.upper()}</span>'
-            f"<code>{esc(o.path)}</code>{'<span class=\"untested\">*</span>' if untested_reason(o) else ''}</a></li>"
+            f"<code>{esc(o.path)}</code>{UNTESTED_STAR if untested_reason(o) else ''}</a></li>"
             for o in items
         )
         body = []

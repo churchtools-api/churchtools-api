@@ -13,7 +13,6 @@ import json
 import typing as _t
 
 import churchtools_rs as ct
-
 from conftest import CATALOG
 
 GETS = {e["path"]: e for e in CATALOG if e["method"] == "GET"}
@@ -32,7 +31,7 @@ def first_of(path: str, *keys: str, query: tuple[tuple[str, str], ...] = ()) -> 
     return lambda r, v: r.pick(r.first(path.format(**v), query), *keys)
 
 
-def me(r: "Resolver", v: Values) -> int:
+def me(r: Resolver, v: Values) -> int:
     return r.me()
 
 

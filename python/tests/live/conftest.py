@@ -19,9 +19,8 @@ import re
 import typing as _t
 from pathlib import Path
 
-import pytest
-
 import churchtools_rs as ct
+import pytest
 from churchtools_rs._resources import Resources
 from redact import add_instance, hide_instance, redact, scrub
 

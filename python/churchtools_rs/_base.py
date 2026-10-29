@@ -78,14 +78,15 @@ class _Envelope(BaseModel, _t.Generic[T]):
     data: T
 
 
-@functools.lru_cache(maxsize=None)
+@functools.cache
 def _adapter(tp: _t.Any, envelope: bool) -> TypeAdapter[_t.Any]:
     return TypeAdapter(_Envelope[tp] if envelope else tp)
 
 
 def _parse(body: bytes, tp: _t.Any, envelope: bool) -> _t.Any:
-    from ._errors import DecodeError
     from pydantic import ValidationError
+
+    from ._errors import DecodeError
 
     if not body.strip():
         return None  # 204 No Content where the spec also allows a body
@@ -180,7 +181,7 @@ class Upload:
     """MIME type; guessed from the file name when omitted."""
 
     @classmethod
-    def from_path(cls, path: _t.Union[str, "os.PathLike[str]"], content_type: _t.Optional[str] = None) -> "Upload":
+    def from_path(cls, path: _t.Union[str, os.PathLike[str]], content_type: _t.Optional[str] = None) -> Upload:
         p = pathlib.Path(path)
         return cls(p.name, p.read_bytes(), content_type)
 

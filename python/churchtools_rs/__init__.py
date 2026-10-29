@@ -80,14 +80,14 @@ class Client(Resources):
         super().__init__(self._core)
 
     @classmethod
-    def from_env(cls, *, timeout: float = 30.0, min_interval: _t.Optional[float] = None) -> "Client":
+    def from_env(cls, *, timeout: float = 30.0, min_interval: _t.Optional[float] = None) -> Client:
         """Reads `CT_URL` and `CT_TOKEN`; raises `InvalidArgument` if `CT_URL` is not set."""
         url = os.environ.get("CT_URL")
         if not url:
             raise InvalidArgument("invalid base URL: CT_URL is not set")
         return cls(url, os.environ.get("CT_TOKEN"), timeout=timeout, min_interval=min_interval)
 
-    def login_with_password(self, username: str, password: str) -> "Client":
+    def login_with_password(self, username: str, password: str) -> Client:
         """Logs in with username and password; returns a client using that person's login token.
 
         Keeps URL, timeout and rate limit. Meant for tests and interactive tools;

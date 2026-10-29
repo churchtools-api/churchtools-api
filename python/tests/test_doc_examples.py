@@ -16,11 +16,9 @@ import typing as _t
 import warnings
 from pathlib import Path
 
-import pytest
-
 import churchtools_rs as ct
-
 import doc_examples
+import pytest
 from replay import ROOT, ReplayServer, recorded
 
 CATALOG = {e["op_id"]: e for e in json.loads((ROOT / "python" / "tests" / "live" / "operations.json").read_text())}

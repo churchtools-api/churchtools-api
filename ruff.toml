@@ -1,0 +1,21 @@
+# Lint settings for the generator and the Python package; generated files are skipped.
+line-length = 120
+target-version = "py310"
+extend-exclude = [
+    "python/churchtools_rs/models.py",
+    "python/churchtools_rs/_resources.py",
+    "python/tests/doc_examples.py",
+    "**/.venv",
+    "target",
+    ".claude",
+]
+
+[lint]
+select = ["E4", "E7", "E9", "F", "W", "I", "B", "UP"]
+ignore = [
+    "UP006", "UP007", "UP035", "UP045",  # typing.List / Optional are kept, like the generated code
+]
+
+[lint.per-file-ignores]
+# generate.py re-exports the generator modules for `import generate as g`.
+"codegen/generate.py" = ["F401", "F403", "F405", "E402"]
