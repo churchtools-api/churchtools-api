@@ -39,7 +39,7 @@ def test_recorded_response_decodes(path: Path) -> None:
 
 
 sys.path.insert(0, str(Path(__file__).parent / "live"))
-from redact import hide_instance, redact, scrub  # noqa: E402
+from redact import clean_text, hide_instance, redact, scrub  # noqa: E402
 
 
 def test_redaction_of_credentials() -> None:
@@ -65,6 +65,11 @@ def test_instance_host_is_replaced() -> None:
     text = "https://petrus-0a1b2c3d.church.tools/files/1 und anna@paulus-9f8e7d6c.dev.churchtools.website"
     assert hide_instance(text) == "https://gemeinde.example/files/1 und anna@gemeinde.example"
     assert hide_instance("https://demo.church.tools/api") == "https://demo.church.tools/api"
+
+
+def test_secrets_of_recordings_are_removed_from_free_text() -> None:
+    redact("get-something", {"data": {"token": "Zx9Kq2Lm7Pw4"}})  # remembers the token
+    assert clean_text("get_form(898, token='Zx9Kq2Lm7Pw4')") == "get_form(898, token='<redacted>')"
 
 
 def test_fixtures_contain_no_credentials() -> None:

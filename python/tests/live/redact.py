@@ -45,6 +45,13 @@ def hide_instance(text: str) -> str:
     return DEMO_HOST.sub(INSTANCE, text)
 
 
+def clean_text(text: str) -> str:
+    """For free text such as `live-results.json`: secrets found in recordings, the instance host."""
+    for secret in _known:
+        text = text.replace(secret, REDACTED)
+    return hide_instance(text)
+
+
 def _all_strings(value: _t.Any) -> _t.Any:
     if isinstance(value, str):
         return REDACTED
@@ -124,8 +131,8 @@ def main() -> int:
     results = recorded.parent / "live-results.json"
     if results.exists():
         text = results.read_text()
-        if hide_instance(text) != text:
-            results.write_text(hide_instance(text))
+        if clean_text(text) != text:
+            results.write_text(clean_text(text))
             print(f"cleaned {results.name}")
     print(f"{changed} fixture(s) changed")
     return 0

@@ -22,7 +22,7 @@ from pathlib import Path
 import churchtools_rs as ct
 import pytest
 from churchtools_rs._resources import Resources
-from redact import add_instance, hide_instance, redact, scrub
+from redact import add_instance, clean_text, redact, scrub
 
 ROOT = Path(__file__).resolve().parents[3]
 RECORDED = ROOT / "fixtures" / "recorded"
@@ -200,7 +200,7 @@ class Results:
         old = json.loads(RESULTS.read_text()) if RESULTS.exists() else {}
         old.update(self.items)  # keep results of operations not run this time
         text = json.dumps(dict(sorted(old.items())), indent=1, ensure_ascii=False) + "\n"
-        RESULTS.write_text(hide_instance(text))
+        RESULTS.write_text(clean_text(text))  # calls can carry tokens, e.g. get_form(id, token=...)
 
 
 @pytest.fixture(scope="session")
