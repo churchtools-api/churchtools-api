@@ -842,7 +842,7 @@ ein: rechtzeitig vor der Buchung warm, sonst abgesenkt.
 1. Die Räume laden und auf die mit Heizkreis beschränken. Welcher Raum zu welchem Heizkreis gehört, legst
    du einmal fest; hier über den Namen der Ressource.
 2. Die bestätigten Buchungen dieser Räume für die nächsten sieben Tage holen (`status_ids=[2]`; `1` sind
-   Anfragen, `3` Absagen). Wiederkehrende Buchungen kommen dabei schon als einzelne Termine.
+   Anfragen, `3` abgelehnte Buchungen). Wiederkehrende Buchungen kommen dabei schon als einzelne Termine.
 3. Für jede Buchung eine Heizzeit berechnen: Beginn minus Vorlauf bis Ende. Ganztägige Buchungen haben ein
    Datum statt einer Uhrzeit und heizen den ganzen Tag.
 4. Ist der Raum jetzt in einer Heizzeit, Komfort-Temperatur setzen, sonst Absenk-Temperatur.

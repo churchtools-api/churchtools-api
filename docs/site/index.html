@@ -8,6 +8,10 @@
 <title>churchtools-api</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Python- und Rust-Client für die ChurchTools-API: Grundlagen, Projekte und vollständige Referenz.">
+<script>
+  // Saved light/dark choice, applied before the first paint; without one the system setting applies.
+  try { const t = localStorage.getItem("ct-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
@@ -106,6 +110,11 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; margin: 0; }
 }
 .lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
 .nav-toggle { display: none; border: 1px solid var(--line); border-radius: 6px; }
+.theme-toggle {
+  flex-shrink: 0; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--muted);
+  font: 500 1rem/1 var(--font-body); width: 2.2rem; height: 2.1rem; cursor: pointer;
+}
+.theme-toggle:hover { color: var(--fg); }
 
 /* Shell */
 .shell { display: grid; grid-template-columns: var(--nav-w) minmax(0, 1fr); }
@@ -236,6 +245,9 @@ a.untested:hover { text-decoration: underline; }
 /* Models */
 .models { display: grid; gap: 0.25rem; }
 .model { border-bottom: 1px solid var(--line); padding: 0.4rem 0; }
+/* Most of the page are the 850 endpoints: lay each out only when it scrolls into view. The size is a typical
+   height until then (models are cheap, closed <details> do not lay out their content). */
+.op { content-visibility: auto; contain-intrinsic-size: auto 450px; }
 .model > summary { display: flex; justify-content: space-between; gap: 1rem; color: var(--fg); margin: 0; }
 .model > summary code { font-size: 0.88rem; }
 .model[open] { padding-bottom: 1rem; }
@@ -262,7 +274,6 @@ a.untested:hover { text-decoration: underline; }
   .search { order: 3; flex-basis: 100%; max-width: none; }
   :root { --header-h: 6.25rem; }
 }
-@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 </style>
 
 <div id="app" data-lang="python">
@@ -274,6 +285,7 @@ a.untested:hover { text-decoration: underline; }
       <button type="button" data-l="python" aria-pressed="true">Python</button>
       <button type="button" data-l="rust" aria-pressed="false">Rust</button>
     </div>
+    <button type="button" class="theme-toggle" id="theme-toggle"></button>
   </header>
 
   <div class="shell">
@@ -728,7 +740,7 @@ heute = dt.date.today()
 std::fs::write(<span class="t-string">&quot;mitglieder.csv&quot;</span>, csv)?;</code></pre></div></div>
 </article>
 <article class="topic" id="projekt-heizung"><div class="prose"><h3>Heizung nach Raumbuchungen steuern</h3><p><strong>Ziel:</strong> Räume nur dann heizen, wenn sie gebucht sind. Ein Skript läuft regelmäßig, etwa alle 15 Minuten per Cron oder systemd-Timer, schaut in die Raumbuchungen und stellt für jeden Raum die passende Temperatur ein: rechtzeitig vor der Buchung warm, sonst abgesenkt.</p>
-<ol><li>Die Räume laden und auf die mit Heizkreis beschränken. Welcher Raum zu welchem Heizkreis gehört, legst du einmal fest; hier über den Namen der Ressource.</li><li>Die bestätigten Buchungen dieser Räume für die nächsten sieben Tage holen (<code>status_ids=[2]</code>; <code>1</code> sind Anfragen, <code>3</code> Absagen). Wiederkehrende Buchungen kommen dabei schon als einzelne Termine.</li><li>Für jede Buchung eine Heizzeit berechnen: Beginn minus Vorlauf bis Ende. Ganztägige Buchungen haben ein Datum statt einer Uhrzeit und heizen den ganzen Tag.</li><li>Ist der Raum jetzt in einer Heizzeit, Komfort-Temperatur setzen, sonst Absenk-Temperatur.</li></ol>
+<ol><li>Die Räume laden und auf die mit Heizkreis beschränken. Welcher Raum zu welchem Heizkreis gehört, legst du einmal fest; hier über den Namen der Ressource.</li><li>Die bestätigten Buchungen dieser Räume für die nächsten sieben Tage holen (<code>status_ids=[2]</code>; <code>1</code> sind Anfragen, <code>3</code> abgelehnte Buchungen). Wiederkehrende Buchungen kommen dabei schon als einzelne Termine.</li><li>Für jede Buchung eine Heizzeit berechnen: Beginn minus Vorlauf bis Ende. Ganztägige Buchungen haben ein Datum statt einer Uhrzeit und heizen den ganzen Tag.</li><li>Ist der Raum jetzt in einer Heizzeit, Komfort-Temperatur setzen, sonst Absenk-Temperatur.</li></ol>
 <p>Die Heizung selbst ist hier nur ein Platzhalter, der ausgibt, was er tun würde. In der Praxis stünde dort der Aufruf an die Heizungssteuerung, etwa die API von Home Assistant, ein KNX-Gateway oder die Cloud des Thermostat-Herstellers. Weil das Skript bei jedem Lauf den Sollwert neu aus den Buchungen ableitet, braucht es keinen eigenen Zustand: Wird eine Buchung verschoben oder abgesagt, stimmt die Heizung beim nächsten Lauf.</p>
 <p>Der Token-Benutzer braucht Leserechte für die Räume in der Ressourcenverwaltung.</p></div>
 <div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> datetime <span class="t-kw">as</span> dt
@@ -7077,6 +7089,25 @@ print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span>
     if (event.target.closest(".nav a")) closeNav();
   });
 
+  // Light/dark: follows the system until chosen here; the choice is kept in localStorage.
+  const themeToggle = document.getElementById("theme-toggle");
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const isDark = () => (document.documentElement.dataset.theme || (systemDark.matches ? "dark" : "light")) === "dark";
+  function showTheme() {
+    const dark = isDark();
+    themeToggle.textContent = dark ? "☀" : "☾";
+    themeToggle.title = dark ? "Helles Design" : "Dunkles Design";
+    themeToggle.setAttribute("aria-label", themeToggle.title);
+  }
+  themeToggle.addEventListener("click", () => {
+    const theme = isDark() ? "light" : "dark";
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem("ct-theme", theme); } catch (e) {}
+    showTheme();
+  });
+  systemDark.addEventListener("change", showTheme);
+  showTheme();
+
   // Navigation drawer on small screens
   const nav = document.getElementById("nav");
   const toggle = document.getElementById("nav-toggle");
@@ -7086,14 +7117,18 @@ print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span>
     toggle.setAttribute("aria-expanded", String(open));
   });
 
-  // Open a model when its link is followed
+  // Open a model when its link is followed, and align the target once more after the endpoints near it have been
+  // laid out with their real height (they are estimated until they come into view, see content-visibility).
   function openTarget() {
     const id = location.hash.slice(1);
     const el = id && document.getElementById(id);
-    if (el && el.tagName === "DETAILS") el.open = true;
+    if (!el) return;
+    if (el.tagName === "DETAILS") el.open = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => el.scrollIntoView()));
   }
   window.addEventListener("hashchange", openTarget);
-  openTarget();
+  // On a fresh load the browser jumps to the target only after parsing; align after that.
+  if (document.readyState === "complete") openTarget(); else window.addEventListener("load", openTarget);
 
   // Search over endpoints and models
   const search = document.getElementById("search");
