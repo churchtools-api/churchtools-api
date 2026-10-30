@@ -832,6 +832,141 @@ for member in client.groups().members().list(42)? {
 std::fs::write("mitglieder.csv", csv)?;""",
         ),
         Section(
+            "projekt-heizung",
+            "Heizung nach Raumbuchungen steuern",
+            """
+**Ziel:** Räume nur dann heizen, wenn sie gebucht sind. Ein Skript läuft regelmäßig, etwa alle 15 Minuten
+per Cron oder systemd-Timer, schaut in die Raumbuchungen und stellt für jeden Raum die passende Temperatur
+ein: rechtzeitig vor der Buchung warm, sonst abgesenkt.
+
+1. Die Räume laden und auf die mit Heizkreis beschränken. Welcher Raum zu welchem Heizkreis gehört, legst
+   du einmal fest; hier über den Namen der Ressource.
+2. Die bestätigten Buchungen dieser Räume für die nächsten sieben Tage holen (`status_ids=[2]`; `1` sind
+   Anfragen, `3` Absagen). Wiederkehrende Buchungen kommen dabei schon als einzelne Termine.
+3. Für jede Buchung eine Heizzeit berechnen: Beginn minus Vorlauf bis Ende. Ganztägige Buchungen haben ein
+   Datum statt einer Uhrzeit und heizen den ganzen Tag.
+4. Ist der Raum jetzt in einer Heizzeit, Komfort-Temperatur setzen, sonst Absenk-Temperatur.
+
+Die Heizung selbst ist hier nur ein Platzhalter, der ausgibt, was er tun würde. In der Praxis stünde dort der
+Aufruf an die Heizungssteuerung, etwa die API von Home Assistant, ein KNX-Gateway oder die Cloud des
+Thermostat-Herstellers. Weil das Skript bei jedem Lauf den Sollwert neu aus den Buchungen ableitet, braucht es
+keinen eigenen Zustand: Wird eine Buchung verschoben oder abgesagt, stimmt die Heizung beim nächsten Lauf.
+
+Der Token-Benutzer braucht Leserechte für die Räume in der Ressourcenverwaltung.
+""",
+            python="""\
+import datetime as dt
+from zoneinfo import ZoneInfo
+
+berlin = ZoneInfo("Europe/Berlin")
+VORLAUF = dt.timedelta(hours=2)  # so lange braucht ein Raum zum Aufheizen
+KOMFORT, ABSENKUNG = 21.0, 16.0
+HEIZKREISE = {"Saal": "heizkreis-saal", "Kapelle": "heizkreis-kapelle"}  # Ressourcenname → Heizkreis
+
+
+class Heizung:
+    \"\"\"Platzhalter für die echte Heizungssteuerung.\"\"\"
+
+    def setze(self, heizkreis: str, grad: float) -> None:
+        print(f"  → {heizkreis}: {grad} °C")
+
+
+def als_zeit(wert: dt.date | dt.datetime, ende: bool = False) -> dt.datetime:
+    if isinstance(wert, dt.datetime):
+        return wert.astimezone(berlin)
+    # Ganztägig: vom Beginn des ersten bis zum Ende des letzten Tags
+    return dt.datetime.combine(wert + dt.timedelta(days=1 if ende else 0), dt.time(), berlin)
+
+
+raeume = {r.id: r.name for r in client.resources.list() if r.name in HEIZKREISE}
+heute = dt.date.today()
+buchungen = client.bookings.list(
+    resource_ids=list(raeume),
+    status_ids=[2],
+    from_=heute,
+    to=heute + dt.timedelta(days=7),
+)
+
+heizzeiten: dict[str, list[tuple[dt.datetime, dt.datetime, str]]] = {name: [] for name in raeume.values()}
+for eintrag in buchungen:
+    buchung, termin = eintrag.booking.base, eintrag.booking.calculated
+    if buchung.resource_id not in raeume:
+        continue
+    start = als_zeit(termin.start_date) - VORLAUF
+    ende = als_zeit(termin.end_date, ende=True)
+    heizzeiten[raeume[buchung.resource_id]].append((start, ende, buchung.title))
+
+jetzt = dt.datetime.now(berlin)
+heizung = Heizung()
+for raum, zeiten in heizzeiten.items():
+    print(raum)
+    for start, ende, titel in sorted(zeiten):
+        print(f"  heizen {start:%d.%m. %H:%M} – {ende:%d.%m. %H:%M}  {titel}")
+    belegt = any(start <= jetzt < ende for start, ende, _ in zeiten)
+    heizung.setze(HEIZKREISE[raum], KOMFORT if belegt else ABSENKUNG)""",
+            rust="""\
+use std::collections::HashMap;
+use churchtools_api::chrono::{DateTime, Days, Local, NaiveTime, TimeDelta, TimeZone};
+
+const KOMFORT: f64 = 21.0;
+const ABSENKUNG: f64 = 16.0;
+let vorlauf = TimeDelta::hours(2); // so lange braucht ein Raum zum Aufheizen
+let heizkreise = HashMap::from([("Saal", "heizkreis-saal"), ("Kapelle", "heizkreis-kapelle")]);
+
+/// Platzhalter für die echte Heizungssteuerung.
+fn setze_heizung(heizkreis: &str, grad: f64) {
+    println!("  → {heizkreis}: {grad} °C");
+}
+
+fn als_zeit(wert: &DateOrDateTime, ende: bool) -> DateTime<Local> {
+    match wert {
+        DateOrDateTime::DateTime(t) => t.with_timezone(&Local),
+        // Ganztägig: vom Beginn des ersten bis zum Ende des letzten Tags
+        DateOrDateTime::Date(d) => {
+            let tag = if ende { d.checked_add_days(Days::new(1)).unwrap_or(*d) } else { *d };
+            Local.from_local_datetime(&tag.and_time(NaiveTime::MIN)).earliest().unwrap_or_else(Local::now)
+        }
+    }
+}
+
+let raeume: HashMap<i64, String> = client
+    .resources()
+    .list()?
+    .into_iter()
+    .filter(|r| heizkreise.contains_key(r.name.as_str()))
+    .map(|r| (r.id, r.name))
+    .collect();
+let heute = Local::now().date_naive();
+let query = GetBookingsQuery {
+    resource_ids: Some(raeume.keys().copied().collect()),
+    status_ids: Some(vec![2]),
+    from: Some(heute),
+    to: heute.checked_add_days(Days::new(7)),
+    ..Default::default()
+};
+
+let mut heizzeiten: HashMap<&str, Vec<(DateTime<Local>, DateTime<Local>, String)>> = HashMap::new();
+for eintrag in client.bookings().list(&query)? {
+    let (buchung, termin) = (eintrag.booking.base, eintrag.booking.calculated);
+    let Some(raum) = raeume.get(&buchung.resource_id) else { continue };
+    let start = als_zeit(&termin.start_date, false) - vorlauf;
+    let ende = als_zeit(&termin.end_date, true);
+    heizzeiten.entry(raum.as_str()).or_default().push((start, ende, buchung.title));
+}
+
+let jetzt = Local::now();
+for raum in raeume.values() {
+    println!("{raum}");
+    let mut zeiten = heizzeiten.remove(raum.as_str()).unwrap_or_default();
+    zeiten.sort();
+    for (start, ende, titel) in &zeiten {
+        println!("  heizen {} – {}  {titel}", start.format("%d.%m. %H:%M"), ende.format("%d.%m. %H:%M"));
+    }
+    let belegt = zeiten.iter().any(|(start, ende, _)| *start <= jetzt && jetzt < *ende);
+    setze_heizung(heizkreise[raum.as_str()], if belegt { KOMFORT } else { ABSENKUNG });
+}""",
+        ),
+        Section(
             "projekt-neue-person",
             "Neue Person anlegen und in eine Gruppe aufnehmen",
             """

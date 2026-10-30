@@ -369,8 +369,78 @@ fn guide_projekt_csv() {
     example_17(&replay_client()).unwrap();
 }
 
-// guide: projekt-neue-person
+// guide: projekt-heizung
 fn example_18(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+    use std::collections::HashMap;
+    use churchtools_api::chrono::{DateTime, Days, Local, NaiveTime, TimeDelta, TimeZone};
+
+    const KOMFORT: f64 = 21.0;
+    const ABSENKUNG: f64 = 16.0;
+    let vorlauf = TimeDelta::hours(2); // so lange braucht ein Raum zum Aufheizen
+    let heizkreise = HashMap::from([("Saal", "heizkreis-saal"), ("Kapelle", "heizkreis-kapelle")]);
+
+    /// Platzhalter für die echte Heizungssteuerung.
+    fn setze_heizung(heizkreis: &str, grad: f64) {
+        println!("  → {heizkreis}: {grad} °C");
+    }
+
+    fn als_zeit(wert: &DateOrDateTime, ende: bool) -> DateTime<Local> {
+        match wert {
+            DateOrDateTime::DateTime(t) => t.with_timezone(&Local),
+            // Ganztägig: vom Beginn des ersten bis zum Ende des letzten Tags
+            DateOrDateTime::Date(d) => {
+                let tag = if ende { d.checked_add_days(Days::new(1)).unwrap_or(*d) } else { *d };
+                Local.from_local_datetime(&tag.and_time(NaiveTime::MIN)).earliest().unwrap_or_else(Local::now)
+            }
+        }
+    }
+
+    let raeume: HashMap<i64, String> = client
+        .resources()
+        .list()?
+        .into_iter()
+        .filter(|r| heizkreise.contains_key(r.name.as_str()))
+        .map(|r| (r.id, r.name))
+        .collect();
+    let heute = Local::now().date_naive();
+    let query = GetBookingsQuery {
+        resource_ids: Some(raeume.keys().copied().collect()),
+        status_ids: Some(vec![2]),
+        from: Some(heute),
+        to: heute.checked_add_days(Days::new(7)),
+        ..Default::default()
+    };
+
+    let mut heizzeiten: HashMap<&str, Vec<(DateTime<Local>, DateTime<Local>, String)>> = HashMap::new();
+    for eintrag in client.bookings().list(&query)? {
+        let (buchung, termin) = (eintrag.booking.base, eintrag.booking.calculated);
+        let Some(raum) = raeume.get(&buchung.resource_id) else { continue };
+        let start = als_zeit(&termin.start_date, false) - vorlauf;
+        let ende = als_zeit(&termin.end_date, true);
+        heizzeiten.entry(raum.as_str()).or_default().push((start, ende, buchung.title));
+    }
+
+    let jetzt = Local::now();
+    for raum in raeume.values() {
+        println!("{raum}");
+        let mut zeiten = heizzeiten.remove(raum.as_str()).unwrap_or_default();
+        zeiten.sort();
+        for (start, ende, titel) in &zeiten {
+            println!("  heizen {} – {}  {titel}", start.format("%d.%m. %H:%M"), ende.format("%d.%m. %H:%M"));
+        }
+        let belegt = zeiten.iter().any(|(start, ende, _)| *start <= jetzt && jetzt < *ende);
+        setze_heizung(heizkreise[raum.as_str()], if belegt { KOMFORT } else { ABSENKUNG });
+    }
+    Ok(())
+}
+
+#[test]
+fn guide_projekt_heizung() {
+    example_18(&replay_client()).unwrap();
+}
+
+// guide: projekt-neue-person
+fn example_19(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let body = models::PostPersonsBody {
         department_ids: vec![1],
         first_name: Some("Ben".into()),
@@ -391,11 +461,11 @@ fn example_18(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_neue_person() {
-    example_18(&replay_client()).unwrap();
+    example_19(&replay_client()).unwrap();
 }
 
 // guide: demo-instanz
-fn example_19(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_20(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use std::{env, time::Duration};
 
     let demo = Client::new(&env::var("CT_URL")?, None)?.with_min_interval(Duration::from_millis(250));
