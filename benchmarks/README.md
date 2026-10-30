@@ -126,6 +126,51 @@ vielen Anfragen sichtbar wird, bei echten Instanzen aber in der Netzwerkzeit ver
 Paket so schnell wie die beste reine Python-Variante, nicht schneller. Die eigentlichen Vorteile des Kerns für Python
 sind Retry, Rate-Limit, Paginierung und Fehlerbehandlung an einer Stelle, weniger die Geschwindigkeit.
 
+### Warum das Dekodieren in Pydantic bleibt
+
+Naheliegend wäre, die Antworten im Rust-Kern zu dekodieren (3× schneller als Pydantic) und Python fertige Objekte zu
+geben. Eine Aufschlüsselung der Dekodierzeit einer Listenseite (500 Personen, 866 KB; Python 3.14.8, pydantic 2.14.1,
+Messung vom 30.10.2026 auf derselben Maschine) zeigt, dass das nicht viel brächte:
+
+| Variante | Zeit |
+|---|---:|
+| Pydantic `validate_json` in die generierten Modelle (so macht es das Paket) | 5,0 ms |
+| dasselbe ohne `extra="allow"`, ohne `coerce_numbers_to_str`, ohne die `BeforeValidator` für Nulldatum und `[]`, ohne `Literal`-Unions | je 4,8 ms |
+| Pydantic-Modelle, alle Felder `Any` (keine Typprüfung, nur Objekte bauen) | 3,5 ms |
+| Modelle ohne Validierung aus `orjson`-Dicts zusammensetzen (`__new__` + `__dict__`, ohne Datumstypen) | 2,2 ms |
+| `orjson.loads`, nur Dicts und Listen | 1,7 ms |
+| Rust `serde` (keine Python-Objekte) | 2,1 ms |
+
+Die Toleranzregeln und die Modellkonfiguration kosten zusammen unter 5 %. Rund 3,5 ms der 5 ms gehen dafür drauf,
+die Python-Objekte überhaupt zu erzeugen, und das muss jeder Ansatz tun, der Pydantic-Modelle liefert; pydantic-core
+ist selbst in Rust geschrieben und dabei schon nahe am Minimum. Ein eigener Weg Rust → Python-Objekte würde bestenfalls
+bei 2,5–3 ms landen (höchstens 1,7× beim Dekodieren, etwa 1,3× bei `list_persons`), müsste dafür die Validierung
+umgehen und für alle 1110 Modelle eine Abbildung Rust-Struct → Pydantic-Modell pflegen, bei der Unions in Rust
+untypisiert sind. Deutlich schneller würde Python nur, wenn das Paket keine Pydantic-Modelle mehr liefert, sondern
+Rust-Objekte mit Attributzugriff (etwa 2 ms je Seite). Das wäre eine andere Python-API.
+
+### Vorausladen der nächsten Seite
+
+Was der Rust-Kern Python stattdessen bringt: Ab der zweiten Seite fordert er die jeweils nächste Seite in einem
+Thread an, während Python die aktuelle dekodiert und verarbeitet. Die Netzwerkzeit überlappt so mit der Python-Zeit;
+das geht nur vom Kern aus, weil ein Python-Thread dafür erst den GIL bekommen müsste, den Pydantic während des
+Dekodierens hält. Gemessen gegen einen lokalen Server mit künstlicher Latenz (10 Seiten à 500 Personen, Python 3.14.8;
+„Arbeit“ ist eine Warteschleife pro Element im Nutzercode):
+
+| Latenz je Anfrage | Arbeit je Element | ohne Vorausladen | mit Vorausladen | Ersparnis |
+|---:|---:|---:|---:|---:|
+| 20 ms | 0 µs | 256 ms | 219 ms | 15 % |
+| 20 ms | 10 µs | 307 ms | 228 ms | 25 % |
+| 20 ms | 50 µs | 509 ms | 343 ms | 33 % |
+| 200 ms | 0 µs | 2061 ms | 2018 ms | 2 % |
+| 200 ms | 10 µs | 2108 ms | 2028 ms | 4 % |
+| 200 ms | 50 µs | 2310 ms | 2068 ms | 10 % |
+
+Die Gesamtzeit nähert sich dem Maximum aus Netzwerkzeit und Python-Zeit je Seite statt ihrer Summe. Bei einer echten
+Instanz, die für eine Seite mehrere hundert Millisekunden braucht, bleibt die Ersparnis klein, solange der Nutzercode
+wenig pro Element tut; sie wächst mit der Verarbeitung pro Element. Auf Loopback ändert sich nichts Messbares
+(`list_persons`: 56 ms). `prefetch(False)` schaltet das Vorausladen ab.
+
 ## Grenzen
 
 - Nur Loopback, ohne TLS. Mit HTTPS kämen Handshake (einmal je Verbindung) und Verschlüsselung dazu, für rustls und

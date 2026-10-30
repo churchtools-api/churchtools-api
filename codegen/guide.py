@@ -330,13 +330,19 @@ let text = serde_json::to_string(&person)?;""",
             """
 Große Listen liefert ChurchTools seitenweise. Der Client blättert für dich:
 
-- In **Python** bekommst du einen `Paginator`. Er lädt die nächste Seite erst, wenn du sie brauchst.
-  Brichst du die Schleife ab, werden keine weiteren Seiten geladen. `first()` holt nur das erste
-  Element, `to_list()` alles.
+- In **Python** bekommst du einen `Paginator`. Er lädt Seiten erst, wenn du sie brauchst: `first()`
+  holt nur das erste Element, `to_list()` alles. Brichst du die Schleife ab, werden keine weiteren
+  Seiten geladen.
 - In **Rust** liefert `list()` gleich einen `Vec` mit allen Einträgen. `list_iter(&query)` lädt dagegen
   wie in Python erst beim Iterieren nach; jedes Element ist ein `Result`.
 
 Mit `limit` bestimmst du, wie viele Einträge pro Seite geladen werden (höchstens 100).
+
+Ab der zweiten Seite fordert der Client die jeweils nächste Seite in einem Hintergrund-Thread an,
+während du die aktuelle verarbeitest. Die Wartezeit auf den Server überlappt so mit dem Dekodieren
+und deiner Verarbeitung. Brichst du eine Schleife mitten in einer späteren Seite ab, kann dadurch
+eine Anfrage mehr unterwegs sein; ihre Antwort wird verworfen. Mit `.prefetch(False)` (Python) bzw.
+`.prefetch(false)` (Rust) wird jede Seite erst angefordert, wenn sie gebraucht wird.
 
 Die Seiten werden nacheinander abgerufen. Ändert sich die Liste währenddessen, etwa weil
 jemand eine Person anlegt oder löscht, kann ein Eintrag doppelt vorkommen oder fehlen. Für

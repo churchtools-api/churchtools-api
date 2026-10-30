@@ -229,6 +229,8 @@ class Paginator(_t.Generic[T]):
     """Lazily iterates over all items of a paginated endpoint.
 
     Pages are requested only as far as you iterate; `limit` sets the page size.
+    From the second page on, the next page is requested in a background thread
+    while the current one is decoded and processed, see `prefetch`.
     Pages are fetched one by one with offsets: if entries are added or removed
     meanwhile, an entry can show up twice or be skipped. An empty page ends the
     iteration.
@@ -239,14 +241,29 @@ class Paginator(_t.Generic[T]):
         self._path = path
         self._query = query
         self._item = item
+        self._prefetch = True
+
+    def prefetch(self, enabled: bool = True) -> Paginator[T]:
+        """Whether the next page is requested in the background while the current
+        one is being used (the default), so that the network wait overlaps with
+        decoding and processing.
+
+        The first page is always requested on its own, so `first()` costs a
+        single request. From the second page on, leaving the loop early can
+        leave one more request in flight; it finishes in the background and its
+        response is discarded. With `False`, every page is requested only when
+        it is needed.
+        """
+        self._prefetch = enabled
+        return self
 
     def __iter__(self) -> _t.Iterator[T]:
-        for page in self._core.pages(self._path, self._query):
+        for page in self._core.pages(self._path, self._query, self._prefetch):
             yield from _parse(page, _t.List[self._item], True)  # type: ignore[name-defined]
 
     def pages(self) -> _t.Iterator[_t.List[T]]:
         """Iterates page by page instead of item by item."""
-        for page in self._core.pages(self._path, self._query):
+        for page in self._core.pages(self._path, self._query, self._prefetch):
             yield _parse(page, _t.List[self._item], True)  # type: ignore[name-defined]
 
     def to_list(self) -> _t.List[T]:

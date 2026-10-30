@@ -163,9 +163,12 @@ mod _core {
         }
 
         /// Iterates over the raw bodies of all pages of a paginated GET endpoint.
-        fn pages(&self, path: &str, query: Vec<(String, String)>) -> Pages {
+        /// With `prefetch`, the next page is requested in a background thread
+        /// (from the second page on) while Python works on the current one.
+        #[pyo3(signature = (path, query, prefetch=true))]
+        fn pages(&self, path: &str, query: Vec<(String, String)>, prefetch: bool) -> Pages {
             Pages {
-                inner: self.inner.pages(path, query),
+                inner: self.inner.pages(path, query).prefetch(prefetch),
             }
         }
     }

@@ -23,6 +23,9 @@ Erste Veröffentlichung. Generiert aus der API-Beschreibung von ChurchTools 3.13
   abgelehnt; Antwortgröße begrenzt (256 MiB).
 - Rate-Limit (`min_interval`) und Wiederholungen: `429` nach `Retry-After` (Sekunden oder Datum), `502`/`503`/`504`
   für idempotente Methoden, Verbindungsfehler einmal.
+- Paginierung: ab der zweiten Seite wird die nächste Seite in einem Hintergrund-Thread angefordert, während die
+  aktuelle dekodiert und verarbeitet wird; `prefetch(false)` auf `Pages`/`Items` (Rust) und `prefetch(False)` auf
+  `Paginator` (Python) schalten das ab.
 - Toleranzregeln für Abweichungen der API von der Spec (Zahlen als String, PHP-Nulldatum, `[]` als leeres Objekt,
   Array-Parameter mit `[]`, leere 204-Antworten) und Einzelkorrekturen aus den Live-Tests.
 - Datei-Uploads (`Upload`), `login_with_password`, veraltete Endpunkte und Argumente markiert

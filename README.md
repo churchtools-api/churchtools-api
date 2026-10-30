@@ -63,7 +63,7 @@ Details stehen in der Doku unter „Installation“.
 | Sicherheit | nur `https://` (Ausnahme: `localhost`); Token erscheint nicht in Debug-Ausgaben oder Fehlermeldungen; Weiterleitungen, die ein POST in ein GET verwandeln würden, werden nicht verfolgt |
 | Rate-Limit und Wiederholungen | `min_interval` als Mindestabstand zwischen Anfragen; `429` wird nach `Retry-After` wiederholt, `502`/`503`/`504` für idempotente Methoden |
 | Zeitlimits | `timeout` (30 s), `connect_timeout` (10 s), `max_response_size` (256 MiB) |
-| Paginierung | Listen werden seitenweise nachgeladen, sobald man sie durchläuft |
+| Paginierung | Listen werden seitenweise nachgeladen, sobald man sie durchläuft; ab der zweiten Seite wird die nächste im Hintergrund angefordert (`prefetch(False)` schaltet das ab) |
 | Fehler | Python: `NotFound`, `Unauthorized`, `Forbidden`, `UnprocessableEntity`, … mit `message`, `message_key`, `errors`; Rust: `Error` mit `is_not_found()`, `status()`, `api()` |
 | Typen | Python: Pydantic-Modelle, unbekannte Felder in `model_extra`; Rust: serde-Structs mit `extra` |
 | Abweichungen der API von der Spec | werden ausgeglichen, z. B. Zahlen als String, PHP-Nulldatum, `[]` für ein leeres Objekt, Array-Parameter mit `[]` |

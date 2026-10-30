@@ -133,6 +133,34 @@ def test_pagination_fetches_all_pages_lazily(client: ct.Client) -> None:
     assert FakeServer.requests[0]["auth"] == "Login secret"
 
 
+def _wait_for_requests(n: int) -> None:
+    deadline = time.monotonic() + 5
+    while len(FakeServer.requests) < n and time.monotonic() < deadline:
+        time.sleep(0.005)
+
+
+def test_prefetch_requests_the_next_page_in_the_background(client: ct.Client) -> None:
+    # The first page alone costs a single request.
+    pages = client.persons.list(limit=2).pages()
+    assert [p.id for p in next(pages)] == [10, 11]
+    time.sleep(0.05)
+    assert [r["query"]["page"] for r in FakeServer.requests] == [["1"]]
+    # From the second page on, the next one is requested while the current one is in use.
+    assert [p.id for p in next(pages)] == [20, 21]
+    _wait_for_requests(3)
+    assert [r["query"]["page"] for r in FakeServer.requests] == [["1"], ["2"], ["3"]]
+    assert [p.id for p in next(pages)] == [30, 31]
+    assert next(pages, None) is None
+
+    # Without prefetching, every page is requested only when it is needed.
+    FakeServer.requests.clear()
+    pages = client.persons.list(limit=2).prefetch(False).pages()
+    next(pages)
+    next(pages)
+    time.sleep(0.05)
+    assert [r["query"]["page"] for r in FakeServer.requests] == [["1"], ["2"]]
+
+
 def test_typed_fields_and_unknown_fields(client: ct.Client) -> None:
     person = client.persons.get(7)
     assert isinstance(person, ct.models.Person)

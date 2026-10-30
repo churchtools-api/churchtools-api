@@ -137,6 +137,14 @@ beides sein. Man braucht zwei Klassen, etwa `Client` und `AsyncClient`. In Rust 
 
 Ein späterer Async-Client lässt sich also ergänzen, ohne die synchrone API zu verändern.
 
+**Threads.** `Client` ist `Send + Sync` und lässt sich klonen (die Verbindungen und das Rate-Limit werden geteilt).
+Aus Python heraus gibt der Kern während jeder Anfrage den GIL frei, mehrere Python-Threads können also denselben
+Client gleichzeitig benutzen. Der Kern selbst startet Threads nur beim Vorausladen von Seiten (`PageFetcher` in
+`core/src/client.rs`): ab der zweiten Seite wird die jeweils nächste in einem kurzlebigen Thread angefordert, während
+der Aufrufer die aktuelle verarbeitet; in Python überlappt so die Netzwerkzeit mit der Pydantic-Dekodierung.
+Was das bringt und warum das Dekodieren trotzdem in Pydantic bleibt, steht in
+[`benchmarks/README.md`](../benchmarks/README.md).
+
 ## Öffentliche API und Stabilität
 
 - Die Abhängigkeiten des HTTP-Stacks (reqwest, rustls) sind nicht Teil der öffentlichen Rust-API: Anfragen nehmen

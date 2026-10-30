@@ -1,4 +1,5 @@
 use std::sync::{Arc, Mutex};
+use std::thread::JoinHandle;
 use std::time::{Duration, Instant};
 
 use percent_encoding::{AsciiSet, NON_ALPHANUMERIC, percent_decode_str, utf8_percent_encode};
@@ -551,14 +552,11 @@ impl Client {
     /// or after the first page if the response carries no pagination info.
     ///
     /// Pages are fetched one by one with offsets: if entries are added or
-    /// removed meanwhile, an entry can show up twice or be skipped.
+    /// removed meanwhile, an entry can show up twice or be skipped. From the
+    /// second page on, the next page is requested in a background thread while
+    /// the current one is being used, see [`Pages::prefetch`].
     pub fn pages(&self, path: &str, query: Query) -> Pages {
-        Pages {
-            client: self.clone(),
-            path: path.to_owned(),
-            query: query.into_iter().filter(|(k, _)| k != "page").collect(),
-            next_page: Some(1),
-        }
+        Pages { fetcher: PageFetcher::new(self, path, query) }
     }
 
     /// Fetches all pages and concatenates their `data` arrays.
@@ -571,56 +569,119 @@ impl Client {
     ///
     /// Ends after the first error; the same rules as for [`Client::pages`] apply.
     pub fn items<T: DeserializeOwned>(&self, path: &str, query: Query) -> Items<T> {
-        Items {
-            client: self.clone(),
+        Items { fetcher: PageFetcher::new(self, path, query), buffer: Vec::new().into_iter() }
+    }
+}
+
+/// Requests the pages of a paginated GET endpoint one after another; the
+/// shared part of [`Pages`] and [`Items`].
+struct PageFetcher {
+    client: Client,
+    path: String,
+    query: Query,
+    /// The page to hand out next, or `None` after the last page.
+    pending: Option<Pending>,
+    /// Pages handed out so far.
+    handed_out: u64,
+    prefetch: bool,
+}
+
+enum Pending {
+    /// Not requested yet.
+    Page(u64),
+    /// Being requested in a background thread.
+    Spawned(u64, JoinHandle<Result<Vec<u8>>>),
+}
+
+impl PageFetcher {
+    fn new(client: &Client, path: &str, query: Query) -> Self {
+        Self {
+            client: client.clone(),
             path: path.to_owned(),
             query: query.into_iter().filter(|(k, _)| k != "page").collect(),
-            next_page: Some(1),
-            buffer: Vec::new().into_iter(),
+            pending: Some(Pending::Page(1)),
+            handed_out: 0,
+            prefetch: true,
         }
     }
 
-    /// One page: its items and the number of the next page, if any.
-    fn fetch_page<T: DeserializeOwned>(&self, path: &str, query: &Query, page: u64) -> Result<(Vec<T>, Option<u64>)> {
-        #[derive(Deserialize)]
-        struct Page<T> {
-            data: Vec<T>,
-            // Kept loose: an unexpected `meta` only ends the pagination.
-            meta: Option<serde_json::Value>,
-        }
-        let mut page_query = query.clone();
-        page_query.push(("page".into(), page.to_string()));
-        // One pass over the body for both the items and the page info.
-        let body: Page<T> = decode(&self.request(Method::Get, path, &page_query, None)?)?;
-        let meta = body.meta.and_then(|m| serde_json::from_value(m).ok());
-        let next = next_page(meta, !body.data.is_empty(), page);
-        Ok((body.data, next))
+    /// Number and body of the next page, or `None` after the last one. The
+    /// caller decides with [`PageFetcher::advance`] which page follows.
+    fn fetch(&mut self) -> Option<(u64, Result<Vec<u8>>)> {
+        let (page, result) = match self.pending.take()? {
+            Pending::Page(page) => (page, request_page(&self.client, &self.path, &self.query, page)),
+            Pending::Spawned(page, handle) => {
+                (page, handle.join().unwrap_or_else(|panic| std::panic::resume_unwind(panic)))
+            }
+        };
+        self.handed_out += 1;
+        Some((page, result))
     }
+
+    /// Sets the page that follows. From the second page on it is requested
+    /// right away in a background thread, so that the network wait overlaps
+    /// with the use of the current page. After the first page it is not, so
+    /// that taking only the first page costs a single request.
+    fn advance(&mut self, next: Option<u64>) {
+        self.pending = next.map(|page| {
+            if !self.prefetch || self.handed_out < 2 {
+                return Pending::Page(page);
+            }
+            let (client, path, query) = (self.client.clone(), self.path.clone(), self.query.clone());
+            let thread = std::thread::Builder::new().name("churchtools-api prefetch".into());
+            match thread.spawn(move || request_page(&client, &path, &query, page)) {
+                Ok(handle) => Pending::Spawned(page, handle),
+                // Without a thread the page is simply requested when it is needed.
+                Err(_) => Pending::Page(page),
+            }
+        });
+    }
+}
+
+fn request_page(client: &Client, path: &str, query: &Query, page: u64) -> Result<Vec<u8>> {
+    let mut query = query.clone();
+    query.push(("page".into(), page.to_string()));
+    client.request(Method::Get, path, &query, None)
 }
 
 /// Iterator returned by [`Client::items`] and the generated `…_iter` methods.
 pub struct Items<T> {
-    client: Client,
-    path: String,
-    query: Query,
-    next_page: Option<u64>,
+    fetcher: PageFetcher,
     buffer: std::vec::IntoIter<T>,
+}
+
+impl<T> Items<T> {
+    /// Whether the next page is requested in the background while the current
+    /// one is being used (the default); see [`Pages::prefetch`].
+    pub fn prefetch(mut self, enabled: bool) -> Self {
+        self.fetcher.prefetch = enabled;
+        self
+    }
 }
 
 impl<T: DeserializeOwned> Iterator for Items<T> {
     type Item = Result<T>;
 
     fn next(&mut self) -> Option<Self::Item> {
+        #[derive(Deserialize)]
+        struct Page<T> {
+            data: Vec<T>,
+            // Kept loose: an unexpected `meta` only ends the pagination.
+            meta: Option<serde_json::Value>,
+        }
         loop {
             if let Some(item) = self.buffer.next() {
                 return Some(Ok(item));
             }
-            let page = self.next_page.take()?;
-            match self.client.fetch_page(&self.path, &self.query, page) {
-                Ok((items, next)) => {
-                    self.buffer = items.into_iter();
-                    self.next_page = next;
+            let (page, result) = self.fetcher.fetch()?;
+            // One pass over the body for both the items and the page info.
+            match result.and_then(|bytes| decode::<Page<T>>(&bytes)) {
+                Ok(body) => {
+                    let meta = body.meta.and_then(|m| serde_json::from_value(m).ok());
+                    self.fetcher.advance(next_page(meta, !body.data.is_empty(), page));
+                    self.buffer = body.data.into_iter();
                 }
+                // Nothing is pending any more: the iteration ends after an error.
                 Err(e) => return Some(Err(e)),
             }
         }
@@ -629,22 +690,32 @@ impl<T: DeserializeOwned> Iterator for Items<T> {
 
 /// Iterator returned by [`Client::pages`].
 pub struct Pages {
-    client: Client,
-    path: String,
-    query: Query,
-    next_page: Option<u64>,
+    fetcher: PageFetcher,
+}
+
+impl Pages {
+    /// Whether the next page is requested in a background thread while the
+    /// current one is being used (the default), so that the network wait
+    /// overlaps with decoding and processing.
+    ///
+    /// The first page is always requested on its own, so that taking only the
+    /// first page costs a single request. From the second page on, stopping
+    /// early can leave one more request in flight; it finishes in the
+    /// background and its response is discarded. With `false`, every page is
+    /// requested only when it is needed.
+    pub fn prefetch(mut self, enabled: bool) -> Self {
+        self.fetcher.prefetch = enabled;
+        self
+    }
 }
 
 impl Iterator for Pages {
     type Item = Result<Vec<u8>>;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let page = self.next_page.take()?;
-        let mut query = self.query.clone();
-        query.push(("page".into(), page.to_string()));
-        let result = self.client.request(Method::Get, &self.path, &query, None);
+        let (page, result) = self.fetcher.fetch()?;
         if let Ok(bytes) = &result {
-            self.next_page = next_page_number(bytes, page);
+            self.fetcher.advance(next_page_number(bytes, page));
         }
         Some(result)
     }
@@ -1056,12 +1127,41 @@ mod tests {
         };
         let (url, seen) = serve(vec![page(1, "1,2"), page(2, "3"), page(3, "4")]);
         let client = Client::new(&url, None).unwrap();
-        let first: Vec<i64> = client.items("/x", vec![]).take(3).collect::<Result<_>>().unwrap();
+        let items = client.items("/x", vec![]).prefetch(false);
+        let first: Vec<i64> = items.take(3).collect::<Result<_>>().unwrap();
         assert_eq!(first, [1, 2, 3]);
         assert_eq!(*seen.lock().unwrap(), ["GET /api/x?page=1", "GET /api/x?page=2"]);
         // An error ends the iteration.
         let (url, _) = serve(vec![reply("404 Not Found", "", "{}")]);
         let mut items = Client::new(&url, None).unwrap().items::<i64>("/x", vec![]);
+        assert!(matches!(items.next(), Some(Err(Error::Api(_)))));
+        assert!(items.next().is_none());
+    }
+
+    #[test]
+    fn prefetch_starts_after_the_second_page() {
+        let page = |c: u64, items: &str| {
+            reply("200 OK", "", &format!(r#"{{"data":[{items}],"meta":{{"pagination":{{"current":{c},"lastPage":4}}}}}}"#))
+        };
+        // Only the first page is used: nothing else is requested.
+        let (url, seen) = serve(vec![page(1, "1,2"), page(2, "3")]);
+        let client = Client::new(&url, None).unwrap();
+        let mut pages = client.pages("/x", vec![]);
+        assert!(pages.next().unwrap().is_ok());
+        drop(pages);
+        std::thread::sleep(Duration::from_millis(50));
+        assert_eq!(*seen.lock().unwrap(), ["GET /api/x?page=1"]);
+        // Page 3 is requested in the background once page 2 is handed out, and
+        // an error there shows up in its place.
+        let (url, seen) = serve(vec![page(1, "1,2"), page(2, "3"), reply("404 Not Found", "", "{}")]);
+        let client = Client::new(&url, None).unwrap();
+        let mut items = client.items::<i64>("/x", vec![]);
+        assert_eq!(items.by_ref().take(3).collect::<Result<Vec<_>>>().unwrap(), [1, 2, 3]);
+        let deadline = Instant::now() + Duration::from_secs(5);
+        while seen.lock().unwrap().len() < 3 && Instant::now() < deadline {
+            std::thread::sleep(Duration::from_millis(5));
+        }
+        assert_eq!(seen.lock().unwrap().len(), 3);
         assert!(matches!(items.next(), Some(Err(Error::Api(_)))));
         assert!(items.next().is_none());
     }
