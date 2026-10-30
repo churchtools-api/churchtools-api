@@ -321,14 +321,15 @@ class Schemas:
         return opt(t) if nullable else t
 
 
-_canon_cache: dict[int, str] = {}
+# Keyed by id(); the entry keeps the object alive, so its id cannot be reused by another object.
+_canon_cache: dict[int, tuple[object, str]] = {}
 
 
 def canon(s) -> str:
     key = id(s)
     if key not in _canon_cache:
-        _canon_cache[key] = json.dumps(s, sort_keys=True)
-    return _canon_cache[key]
+        _canon_cache[key] = (s, json.dumps(s, sort_keys=True))
+    return _canon_cache[key][1]
 
 
 def prim(t: str | None, s: dict) -> T:
