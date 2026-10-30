@@ -97,6 +97,12 @@ Doku-Seite und die Tests:
 [`benchmarks/`](../benchmarks/README.md) misst einige typische Aufrufe offline gegen einen lokalen Server, in Rust und
 Python, und vergleicht das Python-Paket mit reinen Python-Clients (requests, httpx, urllib3).
 
+Ergebnis in Kürze: Der Rust-Transport macht einzelne Anfragen aus Python 2–6× billiger; bei großen Listen bestimmt
+Pydantic die Zeit, und Rust kann daran nichts ändern, solange Python Pydantic-Modelle bekommt, weil das Erzeugen der
+Python-Objekte (nicht die Validierung) den größten Teil kostet. Die Alternative, Rust-Objekte statt Pydantic-Modelle zu
+liefern, wurde geprüft und verworfen: etwa doppelt so schnelles Dekodieren, aber eine andere Python-API ohne die
+Pydantic-Oberfläche. Was der Kern stattdessen beiträgt, ist das Vorausladen der nächsten Seite.
+
 ### Tests gegen eine echte Instanz
 
 ChurchTools bietet eine kostenlose [Test-Instanz](https://church.tools/en/test-churchtools/) an, die nach drei Tagen

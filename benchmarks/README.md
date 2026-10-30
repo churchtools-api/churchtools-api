@@ -147,7 +147,10 @@ ist selbst in Rust geschrieben und dabei schon nahe am Minimum. Ein eigener Weg 
 bei 2,5–3 ms landen (höchstens 1,7× beim Dekodieren, etwa 1,3× bei `list_persons`), müsste dafür die Validierung
 umgehen und für alle 1110 Modelle eine Abbildung Rust-Struct → Pydantic-Modell pflegen, bei der Unions in Rust
 untypisiert sind. Deutlich schneller würde Python nur, wenn das Paket keine Pydantic-Modelle mehr liefert, sondern
-Rust-Objekte mit Attributzugriff (etwa 2 ms je Seite). Das wäre eine andere Python-API.
+Rust-Objekte mit Attributzugriff (etwa 2 ms je Seite). Das wäre eine andere Python-API: ohne `model_dump`,
+`model_validate`, JSON-Schema und Pydantic-Integration, mit untypisierten Unions und einer deutlich größeren
+Erweiterung. Entscheidung: Das Paket bleibt bei Pydantic; Geschwindigkeit bei lokaler Massenverarbeitung ist nicht
+sein Ziel.
 
 ### Vorausladen der nächsten Seite
 

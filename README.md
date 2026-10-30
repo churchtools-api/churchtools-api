@@ -116,6 +116,12 @@ Das Projekt ist jung und experimentell. Was bisher geschehen ist und was geplant
 - **Größe:** `models.py` und `_resources.py` haben je über 20 000 Zeilen; `import churchtools_api` dauert etwa 0,3 s.
 - **Sprache:** Die Doku ist deutsch, die Beschreibungen aus der Spec (Hover-Texte, Referenz) sind englisch.
 - **Nur synchron:** Einen Async-Client gibt es noch nicht; er ließe sich ergänzen, ohne die synchrone API zu ändern.
+- **Geschwindigkeit in Python:** Einzelne Anfragen sind durch den Rust-Transport 2–6× billiger als mit requests oder
+  httpx; bei großen Listen bestimmt das Dekodieren in Pydantic-Modelle die Zeit, und das Paket ist dort so schnell wie
+  eine gute reine Python-Lösung, nicht schneller. Rust kann daran nichts ändern, solange Python echte Pydantic-Modelle
+  bekommt (der größte Posten ist das Erzeugen der Python-Objekte, nicht die Validierung); das ist eine bewusste
+  Entscheidung. Gegen eine echte Instanz verschwindet beides ohnehin in der Netzwerkzeit, siehe
+  [`benchmarks/README.md`](benchmarks/README.md).
 
 ## Mitmachen
 
