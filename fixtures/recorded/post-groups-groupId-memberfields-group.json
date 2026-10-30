@@ -2,7 +2,7 @@
  "operation": "post-groups-groupId-memberfields-group",
  "request": {
   "method": "POST",
-  "path": "/groups/922/memberfields/group",
+  "path": "/groups/967/memberfields/group",
   "query": [],
   "body": {
    "fieldTypeCode": "text",
@@ -14,8 +14,8 @@
  },
  "body": {
   "data": {
-   "id": 769,
-   "groupId": 922,
+   "id": 772,
+   "groupId": 967,
    "name": "T-Shirt-Größe",
    "referenceName": "t-shirt-groesse",
    "note": null,

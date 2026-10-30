@@ -233,7 +233,7 @@ def test_post_with_comment(client: LiveClient, me: int, cleanup: Cleanup) -> Non
 
 MASTERDATA: dict[str, tuple[dict[str, _t.Any], dict[str, _t.Any], dict[str, _t.Any]]] = {
     "campuses": ({"shorty": "T"}, {"shorty": "T2"}, {}),
-    "contactlabels": ({"is_default": False, "sort_key": 999}, {"is_default": False, "sort_key": 998}, {}),
+    "contact_labels": ({"is_default": False, "sort_key": 999}, {"is_default": False, "sort_key": 998}, {}),
     "statuses": ({"security_level_id": 1, "shorty": "T"}, {"security_level_id": 1, "shorty": "T2"}, {}),
     "person.sexes": ({}, {}, {}),
     "person.grow_paths": ({"color": "red"}, {"color": "blue"}, {}),

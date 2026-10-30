@@ -2,7 +2,7 @@
  "operation": "post-persons-personId-followups",
  "request": {
   "method": "POST",
-  "path": "/persons/2929/followups",
+  "path": "/persons/2953/followups",
   "query": [],
   "body": {
    "ownerId": 1,
@@ -11,8 +11,8 @@
  },
  "body": {
   "data": {
-   "id": 40,
-   "personId": 2929,
+   "id": 52,
+   "personId": 2953,
    "groupId": null,
    "membershipId": null,
    "title": "Nachfragen, wie es geht",
@@ -29,11 +29,11 @@
    "effectiveDueDate": null,
    "doneDate": null,
    "meta": {
-    "createdDate": "2026-10-28T23:35:07Z",
+    "createdDate": "2026-10-30T16:06:52Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:07Z",
+    "modifiedDate": "2026-10-30T16:06:52Z",
     "modifiedPerson": {
      "id": 1
     }

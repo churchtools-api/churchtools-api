@@ -5,26 +5,26 @@
   "path": "/resourcetypes",
   "query": [],
   "body": {
-   "name": "ctrs-test resourcetypes fa93a7",
+   "name": "ctrs-test resource_types 14c190",
    "namePlural": "Testräume",
    "sortKey": 999
   }
  },
  "body": {
   "data": {
-   "id": 22,
-   "name": "ctrs-test resourcetypes fa93a7",
-   "nameTranslated": "ctrs-test resourcetypes fa93a7",
+   "id": 25,
+   "name": "ctrs-test resource_types 14c190",
+   "nameTranslated": "ctrs-test resource_types 14c190",
    "sortKey": 999,
    "namePlural": "Testräume",
    "namePluralTranslated": "Testräume",
    "campusId": null,
    "meta": {
-    "createdDate": "2026-10-28T23:34:45Z",
+    "createdDate": "2026-10-30T16:06:30Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:45Z",
+    "modifiedDate": "2026-10-30T16:06:30Z",
     "modifiedPerson": {
      "id": 1
     }

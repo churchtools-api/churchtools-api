@@ -2,20 +2,20 @@
  "operation": "put-person-relationshiptypes-id",
  "request": {
   "method": "PUT",
-  "path": "/person/relationshiptypes/25",
+  "path": "/person/relationshiptypes/31",
   "query": [],
   "body": {
    "degreeNameA": "Patin",
    "degreeNameB": "Patenkind",
-   "name": "ctrs-test relationshiptypes a2c4d5 neu",
+   "name": "ctrs-test relationship_types 489e0d neu",
    "securityLevelId": 1
   }
  },
  "body": {
   "data": {
-   "id": 25,
-   "name": "ctrs-test relationshiptypes a2c4d5 neu",
-   "nameTranslated": "ctrs-test relationshiptypes a2c4d5 neu",
+   "id": 31,
+   "name": "ctrs-test relationship_types 489e0d neu",
+   "nameTranslated": "ctrs-test relationship_types 489e0d neu",
    "securityLevelId": 1,
    "degreeNameA": "Patin",
    "degreeNameATranslated": "Patin",

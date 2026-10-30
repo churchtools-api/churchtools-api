@@ -2,7 +2,7 @@
  "operation": "get-sync-externalsystems-externalSystemId-fieldmappings",
  "request": {
   "method": "GET",
-  "path": "/sync/externalsystems/13/fieldmappings",
+  "path": "/sync/externalsystems/19/fieldmappings",
   "query": [],
   "body": null
  },

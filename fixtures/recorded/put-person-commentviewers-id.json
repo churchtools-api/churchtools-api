@@ -2,17 +2,17 @@
  "operation": "put-person-commentviewers-id",
  "request": {
   "method": "PUT",
-  "path": "/person/commentviewers/31",
+  "path": "/person/commentviewers/37",
   "query": [],
   "body": {
-   "name": "ctrs-test commentviewers 9deb2b neu"
+   "name": "ctrs-test comment_viewers 0919ca neu"
   }
  },
  "body": {
   "data": {
-   "id": 31,
-   "name": "ctrs-test commentviewers 9deb2b neu",
-   "nameTranslated": "ctrs-test commentviewers 9deb2b neu",
+   "id": 37,
+   "name": "ctrs-test comment_viewers 0919ca neu",
+   "nameTranslated": "ctrs-test comment_viewers 0919ca neu",
    "sortKey": 0
   }
  }

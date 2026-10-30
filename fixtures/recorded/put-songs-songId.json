@@ -2,17 +2,17 @@
  "operation": "put-songs-songId",
  "request": {
   "method": "PUT",
-  "path": "/songs/100",
+  "path": "/songs/118",
   "query": [],
   "body": {
    "categoryId": 0,
-   "name": "ctrs-test Lied 7a23a6 neu"
+   "name": "ctrs-test Lied 2e9083 neu"
   }
  },
  "body": {
   "data": {
-   "id": 100,
-   "name": "ctrs-test Lied 7a23a6 neu",
+   "id": 118,
+   "name": "ctrs-test Lied 2e9083 neu",
    "category": {
     "id": 0,
     "name": "Aktive Songs",
@@ -36,11 +36,11 @@
    "shouldPractice": false,
    "arrangements": [],
    "meta": {
-    "createdDate": "2026-10-28T23:34:18Z",
+    "createdDate": "2026-10-30T16:06:03Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:18Z",
+    "modifiedDate": "2026-10-30T16:06:04Z",
     "modifiedPerson": {
      "id": 1
     }

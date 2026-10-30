@@ -2,7 +2,7 @@
  "operation": "get-sync-externalsystems-id-fieldmappings-domaintype",
  "request": {
   "method": "GET",
-  "path": "/sync/externalsystems/13/fieldmappings/person",
+  "path": "/sync/externalsystems/19/fieldmappings/person",
   "query": [],
   "body": null
  },
@@ -10,7 +10,7 @@
   "data": {
    "id": null,
    "externalSystem": {
-    "id": 13,
+    "id": 19,
     "name": "ctrs-test",
     "accessHeaderValues": [],
     "adapter": "churchtools",

@@ -2,24 +2,24 @@
  "operation": "put-persons-personId-absences-id",
  "request": {
   "method": "PUT",
-  "path": "/persons/2926/absences/100",
+  "path": "/persons/2950/absences/112",
   "query": [],
   "body": {
    "absenceReasonId": 3,
    "comment": "x",
-   "endDate": "2026-10-29",
-   "startDate": "2026-10-29"
+   "endDate": "2026-10-30",
+   "startDate": "2026-10-30"
   }
  },
  "body": {
   "data": {
-   "id": 100,
+   "id": 112,
    "person": {
     "title": "ctrs-test Partner",
     "domainType": "person",
-    "domainIdentifier": "2926",
-    "apiUrl": "https://gemeinde.example/api/persons/2926",
-    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232926/",
+    "domainIdentifier": "2950",
+    "apiUrl": "https://gemeinde.example/api/persons/2950",
+    "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%232950/",
     "imageUrl": null,
     "icon": "user",
     "color": null,
@@ -27,7 +27,7 @@
     "domainAttributes": {
      "firstName": "ctrs-test",
      "lastName": "Partner",
-     "guid": "8D69E236-D4BB-4219-8B4E-E70AE285878E",
+     "guid": "EAAE9DAA-59C7-49F3-B01E-47FBA6FF977A",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -39,17 +39,17 @@
     "nameTranslated": "Krank",
     "sortKey": 0
    },
-   "startDate": "2026-10-29",
+   "startDate": "2026-10-30",
    "startTime": null,
-   "endDate": "2026-10-29",
+   "endDate": "2026-10-30",
    "endTime": null,
    "comment": "x",
    "meta": {
-    "createdDate": "2026-10-28T23:34:01Z",
+    "createdDate": "2026-10-30T16:05:46Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:02Z",
+    "modifiedDate": "2026-10-30T16:05:47Z",
     "modifiedPerson": {
      "id": 1
     }

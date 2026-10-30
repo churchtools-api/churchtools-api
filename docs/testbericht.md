@@ -1,8 +1,10 @@
 # Testbericht: churchtools-api gegen eine echte Instanz
 
-Getestet am 28.10.2026 gegen eine 3-Tage-Demo-Instanz (ChurchTools 3.138.0, Build 32935,
-dieselbe Spec wie demo.church.tools). Angemeldet war der Demo-Admin (Person 1, Sicherheitsstufe 99999). Alle Anfragen
-liefen mit höchstens 4 Anfragen pro Sekunde (`CT_MIN_INTERVAL=0.25`).
+Getestet am 28.10.2026 gegen eine 3-Tage-Demo-Instanz (ChurchTools 3.138.0, Build 32935) und am 30.10.2026 erneut
+gegen eine frische Instanz mit ChurchTools 3.138.1 (Build 32938), jeweils dieselbe Spec wie demo.church.tools. Die
+Spec von 3.138.1 ist byte-identisch mit der von 3.138.0; der zweite Lauf hatte dieselben Ergebnisse. Angemeldet war
+der Demo-Admin (Person 1, Sicherheitsstufe 99999). Alle Anfragen liefen mit höchstens 4 Anfragen pro Sekunde
+(`CT_MIN_INTERVAL=0.25`).
 
 ## Was getestet wird
 
@@ -87,6 +89,8 @@ Die Tests übergeben sie. Der Client ändert daran nichts, weil die Spec das Fel
 | `GET /profiles/slugcheck/{slug}` | `guid` |
 
 ### 3. Fehler in ChurchTools 3.138.0
+
+Alle Fehler bestehen in 3.138.1 unverändert.
 
 | Endpunkt | Verhalten |
 |---|---|

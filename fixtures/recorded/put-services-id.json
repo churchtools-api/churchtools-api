@@ -2,21 +2,21 @@
  "operation": "put-services-id",
  "request": {
   "method": "PUT",
-  "path": "/services/121",
+  "path": "/services/127",
   "query": [],
   "body": {
-   "name": "ctrs-test Dienst 35ed33 neu",
-   "serviceGroupId": 34
+   "name": "ctrs-test Dienst 2ef5c2 neu",
+   "serviceGroupId": 40
   }
  },
  "body": {
   "data": {
-   "id": 121,
-   "name": "ctrs-test Dienst 35ed33 neu",
-   "nameTranslated": "ctrs-test Dienst 35ed33 neu",
+   "id": 127,
+   "name": "ctrs-test Dienst 2ef5c2 neu",
+   "nameTranslated": "ctrs-test Dienst 2ef5c2 neu",
    "sortKey": 0,
    "description": null,
-   "serviceGroupId": 34,
+   "serviceGroupId": 40,
    "standard": false,
    "hidePersonName": true,
    "calTextTemplate": null,
@@ -31,11 +31,11 @@
    "groupIds": [],
    "tagIds": [],
    "meta": {
-    "createdDate": "2026-10-28T23:34:16Z",
+    "createdDate": "2026-10-30T16:06:01Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:17Z",
+    "modifiedDate": "2026-10-30T16:06:02Z",
     "modifiedPerson": {
      "id": 1
     }

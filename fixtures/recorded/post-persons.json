@@ -17,7 +17,7 @@
    ],
    "firstName": "ctrs-test",
    "lastName": "Vereinbarung",
-   "privacyPolicyAgreementDate": "2026-10-29",
+   "privacyPolicyAgreementDate": "2026-10-30",
    "privacyPolicyAgreementTypeId": 1,
    "privacyPolicyAgreementWhoId": 1,
    "statusId": 0
@@ -25,8 +25,8 @@
  },
  "body": {
   "data": {
-   "id": 2932,
-   "guid": "6CA42198-8F39-4804-882E-7DBE7A2D23F9",
+   "id": 2956,
+   "guid": "33D12FF6-8098-46D4-BCFE-0A6AD5627510",
    "securityLevelForPerson": 99999,
    "editSecurityLevelForPerson": 99999,
    "title": "",
@@ -60,11 +60,11 @@
    "cmsUserId": "",
    "optigemId": "",
    "privacyPolicyAgreement": {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "typeId": 1,
     "whoId": 1
    },
-   "privacyPolicyAgreementDate": "2026-10-29",
+   "privacyPolicyAgreementDate": "2026-10-30",
    "privacyPolicyAgreementTypeId": 1,
    "privacyPolicyAgreementWhoId": 1,
    "nationalityId": null,
@@ -75,7 +75,7 @@
    "departmentIds": [
     1
    ],
-   "firstContact": "2026-10-29",
+   "firstContact": "2026-10-30",
    "dateOfBelonging": null,
    "dateOfDeath": null,
    "dateOfEntry": null,
@@ -93,13 +93,13 @@
    "visibility": "visible",
    "acceptedsecurity": null,
    "lastLogin": null,
-   "lastEditedDate": "2026-10-28T23:35:14Z",
+   "lastEditedDate": "2026-10-30T16:06:59Z",
    "meta": {
-    "createdDate": "2026-10-28T23:35:14Z",
+    "createdDate": "2026-10-30T16:06:59Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:14Z",
+    "modifiedDate": "2026-10-30T16:06:59Z",
     "modifiedPerson": {
      "id": 1
     }

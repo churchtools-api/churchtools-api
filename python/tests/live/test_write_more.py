@@ -25,8 +25,8 @@ pytestmark = pytest.mark.usefixtures("scenario")
 MASTERDATA: dict[str, tuple[dict[str, _t.Any], dict[str, _t.Any], dict[str, _t.Any]]] = {
     "song.categories": ({}, {}, {}),
     "song.sources": ({}, {}, {}),
-    "resourcetypes": ({"name_plural": "Testräume", "sort_key": 999}, {"name_plural": "Testräume 2", "sort_key": 998}, {}),
-    "furtherlinks": (
+    "resource_types": ({"name_plural": "Testräume", "sort_key": 999}, {"name_plural": "Testräume 2", "sort_key": 998}, {}),
+    "further_links": (
         {"description": None, "image_url": None, "sort_key": 999, "url": "https://example.org"},
         {"description": "Beschreibung", "image_url": None, "sort_key": 998, "url": "https://example.org/neu"},
         {},

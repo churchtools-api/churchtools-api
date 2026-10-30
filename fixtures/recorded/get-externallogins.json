@@ -9,7 +9,7 @@
  "body": {
   "data": [
    {
-    "id": 28,
+    "id": 40,
     "type": "oidc",
     "name": "ctrs-test OIDC",
     "newPersonDepartmentId": null,
@@ -21,8 +21,8 @@
     "hasRegistration": false,
     "isVisible": false,
     "config": {
-     "clientId": "ctrs-test",
      "issuer": "https://accounts.google.com",
+     "clientId": "ctrs-test",
      "allowedConnections": []
     },
     "logoUrl": "https://accounts.google.com/favicon.ico",
@@ -30,7 +30,7 @@
     "subtitle": null
    },
    {
-    "id": 25,
+    "id": 37,
     "type": "saml",
     "name": "ctrs-test SAML",
     "newPersonDepartmentId": null,
@@ -48,7 +48,7 @@
      "firstNameAttribute": "urn:oid:2.5.4.42",
      "lastNameAttribute": "urn:oid:2.5.4.4",
      "signatureRequirement": "response",
-     "spX509cert": "-----BEGIN CERTIFICATE-----\nMIIDsDCCApigAwIBAgIBADANBgkqhkiG9w0BAQsFADBxMSowKAYDVQQDDCFDaHVy\nY2hUb29scyBTQU1MIFNlcnZpY2UgUHJvdmlkZXIxCzAJBgNVBAYTAkFVMRMwEQYD\nVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBM\ndGQwHhcNMjYxMDI4MjIzNTAwWhcNMzYxMDI1MjIzNTAwWjBxMSowKAYDVQQDDCFD\naHVyY2hUb29scyBTQU1MIFNlcnZpY2UgUHJvdmlkZXIxCzAJBgNVBAYTAkFVMRMw\nEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0\neSBMdGQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDjswW9EBOGJbMC\niftLqD7UTiHHSY6JDPNzgQnBIvCel0fA8rYQCmNWaJ+7k6nAZ1KE7nIgpcoY6WJh\nlcOS5fcLjCpJgm2zC9OBytS8dF487NoulOzhk9SK3y2Hl36+92QDWhPXyW5fY3CI\nYiXCAy4DpH30+j0PHmCLJEjl60/coh4BExTL4JR5dvmKwyAazU/owkNyM9U+F7t5\ntuOPVEtTSEB577TvsowgyXNCv2IlCWoeqf4r/eNQw6ruxGB62kxzr6Bcc+ajZ+zz\nkI59U7br2UnJrISrCNYu2uQX3/mtr76cH6/Xq38esNy3H53vucULFbPD+e4mI+/q\nUjfoky8bAgMBAAGjUzBRMB0GA1UdDgQWBBRKt8LzEN3KuqG7kWZdSVo2Y4s/JDAf\nBgNVHSMEGDAWgBRKt8LzEN3KuqG7kWZdSVo2Y4s/JDAPBgNVHRMBAf8EBTADAQH/\nMA0GCSqGSIb3DQEBCwUAA4IBAQBR8LsfwBzYImry/YP+hhgeHdVRr1uThXr8t3Lu\nl2HQSaehJAYxiM4NQdGcTPRkIuBxZiSuNMX/t3L7ZE/R+0EPI5G6NAKKtpjXVsH1\nQFe9kIt+NkTlAfofe4EcBZBvqFM9mB+m3GP0gpKKPrSQWuiSMZOVianqSqxmECAP\n+QQXX5ZEqcd9zI1gefi1+XLqdkWSdYDn84lhnjpXGXhI7NhX44NDyjuCUDAZ78//\n/OCclIn9VYojmEHVIFC/7u9kANZwQ8JXktytGXgtC187C3cZ9fW5NGPx9p9TLN5V\n4Y7/EgQkWdWtAzmGQ3+sCiyq5cpGd5c/sm4dF2K+43ZsHAw3\n-----END CERTIFICATE-----\n"
+     "spX509cert": "-----BEGIN CERTIFICATE-----\nMIIDsDCCApigAwIBAgIBADANBgkqhkiG9w0BAQsFADBxMSowKAYDVQQDDCFDaHVy\nY2hUb29scyBTQU1MIFNlcnZpY2UgUHJvdmlkZXIxCzAJBgNVBAYTAkFVMRMwEQYD\nVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBM\ndGQwHhcNMjYxMDMwMTYwMzMzWhcNMzYxMDI3MTYwMzMzWjBxMSowKAYDVQQDDCFD\naHVyY2hUb29scyBTQU1MIFNlcnZpY2UgUHJvdmlkZXIxCzAJBgNVBAYTAkFVMRMw\nEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0\neSBMdGQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDDapsND5jvSj7s\nzzvljHTSDheU1LBdu/MboF1dDWokR3PSd/W/lOZDdVtEshwg0AhY7+7RzKo8G4KR\ns+M4e3X3SnJj+TTyzFBx3ilchHVlHnLgC7sX/Z79IBdrsP3kFy6OTEil2nKeQIGY\ndzs9z3Usa1crXPw5a7o7l0e1Fchby6P6KT0k6798kADJrldXOh1m7SkSP0Un678n\nqcIs0uOvtcUHr55veOqxI2mv629mHHNlXGTwyiwynA/EohUCUemIM/XvXxL+oAvt\nyDtM/YTET0v6OVec+t8jOQ68EEM8H6ZCCtI2m7IpLav+G1hTBhLcQOq3HC9EOJRy\n8CXDNK2rAgMBAAGjUzBRMB0GA1UdDgQWBBQNbkbVzAKAxd4R5WvJxHeMtrwmVjAf\nBgNVHSMEGDAWgBQNbkbVzAKAxd4R5WvJxHeMtrwmVjAPBgNVHRMBAf8EBTADAQH/\nMA0GCSqGSIb3DQEBCwUAA4IBAQAuTOj2OZKiUjt0fvABGwD52x2O2hSsrkPHc0R3\nQICSaMWsSfe5OPjk7VK+b6G7C6v2gdRLYeyFVvIoEXOUy4veL/v42LYJM/wVZQ96\nnJcFfva8dUFJJ3TbpWlRsZ5NBl5B0JEaZWcSvPaQo8Hx6mY8hSUVHJUfy6seG4XZ\nb2o4aYnO8u6QiCBO9xCzh7GS7utlKgmE8mIyYTyX19zzS2RvgNpuG6xn+N4OHwa/\nLqpGAaRn2zsGBnl1FEROHba+guV3fvWlyKxWCcwW/p7erQxUqeHlhXe/WiRnpTGA\nOyXf8y+iysUbxNtatmKr/4vDe0gay2rhjNHKv6wPxMYCfQap\n-----END CERTIFICATE-----\n"
     },
     "logoUrl": null,
     "primaryLogin": false,

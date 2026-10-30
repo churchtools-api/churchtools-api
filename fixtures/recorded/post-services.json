@@ -5,18 +5,18 @@
   "path": "/services",
   "query": [],
   "body": {
-   "name": "ctrs-test Dienst 35ed33",
-   "serviceGroupId": 34
+   "name": "ctrs-test Dienst 2ef5c2",
+   "serviceGroupId": 40
   }
  },
  "body": {
   "data": {
-   "id": 121,
-   "name": "ctrs-test Dienst 35ed33",
-   "nameTranslated": "ctrs-test Dienst 35ed33",
+   "id": 127,
+   "name": "ctrs-test Dienst 2ef5c2",
+   "nameTranslated": "ctrs-test Dienst 2ef5c2",
    "sortKey": 0,
    "description": null,
-   "serviceGroupId": 34,
+   "serviceGroupId": 40,
    "standard": false,
    "hidePersonName": true,
    "calTextTemplate": null,
@@ -31,11 +31,11 @@
    "groupIds": [],
    "tagIds": [],
    "meta": {
-    "createdDate": "2026-10-28T23:34:16Z",
+    "createdDate": "2026-10-30T16:06:01Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:16Z",
+    "modifiedDate": "2026-10-30T16:06:01Z",
     "modifiedPerson": {
      "id": 1
     }

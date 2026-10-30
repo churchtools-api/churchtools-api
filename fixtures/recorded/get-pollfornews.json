@@ -10,7 +10,7 @@
    ],
    [
     "since",
-    "2026-10-21T22:34:48Z"
+    "2026-10-23T16:03:21Z"
    ]
   ],
   "body": null
@@ -24,58 +24,18 @@
    },
    {
     "domainType": "person",
-    "domainId": 188,
+    "domainId": 2935,
     "personId": 1
    },
    {
     "domainType": "person",
-    "domainId": 2794,
-    "personId": -4
-   },
-   {
-    "domainType": "person",
-    "domainId": 2848,
-    "personId": 1
-   },
-   {
-    "domainType": "person",
-    "domainId": 2863,
-    "personId": 1
-   },
-   {
-    "domainType": "person",
-    "domainId": 2869,
-    "personId": 1
-   },
-   {
-    "domainType": "person",
-    "domainId": 2878,
-    "personId": 1
-   },
-   {
-    "domainType": "person",
-    "domainId": 2884,
-    "personId": 1
-   },
-   {
-    "domainType": "person",
-    "domainId": 2893,
-    "personId": 1
-   },
-   {
-    "domainType": "person",
-    "domainId": 2899,
-    "personId": 1
-   },
-   {
-    "domainType": "person",
-    "domainId": 2905,
+    "domainId": 2941,
     "personId": 1
    }
   ],
   "meta": {
-   "count": 11,
-   "lastPollDate": "2026-10-28T22:36:25Z",
+   "count": 3,
+   "lastPollDate": "2026-10-30T16:05:01Z",
    "userId": 1
   }
  }

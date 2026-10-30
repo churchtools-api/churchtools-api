@@ -52,7 +52,7 @@
       "createdPerson": {
        "id": -1
       },
-      "modifiedDate": "2026-10-28T22:34:57Z",
+      "modifiedDate": "2026-10-30T16:03:30Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -5331,16 +5331,16 @@
    ],
    "cashDiscounts": [
     {
-     "id": 13,
+     "id": 19,
      "rate": 2,
      "note": "ctrs-test",
      "accountId": 2,
      "meta": {
-      "createdDate": "2026-10-28T22:34:55Z",
+      "createdDate": "2026-10-30T16:03:28Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-10-28T22:34:55Z",
+      "modifiedDate": "2026-10-30T16:03:28Z",
       "modifiedPerson": {
        "id": 1
       }

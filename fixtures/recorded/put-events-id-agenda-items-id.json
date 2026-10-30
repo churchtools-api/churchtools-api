@@ -2,7 +2,7 @@
  "operation": "put-events-id-agenda-items-id",
  "request": {
   "method": "PUT",
-  "path": "/events/1816/agenda/items/6097",
+  "path": "/events/1816/agenda/items/6106",
   "query": [],
   "body": {
    "title": "ctrs-test 2",
@@ -11,7 +11,7 @@
  },
  "body": {
   "data": {
-   "id": 6097,
+   "id": 6106,
    "title": "ctrs-test 2",
    "type": "header",
    "duration": 0,
@@ -21,11 +21,11 @@
    },
    "isBeforeEvent": false,
    "meta": {
-    "createdDate": "2026-10-28T23:35:29Z",
+    "createdDate": "2026-10-30T16:07:14Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:30Z",
+    "modifiedDate": "2026-10-30T16:07:15Z",
     "modifiedPerson": {
      "id": 1
     }

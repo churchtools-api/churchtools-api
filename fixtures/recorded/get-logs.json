@@ -9,9 +9,9 @@
  "body": {
   "data": [
    {
-    "id": 497458,
+    "id": 505585,
     "level": 2,
-    "date": "2026-10-28T22:36:03Z",
+    "date": "2026-10-30T16:04:38Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -40,9 +40,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497455,
+    "id": 505582,
     "level": 2,
-    "date": "2026-10-28T22:36:02Z",
+    "date": "2026-10-30T16:04:38Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -71,9 +71,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497452,
+    "id": 505579,
     "level": 2,
-    "date": "2026-10-28T22:36:02Z",
+    "date": "2026-10-30T16:04:37Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -102,9 +102,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497449,
+    "id": 505576,
     "level": 2,
-    "date": "2026-10-28T22:36:02Z",
+    "date": "2026-10-30T16:04:37Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -133,9 +133,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497446,
+    "id": 505573,
     "level": 2,
-    "date": "2026-10-28T22:36:02Z",
+    "date": "2026-10-30T16:04:37Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -164,9 +164,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497443,
+    "id": 505570,
     "level": 2,
-    "date": "2026-10-28T22:36:01Z",
+    "date": "2026-10-30T16:04:37Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -195,9 +195,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497440,
+    "id": 505567,
     "level": 2,
-    "date": "2026-10-28T22:36:01Z",
+    "date": "2026-10-30T16:04:36Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -226,9 +226,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497437,
+    "id": 505564,
     "level": 2,
-    "date": "2026-10-28T22:36:01Z",
+    "date": "2026-10-30T16:04:36Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -257,9 +257,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497434,
+    "id": 505561,
     "level": 2,
-    "date": "2026-10-28T22:36:01Z",
+    "date": "2026-10-30T16:04:36Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -288,9 +288,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 497431,
+    "id": 505558,
     "level": 2,
-    "date": "2026-10-28T22:36:00Z",
+    "date": "2026-10-30T16:04:36Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -322,10 +322,10 @@
   "meta": {
    "count": 10,
    "pagination": {
-    "total": 74195,
+    "total": 76818,
     "limit": 10,
     "current": 1,
-    "lastPage": 7420
+    "lastPage": 7682
    }
   }
  }

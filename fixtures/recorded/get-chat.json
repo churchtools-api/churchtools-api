@@ -7,9 +7,26 @@
   "body": null
  },
  "body": {
-  "data": [],
+  "data": [
+   {
+    "guid": "620D6EBD-7FCF-4EA6-866F-D37F2E39249C",
+    "prefix": "cte",
+    "domainId": 1990,
+    "status": "STARTED",
+    "creator": -4,
+    "roomname": "Gottesdienst 2026-11-01 10:00:00"
+   },
+   {
+    "guid": "87F552C8-B01D-4AD8-8FBE-765D93772B87",
+    "prefix": "cte",
+    "domainId": 2015,
+    "status": "STARTED",
+    "creator": -4,
+    "roomname": "Gottesdienste 2026-11-01 10:00:00"
+   }
+  ],
   "meta": {
-   "count": 0
+   "count": 2
   }
  }
 }

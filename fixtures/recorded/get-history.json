@@ -18,19 +18,19 @@
  "body": {
   "data": [
    {
-    "id": 20104,
+    "id": 31855,
     "action": "add-group-member",
     "origin": "default",
     "translationKey": "group.add-member.history",
     "translationArgs": {
      "actor": "Armin Adendorf",
      "personName": "Armin Adendorf",
-     "groupName": "ctrs-test Seed-Gruppe b5896e"
+     "groupName": "ctrs-test Seed-Gruppe 9502a3"
     },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Seed-Gruppe b5896e hinzugefügt.",
+    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Seed-Gruppe 9502a3 hinzugefügt.",
     "beforeAfterValues": [
      {
-      "id": 41974,
+      "id": 43153,
       "key": "role",
       "keyTranslated": "Rolle",
       "type": "text",
@@ -40,7 +40,7 @@
       "afterValueTranslated": "Teilnehmer"
      },
      {
-      "id": 41977,
+      "id": 43156,
       "key": "status",
       "keyTranslated": "Status",
       "type": "text",
@@ -50,61 +50,61 @@
       "afterValueTranslated": "Aktiv"
      },
      {
-      "id": 41980,
+      "id": 43159,
       "key": "membership.date-of-entry",
       "keyTranslated": "Gruppeneintrittsdatum",
       "type": "date",
       "beforeValue": null,
       "beforeValueTranslated": null,
-      "afterValue": "2026-10-28 23:34:50",
-      "afterValueTranslated": "2026-10-28 23:34:50"
+      "afterValue": "2026-10-30 17:03:23",
+      "afterValueTranslated": "2026-10-30 17:03:23"
      }
     ],
     "links": [
      {
-      "id": 32014,
+      "id": 44125,
       "domainType": "person",
       "domainId": "1",
       "role": null
      },
      {
-      "id": 32017,
+      "id": 44128,
       "domainType": "group",
-      "domainId": "895",
+      "domainId": "958",
       "role": null
      },
      {
-      "id": 32020,
+      "id": 44131,
       "domainType": "group_membership",
-      "domainId": "2587",
+      "domainId": "2620",
       "role": null
      }
     ],
     "meta": {
-     "createdDate": "2026-10-28T22:34:50Z",
+     "createdDate": "2026-10-30T16:03:23Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-28T22:34:50Z",
+     "modifiedDate": "2026-10-30T16:03:23Z",
      "modifiedPerson": {
       "id": 1
      }
     }
    },
    {
-    "id": 20098,
+    "id": 31837,
     "action": "add-group-member",
     "origin": "default",
     "translationKey": "group.add-member.history",
     "translationArgs": {
      "actor": "Armin Adendorf",
      "personName": "Armin Adendorf",
-     "groupName": "ctrs-test Seed-Gruppe 863563"
+     "groupName": "ctrs-test Gruppe f24a62"
     },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Seed-Gruppe 863563 hinzugefügt.",
+    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Gruppe f24a62 hinzugefügt.",
     "beforeAfterValues": [
      {
-      "id": 41944,
+      "id": 43048,
       "key": "role",
       "keyTranslated": "Rolle",
       "type": "text",
@@ -114,7 +114,7 @@
       "afterValueTranslated": "Teilnehmer"
      },
      {
-      "id": 41947,
+      "id": 43051,
       "key": "status",
       "keyTranslated": "Status",
       "type": "text",
@@ -124,419 +124,49 @@
       "afterValueTranslated": "Aktiv"
      },
      {
-      "id": 41950,
+      "id": 43054,
       "key": "membership.date-of-entry",
       "keyTranslated": "Gruppeneintrittsdatum",
       "type": "date",
       "beforeValue": null,
       "beforeValueTranslated": null,
-      "afterValue": "2026-10-28 23:32:25",
-      "afterValueTranslated": "2026-10-28 23:32:25"
+      "afterValue": "2026-10-30 16:59:43",
+      "afterValueTranslated": "2026-10-30 16:59:43"
      }
     ],
     "links": [
      {
-      "id": 32002,
+      "id": 44092,
       "domainType": "person",
       "domainId": "1",
       "role": null
      },
      {
-      "id": 32005,
+      "id": 44095,
       "domainType": "group",
-      "domainId": "889",
+      "domainId": "955",
       "role": null
      },
      {
-      "id": 32008,
+      "id": 44098,
       "domainType": "group_membership",
-      "domainId": "2584",
+      "domainId": "2617",
       "role": null
      }
     ],
     "meta": {
-     "createdDate": "2026-10-28T22:32:26Z",
+     "createdDate": "2026-10-30T15:59:43Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-28T22:32:26Z",
+     "modifiedDate": "2026-10-30T15:59:43Z",
      "modifiedPerson": {
       "id": 1
      }
     }
    },
    {
-    "id": 20092,
-    "action": "add-group-member",
-    "origin": "default",
-    "translationKey": "group.add-member.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "personName": "Armin Adendorf",
-     "groupName": "ctrs-test Seed-Gruppe 4d3ad0"
-    },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Seed-Gruppe 4d3ad0 hinzugefügt.",
-    "beforeAfterValues": [
-     {
-      "id": 41914,
-      "key": "role",
-      "keyTranslated": "Rolle",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "Teilnehmer",
-      "afterValueTranslated": "Teilnehmer"
-     },
-     {
-      "id": 41917,
-      "key": "status",
-      "keyTranslated": "Status",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "active",
-      "afterValueTranslated": "Aktiv"
-     },
-     {
-      "id": 41920,
-      "key": "membership.date-of-entry",
-      "keyTranslated": "Gruppeneintrittsdatum",
-      "type": "date",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "2026-10-28 23:29:44",
-      "afterValueTranslated": "2026-10-28 23:29:44"
-     }
-    ],
-    "links": [
-     {
-      "id": 31990,
-      "domainType": "person",
-      "domainId": "1",
-      "role": null
-     },
-     {
-      "id": 31993,
-      "domainType": "group",
-      "domainId": "883",
-      "role": null
-     },
-     {
-      "id": 31996,
-      "domainType": "group_membership",
-      "domainId": "2581",
-      "role": null
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-28T22:29:44Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-28T22:29:44Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 20086,
-    "action": "add-group-member",
-    "origin": "default",
-    "translationKey": "group.add-member.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "personName": "Armin Adendorf",
-     "groupName": "ctrs-test Seed-Gruppe 9149cd"
-    },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Seed-Gruppe 9149cd hinzugefügt.",
-    "beforeAfterValues": [
-     {
-      "id": 41884,
-      "key": "role",
-      "keyTranslated": "Rolle",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "Teilnehmer",
-      "afterValueTranslated": "Teilnehmer"
-     },
-     {
-      "id": 41887,
-      "key": "status",
-      "keyTranslated": "Status",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "active",
-      "afterValueTranslated": "Aktiv"
-     },
-     {
-      "id": 41890,
-      "key": "membership.date-of-entry",
-      "keyTranslated": "Gruppeneintrittsdatum",
-      "type": "date",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "2026-10-28 23:27:49",
-      "afterValueTranslated": "2026-10-28 23:27:49"
-     }
-    ],
-    "links": [
-     {
-      "id": 31978,
-      "domainType": "person",
-      "domainId": "1",
-      "role": null
-     },
-     {
-      "id": 31981,
-      "domainType": "group",
-      "domainId": "877",
-      "role": null
-     },
-     {
-      "id": 31984,
-      "domainType": "group_membership",
-      "domainId": "2578",
-      "role": null
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-28T22:27:50Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-28T22:27:50Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 20077,
-    "action": "remove-group-member",
-    "origin": "default",
-    "translationKey": "group.remove-member.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "personName": "Armin Adendorf",
-     "groupName": "ctrs-test seed"
-    },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf aus der Gruppe \"ctrs-test seed\" entfernt.",
-    "beforeAfterValues": [
-     {
-      "id": 41845,
-      "key": "role",
-      "keyTranslated": "Rolle",
-      "type": "text",
-      "beforeValue": "Teilnehmer",
-      "beforeValueTranslated": "Teilnehmer",
-      "afterValue": null,
-      "afterValueTranslated": null
-     },
-     {
-      "id": 41848,
-      "key": "status",
-      "keyTranslated": "Status",
-      "type": "text",
-      "beforeValue": "active",
-      "beforeValueTranslated": "Aktiv",
-      "afterValue": null,
-      "afterValueTranslated": null
-     },
-     {
-      "id": 41851,
-      "key": "membership.date-of-entry",
-      "keyTranslated": "Gruppeneintrittsdatum",
-      "type": "date",
-      "beforeValue": "2026-10-28 23:22:18",
-      "beforeValueTranslated": "2026-10-28 23:22:18",
-      "afterValue": null,
-      "afterValueTranslated": null
-     }
-    ],
-    "links": [
-     {
-      "id": 31957,
-      "domainType": "person",
-      "domainId": "1",
-      "role": null
-     },
-     {
-      "id": 31960,
-      "domainType": "group",
-      "domainId": "874",
-      "role": null
-     },
-     {
-      "id": 31963,
-      "domainType": "group_membership",
-      "domainId": "2572",
-      "role": null
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-28T22:24:08Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-28T22:24:08Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 20071,
-    "action": "add-group-member",
-    "origin": "default",
-    "translationKey": "group.add-member.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "personName": "Armin Adendorf",
-     "groupName": "ctrs-test seed"
-    },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test seed hinzugefügt.",
-    "beforeAfterValues": [
-     {
-      "id": 41827,
-      "key": "role",
-      "keyTranslated": "Rolle",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "Teilnehmer",
-      "afterValueTranslated": "Teilnehmer"
-     },
-     {
-      "id": 41830,
-      "key": "status",
-      "keyTranslated": "Status",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "active",
-      "afterValueTranslated": "Aktiv"
-     },
-     {
-      "id": 41833,
-      "key": "membership.date-of-entry",
-      "keyTranslated": "Gruppeneintrittsdatum",
-      "type": "date",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "2026-10-28 23:22:18",
-      "afterValueTranslated": "2026-10-28 23:22:18"
-     }
-    ],
-    "links": [
-     {
-      "id": 31939,
-      "domainType": "person",
-      "domainId": "1",
-      "role": null
-     },
-     {
-      "id": 31942,
-      "domainType": "group",
-      "domainId": "874",
-      "role": null
-     },
-     {
-      "id": 31945,
-      "domainType": "group_membership",
-      "domainId": "2572",
-      "role": null
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-28T22:22:18Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-28T22:22:18Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 20053,
-    "action": "add-group-member",
-    "origin": "default",
-    "translationKey": "group.add-member.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "personName": "Armin Adendorf",
-     "groupName": "ctrs-test Gruppe 9ba821"
-    },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Gruppe 9ba821 hinzugefügt.",
-    "beforeAfterValues": [
-     {
-      "id": 41722,
-      "key": "role",
-      "keyTranslated": "Rolle",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "Teilnehmer",
-      "afterValueTranslated": "Teilnehmer"
-     },
-     {
-      "id": 41725,
-      "key": "status",
-      "keyTranslated": "Status",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "active",
-      "afterValueTranslated": "Aktiv"
-     },
-     {
-      "id": 41728,
-      "key": "membership.date-of-entry",
-      "keyTranslated": "Gruppeneintrittsdatum",
-      "type": "date",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "2026-10-28 22:54:24",
-      "afterValueTranslated": "2026-10-28 22:54:24"
-     }
-    ],
-    "links": [
-     {
-      "id": 31906,
-      "domainType": "person",
-      "domainId": "1",
-      "role": null
-     },
-     {
-      "id": 31909,
-      "domainType": "group",
-      "domainId": "871",
-      "role": null
-     },
-     {
-      "id": 31912,
-      "domainType": "group_membership",
-      "domainId": "2569",
-      "role": null
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-28T21:54:25Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-28T21:54:25Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 20038,
+    "id": 31822,
     "action": "delete-follow-up",
     "origin": "default",
     "translationKey": "follow-up.deleted.history",
@@ -548,17 +178,17 @@
     "translatedTitle": "follow-up.deleted.history",
     "beforeAfterValues": [
      {
-      "id": 41677,
+      "id": 43003,
       "key": "personId",
       "keyTranslated": "personId",
       "type": "text",
-      "beforeValue": "2905",
-      "beforeValueTranslated": "2905",
+      "beforeValue": "2941",
+      "beforeValueTranslated": "2941",
       "afterValue": null,
       "afterValueTranslated": null
      },
      {
-      "id": 41680,
+      "id": 43006,
       "key": "owner",
       "keyTranslated": "owner",
       "type": "text",
@@ -568,7 +198,7 @@
       "afterValueTranslated": null
      },
      {
-      "id": 41683,
+      "id": 43009,
       "key": "title",
       "keyTranslated": "Titel",
       "type": "text",
@@ -578,7 +208,7 @@
       "afterValueTranslated": null
      },
      {
-      "id": 41686,
+      "id": 43012,
       "key": "description",
       "keyTranslated": "Beschreibung",
       "type": "text",
@@ -590,37 +220,37 @@
     ],
     "links": [
      {
-      "id": 31861,
+      "id": 44047,
       "domainType": "person",
-      "domainId": "2905",
+      "domainId": "2941",
       "role": null
      },
      {
-      "id": 31864,
+      "id": 44050,
       "domainType": "follow_up",
-      "domainId": "28",
+      "domainId": "46",
       "role": null
      },
      {
-      "id": 31867,
+      "id": 44053,
       "domainType": "person",
       "domainId": "1",
       "role": "owner"
      }
     ],
     "meta": {
-     "createdDate": "2026-10-28T21:54:21Z",
+     "createdDate": "2026-10-30T15:59:40Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-28T21:54:21Z",
+     "modifiedDate": "2026-10-30T15:59:40Z",
      "modifiedPerson": {
       "id": 1
      }
     }
    },
    {
-    "id": 20035,
+    "id": 31819,
     "action": "dismiss-follow-up",
     "origin": "default",
     "translationKey": "follow-up.dismissed.history",
@@ -633,37 +263,37 @@
     "beforeAfterValues": [],
     "links": [
      {
-      "id": 31852,
+      "id": 44038,
       "domainType": "person",
-      "domainId": "2905",
+      "domainId": "2941",
       "role": null
      },
      {
-      "id": 31855,
+      "id": 44041,
       "domainType": "follow_up",
-      "domainId": "28",
+      "domainId": "46",
       "role": null
      },
      {
-      "id": 31858,
+      "id": 44044,
       "domainType": "person",
       "domainId": "1",
       "role": "owner"
      }
     ],
     "meta": {
-     "createdDate": "2026-10-28T21:54:21Z",
+     "createdDate": "2026-10-30T15:59:40Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-28T21:54:21Z",
+     "modifiedDate": "2026-10-30T15:59:40Z",
      "modifiedPerson": {
       "id": 1
      }
     }
    },
    {
-    "id": 20032,
+    "id": 31816,
     "action": "reset-follow-up",
     "origin": "default",
     "translationKey": "follow-up.reset.history",
@@ -675,42 +305,362 @@
     "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge zurückgesetzt.",
     "beforeAfterValues": [
      {
-      "id": 41674,
+      "id": 43000,
       "key": "effectiveDueDate",
       "keyTranslated": "effectiveDueDate",
       "type": "date",
-      "beforeValue": "2026-11-04",
-      "beforeValueTranslated": "2026-11-04",
+      "beforeValue": "2026-11-06",
+      "beforeValueTranslated": "2026-11-06",
       "afterValue": null,
       "afterValueTranslated": null
      }
     ],
     "links": [
      {
-      "id": 31843,
+      "id": 44029,
       "domainType": "person",
-      "domainId": "2905",
+      "domainId": "2941",
       "role": null
      },
      {
-      "id": 31846,
+      "id": 44032,
       "domainType": "follow_up",
-      "domainId": "28",
+      "domainId": "46",
       "role": null
      },
      {
-      "id": 31849,
+      "id": 44035,
       "domainType": "person",
       "domainId": "1",
       "role": "owner"
      }
     ],
     "meta": {
-     "createdDate": "2026-10-28T21:54:21Z",
+     "createdDate": "2026-10-30T15:59:39Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-28T21:54:21Z",
+     "modifiedDate": "2026-10-30T15:59:39Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 31813,
+    "action": "complete-follow-up",
+    "origin": "default",
+    "translationKey": "follow-up.completed.history",
+    "translationArgs": {
+     "actor": "Armin Adendorf",
+     "title": "Nachfragen",
+     "personName": "ctrs-test Nachsorge"
+    },
+    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge als erledigt markiert.",
+    "beforeAfterValues": [],
+    "links": [
+     {
+      "id": 44020,
+      "domainType": "person",
+      "domainId": "2941",
+      "role": null
+     },
+     {
+      "id": 44023,
+      "domainType": "follow_up",
+      "domainId": "46",
+      "role": null
+     },
+     {
+      "id": 44026,
+      "domainType": "person",
+      "domainId": "1",
+      "role": "owner"
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-30T15:59:39Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-30T15:59:39Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 31810,
+    "action": "postpone-follow-up",
+    "origin": "default",
+    "translationKey": "follow-up.postponed.history",
+    "translationArgs": {
+     "actor": "Armin Adendorf",
+     "title": "Nachfragen",
+     "personName": "ctrs-test Nachsorge",
+     "newDueDate": "2026-11-06"
+    },
+    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge verschoben.",
+    "beforeAfterValues": [
+     {
+      "id": 42997,
+      "key": "effectiveDueDate",
+      "keyTranslated": "effectiveDueDate",
+      "type": "date",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2026-11-06",
+      "afterValueTranslated": "2026-11-06"
+     }
+    ],
+    "links": [
+     {
+      "id": 44011,
+      "domainType": "person",
+      "domainId": "2941",
+      "role": null
+     },
+     {
+      "id": 44014,
+      "domainType": "follow_up",
+      "domainId": "46",
+      "role": null
+     },
+     {
+      "id": 44017,
+      "domainType": "person",
+      "domainId": "1",
+      "role": "owner"
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-30T15:59:39Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-30T15:59:39Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 31807,
+    "action": "update-follow-up",
+    "origin": "default",
+    "translationKey": "follow-up.updated.history",
+    "translationArgs": {
+     "actor": "Armin Adendorf",
+     "title": "Nachfragen",
+     "personName": "ctrs-test Nachsorge"
+    },
+    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge geändert.",
+    "beforeAfterValues": [
+     {
+      "id": 42991,
+      "key": "title",
+      "keyTranslated": "Titel",
+      "type": "text",
+      "beforeValue": "Nachfragen, wie es geht",
+      "beforeValueTranslated": "Nachfragen, wie es geht",
+      "afterValue": "Nachfragen",
+      "afterValueTranslated": "Nachfragen"
+     },
+     {
+      "id": 42994,
+      "key": "description",
+      "keyTranslated": "Beschreibung",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Anruf nach dem Gottesdienst",
+      "afterValueTranslated": "Anruf nach dem Gottesdienst"
+     }
+    ],
+    "links": [
+     {
+      "id": 44002,
+      "domainType": "person",
+      "domainId": "2941",
+      "role": null
+     },
+     {
+      "id": 44005,
+      "domainType": "follow_up",
+      "domainId": "46",
+      "role": null
+     },
+     {
+      "id": 44008,
+      "domainType": "person",
+      "domainId": "1",
+      "role": "owner"
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-30T15:59:38Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-30T15:59:38Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 31804,
+    "action": "create-follow-up",
+    "origin": "default",
+    "translationKey": "follow-up.created.history",
+    "translationArgs": {
+     "actor": "Armin Adendorf",
+     "title": "Nachfragen, wie es geht",
+     "personName": "ctrs-test Nachsorge"
+    },
+    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen, wie es geht” für ctrs-test Nachsorge geplant.",
+    "beforeAfterValues": [
+     {
+      "id": 42982,
+      "key": "personId",
+      "keyTranslated": "personId",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2941",
+      "afterValueTranslated": "2941"
+     },
+     {
+      "id": 42985,
+      "key": "owner",
+      "keyTranslated": "owner",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Armin Adendorf",
+      "afterValueTranslated": "Armin Adendorf"
+     },
+     {
+      "id": 42988,
+      "key": "title",
+      "keyTranslated": "Titel",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Nachfragen, wie es geht",
+      "afterValueTranslated": "Nachfragen, wie es geht"
+     }
+    ],
+    "links": [
+     {
+      "id": 43993,
+      "domainType": "person",
+      "domainId": "2941",
+      "role": null
+     },
+     {
+      "id": 43996,
+      "domainType": "follow_up",
+      "domainId": "46",
+      "role": null
+     },
+     {
+      "id": 43999,
+      "domainType": "person",
+      "domainId": "1",
+      "role": "owner"
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-30T15:59:38Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-30T15:59:38Z",
+     "modifiedPerson": {
+      "id": 1
+     }
+    }
+   },
+   {
+    "id": 31792,
+    "action": "remove-group-member",
+    "origin": "default",
+    "translationKey": "group.remove-member.history",
+    "translationArgs": {
+     "actor": "Armin Adendorf",
+     "personName": "Armin Adendorf",
+     "groupName": "ctrs-test Gruppe 2750aa"
+    },
+    "translatedTitle": "Armin Adendorf hat Armin Adendorf aus der Gruppe \"ctrs-test Gruppe 2750aa\" entfernt.",
+    "beforeAfterValues": [
+     {
+      "id": 42883,
+      "key": "role",
+      "keyTranslated": "Rolle",
+      "type": "text",
+      "beforeValue": "Teilnehmer",
+      "beforeValueTranslated": "Teilnehmer",
+      "afterValue": null,
+      "afterValueTranslated": null
+     },
+     {
+      "id": 42886,
+      "key": "status",
+      "keyTranslated": "Status",
+      "type": "text",
+      "beforeValue": "active",
+      "beforeValueTranslated": "Aktiv",
+      "afterValue": null,
+      "afterValueTranslated": null
+     },
+     {
+      "id": 42889,
+      "key": "membership.date-of-entry",
+      "keyTranslated": "Gruppeneintrittsdatum",
+      "type": "date",
+      "beforeValue": "2026-10-30 16:58:46",
+      "beforeValueTranslated": "2026-10-30 16:58:46",
+      "afterValue": null,
+      "afterValueTranslated": null
+     },
+     {
+      "id": 42892,
+      "key": "comment",
+      "keyTranslated": "Kommentar",
+      "type": "text",
+      "beforeValue": "geändert",
+      "beforeValueTranslated": "geändert",
+      "afterValue": null,
+      "afterValueTranslated": null
+     }
+    ],
+    "links": [
+     {
+      "id": 43969,
+      "domainType": "person",
+      "domainId": "1",
+      "role": null
+     },
+     {
+      "id": 43972,
+      "domainType": "group",
+      "domainId": "943",
+      "role": null
+     },
+     {
+      "id": 43975,
+      "domainType": "group_membership",
+      "domainId": "2611",
+      "role": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-30T15:58:47Z",
+     "createdPerson": {
+      "id": 1
+     },
+     "modifiedDate": "2026-10-30T15:58:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -720,10 +670,10 @@
   "meta": {
    "count": 10,
    "pagination": {
-    "total": 279,
+    "total": 346,
     "limit": 10,
     "current": 1,
-    "lastPage": 28
+    "lastPage": 35
    }
   }
  }

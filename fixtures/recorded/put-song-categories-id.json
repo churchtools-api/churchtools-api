@@ -2,25 +2,25 @@
  "operation": "put-song-categories-id",
  "request": {
   "method": "PUT",
-  "path": "/song/categories/19",
+  "path": "/song/categories/25",
   "query": [],
   "body": {
-   "name": "ctrs-test categories dcd4c4 neu"
+   "name": "ctrs-test categories a5e865 neu"
   }
  },
  "body": {
   "data": {
-   "id": 19,
-   "name": "ctrs-test categories dcd4c4 neu",
-   "nameTranslated": "ctrs-test categories dcd4c4 neu",
+   "id": 25,
+   "name": "ctrs-test categories a5e865 neu",
+   "nameTranslated": "ctrs-test categories a5e865 neu",
    "sortKey": 0,
    "campusId": null,
    "meta": {
-    "createdDate": "2026-10-28T23:34:41Z",
+    "createdDate": "2026-10-30T16:06:27Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:42Z",
+    "modifiedDate": "2026-10-30T16:06:28Z",
     "modifiedPerson": {
      "id": 1
     }

@@ -2,18 +2,18 @@
  "operation": "put-oauthclients-identifier",
  "request": {
   "method": "PUT",
-  "path": "/oauthclients/6398647334b9ffbfcf8ff929d7117da7a36598060365e43eda2703ed19a2d806",
+  "path": "/oauthclients/5e05be60d3d0b4623cb445494f102b5aead841cc3a3e643cf8539087037093ce",
   "query": [],
   "body": {
-   "name": "ctrs-test OAuth b14b67 neu",
+   "name": "ctrs-test OAuth 165ebf neu",
    "redirectUri": "https://example.org/cb2"
   }
  },
  "body": {
   "data": {
-   "id": 19,
-   "identifier": "6398647334b9ffbfcf8ff929d7117da7a36598060365e43eda2703ed19a2d806",
-   "name": "ctrs-test OAuth b14b67 neu",
+   "id": 52,
+   "identifier": "5e05be60d3d0b4623cb445494f102b5aead841cc3a3e643cf8539087037093ce",
+   "name": "ctrs-test OAuth 165ebf neu",
    "redirectUri": [
     "https://example.org/cb2"
    ],

@@ -3,7 +3,7 @@
 Ein Client für die REST-API von [ChurchTools](https://church.tools), für **Python** und **Rust**. Der Kern ist in
 Rust geschrieben; das Python-Paket nutzt ihn für HTTP, Login-Token, Rate-Limit, Wiederholungen und Paginierung und
 liefert Pydantic-Modelle. Beide Varianten entstehen aus derselben API-Beschreibung und decken die gesamte API ab:
-849 Operationen und 1110 Modelle (ChurchTools 3.138.0).
+849 Operationen und 1110 Modelle (ChurchTools 3.138.1).
 
 *A ChurchTools REST API client for Python and Rust, generated from the official OpenAPI description. The
 documentation is in German.*
@@ -72,7 +72,7 @@ TLS-Bibliothek). Details stehen in der Doku unter „Installation“.
 
 ## ChurchTools-Versionen und Kompatibilität
 
-Der Code ist aus der API-Beschreibung von ChurchTools 3.138.0 erzeugt (`API_VERSION`). Gegen andere Versionen
+Der Code ist aus der API-Beschreibung von ChurchTools 3.138.1 erzeugt (`API_VERSION`). Gegen andere Versionen
 funktioniert er, soweit die API gleich ist: Neue Felder landen in `model_extra`/`extra`, neue Enum-Werte in
 Antworten sind erlaubt, fehlende Endpunkte antworten mit `404`.
 

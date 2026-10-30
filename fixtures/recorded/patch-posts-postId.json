@@ -2,16 +2,16 @@
  "operation": "patch-posts-postId",
  "request": {
   "method": "PATCH",
-  "path": "/posts/88",
+  "path": "/posts/100",
   "query": [],
   "body": {
-   "title": "ctrs-test Beitrag 39ef00 neu"
+   "title": "ctrs-test Beitrag 090f21 neu"
   }
  },
  "body": {
   "data": {
-   "id": 88,
-   "guid": "8549CF19-E6DA-4529-A89A-51F2E0851643",
+   "id": 100,
+   "guid": "BB6DD3E7-B116-4499-B300-FD334D826BE8",
    "group": {
     "title": "#0 Gemeindeleitung",
     "domainType": "group",
@@ -56,7 +56,7 @@
     },
     "infos": []
    },
-   "title": "ctrs-test Beitrag 39ef00 neu",
+   "title": "ctrs-test Beitrag 090f21 neu",
    "content": "Inhalt",
    "groupVisibility": "restricted",
    "visibility": "group_intern",
@@ -67,15 +67,15 @@
    "expirationDate": null,
    "expirationPid": null,
    "expirationPerson": null,
-   "publishedDate": "2026-10-28T23:34:22Z",
-   "lastEditedDate": "2026-10-28T23:34:23Z",
+   "publishedDate": "2026-10-30T16:06:08Z",
+   "lastEditedDate": "2026-10-30T16:06:08Z",
    "isBanned": false,
    "meta": {
-    "createdDate": "2026-10-28T23:34:22Z",
+    "createdDate": "2026-10-30T16:06:08Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:23Z",
+    "modifiedDate": "2026-10-30T16:06:08Z",
     "modifiedPerson": {
      "id": 1
     }

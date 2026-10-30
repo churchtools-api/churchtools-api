@@ -5,25 +5,25 @@
   "path": "/servicegroups",
   "query": [],
   "body": {
-   "name": "ctrs-test Dienstgruppe 8e4432"
+   "name": "ctrs-test Dienstgruppe 466eee"
   }
  },
  "body": {
   "data": {
-   "id": 34,
-   "name": "ctrs-test Dienstgruppe 8e4432",
-   "nameTranslated": "ctrs-test Dienstgruppe 8e4432",
+   "id": 40,
+   "name": "ctrs-test Dienstgruppe 466eee",
+   "nameTranslated": "ctrs-test Dienstgruppe 466eee",
    "sortKey": 0,
    "description": null,
    "campusId": null,
    "viewAll": true,
    "onlyVisibleInCampusFilter": false,
    "meta": {
-    "createdDate": "2026-10-28T23:34:16Z",
+    "createdDate": "2026-10-30T16:06:01Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:16Z",
+    "modifiedDate": "2026-10-30T16:06:01Z",
     "modifiedPerson": {
      "id": 1
     }

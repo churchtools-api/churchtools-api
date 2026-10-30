@@ -519,61 +519,11 @@
     ],
     "items": [
      {
-      "summaryText": "Wanda Janßen · vor 23 Stunden · 17",
-      "title": "Wanda Janßen",
-      "infos": [
-       {
-        "text": "Heute"
-       },
-       {
-        "text": "17"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.birthday.details",
-        "label": "Gehe zu Geburtsdatum",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "domainObject": {
-        "title": "Wanda Janßen",
-        "domainType": "person",
-        "domainIdentifier": "1256",
-        "apiUrl": "https://gemeinde.example/api/persons/1256",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231256/",
-        "imageUrl": null,
-        "icon": "user",
-        "color": null,
-        "initials": "WJ",
-        "domainAttributes": {
-         "firstName": "Wanda",
-         "lastName": "Janßen",
-         "guid": "2CD52A39-CB48-480F-90F4-DF9198679B94",
-         "dateOfDeath": null,
-         "isArchived": false
-        },
-        "infos": []
-       }
-      },
-      "filterKeys": [
-       "all",
-       "my-campus"
-      ],
-      "groupingKeys": null,
-      "actionData": {
-       "personId": 1256
-      }
-     },
-     {
-      "summaryText": "Rene Eckert · in 1 Tag · 20",
+      "summaryText": "Rene Eckert · vor 17 Stunden · 20",
       "title": "Rene Eckert",
       "infos": [
        {
-        "text": "30.10.2026"
+        "text": "Heute"
        },
        {
         "text": "20"
@@ -619,11 +569,11 @@
       }
      },
      {
-      "summaryText": "Kristin Buchholz · in 2 Tagen · 6",
+      "summaryText": "Kristin Buchholz · in 6 Stunden · 6",
       "title": "Kristin Buchholz",
       "infos": [
        {
-        "text": "31.10.2026"
+        "text": "Morgen"
        },
        {
         "text": "6"
@@ -669,11 +619,11 @@
       }
      },
      {
-      "summaryText": "Friedhelm Paul · in 2 Tagen · 49",
+      "summaryText": "Friedhelm Paul · in 6 Stunden · 49",
       "title": "Friedhelm Paul",
       "infos": [
        {
-        "text": "31.10.2026"
+        "text": "Morgen"
        },
        {
         "text": "49"
@@ -719,7 +669,7 @@
       }
      },
      {
-      "summaryText": "Carl Ruppert · in 3 Tagen · 27",
+      "summaryText": "Carl Ruppert · in 1 Tag · 27",
       "title": "Carl Ruppert",
       "infos": [
        {
@@ -769,7 +719,7 @@
       }
      },
      {
-      "summaryText": "Adrian Häcker · in 4 Tagen · 86",
+      "summaryText": "Adrian Häcker · in 2 Tagen · 86",
       "title": "Adrian Häcker",
       "infos": [
        {
@@ -819,7 +769,7 @@
       }
      },
      {
-      "summaryText": "Emilia Straub · in 4 Tagen · 23",
+      "summaryText": "Emilia Straub · in 2 Tagen · 23",
       "title": "Emilia Straub",
       "infos": [
        {
@@ -869,7 +819,7 @@
       }
      },
      {
-      "summaryText": "Dominic Böttner · in 5 Tagen · 41",
+      "summaryText": "Dominic Böttner · in 3 Tagen · 41",
       "title": "Dominic Böttner",
       "infos": [
        {
@@ -919,7 +869,7 @@
       }
      },
      {
-      "summaryText": "Werner Swanson · in 6 Tagen · 28",
+      "summaryText": "Werner Swanson · in 4 Tagen · 28",
       "title": "Werner Swanson",
       "infos": [
        {
@@ -967,12 +917,220 @@
       "actionData": {
        "personId": 34
       }
+     },
+     {
+      "summaryText": "Phillipp Becker · in 5 Tagen · 26",
+      "title": "Phillipp Becker",
+      "infos": [
+       {
+        "text": "05.11.2026"
+       },
+       {
+        "text": "26"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.birthday.details",
+        "label": "Gehe zu Geburtsdatum",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "Phillipp Becker",
+        "domainType": "person",
+        "domainIdentifier": "183",
+        "apiUrl": "https://gemeinde.example/api/persons/183",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23183/",
+        "imageUrl": "https://gemeinde.example/images/499/5de19256f390ef1b0a62d38879923f13d12f8d05fa88b58913d7495b43576d89",
+        "icon": "user",
+        "color": null,
+        "initials": "PB",
+        "domainAttributes": {
+         "firstName": "Phillipp",
+         "lastName": "Becker",
+         "guid": "806937E8-43E6-40F4-967D-CAF296E93EFA",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      },
+      "filterKeys": [
+       "all",
+       "my-campus"
+      ],
+      "groupingKeys": null,
+      "actionData": {
+       "personId": 183
+      }
+     },
+     {
+      "summaryText": "Gerold Seeger · in 5 Tagen · 16",
+      "title": "Gerold Seeger",
+      "infos": [
+       {
+        "text": "05.11.2026"
+       },
+       {
+        "text": "16"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.birthday.details",
+        "label": "Gehe zu Geburtsdatum",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "Gerold Seeger",
+        "domainType": "person",
+        "domainIdentifier": "1277",
+        "apiUrl": "https://gemeinde.example/api/persons/1277",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231277/",
+        "imageUrl": "https://gemeinde.example/images/2140/27293fd609c74de52bac7ef9f87a9101553d288791de69daf53461ed5283c3d5",
+        "icon": "user",
+        "color": null,
+        "initials": "GS",
+        "domainAttributes": {
+         "firstName": "Gerold",
+         "lastName": "Seeger",
+         "guid": "6C5C69A3-2601-4DC1-BD94-D22D588004CD",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      },
+      "filterKeys": [
+       "all"
+      ],
+      "groupingKeys": null,
+      "actionData": {
+       "personId": 1277
+      }
+     },
+     {
+      "summaryText": "Karin Pfeiffer · in 6 Tagen · 19",
+      "title": "Karin Pfeiffer",
+      "infos": [
+       {
+        "text": "06.11.2026"
+       },
+       {
+        "text": "19"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.birthday.details",
+        "label": "Gehe zu Geburtsdatum",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "Karin Pfeiffer",
+        "domainType": "person",
+        "domainIdentifier": "1280",
+        "apiUrl": "https://gemeinde.example/api/persons/1280",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231280/",
+        "imageUrl": "https://gemeinde.example/images/2557/3957cdb2dd2c2b853030a9a902e197e9aa4c014cff4fb4f459b8a4a2f9c9c526",
+        "icon": "user",
+        "color": null,
+        "initials": "KP",
+        "domainAttributes": {
+         "firstName": "Karin",
+         "lastName": "Pfeiffer",
+         "guid": "8C5AD760-8FD0-4FBC-8B82-5FDE7B681AFC",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      },
+      "filterKeys": [
+       "all"
+      ],
+      "groupingKeys": null,
+      "actionData": {
+       "personId": 1280
+      }
+     },
+     {
+      "summaryText": "Fiona Scherer · in 6 Tagen · 33",
+      "title": "Fiona Scherer",
+      "infos": [
+       {
+        "text": "06.11.2026"
+       },
+       {
+        "text": "33"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.birthday.details",
+        "label": "Gehe zu Geburtsdatum",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "Fiona Scherer",
+        "domainType": "person",
+        "domainIdentifier": "158",
+        "apiUrl": "https://gemeinde.example/api/persons/158",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23158/",
+        "imageUrl": "https://gemeinde.example/images/2149/8eb49c6333955bf74fdefb0ff9ee467ddfa4b9cdd2ec04d693ddb55540e60f16",
+        "icon": "user",
+        "color": null,
+        "initials": "FS",
+        "domainAttributes": {
+         "firstName": "Fiona",
+         "lastName": "Scherer",
+         "guid": "39E3FA3B-B818-49D6-80A6-3B155505532D",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      },
+      "filterKeys": [
+       "all"
+      ],
+      "groupingKeys": null,
+      "actionData": {
+       "personId": 158
+      }
      }
     ],
     "emptyStrategy": "SHOW",
     "emptyText": "Keine Geburtstage in den nächsten 7 Tagen",
     "isMandatory": false,
-    "filter": null,
+    "filter": {
+     "options": [
+      {
+       "id": "my-campus",
+       "name": "Mein Standort"
+      },
+      {
+       "id": "all",
+       "name": "Alle"
+      }
+     ]
+    },
     "widgetSettings": {},
     "groupings": {}
    },
@@ -1040,36 +1198,6 @@
        "appointmentId": 1665446,
        "calendarId": 62,
        "startDate": "2026-10-17"
-      }
-     },
-     {
-      "summaryText": "2026-10-29 19:00:00 · Lobpreisprobe · Lobpreis",
-      "title": "Lobpreisprobe",
-      "infos": [
-       {
-        "text": "Lobpreis"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.appointment.details",
-        "label": "Gehe zu Termin",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "dateTime": "2026-10-29T18:00:00Z",
-       "allDay": false,
-       "title": "Lobpreisprobe"
-      },
-      "filterKeys": null,
-      "groupingKeys": null,
-      "actionData": {
-       "appointmentId": 502080,
-       "calendarId": 54,
-       "startDate": "2026-10-29"
       }
      },
      {
@@ -1311,6 +1439,36 @@
        "calendarId": 49,
        "startDate": "2026-11-03"
       }
+     },
+     {
+      "summaryText": "2026-11-05 19:00:00 · Lobpreisprobe · Lobpreis",
+      "title": "Lobpreisprobe",
+      "infos": [
+       {
+        "text": "Lobpreis"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.appointment.details",
+        "label": "Gehe zu Termin",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "dateTime": "2026-11-05T18:00:00Z",
+       "allDay": false,
+       "title": "Lobpreisprobe"
+      },
+      "filterKeys": null,
+      "groupingKeys": null,
+      "actionData": {
+       "appointmentId": 502080,
+       "calendarId": 54,
+       "startDate": "2026-11-05"
+      }
      }
     ],
     "emptyStrategy": "HIDE",
@@ -1388,7 +1546,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "30.10.2026, 18:00",
+          "text": "Heute, 18:00",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -1908,7 +2066,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "30.10.2026, 18:00",
+          "text": "Heute, 18:00",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -2428,7 +2586,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "30.10.2026, 18:00",
+          "text": "Heute, 18:00",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -4920,8 +5078,8 @@
       }
      },
      {
-      "summaryText": "ctrs-test Seed-Gruppe b5896e",
-      "title": "ctrs-test Seed-Gruppe b5896e",
+      "summaryText": "ctrs-test Seed-Gruppe 9502a3",
+      "title": "ctrs-test Seed-Gruppe 9502a3",
       "infos": [],
       "actions": [
        {
@@ -4934,11 +5092,11 @@
       ],
       "details": {
        "domainObject": {
-        "title": "ctrs-test Seed-Gruppe b5896e",
+        "title": "ctrs-test Seed-Gruppe 9502a3",
         "domainType": "group",
-        "domainIdentifier": "895",
-        "apiUrl": "https://gemeinde.example/api/groups/895",
-        "frontendUrl": "https://gemeinde.example/groups/895",
+        "domainIdentifier": "958",
+        "apiUrl": "https://gemeinde.example/api/groups/958",
+        "frontendUrl": "https://gemeinde.example/groups/958",
         "imageUrl": null,
         "icon": "users",
         "color": {
@@ -4952,7 +5110,7 @@
          "groupTypeId": 1,
          "campusId": null,
          "visibility": "restricted",
-         "guid": "B73449DE-DD28-4DE7-89F5-F2CFE55A3C6D"
+         "guid": "91128D07-0E7E-468F-B9CE-012D5DC15504"
         },
         "infos": [
          "Kleingruppe"
@@ -4962,7 +5120,7 @@
       "filterKeys": null,
       "groupingKeys": null,
       "actionData": {
-       "groupId": 895
+       "groupId": 958
       }
      },
      {
@@ -5873,8 +6031,8 @@
        "domainObject": {
         "title": "ctrs-test",
         "domainType": "further_link",
-        "domainIdentifier": "25",
-        "apiUrl": "https://gemeinde.example/api/furtherlinks/25",
+        "domainIdentifier": "37",
+        "apiUrl": "https://gemeinde.example/api/furtherlinks/37",
         "frontendUrl": null,
         "imageUrl": null,
         "icon": "link",

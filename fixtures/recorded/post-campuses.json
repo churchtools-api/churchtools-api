@@ -5,26 +5,26 @@
   "path": "/campuses",
   "query": [],
   "body": {
-   "name": "ctrs-test campuses efeeca",
+   "name": "ctrs-test campuses 4ab336",
    "shorty": "T"
   }
  },
  "body": {
   "data": {
-   "id": 25,
-   "guid": "7A8EAF76-4669-4044-B0F0-BB1ADE068365",
-   "name": "ctrs-test campuses efeeca",
-   "nameTranslated": "ctrs-test campuses efeeca",
+   "id": 31,
+   "guid": "C99C84E8-2F79-48DC-935B-B451554EADF0",
+   "name": "ctrs-test campuses 4ab336",
+   "nameTranslated": "ctrs-test campuses 4ab336",
    "shortName": null,
    "shorty": "T",
    "sortKey": 0,
    "address": null,
    "meta": {
-    "createdDate": "2026-10-28T23:34:24Z",
+    "createdDate": "2026-10-30T16:06:09Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:24Z",
+    "modifiedDate": "2026-10-30T16:06:09Z",
     "modifiedPerson": {
      "id": 1
     }

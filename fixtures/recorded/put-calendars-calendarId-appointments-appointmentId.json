@@ -2,41 +2,41 @@
  "operation": "put-calendars-calendarId-appointments-appointmentId",
  "request": {
   "method": "PUT",
-  "path": "/calendars/97/appointments/1665604",
+  "path": "/calendars/109/appointments/1665616",
   "query": [],
   "body": {
-   "endDate": "2026-11-01T02:00:00Z",
-   "startDate": "2026-11-01T01:00:00Z",
+   "endDate": "2026-11-02T19:00:00Z",
+   "startDate": "2026-11-02T18:00:00Z",
    "isInternal": false,
    "title": "verschoben"
   }
  },
  "body": {
   "data": {
-   "id": 1665604,
+   "id": 1665616,
    "title": "verschoben",
    "subtitle": null,
    "address": null,
    "version": 1,
    "calendar": {
-    "id": 97,
-    "name": "ctrs-test Kalender 1800b6 neu",
-    "nameTranslated": "ctrs-test Kalender 1800b6 neu",
+    "id": 109,
+    "name": "ctrs-test Kalender 029db0 neu",
+    "nameTranslated": "ctrs-test Kalender 029db0 neu",
     "sortKey": 998,
     "type": "church",
     "color": null,
-    "randomUrl": "TJAy8f9nbmOkrPna2Sj5NRsqEH6ImIfA",
+    "randomUrl": "tFSbuOy63bNL9uM0iBKbZwAxTQtrTs7K",
     "iCalSourceUrl": null,
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
     "campusId": null,
     "eventTemplateId": null,
     "meta": {
-     "createdDate": "2026-10-28T23:34:11Z",
+     "createdDate": "2026-10-30T16:05:55Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-28T23:34:11Z",
+     "modifiedDate": "2026-10-30T16:05:56Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -52,8 +52,8 @@
    "image": null,
    "link": null,
    "isInternal": false,
-   "startDate": "2026-11-01T01:00:00Z",
-   "endDate": "2026-11-01T02:00:00Z",
+   "startDate": "2026-11-02T18:00:00Z",
+   "endDate": "2026-11-02T19:00:00Z",
    "allDay": false,
    "repeatId": 0,
    "repeatFrequency": null,
@@ -64,11 +64,11 @@
    "signup": null,
    "onBehalfOfPid": null,
    "meta": {
-    "createdDate": "2026-10-28T23:34:11Z",
+    "createdDate": "2026-10-30T16:05:56Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:12Z",
+    "modifiedDate": "2026-10-30T16:05:57Z",
     "modifiedPerson": {
      "id": 1
     }

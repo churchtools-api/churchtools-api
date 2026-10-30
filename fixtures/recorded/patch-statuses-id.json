@@ -2,7 +2,7 @@
  "operation": "patch-statuses-id",
  "request": {
   "method": "PATCH",
-  "path": "/statuses/46",
+  "path": "/statuses/58",
   "query": [],
   "body": {
    "shorty": "T2"
@@ -10,9 +10,9 @@
  },
  "body": {
   "data": {
-   "id": 46,
-   "name": "ctrs-test Status bd821c",
-   "nameTranslated": "ctrs-test Status bd821c",
+   "id": 58,
+   "name": "ctrs-test Status ceca06",
+   "nameTranslated": "ctrs-test Status ceca06",
    "sortKey": 0,
    "shorty": "T2",
    "shortyTranslated": "T2",

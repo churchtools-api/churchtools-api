@@ -1397,11 +1397,11 @@
       "updated": "2025-08-14T09:22:43Z"
      },
      "sv": {
-      "translation": "Sätt lösenord",
+      "translation": "Skapa lösenord",
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-03-19T14:40:47Z"
+      "updated": "2026-10-30T08:47:14Z"
      }
     }
    },
@@ -1815,11 +1815,11 @@
       "updated": null
      },
      "it": {
-      "translation": "Avviare Cron-job",
+      "translation": "Eseguire le attività pianificate",
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2025-09-08T14:31:45Z"
+      "updated": "2026-10-30T08:47:14Z"
      },
      "fi": {
       "translation": "Suorita aikataulutettuja tehtäviä",
@@ -3327,11 +3327,11 @@
       "updated": null
      },
      "it": {
-      "translation": "Scelga le possibilità",
+      "translation": "Che cosa vorresti fare?",
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2025-09-08T14:31:45Z"
+      "updated": "2026-10-30T08:47:14Z"
      },
      "fi": {
       "translation": "Valitse mahdollisuutesi",
@@ -4947,11 +4947,11 @@
       "updated": null
      },
      "it": {
-      "translation": "Permesso",
+      "translation": "Permessi",
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2025-09-08T14:31:45Z"
+      "updated": "2026-10-30T08:47:14Z"
      },
      "fi": {
       "translation": "Oikeudet",
@@ -5055,11 +5055,11 @@
       "updated": null
      },
      "it": {
-      "translation": "Permesso attuale",
+      "translation": "Permessi attuali",
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2025-09-08T14:31:45Z"
+      "updated": "2026-10-30T08:47:14Z"
      },
      "fi": {
       "translation": "Nykyiset oikeudet",
@@ -11643,11 +11643,11 @@
       "updated": null
      },
      "it": {
-      "translation": "Anteprima stampa",
+      "translation": "Anteprima di stampa",
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2025-09-08T14:31:45Z"
+      "updated": "2026-10-30T08:47:14Z"
      },
      "fi": {
       "translation": "Tulostusnäkymä",
@@ -14451,11 +14451,11 @@
       "updated": null
      },
      "it": {
-      "translation": "Compleanno",
+      "translation": "Compleanni",
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2025-09-08T14:31:45Z"
+      "updated": "2026-10-30T08:47:14Z"
      },
      "fi": {
       "translation": "Syntymäpäivät",
@@ -17907,11 +17907,11 @@
       "updated": null
      },
      "it": {
-      "translation": "Il tuo prossimo servizio",
+      "translation": "I tuoi prossimi servizi",
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2025-09-08T14:31:45Z"
+      "updated": "2026-10-30T08:47:14Z"
      },
      "fi": {
       "translation": "Seuraavat vastuusi",
@@ -21603,7 +21603,7 @@
    }
   ],
   "meta": {
-   "count": 13379
+   "count": 13381
   }
  }
 }

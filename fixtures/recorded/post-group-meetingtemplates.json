@@ -5,7 +5,7 @@
   "path": "/group/meetingtemplates",
   "query": [],
   "body": {
-   "name": "ctrs-test meetingtemplates e27d23",
+   "name": "ctrs-test meeting_templates bed323",
    "template": [
     {
      "label": "Thema",
@@ -16,8 +16,8 @@
  },
  "body": {
   "data": {
-   "id": 16,
-   "name": "ctrs-test meetingtemplates e27d23",
+   "id": 22,
+   "name": "ctrs-test meeting_templates bed323",
    "template": [
     {
      "label": "Thema",
@@ -25,11 +25,11 @@
     }
    ],
    "meta": {
-    "createdDate": "2026-10-28T23:34:48Z",
+    "createdDate": "2026-10-30T16:06:33Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:48Z",
+    "modifiedDate": "2026-10-30T16:06:33Z",
     "modifiedPerson": {
      "id": 1
     }

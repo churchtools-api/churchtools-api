@@ -5,16 +5,16 @@
   "path": "/statuses",
   "query": [],
   "body": {
-   "name": "ctrs-test Status bd821c",
+   "name": "ctrs-test Status ceca06",
    "securityLevelId": 1,
    "shorty": "T"
   }
  },
  "body": {
   "data": {
-   "id": 46,
-   "name": "ctrs-test Status bd821c",
-   "nameTranslated": "ctrs-test Status bd821c",
+   "id": 58,
+   "name": "ctrs-test Status ceca06",
+   "nameTranslated": "ctrs-test Status ceca06",
    "sortKey": 0,
    "shorty": "T",
    "shortyTranslated": "T",

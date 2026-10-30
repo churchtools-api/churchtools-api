@@ -6,15 +6,15 @@
   "query": [],
   "body": {
    "content": "Inhalt",
-   "title": "ctrs-test Beitrag 68d692",
+   "title": "ctrs-test Beitrag 074204",
    "visibility": "group_intern",
    "groupId": 11
   }
  },
  "body": {
   "data": {
-   "id": 91,
-   "guid": "D367F756-8488-4EC2-A566-E8990DF175CB",
+   "id": 103,
+   "guid": "2195D440-4C54-4723-94E9-55DC9CE22439",
    "group": {
     "title": "#0 Gemeindeleitung",
     "domainType": "group",
@@ -59,7 +59,7 @@
     },
     "infos": []
    },
-   "title": "ctrs-test Beitrag 68d692",
+   "title": "ctrs-test Beitrag 074204",
    "content": "Inhalt",
    "groupVisibility": "restricted",
    "visibility": "group_intern",
@@ -70,15 +70,15 @@
    "expirationDate": null,
    "expirationPid": null,
    "expirationPerson": null,
-   "publishedDate": "2026-10-28T23:35:18Z",
+   "publishedDate": "2026-10-30T16:07:03Z",
    "lastEditedDate": null,
    "isBanned": false,
    "meta": {
-    "createdDate": "2026-10-28T23:35:19Z",
+    "createdDate": "2026-10-30T16:07:04Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:19Z",
+    "modifiedDate": "2026-10-30T16:07:04Z",
     "modifiedPerson": {
      "id": 1
     }

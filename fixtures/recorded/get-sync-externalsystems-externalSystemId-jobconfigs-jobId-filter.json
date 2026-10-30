@@ -2,7 +2,7 @@
  "operation": "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter",
  "request": {
   "method": "GET",
-  "path": "/sync/externalsystems/13/jobconfigs/13/filter",
+  "path": "/sync/externalsystems/19/jobconfigs/19/filter",
   "query": [],
   "body": null
  },

@@ -2,17 +2,17 @@
  "operation": "patch-htmltemplates-templateId",
  "request": {
   "method": "PATCH",
-  "path": "/htmltemplates/55",
+  "path": "/htmltemplates/67",
   "query": [],
   "body": {
-   "name": "ctrs-test Vorlage a6f37a neu"
+   "name": "ctrs-test Vorlage fd8b23 neu"
   }
  },
  "body": {
   "data": {
-   "id": 55,
+   "id": 67,
    "domainType": "bulkletter",
-   "name": "ctrs-test Vorlage a6f37a neu",
+   "name": "ctrs-test Vorlage fd8b23 neu",
    "owner": {
     "title": "Armin Adendorf",
     "domainType": "person",
@@ -36,11 +36,11 @@
    "htmlFileId": null,
    "mjmlFileId": null,
    "meta": {
-    "createdDate": "2026-10-28T23:34:55Z",
+    "createdDate": "2026-10-30T16:06:40Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:55Z",
+    "modifiedDate": "2026-10-30T16:06:40Z",
     "modifiedPerson": {
      "id": 1
     }
