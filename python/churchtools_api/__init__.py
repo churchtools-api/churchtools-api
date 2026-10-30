@@ -38,7 +38,7 @@ from ._resources import Resources
 from ._version import API_BUILD, API_VERSION
 
 try:
-    __version__ = _metadata.version("churchtools-api")
+    __version__ = _metadata.version("churchtools-api-rs")
 except _metadata.PackageNotFoundError:  # pragma: no cover - not installed (e.g. plain source tree)
     __version__ = "0.0.0"
 

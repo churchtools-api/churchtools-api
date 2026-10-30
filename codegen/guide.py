@@ -64,9 +64,10 @@ Wähle oben rechts deine Sprache. Alle Beispiele auf dieser Seite wechseln mit.
             "installation",
             "Installation",
             """
-Die Pakete heißen in beiden Sprachen `churchtools-api`:
+Das Rust-Crate heißt `churchtools-api`, das Python-Paket `churchtools-api-rs`; importiert wird es als
+`churchtools_api`. (Der Name `churchtools-api` ist auf PyPI wegen eines älteren, nicht verwandten Projekts gesperrt.)
 
-- **Python:** `pip install churchtools-api` (ab Python 3.10). Für Linux (x86-64, ARM64, auch musl), macOS
+- **Python:** `pip install churchtools-api-rs` (ab Python 3.10). Für Linux (x86-64, ARM64, auch musl), macOS
   (Intel und Apple Silicon) und Windows (x86-64) gibt es fertige Wheels; ein Wheel deckt alle Python-Versionen
   ab 3.10 ab. Auf anderen Plattformen baut `pip` das Paket aus dem Quellcode mit
   [maturin](https://www.maturin.rs); dafür braucht es eine [Rust-Toolchain](https://rustup.rs) ab 1.88 und
@@ -77,10 +78,10 @@ Die Pakete heißen in beiden Sprachen `churchtools-api`:
 Den neuesten Entwicklungsstand bekommst du direkt aus dem Git-Repository.
 """,
             python="""\
-pip install churchtools-api
+pip install churchtools-api-rs
 
 # Entwicklungsstand aus dem Git-Repository (baut aus dem Quellcode)
-pip install "churchtools-api @ git+https://github.com/churchtools-api/churchtools-api#subdirectory=python\"""",
+pip install "churchtools-api-rs @ git+https://github.com/churchtools-api/churchtools-api#subdirectory=python\"""",
             rust="""\
 # Cargo.toml
 [dependencies]

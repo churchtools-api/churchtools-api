@@ -7,7 +7,7 @@ Für Nutzer des Clients ist das [README](../README.md) und die [Doku-Seite](site
 
 ```
 core/      churchtools-api: Rust-Crate (reqwest blocking + serde)
-python/    churchtools-api:  PyO3-Erweiterung `_core` + Python-Paket `churchtools_api`
+python/    churchtools-api-rs:  PyO3-Erweiterung `_core` + Python-Paket `churchtools_api`
 codegen/   generate.py:     openapi.json -> Rust- und Python-Code, OPERATIONS.md, Doku
            guide.py:        handgeschriebene Doku-Texte und Projekt-Beispiele
            examples.py:     erzeugt die Referenz-Beispiele
@@ -175,7 +175,7 @@ Veröffentlicht wird über Trusted Publishing (OpenID Connect): Im Repository li
 
 - **GitHub, Settings → Environments:** `pypi` und `crates-io` anlegen, je mit *Required reviewers* (man selbst) und
   *Deployment branches and tags* auf das Tag-Muster `v*` beschränkt. Damit veröffentlicht nichts ohne Bestätigung.
-- **PyPI:** unter *Your account → Publishing* einen *Pending publisher* anlegen: Projekt `churchtools-api`,
+- **PyPI:** unter *Your account → Publishing* einen *Pending publisher* anlegen: Projekt `churchtools-api-rs`,
   Owner `churchtools-api`, Repository `churchtools-api`, Workflow `release.yml`, Environment `pypi`.
 - **crates.io:** Trusted Publishing lässt sich erst für eine bestehende Crate einrichten. Die erste Version daher von
   Hand veröffentlichen (`cargo login`, dann `cargo publish -p churchtools-api`), danach in den Crate-Einstellungen

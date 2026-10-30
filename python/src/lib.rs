@@ -1,4 +1,4 @@
-//! Native part of the `churchtools-api` Python package.
+//! Native part of the `churchtools-api-rs` Python package (module `churchtools_api`).
 //!
 //! Only transport lives here (HTTP, auth, errors, pagination); the typed API
 //! and Pydantic models are generated Python in `churchtools_api`.

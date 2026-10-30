@@ -3,7 +3,7 @@ requires = ["maturin>=1.8,<2"]
 build-backend = "maturin"
 
 [project]
-name = "churchtools-api"
+name = "churchtools-api-rs"
 description = "Synchronous ChurchTools REST API client with a Rust core and Pydantic models"
 readme = "README.md"
 license = "MIT AND CC-BY-4.0"

@@ -8,8 +8,9 @@ liefert Pydantic-Modelle. Beide Varianten entstehen aus derselben API-Beschreibu
 *A ChurchTools REST API client for Python and Rust, generated from the official OpenAPI description. The
 documentation is in German.*
 
-churchtools-api ist ein inoffizielles Projekt und gehört nicht zu ChurchTools. Es ist nicht verwandt mit dem
-PyPI-Paket `churchtools`.
+churchtools-api ist ein inoffizielles Projekt und gehört nicht zu ChurchTools. Das Python-Paket heißt auf PyPI
+`churchtools-api-rs` und wird als `churchtools_api` importiert; es ist nicht verwandt mit den PyPI-Paketen
+`churchtools` und `ChurchToolsApi`.
 
 **Dokumentation:** [churchtools-api.github.io/churchtools-api](https://churchtools-api.github.io/churchtools-api/)
 mit Einstieg, Grundlagen, Beispielprojekten und der vollständigen Referenz. Jedes Beispiel gibt es für Python und
@@ -49,7 +50,7 @@ for event in client.events().list_with(&query)? {
 ## Installation
 
 ```bash
-pip install churchtools-api        # Python ab 3.10
+pip install churchtools-api-rs     # Python ab 3.10, Import: churchtools_api
 cargo add churchtools-api          # Rust ab 1.88
 ```
 

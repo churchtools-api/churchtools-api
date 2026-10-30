@@ -1,6 +1,6 @@
 # Changelog
 
-Alle nennenswerten Änderungen am Rust-Crate und am Python-Paket `churchtools-api`. Das Format folgt
+Alle nennenswerten Änderungen am Rust-Crate `churchtools-api` und am Python-Paket `churchtools-api-rs`. Das Format folgt
 [Keep a Changelog](https://keepachangelog.com/de/1.1.0/), die Versionen folgen [SemVer](https://semver.org/lang/de/);
 vor 1.0 kann jede Minor-Version inkompatible Änderungen enthalten. Wie Versionen und ChurchTools-Versionen
 zusammenhängen, steht im README unter „ChurchTools-Versionen und Kompatibilität“.
@@ -14,7 +14,7 @@ Erste Veröffentlichung. Generiert aus der API-Beschreibung von ChurchTools 3.13
   `allow_insecure_http`, `from_env`), generierte Ressourcen (`client.events().list_with(&query)`), Modelle mit
   `Default` und `extra`, lazy Iteratoren `…_iter` und `Client::items`, `Error` mit `is_not_found()`, `status()`,
   `api()`; die HTTP-Bibliothek ist nicht Teil der öffentlichen API (`Method`, `TransportError`).
-- Python-Paket `churchtools-api`: `Client` mit denselben Optionen, generierte Ressourcen
+- Python-Paket `churchtools-api-rs` (Import `churchtools_api`): `Client` mit denselben Optionen, generierte Ressourcen
   (`client.events.list(...)`), Pydantic-Modelle mit `model_extra`, `Paginator`, Ausnahmen `NotFound`,
   `Unauthorized`, `Forbidden`, `UnprocessableEntity`, `ConnectError`, `Timeout`, `ResponseTooLarge`,
   `RedirectError`, `DecodeError`, `InvalidArgument`; Argumente mit fester Werteliste als `Literal[...]`.

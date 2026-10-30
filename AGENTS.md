@@ -6,7 +6,7 @@ Dieses Dokument richtet sich an KI-Werkzeuge (z. B. Claude Code), die an churcht
 ## Worum es geht
 
 Ein synchroner Client für die ChurchTools-REST-API: Rust-Crate `churchtools-api` (`core/`) und Python-Paket
-`churchtools-api` (`python/`, PyO3-Erweiterung `_core` plus Pydantic-Modelle). Fast alles ist aus der OpenAPI-Spec
+`churchtools-api-rs` (`python/`, Modul `churchtools_api`, PyO3-Erweiterung `_core` plus Pydantic-Modelle). Fast alles ist aus der OpenAPI-Spec
 generiert (`codegen/generate.py`); handgeschrieben sind nur Transport, Fehler, Toleranzregeln, Doku-Texte und Tests.
 
 ## Regeln
