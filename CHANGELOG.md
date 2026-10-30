@@ -5,7 +5,7 @@ Alle nennenswerten Änderungen am Rust-Crate `churchtools-api` und am Python-Pak
 vor 1.0 kann jede Minor-Version inkompatible Änderungen enthalten. Wie Versionen und ChurchTools-Versionen
 zusammenhängen, steht im README unter „ChurchTools-Versionen und Kompatibilität“.
 
-## [0.1.0] – unveröffentlicht
+## [0.1.0] – 2026-10-30
 
 Erste Veröffentlichung. Generiert aus der API-Beschreibung von ChurchTools 3.138.1 (Build 32938): 849 Operationen,
 1110 Modelle.
