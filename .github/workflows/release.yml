@@ -1,0 +1,178 @@
+# Builds the Python wheels and the source distribution and publishes a release.
+#
+# - Push a tag `v<version>` (matching `version` in Cargo.toml) to build, publish to PyPI and crates.io and create a
+#   GitHub release with the changelog section of that version.
+# - Run it by hand (workflow_dispatch) to only build and test the packages; nothing is published.
+#
+# Publishing uses trusted publishing (OpenID Connect), no API tokens are stored in the repository. Setup and the
+# checklist for a release: docs/entwicklung.md, section "Veröffentlichen".
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: version
+        name: Package version matches the tag
+        run: |
+          version=$(sed -n 's/^version = "\(.*\)"$/\1/p' Cargo.toml | head -1)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if [[ "$GITHUB_REF_TYPE" == tag && "$GITHUB_REF_NAME" != "v$version" ]]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match version $version in Cargo.toml"
+            exit 1
+          fi
+          if [[ "$GITHUB_REF_TYPE" == tag ]] && ! grep -q "^## \[$version\]" CHANGELOG.md; then
+            echo "::error::CHANGELOG.md has no section for $version"
+            exit 1
+          fi
+
+  wheels:
+    needs: version
+    name: wheel ${{ matrix.target }} ${{ matrix.manylinux || '' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # abi3: one wheel per platform covers Python 3.10 and newer.
+          - { os: ubuntu-latest, target: x86_64, manylinux: auto, test: true }
+          - { os: ubuntu-latest, target: aarch64, manylinux: auto }
+          - { os: ubuntu-latest, target: x86_64, manylinux: musllinux_1_2 }
+          - { os: ubuntu-latest, target: aarch64, manylinux: musllinux_1_2 }
+          - { os: macos-latest, target: aarch64, test: true }
+          - { os: macos-latest, target: x86_64 }
+          - { os: windows-latest, target: x64, test: true }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: PyO3/maturin-action@v1
+        with:
+          working-directory: python
+          target: ${{ matrix.target }}
+          manylinux: ${{ matrix.manylinux }}
+          args: --release --out dist
+      - name: Install the wheel and import it
+        if: matrix.test
+        shell: bash
+        run: |
+          python -m venv /tmp/smoke
+          if [[ "$RUNNER_OS" == Windows ]]; then py=/tmp/smoke/Scripts/python; else py=/tmp/smoke/bin/python; fi
+          "$py" -m pip install --quiet python/dist/*.whl
+          cd /tmp
+          "$py" -c "import churchtools_api as ct; c = ct.Client('https://xyz.church.tools'); print(ct.__version__, ct.API_VERSION, c)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheel-${{ matrix.os }}-${{ matrix.target }}-${{ matrix.manylinux || 'native' }}
+          path: python/dist/*.whl
+          if-no-files-found: error
+
+  sdist:
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: PyO3/maturin-action@v1
+        with:
+          working-directory: python
+          command: sdist
+          args: --out dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: python/dist/*.tar.gz
+          if-no-files-found: error
+
+  crate:
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Package and verify the crate
+        run: cargo package -p churchtools-api
+
+  pypi:
+    if: github.ref_type == 'tag'
+    needs: [wheels, sdist, crate]
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/churchtools-api/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
+          skip-existing: true
+
+  crates-io:
+    if: github.ref_type == 'tag'
+    needs: [version, wheels, sdist, crate]
+    runs-on: ubuntu-latest
+    environment:
+      name: crates-io
+      url: https://crates.io/crates/churchtools-api
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Already published?
+        id: exists
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          status=$(curl -s -o /dev/null -w '%{http_code}' -A 'churchtools-api release workflow' \
+            "https://crates.io/api/v1/crates/churchtools-api/$VERSION")
+          echo "published=$([[ $status == 200 ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - uses: rust-lang/crates-io-auth-action@v1
+        if: steps.exists.outputs.published == 'false'
+        id: auth
+      - name: Publish
+        if: steps.exists.outputs.published == 'false'
+        run: cargo publish -p churchtools-api
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+
+  github-release:
+    if: github.ref_type == 'tag'
+    needs: [version, pypi, crates-io]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Create the release with the changelog section
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          awk -v v="$VERSION" '
+            /^## \[/ { if (found) exit; if (index($0, "## [" v "]") == 1) { found = 1; next } }
+            found' CHANGELOG.md > notes.md
+          gh release create "$GITHUB_REF_NAME" dist/* --title "$GITHUB_REF_NAME" --notes-file notes.md

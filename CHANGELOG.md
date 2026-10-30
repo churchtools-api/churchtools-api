@@ -31,5 +31,7 @@ Erste Veröffentlichung. Generiert aus der API-Beschreibung von ChurchTools 3.13
 - Datei-Uploads (`Upload`), `login_with_password`, veraltete Endpunkte und Argumente markiert
   (`@deprecated`, `#[deprecated]`), `API_VERSION`/`API_BUILD`, `churchtools_api.__version__`.
 - TLS über rustls mit `ring` und dem Trust-Store des Betriebssystems.
+- Pakete auf PyPI (Wheels für Linux, macOS und Windows, abi3 ab Python 3.10, dazu ein sdist) und crates.io;
+  Mindestversion Rust 1.88.
 - Doku-Seite mit Einstieg, Grundlagen, Beispielprojekten und Referenz; alle Beispiele laufen als Tests.
 - Lizenz MIT; generierte Dateien zusätzlich CC BY 4.0 (API-Beschreibung von ChurchTools), siehe `NOTICE`.

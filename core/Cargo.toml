@@ -1,13 +1,23 @@
 [package]
 name = "churchtools-api"
-description = "Synchronous ChurchTools REST API client"
+description = "Synchronous client for the ChurchTools REST API, generated from its OpenAPI description"
 version.workspace = true
 edition.workspace = true
+rust-version.workspace = true
 license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/churchtools-api"
+readme = "../README.md"
+keywords = ["churchtools", "api", "client", "rest", "church"]
+categories = ["api-bindings", "web-programming::http-client"]
+# The tests need the recorded responses in ../fixtures, which are not part of the package.
+include = ["/src", "/LICENSE", "/NOTICE"]
 
 [features]
-# Local server answering with recorded responses; used by the crate's own tests
-# and doctests (enabled through the dev-dependency on itself below).
+# Internal: local server answering with recorded responses; used by the crate's
+# own tests and doctests (enabled through the dev-dependency on itself below).
+# Needs the repository checkout, not part of the public API.
 replay = []
 
 [dependencies]

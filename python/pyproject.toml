@@ -5,18 +5,43 @@ build-backend = "maturin"
 [project]
 name = "churchtools-api"
 description = "Synchronous ChurchTools REST API client with a Rust core and Pydantic models"
+readme = "README.md"
+license = "MIT AND CC-BY-4.0"
+license-files = ["LICENSE", "NOTICE"]
 requires-python = ">=3.10"
 dependencies = ["pydantic>=2.11", "typing_extensions>=4.12"]
 dynamic = ["version"]
+keywords = ["churchtools", "api", "client", "rest", "pydantic"]
 classifiers = [
-    "Programming Language :: Rust",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: German",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Rust",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
+
+[project.urls]
+Homepage = "https://churchtools-api.github.io/churchtools-api/"
+Documentation = "https://churchtools-api.github.io/churchtools-api/"
+Repository = "https://github.com/churchtools-api/churchtools-api"
+Issues = "https://github.com/churchtools-api/churchtools-api/issues"
+Changelog = "https://github.com/churchtools-api/churchtools-api/blob/main/CHANGELOG.md"
 
 [tool.maturin]
 module-name = "churchtools_api._core"
 python-packages = ["churchtools_api"]
 features = ["pyo3/extension-module"]
+# The source distribution carries what is needed to build, not the tests (they need the repository checkout).
+exclude = [
+    { path = "tests/**", format = "sdist" },
+    { path = "examples/**", format = "sdist" },
+    { path = "../core/tests/**", format = "sdist" },
+]
 
 [dependency-groups]
 dev = ["maturin>=1.8,<2", "pytest>=8", "mypy>=1.15", "ruff>=0.8"]

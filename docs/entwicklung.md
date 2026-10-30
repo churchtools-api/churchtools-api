@@ -159,3 +159,39 @@ Was das bringt und warum das Dekodieren trotzdem in Pydantic bleibt, steht in
 - Python- und Rust-API sollen gleich bleiben: gleiche Optionen am Client, gleiche Fehlerklassen, gleiche Namen der
   Endpunkte (siehe `codegen/OPERATIONS.md`).
 - Jede Änderung an der öffentlichen API kommt in `CHANGELOG.md`.
+
+## Veröffentlichen
+
+Releases laufen über `.github/workflows/release.yml`. Ein Tag `v<version>` baut die Python-Wheels (Linux x86-64 und
+ARM64 als manylinux und musllinux, macOS Intel und Apple Silicon, Windows x86-64; abi3, also ein Wheel je Plattform
+für Python ab 3.10), das sdist und das Crate-Paket, veröffentlicht auf PyPI und crates.io und legt ein
+GitHub-Release mit dem Changelog-Abschnitt an. Von Hand gestartet (*Run workflow*) baut und testet er nur und
+veröffentlicht nichts; so lässt sich der Paketbau vorab prüfen. Die Doku-Seite geht über
+`.github/workflows/pages.yml` bei jeder Änderung an `docs/site/` nach GitHub Pages.
+
+Veröffentlicht wird über Trusted Publishing (OpenID Connect): Im Repository liegen keine API-Token.
+
+### Einmalig einrichten
+
+- **GitHub, Settings → Environments:** `pypi` und `crates-io` anlegen, je mit *Required reviewers* (man selbst) und
+  *Deployment branches and tags* auf das Tag-Muster `v*` beschränkt. Damit veröffentlicht nichts ohne Bestätigung.
+- **PyPI:** unter *Your account → Publishing* einen *Pending publisher* anlegen: Projekt `churchtools-api`,
+  Owner `churchtools-api`, Repository `churchtools-api`, Workflow `release.yml`, Environment `pypi`.
+- **crates.io:** Trusted Publishing lässt sich erst für eine bestehende Crate einrichten. Die erste Version daher von
+  Hand veröffentlichen (`cargo login`, dann `cargo publish -p churchtools-api`), danach in den Crate-Einstellungen
+  *Trusted Publishing* mit Repository `churchtools-api/churchtools-api`, Workflow `release.yml` und Environment
+  `crates-io` eintragen. Der Workflow überspringt eine Version, die schon auf crates.io ist.
+- **Settings → Pages:** Source *GitHub Actions*.
+- **Settings → Security:** *Private vulnerability reporting* (darauf verweist `SECURITY.md`), Dependabot alerts und
+  security updates, Secret scanning mit Push protection, Code scanning (CodeQL, *Default setup*).
+
+### Checkliste für ein Release
+
+1. `version` in `Cargo.toml` (Workspace) erhöhen; `cargo check` aktualisiert `Cargo.lock`.
+2. Im `CHANGELOG.md` den Abschnitt `## [<version>] – <Datum>` anlegen bzw. „unveröffentlicht“ durch das Datum
+   ersetzen. Der Workflow bricht ab, wenn der Abschnitt fehlt.
+3. Die vollständige Prüfung aus `AGENTS.md` (Regel 5) laufen lassen, committen, auf `main` pushen und die CI
+   abwarten.
+4. Optional: den Release-Workflow von Hand starten und die Wheels prüfen.
+5. `git tag -a v<version> -m "churchtools-api <version>"` und `git push origin v<version>`.
+6. Die Veröffentlichung in den Environments `pypi` und `crates-io` freigeben.

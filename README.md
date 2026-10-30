@@ -11,9 +11,11 @@ documentation is in German.*
 churchtools-api ist ein inoffizielles Projekt und gehört nicht zu ChurchTools. Es ist nicht verwandt mit dem
 PyPI-Paket `churchtools`.
 
-**Dokumentation:** [`docs/site/index.html`](docs/site/index.html) mit Einstieg, Grundlagen, Beispielprojekten und
-der vollständigen Referenz. Jedes Beispiel gibt es für Python und Rust. Alle Aufrufe stehen in
-[`codegen/OPERATIONS.md`](codegen/OPERATIONS.md).
+**Dokumentation:** [churchtools-api.github.io/churchtools-api](https://churchtools-api.github.io/churchtools-api/)
+mit Einstieg, Grundlagen, Beispielprojekten und der vollständigen Referenz. Jedes Beispiel gibt es für Python und
+Rust. Alle Aufrufe stehen in
+[`codegen/OPERATIONS.md`](https://github.com/churchtools-api/churchtools-api/blob/main/codegen/OPERATIONS.md),
+die Rust-API zusätzlich auf [docs.rs](https://docs.rs/churchtools-api).
 
 ## Beispiel
 
@@ -46,14 +48,14 @@ for event in client.events().list_with(&query)? {
 
 ## Installation
 
-Fertige Pakete auf PyPI und crates.io gibt es noch nicht; die Installation läuft aus dem Quellcode.
+```bash
+pip install churchtools-api        # Python ab 3.10
+cargo add churchtools-api          # Rust ab 1.88
+```
 
-- **Python** (ab 3.10): `pip install ./python` aus einem Checkout, oder
-  `pip install "churchtools-api @ git+https://<repository>#subdirectory=python"`. Gebraucht werden eine
-  [Rust-Toolchain](https://rustup.rs) ab 1.88 und ein C-Compiler (für die TLS-Bibliothek).
-- **Rust**: `churchtools-api = { git = "https://<repository>" }` oder als Pfad-Abhängigkeit auf `core/`.
-
-Details stehen in der Doku unter „Installation“.
+Für Linux, macOS und Windows gibt es fertige Python-Wheels. Wo keins passt, und für Rust immer, wird aus dem
+Quellcode gebaut; dafür braucht es eine [Rust-Toolchain](https://rustup.rs) und einen C-Compiler (für die
+TLS-Bibliothek). Details stehen in der Doku unter „Installation“.
 
 ## Was der Client übernimmt
 
@@ -76,7 +78,7 @@ Antworten sind erlaubt, fehlende Endpunkte antworten mit `404`.
 
 Die Paketversion folgt [SemVer](https://semver.org/lang/de/). Das Projekt startet mit 0.1.0; vor 1.0 kann jede
 Minor-Version inkompatible Änderungen enthalten, insbesondere wenn der Code für eine neue ChurchTools-Version neu
-erzeugt wird. Änderungen stehen in [`CHANGELOG.md`](CHANGELOG.md).
+erzeugt wird. Änderungen stehen in [`CHANGELOG.md`](https://github.com/churchtools-api/churchtools-api/blob/main/CHANGELOG.md).
 
 ## Stand und Vorgehen
 
@@ -90,7 +92,7 @@ Das Projekt ist jung und experimentell. Was bisher geschehen ist und was geplant
   SDKs üblich, bedeutet aber auch, dass der Generator selbst gepflegt werden muss.
 - **Getestet und durchgesehen, aber nicht in der Breite erprobt:** Alle Lese-Endpunkte und 188
   Schreib-Endpunkte sind gegen eine ChurchTools-Demo-Instanz getestet; die aufgezeichneten Antworten dienen als
-  Offline-Tests für Python und Rust ([`docs/testbericht.md`](docs/testbericht.md)). Der Code wurde zu API-Form,
+  Offline-Tests für Python und Rust ([`docs/testbericht.md`](https://github.com/churchtools-api/churchtools-api/blob/main/docs/testbericht.md)). Der Code wurde zu API-Form,
   Fehlerbehandlung und Umgang mit Zugangsdaten durchgesehen. Das ersetzt aber keine Erfahrung mit echten
   Instanzen und echten Daten: Vor einer produktiven Verwendung solltest du die Aufrufe, die du brauchst, selbst
   gegen eine [Demo-Instanz](https://church.tools/en/test-churchtools/) oder eine Testkopie deiner Instanz prüfen,
@@ -121,19 +123,19 @@ Das Projekt ist jung und experimentell. Was bisher geschehen ist und was geplant
   eine gute reine Python-Lösung, nicht schneller. Rust kann daran nichts ändern, solange Python echte Pydantic-Modelle
   bekommt (der größte Posten ist das Erzeugen der Python-Objekte, nicht die Validierung); das ist eine bewusste
   Entscheidung. Gegen eine echte Instanz verschwindet beides ohnehin in der Netzwerkzeit, siehe
-  [`benchmarks/README.md`](benchmarks/README.md).
+  [`benchmarks/README.md`](https://github.com/churchtools-api/churchtools-api/blob/main/benchmarks/README.md).
 
 ## Mitmachen
 
-Fehlermeldungen und Vorschläge sind willkommen, siehe [`CONTRIBUTING.md`](CONTRIBUTING.md). Wie man das Projekt
-baut, testet und den Generator benutzt, steht in [`docs/entwicklung.md`](docs/entwicklung.md). Sicherheitslücken
-bitte nicht öffentlich melden, sondern wie in [`SECURITY.md`](SECURITY.md) beschrieben.
+Fehlermeldungen und Vorschläge sind willkommen, siehe [`CONTRIBUTING.md`](https://github.com/churchtools-api/churchtools-api/blob/main/CONTRIBUTING.md). Wie man das Projekt
+baut, testet und den Generator benutzt, steht in [`docs/entwicklung.md`](https://github.com/churchtools-api/churchtools-api/blob/main/docs/entwicklung.md). Sicherheitslücken
+bitte nicht öffentlich melden, sondern wie in [`SECURITY.md`](https://github.com/churchtools-api/churchtools-api/blob/main/SECURITY.md) beschrieben.
 
 ## Lizenz
 
-Der Code steht unter der [MIT-Lizenz](LICENSE). Die generierten Dateien beruhen auf der API-Beschreibung
+Der Code steht unter der [MIT-Lizenz](https://github.com/churchtools-api/churchtools-api/blob/main/LICENSE). Die generierten Dateien beruhen auf der API-Beschreibung
 „ChurchTools REST API“ von ChurchTools, die unter [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 steht; für sie gilt zusätzlich diese Lizenz. Welche Dateien das sind und was geändert wurde, steht in
-[`NOTICE`](NOTICE). Lizenzangabe der Pakete: `MIT AND CC-BY-4.0`.
+[`NOTICE`](https://github.com/churchtools-api/churchtools-api/blob/main/NOTICE). Lizenzangabe der Pakete: `MIT AND CC-BY-4.0`.
 
 churchtools-api ist kein offizielles Produkt der ChurchTools Innovations GmbH.

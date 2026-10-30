@@ -35,6 +35,16 @@ jobs:
         env:
           RUSTDOCFLAGS: -D warnings
 
+  msrv:
+    # rust-version in Cargo.toml; the resolver picks dependency versions that support it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.88
+      - uses: Swatinem/rust-cache@v2
+      - name: Libraries build with the minimum Rust version
+        run: cargo check --workspace --lib
+
   python:
     runs-on: ubuntu-latest
     strategy:

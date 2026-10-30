@@ -64,29 +64,29 @@ Wähle oben rechts deine Sprache. Alle Beispiele auf dieser Seite wechseln mit.
             "installation",
             "Installation",
             """
-Noch gibt es keine fertigen Pakete auf PyPI und crates.io. Du installierst direkt aus dem Quellcode:
+Die Pakete heißen in beiden Sprachen `churchtools-api`:
 
-- **Python:** `pip` baut das Paket mit [maturin](https://www.maturin.rs). Dafür braucht es eine
-  [Rust-Toolchain](https://rustup.rs) (ab 1.88), einen C-Compiler (für die TLS-Bibliothek; unter Linux `gcc`
-  oder `clang`, unter macOS die Xcode-Kommandozeilenwerkzeuge, unter Windows die Visual-Studio-Build-Tools)
-  und Python ab 3.10. Der Bau dauert beim ersten Mal ein paar Minuten.
-- **Rust:** Du bindest die Crate `churchtools-api` als Git- oder Pfad-Abhängigkeit ein; auch hier wird ein
-  C-Compiler gebraucht.
+- **Python:** `pip install churchtools-api` (ab Python 3.10). Für Linux (x86-64, ARM64, auch musl), macOS
+  (Intel und Apple Silicon) und Windows (x86-64) gibt es fertige Wheels; ein Wheel deckt alle Python-Versionen
+  ab 3.10 ab. Auf anderen Plattformen baut `pip` das Paket aus dem Quellcode mit
+  [maturin](https://www.maturin.rs); dafür braucht es eine [Rust-Toolchain](https://rustup.rs) ab 1.88 und
+  einen C-Compiler (für die TLS-Bibliothek; unter Linux `gcc` oder `clang`, unter macOS die
+  Xcode-Kommandozeilenwerkzeuge, unter Windows die Visual-Studio-Build-Tools).
+- **Rust:** `cargo add churchtools-api` (ab Rust 1.88). Auch hier wird ein C-Compiler gebraucht.
 
-Wenn die Pakete veröffentlicht sind, reicht `pip install churchtools-api` bzw. `cargo add churchtools-api`.
+Den neuesten Entwicklungsstand bekommst du direkt aus dem Git-Repository.
 """,
             python="""\
-# aus einem Checkout des Projekts
-pip install ./churchtools-api/python
+pip install churchtools-api
 
-# oder direkt aus dem Git-Repository
-pip install "churchtools-api @ git+https://<repository>#subdirectory=python\"""",
+# Entwicklungsstand aus dem Git-Repository (baut aus dem Quellcode)
+pip install "churchtools-api @ git+https://github.com/churchtools-api/churchtools-api#subdirectory=python\"""",
             rust="""\
 # Cargo.toml
 [dependencies]
-churchtools-api = { git = "https://<repository>" }
-# oder aus einem Checkout
-churchtools-api = { path = "../churchtools-api/core" }""",
+churchtools-api = "0.1"
+# oder der Entwicklungsstand aus dem Git-Repository
+churchtools-api = { git = "https://github.com/churchtools-api/churchtools-api" }""",
         ),
         Section(
             "schnellstart",

@@ -1,0 +1,25 @@
+# Dependency updates: once a month, grouped per ecosystem, so that one pull request carries one round of updates.
+# Major updates of PyO3 and reqwest need a look at python/src/lib.rs and core/src/client.rs (see AGENTS.md).
+version: 2
+updates:
+  - package-ecosystem: cargo
+    directories: ["/", "/benchmarks"]
+    schedule:
+      interval: monthly
+    groups:
+      cargo:
+        patterns: ["*"]
+  - package-ecosystem: pip
+    directory: /python
+    schedule:
+      interval: monthly
+    groups:
+      python:
+        patterns: ["*"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]

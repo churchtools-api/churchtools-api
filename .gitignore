@@ -5,3 +5,4 @@ __pycache__/
 *.so
 .idea/
 /benchmarks/target
+dist/

@@ -57,3 +57,6 @@ generiert (`codegen/generate.py`); handgeschrieben sind nur Transport, Fehler, T
 - **Versionen:** `version` in `Cargo.toml` (Workspace) ist die Paketversion für Rust und Python
   (`dynamic = ["version"]` in `pyproject.toml`). `API_VERSION`/`API_BUILD` beschreiben die ChurchTools-Version der
   Spec und kommen aus `codegen/spec/info.json`.
+- **Releases** baut und veröffentlicht `.github/workflows/release.yml` auf ein Tag `v<version>`; Einrichtung und
+  Checkliste in `docs/entwicklung.md` unter „Veröffentlichen“. Tags setzen und veröffentlichen nur auf ausdrückliche
+  Anweisung.
