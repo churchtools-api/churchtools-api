@@ -100,7 +100,7 @@ Das Projekt ist jung und experimentell. Was bisher geschehen ist und was geplant
   insbesondere alles, was schreibt.
 - Mit jeder neuen ChurchTools-Version soll die Kompatibilität erneut geprüft werden. Eine Möglichkeit, eine
   Version vor ihrer Veröffentlichung zu testen, gibt es derzeit nicht; die Prüfung geschieht also, sobald die
-  Demo-Instanz die neue Version hat.
+  Demo-Instanz die neue Version hat. Ein täglicher Workflow meldet, wenn sich dabei die API-Beschreibung ändert.
 - Die Abhängigkeiten (reqwest, rustls, pydantic, …) werden gelegentlich aktualisiert.
 - Bei der Entwicklung wurde [Claude Code](https://claude.com/claude-code) eingesetzt, unter anderem für den
   Generator, die Tests und die Dokumentation. Entwurf, Entscheidungen und Prüfung liegen beim Autor.

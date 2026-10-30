@@ -49,7 +49,8 @@ generiert (`codegen/generate.py`); handgeschrieben sind nur Transport, Fehler, T
 - **Neue ChurchTools-Versionen:** `python3 codegen/generate.py --refresh` lädt die aktuelle Spec von der
   Demo-Instanz; danach zeigen Generator-Diff, Offline-Tests und ein Live-Lauf gegen eine Demo-Instanz, was sich
   geändert hat. Eine Version lässt sich nicht vorab testen; die Prüfung passiert, sobald die Demo-Instanz die
-  Version hat. Neue Felder sind unkritisch (`extra`/`model_extra`), neue Pflichtfelder und umbenannte Endpunkte
+  Version hat; `.github/workflows/upstream.yml` meldet täglich per Issue, wenn die Demo-Instanz eine neue Version
+  mit geänderter Spec hat (`codegen/check_upstream.py`). Neue Felder sind unkritisch (`extra`/`model_extra`), neue Pflichtfelder und umbenannte Endpunkte
   sind inkompatible Änderungen → Minor-Version, Changelog.
 - **Abhängigkeiten** werden gelegentlich aktualisiert (`cargo update`, Pydantic-/PyO3-/maturin-Versionen in
   `pyproject.toml` und `python/Cargo.toml`). Nach einem Update die vollständige Prüfung aus Regel 5 laufen lassen;

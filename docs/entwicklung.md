@@ -53,6 +53,15 @@ Für eine neue ChurchTools-Version lädt `python3 codegen/generate.py --refresh`
 Tests, was sich geändert hat. Die Spec liegt komprimiert in `codegen/spec/openapi.json.xz`, Version und Build in
 `codegen/spec/info.json`.
 
+Ob es eine neue Version gibt, prüft `.github/workflows/upstream.yml` täglich mit `codegen/check_upstream.py`: Hat die
+Demo-Instanz (`demo.church.tools`, ohne Anmeldung) eine andere Version oder einen anderen Build **und** unterscheidet
+sich ihre Spec von der gespeicherten (als JSON verglichen), legt der Workflow ein Issue mit Label
+`churchtools-version` an: neue, entfallene und geänderte Operationen, möglicherweise inkompatible Änderungen
+(entfallene Operationen, neue Pflichtparameter und Pflichtfelder in Bodies) und eine Checkliste. Eine neue Version
+mit gleicher Spec (wie 3.138.0 → 3.138.1) erzeugt kein Issue. Live-Tests laufen weiterhin von Hand gegen eine
+Test-Instanz, weil die nur befristet existiert und Zugangsdaten braucht. GitHub pausiert geplante Workflows nach
+60 Tagen ohne Aktivität im Repository; dann unter *Actions* wieder einschalten.
+
 ## Bauen und testen
 
 ```bash
