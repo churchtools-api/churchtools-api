@@ -2,29 +2,29 @@
  "operation": "put-resourcetypes-resourceTypeId",
  "request": {
   "method": "PUT",
-  "path": "/resourcetypes/22",
+  "path": "/resourcetypes/25",
   "query": [],
   "body": {
-   "name": "ctrs-test resourcetypes fa93a7 neu",
+   "name": "ctrs-test resource_types 14c190 neu",
    "namePlural": "Testräume 2",
    "sortKey": 998
   }
  },
  "body": {
   "data": {
-   "id": 22,
-   "name": "ctrs-test resourcetypes fa93a7 neu",
-   "nameTranslated": "ctrs-test resourcetypes fa93a7 neu",
+   "id": 25,
+   "name": "ctrs-test resource_types 14c190 neu",
+   "nameTranslated": "ctrs-test resource_types 14c190 neu",
    "sortKey": 998,
    "namePlural": "Testräume 2",
    "namePluralTranslated": "Testräume 2",
    "campusId": null,
    "meta": {
-    "createdDate": "2026-10-28T23:34:44Z",
+    "createdDate": "2026-10-30T16:06:30Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:45Z",
+    "modifiedDate": "2026-10-30T16:06:31Z",
     "modifiedPerson": {
      "id": 1
     }

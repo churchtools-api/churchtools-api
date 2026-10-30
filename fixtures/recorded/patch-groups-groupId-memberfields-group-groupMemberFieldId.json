@@ -2,7 +2,7 @@
  "operation": "patch-groups-groupId-memberfields-group-groupMemberFieldId",
  "request": {
   "method": "PATCH",
-  "path": "/groups/922/memberfields/group/769",
+  "path": "/groups/967/memberfields/group/772",
   "query": [],
   "body": {
    "name": "Shirt"
@@ -10,8 +10,8 @@
  },
  "body": {
   "data": {
-   "id": 769,
-   "groupId": 922,
+   "id": 772,
+   "groupId": 967,
    "name": "Shirt",
    "referenceName": "t-shirt-groesse",
    "note": null,

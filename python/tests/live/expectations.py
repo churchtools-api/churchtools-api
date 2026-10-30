@@ -14,7 +14,7 @@ _SYNC = "Sync-Modul auf der Instanz nicht aktiv"
 
 # operationId -> (HTTP status, explanation)
 EXPECTED_ERRORS: dict[str, tuple[int, str]] = {
-    # Bugs in ChurchTools 3.138.0
+    # Bugs in ChurchTools 3.138.0, still present in 3.138.1
     "get-calendars-calendarId-appointments-appointmentId-ical": (
         500,
         "Serverfehler 'is no valid URI' bei jedem getesteten Termin",

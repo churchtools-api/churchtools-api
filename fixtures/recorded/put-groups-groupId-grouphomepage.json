@@ -2,7 +2,7 @@
  "operation": "put-groups-groupId-grouphomepage",
  "request": {
   "method": "PUT",
-  "path": "/groups/922/grouphomepage",
+  "path": "/groups/967/grouphomepage",
   "query": [],
   "body": {
    "isEnabled": true,

@@ -2,16 +2,16 @@
  "operation": "post-posts-postId-comments",
  "request": {
   "method": "POST",
-  "path": "/posts/91/comments",
+  "path": "/posts/103/comments",
   "query": [],
   "body": {
    "content": "Kommentar",
-   "postId": 91
+   "postId": 103
   }
  },
  "body": {
   "data": {
-   "id": 121,
+   "id": 139,
    "person": {
     "title": "Armin Adendorf",
     "domainType": "person",
@@ -33,14 +33,14 @@
    },
    "content": "Kommentar",
    "parentCommentId": null,
-   "postId": 91,
+   "postId": 103,
    "reactions": [],
    "meta": {
-    "createdDate": "2026-10-28T23:35:19Z",
+    "createdDate": "2026-10-30T16:07:04Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:19Z",
+    "modifiedDate": "2026-10-30T16:07:04Z",
     "modifiedPerson": {
      "id": 1
     }

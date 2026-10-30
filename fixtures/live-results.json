@@ -2,287 +2,287 @@
  "delete-addresses-domainType-domainIdentifier-addressId": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/addresses/group/922/526"
+  "path": "/addresses/group/967/529"
  },
  "delete-agendatemplates-agendaId": {
   "outcome": "ok",
   "scenario": "test_agenda_template",
-  "path": "/agendatemplates/385"
+  "path": "/agendatemplates/391"
  },
  "delete-agendatemplates-agendaId-items-itemId": {
   "outcome": "ok",
   "scenario": "test_agenda_template",
-  "path": "/agendatemplates/385/items/6094"
+  "path": "/agendatemplates/391/items/6103"
  },
  "delete-bookings": {
   "outcome": "ok",
   "scenario": "test_resource_booking",
-  "path": "/bookings/442"
+  "path": "/bookings/454"
  },
  "delete-calendars-appointments-templates-id": {
   "outcome": "ok",
   "scenario": "test_appointment_template",
-  "path": "/calendars/appointments/templates/34"
+  "path": "/calendars/appointments/templates/40"
  },
  "delete-calendars-calendarId": {
   "outcome": "ok",
   "scenario": "test_appointment_lifecycle",
-  "path": "/calendars/97"
+  "path": "/calendars/109"
  },
  "delete-calendars-calendarId-appointments-appointmentId": {
   "outcome": "ok",
   "scenario": "test_appointment_lifecycle",
-  "path": "/calendars/97/appointments/1665604"
+  "path": "/calendars/109/appointments/1665616"
  },
  "delete-campuses-id": {
   "outcome": "ok",
   "scenario": "test_masterdata_lifecycle[campuses]",
-  "path": "/campuses/25"
+  "path": "/campuses/31"
  },
  "delete-contactlabels-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[contactlabels]",
-  "path": "/contactlabels/28"
+  "scenario": "test_masterdata_lifecycle[contact_labels]",
+  "path": "/contactlabels/31"
  },
  "delete-events-id-agenda-items-id": {
   "outcome": "ok",
   "scenario": "test_event_agenda",
-  "path": "/events/1816/agenda/items/6097"
+  "path": "/events/1816/agenda/items/6106"
  },
  "delete-facts-id": {
   "outcome": "ok",
   "scenario": "test_facts",
-  "path": "/facts/22"
+  "path": "/facts/28"
  },
  "delete-followups-followUpId": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/followups/40"
+  "path": "/followups/52"
  },
  "delete-furtherlinks-furtherLinkId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[furtherlinks]",
-  "path": "/furtherlinks/31"
+  "scenario": "test_more_masterdata[further_links]",
+  "path": "/furtherlinks/40"
  },
  "delete-group-agegroups-ageGroupId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.agegroups]",
-  "path": "/group/agegroups/34"
+  "scenario": "test_masterdata_lifecycle[group.age_groups]",
+  "path": "/group/agegroups/40"
  },
  "delete-group-groupcategories-groupCategoryId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.groupcategories]",
-  "path": "/group/groupcategories/28"
+  "scenario": "test_masterdata_lifecycle[group.group_categories]",
+  "path": "/group/groupcategories/34"
  },
  "delete-group-grouptypes-groupTypeId": {
   "outcome": "ok",
   "scenario": "test_group_type_with_role",
-  "path": "/group/grouptypes/22"
+  "path": "/group/grouptypes/28"
  },
  "delete-group-meetingtemplates-meetingTemplateId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[group.meetingtemplates]",
-  "path": "/group/meetingtemplates/16"
+  "scenario": "test_more_masterdata[group.meeting_templates]",
+  "path": "/group/meetingtemplates/22"
  },
  "delete-group-roles-roleId": {
   "outcome": "ok",
   "scenario": "test_group_type_with_role",
-  "path": "/group/roles/94"
+  "path": "/group/roles/112"
  },
  "delete-group-targetgroups-targetGroupId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.targetgroups]",
-  "path": "/group/targetgroups/28"
+  "scenario": "test_masterdata_lifecycle[group.target_groups]",
+  "path": "/group/targetgroups/34"
  },
  "delete-groups-groupId": {
   "outcome": "ok",
   "scenario": "test_group_lifecycle",
-  "path": "/groups/919"
+  "path": "/groups/964"
  },
  "delete-groups-groupId-grouphomepage": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/grouphomepage"
+  "path": "/groups/967/grouphomepage"
  },
  "delete-groups-groupId-meetings-meetingId": {
   "outcome": "ok",
   "scenario": "test_group_lifecycle",
-  "path": "/groups/919/meetings/1066"
+  "path": "/groups/964/meetings/1084"
  },
  "delete-groups-groupId-meetings-meetingId-members-memberId": {
   "outcome": "ok",
   "scenario": "test_meeting_attendance",
-  "path": "/groups/934/meetings/1069/members/1"
+  "path": "/groups/979/meetings/1087/members/1"
  },
  "delete-groups-groupId-memberfields-group-groupMemberFieldId": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/memberfields/group/769"
+  "path": "/groups/967/memberfields/group/772"
  },
  "delete-groups-groupId-members-personId": {
   "outcome": "ok",
   "scenario": "test_group_lifecycle",
-  "path": "/groups/919/members/1"
+  "path": "/groups/964/members/1"
  },
  "delete-groups-groupId-parents-parentGroupId": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/parents/925"
+  "path": "/groups/967/parents/970"
  },
  "delete-htmltemplates-templateId": {
   "outcome": "ok",
   "scenario": "test_html_template",
-  "path": "/htmltemplates/55"
+  "path": "/htmltemplates/67"
  },
  "delete-notes-domainType-domainId-id": {
   "outcome": "ok",
   "scenario": "test_person_details",
-  "path": "/notes/person/2926/247"
+  "path": "/notes/person/2950/265"
  },
  "delete-notes-noteId": {
   "outcome": "ok",
   "scenario": "test_person_details",
-  "path": "/notes/250"
+  "path": "/notes/268"
  },
  "delete-oauthclients-identifier": {
   "outcome": "ok",
   "scenario": "test_oauth_client",
-  "path": "/oauthclients/6398647334b9ffbfcf8ff929d7117da7a36598060365e43eda2703ed19a2d806"
+  "path": "/oauthclients/5e05be60d3d0b4623cb445494f102b5aead841cc3a3e643cf8539087037093ce"
  },
  "delete-person-commentviewers-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.commentviewers]",
-  "path": "/person/commentviewers/31"
+  "scenario": "test_masterdata_lifecycle[person.comment_viewers]",
+  "path": "/person/commentviewers/37"
  },
  "delete-person-growpaths-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.growpaths]",
-  "path": "/person/growpaths/31"
+  "scenario": "test_masterdata_lifecycle[person.grow_paths]",
+  "path": "/person/growpaths/37"
  },
  "delete-person-relationshiptypes-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.relationshiptypes]",
-  "path": "/person/relationshiptypes/25"
+  "scenario": "test_masterdata_lifecycle[person.relationship_types]",
+  "path": "/person/relationshiptypes/31"
  },
  "delete-person-sexes-id": {
   "outcome": "ok",
   "scenario": "test_masterdata_lifecycle[person.sexes]",
-  "path": "/person/sexes/31"
+  "path": "/person/sexes/37"
  },
  "delete-persons-id": {
   "outcome": "ok",
   "scenario": "test_person_lifecycle",
-  "path": "/persons/2923"
+  "path": "/persons/2947"
  },
  "delete-persons-id-privacypolicy": {
   "outcome": "ok",
   "scenario": "test_person_agreements",
-  "path": "/persons/2932/privacypolicy"
+  "path": "/persons/2956/privacypolicy"
  },
  "delete-persons-personId-absences-id": {
   "outcome": "ok",
   "scenario": "test_person_details",
-  "path": "/persons/2926/absences/100"
+  "path": "/persons/2950/absences/112"
  },
  "delete-persons-personId-confidentialityagreement": {
   "outcome": "ok",
   "scenario": "test_person_agreements",
-  "path": "/persons/2932/confidentialityagreement"
+  "path": "/persons/2956/confidentialityagreement"
  },
  "delete-persons-personId-relationships-relationshipId": {
   "outcome": "ok",
   "scenario": "test_person_details",
-  "path": "/persons/1/relationships/103"
+  "path": "/persons/1/relationships/109"
  },
  "delete-post-hidden-domaintype-domainid": {
   "outcome": "ok",
   "scenario": "test_post_reactions",
-  "path": "/post/hidden/post/91"
+  "path": "/post/hidden/post/103"
  },
  "delete-posts-postId": {
   "outcome": "ok",
   "scenario": "test_post_with_comment",
-  "path": "/posts/88"
+  "path": "/posts/100"
  },
  "delete-posts-postId-comments-commentId": {
   "outcome": "ok",
   "scenario": "test_post_with_comment",
-  "path": "/posts/88/comments/118"
+  "path": "/posts/100/comments/136"
  },
  "delete-posts-postId-comments-commentId-reactions-emoji": {
   "outcome": "ok",
   "scenario": "test_post_reactions",
-  "path": "/posts/91/comments/121/reactions/%F0%9F%91%8D"
+  "path": "/posts/103/comments/139/reactions/%F0%9F%91%8D"
  },
  "delete-posts-postId-reactions-emoji-persons-personId": {
   "outcome": "ok",
   "scenario": "test_post_reactions",
-  "path": "/posts/91/reactions/%F0%9F%99%8F/persons/1"
+  "path": "/posts/103/reactions/%F0%9F%99%8F/persons/1"
  },
  "delete-resources-resourceId": {
   "outcome": "ok",
   "scenario": "test_resource_booking",
-  "path": "/resources/52"
+  "path": "/resources/64"
  },
  "delete-resourcetypes-resourceTypeId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[resourcetypes]",
-  "path": "/resourcetypes/22"
+  "scenario": "test_more_masterdata[resource_types]",
+  "path": "/resourcetypes/25"
  },
  "delete-servicegroups-id": {
   "outcome": "ok",
   "scenario": "test_services",
-  "path": "/servicegroups/34"
+  "path": "/servicegroups/40"
  },
  "delete-services-id": {
   "outcome": "ok",
   "scenario": "test_services",
-  "path": "/services/121"
+  "path": "/services/127"
  },
  "delete-song-categories-id": {
   "outcome": "ok",
   "scenario": "test_more_masterdata[song.categories]",
-  "path": "/song/categories/19"
+  "path": "/song/categories/25"
  },
  "delete-song-sources-id": {
   "outcome": "ok",
   "scenario": "test_more_masterdata[song.sources]",
-  "path": "/song/sources/19"
+  "path": "/song/sources/25"
  },
  "delete-songs-songId": {
   "outcome": "ok",
   "scenario": "test_song_with_arrangement",
-  "path": "/songs/100"
+  "path": "/songs/118"
  },
  "delete-songs-songId-arrangements-arrangementId": {
   "outcome": "ok",
   "scenario": "test_song_with_arrangement",
-  "path": "/songs/100/arrangements/133"
+  "path": "/songs/118/arrangements/157"
  },
  "delete-statuses-id": {
   "outcome": "ok",
   "scenario": "test_masterdata_lifecycle[statuses]",
-  "path": "/statuses/43"
+  "path": "/statuses/55"
  },
  "delete-tags-domainType-domainId-tagId": {
   "outcome": "ok",
   "scenario": "test_tags",
-  "path": "/tags/person/1/88"
+  "path": "/tags/person/1/97"
  },
  "delete-tags-tagId": {
   "outcome": "ok",
   "scenario": "test_tags",
-  "path": "/tags/88"
+  "path": "/tags/97"
  },
  "delete-wiki-categories-id": {
   "outcome": "ok",
   "scenario": "test_wiki",
-  "path": "/wiki/categories/34"
+  "path": "/wiki/categories/40"
  },
  "delete-wiki-categories-id-pages-identifier": {
   "outcome": "ok",
   "scenario": "test_wiki",
-  "path": "/wiki/categories/34/pages/971B9689-5CA9-4C4B-91AF-D259FF8AF0B7"
+  "path": "/wiki/categories/40/pages/1FB00D6A-A80F-4627-809A-8D48C809FC39"
  },
  "get-addresses-domainType-domainIdentifier": {
   "outcome": "ok",
@@ -296,12 +296,12 @@
  },
  "get-agendatemplates": {
   "outcome": "ok",
-  "call": "agendatemplates.list()",
+  "call": "agenda_templates.list()",
   "undocumented": {}
  },
  "get-agendatemplates-agendaId": {
   "outcome": "ok",
-  "call": "agendatemplates.get(2)",
+  "call": "agenda_templates.get(2)",
   "undocumented": {}
  },
  "get-bookings": {
@@ -324,28 +324,35 @@
  },
  "get-bookings-id": {
   "outcome": "ok",
-  "scenario": "test_resource_booking",
-  "path": "/bookings/442"
+  "call": "bookings.get(5)",
+  "undocumented": {
+   "BookingBase": [
+    "@deprecated"
+   ],
+   "BookingCalculatedWithIncludesBaseResource": [
+    "@deprecated"
+   ]
+  }
  },
  "get-bulkletters": {
   "outcome": "ok",
-  "call": "bulkletters.list()",
+  "call": "bulk_letters.list()",
   "undocumented": {}
  },
  "get-bulkletters-id": {
   "outcome": "ok",
-  "call": "bulkletters.get(42)",
+  "call": "bulk_letters.get(42)",
   "undocumented": {}
  },
  "get-bulkletters-id-persons": {
   "outcome": "ok",
-  "call": "bulkletters.list_persons(42)",
+  "call": "bulk_letters.list_persons(42)",
   "undocumented": {}
  },
  "get-calendars": {
   "outcome": "ok",
-  "scenario": "test_appointment_template",
-  "path": "/calendars"
+  "call": "calendars.list()",
+  "undocumented": {}
  },
  "get-calendars-appointments": {
   "outcome": "ok",
@@ -392,8 +399,15 @@
  },
  "get-calendars-appointments-templates-id": {
   "outcome": "ok",
-  "scenario": "test_appointment_template",
-  "path": "/calendars/appointments/templates/34"
+  "call": "calendars.appointments.templates.get(4)",
+  "undocumented": {
+   "AppointmentTemplate": [
+    "@deprecated",
+    "comment",
+    "note",
+    "repeatFrequence"
+   ]
+  }
  },
  "get-calendars-calendarId": {
   "outcome": "ok",
@@ -417,8 +431,12 @@
  },
  "get-calendars-calendarId-appointments-appointmentId": {
   "outcome": "ok",
-  "scenario": "test_appointment_lifecycle",
-  "path": "/calendars/97/appointments/1665604"
+  "call": "calendars.appointments.get(49, 1665407)",
+  "undocumented": {
+   "AppointmentBase": [
+    "@deprecated"
+   ]
+  }
  },
  "get-calendars-calendarId-appointments-appointmentId-ical": {
   "outcome": "expected-error",
@@ -435,7 +453,7 @@
  },
  "get-calendars-calendarId-appointments-appointmentId-meetingrequests": {
   "outcome": "ok",
-  "call": "calendars.appointments.meetingrequests.list(49, 1665407)",
+  "call": "calendars.appointments.meeting_requests.list(49, 1665407)",
   "undocumented": {}
  },
  "get-calendars-calendarId-appointments-appointmentId-startDate": {
@@ -449,12 +467,12 @@
  },
  "get-calendars-calendarId-meetingrequest-candidates": {
   "outcome": "ok",
-  "call": "calendars.meetingrequest.list_candidates(49)",
+  "call": "calendars.meeting_request.list_candidates(49)",
   "undocumented": {}
  },
  "get-calendars-calendarId-meetingrequestpersons": {
   "outcome": "ok",
-  "call": "calendars.list_meetingrequestpersons(49)",
+  "call": "calendars.list_meeting_request_persons(49)",
   "undocumented": {}
  },
  "get-campuses": {
@@ -464,8 +482,8 @@
  },
  "get-campuses-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[campuses]",
-  "path": "/campuses/25"
+  "call": "campuses.get(0)",
+  "undocumented": {}
  },
  "get-captcha": {
   "outcome": "ok",
@@ -485,7 +503,7 @@
  },
  "get-churchquery-metadata": {
   "outcome": "ok",
-  "call": "churchquery.get_metadata(entity_to_search_for='person')",
+  "call": "church_query.get_metadata(entity_to_search_for='person')",
   "undocumented": {}
  },
  "get-config": {
@@ -501,40 +519,40 @@
  },
  "get-contactlabels": {
   "outcome": "ok",
-  "call": "contactlabels.list()",
+  "call": "contact_labels.list()",
   "undocumented": {}
  },
  "get-contactlabels-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[contactlabels]",
-  "path": "/contactlabels/28"
+  "call": "contact_labels.get(2)",
+  "undocumented": {}
  },
  "get-csrftoken": {
   "outcome": "ok",
-  "call": "csrftoken.get()",
+  "call": "csrf_token.get()",
   "undocumented": {}
  },
  "get-dbfields": {
   "outcome": "ok",
-  "call": "dbfields.list()",
+  "call": "db_fields.list()",
   "undocumented": {}
  },
  "get-dbfields-fieldId": {
   "outcome": "ok",
-  "call": "dbfields.get(132)",
+  "call": "db_fields.get(132)",
   "undocumented": {}
  },
  "get-dbfields-fieldId-options": {
   "outcome": "ok",
-  "call": "dbfields.options.list(132)",
+  "call": "db_fields.options.list(132)",
   "undocumented": {}
  },
  "get-dbfields-fieldId-options-metadata": {
   "outcome": "expected-error",
   "reason": "PHP-TypeError in DbFieldOptionsService (quote_identifier(null)) bei Feld 132",
-  "call": "dbfields.options.list_metadata(132)",
+  "call": "db_fields.options.list_metadata(132)",
   "status": 500,
-  "message": "HTTP 500: 'A server error occurred' (?: quote_identifier(): Argument #1 ($identifier) must be of type string, null given, called in /opt/churchtools_application/versions/churchtools-3.138.0/system/src/Domain/DoctrineDBField/DbFieldOptionsService.php on line 99)",
+  "message": "HTTP 500: 'A server error occurred' (?: quote_identifier(): Argument #1 ($identifier) must be of type string, null given, called in /opt/churchtools_application/versions/churchtools-3.138.1/system/src/Domain/DoctrineDBField/DbFieldOptionsService.php on line 99)",
   "request": {
    "method": "GET",
    "path": "/dbfields/132/options/metadata",
@@ -544,7 +562,7 @@
  },
  "get-dbfieldtypes": {
   "outcome": "ok",
-  "call": "dbfieldtypes.list()",
+  "call": "db_field_types.list()",
   "undocumented": {}
  },
  "get-departments": {
@@ -554,7 +572,7 @@
  },
  "get-domainobjects": {
   "outcome": "ok",
-  "call": "domainobjects.list(domain_types=['person'], domain_identifiers=['1'])",
+  "call": "domain_objects.list(domain_types=['person'], domain_identifiers=['1'])",
   "undocumented": {
    "ResolvedDomainObject": [
     "domainAttributes",
@@ -568,23 +586,23 @@
  },
  "get-dynamicgroups": {
   "outcome": "ok",
-  "call": "dynamicgroups.list()",
+  "call": "dynamic_groups.list()",
   "undocumented": {}
  },
  "get-dynamicgroups-id-ruleset": {
   "outcome": "ok",
-  "call": "dynamicgroups.list_ruleset(895)",
+  "call": "dynamic_groups.list_ruleset(958)",
   "undocumented": {}
  },
  "get-dynamicgroups-id-status": {
   "outcome": "ok",
-  "call": "dynamicgroups.get_status(895)",
+  "call": "dynamic_groups.get_status(958)",
   "undocumented": {}
  },
  "get-evangelischetermine-eventtypes": {
   "outcome": "expected-error",
   "reason": "SoapFault: evangelische-termine.de nicht eingerichtet (500 statt 4xx)",
-  "call": "evangelischetermine.list_eventtypes()",
+  "call": "evangelische_termine.list_event_types()",
   "status": 500,
   "message": "HTTP 500: 'SoapFault: A server error occurred' (?: EvangelischeTermineSoapClient: Service not enabled)",
   "request": {
@@ -596,8 +614,8 @@
  },
  "get-event-masterdata": {
   "outcome": "ok",
-  "scenario": "test_person_details",
-  "path": "/event/masterdata"
+  "call": "event.get_master_data()",
+  "undocumented": {}
  },
  "get-events": {
   "outcome": "ok",
@@ -616,7 +634,7 @@
  },
  "get-events-eventId-services-serviceId-possiblepersons": {
   "outcome": "ok",
-  "call": "events.services.list_possiblepersons(1816, 1)",
+  "call": "events.services.list_possible_persons(1816, 1)",
   "undocumented": {}
  },
  "get-events-facts": {
@@ -636,8 +654,8 @@
  },
  "get-events-id-agenda": {
   "outcome": "ok",
-  "scenario": "test_event_agenda",
-  "path": "/events/1816/agenda"
+  "call": "events.agenda.get(1816)",
+  "undocumented": {}
  },
  "get-events-id-agenda-songs": {
   "outcome": "ok",
@@ -646,12 +664,12 @@
  },
  "get-events-id-possiblepersonsforservice": {
   "outcome": "ok",
-  "call": "events.list_possiblepersonsforservice(1)",
+  "call": "events.list_possible_persons_for_service(1)",
   "undocumented": {}
  },
  "get-eventtemplates": {
   "outcome": "ok",
-  "call": "eventtemplates.list()",
+  "call": "event_templates.list()",
   "undocumented": {
    "EventTemplate": [
     "@deprecated"
@@ -660,25 +678,25 @@
  },
  "get-externallogins": {
   "outcome": "ok",
-  "call": "externallogins.list()",
+  "call": "external_logins.list()",
   "undocumented": {}
  },
  "get-externallogins-externalLoginId-saml-login": {
   "outcome": "expected-error",
   "reason": "Test-Anbieter hat keine Identity-Provider-Metadaten",
-  "call": "externallogins.saml.get_login(25)",
+  "call": "external_logins.saml.get_login(37)",
   "status": 404,
   "message": "HTTP 404: b'SAML-Anmeldung ist nicht verf\\xc3\\xbcgbar.'",
   "request": {
    "method": "GET",
-   "path": "/externallogins/25/saml/login",
+   "path": "/externallogins/37/saml/login",
    "query": [],
    "body": null
   }
  },
  "get-externallogins-externalLoginId-saml-metadata": {
   "outcome": "ok",
-  "call": "externallogins.saml.get_metadata(25)",
+  "call": "external_logins.saml.get_metadata(37)",
   "undocumented": {}
  },
  "get-externallogins-externalLoginId-saml-sls": {
@@ -687,18 +705,18 @@
  },
  "get-externallogins-id": {
   "outcome": "ok",
-  "call": "externallogins.get(28)",
+  "call": "external_logins.get(40)",
   "undocumented": {}
  },
  "get-externallogins-id-oidc-callback": {
   "outcome": "expected-error",
   "reason": "Callback ohne laufenden OIDC-Login",
-  "call": "externallogins.oidc.callback_for(28, state='unknown-state')",
+  "call": "external_logins.oidc.callback_for(40, state='unknown-state')",
   "status": 401,
-  "message": "HTTP 401: b'Die OIDC-Anmeldung ist fehlgeschlagen. Diagnose-ID: [598fdd20a50f6190]'",
+  "message": "HTTP 401: b'Die OIDC-Anmeldung ist fehlgeschlagen. Diagnose-ID: [caf889a1a40c5f19]'",
   "request": {
    "method": "GET",
-   "path": "/externallogins/28/oidc/callback",
+   "path": "/externallogins/40/oidc/callback",
    "query": [
     [
      "state",
@@ -711,32 +729,32 @@
  "get-externallogins-id-oidc-start": {
   "outcome": "expected-error",
   "reason": "Test-Anbieter ist versteckt und hat keinen echten OIDC-Client",
-  "call": "externallogins.oidc.get_start(28)",
+  "call": "external_logins.oidc.get_start(40)",
   "status": 404,
-  "message": "HTTP 404: b'Die OIDC-Anmeldung ist derzeit nicht verf\\xc3\\xbcgbar. Diagnose-ID: [d45737ccf0b40029]'",
+  "message": "HTTP 404: b'Die OIDC-Anmeldung ist derzeit nicht verf\\xc3\\xbcgbar. Diagnose-ID: [fdd489fa03a9648f]'",
   "request": {
    "method": "GET",
-   "path": "/externallogins/28/oidc/start",
+   "path": "/externallogins/40/oidc/start",
    "query": [],
    "body": null
   }
  },
  "get-externallogins-id-oidc-test-state": {
   "outcome": "ok",
-  "call": "externallogins.oidc.test.get(28, 'unknown-state')",
+  "call": "external_logins.oidc.test.get(40, 'unknown-state')",
   "undocumented": {}
  },
  "get-externallogins-id-saml-test-state": {
   "outcome": "ok",
-  "call": "externallogins.saml.test.get(25, 'unknown-state')",
+  "call": "external_logins.saml.test.get(37, 'unknown-state')",
   "undocumented": {}
  },
  "get-externallogins-oidc-callback": {
   "outcome": "expected-error",
   "reason": "Callback ohne laufenden OIDC-Login",
-  "call": "externallogins.oidc.callback(state='opaque-session-bound-state')",
+  "call": "external_logins.oidc.callback(state='opaque-session-bound-state')",
   "status": 401,
-  "message": "HTTP 401: b'Die OIDC-Anmeldung ist fehlgeschlagen. Diagnose-ID: [8e82e4d1f0dbd572]'",
+  "message": "HTTP 401: b'Die OIDC-Anmeldung ist fehlgeschlagen. Diagnose-ID: [8c77636e6f33c03d]'",
   "request": {
    "method": "GET",
    "path": "/externallogins/oidc/callback",
@@ -751,7 +769,7 @@
  },
  "get-externalposts": {
   "outcome": "ok",
-  "call": "externalposts.list()",
+  "call": "external_posts.list()",
   "undocumented": {}
  },
  "get-externalposts-instances-guid-channels-guid-posts-guid": {
@@ -765,8 +783,8 @@
  },
  "get-facts-id": {
   "outcome": "ok",
-  "scenario": "test_facts",
-  "path": "/facts/22"
+  "call": "facts.get(1)",
+  "undocumented": {}
  },
  "get-fields": {
   "outcome": "ok",
@@ -780,7 +798,7 @@
  },
  "get-files-domainType-domainIdentifier": {
   "outcome": "ok",
-  "call": "files.list('person', 3322)",
+  "call": "files.list('person', 3358)",
   "undocumented": {}
  },
  "get-files-id-meta": {
@@ -799,62 +817,62 @@
  },
  "get-finance-accountclasses": {
   "outcome": "ok",
-  "call": "finance.accountclasses.list()",
+  "call": "finance.account_classes.list()",
   "undocumented": {}
  },
  "get-finance-accountclasses-id": {
   "outcome": "ok",
-  "call": "finance.accountclasses.get(1)",
+  "call": "finance.account_classes.get(1)",
   "undocumented": {}
  },
  "get-finance-accountgroups": {
   "outcome": "ok",
-  "call": "finance.accountgroups.list()",
+  "call": "finance.account_groups.list()",
   "undocumented": {}
  },
  "get-finance-accountgroups-id": {
   "outcome": "ok",
-  "call": "finance.accountgroups.get(1)",
+  "call": "finance.account_groups.get(1)",
   "undocumented": {}
  },
  "get-finance-accountingperiods": {
   "outcome": "ok",
-  "call": "finance.accountingperiods.list()",
+  "call": "finance.accounting_periods.list()",
   "undocumented": {}
  },
  "get-finance-accountingperiods-id": {
   "outcome": "ok",
-  "call": "finance.accountingperiods.get(1)",
+  "call": "finance.accounting_periods.get(1)",
   "undocumented": {}
  },
  "get-finance-accountingperiods-id-accounts-id-movements": {
   "outcome": "ok",
-  "call": "finance.accountingperiods.accounts.list_movements(1, 2)",
+  "call": "finance.accounting_periods.accounts.list_movements(1, 2)",
   "undocumented": {}
  },
  "get-finance-accountingperiods-id-accounts-id-statements": {
   "outcome": "ok",
-  "call": "finance.accountingperiods.accounts.statements.list(1, 2)",
+  "call": "finance.accounting_periods.accounts.statements.list(1, 2)",
   "undocumented": {}
  },
  "get-finance-accountingperiods-id-accounts-id-statements-id-movements": {
   "outcome": "ok",
-  "call": "finance.accountingperiods.accounts.statements.movements.list(1, 2, 10)",
+  "call": "finance.accounting_periods.accounts.statements.movements.list(1, 2, 16)",
   "undocumented": {}
  },
  "get-finance-accountingperiods-id-accounts-statements": {
   "outcome": "ok",
-  "call": "finance.accountingperiods.accounts.list_statements(1)",
+  "call": "finance.accounting_periods.accounts.list_statements(1)",
   "undocumented": {}
  },
  "get-finance-accountingperiods-id-bills": {
   "outcome": "ok",
-  "call": "finance.accountingperiods.list_bills(1)",
+  "call": "finance.accounting_periods.list_bills(1)",
   "undocumented": {}
  },
  "get-finance-accountingperiods-id-userrules": {
   "outcome": "ok",
-  "call": "finance.accountingperiods.list_userrules(1)",
+  "call": "finance.accounting_periods.list_user_rules(1)",
   "undocumented": {}
  },
  "get-finance-accounts": {
@@ -879,27 +897,27 @@
  },
  "get-finance-accounttypes": {
   "outcome": "ok",
-  "call": "finance.accounttypes.list()",
+  "call": "finance.account_types.list()",
   "undocumented": {}
  },
  "get-finance-accounttypes-id": {
   "outcome": "ok",
-  "call": "finance.accounttypes.get(1)",
+  "call": "finance.account_types.get(1)",
   "undocumented": {}
  },
  "get-finance-bills-id": {
   "outcome": "ok",
-  "call": "finance.bills.get(4)",
+  "call": "finance.bills.get(10)",
   "undocumented": {}
  },
  "get-finance-cashdiscounts": {
   "outcome": "ok",
-  "call": "finance.cashdiscounts.list()",
+  "call": "finance.cash_discounts.list()",
   "undocumented": {}
  },
  "get-finance-cashdiscounts-id": {
   "outcome": "ok",
-  "call": "finance.cashdiscounts.get(13)",
+  "call": "finance.cash_discounts.get(19)",
   "undocumented": {}
  },
  "get-finance-clients": {
@@ -914,17 +932,17 @@
  },
  "get-finance-costcenters": {
   "outcome": "ok",
-  "call": "finance.costcenters.list()",
+  "call": "finance.cost_centers.list()",
   "undocumented": {}
  },
  "get-finance-costcenters-export": {
   "outcome": "ok",
-  "call": "finance.costcenters.get_export(accounting_period_id=1)",
+  "call": "finance.cost_centers.get_export(accounting_period_id=1)",
   "undocumented": {}
  },
  "get-finance-costcenters-id": {
   "outcome": "ok",
-  "call": "finance.costcenters.get(1)",
+  "call": "finance.cost_centers.get(1)",
   "undocumented": {}
  },
  "get-finance-donators": {
@@ -966,47 +984,47 @@
  },
  "get-finance-eubp-submissions-id": {
   "outcome": "ok",
-  "call": "finance.eubp.submissions.get(13)",
+  "call": "finance.eubp.submissions.get(19)",
   "undocumented": {}
  },
  "get-finance-eubp-submissions-id-accounts": {
   "outcome": "ok",
-  "call": "finance.eubp.submissions.list_accounts(13)",
+  "call": "finance.eubp.submissions.list_accounts(19)",
   "undocumented": {}
  },
  "get-finance-eubp-submissions-id-preview": {
   "outcome": "ok",
-  "call": "finance.eubp.submissions.get_preview(13)",
+  "call": "finance.eubp.submissions.get_preview(19)",
   "undocumented": {}
  },
  "get-finance-masterdata": {
   "outcome": "ok",
-  "call": "finance.get_masterdata(accounting_period_id=1)",
+  "call": "finance.get_master_data(accounting_period_id=1)",
   "undocumented": {}
  },
  "get-finance-splittransactions-id": {
   "outcome": "ok",
-  "call": "finance.splittransactions.get(13)",
+  "call": "finance.split_transactions.get(19)",
   "undocumented": {}
  },
  "get-finance-taxrates": {
   "outcome": "ok",
-  "call": "finance.taxrates.list()",
+  "call": "finance.tax_rates.list()",
   "undocumented": {}
  },
  "get-finance-taxrates-id": {
   "outcome": "ok",
-  "call": "finance.taxrates.get(2)",
+  "call": "finance.tax_rates.get(2)",
   "undocumented": {}
  },
  "get-finance-taxtypes": {
   "outcome": "ok",
-  "call": "finance.taxtypes.list()",
+  "call": "finance.tax_types.list()",
   "undocumented": {}
  },
  "get-finance-taxtypes-id": {
   "outcome": "ok",
-  "call": "finance.taxtypes.get(1)",
+  "call": "finance.tax_types.get(1)",
   "undocumented": {}
  },
  "get-finance-templates": {
@@ -1021,12 +1039,12 @@
  },
  "get-finance-transactionpurposes": {
   "outcome": "ok",
-  "call": "finance.transactionpurposes.list()",
+  "call": "finance.transaction_purposes.list()",
   "undocumented": {}
  },
  "get-finance-transactionpurposes-id": {
   "outcome": "ok",
-  "call": "finance.transactionpurposes.get(1)",
+  "call": "finance.transaction_purposes.get(1)",
   "undocumented": {}
  },
  "get-finance-transactions": {
@@ -1041,12 +1059,12 @@
  },
  "get-finance-transactions-datevexport": {
   "outcome": "ok",
-  "call": "finance.transactions.get_datevexport(accounting_period_id=1)",
+  "call": "finance.transactions.get_datev_export(accounting_period_id=1)",
   "undocumented": {}
  },
  "get-finance-transactions-documentnumberavailable": {
   "outcome": "ok",
-  "call": "finance.transactions.get_documentnumberavailable(accounting_period_id=1, document_number='2024-001')",
+  "call": "finance.transactions.get_document_number_available(accounting_period_id=1, document_number='2024-001')",
   "undocumented": {}
  },
  "get-finance-transactions-export": {
@@ -1066,7 +1084,7 @@
  },
  "get-finance-transactions-nextdocumentnumber": {
   "outcome": "ok",
-  "call": "finance.transactions.get_nextdocumentnumber(accounting_period_id=1)",
+  "call": "finance.transactions.get_next_document_number(accounting_period_id=1)",
   "undocumented": {}
  },
  "get-finance-transactions-summary": {
@@ -1086,57 +1104,57 @@
  },
  "get-furtherlinks": {
   "outcome": "ok",
-  "call": "furtherlinks.list()",
+  "call": "further_links.list()",
   "undocumented": {}
  },
  "get-furtherlinks-furtherLinkId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[furtherlinks]",
-  "path": "/furtherlinks/31"
+  "call": "further_links.get(37)",
+  "undocumented": {}
  },
  "get-group-agegroups": {
   "outcome": "ok",
-  "call": "group.agegroups.list()",
+  "call": "group.age_groups.list()",
   "undocumented": {}
  },
  "get-group-agegroups-ageGroupId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.agegroups]",
-  "path": "/group/agegroups/34"
+  "call": "group.age_groups.get(9)",
+  "undocumented": {}
  },
  "get-group-groupcategories": {
   "outcome": "ok",
-  "call": "group.groupcategories.list()",
+  "call": "group.group_categories.list()",
   "undocumented": {}
  },
  "get-group-groupcategories-groupCategoryId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.groupcategories]",
-  "path": "/group/groupcategories/28"
+  "call": "group.group_categories.get(2)",
+  "undocumented": {}
  },
  "get-group-grouptypes": {
   "outcome": "ok",
-  "call": "group.grouptypes.list()",
+  "call": "group.group_types.list()",
   "undocumented": {}
  },
  "get-group-grouptypes-groupTypeId": {
   "outcome": "ok",
-  "call": "group.grouptypes.get(1)",
+  "call": "group.group_types.get(1)",
   "undocumented": {}
  },
  "get-group-meetingtemplates": {
   "outcome": "ok",
-  "call": "group.meetingtemplates.list()",
+  "call": "group.meeting_templates.list()",
   "undocumented": {}
  },
  "get-group-meetingtemplates-meetingTemplateId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[group.meetingtemplates]",
-  "path": "/group/meetingtemplates/16"
+  "call": "group.meeting_templates.get(2)",
+  "undocumented": {}
  },
  "get-group-memberstatus": {
   "outcome": "ok",
-  "call": "group.list_memberstatus()",
+  "call": "group.list_member_status()",
   "undocumented": {}
  },
  "get-group-roles": {
@@ -1146,27 +1164,27 @@
  },
  "get-group-roles-roleId": {
   "outcome": "ok",
-  "scenario": "test_group_type_with_role",
-  "path": "/group/roles/94"
+  "call": "group.roles.get(16)",
+  "undocumented": {}
  },
  "get-group-targetgroups": {
   "outcome": "ok",
-  "call": "group.targetgroups.list()",
+  "call": "group.target_groups.list()",
   "undocumented": {}
  },
  "get-group-targetgroups-targetGroupId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.targetgroups]",
-  "path": "/group/targetgroups/28"
+  "call": "group.target_groups.get(1)",
+  "undocumented": {}
  },
  "get-grouphomepages": {
   "outcome": "ok",
-  "call": "grouphomepages.list()",
+  "call": "group_homepages.list()",
   "undocumented": {}
  },
  "get-grouphomepages-hash": {
   "outcome": "ok",
-  "call": "grouphomepages.get('seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr')",
+  "call": "group_homepages.get('seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr')",
   "undocumented": {}
  },
  "get-groups": {
@@ -1181,8 +1199,8 @@
  },
  "get-groups-groupId": {
   "outcome": "ok",
-  "scenario": "test_group_lifecycle",
-  "path": "/groups/919"
+  "call": "groups.get(11)",
+  "undocumented": {}
  },
  "get-groups-groupId-children": {
   "outcome": "ok",
@@ -1191,13 +1209,13 @@
  },
  "get-groups-groupId-documents-htmlTemplateId": {
   "outcome": "ok",
-  "call": "groups.documents.get(895, 49)",
+  "call": "groups.documents.get(958, 64)",
   "undocumented": {},
-  "undocumented_response": "%PDF-1.4\n%����\n1 0 obj\n<</Title (gemeinde.example/sites/default/files/tmp/fBMjDkfYI9.html)\n/Creator (Mozilla/5.0 \\(X11; Linux x86_64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) HeadlessChrome/155.0.0.0 Safari/537.36)\n/Producer (Skia/PDF m155)\n/CreationDate (D:20261028223550+00'00')\n/ModDat"
+  "undocumented_response": "%PDF-1.4\n%����\n1 0 obj\n<</Title (gemeinde.example/sites/default/files/tmp/oVXOXGpvWi.html)\n/Creator (Mozilla/5.0 \\(X11; Linux x86_64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) HeadlessChrome/155.0.0.0 Safari/537.36)\n/Producer (Skia/PDF m155)\n/CreationDate (D:20261030160425+00'00')\n/ModDat"
  },
  "get-groups-groupId-documenttemplates": {
   "outcome": "ok",
-  "call": "groups.list_documenttemplates(11)",
+  "call": "groups.list_document_templates(11)",
   "undocumented": {}
  },
  "get-groups-groupId-followups": {
@@ -1212,7 +1230,7 @@
  },
  "get-groups-groupId-grouphomepage": {
   "outcome": "ok",
-  "call": "groups.get_grouphomepage(11)",
+  "call": "groups.get_group_homepage(11)",
   "undocumented": {}
  },
  "get-groups-groupId-meetings-export": {
@@ -1222,27 +1240,27 @@
  },
  "get-groups-groupId-meetings-meetingId": {
   "outcome": "ok",
-  "call": "groups.meetings.get(895, 1057)",
+  "call": "groups.meetings.get(958, 1081)",
   "undocumented": {}
  },
  "get-groups-groupId-meetings-meetingId-members": {
   "outcome": "ok",
-  "call": "groups.meetings.members.list(895, 1057)",
+  "call": "groups.meetings.members.list(958, 1081)",
   "undocumented": {}
  },
  "get-groups-groupId-memberfields": {
   "outcome": "ok",
-  "call": "groups.memberfields.list(11)",
+  "call": "groups.member_fields.list(11)",
   "undocumented": {}
  },
  "get-groups-groupId-memberids": {
   "outcome": "ok",
-  "scenario": "test_group_lifecycle",
-  "path": "/groups/919/memberids"
+  "call": "groups.list_member_ids(11)",
+  "undocumented": {}
  },
  "get-groups-groupId-memberpreview": {
   "outcome": "ok",
-  "call": "groups.list_memberpreview(11)",
+  "call": "groups.list_member_preview(11)",
   "undocumented": {}
  },
  "get-groups-groupId-members-export": {
@@ -1282,7 +1300,7 @@
  },
  "get-groups-groupId-newsletter-integrations": {
   "outcome": "ok",
-  "call": "groups.newsletter_integrations.list(11)",
+  "call": "groups.news_letter_integrations.list(11)",
   "undocumented": {}
  },
  "get-groups-groupId-parents": {
@@ -1297,7 +1315,7 @@
  },
  "get-groups-groupId-poststatistics": {
   "outcome": "ok",
-  "call": "groups.get_poststatistics(11)",
+  "call": "groups.get_post_statistics(11)",
   "undocumented": {}
  },
  "get-groups-grouped": {
@@ -1322,9 +1340,9 @@
  },
  "get-groups-id-members-id-documents-id": {
   "outcome": "ok",
-  "call": "groups.members.documents.get(895, 1, 49)",
+  "call": "groups.members.documents.get(958, 1, 64)",
   "undocumented": {},
-  "undocumented_response": "%PDF-1.4\n%����\n1 0 obj\n<</Title (gemeinde.example/sites/default/files/tmp/4GFqxE8SfP.html)\n/Creator (Mozilla/5.0 \\(X11; Linux x86_64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) HeadlessChrome/155.0.0.0 Safari/537.36)\n/Producer (Skia/PDF m155)\n/CreationDate (D:20261028223554+00'00')\n/ModDat"
+  "undocumented_response": "%PDF-1.4\n%����\n1 0 obj\n<</Title (gemeinde.example/sites/default/files/tmp/fLefBDg4z9.html)\n/Creator (Mozilla/5.0 \\(X11; Linux x86_64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) HeadlessChrome/155.0.0.0 Safari/537.36)\n/Producer (Skia/PDF m155)\n/CreationDate (D:20261030160430+00'00')\n/ModDat"
  },
  "get-groups-id-members-id-followups-statistics": {
   "outcome": "ok",
@@ -1333,17 +1351,17 @@
  },
  "get-groups-id-qrcodecheckin": {
   "outcome": "ok",
-  "call": "groups.qrcodecheckin.list(11)",
+  "call": "groups.qrcode_checkin.list(11)",
   "undocumented": {}
  },
  "get-groups-id-qrcodecheckin-personId": {
   "outcome": "ok",
-  "call": "groups.qrcodecheckin.get(895, 1)",
+  "call": "groups.qrcode_checkin.get(958, 1)",
   "undocumented": {}
  },
  "get-groups-id-qrcodecheckin-personId-pdf": {
   "outcome": "ok",
-  "call": "groups.qrcodecheckin.get_pdf(895, 1)",
+  "call": "groups.qrcode_checkin.get_pdf(958, 1)",
   "undocumented": {}
  },
  "get-groups-id-roles": {
@@ -1383,27 +1401,27 @@
  },
  "get-htmltemplates": {
   "outcome": "ok",
-  "call": "htmltemplates.list(domain_type='bulkletter')",
+  "call": "html_templates.list(domain_type='bulkletter')",
   "undocumented": {}
  },
  "get-htmltemplates-templateId": {
   "outcome": "ok",
-  "call": "htmltemplates.get(2)",
+  "call": "html_templates.get(2)",
   "undocumented": {}
  },
  "get-htmltemplates-templateId-export": {
   "outcome": "ok",
-  "call": "htmltemplates.get_export(2)",
+  "call": "html_templates.get_export(2)",
   "undocumented": {}
  },
  "get-htmltemplates-templateId-html": {
   "outcome": "ok",
-  "scenario": "test_html_template",
-  "path": "/htmltemplates/55/html"
+  "call": "html_templates.get_html(2)",
+  "undocumented": {}
  },
  "get-htmltemplates-templateId-mjml": {
   "outcome": "ok",
-  "call": "htmltemplates.get_mjml(2)",
+  "call": "html_templates.get_mjml(2)",
   "undocumented": {}
  },
  "get-images-fileId-hash": {
@@ -1439,7 +1457,7 @@
  },
  "get-joblog": {
   "outcome": "ok",
-  "call": "joblog.list(guid='d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged')",
+  "call": "job_log.list(guid='d038d398-c8e1-4c95-a3ad-c725dc6d4537-unchanged')",
   "undocumented": {}
  },
  "get-jobs": {
@@ -1464,7 +1482,7 @@
  },
  "get-logs-id": {
   "outcome": "ok",
-  "call": "logs.get(497464)",
+  "call": "logs.get(505591)",
   "undocumented": {}
  },
  "get-logs-statistics-login": {
@@ -1474,7 +1492,7 @@
  },
  "get-masterdata-person": {
   "outcome": "ok",
-  "call": "masterdata.get_person()",
+  "call": "master_data.get_person()",
   "undocumented": {}
  },
  "get-menu": {
@@ -1488,7 +1506,7 @@
  },
  "get-newsletter-integrations": {
   "outcome": "ok",
-  "call": "newsletter_integrations.list()",
+  "call": "news_letter_integrations.list()",
   "undocumented": {}
  },
  "get-notes": {
@@ -1498,7 +1516,7 @@
  },
  "get-oauthclients": {
   "outcome": "ok",
-  "call": "oauthclients.list()",
+  "call": "oauth_clients.list()",
   "undocumented": {}
  },
  "get-permissions-assignment-targets": {
@@ -1589,38 +1607,38 @@
  },
  "get-person-commentviewers": {
   "outcome": "ok",
-  "call": "person.commentviewers.list()",
+  "call": "person.comment_viewers.list()",
   "undocumented": {}
  },
  "get-person-commentviewers-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.commentviewers]",
-  "path": "/person/commentviewers/31"
+  "call": "person.comment_viewers.get(0)",
+  "undocumented": {}
  },
  "get-person-growpaths": {
   "outcome": "ok",
-  "call": "person.growpaths.list()",
+  "call": "person.grow_paths.list()",
   "undocumented": {}
  },
  "get-person-growpaths-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.growpaths]",
-  "path": "/person/growpaths/31"
+  "call": "person.grow_paths.get(1)",
+  "undocumented": {}
  },
  "get-person-masterdata": {
   "outcome": "ok",
-  "call": "person.get_masterdata()",
+  "call": "person.get_master_data()",
   "undocumented": {}
  },
  "get-person-relationshiptypes": {
   "outcome": "ok",
-  "call": "person.relationshiptypes.list()",
+  "call": "person.relationship_types.list()",
   "undocumented": {}
  },
  "get-person-relationshiptypes-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.relationshiptypes]",
-  "path": "/person/relationshiptypes/25"
+  "call": "person.relationship_types.get(2)",
+  "undocumented": {}
  },
  "get-person-sexes": {
   "outcome": "ok",
@@ -1629,8 +1647,8 @@
  },
  "get-person-sexes-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.sexes]",
-  "path": "/person/sexes/31"
+  "call": "person.sexes.get(3)",
+  "undocumented": {}
  },
  "get-persons": {
   "outcome": "ok",
@@ -1649,8 +1667,8 @@
  },
  "get-persons-id": {
   "outcome": "ok",
-  "scenario": "test_person_lifecycle",
-  "path": "/persons/2923"
+  "call": "persons.get(1)",
+  "undocumented": {}
  },
  "get-persons-id-events": {
   "outcome": "ok",
@@ -1664,12 +1682,12 @@
  },
  "get-persons-id-events-id-services-id-exchangerequests": {
   "outcome": "ok",
-  "call": "persons.events.services.exchangerequests.list(1, 1986, 33875)",
+  "call": "persons.events.services.exchange_requests.list(1, 1986, 33875)",
   "undocumented": {}
  },
  "get-persons-id-events-id-services-id-exchangerequests-candidates": {
   "outcome": "ok",
-  "call": "persons.events.services.exchangerequests.list_candidates(1, 1986, 33875)",
+  "call": "persons.events.services.exchange_requests.list_candidates(1, 1986, 33875)",
   "undocumented": {
    "ServiceExchangePerson": [
     "addressAddition",
@@ -1740,7 +1758,7 @@
  },
  "get-persons-id-exchangerequests": {
   "outcome": "ok",
-  "call": "persons.exchangerequests.list(1)",
+  "call": "persons.exchange_requests.list(1)",
   "undocumented": {}
  },
  "get-persons-id-external-logins": {
@@ -1750,32 +1768,32 @@
  },
  "get-persons-id-groups": {
   "outcome": "ok",
-  "scenario": "test_post_with_comment",
-  "path": "/persons/1/groups"
+  "call": "persons.list_groups(1)",
+  "undocumented": {}
  },
  "get-persons-id-loginstring": {
   "outcome": "ok",
-  "call": "persons.get_loginstring(1)",
+  "call": "persons.get_login_string(1)",
   "undocumented": {}
  },
  "get-persons-id-logintoken": {
   "outcome": "ok",
-  "call": "persons.get_logintoken(1)",
+  "call": "persons.get_login_token(1)",
   "undocumented": {}
  },
  "get-persons-id-privacypolicy": {
   "outcome": "ok",
-  "scenario": "test_person_agreements",
-  "path": "/persons/2932/privacypolicy"
+  "call": "persons.get_privacy_policy(1)",
+  "undocumented": {}
  },
  "get-persons-id-servicerequests": {
   "outcome": "ok",
-  "call": "persons.servicerequests.list(1)",
+  "call": "persons.service_requests.list(1)",
   "undocumented": {}
  },
  "get-persons-id-servicerequests-id": {
   "outcome": "ok",
-  "call": "persons.servicerequests.get(1, 30587)",
+  "call": "persons.service_requests.get(1, 30587)",
   "undocumented": {}
  },
  "get-persons-id-settings": {
@@ -1790,17 +1808,17 @@
  },
  "get-persons-id-settings-module-attribute": {
   "outcome": "ok",
-  "scenario": "test_person_details",
-  "path": "/persons/1/settings/churchdb/signature"
+  "call": "persons.settings.get(1, 'churchauth', 'listMaxRowsAuthAutoView')",
+  "undocumented": {}
  },
  "get-persons-id-settings-twofactor": {
   "outcome": "ok",
-  "call": "persons.settings.twofactor.get(1)",
+  "call": "persons.settings.two_factor.get(1)",
   "undocumented": {}
  },
  "get-persons-id-settings-twofactor-force": {
   "outcome": "ok",
-  "call": "persons.settings.twofactor.get_force(1)",
+  "call": "persons.settings.two_factor.get_force(1)",
   "undocumented": {}
  },
  "get-persons-personId-absences": {
@@ -1810,7 +1828,7 @@
  },
  "get-persons-personId-absences-id": {
   "outcome": "ok",
-  "call": "persons.absences.get(1, 94)",
+  "call": "persons.absences.get(1, 109)",
   "undocumented": {}
  },
  "get-persons-personId-devices": {
@@ -1840,7 +1858,7 @@
  },
  "get-persons-personId-openmeetingrequests": {
   "outcome": "ok",
-  "call": "persons.list_openmeetingrequests(1)",
+  "call": "persons.list_open_meeting_requests(1)",
   "undocumented": {}
  },
  "get-persons-personId-posts": {
@@ -1850,13 +1868,13 @@
  },
  "get-persons-personId-poststatistics": {
   "outcome": "ok",
-  "call": "persons.get_poststatistics(1)",
+  "call": "persons.get_post_statistics(1)",
   "undocumented": {}
  },
  "get-persons-personId-relationships": {
   "outcome": "ok",
-  "scenario": "test_person_details",
-  "path": "/persons/1/relationships"
+  "call": "persons.relationships.list(1)",
+  "undocumented": {}
  },
  "get-persons-personid-merge-duplicateid": {
   "outcome": "ok",
@@ -1885,7 +1903,7 @@
  },
  "get-pollfornews": {
   "outcome": "ok",
-  "call": "pollfornews.list(domain_types=['person'], since=datetime.datetime(2026, 10, 21, 22, 34, 48, tzinfo=datetime.timezone.utc))",
+  "call": "poll_for_news.list(domain_types=['person'], since=datetime.datetime(2026, 10, 23, 16, 3, 21, tzinfo=datetime.timezone.utc))",
   "undocumented": {}
  },
  "get-post-groups": {
@@ -1934,7 +1952,7 @@
  },
  "get-posts-postId-comments-commentId-reactions": {
   "outcome": "ok",
-  "call": "posts.comments.reactions.list(51, 109)",
+  "call": "posts.comments.reactions.list(51, 133)",
   "undocumented": {}
  },
  "get-posts-postId-reactions": {
@@ -1944,7 +1962,7 @@
  },
  "get-pr-masterdata": {
   "outcome": "ok",
-  "call": "pr.get_masterdata()",
+  "call": "pr.get_master_data()",
   "undocumented": {}
  },
  "get-printers": {
@@ -1964,33 +1982,33 @@
  },
  "get-profiles-slugcheck-slug": {
   "outcome": "ok",
-  "call": "profiles.slugcheck.get('ctrs-test-slug', guid='00000000-0000-0000-0000-000000000000')",
+  "call": "profiles.slug_check.get('ctrs-test-slug', guid='00000000-0000-0000-0000-000000000000')",
   "undocumented": {},
   "undocumented_response": "success"
  },
  "get-publicgroups-groupId-form": {
   "outcome": "ok",
-  "call": "publicgroups.get_form(898, token='<redacted>')",
+  "call": "public_groups.get_form(961, token='<redacted>')",
   "undocumented": {}
  },
  "get-publicgroups-groupId-possiblerequesters": {
   "outcome": "ok",
-  "call": "publicgroups.get_possiblerequesters(898, token='<redacted>')",
+  "call": "public_groups.get_possible_requesters(961, token='<redacted>')",
   "undocumented": {}
  },
  "get-publicgroups-id": {
   "outcome": "ok",
-  "call": "publicgroups.get(11)",
+  "call": "public_groups.get(11)",
   "undocumented": {}
  },
  "get-publicgroups-id-hash": {
   "outcome": "ok",
-  "call": "publicgroups.get_with_hash(26, 'seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr')",
+  "call": "public_groups.get_with_hash(26, 'seXGyDxo1SvB2uHoa5ohRvxBJsLCBaUr')",
   "undocumented": {}
  },
  "get-publicgroups-id-signoutdata": {
   "outcome": "ok",
-  "call": "publicgroups.get_signoutdata(11)",
+  "call": "public_groups.get_signout_data(11)",
   "undocumented": {}
  },
  "get-publicgroups-signup-confirm-confirmationToken": {
@@ -1999,12 +2017,12 @@
  },
  "get-queues-queue-jobgroups-jobGroup": {
   "outcome": "ok",
-  "call": "queues.jobgroups.get('default', 'default')",
+  "call": "queues.job_groups.get('default', 'default')",
   "undocumented": {}
  },
  "get-registrationconfig-id": {
   "outcome": "ok",
-  "call": "registrationconfig.get(1)",
+  "call": "registration_config.get(1)",
   "undocumented": {
    "DbFieldOption": [
     "salutation_formal",
@@ -2014,12 +2032,12 @@
  },
  "get-repeatcalculation": {
   "outcome": "ok",
-  "call": "repeatcalculation.list(end_date='2026-09-20T09:30:00Z', start_date='2026-09-20T08:00:00Z')",
+  "call": "repeat_calculation.list(end_date='2026-09-20T09:30:00Z', start_date='2026-09-20T08:00:00Z')",
   "undocumented": {}
  },
  "get-resource-masterdata": {
   "outcome": "ok",
-  "call": "resource.get_masterdata()",
+  "call": "resource.get_master_data()",
   "undocumented": {
    "Resource": [
     "@deprecated"
@@ -2051,13 +2069,13 @@
  },
  "get-resourcetypes": {
   "outcome": "ok",
-  "scenario": "test_resource_booking",
-  "path": "/resourcetypes"
+  "call": "resource_types.list()",
+  "undocumented": {}
  },
  "get-resourcetypes-resourceTypeId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[resourcetypes]",
-  "path": "/resourcetypes/22"
+  "call": "resource_types.get(2)",
+  "undocumented": {}
  },
  "get-routines": {
   "outcome": "ok",
@@ -2153,22 +2171,22 @@
  },
  "get-securitylevels": {
   "outcome": "ok",
-  "call": "securitylevels.list()",
+  "call": "security_levels.list()",
   "undocumented": {}
  },
  "get-securitylevels-id": {
   "outcome": "ok",
-  "call": "securitylevels.get(1)",
+  "call": "security_levels.get(1)",
   "undocumented": {}
  },
  "get-servicegroups": {
   "outcome": "ok",
-  "call": "servicegroups.list()",
+  "call": "service_groups.list()",
   "undocumented": {}
  },
  "get-servicegroups-id": {
   "outcome": "ok",
-  "call": "servicegroups.get(1)",
+  "call": "service_groups.get(1)",
   "undocumented": {}
  },
  "get-services": {
@@ -2178,18 +2196,18 @@
  },
  "get-services-id": {
   "outcome": "ok",
-  "scenario": "test_services",
-  "path": "/services/121"
+  "call": "services.get(1)",
+  "undocumented": {}
  },
  "get-song-categories": {
   "outcome": "ok",
-  "scenario": "test_song_with_arrangement",
-  "path": "/song/categories"
+  "call": "song.categories.list()",
+  "undocumented": {}
  },
  "get-song-categories-id": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[song.categories]",
-  "path": "/song/categories/19"
+  "call": "song.categories.get(0)",
+  "undocumented": {}
  },
  "get-song-sources": {
   "outcome": "ok",
@@ -2198,8 +2216,8 @@
  },
  "get-song-sources-id": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[song.sources]",
-  "path": "/song/sources/19"
+  "call": "song.sources.get(2)",
+  "undocumented": {}
  },
  "get-songs": {
   "outcome": "ok",
@@ -2213,13 +2231,13 @@
  },
  "get-songs-songId-arrangements": {
   "outcome": "ok",
-  "scenario": "test_song_default_arrangement",
-  "path": "/songs/103/arrangements"
+  "call": "songs.arrangements.list(41)",
+  "undocumented": {}
  },
  "get-songs-songId-arrangements-arrangementId": {
   "outcome": "ok",
-  "scenario": "test_song_with_arrangement",
-  "path": "/songs/100/arrangements/133"
+  "call": "songs.arrangements.get(41, 59)",
+  "undocumented": {}
  },
  "get-sso-logins": {
   "outcome": "ok",
@@ -2228,7 +2246,7 @@
  },
  "get-startpage": {
   "outcome": "ok",
-  "call": "startpage.list()",
+  "call": "start_page.list()",
   "undocumented": {
    "WidgetActionDataEvent": [
     "personId",
@@ -2268,8 +2286,8 @@
  },
  "get-statuses-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[statuses]",
-  "path": "/statuses/43"
+  "call": "statuses.get(0)",
+  "undocumented": {}
  },
  "get-subscriptions-personId": {
   "outcome": "ok",
@@ -2328,12 +2346,12 @@
  },
  "get-sync-entitymappings": {
   "outcome": "ok",
-  "call": "sync.entitymappings.list()",
+  "call": "sync.entity_mappings.list()",
   "undocumented": {}
  },
  "get-sync-entitymappings-id": {
   "outcome": "ok",
-  "call": "sync.entitymappings.get(10)",
+  "call": "sync.entity_mappings.get(16)",
   "undocumented": {}
  },
  "get-sync-executions": {
@@ -2348,23 +2366,23 @@
  },
  "get-sync-externalsystems-externalSystemId": {
   "outcome": "ok",
-  "call": "sync.externalsystems.get(13)",
+  "call": "sync.externalsystems.get(19)",
   "undocumented": {}
  },
  "get-sync-externalsystems-externalSystemId-adapterproxy-uri": {
   "outcome": "ok",
-  "call": "sync.externalsystems.adapterproxy.get(13, 'health')",
+  "call": "sync.externalsystems.adapter_proxy.get(19, 'health')",
   "undocumented": {},
   "undocumented_response": "success"
  },
  "get-sync-externalsystems-externalSystemId-fieldmappings": {
   "outcome": "ok",
-  "call": "sync.externalsystems.fieldmappings.list(13)",
+  "call": "sync.externalsystems.field_mappings.list(19)",
   "undocumented": {}
  },
  "get-sync-externalsystems-externalSystemId-jobconfigs-jobId": {
   "outcome": "ok",
-  "call": "sync.externalsystems.jobconfigs.get(13, 13)",
+  "call": "sync.externalsystems.job_configs.get(19, 19)",
   "undocumented": {}
  },
  "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-executions-executionId": {
@@ -2373,32 +2391,32 @@
  },
  "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-filter": {
   "outcome": "ok",
-  "call": "sync.externalsystems.jobconfigs.get_filter(13, 13)",
+  "call": "sync.externalsystems.job_configs.get_filter(19, 19)",
   "undocumented": {}
  },
  "get-sync-externalsystems-externalSystemId-jobconfigs-jobId-properties": {
   "outcome": "ok",
-  "call": "sync.externalsystems.jobconfigs.get_properties(13, 13)",
+  "call": "sync.externalsystems.job_configs.get_properties(19, 19)",
   "undocumented": {}
  },
  "get-sync-externalsystems-id-fieldmappings-domaintype": {
   "outcome": "ok",
-  "call": "sync.externalsystems.fieldmappings.get(13, 'person')",
+  "call": "sync.externalsystems.field_mappings.get(19, 'person')",
   "undocumented": {}
  },
  "get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions": {
   "outcome": "ok",
-  "call": "sync.externalsystems.fieldmappings.get_nosuggestions(13, 'person')",
+  "call": "sync.externalsystems.field_mappings.get_nosuggestions(19, 'person')",
   "undocumented": {}
  },
  "get-sync-externalsystems-id-jobconfigs": {
   "outcome": "ok",
-  "call": "sync.externalsystems.jobconfigs.list(13)",
+  "call": "sync.externalsystems.job_configs.list(19)",
   "undocumented": {}
  },
  "get-sync-jobconfigs": {
   "outcome": "ok",
-  "call": "sync.list_jobconfigs()",
+  "call": "sync.list_job_configs()",
   "undocumented": {}
  },
  "get-sync-logs": {
@@ -2408,13 +2426,13 @@
  },
  "get-tags-domainType": {
   "outcome": "ok",
-  "scenario": "test_tags",
-  "path": "/tags/88"
+  "call": "tags.list('person')",
+  "undocumented": {}
  },
  "get-tags-domainType-domainId": {
   "outcome": "ok",
-  "scenario": "test_tags",
-  "path": "/tags/person/1"
+  "call": "tags.list_for_object('person', 10)",
+  "undocumented": {}
  },
  "get-tags-tagId": {
   "outcome": "ok",
@@ -2428,7 +2446,7 @@
  },
  "get-translations-keysbytext": {
   "outcome": "ok",
-  "call": "translations.list_keysbytext(query='Go')",
+  "call": "translations.list_keys_by_text(query='Go')",
   "undocumented": {}
  },
  "get-website-data": {
@@ -2438,7 +2456,7 @@
  },
  "get-website-starttest": {
   "outcome": "ok",
-  "call": "website.get_starttest()",
+  "call": "website.get_start_test()",
   "undocumented": {}
  },
  "get-whoami": {
@@ -2473,8 +2491,8 @@
  },
  "get-wiki-categories-id-pages-identifier": {
   "outcome": "ok",
-  "scenario": "test_wiki",
-  "path": "/wiki/categories/34/pages/971B9689-5CA9-4C4B-91AF-D259FF8AF0B7"
+  "call": "wiki.categories.pages.get(9, 'A3124166-5818-4A3F-A5EC-0CBCB0744824')",
+  "undocumented": {}
  },
  "get-wiki-categories-id-pages-identifier-versions": {
   "outcome": "ok",
@@ -2494,52 +2512,52 @@
  "patch-groups-groupId-memberfields-group-groupMemberFieldId": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/memberfields/group/769"
+  "path": "/groups/967/memberfields/group/772"
  },
  "patch-groups-groupId-members-personId": {
   "outcome": "ok",
   "scenario": "test_group_lifecycle",
-  "path": "/groups/919/members/1"
+  "path": "/groups/964/members/1"
  },
  "patch-groups-id": {
   "outcome": "ok",
   "scenario": "test_group_lifecycle",
-  "path": "/groups/919"
+  "path": "/groups/964"
  },
  "patch-htmltemplates-templateId": {
   "outcome": "ok",
   "scenario": "test_html_template",
-  "path": "/htmltemplates/55"
+  "path": "/htmltemplates/67"
  },
  "patch-persons-id": {
   "outcome": "ok",
   "scenario": "test_person_lifecycle",
-  "path": "/persons/2923"
+  "path": "/persons/2947"
  },
  "patch-posts-postId": {
   "outcome": "ok",
   "scenario": "test_post_with_comment",
-  "path": "/posts/88"
+  "path": "/posts/100"
  },
  "patch-songs-songId-arrangements-arrangementId-default": {
   "outcome": "ok",
   "scenario": "test_song_default_arrangement",
-  "path": "/songs/103/arrangements/139/default"
+  "path": "/songs/121/arrangements/163/default"
  },
  "patch-statuses-id": {
   "outcome": "ok",
   "scenario": "test_status_patch",
-  "path": "/statuses/46"
+  "path": "/statuses/58"
  },
  "patch-wiki-categories-id-pages-identifier": {
   "outcome": "ok",
   "scenario": "test_wiki",
-  "path": "/wiki/categories/34/pages/971B9689-5CA9-4C4B-91AF-D259FF8AF0B7"
+  "path": "/wiki/categories/40/pages/1FB00D6A-A80F-4627-809A-8D48C809FC39"
  },
  "post-addresses-domainType-domainIdentifier": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/addresses/group/922"
+  "path": "/addresses/group/967"
  },
  "post-agendatemplates": {
   "outcome": "ok",
@@ -2549,7 +2567,7 @@
  "post-agendatemplates-agendaId-items": {
   "outcome": "ok",
   "scenario": "test_agenda_template",
-  "path": "/agendatemplates/385/items"
+  "path": "/agendatemplates/391/items"
  },
  "post-bookings": {
   "outcome": "ok",
@@ -2564,7 +2582,7 @@
  "post-bookings-id-conflicts": {
   "outcome": "ok",
   "scenario": "test_booking_conflicts",
-  "path": "/bookings/445/conflicts"
+  "path": "/bookings/457/conflicts"
  },
  "post-calendars": {
   "outcome": "ok",
@@ -2579,12 +2597,12 @@
  "post-calendars-calendarId-appointments": {
   "outcome": "ok",
   "scenario": "test_appointment_lifecycle",
-  "path": "/calendars/97/appointments"
+  "path": "/calendars/109/appointments"
  },
  "post-calendars-calendarId-appointments-appointmentId-changeimpact": {
   "outcome": "ok",
   "scenario": "test_appointment_change_impact",
-  "path": "/calendars/100/appointments/1665607/changeimpact"
+  "path": "/calendars/112/appointments/1665619/changeimpact"
  },
  "post-campuses": {
   "outcome": "ok",
@@ -2593,7 +2611,7 @@
  },
  "post-contactlabels": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[contactlabels]",
+  "scenario": "test_masterdata_lifecycle[contact_labels]",
   "path": "/contactlabels"
  },
  "post-domainobjects": {
@@ -2614,12 +2632,12 @@
  "post-events-id-agenda-items-id-hide": {
   "outcome": "ok",
   "scenario": "test_event_agenda",
-  "path": "/events/1816/agenda/items/6097/hide"
+  "path": "/events/1816/agenda/items/6106/hide"
  },
  "post-events-id-agenda-items-id-unhide": {
   "outcome": "ok",
   "scenario": "test_event_agenda",
-  "path": "/events/1816/agenda/items/6097/unhide"
+  "path": "/events/1816/agenda/items/6106/unhide"
  },
  "post-events-id-agenda-lock": {
   "outcome": "ok",
@@ -2639,41 +2657,41 @@
  "post-followups-followUpId-complete": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/followups/40/complete"
+  "path": "/followups/52/complete"
  },
  "post-followups-followUpId-dismiss": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/followups/40/dismiss"
+  "path": "/followups/52/dismiss"
  },
  "post-followups-followUpId-notes": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/followups/40/notes"
+  "path": "/followups/52/notes"
  },
  "post-followups-followUpId-postpone": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/followups/40/postpone"
+  "path": "/followups/52/postpone"
  },
  "post-followups-followUpId-reset": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/followups/40/reset"
+  "path": "/followups/52/reset"
  },
  "post-furtherlinks": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[furtherlinks]",
+  "scenario": "test_more_masterdata[further_links]",
   "path": "/furtherlinks"
  },
  "post-group-agegroups": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.agegroups]",
+  "scenario": "test_masterdata_lifecycle[group.age_groups]",
   "path": "/group/agegroups"
  },
  "post-group-groupcategories": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.groupcategories]",
+  "scenario": "test_masterdata_lifecycle[group.group_categories]",
   "path": "/group/groupcategories"
  },
  "post-group-grouptypes": {
@@ -2683,7 +2701,7 @@
  },
  "post-group-meetingtemplates": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[group.meetingtemplates]",
+  "scenario": "test_more_masterdata[group.meeting_templates]",
   "path": "/group/meetingtemplates"
  },
  "post-group-roles": {
@@ -2693,7 +2711,7 @@
  },
  "post-group-targetgroups": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.targetgroups]",
+  "scenario": "test_masterdata_lifecycle[group.target_groups]",
   "path": "/group/targetgroups"
  },
  "post-groups": {
@@ -2709,37 +2727,37 @@
  "post-groups-groupId-meetings-meetingId-members-missing": {
   "outcome": "ok",
   "scenario": "test_meeting_attendance",
-  "path": "/groups/934/meetings/1069/members/missing"
+  "path": "/groups/979/meetings/1087/members/missing"
  },
  "post-groups-groupId-meetings-meetingId-members-reset": {
   "outcome": "ok",
   "scenario": "test_meeting_attendance",
-  "path": "/groups/934/meetings/1069/members/reset"
+  "path": "/groups/979/meetings/1087/members/reset"
  },
  "post-groups-groupId-memberfields-group": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/memberfields/group"
+  "path": "/groups/967/memberfields/group"
  },
  "post-groups-id-duplicate": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/duplicate"
+  "path": "/groups/967/duplicate"
  },
  "post-groups-id-meetings": {
   "outcome": "ok",
   "scenario": "test_group_lifecycle",
-  "path": "/groups/919/meetings"
+  "path": "/groups/964/meetings"
  },
  "post-groups-id-members-export": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/members/export"
+  "path": "/groups/967/members/export"
  },
  "post-groups-id-members-id-followups": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/groups/931/members/2929/followups"
+  "path": "/groups/976/members/2953/followups"
  },
  "post-htmltemplates": {
   "outcome": "ok",
@@ -2759,7 +2777,7 @@
  "post-notes-domainType-domainId": {
   "outcome": "ok",
   "scenario": "test_person_details",
-  "path": "/notes/person/2926"
+  "path": "/notes/person/2950"
  },
  "post-oauthclients": {
   "outcome": "ok",
@@ -2768,17 +2786,17 @@
  },
  "post-person-commentviewers": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.commentviewers]",
+  "scenario": "test_masterdata_lifecycle[person.comment_viewers]",
   "path": "/person/commentviewers"
  },
  "post-person-growpaths": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.growpaths]",
+  "scenario": "test_masterdata_lifecycle[person.grow_paths]",
   "path": "/person/growpaths"
  },
  "post-person-relationshiptypes": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.relationshiptypes]",
+  "scenario": "test_masterdata_lifecycle[person.relationship_types]",
   "path": "/person/relationshiptypes"
  },
  "post-person-sexes": {
@@ -2794,17 +2812,17 @@
  "post-persons-personId-absences": {
   "outcome": "ok",
   "scenario": "test_person_details",
-  "path": "/persons/2926/absences"
+  "path": "/persons/2950/absences"
  },
  "post-persons-personId-archive": {
   "outcome": "ok",
   "scenario": "test_person_lifecycle",
-  "path": "/persons/2923/archive"
+  "path": "/persons/2947/archive"
  },
  "post-persons-personId-followups": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/persons/2929/followups"
+  "path": "/persons/2953/followups"
  },
  "post-persons-personId-relationships": {
   "outcome": "ok",
@@ -2824,7 +2842,7 @@
  "post-posts-postId-comments": {
   "outcome": "ok",
   "scenario": "test_post_with_comment",
-  "path": "/posts/88/comments"
+  "path": "/posts/100/comments"
  },
  "post-repeatcalculation": {
   "outcome": "ok",
@@ -2838,7 +2856,7 @@
  },
  "post-resourcetypes": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[resourcetypes]",
+  "scenario": "test_more_masterdata[resource_types]",
   "path": "/resourcetypes"
  },
  "post-servicegroups": {
@@ -2869,7 +2887,7 @@
  "post-songs-songId-arrangements": {
   "outcome": "ok",
   "scenario": "test_song_with_arrangement",
-  "path": "/songs/100/arrangements"
+  "path": "/songs/118/arrangements"
  },
  "post-statuses": {
   "outcome": "ok",
@@ -2884,7 +2902,7 @@
  "post-tags-domainType-domainId": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/tags/group/922"
+  "path": "/tags/group/967"
  },
  "post-wiki-categories": {
   "outcome": "ok",
@@ -2894,162 +2912,162 @@
  "post-wiki-categories-id-pages": {
   "outcome": "ok",
   "scenario": "test_wiki",
-  "path": "/wiki/categories/34/pages"
+  "path": "/wiki/categories/40/pages"
  },
  "put-addresses-domainType-domainIdentifier-addressId": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/addresses/group/922/526"
+  "path": "/addresses/group/967/529"
  },
  "put-agendatemplates-agendaId": {
   "outcome": "ok",
   "scenario": "test_agenda_template",
-  "path": "/agendatemplates/385"
+  "path": "/agendatemplates/391"
  },
  "put-agendatemplates-agendaId-items-itemId": {
   "outcome": "ok",
   "scenario": "test_agenda_template",
-  "path": "/agendatemplates/385/items/6094"
+  "path": "/agendatemplates/391/items/6103"
  },
  "put-bookings-id": {
   "outcome": "ok",
   "scenario": "test_booking_conflicts",
-  "path": "/bookings/445"
+  "path": "/bookings/457"
  },
  "put-calendars-appointments-templates-id": {
   "outcome": "ok",
   "scenario": "test_appointment_template",
-  "path": "/calendars/appointments/templates/34"
+  "path": "/calendars/appointments/templates/40"
  },
  "put-calendars-calendarId": {
   "outcome": "ok",
   "scenario": "test_appointment_lifecycle",
-  "path": "/calendars/97"
+  "path": "/calendars/109"
  },
  "put-calendars-calendarId-appointments-appointmentId": {
   "outcome": "ok",
   "scenario": "test_appointment_lifecycle",
-  "path": "/calendars/97/appointments/1665604"
+  "path": "/calendars/109/appointments/1665616"
  },
  "put-campuses-id": {
   "outcome": "ok",
   "scenario": "test_masterdata_lifecycle[campuses]",
-  "path": "/campuses/25"
+  "path": "/campuses/31"
  },
  "put-contactlabels-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[contactlabels]",
-  "path": "/contactlabels/28"
+  "scenario": "test_masterdata_lifecycle[contact_labels]",
+  "path": "/contactlabels/31"
  },
  "put-events-id-agenda-items-id": {
   "outcome": "ok",
   "scenario": "test_event_agenda",
-  "path": "/events/1816/agenda/items/6097"
+  "path": "/events/1816/agenda/items/6106"
  },
  "put-facts-id": {
   "outcome": "ok",
   "scenario": "test_facts",
-  "path": "/facts/22"
+  "path": "/facts/28"
  },
  "put-followups-followUpId": {
   "outcome": "ok",
   "scenario": "test_follow_up",
-  "path": "/followups/40"
+  "path": "/followups/52"
  },
  "put-furtherlinks-furtherLinkId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[furtherlinks]",
-  "path": "/furtherlinks/31"
+  "scenario": "test_more_masterdata[further_links]",
+  "path": "/furtherlinks/40"
  },
  "put-group-agegroups-ageGroupId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.agegroups]",
-  "path": "/group/agegroups/34"
+  "scenario": "test_masterdata_lifecycle[group.age_groups]",
+  "path": "/group/agegroups/40"
  },
  "put-group-groupcategories-groupCategoryId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.groupcategories]",
-  "path": "/group/groupcategories/28"
+  "scenario": "test_masterdata_lifecycle[group.group_categories]",
+  "path": "/group/groupcategories/34"
  },
  "put-group-grouptypes-groupTypeId": {
   "outcome": "ok",
   "scenario": "test_group_type_with_role",
-  "path": "/group/grouptypes/22"
+  "path": "/group/grouptypes/28"
  },
  "put-group-meetingtemplates-meetingTemplateId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[group.meetingtemplates]",
-  "path": "/group/meetingtemplates/16"
+  "scenario": "test_more_masterdata[group.meeting_templates]",
+  "path": "/group/meetingtemplates/22"
  },
  "put-group-roles-roleId": {
   "outcome": "ok",
   "scenario": "test_group_type_with_role",
-  "path": "/group/roles/94"
+  "path": "/group/roles/112"
  },
  "put-group-targetgroups-targetGroupId": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[group.targetgroups]",
-  "path": "/group/targetgroups/28"
+  "scenario": "test_masterdata_lifecycle[group.target_groups]",
+  "path": "/group/targetgroups/34"
  },
  "put-groups-groupId-grouphomepage": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/grouphomepage"
+  "path": "/groups/967/grouphomepage"
  },
  "put-groups-groupId-meetings-meetingId": {
   "outcome": "ok",
   "scenario": "test_group_lifecycle",
-  "path": "/groups/919/meetings/1066"
+  "path": "/groups/964/meetings/1084"
  },
  "put-groups-groupId-memberfields-group-groupMemberFieldId": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/memberfields/group/769"
+  "path": "/groups/967/memberfields/group/772"
  },
  "put-groups-groupId-members-personId": {
   "outcome": "ok",
   "scenario": "test_group_lifecycle",
-  "path": "/groups/919/members/1"
+  "path": "/groups/964/members/1"
  },
  "put-groups-groupId-parents-parentGroupId": {
   "outcome": "ok",
   "scenario": "test_group_extras",
-  "path": "/groups/922/parents/925"
+  "path": "/groups/967/parents/970"
  },
  "put-notes-domainType-domainId-id": {
   "outcome": "ok",
   "scenario": "test_person_details",
-  "path": "/notes/person/2926/247"
+  "path": "/notes/person/2950/265"
  },
  "put-oauthclients-identifier": {
   "outcome": "ok",
   "scenario": "test_oauth_client",
-  "path": "/oauthclients/6398647334b9ffbfcf8ff929d7117da7a36598060365e43eda2703ed19a2d806"
+  "path": "/oauthclients/5e05be60d3d0b4623cb445494f102b5aead841cc3a3e643cf8539087037093ce"
  },
  "put-person-commentviewers-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.commentviewers]",
-  "path": "/person/commentviewers/31"
+  "scenario": "test_masterdata_lifecycle[person.comment_viewers]",
+  "path": "/person/commentviewers/37"
  },
  "put-person-growpaths-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.growpaths]",
-  "path": "/person/growpaths/31"
+  "scenario": "test_masterdata_lifecycle[person.grow_paths]",
+  "path": "/person/growpaths/37"
  },
  "put-person-relationshiptypes-id": {
   "outcome": "ok",
-  "scenario": "test_masterdata_lifecycle[person.relationshiptypes]",
-  "path": "/person/relationshiptypes/25"
+  "scenario": "test_masterdata_lifecycle[person.relationship_types]",
+  "path": "/person/relationshiptypes/31"
  },
  "put-person-sexes-id": {
   "outcome": "ok",
   "scenario": "test_masterdata_lifecycle[person.sexes]",
-  "path": "/person/sexes/31"
+  "path": "/person/sexes/37"
  },
  "put-persons-id-privacypolicy": {
   "outcome": "ok",
   "scenario": "test_person_agreements",
-  "path": "/persons/2932/privacypolicy"
+  "path": "/persons/2956/privacypolicy"
  },
  "put-persons-id-settings-module-attribute": {
   "outcome": "ok",
@@ -3059,92 +3077,92 @@
  "put-persons-personId-absences-id": {
   "outcome": "ok",
   "scenario": "test_person_details",
-  "path": "/persons/2926/absences/100"
+  "path": "/persons/2950/absences/112"
  },
  "put-persons-personId-confidentialityagreement": {
   "outcome": "expected-error",
   "reason": "nur die Person selbst kann annehmen, ein Admin nur widerrufen",
   "scenario": "test_person_agreements",
-  "path": "/persons/2932/confidentialityagreement"
+  "path": "/persons/2956/confidentialityagreement"
  },
  "put-posts-postId-comments-commentId-reactions": {
   "outcome": "ok",
   "scenario": "test_post_reactions",
-  "path": "/posts/91/comments/121/reactions"
+  "path": "/posts/103/comments/139/reactions"
  },
  "put-posts-postId-expire": {
   "outcome": "ok",
   "scenario": "test_post_reactions",
-  "path": "/posts/91/expire"
+  "path": "/posts/103/expire"
  },
  "put-posts-postId-hidden-domainType": {
   "outcome": "ok",
   "scenario": "test_post_reactions",
-  "path": "/posts/91/hidden/post"
+  "path": "/posts/103/hidden/post"
  },
  "put-posts-postId-reactions-emoji-persons-personId": {
   "outcome": "ok",
   "scenario": "test_post_reactions",
-  "path": "/posts/91/reactions/%F0%9F%99%8F/persons/1"
+  "path": "/posts/103/reactions/%F0%9F%99%8F/persons/1"
  },
  "put-resources-resourceId": {
   "outcome": "ok",
   "scenario": "test_resource_booking",
-  "path": "/resources/52"
+  "path": "/resources/64"
  },
  "put-resourcetypes-resourceTypeId": {
   "outcome": "ok",
-  "scenario": "test_more_masterdata[resourcetypes]",
-  "path": "/resourcetypes/22"
+  "scenario": "test_more_masterdata[resource_types]",
+  "path": "/resourcetypes/25"
  },
  "put-servicegroups-id": {
   "outcome": "ok",
   "scenario": "test_services",
-  "path": "/servicegroups/34"
+  "path": "/servicegroups/40"
  },
  "put-services-id": {
   "outcome": "ok",
   "scenario": "test_services",
-  "path": "/services/121"
+  "path": "/services/127"
  },
  "put-song-categories-id": {
   "outcome": "ok",
   "scenario": "test_more_masterdata[song.categories]",
-  "path": "/song/categories/19"
+  "path": "/song/categories/25"
  },
  "put-song-sources-id": {
   "outcome": "ok",
   "scenario": "test_more_masterdata[song.sources]",
-  "path": "/song/sources/19"
+  "path": "/song/sources/25"
  },
  "put-songs-songId": {
   "outcome": "ok",
   "scenario": "test_song_with_arrangement",
-  "path": "/songs/100"
+  "path": "/songs/118"
  },
  "put-songs-songId-arrangements-arrangementId": {
   "outcome": "ok",
   "scenario": "test_song_with_arrangement",
-  "path": "/songs/100/arrangements/133"
+  "path": "/songs/118/arrangements/157"
  },
  "put-statuses-id": {
   "outcome": "ok",
   "scenario": "test_masterdata_lifecycle[statuses]",
-  "path": "/statuses/43"
+  "path": "/statuses/55"
  },
  "put-tags-domainType-domainId-tagId": {
   "outcome": "ok",
   "scenario": "test_tags",
-  "path": "/tags/person/1/88"
+  "path": "/tags/person/1/97"
  },
  "put-tags-tagId": {
   "outcome": "ok",
   "scenario": "test_tags",
-  "path": "/tags/88"
+  "path": "/tags/97"
  },
  "put-wiki-categories-id": {
   "outcome": "ok",
   "scenario": "test_wiki",
-  "path": "/wiki/categories/34"
+  "path": "/wiki/categories/40"
  }
 }

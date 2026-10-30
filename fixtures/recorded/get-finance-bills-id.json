@@ -2,39 +2,39 @@
  "operation": "get-finance-bills-id",
  "request": {
   "method": "GET",
-  "path": "/finance/bills/4",
+  "path": "/finance/bills/10",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 4,
+   "id": 10,
    "accountingPeriodId": 1,
    "transactionId": null,
-   "splitTransactionId": 13,
+   "splitTransactionId": 19,
    "transactionSuggestionId": null,
    "file": {
     "domainType": "bill",
-    "domainId": "4",
+    "domainId": "10",
     "name": "ctrs-test-beleg.txt",
     "filename": "5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
-    "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3328&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
+    "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3364&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
     "meta": {
-     "modifiedDate": "2026-10-28T22:34:56Z",
+     "modifiedDate": "2026-10-30T16:03:29Z",
      "modifiedPerson": {
       "id": 1
      }
     },
-    "imageUrl": "https://gemeinde.example/images/3328/8eac06dee448af0f7fcd60ad4c21e0f877e7896e0acf650823b8e8ec1aba0a9e"
+    "imageUrl": "https://gemeinde.example/images/3364/c12b24c01d9ad42450d07a222fa075c4af9a1296fa69474076593879f8d41ea0"
    },
-   "submittedDate": "2026-10-28",
+   "submittedDate": "2026-10-30",
    "submittedPid": 1,
    "meta": {
-    "createdDate": "2026-10-28T22:34:56Z",
+    "createdDate": "2026-10-30T16:03:29Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T22:34:56Z",
+    "modifiedDate": "2026-10-30T16:03:29Z",
     "modifiedPerson": {
      "id": 1
     }

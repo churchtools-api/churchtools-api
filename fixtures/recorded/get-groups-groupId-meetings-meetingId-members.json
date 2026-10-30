@@ -2,7 +2,7 @@
  "operation": "get-groups-groupId-meetings-meetingId-members",
  "request": {
   "method": "GET",
-  "path": "/groups/895/meetings/1057/members",
+  "path": "/groups/958/meetings/1081/members",
   "query": [],
   "body": null
  },
@@ -10,14 +10,14 @@
   "data": [
    {
     "member": {
-     "id": 2587,
+     "id": 2620,
      "personId": 1,
      "group": {
-      "title": "ctrs-test Seed-Gruppe b5896e",
+      "title": "ctrs-test Seed-Gruppe 9502a3",
       "domainType": "group",
-      "domainIdentifier": "895",
-      "apiUrl": "https://gemeinde.example/api/groups/895",
-      "frontendUrl": "https://gemeinde.example/groups/895",
+      "domainIdentifier": "958",
+      "apiUrl": "https://gemeinde.example/api/groups/958",
+      "frontendUrl": "https://gemeinde.example/groups/958",
       "imageUrl": null,
       "icon": "users",
       "color": {
@@ -31,7 +31,7 @@
        "groupTypeId": 1,
        "campusId": null,
        "visibility": "restricted",
-       "guid": "B73449DE-DD28-4DE7-89F5-F2CFE55A3C6D"
+       "guid": "91128D07-0E7E-468F-B9CE-012D5DC15504"
       },
       "infos": [
        "Kleingruppe"
@@ -57,10 +57,10 @@
       "infos": []
      },
      "groupTypeRoleId": 9,
-     "roleChangedDate": "2026-10-28T22:34:52Z",
+     "roleChangedDate": "2026-10-30T16:03:25Z",
      "groupMemberStatus": "active",
-     "statusChangedDate": "2026-10-28T22:34:50Z",
-     "memberStartDate": "2026-10-28",
+     "statusChangedDate": "2026-10-30T16:03:23Z",
+     "memberStartDate": "2026-10-30",
      "registeredBy": null,
      "waitinglistPosition": null,
      "comment": null,

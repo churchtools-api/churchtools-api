@@ -2,7 +2,7 @@
  "operation": "put-agendatemplates-agendaId-items-itemId",
  "request": {
   "method": "PUT",
-  "path": "/agendatemplates/385/items/6094",
+  "path": "/agendatemplates/391/items/6103",
   "query": [],
   "body": {
    "title": "Begrüßung und Ankündigungen",
@@ -11,7 +11,7 @@
  },
  "body": {
   "data": {
-   "id": 6094,
+   "id": 6103,
    "title": "Begrüßung und Ankündigungen",
    "type": "header",
    "duration": 0,
@@ -19,11 +19,11 @@
    "startTimes": {},
    "isBeforeEvent": false,
    "meta": {
-    "createdDate": "2026-10-28T23:34:58Z",
+    "createdDate": "2026-10-30T16:06:43Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:59Z",
+    "modifiedDate": "2026-10-30T16:06:44Z",
     "modifiedPerson": {
      "id": 1
     }

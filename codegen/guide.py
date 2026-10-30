@@ -113,7 +113,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("{:?} {:?}", info.site_name, info.version);
     Ok(())
 }""",
-            aside="Ausgabe: `ChuToo Church 3.138.0`",
+            aside="Ausgabe: `ChuToo Church 3.138.1`",
         ),
     ],
 )
@@ -572,7 +572,7 @@ client.request(Method::Post, "/persons", &[], Some(&body))?;""",
             "ChurchTools-Versionen",
             """
 Der Client ist aus der API-Beschreibung einer bestimmten ChurchTools-Version erzeugt. Welche das ist, steht in
-`API_VERSION` (z. B. `3.138.0`). Gegen andere Versionen funktioniert er, soweit die API gleich ist:
+`API_VERSION` (z. B. `3.138.1`). Gegen andere Versionen funktioniert er, soweit die API gleich ist:
 
 - **Neue Felder** einer neueren Version gehen nicht verloren: Sie landen in `model_extra` bzw. `extra`.
 - **Neue Werte** in Feldern mit fester Auswahl führen nicht zu Fehlern, Antworten erlauben jeden `str`.

@@ -2,23 +2,23 @@
  "operation": "get-finance-splittransactions-id",
  "request": {
   "method": "GET",
-  "path": "/finance/splittransactions/13",
+  "path": "/finance/splittransactions/19",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 13,
+   "id": 19,
    "documentDate": "2024-01-01",
-   "documentNumber": "ctrs-test-3bf6",
+   "documentNumber": "ctrs-test-eefd",
    "amount": 3000,
    "note": "ctrs-test",
    "splitChildren": [
     {
-     "id": 829,
+     "id": 841,
      "documentDate": "2024-01-01",
-     "documentNumber": "ctrs-test-3bf6-1",
-     "transactionDate": "2026-10-28",
+     "documentNumber": "ctrs-test-eefd-1",
+     "transactionDate": "2026-10-30",
      "accountId": 5,
      "contraAccountId": 2,
      "amount": 1000,
@@ -29,7 +29,7 @@
      "donator": null,
      "donatorSpouseId": null,
      "donatorSpouse": null,
-     "splitTransactionId": 13,
+     "splitTransactionId": 19,
      "taxRateId": null,
      "taxTransactionId": null,
      "taxBaseId": null,
@@ -41,11 +41,11 @@
      "isWaiverOfReimbursementOfExpenses": false,
      "isSynced": false,
      "meta": {
-      "createdDate": "2026-10-28T22:34:56Z",
+      "createdDate": "2026-10-30T16:03:29Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-10-28T22:34:56Z",
+      "modifiedDate": "2026-10-30T16:03:29Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -59,10 +59,10 @@
      }
     },
     {
-     "id": 832,
+     "id": 844,
      "documentDate": "2024-01-01",
-     "documentNumber": "ctrs-test-3bf6-2",
-     "transactionDate": "2026-10-28",
+     "documentNumber": "ctrs-test-eefd-2",
+     "transactionDate": "2026-10-30",
      "accountId": 8,
      "contraAccountId": 2,
      "amount": 2000,
@@ -73,7 +73,7 @@
      "donator": null,
      "donatorSpouseId": null,
      "donatorSpouse": null,
-     "splitTransactionId": 13,
+     "splitTransactionId": 19,
      "taxRateId": null,
      "taxTransactionId": null,
      "taxBaseId": null,
@@ -85,11 +85,11 @@
      "isWaiverOfReimbursementOfExpenses": false,
      "isSynced": false,
      "meta": {
-      "createdDate": "2026-10-28T22:34:56Z",
+      "createdDate": "2026-10-30T16:03:29Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-10-28T22:34:56Z",
+      "modifiedDate": "2026-10-30T16:03:29Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -104,11 +104,11 @@
     }
    ],
    "meta": {
-    "createdDate": "2026-10-28T22:34:56Z",
+    "createdDate": "2026-10-30T16:03:29Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T22:34:56Z",
+    "modifiedDate": "2026-10-30T16:03:29Z",
     "modifiedPerson": {
      "id": 1
     }

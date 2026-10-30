@@ -2,20 +2,20 @@
  "operation": "put-groups-groupId-members-personId",
  "request": {
   "method": "PUT",
-  "path": "/groups/934/members/1",
+  "path": "/groups/979/members/1",
   "query": [],
   "body": {}
  },
  "body": {
   "data": {
-   "id": 2605,
+   "id": 2629,
    "personId": 1,
    "group": {
-    "title": "ctrs-test Gruppe f9c313",
+    "title": "ctrs-test Gruppe c75b2d",
     "domainType": "group",
-    "domainIdentifier": "934",
-    "apiUrl": "https://gemeinde.example/api/groups/934",
-    "frontendUrl": "https://gemeinde.example/groups/934",
+    "domainIdentifier": "979",
+    "apiUrl": "https://gemeinde.example/api/groups/979",
+    "frontendUrl": "https://gemeinde.example/groups/979",
     "imageUrl": null,
     "icon": "users",
     "color": {
@@ -29,7 +29,7 @@
      "groupTypeId": 1,
      "campusId": null,
      "visibility": "restricted",
-     "guid": "01123CB8-97C5-4071-835F-01D2C39C9386"
+     "guid": "A108DBF7-A68E-40A1-83E1-E9DDD61CE245"
     },
     "infos": [
      "Kleingruppe"
@@ -55,10 +55,10 @@
     "infos": []
    },
    "groupTypeRoleId": 8,
-   "roleChangedDate": "2026-10-28T23:35:12Z",
+   "roleChangedDate": "2026-10-30T16:06:57Z",
    "groupMemberStatus": "active",
-   "statusChangedDate": "2026-10-28T23:35:12Z",
-   "memberStartDate": "2026-10-29",
+   "statusChangedDate": "2026-10-30T16:06:57Z",
+   "memberStartDate": "2026-10-30",
    "registeredBy": null,
    "waitinglistPosition": null,
    "comment": null,
@@ -69,14 +69,14 @@
    "fields": [],
    "personFields": [],
    "0": {
-    "id": 2605,
+    "id": 2629,
     "personId": 1,
     "group": {
-     "title": "ctrs-test Gruppe f9c313",
+     "title": "ctrs-test Gruppe c75b2d",
      "domainType": "group",
-     "domainIdentifier": "934",
-     "apiUrl": "https://gemeinde.example/api/groups/934",
-     "frontendUrl": "https://gemeinde.example/groups/934",
+     "domainIdentifier": "979",
+     "apiUrl": "https://gemeinde.example/api/groups/979",
+     "frontendUrl": "https://gemeinde.example/groups/979",
      "imageUrl": null,
      "icon": "users",
      "color": {
@@ -90,7 +90,7 @@
       "groupTypeId": 1,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "01123CB8-97C5-4071-835F-01D2C39C9386"
+      "guid": "A108DBF7-A68E-40A1-83E1-E9DDD61CE245"
      },
      "infos": [
       "Kleingruppe"
@@ -116,10 +116,10 @@
      "infos": []
     },
     "groupTypeRoleId": 8,
-    "roleChangedDate": "2026-10-28T23:35:12Z",
+    "roleChangedDate": "2026-10-30T16:06:57Z",
     "groupMemberStatus": "active",
-    "statusChangedDate": "2026-10-28T23:35:12Z",
-    "memberStartDate": "2026-10-29",
+    "statusChangedDate": "2026-10-30T16:06:57Z",
+    "memberStartDate": "2026-10-30",
     "registeredBy": null,
     "waitinglistPosition": null,
     "comment": null,

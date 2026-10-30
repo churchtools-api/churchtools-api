@@ -2,7 +2,7 @@
  "operation": "patch-groups-groupId-members-personId",
  "request": {
   "method": "PATCH",
-  "path": "/groups/919/members/1",
+  "path": "/groups/964/members/1",
   "query": [],
   "body": {
    "comment": "geändert"
@@ -10,14 +10,14 @@
  },
  "body": {
   "data": {
-   "id": 2599,
+   "id": 2623,
    "personId": 1,
    "group": {
-    "title": "ctrs-test Gruppe 810a87",
+    "title": "ctrs-test Gruppe 3d1c0b",
     "domainType": "group",
-    "domainIdentifier": "919",
-    "apiUrl": "https://gemeinde.example/api/groups/919",
-    "frontendUrl": "https://gemeinde.example/groups/919",
+    "domainIdentifier": "964",
+    "apiUrl": "https://gemeinde.example/api/groups/964",
+    "frontendUrl": "https://gemeinde.example/groups/964",
     "imageUrl": null,
     "icon": "users",
     "color": {
@@ -31,7 +31,7 @@
      "groupTypeId": 1,
      "campusId": null,
      "visibility": "restricted",
-     "guid": "1C5CEAE5-0EB6-4837-BDF8-AEB110ADCE67"
+     "guid": "77E3BC6D-5BBE-4028-AC1A-0CC09628CACE"
     },
     "infos": [
      "Kleingruppe"
@@ -57,10 +57,10 @@
     "infos": []
    },
    "groupTypeRoleId": 8,
-   "roleChangedDate": "2026-10-28T23:34:06Z",
+   "roleChangedDate": "2026-10-30T16:05:50Z",
    "groupMemberStatus": "active",
-   "statusChangedDate": "2026-10-28T23:34:06Z",
-   "memberStartDate": "2026-10-29",
+   "statusChangedDate": "2026-10-30T16:05:50Z",
+   "memberStartDate": "2026-10-30",
    "registeredBy": null,
    "waitinglistPosition": null,
    "comment": "geändert",

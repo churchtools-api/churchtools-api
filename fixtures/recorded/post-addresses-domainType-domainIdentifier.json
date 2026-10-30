@@ -2,7 +2,7 @@
  "operation": "post-addresses-domainType-domainIdentifier",
  "request": {
   "method": "POST",
-  "path": "/addresses/group/922",
+  "path": "/addresses/group/967",
   "query": [],
   "body": {
    "city": "Hamburg",
@@ -13,9 +13,9 @@
  },
  "body": {
   "data": {
-   "id": 526,
+   "id": 529,
    "domainType": "group",
-   "domainIdentifier": "922",
+   "domainIdentifier": "967",
    "name": "Gemeindehaus",
    "icon": null,
    "color": null,

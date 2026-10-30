@@ -100,9 +100,9 @@ class Recorder:
         self._record_scenario_call(method, path)
         return data
 
-    def pages(self, path: str, query: list[tuple[str, str]]) -> _t.Iterator[bytes]:
+    def pages(self, path: str, query: list[tuple[str, str]], prefetch: bool = True) -> _t.Iterator[bytes]:
         self._remember("GET", path, query, None)
-        for page in self.core.pages(path, query):
+        for page in self.core.pages(path, query, prefetch):
             self.last_body = page
             yield page
 

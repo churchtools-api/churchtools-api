@@ -2,7 +2,7 @@
  "operation": "get-dynamicgroups-id-status",
  "request": {
   "method": "GET",
-  "path": "/dynamicgroups/895/status",
+  "path": "/dynamicgroups/958/status",
   "query": [],
   "body": null
  },

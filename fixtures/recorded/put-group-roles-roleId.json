@@ -2,14 +2,14 @@
  "operation": "put-group-roles-roleId",
  "request": {
   "method": "PUT",
-  "path": "/group/roles/94",
+  "path": "/group/roles/112",
   "query": [],
   "body": {
-   "groupTypeId": 22,
+   "groupTypeId": 28,
    "growPathId": null,
    "isDefault": false,
    "isHidden": false,
-   "name": "ctrs-test Rolle fc562f neu",
+   "name": "ctrs-test Rolle a7b4a2 neu",
    "shorty": "TR",
    "sortKey": 98,
    "type": "participant"
@@ -17,10 +17,10 @@
  },
  "body": {
   "data": {
-   "id": 94,
-   "groupTypeId": 22,
-   "name": "ctrs-test Rolle fc562f neu",
-   "nameTranslated": "ctrs-test Rolle fc562f neu",
+   "id": 112,
+   "groupTypeId": 28,
+   "name": "ctrs-test Rolle a7b4a2 neu",
+   "nameTranslated": "ctrs-test Rolle a7b4a2 neu",
    "shorty": "TR",
    "sortKey": 98,
    "type": "participant",

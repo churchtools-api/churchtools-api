@@ -2,28 +2,28 @@
  "operation": "put-agendatemplates-agendaId",
  "request": {
   "method": "PUT",
-  "path": "/agendatemplates/385",
+  "path": "/agendatemplates/391",
   "query": [],
   "body": {
    "calendarId": 49,
-   "name": "ctrs-test Ablauf 89782e neu"
+   "name": "ctrs-test Ablauf c276d2 neu"
   }
  },
  "body": {
   "data": {
-   "id": 385,
-   "name": "ctrs-test Ablauf 89782e neu",
+   "id": 391,
+   "name": "ctrs-test Ablauf c276d2 neu",
    "series": null,
    "isLocked": false,
    "eventStartPosition": 0,
    "calendarId": 49,
    "total": 0,
    "meta": {
-    "createdDate": "2026-10-28T23:34:58Z",
+    "createdDate": "2026-10-30T16:06:43Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:59Z",
+    "modifiedDate": "2026-10-30T16:06:44Z",
     "modifiedPerson": {
      "id": 1
     }

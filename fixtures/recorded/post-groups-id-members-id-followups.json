@@ -2,19 +2,19 @@
  "operation": "post-groups-id-members-id-followups",
  "request": {
   "method": "POST",
-  "path": "/groups/931/members/2929/followups",
+  "path": "/groups/976/members/2953/followups",
   "query": [],
   "body": {
-   "title": "ctrs-test Wiedervorlage 593e42"
+   "title": "ctrs-test Wiedervorlage 9b6fed"
   }
  },
  "body": {
   "data": {
-   "id": 43,
-   "personId": 2929,
-   "groupId": 931,
-   "membershipId": 2602,
-   "title": "ctrs-test Wiedervorlage 593e42",
+   "id": 55,
+   "personId": 2953,
+   "groupId": 976,
+   "membershipId": 2626,
+   "title": "ctrs-test Wiedervorlage 9b6fed",
    "description": null,
    "icon": "handshake",
    "color": "yellow",
@@ -28,11 +28,11 @@
    "effectiveDueDate": null,
    "doneDate": null,
    "meta": {
-    "createdDate": "2026-10-28T23:35:09Z",
+    "createdDate": "2026-10-30T16:06:55Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:09Z",
+    "modifiedDate": "2026-10-30T16:06:55Z",
     "modifiedPerson": {
      "id": 1
     }

@@ -2,7 +2,7 @@
  "operation": "patch-persons-id",
  "request": {
   "method": "PATCH",
-  "path": "/persons/2923",
+  "path": "/persons/2947",
   "query": [],
   "body": {
    "city": "Teststadt",
@@ -11,13 +11,13 @@
  },
  "body": {
   "data": {
-   "id": 2923,
-   "guid": "4908C0DD-F3A8-45C3-8A0C-CEBD2509E7A2",
+   "id": 2947,
+   "guid": "955498B9-6200-4E41-B932-23860C9113D9",
    "securityLevelForPerson": 99999,
    "editSecurityLevelForPerson": 99999,
    "title": "",
    "firstName": "ctrs-test",
-   "lastName": "30ed603b",
+   "lastName": "48904641",
    "nickname": "Testi",
    "job": "",
    "street": "",
@@ -41,10 +41,10 @@
    "imageUrl": null,
    "familyImageUrl": "",
    "sexId": null,
-   "email": "295e3d44@example.invalid",
+   "email": "83c36db8@example.invalid",
    "emails": [
     {
-     "email": "295e3d44@example.invalid",
+     "email": "83c36db8@example.invalid",
      "isDefault": true,
      "contactLabelId": 2
     }
@@ -52,11 +52,11 @@
    "cmsUserId": "",
    "optigemId": "",
    "privacyPolicyAgreement": {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "typeId": 1,
     "whoId": 1
    },
-   "privacyPolicyAgreementDate": "2026-10-29",
+   "privacyPolicyAgreementDate": "2026-10-30",
    "privacyPolicyAgreementTypeId": 1,
    "privacyPolicyAgreementWhoId": 1,
    "nationalityId": null,
@@ -67,7 +67,7 @@
    "departmentIds": [
     1
    ],
-   "firstContact": "2026-10-29",
+   "firstContact": "2026-10-30",
    "dateOfBelonging": null,
    "dateOfDeath": null,
    "dateOfEntry": null,
@@ -85,13 +85,13 @@
    "visibility": "visible",
    "acceptedsecurity": null,
    "lastLogin": null,
-   "lastEditedDate": "2026-10-28T23:33:56Z",
+   "lastEditedDate": "2026-10-30T16:05:41Z",
    "meta": {
-    "createdDate": "2026-10-28T23:33:55Z",
+    "createdDate": "2026-10-30T16:05:40Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:33:56Z",
+    "modifiedDate": "2026-10-30T16:05:41Z",
     "modifiedPerson": {
      "id": 1
     }

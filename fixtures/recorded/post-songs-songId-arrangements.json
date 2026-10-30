@@ -2,7 +2,7 @@
  "operation": "post-songs-songId-arrangements",
  "request": {
   "method": "POST",
-  "path": "/songs/106/arrangements",
+  "path": "/songs/124/arrangements",
   "query": [],
   "body": {
    "name": "Gitarre"
@@ -10,7 +10,7 @@
  },
  "body": {
   "data": {
-   "id": 142,
+   "id": 166,
    "name": "Gitarre",
    "isDefault": true,
    "sourceId": null,
@@ -24,11 +24,11 @@
    "links": [],
    "files": [],
    "meta": {
-    "createdDate": "2026-10-28T23:35:24Z",
+    "createdDate": "2026-10-30T16:07:09Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:24Z",
+    "modifiedDate": "2026-10-30T16:07:09Z",
     "modifiedPerson": {
      "id": 1
     }

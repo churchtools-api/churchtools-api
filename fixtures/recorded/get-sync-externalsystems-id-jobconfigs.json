@@ -2,17 +2,17 @@
  "operation": "get-sync-externalsystems-id-jobconfigs",
  "request": {
   "method": "GET",
-  "path": "/sync/externalsystems/13/jobconfigs",
+  "path": "/sync/externalsystems/19/jobconfigs",
   "query": [],
   "body": null
  },
  "body": {
   "data": [
    {
-    "id": 13,
+    "id": 19,
     "name": "ctrs-test Job",
     "externalSystem": {
-     "id": 13,
+     "id": 19,
      "name": "ctrs-test",
      "accessHeaderValues": [],
      "adapter": "churchtools",

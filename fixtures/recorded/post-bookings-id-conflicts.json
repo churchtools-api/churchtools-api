@@ -2,11 +2,11 @@
  "operation": "post-bookings-id-conflicts",
  "request": {
   "method": "POST",
-  "path": "/bookings/445/conflicts",
+  "path": "/bookings/457/conflicts",
   "query": [],
   "body": {
-   "endDate": "2026-11-03T01:00:00Z",
-   "startDate": "2026-11-02T23:00:00Z"
+   "endDate": "2026-11-04T18:00:00Z",
+   "startDate": "2026-11-04T16:00:00Z"
   }
  },
  "body": {

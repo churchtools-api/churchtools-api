@@ -268,7 +268,7 @@ a.untested:hover { text-decoration: underline; }
 <div id="app" data-lang="python">
   <header class="topbar">
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">Inhalt</button>
-    <a class="brand" href="#start"><b>churchtools-api</b><span>ChurchTools 3.138.0 (build 32935)</span></a>
+    <a class="brand" href="#start"><b>churchtools-api</b><span>ChurchTools 3.138.1 (build 32938)</span></a>
     <div class="search"><input id="search" type="search" placeholder="Endpunkt oder Modell suchen, z. B. members" aria-label="Referenz durchsuchen" autocomplete="off"></div>
     <div class="lang-switch" role="group" aria-label="Sprache der Beispiele">
       <button type="button" data-l="python" aria-pressed="true">Python</button>
@@ -299,7 +299,7 @@ a.untested:hover { text-decoration: underline; }
           <ul class="facts">
             <li><b>849</b> Endpunkte</li>
             <li><b>1110</b> Modelle</li>
-            <li>API-Stand <b>ChurchTools 3.138.0 (build 32935)</b></li>
+            <li>API-Stand <b>ChurchTools 3.138.1 (build 32938)</b></li>
           </ul>
           <div class="cta">
             <a class="primary" href="#schnellstart">Erster Aufruf</a>
@@ -342,7 +342,7 @@ print(info.site_name, info.version)</code></pre><pre class="rs"><code><span clas
     <span class="t-kw">let</span> info = client.info().get()?;
     <span class="t-macro">println!</span>(<span class="t-string">&quot;{:?} {:?}&quot;</span>, info.site_name, info.version);
     <span class="t-kw">Ok</span>(())
-}</code></pre></div><p class="aside">Ausgabe: <code>ChuToo Church 3.138.0</code></p></div>
+}</code></pre></div><p class="aside">Ausgabe: <code>ChuToo Church 3.138.1</code></p></div>
 </article>
 </section>
 <section class="chapter" id="grundlagen"><h2>Grundlagen</h2><p class="lead">Die Konzepte, die für jeden Aufruf gelten. Wer sie kennt, findet sich in der ganzen Referenz zurecht.</p>
@@ -602,7 +602,7 @@ client.request(<span class="t-string">&quot;POST&quot;</span>, <span class="t-st
 <span class="t-kw">let</span> body = serde_json::<span class="t-macro">json!</span>({ <span class="t-string">&quot;departmentIds&quot;</span>: [<span class="t-number">1</span>], <span class="t-string">&quot;firstName&quot;</span>: <span class="t-string">&quot;Ben&quot;</span> });
 client.request(<span class="t-type">Method</span>::<span class="t-type">Post</span>, <span class="t-string">&quot;/persons&quot;</span>, &amp;[], <span class="t-kw">Some</span>(&amp;body))?;</code></pre></div></div>
 </article>
-<article class="topic" id="versionen"><div class="prose"><h3>ChurchTools-Versionen</h3><p>Der Client ist aus der API-Beschreibung einer bestimmten ChurchTools-Version erzeugt. Welche das ist, steht in <code>API_VERSION</code> (z. B. <code>3.138.0</code>). Gegen andere Versionen funktioniert er, soweit die API gleich ist:</p>
+<article class="topic" id="versionen"><div class="prose"><h3>ChurchTools-Versionen</h3><p>Der Client ist aus der API-Beschreibung einer bestimmten ChurchTools-Version erzeugt. Welche das ist, steht in <code>API_VERSION</code> (z. B. <code>3.138.1</code>). Gegen andere Versionen funktioniert er, soweit die API gleich ist:</p>
 <ul><li><strong>Neue Felder</strong> einer neueren Version gehen nicht verloren: Sie landen in <code>model_extra</code> bzw. <code>extra</code>.</li><li><strong>Neue Werte</strong> in Feldern mit fester Auswahl führen nicht zu Fehlern, Antworten erlauben jeden <code>str</code>.</li><li><strong>Fehlende Endpunkte</strong> einer älteren Version antworten mit <code>404</code>.</li><li><strong>Geänderte Pflichtfelder</strong> können ein <code>DecodeError</code> auslösen. Dann hilft eine neuere Version des Clients.</li></ul>
 <p>Die eigene Version (<code>__version__</code>, in Rust die Crate-Version) folgt SemVer. Was sich ändert, steht im <code>CHANGELOG.md</code>. Neue ChurchTools-Versionen bringen meist eine neue Minor-Version.</p></div>
 <div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">import</span> churchtools_api <span class="t-kw">as</span> ct

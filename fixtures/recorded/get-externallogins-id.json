@@ -2,13 +2,13 @@
  "operation": "get-externallogins-id",
  "request": {
   "method": "GET",
-  "path": "/externallogins/28",
+  "path": "/externallogins/40",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 28,
+   "id": 40,
    "type": "oidc",
    "name": "ctrs-test OIDC",
    "newPersonDepartmentId": null,
@@ -20,8 +20,8 @@
    "hasRegistration": false,
    "isVisible": false,
    "config": {
-    "clientId": "ctrs-test",
     "issuer": "https://accounts.google.com",
+    "clientId": "ctrs-test",
     "allowedConnections": []
    },
    "logoUrl": "https://accounts.google.com/favicon.ico",

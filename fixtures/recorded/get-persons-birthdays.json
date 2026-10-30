@@ -10,87 +10,6 @@
   "data": [
    {
     "type": "birthday",
-    "anniversaryInitialDate": "1962-10-27",
-    "anniversary": "2026-10-27",
-    "age": 64,
-    "person": {
-     "title": "Sven Johnston",
-     "domainType": "person",
-     "domainIdentifier": "69",
-     "apiUrl": "https://gemeinde.example/api/persons/69",
-     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2369/",
-     "imageUrl": null,
-     "icon": "user",
-     "color": null,
-     "initials": "SJ",
-     "domainAttributes": {
-      "firstName": "Sven",
-      "lastName": "Johnston",
-      "guid": "EB30881F-3925-4656-942C-8DD9A7FEEA50",
-      "dateOfDeath": null,
-      "isArchived": false
-     },
-     "infos": []
-    },
-    "@deprecated": "date (now: anniversaryInitialDate)",
-    "date": "1962-10-27"
-   },
-   {
-    "type": "birthday",
-    "anniversaryInitialDate": "1984-10-27",
-    "anniversary": "2026-10-27",
-    "age": 42,
-    "person": {
-     "title": "Lina Lohmann",
-     "domainType": "person",
-     "domainIdentifier": "1250",
-     "apiUrl": "https://gemeinde.example/api/persons/1250",
-     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231250/",
-     "imageUrl": null,
-     "icon": "user",
-     "color": null,
-     "initials": "LL",
-     "domainAttributes": {
-      "firstName": "Lina",
-      "lastName": "Lohmann",
-      "guid": "BF77B752-F3EB-49E5-8D4F-7F9263AFD75F",
-      "dateOfDeath": null,
-      "isArchived": false
-     },
-     "infos": []
-    },
-    "@deprecated": "date (now: anniversaryInitialDate)",
-    "date": "1984-10-27"
-   },
-   {
-    "type": "birthday",
-    "anniversaryInitialDate": "2009-10-28",
-    "anniversary": "2026-10-28",
-    "age": 17,
-    "person": {
-     "title": "Wanda Janßen",
-     "domainType": "person",
-     "domainIdentifier": "1256",
-     "apiUrl": "https://gemeinde.example/api/persons/1256",
-     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231256/",
-     "imageUrl": null,
-     "icon": "user",
-     "color": null,
-     "initials": "WJ",
-     "domainAttributes": {
-      "firstName": "Wanda",
-      "lastName": "Janßen",
-      "guid": "2CD52A39-CB48-480F-90F4-DF9198679B94",
-      "dateOfDeath": null,
-      "isArchived": false
-     },
-     "infos": []
-    },
-    "@deprecated": "date (now: anniversaryInitialDate)",
-    "date": "2009-10-28"
-   },
-   {
-    "type": "birthday",
     "anniversaryInitialDate": "1993-10-29",
     "anniversary": "2026-10-29",
     "age": 33,
@@ -1573,6 +1492,87 @@
     },
     "@deprecated": "date (now: anniversaryInitialDate)",
     "date": "1940-11-27"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1990-11-28",
+    "anniversary": "2026-11-28",
+    "age": 36,
+    "person": {
+     "title": "Andrea Vollmer",
+     "domainType": "person",
+     "domainIdentifier": "1346",
+     "apiUrl": "https://gemeinde.example/api/persons/1346",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231346/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "AV",
+     "domainAttributes": {
+      "firstName": "Andrea",
+      "lastName": "Vollmer",
+      "guid": "0ADB0AE9-4468-49D3-9BC8-242047A57E94",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1990-11-28"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "2002-11-29",
+    "anniversary": "2026-11-29",
+    "age": 24,
+    "person": {
+     "title": "Herbert Jansen",
+     "domainType": "person",
+     "domainIdentifier": "1349",
+     "apiUrl": "https://gemeinde.example/api/persons/1349",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231349/",
+     "imageUrl": "https://gemeinde.example/images/1193/d4e6dab2cc32980aa07d10dc857f3e2c71309ba6d68732a71bf31e902cafcea8",
+     "icon": "user",
+     "color": null,
+     "initials": "HJ",
+     "domainAttributes": {
+      "firstName": "Herbert",
+      "lastName": "Jansen",
+      "guid": "3F5C4C69-F5FE-4455-B7B7-BB7E140B4D6E",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "2002-11-29"
+   },
+   {
+    "type": "birthday",
+    "anniversaryInitialDate": "1993-11-29",
+    "anniversary": "2026-11-29",
+    "age": 33,
+    "person": {
+     "title": "Eugenie Roth",
+     "domainType": "person",
+     "domainIdentifier": "1352",
+     "apiUrl": "https://gemeinde.example/api/persons/1352",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231352/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "ER",
+     "domainAttributes": {
+      "firstName": "Eugenie",
+      "lastName": "Roth",
+      "guid": "5DC24248-AF20-4AEA-B9E7-E9ACC037E028",
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "@deprecated": "date (now: anniversaryInitialDate)",
+    "date": "1993-11-29"
    }
   ],
   "meta": {

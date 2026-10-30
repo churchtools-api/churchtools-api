@@ -2,13 +2,13 @@
  "operation": "get-persons-personId-absences-id",
  "request": {
   "method": "GET",
-  "path": "/persons/1/absences/94",
+  "path": "/persons/1/absences/109",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 94,
+   "id": 109,
    "person": {
     "title": "Armin Adendorf",
     "domainType": "person",
@@ -34,17 +34,17 @@
     "nameTranslated": "Krank",
     "sortKey": 0
    },
-   "startDate": "2026-10-28",
+   "startDate": "2026-10-30",
    "startTime": null,
-   "endDate": "2026-10-28",
+   "endDate": "2026-10-30",
    "endTime": null,
    "comment": "",
    "meta": {
-    "createdDate": "2026-10-28T22:34:53Z",
+    "createdDate": "2026-10-30T16:03:26Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T22:34:53Z",
+    "modifiedDate": "2026-10-30T16:03:26Z",
     "modifiedPerson": {
      "id": 1
     }

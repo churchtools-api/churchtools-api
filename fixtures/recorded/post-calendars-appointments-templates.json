@@ -8,24 +8,24 @@
    "calendarId": 49,
    "duration": 3600,
    "startTime": "10:00",
-   "title": "ctrs-test Vorlage 031171"
+   "title": "ctrs-test Vorlage d23b67"
   }
  },
  "body": {
   "data": {
-   "id": 34,
+   "id": 40,
    "calendarId": 49,
    "meta": {
-    "createdDate": "2026-10-28T23:34:57Z",
+    "createdDate": "2026-10-30T16:06:42Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:57Z",
+    "modifiedDate": "2026-10-30T16:06:42Z",
     "modifiedPerson": {
      "id": 1
     }
    },
-   "title": "ctrs-test Vorlage 031171",
+   "title": "ctrs-test Vorlage d23b67",
    "startTime": "10:00",
    "duration": 3600,
    "subtitle": null,

@@ -2,7 +2,7 @@
  "operation": "put-calendars-appointments-templates-id",
  "request": {
   "method": "PUT",
-  "path": "/calendars/appointments/templates/34",
+  "path": "/calendars/appointments/templates/40",
   "query": [],
   "body": {
    "calendarId": 49,
@@ -13,14 +13,14 @@
  },
  "body": {
   "data": {
-   "id": 34,
+   "id": 40,
    "calendarId": 49,
    "meta": {
-    "createdDate": "2026-10-28T23:34:56Z",
+    "createdDate": "2026-10-30T16:06:41Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:57Z",
+    "modifiedDate": "2026-10-30T16:06:42Z",
     "modifiedPerson": {
      "id": 1
     }

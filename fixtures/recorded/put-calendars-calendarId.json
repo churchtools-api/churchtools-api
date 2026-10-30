@@ -2,33 +2,33 @@
  "operation": "put-calendars-calendarId",
  "request": {
   "method": "PUT",
-  "path": "/calendars/97",
+  "path": "/calendars/109",
   "query": [],
   "body": {
-   "name": "ctrs-test Kalender 1800b6 neu",
+   "name": "ctrs-test Kalender 029db0 neu",
    "sortKey": 998
   }
  },
  "body": {
   "data": {
-   "id": 97,
-   "name": "ctrs-test Kalender 1800b6 neu",
-   "nameTranslated": "ctrs-test Kalender 1800b6 neu",
+   "id": 109,
+   "name": "ctrs-test Kalender 029db0 neu",
+   "nameTranslated": "ctrs-test Kalender 029db0 neu",
    "sortKey": 998,
    "type": "church",
    "color": null,
-   "randomUrl": "TJAy8f9nbmOkrPna2Sj5NRsqEH6ImIfA",
+   "randomUrl": "tFSbuOy63bNL9uM0iBKbZwAxTQtrTs7K",
    "iCalSourceUrl": null,
    "syncToEvTermine": false,
    "evTermineEventTypeId": null,
    "campusId": null,
    "eventTemplateId": null,
    "meta": {
-    "createdDate": "2026-10-28T23:34:11Z",
+    "createdDate": "2026-10-30T16:05:55Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:11Z",
+    "modifiedDate": "2026-10-30T16:05:57Z",
     "modifiedPerson": {
      "id": 1
     }

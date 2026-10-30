@@ -7,7 +7,7 @@ zusammenhängen, steht im README unter „ChurchTools-Versionen und Kompatibilit
 
 ## [0.1.0] – unveröffentlicht
 
-Erste Veröffentlichung. Generiert aus der API-Beschreibung von ChurchTools 3.138.0 (Build 32935): 849 Operationen,
+Erste Veröffentlichung. Generiert aus der API-Beschreibung von ChurchTools 3.138.1 (Build 32938): 849 Operationen,
 1110 Modelle.
 
 - Rust-Crate `churchtools-api`: `Client`/`ClientBuilder` (`timeout`, `connect_timeout`, `max_response_size`,

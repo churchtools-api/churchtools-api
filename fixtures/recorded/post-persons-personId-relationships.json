@@ -5,15 +5,15 @@
   "path": "/persons/1/relationships",
   "query": [],
   "body": {
-   "otherPersonId": 2926,
+   "otherPersonId": 2950,
    "relationshipTypeId": 1
   }
  },
  "body": {
   "data": {
-   "id": 103,
+   "id": 109,
    "personAId": 1,
-   "personBId": 2926,
+   "personBId": 2950,
    "relationshipType": {
     "id": 1,
     "name": "relationship.parent-child",
@@ -29,11 +29,11 @@
     "functionKeys": []
    },
    "meta": {
-    "createdDate": "2026-10-28T23:34:01Z",
+    "createdDate": "2026-10-30T16:05:46Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:01Z",
+    "modifiedDate": "2026-10-30T16:05:46Z",
     "modifiedPerson": {
      "id": 1
     }
@@ -41,7 +41,7 @@
    "@deprecated": {
     "date": "meta.createdDate"
    },
-   "date": "2026-10-29"
+   "date": "2026-10-30"
   }
  }
 }

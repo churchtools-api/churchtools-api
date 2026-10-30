@@ -2,7 +2,7 @@
  "operation": "put-followups-followUpId",
  "request": {
   "method": "PUT",
-  "path": "/followups/40",
+  "path": "/followups/52",
   "query": [],
   "body": {
    "description": "Anruf nach dem Gottesdienst",
@@ -11,8 +11,8 @@
  },
  "body": {
   "data": {
-   "id": 40,
-   "personId": 2929,
+   "id": 52,
+   "personId": 2953,
    "groupId": null,
    "membershipId": null,
    "title": "Nachfragen",
@@ -29,11 +29,11 @@
    "effectiveDueDate": null,
    "doneDate": null,
    "meta": {
-    "createdDate": "2026-10-28T23:35:06Z",
+    "createdDate": "2026-10-30T16:06:52Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:06Z",
+    "modifiedDate": "2026-10-30T16:06:52Z",
     "modifiedPerson": {
      "id": 1
     }

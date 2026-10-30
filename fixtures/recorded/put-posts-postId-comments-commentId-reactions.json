@@ -2,7 +2,7 @@
  "operation": "put-posts-postId-comments-commentId-reactions",
  "request": {
   "method": "PUT",
-  "path": "/posts/91/comments/121/reactions",
+  "path": "/posts/103/comments/139/reactions",
   "query": [],
   "body": {
    "emoji": "👍"
@@ -10,7 +10,7 @@
  },
  "body": {
   "data": {
-   "commentId": 121,
+   "commentId": 139,
    "person": {
     "title": "Armin Adendorf",
     "domainType": "person",
@@ -32,11 +32,11 @@
    },
    "emoji": "👍",
    "meta": {
-    "createdDate": "2026-10-28T23:35:19Z",
+    "createdDate": "2026-10-30T16:07:04Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:35:19Z",
+    "modifiedDate": "2026-10-30T16:07:04Z",
     "modifiedPerson": {
      "id": 1
     }

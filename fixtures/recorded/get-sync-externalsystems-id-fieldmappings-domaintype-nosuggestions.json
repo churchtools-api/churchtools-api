@@ -2,7 +2,7 @@
  "operation": "get-sync-externalsystems-id-fieldmappings-domaintype-nosuggestions",
  "request": {
   "method": "GET",
-  "path": "/sync/externalsystems/13/fieldmappings/person/nosuggestions",
+  "path": "/sync/externalsystems/19/fieldmappings/person/nosuggestions",
   "query": [],
   "body": null
  },

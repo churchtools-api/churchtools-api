@@ -2,7 +2,7 @@
  "operation": "patch-groups-id",
  "request": {
   "method": "PATCH",
-  "path": "/groups/919",
+  "path": "/groups/964",
   "query": [],
   "body": {
    "information": {
@@ -12,16 +12,16 @@
  },
  "body": {
   "data": {
-   "id": 919,
-   "guid": "1C5CEAE5-0EB6-4837-BDF8-AEB110ADCE67",
-   "name": "ctrs-test Gruppe 810a87",
+   "id": 964,
+   "guid": "77E3BC6D-5BBE-4028-AC1A-0CC09628CACE",
+   "name": "ctrs-test Gruppe 3d1c0b",
    "securityLevelForGroup": 5,
    "meta": {
-    "createdDate": "2026-10-28T23:34:05Z",
+    "createdDate": "2026-10-30T16:05:50Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T23:34:05Z",
+    "modifiedDate": "2026-10-30T16:05:50Z",
     "modifiedPerson": {
      "id": 1
     }
@@ -31,7 +31,7 @@
     "modifiedPerson": "meta.modifiedPid",
     "information.maxMembers": "settings.maxMembers"
    },
-   "modifiedDate": "2026-10-28T23:34:05Z",
+   "modifiedDate": "2026-10-30T16:05:50Z",
    "modifiedPerson": {
     "id": 1
    },

@@ -15,7 +15,7 @@
     "sortKey": 0,
     "type": "personal",
     "color": "black",
-    "randomUrl": "",
+    "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
     "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -26,7 +26,7 @@
      "createdPerson": {
       "id": -4
      },
-     "modifiedDate": "2026-10-28T02:37:27Z",
+     "modifiedDate": "2026-10-30T01:50:55Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -45,7 +45,7 @@
     "sortKey": 0,
     "type": "church",
     "color": "#000000",
-    "randomUrl": "",
+    "randomUrl": "i9OSzDrReUJIjUSdM6IQ5f8y0ewWNU80",
     "iCalSourceUrl": "",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -75,7 +75,7 @@
     "sortKey": 1,
     "type": "church",
     "color": "#f83a22",
-    "randomUrl": "",
+    "randomUrl": "Qy7Qsg6nIQYktdebxVrrDVcs53p3h1Fa",
     "iCalSourceUrl": "",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -105,7 +105,7 @@
     "sortKey": 10,
     "type": "church",
     "color": "#16a765",
-    "randomUrl": "",
+    "randomUrl": "L7PuwrI3J0qhddlkYXwkd21uGTiNzDUt",
     "iCalSourceUrl": null,
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -135,7 +135,7 @@
     "sortKey": 11,
     "type": "group",
     "color": "#D8F781",
-    "randomUrl": "",
+    "randomUrl": "kcI62aUKyNKjiq9umG9Am5Rsm7kHfjRD",
     "iCalSourceUrl": null,
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -165,7 +165,7 @@
     "sortKey": 20,
     "type": "church",
     "color": "#16a765",
-    "randomUrl": "",
+    "randomUrl": "262BYFYhoOpHNlgnDkOvZT91TXCcDJpq",
     "iCalSourceUrl": "",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -195,7 +195,7 @@
     "sortKey": 20,
     "type": "group",
     "color": "#c2c2c2",
-    "randomUrl": "",
+    "randomUrl": "V1qG1sVVZXCdRxIYdmDVQscsi5PTRk0O",
     "iCalSourceUrl": "",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -225,7 +225,7 @@
     "sortKey": 30,
     "type": "church",
     "color": "#92e1c0",
-    "randomUrl": "",
+    "randomUrl": "oYofpFl4dgBIwNsxPXwiz7modvpu7Xtp",
     "iCalSourceUrl": "",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -255,7 +255,7 @@
     "sortKey": 30,
     "type": "group",
     "color": "#ff7537",
-    "randomUrl": "",
+    "randomUrl": "czW1AmZBnFx5jx1yziS03WJP3opybbrw",
     "iCalSourceUrl": "",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -285,7 +285,7 @@
     "sortKey": 100,
     "type": "church",
     "color": "#ac725e",
-    "randomUrl": "",
+    "randomUrl": "F7gsl5AXHQtZB4eSREhef4T1qCja7YtI",
     "iCalSourceUrl": "http://i.cal.to/ical/77/nrw/ferien/8e540bcc.fad80fda-684fceb0.ics",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -296,7 +296,7 @@
      "createdPerson": {
       "id": -4
      },
-     "modifiedDate": "2026-10-28T02:37:27Z",
+     "modifiedDate": "2026-10-30T01:50:55Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -315,7 +315,7 @@
     "sortKey": 101,
     "type": "church",
     "color": "#ac725e",
-    "randomUrl": "",
+    "randomUrl": "sNaUL0e3sn50mwfMcA9nMZm3IO2mxk0t",
     "iCalSourceUrl": "http://i.cal.to/ical/61/nrw/feiertage/8e540bcc.fad80fda-53f74a12.ics",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
@@ -326,7 +326,7 @@
      "createdPerson": {
       "id": -4
      },
-     "modifiedDate": "2026-10-28T02:37:27Z",
+     "modifiedDate": "2026-10-30T01:50:55Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -345,7 +345,7 @@
     "sortKey": 110,
     "type": "church",
     "color": "#cd74e6",
-    "randomUrl": "",
+    "randomUrl": "5SrmTHEfboXlndibdT29YSdNv1ydKa62",
     "iCalSourceUrl": "",
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,

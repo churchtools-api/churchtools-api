@@ -2,20 +2,20 @@
  "operation": "put-wiki-categories-id",
  "request": {
   "method": "PUT",
-  "path": "/wiki/categories/34",
+  "path": "/wiki/categories/40",
   "query": [],
   "body": {
    "fileAccessWithoutPermission": false,
    "inMenu": false,
-   "name": "ctrs-test Wiki fddfac neu",
+   "name": "ctrs-test Wiki 2285fa neu",
    "sortKey": 998
   }
  },
  "body": {
   "data": {
-   "id": 34,
-   "name": "ctrs-test Wiki fddfac neu",
-   "nameTranslated": "ctrs-test Wiki fddfac neu",
+   "id": 40,
+   "name": "ctrs-test Wiki 2285fa neu",
+   "nameTranslated": "ctrs-test Wiki 2285fa neu",
    "sortKey": 998,
    "campusId": null,
    "inMenu": false,

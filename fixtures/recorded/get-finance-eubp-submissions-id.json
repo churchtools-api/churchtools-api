@@ -2,13 +2,13 @@
  "operation": "get-finance-eubp-submissions-id",
  "request": {
   "method": "GET",
-  "path": "/finance/eubp/submissions/13",
+  "path": "/finance/eubp/submissions/19",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 13,
+   "id": 19,
    "clientId": 1,
    "yearFrom": 2024,
    "yearTo": 2024,
@@ -17,8 +17,8 @@
    "transmissionReason": 1,
    "periods": [
     {
-     "id": 13,
-     "submissionId": 13,
+     "id": 19,
+     "submissionId": 19,
      "clientId": 1,
      "year": 2024,
      "accountingPeriodId": 1,
@@ -43,11 +43,11 @@
    "referenceDate": null,
    "deliveryDate": null,
    "meta": {
-    "createdDate": "2026-10-28T22:34:57Z",
+    "createdDate": "2026-10-30T16:03:30Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-28T22:34:57Z",
+    "modifiedDate": "2026-10-30T16:03:30Z",
     "modifiedPerson": {
      "id": 1
     }

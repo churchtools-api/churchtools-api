@@ -2,11 +2,11 @@
  "operation": "get-publicgroups-groupId-possiblerequesters",
  "request": {
   "method": "GET",
-  "path": "/publicgroups/898/possiblerequesters",
+  "path": "/publicgroups/961/possiblerequesters",
   "query": [
    [
     "token",
-    "<redacted>"
+    "ynTrRsAauRMMmfYsrVxB"
    ]
   ],
   "body": null
@@ -38,7 +38,7 @@
     }
    ],
    "email": null,
-   "groupName": "ctrs-test Anmeldung 3833db"
+   "groupName": "ctrs-test Anmeldung 745f23"
   }
  }
 }

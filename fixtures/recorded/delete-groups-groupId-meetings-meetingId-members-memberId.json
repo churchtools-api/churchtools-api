@@ -2,14 +2,14 @@
  "operation": "delete-groups-groupId-meetings-meetingId-members-memberId",
  "request": {
   "method": "DELETE",
-  "path": "/groups/934/meetings/1069/members/1",
+  "path": "/groups/979/meetings/1087/members/1",
   "query": [],
   "body": {}
  },
  "body": {
-  "id": 1069,
-  "groupId": 934,
-  "startDate": "2026-10-27T23:00:00Z",
+  "id": 1087,
+  "groupId": 979,
+  "startDate": "2026-10-29T16:00:00Z",
   "isCompleted": false,
   "isCanceled": false,
   "hasEditingStarted": false,
@@ -23,11 +23,11 @@
    "not-in-group": 0
   },
   "meta": {
-   "createdDate": "2026-10-28T23:35:12Z",
+   "createdDate": "2026-10-30T16:06:57Z",
    "createdPerson": {
     "id": 1
    },
-   "modifiedDate": "2026-10-28T23:35:12Z",
+   "modifiedDate": "2026-10-30T16:06:57Z",
    "modifiedPerson": {
     "id": 1
    }
@@ -37,8 +37,8 @@
    "dateTo": "endDate",
    "endDate": "@removed"
   },
-  "dateFrom": "2026-10-27T23:00:00Z",
-  "dateTo": "2026-10-27T23:00:00Z",
-  "endDate": "2026-10-27T23:00:00Z"
+  "dateFrom": "2026-10-29T16:00:00Z",
+  "dateTo": "2026-10-29T16:00:00Z",
+  "endDate": "2026-10-29T16:00:00Z"
  }
 }

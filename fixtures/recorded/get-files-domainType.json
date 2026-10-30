@@ -9,14 +9,14 @@
  "body": {
   "data": [
    {
-    "id": 3322,
+    "id": 3358,
     "domainType": "person",
     "domainId": "1",
     "name": "ctrs-test.txt",
-    "filename": "9bfdffcee66c62a0e33708ff52e4f48dcbc77b4cddf7782cc29ebee159e51d17",
-    "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3322&filename=9bfdffcee66c62a0e33708ff52e4f48dcbc77b4cddf7782cc29ebee159e51d17",
+    "filename": "98536ce15a01e1a29a2387bb769c7dd6b8f63d23eb4660ebe17739459f96eb79",
+    "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3358&filename=98536ce15a01e1a29a2387bb769c7dd6b8f63d23eb4660ebe17739459f96eb79",
     "imageUrl": null,
-    "relativeUrl": "?q=public/filedownload&id=3322&filename=9bfdffcee66c62a0e33708ff52e4f48dcbc77b4cddf7782cc29ebee159e51d17",
+    "relativeUrl": "?q=public/filedownload&id=3358&filename=98536ce15a01e1a29a2387bb769c7dd6b8f63d23eb4660ebe17739459f96eb79",
     "showOnlyWhenEditable": false,
     "securityLevelId": 0,
     "description": null,
@@ -26,9 +26,9 @@
     "imageOption": null,
     "imageMetadata": null,
     "type": "file",
-    "size": 28,
+    "size": 29,
     "meta": {
-     "createdDate": "2026-10-28T22:34:53Z",
+     "createdDate": "2026-10-30T16:03:26Z",
      "createdPerson": {
       "title": "Armin Adendorf",
       "domainType": "person",
@@ -48,7 +48,7 @@
       },
       "infos": []
      },
-     "modifiedDate": "2026-10-28T22:34:53Z",
+     "modifiedDate": "2026-10-30T16:03:26Z",
      "modifiedPerson": {
       "title": "Armin Adendorf",
       "domainType": "person",
@@ -71,14 +71,14 @@
     }
    },
    {
-    "id": 3325,
+    "id": 3361,
     "domainType": "person",
     "domainId": "1",
     "name": "ctrs-test-beleg.txt",
     "filename": "5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
-    "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3325&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
+    "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3361&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
     "imageUrl": null,
-    "relativeUrl": "?q=public/filedownload&id=3325&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
+    "relativeUrl": "?q=public/filedownload&id=3361&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
     "showOnlyWhenEditable": false,
     "securityLevelId": 0,
     "description": null,
@@ -90,7 +90,7 @@
     "type": "file",
     "size": 8,
     "meta": {
-     "createdDate": "2026-10-28T22:34:56Z",
+     "createdDate": "2026-10-30T16:03:29Z",
      "createdPerson": {
       "title": "Armin Adendorf",
       "domainType": "person",
@@ -110,7 +110,7 @@
       },
       "infos": []
      },
-     "modifiedDate": "2026-10-28T22:34:56Z",
+     "modifiedDate": "2026-10-30T16:03:29Z",
      "modifiedPerson": {
       "title": "Armin Adendorf",
       "domainType": "person",

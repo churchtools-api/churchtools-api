@@ -2,7 +2,7 @@
  "operation": "put-notes-domainType-domainId-id",
  "request": {
   "method": "PUT",
-  "path": "/notes/person/2926/247",
+  "path": "/notes/person/2950/265",
   "query": [],
   "body": {
    "text": "geändert"
@@ -10,22 +10,22 @@
  },
  "body": {
   "data": {
-   "id": 247,
+   "id": 265,
    "domainType": "person",
-   "domainId": 2926,
+   "domainId": 2950,
    "securityLevelId": null,
    "commentViewerId": null,
    "text": "geändert",
    "links": {
     "person": {
      "domainType": "person",
-     "domainId": 2926,
+     "domainId": 2950,
      "securityLevelId": null,
      "commentViewerId": null
     }
    },
    "meta": {
-    "createdDate": "2026-10-28T23:33:59Z",
+    "createdDate": "2026-10-30T16:05:44Z",
     "createdPerson": {
      "title": "Armin Adendorf",
      "domainType": "person",
@@ -45,7 +45,7 @@
      },
      "infos": []
     },
-    "modifiedDate": "2026-10-28T23:34:00Z",
+    "modifiedDate": "2026-10-30T16:05:45Z",
     "modifiedPerson": {
      "title": "Armin Adendorf",
      "domainType": "person",
