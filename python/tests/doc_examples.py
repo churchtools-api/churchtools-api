@@ -225,10 +225,11 @@ def example_18(client: ct.Client) -> None:
     import datetime as dt
     from zoneinfo import ZoneInfo
 
+    # Einstellungen: Vorlauf, Temperaturen und welcher Raum zu welchem Heizkreis gehört
     berlin = ZoneInfo("Europe/Berlin")
     VORLAUF = dt.timedelta(hours=2)  # so lange braucht ein Raum zum Aufheizen
     KOMFORT, ABSENKUNG = 21.0, 16.0
-    HEIZKREISE = {"Saal": "heizkreis-saal", "Kapelle": "heizkreis-kapelle"}  # Ressourcenname → Heizkreis
+    HEIZKREISE = {"Saal": "heizkreis-saal", "Kapelle": "heizkreis-kapelle"}
 
 
     class Heizung:
@@ -239,22 +240,29 @@ def example_18(client: ct.Client) -> None:
 
 
     def als_zeit(wert: dt.date | dt.datetime, ende: bool = False) -> dt.datetime:
+        """Zeitpunkt in Ortszeit; ganztägige Buchungen reichen bis zum Ende des Tags."""
         if isinstance(wert, dt.datetime):
             return wert.astimezone(berlin)
-        # Ganztägig: vom Beginn des ersten bis zum Ende des letzten Tags
-        return dt.datetime.combine(wert + dt.timedelta(days=1 if ende else 0), dt.time(), berlin)
+        tag = wert + dt.timedelta(days=1) if ende else wert
+        return dt.datetime.combine(tag, dt.time(), berlin)
 
 
+    # 1. Räume mit Heizkreis: Ressourcen-ID → Name
     raeume = {r.id: r.name for r in client.resources.list() if r.name in HEIZKREISE}
+
+    # 2. Bestätigte Buchungen dieser Räume für die nächsten sieben Tage
     heute = dt.date.today()
     buchungen = client.bookings.list(
         resource_ids=list(raeume),
-        status_ids=[2],
+        status_ids=[2],  # 1 = angefragt, 2 = bestätigt, 3 = abgelehnt
         from_=heute,
         to=heute + dt.timedelta(days=7),
     )
 
-    heizzeiten: dict[str, list[tuple[dt.datetime, dt.datetime, str]]] = {name: [] for name in raeume.values()}
+    # 3. Heizzeiten pro Raum: Beginn minus Vorlauf bis Ende der Buchung
+    heizzeiten: dict[str, list[tuple[dt.datetime, dt.datetime, str]]] = {
+        name: [] for name in raeume.values()
+    }
     for eintrag in buchungen:
         buchung, termin = eintrag.booking.base, eintrag.booking.calculated
         if buchung.resource_id not in raeume:
@@ -263,6 +271,7 @@ def example_18(client: ct.Client) -> None:
         ende = als_zeit(termin.end_date, ende=True)
         heizzeiten[raeume[buchung.resource_id]].append((start, ende, buchung.title))
 
+    # 4. Plan ausgeben und für jeden Raum die Temperatur setzen, die jetzt gilt
     jetzt = dt.datetime.now(berlin)
     heizung = Heizung()
     for raum, zeiten in heizzeiten.items():

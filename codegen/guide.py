@@ -858,10 +858,11 @@ Der Token-Benutzer braucht Leserechte für die Räume in der Ressourcenverwaltun
 import datetime as dt
 from zoneinfo import ZoneInfo
 
+# Einstellungen: Vorlauf, Temperaturen und welcher Raum zu welchem Heizkreis gehört
 berlin = ZoneInfo("Europe/Berlin")
 VORLAUF = dt.timedelta(hours=2)  # so lange braucht ein Raum zum Aufheizen
 KOMFORT, ABSENKUNG = 21.0, 16.0
-HEIZKREISE = {"Saal": "heizkreis-saal", "Kapelle": "heizkreis-kapelle"}  # Ressourcenname → Heizkreis
+HEIZKREISE = {"Saal": "heizkreis-saal", "Kapelle": "heizkreis-kapelle"}
 
 
 class Heizung:
@@ -872,22 +873,29 @@ class Heizung:
 
 
 def als_zeit(wert: dt.date | dt.datetime, ende: bool = False) -> dt.datetime:
+    \"\"\"Zeitpunkt in Ortszeit; ganztägige Buchungen reichen bis zum Ende des Tags.\"\"\"
     if isinstance(wert, dt.datetime):
         return wert.astimezone(berlin)
-    # Ganztägig: vom Beginn des ersten bis zum Ende des letzten Tags
-    return dt.datetime.combine(wert + dt.timedelta(days=1 if ende else 0), dt.time(), berlin)
+    tag = wert + dt.timedelta(days=1) if ende else wert
+    return dt.datetime.combine(tag, dt.time(), berlin)
 
 
+# 1. Räume mit Heizkreis: Ressourcen-ID → Name
 raeume = {r.id: r.name for r in client.resources.list() if r.name in HEIZKREISE}
+
+# 2. Bestätigte Buchungen dieser Räume für die nächsten sieben Tage
 heute = dt.date.today()
 buchungen = client.bookings.list(
     resource_ids=list(raeume),
-    status_ids=[2],
+    status_ids=[2],  # 1 = angefragt, 2 = bestätigt, 3 = abgelehnt
     from_=heute,
     to=heute + dt.timedelta(days=7),
 )
 
-heizzeiten: dict[str, list[tuple[dt.datetime, dt.datetime, str]]] = {name: [] for name in raeume.values()}
+# 3. Heizzeiten pro Raum: Beginn minus Vorlauf bis Ende der Buchung
+heizzeiten: dict[str, list[tuple[dt.datetime, dt.datetime, str]]] = {
+    name: [] for name in raeume.values()
+}
 for eintrag in buchungen:
     buchung, termin = eintrag.booking.base, eintrag.booking.calculated
     if buchung.resource_id not in raeume:
@@ -896,6 +904,7 @@ for eintrag in buchungen:
     ende = als_zeit(termin.end_date, ende=True)
     heizzeiten[raeume[buchung.resource_id]].append((start, ende, buchung.title))
 
+# 4. Plan ausgeben und für jeden Raum die Temperatur setzen, die jetzt gilt
 jetzt = dt.datetime.now(berlin)
 heizung = Heizung()
 for raum, zeiten in heizzeiten.items():
@@ -908,6 +917,7 @@ for raum, zeiten in heizzeiten.items():
 use std::collections::HashMap;
 use churchtools_api::chrono::{DateTime, Days, Local, NaiveTime, TimeDelta, TimeZone};
 
+// Einstellungen: Vorlauf, Temperaturen und welcher Raum zu welchem Heizkreis gehört
 const KOMFORT: f64 = 21.0;
 const ABSENKUNG: f64 = 16.0;
 let vorlauf = TimeDelta::hours(2); // so lange braucht ein Raum zum Aufheizen
@@ -918,17 +928,19 @@ fn setze_heizung(heizkreis: &str, grad: f64) {
     println!("  → {heizkreis}: {grad} °C");
 }
 
+/// Zeitpunkt in Ortszeit; ganztägige Buchungen reichen bis zum Ende des Tags.
 fn als_zeit(wert: &DateOrDateTime, ende: bool) -> DateTime<Local> {
     match wert {
         DateOrDateTime::DateTime(t) => t.with_timezone(&Local),
-        // Ganztägig: vom Beginn des ersten bis zum Ende des letzten Tags
         DateOrDateTime::Date(d) => {
             let tag = if ende { d.checked_add_days(Days::new(1)).unwrap_or(*d) } else { *d };
-            Local.from_local_datetime(&tag.and_time(NaiveTime::MIN)).earliest().unwrap_or_else(Local::now)
+            let mitternacht = tag.and_time(NaiveTime::MIN);
+            Local.from_local_datetime(&mitternacht).earliest().unwrap_or_else(Local::now)
         }
     }
 }
 
+// 1. Räume mit Heizkreis: Ressourcen-ID → Name
 let raeume: HashMap<i64, String> = client
     .resources()
     .list()?
@@ -936,16 +948,20 @@ let raeume: HashMap<i64, String> = client
     .filter(|r| heizkreise.contains_key(r.name.as_str()))
     .map(|r| (r.id, r.name))
     .collect();
+
+// 2. Bestätigte Buchungen dieser Räume für die nächsten sieben Tage
 let heute = Local::now().date_naive();
 let query = GetBookingsQuery {
     resource_ids: Some(raeume.keys().copied().collect()),
-    status_ids: Some(vec![2]),
+    status_ids: Some(vec![2]), // 1 = angefragt, 2 = bestätigt, 3 = abgelehnt
     from: Some(heute),
     to: heute.checked_add_days(Days::new(7)),
     ..Default::default()
 };
 
-let mut heizzeiten: HashMap<&str, Vec<(DateTime<Local>, DateTime<Local>, String)>> = HashMap::new();
+// 3. Heizzeiten pro Raum: Beginn minus Vorlauf bis Ende der Buchung
+let mut heizzeiten: HashMap<&str, Vec<(DateTime<Local>, DateTime<Local>, String)>> =
+    HashMap::new();
 for eintrag in client.bookings().list(&query)? {
     let (buchung, termin) = (eintrag.booking.base, eintrag.booking.calculated);
     let Some(raum) = raeume.get(&buchung.resource_id) else { continue };
@@ -954,13 +970,15 @@ for eintrag in client.bookings().list(&query)? {
     heizzeiten.entry(raum.as_str()).or_default().push((start, ende, buchung.title));
 }
 
+// 4. Plan ausgeben und für jeden Raum die Temperatur setzen, die jetzt gilt
 let jetzt = Local::now();
 for raum in raeume.values() {
     println!("{raum}");
     let mut zeiten = heizzeiten.remove(raum.as_str()).unwrap_or_default();
     zeiten.sort();
     for (start, ende, titel) in &zeiten {
-        println!("  heizen {} – {}  {titel}", start.format("%d.%m. %H:%M"), ende.format("%d.%m. %H:%M"));
+        let (von, bis) = (start.format("%d.%m. %H:%M"), ende.format("%d.%m. %H:%M"));
+        println!("  heizen {von} – {bis}  {titel}");
     }
     let belegt = zeiten.iter().any(|(start, ende, _)| *start <= jetzt && jetzt < *ende);
     setze_heizung(heizkreise[raum.as_str()], if belegt { KOMFORT } else { ABSENKUNG });
