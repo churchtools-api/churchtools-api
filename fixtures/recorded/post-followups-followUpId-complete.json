@@ -2,14 +2,14 @@
  "operation": "post-followups-followUpId-complete",
  "request": {
   "method": "POST",
-  "path": "/followups/52/complete",
+  "path": "/followups/5/complete",
   "query": [],
   "body": {}
  },
  "body": {
   "data": {
-   "id": 52,
-   "personId": 2953,
+   "id": 5,
+   "personId": 2849,
    "groupId": null,
    "membershipId": null,
    "title": "Nachfragen",
@@ -23,14 +23,14 @@
    "successGroupMemberStatus": null,
    "ownerId": 1,
    "dueDate": null,
-   "effectiveDueDate": "2026-11-06",
-   "doneDate": "2026-10-30T16:06:53Z",
+   "effectiveDueDate": "2026-11-28",
+   "doneDate": "2026-11-21T19:07:31Z",
    "meta": {
-    "createdDate": "2026-10-30T16:06:52Z",
+    "createdDate": "2026-11-21T19:07:29Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:06:53Z",
+    "modifiedDate": "2026-11-21T19:07:31Z",
     "modifiedPerson": {
      "id": 1
     }

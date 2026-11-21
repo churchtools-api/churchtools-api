@@ -2,7 +2,7 @@
  "operation": "get-permissions-internal-events-eventId",
  "request": {
   "method": "GET",
-  "path": "/permissions/internal/events/1816",
+  "path": "/permissions/internal/events/1990",
   "query": [],
   "body": null
  },

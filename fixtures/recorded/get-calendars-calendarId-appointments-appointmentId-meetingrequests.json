@@ -2,7 +2,7 @@
  "operation": "get-calendars-calendarId-appointments-appointmentId-meetingrequests",
  "request": {
   "method": "GET",
-  "path": "/calendars/49/appointments/1665407/meetingrequests",
+  "path": "/calendars/49/appointments/1670585/meetingrequests",
   "query": [],
   "body": null
  },

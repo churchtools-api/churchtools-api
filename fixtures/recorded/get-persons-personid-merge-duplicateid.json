@@ -38,13 +38,6 @@
      "key": "email"
     },
     {
-     "name": "guid",
-     "old": "63A3824A-036D-45F2-AD66-392371D7AC29",
-     "new": "A2E85D36-7B9D-49D2-83F5-CFB8BF12B428",
-     "printDiff": true,
-     "key": "guid"
-    },
-    {
      "name": "birthday",
      "old": {
       "date": "1963-04-28 00:00:00.000000",
@@ -83,6 +76,13 @@
      },
      "printDiff": true,
      "key": "firstContact"
+    },
+    {
+     "name": "guid",
+     "old": "76FFF0E3-00A0-4D73-8A48-FD976A0867AC",
+     "new": "91D72EE8-69CE-447B-9CAA-6FD590D06965",
+     "printDiff": true,
+     "key": "guid"
     }
    ],
    "groupsDiff": {

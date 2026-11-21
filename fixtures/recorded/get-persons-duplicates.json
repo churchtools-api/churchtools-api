@@ -10,9 +10,9 @@
   "meta": {
    "count": 3,
    "counts_marked": [],
-   "evaluations": 0,
-   "memory_used": "6,342 kbytes",
-   "duration": 0.009979963302612305
+   "evaluations": 20295,
+   "memory_used": "6,414 kbytes",
+   "duration": 0.05719184875488281
   },
   "data": [
    {

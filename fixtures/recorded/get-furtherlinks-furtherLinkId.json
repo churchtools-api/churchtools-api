@@ -2,13 +2,13 @@
  "operation": "get-furtherlinks-furtherLinkId",
  "request": {
   "method": "GET",
-  "path": "/furtherlinks/37",
+  "path": "/furtherlinks/2",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 37,
+   "id": 2,
    "name": "ctrs-test",
    "description": null,
    "url": "https://example.org",

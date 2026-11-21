@@ -5,18 +5,18 @@
   "path": "/bookings/conflicts",
   "query": [],
   "body": {
-   "endDate": "2026-11-04T16:30:00Z",
-   "startDate": "2026-11-04T16:00:00Z",
-   "resourceId": 67
+   "endDate": "2026-11-26T19:30:00Z",
+   "startDate": "2026-11-26T19:00:00Z",
+   "resourceId": 20
   }
  },
  "body": {
   "data": [
    {
-    "bookingId": 457,
-    "title": "ctrs-test Buchung eb48dd",
-    "startDate": "2026-11-04T17:00:00+01:00",
-    "endDate": "2026-11-04T18:00:00+01:00",
+    "bookingId": 413,
+    "title": "ctrs-test Buchung 1726be",
+    "startDate": "2026-11-26T20:00:00+01:00",
+    "endDate": "2026-11-26T21:00:00+01:00",
     "statusId": 2,
     "isAnonymized": false
    }

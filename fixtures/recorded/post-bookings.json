@@ -5,31 +5,31 @@
   "path": "/bookings",
   "query": [],
   "body": {
-   "endDate": "2026-11-04T17:00:00Z",
-   "startDate": "2026-11-04T16:00:00Z",
-   "resourceId": 67,
+   "endDate": "2026-11-26T20:00:00Z",
+   "startDate": "2026-11-26T19:00:00Z",
+   "resourceId": 20,
    "showInCal": false,
    "statusId": 2,
-   "title": "ctrs-test Buchung eb48dd"
+   "title": "ctrs-test Buchung 1726be"
   }
  },
  "body": {
   "data": {
-   "id": 457,
-   "title": "ctrs-test Buchung eb48dd",
+   "id": 413,
+   "title": "ctrs-test Buchung 1726be",
    "subtitle": null,
-   "resourceId": 67,
+   "resourceId": 20,
    "statusId": 2,
    "quantity": 1,
    "description": null,
    "appointment": null,
    "onBehalfOfPid": null,
    "answeredPid": 1,
-   "answeredDate": "2026-10-30T16:07:11Z",
+   "answeredDate": "2026-11-21T19:07:49Z",
    "showInCal": false,
    "version": 0,
-   "startDate": "2026-11-04T16:00:00Z",
-   "endDate": "2026-11-04T17:00:00Z",
+   "startDate": "2026-11-26T19:00:00Z",
+   "endDate": "2026-11-26T20:00:00Z",
    "allDay": false,
    "repeatId": 0,
    "repeatFrequency": null,
@@ -38,11 +38,11 @@
    "additionals": [],
    "exceptions": [],
    "meta": {
-    "createdDate": "2026-10-30T16:07:11Z",
+    "createdDate": "2026-11-21T19:07:49Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:07:11Z",
+    "modifiedDate": "2026-11-21T19:07:49Z",
     "modifiedPerson": {
      "id": 1
     }
@@ -54,12 +54,12 @@
     "appointmentId": "appointment",
     "resource": "resourceId"
    },
-   "caption": "ctrs-test Buchung eb48dd",
+   "caption": "ctrs-test Buchung 1726be",
    "location": null,
    "resource": {
-    "id": 67,
-    "name": "ctrs-test Raum 793fb8",
-    "nameTranslated": "ctrs-test Raum 793fb8",
+    "id": 20,
+    "name": "ctrs-test Raum bd4286",
+    "nameTranslated": "ctrs-test Raum bd4286",
     "sortKey": 999,
     "resourceTypeId": 2,
     "location": null,
@@ -72,11 +72,11 @@
     "adminIds": [],
     "randomString": null,
     "meta": {
-     "createdDate": "2026-10-30T16:07:10Z",
+     "createdDate": "2026-11-21T19:07:48Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-30T16:07:10Z",
+     "modifiedDate": "2026-11-21T19:07:48Z",
      "modifiedPerson": {
       "id": 1
      }

@@ -2,20 +2,20 @@
  "operation": "put-groups-groupId-members-personId",
  "request": {
   "method": "PUT",
-  "path": "/groups/979/members/1",
+  "path": "/groups/821/members/1",
   "query": [],
   "body": {}
  },
  "body": {
   "data": {
-   "id": 2629,
+   "id": 2564,
    "personId": 1,
    "group": {
-    "title": "ctrs-test Gruppe c75b2d",
+    "title": "ctrs-test Gruppe 2442a7",
     "domainType": "group",
-    "domainIdentifier": "979",
-    "apiUrl": "https://gemeinde.example/api/groups/979",
-    "frontendUrl": "https://gemeinde.example/groups/979",
+    "domainIdentifier": "821",
+    "apiUrl": "https://gemeinde.example/api/groups/821",
+    "frontendUrl": "https://gemeinde.example/groups/821",
     "imageUrl": null,
     "icon": "users",
     "color": {
@@ -29,7 +29,7 @@
      "groupTypeId": 1,
      "campusId": null,
      "visibility": "restricted",
-     "guid": "A108DBF7-A68E-40A1-83E1-E9DDD61CE245"
+     "guid": "329CCA76-78B0-4B6F-8D59-8FE57E5CD265"
     },
     "infos": [
      "Kleingruppe"
@@ -48,17 +48,17 @@
     "domainAttributes": {
      "firstName": "Armin",
      "lastName": "Adendorf",
-     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
      "dateOfDeath": null,
      "isArchived": false
     },
     "infos": []
    },
    "groupTypeRoleId": 8,
-   "roleChangedDate": "2026-10-30T16:06:57Z",
+   "roleChangedDate": "2026-11-21T19:07:36Z",
    "groupMemberStatus": "active",
-   "statusChangedDate": "2026-10-30T16:06:57Z",
-   "memberStartDate": "2026-10-30",
+   "statusChangedDate": "2026-11-21T19:07:36Z",
+   "memberStartDate": "2026-11-21",
    "registeredBy": null,
    "waitinglistPosition": null,
    "comment": null,
@@ -69,14 +69,14 @@
    "fields": [],
    "personFields": [],
    "0": {
-    "id": 2629,
+    "id": 2564,
     "personId": 1,
     "group": {
-     "title": "ctrs-test Gruppe c75b2d",
+     "title": "ctrs-test Gruppe 2442a7",
      "domainType": "group",
-     "domainIdentifier": "979",
-     "apiUrl": "https://gemeinde.example/api/groups/979",
-     "frontendUrl": "https://gemeinde.example/groups/979",
+     "domainIdentifier": "821",
+     "apiUrl": "https://gemeinde.example/api/groups/821",
+     "frontendUrl": "https://gemeinde.example/groups/821",
      "imageUrl": null,
      "icon": "users",
      "color": {
@@ -90,7 +90,7 @@
       "groupTypeId": 1,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "A108DBF7-A68E-40A1-83E1-E9DDD61CE245"
+      "guid": "329CCA76-78B0-4B6F-8D59-8FE57E5CD265"
      },
      "infos": [
       "Kleingruppe"
@@ -109,17 +109,17 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
      "infos": []
     },
     "groupTypeRoleId": 8,
-    "roleChangedDate": "2026-10-30T16:06:57Z",
+    "roleChangedDate": "2026-11-21T19:07:36Z",
     "groupMemberStatus": "active",
-    "statusChangedDate": "2026-10-30T16:06:57Z",
-    "memberStartDate": "2026-10-30",
+    "statusChangedDate": "2026-11-21T19:07:36Z",
+    "memberStartDate": "2026-11-21",
     "registeredBy": null,
     "waitinglistPosition": null,
     "comment": null,

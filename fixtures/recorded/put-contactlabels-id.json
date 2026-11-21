@@ -2,19 +2,19 @@
  "operation": "put-contactlabels-id",
  "request": {
   "method": "PUT",
-  "path": "/contactlabels/31",
+  "path": "/contactlabels/8",
   "query": [],
   "body": {
    "isDefault": false,
-   "name": "ctrs-test contact_labels b8de8f neu",
+   "name": "ctrs-test contact_labels 105347 neu",
    "sortKey": 998
   }
  },
  "body": {
   "data": {
-   "id": 31,
-   "name": "ctrs-test contact_labels b8de8f neu",
-   "nameTranslated": "ctrs-test contact_labels b8de8f neu",
+   "id": 8,
+   "name": "ctrs-test contact_labels 105347 neu",
+   "nameTranslated": "ctrs-test contact_labels 105347 neu",
    "sortKey": 998,
    "isDefault": false
   }

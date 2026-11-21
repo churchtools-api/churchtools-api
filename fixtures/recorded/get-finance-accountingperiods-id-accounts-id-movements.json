@@ -9,7 +9,7 @@
  "body": {
   "data": [
    {
-    "id": 31,
+    "id": 20,
     "documentDate": "2024-01-02",
     "valuta": "2024-01-02",
     "isDebit": false,
@@ -24,7 +24,7 @@
     "numberInStatement": 0,
     "suggestions": [
      {
-      "id": 214,
+      "id": 143,
       "name": "accountId",
       "splitKey": null,
       "value": "2",
@@ -33,7 +33,7 @@
       "reason": "import"
      },
      {
-      "id": 217,
+      "id": 146,
       "name": "amount",
       "splitKey": null,
       "value": "5000",
@@ -42,7 +42,7 @@
       "reason": "import"
      },
      {
-      "id": 220,
+      "id": 149,
       "name": "note",
       "splitKey": null,
       "value": "Spende ctrs-test",
@@ -51,7 +51,7 @@
       "reason": "import"
      },
      {
-      "id": 223,
+      "id": 152,
       "name": "documentDate",
       "splitKey": null,
       "value": "2024-01-02",
@@ -60,7 +60,7 @@
       "reason": "import"
      },
      {
-      "id": 226,
+      "id": 155,
       "name": "bills",
       "splitKey": null,
       "value": "",
@@ -69,7 +69,7 @@
       "reason": "import"
      },
      {
-      "id": 229,
+      "id": 158,
       "name": "isDonation",
       "splitKey": null,
       "value": "1",

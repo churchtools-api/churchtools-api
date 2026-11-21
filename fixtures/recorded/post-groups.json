@@ -7,21 +7,21 @@
   "body": {
    "groupStatusId": 1,
    "groupTypeId": 1,
-   "name": "ctrs-test Gruppe c75b2d"
+   "name": "ctrs-test Gruppe 2442a7"
   }
  },
  "body": {
   "data": {
-   "id": 979,
-   "guid": "A108DBF7-A68E-40A1-83E1-E9DDD61CE245",
-   "name": "ctrs-test Gruppe c75b2d",
+   "id": 821,
+   "guid": "329CCA76-78B0-4B6F-8D59-8FE57E5CD265",
+   "name": "ctrs-test Gruppe 2442a7",
    "securityLevelForGroup": 5,
    "meta": {
-    "createdDate": "2026-10-30T16:06:57Z",
+    "createdDate": "2026-11-21T19:07:35Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:06:57Z",
+    "modifiedDate": "2026-11-21T19:07:35Z",
     "modifiedPerson": {
      "id": 1
     }
@@ -31,7 +31,7 @@
     "modifiedPerson": "meta.modifiedPid",
     "information.maxMembers": "settings.maxMembers"
    },
-   "modifiedDate": "2026-10-30T16:06:57Z",
+   "modifiedDate": "2026-11-21T19:07:35Z",
    "modifiedPerson": {
     "id": 1
    },

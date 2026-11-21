@@ -9,49 +9,14 @@
  "body": {
   "data": [
    {
-    "id": 1816,
-    "guid": "31B0AF57-5131-442B-A38E-87DCBB32A5EB",
-    "name": "Jugendgottesdienst",
-    "description": "",
-    "appointmentId": 699015,
-    "startDate": "2026-10-30T18:00:00Z",
-    "endDate": "2026-10-30T20:00:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Jugend",
-     "domainType": "calendar",
-     "domainIdentifier": "3",
-     "apiUrl": "https://gemeinde.example/api/calendar/3",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=3",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
     "id": 1990,
-    "guid": "620D6EBD-7FCF-4EA6-866F-D37F2E39249C",
+    "guid": "A10756F1-47B8-446A-A301-6F0EF92E46D5",
     "name": "Gottesdienst",
     "description": "",
     "appointmentId": 543826,
-    "startDate": "2026-11-01T09:00:00Z",
-    "endDate": "2026-11-01T10:30:00Z",
-    "chatStatus": "STARTED",
+    "startDate": "2026-11-22T09:00:00Z",
+    "endDate": "2026-11-22T10:30:00Z",
+    "chatStatus": "NOT_STARTED",
     "isCanceled": false,
     "adminIds": [],
     "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
@@ -80,13 +45,13 @@
    },
    {
     "id": 2015,
-    "guid": "87F552C8-B01D-4AD8-8FBE-765D93772B87",
+    "guid": "D32BC9B7-1D25-4AAD-A62B-55B06036B850",
     "name": "Gottesdienste",
     "description": null,
     "appointmentId": 1435565,
-    "startDate": "2026-11-01T09:00:00Z",
-    "endDate": "2026-11-01T10:30:00Z",
-    "chatStatus": "STARTED",
+    "startDate": "2026-11-22T09:00:00Z",
+    "endDate": "2026-11-22T10:30:00Z",
+    "chatStatus": "NOT_STARTED",
     "isCanceled": false,
     "adminIds": [],
     "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
@@ -115,392 +80,7 @@
    },
    {
     "id": 1974,
-    "guid": "EE2F11B9-3C5B-4A9C-A5E8-16A44A4449C9",
-    "name": "Jugendgottesdienst",
-    "description": "",
-    "appointmentId": 699015,
-    "startDate": "2026-11-06T18:00:00Z",
-    "endDate": "2026-11-06T20:00:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Jugend",
-     "domainType": "calendar",
-     "domainIdentifier": "3",
-     "apiUrl": "https://gemeinde.example/api/calendar/3",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=3",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 1993,
-    "guid": "C30CD35D-660F-4862-ADE9-8E4EE1A4F571",
-    "name": "Gottesdienst",
-    "description": "",
-    "appointmentId": 543826,
-    "startDate": "2026-11-08T09:00:00Z",
-    "endDate": "2026-11-08T10:30:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Kirche Zentale",
-     "domainType": "calendar",
-     "domainIdentifier": "2",
-     "apiUrl": "https://gemeinde.example/api/calendar/2",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 2018,
-    "guid": "99B8C450-A876-4E46-9CB0-946DC0CD3151",
-    "name": "Gottesdienste",
-    "description": null,
-    "appointmentId": 1435565,
-    "startDate": "2026-11-08T09:00:00Z",
-    "endDate": "2026-11-08T10:30:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": null,
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Kirche Süd",
-     "domainType": "calendar",
-     "domainIdentifier": "56",
-     "apiUrl": "https://gemeinde.example/api/calendar/56",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=56",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Hafencity"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 1986,
-    "guid": "A96B76E6-F98E-4132-8293-61945AAED267",
-    "name": "Gebetsabend",
-    "description": "",
-    "appointmentId": 699024,
-    "startDate": "2026-11-10T18:00:00Z",
-    "endDate": "2026-11-10T19:00:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": true,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Kirche Zentale",
-     "domainType": "calendar",
-     "domainIdentifier": "2",
-     "apiUrl": "https://gemeinde.example/api/calendar/2",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 1977,
-    "guid": "0AA48EE2-9264-4396-B6C9-8D9B215668F7",
-    "name": "Jugendgottesdienst",
-    "description": "",
-    "appointmentId": 699015,
-    "startDate": "2026-11-13T18:00:00Z",
-    "endDate": "2026-11-13T20:00:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Jugend",
-     "domainType": "calendar",
-     "domainIdentifier": "3",
-     "apiUrl": "https://gemeinde.example/api/calendar/3",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=3",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 1996,
-    "guid": "2D9041F1-C8F2-4FD9-9C92-86DB272431CA",
-    "name": "Gottesdienst",
-    "description": "",
-    "appointmentId": 543826,
-    "startDate": "2026-11-15T09:00:00Z",
-    "endDate": "2026-11-15T10:30:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Kirche Zentale",
-     "domainType": "calendar",
-     "domainIdentifier": "2",
-     "apiUrl": "https://gemeinde.example/api/calendar/2",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 2021,
-    "guid": "729F1B31-F5EC-4F33-B30B-C6AF0B8FBEEF",
-    "name": "Gottesdienste",
-    "description": null,
-    "appointmentId": 1435565,
-    "startDate": "2026-11-15T09:00:00Z",
-    "endDate": "2026-11-15T10:30:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": null,
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Kirche Süd",
-     "domainType": "calendar",
-     "domainIdentifier": "56",
-     "apiUrl": "https://gemeinde.example/api/calendar/56",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=56",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Hafencity"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 1980,
-    "guid": "7C9DDFAD-29B7-4734-BA2D-55846BC550E6",
-    "name": "Jugendgottesdienst",
-    "description": "",
-    "appointmentId": 699015,
-    "startDate": "2026-11-20T18:00:00Z",
-    "endDate": "2026-11-20T20:00:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Jugend",
-     "domainType": "calendar",
-     "domainIdentifier": "3",
-     "apiUrl": "https://gemeinde.example/api/calendar/3",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=3",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 1999,
-    "guid": "6DF20967-2D56-4826-93A8-D275AA4B5F0E",
-    "name": "Gottesdienst",
-    "description": "",
-    "appointmentId": 543826,
-    "startDate": "2026-11-22T09:00:00Z",
-    "endDate": "2026-11-22T10:30:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Kirche Zentale",
-     "domainType": "calendar",
-     "domainIdentifier": "2",
-     "apiUrl": "https://gemeinde.example/api/calendar/2",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 2024,
-    "guid": "A889A8E9-B15E-46E8-83EF-20DBB8E02918",
-    "name": "Gottesdienste",
-    "description": null,
-    "appointmentId": 1435565,
-    "startDate": "2026-11-22T09:00:00Z",
-    "endDate": "2026-11-22T10:30:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": null,
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Kirche Süd",
-     "domainType": "calendar",
-     "domainIdentifier": "56",
-     "apiUrl": "https://gemeinde.example/api/calendar/56",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=56",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Hafencity"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 1989,
-    "guid": "4FFC68CE-1F3A-4834-9B1B-F21C6CA2D453",
-    "name": "Gebetsabend",
-    "description": "",
-    "appointmentId": 699024,
-    "startDate": "2026-11-24T18:00:00Z",
-    "endDate": "2026-11-24T19:00:00Z",
-    "chatStatus": "NOT_STARTED",
-    "isCanceled": false,
-    "adminIds": [],
-    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
-    "note": "",
-    "eventAdminIds": [],
-    "permissions": {
-     "useChat": false,
-     "startChat": true
-    },
-    "calendar": {
-     "title": "Kirche Zentale",
-     "domainType": "calendar",
-     "domainIdentifier": "2",
-     "apiUrl": "https://gemeinde.example/api/calendar/2",
-     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
-     "imageUrl": null,
-     "icon": "calendar",
-     "color": null,
-     "initials": null,
-     "domainAttributes": {
-      "campusName": "Winterhude"
-     },
-     "infos": []
-    },
-    "eventFiles": []
-   },
-   {
-    "id": 1983,
-    "guid": "5E4612DE-CDAA-461D-BAF5-5BDB12710DE5",
+    "guid": "50CBCB89-E419-4A23-8E42-39B334DBDD97",
     "name": "Jugendgottesdienst",
     "description": "",
     "appointmentId": 699015,
@@ -534,8 +114,8 @@
     "eventFiles": []
    },
    {
-    "id": 2002,
-    "guid": "03788768-85E0-479F-9EB9-6F93D4FB60F8",
+    "id": 1993,
+    "guid": "8B911A85-2D7E-4FB4-BD03-60AADF0ED4F1",
     "name": "Gottesdienst",
     "description": "",
     "appointmentId": 543826,
@@ -569,8 +149,8 @@
     "eventFiles": []
    },
    {
-    "id": 2027,
-    "guid": "99F93052-6F12-4F95-A575-ADA9046864EC",
+    "id": 2018,
+    "guid": "FA6962C9-CB29-44F2-BB83-49B2A34E8600",
     "name": "Gottesdienste",
     "description": null,
     "appointmentId": 1435565,
@@ -604,8 +184,78 @@
     "eventFiles": []
    },
    {
-    "id": 2005,
-    "guid": "254AC678-E36F-4082-9B86-749F4959B831",
+    "id": 1986,
+    "guid": "E3A96BDD-28C7-41A4-B490-8E3EEE4978E8",
+    "name": "Gebetsabend",
+    "description": "",
+    "appointmentId": 699024,
+    "startDate": "2026-12-01T18:00:00Z",
+    "endDate": "2026-12-01T19:00:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": true,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Zentale",
+     "domainType": "calendar",
+     "domainIdentifier": "2",
+     "apiUrl": "https://gemeinde.example/api/calendar/2",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 1977,
+    "guid": "721F0E42-FF7A-4F46-AA52-30CD41CA8FE6",
+    "name": "Jugendgottesdienst",
+    "description": "",
+    "appointmentId": 699015,
+    "startDate": "2026-12-04T18:00:00Z",
+    "endDate": "2026-12-04T20:00:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Jugend",
+     "domainType": "calendar",
+     "domainIdentifier": "3",
+     "apiUrl": "https://gemeinde.example/api/calendar/3",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=3",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 1996,
+    "guid": "5992A44B-DB28-41E9-84E9-3C94016C4A9A",
     "name": "Gottesdienst",
     "description": "",
     "appointmentId": 543826,
@@ -639,8 +289,8 @@
     "eventFiles": []
    },
    {
-    "id": 2030,
-    "guid": "13D356FD-3506-4158-867D-AF3FBEF84B2B",
+    "id": 2021,
+    "guid": "AF833C6A-379B-4E28-8616-E0B9E2973AEF",
     "name": "Gottesdienste",
     "description": null,
     "appointmentId": 1435565,
@@ -674,8 +324,78 @@
     "eventFiles": []
    },
    {
-    "id": 2033,
-    "guid": "B310435B-F0E2-4867-BF61-03D77D841D2C",
+    "id": 1980,
+    "guid": "16D4A949-1A58-4879-8159-7109841ED90F",
+    "name": "Jugendgottesdienst",
+    "description": "",
+    "appointmentId": 699015,
+    "startDate": "2026-12-11T18:00:00Z",
+    "endDate": "2026-12-11T20:00:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Jugend",
+     "domainType": "calendar",
+     "domainIdentifier": "3",
+     "apiUrl": "https://gemeinde.example/api/calendar/3",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=3",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 1999,
+    "guid": "BB568053-1E63-4A46-8F8F-3205DAB3BC50",
+    "name": "Gottesdienst",
+    "description": "",
+    "appointmentId": 543826,
+    "startDate": "2026-12-13T09:00:00Z",
+    "endDate": "2026-12-13T10:30:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Zentale",
+     "domainType": "calendar",
+     "domainIdentifier": "2",
+     "apiUrl": "https://gemeinde.example/api/calendar/2",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 2024,
+    "guid": "83E924C4-D5A5-4B8B-B258-DCEE1206D112",
     "name": "Gottesdienste",
     "description": null,
     "appointmentId": 1435565,
@@ -709,8 +429,113 @@
     "eventFiles": []
    },
    {
-    "id": 2036,
-    "guid": "53CD209A-5D07-4EC1-B212-3768E163E683",
+    "id": 1989,
+    "guid": "6307697F-8BAD-44E0-B9BC-6833B15A5372",
+    "name": "Gebetsabend",
+    "description": "",
+    "appointmentId": 699024,
+    "startDate": "2026-12-15T18:00:00Z",
+    "endDate": "2026-12-15T19:00:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Zentale",
+     "domainType": "calendar",
+     "domainIdentifier": "2",
+     "apiUrl": "https://gemeinde.example/api/calendar/2",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 1983,
+    "guid": "1FC5DD37-EE65-45F5-A239-ED00CE2FE388",
+    "name": "Jugendgottesdienst",
+    "description": "",
+    "appointmentId": 699015,
+    "startDate": "2026-12-18T18:00:00Z",
+    "endDate": "2026-12-18T20:00:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Jugend",
+     "domainType": "calendar",
+     "domainIdentifier": "3",
+     "apiUrl": "https://gemeinde.example/api/calendar/3",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=3",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 2002,
+    "guid": "38509392-342A-47F5-8C32-0F62159B5135",
+    "name": "Gottesdienst",
+    "description": "",
+    "appointmentId": 543826,
+    "startDate": "2026-12-20T09:00:00Z",
+    "endDate": "2026-12-20T10:30:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Zentale",
+     "domainType": "calendar",
+     "domainIdentifier": "2",
+     "apiUrl": "https://gemeinde.example/api/calendar/2",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 2027,
+    "guid": "8FF83986-6AD8-40B8-9B6A-17646F66148F",
     "name": "Gottesdienste",
     "description": null,
     "appointmentId": 1435565,
@@ -744,8 +569,43 @@
     "eventFiles": []
    },
    {
-    "id": 2039,
-    "guid": "C3FC6838-425A-45C6-8D4D-D9615AF4AC31",
+    "id": 2005,
+    "guid": "D94D4815-F8B6-4BA3-A68D-A96FDB397ABD",
+    "name": "Gottesdienst",
+    "description": "",
+    "appointmentId": 543826,
+    "startDate": "2026-12-27T09:00:00Z",
+    "endDate": "2026-12-27T10:30:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": "",
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Zentale",
+     "domainType": "calendar",
+     "domainIdentifier": "2",
+     "apiUrl": "https://gemeinde.example/api/calendar/2",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Winterhude"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 2030,
+    "guid": "90C0BFC8-C62F-4157-A889-58927D8EB448",
     "name": "Gottesdienste",
     "description": null,
     "appointmentId": 1435565,
@@ -777,10 +637,115 @@
      "infos": []
     },
     "eventFiles": []
+   },
+   {
+    "id": 2033,
+    "guid": "BDC469A2-4295-4683-9C43-FDDDCCF935A7",
+    "name": "Gottesdienste",
+    "description": null,
+    "appointmentId": 1435565,
+    "startDate": "2027-01-03T09:00:00Z",
+    "endDate": "2027-01-03T10:30:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": null,
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Süd",
+     "domainType": "calendar",
+     "domainIdentifier": "56",
+     "apiUrl": "https://gemeinde.example/api/calendar/56",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=56",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Hafencity"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 2036,
+    "guid": "BE3034B1-5D8D-4C64-BE4B-0ABB0286487D",
+    "name": "Gottesdienste",
+    "description": null,
+    "appointmentId": 1435565,
+    "startDate": "2027-01-10T09:00:00Z",
+    "endDate": "2027-01-10T10:30:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": null,
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Süd",
+     "domainType": "calendar",
+     "domainIdentifier": "56",
+     "apiUrl": "https://gemeinde.example/api/calendar/56",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=56",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Hafencity"
+     },
+     "infos": []
+    },
+    "eventFiles": []
+   },
+   {
+    "id": 2039,
+    "guid": "63EB3045-DB47-4378-AD78-2CE3BEE238CD",
+    "name": "Gottesdienste",
+    "description": null,
+    "appointmentId": 1435565,
+    "startDate": "2027-01-17T09:00:00Z",
+    "endDate": "2027-01-17T10:30:00Z",
+    "chatStatus": "NOT_STARTED",
+    "isCanceled": false,
+    "adminIds": [],
+    "@deprecated": "note (now: description), eventAdminIds (now: adminIds)",
+    "note": null,
+    "eventAdminIds": [],
+    "permissions": {
+     "useChat": false,
+     "startChat": true
+    },
+    "calendar": {
+     "title": "Kirche Süd",
+     "domainType": "calendar",
+     "domainIdentifier": "56",
+     "apiUrl": "https://gemeinde.example/api/calendar/56",
+     "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=56",
+     "imageUrl": null,
+     "icon": "calendar",
+     "color": null,
+     "initials": null,
+     "domainAttributes": {
+      "campusName": "Hafencity"
+     },
+     "infos": []
+    },
+    "eventFiles": []
    }
   ],
   "meta": {
-   "count": 22
+   "count": 21
   }
  }
 }

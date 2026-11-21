@@ -6,15 +6,15 @@
   "query": [],
   "body": {
    "isDefault": false,
-   "name": "ctrs-test contact_labels b8de8f",
+   "name": "ctrs-test contact_labels 105347",
    "sortKey": 999
   }
  },
  "body": {
   "data": {
-   "id": 31,
-   "name": "ctrs-test contact_labels b8de8f",
-   "nameTranslated": "ctrs-test contact_labels b8de8f",
+   "id": 8,
+   "name": "ctrs-test contact_labels 105347",
+   "nameTranslated": "ctrs-test contact_labels 105347",
    "sortKey": 999,
    "isDefault": false
   }

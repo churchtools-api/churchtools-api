@@ -9,33 +9,33 @@
  "body": {
   "data": [
    {
-    "id": 10,
+    "id": 2,
     "accountingPeriodId": 1,
     "transactionId": null,
-    "splitTransactionId": 19,
+    "splitTransactionId": 2,
     "transactionSuggestionId": null,
     "file": {
      "domainType": "bill",
-     "domainId": "10",
+     "domainId": "2",
      "name": "ctrs-test-beleg.txt",
      "filename": "5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
-     "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3364&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
+     "fileUrl": "https://gemeinde.example/?q=public/filedownload&id=3287&filename=5e568c375be2edd62fa2218ed4d1a2f06fd579bc1ec1eaba145984e1cf41b7bd",
      "meta": {
-      "modifiedDate": "2026-10-30T16:03:29Z",
+      "modifiedDate": "2026-11-21T19:04:03Z",
       "modifiedPerson": {
        "id": 1
       }
      },
-     "imageUrl": "https://gemeinde.example/images/3364/c12b24c01d9ad42450d07a222fa075c4af9a1296fa69474076593879f8d41ea0"
+     "imageUrl": "https://gemeinde.example/images/3287/9ee8c3c1a99963db381339e7bfe13b8809122199b3c33fbf0bc8a5db728e7044"
     },
-    "submittedDate": "2026-10-30",
+    "submittedDate": "2026-11-21",
     "submittedPid": 1,
     "meta": {
-     "createdDate": "2026-10-30T16:03:29Z",
+     "createdDate": "2026-11-21T19:04:03Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-30T16:03:29Z",
+     "modifiedDate": "2026-11-21T19:04:03Z",
      "modifiedPerson": {
       "id": 1
      }

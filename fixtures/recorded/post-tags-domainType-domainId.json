@@ -2,16 +2,16 @@
  "operation": "post-tags-domainType-domainId",
  "request": {
   "method": "POST",
-  "path": "/tags/group/967",
+  "path": "/tags/group/809",
   "query": [],
   "body": {
-   "name": "ctrs-test Tag 490527"
+   "name": "ctrs-test Tag b1aacc"
   }
  },
  "body": {
   "data": {
-   "id": 100,
-   "name": "ctrs-test Tag 490527",
+   "id": 59,
+   "name": "ctrs-test Tag b1aacc",
    "description": null,
    "color": "basic",
    "count": 1

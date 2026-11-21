@@ -64,7 +64,7 @@
         "domainAttributes": {
          "firstName": "Armin",
          "lastName": "Adendorf",
-         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -328,7 +328,7 @@
         "domainAttributes": {
          "firstName": "Armin",
          "lastName": "Adendorf",
-         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -373,7 +373,7 @@
         "domainAttributes": {
          "firstName": "Armin",
          "lastName": "Adendorf",
-         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -418,7 +418,7 @@
         "domainAttributes": {
          "firstName": "Armin",
          "lastName": "Adendorf",
-         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -463,7 +463,99 @@
         "domainAttributes": {
          "firstName": "Armin",
          "lastName": "Adendorf",
-         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "templateId": null,
+       "templateName": null,
+       "subject": "Newcomer-Lunch",
+       "body": "<p>Hallo {{{person.nickname}}},</p>\n<p>sch&ouml;n, dass du dich zu unserem {{{group.name}}} angemeldet hast!</p>\n<p>Wir freuen uns, dich direkt nach dem Gottesdienst zum gemeinsamen Mittagessen zu begr&uuml;&szlig;en. Dich erwartet gutes Essen, entspannte Atmosph&auml;re und die M&ouml;glichkeit, Menschen aus unserer Gemeinde kennenzulernen.</p>\n<p>Falls sich bei dir noch etwas &auml;ndern sollte oder du Fragen hast, melde dich gern bei mir. Einfach auf die Mail antworten oder mich &uuml;ber unsere Gemeinde-App anchatten.</p>\n<p>Bis bald &ndash; wir freuen uns auf dich!</p>\n<p>Herzliche Gr&uuml;&szlig;e</p>\n<p>Dein Armin und Team&nbsp;</p>",
+       "attachmentIds": []
+      }
+     }
+    ]
+   },
+   {
+    "id": 168,
+    "domainType": "group_membership",
+    "name": "E-Mail senden",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 195,
+      "routineId": 168,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 168,
+       "addSignOutUrl": true,
+       "skipIfEmailAddressMissing": false,
+       "senderId": 1,
+       "sender": {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       },
+       "templateId": null,
+       "templateName": null,
+       "subject": "Newcomer-Lunch",
+       "body": "<p>Hallo {{{person.nickname}}},</p>\n<p>sch&ouml;n, dass du dich zu unserem {{{group.name}}} angemeldet hast!</p>\n<p>Wir freuen uns, dich direkt nach dem Gottesdienst zum gemeinsamen Mittagessen zu begr&uuml;&szlig;en. Dich erwartet gutes Essen, entspannte Atmosph&auml;re und die M&ouml;glichkeit, Menschen aus unserer Gemeinde kennenzulernen.</p>\n<p>Falls sich bei dir noch etwas &auml;ndern sollte oder du Fragen hast, melde dich gern bei mir. Einfach auf die Mail antworten oder mich &uuml;ber unsere Gemeinde-App anchatten.</p>\n<p>Bis bald &ndash; wir freuen uns auf dich!</p>\n<p>Herzliche Gr&uuml;&szlig;e</p>\n<p>Dein Armin und Team&nbsp;</p>",
+       "attachmentIds": []
+      }
+     }
+    ]
+   },
+   {
+    "id": 171,
+    "domainType": "group_membership",
+    "name": "E-Mail senden",
+    "description": null,
+    "isEnabled": true,
+    "priority": 0,
+    "steps": [
+     {
+      "id": 198,
+      "routineId": 171,
+      "isEnabled": true,
+      "actionKey": "send-member-email",
+      "actionData": {
+       "emailId": 171,
+       "addSignOutUrl": true,
+       "skipIfEmailAddressMissing": false,
+       "senderId": 1,
+       "sender": {
+        "title": "Armin Adendorf",
+        "domainType": "person",
+        "domainIdentifier": "1",
+        "apiUrl": "https://gemeinde.example/api/persons/1",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+        "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+        "icon": "user",
+        "color": null,
+        "initials": "AA",
+        "domainAttributes": {
+         "firstName": "Armin",
+         "lastName": "Adendorf",
+         "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -480,7 +572,7 @@
    }
   ],
   "meta": {
-   "count": 9
+   "count": 11
   }
  }
 }

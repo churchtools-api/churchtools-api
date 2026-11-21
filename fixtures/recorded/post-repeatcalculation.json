@@ -5,84 +5,84 @@
   "path": "/repeatcalculation",
   "query": [],
   "body": {
-   "endDate": "2026-10-30",
+   "endDate": "2026-11-21",
    "repeatFrequency": 1,
    "repeatId": 7,
-   "repeatUntil": "2026-11-20",
-   "startDate": "2026-10-30"
+   "repeatUntil": "2026-12-12",
+   "startDate": "2026-11-21"
   }
  },
  "body": [
   {
    "base": {
     "id": -1,
-    "startDate": "2026-10-30",
-    "endDate": "2026-10-30",
+    "startDate": "2026-11-21",
+    "endDate": "2026-11-21",
     "allDay": true,
     "repeatId": 7,
     "repeatFrequency": 1,
-    "repeatUntil": "2026-11-20",
+    "repeatUntil": "2026-12-12",
     "repeatOption": null,
     "additions": [],
     "exceptions": []
    },
    "calculated": {
-    "startDate": "2026-10-30",
-    "endDate": "2026-10-30"
+    "startDate": "2026-11-21",
+    "endDate": "2026-11-21"
    }
   },
   {
    "base": {
     "id": -1,
-    "startDate": "2026-10-30",
-    "endDate": "2026-10-30",
+    "startDate": "2026-11-21",
+    "endDate": "2026-11-21",
     "allDay": true,
     "repeatId": 7,
     "repeatFrequency": 1,
-    "repeatUntil": "2026-11-20",
+    "repeatUntil": "2026-12-12",
     "repeatOption": null,
     "additions": [],
     "exceptions": []
    },
    "calculated": {
-    "startDate": "2026-11-06",
-    "endDate": "2026-11-06"
+    "startDate": "2026-11-28",
+    "endDate": "2026-11-28"
    }
   },
   {
    "base": {
     "id": -1,
-    "startDate": "2026-10-30",
-    "endDate": "2026-10-30",
+    "startDate": "2026-11-21",
+    "endDate": "2026-11-21",
     "allDay": true,
     "repeatId": 7,
     "repeatFrequency": 1,
-    "repeatUntil": "2026-11-20",
+    "repeatUntil": "2026-12-12",
     "repeatOption": null,
     "additions": [],
     "exceptions": []
    },
    "calculated": {
-    "startDate": "2026-11-13",
-    "endDate": "2026-11-13"
+    "startDate": "2026-12-05",
+    "endDate": "2026-12-05"
    }
   },
   {
    "base": {
     "id": -1,
-    "startDate": "2026-10-30",
-    "endDate": "2026-10-30",
+    "startDate": "2026-11-21",
+    "endDate": "2026-11-21",
     "allDay": true,
     "repeatId": 7,
     "repeatFrequency": 1,
-    "repeatUntil": "2026-11-20",
+    "repeatUntil": "2026-12-12",
     "repeatOption": null,
     "additions": [],
     "exceptions": []
    },
    "calculated": {
-    "startDate": "2026-11-20",
-    "endDate": "2026-11-20"
+    "startDate": "2026-12-12",
+    "endDate": "2026-12-12"
    }
   }
  ]

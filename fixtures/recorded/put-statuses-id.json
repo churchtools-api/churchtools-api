@@ -2,19 +2,19 @@
  "operation": "put-statuses-id",
  "request": {
   "method": "PUT",
-  "path": "/statuses/55",
+  "path": "/statuses/5",
   "query": [],
   "body": {
-   "name": "ctrs-test statuses 1462a7 neu",
+   "name": "ctrs-test statuses 222db9 neu",
    "securityLevelId": 1,
    "shorty": "T2"
   }
  },
  "body": {
   "data": {
-   "id": 55,
-   "name": "ctrs-test statuses 1462a7 neu",
-   "nameTranslated": "ctrs-test statuses 1462a7 neu",
+   "id": 5,
+   "name": "ctrs-test statuses 222db9 neu",
+   "nameTranslated": "ctrs-test statuses 222db9 neu",
    "sortKey": 0,
    "shorty": "T2",
    "shortyTranslated": "T2",

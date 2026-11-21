@@ -5,25 +5,25 @@
   "path": "/person/sexes",
   "query": [],
   "body": {
-   "name": "ctrs-test sexes 383120"
+   "name": "ctrs-test sexes c28d7b"
   }
  },
  "body": {
   "data": {
-   "id": 37,
-   "name": "ctrs-test sexes 383120",
-   "nameTranslated": "ctrs-test sexes 383120",
+   "id": 5,
+   "name": "ctrs-test sexes c28d7b",
+   "nameTranslated": "ctrs-test sexes c28d7b",
    "sortKey": 0,
    "salutationFormal": null,
    "salutationFormalTranslated": "",
    "salutationInformal": null,
    "salutationInformalTranslated": "",
    "meta": {
-    "createdDate": "2026-10-30T16:06:15Z",
+    "createdDate": "2026-11-21T19:06:52Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:06:15Z",
+    "modifiedDate": "2026-11-21T19:06:52Z",
     "modifiedPerson": {
      "id": 1
     }

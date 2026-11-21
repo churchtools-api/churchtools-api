@@ -9,7 +9,7 @@
  "body": {
   "data": {
    "id": 2,
-   "guid": "DD401739-A659-4C3D-B425-05A6518F2F5F",
+   "guid": "6D41EBA0-6AB1-47BE-83A2-B855F3DC7855",
    "profileType": "church",
    "name": "ChuToo Church",
    "nameTranslated": "ChuToo Church",
@@ -90,7 +90,7 @@
        "groupTypeId": 2,
        "campusId": null,
        "visibility": "restricted",
-       "guid": "81EFD0F9-EE84-41D9-B3C5-00F375AAF2B8"
+       "guid": "F5FCE0CE-E2AC-4D08-A436-C76D3A3B0FF5"
       },
       "infos": [
        "Team"
@@ -120,7 +120,7 @@
        "groupTypeId": 2,
        "campusId": null,
        "visibility": "restricted",
-       "guid": "7E85A689-C8D7-47E0-9ABD-3F64252243B5"
+       "guid": "BA815A7B-5A30-4F3F-974D-7E42D84E5469"
       },
       "infos": [
        "Team"
@@ -150,7 +150,7 @@
        "groupTypeId": 6,
        "campusId": null,
        "visibility": "public",
-       "guid": "DF7DCF17-90AD-4B17-9730-29FEDE4EC636"
+       "guid": "2A320A15-C77F-4861-9395-D72763585697"
       },
       "infos": [
        "Prozesse"
@@ -247,7 +247,7 @@
       "groupTypeId": 3,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "CFF8ED79-77A1-4DB7-AB56-91D540200A5E"
+      "guid": "8E7A407B-AB5D-434A-903A-5F2709EAF295"
      },
      "infos": [
       "Veranstaltung",
@@ -288,7 +288,7 @@
       "domainAttributes": {
        "firstName": "Jens",
        "lastName": "Atkins",
-       "guid": "23D6B287-DF26-437E-A2EC-93938FECF50C",
+       "guid": "B5DA0479-B550-403F-8934-9A455669306B",
        "dateOfDeath": null,
        "isArchived": false
       },
@@ -311,7 +311,7 @@
       "domainAttributes": {
        "firstName": "Jenny",
        "lastName": "Bischof",
-       "guid": "DD027714-CB34-405E-9AF7-D348EF95A83B",
+       "guid": "B6DED24C-6A98-4416-B508-E9B57B89C129",
        "dateOfDeath": null,
        "isArchived": false
       },
@@ -334,7 +334,7 @@
       "domainAttributes": {
        "firstName": "Stefan",
        "lastName": "Brinkmann",
-       "guid": "1F650792-823F-4293-A052-88EF3B503594",
+       "guid": "715743BB-3BAC-47A5-B5A9-A3502DFEDC35",
        "dateOfDeath": null,
        "isArchived": false
       },
@@ -357,7 +357,7 @@
       "domainAttributes": {
        "firstName": "Marten",
        "lastName": "Bischof",
-       "guid": "FE2742A8-AB37-42D5-B6B6-EA0E3D8CCFE6",
+       "guid": "3ADDFE6F-3EF5-48C6-A202-DABDC31FEC11",
        "dateOfDeath": null,
        "isArchived": false
       },
@@ -380,7 +380,7 @@
       "domainAttributes": {
        "firstName": "Freddy",
        "lastName": "Finanziskus",
-       "guid": "42028CB8-2D7A-4B19-B06B-4658ACDA8202",
+       "guid": "F9A5FD5C-8F31-4A44-BE9B-A330E5B6013F",
        "dateOfDeath": null,
        "isArchived": false
       },
@@ -403,7 +403,7 @@
       "domainAttributes": {
        "firstName": "Simone",
        "lastName": "Gerlach",
-       "guid": "66C39DBB-6AB4-4A47-B67A-D6D282CEE10B",
+       "guid": "0C2CE6A7-BA3A-4852-B15B-53FBEFEB62E5",
        "dateOfDeath": null,
        "isArchived": false
       },

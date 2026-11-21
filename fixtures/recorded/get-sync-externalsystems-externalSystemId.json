@@ -2,13 +2,13 @@
  "operation": "get-sync-externalsystems-externalSystemId",
  "request": {
   "method": "GET",
-  "path": "/sync/externalsystems/19",
+  "path": "/sync/externalsystems/2",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 19,
+   "id": 2,
    "name": "ctrs-test",
    "accessHeaderValues": [],
    "adapter": "churchtools",

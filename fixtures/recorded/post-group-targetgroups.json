@@ -5,15 +5,15 @@
   "path": "/group/targetgroups",
   "query": [],
   "body": {
-   "name": "ctrs-test target_groups add51f",
+   "name": "ctrs-test target_groups 9e9b3a",
    "sortKey": 999
   }
  },
  "body": {
   "data": {
-   "id": 34,
-   "name": "ctrs-test target_groups add51f",
-   "nameTranslated": "ctrs-test target_groups add51f",
+   "id": 8,
+   "name": "ctrs-test target_groups 9e9b3a",
+   "nameTranslated": "ctrs-test target_groups 9e9b3a",
    "sortKey": 999
   }
  }

@@ -28,7 +28,7 @@
      "groupTypeId": 2,
      "campusId": null,
      "visibility": "restricted",
-     "guid": "BF91810C-B934-4167-AD2C-DB513ED111BF"
+     "guid": "70951BEE-F1C5-4A09-8673-886812B890F0"
     },
     "infos": [
      "Team"
@@ -51,7 +51,7 @@
     "domainAttributes": {
      "firstName": "Egon",
      "lastName": "Erdmann",
-     "guid": "5302C193-79B0-47BF-9828-8773A3357B33",
+     "guid": "8031DC46-1468-43E3-BE7F-674DC77FB5DA",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -74,7 +74,7 @@
      "groupTypeId": 3,
      "campusId": null,
      "visibility": "public",
-     "guid": "DF15549E-3AFB-4BD9-8F7F-C6CD01200408"
+     "guid": "0E6C3E9F-1318-4286-9F94-4567BDD101D7"
     },
     "infos": [
      "Veranstaltung"
@@ -100,7 +100,7 @@
      "groupTypeId": 2,
      "campusId": null,
      "visibility": "restricted",
-     "guid": "74C6AFDB-C397-4AF2-BF45-45BD57C661A6"
+     "guid": "19917D8D-A40D-433F-BF2A-C044310282B5"
     },
     "infos": [
      "Team"
@@ -126,7 +126,7 @@
      "groupTypeId": 3,
      "campusId": null,
      "visibility": "public",
-     "guid": "2BA8310D-EE90-4FCC-BB89-E0ADF26C9F21"
+     "guid": "221E00F7-ACE1-46CB-9B6E-2A714F440C08"
     },
     "infos": [
      "Veranstaltung"
@@ -149,7 +149,7 @@
     "domainAttributes": {
      "firstName": "Gottlieb",
      "lastName": "Buschmann",
-     "guid": "5BEC48EC-8DCC-4613-8B07-C066E08999D3",
+     "guid": "9A806678-BF07-4C67-BE63-1BA190AFA92F",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -169,7 +169,7 @@
     "domainAttributes": {
      "firstName": "Hermann-Josef",
      "lastName": "Sonntag",
-     "guid": "ECAEFCB9-E69B-4DD9-8ED8-37A26CFD88FF",
+     "guid": "FD7CFAA3-9DB6-48CA-BA81-FF20462BC107",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -189,7 +189,7 @@
     "domainAttributes": {
      "firstName": "Hugo",
      "lastName": "Hartmann",
-     "guid": "88118F19-6C22-4602-BEC3-86AEE8ED81E0",
+     "guid": "4370ADE9-91F8-4B41-94E9-0C75C2C74D37",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -209,7 +209,7 @@
     "domainAttributes": {
      "firstName": "Hugo",
      "lastName": "Scharf",
-     "guid": "0B1EB9F3-F1A4-4A4B-9E00-250BE980CF89",
+     "guid": "444136BF-605D-46A1-A668-1E156A0260FC",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -229,7 +229,7 @@
     "domainAttributes": {
      "firstName": "Ingolf",
      "lastName": "Völker",
-     "guid": "6A2902F1-1F98-495E-820C-C6D3C68A630C",
+     "guid": "B7A4295F-BA39-42AE-AC40-2F95FE2CA497",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -249,7 +249,7 @@
     "domainAttributes": {
      "firstName": "Irmgard",
      "lastName": "Gordon",
-     "guid": "6255244C-7B6A-470B-93E5-E97248D8A486",
+     "guid": "15E616FF-30DE-4E07-9894-65C519F33EBB",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -272,7 +272,7 @@
      "groupTypeId": 3,
      "campusId": null,
      "visibility": "restricted",
-     "guid": "CFF8ED79-77A1-4DB7-AB56-91D540200A5E"
+     "guid": "8E7A407B-AB5D-434A-903A-5F2709EAF295"
     },
     "infos": [
      "Veranstaltung",
@@ -296,7 +296,7 @@
     "domainAttributes": {
      "firstName": "Margot",
      "lastName": "Moser",
-     "guid": "7B7F7F13-ED5D-436D-9933-7FC74FAE5179",
+     "guid": "C4094B48-94F4-44E6-8630-27111A024B69",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -316,7 +316,7 @@
     "domainAttributes": {
      "firstName": "Phillip",
      "lastName": "Goldmann",
-     "guid": "2F4382E1-18C6-4E01-B624-565E5EF77CF1",
+     "guid": "91481753-B5A9-4A00-80C0-0BE3031132EB",
      "dateOfDeath": null,
      "isArchived": false
     },

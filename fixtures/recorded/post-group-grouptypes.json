@@ -8,7 +8,7 @@
    "availableForNewPerson": false,
    "color": "sky",
    "isLeaderNecessary": false,
-   "name": "test GT 3e5cc2",
+   "name": "test GT c8db63",
    "namePlural": "Testgruppen",
    "permissionDepth": 1,
    "postsEnabled": false,
@@ -18,9 +18,9 @@
  },
  "body": {
   "data": {
-   "id": 28,
-   "name": "test GT 3e5cc2",
-   "nameTranslated": "test GT 3e5cc2",
+   "id": 8,
+   "name": "test GT c8db63",
+   "nameTranslated": "test GT c8db63",
    "sortKey": 999,
    "namePlural": "Testgruppen",
    "namePluralTranslated": "Testgruppen",
@@ -32,11 +32,11 @@
    "permissionDepth": 1,
    "postsEnabled": false,
    "meta": {
-    "createdDate": "2026-10-30T16:06:36Z",
+    "createdDate": "2026-11-21T19:07:13Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:06:36Z",
+    "modifiedDate": "2026-11-21T19:07:13Z",
     "modifiedPerson": {
      "id": 1
     }

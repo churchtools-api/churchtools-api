@@ -37,7 +37,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "0083B274-212B-454F-B2A6-0DF5D6301529"
+        "guid": "67CCCE0D-8852-423A-A9C2-065D3290B861"
        },
        "infos": [
         "Veranstaltung"
@@ -62,7 +62,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "restricted",
-        "guid": "782A37D9-77D1-43D7-9BE5-7F46E784CDC4"
+        "guid": "A8130763-7A17-4FD4-9179-6121336D24B0"
        },
        "infos": [
         "Kleingruppe"
@@ -93,7 +93,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+        "guid": "F6526A47-D200-46A3-B79C-DFD9D212FFDB"
        },
        "infos": [
         "Veranstaltung"
@@ -118,7 +118,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "0083B274-212B-454F-B2A6-0DF5D6301529"
+        "guid": "67CCCE0D-8852-423A-A9C2-065D3290B861"
        },
        "infos": [
         "Veranstaltung"
@@ -143,7 +143,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "942E2E06-07E2-4540-B137-8FEBD22DED48"
+        "guid": "722AAAF2-1CD8-43B7-999B-CE03666FA5D8"
        },
        "infos": [
         "Veranstaltung"
@@ -168,7 +168,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+        "guid": "F5897BFD-3C14-4523-85EE-D9617D8B90F8"
        },
        "infos": [
         "Veranstaltung"
@@ -193,7 +193,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+        "guid": "E2ABC644-4E01-4E63-A475-4216B852A5F8"
        },
        "infos": [
         "Veranstaltung"
@@ -224,7 +224,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+        "guid": "EA816E89-391E-4779-B75B-755ACEDF773F"
        },
        "infos": [
         "Veranstaltung"
@@ -249,7 +249,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+        "guid": "F6526A47-D200-46A3-B79C-DFD9D212FFDB"
        },
        "infos": [
         "Veranstaltung"
@@ -274,7 +274,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "public",
-        "guid": "048BA439-8320-4615-8B1C-AE33459D2A60"
+        "guid": "3CCF4811-5A57-4CDB-8BDA-762C544F76E6"
        },
        "infos": [
         "Kleingruppe"
@@ -299,7 +299,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "intern",
-        "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+        "guid": "49D12F7C-86B3-47EE-943C-781695C96DA6"
        },
        "infos": [
         "Kleingruppe"
@@ -324,7 +324,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "public",
-        "guid": "5B986A79-6560-4834-8B03-2182786E977E"
+        "guid": "8B89D6A3-4779-43B0-A920-A4176D78BDDF"
        },
        "infos": [
         "Kleingruppe"
@@ -349,7 +349,7 @@
         "groupTypeId": 1,
         "campusId": 1,
         "visibility": "public",
-        "guid": "E75EC335-A2A9-4AD5-9BEC-AD0A0FDC8998"
+        "guid": "B4F856B6-5A4C-47BA-90BA-41320790131A"
        },
        "infos": [
         "Kleingruppe"
@@ -374,7 +374,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+        "guid": "F5897BFD-3C14-4523-85EE-D9617D8B90F8"
        },
        "infos": [
         "Veranstaltung"
@@ -399,7 +399,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+        "guid": "E2ABC644-4E01-4E63-A475-4216B852A5F8"
        },
        "infos": [
         "Veranstaltung"
@@ -430,7 +430,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+        "guid": "EA816E89-391E-4779-B75B-755ACEDF773F"
        },
        "infos": [
         "Veranstaltung"
@@ -455,7 +455,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "public",
-        "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+        "guid": "94FA007C-E869-4834-BA9E-7BED7527A77E"
        },
        "infos": [
         "Kleingruppe"
@@ -480,7 +480,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "public",
-        "guid": "048BA439-8320-4615-8B1C-AE33459D2A60"
+        "guid": "3CCF4811-5A57-4CDB-8BDA-762C544F76E6"
        },
        "infos": [
         "Kleingruppe"
@@ -505,7 +505,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "intern",
-        "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+        "guid": "49D12F7C-86B3-47EE-943C-781695C96DA6"
        },
        "infos": [
         "Kleingruppe"
@@ -530,7 +530,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "public",
-        "guid": "5B986A79-6560-4834-8B03-2182786E977E"
+        "guid": "8B89D6A3-4779-43B0-A920-A4176D78BDDF"
        },
        "infos": [
         "Kleingruppe"
@@ -555,7 +555,7 @@
         "groupTypeId": 1,
         "campusId": 1,
         "visibility": "public",
-        "guid": "E75EC335-A2A9-4AD5-9BEC-AD0A0FDC8998"
+        "guid": "B4F856B6-5A4C-47BA-90BA-41320790131A"
        },
        "infos": [
         "Kleingruppe"
@@ -580,7 +580,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+        "guid": "F5897BFD-3C14-4523-85EE-D9617D8B90F8"
        },
        "infos": [
         "Veranstaltung"
@@ -605,7 +605,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+        "guid": "E2ABC644-4E01-4E63-A475-4216B852A5F8"
        },
        "infos": [
         "Veranstaltung"
@@ -636,7 +636,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+        "guid": "EA816E89-391E-4779-B75B-755ACEDF773F"
        },
        "infos": [
         "Veranstaltung"
@@ -661,7 +661,7 @@
         "groupTypeId": 6,
         "campusId": null,
         "visibility": "restricted",
-        "guid": "DA6E1B1E-2C62-4DFD-A2BE-B3534E0C7473"
+        "guid": "432F2F44-FFD4-4949-9628-82C5CBEF2161"
        },
        "infos": [
         "Prozesse"
@@ -686,7 +686,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "public",
-        "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+        "guid": "94FA007C-E869-4834-BA9E-7BED7527A77E"
        },
        "infos": [
         "Kleingruppe"
@@ -711,7 +711,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+        "guid": "F5897BFD-3C14-4523-85EE-D9617D8B90F8"
        },
        "infos": [
         "Veranstaltung"
@@ -736,7 +736,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+        "guid": "E2ABC644-4E01-4E63-A475-4216B852A5F8"
        },
        "infos": [
         "Veranstaltung"
@@ -767,7 +767,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "945D99E6-23CF-473D-84BF-0BADA04F1C84"
+        "guid": "EA816E89-391E-4779-B75B-755ACEDF773F"
        },
        "infos": [
         "Veranstaltung"
@@ -792,7 +792,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "public",
-        "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+        "guid": "94FA007C-E869-4834-BA9E-7BED7527A77E"
        },
        "infos": [
         "Kleingruppe"
@@ -817,7 +817,7 @@
         "groupTypeId": 1,
         "campusId": 1,
         "visibility": "public",
-        "guid": "0FCD91BF-4326-40C6-B215-868E64AC9E8F"
+        "guid": "26AC2217-8E09-45E6-9DE4-86BB557611DC"
        },
        "infos": [
         "Kleingruppe"
@@ -842,7 +842,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+        "guid": "F5897BFD-3C14-4523-85EE-D9617D8B90F8"
        },
        "infos": [
         "Veranstaltung"
@@ -867,7 +867,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "665381AC-3098-4E7F-B314-99CACCF186DA"
+        "guid": "E2ABC644-4E01-4E63-A475-4216B852A5F8"
        },
        "infos": [
         "Veranstaltung"
@@ -898,7 +898,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "public",
-        "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+        "guid": "94FA007C-E869-4834-BA9E-7BED7527A77E"
        },
        "infos": [
         "Kleingruppe"
@@ -923,7 +923,7 @@
         "groupTypeId": 1,
         "campusId": 1,
         "visibility": "public",
-        "guid": "0FCD91BF-4326-40C6-B215-868E64AC9E8F"
+        "guid": "26AC2217-8E09-45E6-9DE4-86BB557611DC"
        },
        "infos": [
         "Kleingruppe"
@@ -948,7 +948,7 @@
         "groupTypeId": 3,
         "campusId": null,
         "visibility": "public",
-        "guid": "E1BE0DA2-36A2-4A98-B804-E4430EDA433B"
+        "guid": "F5897BFD-3C14-4523-85EE-D9617D8B90F8"
        },
        "infos": [
         "Veranstaltung"
@@ -979,7 +979,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "restricted",
-        "guid": "5891925F-54A5-4A95-8AEA-7CC13CCE0F7B"
+        "guid": "1B50C257-E052-4F76-A49D-7A16D5BA08E0"
        },
        "infos": [
         "Kleingruppe"
@@ -1010,7 +1010,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "restricted",
-        "guid": "6E15EB2A-FBAD-459C-98C2-B237595B07EE"
+        "guid": "F3EA03D2-38F1-4054-ABDD-20FE52E6226A"
        },
        "infos": [
         "Kleingruppe"
@@ -1041,7 +1041,7 @@
         "groupTypeId": 1,
         "campusId": 0,
         "visibility": "restricted",
-        "guid": "486ACB49-4AC8-44C6-84C6-C5CB53E1FEB3"
+        "guid": "046380D8-12B1-4CFC-9990-B41E502B5CAC"
        },
        "infos": [
         "Kleingruppe"

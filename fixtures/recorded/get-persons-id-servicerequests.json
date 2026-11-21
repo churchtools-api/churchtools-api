@@ -24,7 +24,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -51,7 +51,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -60,16 +60,16 @@
     "event": {
      "id": 1878,
      "name": "Gebetsabend",
-     "startDate": "2025-08-05T17:00:00Z"
+     "startDate": "2025-08-26T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -81,7 +81,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30233,
@@ -99,7 +99,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -126,7 +126,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -135,16 +135,16 @@
     "event": {
      "id": 1909,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-08-08T17:00:00Z"
+     "startDate": "2025-08-29T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -156,7 +156,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29267,
@@ -174,7 +174,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -201,7 +201,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -210,16 +210,16 @@
     "event": {
      "id": 1910,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-08-15T17:00:00Z"
+     "startDate": "2025-09-05T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -231,7 +231,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27173,
@@ -249,7 +249,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -276,7 +276,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -285,16 +285,16 @@
     "event": {
      "id": 1912,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-08-29T17:00:00Z"
+     "startDate": "2025-09-19T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -306,7 +306,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30605,
@@ -324,7 +324,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -351,7 +351,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -360,16 +360,16 @@
     "event": {
      "id": 1881,
      "name": "Gebetsabend",
-     "startDate": "2025-09-16T17:00:00Z"
+     "startDate": "2025-10-07T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -381,7 +381,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30269,
@@ -399,7 +399,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -426,7 +426,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -435,16 +435,16 @@
     "event": {
      "id": 1915,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-09-19T17:00:00Z"
+     "startDate": "2025-10-10T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -456,7 +456,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29303,
@@ -474,7 +474,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -501,7 +501,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -510,16 +510,16 @@
     "event": {
      "id": 1916,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-09-26T17:00:00Z"
+     "startDate": "2025-10-17T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -531,7 +531,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27209,
@@ -549,7 +549,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -576,7 +576,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -585,16 +585,16 @@
     "event": {
      "id": 1918,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-10-10T17:00:00Z"
+     "startDate": "2025-10-31T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -606,7 +606,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30623,
@@ -624,7 +624,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -651,7 +651,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -660,16 +660,16 @@
     "event": {
      "id": 1884,
      "name": "Gebetsabend",
-     "startDate": "2025-10-28T18:00:00Z"
+     "startDate": "2025-11-18T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -681,7 +681,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30305,
@@ -699,7 +699,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -726,7 +726,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -735,16 +735,16 @@
     "event": {
      "id": 1921,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-10-31T18:00:00Z"
+     "startDate": "2025-11-21T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -756,7 +756,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29339,
@@ -774,7 +774,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -801,7 +801,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -810,16 +810,16 @@
     "event": {
      "id": 1922,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-11-07T18:00:00Z"
+     "startDate": "2025-11-28T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -831,7 +831,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27245,
@@ -849,7 +849,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -876,7 +876,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -885,16 +885,16 @@
     "event": {
      "id": 1924,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-11-21T18:00:00Z"
+     "startDate": "2025-12-12T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -906,7 +906,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30641,
@@ -924,7 +924,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -951,7 +951,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -960,16 +960,16 @@
     "event": {
      "id": 1887,
      "name": "Gebetsabend",
-     "startDate": "2025-12-09T18:00:00Z"
+     "startDate": "2025-12-30T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -981,7 +981,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30341,
@@ -999,7 +999,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1026,7 +1026,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1035,16 +1035,16 @@
     "event": {
      "id": 1927,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-12-12T18:00:00Z"
+     "startDate": "2026-01-02T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1056,7 +1056,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29375,
@@ -1074,7 +1074,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1101,7 +1101,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1110,16 +1110,16 @@
     "event": {
      "id": 1928,
      "name": "Jugendgottesdienst",
-     "startDate": "2025-12-19T18:00:00Z"
+     "startDate": "2026-01-09T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1131,7 +1131,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27281,
@@ -1149,7 +1149,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1176,7 +1176,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1185,16 +1185,16 @@
     "event": {
      "id": 1930,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-01-02T18:00:00Z"
+     "startDate": "2026-01-23T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1206,7 +1206,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30659,
@@ -1224,7 +1224,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1251,7 +1251,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1260,16 +1260,16 @@
     "event": {
      "id": 1890,
      "name": "Gebetsabend",
-     "startDate": "2026-01-20T18:00:00Z"
+     "startDate": "2026-02-10T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1281,7 +1281,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30377,
@@ -1299,7 +1299,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1326,7 +1326,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1335,16 +1335,16 @@
     "event": {
      "id": 1933,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-01-23T18:00:00Z"
+     "startDate": "2026-02-13T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1356,7 +1356,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29411,
@@ -1374,7 +1374,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1401,7 +1401,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1410,16 +1410,16 @@
     "event": {
      "id": 1934,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-01-30T18:00:00Z"
+     "startDate": "2026-02-20T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1431,7 +1431,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27317,
@@ -1449,7 +1449,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1476,7 +1476,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1485,16 +1485,16 @@
     "event": {
      "id": 1936,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-02-13T18:00:00Z"
+     "startDate": "2026-03-06T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1506,7 +1506,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30677,
@@ -1524,7 +1524,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1551,7 +1551,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1560,16 +1560,16 @@
     "event": {
      "id": 1893,
      "name": "Gebetsabend",
-     "startDate": "2026-03-03T18:00:00Z"
+     "startDate": "2026-03-24T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1581,7 +1581,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30413,
@@ -1599,7 +1599,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1626,7 +1626,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1635,16 +1635,16 @@
     "event": {
      "id": 1939,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-03-06T18:00:00Z"
+     "startDate": "2026-03-27T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1656,7 +1656,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29447,
@@ -1674,7 +1674,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1701,7 +1701,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1710,16 +1710,16 @@
     "event": {
      "id": 1940,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-03-13T18:00:00Z"
+     "startDate": "2026-04-03T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1731,7 +1731,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27353,
@@ -1749,7 +1749,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1776,7 +1776,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1785,16 +1785,16 @@
     "event": {
      "id": 1942,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-03-27T18:00:00Z"
+     "startDate": "2026-04-17T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1806,7 +1806,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30695,
@@ -1824,7 +1824,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1851,7 +1851,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1860,16 +1860,16 @@
     "event": {
      "id": 1896,
      "name": "Gebetsabend",
-     "startDate": "2026-04-14T17:00:00Z"
+     "startDate": "2026-05-05T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1881,7 +1881,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30449,
@@ -1899,7 +1899,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1926,7 +1926,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -1935,16 +1935,16 @@
     "event": {
      "id": 1945,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-04-17T17:00:00Z"
+     "startDate": "2026-05-08T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -1956,7 +1956,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29483,
@@ -1974,7 +1974,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2001,7 +2001,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2010,16 +2010,16 @@
     "event": {
      "id": 1946,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-04-24T17:00:00Z"
+     "startDate": "2026-05-15T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2031,7 +2031,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27389,
@@ -2049,7 +2049,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2076,7 +2076,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2085,16 +2085,16 @@
     "event": {
      "id": 1948,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-05-08T17:00:00Z"
+     "startDate": "2026-05-29T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2106,7 +2106,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30713,
@@ -2124,7 +2124,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2151,7 +2151,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2160,16 +2160,16 @@
     "event": {
      "id": 1899,
      "name": "Gebetsabend",
-     "startDate": "2026-05-26T17:00:00Z"
+     "startDate": "2026-06-16T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2181,7 +2181,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30485,
@@ -2199,7 +2199,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2226,7 +2226,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2235,16 +2235,16 @@
     "event": {
      "id": 1951,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-05-29T17:00:00Z"
+     "startDate": "2026-06-19T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2256,7 +2256,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29519,
@@ -2274,7 +2274,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2301,7 +2301,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2310,16 +2310,16 @@
     "event": {
      "id": 1952,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-06-05T17:00:00Z"
+     "startDate": "2026-06-26T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2331,7 +2331,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27425,
@@ -2349,7 +2349,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2376,7 +2376,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2385,16 +2385,16 @@
     "event": {
      "id": 1954,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-06-19T17:00:00Z"
+     "startDate": "2026-07-10T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2406,7 +2406,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30731,
@@ -2424,7 +2424,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2451,7 +2451,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2460,16 +2460,16 @@
     "event": {
      "id": 1902,
      "name": "Gebetsabend",
-     "startDate": "2026-07-07T17:00:00Z"
+     "startDate": "2026-07-28T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2481,7 +2481,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30521,
@@ -2499,7 +2499,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2526,7 +2526,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2535,16 +2535,16 @@
     "event": {
      "id": 1957,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-07-10T17:00:00Z"
+     "startDate": "2026-07-31T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2556,7 +2556,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29555,
@@ -2574,7 +2574,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2601,7 +2601,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2610,16 +2610,16 @@
     "event": {
      "id": 1958,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-07-17T17:00:00Z"
+     "startDate": "2026-08-07T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2631,7 +2631,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27461,
@@ -2649,7 +2649,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2676,7 +2676,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2685,16 +2685,16 @@
     "event": {
      "id": 1960,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-07-31T17:00:00Z"
+     "startDate": "2026-08-21T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2706,7 +2706,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 30749,
@@ -2724,7 +2724,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2751,7 +2751,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2760,16 +2760,16 @@
     "event": {
      "id": 1905,
      "name": "Gebetsabend",
-     "startDate": "2026-08-18T17:00:00Z"
+     "startDate": "2026-09-08T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2781,7 +2781,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 30557,
@@ -2799,7 +2799,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2826,7 +2826,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2835,16 +2835,16 @@
     "event": {
      "id": 1963,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-08-21T17:00:00Z"
+     "startDate": "2026-09-11T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2856,7 +2856,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 29591,
@@ -2874,7 +2874,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2901,7 +2901,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2910,16 +2910,16 @@
     "event": {
      "id": 1964,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-08-28T17:00:00Z"
+     "startDate": "2026-09-18T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -2931,7 +2931,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 27497,
@@ -2949,7 +2949,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2976,7 +2976,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -2985,16 +2985,16 @@
     "event": {
      "id": 1966,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-09-11T17:00:00Z"
+     "startDate": "2026-10-02T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:48:43Z",
+     "modifiedDate": "2026-02-08T11:48:43Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -3006,7 +3006,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:48:43Z"
+    "requestedDate": "2026-02-08T11:48:43Z"
    },
    {
     "id": 22339,
@@ -3024,7 +3024,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3051,7 +3051,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3060,16 +3060,16 @@
     "event": {
      "id": 1765,
      "name": "Gebetsabend",
-     "startDate": "2026-09-29T17:00:00Z"
+     "startDate": "2026-10-20T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:25:57Z",
+     "createdDate": "2026-02-08T11:25:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:47:35Z",
+     "modifiedDate": "2026-02-13T10:47:35Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -3081,7 +3081,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:47:35Z"
+    "requestedDate": "2026-02-13T10:47:35Z"
    },
    {
     "id": 22759,
@@ -3099,7 +3099,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3126,7 +3126,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3135,16 +3135,16 @@
     "event": {
      "id": 1804,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-10-02T17:00:00Z"
+     "startDate": "2026-10-23T17:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-23T10:48:19Z",
+     "modifiedDate": "2026-02-13T10:48:19Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -3156,7 +3156,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-23T10:48:19Z"
+    "requestedDate": "2026-02-13T10:48:19Z"
    },
    {
     "id": 22789,
@@ -3174,7 +3174,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3201,7 +3201,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3210,16 +3210,16 @@
     "event": {
      "id": 1807,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-10-09T17:00:00Z"
+     "startDate": "2026-10-30T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-01-18T11:46:47Z",
+     "modifiedDate": "2026-02-08T11:46:47Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -3231,7 +3231,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-01-18T11:46:47Z"
+    "requestedDate": "2026-02-08T11:46:47Z"
    },
    {
     "id": 22867,
@@ -3249,7 +3249,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3276,7 +3276,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3285,16 +3285,16 @@
     "event": {
      "id": 1813,
      "name": "Jugendgottesdienst",
-     "startDate": "2026-10-23T17:00:00Z"
+     "startDate": "2026-11-13T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-18T11:29:58Z",
+     "createdDate": "2026-02-08T11:29:58Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-08-19T00:18:30Z",
+     "modifiedDate": "2026-09-09T00:18:30Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -3306,7 +3306,7 @@
     },
     "agreed": true,
     "counter": 0,
-    "requestedDate": "2026-08-19T00:18:30Z"
+    "requestedDate": "2026-09-09T00:18:30Z"
    },
    {
     "id": 33877,
@@ -3324,7 +3324,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3351,7 +3351,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3360,16 +3360,16 @@
     "event": {
      "id": 1744,
      "name": "Gottesdienst",
-     "startDate": "2026-10-25T09:00:00Z"
+     "startDate": "2026-11-15T09:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-06-28T17:23:37Z",
+     "createdDate": "2026-07-19T17:23:37Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-08-19T00:18:30Z",
+     "modifiedDate": "2026-09-09T00:18:30Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -3381,7 +3381,7 @@
     },
     "agreed": false,
     "counter": 0,
-    "requestedDate": "2026-08-19T00:18:30Z"
+    "requestedDate": "2026-09-09T00:18:30Z"
    },
    {
     "id": 33875,
@@ -3399,7 +3399,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3426,7 +3426,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -3435,16 +3435,16 @@
     "event": {
      "id": 1986,
      "name": "Gebetsabend",
-     "startDate": "2026-11-10T18:00:00Z"
+     "startDate": "2026-12-01T18:00:00Z"
     },
     "allowChat": true,
     "permissions": null,
     "meta": {
-     "createdDate": "2026-01-22T19:53:16Z",
+     "createdDate": "2026-02-12T19:53:16Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-08-19T00:18:30Z",
+     "modifiedDate": "2026-09-09T00:18:30Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -3456,7 +3456,7 @@
     },
     "agreed": false,
     "counter": 0,
-    "requestedDate": "2026-08-19T00:18:30Z"
+    "requestedDate": "2026-09-09T00:18:30Z"
    }
   ],
   "meta": {

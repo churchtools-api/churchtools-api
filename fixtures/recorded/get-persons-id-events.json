@@ -10,12 +10,12 @@
   "data": [
    {
     "id": 1986,
-    "guid": "A96B76E6-F98E-4132-8293-61945AAED267",
+    "guid": "E3A96BDD-28C7-41A4-B490-8E3EEE4978E8",
     "name": "Gebetsabend",
     "description": "",
     "appointmentId": 699024,
-    "startDate": "2026-11-10T18:00:00Z",
-    "endDate": "2026-11-10T19:00:00Z",
+    "startDate": "2026-12-01T18:00:00Z",
+    "endDate": "2026-12-01T19:00:00Z",
     "chatStatus": "NOT_STARTED",
     "isCanceled": false,
     "adminIds": [],
@@ -59,7 +59,7 @@
        "domainAttributes": {
         "firstName": "Armin",
         "lastName": "Adendorf",
-        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -86,7 +86,7 @@
        "domainAttributes": {
         "firstName": "Armin",
         "lastName": "Adendorf",
-        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -95,16 +95,16 @@
       "event": {
        "id": 1986,
        "name": "Gebetsabend",
-       "startDate": "2026-11-10T18:00:00Z"
+       "startDate": "2026-12-01T18:00:00Z"
       },
       "allowChat": true,
       "permissions": null,
       "meta": {
-       "createdDate": "2026-01-22T19:53:16Z",
+       "createdDate": "2026-02-12T19:53:16Z",
        "createdPerson": {
         "id": 1
        },
-       "modifiedDate": "2026-08-19T00:18:30Z",
+       "modifiedDate": "2026-09-09T00:18:30Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -116,7 +116,7 @@
       },
       "agreed": false,
       "counter": 0,
-      "requestedDate": "2026-08-19T00:18:30Z"
+      "requestedDate": "2026-09-09T00:18:30Z"
      },
      {
       "id": 31980,
@@ -134,7 +134,7 @@
        "domainAttributes": {
         "firstName": "Malte",
         "lastName": "Wilkerson",
-        "guid": "702AFC45-CEB5-4073-AD89-5AB9B3AFB2A6",
+        "guid": "54AE003B-F031-457E-A05A-9182AB3F140D",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -161,7 +161,7 @@
        "domainAttributes": {
         "firstName": "Armin",
         "lastName": "Adendorf",
-        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -170,16 +170,16 @@
       "event": {
        "id": 1986,
        "name": "Gebetsabend",
-       "startDate": "2026-11-10T18:00:00Z"
+       "startDate": "2026-12-01T18:00:00Z"
       },
       "allowChat": true,
       "permissions": null,
       "meta": {
-       "createdDate": "2026-01-26T17:50:38Z",
+       "createdDate": "2026-02-16T17:50:38Z",
        "createdPerson": {
         "id": 1
        },
-       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedDate": "2026-09-10T00:15:57Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -191,7 +191,7 @@
       },
       "agreed": false,
       "counter": 0,
-      "requestedDate": "2026-08-20T00:15:57Z"
+      "requestedDate": "2026-09-10T00:15:57Z"
      },
      {
       "id": 31983,
@@ -209,7 +209,7 @@
        "domainAttributes": {
         "firstName": "Hans",
         "lastName": "Beck",
-        "guid": "1FAFE921-F31A-4133-AC3B-97BA8B79B70D",
+        "guid": "1BB34A38-562E-43B4-888C-511EB2B2E95B",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -236,7 +236,7 @@
        "domainAttributes": {
         "firstName": "Armin",
         "lastName": "Adendorf",
-        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -245,16 +245,16 @@
       "event": {
        "id": 1986,
        "name": "Gebetsabend",
-       "startDate": "2026-11-10T18:00:00Z"
+       "startDate": "2026-12-01T18:00:00Z"
       },
       "allowChat": true,
       "permissions": null,
       "meta": {
-       "createdDate": "2026-01-26T17:50:38Z",
+       "createdDate": "2026-02-16T17:50:38Z",
        "createdPerson": {
         "id": 1
        },
-       "modifiedDate": "2026-01-22T10:44:24Z",
+       "modifiedDate": "2026-02-12T10:44:24Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -266,7 +266,7 @@
       },
       "agreed": false,
       "counter": 0,
-      "requestedDate": "2026-01-22T10:44:24Z"
+      "requestedDate": "2026-02-12T10:44:24Z"
      },
      {
       "id": 31986,
@@ -284,7 +284,7 @@
        "domainAttributes": {
         "firstName": "Paul",
         "lastName": "Fritsche",
-        "guid": "32EC99CB-5A11-4CBD-8B7C-7EEFF91779BA",
+        "guid": "84013D5B-CD93-42EB-840E-73B013622DC5",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -311,7 +311,7 @@
        "domainAttributes": {
         "firstName": "Armin",
         "lastName": "Adendorf",
-        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -320,16 +320,16 @@
       "event": {
        "id": 1986,
        "name": "Gebetsabend",
-       "startDate": "2026-11-10T18:00:00Z"
+       "startDate": "2026-12-01T18:00:00Z"
       },
       "allowChat": true,
       "permissions": null,
       "meta": {
-       "createdDate": "2026-01-26T17:50:38Z",
+       "createdDate": "2026-02-16T17:50:38Z",
        "createdPerson": {
         "id": 1
        },
-       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedDate": "2026-09-10T00:15:57Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -341,7 +341,7 @@
       },
       "agreed": false,
       "counter": 0,
-      "requestedDate": "2026-08-20T00:15:57Z"
+      "requestedDate": "2026-09-10T00:15:57Z"
      },
      {
       "id": 31992,
@@ -359,7 +359,7 @@
        "domainAttributes": {
         "firstName": "Clara",
         "lastName": "Hepp",
-        "guid": "5B11143A-A15A-4107-AE90-429E4F493A6B",
+        "guid": "2040C2BC-A7D9-4F08-A8B1-CC7DAF19CC2A",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -386,7 +386,7 @@
        "domainAttributes": {
         "firstName": "Armin",
         "lastName": "Adendorf",
-        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -395,16 +395,16 @@
       "event": {
        "id": 1986,
        "name": "Gebetsabend",
-       "startDate": "2026-11-10T18:00:00Z"
+       "startDate": "2026-12-01T18:00:00Z"
       },
       "allowChat": true,
       "permissions": null,
       "meta": {
-       "createdDate": "2026-01-26T17:50:38Z",
+       "createdDate": "2026-02-16T17:50:38Z",
        "createdPerson": {
         "id": 1
        },
-       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedDate": "2026-09-10T00:15:57Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -416,7 +416,7 @@
       },
       "agreed": false,
       "counter": 0,
-      "requestedDate": "2026-08-20T00:15:57Z"
+      "requestedDate": "2026-09-10T00:15:57Z"
      },
      {
       "id": 31995,
@@ -434,7 +434,7 @@
        "domainAttributes": {
         "firstName": "Kalif",
         "lastName": "Boutou",
-        "guid": "E5A6E96B-8E9F-4525-8487-D4F26C57E854",
+        "guid": "B03A4585-7F6F-41C3-8183-C0CAAEE3E372",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -461,7 +461,7 @@
        "domainAttributes": {
         "firstName": "Armin",
         "lastName": "Adendorf",
-        "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+        "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
         "dateOfDeath": null,
         "isArchived": false
        },
@@ -470,16 +470,16 @@
       "event": {
        "id": 1986,
        "name": "Gebetsabend",
-       "startDate": "2026-11-10T18:00:00Z"
+       "startDate": "2026-12-01T18:00:00Z"
       },
       "allowChat": false,
       "permissions": null,
       "meta": {
-       "createdDate": "2026-01-26T17:50:38Z",
+       "createdDate": "2026-02-16T17:50:38Z",
        "createdPerson": {
         "id": 1
        },
-       "modifiedDate": "2026-08-20T00:15:57Z",
+       "modifiedDate": "2026-09-10T00:15:57Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -491,7 +491,7 @@
       },
       "agreed": false,
       "counter": 0,
-      "requestedDate": "2026-08-20T00:15:57Z"
+      "requestedDate": "2026-09-10T00:15:57Z"
      }
     ]
    }

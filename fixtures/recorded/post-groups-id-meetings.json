@@ -2,17 +2,17 @@
  "operation": "post-groups-id-meetings",
  "request": {
   "method": "POST",
-  "path": "/groups/979/meetings",
+  "path": "/groups/821/meetings",
   "query": [],
   "body": {
-   "startDate": "2026-10-29T16:00:00Z"
+   "startDate": "2026-11-20T19:00:00Z"
   }
  },
  "body": {
   "data": {
-   "id": 1087,
-   "groupId": 979,
-   "startDate": "2026-10-29T16:00:00Z",
+   "id": 1031,
+   "groupId": 821,
+   "startDate": "2026-11-20T19:00:00Z",
    "isCompleted": false,
    "isCanceled": false,
    "hasEditingStarted": false,
@@ -26,11 +26,11 @@
     "not-in-group": 1
    },
    "meta": {
-    "createdDate": "2026-10-30T16:06:57Z",
+    "createdDate": "2026-11-21T19:07:35Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:06:57Z",
+    "modifiedDate": "2026-11-21T19:07:35Z",
     "modifiedPerson": {
      "id": 1
     }
@@ -40,9 +40,9 @@
     "dateTo": "endDate",
     "endDate": "@removed"
    },
-   "dateFrom": "2026-10-29T16:00:00Z",
-   "dateTo": "2026-10-29T16:00:00Z",
-   "endDate": "2026-10-29T16:00:00Z"
+   "dateFrom": "2026-11-20T19:00:00Z",
+   "dateTo": "2026-11-20T19:00:00Z",
+   "endDate": "2026-11-20T19:00:00Z"
   }
  }
 }

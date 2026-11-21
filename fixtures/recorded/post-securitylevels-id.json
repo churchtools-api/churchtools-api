@@ -1,0 +1,17 @@
+{
+ "operation": "post-securitylevels-id",
+ "request": {
+  "method": "POST",
+  "path": "/securitylevels/51",
+  "query": [],
+  "body": {
+   "name": "rs-test Stufe 00b466"
+  }
+ },
+ "body": {
+  "id": 51,
+  "name": "rs-test Stufe 00b466",
+  "sortkey": 51,
+  "sortKey": 51
+ }
+}

@@ -29,7 +29,7 @@
      "groupTypeId": 4,
      "campusId": null,
      "visibility": "public",
-     "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+     "guid": "788F2E07-6E97-4AE7-90A4-165124151D47"
     },
     "infos": [
      "Verteiler"
@@ -48,7 +48,7 @@
     "domainAttributes": {
      "firstName": "Armin",
      "lastName": "Adendorf",
-     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -72,11 +72,11 @@
    "expirationDate": null,
    "expirationPid": null,
    "expirationPerson": null,
-   "publishedDate": "2026-10-26T13:05:18Z",
+   "publishedDate": "2026-11-16T13:05:18Z",
    "lastEditedDate": "2026-08-17T12:05:18Z",
    "isBanned": false,
    "meta": {
-    "createdDate": "2026-10-26T13:05:18Z",
+    "createdDate": "2026-11-16T13:05:18Z",
     "createdPerson": {
      "id": 1
     },

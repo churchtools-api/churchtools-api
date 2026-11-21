@@ -5,16 +5,16 @@
   "path": "/resources",
   "query": [],
   "body": {
-   "name": "ctrs-test Raum 793fb8",
+   "name": "ctrs-test Raum bd4286",
    "resourceTypeId": 2,
    "sortKey": 999
   }
  },
  "body": {
   "data": {
-   "id": 67,
-   "name": "ctrs-test Raum 793fb8",
-   "nameTranslated": "ctrs-test Raum 793fb8",
+   "id": 20,
+   "name": "ctrs-test Raum bd4286",
+   "nameTranslated": "ctrs-test Raum bd4286",
    "sortKey": 999,
    "resourceTypeId": 2,
    "location": null,
@@ -27,11 +27,11 @@
    "adminIds": [],
    "randomString": null,
    "meta": {
-    "createdDate": "2026-10-30T16:07:10Z",
+    "createdDate": "2026-11-21T19:07:49Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:07:10Z",
+    "modifiedDate": "2026-11-21T19:07:49Z",
     "modifiedPerson": {
      "id": 1
     }

@@ -2,7 +2,7 @@
  "operation": "put-addresses-domainType-domainIdentifier-addressId",
  "request": {
   "method": "PUT",
-  "path": "/addresses/group/967/529",
+  "path": "/addresses/group/809/512",
   "query": [],
   "body": {
    "city": "Hamburg-Mitte",
@@ -11,9 +11,9 @@
  },
  "body": {
   "data": {
-   "id": 529,
+   "id": 512,
    "domainType": "group",
-   "domainIdentifier": "967",
+   "domainIdentifier": "809",
    "name": "Gemeindehaus",
    "icon": null,
    "color": null,

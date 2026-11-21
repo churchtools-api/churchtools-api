@@ -5,14 +5,14 @@
   "path": "/person/commentviewers",
   "query": [],
   "body": {
-   "name": "ctrs-test comment_viewers 0919ca"
+   "name": "ctrs-test comment_viewers c1aafc"
   }
  },
  "body": {
   "data": {
-   "id": 37,
-   "name": "ctrs-test comment_viewers 0919ca",
-   "nameTranslated": "ctrs-test comment_viewers 0919ca",
+   "id": 5,
+   "name": "ctrs-test comment_viewers c1aafc",
+   "nameTranslated": "ctrs-test comment_viewers c1aafc",
    "sortKey": 0
   }
  }

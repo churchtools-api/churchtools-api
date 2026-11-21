@@ -2,13 +2,13 @@
  "operation": "get-externallogins-id",
  "request": {
   "method": "GET",
-  "path": "/externallogins/40",
+  "path": "/externallogins/5",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 40,
+   "id": 5,
    "type": "oidc",
    "name": "ctrs-test OIDC",
    "newPersonDepartmentId": null,

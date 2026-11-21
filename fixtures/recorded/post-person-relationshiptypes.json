@@ -7,15 +7,15 @@
   "body": {
    "degreeNameA": "Pate",
    "degreeNameB": "Patenkind",
-   "name": "ctrs-test relationship_types 489e0d",
+   "name": "ctrs-test relationship_types 20062d",
    "securityLevelId": 1
   }
  },
  "body": {
   "data": {
-   "id": 31,
-   "name": "ctrs-test relationship_types 489e0d",
-   "nameTranslated": "ctrs-test relationship_types 489e0d",
+   "id": 8,
+   "name": "ctrs-test relationship_types 20062d",
+   "nameTranslated": "ctrs-test relationship_types 20062d",
    "securityLevelId": 1,
    "degreeNameA": "Pate",
    "degreeNameATranslated": "Pate",

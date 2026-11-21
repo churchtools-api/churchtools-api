@@ -30,7 +30,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "public",
-      "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+      "guid": "788F2E07-6E97-4AE7-90A4-165124151D47"
      },
      "infos": [
       "Verteiler"
@@ -49,7 +49,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -73,11 +73,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-26T13:05:18Z",
+    "publishedDate": "2026-11-16T13:05:18Z",
     "lastEditedDate": "2026-08-17T12:05:18Z",
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-26T13:05:18Z",
+     "createdDate": "2026-11-16T13:05:18Z",
      "createdPerson": {
       "id": 1
      },
@@ -109,7 +109,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "intern",
-      "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+      "guid": "D65E9F4F-FACF-459F-B1BD-95E75E921448"
      },
      "infos": [
       "Verteiler"
@@ -128,7 +128,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -157,11 +157,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-26T12:32:35Z",
+    "publishedDate": "2026-11-16T12:32:35Z",
     "lastEditedDate": "2026-08-17T11:32:35Z",
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-26T12:32:35Z",
+     "createdDate": "2026-11-16T12:32:35Z",
      "createdPerson": {
       "id": 1
      },

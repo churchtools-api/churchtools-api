@@ -25,8 +25,13 @@
    },
    {
     "module": "churchcal",
+    "attribute": "fav-menu",
+    "value": "1"
+   },
+   {
+    "module": "churchcal",
     "attribute": "filterGemeindekalendar",
-    "value": "[101,102,131,156,159,162,165]"
+    "value": "[101,102,103,131,156,159,162,165]"
    },
    {
     "module": "churchcal",
@@ -119,7 +124,7 @@
    {
     "module": "churchcore",
     "attribute": "last_log_view",
-    "value": "2026-10-30 17:04:39"
+    "value": "2026-11-21 20:05:14"
    },
    {
     "module": "churchdb",
@@ -1065,11 +1070,6 @@
      157,
      953
     ]
-   },
-   {
-    "module": "post",
-    "attribute": "hidden-posts",
-    "value": []
    }
   ],
   "meta": {

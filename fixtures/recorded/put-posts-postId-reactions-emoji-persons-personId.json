@@ -2,13 +2,13 @@
  "operation": "put-posts-postId-reactions-emoji-persons-personId",
  "request": {
   "method": "PUT",
-  "path": "/posts/103/reactions/%F0%9F%99%8F/persons/1",
+  "path": "/posts/56/reactions/%F0%9F%99%8F/persons/1",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "postId": 103,
+   "postId": 56,
    "person": {
     "title": "Armin Adendorf",
     "domainType": "person",
@@ -22,7 +22,7 @@
     "domainAttributes": {
      "firstName": "Armin",
      "lastName": "Adendorf",
-     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
      "dateOfDeath": null,
      "isArchived": false
     },

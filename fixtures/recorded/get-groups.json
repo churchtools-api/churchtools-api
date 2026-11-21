@@ -10,7 +10,7 @@
   "data": [
    {
     "id": 11,
-    "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304",
+    "guid": "C15A8509-04AC-4D2F-AA86-7878E825285E",
     "name": "#0 Gemeindeleitung",
     "securityLevelForGroup": 99999,
     "meta": {
@@ -204,7 +204,7 @@
    },
    {
     "id": 10,
-    "guid": "BF91810C-B934-4167-AD2C-DB513ED111BF",
+    "guid": "70951BEE-F1C5-4A09-8673-886812B890F0",
     "name": "#1 Bereich Gottesdienst",
     "securityLevelForGroup": 99999,
     "meta": {
@@ -398,7 +398,7 @@
    },
    {
     "id": 136,
-    "guid": "408D1309-6577-4DD0-A0E9-318705F2AB51",
+    "guid": "E3F09FF8-2F2B-4327-8C14-C0800FFC8366",
     "name": "#1 Bereich Jugend",
     "securityLevelForGroup": 99999,
     "meta": {
@@ -592,7 +592,7 @@
    },
    {
     "id": 39,
-    "guid": "652BADC9-82F7-44A2-B180-C45B184F7D9B",
+    "guid": "5AA5986D-C7D8-4483-9731-3DE8C18AF8EA",
     "name": "#1 Bereich Kinder",
     "securityLevelForGroup": 99999,
     "meta": {
@@ -786,7 +786,7 @@
    },
    {
     "id": 15,
-    "guid": "FD459EFF-1709-4833-8D3D-D9D31E4F4FE1",
+    "guid": "4DC1F0CE-2814-4A6A-AC1B-1289A9E8D401",
     "name": "#1 Bereich Kleingruppen",
     "securityLevelForGroup": 99999,
     "meta": {
@@ -980,7 +980,7 @@
    },
    {
     "id": 158,
-    "guid": "932F0D17-C8D3-43F3-A81A-6921B3DB889E",
+    "guid": "08578245-4399-41CA-B79E-B839A535EB52",
     "name": "#1 Bereich Verwaltung",
     "securityLevelForGroup": 99999,
     "meta": {
@@ -1174,7 +1174,7 @@
    },
    {
     "id": 359,
-    "guid": "AF702E40-7C1C-4835-AB7E-603BC1A36150",
+    "guid": "55B15F44-32D8-4CEC-B343-0E5C12E2D88B",
     "name": "#1. Vorlage Mitarbeiter Party #",
     "securityLevelForGroup": 99999,
     "meta": {
@@ -1389,7 +1389,7 @@
    },
    {
     "id": 794,
-    "guid": "D45B9085-83F6-477F-90E7-DDC37C4293CA",
+    "guid": "D43CAAEF-337B-4B82-BDBC-60434B692B5E",
     "name": "#Newcomer-Lunch – 01.11.2026, 13:00",
     "securityLevelForGroup": 99999,
     "meta": {
@@ -1397,7 +1397,7 @@
      "createdPerson": {
       "id": -4
      },
-     "modifiedDate": "2026-10-27T01:36:06Z",
+     "modifiedDate": "2026-11-03T02:18:34Z",
      "modifiedPerson": {
       "id": -4
      }
@@ -1407,7 +1407,7 @@
      "modifiedPerson": "meta.modifiedPid",
      "information.maxMembers": "settings.maxMembers"
     },
-    "modifiedDate": "2026-10-27T01:36:06Z",
+    "modifiedDate": "2026-11-03T02:18:34Z",
     "modifiedPerson": {
      "id": -4
     },
@@ -1425,7 +1425,7 @@
      "imageAnnotationLink": "",
      "imageDescription": "",
      "groupHomepageUrl": null,
-     "groupStatusId": 1,
+     "groupStatusId": 4,
      "groupTypeId": 3,
      "dateOfFoundation": "2026-11-01",
      "endDate": "2026-11-02",
@@ -1603,16 +1603,16 @@
     ]
    },
    {
-    "id": 790,
-    "guid": "BFA351F5-72BA-4573-8B5A-AB80495F617E",
-    "name": "#Newcomer-Lunch – 18.10.2026, 13:00",
+    "id": 795,
+    "guid": "EE0D1266-8FDD-4966-BC47-FB8718D331B9",
+    "name": "#Newcomer-Lunch – 08.11.2026, 13:00",
     "securityLevelForGroup": 99999,
     "meta": {
-     "createdDate": "2026-10-13T02:21:42Z",
+     "createdDate": "2026-11-03T02:18:33Z",
      "createdPerson": {
       "id": -4
      },
-     "modifiedDate": "2026-10-20T02:39:28Z",
+     "modifiedDate": "2026-11-10T02:15:32Z",
      "modifiedPerson": {
       "id": -4
      }
@@ -1622,7 +1622,7 @@
      "modifiedPerson": "meta.modifiedPid",
      "information.maxMembers": "settings.maxMembers"
     },
-    "modifiedDate": "2026-10-20T02:39:28Z",
+    "modifiedDate": "2026-11-10T02:15:32Z",
     "modifiedPerson": {
      "id": -4
     },
@@ -1634,7 +1634,7 @@
      "startChat": true
     },
     "information": {
-     "imageUrl": "https://gemeinde.example/images/3271/adf39b99a8a0e61c2ec2fe73f960bf92172bd65cc5e3a1a63e0e6c657125ae96",
+     "imageUrl": "https://gemeinde.example/images/3276/c09d9e50cbd6cc36de28ff1368b172c7c2faedfe44ef3ebcf18a2ad49f3a728e",
      "imageAnnotation": "",
      "imageAiGenerated": false,
      "imageAnnotationLink": "",
@@ -1642,8 +1642,8 @@
      "groupHomepageUrl": null,
      "groupStatusId": 4,
      "groupTypeId": 3,
-     "dateOfFoundation": "2026-10-18",
-     "endDate": "2026-10-19",
+     "dateOfFoundation": "2026-11-08",
+     "endDate": "2026-11-09",
      "meetingTime": null,
      "weekday": null,
      "groupCategoryId": null,
@@ -1699,7 +1699,7 @@
      "externalPostSubscriptionsEnabled": true,
      "showStreet": false,
      "appointmentId": 1544501,
-     "appointmentStartDate": "2026-10-18T11:00:00Z",
+     "appointmentStartDate": "2026-11-08T12:00:00Z",
      "maxMembers": null,
      "statusesCountedTowardsSeats": [
       "active"
@@ -1711,7 +1711,7 @@
     },
     "roles": [
      {
-      "id": 29326,
+      "id": 29640,
       "groupTypeId": 3,
       "name": "Leiter",
       "nameTranslated": "Leiter",
@@ -1732,7 +1732,7 @@
       "htmlTemplateIds": null
      },
      {
-      "id": 29329,
+      "id": 29643,
       "groupTypeId": 3,
       "name": "Co-Leiter",
       "nameTranslated": "Co-Leiter",
@@ -1753,7 +1753,7 @@
       "htmlTemplateIds": null
      },
      {
-      "id": 29332,
+      "id": 29646,
       "groupTypeId": 3,
       "name": "Organisator",
       "nameTranslated": "Organisator",
@@ -1774,7 +1774,7 @@
       "htmlTemplateIds": null
      },
      {
-      "id": 29335,
+      "id": 29649,
       "groupTypeId": 3,
       "name": "Mitarbeiter",
       "nameTranslated": "Mitarbeiter",
@@ -1795,7 +1795,7 @@
       "htmlTemplateIds": null
      },
      {
-      "id": 29323,
+      "id": 29637,
       "groupTypeId": 3,
       "name": "Teilnehmer",
       "nameTranslated": "Teilnehmer",
@@ -1818,16 +1818,16 @@
     ]
    },
    {
-    "id": 793,
-    "guid": "47DE5083-2E65-4BFF-99F4-F36364C6E6DC",
-    "name": "#Newcomer-Lunch – 22.11.2026, 13:00",
+    "id": 798,
+    "guid": "75A5FC48-761F-4E25-9ACD-963054ADC576",
+    "name": "#Newcomer-Lunch – 15.11.2026, 13:00",
     "securityLevelForGroup": 99999,
     "meta": {
-     "createdDate": "2026-10-24T02:26:10Z",
+     "createdDate": "2026-11-10T02:15:31Z",
      "createdPerson": {
       "id": -4
      },
-     "modifiedDate": "2026-10-24T02:26:10Z",
+     "modifiedDate": "2026-11-17T02:07:09Z",
      "modifiedPerson": {
       "id": -4
      }
@@ -1837,7 +1837,7 @@
      "modifiedPerson": "meta.modifiedPid",
      "information.maxMembers": "settings.maxMembers"
     },
-    "modifiedDate": "2026-10-24T02:26:10Z",
+    "modifiedDate": "2026-11-17T02:07:09Z",
     "modifiedPerson": {
      "id": -4
     },
@@ -1849,16 +1849,16 @@
      "startChat": true
     },
     "information": {
-     "imageUrl": "https://gemeinde.example/images/3274/d24965881e0b2ac3aaf16b63728ad6578ecc2f0180221c029e0ff5229498451c",
+     "imageUrl": "https://gemeinde.example/images/3279/0f701b70c6ab68313f1309c0541b2145f6fb6ae48a3bc289fe1ce63b391249de",
      "imageAnnotation": "",
      "imageAiGenerated": false,
      "imageAnnotationLink": "",
      "imageDescription": "",
      "groupHomepageUrl": null,
-     "groupStatusId": 1,
+     "groupStatusId": 4,
      "groupTypeId": 3,
-     "dateOfFoundation": "2026-11-22",
-     "endDate": "2026-11-23",
+     "dateOfFoundation": "2026-11-15",
+     "endDate": "2026-11-16",
      "meetingTime": null,
      "weekday": null,
      "groupCategoryId": null,
@@ -1914,7 +1914,7 @@
      "externalPostSubscriptionsEnabled": true,
      "showStreet": false,
      "appointmentId": 1544501,
-     "appointmentStartDate": "2026-11-22T12:00:00Z",
+     "appointmentStartDate": "2026-11-15T12:00:00Z",
      "maxMembers": null,
      "statusesCountedTowardsSeats": [
       "active"
@@ -1926,7 +1926,7 @@
     },
     "roles": [
      {
-      "id": 29542,
+      "id": 29772,
       "groupTypeId": 3,
       "name": "Leiter",
       "nameTranslated": "Leiter",
@@ -1947,7 +1947,7 @@
       "htmlTemplateIds": null
      },
      {
-      "id": 29545,
+      "id": 29775,
       "groupTypeId": 3,
       "name": "Co-Leiter",
       "nameTranslated": "Co-Leiter",
@@ -1968,7 +1968,7 @@
       "htmlTemplateIds": null
      },
      {
-      "id": 29548,
+      "id": 29778,
       "groupTypeId": 3,
       "name": "Organisator",
       "nameTranslated": "Organisator",
@@ -1989,7 +1989,7 @@
       "htmlTemplateIds": null
      },
      {
-      "id": 29551,
+      "id": 29781,
       "groupTypeId": 3,
       "name": "Mitarbeiter",
       "nameTranslated": "Mitarbeiter",
@@ -2010,7 +2010,7 @@
       "htmlTemplateIds": null
      },
      {
-      "id": 29539,
+      "id": 29769,
       "groupTypeId": 3,
       "name": "Teilnehmer",
       "nameTranslated": "Teilnehmer",
@@ -2035,9 +2035,9 @@
   ],
   "meta": {
    "count": 10,
-   "all": 96,
+   "all": 98,
    "pagination": {
-    "total": 95,
+    "total": 97,
     "limit": 10,
     "current": 1,
     "lastPage": 10

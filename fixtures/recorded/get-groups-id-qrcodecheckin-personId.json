@@ -2,7 +2,7 @@
  "operation": "get-groups-id-qrcodecheckin-personId",
  "request": {
   "method": "GET",
-  "path": "/groups/958/qrcodecheckin/1",
+  "path": "/groups/800/qrcodecheckin/1",
   "query": [],
   "body": null
  },
@@ -11,9 +11,9 @@
    "token": "<redacted>",
    "personId": 1,
    "domainType": "group",
-   "domainId": 958,
+   "domainId": 800,
    "isQueued": false,
-   "sentDate": "2026-10-30T16:03:24Z",
+   "sentDate": "2026-11-21T19:03:58Z",
    "downloadedDate": null,
    "usedDate": null,
    "expiryDate": null

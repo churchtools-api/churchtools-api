@@ -1401,7 +1401,7 @@
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-10-30T08:47:14Z"
+      "updated": "2026-10-30T09:10:43Z"
      }
     }
    },
@@ -1819,7 +1819,7 @@
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-10-30T08:47:14Z"
+      "updated": "2026-10-30T09:10:43Z"
      },
      "fi": {
       "translation": "Suorita aikataulutettuja tehtäviä",
@@ -3331,7 +3331,7 @@
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-10-30T08:47:14Z"
+      "updated": "2026-10-30T09:10:43Z"
      },
      "fi": {
       "translation": "Valitse mahdollisuutesi",
@@ -4951,7 +4951,7 @@
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-10-30T08:47:14Z"
+      "updated": "2026-10-30T09:10:43Z"
      },
      "fi": {
       "translation": "Oikeudet",
@@ -5059,7 +5059,7 @@
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-10-30T08:47:14Z"
+      "updated": "2026-10-30T09:10:43Z"
      },
      "fi": {
       "translation": "Nykyiset oikeudet",
@@ -11647,7 +11647,7 @@
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-10-30T08:47:14Z"
+      "updated": "2026-10-30T09:10:43Z"
      },
      "fi": {
       "translation": "Tulostusnäkymä",
@@ -14455,7 +14455,7 @@
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-10-30T08:47:14Z"
+      "updated": "2026-10-30T09:10:43Z"
      },
      "fi": {
       "translation": "Syntymäpäivät",
@@ -17911,7 +17911,7 @@
       "updatedByChurch": false,
       "needsCheck": false,
       "deleted": false,
-      "updated": "2026-10-30T08:47:14Z"
+      "updated": "2026-10-30T09:10:43Z"
      },
      "fi": {
       "translation": "Seuraavat vastuusi",
@@ -21603,7 +21603,7 @@
    }
   ],
   "meta": {
-   "count": 13381
+   "count": 13490
   }
  }
 }

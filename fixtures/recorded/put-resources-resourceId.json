@@ -2,19 +2,19 @@
  "operation": "put-resources-resourceId",
  "request": {
   "method": "PUT",
-  "path": "/resources/64",
+  "path": "/resources/17",
   "query": [],
   "body": {
-   "name": "ctrs-test Raum eef492 neu",
+   "name": "ctrs-test Raum 80a3d8 neu",
    "resourceTypeId": 2,
    "sortKey": 998
   }
  },
  "body": {
   "data": {
-   "id": 64,
-   "name": "ctrs-test Raum eef492 neu",
-   "nameTranslated": "ctrs-test Raum eef492 neu",
+   "id": 17,
+   "name": "ctrs-test Raum 80a3d8 neu",
+   "nameTranslated": "ctrs-test Raum 80a3d8 neu",
    "sortKey": 998,
    "resourceTypeId": 2,
    "location": null,
@@ -27,11 +27,11 @@
    "adminIds": [],
    "randomString": null,
    "meta": {
-    "createdDate": "2026-10-30T16:05:58Z",
+    "createdDate": "2026-11-21T19:06:36Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:05:59Z",
+    "modifiedDate": "2026-11-21T19:06:36Z",
     "modifiedPerson": {
      "id": 1
     }

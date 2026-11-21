@@ -5,13 +5,13 @@
   "path": "/tags/person",
   "query": [],
   "body": {
-   "name": "ctrs-test Tag 0f78fc"
+   "name": "ctrs-test Tag 1891f9"
   }
  },
  "body": {
   "data": {
-   "id": 97,
-   "name": "ctrs-test Tag 0f78fc",
+   "id": 56,
+   "name": "ctrs-test Tag 1891f9",
    "description": null,
    "color": "basic",
    "count": 0

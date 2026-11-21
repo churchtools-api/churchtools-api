@@ -9,9 +9,9 @@
  "body": {
   "data": [
    {
-    "id": 505585,
+    "id": 484133,
     "level": 2,
-    "date": "2026-10-30T16:04:38Z",
+    "date": "2026-11-21T19:05:13Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -27,7 +27,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -40,9 +40,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505582,
+    "id": 484130,
     "level": 2,
-    "date": "2026-10-30T16:04:38Z",
+    "date": "2026-11-21T19:05:13Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -58,7 +58,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -71,9 +71,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505579,
+    "id": 484127,
     "level": 2,
-    "date": "2026-10-30T16:04:37Z",
+    "date": "2026-11-21T19:05:12Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -89,7 +89,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -102,9 +102,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505576,
+    "id": 484124,
     "level": 2,
-    "date": "2026-10-30T16:04:37Z",
+    "date": "2026-11-21T19:05:12Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -120,7 +120,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -133,9 +133,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505573,
+    "id": 484121,
     "level": 2,
-    "date": "2026-10-30T16:04:37Z",
+    "date": "2026-11-21T19:05:12Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -151,7 +151,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -164,9 +164,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505570,
+    "id": 484118,
     "level": 2,
-    "date": "2026-10-30T16:04:37Z",
+    "date": "2026-11-21T19:05:12Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -182,7 +182,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -195,9 +195,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505567,
+    "id": 484115,
     "level": 2,
-    "date": "2026-10-30T16:04:36Z",
+    "date": "2026-11-21T19:05:11Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -213,7 +213,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -226,9 +226,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505564,
+    "id": 484112,
     "level": 2,
-    "date": "2026-10-30T16:04:36Z",
+    "date": "2026-11-21T19:05:11Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -244,7 +244,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -257,9 +257,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505561,
+    "id": 484109,
     "level": 2,
-    "date": "2026-10-30T16:04:36Z",
+    "date": "2026-11-21T19:05:11Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -275,7 +275,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -288,9 +288,9 @@
     "message": "Erfolgreich angemeldet: Benutzer armin@example.com mittels logintoken und Browser: churchtools-api/0.1.0"
    },
    {
-    "id": 505558,
+    "id": 484106,
     "level": 2,
-    "date": "2026-10-30T16:04:36Z",
+    "date": "2026-11-21T19:05:10Z",
     "personId": 1,
     "personName": "Armin Adendorf",
     "person": {
@@ -306,7 +306,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -322,10 +322,10 @@
   "meta": {
    "count": 10,
    "pagination": {
-    "total": 76818,
+    "total": 68808,
     "limit": 10,
     "current": 1,
-    "lastPage": 7682
+    "lastPage": 6881
    }
   }
  }

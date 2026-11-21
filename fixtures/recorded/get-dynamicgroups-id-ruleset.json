@@ -2,7 +2,7 @@
  "operation": "get-dynamicgroups-id-ruleset",
  "request": {
   "method": "GET",
-  "path": "/dynamicgroups/958/ruleset",
+  "path": "/dynamicgroups/800/ruleset",
   "query": [],
   "body": null
  },

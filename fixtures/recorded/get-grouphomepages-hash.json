@@ -264,7 +264,7 @@
      "options": [
       {
        "id": 2,
-       "guid": "DD401739-A659-4C3D-B425-05A6518F2F5F",
+       "guid": "6D41EBA0-6AB1-47BE-83A2-B855F3DC7855",
        "name": "ChuToo Church",
        "nameTranslated": "ChuToo Church",
        "shortName": "CTC",
@@ -317,7 +317,7 @@
       },
       {
        "id": 0,
-       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "guid": "98CFCE62-DF90-4E09-88A5-BCE8D2937B41",
        "name": "Winterhude",
        "nameTranslated": "Winterhude",
        "shortName": null,
@@ -370,7 +370,7 @@
       },
       {
        "id": 1,
-       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "guid": "56848F9B-F011-4BCB-868F-9A9D20B3701B",
        "name": "Hafencity",
        "nameTranslated": "Hafencity",
        "shortName": null,
@@ -464,7 +464,7 @@
         "domainAttributes": {
          "firstName": "Sarah",
          "lastName": "Meisner",
-         "guid": "400C6EC6-C094-4F1C-BA7B-3EF10093EFFD",
+         "guid": "2E589BAE-5F9D-4CA5-B182-6FF0C28D0CF9",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -483,7 +483,7 @@
         "domainAttributes": {
          "firstName": "Karin",
          "lastName": "Messerschmidt",
-         "guid": "1E3A0461-3E37-4A77-A4B7-920747B23312",
+         "guid": "D017FC30-7E1B-474D-ABAB-21DC8D12B935",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -630,7 +630,7 @@
       "note": "",
       "campus": {
        "id": 0,
-       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "guid": "98CFCE62-DF90-4E09-88A5-BCE8D2937B41",
        "name": "Winterhude",
        "nameTranslated": "Winterhude",
        "shortName": null,
@@ -725,7 +725,7 @@
         "domainAttributes": {
          "firstName": "Armin",
          "lastName": "Adendorf",
-         "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+         "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -848,7 +848,7 @@
       "note": "Wir sind toll!",
       "campus": {
        "id": 0,
-       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "guid": "98CFCE62-DF90-4E09-88A5-BCE8D2937B41",
        "name": "Winterhude",
        "nameTranslated": "Winterhude",
        "shortName": null,
@@ -971,7 +971,7 @@
         "domainAttributes": {
          "firstName": "Karl",
          "lastName": "Andrews",
-         "guid": "7F472E8A-F882-47AF-9282-74EE6B9DD306",
+         "guid": "E4BA6E3C-1C05-42A4-BB0A-74C758ED5162",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -1094,7 +1094,7 @@
       "note": "",
       "campus": {
        "id": 0,
-       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "guid": "98CFCE62-DF90-4E09-88A5-BCE8D2937B41",
        "name": "Winterhude",
        "nameTranslated": "Winterhude",
        "shortName": null,
@@ -1189,7 +1189,7 @@
         "domainAttributes": {
          "firstName": "Lennart",
          "lastName": "Baldauf",
-         "guid": "68554A70-0735-4174-833B-4F3F0A9BA861",
+         "guid": "565A5E84-7262-42E6-B7EB-317294D407B6",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -1208,7 +1208,7 @@
         "domainAttributes": {
          "firstName": "Hans",
          "lastName": "Tooly",
-         "guid": "2C511BC3-857D-4B1D-A111-BFEE29761755",
+         "guid": "9E216823-0BF8-41D0-BD21-7FDDD7A2080A",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -1331,7 +1331,7 @@
       "note": "",
       "campus": {
        "id": 1,
-       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "guid": "56848F9B-F011-4BCB-868F-9A9D20B3701B",
        "name": "Hafencity",
        "nameTranslated": "Hafencity",
        "shortName": null,
@@ -1426,7 +1426,7 @@
         "domainAttributes": {
          "firstName": "Finnja",
          "lastName": "George",
-         "guid": "97AAA819-C212-4C4E-B8BB-984E2627224E",
+         "guid": "67DA7B2B-0F40-48EF-84A3-C9D689B98A21",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -1532,7 +1532,7 @@
       "note": "",
       "campus": {
        "id": 1,
-       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "guid": "56848F9B-F011-4BCB-868F-9A9D20B3701B",
        "name": "Hafencity",
        "nameTranslated": "Hafencity",
        "shortName": null,
@@ -1627,7 +1627,7 @@
         "domainAttributes": {
          "firstName": "Jan",
          "lastName": "Landherr",
-         "guid": "E1AA566F-63A1-427D-B495-B1626914EF21",
+         "guid": "F98A72E5-9FFE-4152-A913-1E09A9A8B416",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -1750,7 +1750,7 @@
       "note": "",
       "campus": {
        "id": 1,
-       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "guid": "56848F9B-F011-4BCB-868F-9A9D20B3701B",
        "name": "Hafencity",
        "nameTranslated": "Hafencity",
        "shortName": null,
@@ -1845,7 +1845,7 @@
         "domainAttributes": {
          "firstName": "Marten",
          "lastName": "Lippert",
-         "guid": "2915D5AD-6967-4C5E-8362-D498899BCA37",
+         "guid": "E8681549-3C66-475E-B3B0-06E106678789",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -2156,7 +2156,7 @@
      "options": [
       {
        "id": 2,
-       "guid": "DD401739-A659-4C3D-B425-05A6518F2F5F",
+       "guid": "6D41EBA0-6AB1-47BE-83A2-B855F3DC7855",
        "name": "ChuToo Church",
        "nameTranslated": "ChuToo Church",
        "shortName": "CTC",
@@ -2209,7 +2209,7 @@
       },
       {
        "id": 0,
-       "guid": "156A516F-9752-4AD3-BB29-7D4C617D3FA9",
+       "guid": "98CFCE62-DF90-4E09-88A5-BCE8D2937B41",
        "name": "Winterhude",
        "nameTranslated": "Winterhude",
        "shortName": null,
@@ -2262,7 +2262,7 @@
       },
       {
        "id": 1,
-       "guid": "5FD3BA0E-587D-4901-A156-AFA4FEABF4C2",
+       "guid": "56848F9B-F011-4BCB-868F-9A9D20B3701B",
        "name": "Hafencity",
        "nameTranslated": "Hafencity",
        "shortName": null,

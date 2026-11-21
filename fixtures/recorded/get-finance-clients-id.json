@@ -33,7 +33,7 @@
     "domainAttributes": {
      "firstName": "Freddy",
      "lastName": "Finanziskus",
-     "guid": "42028CB8-2D7A-4B19-B06B-4658ACDA8202",
+     "guid": "F9A5FD5C-8F31-4A44-BE9B-A330E5B6013F",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -45,7 +45,7 @@
     "createdPerson": {
      "id": -1
     },
-    "modifiedDate": "2026-10-30T16:03:30Z",
+    "modifiedDate": "2026-11-21T19:04:04Z",
     "modifiedPerson": {
      "id": 1
     }

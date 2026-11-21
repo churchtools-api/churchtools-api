@@ -2,11 +2,11 @@
  "operation": "post-calendars-calendarId-appointments-appointmentId-changeimpact",
  "request": {
   "method": "POST",
-  "path": "/calendars/112/appointments/1665619/changeimpact",
+  "path": "/calendars/71/appointments/1672118/changeimpact",
   "query": [],
   "body": {
-   "endDate": "2026-11-06T17:00:00Z",
-   "startDate": "2026-11-06T16:00:00Z"
+   "endDate": "2026-11-28T20:00:00Z",
+   "startDate": "2026-11-28T19:00:00Z"
   }
  },
  "body": {

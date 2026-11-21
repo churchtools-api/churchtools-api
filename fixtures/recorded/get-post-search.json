@@ -30,7 +30,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "public",
-      "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+      "guid": "788F2E07-6E97-4AE7-90A4-165124151D47"
      },
      "infos": [
       "Verteiler"
@@ -49,7 +49,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -73,11 +73,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-26T13:05:18Z",
+    "publishedDate": "2026-11-16T13:05:18Z",
     "lastEditedDate": "2026-08-17T12:05:18Z",
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-26T13:05:18Z",
+     "createdDate": "2026-11-16T13:05:18Z",
      "createdPerson": {
       "id": 1
      },
@@ -109,7 +109,7 @@
       "groupTypeId": 2,
       "campusId": null,
       "visibility": "intern",
-      "guid": "B672A315-EF25-49A9-B347-90555EBB5E4C"
+      "guid": "A4D87953-9664-4B24-8EC7-6E8AC787779D"
      },
      "infos": [
       "Team"
@@ -128,7 +128,7 @@
      "domainAttributes": {
       "firstName": "Lennart",
       "lastName": "Baldauf",
-      "guid": "68554A70-0735-4174-833B-4F3F0A9BA861",
+      "guid": "565A5E84-7262-42E6-B7EB-317294D407B6",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -157,11 +157,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-26T12:34:16Z",
+    "publishedDate": "2026-11-16T12:34:16Z",
     "lastEditedDate": "2026-08-17T11:34:16Z",
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-26T12:34:16Z",
+     "createdDate": "2026-11-16T12:34:16Z",
      "createdPerson": {
       "id": 133
      },
@@ -193,7 +193,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "intern",
-      "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+      "guid": "D65E9F4F-FACF-459F-B1BD-95E75E921448"
      },
      "infos": [
       "Verteiler"
@@ -212,7 +212,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -241,11 +241,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-26T12:32:35Z",
+    "publishedDate": "2026-11-16T12:32:35Z",
     "lastEditedDate": "2026-08-17T11:32:35Z",
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-26T12:32:35Z",
+     "createdDate": "2026-11-16T12:32:35Z",
      "createdPerson": {
       "id": 1
      },
@@ -277,7 +277,7 @@
       "groupTypeId": 6,
       "campusId": null,
       "visibility": "public",
-      "guid": "DF7DCF17-90AD-4B17-9730-29FEDE4EC636"
+      "guid": "2A320A15-C77F-4861-9395-D72763585697"
      },
      "infos": [
       "Prozesse"
@@ -296,7 +296,7 @@
      "domainAttributes": {
       "firstName": "Karin",
       "lastName": "Messerschmidt",
-      "guid": "1E3A0461-3E37-4A77-A4B7-920747B23312",
+      "guid": "D017FC30-7E1B-474D-ABAB-21DC8D12B935",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -313,11 +313,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-26T12:15:46Z",
+    "publishedDate": "2026-11-16T12:15:46Z",
     "lastEditedDate": null,
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-26T12:15:46Z",
+     "createdDate": "2026-11-16T12:15:46Z",
      "createdPerson": {
       "id": 2812
      },
@@ -349,7 +349,7 @@
       "groupTypeId": 1,
       "campusId": 0,
       "visibility": "intern",
-      "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+      "guid": "49D12F7C-86B3-47EE-943C-781695C96DA6"
      },
      "infos": [
       "Kleingruppe"
@@ -368,7 +368,7 @@
      "domainAttributes": {
       "firstName": "Marten",
       "lastName": "Bischof",
-      "guid": "FE2742A8-AB37-42D5-B6B6-EA0E3D8CCFE6",
+      "guid": "3ADDFE6F-3EF5-48C6-A202-DABDC31FEC11",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -407,11 +407,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-07T12:50:03Z",
+    "publishedDate": "2026-10-28T13:50:03Z",
     "lastEditedDate": null,
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-07T12:50:03Z",
+     "createdDate": "2026-10-28T13:50:03Z",
      "createdPerson": {
       "id": 170
      },
@@ -443,7 +443,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "intern",
-      "guid": "8F3D1663-D4A3-4028-9826-513C7764392C"
+      "guid": "F22B97BF-B56B-4B49-B487-C9E93B5C6ADD"
      },
      "infos": [
       "Verteiler"
@@ -462,7 +462,7 @@
      "domainAttributes": {
       "firstName": "Helge",
       "lastName": "Häuser",
-      "guid": "48FCE7F5-7901-4D42-B4A1-677741518B83",
+      "guid": "58625C3A-FA66-4669-90E1-8E4E59EEE9D1",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -501,11 +501,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-04T13:48:11Z",
+    "publishedDate": "2026-10-25T14:48:11Z",
     "lastEditedDate": null,
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-04T13:48:11Z",
+     "createdDate": "2026-10-25T14:48:11Z",
      "createdPerson": {
       "id": 2809
      },
@@ -537,7 +537,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "intern",
-      "guid": "44CA0294-0769-4F30-8B75-114985E01DD7"
+      "guid": "6037D485-BE1C-441E-B537-872C4D60595D"
      },
      "infos": [
       "Verteiler"
@@ -556,7 +556,7 @@
      "domainAttributes": {
       "firstName": "Karin",
       "lastName": "Messerschmidt",
-      "guid": "1E3A0461-3E37-4A77-A4B7-920747B23312",
+      "guid": "D017FC30-7E1B-474D-ABAB-21DC8D12B935",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -573,11 +573,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-02T13:24:11Z",
+    "publishedDate": "2026-10-23T13:24:11Z",
     "lastEditedDate": null,
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-02T13:24:11Z",
+     "createdDate": "2026-10-23T13:24:11Z",
      "createdPerson": {
       "id": 2812
      },
@@ -609,7 +609,7 @@
       "groupTypeId": 3,
       "campusId": null,
       "visibility": "intern",
-      "guid": "2F6B3ED3-3B44-4AF4-B596-4D677AFF083E"
+      "guid": "480C83AC-5ECD-4A9F-93F7-E8B955F9397A"
      },
      "infos": [
       "Veranstaltung"
@@ -628,7 +628,7 @@
      "domainAttributes": {
       "firstName": "Jonny",
       "lastName": "Huber",
-      "guid": "ADEC8D77-ED4D-4F9A-A4FA-6FDAF0343AF8",
+      "guid": "B9EFC7AA-6B45-4899-8E8A-C34C99637D5D",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -662,11 +662,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-10-01T13:16:43Z",
+    "publishedDate": "2026-10-22T13:16:43Z",
     "lastEditedDate": null,
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-10-01T13:16:43Z",
+     "createdDate": "2026-10-22T13:16:43Z",
      "createdPerson": {
       "id": 2797
      },
@@ -698,7 +698,7 @@
       "groupTypeId": 1,
       "campusId": 0,
       "visibility": "intern",
-      "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+      "guid": "49D12F7C-86B3-47EE-943C-781695C96DA6"
      },
      "infos": [
       "Kleingruppe"
@@ -717,7 +717,7 @@
      "domainAttributes": {
       "firstName": "Jenny",
       "lastName": "Bischof",
-      "guid": "DD027714-CB34-405E-9AF7-D348EF95A83B",
+      "guid": "B6DED24C-6A98-4416-B508-E9B57B89C129",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -734,11 +734,11 @@
     "expirationDate": null,
     "expirationPid": null,
     "expirationPerson": null,
-    "publishedDate": "2026-09-30T12:50:03Z",
+    "publishedDate": "2026-10-21T12:50:03Z",
     "lastEditedDate": null,
     "isBanned": false,
     "meta": {
-     "createdDate": "2026-09-30T12:50:03Z",
+     "createdDate": "2026-10-21T12:50:03Z",
      "createdPerson": {
       "id": 103
      },

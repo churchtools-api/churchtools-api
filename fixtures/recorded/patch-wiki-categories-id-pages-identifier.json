@@ -2,7 +2,7 @@
  "operation": "patch-wiki-categories-id-pages-identifier",
  "request": {
   "method": "PATCH",
-  "path": "/wiki/categories/40/pages/1FB00D6A-A80F-4627-809A-8D48C809FC39",
+  "path": "/wiki/categories/11/pages/1C1FD038-7D79-4B51-8C19-AB5080D707C9",
   "query": [],
   "body": {
    "text": "Hallo Welt"
@@ -10,11 +10,11 @@
  },
  "body": {
   "data": {
-   "guid": "1FB00D6A-A80F-4627-809A-8D48C809FC39",
+   "guid": "1C1FD038-7D79-4B51-8C19-AB5080D707C9",
    "wikiCategory": {
-    "id": 40,
-    "name": "ctrs-test Wiki 2285fa neu",
-    "nameTranslated": "ctrs-test Wiki 2285fa neu",
+    "id": 11,
+    "name": "ctrs-test Wiki b10624 neu",
+    "nameTranslated": "ctrs-test Wiki b10624 neu",
     "sortKey": 998,
     "campusId": null,
     "inMenu": false,
@@ -32,7 +32,7 @@
     "canDelete": true
    },
    "meta": {
-    "createdDate": "2026-10-30T16:06:06Z",
+    "createdDate": "2026-11-21T19:06:44Z",
     "createdPerson": {
      "title": "Armin Adendorf",
      "domainType": "person",
@@ -46,13 +46,13 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
      "infos": []
     },
-    "modifiedDate": "2026-10-30T16:06:06Z",
+    "modifiedDate": "2026-11-21T19:06:44Z",
     "modifiedPerson": {
      "title": "Armin Adendorf",
      "domainType": "person",
@@ -66,7 +66,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -76,7 +76,7 @@
    "@deprecated": {
     "identifier": "guid"
    },
-   "identifier": "1FB00D6A-A80F-4627-809A-8D48C809FC39"
+   "identifier": "1C1FD038-7D79-4B51-8C19-AB5080D707C9"
   }
  }
 }

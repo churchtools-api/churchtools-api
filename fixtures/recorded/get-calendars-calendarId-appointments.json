@@ -11,9 +11,9 @@
    {
     "appointment": {
      "base": {
-      "id": 1665407,
-      "title": "FC Augsburg - Bayern München (2:2)",
-      "subtitle": "WWK Arena, Augsburg",
+      "id": 1670585,
+      "title": "Atletico Madrid - Bayern München (0:2)",
+      "subtitle": "Riyadh Air Metropolitano",
       "address": null,
       "version": 0,
       "calendar": {
@@ -23,7 +23,7 @@
        "sortKey": 0,
        "type": "personal",
        "color": "black",
-       "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+       "randomUrl": "",
        "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
        "syncToEvTermine": false,
        "evTermineEventTypeId": null,
@@ -34,7 +34,7 @@
         "createdPerson": {
          "id": -4
         },
-        "modifiedDate": "2026-10-30T01:50:55Z",
+        "modifiedDate": "2026-11-21T02:16:05Z",
         "modifiedPerson": {
          "id": 1
         }
@@ -46,12 +46,12 @@
        "isPublic": false,
        "isPrivate": true
       },
-      "description": "1. Bundesliga, 5. Spieltag",
+      "description": "Champions League, 4. Spt",
       "image": null,
       "link": "",
       "isInternal": false,
-      "startDate": "2026-10-10T13:30:00Z",
-      "endDate": "2026-10-10T15:30:00Z",
+      "startDate": "2026-11-03T20:00:00Z",
+      "endDate": "2026-11-03T22:00:00Z",
       "allDay": false,
       "repeatId": 0,
       "repeatFrequency": null,
@@ -62,11 +62,11 @@
       "signup": null,
       "onBehalfOfPid": null,
       "meta": {
-       "createdDate": "2026-10-27T01:36:07Z",
+       "createdDate": "2026-11-17T02:07:10Z",
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-27T01:36:07Z",
+       "modifiedDate": "2026-11-17T02:07:10Z",
        "modifiedPerson": {
         "id": -1
        }
@@ -77,15 +77,15 @@
        "note": "subtitle",
        "information": "description"
       },
-      "caption": "FC Augsburg - Bayern München (2:2)",
-      "note": "WWK Arena, Augsburg",
-      "information": "1. Bundesliga, 5. Spieltag",
+      "caption": "Atletico Madrid - Bayern München (0:2)",
+      "note": "Riyadh Air Metropolitano",
+      "information": "Champions League, 4. Spt",
       "additions": []
      },
      "calculated": {
-      "startDate": "2026-10-10T13:30:00Z",
-      "endDate": "2026-10-10T15:30:00Z",
-      "iCalUid": "rt7bctfeuilvvgbcmnajn3gil0@google.com"
+      "startDate": "2026-11-03T20:00:00Z",
+      "endDate": "2026-11-03T22:00:00Z",
+      "iCalUid": "7e0c143c0lgjlqgjsf593pp0a4@google.com"
      }
     },
     "@deprecated": {
@@ -93,9 +93,9 @@
      "calculated": "appointment.calculated"
     },
     "base": {
-     "id": 1665407,
-     "title": "FC Augsburg - Bayern München (2:2)",
-     "subtitle": "WWK Arena, Augsburg",
+     "id": 1670585,
+     "title": "Atletico Madrid - Bayern München (0:2)",
+     "subtitle": "Riyadh Air Metropolitano",
      "address": null,
      "version": 0,
      "calendar": {
@@ -105,7 +105,7 @@
       "sortKey": 0,
       "type": "personal",
       "color": "black",
-      "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+      "randomUrl": "",
       "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
       "syncToEvTermine": false,
       "evTermineEventTypeId": null,
@@ -116,7 +116,7 @@
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-30T01:50:55Z",
+       "modifiedDate": "2026-11-21T02:16:05Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -128,12 +128,12 @@
       "isPublic": false,
       "isPrivate": true
      },
-     "description": "1. Bundesliga, 5. Spieltag",
+     "description": "Champions League, 4. Spt",
      "image": null,
      "link": "",
      "isInternal": false,
-     "startDate": "2026-10-10T13:30:00Z",
-     "endDate": "2026-10-10T15:30:00Z",
+     "startDate": "2026-11-03T20:00:00Z",
+     "endDate": "2026-11-03T22:00:00Z",
      "allDay": false,
      "repeatId": 0,
      "repeatFrequency": null,
@@ -144,11 +144,11 @@
      "signup": null,
      "onBehalfOfPid": null,
      "meta": {
-      "createdDate": "2026-10-27T01:36:07Z",
+      "createdDate": "2026-11-17T02:07:10Z",
       "createdPerson": {
        "id": -4
       },
-      "modifiedDate": "2026-10-27T01:36:07Z",
+      "modifiedDate": "2026-11-17T02:07:10Z",
       "modifiedPerson": {
        "id": -1
       }
@@ -159,23 +159,23 @@
       "note": "subtitle",
       "information": "description"
      },
-     "caption": "FC Augsburg - Bayern München (2:2)",
-     "note": "WWK Arena, Augsburg",
-     "information": "1. Bundesliga, 5. Spieltag",
+     "caption": "Atletico Madrid - Bayern München (0:2)",
+     "note": "Riyadh Air Metropolitano",
+     "information": "Champions League, 4. Spt",
      "additions": []
     },
     "calculated": {
-     "startDate": "2026-10-10T13:30:00Z",
-     "endDate": "2026-10-10T15:30:00Z",
-     "iCalUid": "rt7bctfeuilvvgbcmnajn3gil0@google.com"
+     "startDate": "2026-11-03T20:00:00Z",
+     "endDate": "2026-11-03T22:00:00Z",
+     "iCalUid": "7e0c143c0lgjlqgjsf593pp0a4@google.com"
     }
    },
    {
     "appointment": {
      "base": {
-      "id": 1665104,
-      "title": "Viking Stavanger - Bayern München (3:3)",
-      "subtitle": "",
+      "id": 1671185,
+      "title": "1. FSV Mainz 05 - Bayern München (1:2)",
+      "subtitle": "MEWA Arena",
       "address": null,
       "version": 0,
       "calendar": {
@@ -185,7 +185,7 @@
        "sortKey": 0,
        "type": "personal",
        "color": "black",
-       "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+       "randomUrl": "",
        "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
        "syncToEvTermine": false,
        "evTermineEventTypeId": null,
@@ -196,7 +196,7 @@
         "createdPerson": {
          "id": -4
         },
-        "modifiedDate": "2026-10-30T01:50:55Z",
+        "modifiedDate": "2026-11-21T02:16:05Z",
         "modifiedPerson": {
          "id": 1
         }
@@ -208,12 +208,12 @@
        "isPublic": false,
        "isPrivate": true
       },
-      "description": "Champions League, 2. Spt",
+      "description": "1. Bundesliga, 9. Spieltag",
       "image": null,
       "link": "",
       "isInternal": false,
-      "startDate": "2026-10-13T19:00:00Z",
-      "endDate": "2026-10-13T21:00:00Z",
+      "startDate": "2026-11-07T14:30:00Z",
+      "endDate": "2026-11-07T16:30:00Z",
       "allDay": false,
       "repeatId": 0,
       "repeatFrequency": null,
@@ -224,11 +224,11 @@
       "signup": null,
       "onBehalfOfPid": null,
       "meta": {
-       "createdDate": "2026-10-27T01:36:07Z",
+       "createdDate": "2026-11-17T02:07:10Z",
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-27T01:36:07Z",
+       "modifiedDate": "2026-11-17T02:07:10Z",
        "modifiedPerson": {
         "id": -1
        }
@@ -239,15 +239,15 @@
        "note": "subtitle",
        "information": "description"
       },
-      "caption": "Viking Stavanger - Bayern München (3:3)",
-      "note": "",
-      "information": "Champions League, 2. Spt",
+      "caption": "1. FSV Mainz 05 - Bayern München (1:2)",
+      "note": "MEWA Arena",
+      "information": "1. Bundesliga, 9. Spieltag",
       "additions": []
      },
      "calculated": {
-      "startDate": "2026-10-13T19:00:00Z",
-      "endDate": "2026-10-13T21:00:00Z",
-      "iCalUid": "cfrb4vdp3s6jej00u5otav4cds@google.com"
+      "startDate": "2026-11-07T14:30:00Z",
+      "endDate": "2026-11-07T16:30:00Z",
+      "iCalUid": "2c03agrpjcdlv9uqg4h5ldh7j0@google.com"
      }
     },
     "@deprecated": {
@@ -255,9 +255,9 @@
      "calculated": "appointment.calculated"
     },
     "base": {
-     "id": 1665104,
-     "title": "Viking Stavanger - Bayern München (3:3)",
-     "subtitle": "",
+     "id": 1671185,
+     "title": "1. FSV Mainz 05 - Bayern München (1:2)",
+     "subtitle": "MEWA Arena",
      "address": null,
      "version": 0,
      "calendar": {
@@ -267,7 +267,7 @@
       "sortKey": 0,
       "type": "personal",
       "color": "black",
-      "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+      "randomUrl": "",
       "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
       "syncToEvTermine": false,
       "evTermineEventTypeId": null,
@@ -278,7 +278,7 @@
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-30T01:50:55Z",
+       "modifiedDate": "2026-11-21T02:16:05Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -290,12 +290,12 @@
       "isPublic": false,
       "isPrivate": true
      },
-     "description": "Champions League, 2. Spt",
+     "description": "1. Bundesliga, 9. Spieltag",
      "image": null,
      "link": "",
      "isInternal": false,
-     "startDate": "2026-10-13T19:00:00Z",
-     "endDate": "2026-10-13T21:00:00Z",
+     "startDate": "2026-11-07T14:30:00Z",
+     "endDate": "2026-11-07T16:30:00Z",
      "allDay": false,
      "repeatId": 0,
      "repeatFrequency": null,
@@ -306,11 +306,11 @@
      "signup": null,
      "onBehalfOfPid": null,
      "meta": {
-      "createdDate": "2026-10-27T01:36:07Z",
+      "createdDate": "2026-11-17T02:07:10Z",
       "createdPerson": {
        "id": -4
       },
-      "modifiedDate": "2026-10-27T01:36:07Z",
+      "modifiedDate": "2026-11-17T02:07:10Z",
       "modifiedPerson": {
        "id": -1
       }
@@ -321,22 +321,22 @@
       "note": "subtitle",
       "information": "description"
      },
-     "caption": "Viking Stavanger - Bayern München (3:3)",
-     "note": "",
-     "information": "Champions League, 2. Spt",
+     "caption": "1. FSV Mainz 05 - Bayern München (1:2)",
+     "note": "MEWA Arena",
+     "information": "1. Bundesliga, 9. Spieltag",
      "additions": []
     },
     "calculated": {
-     "startDate": "2026-10-13T19:00:00Z",
-     "endDate": "2026-10-13T21:00:00Z",
-     "iCalUid": "cfrb4vdp3s6jej00u5otav4cds@google.com"
+     "startDate": "2026-11-07T14:30:00Z",
+     "endDate": "2026-11-07T16:30:00Z",
+     "iCalUid": "2c03agrpjcdlv9uqg4h5ldh7j0@google.com"
     }
    },
    {
     "appointment": {
      "base": {
-      "id": 1663685,
-      "title": "Bayern München - RB Leipzig (6:1)",
+      "id": 1671473,
+      "title": "Bayern München - 1. FC Köln",
       "subtitle": "Allianz-Arena, München",
       "address": null,
       "version": 0,
@@ -347,7 +347,7 @@
        "sortKey": 0,
        "type": "personal",
        "color": "black",
-       "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+       "randomUrl": "",
        "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
        "syncToEvTermine": false,
        "evTermineEventTypeId": null,
@@ -358,7 +358,7 @@
         "createdPerson": {
          "id": -4
         },
-        "modifiedDate": "2026-10-30T01:50:55Z",
+        "modifiedDate": "2026-11-21T02:16:05Z",
         "modifiedPerson": {
          "id": 1
         }
@@ -370,12 +370,12 @@
        "isPublic": false,
        "isPrivate": true
       },
-      "description": "1. Bundesliga, 6. Spieltag",
+      "description": "1. Bundesliga, 10. Spieltag",
       "image": null,
       "link": "",
       "isInternal": false,
-      "startDate": "2026-10-17T16:30:00Z",
-      "endDate": "2026-10-17T18:30:00Z",
+      "startDate": "2026-11-20T19:30:00Z",
+      "endDate": "2026-11-20T21:30:00Z",
       "allDay": false,
       "repeatId": 0,
       "repeatFrequency": null,
@@ -386,11 +386,11 @@
       "signup": null,
       "onBehalfOfPid": null,
       "meta": {
-       "createdDate": "2026-10-27T01:36:07Z",
+       "createdDate": "2026-11-17T02:07:10Z",
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-27T01:36:07Z",
+       "modifiedDate": "2026-11-17T02:07:10Z",
        "modifiedPerson": {
         "id": -1
        }
@@ -401,15 +401,15 @@
        "note": "subtitle",
        "information": "description"
       },
-      "caption": "Bayern München - RB Leipzig (6:1)",
+      "caption": "Bayern München - 1. FC Köln",
       "note": "Allianz-Arena, München",
-      "information": "1. Bundesliga, 6. Spieltag",
+      "information": "1. Bundesliga, 10. Spieltag",
       "additions": []
      },
      "calculated": {
-      "startDate": "2026-10-17T16:30:00Z",
-      "endDate": "2026-10-17T18:30:00Z",
-      "iCalUid": "ge88p0v4ca7qg0h8090eta5vs4@google.com"
+      "startDate": "2026-11-20T19:30:00Z",
+      "endDate": "2026-11-20T21:30:00Z",
+      "iCalUid": "5rpnmloqjca8fiopqo89p31o60@google.com"
      }
     },
     "@deprecated": {
@@ -417,8 +417,8 @@
      "calculated": "appointment.calculated"
     },
     "base": {
-     "id": 1663685,
-     "title": "Bayern München - RB Leipzig (6:1)",
+     "id": 1671473,
+     "title": "Bayern München - 1. FC Köln",
      "subtitle": "Allianz-Arena, München",
      "address": null,
      "version": 0,
@@ -429,7 +429,7 @@
       "sortKey": 0,
       "type": "personal",
       "color": "black",
-      "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+      "randomUrl": "",
       "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
       "syncToEvTermine": false,
       "evTermineEventTypeId": null,
@@ -440,7 +440,7 @@
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-30T01:50:55Z",
+       "modifiedDate": "2026-11-21T02:16:05Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -452,12 +452,12 @@
       "isPublic": false,
       "isPrivate": true
      },
-     "description": "1. Bundesliga, 6. Spieltag",
+     "description": "1. Bundesliga, 10. Spieltag",
      "image": null,
      "link": "",
      "isInternal": false,
-     "startDate": "2026-10-17T16:30:00Z",
-     "endDate": "2026-10-17T18:30:00Z",
+     "startDate": "2026-11-20T19:30:00Z",
+     "endDate": "2026-11-20T21:30:00Z",
      "allDay": false,
      "repeatId": 0,
      "repeatFrequency": null,
@@ -468,11 +468,11 @@
      "signup": null,
      "onBehalfOfPid": null,
      "meta": {
-      "createdDate": "2026-10-27T01:36:07Z",
+      "createdDate": "2026-11-17T02:07:10Z",
       "createdPerson": {
        "id": -4
       },
-      "modifiedDate": "2026-10-27T01:36:07Z",
+      "modifiedDate": "2026-11-17T02:07:10Z",
       "modifiedPerson": {
        "id": -1
       }
@@ -483,23 +483,23 @@
       "note": "subtitle",
       "information": "description"
      },
-     "caption": "Bayern München - RB Leipzig (6:1)",
+     "caption": "Bayern München - 1. FC Köln",
      "note": "Allianz-Arena, München",
-     "information": "1. Bundesliga, 6. Spieltag",
+     "information": "1. Bundesliga, 10. Spieltag",
      "additions": []
     },
     "calculated": {
-     "startDate": "2026-10-17T16:30:00Z",
-     "endDate": "2026-10-17T18:30:00Z",
-     "iCalUid": "ge88p0v4ca7qg0h8090eta5vs4@google.com"
+     "startDate": "2026-11-20T19:30:00Z",
+     "endDate": "2026-11-20T21:30:00Z",
+     "iCalUid": "5rpnmloqjca8fiopqo89p31o60@google.com"
     }
    },
    {
     "appointment": {
      "base": {
-      "id": 1664912,
-      "title": "Bayern München - FC Arsenal (2:2)",
-      "subtitle": "Allianz-Arena, München",
+      "id": 1670630,
+      "title": "Lille OSC - Bayern München",
+      "subtitle": "Lille Métropole (alt)",
       "address": null,
       "version": 0,
       "calendar": {
@@ -509,7 +509,7 @@
        "sortKey": 0,
        "type": "personal",
        "color": "black",
-       "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+       "randomUrl": "",
        "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
        "syncToEvTermine": false,
        "evTermineEventTypeId": null,
@@ -520,7 +520,7 @@
         "createdPerson": {
          "id": -4
         },
-        "modifiedDate": "2026-10-30T01:50:55Z",
+        "modifiedDate": "2026-11-21T02:16:05Z",
         "modifiedPerson": {
          "id": 1
         }
@@ -532,12 +532,12 @@
        "isPublic": false,
        "isPrivate": true
       },
-      "description": "Champions League, 3. Spt",
+      "description": "Champions League, 5. Spt",
       "image": null,
       "link": "",
       "isInternal": false,
-      "startDate": "2026-10-21T19:00:00Z",
-      "endDate": "2026-10-21T21:00:00Z",
+      "startDate": "2026-11-25T20:00:00Z",
+      "endDate": "2026-11-25T22:00:00Z",
       "allDay": false,
       "repeatId": 0,
       "repeatFrequency": null,
@@ -548,11 +548,11 @@
       "signup": null,
       "onBehalfOfPid": null,
       "meta": {
-       "createdDate": "2026-10-27T01:36:07Z",
+       "createdDate": "2026-11-17T02:07:10Z",
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-27T01:36:07Z",
+       "modifiedDate": "2026-11-17T02:07:10Z",
        "modifiedPerson": {
         "id": -1
        }
@@ -563,15 +563,15 @@
        "note": "subtitle",
        "information": "description"
       },
-      "caption": "Bayern München - FC Arsenal (2:2)",
-      "note": "Allianz-Arena, München",
-      "information": "Champions League, 3. Spt",
+      "caption": "Lille OSC - Bayern München",
+      "note": "Lille Métropole (alt)",
+      "information": "Champions League, 5. Spt",
       "additions": []
      },
      "calculated": {
-      "startDate": "2026-10-21T19:00:00Z",
-      "endDate": "2026-10-21T21:00:00Z",
-      "iCalUid": "5csmmoaqlcree2ksl1r9bg8ua4@google.com"
+      "startDate": "2026-11-25T20:00:00Z",
+      "endDate": "2026-11-25T22:00:00Z",
+      "iCalUid": "g9pqrnej7agl9t30qhn8fjrcb8@google.com"
      }
     },
     "@deprecated": {
@@ -579,9 +579,9 @@
      "calculated": "appointment.calculated"
     },
     "base": {
-     "id": 1664912,
-     "title": "Bayern München - FC Arsenal (2:2)",
-     "subtitle": "Allianz-Arena, München",
+     "id": 1670630,
+     "title": "Lille OSC - Bayern München",
+     "subtitle": "Lille Métropole (alt)",
      "address": null,
      "version": 0,
      "calendar": {
@@ -591,7 +591,7 @@
       "sortKey": 0,
       "type": "personal",
       "color": "black",
-      "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+      "randomUrl": "",
       "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
       "syncToEvTermine": false,
       "evTermineEventTypeId": null,
@@ -602,7 +602,7 @@
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-30T01:50:55Z",
+       "modifiedDate": "2026-11-21T02:16:05Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -614,12 +614,12 @@
       "isPublic": false,
       "isPrivate": true
      },
-     "description": "Champions League, 3. Spt",
+     "description": "Champions League, 5. Spt",
      "image": null,
      "link": "",
      "isInternal": false,
-     "startDate": "2026-10-21T19:00:00Z",
-     "endDate": "2026-10-21T21:00:00Z",
+     "startDate": "2026-11-25T20:00:00Z",
+     "endDate": "2026-11-25T22:00:00Z",
      "allDay": false,
      "repeatId": 0,
      "repeatFrequency": null,
@@ -630,11 +630,11 @@
      "signup": null,
      "onBehalfOfPid": null,
      "meta": {
-      "createdDate": "2026-10-27T01:36:07Z",
+      "createdDate": "2026-11-17T02:07:10Z",
       "createdPerson": {
        "id": -4
       },
-      "modifiedDate": "2026-10-27T01:36:07Z",
+      "modifiedDate": "2026-11-17T02:07:10Z",
       "modifiedPerson": {
        "id": -1
       }
@@ -645,23 +645,23 @@
       "note": "subtitle",
       "information": "description"
      },
-     "caption": "Bayern München - FC Arsenal (2:2)",
-     "note": "Allianz-Arena, München",
-     "information": "Champions League, 3. Spt",
+     "caption": "Lille OSC - Bayern München",
+     "note": "Lille Métropole (alt)",
+     "information": "Champions League, 5. Spt",
      "additions": []
     },
     "calculated": {
-     "startDate": "2026-10-21T19:00:00Z",
-     "endDate": "2026-10-21T21:00:00Z",
-     "iCalUid": "5csmmoaqlcree2ksl1r9bg8ua4@google.com"
+     "startDate": "2026-11-25T20:00:00Z",
+     "endDate": "2026-11-25T22:00:00Z",
+     "iCalUid": "g9pqrnej7agl9t30qhn8fjrcb8@google.com"
     }
    },
    {
     "appointment": {
      "base": {
-      "id": 1665188,
-      "title": "SC Freiburg - Bayern München (1:3)",
-      "subtitle": "Europa-Park Stadion",
+      "id": 1670069,
+      "title": "Hamburger SV - Bayern München",
+      "subtitle": "Volksparkstadion, Hamburg",
       "address": null,
       "version": 0,
       "calendar": {
@@ -671,7 +671,7 @@
        "sortKey": 0,
        "type": "personal",
        "color": "black",
-       "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+       "randomUrl": "",
        "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
        "syncToEvTermine": false,
        "evTermineEventTypeId": null,
@@ -682,7 +682,7 @@
         "createdPerson": {
          "id": -4
         },
-        "modifiedDate": "2026-10-30T01:50:55Z",
+        "modifiedDate": "2026-11-21T02:16:05Z",
         "modifiedPerson": {
          "id": 1
         }
@@ -694,12 +694,12 @@
        "isPublic": false,
        "isPrivate": true
       },
-      "description": "1. Bundesliga, 7. Spieltag",
+      "description": "1. Bundesliga, 11. Spieltag",
       "image": null,
       "link": "",
       "isInternal": false,
-      "startDate": "2026-10-25T16:30:00Z",
-      "endDate": "2026-10-25T18:30:00Z",
+      "startDate": "2026-11-28T14:30:00Z",
+      "endDate": "2026-11-28T16:30:00Z",
       "allDay": false,
       "repeatId": 0,
       "repeatFrequency": null,
@@ -710,11 +710,11 @@
       "signup": null,
       "onBehalfOfPid": null,
       "meta": {
-       "createdDate": "2026-10-27T01:36:07Z",
+       "createdDate": "2026-11-17T02:07:10Z",
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-28T02:37:27Z",
+       "modifiedDate": "2026-11-17T02:07:10Z",
        "modifiedPerson": {
         "id": -1
        }
@@ -725,15 +725,15 @@
        "note": "subtitle",
        "information": "description"
       },
-      "caption": "SC Freiburg - Bayern München (1:3)",
-      "note": "Europa-Park Stadion",
-      "information": "1. Bundesliga, 7. Spieltag",
+      "caption": "Hamburger SV - Bayern München",
+      "note": "Volksparkstadion, Hamburg",
+      "information": "1. Bundesliga, 11. Spieltag",
       "additions": []
      },
      "calculated": {
-      "startDate": "2026-10-25T16:30:00Z",
-      "endDate": "2026-10-25T18:30:00Z",
-      "iCalUid": "fcp82g5suhrid8grvllhjq9ejg@google.com"
+      "startDate": "2026-11-28T14:30:00Z",
+      "endDate": "2026-11-28T16:30:00Z",
+      "iCalUid": "93ujgcs25l5rtqnugfj40njto8@google.com"
      }
     },
     "@deprecated": {
@@ -741,9 +741,9 @@
      "calculated": "appointment.calculated"
     },
     "base": {
-     "id": 1665188,
-     "title": "SC Freiburg - Bayern München (1:3)",
-     "subtitle": "Europa-Park Stadion",
+     "id": 1670069,
+     "title": "Hamburger SV - Bayern München",
+     "subtitle": "Volksparkstadion, Hamburg",
      "address": null,
      "version": 0,
      "calendar": {
@@ -753,7 +753,7 @@
       "sortKey": 0,
       "type": "personal",
       "color": "black",
-      "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+      "randomUrl": "",
       "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
       "syncToEvTermine": false,
       "evTermineEventTypeId": null,
@@ -764,7 +764,7 @@
        "createdPerson": {
         "id": -4
        },
-       "modifiedDate": "2026-10-30T01:50:55Z",
+       "modifiedDate": "2026-11-21T02:16:05Z",
        "modifiedPerson": {
         "id": 1
        }
@@ -776,12 +776,12 @@
       "isPublic": false,
       "isPrivate": true
      },
-     "description": "1. Bundesliga, 7. Spieltag",
+     "description": "1. Bundesliga, 11. Spieltag",
      "image": null,
      "link": "",
      "isInternal": false,
-     "startDate": "2026-10-25T16:30:00Z",
-     "endDate": "2026-10-25T18:30:00Z",
+     "startDate": "2026-11-28T14:30:00Z",
+     "endDate": "2026-11-28T16:30:00Z",
      "allDay": false,
      "repeatId": 0,
      "repeatFrequency": null,
@@ -792,11 +792,11 @@
      "signup": null,
      "onBehalfOfPid": null,
      "meta": {
-      "createdDate": "2026-10-27T01:36:07Z",
+      "createdDate": "2026-11-17T02:07:10Z",
       "createdPerson": {
        "id": -4
       },
-      "modifiedDate": "2026-10-28T02:37:27Z",
+      "modifiedDate": "2026-11-17T02:07:10Z",
       "modifiedPerson": {
        "id": -1
       }
@@ -807,344 +807,20 @@
       "note": "subtitle",
       "information": "description"
      },
-     "caption": "SC Freiburg - Bayern München (1:3)",
-     "note": "Europa-Park Stadion",
-     "information": "1. Bundesliga, 7. Spieltag",
+     "caption": "Hamburger SV - Bayern München",
+     "note": "Volksparkstadion, Hamburg",
+     "information": "1. Bundesliga, 11. Spieltag",
      "additions": []
     },
     "calculated": {
-     "startDate": "2026-10-25T16:30:00Z",
-     "endDate": "2026-10-25T18:30:00Z",
-     "iCalUid": "fcp82g5suhrid8grvllhjq9ejg@google.com"
-    }
-   },
-   {
-    "appointment": {
-     "base": {
-      "id": 1664879,
-      "title": "Bayern München - 1. FC Magdeburg (-:-)",
-      "subtitle": "Allianz-Arena, München",
-      "address": null,
-      "version": 0,
-      "calendar": {
-       "id": 49,
-       "name": "Fußball-Kalender",
-       "nameTranslated": "Fußball-Kalender",
-       "sortKey": 0,
-       "type": "personal",
-       "color": "black",
-       "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
-       "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
-       "syncToEvTermine": false,
-       "evTermineEventTypeId": null,
-       "campusId": null,
-       "eventTemplateId": null,
-       "meta": {
-        "createdDate": "2025-06-16T08:28:33Z",
-        "createdPerson": {
-         "id": -4
-        },
-        "modifiedDate": "2026-10-30T01:50:55Z",
-        "modifiedPerson": {
-         "id": 1
-        }
-       },
-       "@deprecated": {
-        "isPublic": "type",
-        "isPrivate": "type"
-       },
-       "isPublic": false,
-       "isPrivate": true
-      },
-      "description": "DFB-Pokal, Runde 2",
-      "image": null,
-      "link": "",
-      "isInternal": false,
-      "startDate": "2026-10-28T19:45:00Z",
-      "endDate": "2026-10-28T21:45:00Z",
-      "allDay": false,
-      "repeatId": 0,
-      "repeatFrequency": null,
-      "repeatUntil": null,
-      "repeatOption": null,
-      "additionals": [],
-      "exceptions": [],
-      "signup": null,
-      "onBehalfOfPid": null,
-      "meta": {
-       "createdDate": "2026-10-27T01:36:07Z",
-       "createdPerson": {
-        "id": -4
-       },
-       "modifiedDate": "2026-10-28T02:37:27Z",
-       "modifiedPerson": {
-        "id": -1
-       }
-      },
-      "@deprecated": {
-       "additions": "additionals",
-       "caption": "title",
-       "note": "subtitle",
-       "information": "description"
-      },
-      "caption": "Bayern München - 1. FC Magdeburg (-:-)",
-      "note": "Allianz-Arena, München",
-      "information": "DFB-Pokal, Runde 2",
-      "additions": []
-     },
-     "calculated": {
-      "startDate": "2026-10-28T19:45:00Z",
-      "endDate": "2026-10-28T21:45:00Z",
-      "iCalUid": "4pvhln9cun94t1352jgmttpouo@google.com"
-     }
-    },
-    "@deprecated": {
-     "base": "appointment.base",
-     "calculated": "appointment.calculated"
-    },
-    "base": {
-     "id": 1664879,
-     "title": "Bayern München - 1. FC Magdeburg (-:-)",
-     "subtitle": "Allianz-Arena, München",
-     "address": null,
-     "version": 0,
-     "calendar": {
-      "id": 49,
-      "name": "Fußball-Kalender",
-      "nameTranslated": "Fußball-Kalender",
-      "sortKey": 0,
-      "type": "personal",
-      "color": "black",
-      "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
-      "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
-      "syncToEvTermine": false,
-      "evTermineEventTypeId": null,
-      "campusId": null,
-      "eventTemplateId": null,
-      "meta": {
-       "createdDate": "2025-06-16T08:28:33Z",
-       "createdPerson": {
-        "id": -4
-       },
-       "modifiedDate": "2026-10-30T01:50:55Z",
-       "modifiedPerson": {
-        "id": 1
-       }
-      },
-      "@deprecated": {
-       "isPublic": "type",
-       "isPrivate": "type"
-      },
-      "isPublic": false,
-      "isPrivate": true
-     },
-     "description": "DFB-Pokal, Runde 2",
-     "image": null,
-     "link": "",
-     "isInternal": false,
-     "startDate": "2026-10-28T19:45:00Z",
-     "endDate": "2026-10-28T21:45:00Z",
-     "allDay": false,
-     "repeatId": 0,
-     "repeatFrequency": null,
-     "repeatUntil": null,
-     "repeatOption": null,
-     "additionals": [],
-     "exceptions": [],
-     "signup": null,
-     "onBehalfOfPid": null,
-     "meta": {
-      "createdDate": "2026-10-27T01:36:07Z",
-      "createdPerson": {
-       "id": -4
-      },
-      "modifiedDate": "2026-10-28T02:37:27Z",
-      "modifiedPerson": {
-       "id": -1
-      }
-     },
-     "@deprecated": {
-      "additions": "additionals",
-      "caption": "title",
-      "note": "subtitle",
-      "information": "description"
-     },
-     "caption": "Bayern München - 1. FC Magdeburg (-:-)",
-     "note": "Allianz-Arena, München",
-     "information": "DFB-Pokal, Runde 2",
-     "additions": []
-    },
-    "calculated": {
-     "startDate": "2026-10-28T19:45:00Z",
-     "endDate": "2026-10-28T21:45:00Z",
-     "iCalUid": "4pvhln9cun94t1352jgmttpouo@google.com"
-    }
-   },
-   {
-    "appointment": {
-     "base": {
-      "id": 1663610,
-      "title": "Bayern München - Borussia Dortmund",
-      "subtitle": "Allianz-Arena, München",
-      "address": null,
-      "version": 0,
-      "calendar": {
-       "id": 49,
-       "name": "Fußball-Kalender",
-       "nameTranslated": "Fußball-Kalender",
-       "sortKey": 0,
-       "type": "personal",
-       "color": "black",
-       "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
-       "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
-       "syncToEvTermine": false,
-       "evTermineEventTypeId": null,
-       "campusId": null,
-       "eventTemplateId": null,
-       "meta": {
-        "createdDate": "2025-06-16T08:28:33Z",
-        "createdPerson": {
-         "id": -4
-        },
-        "modifiedDate": "2026-10-30T01:50:55Z",
-        "modifiedPerson": {
-         "id": 1
-        }
-       },
-       "@deprecated": {
-        "isPublic": "type",
-        "isPrivate": "type"
-       },
-       "isPublic": false,
-       "isPrivate": true
-      },
-      "description": "1. Bundesliga, 8. Spieltag",
-      "image": null,
-      "link": "",
-      "isInternal": false,
-      "startDate": "2026-10-31T17:30:00Z",
-      "endDate": "2026-10-31T19:30:00Z",
-      "allDay": false,
-      "repeatId": 0,
-      "repeatFrequency": null,
-      "repeatUntil": null,
-      "repeatOption": null,
-      "additionals": [],
-      "exceptions": [],
-      "signup": null,
-      "onBehalfOfPid": null,
-      "meta": {
-       "createdDate": "2026-10-27T01:36:07Z",
-       "createdPerson": {
-        "id": -4
-       },
-       "modifiedDate": "2026-10-27T01:36:07Z",
-       "modifiedPerson": {
-        "id": -1
-       }
-      },
-      "@deprecated": {
-       "additions": "additionals",
-       "caption": "title",
-       "note": "subtitle",
-       "information": "description"
-      },
-      "caption": "Bayern München - Borussia Dortmund",
-      "note": "Allianz-Arena, München",
-      "information": "1. Bundesliga, 8. Spieltag",
-      "additions": []
-     },
-     "calculated": {
-      "startDate": "2026-10-31T17:30:00Z",
-      "endDate": "2026-10-31T19:30:00Z",
-      "iCalUid": "9qptg5bg5fa4fdejesr2frgk5k@google.com"
-     }
-    },
-    "@deprecated": {
-     "base": "appointment.base",
-     "calculated": "appointment.calculated"
-    },
-    "base": {
-     "id": 1663610,
-     "title": "Bayern München - Borussia Dortmund",
-     "subtitle": "Allianz-Arena, München",
-     "address": null,
-     "version": 0,
-     "calendar": {
-      "id": 49,
-      "name": "Fußball-Kalender",
-      "nameTranslated": "Fußball-Kalender",
-      "sortKey": 0,
-      "type": "personal",
-      "color": "black",
-      "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
-      "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
-      "syncToEvTermine": false,
-      "evTermineEventTypeId": null,
-      "campusId": null,
-      "eventTemplateId": null,
-      "meta": {
-       "createdDate": "2025-06-16T08:28:33Z",
-       "createdPerson": {
-        "id": -4
-       },
-       "modifiedDate": "2026-10-30T01:50:55Z",
-       "modifiedPerson": {
-        "id": 1
-       }
-      },
-      "@deprecated": {
-       "isPublic": "type",
-       "isPrivate": "type"
-      },
-      "isPublic": false,
-      "isPrivate": true
-     },
-     "description": "1. Bundesliga, 8. Spieltag",
-     "image": null,
-     "link": "",
-     "isInternal": false,
-     "startDate": "2026-10-31T17:30:00Z",
-     "endDate": "2026-10-31T19:30:00Z",
-     "allDay": false,
-     "repeatId": 0,
-     "repeatFrequency": null,
-     "repeatUntil": null,
-     "repeatOption": null,
-     "additionals": [],
-     "exceptions": [],
-     "signup": null,
-     "onBehalfOfPid": null,
-     "meta": {
-      "createdDate": "2026-10-27T01:36:07Z",
-      "createdPerson": {
-       "id": -4
-      },
-      "modifiedDate": "2026-10-27T01:36:07Z",
-      "modifiedPerson": {
-       "id": -1
-      }
-     },
-     "@deprecated": {
-      "additions": "additionals",
-      "caption": "title",
-      "note": "subtitle",
-      "information": "description"
-     },
-     "caption": "Bayern München - Borussia Dortmund",
-     "note": "Allianz-Arena, München",
-     "information": "1. Bundesliga, 8. Spieltag",
-     "additions": []
-    },
-    "calculated": {
-     "startDate": "2026-10-31T17:30:00Z",
-     "endDate": "2026-10-31T19:30:00Z",
-     "iCalUid": "9qptg5bg5fa4fdejesr2frgk5k@google.com"
+     "startDate": "2026-11-28T14:30:00Z",
+     "endDate": "2026-11-28T16:30:00Z",
+     "iCalUid": "93ujgcs25l5rtqnugfj40njto8@google.com"
     }
    }
   ],
   "meta": {
-   "count": 7
+   "count": 5
   }
  }
 }

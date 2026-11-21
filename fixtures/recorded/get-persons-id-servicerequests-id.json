@@ -23,7 +23,7 @@
     "domainAttributes": {
      "firstName": "Armin",
      "lastName": "Adendorf",
-     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -50,7 +50,7 @@
     "domainAttributes": {
      "firstName": "Armin",
      "lastName": "Adendorf",
-     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -59,16 +59,16 @@
    "event": {
     "id": 1878,
     "name": "Gebetsabend",
-    "startDate": "2025-08-05T17:00:00Z"
+    "startDate": "2025-08-26T17:00:00Z"
    },
    "allowChat": true,
    "permissions": null,
    "meta": {
-    "createdDate": "2026-01-18T11:25:57Z",
+    "createdDate": "2026-02-08T11:25:57Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-01-23T10:47:35Z",
+    "modifiedDate": "2026-02-13T10:47:35Z",
     "modifiedPerson": {
      "id": 1
     }
@@ -80,7 +80,7 @@
    },
    "agreed": true,
    "counter": 0,
-   "requestedDate": "2026-01-23T10:47:35Z"
+   "requestedDate": "2026-02-13T10:47:35Z"
   }
  }
 }

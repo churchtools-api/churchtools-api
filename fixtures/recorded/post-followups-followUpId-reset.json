@@ -2,14 +2,14 @@
  "operation": "post-followups-followUpId-reset",
  "request": {
   "method": "POST",
-  "path": "/followups/52/reset",
+  "path": "/followups/5/reset",
   "query": [],
   "body": {}
  },
  "body": {
   "data": {
-   "id": 52,
-   "personId": 2953,
+   "id": 5,
+   "personId": 2849,
    "groupId": null,
    "membershipId": null,
    "title": "Nachfragen",
@@ -26,11 +26,11 @@
    "effectiveDueDate": null,
    "doneDate": null,
    "meta": {
-    "createdDate": "2026-10-30T16:06:52Z",
+    "createdDate": "2026-11-21T19:07:29Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:06:53Z",
+    "modifiedDate": "2026-11-21T19:07:31Z",
     "modifiedPerson": {
      "id": 1
     }

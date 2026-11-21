@@ -22,7 +22,7 @@
     "domainAttributes": {
      "firstName": "Armin",
      "lastName": "Adendorf",
-     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
      "dateOfDeath": null,
      "isArchived": false
     },
@@ -48,7 +48,7 @@
      "groupTypeId": 2,
      "campusId": null,
      "visibility": "restricted",
-     "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     "guid": "C15A8509-04AC-4D2F-AA86-7878E825285E"
     },
     "infos": [
      "Team"
@@ -69,7 +69,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },

@@ -350,68 +350,6 @@
     "degreeOfRelationship": "relationship.part.child"
    },
    {
-    "id": 25,
-    "personAId": 177,
-    "personBId": 6,
-    "relationshipType": {
-     "id": 2,
-     "name": "relationship.couple",
-     "nameTranslated": "Ehepaar",
-     "securityLevelId": 1,
-     "degreeNameA": "relationship.part.spouse",
-     "degreeNameATranslated": "Ehepartner",
-     "degreeNameB": "relationship.part.spouse",
-     "degreeNameBTranslated": "Ehepartner",
-     "includeInExport": true,
-     "exportTitle": "relationship.couple",
-     "sortKey": 0,
-     "functionKeys": []
-    },
-    "@deprecated": {
-     "personId": "personAId",
-     "relativeId": "personBId",
-     "relationshipTypeId": "relationshipType.id",
-     "relationshipName": "relationshipType.name",
-     "degreeOfRelationship": "relationshipType.degreeNameB"
-    },
-    "personId": 177,
-    "relativeId": 6,
-    "relationshipTypeId": 2,
-    "relationshipName": "relationship.couple",
-    "degreeOfRelationship": "relationship.part.spouse"
-   },
-   {
-    "id": 25,
-    "personAId": 177,
-    "personBId": 6,
-    "relationshipType": {
-     "id": 2,
-     "name": "relationship.couple",
-     "nameTranslated": "Ehepaar",
-     "securityLevelId": 1,
-     "degreeNameA": "relationship.part.spouse",
-     "degreeNameATranslated": "Ehepartner",
-     "degreeNameB": "relationship.part.spouse",
-     "degreeNameBTranslated": "Ehepartner",
-     "includeInExport": true,
-     "exportTitle": "relationship.couple",
-     "sortKey": 0,
-     "functionKeys": []
-    },
-    "@deprecated": {
-     "personId": "personAId",
-     "relativeId": "personBId",
-     "relationshipTypeId": "relationshipType.id",
-     "relationshipName": "relationshipType.name",
-     "degreeOfRelationship": "relationshipType.degreeNameB"
-    },
-    "personId": 6,
-    "relativeId": 177,
-    "relationshipTypeId": 2,
-    "relationshipName": "relationship.couple",
-    "degreeOfRelationship": "relationship.part.spouse"
-   },
-   {
     "id": 75,
     "personAId": 210,
     "personBId": 183,
@@ -469,6 +407,68 @@
     },
     "personId": 183,
     "relativeId": 210,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 25,
+    "personAId": 177,
+    "personBId": 6,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 177,
+    "relativeId": 6,
+    "relationshipTypeId": 2,
+    "relationshipName": "relationship.couple",
+    "degreeOfRelationship": "relationship.part.spouse"
+   },
+   {
+    "id": 25,
+    "personAId": 177,
+    "personBId": 6,
+    "relationshipType": {
+     "id": 2,
+     "name": "relationship.couple",
+     "nameTranslated": "Ehepaar",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.spouse",
+     "degreeNameATranslated": "Ehepartner",
+     "degreeNameB": "relationship.part.spouse",
+     "degreeNameBTranslated": "Ehepartner",
+     "includeInExport": true,
+     "exportTitle": "relationship.couple",
+     "sortKey": 0,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 6,
+    "relativeId": 177,
     "relationshipTypeId": 2,
     "relationshipName": "relationship.couple",
     "degreeOfRelationship": "relationship.part.spouse"
@@ -877,37 +877,6 @@
     "degreeOfRelationship": "relationship.part.parent"
    },
    {
-    "id": 58,
-    "personAId": 89,
-    "personBId": 313,
-    "relationshipType": {
-     "id": 1,
-     "name": "relationship.parent-child",
-     "nameTranslated": "Elternteil/Kind",
-     "securityLevelId": 1,
-     "degreeNameA": "relationship.part.parent",
-     "degreeNameATranslated": "Elternteil",
-     "degreeNameB": "relationship.part.child",
-     "degreeNameBTranslated": "Kind",
-     "includeInExport": false,
-     "exportTitle": "",
-     "sortKey": 10,
-     "functionKeys": []
-    },
-    "@deprecated": {
-     "personId": "personAId",
-     "relativeId": "personBId",
-     "relationshipTypeId": "relationshipType.id",
-     "relationshipName": "relationshipType.name",
-     "degreeOfRelationship": "relationshipType.degreeNameB"
-    },
-    "personId": 313,
-    "relativeId": 89,
-    "relationshipTypeId": 1,
-    "relationshipName": "relationship.parent-child",
-    "degreeOfRelationship": "relationship.part.parent"
-   },
-   {
     "id": 55,
     "personAId": 319,
     "personBId": 313,
@@ -934,6 +903,37 @@
     },
     "personId": 313,
     "relativeId": 319,
+    "relationshipTypeId": 1,
+    "relationshipName": "relationship.parent-child",
+    "degreeOfRelationship": "relationship.part.parent"
+   },
+   {
+    "id": 58,
+    "personAId": 89,
+    "personBId": 313,
+    "relationshipType": {
+     "id": 1,
+     "name": "relationship.parent-child",
+     "nameTranslated": "Elternteil/Kind",
+     "securityLevelId": 1,
+     "degreeNameA": "relationship.part.parent",
+     "degreeNameATranslated": "Elternteil",
+     "degreeNameB": "relationship.part.child",
+     "degreeNameBTranslated": "Kind",
+     "includeInExport": false,
+     "exportTitle": "",
+     "sortKey": 10,
+     "functionKeys": []
+    },
+    "@deprecated": {
+     "personId": "personAId",
+     "relativeId": "personBId",
+     "relationshipTypeId": "relationshipType.id",
+     "relationshipName": "relationshipType.name",
+     "degreeOfRelationship": "relationshipType.degreeNameB"
+    },
+    "personId": 313,
+    "relativeId": 89,
     "relationshipTypeId": 1,
     "relationshipName": "relationship.parent-child",
     "degreeOfRelationship": "relationship.part.parent"

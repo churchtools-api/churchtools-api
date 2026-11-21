@@ -18,19 +18,19 @@
  "body": {
   "data": [
    {
-    "id": 31855,
+    "id": 31478,
     "action": "add-group-member",
     "origin": "default",
     "translationKey": "group.add-member.history",
     "translationArgs": {
      "actor": "Armin Adendorf",
      "personName": "Armin Adendorf",
-     "groupName": "ctrs-test Seed-Gruppe 9502a3"
+     "groupName": "ctrs-test Seed-Gruppe 127f37"
     },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Seed-Gruppe 9502a3 hinzugefügt.",
+    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Seed-Gruppe 127f37 hinzugefügt.",
     "beforeAfterValues": [
      {
-      "id": 43153,
+      "id": 40313,
       "key": "role",
       "keyTranslated": "Rolle",
       "type": "text",
@@ -40,7 +40,7 @@
       "afterValueTranslated": "Teilnehmer"
      },
      {
-      "id": 43156,
+      "id": 40316,
       "key": "status",
       "keyTranslated": "Status",
       "type": "text",
@@ -50,71 +50,71 @@
       "afterValueTranslated": "Aktiv"
      },
      {
-      "id": 43159,
+      "id": 40319,
       "key": "membership.date-of-entry",
       "keyTranslated": "Gruppeneintrittsdatum",
       "type": "date",
       "beforeValue": null,
       "beforeValueTranslated": null,
-      "afterValue": "2026-10-30 17:03:23",
-      "afterValueTranslated": "2026-10-30 17:03:23"
+      "afterValue": "2026-11-21 20:03:56",
+      "afterValueTranslated": "2026-11-21 20:03:56"
      }
     ],
     "links": [
      {
-      "id": 44125,
+      "id": 43004,
       "domainType": "person",
       "domainId": "1",
       "role": null
      },
      {
-      "id": 44128,
+      "id": 43007,
       "domainType": "group",
-      "domainId": "958",
+      "domainId": "800",
       "role": null
      },
      {
-      "id": 44131,
+      "id": 43010,
       "domainType": "group_membership",
-      "domainId": "2620",
+      "domainId": "2555",
       "role": null
      }
     ],
     "meta": {
-     "createdDate": "2026-10-30T16:03:23Z",
+     "createdDate": "2026-11-21T19:03:57Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-30T16:03:23Z",
+     "modifiedDate": "2026-11-21T19:03:57Z",
      "modifiedPerson": {
       "id": 1
      }
     }
    },
    {
-    "id": 31837,
+    "id": 31455,
     "action": "add-group-member",
-    "origin": "default",
+    "origin": "duplicate-group",
     "translationKey": "group.add-member.history",
     "translationArgs": {
-     "actor": "Armin Adendorf",
+     "actor": "ChurchTools",
      "personName": "Armin Adendorf",
-     "groupName": "ctrs-test Gruppe f24a62"
+     "groupName": "#Newcomer-Lunch – 15.11.2026, 13:00"
     },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf zu ctrs-test Gruppe f24a62 hinzugefügt.",
+    "translatedTitle": "ChurchTools hat Armin Adendorf zu #Newcomer-Lunch – 15.11.2026, 13:00 hinzugefügt.",
     "beforeAfterValues": [
      {
-      "id": 43048,
+      "id": 40263,
       "key": "role",
       "keyTranslated": "Rolle",
       "type": "text",
       "beforeValue": null,
       "beforeValueTranslated": null,
-      "afterValue": "Teilnehmer",
-      "afterValueTranslated": "Teilnehmer"
+      "afterValue": "Leiter",
+      "afterValueTranslated": "Leiter"
      },
      {
-      "id": 43051,
+      "id": 40266,
       "key": "status",
       "keyTranslated": "Status",
       "type": "text",
@@ -124,545 +124,592 @@
       "afterValueTranslated": "Aktiv"
      },
      {
-      "id": 43054,
+      "id": 40269,
       "key": "membership.date-of-entry",
       "keyTranslated": "Gruppeneintrittsdatum",
       "type": "date",
       "beforeValue": null,
       "beforeValueTranslated": null,
-      "afterValue": "2026-10-30 16:59:43",
-      "afterValueTranslated": "2026-10-30 16:59:43"
+      "afterValue": "2026-11-10 03:15:31",
+      "afterValueTranslated": "2026-11-10 03:15:31"
      }
     ],
     "links": [
      {
-      "id": 44092,
+      "id": 42939,
       "domainType": "person",
       "domainId": "1",
       "role": null
      },
      {
-      "id": 44095,
+      "id": 42942,
       "domainType": "group",
-      "domainId": "955",
+      "domainId": "798",
       "role": null
      },
      {
-      "id": 44098,
+      "id": 42945,
       "domainType": "group_membership",
-      "domainId": "2617",
+      "domainId": "2541",
       "role": null
      }
     ],
     "meta": {
-     "createdDate": "2026-10-30T15:59:43Z",
+     "createdDate": "2026-11-10T02:15:32Z",
      "createdPerson": {
-      "id": 1
+      "id": -4
      },
-     "modifiedDate": "2026-10-30T15:59:43Z",
+     "modifiedDate": "2026-11-10T02:15:32Z",
      "modifiedPerson": {
-      "id": 1
+      "id": -4
      }
     }
    },
    {
-    "id": 31822,
-    "action": "delete-follow-up",
-    "origin": "default",
-    "translationKey": "follow-up.deleted.history",
+    "id": 31434,
+    "action": "add-group-member",
+    "origin": "duplicate-group",
+    "translationKey": "group.add-member.history",
     "translationArgs": {
-     "actor": "Armin Adendorf",
-     "title": "Nachfragen",
-     "personName": "ctrs-test Nachsorge"
-    },
-    "translatedTitle": "follow-up.deleted.history",
-    "beforeAfterValues": [
-     {
-      "id": 43003,
-      "key": "personId",
-      "keyTranslated": "personId",
-      "type": "text",
-      "beforeValue": "2941",
-      "beforeValueTranslated": "2941",
-      "afterValue": null,
-      "afterValueTranslated": null
-     },
-     {
-      "id": 43006,
-      "key": "owner",
-      "keyTranslated": "owner",
-      "type": "text",
-      "beforeValue": "Armin Adendorf",
-      "beforeValueTranslated": "Armin Adendorf",
-      "afterValue": null,
-      "afterValueTranslated": null
-     },
-     {
-      "id": 43009,
-      "key": "title",
-      "keyTranslated": "Titel",
-      "type": "text",
-      "beforeValue": "Nachfragen",
-      "beforeValueTranslated": "Nachfragen",
-      "afterValue": null,
-      "afterValueTranslated": null
-     },
-     {
-      "id": 43012,
-      "key": "description",
-      "keyTranslated": "Beschreibung",
-      "type": "text",
-      "beforeValue": "Anruf nach dem Gottesdienst",
-      "beforeValueTranslated": "Anruf nach dem Gottesdienst",
-      "afterValue": null,
-      "afterValueTranslated": null
-     }
-    ],
-    "links": [
-     {
-      "id": 44047,
-      "domainType": "person",
-      "domainId": "2941",
-      "role": null
-     },
-     {
-      "id": 44050,
-      "domainType": "follow_up",
-      "domainId": "46",
-      "role": null
-     },
-     {
-      "id": 44053,
-      "domainType": "person",
-      "domainId": "1",
-      "role": "owner"
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-30T15:59:40Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-30T15:59:40Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 31819,
-    "action": "dismiss-follow-up",
-    "origin": "default",
-    "translationKey": "follow-up.dismissed.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "title": "Nachfragen",
-     "personName": "ctrs-test Nachsorge"
-    },
-    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge verworfen.",
-    "beforeAfterValues": [],
-    "links": [
-     {
-      "id": 44038,
-      "domainType": "person",
-      "domainId": "2941",
-      "role": null
-     },
-     {
-      "id": 44041,
-      "domainType": "follow_up",
-      "domainId": "46",
-      "role": null
-     },
-     {
-      "id": 44044,
-      "domainType": "person",
-      "domainId": "1",
-      "role": "owner"
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-30T15:59:40Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-30T15:59:40Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 31816,
-    "action": "reset-follow-up",
-    "origin": "default",
-    "translationKey": "follow-up.reset.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "title": "Nachfragen",
-     "personName": "ctrs-test Nachsorge"
-    },
-    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge zurückgesetzt.",
-    "beforeAfterValues": [
-     {
-      "id": 43000,
-      "key": "effectiveDueDate",
-      "keyTranslated": "effectiveDueDate",
-      "type": "date",
-      "beforeValue": "2026-11-06",
-      "beforeValueTranslated": "2026-11-06",
-      "afterValue": null,
-      "afterValueTranslated": null
-     }
-    ],
-    "links": [
-     {
-      "id": 44029,
-      "domainType": "person",
-      "domainId": "2941",
-      "role": null
-     },
-     {
-      "id": 44032,
-      "domainType": "follow_up",
-      "domainId": "46",
-      "role": null
-     },
-     {
-      "id": 44035,
-      "domainType": "person",
-      "domainId": "1",
-      "role": "owner"
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-30T15:59:39Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-30T15:59:39Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 31813,
-    "action": "complete-follow-up",
-    "origin": "default",
-    "translationKey": "follow-up.completed.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "title": "Nachfragen",
-     "personName": "ctrs-test Nachsorge"
-    },
-    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge als erledigt markiert.",
-    "beforeAfterValues": [],
-    "links": [
-     {
-      "id": 44020,
-      "domainType": "person",
-      "domainId": "2941",
-      "role": null
-     },
-     {
-      "id": 44023,
-      "domainType": "follow_up",
-      "domainId": "46",
-      "role": null
-     },
-     {
-      "id": 44026,
-      "domainType": "person",
-      "domainId": "1",
-      "role": "owner"
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-30T15:59:39Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-30T15:59:39Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 31810,
-    "action": "postpone-follow-up",
-    "origin": "default",
-    "translationKey": "follow-up.postponed.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "title": "Nachfragen",
-     "personName": "ctrs-test Nachsorge",
-     "newDueDate": "2026-11-06"
-    },
-    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge verschoben.",
-    "beforeAfterValues": [
-     {
-      "id": 42997,
-      "key": "effectiveDueDate",
-      "keyTranslated": "effectiveDueDate",
-      "type": "date",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "2026-11-06",
-      "afterValueTranslated": "2026-11-06"
-     }
-    ],
-    "links": [
-     {
-      "id": 44011,
-      "domainType": "person",
-      "domainId": "2941",
-      "role": null
-     },
-     {
-      "id": 44014,
-      "domainType": "follow_up",
-      "domainId": "46",
-      "role": null
-     },
-     {
-      "id": 44017,
-      "domainType": "person",
-      "domainId": "1",
-      "role": "owner"
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-30T15:59:39Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-30T15:59:39Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 31807,
-    "action": "update-follow-up",
-    "origin": "default",
-    "translationKey": "follow-up.updated.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "title": "Nachfragen",
-     "personName": "ctrs-test Nachsorge"
-    },
-    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen” für ctrs-test Nachsorge geändert.",
-    "beforeAfterValues": [
-     {
-      "id": 42991,
-      "key": "title",
-      "keyTranslated": "Titel",
-      "type": "text",
-      "beforeValue": "Nachfragen, wie es geht",
-      "beforeValueTranslated": "Nachfragen, wie es geht",
-      "afterValue": "Nachfragen",
-      "afterValueTranslated": "Nachfragen"
-     },
-     {
-      "id": 42994,
-      "key": "description",
-      "keyTranslated": "Beschreibung",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "Anruf nach dem Gottesdienst",
-      "afterValueTranslated": "Anruf nach dem Gottesdienst"
-     }
-    ],
-    "links": [
-     {
-      "id": 44002,
-      "domainType": "person",
-      "domainId": "2941",
-      "role": null
-     },
-     {
-      "id": 44005,
-      "domainType": "follow_up",
-      "domainId": "46",
-      "role": null
-     },
-     {
-      "id": 44008,
-      "domainType": "person",
-      "domainId": "1",
-      "role": "owner"
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-30T15:59:38Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-30T15:59:38Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 31804,
-    "action": "create-follow-up",
-    "origin": "default",
-    "translationKey": "follow-up.created.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
-     "title": "Nachfragen, wie es geht",
-     "personName": "ctrs-test Nachsorge"
-    },
-    "translatedTitle": "Armin Adendorf hat das Follow-up “Nachfragen, wie es geht” für ctrs-test Nachsorge geplant.",
-    "beforeAfterValues": [
-     {
-      "id": 42982,
-      "key": "personId",
-      "keyTranslated": "personId",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "2941",
-      "afterValueTranslated": "2941"
-     },
-     {
-      "id": 42985,
-      "key": "owner",
-      "keyTranslated": "owner",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "Armin Adendorf",
-      "afterValueTranslated": "Armin Adendorf"
-     },
-     {
-      "id": 42988,
-      "key": "title",
-      "keyTranslated": "Titel",
-      "type": "text",
-      "beforeValue": null,
-      "beforeValueTranslated": null,
-      "afterValue": "Nachfragen, wie es geht",
-      "afterValueTranslated": "Nachfragen, wie es geht"
-     }
-    ],
-    "links": [
-     {
-      "id": 43993,
-      "domainType": "person",
-      "domainId": "2941",
-      "role": null
-     },
-     {
-      "id": 43996,
-      "domainType": "follow_up",
-      "domainId": "46",
-      "role": null
-     },
-     {
-      "id": 43999,
-      "domainType": "person",
-      "domainId": "1",
-      "role": "owner"
-     }
-    ],
-    "meta": {
-     "createdDate": "2026-10-30T15:59:38Z",
-     "createdPerson": {
-      "id": 1
-     },
-     "modifiedDate": "2026-10-30T15:59:38Z",
-     "modifiedPerson": {
-      "id": 1
-     }
-    }
-   },
-   {
-    "id": 31792,
-    "action": "remove-group-member",
-    "origin": "default",
-    "translationKey": "group.remove-member.history",
-    "translationArgs": {
-     "actor": "Armin Adendorf",
+     "actor": "ChurchTools",
      "personName": "Armin Adendorf",
-     "groupName": "ctrs-test Gruppe 2750aa"
+     "groupName": "#Newcomer-Lunch – 08.11.2026, 13:00"
     },
-    "translatedTitle": "Armin Adendorf hat Armin Adendorf aus der Gruppe \"ctrs-test Gruppe 2750aa\" entfernt.",
+    "translatedTitle": "ChurchTools hat Armin Adendorf zu #Newcomer-Lunch – 08.11.2026, 13:00 hinzugefügt.",
     "beforeAfterValues": [
      {
-      "id": 42883,
+      "id": 40215,
       "key": "role",
       "keyTranslated": "Rolle",
       "type": "text",
-      "beforeValue": "Teilnehmer",
-      "beforeValueTranslated": "Teilnehmer",
-      "afterValue": null,
-      "afterValueTranslated": null
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Leiter",
+      "afterValueTranslated": "Leiter"
      },
      {
-      "id": 42886,
+      "id": 40218,
       "key": "status",
       "keyTranslated": "Status",
       "type": "text",
-      "beforeValue": "active",
-      "beforeValueTranslated": "Aktiv",
-      "afterValue": null,
-      "afterValueTranslated": null
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "active",
+      "afterValueTranslated": "Aktiv"
      },
      {
-      "id": 42889,
+      "id": 40221,
       "key": "membership.date-of-entry",
       "keyTranslated": "Gruppeneintrittsdatum",
       "type": "date",
-      "beforeValue": "2026-10-30 16:58:46",
-      "beforeValueTranslated": "2026-10-30 16:58:46",
-      "afterValue": null,
-      "afterValueTranslated": null
-     },
-     {
-      "id": 42892,
-      "key": "comment",
-      "keyTranslated": "Kommentar",
-      "type": "text",
-      "beforeValue": "geändert",
-      "beforeValueTranslated": "geändert",
-      "afterValue": null,
-      "afterValueTranslated": null
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2026-11-03 03:18:33",
+      "afterValueTranslated": "2026-11-03 03:18:33"
      }
     ],
     "links": [
      {
-      "id": 43969,
+      "id": 42876,
       "domainType": "person",
       "domainId": "1",
       "role": null
      },
      {
-      "id": 43972,
+      "id": 42879,
       "domainType": "group",
-      "domainId": "943",
+      "domainId": "795",
       "role": null
      },
      {
-      "id": 43975,
+      "id": 42882,
       "domainType": "group_membership",
-      "domainId": "2611",
+      "domainId": "2526",
       "role": null
      }
     ],
     "meta": {
-     "createdDate": "2026-10-30T15:58:47Z",
+     "createdDate": "2026-11-03T02:18:34Z",
      "createdPerson": {
-      "id": 1
+      "id": -4
      },
-     "modifiedDate": "2026-10-30T15:58:47Z",
+     "modifiedDate": "2026-11-03T02:18:34Z",
      "modifiedPerson": {
-      "id": 1
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 6014,
+    "action": "add-group-member",
+    "origin": "duplicate-group",
+    "translationKey": "group.add-member.history",
+    "translationArgs": {
+     "actor": "ChurchTools",
+     "personName": "Armin Adendorf",
+     "groupName": "#Newcomer-Lunch – 01.11.2026, 13:00"
+    },
+    "translatedTitle": "ChurchTools hat Armin Adendorf zu #Newcomer-Lunch – 01.11.2026, 13:00 hinzugefügt.",
+    "beforeAfterValues": [
+     {
+      "id": 39704,
+      "key": "role",
+      "keyTranslated": "Rolle",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Leiter",
+      "afterValueTranslated": "Leiter"
+     },
+     {
+      "id": 39707,
+      "key": "status",
+      "keyTranslated": "Status",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "active",
+      "afterValueTranslated": "Aktiv"
+     },
+     {
+      "id": 39710,
+      "key": "membership.date-of-entry",
+      "keyTranslated": "Gruppeneintrittsdatum",
+      "type": "date",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2026-10-27 02:36:06",
+      "afterValueTranslated": "2026-10-27 02:36:06"
+     }
+    ],
+    "links": [
+     {
+      "id": 17291,
+      "domainType": "person",
+      "domainId": "1",
+      "role": null
+     },
+     {
+      "id": 17294,
+      "domainType": "group",
+      "domainId": "794",
+      "role": null
+     },
+     {
+      "id": 17297,
+      "domainType": "group_membership",
+      "domainId": "2513",
+      "role": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-27T01:36:07Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-10-27T01:36:07Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 5992,
+    "action": "add-group-member",
+    "origin": "duplicate-group",
+    "translationKey": "group.add-member.history",
+    "translationArgs": {
+     "actor": "ChurchTools",
+     "personName": "Armin Adendorf",
+     "groupName": "#Newcomer-Lunch – 22.11.2026, 13:00"
+    },
+    "translatedTitle": "ChurchTools hat Armin Adendorf zu #Newcomer-Lunch – 22.11.2026, 13:00 hinzugefügt.",
+    "beforeAfterValues": [
+     {
+      "id": 39649,
+      "key": "role",
+      "keyTranslated": "Rolle",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Leiter",
+      "afterValueTranslated": "Leiter"
+     },
+     {
+      "id": 39652,
+      "key": "status",
+      "keyTranslated": "Status",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "active",
+      "afterValueTranslated": "Aktiv"
+     },
+     {
+      "id": 39655,
+      "key": "membership.date-of-entry",
+      "keyTranslated": "Gruppeneintrittsdatum",
+      "type": "date",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2026-10-24 04:26:10",
+      "afterValueTranslated": "2026-10-24 04:26:10"
+     }
+    ],
+    "links": [
+     {
+      "id": 17221,
+      "domainType": "person",
+      "domainId": "1",
+      "role": null
+     },
+     {
+      "id": 17224,
+      "domainType": "group",
+      "domainId": "793",
+      "role": null
+     },
+     {
+      "id": 17227,
+      "domainType": "group_membership",
+      "domainId": "2497",
+      "role": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-24T02:26:10Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-10-24T02:26:10Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 5935,
+    "action": "add-group-member",
+    "origin": "duplicate-group",
+    "translationKey": "group.add-member.history",
+    "translationArgs": {
+     "actor": "ChurchTools",
+     "personName": "Armin Adendorf",
+     "groupName": "#Newcomer-Lunch – 18.10.2026, 13:00"
+    },
+    "translatedTitle": "ChurchTools hat Armin Adendorf zu #Newcomer-Lunch – 18.10.2026, 13:00 hinzugefügt.",
+    "beforeAfterValues": [
+     {
+      "id": 39580,
+      "key": "role",
+      "keyTranslated": "Rolle",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Leiter",
+      "afterValueTranslated": "Leiter"
+     },
+     {
+      "id": 39583,
+      "key": "status",
+      "keyTranslated": "Status",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "active",
+      "afterValueTranslated": "Aktiv"
+     },
+     {
+      "id": 39586,
+      "key": "membership.date-of-entry",
+      "keyTranslated": "Gruppeneintrittsdatum",
+      "type": "date",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2026-10-13 04:21:42",
+      "afterValueTranslated": "2026-10-13 04:21:42"
+     }
+    ],
+    "links": [
+     {
+      "id": 17074,
+      "domainType": "person",
+      "domainId": "1",
+      "role": null
+     },
+     {
+      "id": 17077,
+      "domainType": "group",
+      "domainId": "790",
+      "role": null
+     },
+     {
+      "id": 17080,
+      "domainType": "group_membership",
+      "domainId": "2482",
+      "role": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-13T02:21:43Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-10-13T02:21:43Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 5914,
+    "action": "add-group-member",
+    "origin": "duplicate-group",
+    "translationKey": "group.add-member.history",
+    "translationArgs": {
+     "actor": "ChurchTools",
+     "personName": "Armin Adendorf",
+     "groupName": "#Newcomer-Lunch – 11.10.2026, 13:00"
+    },
+    "translatedTitle": "ChurchTools hat Armin Adendorf zu #Newcomer-Lunch – 11.10.2026, 13:00 hinzugefügt.",
+    "beforeAfterValues": [
+     {
+      "id": 39532,
+      "key": "role",
+      "keyTranslated": "Rolle",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Leiter",
+      "afterValueTranslated": "Leiter"
+     },
+     {
+      "id": 39535,
+      "key": "status",
+      "keyTranslated": "Status",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "active",
+      "afterValueTranslated": "Aktiv"
+     },
+     {
+      "id": 39538,
+      "key": "membership.date-of-entry",
+      "keyTranslated": "Gruppeneintrittsdatum",
+      "type": "date",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2026-10-06 04:10:14",
+      "afterValueTranslated": "2026-10-06 04:10:14"
+     }
+    ],
+    "links": [
+     {
+      "id": 17011,
+      "domainType": "person",
+      "domainId": "1",
+      "role": null
+     },
+     {
+      "id": 17014,
+      "domainType": "group",
+      "domainId": "787",
+      "role": null
+     },
+     {
+      "id": 17017,
+      "domainType": "group_membership",
+      "domainId": "2467",
+      "role": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-10-06T02:10:15Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-10-06T02:10:15Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 5893,
+    "action": "add-group-member",
+    "origin": "duplicate-group",
+    "translationKey": "group.add-member.history",
+    "translationArgs": {
+     "actor": "ChurchTools",
+     "personName": "Armin Adendorf",
+     "groupName": "#Newcomer-Lunch – 04.10.2026, 13:00"
+    },
+    "translatedTitle": "ChurchTools hat Armin Adendorf zu #Newcomer-Lunch – 04.10.2026, 13:00 hinzugefügt.",
+    "beforeAfterValues": [
+     {
+      "id": 39430,
+      "key": "role",
+      "keyTranslated": "Rolle",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Leiter",
+      "afterValueTranslated": "Leiter"
+     },
+     {
+      "id": 39436,
+      "key": "status",
+      "keyTranslated": "Status",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "active",
+      "afterValueTranslated": "Aktiv"
+     },
+     {
+      "id": 39442,
+      "key": "membership.date-of-entry",
+      "keyTranslated": "Gruppeneintrittsdatum",
+      "type": "date",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2026-09-29 04:00:53",
+      "afterValueTranslated": "2026-09-29 04:00:53"
+     }
+    ],
+    "links": [
+     {
+      "id": 16948,
+      "domainType": "person",
+      "domainId": "1",
+      "role": null
+     },
+     {
+      "id": 16951,
+      "domainType": "group",
+      "domainId": "784",
+      "role": null
+     },
+     {
+      "id": 16954,
+      "domainType": "group_membership",
+      "domainId": "2452",
+      "role": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-09-29T02:00:54Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-09-29T02:00:54Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 31423,
+    "action": "legacy-person-log",
+    "origin": null,
+    "translationKey": "person.history.legacy-log",
+    "translationArgs": {
+     "actor": "ChurchTools",
+     "message": "New: Veranstaltung #Newcomer-Lunch – 25.10.2026, 13:00 (P:'Armin Adendorf'[#1], G:'#Newcomer-Lunch – 25.10.2026, 13:00'[#781], role:'Leiter'[#23], status:Aktiv)"
+    },
+    "translatedTitle": "ChurchTools: New: Veranstaltung #Newcomer-Lunch – 25.10.2026, 13:00 (P:'Armin Adendorf'[#1], G:'#Newcomer-Lunch – 25.10.2026, 13:00'[#781], role:'Leiter'[#23], status:Aktiv)",
+    "beforeAfterValues": [],
+    "links": [
+     {
+      "id": 42865,
+      "domainType": "person",
+      "domainId": "1",
+      "role": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-09-26T01:59:21Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-09-26T01:59:21Z",
+     "modifiedPerson": {
+      "id": -4
+     }
+    }
+   },
+   {
+    "id": 5872,
+    "action": "add-group-member",
+    "origin": "duplicate-group",
+    "translationKey": "group.add-member.history",
+    "translationArgs": {
+     "actor": "ChurchTools",
+     "personName": "Armin Adendorf",
+     "groupName": "#Newcomer-Lunch – 25.10.2026, 13:00"
+    },
+    "translatedTitle": "ChurchTools hat Armin Adendorf zu #Newcomer-Lunch – 25.10.2026, 13:00 hinzugefügt.",
+    "beforeAfterValues": [
+     {
+      "id": 39322,
+      "key": "role",
+      "keyTranslated": "Rolle",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "Leiter",
+      "afterValueTranslated": "Leiter"
+     },
+     {
+      "id": 39328,
+      "key": "status",
+      "keyTranslated": "Status",
+      "type": "text",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "active",
+      "afterValueTranslated": "Aktiv"
+     },
+     {
+      "id": 39334,
+      "key": "membership.date-of-entry",
+      "keyTranslated": "Gruppeneintrittsdatum",
+      "type": "date",
+      "beforeValue": null,
+      "beforeValueTranslated": null,
+      "afterValue": "2026-09-26 03:59:20",
+      "afterValueTranslated": "2026-09-26 03:59:20"
+     }
+    ],
+    "links": [
+     {
+      "id": 16885,
+      "domainType": "person",
+      "domainId": "1",
+      "role": null
+     },
+     {
+      "id": 16888,
+      "domainType": "group",
+      "domainId": "781",
+      "role": null
+     },
+     {
+      "id": 16891,
+      "domainType": "group_membership",
+      "domainId": "2437",
+      "role": null
+     }
+    ],
+    "meta": {
+     "createdDate": "2026-09-26T01:59:21Z",
+     "createdPerson": {
+      "id": -4
+     },
+     "modifiedDate": "2026-09-26T01:59:21Z",
+     "modifiedPerson": {
+      "id": -4
      }
     }
    }
@@ -670,10 +717,10 @@
   "meta": {
    "count": 10,
    "pagination": {
-    "total": 346,
+    "total": 238,
     "limit": 10,
     "current": 1,
-    "lastPage": 35
+    "lastPage": 24
    }
   }
  }

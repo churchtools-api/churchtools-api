@@ -2,16 +2,16 @@
  "operation": "get-calendars-calendarId-appointments-appointmentId",
  "request": {
   "method": "GET",
-  "path": "/calendars/49/appointments/1665407",
+  "path": "/calendars/49/appointments/1670585",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
    "appointment": {
-    "id": 1665407,
-    "title": "FC Augsburg - Bayern München (2:2)",
-    "subtitle": "WWK Arena, Augsburg",
+    "id": 1670585,
+    "title": "Atletico Madrid - Bayern München (0:2)",
+    "subtitle": "Riyadh Air Metropolitano",
     "address": null,
     "version": 0,
     "calendar": {
@@ -21,7 +21,7 @@
      "sortKey": 0,
      "type": "personal",
      "color": "black",
-     "randomUrl": "uTkJiRUTsMq8KGtKfE1P48fvP1lPLNPg",
+     "randomUrl": "",
      "iCalSourceUrl": "https://www.google.com/calendar/ical/q0uc47v90gltqpojkk76t9mk30%40group.calendar.google.com/public/basic.ics",
      "syncToEvTermine": false,
      "evTermineEventTypeId": null,
@@ -32,7 +32,7 @@
       "createdPerson": {
        "id": -4
       },
-      "modifiedDate": "2026-10-30T01:50:55Z",
+      "modifiedDate": "2026-11-21T02:16:05Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -44,12 +44,12 @@
      "isPublic": false,
      "isPrivate": true
     },
-    "description": "1. Bundesliga, 5. Spieltag",
+    "description": "Champions League, 4. Spt",
     "image": null,
     "link": "",
     "isInternal": false,
-    "startDate": "2026-10-10T13:30:00Z",
-    "endDate": "2026-10-10T15:30:00Z",
+    "startDate": "2026-11-03T20:00:00Z",
+    "endDate": "2026-11-03T22:00:00Z",
     "allDay": false,
     "repeatId": 0,
     "repeatFrequency": null,
@@ -60,11 +60,11 @@
     "signup": null,
     "onBehalfOfPid": null,
     "meta": {
-     "createdDate": "2026-10-27T01:36:07Z",
+     "createdDate": "2026-11-17T02:07:10Z",
      "createdPerson": {
       "id": -4
      },
-     "modifiedDate": "2026-10-27T01:36:07Z",
+     "modifiedDate": "2026-11-17T02:07:10Z",
      "modifiedPerson": {
       "id": -1
      }
@@ -75,17 +75,17 @@
      "note": "subtitle",
      "information": "description"
     },
-    "caption": "FC Augsburg - Bayern München (2:2)",
-    "note": "WWK Arena, Augsburg",
-    "information": "1. Bundesliga, 5. Spieltag",
+    "caption": "Atletico Madrid - Bayern München (0:2)",
+    "note": "Riyadh Air Metropolitano",
+    "information": "Champions League, 4. Spt",
     "additions": []
    },
    "additionalInfos": [],
    "calculatedDates": {
-    "2026-10-10": {
-     "startDate": "2026-10-10T13:30:00Z",
-     "endDate": "2026-10-10T15:30:00Z",
-     "iCalUid": "rt7bctfeuilvvgbcmnajn3gil0@google.com"
+    "2026-11-03": {
+     "startDate": "2026-11-03T20:00:00Z",
+     "endDate": "2026-11-03T22:00:00Z",
+     "iCalUid": "7e0c143c0lgjlqgjsf593pp0a4@google.com"
     }
    }
   }

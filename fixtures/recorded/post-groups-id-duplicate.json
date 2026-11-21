@@ -2,27 +2,27 @@
  "operation": "post-groups-id-duplicate",
  "request": {
   "method": "POST",
-  "path": "/groups/967/duplicate",
+  "path": "/groups/809/duplicate",
   "query": [
    [
     "newName",
-    "ctrs-test Gruppe 418545 Kopie"
+    "ctrs-test Gruppe 3f918d Kopie"
    ]
   ],
   "body": {}
  },
  "body": {
   "data": {
-   "id": 973,
-   "guid": "53A3B07E-94A1-43D4-AEE6-E6FD613D9745",
-   "name": "ctrs-test Gruppe 418545 Kopie",
+   "id": 815,
+   "guid": "A6EF8F6D-917D-4103-B80E-4F18C7DE44DC",
+   "name": "ctrs-test Gruppe 3f918d Kopie",
    "securityLevelForGroup": 5,
    "meta": {
-    "createdDate": "2026-10-30T16:06:49Z",
+    "createdDate": "2026-11-21T19:07:27Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:06:49Z",
+    "modifiedDate": "2026-11-21T19:07:27Z",
     "modifiedPerson": {
      "id": 1
     }
@@ -32,7 +32,7 @@
     "modifiedPerson": "meta.modifiedPid",
     "information.maxMembers": "settings.maxMembers"
    },
-   "modifiedDate": "2026-10-30T16:06:49Z",
+   "modifiedDate": "2026-11-21T19:07:27Z",
    "modifiedPerson": {
     "id": 1
    },

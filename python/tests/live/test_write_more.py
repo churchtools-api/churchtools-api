@@ -60,6 +60,23 @@ def test_status_patch(client: LiveClient, cleanup: Cleanup) -> None:
     client.statuses.delete(status.id)
 
 
+def test_security_level(client: LiveClient, cleanup: Cleanup) -> None:
+    # A free ID inserts a level without renumbering. `renumber()` is left out on purpose: it changes the IDs of
+    # all levels, and other scenarios refer to level 1.
+    taken = {level.id for level in client.security_levels.list()}
+    level_id = next(i for i in range(50, 99998) if i not in taken)
+    level_name = name("Stufe")[-20:]
+    client.security_levels.create(level_id, name=level_name)
+    cleanup(lambda: client.security_levels.delete(level_id))
+    with pytest.raises(ct.Conflict):
+        client.security_levels.patch(level_id, name=level_name + " 2", expected_name="ctrs-test anders")
+    assert client.security_levels.patch(level_id, name=level_name + " 2", expected_name=level_name).name == level_name + " 2"
+    with pytest.raises(ct.Conflict):
+        client.security_levels.delete(level_id, expected_name=level_name)
+    client.security_levels.delete(level_id, expected_name=level_name + " 2")
+    assert level_id not in {level.id for level in client.security_levels.list()}
+
+
 def test_group_type_with_role(client: LiveClient, cleanup: Cleanup) -> None:
     group_type = client.group.group_types.create(
         name=name("GT")[-14:],  # at most 30 characters

@@ -5,16 +5,16 @@
   "path": "/facts",
   "query": [],
   "body": {
-   "name": "ctrs-test Fakt 7c60a4",
+   "name": "ctrs-test Fakt dbf3dc",
    "type": "number",
    "unit": "Pers."
   }
  },
  "body": {
   "data": {
-   "id": 28,
-   "name": "ctrs-test Fakt 7c60a4",
-   "nameTranslated": "ctrs-test Fakt 7c60a4",
+   "id": 5,
+   "name": "ctrs-test Fakt dbf3dc",
+   "nameTranslated": "ctrs-test Fakt dbf3dc",
    "sortKey": 0,
    "type": "number",
    "@deprecated": "fieldType (now: type)",

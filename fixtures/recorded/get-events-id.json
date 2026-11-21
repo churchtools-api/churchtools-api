@@ -2,19 +2,19 @@
  "operation": "get-events-id",
  "request": {
   "method": "GET",
-  "path": "/events/1816",
+  "path": "/events/1990",
   "query": [],
   "body": null
  },
  "body": {
   "data": {
-   "id": 1816,
-   "guid": "31B0AF57-5131-442B-A38E-87DCBB32A5EB",
-   "name": "Jugendgottesdienst",
+   "id": 1990,
+   "guid": "A10756F1-47B8-446A-A301-6F0EF92E46D5",
+   "name": "Gottesdienst",
    "description": "",
-   "appointmentId": 699015,
-   "startDate": "2026-10-30T18:00:00Z",
-   "endDate": "2026-10-30T20:00:00Z",
+   "appointmentId": 543826,
+   "startDate": "2026-11-22T09:00:00Z",
+   "endDate": "2026-11-22T10:30:00Z",
    "chatStatus": "NOT_STARTED",
    "isCanceled": false,
    "adminIds": [],
@@ -26,11 +26,11 @@
     "startChat": true
    },
    "calendar": {
-    "title": "Jugend",
+    "title": "Kirche Zentale",
     "domainType": "calendar",
-    "domainIdentifier": "3",
-    "apiUrl": "https://gemeinde.example/api/calendar/3",
-    "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=3",
+    "domainIdentifier": "2",
+    "apiUrl": "https://gemeinde.example/api/calendar/2",
+    "frontendUrl": "https://gemeinde.example/?q=churchcal&category_id=2",
     "imageUrl": null,
     "icon": "calendar",
     "color": null,
@@ -43,33 +43,15 @@
    "eventFiles": [],
    "eventServices": [
     {
-     "id": 22888,
-     "personId": 235,
-     "person": {
-      "title": "Peter Tooly",
-      "domainType": "person",
-      "domainIdentifier": "235",
-      "apiUrl": "https://gemeinde.example/api/persons/235",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23235/",
-      "imageUrl": "https://gemeinde.example/images/2182/5a7d3bc782adc4a451257ac8ce708e5a707b088e6ed8c88cd2cf23db140c89d3",
-      "icon": "user",
-      "color": null,
-      "initials": "PT",
-      "domainAttributes": {
-       "firstName": "Peter",
-       "lastName": "Tooly",
-       "guid": "0D6404B1-B712-43EB-89EF-2E7602BF6D46",
-       "dateOfDeath": null,
-       "isArchived": false
-      },
-      "infos": []
-     },
-     "name": "Peter Tooly",
-     "serviceId": 1,
-     "serviceName": "Predigt",
+     "id": 32023,
+     "personId": null,
+     "person": null,
+     "name": null,
+     "serviceId": 6,
+     "serviceName": "Ton",
      "index": null,
      "isValid": true,
-     "isAccepted": true,
+     "isAccepted": false,
      "comment": null,
      "requesterPersonId": 1,
      "requesterPerson": {
@@ -85,27 +67,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-02-13T14:37:46Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-01-18T11:49:40Z",
+      "modifiedDate": "2026-02-13T14:37:46Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -115,38 +97,20 @@
       "counter": "index",
       "requestedDate": "meta.modifiedDate"
      },
-     "agreed": true,
+     "agreed": false,
      "counter": 0,
-     "requestedDate": "2026-01-18T11:49:40Z"
+     "requestedDate": "2026-02-13T14:37:46Z"
     },
     {
-     "id": 22891,
-     "personId": 170,
-     "person": {
-      "title": "Marten Bischof",
-      "domainType": "person",
-      "domainIdentifier": "170",
-      "apiUrl": "https://gemeinde.example/api/persons/170",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23170/",
-      "imageUrl": "https://gemeinde.example/images/2374/a6ef47a39b2e512d02b865a80c3747206d3e3e814e50fd1a16bffe6ee618da8d",
-      "icon": "user",
-      "color": null,
-      "initials": "MB",
-      "domainAttributes": {
-       "firstName": "Marten",
-       "lastName": "Bischof",
-       "guid": "FE2742A8-AB37-42D5-B6B6-EA0E3D8CCFE6",
-       "dateOfDeath": null,
-       "isArchived": false
-      },
-      "infos": []
-     },
-     "name": "Marten Bischof",
-     "serviceId": 2,
-     "serviceName": "Lobpreisleitung",
+     "id": 32026,
+     "personId": null,
+     "person": null,
+     "name": null,
+     "serviceId": 7,
+     "serviceName": "Licht",
      "index": null,
      "isValid": true,
-     "isAccepted": true,
+     "isAccepted": false,
      "comment": null,
      "requesterPersonId": 1,
      "requesterPerson": {
@@ -162,27 +126,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-02-13T14:37:46Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-08-18T00:17:00Z",
+      "modifiedDate": "2026-02-13T14:37:46Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -192,33 +156,92 @@
       "counter": "index",
       "requestedDate": "meta.modifiedDate"
      },
-     "agreed": true,
+     "agreed": false,
      "counter": 0,
-     "requestedDate": "2026-08-18T00:17:00Z"
+     "requestedDate": "2026-02-13T14:37:46Z"
     },
     {
-     "id": 22894,
-     "personId": 261,
-     "person": {
-      "title": "Dieter Freitag",
+     "id": 32029,
+     "personId": null,
+     "person": null,
+     "name": null,
+     "serviceId": 8,
+     "serviceName": "Beamer",
+     "index": null,
+     "isValid": true,
+     "isAccepted": false,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
       "domainType": "person",
-      "domainIdentifier": "261",
-      "apiUrl": "https://gemeinde.example/api/persons/261",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23261/",
-      "imageUrl": "https://gemeinde.example/images/2173/4eff914733d1a1737e2b779fcdfcae6fb32f2cf3b27f9ec373a43a21b20d5538",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
       "icon": "user",
       "color": null,
-      "initials": "DF",
+      "initials": "AA",
       "domainAttributes": {
-       "firstName": "Dieter",
-       "lastName": "Freitag",
-       "guid": "40D286F8-7144-41DB-A6A4-91EB90CB6E33",
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Dieter Freitag",
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": true,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-02-13T14:37:46Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-02-13T14:37:46Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": false,
+     "counter": 0,
+     "requestedDate": "2026-02-13T14:37:46Z"
+    },
+    {
+     "id": 33888,
+     "personId": 346,
+     "person": {
+      "title": "Simone Gerlach",
+      "domainType": "person",
+      "domainIdentifier": "346",
+      "apiUrl": "https://gemeinde.example/api/persons/346",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23346/",
+      "imageUrl": "https://gemeinde.example/images/2191/3e60f9fb9179ee13d1aff81f3eac98ef93474aacc534a6bdc617d5ce04fc5387",
+      "icon": "user",
+      "color": null,
+      "initials": "SG",
+      "domainAttributes": {
+       "firstName": "Simone",
+       "lastName": "Gerlach",
+       "guid": "0C2CE6A7-BA3A-4852-B15B-53FBEFEB62E5",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Simone Gerlach",
      "serviceId": 3,
      "serviceName": "Leitung",
      "index": null,
@@ -239,27 +262,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T13:27:49Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-01-18T11:49:41Z",
+      "modifiedDate": "2026-11-17T13:27:49Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -271,33 +294,33 @@
      },
      "agreed": true,
      "counter": 0,
-     "requestedDate": "2026-01-18T11:49:41Z"
+     "requestedDate": "2026-11-17T13:27:49Z"
     },
     {
-     "id": 22897,
-     "personId": 188,
+     "id": 33900,
+     "personId": 108,
      "person": {
-      "title": "Karl Andrews",
+      "title": "Jens Atkins",
       "domainType": "person",
-      "domainIdentifier": "188",
-      "apiUrl": "https://gemeinde.example/api/persons/188",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23188/",
-      "imageUrl": "https://gemeinde.example/images/463/24e1b16d2c842d1d5bd5d640ebe472ba9be97f702f22764f0c16e2e0cf0417be",
+      "domainIdentifier": "108",
+      "apiUrl": "https://gemeinde.example/api/persons/108",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23108/",
+      "imageUrl": "https://gemeinde.example/images/469/ab89d1ca28be7800e55ad3fb5582a091de91febeaba37bffbe576b69ecd1fc2b",
       "icon": "user",
       "color": null,
-      "initials": "KA",
+      "initials": "JA",
       "domainAttributes": {
-       "firstName": "Karl",
-       "lastName": "Andrews",
-       "guid": "7F472E8A-F882-47AF-9282-74EE6B9DD306",
+       "firstName": "Jens",
+       "lastName": "Atkins",
+       "guid": "B5DA0479-B550-403F-8934-9A455669306B",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Karl Andrews",
-     "serviceId": 6,
-     "serviceName": "Ton",
+     "name": "Jens Atkins",
+     "serviceId": 1,
+     "serviceName": "Predigt",
      "index": null,
      "isValid": true,
      "isAccepted": true,
@@ -316,27 +339,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T14:55:40Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-01-18T11:56:08Z",
+      "modifiedDate": "2026-11-17T14:55:40Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -348,33 +371,33 @@
      },
      "agreed": true,
      "counter": 0,
-     "requestedDate": "2026-01-18T11:56:08Z"
+     "requestedDate": "2026-11-17T14:55:40Z"
     },
     {
-     "id": 22900,
-     "personId": 157,
+     "id": 33902,
+     "personId": 319,
      "person": {
-      "title": "Mats Ball",
+      "title": "Hans Beck",
       "domainType": "person",
-      "domainIdentifier": "157",
-      "apiUrl": "https://gemeinde.example/api/persons/157",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23157/",
-      "imageUrl": "https://gemeinde.example/images/475/57957e1534bb343137197c61590cfc95f346db232b9f81b1d6605e2587ba0ef9",
+      "domainIdentifier": "319",
+      "apiUrl": "https://gemeinde.example/api/persons/319",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23319/",
+      "imageUrl": "https://gemeinde.example/images/484/27ce8969bf2fc6a7be2dc75c153f9361cf0e7ab361fca3a166a0ba503f8ea6cc",
       "icon": "user",
       "color": null,
-      "initials": "MB",
+      "initials": "HB",
       "domainAttributes": {
-       "firstName": "Mats",
-       "lastName": "Ball",
-       "guid": "55F6DB31-B51D-459D-8E8D-09FFAED8613C",
+       "firstName": "Hans",
+       "lastName": "Beck",
+       "guid": "1BB34A38-562E-43B4-888C-511EB2B2E95B",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Mats Ball",
-     "serviceId": 7,
-     "serviceName": "Licht",
+     "name": "Hans Beck",
+     "serviceId": 2,
+     "serviceName": "Lobpreisleitung",
      "index": null,
      "isValid": true,
      "isAccepted": true,
@@ -393,27 +416,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T20:05:42Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-08-20T00:15:57Z",
+      "modifiedDate": "2026-11-17T20:05:42Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -425,108 +448,31 @@
      },
      "agreed": true,
      "counter": 0,
-     "requestedDate": "2026-08-20T00:15:57Z"
+     "requestedDate": "2026-11-17T20:05:42Z"
     },
     {
-     "id": 22903,
-     "personId": 151,
+     "id": 33911,
+     "personId": 235,
      "person": {
-      "title": "Felicitas Peter",
+      "title": "Peter Tooly",
       "domainType": "person",
-      "domainIdentifier": "151",
-      "apiUrl": "https://gemeinde.example/api/persons/151",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23151/",
-      "imageUrl": "https://gemeinde.example/images/2055/1295886147ee560774af813a884ae942c7d95f1703f0f13e89329122addfb7bc",
+      "domainIdentifier": "235",
+      "apiUrl": "https://gemeinde.example/api/persons/235",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23235/",
+      "imageUrl": "https://gemeinde.example/images/2182/5a7d3bc782adc4a451257ac8ce708e5a707b088e6ed8c88cd2cf23db140c89d3",
       "icon": "user",
       "color": null,
-      "initials": "FP",
+      "initials": "PT",
       "domainAttributes": {
-       "firstName": "Felicitas",
-       "lastName": "Peter",
-       "guid": "A73CD572-A468-4DFE-96C1-923185B1F55A",
+       "firstName": "Peter",
+       "lastName": "Tooly",
+       "guid": "F520BBF3-A92D-42E7-BC8D-51DC38AF2B08",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Felicitas Peter",
-     "serviceId": 8,
-     "serviceName": "Beamer",
-     "index": null,
-     "isValid": true,
-     "isAccepted": true,
-     "comment": null,
-     "requesterPersonId": 1,
-     "requesterPerson": {
-      "title": "Armin Adendorf",
-      "domainType": "person",
-      "domainIdentifier": "1",
-      "apiUrl": "https://gemeinde.example/api/persons/1",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
-      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
-      "icon": "user",
-      "color": null,
-      "initials": "AA",
-      "domainAttributes": {
-       "firstName": "Armin",
-       "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
-       "dateOfDeath": null,
-       "isArchived": false
-      },
-      "infos": []
-     },
-     "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
-     },
-     "allowChat": true,
-     "permissions": {
-      "enterSelfIfFree": true
-     },
-     "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
-      "createdPerson": {
-       "id": 1
-      },
-      "modifiedDate": "2026-08-20T00:15:57Z",
-      "modifiedPerson": {
-       "id": 1
-      }
-     },
-     "@deprecated": {
-      "agreed": "isAccepted",
-      "counter": "index",
-      "requestedDate": "meta.modifiedDate"
-     },
-     "agreed": true,
-     "counter": 0,
-     "requestedDate": "2026-08-20T00:15:57Z"
-    },
-    {
-     "id": 22912,
-     "personId": 133,
-     "person": {
-      "title": "Lennart Baldauf",
-      "domainType": "person",
-      "domainIdentifier": "133",
-      "apiUrl": "https://gemeinde.example/api/persons/133",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23133/",
-      "imageUrl": "https://gemeinde.example/images/514/6f83dadf44cf94a71fdb93d3f34858c37183d89abee6f60dedca838759dfb60c",
-      "icon": "user",
-      "color": null,
-      "initials": "LB",
-      "domainAttributes": {
-       "firstName": "Lennart",
-       "lastName": "Baldauf",
-       "guid": "68554A70-0735-4174-833B-4F3F0A9BA861",
-       "dateOfDeath": null,
-       "isArchived": false
-      },
-      "infos": []
-     },
-     "name": "Lennart Baldauf",
+     "name": "Peter Tooly",
      "serviceId": 10,
      "serviceName": "A-Gitarre",
      "index": null,
@@ -547,27 +493,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T20:05:42Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-08-18T00:17:00Z",
+      "modifiedDate": "2026-11-17T20:05:42Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -579,31 +525,31 @@
      },
      "agreed": true,
      "counter": 0,
-     "requestedDate": "2026-08-18T00:17:00Z"
+     "requestedDate": "2026-11-17T20:05:42Z"
     },
     {
-     "id": 22921,
-     "personId": 161,
+     "id": 33914,
+     "personId": 725,
      "person": {
-      "title": "Kalif Boutou",
+      "title": "Albert Gebhardt",
       "domainType": "person",
-      "domainIdentifier": "161",
-      "apiUrl": "https://gemeinde.example/api/persons/161",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23161/",
-      "imageUrl": "https://gemeinde.example/images/588/25c7e9a431dcf62b4d1fe08a77727151c85688789a39efbd421e72274c07d997",
+      "domainIdentifier": "725",
+      "apiUrl": "https://gemeinde.example/api/persons/725",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23725/",
+      "imageUrl": "https://gemeinde.example/images/1184/c2595bd45872daf8705e932462264b0dbf51e44a44e773ac1f40109e938455ee",
       "icon": "user",
       "color": null,
-      "initials": "KB",
+      "initials": "AG",
       "domainAttributes": {
-       "firstName": "Kalif",
-       "lastName": "Boutou",
-       "guid": "E5A6E96B-8E9F-4525-8487-D4F26C57E854",
+       "firstName": "Albert",
+       "lastName": "Gebhardt",
+       "guid": "3742AE7C-ED1A-4BEC-95F4-61098DB9A905",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Kalif Boutou",
+     "name": "Albert Gebhardt",
      "serviceId": 88,
      "serviceName": "Ordner Teamleiter",
      "index": null,
@@ -624,27 +570,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": false,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T20:05:45Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-08-20T00:15:57Z",
+      "modifiedDate": "2026-11-17T20:05:45Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -656,31 +602,416 @@
      },
      "agreed": true,
      "counter": 0,
-     "requestedDate": "2026-08-20T00:15:57Z"
+     "requestedDate": "2026-11-17T20:05:45Z"
     },
     {
-     "id": 22909,
-     "personId": 89,
+     "id": 33932,
+     "personId": 202,
      "person": {
-      "title": "Ruth Beck",
+      "title": "Renate Burke",
       "domainType": "person",
-      "domainIdentifier": "89",
-      "apiUrl": "https://gemeinde.example/api/persons/89",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2389/",
-      "imageUrl": "https://gemeinde.example/images/481/2e80ad8f7c3f3bc28f22965fcbaa1929beef4f61fe6cc0b3d78084e4ae964e71",
+      "domainIdentifier": "202",
+      "apiUrl": "https://gemeinde.example/api/persons/202",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23202/",
+      "imageUrl": "https://gemeinde.example/images/570/ed4cd7fd9a590b19b8f38d35befde3af6e65e1d73e6efaefae42766e35e3ae8e",
       "icon": "user",
       "color": null,
       "initials": "RB",
       "domainAttributes": {
-       "firstName": "Ruth",
+       "firstName": "Renate",
+       "lastName": "Burke",
+       "guid": "6D26468A-C45D-4B30-8803-4DD1E73206A1",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Renate Burke",
+     "serviceId": 84,
+     "serviceName": "Kaffeebar Leitung",
+     "index": null,
+     "isValid": true,
+     "isAccepted": true,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": false,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-11-17T20:05:49Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-11-17T20:05:49Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": true,
+     "counter": 0,
+     "requestedDate": "2026-11-17T20:05:49Z"
+    },
+    {
+     "id": 33935,
+     "personId": 509,
+     "person": {
+      "title": "Emmi Reimer",
+      "domainType": "person",
+      "domainIdentifier": "509",
+      "apiUrl": "https://gemeinde.example/api/persons/509",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23509/",
+      "imageUrl": "https://gemeinde.example/images/1794/e5df83874e3f22862b3c60353297d369475d8d6deb1b22fb6c3d4b47b99fd109",
+      "icon": "user",
+      "color": null,
+      "initials": "ER",
+      "domainAttributes": {
+       "firstName": "Emmi",
+       "lastName": "Reimer",
+       "guid": "E93D80F9-B82C-4A84-83DE-A50B547E4A5B",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Emmi Reimer",
+     "serviceId": 76,
+     "serviceName": "Leitung Raupen",
+     "index": null,
+     "isValid": true,
+     "isAccepted": true,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": true,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-11-17T20:05:52Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-11-17T20:05:52Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": true,
+     "counter": 0,
+     "requestedDate": "2026-11-17T20:05:52Z"
+    },
+    {
+     "id": 33938,
+     "personId": 313,
+     "person": {
+      "title": "Felix Beck",
+      "domainType": "person",
+      "domainIdentifier": "313",
+      "apiUrl": "https://gemeinde.example/api/persons/313",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23313/",
+      "imageUrl": "https://gemeinde.example/images/493/e87269996c62967d7ccbc0ad273978a6c973d2de1e617df8b01a0568f3ff10a2",
+      "icon": "user",
+      "color": null,
+      "initials": "FB",
+      "domainAttributes": {
+       "firstName": "Felix",
        "lastName": "Beck",
-       "guid": "9CF316C8-E17D-497F-A942-24A5AE03C183",
+       "guid": "2143DBF8-8BDB-4203-B6B8-9A88B7968BC0",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Ruth Beck",
+     "name": "Felix Beck",
+     "serviceId": 64,
+     "serviceName": "Leitung Krabbelhasen",
+     "index": null,
+     "isValid": true,
+     "isAccepted": true,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": true,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-11-17T20:05:52Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-11-17T20:05:52Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": true,
+     "counter": 0,
+     "requestedDate": "2026-11-17T20:05:52Z"
+    },
+    {
+     "id": 33941,
+     "personId": 307,
+     "person": {
+      "title": "Daria Bennett",
+      "domainType": "person",
+      "domainIdentifier": "307",
+      "apiUrl": "https://gemeinde.example/api/persons/307",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23307/",
+      "imageUrl": "https://gemeinde.example/images/505/a0121c0dcc6aca471a01288ea1f9a06c38521b1b805df1cd989e0dafd76213a4",
+      "icon": "user",
+      "color": null,
+      "initials": "DB",
+      "domainAttributes": {
+       "firstName": "Daria",
+       "lastName": "Bennett",
+       "guid": "B3F51482-7434-426A-A501-D89857E08058",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Daria Bennett",
+     "serviceId": 70,
+     "serviceName": "Leitung Schmetterlinge",
+     "index": null,
+     "isValid": true,
+     "isAccepted": true,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": true,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-11-17T20:05:53Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-11-17T20:05:53Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": true,
+     "counter": 0,
+     "requestedDate": "2026-11-17T20:05:53Z"
+    },
+    {
+     "id": 33944,
+     "personId": 39,
+     "person": {
+      "title": "Luis Bennett",
+      "domainType": "person",
+      "domainIdentifier": "39",
+      "apiUrl": "https://gemeinde.example/api/persons/39",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2339/",
+      "imageUrl": "https://gemeinde.example/images/511/6c61b33eca38bd6614d675f5e3791048fecf48c19d9e2dcd70bf510d0648a442",
+      "icon": "user",
+      "color": null,
+      "initials": "LB",
+      "domainAttributes": {
+       "firstName": "Luis",
+       "lastName": "Bennett",
+       "guid": "07731FC8-816F-488D-8E7E-F72DA636C587",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Luis Bennett",
+     "serviceId": 82,
+     "serviceName": "Leitung Tiger",
+     "index": null,
+     "isValid": true,
+     "isAccepted": true,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": true,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-11-17T20:05:53Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-11-17T20:05:53Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": true,
+     "counter": 0,
+     "requestedDate": "2026-11-17T20:05:53Z"
+    },
+    {
+     "id": 33905,
+     "personId": 167,
+     "person": {
+      "title": "Katrin Dehmel",
+      "domainType": "person",
+      "domainIdentifier": "167",
+      "apiUrl": "https://gemeinde.example/api/persons/167",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23167/",
+      "imageUrl": "https://gemeinde.example/images/1484/1378e10c616b31558da98a0831fa12e645b548e9b95883d4f947c63e9f4ec4bf",
+      "icon": "user",
+      "color": null,
+      "initials": "KD",
+      "domainAttributes": {
+       "firstName": "Katrin",
+       "lastName": "Dehmel",
+       "guid": "267DAA36-1B99-482D-BF06-6F1B4648F69C",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Katrin Dehmel",
      "serviceId": 9,
      "serviceName": "Gesang",
      "index": 1,
@@ -701,27 +1032,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T20:05:42Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-08-18T00:17:00Z",
+      "modifiedDate": "2026-11-17T20:05:42Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -733,31 +1064,31 @@
      },
      "agreed": true,
      "counter": 1,
-     "requestedDate": "2026-08-18T00:17:00Z"
+     "requestedDate": "2026-11-17T20:05:42Z"
     },
     {
-     "id": 22918,
-     "personId": 581,
+     "id": 33917,
+     "personId": 153,
      "person": {
-      "title": "Kuno Brenner",
+      "title": "Lynn Fendt",
       "domainType": "person",
-      "domainIdentifier": "581",
-      "apiUrl": "https://gemeinde.example/api/persons/581",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23581/",
-      "imageUrl": "https://gemeinde.example/images/1857/da9af39fa7ef504564bd52a9e2f7d1ad482a1bc45f8c01533e12f82b14193496",
+      "domainIdentifier": "153",
+      "apiUrl": "https://gemeinde.example/api/persons/153",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23153/",
+      "imageUrl": "https://gemeinde.example/images/2076/6dd9a1b8beb0a3ecb510c4cb6423bf1933d0f06ff49d7bcdd8cc7a2e8f3f2486",
       "icon": "user",
       "color": null,
-      "initials": "KB",
+      "initials": "LF",
       "domainAttributes": {
-       "firstName": "Kuno",
-       "lastName": "Brenner",
-       "guid": "C5BD0A74-6554-40D1-8954-6C963A52CBF6",
+       "firstName": "Lynn",
+       "lastName": "Fendt",
+       "guid": "353A9D1F-0F63-4EB8-AF3B-C7239CC74499",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Kuno Brenner",
+     "name": "Lynn Fendt",
      "serviceId": 12,
      "serviceName": "Ordner",
      "index": 1,
@@ -778,27 +1109,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T20:05:46Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-08-20T00:15:57Z",
+      "modifiedDate": "2026-11-17T20:05:46Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -810,31 +1141,108 @@
      },
      "agreed": true,
      "counter": 1,
-     "requestedDate": "2026-08-20T00:15:57Z"
+     "requestedDate": "2026-11-17T20:05:46Z"
     },
     {
-     "id": 22906,
-     "personId": 108,
+     "id": 33926,
+     "personId": 680,
      "person": {
-      "title": "Jens Atkins",
+      "title": "Sarah Mohr",
       "domainType": "person",
-      "domainIdentifier": "108",
-      "apiUrl": "https://gemeinde.example/api/persons/108",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23108/",
-      "imageUrl": "https://gemeinde.example/images/469/ab89d1ca28be7800e55ad3fb5582a091de91febeaba37bffbe576b69ecd1fc2b",
+      "domainIdentifier": "680",
+      "apiUrl": "https://gemeinde.example/api/persons/680",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23680/",
+      "imageUrl": "https://gemeinde.example/images/2560/eb768214a4eb7f564483a5ef74fd809e34c51a15a7b1763abeb731e35e23bc81",
       "icon": "user",
       "color": null,
-      "initials": "JA",
+      "initials": "SM",
       "domainAttributes": {
-       "firstName": "Jens",
-       "lastName": "Atkins",
-       "guid": "23D6B287-DF26-437E-A2EC-93938FECF50C",
+       "firstName": "Sarah",
+       "lastName": "Mohr",
+       "guid": "D3F12624-08F5-4070-9BD9-4241E211097B",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Jens Atkins",
+     "name": "Sarah Mohr",
+     "serviceId": 87,
+     "serviceName": "Kaffeebar",
+     "index": 1,
+     "isValid": true,
+     "isAccepted": true,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": false,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-11-17T20:05:49Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-11-17T20:05:49Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": true,
+     "counter": 1,
+     "requestedDate": "2026-11-17T20:05:49Z"
+    },
+    {
+     "id": 33908,
+     "personId": 255,
+     "person": {
+      "title": "Hans Tooly",
+      "domainType": "person",
+      "domainIdentifier": "255",
+      "apiUrl": "https://gemeinde.example/api/persons/255",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23255/",
+      "imageUrl": "https://gemeinde.example/images/2179/84214297047cd4924af835aa909e2fcf8f39ca87cbd90b66fba0fd4fb1deb111",
+      "icon": "user",
+      "color": null,
+      "initials": "HT",
+      "domainAttributes": {
+       "firstName": "Hans",
+       "lastName": "Tooly",
+       "guid": "9E216823-0BF8-41D0-BD21-7FDDD7A2080A",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Hans Tooly",
      "serviceId": 9,
      "serviceName": "Gesang",
      "index": 2,
@@ -855,27 +1263,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T20:05:42Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-08-18T00:17:00Z",
+      "modifiedDate": "2026-11-17T20:05:42Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -887,31 +1295,31 @@
      },
      "agreed": true,
      "counter": 2,
-     "requestedDate": "2026-08-18T00:17:00Z"
+     "requestedDate": "2026-11-17T20:05:42Z"
     },
     {
-     "id": 22915,
-     "personId": 175,
+     "id": 33920,
+     "personId": 11,
      "person": {
-      "title": "Clara Hepp",
+      "title": "Jonna Brandt",
       "domainType": "person",
-      "domainIdentifier": "175",
-      "apiUrl": "https://gemeinde.example/api/persons/175",
-      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23175/",
-      "imageUrl": "https://gemeinde.example/images/2155/a046b38302ccf5088b7c6c299f84308bde76e5ab121d627698fed5ac1ab0e490",
+      "domainIdentifier": "11",
+      "apiUrl": "https://gemeinde.example/api/persons/11",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2311/",
+      "imageUrl": "https://gemeinde.example/images/561/d5884524fe1310c1f5d212ce924df033d6f3e12f7935fd4b42c7dde1c9c8a5b3",
       "icon": "user",
       "color": null,
-      "initials": "CH",
+      "initials": "JB",
       "domainAttributes": {
-       "firstName": "Clara",
-       "lastName": "Hepp",
-       "guid": "5B11143A-A15A-4107-AE90-429E4F493A6B",
+       "firstName": "Jonna",
+       "lastName": "Brandt",
+       "guid": "D231286F-DB09-4DDF-AEA6-977B43B16DD9",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
-     "name": "Clara Hepp",
+     "name": "Jonna Brandt",
      "serviceId": 12,
      "serviceName": "Ordner",
      "index": 2,
@@ -932,27 +1340,27 @@
       "domainAttributes": {
        "firstName": "Armin",
        "lastName": "Adendorf",
-       "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
        "dateOfDeath": null,
        "isArchived": false
       },
       "infos": []
      },
      "event": {
-      "id": 1816,
-      "name": "Jugendgottesdienst",
-      "startDate": "2026-10-30T18:00:00Z"
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
      },
      "allowChat": true,
      "permissions": {
       "enterSelfIfFree": true
      },
      "meta": {
-      "createdDate": "2026-01-18T11:29:58Z",
+      "createdDate": "2026-11-17T20:05:46Z",
       "createdPerson": {
        "id": 1
       },
-      "modifiedDate": "2026-08-20T00:15:57Z",
+      "modifiedDate": "2026-11-17T20:05:46Z",
       "modifiedPerson": {
        "id": 1
       }
@@ -964,7 +1372,161 @@
      },
      "agreed": true,
      "counter": 2,
-     "requestedDate": "2026-08-20T00:15:57Z"
+     "requestedDate": "2026-11-17T20:05:46Z"
+    },
+    {
+     "id": 33929,
+     "personId": 173,
+     "person": {
+      "title": "Elena Böttner",
+      "domainType": "person",
+      "domainIdentifier": "173",
+      "apiUrl": "https://gemeinde.example/api/persons/173",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23173/",
+      "imageUrl": "https://gemeinde.example/images/546/a7667363293462d6ced66db8fdb2fdc57e9197569594464541a7884988719cbe",
+      "icon": "user",
+      "color": null,
+      "initials": "EB",
+      "domainAttributes": {
+       "firstName": "Elena",
+       "lastName": "Böttner",
+       "guid": "B55DDDDD-E7A7-488B-9809-B82B9A668BF1",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Elena Böttner",
+     "serviceId": 87,
+     "serviceName": "Kaffeebar",
+     "index": 2,
+     "isValid": true,
+     "isAccepted": true,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": false,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-11-17T20:05:49Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-11-17T20:05:49Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": true,
+     "counter": 2,
+     "requestedDate": "2026-11-17T20:05:49Z"
+    },
+    {
+     "id": 33923,
+     "personId": 860,
+     "person": {
+      "title": "Heidi Beckmann",
+      "domainType": "person",
+      "domainIdentifier": "860",
+      "apiUrl": "https://gemeinde.example/api/persons/860",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23860/",
+      "imageUrl": "https://gemeinde.example/images/1439/34420e9fa5076bf980cc1ce40e40effe19534a12a6c4fcfbeafac3b5cc137d98",
+      "icon": "user",
+      "color": null,
+      "initials": "HB",
+      "domainAttributes": {
+       "firstName": "Heidi",
+       "lastName": "Beckmann",
+       "guid": "B6FE774B-D7DA-4E30-81C7-323CCBFA522A",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "name": "Heidi Beckmann",
+     "serviceId": 12,
+     "serviceName": "Ordner",
+     "index": 3,
+     "isValid": true,
+     "isAccepted": true,
+     "comment": null,
+     "requesterPersonId": 1,
+     "requesterPerson": {
+      "title": "Armin Adendorf",
+      "domainType": "person",
+      "domainIdentifier": "1",
+      "apiUrl": "https://gemeinde.example/api/persons/1",
+      "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+      "imageUrl": "https://gemeinde.example/images/2277/7302d606d69082871b5f2b070350e249f6ecd0de25222a335f0da4556da0b404",
+      "icon": "user",
+      "color": null,
+      "initials": "AA",
+      "domainAttributes": {
+       "firstName": "Armin",
+       "lastName": "Adendorf",
+       "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
+       "dateOfDeath": null,
+       "isArchived": false
+      },
+      "infos": []
+     },
+     "event": {
+      "id": 1990,
+      "name": "Gottesdienst",
+      "startDate": "2026-11-22T09:00:00Z"
+     },
+     "allowChat": true,
+     "permissions": {
+      "enterSelfIfFree": true
+     },
+     "meta": {
+      "createdDate": "2026-11-17T20:05:46Z",
+      "createdPerson": {
+       "id": 1
+      },
+      "modifiedDate": "2026-11-17T20:05:46Z",
+      "modifiedPerson": {
+       "id": 1
+      }
+     },
+     "@deprecated": {
+      "agreed": "isAccepted",
+      "counter": "index",
+      "requestedDate": "meta.modifiedDate"
+     },
+     "agreed": true,
+     "counter": 3,
+     "requestedDate": "2026-11-17T20:05:46Z"
     }
    ]
   }

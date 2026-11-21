@@ -2,14 +2,14 @@
  "operation": "get-posts-postId-comments-commentId-reactions",
  "request": {
   "method": "GET",
-  "path": "/posts/51/comments/133/reactions",
+  "path": "/posts/51/comments/71/reactions",
   "query": [],
   "body": null
  },
  "body": {
   "data": [
    {
-    "commentId": 133,
+    "commentId": 71,
     "person": {
      "title": "Armin Adendorf",
      "domainType": "person",
@@ -23,7 +23,7 @@
      "domainAttributes": {
       "firstName": "Armin",
       "lastName": "Adendorf",
-      "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+      "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
       "dateOfDeath": null,
       "isArchived": false
      },
@@ -31,11 +31,11 @@
     },
     "emoji": "👍",
     "meta": {
-     "createdDate": "2026-10-30T16:03:28Z",
+     "createdDate": "2026-11-21T19:04:01Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-30T16:03:28Z",
+     "modifiedDate": "2026-11-21T19:04:01Z",
      "modifiedPerson": {
       "id": 1
      }

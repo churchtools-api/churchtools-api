@@ -39,7 +39,7 @@
        {
         "type": "info-line",
         "infos": [
-         "10.11.2026"
+         "01.12.2026"
         ]
        },
        {
@@ -180,7 +180,7 @@
           "groupTypeId": 4,
           "campusId": null,
           "visibility": "public",
-          "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+          "guid": "788F2E07-6E97-4AE7-90A4-165124151D47"
          },
          "infos": [
           "Verteiler"
@@ -199,7 +199,7 @@
          "domainAttributes": {
           "firstName": "Armin",
           "lastName": "Adendorf",
-          "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+          "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
           "dateOfDeath": null,
           "isArchived": false
          },
@@ -223,11 +223,11 @@
         "expirationDate": null,
         "expirationPid": null,
         "expirationPerson": null,
-        "publishedDate": "2026-10-26T13:05:18Z",
+        "publishedDate": "2026-11-16T13:05:18Z",
         "lastEditedDate": "2026-08-17T12:05:18Z",
         "isBanned": false,
         "meta": {
-         "createdDate": "2026-10-26T13:05:18Z",
+         "createdDate": "2026-11-16T13:05:18Z",
          "createdPerson": {
           "id": 1
          },
@@ -309,7 +309,7 @@
           "groupTypeId": 2,
           "campusId": null,
           "visibility": "intern",
-          "guid": "B672A315-EF25-49A9-B347-90555EBB5E4C"
+          "guid": "A4D87953-9664-4B24-8EC7-6E8AC787779D"
          },
          "infos": [
           "Team"
@@ -328,7 +328,7 @@
          "domainAttributes": {
           "firstName": "Lennart",
           "lastName": "Baldauf",
-          "guid": "68554A70-0735-4174-833B-4F3F0A9BA861",
+          "guid": "565A5E84-7262-42E6-B7EB-317294D407B6",
           "dateOfDeath": null,
           "isArchived": false
          },
@@ -357,11 +357,11 @@
         "expirationDate": null,
         "expirationPid": null,
         "expirationPerson": null,
-        "publishedDate": "2026-10-26T12:34:16Z",
+        "publishedDate": "2026-11-16T12:34:16Z",
         "lastEditedDate": "2026-08-17T11:34:16Z",
         "isBanned": false,
         "meta": {
-         "createdDate": "2026-10-26T12:34:16Z",
+         "createdDate": "2026-11-16T12:34:16Z",
          "createdPerson": {
           "id": 133
          },
@@ -416,7 +416,7 @@
           "groupTypeId": 4,
           "campusId": null,
           "visibility": "intern",
-          "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+          "guid": "D65E9F4F-FACF-459F-B1BD-95E75E921448"
          },
          "infos": [
           "Verteiler"
@@ -435,7 +435,7 @@
          "domainAttributes": {
           "firstName": "Armin",
           "lastName": "Adendorf",
-          "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+          "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
           "dateOfDeath": null,
           "isArchived": false
          },
@@ -464,11 +464,11 @@
         "expirationDate": null,
         "expirationPid": null,
         "expirationPerson": null,
-        "publishedDate": "2026-10-26T12:32:35Z",
+        "publishedDate": "2026-11-16T12:32:35Z",
         "lastEditedDate": "2026-08-17T11:32:35Z",
         "isBanned": false,
         "meta": {
-         "createdDate": "2026-10-26T12:32:35Z",
+         "createdDate": "2026-11-16T12:32:35Z",
          "createdPerson": {
           "id": 1
          },
@@ -519,14 +519,14 @@
     ],
     "items": [
      {
-      "summaryText": "Rene Eckert · vor 17 Stunden · 20",
-      "title": "Rene Eckert",
+      "summaryText": "Sophie Kraus · vor 20 Stunden · 37",
+      "title": "Sophie Kraus",
       "infos": [
        {
         "text": "Heute"
        },
        {
-        "text": "20"
+        "text": "37"
        }
       ],
       "actions": [
@@ -540,19 +540,68 @@
       ],
       "details": {
        "domainObject": {
-        "title": "Rene Eckert",
+        "title": "Sophie Kraus",
         "domainType": "person",
-        "domainIdentifier": "1259",
-        "apiUrl": "https://gemeinde.example/api/persons/1259",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231259/",
-        "imageUrl": "https://gemeinde.example/images/1178/9fdafd5848267aae1031341e3aa7093a6a8f4a82f7d74289ffedddc3ba6595a1",
+        "domainIdentifier": "1328",
+        "apiUrl": "https://gemeinde.example/api/persons/1328",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231328/",
+        "imageUrl": "https://gemeinde.example/images/1457/f6cc3880e011ef2ffb0258aad19bb68cc9bc10164dd8c876ff7109eac1ccd09e",
         "icon": "user",
         "color": null,
-        "initials": "RE",
+        "initials": "SK",
         "domainAttributes": {
-         "firstName": "Rene",
-         "lastName": "Eckert",
-         "guid": "39E0310D-98AE-49F7-9F2E-4A80AED2C47D",
+         "firstName": "Sophie",
+         "lastName": "Kraus",
+         "guid": "E3781397-96A6-451E-8D76-219472626CC0",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      },
+      "filterKeys": [
+       "all"
+      ],
+      "groupingKeys": null,
+      "actionData": {
+       "personId": 1328
+      }
+     },
+     {
+      "summaryText": "Peter Tooly · vor 20 Stunden · 42",
+      "title": "Peter Tooly",
+      "infos": [
+       {
+        "text": "Heute"
+       },
+       {
+        "text": "42"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.birthday.details",
+        "label": "Gehe zu Geburtsdatum",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "Peter Tooly",
+        "domainType": "person",
+        "domainIdentifier": "235",
+        "apiUrl": "https://gemeinde.example/api/persons/235",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23235/",
+        "imageUrl": "https://gemeinde.example/images/2182/5a7d3bc782adc4a451257ac8ce708e5a707b088e6ed8c88cd2cf23db140c89d3",
+        "icon": "user",
+        "color": null,
+        "initials": "PT",
+        "domainAttributes": {
+         "firstName": "Peter",
+         "lastName": "Tooly",
+         "guid": "F520BBF3-A92D-42E7-BC8D-51DC38AF2B08",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -565,115 +614,15 @@
       ],
       "groupingKeys": null,
       "actionData": {
-       "personId": 1259
+       "personId": 235
       }
      },
      {
-      "summaryText": "Kristin Buchholz · in 6 Stunden · 6",
-      "title": "Kristin Buchholz",
+      "summaryText": "Karoline Arndt · in 3 Stunden · 27",
+      "title": "Karoline Arndt",
       "infos": [
        {
         "text": "Morgen"
-       },
-       {
-        "text": "6"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.birthday.details",
-        "label": "Gehe zu Geburtsdatum",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "domainObject": {
-        "title": "Kristin Buchholz",
-        "domainType": "person",
-        "domainIdentifier": "1262",
-        "apiUrl": "https://gemeinde.example/api/persons/1262",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231262/",
-        "imageUrl": "https://gemeinde.example/images/2125/ea55dea99be0d8e79cf33e20635dbba278281ff0bd8898d59194ba12341ba53d",
-        "icon": "user",
-        "color": null,
-        "initials": "KB",
-        "domainAttributes": {
-         "firstName": "Kristin",
-         "lastName": "Buchholz",
-         "guid": "A00C11B9-4A01-4DD5-A24D-24E606559F18",
-         "dateOfDeath": null,
-         "isArchived": false
-        },
-        "infos": []
-       }
-      },
-      "filterKeys": [
-       "all",
-       "my-campus"
-      ],
-      "groupingKeys": null,
-      "actionData": {
-       "personId": 1262
-      }
-     },
-     {
-      "summaryText": "Friedhelm Paul · in 6 Stunden · 49",
-      "title": "Friedhelm Paul",
-      "infos": [
-       {
-        "text": "Morgen"
-       },
-       {
-        "text": "49"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.birthday.details",
-        "label": "Gehe zu Geburtsdatum",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "domainObject": {
-        "title": "Friedhelm Paul",
-        "domainType": "person",
-        "domainIdentifier": "1265",
-        "apiUrl": "https://gemeinde.example/api/persons/1265",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231265/",
-        "imageUrl": null,
-        "icon": "user",
-        "color": null,
-        "initials": "FP",
-        "domainAttributes": {
-         "firstName": "Friedhelm",
-         "lastName": "Paul",
-         "guid": "CCAA1058-FA29-4A3E-B4CC-3D1294A7BBCD",
-         "dateOfDeath": null,
-         "isArchived": false
-        },
-        "infos": []
-       }
-      },
-      "filterKeys": [
-       "all",
-       "my-campus"
-      ],
-      "groupingKeys": null,
-      "actionData": {
-       "personId": 1265
-      }
-     },
-     {
-      "summaryText": "Carl Ruppert · in 1 Tag · 27",
-      "title": "Carl Ruppert",
-      "infos": [
-       {
-        "text": "01.11.2026"
        },
        {
         "text": "27"
@@ -690,19 +639,19 @@
       ],
       "details": {
        "domainObject": {
-        "title": "Carl Ruppert",
+        "title": "Karoline Arndt",
         "domainType": "person",
-        "domainIdentifier": "159",
-        "apiUrl": "https://gemeinde.example/api/persons/159",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23159/",
-        "imageUrl": "https://gemeinde.example/images/1220/286b4a2cd64f56d10fb3f8e23254d0961cc87b00692b2c14edd52d4162b2200f",
+        "domainIdentifier": "154",
+        "apiUrl": "https://gemeinde.example/api/persons/154",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23154/",
+        "imageUrl": "https://gemeinde.example/images/466/67b2f6ee1873c8ef28f2439f1eed44eb1bdca4f31f154998a9f909dac888b25e",
         "icon": "user",
         "color": null,
-        "initials": "CR",
+        "initials": "KA",
         "domainAttributes": {
-         "firstName": "Carl",
-         "lastName": "Ruppert",
-         "guid": "D9EAB582-AF65-4235-B1CE-47B761932F52",
+         "firstName": "Karoline",
+         "lastName": "Arndt",
+         "guid": "C4856691-A1BB-4517-88CF-F3FE50E60C98",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -715,18 +664,18 @@
       ],
       "groupingKeys": null,
       "actionData": {
-       "personId": 159
+       "personId": 154
       }
      },
      {
-      "summaryText": "Adrian Häcker · in 2 Tagen · 86",
-      "title": "Adrian Häcker",
+      "summaryText": "Freddy Finanziskus · in 3 Stunden · 32",
+      "title": "Freddy Finanziskus",
       "infos": [
        {
-        "text": "02.11.2026"
+        "text": "Morgen"
        },
        {
-        "text": "86"
+        "text": "32"
        }
       ],
       "actions": [
@@ -740,19 +689,19 @@
       ],
       "details": {
        "domainObject": {
-        "title": "Adrian Häcker",
+        "title": "Freddy Finanziskus",
         "domainType": "person",
-        "domainIdentifier": "25",
-        "apiUrl": "https://gemeinde.example/api/persons/25",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2325/",
-        "imageUrl": null,
+        "domainIdentifier": "340",
+        "apiUrl": "https://gemeinde.example/api/persons/340",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23340/",
+        "imageUrl": "https://gemeinde.example/images/754/001ebe5b00e763d4fa0d4d16d2c400c828f058be9266985dd61e60f082b171b0",
         "icon": "user",
         "color": null,
-        "initials": "AH",
+        "initials": "FF",
         "domainAttributes": {
-         "firstName": "Adrian",
-         "lastName": "Häcker",
-         "guid": "9FCFC678-2FFB-49C4-9269-70EB968B7F83",
+         "firstName": "Freddy",
+         "lastName": "Finanziskus",
+         "guid": "F9A5FD5C-8F31-4A44-BE9B-A330E5B6013F",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -765,15 +714,65 @@
       ],
       "groupingKeys": null,
       "actionData": {
-       "personId": 25
+       "personId": 340
       }
      },
      {
-      "summaryText": "Emilia Straub · in 2 Tagen · 23",
-      "title": "Emilia Straub",
+      "summaryText": "Heinz-Joachim Bock · in 1 Tag · 8",
+      "title": "Heinz-Joachim Bock",
       "infos": [
        {
-        "text": "02.11.2026"
+        "text": "23.11.2026"
+       },
+       {
+        "text": "8"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.birthday.details",
+        "label": "Gehe zu Geburtsdatum",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "Heinz-Joachim Bock",
+        "domainType": "person",
+        "domainIdentifier": "1331",
+        "apiUrl": "https://gemeinde.example/api/persons/1331",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231331/",
+        "imageUrl": null,
+        "icon": "user",
+        "color": null,
+        "initials": "HB",
+        "domainAttributes": {
+         "firstName": "Heinz-Joachim",
+         "lastName": "Bock",
+         "guid": "9783E3D0-F301-453D-98A7-FA2BF0AA831E",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      },
+      "filterKeys": [
+       "all",
+       "my-campus"
+      ],
+      "groupingKeys": null,
+      "actionData": {
+       "personId": 1331
+      }
+     },
+     {
+      "summaryText": "Maike Fahr · in 2 Tagen · 23",
+      "title": "Maike Fahr",
+      "infos": [
+       {
+        "text": "24.11.2026"
        },
        {
         "text": "23"
@@ -790,19 +789,69 @@
       ],
       "details": {
        "domainObject": {
-        "title": "Emilia Straub",
+        "title": "Maike Fahr",
         "domainType": "person",
-        "domainIdentifier": "1268",
-        "apiUrl": "https://gemeinde.example/api/persons/1268",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231268/",
+        "domainIdentifier": "148",
+        "apiUrl": "https://gemeinde.example/api/persons/148",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23148/",
+        "imageUrl": "https://gemeinde.example/images/2143/0cec2dcead80cadef25b7b105450b4a36a6da8cb1ec2b42c1279f9b5abe7144b",
+        "icon": "user",
+        "color": null,
+        "initials": "MF",
+        "domainAttributes": {
+         "firstName": "Maike",
+         "lastName": "Fahr",
+         "guid": "3C36B696-252D-4506-9B8D-CEDCB6918525",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      },
+      "filterKeys": [
+       "all",
+       "my-campus"
+      ],
+      "groupingKeys": null,
+      "actionData": {
+       "personId": 148
+      }
+     },
+     {
+      "summaryText": "Jeremy Renate · in 2 Tagen · 35",
+      "title": "Jeremy Renate",
+      "infos": [
+       {
+        "text": "24.11.2026"
+       },
+       {
+        "text": "35"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.birthday.details",
+        "label": "Gehe zu Geburtsdatum",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "Jeremy Renate",
+        "domainType": "person",
+        "domainIdentifier": "84",
+        "apiUrl": "https://gemeinde.example/api/persons/84",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2384/",
         "imageUrl": null,
         "icon": "user",
         "color": null,
-        "initials": "ES",
+        "initials": "JR",
         "domainAttributes": {
-         "firstName": "Emilia",
-         "lastName": "Straub",
-         "guid": "D1AA9864-4582-48B4-BF90-03447E830740",
+         "firstName": "Jeremy",
+         "lastName": "Renate",
+         "guid": "BDD39978-F171-4080-985A-01EB67FB2F2B",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -815,214 +864,15 @@
       ],
       "groupingKeys": null,
       "actionData": {
-       "personId": 1268
+       "personId": 84
       }
      },
      {
-      "summaryText": "Dominic Böttner · in 3 Tagen · 41",
-      "title": "Dominic Böttner",
+      "summaryText": "Astrid Braun · in 4 Tagen · 19",
+      "title": "Astrid Braun",
       "infos": [
        {
-        "text": "03.11.2026"
-       },
-       {
-        "text": "41"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.birthday.details",
-        "label": "Gehe zu Geburtsdatum",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "domainObject": {
-        "title": "Dominic Böttner",
-        "domainType": "person",
-        "domainIdentifier": "189",
-        "apiUrl": "https://gemeinde.example/api/persons/189",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23189/",
-        "imageUrl": "https://gemeinde.example/images/540/ff47322fb1a5efc5d6bf6d0c908c2d6c612a519eb92e62d7c7680706528ce692",
-        "icon": "user",
-        "color": null,
-        "initials": "DB",
-        "domainAttributes": {
-         "firstName": "Dominic",
-         "lastName": "Böttner",
-         "guid": "8D7E7CAE-0FB2-418B-AA12-D9F89A923625",
-         "dateOfDeath": null,
-         "isArchived": false
-        },
-        "infos": []
-       }
-      },
-      "filterKeys": [
-       "all",
-       "my-campus"
-      ],
-      "groupingKeys": null,
-      "actionData": {
-       "personId": 189
-      }
-     },
-     {
-      "summaryText": "Werner Swanson · in 4 Tagen · 28",
-      "title": "Werner Swanson",
-      "infos": [
-       {
-        "text": "04.11.2026"
-       },
-       {
-        "text": "28"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.birthday.details",
-        "label": "Gehe zu Geburtsdatum",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "domainObject": {
-        "title": "Werner Swanson",
-        "domainType": "person",
-        "domainIdentifier": "34",
-        "apiUrl": "https://gemeinde.example/api/persons/34",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%2334/",
-        "imageUrl": null,
-        "icon": "user",
-        "color": null,
-        "initials": "WS",
-        "domainAttributes": {
-         "firstName": "Werner",
-         "lastName": "Swanson",
-         "guid": "410BDB5B-1AD9-4341-8046-736E6476AB62",
-         "dateOfDeath": null,
-         "isArchived": false
-        },
-        "infos": []
-       }
-      },
-      "filterKeys": [
-       "all",
-       "my-campus"
-      ],
-      "groupingKeys": null,
-      "actionData": {
-       "personId": 34
-      }
-     },
-     {
-      "summaryText": "Phillipp Becker · in 5 Tagen · 26",
-      "title": "Phillipp Becker",
-      "infos": [
-       {
-        "text": "05.11.2026"
-       },
-       {
-        "text": "26"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.birthday.details",
-        "label": "Gehe zu Geburtsdatum",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "domainObject": {
-        "title": "Phillipp Becker",
-        "domainType": "person",
-        "domainIdentifier": "183",
-        "apiUrl": "https://gemeinde.example/api/persons/183",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23183/",
-        "imageUrl": "https://gemeinde.example/images/499/5de19256f390ef1b0a62d38879923f13d12f8d05fa88b58913d7495b43576d89",
-        "icon": "user",
-        "color": null,
-        "initials": "PB",
-        "domainAttributes": {
-         "firstName": "Phillipp",
-         "lastName": "Becker",
-         "guid": "806937E8-43E6-40F4-967D-CAF296E93EFA",
-         "dateOfDeath": null,
-         "isArchived": false
-        },
-        "infos": []
-       }
-      },
-      "filterKeys": [
-       "all",
-       "my-campus"
-      ],
-      "groupingKeys": null,
-      "actionData": {
-       "personId": 183
-      }
-     },
-     {
-      "summaryText": "Gerold Seeger · in 5 Tagen · 16",
-      "title": "Gerold Seeger",
-      "infos": [
-       {
-        "text": "05.11.2026"
-       },
-       {
-        "text": "16"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.birthday.details",
-        "label": "Gehe zu Geburtsdatum",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "domainObject": {
-        "title": "Gerold Seeger",
-        "domainType": "person",
-        "domainIdentifier": "1277",
-        "apiUrl": "https://gemeinde.example/api/persons/1277",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231277/",
-        "imageUrl": "https://gemeinde.example/images/2140/27293fd609c74de52bac7ef9f87a9101553d288791de69daf53461ed5283c3d5",
-        "icon": "user",
-        "color": null,
-        "initials": "GS",
-        "domainAttributes": {
-         "firstName": "Gerold",
-         "lastName": "Seeger",
-         "guid": "6C5C69A3-2601-4DC1-BD94-D22D588004CD",
-         "dateOfDeath": null,
-         "isArchived": false
-        },
-        "infos": []
-       }
-      },
-      "filterKeys": [
-       "all"
-      ],
-      "groupingKeys": null,
-      "actionData": {
-       "personId": 1277
-      }
-     },
-     {
-      "summaryText": "Karin Pfeiffer · in 6 Tagen · 19",
-      "title": "Karin Pfeiffer",
-      "infos": [
-       {
-        "text": "06.11.2026"
+        "text": "26.11.2026"
        },
        {
         "text": "19"
@@ -1039,19 +889,19 @@
       ],
       "details": {
        "domainObject": {
-        "title": "Karin Pfeiffer",
+        "title": "Astrid Braun",
         "domainType": "person",
-        "domainIdentifier": "1280",
-        "apiUrl": "https://gemeinde.example/api/persons/1280",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231280/",
-        "imageUrl": "https://gemeinde.example/images/2557/3957cdb2dd2c2b853030a9a902e197e9aa4c014cff4fb4f459b8a4a2f9c9c526",
+        "domainIdentifier": "1340",
+        "apiUrl": "https://gemeinde.example/api/persons/1340",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231340/",
+        "imageUrl": null,
         "icon": "user",
         "color": null,
-        "initials": "KP",
+        "initials": "AB",
         "domainAttributes": {
-         "firstName": "Karin",
-         "lastName": "Pfeiffer",
-         "guid": "8C5AD760-8FD0-4FBC-8B82-5FDE7B681AFC",
+         "firstName": "Astrid",
+         "lastName": "Braun",
+         "guid": "B49E0DE4-9E3C-45AA-A646-9AC3BB342B1D",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -1059,22 +909,23 @@
        }
       },
       "filterKeys": [
-       "all"
+       "all",
+       "my-campus"
       ],
       "groupingKeys": null,
       "actionData": {
-       "personId": 1280
+       "personId": 1340
       }
      },
      {
-      "summaryText": "Fiona Scherer · in 6 Tagen · 33",
-      "title": "Fiona Scherer",
+      "summaryText": "Norbert Kommian · in 5 Tagen · 30",
+      "title": "Norbert Kommian",
       "infos": [
        {
-        "text": "06.11.2026"
+        "text": "27.11.2026"
        },
        {
-        "text": "33"
+        "text": "30"
        }
       ],
       "actions": [
@@ -1088,19 +939,19 @@
       ],
       "details": {
        "domainObject": {
-        "title": "Fiona Scherer",
+        "title": "Norbert Kommian",
         "domainType": "person",
-        "domainIdentifier": "158",
-        "apiUrl": "https://gemeinde.example/api/persons/158",
-        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%23158/",
-        "imageUrl": "https://gemeinde.example/images/2149/8eb49c6333955bf74fdefb0ff9ee467ddfa4b9cdd2ec04d693ddb55540e60f16",
+        "domainIdentifier": "3",
+        "apiUrl": "https://gemeinde.example/api/persons/3",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%233/",
+        "imageUrl": "https://gemeinde.example/images/2176/ed53499669d0e83ef7fcf4dd1b0a08cbeb773ced9e2e22292f6904953a6a2154",
         "icon": "user",
         "color": null,
-        "initials": "FS",
+        "initials": "NK",
         "domainAttributes": {
-         "firstName": "Fiona",
-         "lastName": "Scherer",
-         "guid": "39E3FA3B-B818-49D6-80A6-3B155505532D",
+         "firstName": "Norbert",
+         "lastName": "Kommian",
+         "guid": "632FF21B-811C-40E6-9A8A-9799BCA86600",
          "dateOfDeath": null,
          "isArchived": false
         },
@@ -1108,11 +959,62 @@
        }
       },
       "filterKeys": [
-       "all"
+       "all",
+       "my-campus"
       ],
       "groupingKeys": null,
       "actionData": {
-       "personId": 158
+       "personId": 3
+      }
+     },
+     {
+      "summaryText": "Andrea Vollmer · in 6 Tagen · 36",
+      "title": "Andrea Vollmer",
+      "infos": [
+       {
+        "text": "28.11.2026"
+       },
+       {
+        "text": "36"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.birthday.details",
+        "label": "Gehe zu Geburtsdatum",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "Andrea Vollmer",
+        "domainType": "person",
+        "domainIdentifier": "1346",
+        "apiUrl": "https://gemeinde.example/api/persons/1346",
+        "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231346/",
+        "imageUrl": null,
+        "icon": "user",
+        "color": null,
+        "initials": "AV",
+        "domainAttributes": {
+         "firstName": "Andrea",
+         "lastName": "Vollmer",
+         "guid": "D8D956BF-FC62-4995-BF7D-71FC9407180C",
+         "dateOfDeath": null,
+         "isArchived": false
+        },
+        "infos": []
+       }
+      },
+      "filterKeys": [
+       "all",
+       "my-campus"
+      ],
+      "groupingKeys": null,
+      "actionData": {
+       "personId": 1346
       }
      }
     ],
@@ -1171,127 +1073,7 @@
     ],
     "items": [
      {
-      "summaryText": "2026-10-17 00:00:00 · Herbstferien NRW · Ferien",
-      "title": "Herbstferien NRW",
-      "infos": [
-       {
-        "text": "Ferien"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.appointment.details",
-        "label": "Gehe zu Termin",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "dateTime": "2026-10-16T22:00:00Z",
-       "allDay": true,
-       "title": "Herbstferien NRW"
-      },
-      "filterKeys": null,
-      "groupingKeys": null,
-      "actionData": {
-       "appointmentId": 1665446,
-       "calendarId": 62,
-       "startDate": "2026-10-17"
-      }
-     },
-     {
-      "summaryText": "2026-10-30 19:00:00 · Jugendgottesdienst · Jugend",
-      "title": "Jugendgottesdienst",
-      "infos": [
-       {
-        "text": "Jugend"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.appointment.details",
-        "label": "Gehe zu Termin",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "dateTime": "2026-10-30T18:00:00Z",
-       "allDay": false,
-       "title": "Jugendgottesdienst"
-      },
-      "filterKeys": null,
-      "groupingKeys": null,
-      "actionData": {
-       "appointmentId": 1437334,
-       "calendarId": 3,
-       "startDate": "2026-10-30"
-      }
-     },
-     {
-      "summaryText": "2026-10-31 18:30:00 · Bayern München - Borussia Dortmund · Fußball-Kalender",
-      "title": "Bayern München - Borussia Dortmund",
-      "infos": [
-       {
-        "text": "Fußball-Kalender"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.appointment.details",
-        "label": "Gehe zu Termin",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "dateTime": "2026-10-31T17:30:00Z",
-       "allDay": false,
-       "title": "Bayern München - Borussia Dortmund"
-      },
-      "filterKeys": null,
-      "groupingKeys": null,
-      "actionData": {
-       "appointmentId": 1663610,
-       "calendarId": 49,
-       "startDate": "2026-10-31"
-      }
-     },
-     {
-      "summaryText": "2026-11-01 00:00:00 · Allerheiligen · Feiertage",
-      "title": "Allerheiligen",
-      "infos": [
-       {
-        "text": "Feiertage"
-       }
-      ],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.appointment.details",
-        "label": "Gehe zu Termin",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "dateTime": "2026-10-31T23:00:00Z",
-       "allDay": true,
-       "title": "Allerheiligen"
-      },
-      "filterKeys": null,
-      "groupingKeys": null,
-      "actionData": {
-       "appointmentId": 1665509,
-       "calendarId": 65,
-       "startDate": "2026-11-01"
-      }
-     },
-     {
-      "summaryText": "2026-11-01 10:00:00 · Gottesdienst · Kirche Zentale",
+      "summaryText": "2026-11-22 10:00:00 · Gottesdienst · Kirche Zentale",
       "title": "Gottesdienst",
       "infos": [
        {
@@ -1308,7 +1090,7 @@
        }
       ],
       "details": {
-       "dateTime": "2026-11-01T09:00:00Z",
+       "dateTime": "2026-11-22T09:00:00Z",
        "allDay": false,
        "title": "Gottesdienst"
       },
@@ -1317,11 +1099,11 @@
       "actionData": {
        "appointmentId": 1437331,
        "calendarId": 2,
-       "startDate": "2026-11-01"
+       "startDate": "2026-11-22"
       }
      },
      {
-      "summaryText": "2026-11-01 10:00:00 · Gottesdienste · Kirche Süd",
+      "summaryText": "2026-11-22 10:00:00 · Gottesdienste · Kirche Süd",
       "title": "Gottesdienste",
       "infos": [
        {
@@ -1338,7 +1120,7 @@
        }
       ],
       "details": {
-       "dateTime": "2026-11-01T09:00:00Z",
+       "dateTime": "2026-11-22T09:00:00Z",
        "allDay": false,
        "title": "Gottesdienste"
       },
@@ -1347,11 +1129,11 @@
       "actionData": {
        "appointmentId": 1435565,
        "calendarId": 56,
-       "startDate": "2026-11-01"
+       "startDate": "2026-11-22"
       }
      },
      {
-      "summaryText": "2026-11-01 13:00:00 · #Newcomer-Lunch · Kirche Zentale",
+      "summaryText": "2026-11-22 13:00:00 · #Newcomer-Lunch · Kirche Zentale",
       "title": "#Newcomer-Lunch",
       "infos": [
        {
@@ -1368,7 +1150,7 @@
        }
       ],
       "details": {
-       "dateTime": "2026-11-01T12:00:00Z",
+       "dateTime": "2026-11-22T12:00:00Z",
        "allDay": false,
        "title": "#Newcomer-Lunch"
       },
@@ -1377,12 +1159,12 @@
       "actionData": {
        "appointmentId": 1544501,
        "calendarId": 2,
-       "startDate": "2026-11-01"
+       "startDate": "2026-11-22"
       }
      },
      {
-      "summaryText": "2026-11-02 19:00:00 · Strategisches Treffen · Gemeindeleitung",
-      "title": "Strategisches Treffen",
+      "summaryText": "2026-11-23 19:00:00 · Kleingruppe · Gemeindeleitung",
+      "title": "Kleingruppe",
       "infos": [
        {
         "text": "Gemeindeleitung"
@@ -1398,21 +1180,51 @@
        }
       ],
       "details": {
-       "dateTime": "2026-11-02T18:00:00Z",
+       "dateTime": "2026-11-23T18:00:00Z",
        "allDay": false,
-       "title": "Strategisches Treffen"
+       "title": "Kleingruppe"
       },
       "filterKeys": null,
       "groupingKeys": null,
       "actionData": {
-       "appointmentId": 502032,
+       "appointmentId": 502041,
        "calendarId": 4,
-       "startDate": "2026-11-02"
+       "startDate": "2026-11-23"
       }
      },
      {
-      "summaryText": "2026-11-03 21:00:00 · Atletico Madrid - Bayern München · Fußball-Kalender",
-      "title": "Atletico Madrid - Bayern München",
+      "summaryText": "2026-11-25 19:30:00 · Kleingruppentreffen · Kleingruppen",
+      "title": "Kleingruppentreffen",
+      "infos": [
+       {
+        "text": "Kleingruppen"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.appointment.details",
+        "label": "Gehe zu Termin",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "dateTime": "2026-11-25T18:30:00Z",
+       "allDay": false,
+       "title": "Kleingruppentreffen"
+      },
+      "filterKeys": null,
+      "groupingKeys": null,
+      "actionData": {
+       "appointmentId": 502077,
+       "calendarId": 51,
+       "startDate": "2026-11-25"
+      }
+     },
+     {
+      "summaryText": "2026-11-25 21:00:00 · Lille OSC - Bayern München · Fußball-Kalender",
+      "title": "Lille OSC - Bayern München",
       "infos": [
        {
         "text": "Fußball-Kalender"
@@ -1428,20 +1240,20 @@
        }
       ],
       "details": {
-       "dateTime": "2026-11-03T20:00:00Z",
+       "dateTime": "2026-11-25T20:00:00Z",
        "allDay": false,
-       "title": "Atletico Madrid - Bayern München"
+       "title": "Lille OSC - Bayern München"
       },
       "filterKeys": null,
       "groupingKeys": null,
       "actionData": {
-       "appointmentId": 1664639,
+       "appointmentId": 1670630,
        "calendarId": 49,
-       "startDate": "2026-11-03"
+       "startDate": "2026-11-25"
       }
      },
      {
-      "summaryText": "2026-11-05 19:00:00 · Lobpreisprobe · Lobpreis",
+      "summaryText": "2026-11-26 19:00:00 · Lobpreisprobe · Lobpreis",
       "title": "Lobpreisprobe",
       "infos": [
        {
@@ -1458,7 +1270,7 @@
        }
       ],
       "details": {
-       "dateTime": "2026-11-05T18:00:00Z",
+       "dateTime": "2026-11-26T18:00:00Z",
        "allDay": false,
        "title": "Lobpreisprobe"
       },
@@ -1467,7 +1279,97 @@
       "actionData": {
        "appointmentId": 502080,
        "calendarId": 54,
-       "startDate": "2026-11-05"
+       "startDate": "2026-11-26"
+      }
+     },
+     {
+      "summaryText": "2026-11-27 19:00:00 · Jugendgottesdienst · Jugend",
+      "title": "Jugendgottesdienst",
+      "infos": [
+       {
+        "text": "Jugend"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.appointment.details",
+        "label": "Gehe zu Termin",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "dateTime": "2026-11-27T18:00:00Z",
+       "allDay": false,
+       "title": "Jugendgottesdienst"
+      },
+      "filterKeys": null,
+      "groupingKeys": null,
+      "actionData": {
+       "appointmentId": 1437334,
+       "calendarId": 3,
+       "startDate": "2026-11-27"
+      }
+     },
+     {
+      "summaryText": "2026-11-28 10:00:00 · Gemeindejubiläum · Kirche Zentale",
+      "title": "Gemeindejubiläum",
+      "infos": [
+       {
+        "text": "Kirche Zentale"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.appointment.details",
+        "label": "Gehe zu Termin",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "dateTime": "2026-11-28T09:00:00Z",
+       "allDay": false,
+       "title": "Gemeindejubiläum"
+      },
+      "filterKeys": null,
+      "groupingKeys": null,
+      "actionData": {
+       "appointmentId": 502044,
+       "calendarId": 2,
+       "startDate": "2026-11-28"
+      }
+     },
+     {
+      "summaryText": "2026-11-28 15:30:00 · Hamburger SV - Bayern München · Fußball-Kalender",
+      "title": "Hamburger SV - Bayern München",
+      "infos": [
+       {
+        "text": "Fußball-Kalender"
+       }
+      ],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.appointment.details",
+        "label": "Gehe zu Termin",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "dateTime": "2026-11-28T14:30:00Z",
+       "allDay": false,
+       "title": "Hamburger SV - Bayern München"
+      },
+      "filterKeys": null,
+      "groupingKeys": null,
+      "actionData": {
+       "appointmentId": 1670069,
+       "calendarId": 49,
+       "startDate": "2026-11-28"
       }
      }
     ],
@@ -1526,7 +1428,7 @@
     "items": [
      {
       "summaryText": "",
-      "title": "Jugendgottesdienst",
+      "title": "Gottesdienst",
       "infos": [],
       "actions": [
        {
@@ -1546,7 +1448,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "Heute, 18:00",
+          "text": "Morgen, 07:30",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -1569,11 +1471,11 @@
        "by-resource"
       ],
       "groupingKeys": [
-       "8"
+       "3"
       ],
       "actionData": {
-       "bookingId": 391,
-       "startDate": "2026-10-30"
+       "bookingId": 376,
+       "startDate": "2026-11-22"
       }
      },
      {
@@ -1598,7 +1500,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "01.11.2026, 08:30",
+          "text": "29.11.2026, 07:30",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -1621,16 +1523,16 @@
        "by-resource"
       ],
       "groupingKeys": [
-       "8"
+       "3"
       ],
       "actionData": {
-       "bookingId": 379,
-       "startDate": "2026-11-01"
+       "bookingId": 376,
+       "startDate": "2026-11-29"
       }
      },
      {
       "summaryText": "",
-      "title": "Jugendgottesdienst",
+      "title": "Gebetsabend",
       "infos": [],
       "actions": [
        {
@@ -1650,9 +1552,9 @@
         "infoItems": [
          {
           "label": null,
-          "text": "06.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
+          "text": "01.12.2026, 18:00",
+          "iconBefore": "diamond-exclamation",
+          "color": "critical",
           "subItems": []
          },
          {
@@ -1673,115 +1575,11 @@
        "by-resource"
       ],
       "groupingKeys": [
-       "8"
+       "3"
       ],
       "actionData": {
-       "bookingId": 391,
-       "startDate": "2026-11-06"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "08.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "8"
-      ],
-      "actionData": {
-       "bookingId": 379,
-       "startDate": "2026-11-08"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "13.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "8"
-      ],
-      "actionData": {
-       "bookingId": 391,
-       "startDate": "2026-11-13"
+       "bookingId": 295,
+       "startDate": "2026-12-01"
       }
      },
      {
@@ -1806,7 +1604,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "15.11.2026, 08:30",
+          "text": "06.12.2026, 07:30",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -1829,63 +1627,11 @@
        "by-resource"
       ],
       "groupingKeys": [
-       "8"
+       "3"
       ],
       "actionData": {
-       "bookingId": 379,
-       "startDate": "2026-11-15"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "20.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "8"
-      ],
-      "actionData": {
-       "bookingId": 391,
-       "startDate": "2026-11-20"
+       "bookingId": 376,
+       "startDate": "2026-12-06"
       }
      },
      {
@@ -1910,7 +1656,319 @@
         "infoItems": [
          {
           "label": null,
-          "text": "22.11.2026, 08:30",
+          "text": "13.12.2026, 07:30",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "3"
+      ],
+      "actionData": {
+       "bookingId": 376,
+       "startDate": "2026-12-13"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gebetsabend",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "15.12.2026, 18:00",
+          "iconBefore": "diamond-exclamation",
+          "color": "critical",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "3"
+      ],
+      "actionData": {
+       "bookingId": 295,
+       "startDate": "2026-12-15"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "20.12.2026, 07:30",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "3"
+      ],
+      "actionData": {
+       "bookingId": 376,
+       "startDate": "2026-12-20"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "27.12.2026, 07:30",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "3"
+      ],
+      "actionData": {
+       "bookingId": 376,
+       "startDate": "2026-12-27"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gebetsabend",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "29.12.2026, 18:00",
+          "iconBefore": "diamond-exclamation",
+          "color": "critical",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "3"
+      ],
+      "actionData": {
+       "bookingId": 295,
+       "startDate": "2026-12-29"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "03.01.2027, 07:30",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "3"
+      ],
+      "actionData": {
+       "bookingId": 376,
+       "startDate": "2027-01-03"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "Morgen, 08:30",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -2066,7 +2124,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "Heute, 18:00",
+          "text": "04.12.2026, 18:00",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -2089,1056 +2147,16 @@
        "by-resource"
       ],
       "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 394,
-       "startDate": "2026-10-30"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "01.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 382,
-       "startDate": "2026-11-01"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "06.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 394,
-       "startDate": "2026-11-06"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "08.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 382,
-       "startDate": "2026-11-08"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "13.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 394,
-       "startDate": "2026-11-13"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "15.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 382,
-       "startDate": "2026-11-15"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "20.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 394,
-       "startDate": "2026-11-20"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "22.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 382,
-       "startDate": "2026-11-22"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "27.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 394,
-       "startDate": "2026-11-27"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "29.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "5"
-      ],
-      "actionData": {
-       "bookingId": 382,
-       "startDate": "2026-11-29"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "Heute, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 397,
-       "startDate": "2026-10-30"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "01.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 388,
-       "startDate": "2026-11-01"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "06.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 397,
-       "startDate": "2026-11-06"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "08.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 388,
-       "startDate": "2026-11-08"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "13.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 397,
-       "startDate": "2026-11-13"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "15.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 388,
-       "startDate": "2026-11-15"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "20.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 397,
-       "startDate": "2026-11-20"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "22.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 388,
-       "startDate": "2026-11-22"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendgottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "27.11.2026, 18:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 397,
-       "startDate": "2026-11-27"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Gottesdienst",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "29.11.2026, 08:30",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-resource"
-      ],
-      "groupingKeys": [
-       "9"
-      ],
-      "actionData": {
-       "bookingId": 388,
-       "startDate": "2026-11-29"
-      }
-     },
-     {
-      "summaryText": "",
-      "title": "Jugendraum",
-      "infos": [],
-      "actions": [
-       {
-        "type": "details",
-        "key": "action.my-bookings.details",
-        "label": "Gehe zu Buchung",
-        "icon": null,
-        "flavor": null
-       }
-      ],
-      "details": {
-       "initialInfoList": null,
-       "avatar": null,
-       "topLine": null,
-       "primaryInfoList": {
-        "direction": "wrapped",
-        "infoItems": [
-         {
-          "label": null,
-          "text": "18:00 – 23:00",
-          "iconBefore": null,
-          "color": "basic",
-          "subItems": []
-         },
-         {
-          "label": null,
-          "text": null,
-          "iconBefore": "circle-check",
-          "color": "success",
-          "subItems": []
-         }
-        ],
-        "size": "small",
-        "withLabel": false
-       },
-       "count": null,
-       "infoLists": []
-      },
-      "filterKeys": [
-       "by-appointment"
-      ],
-      "groupingKeys": [
-       "appointment-1437334-2026-10-30"
+       "8"
       ],
       "actionData": {
        "bookingId": 391,
-       "startDate": "2026-10-30"
+       "startDate": "2026-12-04"
       }
      },
      {
       "summaryText": "",
-      "title": "Kinderraum klein",
+      "title": "Gottesdienst",
       "infos": [],
       "actions": [
        {
@@ -3158,7 +2176,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "18:00 – 23:00",
+          "text": "06.12.2026, 08:30",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -3178,19 +2196,383 @@
        "infoLists": []
       },
       "filterKeys": [
-       "by-appointment"
+       "by-resource"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-10-30"
+       "8"
+      ],
+      "actionData": {
+       "bookingId": 379,
+       "startDate": "2026-12-06"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Jugendgottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "11.12.2026, 18:00",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "8"
+      ],
+      "actionData": {
+       "bookingId": 391,
+       "startDate": "2026-12-11"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "13.12.2026, 08:30",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "8"
+      ],
+      "actionData": {
+       "bookingId": 379,
+       "startDate": "2026-12-13"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Jugendgottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "18.12.2026, 18:00",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "8"
+      ],
+      "actionData": {
+       "bookingId": 391,
+       "startDate": "2026-12-18"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "20.12.2026, 08:30",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "8"
+      ],
+      "actionData": {
+       "bookingId": 379,
+       "startDate": "2026-12-20"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Jugendgottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "25.12.2026, 18:00",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "8"
+      ],
+      "actionData": {
+       "bookingId": 391,
+       "startDate": "2026-12-25"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "Morgen, 08:30",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "5"
+      ],
+      "actionData": {
+       "bookingId": 382,
+       "startDate": "2026-11-22"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Jugendgottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "27.11.2026, 18:00",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "5"
       ],
       "actionData": {
        "bookingId": 394,
-       "startDate": "2026-10-30"
+       "startDate": "2026-11-27"
       }
      },
      {
       "summaryText": "",
-      "title": "Kinderraum groß",
+      "title": "Gottesdienst",
       "infos": [],
       "actions": [
        {
@@ -3210,7 +2592,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "18:00 – 23:00",
+          "text": "29.11.2026, 08:30",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -3230,19 +2612,19 @@
        "infoLists": []
       },
       "filterKeys": [
-       "by-appointment"
+       "by-resource"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-10-30"
+       "5"
       ],
       "actionData": {
-       "bookingId": 397,
-       "startDate": "2026-10-30"
+       "bookingId": 382,
+       "startDate": "2026-11-29"
       }
      },
      {
       "summaryText": "",
-      "title": "Küche",
+      "title": "Jugendgottesdienst",
       "infos": [],
       "actions": [
        {
@@ -3262,7 +2644,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "18:00 – 23:00",
+          "text": "04.12.2026, 18:00",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -3282,19 +2664,19 @@
        "infoLists": []
       },
       "filterKeys": [
-       "by-appointment"
+       "by-resource"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-10-30"
+       "5"
       ],
       "actionData": {
-       "bookingId": 400,
-       "startDate": "2026-10-30"
+       "bookingId": 394,
+       "startDate": "2026-12-04"
       }
      },
      {
       "summaryText": "",
-      "title": "Beamer",
+      "title": "Gottesdienst",
       "infos": [],
       "actions": [
        {
@@ -3314,7 +2696,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "18:00 – 23:00",
+          "text": "06.12.2026, 08:30",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -3334,19 +2716,19 @@
        "infoLists": []
       },
       "filterKeys": [
-       "by-appointment"
+       "by-resource"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-10-30"
+       "5"
       ],
       "actionData": {
-       "bookingId": 403,
-       "startDate": "2026-10-30"
+       "bookingId": 382,
+       "startDate": "2026-12-06"
       }
      },
      {
       "summaryText": "",
-      "title": "Soundanlage",
+      "title": "Jugendgottesdienst",
       "infos": [],
       "actions": [
        {
@@ -3366,7 +2748,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "18:00 – 23:00",
+          "text": "11.12.2026, 18:00",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -3386,19 +2768,19 @@
        "infoLists": []
       },
       "filterKeys": [
-       "by-appointment"
+       "by-resource"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-10-30"
+       "5"
       ],
       "actionData": {
-       "bookingId": 406,
-       "startDate": "2026-10-30"
+       "bookingId": 394,
+       "startDate": "2026-12-11"
       }
      },
      {
       "summaryText": "",
-      "title": "Bus",
+      "title": "Gottesdienst",
       "infos": [],
       "actions": [
        {
@@ -3418,7 +2800,7 @@
         "infoItems": [
          {
           "label": null,
-          "text": "18:00 – 23:00",
+          "text": "13.12.2026, 08:30",
           "iconBefore": null,
           "color": "basic",
           "subItems": []
@@ -3438,14 +2820,170 @@
        "infoLists": []
       },
       "filterKeys": [
-       "by-appointment"
+       "by-resource"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-10-30"
+       "5"
       ],
       "actionData": {
-       "bookingId": 409,
-       "startDate": "2026-10-30"
+       "bookingId": 382,
+       "startDate": "2026-12-13"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Jugendgottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "18.12.2026, 18:00",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "5"
+      ],
+      "actionData": {
+       "bookingId": 394,
+       "startDate": "2026-12-18"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Gottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "20.12.2026, 08:30",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "5"
+      ],
+      "actionData": {
+       "bookingId": 382,
+       "startDate": "2026-12-20"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Jugendgottesdienst",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "25.12.2026, 18:00",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-resource"
+      ],
+      "groupingKeys": [
+       "5"
+      ],
+      "actionData": {
+       "bookingId": 394,
+       "startDate": "2026-12-25"
       }
      },
      {
@@ -3493,11 +3031,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-01"
+       "appointment-1437331-2026-11-22"
       ],
       "actionData": {
        "bookingId": 376,
-       "startDate": "2026-11-01"
+       "startDate": "2026-11-22"
       }
      },
      {
@@ -3545,11 +3083,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-01"
+       "appointment-1437331-2026-11-22"
       ],
       "actionData": {
        "bookingId": 379,
-       "startDate": "2026-11-01"
+       "startDate": "2026-11-22"
       }
      },
      {
@@ -3597,11 +3135,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-01"
+       "appointment-1437331-2026-11-22"
       ],
       "actionData": {
        "bookingId": 382,
-       "startDate": "2026-11-01"
+       "startDate": "2026-11-22"
       }
      },
      {
@@ -3649,11 +3187,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-01"
+       "appointment-1437331-2026-11-22"
       ],
       "actionData": {
        "bookingId": 385,
-       "startDate": "2026-11-01"
+       "startDate": "2026-11-22"
       }
      },
      {
@@ -3701,11 +3239,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-01"
+       "appointment-1437331-2026-11-22"
       ],
       "actionData": {
        "bookingId": 388,
-       "startDate": "2026-11-01"
+       "startDate": "2026-11-22"
       }
      },
      {
@@ -3753,11 +3291,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-11-06"
+       "appointment-1437334-2026-11-27"
       ],
       "actionData": {
        "bookingId": 391,
-       "startDate": "2026-11-06"
+       "startDate": "2026-11-27"
       }
      },
      {
@@ -3805,11 +3343,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-11-06"
+       "appointment-1437334-2026-11-27"
       ],
       "actionData": {
        "bookingId": 394,
-       "startDate": "2026-11-06"
+       "startDate": "2026-11-27"
       }
      },
      {
@@ -3857,11 +3395,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-11-06"
+       "appointment-1437334-2026-11-27"
       ],
       "actionData": {
        "bookingId": 397,
-       "startDate": "2026-11-06"
+       "startDate": "2026-11-27"
       }
      },
      {
@@ -3909,11 +3447,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-11-06"
+       "appointment-1437334-2026-11-27"
       ],
       "actionData": {
        "bookingId": 400,
-       "startDate": "2026-11-06"
+       "startDate": "2026-11-27"
       }
      },
      {
@@ -3961,11 +3499,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-11-06"
+       "appointment-1437334-2026-11-27"
       ],
       "actionData": {
        "bookingId": 403,
-       "startDate": "2026-11-06"
+       "startDate": "2026-11-27"
       }
      },
      {
@@ -4013,11 +3551,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-11-06"
+       "appointment-1437334-2026-11-27"
       ],
       "actionData": {
        "bookingId": 406,
-       "startDate": "2026-11-06"
+       "startDate": "2026-11-27"
       }
      },
      {
@@ -4065,11 +3603,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437334-2026-11-06"
+       "appointment-1437334-2026-11-27"
       ],
       "actionData": {
        "bookingId": 409,
-       "startDate": "2026-11-06"
+       "startDate": "2026-11-27"
       }
      },
      {
@@ -4117,11 +3655,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-08"
+       "appointment-1437331-2026-11-29"
       ],
       "actionData": {
        "bookingId": 376,
-       "startDate": "2026-11-08"
+       "startDate": "2026-11-29"
       }
      },
      {
@@ -4169,11 +3707,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-08"
+       "appointment-1437331-2026-11-29"
       ],
       "actionData": {
        "bookingId": 379,
-       "startDate": "2026-11-08"
+       "startDate": "2026-11-29"
       }
      },
      {
@@ -4221,11 +3759,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-08"
+       "appointment-1437331-2026-11-29"
       ],
       "actionData": {
        "bookingId": 382,
-       "startDate": "2026-11-08"
+       "startDate": "2026-11-29"
       }
      },
      {
@@ -4273,11 +3811,11 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-08"
+       "appointment-1437331-2026-11-29"
       ],
       "actionData": {
        "bookingId": 385,
-       "startDate": "2026-11-08"
+       "startDate": "2026-11-29"
       }
      },
      {
@@ -4325,11 +3863,115 @@
        "by-appointment"
       ],
       "groupingKeys": [
-       "appointment-1437331-2026-11-08"
+       "appointment-1437331-2026-11-29"
       ],
       "actionData": {
        "bookingId": 388,
-       "startDate": "2026-11-08"
+       "startDate": "2026-11-29"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Saal",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "18:00 – 21:00",
+          "iconBefore": "diamond-exclamation",
+          "color": "critical",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-appointment"
+      ],
+      "groupingKeys": [
+       "appointment-550256-2026-12-01"
+      ],
+      "actionData": {
+       "bookingId": 295,
+       "startDate": "2026-12-01"
+      }
+     },
+     {
+      "summaryText": "",
+      "title": "Küche",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.my-bookings.details",
+        "label": "Gehe zu Buchung",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "initialInfoList": null,
+       "avatar": null,
+       "topLine": null,
+       "primaryInfoList": {
+        "direction": "wrapped",
+        "infoItems": [
+         {
+          "label": null,
+          "text": "18:00 – 21:00",
+          "iconBefore": null,
+          "color": "basic",
+          "subItems": []
+         },
+         {
+          "label": null,
+          "text": null,
+          "iconBefore": "circle-check",
+          "color": "success",
+          "subItems": []
+         }
+        ],
+        "size": "small",
+        "withLabel": false
+       },
+       "count": null,
+       "infoLists": []
+      },
+      "filterKeys": [
+       "by-appointment"
+      ],
+      "groupingKeys": [
+       "appointment-550256-2026-12-01"
+      ],
+      "actionData": {
+       "bookingId": 296,
+       "startDate": "2026-12-01"
       }
      }
     ],
@@ -4354,6 +3996,45 @@
      "density": "compact"
     },
     "groupings": {
+     "3": {
+      "title": "Saal",
+      "infoList": {
+       "direction": "wrapped",
+       "infoItems": [
+        {
+         "label": null,
+         "text": "Raum",
+         "iconBefore": null,
+         "color": "basic",
+         "subItems": []
+        },
+        {
+         "label": null,
+         "text": "Winterhude",
+         "iconBefore": "location-dot",
+         "color": "basic",
+         "subItems": []
+        },
+        {
+         "label": null,
+         "text": "Ort (Standard)",
+         "iconBefore": "map-pin",
+         "color": "basic",
+         "subItems": []
+        }
+       ],
+       "size": "small",
+       "withLabel": false
+      },
+      "count": {
+       "text": "39",
+       "color": "basic",
+       "type": "regular"
+      },
+      "filterKeys": [
+       "by-resource"
+      ]
+     },
      "8": {
       "title": "Jugendraum",
       "infoList": {
@@ -4418,71 +4099,14 @@
        "by-resource"
       ]
      },
-     "9": {
-      "title": "Kinderraum groß",
-      "infoList": {
-       "direction": "wrapped",
-       "infoItems": [
-        {
-         "label": null,
-         "text": "Raum",
-         "iconBefore": null,
-         "color": "basic",
-         "subItems": []
-        },
-        {
-         "label": null,
-         "text": "Winterhude",
-         "iconBefore": "location-dot",
-         "color": "basic",
-         "subItems": []
-        }
-       ],
-       "size": "small",
-       "withLabel": false
-      },
-      "count": {
-       "text": "52",
-       "color": "basic",
-       "type": "regular"
-      },
-      "filterKeys": [
-       "by-resource"
-      ]
-     },
-     "appointment-1437334-2026-10-30": {
-      "title": "Jugendgottesdienst",
-      "infoList": {
-       "direction": "wrapped",
-       "infoItems": [
-        {
-         "label": null,
-         "text": "Fr., 30.10.2026",
-         "iconBefore": null,
-         "color": "basic",
-         "subItems": []
-        }
-       ],
-       "size": "small",
-       "withLabel": false
-      },
-      "count": {
-       "text": "7",
-       "color": "basic",
-       "type": "regular"
-      },
-      "filterKeys": [
-       "by-appointment"
-      ]
-     },
-     "appointment-1437331-2026-11-01": {
+     "appointment-1437331-2026-11-22": {
       "title": "Gottesdienst",
       "infoList": {
        "direction": "wrapped",
        "infoItems": [
         {
          "label": null,
-         "text": "So., 01.11.2026",
+         "text": "So., 22.11.2026",
          "iconBefore": null,
          "color": "basic",
          "subItems": []
@@ -4500,14 +4124,14 @@
        "by-appointment"
       ]
      },
-     "appointment-1437334-2026-11-06": {
+     "appointment-1437334-2026-11-27": {
       "title": "Jugendgottesdienst",
       "infoList": {
        "direction": "wrapped",
        "infoItems": [
         {
          "label": null,
-         "text": "Fr., 06.11.2026",
+         "text": "Fr., 27.11.2026",
          "iconBefore": null,
          "color": "basic",
          "subItems": []
@@ -4525,14 +4149,14 @@
        "by-appointment"
       ]
      },
-     "appointment-1437331-2026-11-08": {
+     "appointment-1437331-2026-11-29": {
       "title": "Gottesdienst",
       "infoList": {
        "direction": "wrapped",
        "infoItems": [
         {
          "label": null,
-         "text": "So., 08.11.2026",
+         "text": "So., 29.11.2026",
          "iconBefore": null,
          "color": "basic",
          "subItems": []
@@ -4543,6 +4167,31 @@
       },
       "count": {
        "text": "5",
+       "color": "basic",
+       "type": "regular"
+      },
+      "filterKeys": [
+       "by-appointment"
+      ]
+     },
+     "appointment-550256-2026-12-01": {
+      "title": "Gebetsabend",
+      "infoList": {
+       "direction": "wrapped",
+       "infoItems": [
+        {
+         "label": null,
+         "text": "Di., 01.12.2026",
+         "iconBefore": null,
+         "color": "basic",
+         "subItems": []
+        }
+       ],
+       "size": "small",
+       "withLabel": false
+      },
+      "count": {
+       "text": "2",
        "color": "basic",
        "type": "regular"
       },
@@ -4624,7 +4273,7 @@
          "groupTypeId": 3,
          "campusId": null,
          "visibility": "public",
-         "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+         "guid": "F6526A47-D200-46A3-B79C-DFD9D212FFDB"
         },
         "infos": [
          "Veranstaltung"
@@ -4670,7 +4319,7 @@
          "groupTypeId": 2,
          "campusId": null,
          "visibility": "intern",
-         "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+         "guid": "599FE832-E425-439C-AF52-36EB02CF5506"
         },
         "infos": [
          "Team"
@@ -4740,7 +4389,7 @@
          "groupTypeId": 2,
          "campusId": null,
          "visibility": "restricted",
-         "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+         "guid": "C15A8509-04AC-4D2F-AA86-7878E825285E"
         },
         "infos": [
          "Team"
@@ -4786,7 +4435,7 @@
          "groupTypeId": 2,
          "campusId": null,
          "visibility": "restricted",
-         "guid": "BF91810C-B934-4167-AD2C-DB513ED111BF"
+         "guid": "70951BEE-F1C5-4A09-8673-886812B890F0"
         },
         "infos": [
          "Team"
@@ -4828,14 +4477,15 @@
         "initials": "N",
         "domainAttributes": {
          "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
-         "groupStatusId": 1,
+         "groupStatusId": 4,
          "groupTypeId": 3,
          "campusId": null,
          "visibility": "public",
-         "guid": "D45B9085-83F6-477F-90E7-DDC37C4293CA"
+         "guid": "D43CAAEF-337B-4B82-BDBC-60434B692B5E"
         },
         "infos": [
-         "Veranstaltung"
+         "Veranstaltung",
+         "Beendet"
         ]
        }
       },
@@ -4843,6 +4493,100 @@
       "groupingKeys": null,
       "actionData": {
        "groupId": 794
+      }
+     },
+     {
+      "summaryText": "#Newcomer-Lunch – 08.11.2026, 13:00",
+      "title": "#Newcomer-Lunch – 08.11.2026, 13:00",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.group.details",
+        "label": "Gehe zu Gruppe",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "#Newcomer-Lunch – 08.11.2026, 13:00",
+        "domainType": "group",
+        "domainIdentifier": "795",
+        "apiUrl": "https://gemeinde.example/api/groups/795",
+        "frontendUrl": "https://gemeinde.example/groups/795",
+        "imageUrl": "https://gemeinde.example/images/3276/c09d9e50cbd6cc36de28ff1368b172c7c2faedfe44ef3ebcf18a2ad49f3a728e",
+        "icon": "users",
+        "color": {
+         "key": "gray",
+         "shade": null
+        },
+        "initials": "N",
+        "domainAttributes": {
+         "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
+         "groupStatusId": 4,
+         "groupTypeId": 3,
+         "campusId": null,
+         "visibility": "public",
+         "guid": "EE0D1266-8FDD-4966-BC47-FB8718D331B9"
+        },
+        "infos": [
+         "Veranstaltung",
+         "Beendet"
+        ]
+       }
+      },
+      "filterKeys": null,
+      "groupingKeys": null,
+      "actionData": {
+       "groupId": 795
+      }
+     },
+     {
+      "summaryText": "#Newcomer-Lunch – 15.11.2026, 13:00",
+      "title": "#Newcomer-Lunch – 15.11.2026, 13:00",
+      "infos": [],
+      "actions": [
+       {
+        "type": "details",
+        "key": "action.group.details",
+        "label": "Gehe zu Gruppe",
+        "icon": null,
+        "flavor": null
+       }
+      ],
+      "details": {
+       "domainObject": {
+        "title": "#Newcomer-Lunch – 15.11.2026, 13:00",
+        "domainType": "group",
+        "domainIdentifier": "798",
+        "apiUrl": "https://gemeinde.example/api/groups/798",
+        "frontendUrl": "https://gemeinde.example/groups/798",
+        "imageUrl": "https://gemeinde.example/images/3279/0f701b70c6ab68313f1309c0541b2145f6fb6ae48a3bc289fe1ce63b391249de",
+        "icon": "users",
+        "color": {
+         "key": "gray",
+         "shade": null
+        },
+        "initials": "N",
+        "domainAttributes": {
+         "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
+         "groupStatusId": 4,
+         "groupTypeId": 3,
+         "campusId": null,
+         "visibility": "public",
+         "guid": "75A5FC48-761F-4E25-9ACD-963054ADC576"
+        },
+        "infos": [
+         "Veranstaltung",
+         "Beendet"
+        ]
+       }
+      },
+      "filterKeys": null,
+      "groupingKeys": null,
+      "actionData": {
+       "groupId": 798
       }
      },
      {
@@ -4878,7 +4622,7 @@
          "groupTypeId": 3,
          "campusId": null,
          "visibility": "public",
-         "guid": "BFA351F5-72BA-4573-8B5A-AB80495F617E"
+         "guid": "120901BC-C5EE-48E5-AFF3-1FE63C88DA9E"
         },
         "infos": [
          "Veranstaltung",
@@ -4925,7 +4669,7 @@
          "groupTypeId": 3,
          "campusId": null,
          "visibility": "public",
-         "guid": "47DE5083-2E65-4BFF-99F4-F36364C6E6DC"
+         "guid": "2A73DC9C-4900-46FC-8CA0-9F58F4429D2E"
         },
         "infos": [
          "Veranstaltung"
@@ -4971,7 +4715,7 @@
          "groupTypeId": 3,
          "campusId": null,
          "visibility": "public",
-         "guid": "BB1EF170-1AD5-45B9-A28E-07774FCA1000"
+         "guid": "8B0248DF-8B98-4E09-99F3-86FDC9AE2042"
         },
         "infos": [
          "Veranstaltung",
@@ -5018,7 +4762,7 @@
          "groupTypeId": 4,
          "campusId": null,
          "visibility": "public",
-         "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+         "guid": "788F2E07-6E97-4AE7-90A4-165124151D47"
         },
         "infos": [
          "Verteiler"
@@ -5064,7 +4808,7 @@
          "groupTypeId": 2,
          "campusId": null,
          "visibility": "restricted",
-         "guid": "7F236EA1-0CA7-4340-B472-93AD2590E497"
+         "guid": "59F820CD-4368-495C-93ED-288222B54DE0"
         },
         "infos": [
          "Team"
@@ -5078,8 +4822,8 @@
       }
      },
      {
-      "summaryText": "ctrs-test Seed-Gruppe 9502a3",
-      "title": "ctrs-test Seed-Gruppe 9502a3",
+      "summaryText": "ctrs-test Seed-Gruppe 127f37",
+      "title": "ctrs-test Seed-Gruppe 127f37",
       "infos": [],
       "actions": [
        {
@@ -5092,11 +4836,11 @@
       ],
       "details": {
        "domainObject": {
-        "title": "ctrs-test Seed-Gruppe 9502a3",
+        "title": "ctrs-test Seed-Gruppe 127f37",
         "domainType": "group",
-        "domainIdentifier": "958",
-        "apiUrl": "https://gemeinde.example/api/groups/958",
-        "frontendUrl": "https://gemeinde.example/groups/958",
+        "domainIdentifier": "800",
+        "apiUrl": "https://gemeinde.example/api/groups/800",
+        "frontendUrl": "https://gemeinde.example/groups/800",
         "imageUrl": null,
         "icon": "users",
         "color": {
@@ -5110,7 +4854,7 @@
          "groupTypeId": 1,
          "campusId": null,
          "visibility": "restricted",
-         "guid": "91128D07-0E7E-468F-B9CE-012D5DC15504"
+         "guid": "351B03BF-97D7-44BE-98F4-2D96319216BE"
         },
         "infos": [
          "Kleingruppe"
@@ -5120,7 +4864,7 @@
       "filterKeys": null,
       "groupingKeys": null,
       "actionData": {
-       "groupId": 958
+       "groupId": 800
       }
      },
      {
@@ -5156,7 +4900,7 @@
          "groupTypeId": 2,
          "campusId": null,
          "visibility": "restricted",
-         "guid": "ABD55CF8-A7EC-4CFA-9526-421F653F333D"
+         "guid": "3100CAF4-6338-4E60-92B7-7C2A9ADC4E3F"
         },
         "infos": [
          "Team"
@@ -5202,7 +4946,7 @@
          "groupTypeId": 4,
          "campusId": null,
          "visibility": "intern",
-         "guid": "44CA0294-0769-4F30-8B75-114985E01DD7"
+         "guid": "6037D485-BE1C-441E-B537-872C4D60595D"
         },
         "infos": [
          "Verteiler"
@@ -5248,7 +4992,7 @@
          "groupTypeId": 4,
          "campusId": null,
          "visibility": "public",
-         "guid": "6F7E4800-D31A-44D2-ABCA-42726B74400E"
+         "guid": "CFCD6B22-2D45-4BFB-A5D0-440D37890A32"
         },
         "infos": [
          "Verteiler"
@@ -5294,7 +5038,7 @@
          "groupTypeId": 3,
          "campusId": null,
          "visibility": "public",
-         "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+         "guid": "F6526A47-D200-46A3-B79C-DFD9D212FFDB"
         },
         "infos": [
          "Veranstaltung"
@@ -5340,7 +5084,7 @@
          "groupTypeId": 1,
          "campusId": 0,
          "visibility": "public",
-         "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+         "guid": "94FA007C-E869-4834-BA9E-7BED7527A77E"
         },
         "infos": [
          "Kleingruppe"
@@ -5386,7 +5130,7 @@
          "groupTypeId": 1,
          "campusId": 0,
          "visibility": "intern",
-         "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+         "guid": "49D12F7C-86B3-47EE-943C-781695C96DA6"
         },
         "infos": [
          "Kleingruppe"
@@ -5432,7 +5176,7 @@
          "groupTypeId": 6,
          "campusId": null,
          "visibility": "public",
-         "guid": "65772CE4-E4B3-423B-9DE5-FAA5A9574E76"
+         "guid": "D8B15C6D-1D9A-41D1-9317-8C0B2D2217B5"
         },
         "infos": [
          "Prozesse"
@@ -5478,7 +5222,7 @@
          "groupTypeId": 4,
          "campusId": null,
          "visibility": "restricted",
-         "guid": "0B1122BE-4D99-4064-BD90-BA1058E41A0C"
+         "guid": "837DECC3-5294-481B-B52C-67B4D4B0A88B"
         },
         "infos": [
          "Verteiler"
@@ -5524,7 +5268,7 @@
          "groupTypeId": 6,
          "campusId": null,
          "visibility": "restricted",
-         "guid": "01EEAA55-EFD8-4A1D-B6E3-B0642B96FD98"
+         "guid": "0E7A27B6-6EDD-40B9-9FFE-5EA55FE709E6"
         },
         "infos": [
          "Prozesse"
@@ -5570,7 +5314,7 @@
          "groupTypeId": 5,
          "campusId": 0,
          "visibility": "restricted",
-         "guid": "D5578784-CF50-4FE0-96F9-B1ABEA1ECF07"
+         "guid": "3D884DBF-67F3-45AF-BBF9-35DC21F9C944"
         },
         "infos": [
          "Schlüssel"
@@ -5616,7 +5360,7 @@
          "groupTypeId": 5,
          "campusId": 0,
          "visibility": "restricted",
-         "guid": "8256F23A-7C4B-4A6F-929F-5035B7F3F365"
+         "guid": "48B094ED-8919-4BA7-8481-AAD80C6F8AA6"
         },
         "infos": [
          "Schlüssel"
@@ -5662,7 +5406,7 @@
          "groupTypeId": 5,
          "campusId": 0,
          "visibility": "restricted",
-         "guid": "98CF9623-CF23-4097-98B9-9E1710810686"
+         "guid": "A8183AED-C2CA-49E1-B56A-63DEF7754588"
         },
         "infos": [
          "Schlüssel"
@@ -5708,7 +5452,7 @@
          "groupTypeId": 5,
          "campusId": 0,
          "visibility": "restricted",
-         "guid": "6DCD705C-0E8F-4292-8C93-BC110A0D2D71"
+         "guid": "928EB3D6-B36D-4C47-8527-A596E2E1998C"
         },
         "infos": [
          "Schlüssel"
@@ -5754,7 +5498,7 @@
          "groupTypeId": 5,
          "campusId": 0,
          "visibility": "restricted",
-         "guid": "9AEDD4D6-AC24-41B9-8386-8E52297D1453"
+         "guid": "261D0118-C2EC-46B5-9276-49A5EEDC5435"
         },
         "infos": [
          "Schlüssel"
@@ -5800,7 +5544,7 @@
          "groupTypeId": 5,
          "campusId": 0,
          "visibility": "restricted",
-         "guid": "000399BB-8358-4ADB-A784-C5A03C0C1288"
+         "guid": "64661A88-E4F8-40FB-BACB-BFAD11611E77"
         },
         "infos": [
          "Schlüssel"
@@ -5846,7 +5590,7 @@
          "groupTypeId": 4,
          "campusId": null,
          "visibility": "intern",
-         "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+         "guid": "D65E9F4F-FACF-459F-B1BD-95E75E921448"
         },
         "infos": [
          "Verteiler"
@@ -5892,7 +5636,7 @@
          "groupTypeId": 4,
          "campusId": null,
          "visibility": "intern",
-         "guid": "8F3D1663-D4A3-4028-9826-513C7764392C"
+         "guid": "F22B97BF-B56B-4B49-B487-C9E93B5C6ADD"
         },
         "infos": [
          "Verteiler"
@@ -5938,7 +5682,7 @@
          "groupTypeId": 2,
          "campusId": null,
          "visibility": "intern",
-         "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+         "guid": "599FE832-E425-439C-AF52-36EB02CF5506"
         },
         "infos": [
          "Team"
@@ -5984,7 +5728,7 @@
          "groupTypeId": 3,
          "campusId": null,
          "visibility": "public",
-         "guid": "A3E779B7-AB99-4C05-853A-F88414C913AB"
+         "guid": "3FE00DEA-F7D4-4907-A1AC-DFA65F520631"
         },
         "infos": [
          "Veranstaltung",
@@ -6031,8 +5775,8 @@
        "domainObject": {
         "title": "ctrs-test",
         "domainType": "further_link",
-        "domainIdentifier": "37",
-        "apiUrl": "https://gemeinde.example/api/furtherlinks/37",
+        "domainIdentifier": "2",
+        "apiUrl": "https://gemeinde.example/api/furtherlinks/2",
         "frontendUrl": null,
         "imageUrl": null,
         "icon": "link",

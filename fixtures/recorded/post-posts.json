@@ -6,15 +6,15 @@
   "query": [],
   "body": {
    "content": "Inhalt",
-   "title": "ctrs-test Beitrag 074204",
+   "title": "ctrs-test Beitrag cd74cd",
    "visibility": "group_intern",
    "groupId": 11
   }
  },
  "body": {
   "data": {
-   "id": 103,
-   "guid": "2195D440-4C54-4723-94E9-55DC9CE22439",
+   "id": 56,
+   "guid": "C77A1259-E039-4273-8E44-1EDF580FF815",
    "group": {
     "title": "#0 Gemeindeleitung",
     "domainType": "group",
@@ -34,7 +34,7 @@
      "groupTypeId": 2,
      "campusId": null,
      "visibility": "restricted",
-     "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+     "guid": "C15A8509-04AC-4D2F-AA86-7878E825285E"
     },
     "infos": [
      "Team"
@@ -53,13 +53,13 @@
     "domainAttributes": {
      "firstName": "Armin",
      "lastName": "Adendorf",
-     "guid": "157D7F0F-3F5F-4424-816E-A0F95B0FE8BB",
+     "guid": "98D56B55-3D16-4274-85D3-85901C6DF506",
      "dateOfDeath": null,
      "isArchived": false
     },
     "infos": []
    },
-   "title": "ctrs-test Beitrag 074204",
+   "title": "ctrs-test Beitrag cd74cd",
    "content": "Inhalt",
    "groupVisibility": "restricted",
    "visibility": "group_intern",
@@ -70,15 +70,15 @@
    "expirationDate": null,
    "expirationPid": null,
    "expirationPerson": null,
-   "publishedDate": "2026-10-30T16:07:03Z",
+   "publishedDate": "2026-11-21T19:07:42Z",
    "lastEditedDate": null,
    "isBanned": false,
    "meta": {
-    "createdDate": "2026-10-30T16:07:04Z",
+    "createdDate": "2026-11-21T19:07:42Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:07:04Z",
+    "modifiedDate": "2026-11-21T19:07:42Z",
     "modifiedPerson": {
      "id": 1
     }

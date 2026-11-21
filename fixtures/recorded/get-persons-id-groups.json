@@ -30,7 +30,7 @@
       "groupTypeId": 2,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "2FD1CE47-ED89-4014-920B-E41D1FFD7304"
+      "guid": "C15A8509-04AC-4D2F-AA86-7878E825285E"
      },
      "infos": [
       "Team"
@@ -99,7 +99,7 @@
       "groupTypeId": 2,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "BF91810C-B934-4167-AD2C-DB513ED111BF"
+      "guid": "70951BEE-F1C5-4A09-8673-886812B890F0"
      },
      "infos": [
       "Team"
@@ -157,14 +157,15 @@
      "initials": "N",
      "domainAttributes": {
       "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
-      "groupStatusId": 1,
+      "groupStatusId": 4,
       "groupTypeId": 3,
       "campusId": null,
       "visibility": "public",
-      "guid": "D45B9085-83F6-477F-90E7-DDC37C4293CA"
+      "guid": "D43CAAEF-337B-4B82-BDBC-60434B692B5E"
      },
      "infos": [
-      "Veranstaltung"
+      "Veranstaltung",
+      "Beendet"
      ]
     },
     "person": {
@@ -202,6 +203,132 @@
     "personFields": []
    },
    {
+    "id": 2526,
+    "personId": 1,
+    "group": {
+     "title": "#Newcomer-Lunch – 08.11.2026, 13:00",
+     "domainType": "group",
+     "domainIdentifier": "795",
+     "apiUrl": "https://gemeinde.example/api/groups/795",
+     "frontendUrl": "https://gemeinde.example/groups/795",
+     "imageUrl": "https://gemeinde.example/images/3276/c09d9e50cbd6cc36de28ff1368b172c7c2faedfe44ef3ebcf18a2ad49f3a728e",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "N",
+     "domainAttributes": {
+      "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
+      "groupStatusId": 4,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "EE0D1266-8FDD-4966-BC47-FB8718D331B9"
+     },
+     "infos": [
+      "Veranstaltung",
+      "Beendet"
+     ]
+    },
+    "person": {
+     "title": "",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "",
+     "domainAttributes": {
+      "firstName": "",
+      "lastName": "",
+      "guid": null,
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 23,
+    "roleChangedDate": "2026-11-03T02:18:33Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2026-11-03T02:18:33Z",
+    "memberStartDate": "2026-11-03",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [],
+    "personFields": []
+   },
+   {
+    "id": 2541,
+    "personId": 1,
+    "group": {
+     "title": "#Newcomer-Lunch – 15.11.2026, 13:00",
+     "domainType": "group",
+     "domainIdentifier": "798",
+     "apiUrl": "https://gemeinde.example/api/groups/798",
+     "frontendUrl": "https://gemeinde.example/groups/798",
+     "imageUrl": "https://gemeinde.example/images/3279/0f701b70c6ab68313f1309c0541b2145f6fb6ae48a3bc289fe1ce63b391249de",
+     "icon": "users",
+     "color": {
+      "key": "gray",
+      "shade": null
+     },
+     "initials": "N",
+     "domainAttributes": {
+      "note": "Du bist neu bei uns oder möchtest uns einfach besser kennenlernen? Dann laden wir dich herzlich zu unserem nächsten Newcomer-Lunch am Sonntag ein – gleich im Anschluss an den Gottesdienst.  \nDich erwartet ein leckeres Mittagessen, entspannte Atmosphäre und die Möglichkeit, Menschen aus unserer Gemeinde kennenzulernen und Fragen zu stellen.  \nDamit wir fürs Essen gut planen können, melde dich bitte hier an!  \nGanz unverbindlich – einfach kommen und genießen!",
+      "groupStatusId": 4,
+      "groupTypeId": 3,
+      "campusId": null,
+      "visibility": "public",
+      "guid": "75A5FC48-761F-4E25-9ACD-963054ADC576"
+     },
+     "infos": [
+      "Veranstaltung",
+      "Beendet"
+     ]
+    },
+    "person": {
+     "title": "",
+     "domainType": "person",
+     "domainIdentifier": "1",
+     "apiUrl": "https://gemeinde.example/api/persons/1",
+     "frontendUrl": "https://gemeinde.example/?q=churchdb#PersonView/searchEntry:%231/",
+     "imageUrl": null,
+     "icon": "user",
+     "color": null,
+     "initials": "",
+     "domainAttributes": {
+      "firstName": "",
+      "lastName": "",
+      "guid": null,
+      "dateOfDeath": null,
+      "isArchived": false
+     },
+     "infos": []
+    },
+    "groupTypeRoleId": 23,
+    "roleChangedDate": "2026-11-10T02:15:31Z",
+    "groupMemberStatus": "active",
+    "statusChangedDate": "2026-11-10T02:15:31Z",
+    "memberStartDate": "2026-11-10",
+    "registeredBy": null,
+    "waitinglistPosition": null,
+    "comment": null,
+    "memberEndDate": null,
+    "@deprecated": {
+     "personId": "person.domainIdentifier"
+    },
+    "fields": [],
+    "personFields": []
+   },
+   {
     "id": 2482,
     "personId": 1,
     "group": {
@@ -223,7 +350,7 @@
       "groupTypeId": 3,
       "campusId": null,
       "visibility": "public",
-      "guid": "BFA351F5-72BA-4573-8B5A-AB80495F617E"
+      "guid": "120901BC-C5EE-48E5-AFF3-1FE63C88DA9E"
      },
      "infos": [
       "Veranstaltung",
@@ -286,7 +413,7 @@
       "groupTypeId": 3,
       "campusId": null,
       "visibility": "public",
-      "guid": "47DE5083-2E65-4BFF-99F4-F36364C6E6DC"
+      "guid": "2A73DC9C-4900-46FC-8CA0-9F58F4429D2E"
      },
      "infos": [
       "Veranstaltung"
@@ -348,7 +475,7 @@
       "groupTypeId": 3,
       "campusId": null,
       "visibility": "public",
-      "guid": "BB1EF170-1AD5-45B9-A28E-07774FCA1000"
+      "guid": "8B0248DF-8B98-4E09-99F3-86FDC9AE2042"
      },
      "infos": [
       "Veranstaltung",
@@ -411,7 +538,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "public",
-      "guid": "0E324F26-B9C0-46E3-8050-29F30EF7CE3F"
+      "guid": "788F2E07-6E97-4AE7-90A4-165124151D47"
      },
      "infos": [
       "Verteiler"
@@ -473,7 +600,7 @@
       "groupTypeId": 2,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "7F236EA1-0CA7-4340-B472-93AD2590E497"
+      "guid": "59F820CD-4368-495C-93ED-288222B54DE0"
      },
      "infos": [
       "Team"
@@ -514,14 +641,14 @@
     "personFields": []
    },
    {
-    "id": 2620,
+    "id": 2555,
     "personId": 1,
     "group": {
-     "title": "ctrs-test Seed-Gruppe 9502a3",
+     "title": "ctrs-test Seed-Gruppe 127f37",
      "domainType": "group",
-     "domainIdentifier": "958",
-     "apiUrl": "https://gemeinde.example/api/groups/958",
-     "frontendUrl": "https://gemeinde.example/groups/958",
+     "domainIdentifier": "800",
+     "apiUrl": "https://gemeinde.example/api/groups/800",
+     "frontendUrl": "https://gemeinde.example/groups/800",
      "imageUrl": null,
      "icon": "users",
      "color": {
@@ -535,7 +662,7 @@
       "groupTypeId": 1,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "91128D07-0E7E-468F-B9CE-012D5DC15504"
+      "guid": "351B03BF-97D7-44BE-98F4-2D96319216BE"
      },
      "infos": [
       "Kleingruppe"
@@ -561,10 +688,10 @@
      "infos": []
     },
     "groupTypeRoleId": 9,
-    "roleChangedDate": "2026-10-30T16:03:25Z",
+    "roleChangedDate": "2026-11-21T19:03:58Z",
     "groupMemberStatus": "active",
-    "statusChangedDate": "2026-10-30T16:03:23Z",
-    "memberStartDate": "2026-10-30",
+    "statusChangedDate": "2026-11-21T19:03:56Z",
+    "memberStartDate": "2026-11-21",
     "registeredBy": null,
     "waitinglistPosition": null,
     "comment": null,
@@ -597,7 +724,7 @@
       "groupTypeId": 2,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "ABD55CF8-A7EC-4CFA-9526-421F653F333D"
+      "guid": "3100CAF4-6338-4E60-92B7-7C2A9ADC4E3F"
      },
      "infos": [
       "Team"
@@ -659,7 +786,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "intern",
-      "guid": "44CA0294-0769-4F30-8B75-114985E01DD7"
+      "guid": "6037D485-BE1C-441E-B537-872C4D60595D"
      },
      "infos": [
       "Verteiler"
@@ -721,7 +848,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "public",
-      "guid": "6F7E4800-D31A-44D2-ABCA-42726B74400E"
+      "guid": "CFCD6B22-2D45-4BFB-A5D0-440D37890A32"
      },
      "infos": [
       "Verteiler"
@@ -760,15 +887,15 @@
     },
     "fields": [
      {
-      "id": 1,
-      "name": "Zimmerwunsch",
-      "value": "2",
-      "sortKey": 0
-     },
-     {
       "id": 13,
       "name": "Allergien",
       "value": "",
+      "sortKey": 0
+     },
+     {
+      "id": 1,
+      "name": "Zimmerwunsch",
+      "value": "2",
       "sortKey": 0
      }
     ],
@@ -796,7 +923,7 @@
       "groupTypeId": 3,
       "campusId": null,
       "visibility": "public",
-      "guid": "B12A1C8A-F4C3-4BFB-992B-C4C5E4239AE7"
+      "guid": "F6526A47-D200-46A3-B79C-DFD9D212FFDB"
      },
      "infos": [
       "Veranstaltung"
@@ -877,7 +1004,7 @@
       "groupTypeId": 1,
       "campusId": 0,
       "visibility": "public",
-      "guid": "CA1FE528-6B52-431D-AAE1-D5228C8A88A3"
+      "guid": "94FA007C-E869-4834-BA9E-7BED7527A77E"
      },
      "infos": [
       "Kleingruppe"
@@ -946,7 +1073,7 @@
       "groupTypeId": 1,
       "campusId": 0,
       "visibility": "intern",
-      "guid": "0FD7BF44-0F16-46C3-88BC-24DF2BDA9F48"
+      "guid": "49D12F7C-86B3-47EE-943C-781695C96DA6"
      },
      "infos": [
       "Kleingruppe"
@@ -1008,7 +1135,7 @@
       "groupTypeId": 6,
       "campusId": null,
       "visibility": "public",
-      "guid": "65772CE4-E4B3-423B-9DE5-FAA5A9574E76"
+      "guid": "D8B15C6D-1D9A-41D1-9317-8C0B2D2217B5"
      },
      "infos": [
       "Prozesse"
@@ -1070,7 +1197,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "0B1122BE-4D99-4064-BD90-BA1058E41A0C"
+      "guid": "837DECC3-5294-481B-B52C-67B4D4B0A88B"
      },
      "infos": [
       "Verteiler"
@@ -1132,7 +1259,7 @@
       "groupTypeId": 6,
       "campusId": null,
       "visibility": "restricted",
-      "guid": "01EEAA55-EFD8-4A1D-B6E3-B0642B96FD98"
+      "guid": "0E7A27B6-6EDD-40B9-9FFE-5EA55FE709E6"
      },
      "infos": [
       "Prozesse"
@@ -1194,7 +1321,7 @@
       "groupTypeId": 5,
       "campusId": 0,
       "visibility": "restricted",
-      "guid": "D5578784-CF50-4FE0-96F9-B1ABEA1ECF07"
+      "guid": "3D884DBF-67F3-45AF-BBF9-35DC21F9C944"
      },
      "infos": [
       "Schlüssel"
@@ -1256,7 +1383,7 @@
       "groupTypeId": 5,
       "campusId": 0,
       "visibility": "restricted",
-      "guid": "8256F23A-7C4B-4A6F-929F-5035B7F3F365"
+      "guid": "48B094ED-8919-4BA7-8481-AAD80C6F8AA6"
      },
      "infos": [
       "Schlüssel"
@@ -1318,7 +1445,7 @@
       "groupTypeId": 5,
       "campusId": 0,
       "visibility": "restricted",
-      "guid": "98CF9623-CF23-4097-98B9-9E1710810686"
+      "guid": "A8183AED-C2CA-49E1-B56A-63DEF7754588"
      },
      "infos": [
       "Schlüssel"
@@ -1380,7 +1507,7 @@
       "groupTypeId": 5,
       "campusId": 0,
       "visibility": "restricted",
-      "guid": "6DCD705C-0E8F-4292-8C93-BC110A0D2D71"
+      "guid": "928EB3D6-B36D-4C47-8527-A596E2E1998C"
      },
      "infos": [
       "Schlüssel"
@@ -1442,7 +1569,7 @@
       "groupTypeId": 5,
       "campusId": 0,
       "visibility": "restricted",
-      "guid": "9AEDD4D6-AC24-41B9-8386-8E52297D1453"
+      "guid": "261D0118-C2EC-46B5-9276-49A5EEDC5435"
      },
      "infos": [
       "Schlüssel"
@@ -1504,7 +1631,7 @@
       "groupTypeId": 5,
       "campusId": 0,
       "visibility": "restricted",
-      "guid": "000399BB-8358-4ADB-A784-C5A03C0C1288"
+      "guid": "64661A88-E4F8-40FB-BACB-BFAD11611E77"
      },
      "infos": [
       "Schlüssel"
@@ -1566,7 +1693,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "intern",
-      "guid": "FD0D239F-3F1E-4D92-A28B-03C64E24EF22"
+      "guid": "D65E9F4F-FACF-459F-B1BD-95E75E921448"
      },
      "infos": [
       "Verteiler"
@@ -1628,7 +1755,7 @@
       "groupTypeId": 4,
       "campusId": null,
       "visibility": "intern",
-      "guid": "8F3D1663-D4A3-4028-9826-513C7764392C"
+      "guid": "F22B97BF-B56B-4B49-B487-C9E93B5C6ADD"
      },
      "infos": [
       "Verteiler"
@@ -1690,7 +1817,7 @@
       "groupTypeId": 2,
       "campusId": null,
       "visibility": "intern",
-      "guid": "E8B73C07-485D-4015-911A-F466EBAB4233"
+      "guid": "599FE832-E425-439C-AF52-36EB02CF5506"
      },
      "infos": [
       "Team"
@@ -1752,7 +1879,7 @@
       "groupTypeId": 3,
       "campusId": null,
       "visibility": "public",
-      "guid": "A3E779B7-AB99-4C05-853A-F88414C913AB"
+      "guid": "3FE00DEA-F7D4-4907-A1AC-DFA65F520631"
      },
      "infos": [
       "Veranstaltung",
@@ -1795,7 +1922,7 @@
    }
   ],
   "meta": {
-   "count": 28
+   "count": 30
   }
  }
 }

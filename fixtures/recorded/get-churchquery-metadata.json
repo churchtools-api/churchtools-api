@@ -254,16 +254,6 @@
        "nameTranslated": "Benutzername",
        "type": "string"
       },
-      "optigemId": {
-       "key": "optigemId",
-       "nameTranslated": "Optigem-Nr",
-       "type": "string"
-      },
-      "nickname": {
-       "key": "nickname",
-       "nameTranslated": "Rufname",
-       "type": "string"
-      },
       "birthday": {
        "key": "birthday",
        "nameTranslated": "Geburtsdatum",
@@ -357,6 +347,16 @@
        "nameTranslated": "Standort",
        "type": "idReference",
        "references": "campusIdEntity"
+      },
+      "optigemId": {
+       "key": "optigemId",
+       "nameTranslated": "Optigem-Nr",
+       "type": "string"
+      },
+      "nickname": {
+       "key": "nickname",
+       "nameTranslated": "Rufname",
+       "type": "string"
       },
       "privacyPolicyAgreementDate": {
        "key": "privacyPolicyAgreementDate",

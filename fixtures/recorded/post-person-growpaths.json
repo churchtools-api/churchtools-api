@@ -6,22 +6,22 @@
   "query": [],
   "body": {
    "color": "red",
-   "name": "ctrs-test grow_paths 83ce99"
+   "name": "ctrs-test grow_paths 38ec15"
   }
  },
  "body": {
   "data": {
-   "id": 37,
-   "name": "ctrs-test grow_paths 83ce99",
-   "nameTranslated": "ctrs-test grow_paths 83ce99",
+   "id": 8,
+   "name": "ctrs-test grow_paths 38ec15",
+   "nameTranslated": "ctrs-test grow_paths 38ec15",
    "sortKey": 0,
    "color": "red",
    "meta": {
-    "createdDate": "2026-10-30T16:06:17Z",
+    "createdDate": "2026-11-21T19:06:54Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:06:17Z",
+    "modifiedDate": "2026-11-21T19:06:54Z",
     "modifiedPerson": {
      "id": 1
     }

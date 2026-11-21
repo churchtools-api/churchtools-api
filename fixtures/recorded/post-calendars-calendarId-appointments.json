@@ -2,41 +2,41 @@
  "operation": "post-calendars-calendarId-appointments",
  "request": {
   "method": "POST",
-  "path": "/calendars/112/appointments",
+  "path": "/calendars/71/appointments",
   "query": [],
   "body": {
-   "endDate": "2026-11-05T17:00:00Z",
-   "startDate": "2026-11-05T16:00:00Z",
+   "endDate": "2026-11-27T20:00:00Z",
+   "startDate": "2026-11-27T19:00:00Z",
    "isInternal": false,
-   "title": "ctrs-test Termin 6460fc"
+   "title": "ctrs-test Termin 4a29db"
   }
  },
  "body": {
   "data": {
-   "id": 1665619,
-   "title": "ctrs-test Termin 6460fc",
+   "id": 1672118,
+   "title": "ctrs-test Termin 4a29db",
    "subtitle": null,
    "address": null,
    "version": 0,
    "calendar": {
-    "id": 112,
-    "name": "ctrs-test Kalender 2f9350",
-    "nameTranslated": "ctrs-test Kalender 2f9350",
+    "id": 71,
+    "name": "ctrs-test Kalender fc1056",
+    "nameTranslated": "ctrs-test Kalender fc1056",
     "sortKey": 999,
     "type": "church",
     "color": null,
-    "randomUrl": "lDp3sqNUrI5QUtwdWyKbbIlsfeVmRYfZ",
+    "randomUrl": "S0WeZYoyuO4SFoHw1QVJChUYnQT28qhZ",
     "iCalSourceUrl": null,
     "syncToEvTermine": false,
     "evTermineEventTypeId": null,
     "campusId": null,
     "eventTemplateId": null,
     "meta": {
-     "createdDate": "2026-10-30T16:07:12Z",
+     "createdDate": "2026-11-21T19:07:51Z",
      "createdPerson": {
       "id": 1
      },
-     "modifiedDate": "2026-10-30T16:07:12Z",
+     "modifiedDate": "2026-11-21T19:07:51Z",
      "modifiedPerson": {
       "id": 1
      }
@@ -52,8 +52,8 @@
    "image": null,
    "link": null,
    "isInternal": false,
-   "startDate": "2026-11-05T16:00:00Z",
-   "endDate": "2026-11-05T17:00:00Z",
+   "startDate": "2026-11-27T19:00:00Z",
+   "endDate": "2026-11-27T20:00:00Z",
    "allDay": false,
    "repeatId": 0,
    "repeatFrequency": null,
@@ -64,11 +64,11 @@
    "signup": null,
    "onBehalfOfPid": null,
    "meta": {
-    "createdDate": "2026-10-30T16:07:13Z",
+    "createdDate": "2026-11-21T19:07:51Z",
     "createdPerson": {
      "id": 1
     },
-    "modifiedDate": "2026-10-30T16:07:13Z",
+    "modifiedDate": "2026-11-21T19:07:51Z",
     "modifiedPerson": {
      "id": 1
     }
@@ -79,7 +79,7 @@
     "note": "subtitle",
     "information": "description"
    },
-   "caption": "ctrs-test Termin 6460fc",
+   "caption": "ctrs-test Termin 4a29db",
    "note": null,
    "information": null,
    "additions": []
