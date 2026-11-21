@@ -18,6 +18,9 @@ inkompatiblen Änderungen.
 - `forcereorder` bei `security_levels.patch` ist veraltet (der Server ignoriert es) und erzeugt eine Warnung.
 - `API_VERSION`/`API_BUILD` sind jetzt `3.138.3`/`32945`.
 - Live-Tests: neues Szenario für Sicherheitsstufen; Testbericht um „Änderungen in 3.138.3“ ergänzt.
+- Live-Tests hängen nicht mehr von instanzspezifischen IDs ab: Sicherheitsstufe und Datenschutz-Auswahlwerte werden
+  nachgeschlagen (Fixture `ids`), `renumber()` läuft als eigenes Szenario, `seed.py` legt einen Termin im ersten
+  Kalender und einen Fakt an einer Veranstaltung an.
 
 ## [0.1.0] – 2026-10-30
 

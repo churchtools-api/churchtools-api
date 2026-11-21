@@ -30,18 +30,26 @@ Alle 850 Operationen, Stand des letzten Laufs (`fixtures/live-results.json`):
 
 | | ok | erwartet | keine Daten | nicht aufgerufen | gesamt |
 |---|---:|---:|---:|---:|---:|
-| GET | 346 | 11 | 8 | – | 365 |
-| POST | 73 | – | – | 144 | 217 |
+| GET | 348 | 11 | 6 | – | 365 |
+| POST | 74 | – | – | 143 | 217 |
 | PUT | 49 | 1 | – | 68 | 118 |
 | PATCH | 10 | – | – | 14 | 24 |
 | DELETE | 58 | – | – | 68 | 126 |
-| **gesamt** | **536** | **12** | **8** | **294** | **850** |
+| **gesamt** | **539** | **12** | **6** | **293** | **850** |
 
-pytest (3.138.3): 388 bestanden, 12 erwartete Fehler (`xfail`), 8 übersprungen, 0 fehlgeschlagen; Laufzeit etwa
-4 Minuten; dazu der neue Szenario-Test für Sicherheitsstufen. Mit den Testdaten aus `seed.py` sind von den 365
-GET-Endpunkten 346 erfolgreich getestet (348 im Lauf gegen 3.138.1; die zwei fehlenden sind Datenlücken der frischen
-Demo, siehe unten); vorher waren es 298. Von den 485 schreibenden ruft die Suite 190 auf, verteilt auf 44
-Szenario-Tests. In der Doku-Seite tragen alle
+pytest (3.138.3): 391 bestanden, 12 erwartete Fehler (`xfail`), 7 übersprungen, 0 fehlgeschlagen; Laufzeit etwa
+5 Minuten. Mit den Testdaten aus `seed.py` sind von den 365 GET-Endpunkten 348 erfolgreich getestet; vorher waren es
+298. Von den 485 schreibenden ruft die Suite 191 auf, verteilt auf 45 Szenario-Tests.
+
+### Unabhängig von der Instanz
+
+Die Tests verdrahten keine IDs, die sich zwischen Instanzen unterscheiden. Die niedrigste Sicherheitsstufe und die
+Auswahlwerte der Datenschutz-Felder („Einwilligung wodurch“, „durch wen“) schlägt der Fixture `ids` nach
+(`scenario.InstanceIds`), die Sicherheitsstufe je Test, weil ein Szenario sie umnummeriert. Fest bleiben nur
+dokumentierte Konstanten wie Buchungsstatus `2` (genehmigt) und Wiederholung `7` (wöchentlich). Datumswerte sind
+relativ zum Testzeitpunkt (`NOW`, `TODAY`). Wo eine frische Demo zufällig keine Daten an der Stelle hat, an der der
+Resolver sucht, legt `seed.py` sie an (ein Termin im ersten Kalender, ein Fakt an der ersten Veranstaltung). Der letzte
+Lauf ging gegen eine Instanz, deren Sicherheitsstufen schon umnummeriert waren (10…50 statt 1…5). In der Doku-Seite tragen alle
 Endpunkte, die nicht „ok“ sind, ein rotes Sternchen.
 
 - **ok:** Aufruf erfolgreich, Antwort passt zu den Modellen.
@@ -169,7 +177,7 @@ entfällt, kein Feld wird Pflicht. Geprüft am 21.11.2026 auf einer frischen Dem
 
 | Änderung | Ergebnis |
 |---|---|
-| neu: `POST /securitylevels/renumber` | Antwort ohne Body. Nummeriert die Stufen in Zehnerschritten (`1…5` → `10…50`), Reihenfolge und Namen bleiben. Von Hand geprüft, nicht in der Suite: Danach gibt es keine Stufe 1 mehr, auf die sich andere Szenarien beziehen. |
+| neu: `POST /securitylevels/renumber` | Antwort ohne Body. Nummeriert die Stufen in Zehnerschritten (`1…5` → `10…50`), Reihenfolge und Namen bleiben; Szenario `test_security_level_renumber` mit zwei eigenen Stufen |
 | neu: `expectedName` bei `PATCH` (Body) und `DELETE` (Query) | Stimmt der Name nicht, antwortet der Server mit 409 „Security level has changed“ (`Conflict`) und ändert nichts; Szenario `test_security_level` |
 | `forcereorder` (Query und Body von `PATCH`) veraltet | wird laut Spec ignoriert; im Client als veraltet markiert |
 | `POST /securitylevels/{id}` mit freier ID | legt die Stufe an, ohne andere umzunummerieren |
@@ -177,9 +185,9 @@ entfällt, kein Feld wird Pflicht. Geprüft am 21.11.2026 auf einer frischen Dem
 Dabei aufgefallen: `DELETE /securitylevels/{id}?dry_run=true` antwortet mit 409 „Dry Run Output“ statt mit einem
 Erfolgscode; der Client meldet das als `Conflict`.
 
-Gegenüber dem Lauf gegen 3.138.1 nicht mehr auflösbar, weil die frische Demo die Daten nicht hat:
-`GET /calendars/{calendarId}/appointments/{appointmentId}/{startDate}` (kein Termin im ersten Kalender) und
-`GET /events/{eventId}/facts/{factId}`. Die Aufzeichnungen aus dem früheren Lauf bleiben erhalten.
+Im ersten Lauf gegen 3.138.3 waren `GET /calendars/{calendarId}/appointments/{appointmentId}/{startDate}` (kein
+Termin im ersten Kalender) und `GET /events/{eventId}/facts/{factId}` nicht auflösbar; `seed.py` legt die Daten jetzt
+an.
 
 ## Bewusst nicht getestet
 

@@ -240,3 +240,18 @@ def me(client: LiveClient) -> int:
 def masterdata(client: LiveClient) -> ct.models.PersonMasterData:
     return client.person.get_master_data()
 
+
+@pytest.fixture(scope="session")
+def privacy_options(client: LiveClient) -> tuple[int, int]:
+    from scenario import lookup_privacy_options
+
+    return lookup_privacy_options(client)
+
+
+@pytest.fixture
+def ids(client: LiveClient, privacy_options: tuple[int, int]) -> _t.Any:
+    """Instance-specific IDs (`scenario.InstanceIds`); the security level per test, a scenario renumbers them."""
+    from scenario import lookup_ids
+
+    return lookup_ids(client, privacy_options)
+

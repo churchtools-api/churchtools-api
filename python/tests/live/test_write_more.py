@@ -15,7 +15,7 @@ import churchtools_api as ct
 import pytest
 from churchtools_api import models as m
 from conftest import LiveClient
-from scenario import NOW, Cleanup, name, required_person_fields
+from scenario import NOW, Cleanup, InstanceIds, name, required_person_fields
 
 pytestmark = pytest.mark.usefixtures("scenario")
 
@@ -53,16 +53,15 @@ def test_more_masterdata(client: LiveClient, call: str, cleanup: Cleanup) -> Non
     resource.delete(created.id, **delete_kw)
 
 
-def test_status_patch(client: LiveClient, cleanup: Cleanup) -> None:
-    status = client.statuses.create(name=name("Status"), security_level_id=1, shorty="T")
+def test_status_patch(client: LiveClient, ids: InstanceIds, cleanup: Cleanup) -> None:
+    status = client.statuses.create(name=name("Status"), security_level_id=ids.security_level, shorty="T")
     cleanup(lambda: client.statuses.delete(status.id))
     assert client.statuses.patch(status.id, shorty="T2").shorty == "T2"
     client.statuses.delete(status.id)
 
 
 def test_security_level(client: LiveClient, cleanup: Cleanup) -> None:
-    # A free ID inserts a level without renumbering. `renumber()` is left out on purpose: it changes the IDs of
-    # all levels, and other scenarios refer to level 1.
+    # A free ID inserts a level without renumbering the others.
     taken = {level.id for level in client.security_levels.list()}
     level_id = next(i for i in range(50, 99998) if i not in taken)
     level_name = name("Stufe")[-20:]
@@ -75,6 +74,30 @@ def test_security_level(client: LiveClient, cleanup: Cleanup) -> None:
         client.security_levels.delete(level_id, expected_name=level_name)
     client.security_levels.delete(level_id, expected_name=level_name + " 2")
     assert level_id not in {level.id for level in client.security_levels.list()}
+
+
+def test_security_level_renumber(client: LiveClient, cleanup: Cleanup) -> None:
+    # Renumbering changes the IDs of all levels, so the levels are found again by name. The other scenarios look
+    # up the lowest level per test (`ids`) and do not depend on the IDs.
+    levels = client.security_levels.list()
+    taken = {level.id for level in levels}
+    low, high = (next(i for i in range(start, 99998) if i not in taken) for start in (max(taken) + 1, max(taken) + 7))
+    names = {low: name("Stufe")[-20:], high: name("Stufe")[-20:]}
+    for level_id, level_name in names.items():
+        client.security_levels.create(level_id, name=level_name)
+
+    def remove() -> None:
+        for level in client.security_levels.list():
+            if level.name in names.values():
+                client.security_levels.delete(level.id)
+
+    cleanup(remove)
+    order = [level.name for level in sorted(client.security_levels.list(), key=lambda level: level.id)]
+    client.security_levels.renumber()
+    after = sorted(client.security_levels.list(), key=lambda level: level.id)
+    assert [level.name for level in after] == order, "renumbering keeps the hierarchy"
+    assert len({level.id for level in after}) == len(after)
+    remove()
 
 
 def test_group_type_with_role(client: LiveClient, cleanup: Cleanup) -> None:
@@ -190,7 +213,7 @@ def test_agenda_template(client: LiveClient, cleanup: Cleanup) -> None:
 # --- groups -----------------------------------------------------------------------
 
 
-def test_group_extras(client: LiveClient, me: int, masterdata: _t.Any, cleanup: Cleanup) -> None:
+def test_group_extras(client: LiveClient, me: int, masterdata: _t.Any, ids: InstanceIds, cleanup: Cleanup) -> None:
     group = client.groups.create(
         name=name("Gruppe"), group_type_id=masterdata.group_types[0].id, group_status_id=masterdata.group_statuses[0].id
     )
@@ -213,7 +236,7 @@ def test_group_extras(client: LiveClient, me: int, masterdata: _t.Any, cleanup: 
         group.id,
         name="T-Shirt-Größe",
         field_type_code="text",
-        security_level=1,
+        security_level=ids.security_level,
         use_in_registration_form=False,
         required_in_registration_form=False,
     )
@@ -223,7 +246,7 @@ def test_group_extras(client: LiveClient, me: int, masterdata: _t.Any, cleanup: 
         field.id,
         name="Größe",
         reference_name=field.reference_name or "groesse",
-        security_level=1,
+        security_level=ids.security_level,
         use_in_registration_form=False,
         required_in_registration_form=False,
     )
@@ -246,8 +269,8 @@ def test_group_extras(client: LiveClient, me: int, masterdata: _t.Any, cleanup: 
     client.groups.members.create_export(group.id)
 
 
-def test_follow_up(client: LiveClient, me: int, masterdata: _t.Any, cleanup: Cleanup) -> None:
-    person = client.persons.create(**required_person_fields(masterdata), first_name="ctrs-test", last_name="Nachsorge", force=True)
+def test_follow_up(client: LiveClient, me: int, masterdata: _t.Any, ids: InstanceIds, cleanup: Cleanup) -> None:
+    person = client.persons.create(**required_person_fields(masterdata, ids), first_name="ctrs-test", last_name="Nachsorge", force=True)
     cleanup(lambda: client.persons.delete(person.id))
 
     follow_up = client.persons.followups.create(person.id, title="Nachfragen, wie es geht", owner_id=me)
@@ -274,7 +297,7 @@ def test_follow_up(client: LiveClient, me: int, masterdata: _t.Any, cleanup: Cle
     client.persons.delete(person.id)
 
 
-def test_meeting_attendance(client: LiveClient, me: int, masterdata: _t.Any, cleanup: Cleanup) -> None:
+def test_meeting_attendance(client: LiveClient, me: int, masterdata: _t.Any, ids: InstanceIds, cleanup: Cleanup) -> None:
     group = client.groups.create(
         name=name("Gruppe"), group_type_id=masterdata.group_types[0].id, group_status_id=masterdata.group_statuses[0].id
     )
@@ -291,9 +314,9 @@ def test_meeting_attendance(client: LiveClient, me: int, masterdata: _t.Any, cle
 # --- persons ----------------------------------------------------------------------
 
 
-def test_person_agreements(client: LiveClient, masterdata: _t.Any, cleanup: Cleanup) -> None:
+def test_person_agreements(client: LiveClient, masterdata: _t.Any, ids: InstanceIds, cleanup: Cleanup) -> None:
     person = client.persons.create(
-        **required_person_fields(masterdata),
+        **required_person_fields(masterdata, ids),
         first_name="ctrs-test",
         last_name="Vereinbarung",
         birthday=dt.date(1990, 5, 17),  # the privacy policy needs it to tell adults from children
@@ -304,7 +327,7 @@ def test_person_agreements(client: LiveClient, masterdata: _t.Any, cleanup: Clea
     with pytest.raises(ct.Forbidden):
         client.persons.update_confidentiality_agreement(person.id)
     client.persons.delete_confidentiality_agreement(person.id)
-    client.persons.update_privacy_policy(person.id, own_accepted=True, children_accepted=False, persons=[], type_id=1, who_id=1)
+    client.persons.update_privacy_policy(person.id, own_accepted=True, children_accepted=False, persons=[], type_id=ids.privacy_type, who_id=ids.privacy_who)
     client.persons.get_privacy_policy(person.id)
     client.persons.delete_privacy_policy(person.id)
     client.persons.delete(person.id)
