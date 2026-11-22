@@ -56,8 +56,9 @@ Auswahlwerte der Datenschutz-Felder („Einwilligung wodurch“, „durch wen“
 (`scenario.InstanceIds`). Fest bleiben nur dokumentierte Konstanten wie Buchungsstatus `2` (genehmigt) und
 Wiederholung `7` (wöchentlich). Datumswerte sind relativ zum Testzeitpunkt (`NOW`, `TODAY`). Wo eine frische Demo
 zufällig keine Daten an der Stelle hat, an der der Resolver sucht, legt `seed.py` sie an (ein Termin im ersten
-Kalender, ein Fakt an der ersten Veranstaltung). Aufzeichnungen werden nur ersetzt, wenn die neue Antwort neue Felder
-oder Wertarten zeigt; ein Vergleich der Läufe vom 30.10. und 21.11.2026 ergab so 12 statt 263 geänderte Dateien.
+Kalender, ein Fakt an der ersten Veranstaltung). Aufzeichnungen werden nur um neue Felder, Listeneinträge
+oder Wertarten ergänzt, nicht ersetzt; für die Läufe vom 30.10. und 21.11.2026 ergibt das 6 Dateien mit 167
+geänderten Zeilen statt 263 Dateien mit rund 7.700.
 
 ## Auffälligkeiten
 

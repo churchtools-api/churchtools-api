@@ -26,7 +26,7 @@ fn replay_client() -> Client {
 }
 
 // guide: schnellstart
-fn example_0(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_schnellstart(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use churchtools_api::Client;
 
     fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -39,7 +39,7 @@ fn example_0(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 }
 
 // guide: anmeldung
-fn example_1(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_anmeldung(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use churchtools_api::Client;
 
     let client = Client::new("https://meinegemeinde.church.tools", Some("DEIN_TOKEN".into()))?;
@@ -53,7 +53,7 @@ fn example_1(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 }
 
 // guide: drosseln
-fn example_2(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_drosseln(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use std::time::Duration;
 
     // höchstens vier Anfragen pro Sekunde
@@ -69,7 +69,7 @@ fn example_2(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 }
 
 // guide: aufbau
-fn example_3(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_aufbau(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let group = client.groups().get(42)?;
     println!("{}", group.name);
 
@@ -81,11 +81,11 @@ fn example_3(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
 #[test]
 fn guide_aufbau() {
-    example_3(&replay_client()).unwrap();
+    example_guide_aufbau(&replay_client()).unwrap();
 }
 
 // guide: parameter
-fn example_4(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_parameter(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let query = GetPersonsQuery {
         last_name: Some("Müller".into()),
         is_archived: Some(false),
@@ -111,11 +111,11 @@ fn example_4(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
 #[test]
 fn guide_parameter() {
-    example_4(&replay_client()).unwrap();
+    example_guide_parameter(&replay_client()).unwrap();
 }
 
 // guide: rueckgaben
-fn example_5(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_rueckgaben(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let person = client.persons().get(7)?;
     println!("{:?} {:?}", person.first_name, person.birthday);
 
@@ -129,11 +129,11 @@ fn example_5(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
 #[test]
 fn guide_rueckgaben() {
-    example_5(&replay_client()).unwrap();
+    example_guide_rueckgaben(&replay_client()).unwrap();
 }
 
 // guide: listen
-fn example_6(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_listen(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let query = GetPersonsQuery { limit: Some(100), ..Default::default() };
     for person in client.persons().list_iter(&query) {
         let person = person?;
@@ -149,11 +149,11 @@ fn example_6(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
 #[test]
 fn guide_listen() {
-    example_6(&replay_client()).unwrap();
+    example_guide_listen(&replay_client()).unwrap();
 }
 
 // guide: datum
-fn example_7(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_datum(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use churchtools_api::chrono::Local;
 
     let event = client.events().get(42)?;
@@ -171,11 +171,11 @@ fn example_7(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
 #[test]
 fn guide_datum() {
-    example_7(&replay_client()).unwrap();
+    example_guide_datum(&replay_client()).unwrap();
 }
 
 // guide: fehler
-fn example_8(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_fehler(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use churchtools_api::Error;
 
     match client.persons().get(999999) {
@@ -190,11 +190,11 @@ fn example_8(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
 #[test]
 fn guide_fehler() {
-    example_8(&replay_client()).unwrap();
+    example_guide_fehler(&replay_client()).unwrap();
 }
 
 // guide: weglassen
-fn example_9(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_weglassen(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     // nur die Stadt ändern, alles andere bleibt
     let body = models::PatchPersonsIdBody { city: Some("Esslingen".into()), ..Default::default() };
     client.persons().patch(7, &body)?;
@@ -212,11 +212,11 @@ fn example_9(client: &Client) -> std::result::Result<(), Box<dyn std::error::Err
 
 #[test]
 fn guide_weglassen() {
-    example_9(&replay_client()).unwrap();
+    example_guide_weglassen(&replay_client()).unwrap();
 }
 
 // guide: uploads
-fn example_10(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_uploads(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let file = Upload::from_path("brief.pdf")?;
     client.files().create("person", 7, &[file])?;
 
@@ -229,7 +229,7 @@ fn example_10(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 }
 
 // guide: zeitlimits
-fn example_11(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_zeitlimits(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use std::time::Duration;
 
     let client = Client::builder("https://meinegemeinde.church.tools")
@@ -243,11 +243,11 @@ fn example_11(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_zeitlimits() {
-    example_11(&replay_client()).unwrap();
+    example_guide_zeitlimits(&replay_client()).unwrap();
 }
 
 // guide: rohzugriff
-fn example_12(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_rohzugriff(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let query = vec![("include[]".to_string(), "tags".to_string())];
     let person: models::Person = client.request_data(Method::Get, "/persons/7", &query, None)?;
 
@@ -258,11 +258,11 @@ fn example_12(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_rohzugriff() {
-    example_12(&replay_client()).unwrap();
+    example_guide_rohzugriff(&replay_client()).unwrap();
 }
 
 // guide: versionen
-fn example_13(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_versionen(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let info = client.info().get()?;
     if info.version.as_deref() != Some(churchtools_api::API_VERSION) {
         println!("Instanz {:?}, Client erzeugt für {}", info.version, churchtools_api::API_VERSION);
@@ -272,11 +272,11 @@ fn example_13(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_versionen() {
-    example_13(&replay_client()).unwrap();
+    example_guide_versionen(&replay_client()).unwrap();
 }
 
 // guide: projekt-monatsplan
-fn example_14(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_projekt_monatsplan(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use churchtools_api::chrono::Local;
 
     let calendars = client.calendars().list()?;
@@ -298,11 +298,11 @@ fn example_14(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_monatsplan() {
-    example_14(&replay_client()).unwrap();
+    example_guide_projekt_monatsplan(&replay_client()).unwrap();
 }
 
 // guide: projekt-dienstplan
-fn example_15(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_projekt_dienstplan(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use std::collections::HashMap;
 
     let dienste: HashMap<i64, String> =
@@ -327,11 +327,11 @@ fn example_15(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_dienstplan() {
-    example_15(&replay_client()).unwrap();
+    example_guide_projekt_dienstplan(&replay_client()).unwrap();
 }
 
 // guide: projekt-geburtstage
-fn example_16(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_projekt_geburtstage(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use churchtools_api::chrono::{Days, Local};
 
     let heute = Local::now().date_naive();
@@ -350,11 +350,11 @@ fn example_16(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_geburtstage() {
-    example_16(&replay_client()).unwrap();
+    example_guide_projekt_geburtstage(&replay_client()).unwrap();
 }
 
 // guide: projekt-csv
-fn example_17(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_projekt_csv(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let mut csv = String::from("Name;Status;Mitglied seit\n");
     for member in client.groups().members().list(42)? {
         let seit = member.member_start_date.map(|d| d.to_string()).unwrap_or_default();
@@ -366,11 +366,11 @@ fn example_17(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_csv() {
-    example_17(&replay_client()).unwrap();
+    example_guide_projekt_csv(&replay_client()).unwrap();
 }
 
 // guide: projekt-heizung
-fn example_18(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_projekt_heizung(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use std::collections::HashMap;
     use churchtools_api::chrono::{DateTime, Days, Local, NaiveTime, TimeDelta, TimeZone};
 
@@ -445,11 +445,11 @@ fn example_18(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_heizung() {
-    example_18(&replay_client()).unwrap();
+    example_guide_projekt_heizung(&replay_client()).unwrap();
 }
 
 // guide: projekt-neue-person
-fn example_19(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_projekt_neue_person(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     let body = models::PostPersonsBody {
         department_ids: vec![1],
         first_name: Some("Ben".into()),
@@ -470,11 +470,11 @@ fn example_19(client: &Client) -> std::result::Result<(), Box<dyn std::error::Er
 
 #[test]
 fn guide_projekt_neue_person() {
-    example_19(&replay_client()).unwrap();
+    example_guide_projekt_neue_person(&replay_client()).unwrap();
 }
 
 // guide: demo-instanz
-fn example_20(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn example_guide_demo_instanz(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     use std::{env, time::Duration};
 
     let demo = Client::new(&env::var("CT_URL")?, None)?.with_min_interval(Duration::from_millis(250));

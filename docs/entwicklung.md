@@ -132,11 +132,14 @@ cargo test -p churchtools-api --test live -- --ignored   # Login, Rate-Limit und
 - Erfolgreiche Antworten landen in `fixtures/recorded/`, aus den Szenarien auch die der Schreib-Endpunkte. Daraus werden
   **Offline-Unit-Tests**: `tests/test_recorded.py` validiert sie mit Pydantic, `core/tests/recorded.rs` dekodiert sie
   in die Rust-Typen. Beide laufen ohne Netz.
-- Jede Demo-Instanz hat andere Daten (IDs, GUIDs, Datumswerte, Namen). Eine vorhandene Aufzeichnung wird deshalb nur
-  ersetzt, wenn die neue Antwort etwas zeigt, das die alte nicht hat: ein Feld oder eine Art Wert (Zahl, Text, `null`,
-  …) an einer Stelle (`adds_structure` in `conftest.py`). Ebenso behalten `fixtures/live-results.json` und
-  `fixtures/live-seed.json` ihre Einträge, wenn sich nur IDs geändert haben. So bleibt der Diff eines Live-Laufs klein
-  und zeigt, was sich an der API geändert hat. `CT_RECORD_ALL=1` schreibt alles neu.
+- Jede Demo-Instanz hat andere Daten (IDs, GUIDs, Datumswerte, Namen). Eine vorhandene Aufzeichnung bleibt deshalb
+  stehen und wird nur um das ergänzt, was eine neue Antwort zusätzlich zeigt: ein Feld, ein Listeneintrag mit neuer
+  Form oder eine Art Wert (Zahl, Text, Objekt, …) an einer Stelle (`merge` in `conftest.py`; `null` zählt als bekannt,
+  wo die Stelle schon einen Wert hat). Schlüssel, die Daten sind (IDs, Datumswerte, GUIDs), zählen wie Listeneinträge.
+  Ebenso behalten `fixtures/live-results.json` und `fixtures/live-seed.json` ihre Einträge, wenn sich nur IDs geändert
+  haben. So zeigt der Diff eines Live-Laufs, was sich an der API geändert hat. `CT_RECORD_ALL=1` schreibt alles neu.
+- Die Doku-Beispiele in `doc_examples.py`/`.rs` heißen nach Operation bzw. Abschnitt (`example_get_persons`), damit
+  ein neues Beispiel die anderen nicht umbenennt.
 - Die Tests verdrahten keine IDs der Instanz: Sicherheitsstufe und Auswahlwerte der Datenschutz-Felder schlägt der
   Fixture `ids` nach (`scenario.InstanceIds`).
 - `tests/live/redact.py` entfernt beim Aufzeichnen Zugangsdaten, Token-artige Werte und den Namen der Testinstanz.
