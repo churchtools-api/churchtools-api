@@ -29,9 +29,11 @@ def seed(client: LiveClient) -> _t.Iterator[_t.Any]:
     data = seeding.create(client)
     yield data
     undo_errors = data.remove()
-    SEED_RESULTS.write_text(
-        json.dumps({"failed": data.failed, "undo_failed": undo_errors}, indent=1, ensure_ascii=False) + "\n"
-    )
+    new = {"failed": data.failed, "undo_failed": undo_errors}
+    old = json.loads(SEED_RESULTS.read_text()) if SEED_RESULTS.exists() else {}
+    # Messages name IDs of the instance; only a different set of failed steps is worth a change.
+    if {k: sorted(v) for k, v in new.items()} != {k: sorted(old.get(k, {})) for k in new}:
+        SEED_RESULTS.write_text(json.dumps(new, indent=1, ensure_ascii=False) + "\n")
 
 
 @pytest.fixture(scope="session")

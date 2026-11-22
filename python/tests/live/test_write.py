@@ -13,7 +13,7 @@ import uuid
 import churchtools_api as ct
 import pytest
 from conftest import LiveClient
-from scenario import NOW, PREFIX, Cleanup, name, required_person_fields
+from scenario import NOW, PREFIX, Cleanup, InstanceIds, name, required_person_fields
 
 pytestmark = pytest.mark.usefixtures("scenario")
 
@@ -21,9 +21,9 @@ pytestmark = pytest.mark.usefixtures("scenario")
 # --- people and groups --------------------------------------------------------
 
 
-def test_person_lifecycle(client: LiveClient, masterdata: _t.Any, cleanup: Cleanup) -> None:
+def test_person_lifecycle(client: LiveClient, masterdata: _t.Any, ids: InstanceIds, cleanup: Cleanup) -> None:
     person = client.persons.create(
-        **required_person_fields(masterdata),
+        **required_person_fields(masterdata, ids),
         first_name=PREFIX,
         last_name=uuid.uuid4().hex[:8],
         email=f"{uuid.uuid4().hex[:8]}@example.invalid",
@@ -42,8 +42,8 @@ def test_person_lifecycle(client: LiveClient, masterdata: _t.Any, cleanup: Clean
         client.persons.get(person.id)
 
 
-def test_person_details(client: LiveClient, me: int, masterdata: _t.Any, cleanup: Cleanup) -> None:
-    other = client.persons.create(**required_person_fields(masterdata), first_name=PREFIX, last_name="Partner", force=True)
+def test_person_details(client: LiveClient, me: int, masterdata: _t.Any, ids: InstanceIds, cleanup: Cleanup) -> None:
+    other = client.persons.create(**required_person_fields(masterdata, ids), first_name=PREFIX, last_name="Partner", force=True)
     cleanup(lambda: client.persons.delete(other.id))
 
     note = client.notes.create("person", other.id, text="erste Notiz")
@@ -231,16 +231,18 @@ def test_post_with_comment(client: LiveClient, me: int, cleanup: Cleanup) -> Non
 
 # --- master data -----------------------------------------------------------------
 
+LEVEL = "<lowest security level>"  # replaced by `ids.security_level`, which differs between instances
+
 MASTERDATA: dict[str, tuple[dict[str, _t.Any], dict[str, _t.Any], dict[str, _t.Any]]] = {
     "campuses": ({"shorty": "T"}, {"shorty": "T2"}, {}),
     "contact_labels": ({"is_default": False, "sort_key": 999}, {"is_default": False, "sort_key": 998}, {}),
-    "statuses": ({"security_level_id": 1, "shorty": "T"}, {"security_level_id": 1, "shorty": "T2"}, {}),
+    "statuses": ({"security_level_id": LEVEL, "shorty": "T"}, {"security_level_id": LEVEL, "shorty": "T2"}, {}),
     "person.sexes": ({}, {}, {}),
     "person.grow_paths": ({"color": "red"}, {"color": "blue"}, {}),
     "person.comment_viewers": ({}, {}, {}),
     "person.relationship_types": (
-        {"degree_name_a": "Pate", "degree_name_b": "Patenkind", "security_level_id": 1},
-        {"degree_name_a": "Patin", "degree_name_b": "Patenkind", "security_level_id": 1},
+        {"degree_name_a": "Pate", "degree_name_b": "Patenkind", "security_level_id": LEVEL},
+        {"degree_name_a": "Patin", "degree_name_b": "Patenkind", "security_level_id": LEVEL},
         {},
     ),
     "group.target_groups": ({"sort_key": 999}, {"sort_key": 998}, {"dry_run": False}),
@@ -250,8 +252,8 @@ MASTERDATA: dict[str, tuple[dict[str, _t.Any], dict[str, _t.Any], dict[str, _t.A
 
 
 @pytest.mark.parametrize("call", list(MASTERDATA))
-def test_masterdata_lifecycle(client: LiveClient, call: str, cleanup: Cleanup) -> None:
-    create_kw, update_kw, delete_kw = MASTERDATA[call]
+def test_masterdata_lifecycle(client: LiveClient, call: str, ids: InstanceIds, cleanup: Cleanup) -> None:
+    create_kw, update_kw, delete_kw = ({k: ids.security_level if v == LEVEL else v for k, v in kw.items()} for kw in MASTERDATA[call])
     resource: _t.Any = client
     for part in call.split("."):
         resource = getattr(resource, part)
