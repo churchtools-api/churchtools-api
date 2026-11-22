@@ -51,7 +51,8 @@ generiert (`codegen/generate.py`); handgeschrieben sind nur Transport, Fehler, T
   geändert hat. Eine Version lässt sich nicht vorab testen; die Prüfung passiert, sobald die Demo-Instanz die
   Version hat; `.github/workflows/upstream.yml` meldet täglich per Issue, wenn die Demo-Instanz eine neue Version
   mit geänderter Spec hat (`codegen/check_upstream.py`). Neue Felder sind unkritisch (`extra`/`model_extra`), neue Pflichtfelder und umbenannte Endpunkte
-  sind inkompatible Änderungen → Minor-Version, Changelog.
+  sind inkompatible Änderungen. Versioniert wird nach SemVer: neue Funktionen (Endpunkte, Argumente) und
+  inkompatible Änderungen → Minor-Version, nur Fehlerkorrekturen → Patch-Version; jeweils mit Changelog.
 - **Abhängigkeiten** werden gelegentlich aktualisiert (`cargo update`, Pydantic-/PyO3-/maturin-Versionen in
   `pyproject.toml` und `python/Cargo.toml`). Nach einem Update die vollständige Prüfung aus Regel 5 laufen lassen;
   bei PyO3- oder reqwest-Major-Updates die Bindings in `python/src/lib.rs` bzw. `core/src/client.rs` durchsehen.

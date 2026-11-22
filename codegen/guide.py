@@ -85,7 +85,7 @@ pip install "churchtools-api-rs @ git+https://github.com/churchtools-api/churcht
             rust="""\
 # Cargo.toml
 [dependencies]
-churchtools-api = "0.1"
+churchtools-api = "0.2"
 # oder der Entwicklungsstand aus dem Git-Repository
 churchtools-api = { git = "https://github.com/churchtools-api/churchtools-api" }""",
         ),
