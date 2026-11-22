@@ -1,0 +1,18 @@
+{
+ "operation": "patch-securitylevels-id",
+ "request": {
+  "method": "PATCH",
+  "path": "/securitylevels/51",
+  "query": [],
+  "body": {
+   "expectedName": "rs-test Stufe c3860d",
+   "name": "rs-test Stufe c3860d 2"
+  }
+ },
+ "body": {
+  "id": 51,
+  "name": "rs-test Stufe c3860d 2",
+  "sortkey": 51,
+  "sortKey": 51
+ }
+}

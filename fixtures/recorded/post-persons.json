@@ -56,7 +56,13 @@
    "familyImageUrl": "",
    "sexId": null,
    "email": "",
-   "emails": [],
+   "emails": [
+    {
+     "email": "4b206e38@example.invalid",
+     "isDefault": true,
+     "contactLabelId": 2
+    }
+   ],
    "cmsUserId": "",
    "optigemId": "",
    "privacyPolicyAgreement": {

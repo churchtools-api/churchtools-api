@@ -60,6 +60,46 @@ def test_status_patch(client: LiveClient, ids: InstanceIds, cleanup: Cleanup) ->
     client.statuses.delete(status.id)
 
 
+def test_security_level(client: LiveClient, cleanup: Cleanup) -> None:
+    # A free ID inserts a level without renumbering the others.
+    taken = {level.id for level in client.security_levels.list()}
+    level_id = next(i for i in range(50, 99998) if i not in taken)
+    level_name = name("Stufe")[-20:]
+    client.security_levels.create(level_id, name=level_name)
+    cleanup(lambda: client.security_levels.delete(level_id))
+    with pytest.raises(ct.Conflict):
+        client.security_levels.patch(level_id, name=level_name + " 2", expected_name="ctrs-test anders")
+    assert client.security_levels.patch(level_id, name=level_name + " 2", expected_name=level_name).name == level_name + " 2"
+    with pytest.raises(ct.Conflict):
+        client.security_levels.delete(level_id, expected_name=level_name)
+    client.security_levels.delete(level_id, expected_name=level_name + " 2")
+    assert level_id not in {level.id for level in client.security_levels.list()}
+
+
+def test_security_level_renumber(client: LiveClient, cleanup: Cleanup) -> None:
+    # Renumbering changes the IDs of all levels, so the levels are found again by name. The other scenarios look
+    # up the lowest level per test (`ids`) and do not depend on the IDs.
+    levels = client.security_levels.list()
+    taken = {level.id for level in levels}
+    low, high = (next(i for i in range(start, 99998) if i not in taken) for start in (max(taken) + 1, max(taken) + 7))
+    names = {low: name("Stufe")[-20:], high: name("Stufe")[-20:]}
+    for level_id, level_name in names.items():
+        client.security_levels.create(level_id, name=level_name)
+
+    def remove() -> None:
+        for level in client.security_levels.list():
+            if level.name in names.values():
+                client.security_levels.delete(level.id)
+
+    cleanup(remove)
+    order = [level.name for level in sorted(client.security_levels.list(), key=lambda level: level.id)]
+    client.security_levels.renumber()
+    after = sorted(client.security_levels.list(), key=lambda level: level.id)
+    assert [level.name for level in after] == order, "renumbering keeps the hierarchy"
+    assert len({level.id for level in after}) == len(after)
+    remove()
+
+
 def test_group_type_with_role(client: LiveClient, cleanup: Cleanup) -> None:
     group_type = client.group.group_types.create(
         name=name("GT")[-14:],  # at most 30 characters

@@ -114,7 +114,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("{:?} {:?}", info.site_name, info.version);
     Ok(())
 }""",
-            aside="Ausgabe: `ChuToo Church 3.138.1`",
+            aside="Ausgabe: `ChuToo Church 3.138.3`",
         ),
     ],
 )
