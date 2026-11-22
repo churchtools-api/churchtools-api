@@ -132,6 +132,13 @@ cargo test -p churchtools-api --test live -- --ignored   # Login, Rate-Limit und
 - Erfolgreiche Antworten landen in `fixtures/recorded/`, aus den Szenarien auch die der Schreib-Endpunkte. Daraus werden
   **Offline-Unit-Tests**: `tests/test_recorded.py` validiert sie mit Pydantic, `core/tests/recorded.rs` dekodiert sie
   in die Rust-Typen. Beide laufen ohne Netz.
+- Jede Demo-Instanz hat andere Daten (IDs, GUIDs, Datumswerte, Namen). Eine vorhandene Aufzeichnung wird deshalb nur
+  ersetzt, wenn die neue Antwort etwas zeigt, das die alte nicht hat: ein Feld oder eine Art Wert (Zahl, Text, `null`,
+  …) an einer Stelle (`adds_structure` in `conftest.py`). Ebenso behalten `fixtures/live-results.json` und
+  `fixtures/live-seed.json` ihre Einträge, wenn sich nur IDs geändert haben. So bleibt der Diff eines Live-Laufs klein
+  und zeigt, was sich an der API geändert hat. `CT_RECORD_ALL=1` schreibt alles neu.
+- Die Tests verdrahten keine IDs der Instanz: Sicherheitsstufe und Auswahlwerte der Datenschutz-Felder schlägt der
+  Fixture `ids` nach (`scenario.InstanceIds`).
 - `tests/live/redact.py` entfernt beim Aufzeichnen Zugangsdaten, Token-artige Werte und den Namen der Testinstanz.
   Vor einem Commit neuer Fixtures lohnt ein Blick, ob nichts durchgerutscht ist.
 - `tests/live/seed.py` legt vor dem Lesetest Daten an, die eine frische Demo nicht hat (Treffen, Tickets, Kontoauszug,
