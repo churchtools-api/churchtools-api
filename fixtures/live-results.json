@@ -229,6 +229,11 @@
   "scenario": "test_more_masterdata[resource_types]",
   "path": "/resourcetypes/25"
  },
+ "delete-securitylevels-id": {
+  "outcome": "ok",
+  "scenario": "test_security_level",
+  "path": "/securitylevels/51"
+ },
  "delete-servicegroups-id": {
   "outcome": "ok",
   "scenario": "test_services",
@@ -2094,6 +2099,7 @@
     "origin",
     "sender",
     "senderId",
+    "skipIfEmailAddressMissing",
     "specId",
     "subject",
     "successGroupId",
@@ -2539,6 +2545,11 @@
   "scenario": "test_post_with_comment",
   "path": "/posts/100"
  },
+ "patch-securitylevels-id": {
+  "outcome": "ok",
+  "scenario": "test_security_level",
+  "path": "/securitylevels/51"
+ },
  "patch-songs-songId-arrangements-arrangementId-default": {
   "outcome": "ok",
   "scenario": "test_song_default_arrangement",
@@ -2858,6 +2869,16 @@
   "outcome": "ok",
   "scenario": "test_more_masterdata[resource_types]",
   "path": "/resourcetypes"
+ },
+ "post-securitylevels-id": {
+  "outcome": "ok",
+  "scenario": "test_security_level",
+  "path": "/securitylevels/51"
+ },
+ "post-securitylevels-renumber": {
+  "outcome": "ok",
+  "scenario": "test_security_level_renumber",
+  "path": "/securitylevels/renumber"
  },
  "post-servicegroups": {
   "outcome": "ok",
