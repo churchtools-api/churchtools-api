@@ -4193,6 +4193,10 @@ def example_patch_securitylevels_id(client: ct.Client) -> None:
 def example_delete_securitylevels_id(client: ct.Client) -> None:
     client.security_levels.delete(1)
 
+# post-securitylevels-renumber
+def example_post_securitylevels_renumber(client: ct.Client) -> None:
+    client.security_levels.renumber()
+
 # get-sync-executions
 def example_get_sync_executions(client: ct.Client) -> None:
     for execution in client.sync.list_executions():
@@ -5729,6 +5733,7 @@ REFERENCE = {
     'post-securitylevels-id': example_post_securitylevels_id,
     'patch-securitylevels-id': example_patch_securitylevels_id,
     'delete-securitylevels-id': example_delete_securitylevels_id,
+    'post-securitylevels-renumber': example_post_securitylevels_renumber,
     'get-sync-executions': example_get_sync_executions,
     'get-sync-jobconfigs': example_get_sync_jobconfigs,
     'get-sync-logs': example_get_sync_logs,

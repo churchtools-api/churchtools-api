@@ -16,7 +16,11 @@
     "statusId": 2,
     "quantity": 1,
     "description": "",
-    "appointment": null,
+    "appointment": {
+     "id": 550256,
+     "title": "Gebetsabend",
+     "calendarId": 2
+    },
     "onBehalfOfPid": null,
     "answeredPid": null,
     "answeredDate": null,
@@ -81,7 +85,7 @@
      "doesRequireCalEntry": false
     },
     "note": "",
-    "appointmentId": null,
+    "appointmentId": 550256,
     "isAnonymized": false
    },
    "additionalInfos": [],

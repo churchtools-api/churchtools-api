@@ -5,6 +5,19 @@ Alle nennenswerten Änderungen am Rust-Crate `churchtools-api` und am Python-Pak
 vor 1.0 kann jede Minor-Version inkompatible Änderungen enthalten. Wie Versionen und ChurchTools-Versionen
 zusammenhängen, steht im README unter „ChurchTools-Versionen und Kompatibilität“.
 
+## [Unreleased]
+
+Generiert aus der API-Beschreibung von ChurchTools 3.138.3 (Build 32945): 850 Operationen, 1110 Modelle. Keine
+inkompatiblen Änderungen.
+
+- Neu: `security_levels.renumber()` (`POST /securitylevels/renumber`) nummeriert die Sicherheitsstufen neu, ohne ihre
+  Reihenfolge zu ändern. Danach haben die Stufen andere IDs; gespeicherte IDs müssen neu gelesen werden.
+- Neu: optionales Argument `expected_name` bei `security_levels.patch` und `security_levels.delete` (Rust:
+  `PatchSecuritylevelsIdBody::expected_name`, `DeleteSecuritylevelsIdQuery::expected_name`). Weicht der Name ab,
+  lehnt der Server mit 409 ab (`Conflict`).
+- `forcereorder` bei `security_levels.patch` ist veraltet (der Server ignoriert es) und erzeugt eine Warnung.
+- `API_VERSION`/`API_BUILD` sind jetzt `3.138.3`/`32945`.
+
 ## [0.1.0] – 2026-10-30
 
 Erste Veröffentlichung. Generiert aus der API-Beschreibung von ChurchTools 3.138.1 (Build 32938): 849 Operationen,

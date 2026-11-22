@@ -39539,6 +39539,20 @@
   "params": []
  },
  {
+  "op_id": "post-securitylevels-renumber",
+  "method": "POST",
+  "path": "/securitylevels/renumber",
+  "call": "security_levels.renumber",
+  "tags": [
+   "Admin"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": []
+ },
+ {
   "op_id": "get-securitylevels-id",
   "method": "GET",
   "path": "/securitylevels/{id}",
@@ -39633,6 +39647,16 @@
    },
    {
     "kind": "field",
+    "wire": "expectedName",
+    "py": "expected_name",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
     "wire": "forcereorder",
     "py": "forcereorder2",
     "type": "bool",
@@ -39695,6 +39719,16 @@
     "enum": null,
     "default": null,
     "example": true
+   },
+   {
+    "kind": "query",
+    "wire": "expectedName",
+    "py": "expected_name",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
    }
   ]
  },
