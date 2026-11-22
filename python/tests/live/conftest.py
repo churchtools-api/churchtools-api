@@ -10,10 +10,11 @@ is not flooded. Successful responses are recorded to `fixtures/recorded/` and
 replayed offline by `tests/test_recorded.py` and `core/tests/recorded.rs`.
 A summary of all outcomes goes to `fixtures/live-results.json`.
 
-Every demo instance has other data (IDs, GUIDs, dates, names), so a new recording
-replaces an existing one only if it shows something the old one does not: a field
-or a type of value at a path (`adds_structure`). Results keep their old entry if
-only IDs in paths and calls changed. `CT_RECORD_ALL=1` rewrites everything.
+Every demo instance has other data (IDs, GUIDs, dates, names), so an existing
+recording is kept and only extended where a new response shows something it does
+not: a field, a list item or a type of value at a path (`merge`). Results keep
+their old entry if only IDs in paths and calls changed. `CT_RECORD_ALL=1` rewrites
+everything.
 """
 
 from __future__ import annotations
@@ -144,8 +145,9 @@ def _shorten(body: _t.Any) -> _t.Any:
 
 RECORD_ALL = os.environ.get("CT_RECORD_ALL") == "1"
 
-# Keys that are data rather than field names, e.g. IDs or dates in `{"795": {...}}`, `{"2026-11-03": {...}}`.
-_DATA_KEY = re.compile(r"^-?\d+$|^\d{4}-\d{2}(-\d{2})?([T ][\d:]+Z?)?$")
+# Keys that are data rather than field names: IDs, dates or GUIDs as in `{"795": {...}}`, `{"2026-11-03": {...}}`,
+# `{"appointment-1437331-2026-11-22": {...}}`.
+_DATA_KEY = re.compile(r"^-?\d+$|\d{4}-\d{2}|\d{3,}|^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-")
 
 
 def _kind(value: _t.Any) -> str:
@@ -166,16 +168,60 @@ def structure(value: _t.Any, path: str = "", out: set[tuple[str, str]] | None = 
     out.add((path, _kind(value)))
     if isinstance(value, dict):
         for k, v in value.items():
-            structure(v, f"{path}/{'*' if _DATA_KEY.match(k) else k}", out)
+            structure(v, f"{path}/{'*' if _DATA_KEY.search(k) else k}", out)
     elif isinstance(value, list):
         for v in value:
             structure(v, f"{path}[]", out)
     return out
 
 
+def _covered(new: set[tuple[str, str]], known: set[tuple[str, str]]) -> bool:
+    """Whether `known` has every (path, kind) of `new`; `null` counts as covered where the path has a value."""
+    paths = {p for p, _ in known}
+    return all(entry in known or (entry[1] == "null" and entry[0] in paths) for entry in new)
+
+
 def adds_structure(new: _t.Any, old: _t.Any) -> bool:
-    """Whether `new` has a field or kind of value that `old` lacks, i.e. is worth recording instead."""
-    return not structure(new) <= structure(old)
+    """Whether `new` has a field or kind of value that `old` lacks."""
+    return not _covered(structure(new), structure(old))
+
+
+def _merge_items(items: list[tuple[_t.Any, _t.Any]], new: list[tuple[_t.Any, _t.Any]]) -> list[tuple[_t.Any, _t.Any]]:
+    """(key, item) pairs of a list or data map, extended by what the new items add."""
+    out = list(items)
+    for key, item in new:
+        known: set[tuple[str, str]] = set().union(*(structure(x) for _, x in out))
+        if _covered(structure(item), known):
+            continue
+        target = next((i for i, (_, x) in enumerate(out) if isinstance(x, dict)), None)
+        if target is not None and isinstance(item, dict):
+            out[target] = (out[target][0], merge(out[target][1], item))  # new fields go into an existing item
+            known = set().union(*(structure(x) for _, x in out))
+        if not _covered(structure(item), known) and (key is None or key not in dict(out)):
+            out.append((key, item))  # e.g. `null` where the existing items have an object
+    return out
+
+
+def merge(old: _t.Any, new: _t.Any) -> _t.Any:
+    """`old` extended by the fields, list items and kinds of value of `new` that it lacks; otherwise unchanged.
+
+    Keeps recordings stable between instances: a new field adds a few lines instead of a new file.
+    """
+    if isinstance(old, dict) and isinstance(new, dict):
+        if old and new and all(_DATA_KEY.search(k) for k in (*old, *new)):  # a map like {"795": ..., "796": ...}
+            return dict(_merge_items(list(old.items()), list(new.items())))
+        out = dict(old)
+        for k, v in new.items():
+            out[k] = v if k not in old or (old[k] is None and v is not None) else merge(old[k], v)
+        return out
+    if isinstance(old, list) and isinstance(new, list):
+        return [x for _, x in _merge_items([(None, x) for x in old], [(None, x) for x in new])]
+    return old
+
+
+# Recordings as they stand in this run: the first response of an operation is merged into the file from disk,
+# later ones into the result, so several calls of one operation do not overwrite each other.
+_fixtures: dict[str, dict[str, _t.Any]] = {}
 
 
 def record(op_id: str, recorder: Recorder) -> None:
@@ -190,8 +236,14 @@ def record(op_id: str, recorder: Recorder) -> None:
     RECORDED.mkdir(parents=True, exist_ok=True)
     fixture = {"operation": op_id, "request": scrub(recorder.last_request), "body": body}
     path = RECORDED / f"{op_id}.json"
-    if not RECORD_ALL and path.exists() and not adds_structure(body, json.loads(path.read_text()).get("body")):
-        return
+    current = _fixtures.get(op_id) or (json.loads(path.read_text()) if path.exists() and not RECORD_ALL else None)
+    if current is not None:
+        merged = merge(current.get("body"), body)
+        if merged == current.get("body"):
+            _fixtures[op_id] = current
+            return
+        fixture = {**current, "body": merged}
+    _fixtures[op_id] = fixture
     path.write_text(json.dumps(fixture, indent=1, ensure_ascii=False) + "\n")
 
 

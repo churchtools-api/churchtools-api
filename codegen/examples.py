@@ -10,6 +10,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import keyword
+import re
 from dataclasses import dataclass
 
 import generate as g
@@ -476,7 +477,11 @@ def write_check_files(examples: list[tuple[str, Example]], root) -> None:
         "import churchtools_api as ct\n",
     ]
     reference, guide_map = [], []
-    for i, (key, ex) in enumerate(examples):
+    # Named after the operation or guide section, not numbered: a new example does not rename all later ones.
+    names = [re.sub(r"\W+", "_", key).strip("_").lower() for key, _ in examples]
+    if len(set(names)) != len(names):
+        raise ValueError("doc examples with the same function name")
+    for i, (key, ex) in zip(names, examples, strict=True):
         py.append(f"\n# {key}")
         py.append(f"def example_{i}(client: ct.Client) -> None:")
         py += [f"    {line}".rstrip() for line in ex.python.splitlines()]
