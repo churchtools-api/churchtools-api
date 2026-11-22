@@ -49,6 +49,16 @@ Endpunkte, die nicht „ok“ sind, ein rotes Sternchen.
 Alle 331 aufgezeichneten Antworten dekodieren in Python und in Rust. Eine davon, `GET /website/starttest`, liefert `{}`
 ohne dokumentierten Typ und wird nur in Python übersprungen.
 
+### Unabhängig von der Instanz
+
+Die Tests verdrahten keine IDs, die sich zwischen Instanzen unterscheiden. Die niedrigste Sicherheitsstufe und die
+Auswahlwerte der Datenschutz-Felder („Einwilligung wodurch“, „durch wen“) schlägt der Fixture `ids` nach
+(`scenario.InstanceIds`). Fest bleiben nur dokumentierte Konstanten wie Buchungsstatus `2` (genehmigt) und
+Wiederholung `7` (wöchentlich). Datumswerte sind relativ zum Testzeitpunkt (`NOW`, `TODAY`). Wo eine frische Demo
+zufällig keine Daten an der Stelle hat, an der der Resolver sucht, legt `seed.py` sie an (ein Termin im ersten
+Kalender, ein Fakt an der ersten Veranstaltung). Aufzeichnungen werden nur ersetzt, wenn die neue Antwort neue Felder
+oder Wertarten zeigt; ein Vergleich der Läufe vom 30.10. und 21.11.2026 ergab so 12 statt 263 geänderte Dateien.
+
 ## Auffälligkeiten
 
 ### 1. Spec und Server passen nicht zusammen, im Client ausgeglichen

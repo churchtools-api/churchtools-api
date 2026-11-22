@@ -9,6 +9,11 @@ Run only when credentials are set; they are meant for throwaway demo instances
 is not flooded. Successful responses are recorded to `fixtures/recorded/` and
 replayed offline by `tests/test_recorded.py` and `core/tests/recorded.rs`.
 A summary of all outcomes goes to `fixtures/live-results.json`.
+
+Every demo instance has other data (IDs, GUIDs, dates, names), so a new recording
+replaces an existing one only if it shows something the old one does not: a field
+or a type of value at a path (`adds_structure`). Results keep their old entry if
+only IDs in paths and calls changed. `CT_RECORD_ALL=1` rewrites everything.
 """
 
 from __future__ import annotations
@@ -137,8 +142,44 @@ def _shorten(body: _t.Any) -> _t.Any:
     return body
 
 
+RECORD_ALL = os.environ.get("CT_RECORD_ALL") == "1"
+
+# Keys that are data rather than field names, e.g. IDs or dates in `{"795": {...}}`, `{"2026-11-03": {...}}`.
+_DATA_KEY = re.compile(r"^-?\d+$|^\d{4}-\d{2}(-\d{2})?([T ][\d:]+Z?)?$")
+
+
+def _kind(value: _t.Any) -> str:
+    if isinstance(value, bool):
+        return "bool"
+    if isinstance(value, (int, float)):
+        return "number"
+    if value is None:
+        return "null"
+    if isinstance(value, str):
+        return "string"
+    return "object" if isinstance(value, dict) else "array"
+
+
+def structure(value: _t.Any, path: str = "", out: set[tuple[str, str]] | None = None) -> set[tuple[str, str]]:
+    """All (path, kind of value) pairs of a JSON value; list items share a path, data keys become `*`."""
+    out = set() if out is None else out
+    out.add((path, _kind(value)))
+    if isinstance(value, dict):
+        for k, v in value.items():
+            structure(v, f"{path}/{'*' if _DATA_KEY.match(k) else k}", out)
+    elif isinstance(value, list):
+        for v in value:
+            structure(v, f"{path}[]", out)
+    return out
+
+
+def adds_structure(new: _t.Any, old: _t.Any) -> bool:
+    """Whether `new` has a field or kind of value that `old` lacks, i.e. is worth recording instead."""
+    return not structure(new) <= structure(old)
+
+
 def record(op_id: str, recorder: Recorder) -> None:
-    """Stores the last successful JSON response of `op_id` as a fixture."""
+    """Stores the last successful JSON response of `op_id` as a fixture, unless the existing one covers it."""
     if recorder.last_body is None:
         return
     try:
@@ -148,7 +189,10 @@ def record(op_id: str, recorder: Recorder) -> None:
     body = _shorten(redact(op_id, body))
     RECORDED.mkdir(parents=True, exist_ok=True)
     fixture = {"operation": op_id, "request": scrub(recorder.last_request), "body": body}
-    (RECORDED / f"{op_id}.json").write_text(json.dumps(fixture, indent=1, ensure_ascii=False) + "\n")
+    path = RECORDED / f"{op_id}.json"
+    if not RECORD_ALL and path.exists() and not adds_structure(body, json.loads(path.read_text()).get("body")):
+        return
+    path.write_text(json.dumps(fixture, indent=1, ensure_ascii=False) + "\n")
 
 
 def _template_regex(path: str) -> re.Pattern[str]:
@@ -196,9 +240,16 @@ class Results:
                 else:
                     self.items[op] = {"outcome": f"http-{status}", "scenario": test, "path": path}
 
+    # Fields with IDs or content of the instance; an entry that differs only in these keeps its old version.
+    VOLATILE = {"path", "call", "request", "message", "undocumented_response"}
+
     def write(self) -> None:
         old = json.loads(RESULTS.read_text()) if RESULTS.exists() else {}
-        old.update(self.items)  # keep results of operations not run this time
+        for op, new in self.items.items():
+            known = old.get(op, {})
+            stable = {k: v for k, v in new.items() if k not in self.VOLATILE}
+            if RECORD_ALL or stable != {k: v for k, v in known.items() if k not in self.VOLATILE}:
+                old[op] = new  # operations not run this time keep their result
         text = json.dumps(dict(sorted(old.items())), indent=1, ensure_ascii=False) + "\n"
         RESULTS.write_text(clean_text(text))  # calls can carry tokens, e.g. get_form(id, token=...)
 
@@ -239,4 +290,19 @@ def me(client: LiveClient) -> int:
 @pytest.fixture(scope="session")
 def masterdata(client: LiveClient) -> ct.models.PersonMasterData:
     return client.person.get_master_data()
+
+
+@pytest.fixture(scope="session")
+def privacy_options(client: LiveClient) -> tuple[int, int]:
+    from scenario import lookup_privacy_options
+
+    return lookup_privacy_options(client)
+
+
+@pytest.fixture
+def ids(client: LiveClient, privacy_options: tuple[int, int]) -> _t.Any:
+    """Instance-specific IDs (`scenario.InstanceIds`); per test, because security levels can be renumbered."""
+    from scenario import lookup_ids
+
+    return lookup_ids(client, privacy_options)
 

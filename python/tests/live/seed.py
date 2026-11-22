@@ -181,6 +181,32 @@ class Seed:
         self.paths[("/posts/{postId}/comments/{commentId}/reactions", "postId")] = post.id
         self.paths[("/posts/{postId}/comments/{commentId}/reactions", "commentId")] = comment.id
 
+    def event_fact(self) -> None:
+        """A numeric fact on the first event; a fresh demo may have none there."""
+        c = self.client
+        event = next(iter(c.events.list())).id
+        fact = next(f for f in c.facts.list() if f.type_ == "number").id
+        c.events.facts.update(event, fact, value=42)
+        self.undo("event fact", lambda: c.events.facts.delete(event, fact))
+        self.paths[("/events/{eventId}/facts/{factId}", "eventId")] = event
+        self.paths[("/events/{eventId}/facts/{factId}", "factId")] = fact
+
+    def appointment(self) -> None:
+        """An appointment in the first calendar, which may have none in the resolver's window."""
+        c = self.client
+        calendar = c.calendars.list()[0].id
+        start = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(days=2)).replace(microsecond=0, second=0, minute=0)
+        created = c.calendars.appointments.create(
+            calendar, title=f"{PREFIX} Termin", start_date=start, end_date=start + dt.timedelta(hours=1), is_internal=False
+        )
+        created = created.appointment if hasattr(created, "appointment") else created
+        appointment = created.base.id if hasattr(created, "base") else created.id
+        self.undo("appointment", lambda: c.calendars.appointments.delete(calendar, appointment))
+        path = "/calendars/{calendarId}/appointments/{appointmentId}/{startDate}"
+        self.paths[(path, "calendarId")] = calendar
+        self.paths[(path, "appointmentId")] = appointment
+        self.paths[(path, "startDate")] = start.date().isoformat()
+
     def finance(self) -> None:
         c = self.client
         period = c.finance.accounting_periods.list()[0].id
@@ -342,6 +368,8 @@ class Seed:
             ("person file, absence, device", self.person_data),
             ("further link", self.further_link),
             ("post comment", self.post_comment),
+            ("event fact", self.event_fact),
+            ("appointment in the first calendar", self.appointment),
             ("finance", self.finance),
             ("sync", self.sync),
             ("external logins", self.external_logins),
