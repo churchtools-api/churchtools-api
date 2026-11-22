@@ -2,7 +2,9 @@
 
 Getestet am 28.10.2026 gegen eine 3-Tage-Demo-Instanz (ChurchTools 3.138.0, Build 32935) und am 30.10.2026 erneut
 gegen eine frische Instanz mit ChurchTools 3.138.1 (Build 32938), jeweils dieselbe Spec wie demo.church.tools. Die
-Spec von 3.138.1 ist byte-identisch mit der von 3.138.0; der zweite Lauf hatte dieselben Ergebnisse. Angemeldet war
+Spec von 3.138.1 ist byte-identisch mit der von 3.138.0; der zweite Lauf hatte dieselben Ergebnisse. Am 21. und
+22.11.2026 lief die Suite gegen eine Instanz mit ChurchTools 3.138.3 (Build 32945), siehe „Änderungen in 3.138.3“.
+Angemeldet war
 der Demo-Admin (Person 1, Sicherheitsstufe 99999). Alle Anfragen liefen mit höchstens 4 Anfragen pro Sekunde
 (`CT_MIN_INTERVAL=0.25`).
 
@@ -24,20 +26,20 @@ Sie prüfen Python und Rust gegen echte Daten, ohne die Instanz erneut zu belast
 
 ## Ergebnis
 
-Alle 849 Operationen, Stand des letzten Laufs (`fixtures/live-results.json`):
+Alle 850 Operationen, Stand des letzten Laufs (`fixtures/live-results.json`):
 
 | | ok | erwartet | keine Daten | nicht aufgerufen | gesamt |
 |---|---:|---:|---:|---:|---:|
 | GET | 348 | 11 | 6 | – | 365 |
-| POST | 72 | – | – | 144 | 216 |
+| POST | 74 | – | – | 143 | 217 |
 | PUT | 49 | 1 | – | 68 | 118 |
-| PATCH | 9 | – | – | 15 | 24 |
-| DELETE | 57 | – | – | 69 | 126 |
-| **gesamt** | **535** | **12** | **6** | **296** | **849** |
+| PATCH | 10 | – | – | 14 | 24 |
+| DELETE | 58 | – | – | 68 | 126 |
+| **gesamt** | **539** | **12** | **6** | **293** | **850** |
 
-pytest: 390 bestanden, 12 erwartete Fehler (`xfail`), 6 übersprungen, 0 fehlgeschlagen; Laufzeit etwa 4 Minuten.
-Mit den Testdaten aus `seed.py` sind von den 365 GET-Endpunkten 348 erfolgreich getestet; vorher waren es 298.
-Von den 484 schreibenden ruft die Suite 188 auf, verteilt auf 43 Szenario-Tests. In der Doku-Seite tragen alle
+pytest (3.138.3): 392 bestanden, 12 erwartete Fehler (`xfail`), 6 übersprungen, 0 fehlgeschlagen; Laufzeit etwa
+4 Minuten. Mit den Testdaten aus `seed.py` sind von den 365 GET-Endpunkten 348 erfolgreich getestet; vorher waren es
+298. Von den 485 schreibenden ruft die Suite 191 auf, verteilt auf 45 Szenario-Tests. In der Doku-Seite tragen alle
 Endpunkte, die nicht „ok“ sind, ein rotes Sternchen.
 
 - **ok:** Aufruf erfolgreich, Antwort passt zu den Modellen.
@@ -46,7 +48,7 @@ Endpunkte, die nicht „ok“ sind, ein rotes Sternchen.
   dynamischen Gruppen oder keine Sync-Berechtigung.
 - **nicht aufgerufen:** Schreibende Endpunkte ohne Szenario, siehe „Bewusst nicht getestet“.
 
-Alle 331 aufgezeichneten Antworten dekodieren in Python und in Rust. Eine davon, `GET /website/starttest`, liefert `{}`
+Alle 333 aufgezeichneten Antworten dekodieren in Python und in Rust. Eine davon, `GET /website/starttest`, liefert `{}`
 ohne dokumentierten Typ und wird nur in Python übersprungen.
 
 ### Unabhängig von der Instanz
@@ -101,7 +103,7 @@ Die Tests übergeben sie. Der Client ändert daran nichts, weil die Spec das Fel
 
 ### 3. Fehler in ChurchTools 3.138.0
 
-Alle Fehler bestehen in 3.138.1 unverändert.
+Alle Fehler bestehen in 3.138.1 und 3.138.3 unverändert.
 
 | Endpunkt | Verhalten |
 |---|---|
@@ -168,6 +170,25 @@ Sync-Konflikte und -Ausführungen (brauchen einen echten Sync-Lauf), externe Bei
 - Modelle mit `alias=` erzwangen für Typprüfer die JSON-Namen im Konstruktor (`Booking(startDate=…)`). Jetzt gelten
   auch statisch die Python-Namen (`start_date=…`).
 - Fehlermeldungen enthalten jetzt die Feldfehler des Servers.
+
+## Änderungen in 3.138.3
+
+Die Spec von 3.138.3 (Build 32945) unterscheidet sich von 3.138.1 nur bei den Sicherheitsstufen; keine Operation
+entfällt, kein Feld wird Pflicht. Geprüft auf einer Demo-Instanz:
+
+| Änderung | Ergebnis |
+|---|---|
+| neu: `POST /securitylevels/renumber` | Antwort ohne Body. Nummeriert die Stufen in Zehnerschritten (`1…5` → `10…50`), Reihenfolge und Namen bleiben; Szenario `test_security_level_renumber` mit zwei eigenen Stufen |
+| neu: `expectedName` bei `PATCH` (Body) und `DELETE` (Query) | Stimmt der Name nicht, antwortet der Server mit 409 „Security level has changed“ (`Conflict`) und ändert nichts; Szenario `test_security_level` |
+| `forcereorder` (Query und Body von `PATCH`) veraltet | wird laut Spec ignoriert; im Client als veraltet markiert |
+| `POST /securitylevels/{id}` mit freier ID | legt die Stufe an, ohne andere umzunummerieren |
+
+Dabei aufgefallen: `DELETE /securitylevels/{id}?dry_run=true` antwortet mit 409 „Dry Run Output“ statt mit einem
+Erfolgscode; der Client meldet das als `Conflict`.
+
+Die Aufzeichnungen wurden nur ergänzt: neue Felder (z. B. `addSignOutUrl`, `skipIfEmailAddressMissing` bei
+Routinen), Werte, wo bisher nur `null` aufgezeichnet war, und die zwei neuen Sicherheitsstufen-Endpunkte (13 Dateien,
+rund 190 Zeilen).
 
 ## Bewusst nicht getestet
 

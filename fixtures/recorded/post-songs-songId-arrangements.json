@@ -16,7 +16,7 @@
    "sourceId": null,
    "source": null,
    "sourceReference": null,
-   "key": null,
+   "key": "G",
    "beat": null,
    "tempo": null,
    "duration": null,
@@ -40,7 +40,7 @@
     "sourceName": "source.name"
    },
    "bpm": null,
-   "keyOfArrangement": null,
+   "keyOfArrangement": "G",
    "note": "",
    "sourceName": null
   }
