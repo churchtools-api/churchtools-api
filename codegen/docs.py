@@ -489,7 +489,7 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
             checks.append((op.op_id, example))
             body.append(op_html(op, example))
             py_call = f"client.{'.'.join(op.chain)}.{op.name}()"
-            search.append([op.path, f"{py_call} · {op.summary}", f"#op-{op.op_id}", op.method, tag])
+            search.append([op.path, f"{py_call} · {op.summary}", f"#op-{op.op_id}", op.method, f"{op.method} {tag}"])
         if i:
             prev_link = f'<a href="#tag-{slug(groups[i - 1][0])}">← {esc(groups[i - 1][0])}</a>'
         else:
@@ -509,7 +509,9 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
             + f'</section>\n<nav class="pager" aria-label="Bereiche">{prev_link}{next_link}</nav>'
         )
     for name, m in sorted(schemas.models.items()):
-        search.append([name, f"Modell · {len(m.fields)} Felder", f"#m-{name}", "model", ""])
+        # Field names make fields findable although their tables are not in the page until a model is opened.
+        fields = " ".join(sorted(set(g.py_field_names(m)) | {f.json_name for f in m.fields}))
+        search.append([name, f"Modell · {len(m.fields)} Felder", f"#m-{name}", "model", fields])
 
     nav_guide = "".join(
         f'<li class="nav-chapter"><a href="#{c.id}">{esc(c.title)}</a><ul>'

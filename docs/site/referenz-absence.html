@@ -541,7 +541,10 @@ print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span>
 
   // Links from before the split into several pages (index.html#op-…, #m-…, #tag-…) lead to the right page.
   const oldTarget = location.hash.slice(1);
-  if (oldTarget && !document.getElementById(oldTarget) && /^(op|m|tag)-/.test(oldTarget)) {
+  const movedSections = { referenz: "referenz.html", modelle: "modelle.html" };
+  if (oldTarget && !document.getElementById(oldTarget) && movedSections[oldTarget]) {
+    location.replace(movedSections[oldTarget]);
+  } else if (oldTarget && !document.getElementById(oldTarget) && /^(op|m|tag)-/.test(oldTarget)) {
     loadIndex().then((all) => {
       const area = oldTarget.startsWith("tag-") && `referenz-${oldTarget.slice(4)}.html`;
       const hit = all.find((e) => e[2].endsWith("#" + oldTarget) || e[2] === area);
