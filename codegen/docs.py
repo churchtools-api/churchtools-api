@@ -1,7 +1,11 @@
-"""Builds the documentation page docs/site/index.html.
+"""Builds the documentation pages in docs/site.
 
-Called from generate.py after code generation. Structure follows the reader:
-introduction -> basics -> projects -> full reference -> models -> errors.
+Called from generate.py after code generation. Structure follows the reader: index.html holds the introduction,
+basics, projects and the appendix (errors, test coverage, license); the reference has an overview page
+(referenz.html) and one page per area (referenz-<area>.html); modelle.html lists the models; suche.js is the search
+index for all of them. All pages share the top bar and the navigation on the left. One page with everything had
+~166,000 elements, which made every click slow. Links between the pages are resolved by id: `#op-…` in the generated
+HTML becomes `referenz-x.html#op-…`.
 """
 
 from __future__ import annotations
@@ -325,7 +329,6 @@ def op_html(op: g.Op, example: ex.Example) -> str:
         rs_filter = f'<span class="rs alt">mit Filtern: <code>.{op.name}_with(&amp;{struct})</code></span>'
     elif query:
         rs_filter = f'<span class="rs alt">Query: <code>{g.pascal(op.op_id)}Query</code></span>'
-    search = " ".join([py_call, op.path, op.summary, op.method]).lower()
     badges = ""
     if op.paginated:
         badges += '<span class="badge">seitenweise</span>'
@@ -344,7 +347,7 @@ def op_html(op: g.Op, example: ex.Example) -> str:
             params = table
     desc = spec_text(op.doc) if op.doc and op.doc != op.summary else ""
     return (
-        f'<article class="op" id="op-{op.op_id}" data-search="{esc(search)}">'
+        f'<article class="op" id="op-{op.op_id}">'
         '<div class="prose">'
         f'<h4><span class="verb v-{op.method}">{op.method.upper()}</span><code class="path">{esc(op.path)}</code>{untested_mark(op)}</h4>'
         f'<p class="call"><code>{both(esc(py_call), esc(rs_call))}</code>{rs_filter}{badges}</p>'
@@ -391,16 +394,57 @@ def models_html(schemas: g.Schemas) -> str:
         )
         doc = f'<p class="model-doc">{inline(first_sentence(m.doc))}</p>' if m.doc else ""
         parts.append(
-            f'<details class="model" id="m-{name}" data-search="{esc(name.lower())}"><summary><code>{name}</code>'
-            f'<span class="count">{len(m.fields)} Felder</span></summary>{doc}'
+            f'<details class="model" id="m-{name}"><summary><code>{name}</code>'
+            f'<span class="count">{len(m.fields)} Felder</span></summary><template>{doc}'
             '<div class="table-wrap"><table class="params"><thead><tr><th>Feld</th><th>Typ</th><th>Pflicht</th>'
-            f"<th>Beschreibung</th></tr></thead><tbody>{rows}</tbody></table></div></details>"
+            f"<th>Beschreibung</th></tr></thead><tbody>{rows}</tbody></table></div></template></details>"
         )
     return "\n".join(parts)
 
 
 # ---------------------------------------------------------------------------
-# Page
+# Pages
+
+SITE = g.ROOT / "docs" / "site"
+TEMPLATE = (Path(__file__).parent / "docs_template.html").read_text()
+START = (Path(__file__).parent / "docs_start.html").read_text()
+REFERENCE_LEAD = (
+    "Alle Endpunkte nach Bereichen, jeweils mit Aufruf, Parametern, Rückgabe und einem Beispiel. "
+    "Beschreibungen stammen aus der offiziellen API-Beschreibung und sind englisch."
+)
+MODELS_LEAD = (
+    "Die Typen der Antworten und Request-Bodies. Felder heißen in Python wie die Python-Attribute, "
+    "in Rust wie die Struct-Felder."
+)
+
+
+def plain(html_text: str) -> str:
+    """Text without tags, for places that must not contain links (cards that are links themselves)."""
+    return re.sub(r"<[^>]+>", "", html_text)
+
+
+def page_urls(pages: dict[str, str]) -> dict[str, str]:
+    """Maps every id to where it is shown: `page#id`, or just `page` for the first id (the page's main section)."""
+    urls: dict[str, str] = {}
+    for name, content in pages.items():
+        for i, id_ in enumerate(re.findall(r'\sid="([^"]+)"', content)):
+            if id_ in urls:
+                raise ValueError(f"id {id_!r} is used twice ({urls[id_]} and {name})")
+            urls[id_] = name if i == 0 else f"{name}#{id_}"
+    return urls
+
+
+def relink(page: str, name: str, urls: dict[str, str]) -> str:
+    """Turns `href="#id"` into a link to the page that shows the id, unless it is on this page."""
+
+    def repl(m: re.Match[str]) -> str:
+        id_ = m.group(1)
+        if id_ not in urls:
+            raise ValueError(f"{name}: link to unknown id #{id_}")
+        target = urls[id_]
+        return m.group(0) if target.split("#")[0] == name else f'href="{target}"'
+
+    return re.sub(r'href="#([^"]+)"', repl, page)
 
 
 def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, ex.Example]]:
@@ -410,18 +454,30 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
     KNOWN_MODELS.clear()
     KNOWN_MODELS.update(schemas.models)
     checks: list[tuple[str, ex.Example]] = []
+    # Search index entries: [name, second line, link (#id, resolved below), kind, more words to search]
+    search: list[list[str]] = []
     for chapter in guide.CHAPTERS:
         for s in chapter.sections:
             if (s.python or s.rust) and s.id not in UNCHECKED_SECTIONS:
                 checks.append((f"guide: {s.id}", ex.Example(s.python, s.rust)))
+            search.append([s.title, chapter.title, f"#{s.id}", "guide", ""])
 
     groups = group_ops(ops)
+    pages: dict[str, str] = {}  # file name -> content of <div class="inner">
+    titles: dict[str, str] = {"index.html": "churchtools-api"}
     nav_ref = []
-    ref = []
-    for tag, items in groups:
+    areas = []
+    n_areas = 0  # areas come first in the search index, so that they are listed first among the hits
+    for i, (tag, items) in enumerate(groups):
         tid = f"tag-{slug(tag)}"
         nav_ref.append(f'<li><a href="#{tid}">{esc(tag)} <span class="count">{len(items)}</span></a></li>')
         intro = guide.TAG_INTROS.get(tag, "")
+        areas.append(
+            f'<a href="#{tid}"><b>{esc(tag)} <span class="count">{len(items)}</span></b>'
+            f'{f"<span>{plain(inline(intro))}</span>" if intro else ""}</a>'
+        )
+        search.insert(n_areas, [tag, f"Bereich · {len(items)} Endpunkte", f"#{tid}", "area", ""])
+        n_areas += 1
         index = "".join(
             f'<li><a href="#op-{o.op_id}"><span class="verb v-{o.method}">{o.method.upper()}</span>'
             f"<code>{esc(o.path)}</code>{UNTESTED_STAR if untested_reason(o) else ''}</a></li>"
@@ -432,13 +488,28 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
             example = g.EXAMPLES.get(op.op_id) or ex.example_for(schemas, op)
             checks.append((op.op_id, example))
             body.append(op_html(op, example))
-        ref.append(
-            f'<section class="tag" id="{tid}"><div class="tag-head"><h3>{esc(tag)}</h3>'
-            f'{f"<p>{inline(intro)}</p>" if intro else ""}'
-            f'<details class="tag-index"><summary>{len(items)} Endpunkte im Überblick</summary><ul>{index}</ul></details></div>'
-            + "\n".join(body)
-            + "</section>"
+            py_call = f"client.{'.'.join(op.chain)}.{op.name}()"
+            search.append([op.path, f"{py_call} · {op.summary}", f"#op-{op.op_id}", op.method, tag])
+        if i:
+            prev_link = f'<a href="#tag-{slug(groups[i - 1][0])}">← {esc(groups[i - 1][0])}</a>'
+        else:
+            prev_link = '<a href="#referenz">← Übersicht</a>'
+        next_link = ""
+        if i + 1 < len(groups):
+            next_link = f'<a href="#tag-{slug(groups[i + 1][0])}">{esc(groups[i + 1][0])} →</a>'
+        lead = f"{inline(intro)} " if intro else ""
+        name = f"referenz-{slug(tag)}.html"
+        titles[name] = f"{tag} · churchtools-api"
+        pages[name] = (
+            f'<section class="reference tag" id="{tid}"><h2>{esc(tag)}</h2>'
+            f'<p class="lead">{lead}{len(items)} Endpunkte. Beschreibungen stammen aus der offiziellen '
+            "API-Beschreibung und sind englisch.</p>"
+            f'<details class="tag-index"><summary>{len(items)} Endpunkte im Überblick</summary>'
+            f"<ul>{index}</ul></details>" + "\n".join(body)
+            + f'</section>\n<nav class="pager" aria-label="Bereiche">{prev_link}{next_link}</nav>'
         )
+    for name, m in sorted(schemas.models.items()):
+        search.append([name, f"Modell · {len(m.fields)} Felder", f"#m-{name}", "model", ""])
 
     nav_guide = "".join(
         f'<li class="nav-chapter"><a href="#{c.id}">{esc(c.title)}</a><ul>'
@@ -459,37 +530,63 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
             RUST_ERRORS.get(name, f"Error::Api (status {code})")
         ]
     )
-    page = TEMPLATE
+    start = START
     for key, value in {
         "VERSION": esc(version),
         "OPS": str(len(ops)),
         "MODELS": str(len(schemas.models)),
-        "NAV_GUIDE": nav_guide,
-        "NAV_REF": "".join(nav_ref),
         "GUIDE": "\n".join(guide_html(c) for c in guide.CHAPTERS),
-        "REFERENCE": "\n".join(ref),
-        "MODEL_LIST": models_html(schemas),
         "ERRORS": errors,
         "COVERAGE": coverage_rows(ops),
     }.items():
-        page = page.replace(f"%%{key}%%", value)
-    out = g.ROOT / "docs" / "site" / "index.html"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(
-        '<!doctype html>\n<html lang="de">\n<head>\n<meta charset="utf-8">\n'
-        '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-        f"</head>\n<body>\n{page}\n</body>\n</html>\n"
+        start = start.replace(f"%%{key}%%", value)
+    pages = {
+        "index.html": start,
+        "referenz.html": (
+            f'<section class="reference" id="referenz"><h2>Referenz</h2><p class="lead">{REFERENCE_LEAD}</p>'
+            f'<div class="areas">{"".join(areas)}</div></section>'
+        ),
+        **pages,
+        "modelle.html": (
+            f'<section class="reference" id="modelle"><h2>Modelle</h2><p class="lead">{MODELS_LEAD}</p>'
+            f'<div class="models">{models_html(schemas)}</div></section>'
+        ),
+    }
+    titles["referenz.html"] = "Referenz · churchtools-api"
+    titles["modelle.html"] = "Modelle · churchtools-api"
+    urls = page_urls(pages)
+
+    SITE.mkdir(parents=True, exist_ok=True)
+    for old in SITE.glob("referenz-*.html"):
+        if old.name not in pages:
+            old.unlink()
+    for name, content in pages.items():
+        page = TEMPLATE
+        for key, value in {
+            "TITLE": esc(titles[name]),
+            "VERSION": esc(version),
+            "MODELS": str(len(schemas.models)),
+            "NAV_GUIDE": nav_guide,
+            "NAV_REF": "".join(nav_ref),
+            "CONTENT": content,
+        }.items():
+            page = page.replace(f"%%{key}%%", value)
+        (SITE / name).write_text(
+            '<!doctype html>\n<html lang="de">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            f"</head>\n<body>\n{relink(page, name, urls)}\n</body>\n</html>\n"
+        )
+    for entry in search:
+        entry[2] = urls[entry[2][1:]]
+    (SITE / "suche.js").write_text(
+        "// Generated by codegen/docs.py: search index of the documentation pages.\n"
+        f"window.CT_SEARCH = {json.dumps(search, ensure_ascii=False, separators=(',', ':'))};\n"
     )
-    # Same page without document skeleton, for publishing as a claude.ai artifact.
-    g.CACHE.parent.mkdir(parents=True, exist_ok=True)
-    (g.CACHE.parent / "docs_fragment.html").write_text(page)
-    links = {name: f"index.html#m-{name}" for name in schemas.models}
+
+    links = {name: urls[f"m-{name}"] for name in schemas.models}
     for op in ops:
         call = ".".join((*op.chain, op.name))
-        links[f"{call}()"] = links[call] = links[f"{op.method.upper()} {op.path}"] = f"index.html#op-{op.op_id}"
+        links[f"{call}()"] = links[call] = links[f"{op.method.upper()} {op.path}"] = urls[f"op-{op.op_id}"]
     changelog.build(g.ROOT, TEMPLATE, md, esc, links)
     ex.write_check_files(checks, g.ROOT)
     return checks
-
-
-TEMPLATE = (Path(__file__).parent / "docs_template.html").read_text()

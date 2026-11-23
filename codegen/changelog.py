@@ -123,7 +123,7 @@ def page(
     """The changelog page; `template` is the main page's template, of which only the styles are reused."""
     links = links or {}
     head = template[: template.index("</style>") + len("</style>")].replace(
-        "<title>churchtools-api</title>", "<title>churchtools-api: Änderungen</title>"
+        "<title>%%TITLE%%</title>", "<title>Änderungen · churchtools-api</title>"
     )
     badge = ' <span class="badge-break">inkompatibel</span>'
     nav = "".join(
@@ -183,7 +183,7 @@ def page(
           ChurchTools-Version, aus der der Code erzeugt ist, und gliedert die Änderungen immer gleich:
           <b>Inkompatibel</b> (mit dem, was beim Umstieg zu ändern ist), <b>Neu</b>, <b>Geändert</b> und
           <b>Korrigiert</b>. Leere Abschnitte fehlen. Methoden und Modelle führen in die
-          <a href="index.html#referenz">Referenz</a> der aktuellen Version.</p>
+          <a href="referenz.html">Referenz</a> der aktuellen Version.</p>
         </section>
         {"".join(articles)}
       </div>

@@ -1,4 +1,4 @@
-<title>churchtools-api</title>
+<title>%%TITLE%%</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Python- und Rust-Client für die ChurchTools-API: Grundlagen, Projekte und vollständige Referenz.">
 <script>
@@ -154,6 +154,7 @@ main {
   font: 700 1.85rem/1.1 var(--font-display); letter-spacing: -0.015em;
   padding-top: 1.5rem; border-top: 1px solid var(--line);
 }
+.inner > .reference:first-child > h2 { border-top: 0; padding-top: 0; }
 .chapter > .lead, .reference > .lead { margin: -1.75rem 0 0; color: var(--muted); max-width: 60ch; }
 .topic, .op { display: grid; gap: 1.25rem 2.5rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 1180px) {
@@ -238,17 +239,37 @@ a.untested:hover { text-decoration: underline; }
 /* Models */
 .models { display: grid; gap: 0.25rem; }
 .model { border-bottom: 1px solid var(--line); padding: 0.4rem 0; }
-/* Most of the page are the 850 endpoints: lay each out only when it scrolls into view. The size is a typical
-   height until then (models are cheap, closed <details> do not lay out their content). */
-.op { content-visibility: auto; contain-intrinsic-size: auto 450px; }
+/* An area page can have 100+ endpoints: lay each out only when it scrolls into view. The size is a typical
+   height until then. */
+.op { content-visibility: auto; contain-intrinsic-block-size: auto 450px; }
+.model:not([open]) { content-visibility: auto; contain-intrinsic-block-size: auto 2.6rem; }
 .model > summary { display: flex; justify-content: space-between; gap: 1rem; color: var(--fg); margin: 0; }
-.model > summary code { font-size: 0.88rem; }
+.model > summary code { font-size: 0.88rem; min-width: 0; overflow-wrap: anywhere; }
 .model[open] { padding-bottom: 1rem; }
 .model:target > summary code { color: var(--accent); }
 .model-doc { color: var(--muted); font-size: 0.9rem; max-width: 65ch; }
 
-.nohits { color: var(--muted); }
-.searching .chapter, .searching .hide-search { display: none; }
+/* Search results below the search box (the index of all pages is loaded on first use, see suche.js) */
+.search-hits {
+  position: absolute; top: calc(100% + 0.35rem); left: 0; right: 0; z-index: 30; margin: 0; padding: 0.3rem;
+  list-style: none; max-height: min(70vh, 32rem); overflow-y: auto; font-size: 0.86rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.15);
+}
+.search-hits a { display: grid; gap: 0.1rem; padding: 0.4rem 0.55rem; border-radius: 5px; color: var(--fg); text-decoration: none; }
+.search-hits a:hover, .search-hits a[aria-selected="true"] { background: var(--accent-soft); }
+.search-hits b { font-weight: 500; display: flex; gap: 0.5rem; align-items: baseline; min-width: 0; overflow-wrap: anywhere; }
+.search-hits b .verb { font-size: 0.62rem; min-width: 3.2rem; padding: 0.2rem 0.3rem; }
+.search-hits span.sub { color: var(--muted); font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search-hits .none { padding: 0.5rem 0.55rem; color: var(--muted); }
+/* Overview of the reference areas and links to the neighbouring areas */
+.areas { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.areas a { display: grid; gap: 0.3rem; align-content: start; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface); text-decoration: none; color: var(--fg); }
+.areas a b { color: var(--accent); display: flex; justify-content: space-between; gap: 0.5rem; }
+.areas a b .count { color: var(--muted); font: 400 0.78rem/1.6 var(--font-mono); }
+.areas a span { color: var(--muted); font-size: 0.88rem; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.pager a { text-decoration: none; }
 .next { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 .next a { display: block; padding: 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--fg); }
 .next a b { display: block; color: var(--accent); margin-bottom: 0.25rem; }
@@ -272,8 +293,12 @@ a.untested:hover { text-decoration: underline; }
 <div id="app" data-lang="python">
   <header class="topbar">
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">Inhalt</button>
-    <a class="brand" href="#start"><b>churchtools-api</b><span>%%VERSION%%</span></a>
-    <div class="search"><input id="search" type="search" placeholder="Endpunkt oder Modell suchen, z. B. members" aria-label="Referenz durchsuchen" autocomplete="off"></div>
+    <a class="brand" href="index.html"><b>churchtools-api</b><span>%%VERSION%%</span></a>
+    <div class="search">
+      <input id="search" type="search" placeholder="Endpunkt oder Modell suchen, z. B. members" aria-label="Dokumentation durchsuchen"
+        autocomplete="off" role="combobox" aria-expanded="false" aria-controls="search-hits">
+      <ul class="search-hits" id="search-hits" role="listbox" hidden></ul>
+    </div>
     <div class="lang-switch" role="group" aria-label="Sprache der Beispiele">
       <button type="button" data-l="python" aria-pressed="true">Python</button>
       <button type="button" data-l="rust" aria-pressed="false">Rust</button>
@@ -299,83 +324,7 @@ a.untested:hover { text-decoration: underline; }
 
     <main id="main">
       <div class="inner">
-        <section class="hero hide-search" id="start">
-          <h1>ChurchTools aus Python und Rust ansprechen</h1>
-          <p class="lead">Ein Client für die gesamte ChurchTools-REST-API: typisierte Antworten, Fehler mit verständlicher Meldung, automatisches Blättern durch lange Listen.</p>
-          <ul class="facts">
-            <li><b>%%OPS%%</b> Endpunkte</li>
-            <li><b>%%MODELS%%</b> Modelle</li>
-            <li>API-Stand <b>%%VERSION%%</b> (<a href="aenderungen.html">Änderungen</a>)</li>
-          </ul>
-          <div class="cta">
-            <a class="primary" href="#schnellstart">Erster Aufruf</a>
-            <a href="#projekte">Projekte ansehen</a>
-            <a href="#referenz">Zur Referenz</a>
-          </div>
-        </section>
-
-        %%GUIDE%%
-
-        <section class="reference" id="referenz">
-          <h2>Referenz</h2>
-          <p class="lead hide-search">Alle Endpunkte nach Bereichen, jeweils mit Aufruf, Parametern, Rückgabe und einem Beispiel. Beschreibungen stammen aus der offiziellen API-Beschreibung und sind englisch.</p>
-          <p class="nohits" id="nohits" hidden>Keine Treffer. Suche nach einem Pfadteil wie <code>members</code> oder einem Methodennamen wie <code>list_birthdays</code>.</p>
-          %%REFERENCE%%
-        </section>
-
-        <section class="reference" id="modelle">
-          <h2>Modelle</h2>
-          <p class="lead hide-search">Die Typen der Antworten und Request-Bodies. Felder heißen in Python wie die Python-Attribute, in Rust wie die Struct-Felder.</p>
-          <div class="models">%%MODEL_LIST%%</div>
-        </section>
-
-        <section class="reference hide-search" id="fehlercodes">
-          <h2>Fehlercodes</h2>
-          <p class="lead">Was ein Fehler bedeutet und wie du ihn abfängst. Mehr dazu unter <a href="#fehler">Fehler behandeln</a>.</p>
-          <div class="table-wrap"><table><thead><tr><th>Status</th><th>Ausnahme / Variante</th><th>Bedeutung</th></tr></thead><tbody>%%ERRORS%%</tbody></table></div>
-        </section>
-
-        <section class="reference hide-search" id="testabdeckung">
-          <h2>Testabdeckung</h2>
-          <p class="lead">Alle Endpunkte werden gegen eine echte ChurchTools-Testinstanz geprüft. Ein rotes
-          Sternchen <span class="untested">*</span> an einem Endpunkt heißt: <b>noch nicht oder nicht ausreichend
-          getestet.</b> Fährst du mit der Maus darüber, steht dort der Grund.</p>
-          <ul>
-            <li><b>kein Testszenario:</b> Der Aufruf wurde bewusst nicht ausgeführt, etwa weil er E-Mails verschickt,
-            Logins oder Rechte ändert oder ein externes System braucht.</li>
-            <li><b>keine Testdaten:</b> Die Testinstanz hatte nichts, worauf sich der Aufruf anwenden ließ, und es ließ
-            sich auch nicht über die API anlegen.</li>
-            <li><b>getestet, Fehler der API:</b> Der Aufruf scheitert auch auf der Testinstanz, mit bekannter Ursache,
-            meist einem Fehler in ChurchTools.</li>
-          </ul>
-          <p>Die Beispiele auf dieser Seite sind Teil der Tests: Alle werden kompiliert bzw. typgeprüft, und die
-          Beispiele zu getesteten Endpunkten laufen gegen die aufgezeichneten Antworten der Testinstanz.</p>
-          <p>Ohne Sternchen heißt: Der Aufruf lief erfolgreich, und die Antwort passte zu den Typen in Python und Rust.
-          Das garantiert nicht jede Kombination von Parametern. Details stehen im Testbericht (<code>docs/testbericht.md</code>).</p>
-          <div class="table-wrap"><table>%%COVERAGE%%</table></div>
-        </section>
-
-        <section class="reference hide-search" id="lizenz">
-          <h2>Lizenz</h2>
-          <p>Der Code von churchtools-api steht unter der MIT-Lizenz. Die Referenz, die Modelle und die
-          englischen Beschreibungen stammen aus der API-Beschreibung „ChurchTools REST API“ von ChurchTools
-          (<a href="https://demo.church.tools/system/runtime/swagger/openapi.json" target="_blank" rel="noopener">OpenAPI-Spec</a>),
-          lizenziert unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank" rel="noopener">CC BY 4.0</a>.
-          Sie wurde in Code und diese Seite umgewandelt, an einigen Stellen korrigiert und um Beispiele ergänzt.
-          Details stehen in <code>NOTICE</code>.</p>
-          <p>churchtools-api ist kein offizielles Produkt der ChurchTools Innovations GmbH und wird von ihr weder
-          unterstützt noch geprüft.</p>
-        </section>
-
-        <section class="reference hide-search" id="weiter">
-          <h2>Nächste Schritte</h2>
-          <div class="next">
-            <a href="#projekte"><b>Ein Projekt nachbauen</b><span>Monatsplan, Dienstplan, Geburtstage, CSV-Export, Anmeldung.</span></a>
-            <a href="#tag-person"><b>Personen</b><span>Der größte Bereich der API, mit Suche, Beziehungen und Einstellungen.</span></a>
-            <a href="#tag-group"><b>Gruppen</b><span>Mitglieder, Rollen und Treffen verwalten.</span></a>
-            <a href="#modelle"><b>Modelle nachschlagen</b><span>Welche Felder ein Objekt hat und welchen Typ sie haben.</span></a>
-          </div>
-        </section>
+        %%CONTENT%%
       </div>
     </main>
   </div>
@@ -451,6 +400,11 @@ a.untested:hover { text-decoration: underline; }
 
   // Open a model when its link is followed, and align the target once more after the endpoints near it have been
   // laid out with their real height (they are estimated until they come into view, see content-visibility).
+  // A model's fields are in a <template> until it is opened: 1,143 tables in the page would make every click slow.
+  document.addEventListener("toggle", (event) => {
+    const t = event.target.open && event.target.querySelector(":scope > template");
+    if (t) t.replaceWith(t.content);
+  }, true);
   function openTarget() {
     const id = location.hash.slice(1);
     const el = id && document.getElementById(id);
@@ -462,30 +416,113 @@ a.untested:hover { text-decoration: underline; }
   // On a fresh load the browser jumps to the target only after parsing; align after that.
   if (document.readyState === "complete") openTarget(); else window.addEventListener("load", openTarget);
 
-  // Search over endpoints and models
+  // Search over all pages. The index (suche.js, ~200 KB) is loaded on first use; a <script> instead of fetch()
+  // keeps it working when the pages are opened from disk.
+  let entries = null;
+  function loadIndex() {
+    if (entries) return Promise.resolve(entries);
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "suche.js";
+      s.onload = () => { entries = window.CT_SEARCH || []; resolve(entries); };
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
   const search = document.getElementById("search");
-  const main = document.getElementById("main");
-  const ops = Array.from(document.querySelectorAll(".op"));
-  const models = Array.from(document.querySelectorAll(".model"));
-  const tags = Array.from(document.querySelectorAll(".tag"));
-  const nohits = document.getElementById("nohits");
+  const hitList = document.getElementById("search-hits");
+  const VERBS = new Set(["get", "post", "put", "patch", "delete"]);
+  let selected = -1;
+  function showHits(hits, q) {
+    selected = hits.length ? 0 : -1;
+    hitList.replaceChildren(...hits.map(([label, sub, href, kind], i) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = href;
+      a.setAttribute("role", "option");
+      a.setAttribute("aria-selected", String(i === 0));
+      const b = document.createElement("b");
+      if (VERBS.has(kind)) {
+        const v = document.createElement("span");
+        v.className = `verb v-${kind}`;
+        v.textContent = kind.toUpperCase();
+        b.append(v);
+      }
+      b.append(label);
+      const s = document.createElement("span");
+      s.className = "sub";
+      s.textContent = sub;
+      a.append(b, s);
+      li.append(a);
+      return li;
+    }));
+    if (!hits.length) {
+      const li = document.createElement("li");
+      li.className = "none";
+      li.textContent = `Keine Treffer für „${q}“. Suche nach einem Pfadteil wie members oder einem Methodennamen wie list_birthdays.`;
+      hitList.append(li);
+    }
+    hitList.hidden = false;
+    search.setAttribute("aria-expanded", "true");
+  }
+  function hideHits() { hitList.hidden = true; search.setAttribute("aria-expanded", "false"); }
+  function select(i) {
+    const options = hitList.querySelectorAll("a");
+    if (!options.length) return;
+    selected = (i + options.length) % options.length;
+    options.forEach((a, j) => a.setAttribute("aria-selected", String(j === selected)));
+    options[selected].scrollIntoView({ block: "nearest" });
+  }
   let timer;
+  search.addEventListener("focus", () => { loadIndex().catch(() => {}); });
   search.addEventListener("input", () => {
     clearTimeout(timer);
-    timer = setTimeout(() => {
+    timer = setTimeout(async () => {
       const q = search.value.trim().toLowerCase();
-      main.classList.toggle("searching", q.length > 0);
-      let hits = 0;
-      ops.forEach((op) => { const show = !q || op.dataset.search.includes(q); op.hidden = !show; if (show) hits++; });
-      models.forEach((m) => { const show = !q || m.dataset.search.includes(q); m.hidden = !show; if (show) hits++; });
-      tags.forEach((t) => { t.hidden = q && !t.querySelector(".op:not([hidden])"); });
-      nohits.hidden = !q || hits > 0;
-      if (q) document.getElementById("referenz").scrollIntoView();
-    }, 150);
+      if (!q) { hideHits(); return; }
+      const all = await loadIndex().catch(() => []);
+      all.forEach((e) => { if (e.text === undefined) e.text = `${e[0]} ${e[1]} ${e[4]}`.toLowerCase(); });
+      if (search.value.trim().toLowerCase() !== q) return;
+      // Matches in the name first, then in the description; at most 40.
+      const first = [], second = [];
+      for (const e of all) {
+        if (e[0].toLowerCase().includes(q)) first.push(e);
+        else if (e.text.includes(q)) second.push(e);
+        if (first.length >= 40) break;
+      }
+      showHits(first.concat(second).slice(0, 40), search.value.trim());
+    }, 120);
   });
+  search.addEventListener("keydown", (event) => {
+    if (hitList.hidden) return;
+    if (event.key === "ArrowDown") { event.preventDefault(); select(selected + 1); }
+    else if (event.key === "ArrowUp") { event.preventDefault(); select(selected - 1); }
+    else if (event.key === "Escape") { hideHits(); }
+    else if (event.key === "Enter") {
+      const a = hitList.querySelectorAll("a")[selected];
+      if (a) { event.preventDefault(); hideHits(); location.href = a.href; }
+    }
+  });
+  document.addEventListener("click", (event) => { if (!event.target.closest(".search")) hideHits(); });
+  hitList.addEventListener("click", (event) => { if (event.target.closest("a")) hideHits(); });
+
+  // Links from before the split into several pages (index.html#op-…, #m-…, #tag-…) lead to the right page.
+  const oldTarget = location.hash.slice(1);
+  if (oldTarget && !document.getElementById(oldTarget) && /^(op|m|tag)-/.test(oldTarget)) {
+    loadIndex().then((all) => {
+      const area = oldTarget.startsWith("tag-") && `referenz-${oldTarget.slice(4)}.html`;
+      const hit = all.find((e) => e[2].endsWith("#" + oldTarget) || e[2] === area);
+      if (hit) location.replace(hit[2]);
+    }, () => {});
+  }
 
   // Highlight the current area in the navigation
-  const links = new Map(Array.from(nav.querySelectorAll('a[href^="#"]')).map((a) => [a.getAttribute("href").slice(1), a]));
+  const here = location.pathname.split("/").pop() || "index.html";
+  const links = new Map();
+  nav.querySelectorAll("a[href]").forEach((a) => {
+    const [page, id] = a.getAttribute("href").split("#");
+    if ((page || here) === here && id) links.set(id, a);
+  });
   const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #lizenz, #weiter"));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
