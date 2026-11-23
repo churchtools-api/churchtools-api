@@ -38,6 +38,7 @@ EXPECTED_ERRORS: dict[str, tuple[int, str]] = {
     "get-evangelischetermine-eventtypes": (500, "SoapFault: evangelische-termine.de nicht eingerichtet (500 statt 4xx)"),
     "get-externallogins-oidc-callback": (401, "Callback ohne laufenden OIDC-Login"),
     "get-finance-donators-receipts": (400, "noch keine Zuwendungsbestätigungen für die Buchungsperiode erstellt"),
+    "get-ccli-songs": (502, "CCLI ist nicht verbunden ('ccli.upstream.failed')"),
     "get-saml-login": (404, "SAML ist nicht eingerichtet"),
     "get-saml-metadata": (404, "SAML ist nicht eingerichtet"),
     "get-sync-adapters": (401, _SYNC),

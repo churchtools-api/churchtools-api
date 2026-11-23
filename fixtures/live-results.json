@@ -373,10 +373,6 @@
     "@deprecated"
    ],
    "Image": [
-    "aiGenerated",
-    "annotation",
-    "annotationLink",
-    "description",
     "imageMetadata"
    ]
   }
@@ -500,6 +496,28 @@
     "parallelism"
    ]
   }
+ },
+ "get-ccli-songs": {
+  "outcome": "expected-error",
+  "reason": "CCLI ist nicht verbunden ('ccli.upstream.failed')",
+  "call": "ccli.songs.list(query='Go')",
+  "status": 502,
+  "message": "HTTP 502: 'ccli.upstream.failed'",
+  "request": {
+   "method": "GET",
+   "path": "/ccli/songs",
+   "query": [
+    [
+     "query",
+     "Go"
+    ]
+   ],
+   "body": null
+  }
+ },
+ "get-ccli-songs-songNumber": {
+  "outcome": "unresolved",
+  "reason": "GET /ccli/songs failed: HTTP 502: 'ccli.upstream.failed'"
  },
  "get-chat": {
   "outcome": "ok",
@@ -637,6 +655,11 @@
   "call": "events.facts.get(1816, 1)",
   "undocumented": {}
  },
+ "get-events-eventId-services-serviceId-candidates": {
+  "outcome": "ok",
+  "call": "events.services.list_candidates(1771, 1)",
+  "undocumented": {}
+ },
  "get-events-eventId-services-serviceId-possiblepersons": {
   "outcome": "ok",
   "call": "events.services.list_possible_persons(1816, 1)",
@@ -670,6 +693,11 @@
  "get-events-id-possiblepersonsforservice": {
   "outcome": "ok",
   "call": "events.list_possible_persons_for_service(1)",
+  "undocumented": {}
+ },
+ "get-events-serviceId-candidates": {
+  "outcome": "ok",
+  "call": "events.list_candidates(1)",
   "undocumented": {}
  },
  "get-eventtemplates": {
@@ -1590,6 +1618,16 @@
   "call": "permissions.get_locked()",
   "undocumented": {}
  },
+ "get-permissions-origins-global-domainType-domainId": {
+  "outcome": "ok",
+  "call": "permissions.origins.global_.get('status', 0)",
+  "undocumented": {}
+ },
+ "get-permissions-origins-global-group-roles-groupRoleId": {
+  "outcome": "ok",
+  "call": "permissions.origins.global_.group_roles.get(72)",
+  "undocumented": {}
+ },
  "get-permissions-origins-global-persons-personId": {
   "outcome": "ok",
   "call": "permissions.origins.global_.persons.get(1)",
@@ -1598,6 +1636,11 @@
  "get-permissions-origins-internal-persons-personId": {
   "outcome": "ok",
   "call": "permissions.origins.internal.persons.get(1)",
+  "undocumented": {}
+ },
+ "get-permissions-overview": {
+  "outcome": "ok",
+  "call": "permissions.get_overview()",
   "undocumented": {}
  },
  "get-permissions-permissionDomainType": {
@@ -1834,6 +1877,11 @@
  "get-persons-personId-absences-id": {
   "outcome": "ok",
   "call": "persons.absences.get(1, 109)",
+  "undocumented": {}
+ },
+ "get-persons-personId-consentstatus": {
+  "outcome": "ok",
+  "call": "persons.get_consentstatus(1)",
   "undocumented": {}
  },
  "get-persons-personId-devices": {
@@ -2182,8 +2230,12 @@
  },
  "get-securitylevels-id": {
   "outcome": "ok",
-  "call": "security_levels.get(1)",
-  "undocumented": {}
+  "call": "security_levels.get(10)",
+  "undocumented": {
+   "SecurityLevel": [
+    "data"
+   ]
+  }
  },
  "get-servicegroups": {
   "outcome": "ok",

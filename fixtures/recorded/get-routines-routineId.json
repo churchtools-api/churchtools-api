@@ -31,7 +31,8 @@
       "attachmentIds": []
      }
     }
-   ]
+   ],
+   "triggerKey": "group-membership-updated"
   }
  }
 }

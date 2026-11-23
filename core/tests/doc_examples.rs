@@ -101,8 +101,8 @@ fn example_guide_parameter(client: &Client) -> std::result::Result<(), Box<dyn s
     let events = client.events().list_with(&query)?;
 
     let body = models::PatchPersonsIdBody {
-        city: Some("Esslingen".into()),
-        zip: Some("73728".into()),
+        city: Some(Some("Esslingen".into())),
+        zip: Some(Some("73728".into())),
         ..Default::default()
     };
     client.persons().patch(7, &body)?;
@@ -196,7 +196,7 @@ fn guide_fehler() {
 // guide: weglassen
 fn example_guide_weglassen(client: &Client) -> std::result::Result<(), Box<dyn std::error::Error>> {
     // nur die Stadt ändern, alles andere bleibt
-    let body = models::PatchPersonsIdBody { city: Some("Esslingen".into()), ..Default::default() };
+    let body = models::PatchPersonsIdBody { city: Some(Some("Esslingen".into())), ..Default::default() };
     client.persons().patch(7, &body)?;
 
     // Geburtstag löschen

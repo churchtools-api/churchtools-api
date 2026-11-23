@@ -66,7 +66,11 @@
     "imagesMeta": [
      {
       "imageUrl": "https://gemeinde.example/images/3213/33dacd2d0c3f4c1632b4d3cd57d24acb649083b8cc5c86db401def13e7f48904",
-      "aspectRatio": 2
+      "aspectRatio": 2,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      }
     ],
     "publicationDate": "2026-08-17T11:40:18Z",
@@ -146,11 +150,19 @@
     "imagesMeta": [
      {
       "imageUrl": "https://gemeinde.example/images/3189/c36c957df2bf9e90a1e84de6b3065db65376b9c5338597e596eb641f53dd63db",
-      "aspectRatio": 1.5
+      "aspectRatio": 1.5,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/3186/c18a0b6b56ff4d74042e85a2235cee72e69c856f1fd510d283acb23976377eb7",
-      "aspectRatio": 0.66667
+      "aspectRatio": 0.66667,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      }
     ],
     "publicationDate": "2026-08-17T10:05:47Z",

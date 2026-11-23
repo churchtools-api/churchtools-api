@@ -896,7 +896,7 @@
   "tags": [
    "Agenda"
   ],
-  "deprecated": false,
+  "deprecated": true,
   "paginated": false,
   "result": "data",
   "result_type": "Union[AgendaItemText, AgendaItemSong, AgendaItemHeader]",
@@ -960,6 +960,161 @@
     "enum": null,
     "default": null,
     "example": null
+   }
+  ]
+ },
+ {
+  "op_id": "patch-agendatemplates-agendaId-items-itemId",
+  "method": "PATCH",
+  "path": "/agendatemplates/{agendaId}/items/{itemId}",
+  "call": "agenda_templates.items.patch",
+  "tags": [
+   "Agenda"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "Union[AgendaItemText, AgendaItemSong, AgendaItemHeader]",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "agendaId",
+    "py": "agenda_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 35
+   },
+   {
+    "kind": "path",
+    "wire": "itemId",
+    "py": "item_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 123
+   },
+   {
+    "kind": "query",
+    "wire": "before_id",
+    "py": "before_id",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 123
+   },
+   {
+    "kind": "query",
+    "wire": "after_id",
+    "py": "after_id",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 123
+   },
+   {
+    "kind": "field",
+    "wire": "after_id",
+    "py": "after_id_2",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 123
+   },
+   {
+    "kind": "field",
+    "wire": "arrangementId",
+    "py": "arrangement_id",
+    "type": "Optional[int]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "field",
+    "wire": "before_id",
+    "py": "before_id_2",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 456
+   },
+   {
+    "kind": "field",
+    "wire": "duration",
+    "py": "duration",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 300
+   },
+   {
+    "kind": "field",
+    "wire": "eventStartPosition",
+    "py": "event_start_position",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 2
+   },
+   {
+    "kind": "field",
+    "wire": "note",
+    "py": "note",
+    "type": "Optional[str]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "Start quietly."
+   },
+   {
+    "kind": "field",
+    "wire": "responsible",
+    "py": "responsible",
+    "type": "Optional[str]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "[Worship Leader]"
+   },
+   {
+    "kind": "field",
+    "wire": "serviceGroupNotes",
+    "py": "service_group_notes",
+    "type": "List[AgendaServiceGroupNoteCreate]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "title",
+    "py": "title",
+    "type": "Optional[str]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "Opening song"
+   },
+   {
+    "kind": "field",
+    "wire": "type",
+    "py": "type_",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "song"
    }
   ]
  },
@@ -5054,6 +5209,94 @@
   ]
  },
  {
+  "op_id": "post-ccli-authorization",
+  "method": "POST",
+  "path": "/ccli/authorization",
+  "call": "ccli.authorization",
+  "tags": [
+   "Hidden"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "PostCcliAuthorizationData",
+  "params": []
+ },
+ {
+  "op_id": "delete-ccli-connection",
+  "method": "DELETE",
+  "path": "/ccli/connection",
+  "call": "ccli.delete_connection",
+  "tags": [
+   "Hidden"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": []
+ },
+ {
+  "op_id": "get-ccli-songs",
+  "method": "GET",
+  "path": "/ccli/songs",
+  "call": "ccli.songs.list",
+  "tags": [
+   "Hidden"
+  ],
+  "deprecated": false,
+  "paginated": true,
+  "result": "data",
+  "result_type": "List[CCLISong]",
+  "params": [
+   {
+    "kind": "query",
+    "wire": "query",
+    "py": "query",
+    "type": "str",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": "Amazing Grace"
+   },
+   {
+    "kind": "query",
+    "wire": "limit",
+    "py": "limit",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": 20,
+    "example": 100
+   }
+  ]
+ },
+ {
+  "op_id": "get-ccli-songs-songNumber",
+  "method": "GET",
+  "path": "/ccli/songs/{songNumber}",
+  "call": "ccli.songs.get",
+  "tags": [
+   "Hidden"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "CCLISong",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "songNumber",
+    "py": "song_number",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 1100
+   }
+  ]
+ },
+ {
   "op_id": "get-chat",
   "method": "GET",
   "path": "/chat",
@@ -5823,9 +6066,29 @@
    },
    {
     "kind": "field",
+    "wire": "churchdb_cleverreach_client_id",
+    "py": "churchdb_cleverreach_client_id",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "churchdb_cleverreach_client_secret",
+    "py": "churchdb_cleverreach_client_secret",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
     "wire": "churchdb_cleverreach_connected",
     "py": "churchdb_cleverreach_connected",
-    "type": "str",
+    "type": "Union[bool, str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -8620,7 +8883,7 @@
   "tags": [
    "Event"
   ],
-  "deprecated": false,
+  "deprecated": true,
   "paginated": false,
   "result": "data",
   "result_type": "EventDetailsUpdateResult",
@@ -8639,7 +8902,7 @@
     "kind": "field",
     "wire": "adminIds",
     "py": "admin_ids",
-    "type": "List[int]",
+    "type": "Optional[List[int]]",
     "required": false,
     "enum": null,
     "default": null,
@@ -8676,6 +8939,83 @@
     "enum": null,
     "default": null,
     "example": false
+   },
+   {
+    "kind": "field",
+    "wire": "note",
+    "py": "note",
+    "type": "Optional[str]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   }
+  ]
+ },
+ {
+  "op_id": "patch-events-id",
+  "method": "PATCH",
+  "path": "/events/{eventId}",
+  "call": "events.patch",
+  "tags": [
+   "Event"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "EventDetailsUpdateResult",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "eventId",
+    "py": "event_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "field",
+    "wire": "adminIds",
+    "py": "admin_ids",
+    "type": "Optional[List[int]]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": [
+     42
+    ]
+   },
+   {
+    "kind": "field",
+    "wire": "description",
+    "py": "description",
+    "type": "Optional[str]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "Sound check starts 30 minutes before the gathering."
+   },
+   {
+    "kind": "field",
+    "wire": "eventAdminIds",
+    "py": "event_admin_ids",
+    "type": "List[int]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "isCanceled",
+    "py": "is_canceled",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
    },
    {
     "kind": "field",
@@ -9016,7 +9356,7 @@
   "tags": [
    "Agenda"
   ],
-  "deprecated": false,
+  "deprecated": true,
   "paginated": false,
   "result": "data",
   "result_type": "Union[AgendaItemText, AgendaItemSong, AgendaItemHeader]",
@@ -9080,6 +9420,161 @@
     "enum": null,
     "default": null,
     "example": null
+   }
+  ]
+ },
+ {
+  "op_id": "patch-events-eventId-agenda-items-itemId",
+  "method": "PATCH",
+  "path": "/events/{eventId}/agenda/items/{itemId}",
+  "call": "events.agenda.items.patch",
+  "tags": [
+   "Agenda"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "Union[AgendaItemText, AgendaItemSong, AgendaItemHeader]",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "eventId",
+    "py": "event_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "path",
+    "wire": "itemId",
+    "py": "item_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 123
+   },
+   {
+    "kind": "query",
+    "wire": "before_id",
+    "py": "before_id",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 123
+   },
+   {
+    "kind": "query",
+    "wire": "after_id",
+    "py": "after_id",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 123
+   },
+   {
+    "kind": "field",
+    "wire": "after_id",
+    "py": "after_id_2",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 123
+   },
+   {
+    "kind": "field",
+    "wire": "arrangementId",
+    "py": "arrangement_id",
+    "type": "Optional[int]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "field",
+    "wire": "before_id",
+    "py": "before_id_2",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 456
+   },
+   {
+    "kind": "field",
+    "wire": "duration",
+    "py": "duration",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 300
+   },
+   {
+    "kind": "field",
+    "wire": "eventStartPosition",
+    "py": "event_start_position",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": 2
+   },
+   {
+    "kind": "field",
+    "wire": "note",
+    "py": "note",
+    "type": "Optional[str]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "Start quietly."
+   },
+   {
+    "kind": "field",
+    "wire": "responsible",
+    "py": "responsible",
+    "type": "Optional[str]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "[Worship Leader]"
+   },
+   {
+    "kind": "field",
+    "wire": "serviceGroupNotes",
+    "py": "service_group_notes",
+    "type": "List[AgendaServiceGroupNoteCreate]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "title",
+    "py": "title",
+    "type": "Optional[str]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "Opening song"
+   },
+   {
+    "kind": "field",
+    "wire": "type",
+    "py": "type_",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "song"
    }
   ]
  },
@@ -9314,6 +9809,131 @@
   ]
  },
  {
+  "op_id": "post-events-id-agenda-print",
+  "method": "POST",
+  "path": "/events/{eventId}/agenda/print",
+  "call": "events.agenda.print",
+  "tags": [
+   "Hidden"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "PostEventsIdAgendaPrintData",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "eventId",
+    "py": "event_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "field",
+    "wire": "fontSize",
+    "py": "font_size",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "medium"
+   },
+   {
+    "kind": "field",
+    "wire": "orientation",
+    "py": "orientation",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "portrait"
+   },
+   {
+    "kind": "field",
+    "wire": "serviceGroupColumns",
+    "py": "service_group_columns",
+    "type": "List[int]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "serviceGroupHeader",
+    "py": "service_group_header",
+    "type": "List[int]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "showAllEventStartTimes",
+    "py": "show_all_event_start_times",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "showDuration",
+    "py": "show_duration",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "showEnumeration",
+    "py": "show_enumeration",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "showEventDescription",
+    "py": "show_event_description",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "showEventFiles",
+    "py": "show_event_files",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "showResponsible",
+    "py": "show_responsible",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   }
+  ]
+ },
+ {
   "op_id": "get-events-id-agenda-songs",
   "method": "GET",
   "path": "/events/{eventId}/agenda/songs",
@@ -9360,6 +9980,41 @@
     "enum": null,
     "default": null,
     "example": 42
+   }
+  ]
+ },
+ {
+  "op_id": "post-events-id-cancel",
+  "method": "POST",
+  "path": "/events/{eventId}/cancel",
+  "call": "events.cancel",
+  "tags": [
+   "Event"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": [
+   {
+    "kind": "path",
+    "wire": "eventId",
+    "py": "event_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "field",
+    "wire": "sendMail",
+    "py": "send_mail",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": true
    }
   ]
  },
@@ -9993,10 +10648,10 @@
   ]
  },
  {
-  "op_id": "get-events-eventId-services-serviceId-possiblepersons",
+  "op_id": "get-events-eventId-services-serviceId-candidates",
   "method": "GET",
-  "path": "/events/{eventId}/services/{serviceId}/possiblepersons",
-  "call": "events.services.list_possible_persons",
+  "path": "/events/{eventId}/services/{serviceId}/candidates",
+  "call": "events.services.list_candidates",
   "tags": [
    "Event"
   ],
@@ -10028,6 +10683,66 @@
   ]
  },
  {
+  "op_id": "get-events-eventId-services-serviceId-possiblepersons",
+  "method": "GET",
+  "path": "/events/{eventId}/services/{serviceId}/possiblepersons",
+  "call": "events.services.list_possible_persons",
+  "tags": [
+   "Event"
+  ],
+  "deprecated": true,
+  "paginated": false,
+  "result": "data",
+  "result_type": "List[PossibleEventPerson]",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "eventId",
+    "py": "event_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "path",
+    "wire": "serviceId",
+    "py": "service_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 2
+   }
+  ]
+ },
+ {
+  "op_id": "get-events-serviceId-candidates",
+  "method": "GET",
+  "path": "/events/{serviceId}/candidates",
+  "call": "events.list_candidates",
+  "tags": [
+   "Event"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "List[ServiceCandidate]",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "serviceId",
+    "py": "service_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 2
+   }
+  ]
+ },
+ {
   "op_id": "get-events-id-possiblepersonsforservice",
   "method": "GET",
   "path": "/events/{serviceId}/possiblepersonsforservice",
@@ -10035,7 +10750,7 @@
   "tags": [
    "Event"
   ],
-  "deprecated": false,
+  "deprecated": true,
   "paginated": false,
   "result": "data",
   "result_type": "List[ServiceCandidate]",
@@ -12746,7 +13461,7 @@
      "open"
     ],
     "default": null,
-    "example": null
+    "example": "open"
    },
    {
     "kind": "query",
@@ -12764,7 +13479,9 @@
     "py": "include",
     "type": "List[str]",
     "required": false,
-    "enum": null,
+    "enum": [
+     "bills"
+    ],
     "default": null,
     "example": [
      "bills"
@@ -12872,7 +13589,7 @@
      "open"
     ],
     "default": null,
-    "example": null
+    "example": "open"
    },
    {
     "kind": "query",
@@ -12890,7 +13607,9 @@
     "py": "include",
     "type": "List[str]",
     "required": false,
-    "enum": null,
+    "enum": [
+     "bills"
+    ],
     "default": null,
     "example": [
      "bills"
@@ -26438,6 +27157,7 @@
     "required": false,
     "enum": [
      "comments",
+     "hasSeen",
      "linkings",
      "reactions"
     ],
@@ -28911,6 +29631,62 @@
   "params": [
    {
     "kind": "query",
+    "wire": "include[]",
+    "py": "include",
+    "type": "List[str]",
+    "required": false,
+    "enum": [
+     "statistics"
+    ],
+    "default": [],
+    "example": null
+   },
+   {
+    "kind": "query",
+    "wire": "authorization",
+    "py": "authorization",
+    "type": "str",
+    "required": false,
+    "enum": [
+     "all",
+     "authorized"
+    ],
+    "default": "all",
+    "example": null
+   },
+   {
+    "kind": "query",
+    "wire": "order_fields[]",
+    "py": "order_fields",
+    "type": "List[str]",
+    "required": false,
+    "enum": [
+     "cleanupPermissionCount",
+     "directPermissionCount",
+     "groupName",
+     "indirectPermissionCount",
+     "name",
+     "permissionCount",
+     "roleName"
+    ],
+    "default": [],
+    "example": null
+   },
+   {
+    "kind": "query",
+    "wire": "order_directions[]",
+    "py": "order_directions",
+    "type": "List[str]",
+    "required": false,
+    "enum": [
+     "ASC",
+     "DESC"
+    ],
+    "default": [],
+    "example": null
+   },
+   {
+    "kind": "query",
     "wire": "query",
     "py": "query",
     "type": "str",
@@ -28956,6 +29732,56 @@
     "enum": null,
     "default": 30,
     "example": 30
+   }
+  ]
+ },
+ {
+  "op_id": "post-permissions-assignment-targets-higher-levels-query",
+  "method": "POST",
+  "path": "/permissions/assignment-targets/higher-levels/query",
+  "call": "permissions.assignment_targets.higher_levels.query",
+  "tags": [
+   "Permission"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "List[PermissionAssignmentHigherTarget]",
+  "params": [
+   {
+    "kind": "field",
+    "wire": "sources",
+    "py": "sources",
+    "type": "List[PermissionAssignmentTargetReference]",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": null
+   }
+  ]
+ },
+ {
+  "op_id": "post-permissions-assignment-targets-person-summary-query",
+  "method": "POST",
+  "path": "/permissions/assignment-targets/person-summary/query",
+  "call": "permissions.assignment_targets.person_summary.query",
+  "tags": [
+   "Permission"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "PostPermissionsAssignmentTargetsPersonSummaryQueryData",
+  "params": [
+   {
+    "kind": "field",
+    "wire": "targets",
+    "py": "targets",
+    "type": "List[PermissionAssignmentTargetReference]",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": null
    }
   ]
  },
@@ -29327,6 +30153,31 @@
   ]
  },
  {
+  "op_id": "get-permissions-origins-global-group-roles-groupRoleId",
+  "method": "GET",
+  "path": "/permissions/origins/global/group-roles/{groupRoleId}",
+  "call": "permissions.origins.global_.group_roles.get",
+  "tags": [
+   "Permission"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "GetPermissionsOriginsGlobalGroupRolesGroupRoleIdData",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "groupRoleId",
+    "py": "group_role_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 91
+   }
+  ]
+ },
+ {
   "op_id": "get-permissions-origins-global-persons-personId",
   "method": "GET",
   "path": "/permissions/origins/global/persons/{personId}",
@@ -29348,6 +30199,44 @@
     "enum": null,
     "default": null,
     "example": 42
+   }
+  ]
+ },
+ {
+  "op_id": "get-permissions-origins-global-domainType-domainId",
+  "method": "GET",
+  "path": "/permissions/origins/global/{domainType}/{domainId}",
+  "call": "permissions.origins.global_.get",
+  "tags": [
+   "Permission"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "GetPermissionsOriginsGlobalDomainTypeDomainIdData",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "domainType",
+    "py": "domain_type",
+    "type": "str",
+    "required": true,
+    "enum": [
+     "group_type_role",
+     "status"
+    ],
+    "default": null,
+    "example": "status"
+   },
+   {
+    "kind": "path",
+    "wire": "domainId",
+    "py": "domain_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 1
    }
   ]
  },
@@ -29386,6 +30275,85 @@
      7,
      12
     ]
+   }
+  ]
+ },
+ {
+  "op_id": "get-permissions-overview",
+  "method": "GET",
+  "path": "/permissions/overview",
+  "call": "permissions.get_overview",
+  "tags": [
+   "Permission"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "GetPermissionsOverviewData",
+  "params": []
+ },
+ {
+  "op_id": "post-permissions-promote",
+  "method": "POST",
+  "path": "/permissions/promote",
+  "call": "permissions.promote",
+  "tags": [
+   "Permission"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": [
+   {
+    "kind": "field",
+    "wire": "authId",
+    "py": "auth_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 3
+   },
+   {
+    "kind": "field",
+    "wire": "dataId",
+    "py": "data_id",
+    "type": "int",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": -1
+   },
+   {
+    "kind": "field",
+    "wire": "reason",
+    "py": "reason",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "Consolidate shared permissions at the group role"
+   },
+   {
+    "kind": "field",
+    "wire": "sources",
+    "py": "sources",
+    "type": "List[PermissionAssignmentTargetReference]",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "target",
+    "py": "target",
+    "type": "PermissionAssignmentTargetReference",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": null
    }
   ]
  },
@@ -30736,7 +31704,7 @@
     "kind": "field",
     "wire": "addressAddition",
     "py": "address_addition",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30746,7 +31714,7 @@
     "kind": "field",
     "wire": "baptisedBy",
     "py": "baptised_by",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30756,7 +31724,7 @@
     "kind": "field",
     "wire": "birthName",
     "py": "birth_name",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30776,7 +31744,7 @@
     "kind": "field",
     "wire": "birthplace",
     "py": "birthplace",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30796,7 +31764,7 @@
     "kind": "field",
     "wire": "city",
     "py": "city",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30816,7 +31784,7 @@
     "kind": "field",
     "wire": "country",
     "py": "country",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30916,7 +31884,7 @@
     "kind": "field",
     "wire": "fax",
     "py": "fax",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30956,7 +31924,7 @@
     "kind": "field",
     "wire": "job",
     "py": "job",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30974,9 +31942,29 @@
    },
    {
     "kind": "field",
+    "wire": "latitude",
+    "py": "latitude",
+    "type": "Optional[Union[float, str]]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "longitude",
+    "py": "longitude",
+    "type": "Optional[Union[float, str]]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
     "wire": "mobile",
     "py": "mobile",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -30996,7 +31984,7 @@
     "kind": "field",
     "wire": "nickname",
     "py": "nickname",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31006,7 +31994,7 @@
     "kind": "field",
     "wire": "optigemId",
     "py": "optigem_id",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31016,7 +32004,7 @@
     "kind": "field",
     "wire": "phonePrivate",
     "py": "phone_private",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31026,7 +32014,7 @@
     "kind": "field",
     "wire": "phoneWork",
     "py": "phone_work",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31036,7 +32024,7 @@
     "kind": "field",
     "wire": "placeOfBaptism",
     "py": "place_of_baptism",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31086,7 +32074,7 @@
     "kind": "field",
     "wire": "referredBy",
     "py": "referred_by",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31096,7 +32084,7 @@
     "kind": "field",
     "wire": "referredTo",
     "py": "referred_to",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31126,7 +32114,7 @@
     "kind": "field",
     "wire": "street",
     "py": "street",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31136,7 +32124,7 @@
     "kind": "field",
     "wire": "title",
     "py": "title",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31166,7 +32154,7 @@
     "kind": "field",
     "wire": "zip",
     "py": "zip",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31348,7 +32336,7 @@
     "kind": "body",
     "wire": "",
     "py": "body",
-    "type": "Union[ProbeInvocation, ProbeLogicalExpression, ProbeTraversalExpression]",
+    "type": "Union[ProbeInvocation, ProbeLogicalExpression, ProbeMembershipTraversalExpression, ProbeRelationshipTraversalExpression]",
     "required": true,
     "enum": null,
     "default": null,
@@ -31465,7 +32453,7 @@
     "kind": "field",
     "wire": "addressAddition",
     "py": "address_addition",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31485,7 +32473,7 @@
     "kind": "field",
     "wire": "baptisedBy",
     "py": "baptised_by",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31495,7 +32483,7 @@
     "kind": "field",
     "wire": "birthName",
     "py": "birth_name",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31515,7 +32503,7 @@
     "kind": "field",
     "wire": "birthplace",
     "py": "birthplace",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31535,7 +32523,7 @@
     "kind": "field",
     "wire": "city",
     "py": "city",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31555,7 +32543,7 @@
     "kind": "field",
     "wire": "country",
     "py": "country",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31655,7 +32643,7 @@
     "kind": "field",
     "wire": "fax",
     "py": "fax",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31695,7 +32683,7 @@
     "kind": "field",
     "wire": "job",
     "py": "job",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31713,9 +32701,29 @@
    },
    {
     "kind": "field",
+    "wire": "latitude",
+    "py": "latitude",
+    "type": "Optional[Union[float, str]]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "longitude",
+    "py": "longitude",
+    "type": "Optional[Union[float, str]]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
     "wire": "mobile",
     "py": "mobile",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31735,7 +32743,7 @@
     "kind": "field",
     "wire": "nickname",
     "py": "nickname",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31745,7 +32753,7 @@
     "kind": "field",
     "wire": "optigemId",
     "py": "optigem_id",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31755,7 +32763,7 @@
     "kind": "field",
     "wire": "phonePrivate",
     "py": "phone_private",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31765,7 +32773,7 @@
     "kind": "field",
     "wire": "phoneWork",
     "py": "phone_work",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31775,7 +32783,7 @@
     "kind": "field",
     "wire": "placeOfBaptism",
     "py": "place_of_baptism",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31795,7 +32803,7 @@
     "kind": "field",
     "wire": "referredBy",
     "py": "referred_by",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31805,7 +32813,7 @@
     "kind": "field",
     "wire": "referredTo",
     "py": "referred_to",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31835,7 +32843,7 @@
     "kind": "field",
     "wire": "street",
     "py": "street",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31845,7 +32853,7 @@
     "kind": "field",
     "wire": "title",
     "py": "title",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -31875,7 +32883,7 @@
     "kind": "field",
     "wire": "zip",
     "py": "zip",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -32227,6 +33235,31 @@
   ]
  },
  {
+  "op_id": "post-persons-personId-activate",
+  "method": "POST",
+  "path": "/persons/{personId}/activate",
+  "call": "persons.activate",
+  "tags": [
+   "Person"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": [
+   {
+    "kind": "path",
+    "wire": "personId",
+    "py": "person_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   }
+  ]
+ },
+ {
   "op_id": "post-persons-personId-archive",
   "method": "POST",
   "path": "/persons/{personId}/archive",
@@ -32291,6 +33324,56 @@
   "method": "DELETE",
   "path": "/persons/{personId}/confidentialityagreement",
   "call": "persons.delete_confidentiality_agreement",
+  "tags": [
+   "Person"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": [
+   {
+    "kind": "path",
+    "wire": "personId",
+    "py": "person_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   }
+  ]
+ },
+ {
+  "op_id": "get-persons-personId-consentstatus",
+  "method": "GET",
+  "path": "/persons/{personId}/consentstatus",
+  "call": "persons.get_consentstatus",
+  "tags": [
+   "Person"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "GetPersonsPersonIdConsentstatusData",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "personId",
+    "py": "person_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   }
+  ]
+ },
+ {
+  "op_id": "post-persons-personId-deactivate",
+  "method": "POST",
+  "path": "/persons/{personId}/deactivate",
+  "call": "persons.deactivate",
   "tags": [
    "Person"
   ],
@@ -33414,7 +34497,7 @@
     "kind": "field",
     "wire": "addressAddition",
     "py": "address_addition",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33434,7 +34517,7 @@
     "kind": "field",
     "wire": "baptisedBy",
     "py": "baptised_by",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33444,7 +34527,7 @@
     "kind": "field",
     "wire": "birthName",
     "py": "birth_name",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33464,7 +34547,7 @@
     "kind": "field",
     "wire": "birthplace",
     "py": "birthplace",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33484,7 +34567,7 @@
     "kind": "field",
     "wire": "city",
     "py": "city",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33504,7 +34587,7 @@
     "kind": "field",
     "wire": "country",
     "py": "country",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33604,7 +34687,7 @@
     "kind": "field",
     "wire": "fax",
     "py": "fax",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33644,7 +34727,7 @@
     "kind": "field",
     "wire": "job",
     "py": "job",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33662,9 +34745,29 @@
    },
    {
     "kind": "field",
+    "wire": "latitude",
+    "py": "latitude",
+    "type": "Optional[Union[float, str]]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "longitude",
+    "py": "longitude",
+    "type": "Optional[Union[float, str]]",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "field",
     "wire": "mobile",
     "py": "mobile",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33684,7 +34787,7 @@
     "kind": "field",
     "wire": "nickname",
     "py": "nickname",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33694,7 +34797,7 @@
     "kind": "field",
     "wire": "optigemId",
     "py": "optigem_id",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33704,7 +34807,7 @@
     "kind": "field",
     "wire": "phonePrivate",
     "py": "phone_private",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33714,7 +34817,7 @@
     "kind": "field",
     "wire": "phoneWork",
     "py": "phone_work",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33724,7 +34827,7 @@
     "kind": "field",
     "wire": "placeOfBaptism",
     "py": "place_of_baptism",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33744,7 +34847,7 @@
     "kind": "field",
     "wire": "referredBy",
     "py": "referred_by",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33754,7 +34857,7 @@
     "kind": "field",
     "wire": "referredTo",
     "py": "referred_to",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33784,7 +34887,7 @@
     "kind": "field",
     "wire": "street",
     "py": "street",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33794,7 +34897,7 @@
     "kind": "field",
     "wire": "title",
     "py": "title",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33824,7 +34927,7 @@
     "kind": "field",
     "wire": "zip",
     "py": "zip",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -33906,7 +35009,7 @@
     "wire": "oldPassword",
     "py": "old_password",
     "type": "str",
-    "required": true,
+    "required": false,
     "enum": null,
     "default": null,
     "example": "PreviousPassword41"
@@ -34835,71 +35938,7 @@
     "py": "attribute",
     "type": "str",
     "required": true,
-    "enum": [
-     "agendaExportSettings",
-     "alpha-consent",
-     "bereich_id",
-     "birthday-type",
-     "category_id",
-     "currentBirthdayScope",
-     "disableGroupSignUpNotifications",
-     "distrikt_id",
-     "donation-download-double-page",
-     "donation-download-mode",
-     "eubp-mock-scenario",
-     "event_datum",
-     "excluded-calendars",
-     "excluded-widgets",
-     "favorite-groups",
-     "file_attachToAllEvents",
-     "filterGemeindekalendar",
-     "filterGruppenKalender",
-     "filterPersonalKalender",
-     "group-custom-views",
-     "groupSignUpNotificationsAgeGroupIds",
-     "groupSignUpNotificationsCategoryIds",
-     "groupSignUpNotificationsTargetGroupIds",
-     "group_id",
-     "hidden-hints",
-     "hidden-hints-temporarily",
-     "hiddenStartpageWidgets",
-     "labelTemplateSelection",
-     "language",
-     "mailerBCC",
-     "personsSortBy",
-     "printer_id",
-     "printgrouplist",
-     "recent-appointments",
-     "recent-groups",
-     "recent-persons",
-     "recent-searches",
-     "recent-songs",
-     "recent-wiki_pages",
-     "rolename",
-     "saml-id",
-     "selected-accounting-period",
-     "selected-client",
-     "selected-donation-receipt-attachment-template",
-     "selected-donation-receipt-letter-template",
-     "sendBCCMail",
-     "show-entries-without-budget",
-     "show-purposes-in-import",
-     "showMarkdownHints",
-     "signature",
-     "simulatedPersons",
-     "sorted-widgets",
-     "sortnames",
-     "starthelpReaded",
-     "startpageWidgets",
-     "statements-booking-number-template",
-     "statements-document-number-type",
-     "station",
-     "station_id",
-     "status_id",
-     "tour-completion-stats",
-     "transaction-mode",
-     "viewCheckin"
-    ],
+    "enum": null,
     "default": null,
     "example": "disableGroupSignUpNotifications"
    },
@@ -34957,6 +35996,31 @@
     "enum": null,
     "default": null,
     "example": null
+   }
+  ]
+ },
+ {
+  "op_id": "post-persons-personId-unarchive",
+  "method": "POST",
+  "path": "/persons/{personId}/unarchive",
+  "call": "persons.unarchive",
+  "tags": [
+   "Person"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": [
+   {
+    "kind": "path",
+    "wire": "personId",
+    "py": "person_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
    }
   ]
  },
@@ -35557,6 +36621,7 @@
     "required": false,
     "enum": [
      "comments",
+     "hasSeen",
      "linkings",
      "reactions"
     ],
@@ -35677,6 +36742,34 @@
     "enum": null,
     "default": null,
     "example": null
+   }
+  ]
+ },
+ {
+  "op_id": "put-posts-seen",
+  "method": "PUT",
+  "path": "/posts/seen",
+  "call": "posts.update_seen",
+  "tags": [
+   "Post"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": [
+   {
+    "kind": "field",
+    "wire": "postIds",
+    "py": "post_ids",
+    "type": "List[int]",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": [
+     42,
+     43
+    ]
    }
   ]
  },
@@ -37312,7 +38405,7 @@
     "kind": "field",
     "wire": "groupHomepageHash",
     "py": "group_homepage_hash",
-    "type": "str",
+    "type": "Optional[str]",
     "required": false,
     "enum": null,
     "default": null,
@@ -38332,6 +39425,31 @@
   ]
  },
  {
+  "op_id": "post-reset-password-session",
+  "method": "POST",
+  "path": "/reset-password/session",
+  "call": "reset_password.session",
+  "tags": [
+   "General"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "none",
+  "result_type": null,
+  "params": [
+   {
+    "kind": "field",
+    "wire": "token",
+    "py": "token",
+    "type": "str",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": "8Aq4zGm2Vn7Lx9Rk3Yp6Td1Hs5Wc0B"
+   }
+  ]
+ },
+ {
   "op_id": "get-resource-masterdata",
   "method": "GET",
   "path": "/resource/masterdata",
@@ -39040,6 +40158,16 @@
     "enum": null,
     "default": null,
     "example": null
+   },
+   {
+    "kind": "field",
+    "wire": "triggerKey",
+    "py": "trigger_key",
+    "type": "str",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": "group-membership-updated"
    }
   ]
  },
@@ -39588,7 +40716,7 @@
   "deprecated": false,
   "paginated": false,
   "result": "json",
-  "result_type": "PostSecuritylevelsIdResponse",
+  "result_type": "GetSecuritylevelsIdResponse",
   "params": [
    {
     "kind": "path",
@@ -39623,7 +40751,7 @@
   "deprecated": false,
   "paginated": false,
   "result": "json",
-  "result_type": "PatchSecuritylevelsIdResponse",
+  "result_type": "GetSecuritylevelsIdResponse",
   "params": [
    {
     "kind": "path",
@@ -41571,6 +42699,51 @@
   ]
  },
  {
+  "op_id": "post-songs-songId-arrangements-arrangementId-files-ccli",
+  "method": "POST",
+  "path": "/songs/{songId}/arrangements/{arrangementId}/files/ccli",
+  "call": "songs.arrangements.files.ccli",
+  "tags": [
+   "Hidden"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "List[CtFile]",
+  "params": [
+   {
+    "kind": "path",
+    "wire": "songId",
+    "py": "song_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "path",
+    "wire": "arrangementId",
+    "py": "arrangement_id",
+    "type": "int",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": 42
+   },
+   {
+    "kind": "body",
+    "wire": "",
+    "py": "body",
+    "type": "Union[PostSongsSongIdArrangementsArrangementIdFilesCcliBodyVariant1, PostSongsSongIdArrangementsArrangementIdFilesCcliBodyVariant2, PostSongsSongIdArrangementsArrangementIdFilesCcliBodyVariant3]",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": null
+   }
+  ]
+ },
+ {
   "op_id": "post-songs-songId-arrangements-arrangementId-files-fileId-transpose",
   "method": "POST",
   "path": "/songs/{songId}/arrangements/{arrangementId}/files/{fileId}/transpose",
@@ -43332,6 +44505,16 @@
     "kind": "query",
     "wire": "is_dry_run",
     "py": "is_dry_run",
+    "type": "bool",
+    "required": false,
+    "enum": null,
+    "default": null,
+    "example": null
+   },
+   {
+    "kind": "query",
+    "wire": "has_errors",
+    "py": "has_errors",
     "type": "bool",
     "required": false,
     "enum": null,
@@ -45773,6 +46956,33 @@
     "enum": null,
     "default": null,
     "example": 1
+   }
+  ]
+ },
+ {
+  "op_id": "post-triggers",
+  "method": "POST",
+  "path": "/triggers",
+  "call": "triggers.create",
+  "tags": [
+   "Hidden"
+  ],
+  "deprecated": false,
+  "paginated": false,
+  "result": "data",
+  "result_type": "List[RoutineTrigger]",
+  "params": [
+   {
+    "kind": "field",
+    "wire": "domain_type",
+    "py": "domain_type",
+    "type": "List[str]",
+    "required": true,
+    "enum": null,
+    "default": null,
+    "example": [
+     "group_membership"
+    ]
    }
   ]
  },

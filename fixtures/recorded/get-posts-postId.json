@@ -65,7 +65,11 @@
    "imagesMeta": [
     {
      "imageUrl": "https://gemeinde.example/images/3213/33dacd2d0c3f4c1632b4d3cd57d24acb649083b8cc5c86db401def13e7f48904",
-     "aspectRatio": 2
+     "aspectRatio": 2,
+     "aiGenerated": false,
+     "annotation": null,
+     "annotationLink": null,
+     "description": null
     }
    ],
    "publicationDate": "2026-08-17T11:40:18Z",

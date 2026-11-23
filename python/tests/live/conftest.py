@@ -219,6 +219,51 @@ def merge(old: _t.Any, new: _t.Any) -> _t.Any:
     return old
 
 
+Shape = _t.Optional[tuple[str, _t.Any]]
+
+
+def shape(samples: list[_t.Any]) -> Shape:
+    """The fields that every sample has, recursively, each with an example value; `None` if the samples differ.
+
+    Samples are the values found at one place of a response: the response itself, or all items of its lists.
+    """
+    present = [x for x in samples if x is not None]
+    if present and all(isinstance(x, dict) for x in present):
+        if all(_DATA_KEY.search(k) for x in present for k in x):  # a map like {"795": ..., "796": ...}
+            return "map", shape([v for x in present for v in x.values()])
+        keys = [k for k in present[0] if all(k in x for x in present)]
+        # `null` where any sample has it: fits every item, unlike a value that belongs to one kind of item.
+        return "dict", {k: (shape([x[k] for x in present]), _example([x[k] for x in present])) for k in keys}
+    if present and all(isinstance(x, list) for x in present):
+        return "list", shape([v for x in present for v in x])
+    return None
+
+
+def _example(values: list[_t.Any]) -> _t.Any:
+    return None if any(v is None for v in values) else values[0]
+
+
+def complete(old: _t.Any, s: Shape) -> _t.Any:
+    """`old` with the fields of shape `s` it lacks, filled in from the example values.
+
+    `merge` adds a new field to one list item only. When the API adds a required field, the other items, which
+    come from an older version, would then fail to decode offline; this gives them the field too.
+    """
+    if s is None:
+        return old
+    kind, inner = s
+    if kind == "dict" and isinstance(old, dict):
+        out = dict(old)
+        for k, (sub, example) in inner.items():
+            out[k] = example if k not in out else complete(out[k], sub)
+        return out
+    if kind == "map" and isinstance(old, dict):
+        return {k: complete(v, inner) for k, v in old.items()}
+    if kind == "list" and isinstance(old, list):
+        return [complete(x, inner) for x in old]
+    return old
+
+
 # Recordings as they stand in this run: the first response of an operation is merged into the file from disk,
 # later ones into the result, so several calls of one operation do not overwrite each other.
 _fixtures: dict[str, dict[str, _t.Any]] = {}
@@ -238,7 +283,7 @@ def record(op_id: str, recorder: Recorder) -> None:
     path = RECORDED / f"{op_id}.json"
     current = _fixtures.get(op_id) or (json.loads(path.read_text()) if path.exists() and not RECORD_ALL else None)
     if current is not None:
-        merged = merge(current.get("body"), body)
+        merged = complete(merge(current.get("body"), body), shape([body]))
         if merged == current.get("body"):
             _fixtures[op_id] = current
             return

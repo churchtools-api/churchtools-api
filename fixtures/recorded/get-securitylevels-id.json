@@ -10,6 +10,12 @@
   "id": 1,
   "name": "Stufe 1 (Namen)",
   "sortkey": 1,
-  "sortKey": 1
+  "sortKey": 1,
+  "data": {
+   "id": 10,
+   "name": "Stufe 1 (Namen)",
+   "sortkey": 10,
+   "sortKey": 10
+  }
  }
 }

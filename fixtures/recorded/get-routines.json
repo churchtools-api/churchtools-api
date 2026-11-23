@@ -52,7 +52,8 @@
        "skipIfEmailAddressMissing": false
       }
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    },
    {
     "id": 7,
@@ -97,7 +98,8 @@
        "attachmentIds": []
       }
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    },
    {
     "id": 46,
@@ -162,7 +164,8 @@
        }
       ]
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    },
    {
     "id": 49,
@@ -223,7 +226,8 @@
       "actionKey": "remove-member",
       "actionData": null
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    },
    {
     "id": 65,
@@ -316,7 +320,8 @@
        }
       ]
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    },
    {
     "id": 154,
@@ -361,7 +366,8 @@
        "attachmentIds": []
       }
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    },
    {
     "id": 163,
@@ -406,7 +412,8 @@
        "attachmentIds": []
       }
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    },
    {
     "id": 166,
@@ -451,7 +458,8 @@
        "attachmentIds": []
       }
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    },
    {
     "id": 167,
@@ -496,7 +504,8 @@
        "attachmentIds": []
       }
      }
-    ]
+    ],
+    "triggerKey": "group-membership-updated"
    }
   ],
   "meta": {
