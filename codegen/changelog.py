@@ -100,8 +100,28 @@ def _date_de(iso: str) -> str:
     return f"{int(d)}.{int(m)}.{y}"
 
 
-def page(releases: list[Release], template: str, md: _t.Callable[[str], str], esc: _t.Callable[[str], str]) -> str:
+def link_reference(html: str, links: dict[str, str]) -> str:
+    """Links `<code>` spans that name a method (`events.cancel()`), endpoint (`POST /x`) or model (`Person`, also
+    `Person.field`) to the reference."""
+
+    def repl(m: re.Match[str]) -> str:
+        text = m.group(1)
+        owner = re.split(r"\.|::", text)[0]  # `Person.first_name`, `PatchPersonsIdBody::city` -> the model
+        target = links.get(text) or (links.get(owner) if owner[:1].isupper() else None)
+        return f'<a href="{target}">{m.group(0)}</a>' if target else m.group(0)
+
+    return re.sub(r"<code>([^<]+)</code>", repl, html)
+
+
+def page(
+    releases: list[Release],
+    template: str,
+    md: _t.Callable[[str], str],
+    esc: _t.Callable[[str], str],
+    links: dict[str, str] | None = None,
+) -> str:
     """The changelog page; `template` is the main page's template, of which only the styles are reused."""
+    links = links or {}
     head = template[: template.index("</style>") + len("</style>")].replace(
         "<title>churchtools-api</title>", "<title>churchtools-api: Änderungen</title>"
     )
@@ -121,7 +141,8 @@ def page(releases: list[Release], template: str, md: _t.Callable[[str], str], es
         title = "Nächste Version (noch nicht veröffentlicht)" if r.version == "Unreleased" else f"Version {esc(r.version)}"
         when = f'<li class="date">{_date_de(r.date)}</li>' if r.date else ""
         sections = "".join(
-            f'<div class="change change-{SECTION_IDS[t]}"><h3>{t}</h3>{md(body)}</div>' for t, body in r.sections.items()
+            f'<div class="change change-{SECTION_IDS[t]}"><h3>{t}</h3>{link_reference(md(body), links)}</div>'
+            for t, body in r.sections.items()
         )
         articles.append(
             f'<section class="reference release" id="{r.anchor}">'
@@ -161,7 +182,8 @@ def page(releases: list[Release], template: str, md: _t.Callable[[str], str], es
           <p class="lead">Was sich von Version zu Version an churchtools-api ändert. Jede Version nennt die
           ChurchTools-Version, aus der der Code erzeugt ist, und gliedert die Änderungen immer gleich:
           <b>Inkompatibel</b> (mit dem, was beim Umstieg zu ändern ist), <b>Neu</b>, <b>Geändert</b> und
-          <b>Korrigiert</b>. Leere Abschnitte fehlen.</p>
+          <b>Korrigiert</b>. Leere Abschnitte fehlen. Methoden und Modelle führen in die
+          <a href="index.html#referenz">Referenz</a> der aktuellen Version.</p>
         </section>
         {"".join(articles)}
       </div>
@@ -185,12 +207,19 @@ def page(releases: list[Release], template: str, md: _t.Callable[[str], str], es
 </script>"""
 
 
-def build(root: Path, template: str, md: _t.Callable[[str], str], esc: _t.Callable[[str], str]) -> list[Release]:
+def build(
+    root: Path,
+    template: str,
+    md: _t.Callable[[str], str],
+    esc: _t.Callable[[str], str],
+    links: dict[str, str] | None = None,
+) -> list[Release]:
+    """Writes docs/site/aenderungen.html; `links` maps method calls and model names to reference URLs."""
     releases = parse((root / "CHANGELOG.md").read_text())
     out = root / "docs" / "site" / "aenderungen.html"
     out.write_text(
         '<!doctype html>\n<html lang="de">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-        f"</head>\n<body>\n{page(releases, template, md, esc)}\n</body>\n</html>\n"
+        f"</head>\n<body>\n{page(releases, template, md, esc, links)}\n</body>\n</html>\n"
     )
     return releases

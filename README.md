@@ -79,7 +79,9 @@ Antworten sind erlaubt, fehlende Endpunkte antworten mit `404`.
 
 Die Paketversion folgt [SemVer](https://semver.org/lang/de/). Das Projekt startet mit 0.1.0; vor 1.0 kann jede
 Minor-Version inkompatible Änderungen enthalten, insbesondere wenn der Code für eine neue ChurchTools-Version neu
-erzeugt wird. Änderungen stehen in [`CHANGELOG.md`](https://github.com/churchtools-api/churchtools-api/blob/main/CHANGELOG.md).
+erzeugt wird. Änderungen stehen in [`CHANGELOG.md`](https://github.com/churchtools-api/churchtools-api/blob/main/CHANGELOG.md)
+und, mit Links in die Referenz, auf der Seite
+[Änderungen je Version](https://churchtools-api.github.io/churchtools-api/aenderungen.html).
 
 ## Stand und Vorgehen
 

@@ -177,7 +177,8 @@ Was das bringt und warum das Dekodieren trotzdem in Pydantic bleibt, steht in
   sind bewusst öffentlich, weil die Modelle ihre Typen verwenden.
 - Python- und Rust-API sollen gleich bleiben: gleiche Optionen am Client, gleiche Fehlerklassen, gleiche Namen der
   Endpunkte (siehe `codegen/OPERATIONS.md`).
-- Jede Änderung an der öffentlichen API kommt in `CHANGELOG.md`.
+- Jede Änderung an der öffentlichen API kommt in `CHANGELOG.md`, im festen Aufbau, der oben in der Datei beschrieben
+  ist. Der Generator erzeugt daraus die Doku-Seite „Änderungen je Version“ (`docs/site/aenderungen.html`).
 
 ## Veröffentlichen
 
@@ -207,8 +208,9 @@ Veröffentlicht wird über Trusted Publishing (OpenID Connect): Im Repository li
 ### Checkliste für ein Release
 
 1. `version` in `Cargo.toml` (Workspace) erhöhen; `cargo check` aktualisiert `Cargo.lock`.
-2. Im `CHANGELOG.md` den Abschnitt `## [<version>] – <Datum>` anlegen bzw. „unveröffentlicht“ durch das Datum
-   ersetzen. Der Workflow bricht ab, wenn der Abschnitt fehlt.
+2. Im `CHANGELOG.md` `## [Unreleased]` durch `## [<version>] – <Datum>` ersetzen und `python3 codegen/generate.py`
+   ausführen, damit die Seite „Änderungen je Version“ die Version zeigt. Der Workflow bricht ab, wenn der Abschnitt
+   fehlt.
 3. Die vollständige Prüfung aus `AGENTS.md` (Regel 5) laufen lassen, committen, auf `main` pushen und die CI
    abwarten.
 4. Optional: den Release-Workflow von Hand starten und die Wheels prüfen.
