@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Routine · churchtools-api</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Python- und Rust-Client für die ChurchTools-API: Grundlagen, Projekte und vollständige Referenz.">
+<script>
+  // Saved light/dark choice, applied before the first paint; without one the system setting applies.
+  try { const t = localStorage.getItem("ct-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: sticky top bar; left nav rail; each topic pairs prose (left) with a code panel (right) on wide screens, stacked below. */
+:root {
+  --bg: #f5f7f8;
+  --surface: #ffffff;
+  --fg: #18212b;
+  --muted: #586472;
+  --line: #dde3e8;
+  --accent: #0a6a73;
+  --accent-soft: #e2f0f1;
+  --code-bg: #111820;
+  --code-fg: #d8e2ea;
+  --code-bar: #1a232d;
+  --code-muted: #8795a5;
+  --t-kw: #7fd0d8;
+  --t-string: #b8df8e;
+  --t-number: #f0b873;
+  --t-comment: #7d8a9b;
+  --t-type: #c9b8ff;
+  --t-macro: #8fc6ff;
+  --v-get: #0a6a73;
+  --v-post: #2e7a34;
+  --v-put: #8f5c00;
+  --v-patch: #6a4dbd;
+  --v-delete: #b0281f;
+  --warn-bg: #fff2d9;
+  --warn-fg: #7a4b00;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --header-h: 3.5rem;
+  --nav-w: 16.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+    --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+    --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+    --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+    --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+  --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+  --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+  --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+  --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 15px/1.6 var(--font-body);
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--surface);
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+code { font-family: var(--font-mono); font-size: 0.86em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; margin: 0; }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  display: flex; align-items: center; gap: 1rem;
+  min-height: var(--header-h);
+  padding-block: 0.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; color: var(--fg); white-space: nowrap; }
+.brand b { font: 700 1.15rem/1 var(--font-display); letter-spacing: -0.01em; }
+.brand span { font: 400 0.78rem/1 var(--font-mono); color: var(--muted); }
+.search { flex: 1; max-width: 26rem; margin-left: auto; position: relative; }
+.search input {
+  width: 100%; padding: 0.45rem 0.75rem; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: inherit; font-size: 0.9rem;
+}
+.lang-switch { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.lang-switch button, .nav-toggle {
+  border: 0; background: transparent; color: var(--muted); font: 500 0.85rem/1 var(--font-body);
+  padding: 0.5rem 0.8rem; cursor: pointer;
+}
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.nav-toggle { display: none; border: 1px solid var(--line); border-radius: 6px; }
+.theme-toggle {
+  flex-shrink: 0; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--muted);
+  font: 500 1rem/1 var(--font-body); width: 2.2rem; height: 2.1rem; cursor: pointer;
+}
+.theme-toggle:hover { color: var(--fg); }
+
+/* Shell */
+.shell { display: grid; grid-template-columns: var(--nav-w) minmax(0, 1fr); }
+.nav {
+  position: sticky; top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0px));
+  overflow-y: auto; padding: 1.25rem 0.75rem 3rem max(16px, env(safe-area-inset-left, 0px));
+  border-right: 1px solid var(--line); font-size: 0.88rem;
+}
+.nav ul { list-style: none; margin: 0; padding: 0; }
+.nav .nav-chapter > a, .nav h2 {
+  display: block; margin: 1.1rem 0 0.35rem; font: 600 0.72rem/1.2 var(--font-body);
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-decoration: none;
+}
+.nav li li a, .nav-ref a {
+  display: flex; justify-content: space-between; gap: 0.5rem;
+  padding: 0.22rem 0.5rem; border-radius: 5px; color: var(--fg); text-decoration: none;
+}
+.nav a:hover, .nav a.active { background: var(--accent-soft); color: var(--accent); }
+.nav .count { color: var(--muted); font: 400 0.75rem/1.6 var(--font-mono); font-variant-numeric: tabular-nums; }
+
+main {
+  min-width: 0;
+  padding-block: 2rem 6rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.inner { max-width: 82rem; margin: 0 auto; display: grid; gap: 3.5rem; }
+
+/* Hero */
+.hero { display: grid; gap: 1rem; max-width: 46rem; padding-top: 0.5rem; }
+.hero h1 { font: 700 clamp(2rem, 4vw, 2.9rem)/1.05 var(--font-display); letter-spacing: -0.02em; }
+.hero .lead { font-size: 1.12rem; color: var(--muted); margin: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none;
+  font: 400 0.85rem/1.4 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.facts b { color: var(--fg); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta a { padding: 0.55rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; border: 1px solid var(--line); color: var(--fg); background: var(--surface); }
+.cta a.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+
+/* Chapters and topics */
+.chapter, .reference { display: grid; gap: 2.5rem; }
+.chapter > h2, .reference > h2 {
+  font: 700 1.85rem/1.1 var(--font-display); letter-spacing: -0.015em;
+  padding-top: 1.5rem; border-top: 1px solid var(--line);
+}
+.inner > .reference:first-child > h2 { border-top: 0; padding-top: 0; }
+.chapter > .lead, .reference > .lead { margin: -1.75rem 0 0; color: var(--muted); max-width: 60ch; }
+.topic, .op { display: grid; gap: 1.25rem 2.5rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1180px) {
+  .topic, .op { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: start; }
+  .example { position: sticky; top: calc(var(--header-h) + 1rem); }
+}
+.topic.no-code { grid-template-columns: minmax(0, 1fr); }
+.prose { min-width: 0; max-width: 65ch; }
+.prose h3 { font: 600 1.25rem/1.25 var(--font-display); margin-bottom: 0.6rem; }
+.prose p, .prose ul, .prose ol { margin: 0 0 0.85rem; }
+.prose li { margin-bottom: 0.3rem; }
+.prose code, .call code, td code {
+  background: var(--accent-soft); padding: 0.08em 0.35em; border-radius: 4px; color: var(--fg);
+}
+.aside { font-size: 0.85rem; color: var(--muted); margin: 0.5rem 0 0; }
+.example { min-width: 0; }
+
+/* Code panels */
+.code { background: var(--code-bg); border-radius: 8px; overflow: hidden; }
+.code-bar { display: flex; align-items: center; gap: 0.25rem; padding: 0.3rem 0.4rem; background: var(--code-bar); }
+.code-bar button {
+  border: 0; background: transparent; color: var(--code-muted); cursor: pointer;
+  font: 500 0.78rem/1 var(--font-body); padding: 0.45rem 0.65rem; border-radius: 5px;
+}
+.code-bar .copy { margin-left: auto; }
+.code-bar button:hover { color: var(--code-fg); }
+#app[data-lang="python"] .tab[data-l="python"],
+#app[data-lang="rust"] .tab[data-l="rust"] { color: var(--code-fg); background: var(--code-bg); }
+.code pre { margin: 0; padding: 0.9rem 1rem 1rem; overflow-x: auto; color: var(--code-fg);
+  font: 400 0.82rem/1.6 var(--font-mono); tab-size: 4; }
+.code pre code { font-size: inherit; }
+.t-kw { color: var(--t-kw); }
+.t-string { color: var(--t-string); }
+.t-number { color: var(--t-number); }
+.t-comment { color: var(--t-comment); font-style: italic; }
+.t-type { color: var(--t-type); }
+.t-macro { color: var(--t-macro); }
+
+/* Language visibility */
+#app[data-lang="python"] .rs, #app[data-lang="rust"] .py { display: none; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th { text-align: left; font: 600 0.72rem/1.3 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+th, td { padding: 0.45rem 0.6rem 0.45rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.type code { background: transparent; padding: 0; white-space: nowrap; }
+td.type a { color: var(--accent); }
+details > summary { cursor: pointer; color: var(--accent); font-size: 0.88rem; margin-bottom: 0.5rem; }
+
+/* Reference */
+.tag { display: grid; gap: 2rem; }
+.tag-head { display: grid; gap: 0.5rem; max-width: 65ch; }
+.tag-head h3 { font: 700 1.45rem/1.15 var(--font-display); }
+.tag-head p { margin: 0; color: var(--muted); }
+.tag-index ul { list-style: none; padding: 0; margin: 0; columns: 2 18rem; font-size: 0.82rem; }
+.tag-index li { break-inside: avoid; }
+.tag-index a { display: flex; gap: 0.5rem; align-items: baseline; text-decoration: none; color: var(--fg); padding: 0.1rem 0; }
+.op { padding-top: 1.75rem; border-top: 1px dashed var(--line); }
+.op h4 { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+.op .path { font-size: 0.95rem; font-weight: 500; word-break: break-all; }
+.verb {
+  font: 600 0.7rem/1 var(--font-mono); letter-spacing: 0.04em; padding: 0.3rem 0.45rem; border-radius: 4px;
+  border: 1px solid currentColor; min-width: 3.6rem; text-align: center; flex-shrink: 0;
+}
+.v-get { color: var(--v-get); } .v-post { color: var(--v-post); } .v-put { color: var(--v-put); }
+.v-patch { color: var(--v-patch); } .v-delete { color: var(--v-delete); }
+.call { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0 0 0.5rem; }
+.call code { word-break: break-all; }
+.call .alt { font-size: 0.82rem; color: var(--muted); }
+.summary { font-weight: 600; margin: 0 0 0.35rem; }
+.desc { color: var(--muted); font-size: 0.92rem; }
+.desc p { margin: 0 0 0.6rem; }
+.badge { font: 500 0.72rem/1 var(--font-body); padding: 0.28rem 0.5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+.badge.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.untested { color: var(--v-delete); font-weight: 700; text-decoration: none; margin-left: 0.15rem; vertical-align: super; font-size: 0.8em; line-height: 0; }
+a.untested:hover { text-decoration: underline; }
+.returns { font-size: 0.88rem; margin: 0; }
+.returns .label, .model .count { font: 600 0.72rem/1 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-right: 0.4rem; }
+.returns code a { color: var(--accent); }
+
+/* Models */
+.models { display: grid; gap: 0.25rem; }
+.model { border-bottom: 1px solid var(--line); padding: 0.4rem 0; }
+/* An area page can have 100+ endpoints: lay each out only when it scrolls into view. The size is a typical
+   height until then. */
+.op { content-visibility: auto; contain-intrinsic-block-size: auto 450px; }
+.model:not([open]) { content-visibility: auto; contain-intrinsic-block-size: auto 2.6rem; }
+.model > summary { display: flex; justify-content: space-between; gap: 1rem; color: var(--fg); margin: 0; }
+.model > summary code { font-size: 0.88rem; min-width: 0; overflow-wrap: anywhere; }
+.model[open] { padding-bottom: 1rem; }
+.model:target > summary code { color: var(--accent); }
+.model-doc { color: var(--muted); font-size: 0.9rem; max-width: 65ch; }
+
+/* Search results below the search box (the index of all pages is loaded on first use, see suche.js) */
+.search-hits {
+  position: absolute; top: calc(100% + 0.35rem); left: 0; right: 0; z-index: 30; margin: 0; padding: 0.3rem;
+  list-style: none; max-height: min(70vh, 32rem); overflow-y: auto; font-size: 0.86rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.15);
+}
+.search-hits a { display: grid; gap: 0.1rem; padding: 0.4rem 0.55rem; border-radius: 5px; color: var(--fg); text-decoration: none; }
+.search-hits a:hover, .search-hits a[aria-selected="true"] { background: var(--accent-soft); }
+.search-hits b { font-weight: 500; display: flex; gap: 0.5rem; align-items: baseline; min-width: 0; overflow-wrap: anywhere; }
+.search-hits b .verb { font-size: 0.62rem; min-width: 3.2rem; padding: 0.2rem 0.3rem; }
+.search-hits span.sub { color: var(--muted); font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search-hits .none { padding: 0.5rem 0.55rem; color: var(--muted); }
+/* Overview of the reference areas and links to the neighbouring areas */
+.areas { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.areas a { display: grid; gap: 0.3rem; align-content: start; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface); text-decoration: none; color: var(--fg); }
+.areas a b { color: var(--accent); display: flex; justify-content: space-between; gap: 0.5rem; }
+.areas a b .count { color: var(--muted); font: 400 0.78rem/1.6 var(--font-mono); }
+.areas a span { color: var(--muted); font-size: 0.88rem; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.pager a { text-decoration: none; }
+.next { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.next a { display: block; padding: 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--fg); }
+.next a b { display: block; color: var(--accent); margin-bottom: 0.25rem; }
+.next a span { color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .nav-toggle { display: block; }
+  .nav { display: none; position: fixed; z-index: 15; inset: calc(var(--header-h) + env(safe-area-inset-top, 0px)) 0 0 0;
+    height: auto; background: var(--surface); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .nav.open { display: block; }
+  .brand span { display: none; }
+}
+@media (max-width: 560px) {
+  .topbar { flex-wrap: wrap; }
+  .search { order: 3; flex-basis: 100%; max-width: none; }
+  :root { --header-h: 6.25rem; }
+}
+</style>
+
+<div id="app" data-lang="python">
+  <header class="topbar">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">Inhalt</button>
+    <a class="brand" href="index.html"><b>churchtools-api</b><span>ChurchTools 3.139.0 (build 32955)</span></a>
+    <div class="search">
+      <input id="search" type="search" placeholder="Endpunkt oder Modell suchen, z. B. members" aria-label="Dokumentation durchsuchen"
+        autocomplete="off" role="combobox" aria-expanded="false" aria-controls="search-hits">
+      <ul class="search-hits" id="search-hits" role="listbox" hidden></ul>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Sprache der Beispiele">
+      <button type="button" data-l="python" aria-pressed="true">Python</button>
+      <button type="button" data-l="rust" aria-pressed="false">Rust</button>
+    </div>
+    <button type="button" class="theme-toggle" id="theme-toggle"></button>
+  </header>
+
+  <div class="shell">
+    <nav class="nav" id="nav" aria-label="Inhalt">
+      <ul><li class="nav-chapter"><a href="index.html#einstieg">Einstieg</a><ul><li><a href="index.html#ueberblick">Worum es geht</a></li><li><a href="index.html#voraussetzungen">Was du brauchst</a></li><li><a href="index.html#installation">Installation</a></li><li><a href="index.html#schnellstart">Dein erster Aufruf</a></li></ul></li><li class="nav-chapter"><a href="index.html#grundlagen">Grundlagen</a><ul><li><a href="index.html#anmeldung">Client und Anmeldung</a></li><li><a href="index.html#drosseln">Anfragen drosseln</a></li><li><a href="index.html#aufbau">Wie Aufrufe aufgebaut sind</a></li><li><a href="index.html#parameter">Parameter übergeben</a></li><li><a href="index.html#rueckgaben">Rückgabewerte und Modelle</a></li><li><a href="index.html#listen">Listen und Seiten</a></li><li><a href="index.html#datum">Datum und Uhrzeit</a></li><li><a href="index.html#fehler">Fehler behandeln</a></li><li><a href="index.html#weglassen">Felder weglassen oder leeren</a></li><li><a href="index.html#uploads">Dateien hochladen und herunterladen</a></li><li><a href="index.html#zeitlimits">Zeitlimits und große Antworten</a></li><li><a href="index.html#rohzugriff">Endpunkte ohne generierte Methode</a></li><li><a href="index.html#versionen">ChurchTools-Versionen</a></li></ul></li><li class="nav-chapter"><a href="index.html#projekte">Projekte</a><ul><li><a href="index.html#projekt-monatsplan">Monatsplan aus öffentlichen Kalendern</a></li><li><a href="index.html#projekt-dienstplan">Dienstplan für den Gottesdienst</a></li><li><a href="index.html#projekt-geburtstage">Geburtstagsliste der Woche</a></li><li><a href="index.html#projekt-csv">Gruppenmitglieder als CSV-Datei</a></li><li><a href="index.html#projekt-heizung">Heizung nach Raumbuchungen steuern</a></li><li><a href="index.html#projekt-neue-person">Neue Person anlegen und in eine Gruppe aufnehmen</a></li></ul></li><li class="nav-chapter"><a href="index.html#testen">Testen</a><ul><li><a href="index.html#demo-instanz">Mit einer Demo-Instanz testen</a></li><li><a href="index.html#projekt-tests">Die Tests dieses Projekts gegen eine Demo-Instanz</a></li></ul></li></ul>
+      <h2><a href="referenz.html">Referenz</a></h2>
+      <ul class="nav-ref"><li><a href="referenz-general.html">General <span class="count">40</span></a></li><li><a href="referenz-person.html">Person <span class="count">74</span></a></li><li><a href="referenz-group.html">Group <span class="count">109</span></a></li><li><a href="referenz-calendar.html">Calendar <span class="count">34</span></a></li><li><a href="referenz-event.html">Event <span class="count">38</span></a></li><li><a href="referenz-service-service-groups.html">Service &amp; Service Groups <span class="count">10</span></a></li><li><a href="referenz-agenda.html">Agenda <span class="count">29</span></a></li><li><a href="referenz-song.html">Song <span class="count">22</span></a></li><li><a href="referenz-resource.html">Resource <span class="count">21</span></a></li><li><a href="referenz-absence.html">Absence <span class="count">6</span></a></li><li><a href="referenz-tag.html">Tag <span class="count">9</span></a></li><li><a href="referenz-file.html">File <span class="count">14</span></a></li><li><a href="referenz-wiki.html">Wiki <span class="count">13</span></a></li><li><a href="referenz-post.html">Post <span class="count">27</span></a></li><li><a href="referenz-chat.html">Chat <span class="count">4</span></a></li><li><a href="referenz-checkin.html">Checkin <span class="count">3</span></a></li><li><a href="referenz-follow-up.html">Follow-Up <span class="count">13</span></a></li><li><a href="referenz-note.html">Note <span class="count">5</span></a></li><li><a href="referenz-address.html">Address <span class="count">5</span></a></li><li><a href="referenz-campus.html">Campus <span class="count">5</span></a></li><li><a href="referenz-contact-label.html">Contact Label <span class="count">5</span></a></li><li><a href="referenz-relationship-type.html">Relationship Type <span class="count">5</span></a></li><li><a href="referenz-status.html">Status <span class="count">6</span></a></li><li><a href="referenz-department.html">Department <span class="count">1</span></a></li><li><a href="referenz-profile.html">Profile <span class="count">4</span></a></li><li><a href="referenz-subscription.html">Subscription <span class="count">5</span></a></li><li><a href="referenz-fact.html">Fact <span class="count">5</span></a></li><li><a href="referenz-db-fields.html">DB Fields <span class="count">11</span></a></li><li><a href="referenz-dynamicgroups.html">DynamicGroups <span class="count">8</span></a></li><li><a href="referenz-grouphomepage.html">GroupHomepage <span class="count">9</span></a></li><li><a href="referenz-masterdata.html">MasterData <span class="count">4</span></a></li><li><a href="referenz-bulkletter.html">Bulkletter <span class="count">6</span></a></li><li><a href="referenz-email.html">Email <span class="count">2</span></a></li><li><a href="referenz-finance.html">Finance <span class="count">134</span></a></li><li><a href="referenz-permission.html">Permission <span class="count">27</span></a></li><li><a href="referenz-admin.html">Admin <span class="count">9</span></a></li><li><a href="referenz-sync.html">Sync <span class="count">55</span></a></li><li><a href="referenz-job.html">Job <span class="count">4</span></a></li><li><a href="referenz-queue.html">Queue <span class="count">2</span></a></li><li><a href="#tag-routine">Routine <span class="count">3</span></a></li><li><a href="referenz-htmltemplate.html">HtmlTemplate <span class="count">9</span></a></li><li><a href="referenz-placeholder.html">Placeholder <span class="count">2</span></a></li><li><a href="referenz-translation.html">Translation <span class="count">4</span></a></li><li><a href="referenz-language.html">Language <span class="count">1</span></a></li><li><a href="referenz-widgets.html">Widgets <span class="count">3</span></a></li><li><a href="referenz-furtherlink.html">FurtherLink <span class="count">5</span></a></li><li><a href="referenz-evangelischetermine.html">EvangelischeTermine <span class="count">3</span></a></li><li><a href="referenz-bulk.html">Bulk <span class="count">2</span></a></li><li><a href="referenz-domainobjects.html">DomainObjects <span class="count">2</span></a></li><li><a href="referenz-field.html">Field <span class="count">1</span></a></li><li><a href="referenz-hidden.html">Hidden <span class="count">57</span></a></li></ul>
+      <h2>Anhang</h2>
+      <ul class="nav-ref">
+        <li><a href="modelle.html">Modelle <span class="count">1143</span></a></li>
+        <li><a href="index.html#fehlercodes">Fehlercodes</a></li>
+        <li><a href="index.html#testabdeckung">Testabdeckung</a></li>
+        <li><a href="aenderungen.html">Änderungen je Version</a></li>
+        <li><a href="index.html#lizenz">Lizenz</a></li>
+        <li><a href="index.html#weiter">Nächste Schritte</a></li>
+      </ul>
+    </nav>
+
+    <main id="main">
+      <div class="inner">
+        <section class="reference tag" id="tag-routine"><h2>Routine</h2><p class="lead">3 Endpunkte. Beschreibungen stammen aus der offiziellen API-Beschreibung und sind englisch.</p><details class="tag-index"><summary>3 Endpunkte im Überblick</summary><ul><li><a href="#op-get-groups-groupId-members-routines"><span class="verb v-get">GET</span><code>/groups/{groupId}/members/routines</code></a></li><li><a href="#op-put-groups-groupId-members-routines-roleId-groupMemberStatus"><span class="verb v-put">PUT</span><code>/groups/{groupId}/members/routines/{roleId}/{groupMemberStatus}</code><span class="untested">*</span></a></li><li><a href="#op-delete-groups-groupId-members-routines-roleId-groupMemberStatus"><span class="verb v-delete">DELETE</span><code>/groups/{groupId}/members/routines/{roleId}/{groupMemberStatus}</code><span class="untested">*</span></a></li></ul></details><article class="op" id="op-get-groups-groupId-members-routines"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/groups/{groupId}/members/routines</code></h4><p class="call"><code><span class="py">client.groups.members.routines.list()</span><span class="rs">client.groups().members().routines().list()</span></code></p><p class="summary">List routine bindings for membership roles and statuses</p><div class="desc"><p>Lists the routines bound to role/status combinations in this group, including disabled routines and their nested steps. A binding selects which automation applies to matching memberships; it is separate from the execution progress of any individual member. The list is not paginated and has no guaranteed ordering. Requires authentication; the current controller/service do not perform an additional group-specific permission check. A group with no bindings returns an empty list. Action data is converted from its stored form by the registered action handler before being returned.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>group_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of group</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-GroupMembershipRoutine">GroupMembershipRoutine</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-GroupMembershipRoutine">GroupMembershipRoutine</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> routine <span class="t-kw">in</span> client.groups.members.routines.list(<span class="t-number">42</span>):
+    print(routine.id)</code></pre><pre class="rs"><code><span class="t-kw">for</span> routine <span class="t-kw">in</span> client.groups().members().routines().list(<span class="t-number">42</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, routine.id);
+}</code></pre></div></div></article>
+<article class="op" id="op-put-groups-groupId-members-routines-roleId-groupMemberStatus"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/groups/{groupId}/members/routines/{roleId}/{groupMemberStatus}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.groups.members.routines.update()</span><span class="rs">client.groups().members().routines().update()</span></code></p><p class="summary">Create a membership routine binding if absent</p><div class="desc"><p>Binds an existing empty routine to this exact group, group-type role and membership status. Create the routine first and provide its ID; a routine with existing steps is rejected with 422. The response includes the binding and nested routine. If the binding already exists, this request returns it unchanged and ignores the submitted routineId. Requires authentication; the current controller/service omit group-specific permission checks. This endpoint does not start executions or change routine steps. Missing/nonexistent routine IDs for a new binding currently cause a server error.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>group_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of group</td></tr><tr><td><code>role_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>Group-type role ID, not the ID of a group-role configuration row.</td></tr><tr><td><code>group_member_status</code></td><td class="type"><code><span class="py">str</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>Status of a group membership</td></tr><tr><td><code><span class="py">routine_id</span><span class="rs">&quot;routineId&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>ID of an existing routine with no steps.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-GroupMembershipRoutine">GroupMembershipRoutine</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.groups.members.routines.update(<span class="t-number">42</span>, <span class="t-number">12</span>, <span class="t-string">&quot;active&quot;</span>, routine_id=<span class="t-number">5</span>)
+print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">GroupMembershipRoutineUpdate</span> {
+    routine_id: <span class="t-kw">Some</span>(<span class="t-number">5</span>),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.groups().members().routines().update(<span class="t-number">42</span>, <span class="t-number">12</span>, <span class="t-string">&quot;active&quot;</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, result.id);</code></pre></div></div></article>
+<article class="op" id="op-delete-groups-groupId-members-routines-roleId-groupMemberStatus"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/groups/{groupId}/members/routines/{roleId}/{groupMemberStatus}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.groups.members.routines.delete()</span><span class="rs">client.groups().members().routines().delete()</span></code></p><p class="summary">Delete a membership routine and its binding</p><div class="desc"><p>Deletes the binding for this exact group, group-type role and membership status, and also deletes the entire referenced routine and its steps. This is not an unlink-only operation. There is no delete-preview workflow. Requires authentication; this controller/service currently omit the group-specific permission checks used by the regular routine API. Missing bindings currently cause a server error rather than an idempotent 204 or a defined 404.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>group_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of group</td></tr><tr><td><code>role_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>Group-type role ID, not the ID of a group-role configuration row.</td></tr><tr><td><code>group_member_status</code></td><td class="type"><code><span class="py">str</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>Status of a group membership</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.groups.members.routines.delete(<span class="t-number">42</span>, <span class="t-number">12</span>, <span class="t-string">&quot;active&quot;</span>)</code></pre><pre class="rs"><code>client.groups().members().routines().delete(<span class="t-number">42</span>, <span class="t-number">12</span>, <span class="t-string">&quot;active&quot;</span>)?;</code></pre></div></div></article></section>
+<nav class="pager" aria-label="Bereiche"><a href="referenz-queue.html">← Queue</a><a href="referenz-htmltemplate.html">HtmlTemplate →</a></nav>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(() => {
+  const app = document.getElementById("app");
+  const switches = document.querySelectorAll(".lang-switch button");
+
+  function setLang(lang, anchor) {
+    const before = anchor ? anchor.getBoundingClientRect().top : 0;
+    app.dataset.lang = lang;
+    switches.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.l === lang)));
+    try { localStorage.setItem("ct-lang", lang); } catch (e) {}
+    // Keep the clicked element in place although code heights above it change.
+    if (anchor) window.scrollBy(0, anchor.getBoundingClientRect().top - before);
+  }
+  try {
+    const saved = localStorage.getItem("ct-lang");
+    if (saved === "python" || saved === "rust") setLang(saved);
+  } catch (e) {}
+
+  document.addEventListener("click", (event) => {
+    const langButton = event.target.closest("[data-l]");
+    if (langButton) { setLang(langButton.dataset.l, langButton); return; }
+    const copy = event.target.closest(".copy");
+    if (copy) {
+      const pre = copy.closest(".code").querySelector(app.dataset.lang === "rust" ? "pre.rs" : "pre.py");
+      const done = () => { copy.textContent = "Kopiert"; setTimeout(() => (copy.textContent = "Kopieren"), 1500); };
+      const select = () => {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        copy.textContent = "Markiert";
+        setTimeout(() => (copy.textContent = "Kopieren"), 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pre.innerText).then(done, select);
+      } else select();
+    }
+    if (event.target.closest(".nav a")) closeNav();
+  });
+
+  // Light/dark: follows the system until chosen here; the choice is kept in localStorage.
+  const themeToggle = document.getElementById("theme-toggle");
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const isDark = () => (document.documentElement.dataset.theme || (systemDark.matches ? "dark" : "light")) === "dark";
+  function showTheme() {
+    const dark = isDark();
+    themeToggle.textContent = dark ? "☀" : "☾";
+    themeToggle.title = dark ? "Helles Design" : "Dunkles Design";
+    themeToggle.setAttribute("aria-label", themeToggle.title);
+  }
+  themeToggle.addEventListener("click", () => {
+    const theme = isDark() ? "light" : "dark";
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem("ct-theme", theme); } catch (e) {}
+    showTheme();
+  });
+  systemDark.addEventListener("change", showTheme);
+  showTheme();
+
+  // Navigation drawer on small screens
+  const nav = document.getElementById("nav");
+  const toggle = document.getElementById("nav-toggle");
+  function closeNav() { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  // Open a model when its link is followed, and align the target once more after the endpoints near it have been
+  // laid out with their real height (they are estimated until they come into view, see content-visibility).
+  // A model's fields are in a <template> until it is opened: 1,143 tables in the page would make every click slow.
+  document.addEventListener("toggle", (event) => {
+    const t = event.target.open && event.target.querySelector(":scope > template");
+    if (t) t.replaceWith(t.content);
+  }, true);
+  function openTarget() {
+    const id = location.hash.slice(1);
+    const el = id && document.getElementById(id);
+    if (!el) return;
+    if (el.tagName === "DETAILS") el.open = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => el.scrollIntoView()));
+  }
+  window.addEventListener("hashchange", openTarget);
+  // On a fresh load the browser jumps to the target only after parsing; align after that.
+  if (document.readyState === "complete") openTarget(); else window.addEventListener("load", openTarget);
+
+  // Search over all pages. The index (suche.js, ~200 KB) is loaded on first use; a <script> instead of fetch()
+  // keeps it working when the pages are opened from disk.
+  let entries = null;
+  function loadIndex() {
+    if (entries) return Promise.resolve(entries);
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "suche.js";
+      s.onload = () => { entries = window.CT_SEARCH || []; resolve(entries); };
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  const search = document.getElementById("search");
+  const hitList = document.getElementById("search-hits");
+  const VERBS = new Set(["get", "post", "put", "patch", "delete"]);
+  let selected = -1;
+  function showHits(hits, q) {
+    selected = hits.length ? 0 : -1;
+    hitList.replaceChildren(...hits.map(([label, sub, href, kind], i) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = href;
+      a.setAttribute("role", "option");
+      a.setAttribute("aria-selected", String(i === 0));
+      const b = document.createElement("b");
+      if (VERBS.has(kind)) {
+        const v = document.createElement("span");
+        v.className = `verb v-${kind}`;
+        v.textContent = kind.toUpperCase();
+        b.append(v);
+      }
+      b.append(label);
+      const s = document.createElement("span");
+      s.className = "sub";
+      s.textContent = sub;
+      a.append(b, s);
+      li.append(a);
+      return li;
+    }));
+    if (!hits.length) {
+      const li = document.createElement("li");
+      li.className = "none";
+      li.textContent = `Keine Treffer für „${q}“. Suche nach einem Pfadteil wie members oder einem Methodennamen wie list_birthdays.`;
+      hitList.append(li);
+    }
+    hitList.hidden = false;
+    search.setAttribute("aria-expanded", "true");
+  }
+  function hideHits() { hitList.hidden = true; search.setAttribute("aria-expanded", "false"); }
+  function select(i) {
+    const options = hitList.querySelectorAll("a");
+    if (!options.length) return;
+    selected = (i + options.length) % options.length;
+    options.forEach((a, j) => a.setAttribute("aria-selected", String(j === selected)));
+    options[selected].scrollIntoView({ block: "nearest" });
+  }
+  let timer;
+  search.addEventListener("focus", () => { loadIndex().catch(() => {}); });
+  search.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      const q = search.value.trim().toLowerCase();
+      if (!q) { hideHits(); return; }
+      const all = await loadIndex().catch(() => []);
+      all.forEach((e) => { if (e.text === undefined) e.text = `${e[0]} ${e[1]} ${e[4]}`.toLowerCase(); });
+      if (search.value.trim().toLowerCase() !== q) return;
+      // Matches in the name first, then in the description; at most 40.
+      const first = [], second = [];
+      for (const e of all) {
+        if (e[0].toLowerCase().includes(q)) first.push(e);
+        else if (e.text.includes(q)) second.push(e);
+        if (first.length >= 40) break;
+      }
+      showHits(first.concat(second).slice(0, 40), search.value.trim());
+    }, 120);
+  });
+  search.addEventListener("keydown", (event) => {
+    if (hitList.hidden) return;
+    if (event.key === "ArrowDown") { event.preventDefault(); select(selected + 1); }
+    else if (event.key === "ArrowUp") { event.preventDefault(); select(selected - 1); }
+    else if (event.key === "Escape") { hideHits(); }
+    else if (event.key === "Enter") {
+      const a = hitList.querySelectorAll("a")[selected];
+      if (a) { event.preventDefault(); hideHits(); location.href = a.href; }
+    }
+  });
+  document.addEventListener("click", (event) => { if (!event.target.closest(".search")) hideHits(); });
+  hitList.addEventListener("click", (event) => { if (event.target.closest("a")) hideHits(); });
+
+  // Links from before the split into several pages (index.html#op-…, #m-…, #tag-…) lead to the right page.
+  const oldTarget = location.hash.slice(1);
+  const movedSections = { referenz: "referenz.html", modelle: "modelle.html" };
+  if (oldTarget && !document.getElementById(oldTarget) && movedSections[oldTarget]) {
+    location.replace(movedSections[oldTarget]);
+  } else if (oldTarget && !document.getElementById(oldTarget) && /^(op|m|tag)-/.test(oldTarget)) {
+    loadIndex().then((all) => {
+      const area = oldTarget.startsWith("tag-") && `referenz-${oldTarget.slice(4)}.html`;
+      const hit = all.find((e) => e[2].endsWith("#" + oldTarget) || e[2] === area);
+      if (hit) location.replace(hit[2]);
+    }, () => {});
+  }
+
+  // Highlight the current area in the navigation
+  const here = location.pathname.split("/").pop() || "index.html";
+  const links = new Map();
+  nav.querySelectorAll("a[href]").forEach((a) => {
+    const [page, id] = a.getAttribute("href").split("#");
+    if ((page || here) === here && id) links.set(id, a);
+  });
+  const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #lizenz, #weiter"));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const link = links.get(e.target.id);
+        if (!link) return;
+        nav.querySelectorAll("a.active").forEach((a) => a.classList.remove("active"));
+        link.classList.add("active");
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    observed.forEach((el) => io.observe(el));
+  }
+})();
+</script>
+
+</body>
+</html>

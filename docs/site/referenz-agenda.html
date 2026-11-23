@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Agenda · churchtools-api</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Python- und Rust-Client für die ChurchTools-API: Grundlagen, Projekte und vollständige Referenz.">
+<script>
+  // Saved light/dark choice, applied before the first paint; without one the system setting applies.
+  try { const t = localStorage.getItem("ct-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: sticky top bar; left nav rail; each topic pairs prose (left) with a code panel (right) on wide screens, stacked below. */
+:root {
+  --bg: #f5f7f8;
+  --surface: #ffffff;
+  --fg: #18212b;
+  --muted: #586472;
+  --line: #dde3e8;
+  --accent: #0a6a73;
+  --accent-soft: #e2f0f1;
+  --code-bg: #111820;
+  --code-fg: #d8e2ea;
+  --code-bar: #1a232d;
+  --code-muted: #8795a5;
+  --t-kw: #7fd0d8;
+  --t-string: #b8df8e;
+  --t-number: #f0b873;
+  --t-comment: #7d8a9b;
+  --t-type: #c9b8ff;
+  --t-macro: #8fc6ff;
+  --v-get: #0a6a73;
+  --v-post: #2e7a34;
+  --v-put: #8f5c00;
+  --v-patch: #6a4dbd;
+  --v-delete: #b0281f;
+  --warn-bg: #fff2d9;
+  --warn-fg: #7a4b00;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --header-h: 3.5rem;
+  --nav-w: 16.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+    --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+    --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+    --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+    --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+  --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+  --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+  --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+  --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 15px/1.6 var(--font-body);
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--surface);
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+code { font-family: var(--font-mono); font-size: 0.86em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; margin: 0; }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  display: flex; align-items: center; gap: 1rem;
+  min-height: var(--header-h);
+  padding-block: 0.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; color: var(--fg); white-space: nowrap; }
+.brand b { font: 700 1.15rem/1 var(--font-display); letter-spacing: -0.01em; }
+.brand span { font: 400 0.78rem/1 var(--font-mono); color: var(--muted); }
+.search { flex: 1; max-width: 26rem; margin-left: auto; position: relative; }
+.search input {
+  width: 100%; padding: 0.45rem 0.75rem; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: inherit; font-size: 0.9rem;
+}
+.lang-switch { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.lang-switch button, .nav-toggle {
+  border: 0; background: transparent; color: var(--muted); font: 500 0.85rem/1 var(--font-body);
+  padding: 0.5rem 0.8rem; cursor: pointer;
+}
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.nav-toggle { display: none; border: 1px solid var(--line); border-radius: 6px; }
+.theme-toggle {
+  flex-shrink: 0; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--muted);
+  font: 500 1rem/1 var(--font-body); width: 2.2rem; height: 2.1rem; cursor: pointer;
+}
+.theme-toggle:hover { color: var(--fg); }
+
+/* Shell */
+.shell { display: grid; grid-template-columns: var(--nav-w) minmax(0, 1fr); }
+.nav {
+  position: sticky; top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0px));
+  overflow-y: auto; padding: 1.25rem 0.75rem 3rem max(16px, env(safe-area-inset-left, 0px));
+  border-right: 1px solid var(--line); font-size: 0.88rem;
+}
+.nav ul { list-style: none; margin: 0; padding: 0; }
+.nav .nav-chapter > a, .nav h2 {
+  display: block; margin: 1.1rem 0 0.35rem; font: 600 0.72rem/1.2 var(--font-body);
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-decoration: none;
+}
+.nav li li a, .nav-ref a {
+  display: flex; justify-content: space-between; gap: 0.5rem;
+  padding: 0.22rem 0.5rem; border-radius: 5px; color: var(--fg); text-decoration: none;
+}
+.nav a:hover, .nav a.active { background: var(--accent-soft); color: var(--accent); }
+.nav .count { color: var(--muted); font: 400 0.75rem/1.6 var(--font-mono); font-variant-numeric: tabular-nums; }
+
+main {
+  min-width: 0;
+  padding-block: 2rem 6rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.inner { max-width: 82rem; margin: 0 auto; display: grid; gap: 3.5rem; }
+
+/* Hero */
+.hero { display: grid; gap: 1rem; max-width: 46rem; padding-top: 0.5rem; }
+.hero h1 { font: 700 clamp(2rem, 4vw, 2.9rem)/1.05 var(--font-display); letter-spacing: -0.02em; }
+.hero .lead { font-size: 1.12rem; color: var(--muted); margin: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none;
+  font: 400 0.85rem/1.4 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.facts b { color: var(--fg); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta a { padding: 0.55rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; border: 1px solid var(--line); color: var(--fg); background: var(--surface); }
+.cta a.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+
+/* Chapters and topics */
+.chapter, .reference { display: grid; gap: 2.5rem; }
+.chapter > h2, .reference > h2 {
+  font: 700 1.85rem/1.1 var(--font-display); letter-spacing: -0.015em;
+  padding-top: 1.5rem; border-top: 1px solid var(--line);
+}
+.inner > .reference:first-child > h2 { border-top: 0; padding-top: 0; }
+.chapter > .lead, .reference > .lead { margin: -1.75rem 0 0; color: var(--muted); max-width: 60ch; }
+.topic, .op { display: grid; gap: 1.25rem 2.5rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1180px) {
+  .topic, .op { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: start; }
+  .example { position: sticky; top: calc(var(--header-h) + 1rem); }
+}
+.topic.no-code { grid-template-columns: minmax(0, 1fr); }
+.prose { min-width: 0; max-width: 65ch; }
+.prose h3 { font: 600 1.25rem/1.25 var(--font-display); margin-bottom: 0.6rem; }
+.prose p, .prose ul, .prose ol { margin: 0 0 0.85rem; }
+.prose li { margin-bottom: 0.3rem; }
+.prose code, .call code, td code {
+  background: var(--accent-soft); padding: 0.08em 0.35em; border-radius: 4px; color: var(--fg);
+}
+.aside { font-size: 0.85rem; color: var(--muted); margin: 0.5rem 0 0; }
+.example { min-width: 0; }
+
+/* Code panels */
+.code { background: var(--code-bg); border-radius: 8px; overflow: hidden; }
+.code-bar { display: flex; align-items: center; gap: 0.25rem; padding: 0.3rem 0.4rem; background: var(--code-bar); }
+.code-bar button {
+  border: 0; background: transparent; color: var(--code-muted); cursor: pointer;
+  font: 500 0.78rem/1 var(--font-body); padding: 0.45rem 0.65rem; border-radius: 5px;
+}
+.code-bar .copy { margin-left: auto; }
+.code-bar button:hover { color: var(--code-fg); }
+#app[data-lang="python"] .tab[data-l="python"],
+#app[data-lang="rust"] .tab[data-l="rust"] { color: var(--code-fg); background: var(--code-bg); }
+.code pre { margin: 0; padding: 0.9rem 1rem 1rem; overflow-x: auto; color: var(--code-fg);
+  font: 400 0.82rem/1.6 var(--font-mono); tab-size: 4; }
+.code pre code { font-size: inherit; }
+.t-kw { color: var(--t-kw); }
+.t-string { color: var(--t-string); }
+.t-number { color: var(--t-number); }
+.t-comment { color: var(--t-comment); font-style: italic; }
+.t-type { color: var(--t-type); }
+.t-macro { color: var(--t-macro); }
+
+/* Language visibility */
+#app[data-lang="python"] .rs, #app[data-lang="rust"] .py { display: none; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th { text-align: left; font: 600 0.72rem/1.3 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+th, td { padding: 0.45rem 0.6rem 0.45rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.type code { background: transparent; padding: 0; white-space: nowrap; }
+td.type a { color: var(--accent); }
+details > summary { cursor: pointer; color: var(--accent); font-size: 0.88rem; margin-bottom: 0.5rem; }
+
+/* Reference */
+.tag { display: grid; gap: 2rem; }
+.tag-head { display: grid; gap: 0.5rem; max-width: 65ch; }
+.tag-head h3 { font: 700 1.45rem/1.15 var(--font-display); }
+.tag-head p { margin: 0; color: var(--muted); }
+.tag-index ul { list-style: none; padding: 0; margin: 0; columns: 2 18rem; font-size: 0.82rem; }
+.tag-index li { break-inside: avoid; }
+.tag-index a { display: flex; gap: 0.5rem; align-items: baseline; text-decoration: none; color: var(--fg); padding: 0.1rem 0; }
+.op { padding-top: 1.75rem; border-top: 1px dashed var(--line); }
+.op h4 { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+.op .path { font-size: 0.95rem; font-weight: 500; word-break: break-all; }
+.verb {
+  font: 600 0.7rem/1 var(--font-mono); letter-spacing: 0.04em; padding: 0.3rem 0.45rem; border-radius: 4px;
+  border: 1px solid currentColor; min-width: 3.6rem; text-align: center; flex-shrink: 0;
+}
+.v-get { color: var(--v-get); } .v-post { color: var(--v-post); } .v-put { color: var(--v-put); }
+.v-patch { color: var(--v-patch); } .v-delete { color: var(--v-delete); }
+.call { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0 0 0.5rem; }
+.call code { word-break: break-all; }
+.call .alt { font-size: 0.82rem; color: var(--muted); }
+.summary { font-weight: 600; margin: 0 0 0.35rem; }
+.desc { color: var(--muted); font-size: 0.92rem; }
+.desc p { margin: 0 0 0.6rem; }
+.badge { font: 500 0.72rem/1 var(--font-body); padding: 0.28rem 0.5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+.badge.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.untested { color: var(--v-delete); font-weight: 700; text-decoration: none; margin-left: 0.15rem; vertical-align: super; font-size: 0.8em; line-height: 0; }
+a.untested:hover { text-decoration: underline; }
+.returns { font-size: 0.88rem; margin: 0; }
+.returns .label, .model .count { font: 600 0.72rem/1 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-right: 0.4rem; }
+.returns code a { color: var(--accent); }
+
+/* Models */
+.models { display: grid; gap: 0.25rem; }
+.model { border-bottom: 1px solid var(--line); padding: 0.4rem 0; }
+/* An area page can have 100+ endpoints: lay each out only when it scrolls into view. The size is a typical
+   height until then. */
+.op { content-visibility: auto; contain-intrinsic-block-size: auto 450px; }
+.model:not([open]) { content-visibility: auto; contain-intrinsic-block-size: auto 2.6rem; }
+.model > summary { display: flex; justify-content: space-between; gap: 1rem; color: var(--fg); margin: 0; }
+.model > summary code { font-size: 0.88rem; min-width: 0; overflow-wrap: anywhere; }
+.model[open] { padding-bottom: 1rem; }
+.model:target > summary code { color: var(--accent); }
+.model-doc { color: var(--muted); font-size: 0.9rem; max-width: 65ch; }
+
+/* Search results below the search box (the index of all pages is loaded on first use, see suche.js) */
+.search-hits {
+  position: absolute; top: calc(100% + 0.35rem); left: 0; right: 0; z-index: 30; margin: 0; padding: 0.3rem;
+  list-style: none; max-height: min(70vh, 32rem); overflow-y: auto; font-size: 0.86rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.15);
+}
+.search-hits a { display: grid; gap: 0.1rem; padding: 0.4rem 0.55rem; border-radius: 5px; color: var(--fg); text-decoration: none; }
+.search-hits a:hover, .search-hits a[aria-selected="true"] { background: var(--accent-soft); }
+.search-hits b { font-weight: 500; display: flex; gap: 0.5rem; align-items: baseline; min-width: 0; overflow-wrap: anywhere; }
+.search-hits b .verb { font-size: 0.62rem; min-width: 3.2rem; padding: 0.2rem 0.3rem; }
+.search-hits span.sub { color: var(--muted); font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search-hits .none { padding: 0.5rem 0.55rem; color: var(--muted); }
+/* Overview of the reference areas and links to the neighbouring areas */
+.areas { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.areas a { display: grid; gap: 0.3rem; align-content: start; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface); text-decoration: none; color: var(--fg); }
+.areas a b { color: var(--accent); display: flex; justify-content: space-between; gap: 0.5rem; }
+.areas a b .count { color: var(--muted); font: 400 0.78rem/1.6 var(--font-mono); }
+.areas a span { color: var(--muted); font-size: 0.88rem; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.pager a { text-decoration: none; }
+.next { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.next a { display: block; padding: 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--fg); }
+.next a b { display: block; color: var(--accent); margin-bottom: 0.25rem; }
+.next a span { color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .nav-toggle { display: block; }
+  .nav { display: none; position: fixed; z-index: 15; inset: calc(var(--header-h) + env(safe-area-inset-top, 0px)) 0 0 0;
+    height: auto; background: var(--surface); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .nav.open { display: block; }
+  .brand span { display: none; }
+}
+@media (max-width: 560px) {
+  .topbar { flex-wrap: wrap; }
+  .search { order: 3; flex-basis: 100%; max-width: none; }
+  :root { --header-h: 6.25rem; }
+}
+</style>
+
+<div id="app" data-lang="python">
+  <header class="topbar">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">Inhalt</button>
+    <a class="brand" href="index.html"><b>churchtools-api</b><span>ChurchTools 3.139.0 (build 32955)</span></a>
+    <div class="search">
+      <input id="search" type="search" placeholder="Endpunkt oder Modell suchen, z. B. members" aria-label="Dokumentation durchsuchen"
+        autocomplete="off" role="combobox" aria-expanded="false" aria-controls="search-hits">
+      <ul class="search-hits" id="search-hits" role="listbox" hidden></ul>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Sprache der Beispiele">
+      <button type="button" data-l="python" aria-pressed="true">Python</button>
+      <button type="button" data-l="rust" aria-pressed="false">Rust</button>
+    </div>
+    <button type="button" class="theme-toggle" id="theme-toggle"></button>
+  </header>
+
+  <div class="shell">
+    <nav class="nav" id="nav" aria-label="Inhalt">
+      <ul><li class="nav-chapter"><a href="index.html#einstieg">Einstieg</a><ul><li><a href="index.html#ueberblick">Worum es geht</a></li><li><a href="index.html#voraussetzungen">Was du brauchst</a></li><li><a href="index.html#installation">Installation</a></li><li><a href="index.html#schnellstart">Dein erster Aufruf</a></li></ul></li><li class="nav-chapter"><a href="index.html#grundlagen">Grundlagen</a><ul><li><a href="index.html#anmeldung">Client und Anmeldung</a></li><li><a href="index.html#drosseln">Anfragen drosseln</a></li><li><a href="index.html#aufbau">Wie Aufrufe aufgebaut sind</a></li><li><a href="index.html#parameter">Parameter übergeben</a></li><li><a href="index.html#rueckgaben">Rückgabewerte und Modelle</a></li><li><a href="index.html#listen">Listen und Seiten</a></li><li><a href="index.html#datum">Datum und Uhrzeit</a></li><li><a href="index.html#fehler">Fehler behandeln</a></li><li><a href="index.html#weglassen">Felder weglassen oder leeren</a></li><li><a href="index.html#uploads">Dateien hochladen und herunterladen</a></li><li><a href="index.html#zeitlimits">Zeitlimits und große Antworten</a></li><li><a href="index.html#rohzugriff">Endpunkte ohne generierte Methode</a></li><li><a href="index.html#versionen">ChurchTools-Versionen</a></li></ul></li><li class="nav-chapter"><a href="index.html#projekte">Projekte</a><ul><li><a href="index.html#projekt-monatsplan">Monatsplan aus öffentlichen Kalendern</a></li><li><a href="index.html#projekt-dienstplan">Dienstplan für den Gottesdienst</a></li><li><a href="index.html#projekt-geburtstage">Geburtstagsliste der Woche</a></li><li><a href="index.html#projekt-csv">Gruppenmitglieder als CSV-Datei</a></li><li><a href="index.html#projekt-heizung">Heizung nach Raumbuchungen steuern</a></li><li><a href="index.html#projekt-neue-person">Neue Person anlegen und in eine Gruppe aufnehmen</a></li></ul></li><li class="nav-chapter"><a href="index.html#testen">Testen</a><ul><li><a href="index.html#demo-instanz">Mit einer Demo-Instanz testen</a></li><li><a href="index.html#projekt-tests">Die Tests dieses Projekts gegen eine Demo-Instanz</a></li></ul></li></ul>
+      <h2><a href="referenz.html">Referenz</a></h2>
+      <ul class="nav-ref"><li><a href="referenz-general.html">General <span class="count">40</span></a></li><li><a href="referenz-person.html">Person <span class="count">74</span></a></li><li><a href="referenz-group.html">Group <span class="count">109</span></a></li><li><a href="referenz-calendar.html">Calendar <span class="count">34</span></a></li><li><a href="referenz-event.html">Event <span class="count">38</span></a></li><li><a href="referenz-service-service-groups.html">Service &amp; Service Groups <span class="count">10</span></a></li><li><a href="#tag-agenda">Agenda <span class="count">29</span></a></li><li><a href="referenz-song.html">Song <span class="count">22</span></a></li><li><a href="referenz-resource.html">Resource <span class="count">21</span></a></li><li><a href="referenz-absence.html">Absence <span class="count">6</span></a></li><li><a href="referenz-tag.html">Tag <span class="count">9</span></a></li><li><a href="referenz-file.html">File <span class="count">14</span></a></li><li><a href="referenz-wiki.html">Wiki <span class="count">13</span></a></li><li><a href="referenz-post.html">Post <span class="count">27</span></a></li><li><a href="referenz-chat.html">Chat <span class="count">4</span></a></li><li><a href="referenz-checkin.html">Checkin <span class="count">3</span></a></li><li><a href="referenz-follow-up.html">Follow-Up <span class="count">13</span></a></li><li><a href="referenz-note.html">Note <span class="count">5</span></a></li><li><a href="referenz-address.html">Address <span class="count">5</span></a></li><li><a href="referenz-campus.html">Campus <span class="count">5</span></a></li><li><a href="referenz-contact-label.html">Contact Label <span class="count">5</span></a></li><li><a href="referenz-relationship-type.html">Relationship Type <span class="count">5</span></a></li><li><a href="referenz-status.html">Status <span class="count">6</span></a></li><li><a href="referenz-department.html">Department <span class="count">1</span></a></li><li><a href="referenz-profile.html">Profile <span class="count">4</span></a></li><li><a href="referenz-subscription.html">Subscription <span class="count">5</span></a></li><li><a href="referenz-fact.html">Fact <span class="count">5</span></a></li><li><a href="referenz-db-fields.html">DB Fields <span class="count">11</span></a></li><li><a href="referenz-dynamicgroups.html">DynamicGroups <span class="count">8</span></a></li><li><a href="referenz-grouphomepage.html">GroupHomepage <span class="count">9</span></a></li><li><a href="referenz-masterdata.html">MasterData <span class="count">4</span></a></li><li><a href="referenz-bulkletter.html">Bulkletter <span class="count">6</span></a></li><li><a href="referenz-email.html">Email <span class="count">2</span></a></li><li><a href="referenz-finance.html">Finance <span class="count">134</span></a></li><li><a href="referenz-permission.html">Permission <span class="count">27</span></a></li><li><a href="referenz-admin.html">Admin <span class="count">9</span></a></li><li><a href="referenz-sync.html">Sync <span class="count">55</span></a></li><li><a href="referenz-job.html">Job <span class="count">4</span></a></li><li><a href="referenz-queue.html">Queue <span class="count">2</span></a></li><li><a href="referenz-routine.html">Routine <span class="count">3</span></a></li><li><a href="referenz-htmltemplate.html">HtmlTemplate <span class="count">9</span></a></li><li><a href="referenz-placeholder.html">Placeholder <span class="count">2</span></a></li><li><a href="referenz-translation.html">Translation <span class="count">4</span></a></li><li><a href="referenz-language.html">Language <span class="count">1</span></a></li><li><a href="referenz-widgets.html">Widgets <span class="count">3</span></a></li><li><a href="referenz-furtherlink.html">FurtherLink <span class="count">5</span></a></li><li><a href="referenz-evangelischetermine.html">EvangelischeTermine <span class="count">3</span></a></li><li><a href="referenz-bulk.html">Bulk <span class="count">2</span></a></li><li><a href="referenz-domainobjects.html">DomainObjects <span class="count">2</span></a></li><li><a href="referenz-field.html">Field <span class="count">1</span></a></li><li><a href="referenz-hidden.html">Hidden <span class="count">57</span></a></li></ul>
+      <h2>Anhang</h2>
+      <ul class="nav-ref">
+        <li><a href="modelle.html">Modelle <span class="count">1143</span></a></li>
+        <li><a href="index.html#fehlercodes">Fehlercodes</a></li>
+        <li><a href="index.html#testabdeckung">Testabdeckung</a></li>
+        <li><a href="aenderungen.html">Änderungen je Version</a></li>
+        <li><a href="index.html#lizenz">Lizenz</a></li>
+        <li><a href="index.html#weiter">Nächste Schritte</a></li>
+      </ul>
+    </nav>
+
+    <main id="main">
+      <div class="inner">
+        <section class="reference tag" id="tag-agenda"><h2>Agenda</h2><p class="lead">Abläufe von Gottesdiensten und Vorlagen dafür. 29 Endpunkte. Beschreibungen stammen aus der offiziellen API-Beschreibung und sind englisch.</p><details class="tag-index"><summary>29 Endpunkte im Überblick</summary><ul><li><a href="#op-get-agendatemplates"><span class="verb v-get">GET</span><code>/agendatemplates</code></a></li><li><a href="#op-get-agendatemplates-agendaId"><span class="verb v-get">GET</span><code>/agendatemplates/{agendaId}</code></a></li><li><a href="#op-post-agendatemplates"><span class="verb v-post">POST</span><code>/agendatemplates</code></a></li><li><a href="#op-put-agendatemplates-agendaId"><span class="verb v-put">PUT</span><code>/agendatemplates/{agendaId}</code></a></li><li><a href="#op-delete-agendatemplates-agendaId"><span class="verb v-delete">DELETE</span><code>/agendatemplates/{agendaId}</code></a></li><li><a href="#op-post-agendatemplates-agendaId-export"><span class="verb v-post">POST</span><code>/agendatemplates/{agendaId}/export</code><span class="untested">*</span></a></li><li><a href="#op-post-agendatemplates-agendaId-items"><span class="verb v-post">POST</span><code>/agendatemplates/{agendaId}/items</code></a></li><li><a href="#op-put-agendatemplates-agendaId-items-itemId"><span class="verb v-put">PUT</span><code>/agendatemplates/{agendaId}/items/{itemId}</code></a></li><li><a href="#op-patch-agendatemplates-agendaId-items-itemId"><span class="verb v-patch">PATCH</span><code>/agendatemplates/{agendaId}/items/{itemId}</code><span class="untested">*</span></a></li><li><a href="#op-delete-agendatemplates-agendaId-items-itemId"><span class="verb v-delete">DELETE</span><code>/agendatemplates/{agendaId}/items/{itemId}</code></a></li><li><a href="#op-put-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId"><span class="verb v-put">PUT</span><code>/agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}</code><span class="untested">*</span></a></li><li><a href="#op-delete-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId"><span class="verb v-delete">DELETE</span><code>/agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}</code><span class="untested">*</span></a></li><li><a href="#op-post-agendas-send"><span class="verb v-post">POST</span><code>/agendas/send</code><span class="untested">*</span></a></li><li><a href="#op-get-events-id-agenda-songs"><span class="verb v-get">GET</span><code>/events/{eventId}/agenda/songs</code></a></li><li><a href="#op-get-events-id-agenda"><span class="verb v-get">GET</span><code>/events/{eventId}/agenda</code></a></li><li><a href="#op-put-events-id-agenda"><span class="verb v-put">PUT</span><code>/events/{eventId}/agenda</code><span class="untested">*</span></a></li><li><a href="#op-delete-events-id-agenda"><span class="verb v-delete">DELETE</span><code>/events/{eventId}/agenda</code><span class="untested">*</span></a></li><li><a href="#op-post-events-id-agenda-export"><span class="verb v-post">POST</span><code>/events/{eventId}/agenda/export</code><span class="untested">*</span></a></li><li><a href="#op-post-events-id-agenda-integrate"><span class="verb v-post">POST</span><code>/events/{eventId}/agenda/integrate</code><span class="untested">*</span></a></li><li><a href="#op-post-events-id-agenda-lock"><span class="verb v-post">POST</span><code>/events/{eventId}/agenda/lock</code></a></li><li><a href="#op-post-events-id-agenda-unlock"><span class="verb v-post">POST</span><code>/events/{eventId}/agenda/unlock</code></a></li><li><a href="#op-post-events-id-agenda-items"><span class="verb v-post">POST</span><code>/events/{eventId}/agenda/items</code></a></li><li><a href="#op-put-events-id-agenda-items-id"><span class="verb v-put">PUT</span><code>/events/{eventId}/agenda/items/{itemId}</code></a></li><li><a href="#op-patch-events-eventId-agenda-items-itemId"><span class="verb v-patch">PATCH</span><code>/events/{eventId}/agenda/items/{itemId}</code><span class="untested">*</span></a></li><li><a href="#op-delete-events-id-agenda-items-id"><span class="verb v-delete">DELETE</span><code>/events/{eventId}/agenda/items/{itemId}</code></a></li><li><a href="#op-post-events-id-agenda-items-id-hide"><span class="verb v-post">POST</span><code>/events/{eventId}/agenda/items/{itemId}/hide</code></a></li><li><a href="#op-post-events-id-agenda-items-id-unhide"><span class="verb v-post">POST</span><code>/events/{eventId}/agenda/items/{itemId}/unhide</code></a></li><li><a href="#op-put-events-id-agenda-items-id-servicegroups-id"><span class="verb v-put">PUT</span><code>/events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}</code><span class="untested">*</span></a></li><li><a href="#op-delete-events-id-agenda-items-id-servicegroups-id"><span class="verb v-delete">DELETE</span><code>/events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}</code><span class="untested">*</span></a></li></ul></details><article class="op" id="op-get-agendatemplates"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/agendatemplates</code></h4><p class="call"><code><span class="py">client.agenda_templates.list()</span><span class="rs">client.agenda_templates().list()</span></code></p><p class="summary">Get all agenda templates</p><div class="desc"><p>Returns every agenda template visible to the caller, including its items. Visibility requires a super administrator or one of &quot;view agenda&quot;, &quot;edit agenda&quot; or &quot;edit agenda templates&quot; for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are <code>null</code> and <code>startTimes</code> objects are empty.</p></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-Agenda">Agenda</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-Agenda">Agenda</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> agenda_template <span class="t-kw">in</span> client.agenda_templates.list():
+    print(agenda_template.name)</code></pre><pre class="rs"><code><span class="t-kw">for</span> agenda_template <span class="t-kw">in</span> client.agenda_templates().list()? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, agenda_template.name);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-agendatemplates-agendaId"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/agendatemplates/{agendaId}</code></h4><p class="call"><code><span class="py">client.agenda_templates.get()</span><span class="rs">client.agenda_templates().get()</span></code></p><p class="summary">Get agenda template</p><div class="desc"><p>Returns one agenda template with its complete ordered item list. An ID belonging to an event agenda is not a template and returns <code>404</code>. Visibility requires a super administrator or one of &quot;view agenda&quot;, &quot;edit agenda&quot; or &quot;edit agenda templates&quot; for the template calendar. Template responses use the Agenda schema: name is the stored template name, item start values are <code>null</code> and <code>startTimes</code> objects are empty.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-Agenda">Agenda</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>agenda_template = client.agenda_templates.get(<span class="t-number">35</span>)
+print(agenda_template.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> agenda_template = client.agenda_templates().get(<span class="t-number">35</span>)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, agenda_template.name);</code></pre></div></div></article>
+<article class="op" id="op-post-agendatemplates"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/agendatemplates</code></h4><p class="call"><code><span class="py">client.agenda_templates.create()</span><span class="rs">client.agenda_templates().create()</span></code></p><p class="summary">Create agenda template</p><div class="desc"><p>Creates a reusable agenda template and returns HTTP <code>200</code> with its complete representation. The caller must be a super administrator or have &quot;edit agenda templates&quot; for the supplied calendar. Items are optional and new templates start unlocked. Template responses use the Agenda schema: name is the stored template name, item start values are <code>null</code> and <code>startTimes</code> objects are empty.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code><span class="py">calendar_id</span><span class="rs">&quot;calendarId&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td>ja</td><td>Calendar that determines template visibility and editing permissions.</td></tr><tr><td><code><span class="py">event_start_position</span><span class="rs">&quot;eventStartPosition&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>Zero-based index in the complete item list where the event begins when this template is copied.</td></tr><tr><td><code><span class="py">items</span><span class="rs">&quot;items&quot;</span></code></td><td class="type"><code><span class="py">List[Union[<a href="modelle.html#m-AgendaItemInputHeader">AgendaItemInputHeader</a>, <a href="modelle.html#m-AgendaItemInputSong">AgendaItemInputSong</a>, <a href="modelle.html#m-AgendaItemInputText">AgendaItemInputText</a>]]</span><span class="rs">Vec&lt;serde_json::Value&gt;</span></code></td><td>Body</td><td></td><td>Initial template items in their intended order.</td></tr><tr><td><code><span class="py">name</span><span class="rs">&quot;name&quot;</span></code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Body</td><td>ja</td><td>Template name.</td></tr><tr><td><code><span class="py">series</span><span class="rs">&quot;series&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Optional free-text series name.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-Agenda">Agenda</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.agenda_templates.create(calendar_id=<span class="t-number">1</span>, name=<span class="t-string">&quot;Sunday Service Template&quot;</span>)
+print(result.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">AgendaTemplateCreate</span> {
+    calendar_id: <span class="t-number">1</span>,
+    name: <span class="t-string">&quot;Sunday Service Template&quot;</span>.into(),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.agenda_templates().create(&amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result.name);</code></pre></div></div></article>
+<article class="op" id="op-put-agendatemplates-agendaId"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/agendatemplates/{agendaId}</code></h4><p class="call"><code><span class="py">client.agenda_templates.update()</span><span class="rs">client.agenda_templates().update()</span></code></p><p class="summary">Update agenda template</p><div class="desc"><p>Updates the template metadata and, when supplied, replaces its complete item list. Existing item IDs may be supplied once each to retain those items. The template must be unlocked. Requires a super administrator or &quot;edit agenda templates&quot; for the template&#x27;s existing calendar.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code><span class="py">calendar_id</span><span class="rs">&quot;calendarId&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td>ja</td><td>Calendar that determines template visibility and editing permissions.</td></tr><tr><td><code><span class="py">event_start_position</span><span class="rs">&quot;eventStartPosition&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>Zero-based index in the complete item list where the event begins when this template is copied.</td></tr><tr><td><code><span class="py">items</span><span class="rs">&quot;items&quot;</span></code></td><td class="type"><code><span class="py">List[<a href="modelle.html#m-AgendaItemListUpdate">AgendaItemListUpdate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-AgendaItemListUpdate">AgendaItemListUpdate</a>&gt;</span></code></td><td>Body</td><td></td><td>Complete replacement list in the intended order.</td></tr><tr><td><code><span class="py">name</span><span class="rs">&quot;name&quot;</span></code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Body</td><td>ja</td><td>Template name.</td></tr><tr><td><code><span class="py">series</span><span class="rs">&quot;series&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Optional free-text series name.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-Agenda">Agenda</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.agenda_templates.update(<span class="t-number">35</span>, calendar_id=<span class="t-number">1</span>, name=<span class="t-string">&quot;Sunday Service Template&quot;</span>)
+print(result.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">AgendaTemplateUpdate</span> {
+    calendar_id: <span class="t-number">1</span>,
+    name: <span class="t-string">&quot;Sunday Service Template&quot;</span>.into(),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.agenda_templates().update(<span class="t-number">35</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result.name);</code></pre></div></div></article>
+<article class="op" id="op-delete-agendatemplates-agendaId"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/agendatemplates/{agendaId}</code></h4><p class="call"><code><span class="py">client.agenda_templates.delete()</span><span class="rs">client.agenda_templates().delete()</span></code><span class="rs alt">mit Filtern: <code>.delete_with(&amp;DeleteAgendatemplatesAgendaIdQuery)</code></span></p><p class="summary">Delete agenda template</p><div class="desc"><p>Deletes an unlocked agenda template. Previously copied event agendas retain their independent content. Requires a super administrator or &quot;edit agenda templates&quot; for the template calendar. Passing <code>dryRun</code>=<code>true</code> still deletes the template; this endpoint does not offer a deletion preview.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code>dry_run</code></td><td class="type"><code>bool</code></td><td>Query</td><td></td><td>Accepted but ignored.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.agenda_templates.delete(<span class="t-number">35</span>)</code></pre><pre class="rs"><code>client.agenda_templates().delete(<span class="t-number">35</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-agendatemplates-agendaId-export"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/agendatemplates/{agendaId}/export</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.agenda_templates.export()</span><span class="rs">client.agenda_templates().export()</span></code><span class="rs alt">Query: <code>PostAgendatemplatesAgendaIdExportQuery</code></span></p><p class="summary">Export agenda template</p><div class="desc"><p>Generates a presenter import archive from an agenda template. Requires a super administrator or &quot;view agenda&quot;, &quot;edit agenda&quot; or &quot;edit agenda templates&quot; for its calendar. Locked and unlocked agendas can be exported. Exports of unlocked agendas have a DRAFT label in the generated export name.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code>format</code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Query</td><td>ja</td><td>Target presenter format.</td></tr><tr><td><code><span class="py">append_arrangement</span><span class="rs">&quot;appendArrangement&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td>ja</td><td>Append the selected arrangement name to exported song captions and generated fallback file names.</td></tr><tr><td><code><span class="py">export_songs</span><span class="rs">&quot;exportSongs&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td>ja</td><td>Include available song files for the target software.</td></tr><tr><td><code><span class="py">with_category</span><span class="rs">&quot;withCategory&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td>ja</td><td>For <code>SONG_BEAMER</code> with <code>exportSongs</code>=<code>false</code>, prefix generated song file references with the song category as a directory.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-AgendaExport">AgendaExport</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>agenda_template = client.agenda_templates.export(
+    <span class="t-number">35</span>,
+    format=<span class="t-string">&quot;SONG_BEAMER&quot;</span>,
+    append_arrangement=<span class="t-kw">True</span>,
+    export_songs=<span class="t-kw">True</span>,
+    with_category=<span class="t-kw">False</span>,
+)
+print(agenda_template.url)</code></pre><pre class="rs"><code><span class="t-kw">let</span> query = <span class="t-type">PostAgendatemplatesAgendaIdExportQuery</span> {
+    format: <span class="t-kw">Some</span>(<span class="t-string">&quot;SONG_BEAMER&quot;</span>.into()),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> body = models::<span class="t-type">AgendaExportCreate</span> {
+    append_arrangement: <span class="t-kw">true</span>,
+    export_songs: <span class="t-kw">true</span>,
+    with_category: <span class="t-kw">false</span>,
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> agenda_template = client.agenda_templates().export(<span class="t-number">35</span>, &amp;query, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, agenda_template.url);</code></pre></div></div></article>
+<article class="op" id="op-post-agendatemplates-agendaId-items"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/agendatemplates/{agendaId}/items</code></h4><p class="call"><code><span class="py">client.agenda_templates.items.create()</span><span class="rs">client.agenda_templates().items().create()</span></code><span class="rs alt">mit Filtern: <code>.create_with(&amp;PostAgendatemplatesAgendaIdItemsQuery)</code></span></p><p class="summary">Create agenda template item</p><div class="desc"><p>Adds a header, text or song item to an existing agenda template. Without <code>before_id</code> or <code>after_id</code>, the new item is appended. Use at most one of <code>before_id</code> and <code>after_id</code>, referring to an item in the same template. Relative positioning can adjust <code>eventStartPosition</code>. Requires a super administrator or &quot;edit agenda templates&quot; for the template calendar.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code>before_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item before this existing item in the same agenda.</td></tr><tr><td><code>after_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item after this existing item in the same agenda.</td></tr><tr><td><code>sort_key</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Accepted and validated as an integer, but not applied by the item service.</td></tr><tr><td><code>body</code></td><td class="type"><code><span class="py">Union[<a href="modelle.html#m-AgendaItemInputHeader">AgendaItemInputHeader</a>, <a href="modelle.html#m-AgendaItemInputSong">AgendaItemInputSong</a>, <a href="modelle.html#m-AgendaItemInputText">AgendaItemInputText</a>]</span><span class="rs">serde_json::Value</span></code></td><td>Body</td><td>ja</td><td></td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">Union[<a href="modelle.html#m-AgendaItemText">AgendaItemText</a>, <a href="modelle.html#m-AgendaItemSong">AgendaItemSong</a>, <a href="modelle.html#m-AgendaItemHeader">AgendaItemHeader</a>]</span><span class="rs">serde_json::Value</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.agenda_templates.items.create(
+    <span class="t-number">35</span>,
+    body=ct.models.<span class="t-type">AgendaItemInputHeader</span>.model_validate({<span class="t-string">&quot;type&quot;</span>: <span class="t-string">&quot;header&quot;</span>}),
+)
+print(result)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = serde_json::<span class="t-macro">json!</span>({
+    <span class="t-string">&quot;type&quot;</span>: <span class="t-string">&quot;header&quot;</span>
+});
+<span class="t-kw">let</span> result = client.agenda_templates().items().create(<span class="t-number">35</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result);</code></pre></div></div></article>
+<article class="op" id="op-put-agendatemplates-agendaId-items-itemId"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/agendatemplates/{agendaId}/items/{itemId}</code></h4><p class="call"><code><span class="py">client.agenda_templates.items.update()</span><span class="rs">client.agenda_templates().items().update()</span></code><span class="rs alt">mit Filtern: <code>.update_with(&amp;PutAgendatemplatesAgendaIdItemsItemIdQuery)</code></span><span class="badge warn">veraltet</span></p><p class="summary">Update agenda template item</p><div class="desc"><p>Deprecated; use <code>PATCH /agendatemplates/{agendaId}/items/{itemId}</code> for partial updates. Updates one item in an agenda template. The item must belong to this template. Without <code>before_id</code> or <code>after_id</code> its position is retained. Moving an item still requires type and, for a song, <code>arrangementId</code>; this is not a position-only patch. Requires a super administrator or &quot;edit agenda templates&quot; for the template calendar.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr><tr><td><code>before_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item before this existing item in the same agenda.</td></tr><tr><td><code>after_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item after this existing item in the same agenda.</td></tr><tr><td><code>sort_key</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Accepted and validated as an integer, but not applied by the item service.</td></tr><tr><td><code>body</code></td><td class="type"><code><span class="py">Union[<a href="modelle.html#m-AgendaItemInputHeader">AgendaItemInputHeader</a>, <a href="modelle.html#m-AgendaItemInputSong">AgendaItemInputSong</a>, <a href="modelle.html#m-AgendaItemInputText">AgendaItemInputText</a>]</span><span class="rs">serde_json::Value</span></code></td><td>Body</td><td>ja</td><td></td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">Union[<a href="modelle.html#m-AgendaItemText">AgendaItemText</a>, <a href="modelle.html#m-AgendaItemSong">AgendaItemSong</a>, <a href="modelle.html#m-AgendaItemHeader">AgendaItemHeader</a>]</span><span class="rs">serde_json::Value</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.agenda_templates.items.update(
+    <span class="t-number">35</span>,
+    <span class="t-number">123</span>,
+    body=ct.models.<span class="t-type">AgendaItemInputHeader</span>.model_validate({<span class="t-string">&quot;type&quot;</span>: <span class="t-string">&quot;header&quot;</span>}),
+)
+print(result)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = serde_json::<span class="t-macro">json!</span>({
+    <span class="t-string">&quot;type&quot;</span>: <span class="t-string">&quot;header&quot;</span>
+});
+<span class="t-kw">let</span> result = client.agenda_templates().items().update(<span class="t-number">35</span>, <span class="t-number">123</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result);</code></pre></div></div></article>
+<article class="op" id="op-patch-agendatemplates-agendaId-items-itemId"><div class="prose"><h4><span class="verb v-patch">PATCH</span><code class="path">/agendatemplates/{agendaId}/items/{itemId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.agenda_templates.items.patch()</span><span class="rs">client.agenda_templates().items().patch()</span></code><span class="rs alt">mit Filtern: <code>.patch_with(&amp;PatchAgendatemplatesAgendaIdItemsItemIdQuery)</code></span></p><p class="summary">Partially update agenda template item</p><div class="desc"><p>Partially updates or moves one item in an unlocked agenda template. Omitted fields and, without a position reference, item order are preserved. Requires a super administrator or &quot;edit agenda templates&quot; for the template calendar.</p></div><details><summary>14 Parameter anzeigen</summary><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr><tr><td><code>before_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item before this existing item in the same agenda.</td></tr><tr><td><code>after_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item after this existing item in the same agenda.</td></tr><tr><td><code><span class="py">after_id_2</span><span class="rs">&quot;after_id&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>ID of the item to place this item after, in the same agenda.</td></tr><tr><td><code><span class="py">arrangement_id</span><span class="rs">&quot;arrangementId&quot;</span></code></td><td class="type"><code><span class="py">Optional[int]</span><span class="rs">Option&lt;i64&gt;</span></code></td><td>Body</td><td></td><td>Selected song arrangement.</td></tr><tr><td><code><span class="py">before_id_2</span><span class="rs">&quot;before_id&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>ID of the item to place this item before, in the same agenda.</td></tr><tr><td><code><span class="py">duration</span><span class="rs">&quot;duration&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>Duration in seconds. For headers, zero selects automatic calculation from visible section items; a positive value overrides it.</td></tr><tr><td><code><span class="py">event_start_position</span><span class="rs">&quot;eventStartPosition&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>Number of items before the event begins after this move.</td></tr><tr><td><code><span class="py">note</span><span class="rs">&quot;note&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td></td></tr><tr><td><code><span class="py">responsible</span><span class="rs">&quot;responsible&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Free text with optional service placeholders.</td></tr><tr><td><code><span class="py">service_group_notes</span><span class="rs">&quot;serviceGroupNotes&quot;</span></code></td><td class="type"><code><span class="py">List[<a href="modelle.html#m-AgendaServiceGroupNoteCreate">AgendaServiceGroupNoteCreate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-AgendaServiceGroupNoteCreate">AgendaServiceGroupNoteCreate</a>&gt;</span></code></td><td>Body</td><td></td><td>Replaces all service-group notes for the item.</td></tr><tr><td><code><span class="py">title</span><span class="rs">&quot;title&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td></td></tr><tr><td><code><span class="py">type_</span><span class="rs">&quot;type&quot;</span></code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Body</td><td></td><td></td></tr></tbody></table></div></details><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">Union[<a href="modelle.html#m-AgendaItemText">AgendaItemText</a>, <a href="modelle.html#m-AgendaItemSong">AgendaItemSong</a>, <a href="modelle.html#m-AgendaItemHeader">AgendaItemHeader</a>]</span><span class="rs">serde_json::Value</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.agenda_templates.items.patch(<span class="t-number">35</span>, <span class="t-number">123</span>, title=<span class="t-string">&quot;Opening song&quot;</span>)
+print(result)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">AgendaItemPatch</span> {
+    title: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Opening song&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.agenda_templates().items().patch(<span class="t-number">35</span>, <span class="t-number">123</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result);</code></pre></div></div></article>
+<article class="op" id="op-delete-agendatemplates-agendaId-items-itemId"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/agendatemplates/{agendaId}/items/{itemId}</code></h4><p class="call"><code><span class="py">client.agenda_templates.items.delete()</span><span class="rs">client.agenda_templates().items().delete()</span></code></p><p class="summary">Delete agenda template item</p><div class="desc"><p>Removes one item from the template, including its service-group notes. Other items remain. Repeating the deletion returns <code>404</code> because the item no longer exists. Requires a super administrator or &quot;edit agenda templates&quot; for the template calendar.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.agenda_templates.items.delete(<span class="t-number">35</span>, <span class="t-number">123</span>)</code></pre><pre class="rs"><code>client.agenda_templates().items().delete(<span class="t-number">35</span>, <span class="t-number">123</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-put-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.agenda_templates.items.service_groups.update()</span><span class="rs">client.agenda_templates().items().service_groups().update()</span></code></p><p class="summary">Add or update service group note for agenda template item</p><div class="desc"><p>Creates or replaces the note for one service group on a template item. Notes for other service groups and the remaining item content are retained. Template reads return service-group notes without filtering by service-group visibility. Requires a super administrator or &quot;edit agenda templates&quot; for the template calendar.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr><tr><td><code>service_group_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service group</td></tr><tr><td><code><span class="py">note</span><span class="rs">&quot;note&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Note text for the service group.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.agenda_templates.items.service_groups.update(
+    <span class="t-number">35</span>,
+    <span class="t-number">123</span>,
+    <span class="t-number">13</span>,
+    note=<span class="t-string">&quot;Remember to bring the sheet music&quot;</span>,
+)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">AgendaServiceGroupNoteUpdate</span> {
+    note: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Remember to bring the sheet music&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+client.agenda_templates().items().service_groups().update(<span class="t-number">35</span>, <span class="t-number">123</span>, <span class="t-number">13</span>, &amp;body)?;</code></pre></div></div></article>
+<article class="op" id="op-delete-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/agendatemplates/{agendaId}/items/{itemId}/servicegroups/{serviceGroupId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.agenda_templates.items.service_groups.delete()</span><span class="rs">client.agenda_templates().items().service_groups().delete()</span></code></p><p class="summary">Delete service group note from agenda template item</p><div class="desc"><p>Removes the note for one service group on a template item. An already absent note still returns <code>204</code>; an absent item returns <code>404</code>. Notes for other service groups and the remaining item content are retained. Template reads return service-group notes without filtering by service-group visibility. Requires a super administrator or &quot;edit agenda templates&quot; for the template calendar.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>agenda_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr><tr><td><code>service_group_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service group</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.agenda_templates.items.service_groups.delete(<span class="t-number">35</span>, <span class="t-number">123</span>, <span class="t-number">13</span>)</code></pre><pre class="rs"><code>client.agenda_templates().items().service_groups().delete(<span class="t-number">35</span>, <span class="t-number">123</span>, <span class="t-number">13</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-agendas-send"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/agendas/send</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.agendas.send()</span><span class="rs">client.agendas().send()</span></code><span class="badge warn">veraltet</span></p><p class="summary">Send agenda email to recipients</p><div class="desc"><p>Deprecated compatibility endpoint for <code>POST /events/send</code>. Recipients are filtered to selected participants in visible service groups or other selected people the sender may view and the response reports the effective scope. <code>sendCopyToMe</code> can add the sender. Events do not have to share an agenda. Agenda links are included for events whose agenda the sender may view.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code><span class="py">body</span><span class="rs">&quot;body&quot;</span></code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Body</td><td>ja</td><td>HTML email body. ChurchTools appends buttons for all supplied events and any requested, available agenda and file links.</td></tr><tr><td><code><span class="py">event_ids</span><span class="rs">&quot;eventIds&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td>ja</td><td>Events used to resolve participating recipients and message links.</td></tr><tr><td><code><span class="py">recipients</span><span class="rs">&quot;recipients&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td>ja</td><td>Selected person IDs. Only selected participants in visible service groups of the loaded events, or selected people the sender may otherwise view, receive the message.</td></tr><tr><td><code><span class="py">send_copy_to_me</span><span class="rs">&quot;sendCopyToMe&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Also include the currently logged-in person as a recipient, even if their ID is absent from recipients.</td></tr><tr><td><code><span class="py">subject</span><span class="rs">&quot;subject&quot;</span></code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Body</td><td>ja</td><td>Email subject.</td></tr><tr><td><code><span class="py">append_agenda_button</span><span class="rs">&quot;appendAgendaButton&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Append links for supplied events that have an agenda and for whose calendar the sender has &quot;view agenda&quot; permission.</td></tr><tr><td><code><span class="py">files</span><span class="rs">&quot;files&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td></td><td>File IDs to list as links in the message body.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-EventMailSendResult">EventMailSendResult</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>agenda = client.agendas.send(
+    body=<span class="t-string">&quot;&lt;p&gt;Please review the updated agenda for Sunday.&lt;/p&gt;&quot;</span>,
+    event_ids=[<span class="t-number">31</span>, <span class="t-number">32</span>],
+    recipients=[<span class="t-number">40</span>, <span class="t-number">41</span>],
+    subject=<span class="t-string">&quot;Updated Sunday agenda&quot;</span>,
+)
+print(agenda)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">AgendaMailCreate</span> {
+    body: <span class="t-string">&quot;&lt;p&gt;Please review the updated agenda for Sunday.&lt;/p&gt;&quot;</span>.into(),
+    event_ids: <span class="t-macro">vec!</span>[<span class="t-number">31</span>, <span class="t-number">32</span>],
+    recipients: <span class="t-macro">vec!</span>[<span class="t-number">40</span>, <span class="t-number">41</span>],
+    subject: <span class="t-string">&quot;Updated Sunday agenda&quot;</span>.into(),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> agenda = client.agendas().send(&amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, agenda);</code></pre></div></div></article>
+<article class="op" id="op-get-events-id-agenda-songs"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{eventId}/agenda/songs</code></h4><p class="call"><code><span class="py">client.events.agenda.list_songs()</span><span class="rs">client.events().agenda().list_songs()</span></code></p><p class="summary">Get songs referenced by an agenda</p><div class="desc"><p>Returns the distinct songs referenced by song items with an assigned arrangement in the event&#x27;s agenda. Includes songs from positions hidden for this event because the complete shared agenda is inspected. Multiple positions or arrangements referring to one song produce one song record. Each record includes all arrangements of that song, not only the arrangement selected in the agenda.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-Song">Song</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-Song">Song</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> song <span class="t-kw">in</span> client.events.agenda.list_songs(<span class="t-number">42</span>):
+    print(song.name)</code></pre><pre class="rs"><code><span class="t-kw">for</span> song <span class="t-kw">in</span> client.events().agenda().list_songs(<span class="t-number">42</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, song.name);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-events-id-agenda"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{eventId}/agenda</code></h4><p class="call"><code><span class="py">client.events.agenda.get()</span><span class="rs">client.events().agenda().get()</span></code></p><p class="summary">Get agenda for event</p><div class="desc"><p>Returns the event&#x27;s running plan, including all ordered items, shared lock state and calculated times for linked events. Header, text and song items use different response fields; hidden items remain in <code>items</code> with a <code>null</code> entry in <code>startTimes</code>. Responsibility placeholders are resolved for the requested event and service-group notes are visibility-filtered.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-Agenda">Agenda</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>agenda = client.events.agenda.get(<span class="t-number">42</span>)
+print(agenda.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> agenda = client.events().agenda().get(<span class="t-number">42</span>)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, agenda.name);</code></pre></div></div></article>
+<article class="op" id="op-put-events-id-agenda"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}/agenda</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.agenda.update()</span><span class="rs">client.events().agenda().update()</span></code><span class="rs alt">mit Filtern: <code>.update_with(&amp;PutEventsIdAgendaQuery)</code></span></p><p class="summary">Create or update agenda</p><div class="desc"><p>Creates an agenda for an event that has none, or updates its existing agenda. The operation always returns <code>200</code>. Supply <code>calendarId</code> when creating without a copy source. On update, the agenda must be unlocked; changes to a shared agenda affect every linked event. Requires agenda editing permission for the target and viewing permission for a selected source agenda or template.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>template_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Agenda template to copy.</td></tr><tr><td><code><span class="py">event_id_2</span><span class="rs">event_id</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Event whose agenda should be copied.</td></tr><tr><td><code>body</code></td><td class="type"><code><span class="py">Union[<a href="modelle.html#m-AgendaCreate">AgendaCreate</a>, <a href="modelle.html#m-AgendaUpdate">AgendaUpdate</a>]</span><span class="rs">serde_json::Value</span></code></td><td>Body</td><td></td><td></td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-Agenda">Agenda</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.agenda.update(<span class="t-number">42</span>)
+print(result.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = serde_json::<span class="t-macro">json!</span>({});
+<span class="t-kw">let</span> result = client.events().agenda().update(<span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result.name);</code></pre></div></div></article>
+<article class="op" id="op-delete-events-id-agenda"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/events/{eventId}/agenda</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.agenda.delete()</span><span class="rs">client.events().agenda().delete()</span></code></p><p class="summary">Detach the agenda from an event</p><div class="desc"><p>Removes only the link between the event and its agenda. Other events sharing this agenda retain their links and content. If no event links remain, the unused agenda is cleaned up later. A locked agenda can also be detached. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.agenda.delete(<span class="t-number">42</span>)</code></pre><pre class="rs"><code>client.events().agenda().delete(<span class="t-number">42</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-agenda-export"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/agenda/export</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.agenda.export()</span><span class="rs">client.events().agenda().export()</span></code><span class="rs alt">Query: <code>PostEventsIdAgendaExportQuery</code></span></p><p class="summary">Export event agenda</p><div class="desc"><p>Generates a presenter import archive for an event agenda. Requires a super administrator, an event administrator, &quot;view agenda&quot; or &quot;edit agenda&quot; for the event calendar, or involvement in the event. The current exporters use all items from the shared agenda, including items hidden for the requested event; the archive is not filtered to that event&#x27;s visible positions. Locked and unlocked agendas can be exported.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>format</code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Query</td><td>ja</td><td>Target presenter format.</td></tr><tr><td><code><span class="py">append_arrangement</span><span class="rs">&quot;appendArrangement&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td>ja</td><td>Append the selected arrangement name to exported song captions and generated fallback file names.</td></tr><tr><td><code><span class="py">export_songs</span><span class="rs">&quot;exportSongs&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td>ja</td><td>Include available song files for the target software.</td></tr><tr><td><code><span class="py">with_category</span><span class="rs">&quot;withCategory&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td>ja</td><td>For <code>SONG_BEAMER</code> with <code>exportSongs</code>=<code>false</code>, prefix generated song file references with the song category as a directory.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-AgendaExport">AgendaExport</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>agenda = client.events.agenda.export(
+    <span class="t-number">42</span>,
+    format=<span class="t-string">&quot;SONG_BEAMER&quot;</span>,
+    append_arrangement=<span class="t-kw">True</span>,
+    export_songs=<span class="t-kw">True</span>,
+    with_category=<span class="t-kw">False</span>,
+)
+print(agenda.url)</code></pre><pre class="rs"><code><span class="t-kw">let</span> query = <span class="t-type">PostEventsIdAgendaExportQuery</span> {
+    format: <span class="t-kw">Some</span>(<span class="t-string">&quot;SONG_BEAMER&quot;</span>.into()),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> body = models::<span class="t-type">AgendaExportCreate</span> {
+    append_arrangement: <span class="t-kw">true</span>,
+    export_songs: <span class="t-kw">true</span>,
+    with_category: <span class="t-kw">false</span>,
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> agenda = client.events().agenda().export(<span class="t-number">42</span>, &amp;query, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, agenda.url);</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-agenda-integrate"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/agenda/integrate</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.agenda.integrate()</span><span class="rs">client.events().agenda().integrate()</span></code><span class="rs alt">Query: <code>PostEventsIdAgendaIntegrateQuery</code></span></p><p class="summary">Integrate agenda with another event</p><div class="desc"><p>Links the target event in the path to the existing agenda of the source event given by <code>event_id</code>. This creates a shared agenda, not a copy: item IDs, content and lock state are shared with all already linked events. Event dates remain independent and item times are calculated per event. Hidden-item settings of the source event are not copied to the new link. Requires agenda editing permission for the target and agenda viewing permission for the source.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code><span class="py">event_id_2</span><span class="rs">event_id</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td>ja</td><td>Source event ID. Its agenda is shared with the target event in the path; the two event IDs must differ.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-Agenda">Agenda</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>agenda = client.events.agenda.integrate(<span class="t-number">42</span>, event_id_2=<span class="t-number">1337</span>)
+print(agenda.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> query = <span class="t-type">PostEventsIdAgendaIntegrateQuery</span> {
+    event_id: <span class="t-kw">Some</span>(<span class="t-number">1337</span>),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> agenda = client.events().agenda().integrate(<span class="t-number">42</span>, &amp;query)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, agenda.name);</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-agenda-lock"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/agenda/lock</code></h4><p class="call"><code><span class="py">client.events.agenda.lock()</span><span class="rs">client.events().agenda().lock()</span></code></p><p class="summary">Lock a shared agenda</p><div class="desc"><p>Locks the event&#x27;s agenda against content changes. Events integrated with this event share the same agenda and therefore the same lock state. This is an agenda state, not a temporary editing lock owned by the caller. Calling lock on an already locked agenda returns <code>403</code>. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.agenda.lock(<span class="t-number">42</span>)</code></pre><pre class="rs"><code>client.events().agenda().lock(<span class="t-number">42</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-agenda-unlock"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/agenda/unlock</code></h4><p class="call"><code><span class="py">client.events.agenda.unlock()</span><span class="rs">client.events().agenda().unlock()</span></code></p><p class="summary">Unlock a shared agenda</p><div class="desc"><p>Unlocks the event&#x27;s agenda so its content can be edited again. The change applies to all events sharing the agenda. Calling unlock on an already unlocked agenda returns <code>403</code>. Any caller with the required agenda editing permission can unlock it; the caller need not be the person who locked it. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.agenda.unlock(<span class="t-number">42</span>)</code></pre><pre class="rs"><code>client.events().agenda().unlock(<span class="t-number">42</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-agenda-items"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/agenda/items</code></h4><p class="call"><code><span class="py">client.events.agenda.items.create()</span><span class="rs">client.events().agenda().items().create()</span></code><span class="rs alt">mit Filtern: <code>.create_with(&amp;PostEventsIdAgendaItemsQuery)</code></span></p><p class="summary">Create agenda item</p><div class="desc"><p>Creates one header, text or song item in an existing, unlocked agenda. Without <code>before_id</code> or <code>after_id</code>, the item is appended. The agenda is not created automatically. Positioning references must belong to the same agenda. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>before_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item before this existing item in the same agenda.</td></tr><tr><td><code>after_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item after this existing item in the same agenda.</td></tr><tr><td><code>sort_key</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Accepted and validated as an integer, but not applied by the item service.</td></tr><tr><td><code>body</code></td><td class="type"><code><span class="py">Union[<a href="modelle.html#m-AgendaItemInputHeader">AgendaItemInputHeader</a>, <a href="modelle.html#m-AgendaItemInputSong">AgendaItemInputSong</a>, <a href="modelle.html#m-AgendaItemInputText">AgendaItemInputText</a>]</span><span class="rs">serde_json::Value</span></code></td><td>Body</td><td>ja</td><td></td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">Union[<a href="modelle.html#m-AgendaItemText">AgendaItemText</a>, <a href="modelle.html#m-AgendaItemSong">AgendaItemSong</a>, <a href="modelle.html#m-AgendaItemHeader">AgendaItemHeader</a>]</span><span class="rs">serde_json::Value</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.agenda.items.create(
+    <span class="t-number">42</span>,
+    body=ct.models.<span class="t-type">AgendaItemInputHeader</span>.model_validate({<span class="t-string">&quot;type&quot;</span>: <span class="t-string">&quot;header&quot;</span>}),
+)
+print(result)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = serde_json::<span class="t-macro">json!</span>({
+    <span class="t-string">&quot;type&quot;</span>: <span class="t-string">&quot;header&quot;</span>
+});
+<span class="t-kw">let</span> result = client.events().agenda().items().create(<span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result);</code></pre></div></div></article>
+<article class="op" id="op-put-events-id-agenda-items-id"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}/agenda/items/{itemId}</code></h4><p class="call"><code><span class="py">client.events.agenda.items.update()</span><span class="rs">client.events().agenda().items().update()</span></code><span class="rs alt">mit Filtern: <code>.update_with(&amp;PutEventsIdAgendaItemsIdQuery)</code></span><span class="badge warn">veraltet</span></p><p class="summary">Update agenda item</p><div class="desc"><p>Deprecated; use <code>PATCH /events/{eventId}/agenda/items/{itemId}</code> for partial updates. Updates one item in an existing, unlocked agenda. The item must belong to the event&#x27;s agenda. Without <code>before_id</code> or <code>after_id</code>, its order is preserved. To move an item, send its content fields as well: this is not a position-only PATCH. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr><tr><td><code>before_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item before this existing item in the same agenda.</td></tr><tr><td><code>after_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item after this existing item in the same agenda.</td></tr><tr><td><code>sort_key</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Accepted and validated as an integer, but not applied by the item service.</td></tr><tr><td><code>body</code></td><td class="type"><code><span class="py">Union[<a href="modelle.html#m-AgendaItemInputHeader">AgendaItemInputHeader</a>, <a href="modelle.html#m-AgendaItemInputSong">AgendaItemInputSong</a>, <a href="modelle.html#m-AgendaItemInputText">AgendaItemInputText</a>]</span><span class="rs">serde_json::Value</span></code></td><td>Body</td><td>ja</td><td></td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">Union[<a href="modelle.html#m-AgendaItemText">AgendaItemText</a>, <a href="modelle.html#m-AgendaItemSong">AgendaItemSong</a>, <a href="modelle.html#m-AgendaItemHeader">AgendaItemHeader</a>]</span><span class="rs">serde_json::Value</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.agenda.items.update(
+    <span class="t-number">42</span>,
+    <span class="t-number">123</span>,
+    body=ct.models.<span class="t-type">AgendaItemInputHeader</span>.model_validate({<span class="t-string">&quot;type&quot;</span>: <span class="t-string">&quot;header&quot;</span>}),
+)
+print(result)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = serde_json::<span class="t-macro">json!</span>({
+    <span class="t-string">&quot;type&quot;</span>: <span class="t-string">&quot;header&quot;</span>
+});
+<span class="t-kw">let</span> result = client.events().agenda().items().update(<span class="t-number">42</span>, <span class="t-number">123</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result);</code></pre></div></div></article>
+<article class="op" id="op-patch-events-eventId-agenda-items-itemId"><div class="prose"><h4><span class="verb v-patch">PATCH</span><code class="path">/events/{eventId}/agenda/items/{itemId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.agenda.items.patch()</span><span class="rs">client.events().agenda().items().patch()</span></code><span class="rs alt">mit Filtern: <code>.patch_with(&amp;PatchEventsEventIdAgendaItemsItemIdQuery)</code></span></p><p class="summary">Partially update agenda item</p><div class="desc"><p>Partially updates or moves one item within the event&#x27;s shared agenda. Omitted fields and, without a position reference, item order are preserved. Requires agenda editing access for the event. The agenda must be unlocked.</p></div><details><summary>14 Parameter anzeigen</summary><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr><tr><td><code>before_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item before this existing item in the same agenda.</td></tr><tr><td><code>after_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Place the item after this existing item in the same agenda.</td></tr><tr><td><code><span class="py">after_id_2</span><span class="rs">&quot;after_id&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>ID of the item to place this item after, in the same agenda.</td></tr><tr><td><code><span class="py">arrangement_id</span><span class="rs">&quot;arrangementId&quot;</span></code></td><td class="type"><code><span class="py">Optional[int]</span><span class="rs">Option&lt;i64&gt;</span></code></td><td>Body</td><td></td><td>Selected song arrangement.</td></tr><tr><td><code><span class="py">before_id_2</span><span class="rs">&quot;before_id&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>ID of the item to place this item before, in the same agenda.</td></tr><tr><td><code><span class="py">duration</span><span class="rs">&quot;duration&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>Duration in seconds. For headers, zero selects automatic calculation from visible section items; a positive value overrides it.</td></tr><tr><td><code><span class="py">event_start_position</span><span class="rs">&quot;eventStartPosition&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td></td><td>Number of items before the event begins after this move.</td></tr><tr><td><code><span class="py">note</span><span class="rs">&quot;note&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td></td></tr><tr><td><code><span class="py">responsible</span><span class="rs">&quot;responsible&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Free text with optional service placeholders.</td></tr><tr><td><code><span class="py">service_group_notes</span><span class="rs">&quot;serviceGroupNotes&quot;</span></code></td><td class="type"><code><span class="py">List[<a href="modelle.html#m-AgendaServiceGroupNoteCreate">AgendaServiceGroupNoteCreate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-AgendaServiceGroupNoteCreate">AgendaServiceGroupNoteCreate</a>&gt;</span></code></td><td>Body</td><td></td><td>Replaces all service-group notes for the item.</td></tr><tr><td><code><span class="py">title</span><span class="rs">&quot;title&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td></td></tr><tr><td><code><span class="py">type_</span><span class="rs">&quot;type&quot;</span></code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Body</td><td></td><td></td></tr></tbody></table></div></details><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">Union[<a href="modelle.html#m-AgendaItemText">AgendaItemText</a>, <a href="modelle.html#m-AgendaItemSong">AgendaItemSong</a>, <a href="modelle.html#m-AgendaItemHeader">AgendaItemHeader</a>]</span><span class="rs">serde_json::Value</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.agenda.items.patch(<span class="t-number">42</span>, <span class="t-number">123</span>, title=<span class="t-string">&quot;Opening song&quot;</span>)
+print(result)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">AgendaItemPatch</span> {
+    title: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Opening song&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.events().agenda().items().patch(<span class="t-number">42</span>, <span class="t-number">123</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result);</code></pre></div></div></article>
+<article class="op" id="op-delete-events-id-agenda-items-id"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/events/{eventId}/agenda/items/{itemId}</code></h4><p class="call"><code><span class="py">client.events.agenda.items.delete()</span><span class="rs">client.events().agenda().items().delete()</span></code></p><p class="summary">Delete an item from a shared agenda</p><div class="desc"><p>Permanently removes an item from the agenda, affecting every event sharing that agenda. The agenda must be unlocked and the item must belong to the event&#x27;s agenda. Repeating the deletion returns <code>404</code> once the item no longer exists. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.agenda.items.delete(<span class="t-number">42</span>, <span class="t-number">123</span>)</code></pre><pre class="rs"><code>client.events().agenda().items().delete(<span class="t-number">42</span>, <span class="t-number">123</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-agenda-items-id-hide"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/agenda/items/{itemId}/hide</code></h4><p class="call"><code><span class="py">client.events.agenda.items.hide()</span><span class="rs">client.events().agenda().items().hide()</span></code></p><p class="summary">Hide an agenda item for one event</p><div class="desc"><p>Omits an agenda item only for the event in the path. The item remains part of the shared agenda and its visibility in other integrated events is unchanged. It no longer contributes to the timing of this event. Agenda responses still contain the item: its <code>startTimes</code> entry for this event is <code>null</code>. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.agenda.items.hide(<span class="t-number">42</span>, <span class="t-number">123</span>)</code></pre><pre class="rs"><code>client.events().agenda().items().hide(<span class="t-number">42</span>, <span class="t-number">123</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-agenda-items-id-unhide"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/agenda/items/{itemId}/unhide</code></h4><p class="call"><code><span class="py">client.events.agenda.items.unhide()</span><span class="rs">client.events().agenda().items().unhide()</span></code></p><p class="summary">Show an agenda item for one event</p><div class="desc"><p>Includes a previously hidden item in the event&#x27;s agenda timing again. This only changes its visibility for the event in the path; other integrated events retain their visibility settings. The agenda must be unlocked and the item must belong to it. Showing an already visible item succeeds with <code>204</code>. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.agenda.items.unhide(<span class="t-number">42</span>, <span class="t-number">123</span>)</code></pre><pre class="rs"><code>client.events().agenda().items().unhide(<span class="t-number">42</span>, <span class="t-number">123</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-put-events-id-agenda-items-id-servicegroups-id"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.agenda.items.service_groups.update()</span><span class="rs">client.events().agenda().items().service_groups().update()</span></code></p><p class="summary">Add or update service group note for agenda item</p><div class="desc"><p>Creates or replaces the note for one service group on an existing agenda item. Other service-group notes and item content are retained. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr><tr><td><code>service_group_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service group</td></tr><tr><td><code><span class="py">note</span><span class="rs">&quot;note&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Note text for the service group.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.agenda.items.service_groups.update(
+    <span class="t-number">42</span>,
+    <span class="t-number">123</span>,
+    <span class="t-number">13</span>,
+    note=<span class="t-string">&quot;Remember to bring the sheet music&quot;</span>,
+)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">AgendaServiceGroupNoteUpdate</span> {
+    note: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Remember to bring the sheet music&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+client.events().agenda().items().service_groups().update(<span class="t-number">42</span>, <span class="t-number">123</span>, <span class="t-number">13</span>, &amp;body)?;</code></pre></div></div></article>
+<article class="op" id="op-delete-events-id-agenda-items-id-servicegroups-id"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/events/{eventId}/agenda/items/{itemId}/servicegroups/{serviceGroupId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.agenda.items.service_groups.delete()</span><span class="rs">client.events().agenda().items().service_groups().delete()</span></code></p><p class="summary">Delete service group note from agenda item</p><div class="desc"><p>Removes only the note for the service group in the path. If that note is already absent, the request still succeeds with <code>204</code>. Other service-group notes and item content are retained. The agenda must be unlocked and the item must belong to it. Requires agenda editing access for the event.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>item_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of agenda item</td></tr><tr><td><code>service_group_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service group</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.agenda.items.service_groups.delete(<span class="t-number">42</span>, <span class="t-number">123</span>, <span class="t-number">13</span>)</code></pre><pre class="rs"><code>client.events().agenda().items().service_groups().delete(<span class="t-number">42</span>, <span class="t-number">123</span>, <span class="t-number">13</span>)?;</code></pre></div></div></article></section>
+<nav class="pager" aria-label="Bereiche"><a href="referenz-service-service-groups.html">← Service &amp; Service Groups</a><a href="referenz-song.html">Song →</a></nav>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(() => {
+  const app = document.getElementById("app");
+  const switches = document.querySelectorAll(".lang-switch button");
+
+  function setLang(lang, anchor) {
+    const before = anchor ? anchor.getBoundingClientRect().top : 0;
+    app.dataset.lang = lang;
+    switches.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.l === lang)));
+    try { localStorage.setItem("ct-lang", lang); } catch (e) {}
+    // Keep the clicked element in place although code heights above it change.
+    if (anchor) window.scrollBy(0, anchor.getBoundingClientRect().top - before);
+  }
+  try {
+    const saved = localStorage.getItem("ct-lang");
+    if (saved === "python" || saved === "rust") setLang(saved);
+  } catch (e) {}
+
+  document.addEventListener("click", (event) => {
+    const langButton = event.target.closest("[data-l]");
+    if (langButton) { setLang(langButton.dataset.l, langButton); return; }
+    const copy = event.target.closest(".copy");
+    if (copy) {
+      const pre = copy.closest(".code").querySelector(app.dataset.lang === "rust" ? "pre.rs" : "pre.py");
+      const done = () => { copy.textContent = "Kopiert"; setTimeout(() => (copy.textContent = "Kopieren"), 1500); };
+      const select = () => {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        copy.textContent = "Markiert";
+        setTimeout(() => (copy.textContent = "Kopieren"), 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pre.innerText).then(done, select);
+      } else select();
+    }
+    if (event.target.closest(".nav a")) closeNav();
+  });
+
+  // Light/dark: follows the system until chosen here; the choice is kept in localStorage.
+  const themeToggle = document.getElementById("theme-toggle");
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const isDark = () => (document.documentElement.dataset.theme || (systemDark.matches ? "dark" : "light")) === "dark";
+  function showTheme() {
+    const dark = isDark();
+    themeToggle.textContent = dark ? "☀" : "☾";
+    themeToggle.title = dark ? "Helles Design" : "Dunkles Design";
+    themeToggle.setAttribute("aria-label", themeToggle.title);
+  }
+  themeToggle.addEventListener("click", () => {
+    const theme = isDark() ? "light" : "dark";
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem("ct-theme", theme); } catch (e) {}
+    showTheme();
+  });
+  systemDark.addEventListener("change", showTheme);
+  showTheme();
+
+  // Navigation drawer on small screens
+  const nav = document.getElementById("nav");
+  const toggle = document.getElementById("nav-toggle");
+  function closeNav() { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  // Open a model when its link is followed, and align the target once more after the endpoints near it have been
+  // laid out with their real height (they are estimated until they come into view, see content-visibility).
+  // A model's fields are in a <template> until it is opened: 1,143 tables in the page would make every click slow.
+  document.addEventListener("toggle", (event) => {
+    const t = event.target.open && event.target.querySelector(":scope > template");
+    if (t) t.replaceWith(t.content);
+  }, true);
+  function openTarget() {
+    const id = location.hash.slice(1);
+    const el = id && document.getElementById(id);
+    if (!el) return;
+    if (el.tagName === "DETAILS") el.open = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => el.scrollIntoView()));
+  }
+  window.addEventListener("hashchange", openTarget);
+  // On a fresh load the browser jumps to the target only after parsing; align after that.
+  if (document.readyState === "complete") openTarget(); else window.addEventListener("load", openTarget);
+
+  // Search over all pages. The index (suche.js, ~200 KB) is loaded on first use; a <script> instead of fetch()
+  // keeps it working when the pages are opened from disk.
+  let entries = null;
+  function loadIndex() {
+    if (entries) return Promise.resolve(entries);
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "suche.js";
+      s.onload = () => { entries = window.CT_SEARCH || []; resolve(entries); };
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  const search = document.getElementById("search");
+  const hitList = document.getElementById("search-hits");
+  const VERBS = new Set(["get", "post", "put", "patch", "delete"]);
+  let selected = -1;
+  function showHits(hits, q) {
+    selected = hits.length ? 0 : -1;
+    hitList.replaceChildren(...hits.map(([label, sub, href, kind], i) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = href;
+      a.setAttribute("role", "option");
+      a.setAttribute("aria-selected", String(i === 0));
+      const b = document.createElement("b");
+      if (VERBS.has(kind)) {
+        const v = document.createElement("span");
+        v.className = `verb v-${kind}`;
+        v.textContent = kind.toUpperCase();
+        b.append(v);
+      }
+      b.append(label);
+      const s = document.createElement("span");
+      s.className = "sub";
+      s.textContent = sub;
+      a.append(b, s);
+      li.append(a);
+      return li;
+    }));
+    if (!hits.length) {
+      const li = document.createElement("li");
+      li.className = "none";
+      li.textContent = `Keine Treffer für „${q}“. Suche nach einem Pfadteil wie members oder einem Methodennamen wie list_birthdays.`;
+      hitList.append(li);
+    }
+    hitList.hidden = false;
+    search.setAttribute("aria-expanded", "true");
+  }
+  function hideHits() { hitList.hidden = true; search.setAttribute("aria-expanded", "false"); }
+  function select(i) {
+    const options = hitList.querySelectorAll("a");
+    if (!options.length) return;
+    selected = (i + options.length) % options.length;
+    options.forEach((a, j) => a.setAttribute("aria-selected", String(j === selected)));
+    options[selected].scrollIntoView({ block: "nearest" });
+  }
+  let timer;
+  search.addEventListener("focus", () => { loadIndex().catch(() => {}); });
+  search.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      const q = search.value.trim().toLowerCase();
+      if (!q) { hideHits(); return; }
+      const all = await loadIndex().catch(() => []);
+      all.forEach((e) => { if (e.text === undefined) e.text = `${e[0]} ${e[1]} ${e[4]}`.toLowerCase(); });
+      if (search.value.trim().toLowerCase() !== q) return;
+      // Matches in the name first, then in the description; at most 40.
+      const first = [], second = [];
+      for (const e of all) {
+        if (e[0].toLowerCase().includes(q)) first.push(e);
+        else if (e.text.includes(q)) second.push(e);
+        if (first.length >= 40) break;
+      }
+      showHits(first.concat(second).slice(0, 40), search.value.trim());
+    }, 120);
+  });
+  search.addEventListener("keydown", (event) => {
+    if (hitList.hidden) return;
+    if (event.key === "ArrowDown") { event.preventDefault(); select(selected + 1); }
+    else if (event.key === "ArrowUp") { event.preventDefault(); select(selected - 1); }
+    else if (event.key === "Escape") { hideHits(); }
+    else if (event.key === "Enter") {
+      const a = hitList.querySelectorAll("a")[selected];
+      if (a) { event.preventDefault(); hideHits(); location.href = a.href; }
+    }
+  });
+  document.addEventListener("click", (event) => { if (!event.target.closest(".search")) hideHits(); });
+  hitList.addEventListener("click", (event) => { if (event.target.closest("a")) hideHits(); });
+
+  // Links from before the split into several pages (index.html#op-…, #m-…, #tag-…) lead to the right page.
+  const oldTarget = location.hash.slice(1);
+  const movedSections = { referenz: "referenz.html", modelle: "modelle.html" };
+  if (oldTarget && !document.getElementById(oldTarget) && movedSections[oldTarget]) {
+    location.replace(movedSections[oldTarget]);
+  } else if (oldTarget && !document.getElementById(oldTarget) && /^(op|m|tag)-/.test(oldTarget)) {
+    loadIndex().then((all) => {
+      const area = oldTarget.startsWith("tag-") && `referenz-${oldTarget.slice(4)}.html`;
+      const hit = all.find((e) => e[2].endsWith("#" + oldTarget) || e[2] === area);
+      if (hit) location.replace(hit[2]);
+    }, () => {});
+  }
+
+  // Highlight the current area in the navigation
+  const here = location.pathname.split("/").pop() || "index.html";
+  const links = new Map();
+  nav.querySelectorAll("a[href]").forEach((a) => {
+    const [page, id] = a.getAttribute("href").split("#");
+    if ((page || here) === here && id) links.set(id, a);
+  });
+  const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #lizenz, #weiter"));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const link = links.get(e.target.id);
+        if (!link) return;
+        nav.querySelectorAll("a.active").forEach((a) => a.classList.remove("active"));
+        link.classList.add("active");
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    observed.forEach((el) => io.observe(el));
+  }
+})();
+</script>
+
+</body>
+</html>

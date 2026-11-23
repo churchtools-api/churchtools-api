@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Event · churchtools-api</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Python- und Rust-Client für die ChurchTools-API: Grundlagen, Projekte und vollständige Referenz.">
+<script>
+  // Saved light/dark choice, applied before the first paint; without one the system setting applies.
+  try { const t = localStorage.getItem("ct-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: sticky top bar; left nav rail; each topic pairs prose (left) with a code panel (right) on wide screens, stacked below. */
+:root {
+  --bg: #f5f7f8;
+  --surface: #ffffff;
+  --fg: #18212b;
+  --muted: #586472;
+  --line: #dde3e8;
+  --accent: #0a6a73;
+  --accent-soft: #e2f0f1;
+  --code-bg: #111820;
+  --code-fg: #d8e2ea;
+  --code-bar: #1a232d;
+  --code-muted: #8795a5;
+  --t-kw: #7fd0d8;
+  --t-string: #b8df8e;
+  --t-number: #f0b873;
+  --t-comment: #7d8a9b;
+  --t-type: #c9b8ff;
+  --t-macro: #8fc6ff;
+  --v-get: #0a6a73;
+  --v-post: #2e7a34;
+  --v-put: #8f5c00;
+  --v-patch: #6a4dbd;
+  --v-delete: #b0281f;
+  --warn-bg: #fff2d9;
+  --warn-fg: #7a4b00;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --header-h: 3.5rem;
+  --nav-w: 16.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+    --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+    --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+    --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+    --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+  --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+  --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+  --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+  --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 15px/1.6 var(--font-body);
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--surface);
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+code { font-family: var(--font-mono); font-size: 0.86em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; margin: 0; }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  display: flex; align-items: center; gap: 1rem;
+  min-height: var(--header-h);
+  padding-block: 0.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; color: var(--fg); white-space: nowrap; }
+.brand b { font: 700 1.15rem/1 var(--font-display); letter-spacing: -0.01em; }
+.brand span { font: 400 0.78rem/1 var(--font-mono); color: var(--muted); }
+.search { flex: 1; max-width: 26rem; margin-left: auto; position: relative; }
+.search input {
+  width: 100%; padding: 0.45rem 0.75rem; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: inherit; font-size: 0.9rem;
+}
+.lang-switch { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.lang-switch button, .nav-toggle {
+  border: 0; background: transparent; color: var(--muted); font: 500 0.85rem/1 var(--font-body);
+  padding: 0.5rem 0.8rem; cursor: pointer;
+}
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.nav-toggle { display: none; border: 1px solid var(--line); border-radius: 6px; }
+.theme-toggle {
+  flex-shrink: 0; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--muted);
+  font: 500 1rem/1 var(--font-body); width: 2.2rem; height: 2.1rem; cursor: pointer;
+}
+.theme-toggle:hover { color: var(--fg); }
+
+/* Shell */
+.shell { display: grid; grid-template-columns: var(--nav-w) minmax(0, 1fr); }
+.nav {
+  position: sticky; top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0px));
+  overflow-y: auto; padding: 1.25rem 0.75rem 3rem max(16px, env(safe-area-inset-left, 0px));
+  border-right: 1px solid var(--line); font-size: 0.88rem;
+}
+.nav ul { list-style: none; margin: 0; padding: 0; }
+.nav .nav-chapter > a, .nav h2 {
+  display: block; margin: 1.1rem 0 0.35rem; font: 600 0.72rem/1.2 var(--font-body);
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-decoration: none;
+}
+.nav li li a, .nav-ref a {
+  display: flex; justify-content: space-between; gap: 0.5rem;
+  padding: 0.22rem 0.5rem; border-radius: 5px; color: var(--fg); text-decoration: none;
+}
+.nav a:hover, .nav a.active { background: var(--accent-soft); color: var(--accent); }
+.nav .count { color: var(--muted); font: 400 0.75rem/1.6 var(--font-mono); font-variant-numeric: tabular-nums; }
+
+main {
+  min-width: 0;
+  padding-block: 2rem 6rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.inner { max-width: 82rem; margin: 0 auto; display: grid; gap: 3.5rem; }
+
+/* Hero */
+.hero { display: grid; gap: 1rem; max-width: 46rem; padding-top: 0.5rem; }
+.hero h1 { font: 700 clamp(2rem, 4vw, 2.9rem)/1.05 var(--font-display); letter-spacing: -0.02em; }
+.hero .lead { font-size: 1.12rem; color: var(--muted); margin: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none;
+  font: 400 0.85rem/1.4 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.facts b { color: var(--fg); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta a { padding: 0.55rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; border: 1px solid var(--line); color: var(--fg); background: var(--surface); }
+.cta a.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+
+/* Chapters and topics */
+.chapter, .reference { display: grid; gap: 2.5rem; }
+.chapter > h2, .reference > h2 {
+  font: 700 1.85rem/1.1 var(--font-display); letter-spacing: -0.015em;
+  padding-top: 1.5rem; border-top: 1px solid var(--line);
+}
+.inner > .reference:first-child > h2 { border-top: 0; padding-top: 0; }
+.chapter > .lead, .reference > .lead { margin: -1.75rem 0 0; color: var(--muted); max-width: 60ch; }
+.topic, .op { display: grid; gap: 1.25rem 2.5rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1180px) {
+  .topic, .op { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: start; }
+  .example { position: sticky; top: calc(var(--header-h) + 1rem); }
+}
+.topic.no-code { grid-template-columns: minmax(0, 1fr); }
+.prose { min-width: 0; max-width: 65ch; }
+.prose h3 { font: 600 1.25rem/1.25 var(--font-display); margin-bottom: 0.6rem; }
+.prose p, .prose ul, .prose ol { margin: 0 0 0.85rem; }
+.prose li { margin-bottom: 0.3rem; }
+.prose code, .call code, td code {
+  background: var(--accent-soft); padding: 0.08em 0.35em; border-radius: 4px; color: var(--fg);
+}
+.aside { font-size: 0.85rem; color: var(--muted); margin: 0.5rem 0 0; }
+.example { min-width: 0; }
+
+/* Code panels */
+.code { background: var(--code-bg); border-radius: 8px; overflow: hidden; }
+.code-bar { display: flex; align-items: center; gap: 0.25rem; padding: 0.3rem 0.4rem; background: var(--code-bar); }
+.code-bar button {
+  border: 0; background: transparent; color: var(--code-muted); cursor: pointer;
+  font: 500 0.78rem/1 var(--font-body); padding: 0.45rem 0.65rem; border-radius: 5px;
+}
+.code-bar .copy { margin-left: auto; }
+.code-bar button:hover { color: var(--code-fg); }
+#app[data-lang="python"] .tab[data-l="python"],
+#app[data-lang="rust"] .tab[data-l="rust"] { color: var(--code-fg); background: var(--code-bg); }
+.code pre { margin: 0; padding: 0.9rem 1rem 1rem; overflow-x: auto; color: var(--code-fg);
+  font: 400 0.82rem/1.6 var(--font-mono); tab-size: 4; }
+.code pre code { font-size: inherit; }
+.t-kw { color: var(--t-kw); }
+.t-string { color: var(--t-string); }
+.t-number { color: var(--t-number); }
+.t-comment { color: var(--t-comment); font-style: italic; }
+.t-type { color: var(--t-type); }
+.t-macro { color: var(--t-macro); }
+
+/* Language visibility */
+#app[data-lang="python"] .rs, #app[data-lang="rust"] .py { display: none; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th { text-align: left; font: 600 0.72rem/1.3 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+th, td { padding: 0.45rem 0.6rem 0.45rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.type code { background: transparent; padding: 0; white-space: nowrap; }
+td.type a { color: var(--accent); }
+details > summary { cursor: pointer; color: var(--accent); font-size: 0.88rem; margin-bottom: 0.5rem; }
+
+/* Reference */
+.tag { display: grid; gap: 2rem; }
+.tag-head { display: grid; gap: 0.5rem; max-width: 65ch; }
+.tag-head h3 { font: 700 1.45rem/1.15 var(--font-display); }
+.tag-head p { margin: 0; color: var(--muted); }
+.tag-index ul { list-style: none; padding: 0; margin: 0; columns: 2 18rem; font-size: 0.82rem; }
+.tag-index li { break-inside: avoid; }
+.tag-index a { display: flex; gap: 0.5rem; align-items: baseline; text-decoration: none; color: var(--fg); padding: 0.1rem 0; }
+.op { padding-top: 1.75rem; border-top: 1px dashed var(--line); }
+.op h4 { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+.op .path { font-size: 0.95rem; font-weight: 500; word-break: break-all; }
+.verb {
+  font: 600 0.7rem/1 var(--font-mono); letter-spacing: 0.04em; padding: 0.3rem 0.45rem; border-radius: 4px;
+  border: 1px solid currentColor; min-width: 3.6rem; text-align: center; flex-shrink: 0;
+}
+.v-get { color: var(--v-get); } .v-post { color: var(--v-post); } .v-put { color: var(--v-put); }
+.v-patch { color: var(--v-patch); } .v-delete { color: var(--v-delete); }
+.call { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0 0 0.5rem; }
+.call code { word-break: break-all; }
+.call .alt { font-size: 0.82rem; color: var(--muted); }
+.summary { font-weight: 600; margin: 0 0 0.35rem; }
+.desc { color: var(--muted); font-size: 0.92rem; }
+.desc p { margin: 0 0 0.6rem; }
+.badge { font: 500 0.72rem/1 var(--font-body); padding: 0.28rem 0.5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+.badge.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.untested { color: var(--v-delete); font-weight: 700; text-decoration: none; margin-left: 0.15rem; vertical-align: super; font-size: 0.8em; line-height: 0; }
+a.untested:hover { text-decoration: underline; }
+.returns { font-size: 0.88rem; margin: 0; }
+.returns .label, .model .count { font: 600 0.72rem/1 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-right: 0.4rem; }
+.returns code a { color: var(--accent); }
+
+/* Models */
+.models { display: grid; gap: 0.25rem; }
+.model { border-bottom: 1px solid var(--line); padding: 0.4rem 0; }
+/* An area page can have 100+ endpoints: lay each out only when it scrolls into view. The size is a typical
+   height until then. */
+.op { content-visibility: auto; contain-intrinsic-block-size: auto 450px; }
+.model:not([open]) { content-visibility: auto; contain-intrinsic-block-size: auto 2.6rem; }
+.model > summary { display: flex; justify-content: space-between; gap: 1rem; color: var(--fg); margin: 0; }
+.model > summary code { font-size: 0.88rem; min-width: 0; overflow-wrap: anywhere; }
+.model[open] { padding-bottom: 1rem; }
+.model:target > summary code { color: var(--accent); }
+.model-doc { color: var(--muted); font-size: 0.9rem; max-width: 65ch; }
+
+/* Search results below the search box (the index of all pages is loaded on first use, see suche.js) */
+.search-hits {
+  position: absolute; top: calc(100% + 0.35rem); left: 0; right: 0; z-index: 30; margin: 0; padding: 0.3rem;
+  list-style: none; max-height: min(70vh, 32rem); overflow-y: auto; font-size: 0.86rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.15);
+}
+.search-hits a { display: grid; gap: 0.1rem; padding: 0.4rem 0.55rem; border-radius: 5px; color: var(--fg); text-decoration: none; }
+.search-hits a:hover, .search-hits a[aria-selected="true"] { background: var(--accent-soft); }
+.search-hits b { font-weight: 500; display: flex; gap: 0.5rem; align-items: baseline; min-width: 0; overflow-wrap: anywhere; }
+.search-hits b .verb { font-size: 0.62rem; min-width: 3.2rem; padding: 0.2rem 0.3rem; }
+.search-hits span.sub { color: var(--muted); font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search-hits .none { padding: 0.5rem 0.55rem; color: var(--muted); }
+/* Overview of the reference areas and links to the neighbouring areas */
+.areas { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.areas a { display: grid; gap: 0.3rem; align-content: start; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface); text-decoration: none; color: var(--fg); }
+.areas a b { color: var(--accent); display: flex; justify-content: space-between; gap: 0.5rem; }
+.areas a b .count { color: var(--muted); font: 400 0.78rem/1.6 var(--font-mono); }
+.areas a span { color: var(--muted); font-size: 0.88rem; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.pager a { text-decoration: none; }
+.next { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.next a { display: block; padding: 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--fg); }
+.next a b { display: block; color: var(--accent); margin-bottom: 0.25rem; }
+.next a span { color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .nav-toggle { display: block; }
+  .nav { display: none; position: fixed; z-index: 15; inset: calc(var(--header-h) + env(safe-area-inset-top, 0px)) 0 0 0;
+    height: auto; background: var(--surface); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .nav.open { display: block; }
+  .brand span { display: none; }
+}
+@media (max-width: 560px) {
+  .topbar { flex-wrap: wrap; }
+  .search { order: 3; flex-basis: 100%; max-width: none; }
+  :root { --header-h: 6.25rem; }
+}
+</style>
+
+<div id="app" data-lang="python">
+  <header class="topbar">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">Inhalt</button>
+    <a class="brand" href="index.html"><b>churchtools-api</b><span>ChurchTools 3.139.0 (build 32955)</span></a>
+    <div class="search">
+      <input id="search" type="search" placeholder="Endpunkt oder Modell suchen, z. B. members" aria-label="Dokumentation durchsuchen"
+        autocomplete="off" role="combobox" aria-expanded="false" aria-controls="search-hits">
+      <ul class="search-hits" id="search-hits" role="listbox" hidden></ul>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Sprache der Beispiele">
+      <button type="button" data-l="python" aria-pressed="true">Python</button>
+      <button type="button" data-l="rust" aria-pressed="false">Rust</button>
+    </div>
+    <button type="button" class="theme-toggle" id="theme-toggle"></button>
+  </header>
+
+  <div class="shell">
+    <nav class="nav" id="nav" aria-label="Inhalt">
+      <ul><li class="nav-chapter"><a href="index.html#einstieg">Einstieg</a><ul><li><a href="index.html#ueberblick">Worum es geht</a></li><li><a href="index.html#voraussetzungen">Was du brauchst</a></li><li><a href="index.html#installation">Installation</a></li><li><a href="index.html#schnellstart">Dein erster Aufruf</a></li></ul></li><li class="nav-chapter"><a href="index.html#grundlagen">Grundlagen</a><ul><li><a href="index.html#anmeldung">Client und Anmeldung</a></li><li><a href="index.html#drosseln">Anfragen drosseln</a></li><li><a href="index.html#aufbau">Wie Aufrufe aufgebaut sind</a></li><li><a href="index.html#parameter">Parameter übergeben</a></li><li><a href="index.html#rueckgaben">Rückgabewerte und Modelle</a></li><li><a href="index.html#listen">Listen und Seiten</a></li><li><a href="index.html#datum">Datum und Uhrzeit</a></li><li><a href="index.html#fehler">Fehler behandeln</a></li><li><a href="index.html#weglassen">Felder weglassen oder leeren</a></li><li><a href="index.html#uploads">Dateien hochladen und herunterladen</a></li><li><a href="index.html#zeitlimits">Zeitlimits und große Antworten</a></li><li><a href="index.html#rohzugriff">Endpunkte ohne generierte Methode</a></li><li><a href="index.html#versionen">ChurchTools-Versionen</a></li></ul></li><li class="nav-chapter"><a href="index.html#projekte">Projekte</a><ul><li><a href="index.html#projekt-monatsplan">Monatsplan aus öffentlichen Kalendern</a></li><li><a href="index.html#projekt-dienstplan">Dienstplan für den Gottesdienst</a></li><li><a href="index.html#projekt-geburtstage">Geburtstagsliste der Woche</a></li><li><a href="index.html#projekt-csv">Gruppenmitglieder als CSV-Datei</a></li><li><a href="index.html#projekt-heizung">Heizung nach Raumbuchungen steuern</a></li><li><a href="index.html#projekt-neue-person">Neue Person anlegen und in eine Gruppe aufnehmen</a></li></ul></li><li class="nav-chapter"><a href="index.html#testen">Testen</a><ul><li><a href="index.html#demo-instanz">Mit einer Demo-Instanz testen</a></li><li><a href="index.html#projekt-tests">Die Tests dieses Projekts gegen eine Demo-Instanz</a></li></ul></li></ul>
+      <h2><a href="referenz.html">Referenz</a></h2>
+      <ul class="nav-ref"><li><a href="referenz-general.html">General <span class="count">40</span></a></li><li><a href="referenz-person.html">Person <span class="count">74</span></a></li><li><a href="referenz-group.html">Group <span class="count">109</span></a></li><li><a href="referenz-calendar.html">Calendar <span class="count">34</span></a></li><li><a href="#tag-event">Event <span class="count">38</span></a></li><li><a href="referenz-service-service-groups.html">Service &amp; Service Groups <span class="count">10</span></a></li><li><a href="referenz-agenda.html">Agenda <span class="count">29</span></a></li><li><a href="referenz-song.html">Song <span class="count">22</span></a></li><li><a href="referenz-resource.html">Resource <span class="count">21</span></a></li><li><a href="referenz-absence.html">Absence <span class="count">6</span></a></li><li><a href="referenz-tag.html">Tag <span class="count">9</span></a></li><li><a href="referenz-file.html">File <span class="count">14</span></a></li><li><a href="referenz-wiki.html">Wiki <span class="count">13</span></a></li><li><a href="referenz-post.html">Post <span class="count">27</span></a></li><li><a href="referenz-chat.html">Chat <span class="count">4</span></a></li><li><a href="referenz-checkin.html">Checkin <span class="count">3</span></a></li><li><a href="referenz-follow-up.html">Follow-Up <span class="count">13</span></a></li><li><a href="referenz-note.html">Note <span class="count">5</span></a></li><li><a href="referenz-address.html">Address <span class="count">5</span></a></li><li><a href="referenz-campus.html">Campus <span class="count">5</span></a></li><li><a href="referenz-contact-label.html">Contact Label <span class="count">5</span></a></li><li><a href="referenz-relationship-type.html">Relationship Type <span class="count">5</span></a></li><li><a href="referenz-status.html">Status <span class="count">6</span></a></li><li><a href="referenz-department.html">Department <span class="count">1</span></a></li><li><a href="referenz-profile.html">Profile <span class="count">4</span></a></li><li><a href="referenz-subscription.html">Subscription <span class="count">5</span></a></li><li><a href="referenz-fact.html">Fact <span class="count">5</span></a></li><li><a href="referenz-db-fields.html">DB Fields <span class="count">11</span></a></li><li><a href="referenz-dynamicgroups.html">DynamicGroups <span class="count">8</span></a></li><li><a href="referenz-grouphomepage.html">GroupHomepage <span class="count">9</span></a></li><li><a href="referenz-masterdata.html">MasterData <span class="count">4</span></a></li><li><a href="referenz-bulkletter.html">Bulkletter <span class="count">6</span></a></li><li><a href="referenz-email.html">Email <span class="count">2</span></a></li><li><a href="referenz-finance.html">Finance <span class="count">134</span></a></li><li><a href="referenz-permission.html">Permission <span class="count">27</span></a></li><li><a href="referenz-admin.html">Admin <span class="count">9</span></a></li><li><a href="referenz-sync.html">Sync <span class="count">55</span></a></li><li><a href="referenz-job.html">Job <span class="count">4</span></a></li><li><a href="referenz-queue.html">Queue <span class="count">2</span></a></li><li><a href="referenz-routine.html">Routine <span class="count">3</span></a></li><li><a href="referenz-htmltemplate.html">HtmlTemplate <span class="count">9</span></a></li><li><a href="referenz-placeholder.html">Placeholder <span class="count">2</span></a></li><li><a href="referenz-translation.html">Translation <span class="count">4</span></a></li><li><a href="referenz-language.html">Language <span class="count">1</span></a></li><li><a href="referenz-widgets.html">Widgets <span class="count">3</span></a></li><li><a href="referenz-furtherlink.html">FurtherLink <span class="count">5</span></a></li><li><a href="referenz-evangelischetermine.html">EvangelischeTermine <span class="count">3</span></a></li><li><a href="referenz-bulk.html">Bulk <span class="count">2</span></a></li><li><a href="referenz-domainobjects.html">DomainObjects <span class="count">2</span></a></li><li><a href="referenz-field.html">Field <span class="count">1</span></a></li><li><a href="referenz-hidden.html">Hidden <span class="count">57</span></a></li></ul>
+      <h2>Anhang</h2>
+      <ul class="nav-ref">
+        <li><a href="modelle.html">Modelle <span class="count">1143</span></a></li>
+        <li><a href="index.html#fehlercodes">Fehlercodes</a></li>
+        <li><a href="index.html#testabdeckung">Testabdeckung</a></li>
+        <li><a href="aenderungen.html">Änderungen je Version</a></li>
+        <li><a href="index.html#lizenz">Lizenz</a></li>
+        <li><a href="index.html#weiter">Nächste Schritte</a></li>
+      </ul>
+    </nav>
+
+    <main id="main">
+      <div class="inner">
+        <section class="reference tag" id="tag-event"><h2>Event</h2><p class="lead">Events der Dienstplanung, ihre Dienste, Abläufe und Fakten. 38 Endpunkte. Beschreibungen stammen aus der offiziellen API-Beschreibung und sind englisch.</p><details class="tag-index"><summary>38 Endpunkte im Überblick</summary><ul><li><a href="#op-get-eventtemplates"><span class="verb v-get">GET</span><code>/eventtemplates</code></a></li><li><a href="#op-get-events"><span class="verb v-get">GET</span><code>/events</code></a></li><li><a href="#op-get-events-serviceId-candidates"><span class="verb v-get">GET</span><code>/events/{serviceId}/candidates</code></a></li><li><a href="#op-get-events-id-possiblepersonsforservice"><span class="verb v-get">GET</span><code>/events/{serviceId}/possiblepersonsforservice</code></a></li><li><a href="#op-get-events-id"><span class="verb v-get">GET</span><code>/events/{eventId}</code></a></li><li><a href="#op-get-events-ical"><span class="verb v-get">GET</span><code>/events/ical</code></a></li><li><a href="#op-post-events-ical"><span class="verb v-post">POST</span><code>/events/ical</code><span class="untested">*</span></a></li><li><a href="#op-put-events-id"><span class="verb v-put">PUT</span><code>/events/{eventId}</code><span class="untested">*</span></a></li><li><a href="#op-patch-events-id"><span class="verb v-patch">PATCH</span><code>/events/{eventId}</code><span class="untested">*</span></a></li><li><a href="#op-delete-events-id"><span class="verb v-delete">DELETE</span><code>/events/{eventId}</code><span class="untested">*</span></a></li><li><a href="#op-post-events-id-cancel"><span class="verb v-post">POST</span><code>/events/{eventId}/cancel</code><span class="untested">*</span></a></li><li><a href="#op-post-events-id-chat"><span class="verb v-post">POST</span><code>/events/{eventId}/chat</code><span class="untested">*</span></a></li><li><a href="#op-post-events-send"><span class="verb v-post">POST</span><code>/events/send</code><span class="untested">*</span></a></li><li><a href="#op-put-events-id-eventservices-id"><span class="verb v-put">PUT</span><code>/events/{eventId}/eventservices/{serviceId}</code><span class="untested">*</span></a></li><li><a href="#op-put-events-id-eventservices"><span class="verb v-put">PUT</span><code>/events/{eventId}/eventservices</code><span class="untested">*</span></a></li><li><a href="#op-delete-events-id-eventservices-id"><span class="verb v-delete">DELETE</span><code>/events/{eventId}/eventservices/{serviceId}</code><span class="untested">*</span></a></li><li><a href="#op-get-events-eventId-facts"><span class="verb v-get">GET</span><code>/events/{eventId}/facts</code></a></li><li><a href="#op-get-events-facts"><span class="verb v-get">GET</span><code>/events/facts</code></a></li><li><a href="#op-get-events-eventId-facts-factId"><span class="verb v-get">GET</span><code>/events/{eventId}/facts/{factId}</code></a></li><li><a href="#op-put-events-eventId-facts-factId"><span class="verb v-put">PUT</span><code>/events/{eventId}/facts/{factId}</code><span class="untested">*</span></a></li><li><a href="#op-delete-events-eventId-facts-factId"><span class="verb v-delete">DELETE</span><code>/events/{eventId}/facts/{factId}</code><span class="untested">*</span></a></li><li><a href="#op-post-events-facts-export"><span class="verb v-post">POST</span><code>/events/facts/export</code><span class="untested">*</span></a></li><li><a href="#op-put-events-eventId-servicerequests-requestId"><span class="verb v-put">PUT</span><code>/events/{eventId}/servicerequests/{requestId}</code><span class="untested">*</span></a></li><li><a href="#op-put-events-eventId-servicerequests"><span class="verb v-put">PUT</span><code>/events/{eventId}/servicerequests</code><span class="untested">*</span></a></li><li><a href="#op-post-events-id-servicerequests-id-accept"><span class="verb v-post">POST</span><code>/events/{eventId}/servicerequests/{requestId}/accept</code><span class="untested">*</span></a></li><li><a href="#op-post-events-id-servicerequests-id-decline"><span class="verb v-post">POST</span><code>/events/{eventId}/servicerequests/{requestId}/decline</code><span class="untested">*</span></a></li><li><a href="#op-post-events-id-servicerequests-id-undo"><span class="verb v-post">POST</span><code>/events/{eventId}/servicerequests/{requestId}/undo</code><span class="untested">*</span></a></li><li><a href="#op-get-events-eventId-services-serviceId-candidates"><span class="verb v-get">GET</span><code>/events/{eventId}/services/{serviceId}/candidates</code></a></li><li><a href="#op-get-events-eventId-services-serviceId-possiblepersons"><span class="verb v-get">GET</span><code>/events/{eventId}/services/{serviceId}/possiblepersons</code></a></li><li><a href="#op-get-persons-id-events"><span class="verb v-get">GET</span><code>/persons/{personId}/events</code></a></li><li><a href="#op-get-persons-id-events-id-services"><span class="verb v-get">GET</span><code>/persons/{personId}/events/{eventId}/services</code></a></li><li><a href="#op-get-persons-id-events-id-services-id-exchangerequests"><span class="verb v-get">GET</span><code>/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests</code></a></li><li><a href="#op-get-persons-id-events-id-services-id-exchangerequests-candidates"><span class="verb v-get">GET</span><code>/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests/candidates</code></a></li><li><a href="#op-post-persons-id-events-id-services-id-exchangerequests"><span class="verb v-post">POST</span><code>/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests</code><span class="untested">*</span></a></li><li><a href="#op-delete-persons-id-events-id-services-id-exchangerequests-id"><span class="verb v-delete">DELETE</span><code>/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests/{requestId}</code><span class="untested">*</span></a></li><li><a href="#op-get-persons-id-exchangerequests"><span class="verb v-get">GET</span><code>/persons/{personId}/exchangerequests</code></a></li><li><a href="#op-put-persons-id-exchangerequests-id"><span class="verb v-put">PUT</span><code>/persons/{personId}/exchangerequests/{requestId}</code><span class="untested">*</span></a></li><li><a href="#op-delete-persons-id-exchangerequests-id"><span class="verb v-delete">DELETE</span><code>/persons/{personId}/exchangerequests/{requestId}</code><span class="untested">*</span></a></li></ul></details><article class="op" id="op-get-eventtemplates"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/eventtemplates</code></h4><p class="call"><code><span class="py">client.event_templates.list()</span><span class="rs">client.event_templates().list()</span></code></p><p class="summary">Get all event templates</p><div class="desc"><p>Returns all event templates as an unpaginated list, sorted by <code>sortKey</code> ascending. No per-template visibility filter is applied.</p></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-EventTemplate">EventTemplate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-EventTemplate">EventTemplate</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> event_template <span class="t-kw">in</span> client.event_templates.list():
+    print(event_template.id)</code></pre><pre class="rs"><code><span class="t-kw">for</span> event_template <span class="t-kw">in</span> client.event_templates().list()? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, event_template.id);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-events"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events</code></h4><p class="call"><code><span class="py">client.events.list()</span><span class="rs">client.events().list()</span></code><span class="rs alt">mit Filtern: <code>.list_with(&amp;GetEventsQuery)</code></span><span class="badge">seitenweise</span></p><p class="summary">Get all events</p><div class="desc"><p>Returns events visible through calendar permissions or the current user’s valid service assignments. Date comparisons use midnight in the application time zone: to includes exactly midnight, not later events that day. Results from calendar access are merged with events where the user is assigned and deduplicated; this merged range list is not guaranteed to be globally sorted. With direction, selects one page relative to from and ignores to.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code><span class="py">from_</span><span class="rs">from</span></code></td><td class="type"><code><span class="py">date</span><span class="rs">NaiveDate</span></code></td><td>Query</td><td></td><td>Midnight anchor or beginning of the range.</td></tr><tr><td><code>to</code></td><td class="type"><code><span class="py">date</span><span class="rs">NaiveDate</span></code></td><td>Query</td><td></td><td>Range upper bound at midnight, inclusive.</td></tr><tr><td><code>direction</code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Query</td><td></td><td>Enable directional pagination; omit for an unpaginated date range.</td></tr><tr><td><code>limit</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Results per page in directional mode; ignored in range mode.</td></tr><tr><td><code>canceled</code></td><td class="type"><code>bool</code></td><td>Query</td><td></td><td>Include cancelled events in addition to active events.</td></tr><tr><td><code>include</code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Query</td><td></td><td>Comma-separated Fractal includes.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">Paginator[<a href="modelle.html#m-Event">Event</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-Event">Event</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> event <span class="t-kw">in</span> client.events.list():
+    print(event.name)</code></pre><pre class="rs"><code><span class="t-kw">for</span> event <span class="t-kw">in</span> client.events().list()? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, event.name);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-events-serviceId-candidates"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{serviceId}/candidates</code></h4><p class="call"><code><span class="py">client.events.list_candidates()</span><span class="rs">client.events().list_candidates()</span></code></p><p class="summary">Get service candidates</p><div class="desc"><p>Returns an unpaginated, deduplicated list of persons from active, non-hidden memberships in groups connected to the service. If connected tags exist, a matching tag is also required. Archived or deceased persons are excluded and hidden-person visibility is respected. With no connected groups, the result is empty.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a reusable service role from /services</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-ServiceCandidate">ServiceCandidate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-ServiceCandidate">ServiceCandidate</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> candidate <span class="t-kw">in</span> client.events.list_candidates(<span class="t-number">2</span>):
+    print(candidate.full_name)</code></pre><pre class="rs"><code><span class="t-kw">for</span> candidate <span class="t-kw">in</span> client.events().list_candidates(<span class="t-number">2</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, candidate.full_name);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-events-id-possiblepersonsforservice"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{serviceId}/possiblepersonsforservice</code></h4><p class="call"><code><span class="py">client.events.list_possible_persons_for_service()</span><span class="rs">client.events().list_possible_persons_for_service()</span></code><span class="badge warn">veraltet</span></p><p class="summary">Get all possible persons for a service</p><div class="desc"><p>Deprecated alias for <code>/events/{serviceId}/candidates</code>. Returns the same service candidates.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a reusable service role from /services</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-ServiceCandidate">ServiceCandidate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-ServiceCandidate">ServiceCandidate</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> possible_persons_for_service <span class="t-kw">in</span> client.events.list_possible_persons_for_service(<span class="t-number">2</span>):
+    print(possible_persons_for_service.full_name)</code></pre><pre class="rs"><code><span class="t-kw">for</span> possible_persons_for_service <span class="t-kw">in</span> client.events().list_possible_persons_for_service(<span class="t-number">2</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, possible_persons_for_service.full_name);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-events-id"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{eventId}</code></h4><p class="call"><code><span class="py">client.events.get()</span><span class="rs">client.events().get()</span></code></p><p class="summary">Get a single event</p><div class="desc"><p>Returns the event visible to the current user, including calendar, eventFiles and eventServices. Service assignments are filtered by service-group visibility or own assignment; persons can be concealed. The eventServices property is present even when empty. Cancelled events can also be read if visible.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-EventReadWithServices">EventReadWithServices</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>event = client.events.get(<span class="t-number">42</span>)
+print(event.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> event = client.events().get(<span class="t-number">42</span>)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, event.name);</code></pre></div></div></article>
+<article class="op" id="op-get-events-ical"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/ical</code></h4><p class="call"><code><span class="py">client.events.get_ical()</span><span class="rs">client.events().get_ical()</span></code><span class="rs alt">Query: <code>GetEventsIcalQuery</code></span></p><p class="summary">Get iCal roster link</p><div class="desc"><p>Returns the personal roster subscription as JSON. If no secret exists, this <code>GET</code> creates one; otherwise it preserves the existing link. Use <code>meta.iCalUrl</code> to fetch the actual iCalendar feed. A roster contains the person&#x27;s service assignments at events, including pending requests and confirmed assignments.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td>ja</td><td>ID of person</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-RosterICalSetting">RosterICalSetting</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>ical = client.events.get_ical(person_id=<span class="t-number">42</span>)
+print(ical.attribute)</code></pre><pre class="rs"><code><span class="t-kw">let</span> query = <span class="t-type">GetEventsIcalQuery</span> {
+    person_id: <span class="t-kw">Some</span>(<span class="t-number">42</span>),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> ical = client.events().get_ical(&amp;query)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, ical.attribute);</code></pre></div></div></article>
+<article class="op" id="op-post-events-ical"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/ical</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.create_ical()</span><span class="rs">client.events().create_ical()</span></code><span class="rs alt">Query: <code>PostEventsIcalQuery</code></span></p><p class="summary">Create iCal roster link</p><div class="desc"><p>Creates a new personal roster subscription secret and returns the link as JSON. Use <code>meta.iCalUrl</code> to fetch the actual iCalendar feed. A roster contains the person&#x27;s service assignments at events, including pending requests and confirmed assignments.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td>ja</td><td>ID of person</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-RosterICalSetting">RosterICalSetting</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.create_ical(person_id=<span class="t-number">42</span>)
+print(result.attribute)</code></pre><pre class="rs"><code><span class="t-kw">let</span> query = <span class="t-type">PostEventsIcalQuery</span> {
+    person_id: <span class="t-kw">Some</span>(<span class="t-number">42</span>),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.events().create_ical(&amp;query)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, result.attribute);</code></pre></div></div></article>
+<article class="op" id="op-put-events-id"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.update()</span><span class="rs">client.events().update()</span></code><span class="badge warn">veraltet</span></p><p class="summary">Update event details</p><div class="desc"><p>Deprecated: use PATCH /events/{eventId} instead. When omitted, description is cleared and isCanceled defaults to false. Updates the description, administrators and cancellation state for this service-planning event. It does not update service assignments or the calendar appointment. Changing the administrator set additionally requires the &quot;edit masterdata&quot; permission for the service planning domain; other changes require event administration access, the &quot;edit events&quot; permission for the event calendar, or a corresponding internal group permission.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code><span class="py">admin_ids</span><span class="rs">&quot;adminIds&quot;</span></code></td><td class="type"><code><span class="py">Optional[List[int]]</span><span class="rs">Option&lt;Vec&lt;i64&gt;&gt;</span></code></td><td>Body</td><td></td><td>Replace the administrator list.</td></tr><tr><td><code><span class="py">description</span><span class="rs">&quot;description&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Event description.</td></tr><tr><td><code><span class="py">event_admin_ids</span><span class="rs">&quot;eventAdminIds&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td></td><td>Legacy input alias for <code>adminIds</code>.</td></tr><tr><td><code><span class="py">is_canceled</span><span class="rs">&quot;isCanceled&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Whether the service-planning event is cancelled.</td></tr><tr><td><code><span class="py">note</span><span class="rs">&quot;note&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Deprecated alias for <code>description</code>.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-EventDetailsUpdateResult">EventDetailsUpdateResult</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.update(
+    <span class="t-number">42</span>,
+    description=<span class="t-string">&quot;Sound check starts 30 minutes before the gathering.&quot;</span>,
+)
+print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">EventDetailsUpdate</span> {
+    description: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Sound check starts 30 minutes before the gathering.&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.events().update(<span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, result.id);</code></pre></div></div></article>
+<article class="op" id="op-patch-events-id"><div class="prose"><h4><span class="verb v-patch">PATCH</span><code class="path">/events/{eventId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.patch()</span><span class="rs">client.events().patch()</span></code></p><p class="summary">Update event details</p><div class="desc"><p>Updates only the supplied event description or administrators, and can reopen an event with isCanceled=false. Omitted properties remain unchanged. It cannot cancel an event or update service assignments or the calendar appointment. Use POST /events/{eventId}/cancel to cancel with optional notifications. Changing the administrator set additionally requires the &quot;edit masterdata&quot; permission for service planning; other changes require event administration access, the &quot;edit events&quot; permission for the event calendar, or a corresponding internal group permission.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code><span class="py">admin_ids</span><span class="rs">&quot;adminIds&quot;</span></code></td><td class="type"><code><span class="py">Optional[List[int]]</span><span class="rs">Option&lt;Vec&lt;i64&gt;&gt;</span></code></td><td>Body</td><td></td><td>Replace the administrator list.</td></tr><tr><td><code><span class="py">description</span><span class="rs">&quot;description&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Event description.</td></tr><tr><td><code><span class="py">event_admin_ids</span><span class="rs">&quot;eventAdminIds&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td></td><td>Legacy input alias for <code>adminIds</code>.</td></tr><tr><td><code><span class="py">is_canceled</span><span class="rs">&quot;isCanceled&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Set to false to reopen an event.</td></tr><tr><td><code><span class="py">note</span><span class="rs">&quot;note&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Deprecated alias for <code>description</code>.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-EventDetailsUpdateResult">EventDetailsUpdateResult</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.patch(
+    <span class="t-number">42</span>,
+    description=<span class="t-string">&quot;Sound check starts 30 minutes before the gathering.&quot;</span>,
+)
+print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">EventDetailsPatch</span> {
+    description: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Sound check starts 30 minutes before the gathering.&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.events().patch(<span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, result.id);</code></pre></div></div></article>
+<article class="op" id="op-delete-events-id"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/events/{eventId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.delete()</span><span class="rs">client.events().delete()</span></code><span class="rs alt">mit Filtern: <code>.delete_with(&amp;DeleteEventsIdQuery)</code></span></p><p class="summary">Delete a single event</p><div class="desc"><p>Deletes the service-planning event through the dependency-aware deletion service. With <code>dryRun</code>=<code>true</code>, the deletion check returns a <code>409</code> report without deleting the event, but <code>sendMail</code> is processed before that check. Requires event administration access, the &quot;edit events&quot; permission for the event calendar, or a corresponding internal group permission.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>dry_run</code></td><td class="type"><code>bool</code></td><td>Query</td><td></td><td>Check deletion and return a <code>409</code> report.</td></tr><tr><td><code>send_mail</code></td><td class="type"><code>bool</code></td><td>Query</td><td></td><td>Request event-deletion notifications before the deletion check, including during <code>dryRun</code>.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.delete(<span class="t-number">42</span>)</code></pre><pre class="rs"><code>client.events().delete(<span class="t-number">42</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-cancel"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/cancel</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.cancel()</span><span class="rs">client.events().cancel()</span></code></p><p class="summary">Cancel an event</p><div class="desc"><p>Cancels the service-planning event without deleting it or its calendar appointment. Already cancelled events remain unchanged and do not send notifications again. Requires event administration access, the &quot;edit events&quot; permission for the event calendar, or a corresponding internal group permission.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code><span class="py">send_mail</span><span class="rs">&quot;sendMail&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Notify assigned people about the cancellation.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.cancel(<span class="t-number">42</span>, send_mail=<span class="t-kw">True</span>)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">PostEventsIdCancelBody</span> {
+    send_mail: <span class="t-kw">Some</span>(<span class="t-kw">true</span>),
+    ..<span class="t-type">Default</span>::default()
+};
+client.events().cancel(<span class="t-number">42</span>, &amp;body)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-chat"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/chat</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.chat()</span><span class="rs">client.events().chat()</span></code></p><p class="summary">Start or stop an event chat</p><div class="desc"><p>Starts, reactivates or stops the chat linked to this event. Requires access to the event, an active chat installation with event chats enabled, and permission to administer persons, start an event chat through event permissions, or administer this event. A new room is provisioned through the chat service; HTTP <code>200</code> does not guarantee that remote room setup is already complete. Stopping a chat that has never been created returns <code>404</code>.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code><span class="py">enabled</span><span class="rs">&quot;enabled&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td>ja</td><td><code>true</code> starts or reactivates the event chat; <code>false</code> stops an existing chat.</td></tr><tr><td><code><span class="py">trigger_chat_invite_mail</span><span class="rs">&quot;triggerChatInviteMail&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Send invitations to eligible event participants who cannot chat yet.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.chat(<span class="t-number">42</span>, enabled=<span class="t-kw">True</span>)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">EventChatUpdate</span> {
+    enabled: <span class="t-kw">true</span>,
+    ..<span class="t-type">Default</span>::default()
+};
+client.events().chat(<span class="t-number">42</span>, &amp;body)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-send"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/send</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.send()</span><span class="rs">client.events().send()</span></code></p><p class="summary">Send an email to selected event recipients</p><div class="desc"><p>Sends an email to selected people in the context of one or more events. ChurchTools filters service participants by visible service groups and other selected recipients by person visibility. The response reports effective and rejected recipients. <code>sendCopyToMe</code> can add the sender. Optional agenda buttons require agenda visibility for each event; sending does not require an agenda or a shared agenda across events.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code><span class="py">body</span><span class="rs">&quot;body&quot;</span></code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Body</td><td>ja</td><td>HTML email body. ChurchTools appends buttons for all supplied events and any requested, available agenda and file links.</td></tr><tr><td><code><span class="py">event_ids</span><span class="rs">&quot;eventIds&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td>ja</td><td>Events used to resolve participating recipients and message links.</td></tr><tr><td><code><span class="py">recipients</span><span class="rs">&quot;recipients&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td>ja</td><td>Selected person IDs. Only selected participants in visible service groups of the loaded events, or selected people the sender may otherwise view, receive the message.</td></tr><tr><td><code><span class="py">send_copy_to_me</span><span class="rs">&quot;sendCopyToMe&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Also include the currently logged-in person as a recipient, even if their ID is absent from recipients.</td></tr><tr><td><code><span class="py">subject</span><span class="rs">&quot;subject&quot;</span></code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Body</td><td>ja</td><td>Email subject.</td></tr><tr><td><code><span class="py">append_agenda_button</span><span class="rs">&quot;appendAgendaButton&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td>ja</td><td>Append links for supplied events that have an agenda and for whose calendar the sender has &quot;view agenda&quot; permission.</td></tr><tr><td><code><span class="py">files</span><span class="rs">&quot;files&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td>ja</td><td>File IDs to list as links in the message body.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-EventMailSendResult">EventMailSendResult</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>event = client.events.send(
+    body=<span class="t-string">&quot;&lt;p&gt;Please review the updated agenda for Sunday.&lt;/p&gt;&quot;</span>,
+    event_ids=[<span class="t-number">31</span>, <span class="t-number">32</span>],
+    recipients=[<span class="t-number">40</span>, <span class="t-number">41</span>],
+    subject=<span class="t-string">&quot;Updated Sunday agenda&quot;</span>,
+    append_agenda_button=<span class="t-kw">True</span>,
+    files=[<span class="t-number">42</span>],
+)
+print(event)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">EventMailCreate</span> {
+    body: <span class="t-string">&quot;&lt;p&gt;Please review the updated agenda for Sunday.&lt;/p&gt;&quot;</span>.into(),
+    event_ids: <span class="t-macro">vec!</span>[<span class="t-number">31</span>, <span class="t-number">32</span>],
+    recipients: <span class="t-macro">vec!</span>[<span class="t-number">40</span>, <span class="t-number">41</span>],
+    subject: <span class="t-string">&quot;Updated Sunday agenda&quot;</span>.into(),
+    append_agenda_button: <span class="t-kw">true</span>,
+    files: <span class="t-macro">vec!</span>[<span class="t-number">42</span>],
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> event = client.events().send(&amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, event);</code></pre></div></div></article>
+<article class="op" id="op-put-events-id-eventservices-id"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}/eventservices/{serviceId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.event_services.update()</span><span class="rs">client.events().event_services().update()</span></code><span class="badge warn">veraltet</span></p><p class="summary">Update a service assignment</p><div class="desc"><p>Deprecated alias for <code>/events/{eventId}/servicerequests/{requestId}</code>. The path parameter <code>serviceId</code> identifies a concrete assignment record (<code>requestId</code>), not a reusable service role. Creates a replacement assignment and invalidates the previous active record for the same event, service and slot index. Always use the returned ID for subsequent actions.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a concrete event-service assignment, exposed as <code>serviceId</code> on legacy routes</td></tr><tr><td><code><span class="py">agreed</span><span class="rs">&quot;agreed&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Legacy alias for isAccepted.</td></tr><tr><td><code><span class="py">comment</span><span class="rs">&quot;comment&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment.</td></tr><tr><td><code><span class="py">inform_person</span><span class="rs">&quot;inform_person&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Accepted for compatibility; this flag does not control notifications in the current implementation.</td></tr><tr><td><code><span class="py">is_accepted</span><span class="rs">&quot;isAccepted&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>true creates a confirmed assignment; false creates an assignment awaiting confirmation.</td></tr><tr><td><code><span class="py">name</span><span class="rs">&quot;name&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Name of an external assignee without a person record.</td></tr><tr><td><code><span class="py">person_id</span><span class="rs">&quot;personId&quot;</span></code></td><td class="type"><code><span class="py">Optional[int]</span><span class="rs">Option&lt;i64&gt;</span></code></td><td>Body</td><td></td><td>Existing person to assign.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceRequest">ServiceRequest</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.event_services.update(<span class="t-number">42</span>, <span class="t-number">42</span>, name=<span class="t-string">&quot;Guest musician&quot;</span>)
+print(result.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">ServiceRequestUpdate</span> {
+    name: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Guest musician&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.events().event_services().update(<span class="t-number">42</span>, <span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result.name);</code></pre></div></div></article>
+<article class="op" id="op-put-events-id-eventservices"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}/eventservices</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.event_services.update_all()</span><span class="rs">client.events().event_services().update_all()</span></code><span class="badge warn">veraltet</span></p><p class="summary">Set service slot counts for an event</p><div class="desc"><p>Changes the active slot count only for the listed service roles, in one transaction. Increasing a count creates unassigned slots. Decreasing it removes unassigned slots but retains occupied slots. A failed reduction returns <code>422</code> and rolls back the update; changing counts requires event administration or editing access for every affected service.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code><span class="py">services</span><span class="rs">&quot;services&quot;</span></code></td><td class="type"><code><span class="py">List[<a href="modelle.html#m-EventServiceCountUpdate">EventServiceCountUpdate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-EventServiceCountUpdate">EventServiceCountUpdate</a>&gt;</span></code></td><td>Body</td><td>ja</td><td>Desired counts for the listed services only.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.event_services.update_all(
+    <span class="t-number">42</span>,
+    services=[ct.models.<span class="t-type">EventServiceCountUpdate</span>.model_validate({<span class="t-string">&quot;count&quot;</span>: <span class="t-number">3</span>, <span class="t-string">&quot;serviceId&quot;</span>: <span class="t-number">2</span>})],
+)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">EventServicesUpdate</span> {
+    services: <span class="t-macro">vec!</span>[models::<span class="t-type">EventServiceCountUpdate</span> {
+        count: <span class="t-number">3</span>,
+        service_id: <span class="t-number">2</span>,
+        ..<span class="t-type">Default</span>::default()
+    }],
+    ..<span class="t-type">Default</span>::default()
+};
+client.events().event_services().update_all(<span class="t-number">42</span>, &amp;body)?;</code></pre></div></div></article>
+<article class="op" id="op-delete-events-id-eventservices-id"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/events/{eventId}/eventservices/{serviceId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.event_services.delete()</span><span class="rs">client.events().event_services().delete()</span></code><span class="badge warn">veraltet</span></p><p class="summary">Decline service request</p><div class="desc"><p>Deprecated alias for <code>/events/{eventId}/servicerequests/{requestId}/decline</code>. The path parameter <code>serviceId</code> identifies a concrete assignment record (<code>requestId</code>), not a reusable service role. Declining invalidates the original record and returns a new unassigned record; assigned persons need <code>allowDecline</code> unless another permission grants access.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a concrete event-service assignment, exposed as <code>serviceId</code> on legacy routes</td></tr><tr><td><code><span class="py">comment</span><span class="rs">&quot;comment&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Optional response comment.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceRequest">ServiceRequest</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>event_service = client.events.event_services.delete(<span class="t-number">42</span>, <span class="t-number">42</span>, comment=<span class="t-string">&quot;Hallo zusammen&quot;</span>)
+print(event_service.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">ServiceRequestAnswer</span> {
+    comment: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Hallo zusammen&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> event_service = client.events().event_services().delete(<span class="t-number">42</span>, <span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, event_service.name);</code></pre></div></div></article>
+<article class="op" id="op-get-events-eventId-facts"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{eventId}/facts</code></h4><p class="call"><code><span class="py">client.events.facts.list()</span><span class="rs">client.events().facts().list()</span></code></p><p class="summary">List recorded facts for an event</p><div class="desc"><p>Returns the event&#x27;s stored fact values whose definitions the user may view or edit. <code>eventId</code> identifies the service-planning event, while <code>factId</code> identifies a reusable definition from <code>/facts</code>. Requires access to the event and at least one fact definition.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-EventFact">EventFact</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-EventFact">EventFact</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> fact <span class="t-kw">in</span> client.events.facts.list(<span class="t-number">42</span>):
+    print(fact.deprecated)</code></pre><pre class="rs"><code><span class="t-kw">for</span> fact <span class="t-kw">in</span> client.events().facts().list(<span class="t-number">42</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, fact.deprecated);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-events-facts"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/facts</code></h4><p class="call"><code><span class="py">client.events.facts.list_all()</span><span class="rs">client.events().facts().list_all()</span></code><span class="rs alt">mit Filtern: <code>.list_all_with(&amp;GetEventsFactsQuery)</code></span><span class="badge">seitenweise</span></p><p class="summary">List recorded event facts</p><div class="desc"><p>A fact definition describes a metric or selection (for example attendance or service type). An event fact stores one value for that definition on a service-planning event. <code>eventId</code> identifies the event, not its calendar appointment; <code>factId</code> identifies the reusable definition from /facts. Returns recorded values ordered by event start date descending, with pagination.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code><span class="py">from_</span><span class="rs">from</span></code></td><td class="type"><code><span class="py">date</span><span class="rs">NaiveDate</span></code></td><td>Query</td><td></td><td>Return entities starting from this date.</td></tr><tr><td><code>to</code></td><td class="type"><code><span class="py">date</span><span class="rs">NaiveDate</span></code></td><td>Query</td><td></td><td>Return entities up to (but not including) this date.</td></tr><tr><td><code>event_id</code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Query</td><td></td><td>Restrict to these service-planning event IDs.</td></tr><tr><td><code>fact_id</code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Query</td><td></td><td>Restrict to these fact definitions, intersected with the definitions the user may view or edit.</td></tr><tr><td><code>limit</code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Query</td><td></td><td>Number of results per page.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">Paginator[<a href="modelle.html#m-EventFact">EventFact</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-EventFact">EventFact</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> all <span class="t-kw">in</span> client.events.facts.list_all():
+    print(all.deprecated)</code></pre><pre class="rs"><code><span class="t-kw">for</span> all <span class="t-kw">in</span> client.events().facts().list_all()? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, all.deprecated);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-events-eventId-facts-factId"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{eventId}/facts/{factId}</code></h4><p class="call"><code><span class="py">client.events.facts.get()</span><span class="rs">client.events().facts().get()</span></code></p><p class="summary">Get a recorded event fact</p><div class="desc"><p>Returns the stored value for the event and fact definition identified by the path. Requires access to the event and view or edit permission for the fact definition. Returns <code>404</code> when no value has been recorded for this pair; this is distinct from a recorded numeric zero.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>fact_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of the reusable fact definition from /facts, not a separate event-fact record ID.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-EventFact">EventFact</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>fact = client.events.facts.get(<span class="t-number">42</span>, <span class="t-number">1</span>)
+print(fact.deprecated)</code></pre><pre class="rs"><code><span class="t-kw">let</span> fact = client.events().facts().get(<span class="t-number">42</span>, <span class="t-number">1</span>)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, fact.deprecated);</code></pre></div></div></article>
+<article class="op" id="op-put-events-eventId-facts-factId"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}/facts/{factId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.facts.update()</span><span class="rs">client.events().facts().update()</span></code></p><p class="summary">Create or replace an event fact</p><div class="desc"><p>Stores one value for the event and fact definition identified by the path. Returns <code>200</code> for both insertion and replacement. Requires access to the event and edit permission for the fact definition. Numeric facts accept JSON numbers or numeric strings and return a JSON number; select facts accept an option configured in the definition.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>fact_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of the reusable fact definition from /facts, not a separate event-fact record ID.</td></tr><tr><td><code><span class="py">value</span><span class="rs">&quot;value&quot;</span></code></td><td class="type"><code><span class="py">Union[float, str]</span><span class="rs">serde_json::Value</span></code></td><td>Body</td><td>ja</td><td>For numeric facts, prefer a JSON number.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-EventFact">EventFact</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.facts.update(<span class="t-number">42</span>, <span class="t-number">1</span>, value=<span class="t-number">1.5</span>)
+print(result.deprecated)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">EventFactUpdate</span> {
+    value: serde_json::<span class="t-macro">json!</span>(<span class="t-number">1.5</span>),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.events().facts().update(<span class="t-number">42</span>, <span class="t-number">1</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, result.deprecated);</code></pre></div></div></article>
+<article class="op" id="op-delete-events-eventId-facts-factId"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/events/{eventId}/facts/{factId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.facts.delete()</span><span class="rs">client.events().facts().delete()</span></code></p><p class="summary">Delete a recorded event fact</p><div class="desc"><p>Removes the stored value for this event and fact definition, preserving the reusable definition and the event. Requires access to the event and edit permission for the fact definition. Returns <code>204</code> even if no value was stored for the pair.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>fact_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of the reusable fact definition from /facts, not a separate event-fact record ID.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.facts.delete(<span class="t-number">42</span>, <span class="t-number">1</span>)</code></pre><pre class="rs"><code>client.events().facts().delete(<span class="t-number">42</span>, <span class="t-number">1</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-facts-export"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/facts/export</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.facts.export()</span><span class="rs">client.events().facts().export()</span></code><span class="rs alt">mit Filtern: <code>.export_with(&amp;PostEventsFactsExportQuery)</code></span></p><p class="summary">Export event facts as a spreadsheet</p><div class="desc"><p>Downloads a CSV or XLSX file with one row per visible service-planning event in the selected calendars, including events without recorded fact values. Requires permission to export facts (the &quot;export facts&quot; permission for the service planning domain). Events are filtered by event visibility, and fact columns are limited to definitions the user may view or edit. Rows are ordered by event start time, then event ID.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>format</code></td><td class="type"><code><span class="py">str</span><span class="rs">String</span></code></td><td>Query</td><td></td><td>Download format.</td></tr><tr><td><code><span class="py">calendar_ids</span><span class="rs">&quot;calendar_ids&quot;</span></code></td><td class="type"><code><span class="py">List[int]</span><span class="rs">Vec&lt;i64&gt;</span></code></td><td>Body</td><td>ja</td><td>Calendars containing the appointments linked to the service-planning events.</td></tr><tr><td><code><span class="py">from_</span><span class="rs">&quot;from&quot;</span></code></td><td class="type"><code><span class="py">date</span><span class="rs">NaiveDate</span></code></td><td>Body</td><td></td><td>Inclusive lower bound for the event start date in the installation’s timezone.</td></tr><tr><td><code><span class="py">to</span><span class="rs">&quot;to&quot;</span></code></td><td class="type"><code><span class="py">date</span><span class="rs">NaiveDate</span></code></td><td>Body</td><td></td><td>Exclusive upper bound for the event start date in the installation’s timezone.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">bytes (application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)</span><span class="rs">Vec&lt;u8&gt; (application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>data = client.events.facts.export(calendar_ids=[<span class="t-number">42</span>])
+<span class="t-kw">with</span> open(<span class="t-string">&quot;ergebnis.xlsx&quot;</span>, <span class="t-string">&quot;wb&quot;</span>) <span class="t-kw">as</span> f:
+    f.write(data)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">EventFactExportCreate</span> {
+    calendar_ids: <span class="t-macro">vec!</span>[<span class="t-number">42</span>],
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> data = client.events().facts().export(&amp;body)?;
+std::fs::write(<span class="t-string">&quot;ergebnis.xlsx&quot;</span>, &amp;data)?;</code></pre></div></div></article>
+<article class="op" id="op-put-events-eventId-servicerequests-requestId"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}/servicerequests/{requestId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.service_requests.update()</span><span class="rs">client.events().service_requests().update()</span></code></p><p class="summary">Update a service assignment</p><div class="desc"><p>Creates a replacement assignment and invalidates the previous active record for the same event, service and slot index. Always use the returned ID for subsequent actions. <code>isAccepted</code>=<code>true</code> confirms it; <code>false</code> leaves it awaiting confirmation and does not decline it. Notifications follow the assignment workflow.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>request_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service request</td></tr><tr><td><code><span class="py">agreed</span><span class="rs">&quot;agreed&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Legacy alias for isAccepted.</td></tr><tr><td><code><span class="py">comment</span><span class="rs">&quot;comment&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Accepted for compatibility but ignored by this update operation; the replacement record starts without a comment.</td></tr><tr><td><code><span class="py">inform_person</span><span class="rs">&quot;inform_person&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>Accepted for compatibility; this flag does not control notifications in the current implementation.</td></tr><tr><td><code><span class="py">is_accepted</span><span class="rs">&quot;isAccepted&quot;</span></code></td><td class="type"><code>bool</code></td><td>Body</td><td></td><td>true creates a confirmed assignment; false creates an assignment awaiting confirmation.</td></tr><tr><td><code><span class="py">name</span><span class="rs">&quot;name&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Name of an external assignee without a person record.</td></tr><tr><td><code><span class="py">person_id</span><span class="rs">&quot;personId&quot;</span></code></td><td class="type"><code><span class="py">Optional[int]</span><span class="rs">Option&lt;i64&gt;</span></code></td><td>Body</td><td></td><td>Existing person to assign.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceRequest">ServiceRequest</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.events.service_requests.update(<span class="t-number">42</span>, <span class="t-number">42</span>, name=<span class="t-string">&quot;Guest musician&quot;</span>)
+print(result.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">ServiceRequestUpdate</span> {
+    name: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Guest musician&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.events().service_requests().update(<span class="t-number">42</span>, <span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, result.name);</code></pre></div></div></article>
+<article class="op" id="op-put-events-eventId-servicerequests"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/events/{eventId}/servicerequests</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.service_requests.update_all()</span><span class="rs">client.events().service_requests().update_all()</span></code></p><p class="summary">Set service slot counts for an event</p><div class="desc"><p>Changes the active slot count only for the listed service roles, in one transaction. Increasing a count creates unassigned slots. Decreasing it removes unassigned slots but retains occupied slots. A failed reduction returns <code>422</code> and rolls back the update; changing counts requires event administration or editing access for every affected service.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code><span class="py">services</span><span class="rs">&quot;services&quot;</span></code></td><td class="type"><code><span class="py">List[<a href="modelle.html#m-EventServiceCountUpdate">EventServiceCountUpdate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-EventServiceCountUpdate">EventServiceCountUpdate</a>&gt;</span></code></td><td>Body</td><td>ja</td><td>Desired counts for the listed services only.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.events.service_requests.update_all(
+    <span class="t-number">42</span>,
+    services=[ct.models.<span class="t-type">EventServiceCountUpdate</span>.model_validate({<span class="t-string">&quot;count&quot;</span>: <span class="t-number">3</span>, <span class="t-string">&quot;serviceId&quot;</span>: <span class="t-number">2</span>})],
+)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">EventServicesUpdate</span> {
+    services: <span class="t-macro">vec!</span>[models::<span class="t-type">EventServiceCountUpdate</span> {
+        count: <span class="t-number">3</span>,
+        service_id: <span class="t-number">2</span>,
+        ..<span class="t-type">Default</span>::default()
+    }],
+    ..<span class="t-type">Default</span>::default()
+};
+client.events().service_requests().update_all(<span class="t-number">42</span>, &amp;body)?;</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-servicerequests-id-accept"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/servicerequests/{requestId}/accept</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.service_requests.accept()</span><span class="rs">client.events().service_requests().accept()</span></code></p><p class="summary">Accept service request</p><div class="desc"><p>Accepts an assigned, valid service request. On first acceptance it creates a new confirmed record, invalidates previous records for the slot, adjusts related exchange requests and sends notifications. A comment is stored on first acceptance only if the service allows comments on confirmation. If already accepted, the same record is returned and its comment is updated. Requires permission to update the assignment.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>request_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service request</td></tr><tr><td><code><span class="py">comment</span><span class="rs">&quot;comment&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Optional response comment.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceRequest">ServiceRequest</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>service_request = client.events.service_requests.accept(<span class="t-number">42</span>, <span class="t-number">42</span>, comment=<span class="t-string">&quot;Hallo zusammen&quot;</span>)
+print(service_request.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">ServiceRequestAnswer</span> {
+    comment: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Hallo zusammen&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> service_request = client.events().service_requests().accept(<span class="t-number">42</span>, <span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, service_request.name);</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-servicerequests-id-decline"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/servicerequests/{requestId}/decline</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.service_requests.decline()</span><span class="rs">client.events().service_requests().decline()</span></code></p><p class="summary">Decline service request</p><div class="desc"><p>Declines the current assignment, invalidates its <code>requestId</code> and returns a new unassigned record. Related exchange requests are deleted and notifications are sent. Assigned persons need <code>allowDecline</code> unless another permission grants access.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>request_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service request</td></tr><tr><td><code><span class="py">comment</span><span class="rs">&quot;comment&quot;</span></code></td><td class="type"><code><span class="py">Optional[str]</span><span class="rs">Option&lt;String&gt;</span></code></td><td>Body</td><td></td><td>Optional response comment.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceRequest">ServiceRequest</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>service_request = client.events.service_requests.decline(<span class="t-number">42</span>, <span class="t-number">42</span>, comment=<span class="t-string">&quot;Hallo zusammen&quot;</span>)
+print(service_request.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">ServiceRequestAnswer</span> {
+    comment: <span class="t-kw">Some</span>(<span class="t-kw">Some</span>(<span class="t-string">&quot;Hallo zusammen&quot;</span>.into())),
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> service_request = client.events().service_requests().decline(<span class="t-number">42</span>, <span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, service_request.name);</code></pre></div></div></article>
+<article class="op" id="op-post-events-id-servicerequests-id-undo"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/events/{eventId}/servicerequests/{requestId}/undo</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.events.service_requests.undo()</span><span class="rs">client.events().service_requests().undo()</span></code></p><p class="summary">Undo service request</p><div class="desc"><p>Reverts the last acceptance or decline to an outstanding request. Only the assigned person may do this. The legacy history must identify this as the last action and its timestamp must be within the 10-minute undo window; otherwise <code>400</code> is returned. For a decline, use the original declined request ID, not the new unassigned record returned by the decline operation.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>request_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service request</td></tr><tr><td><code><span class="py">person_id</span><span class="rs">&quot;personId&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td>ja</td><td>ID of the person assigned to the record being undone.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceRequestUndoResult">ServiceRequestUndoResult</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>service_request = client.events.service_requests.undo(<span class="t-number">42</span>, <span class="t-number">42</span>, person_id=<span class="t-number">42</span>)
+print(service_request.name)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">ServiceRequestUndoCreate</span> {
+    person_id: <span class="t-number">42</span>,
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> service_request = client.events().service_requests().undo(<span class="t-number">42</span>, <span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, service_request.name);</code></pre></div></div></article>
+<article class="op" id="op-get-events-eventId-services-serviceId-candidates"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{eventId}/services/{serviceId}/candidates</code></h4><p class="call"><code><span class="py">client.events.services.list_candidates()</span><span class="rs">client.events().services().list_candidates()</span></code></p><p class="summary">Get service candidates with planning hints</p><div class="desc"><p>Returns an unpaginated list of persons from active, visible-role memberships in groups connected to this reusable service role, narrowed by connected tags when present. Archived or deceased persons are excluded and hidden-person visibility is respected. Without permission to assign other persons, only the current user can appear. With no connected groups the list is empty.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a reusable service role from /services</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-PossibleEventPerson">PossibleEventPerson</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-PossibleEventPerson">PossibleEventPerson</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> candidate <span class="t-kw">in</span> client.events.services.list_candidates(<span class="t-number">42</span>, <span class="t-number">2</span>):
+    print(candidate.partner_services)</code></pre><pre class="rs"><code><span class="t-kw">for</span> candidate <span class="t-kw">in</span> client.events().services().list_candidates(<span class="t-number">42</span>, <span class="t-number">2</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, candidate.partner_services);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-events-eventId-services-serviceId-possiblepersons"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/events/{eventId}/services/{serviceId}/possiblepersons</code></h4><p class="call"><code><span class="py">client.events.services.list_possible_persons()</span><span class="rs">client.events().services().list_possible_persons()</span></code><span class="badge warn">veraltet</span></p><p class="summary">Get service candidates with planning hints</p><div class="desc"><p>Deprecated alias for <code>/events/{eventId}/services/{serviceId}/candidates</code>. Returns the same service candidates with planning hints.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a reusable service role from /services</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-PossibleEventPerson">PossibleEventPerson</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-PossibleEventPerson">PossibleEventPerson</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> possible_person <span class="t-kw">in</span> client.events.services.list_possible_persons(<span class="t-number">42</span>, <span class="t-number">2</span>):
+    print(possible_person.partner_services)</code></pre><pre class="rs"><code><span class="t-kw">for</span> possible_person <span class="t-kw">in</span> client.events().services().list_possible_persons(<span class="t-number">42</span>, <span class="t-number">2</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, possible_person.partner_services);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-persons-id-events"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/persons/{personId}/events</code></h4><p class="call"><code><span class="py">client.persons.events.list()</span><span class="rs">client.persons().events().list()</span></code><span class="rs alt">mit Filtern: <code>.list_with(&amp;GetPersonsIdEventsQuery)</code></span></p><p class="summary">Get events that person is involved with</p><div class="desc"><p>Returns an unpaginated list of non-cancelled events where the person has a valid assignment. Requires the current user to be this person or a super administrator. from defaults to today and is compared strictly to midnight: an event exactly at midnight is excluded, later events that day are included. Results are ordered by event start ascending with no upper date bound. Visible service assignments are always included under eventServices and are not restricted to just this person. eventFiles is present but this endpoint does not load files, so it is empty. meta.count is the number returned.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code><span class="py">from_</span><span class="rs">from</span></code></td><td class="type"><code><span class="py">date</span><span class="rs">NaiveDate</span></code></td><td>Query</td><td></td><td>Lower bound, strictly after midnight on this date.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-EventReadWithServices">EventReadWithServices</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-EventReadWithServices">EventReadWithServices</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> event <span class="t-kw">in</span> client.persons.events.list(<span class="t-number">42</span>):
+    print(event.name)</code></pre><pre class="rs"><code><span class="t-kw">for</span> event <span class="t-kw">in</span> client.persons().events().list(<span class="t-number">42</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, event.name);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-persons-id-events-id-services"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/persons/{personId}/events/{eventId}/services</code></h4><p class="call"><code><span class="py">client.persons.events.services.list()</span><span class="rs">client.persons().events().services().list()</span></code></p><p class="summary">Get a person’s assignments in an event</p><div class="desc"><p>Returns the valid assignments of this person in a non-cancelled event, including both outstanding and confirmed assignments. Requires the current user to be this person or a super administrator. Unknown or cancelled events produce an empty list; related person and event objects are not enriched.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-ServiceRequest">ServiceRequest</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-ServiceRequest">ServiceRequest</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> service <span class="t-kw">in</span> client.persons.events.services.list(<span class="t-number">42</span>, <span class="t-number">42</span>):
+    print(service.name)</code></pre><pre class="rs"><code><span class="t-kw">for</span> service <span class="t-kw">in</span> client.persons().events().services().list(<span class="t-number">42</span>, <span class="t-number">42</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{:?}&quot;</span>, service.name);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-persons-id-events-id-services-id-exchangerequests"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests</code></h4><p class="call"><code><span class="py">client.persons.events.services.exchange_requests.list()</span><span class="rs">client.persons().events().services().exchange_requests().list()</span></code><span class="rs alt">mit Filtern: <code>.list_with(&amp;GetPersonsIdEventsIdServicesIdExchangerequestsQuery)</code></span></p><p class="summary">Get all service exchange requests of a user for a service</p><div class="desc"><p>Returns incoming or outgoing exchange requests for the assignment identified by <code>serviceId</code>. Requires the current user to be assigned to it. The list is unpaginated and does not filter by status, archive flag or event date. Event and person details are enriched where available.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a concrete event-service assignment, exposed as <code>serviceId</code> on legacy routes</td></tr><tr><td><code>incoming</code></td><td class="type"><code>bool</code></td><td>Query</td><td></td><td><code>false</code> selects exchanges initiated from this assignment; <code>true</code> selects exchanges targeting it.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-ServiceExchangeRequest">ServiceExchangeRequest</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-ServiceExchangeRequest">ServiceExchangeRequest</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> exchange_request <span class="t-kw">in</span> client.persons.events.services.exchange_requests.list(<span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>):
+    print(exchange_request.id)</code></pre><pre class="rs"><code><span class="t-kw">for</span> exchange_request <span class="t-kw">in</span> client.persons().events().services().exchange_requests().list(<span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, exchange_request.id);
+}</code></pre></div></div></article>
+<article class="op" id="op-get-persons-id-events-id-services-id-exchangerequests-candidates"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests/candidates</code></h4><p class="call"><code><span class="py">client.persons.events.services.exchange_requests.list_candidates()</span><span class="rs">client.persons().events().services().exchange_requests().list_candidates()</span></code></p><p class="summary">Get candidates for service exchange request</p><div class="desc"><p>Returns an unpaginated list of assignments for the same reusable service as the source assignment. Requires the current user to be assigned to the source. Candidates have valid assignments with a non-<code>null</code> name, an event starting after midnight today, and a person other than <code>personId</code>. Hidden-person visibility is respected.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a concrete event-service assignment, exposed as <code>serviceId</code> on legacy routes</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-ServiceExchangeCandidate">ServiceExchangeCandidate</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-ServiceExchangeCandidate">ServiceExchangeCandidate</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> candidate <span class="t-kw">in</span> client.persons.events.services.exchange_requests.list_candidates(<span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>):
+    print(candidate.event_date)</code></pre><pre class="rs"><code><span class="t-kw">for</span> candidate <span class="t-kw">in</span> client.persons().events().services().exchange_requests().list_candidates(<span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, candidate.event_date);
+}</code></pre></div></div></article>
+<article class="op" id="op-post-persons-id-events-id-services-id-exchangerequests"><div class="prose"><h4><span class="verb v-post">POST</span><code class="path">/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.persons.events.services.exchange_requests.create()</span><span class="rs">client.persons().events().services().exchange_requests().create()</span></code></p><p class="summary">Create a new service exchange request</p><div class="desc"><p>Creates an <code>UNANSWERED</code> exchange request and sends the request notification. Requires the current user to be assigned to the source assignment. The target requestedServiceId is an event-service assignment ID, as returned by the candidates endpoint. Creating the request does not change either assignment.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a concrete event-service assignment, exposed as <code>serviceId</code> on legacy routes</td></tr><tr><td><code><span class="py">requested_service_id</span><span class="rs">&quot;requestedServiceId&quot;</span></code></td><td class="type"><code><span class="py">int</span><span class="rs">i64</span></code></td><td>Body</td><td>ja</td><td>Target assignment to exchange with.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceExchangeRequest">ServiceExchangeRequest</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.persons.events.services.exchange_requests.create(
+    <span class="t-number">42</span>,
+    <span class="t-number">42</span>,
+    <span class="t-number">42</span>,
+    requested_service_id=<span class="t-number">42</span>,
+)
+print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span> body = models::<span class="t-type">ServiceExchangeRequestCreate</span> {
+    requested_service_id: <span class="t-number">42</span>,
+    ..<span class="t-type">Default</span>::default()
+};
+<span class="t-kw">let</span> result = client.persons().events().services().exchange_requests().create(<span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>, &amp;body)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, result.id);</code></pre></div></div></article>
+<article class="op" id="op-delete-persons-id-events-id-services-id-exchangerequests-id"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/persons/{personId}/events/{eventId}/services/{serviceId}/exchangerequests/{requestId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.persons.events.services.exchange_requests.delete()</span><span class="rs">client.persons().events().services().exchange_requests().delete()</span></code><span class="rs alt">mit Filtern: <code>.delete_with(&amp;DeletePersonsIdEventsIdServicesIdExchangerequestsIdQuery)</code></span></p><p class="summary">Delete a service exchange request</p><div class="desc"><p>Cancels the exchange by setting status to <code>CANCELLED</code> and sending a cancellation notification. Requires the current user to be assigned to the source <code>serviceId</code>. With hardDelete=<code>true</code>, removes the request matching both <code>requestId</code> and the source assignment instead, without a cancellation notification. Neither action swaps the assigned persons. Cancellation leaves the archive flag unchanged.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code>event_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of Event</td></tr><tr><td><code>service_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a concrete event-service assignment, exposed as <code>serviceId</code> on legacy routes</td></tr><tr><td><code>request_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service exchange request</td></tr><tr><td><code>hard_delete</code></td><td class="type"><code>bool</code></td><td>Query</td><td></td><td>Permanently remove the request instead of changing its status to <code>CANCELLED</code>.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">None</span><span class="rs">()</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>client.persons.events.services.exchange_requests.delete(<span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>)</code></pre><pre class="rs"><code>client.persons().events().services().exchange_requests().delete(<span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>, <span class="t-number">42</span>)?;</code></pre></div></div></article>
+<article class="op" id="op-get-persons-id-exchangerequests"><div class="prose"><h4><span class="verb v-get">GET</span><code class="path">/persons/{personId}/exchangerequests</code></h4><p class="call"><code><span class="py">client.persons.exchange_requests.list()</span><span class="rs">client.persons().exchange_requests().list()</span></code><span class="rs alt">mit Filtern: <code>.list_with(&amp;GetPersonsIdExchangerequestsQuery)</code></span></p><p class="summary">Get all service exchange requests for a user</p><div class="desc"><p>Returns an unpaginated list of incoming or outgoing exchanges for the current user; <code>personId</code> must identify that user. Both assignments must still be valid, the exchange must not be archived, and at least one event must start today or later. Status is not restricted to <code>UNANSWERED</code>. Event and person details are enriched where available.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code>person_is_requester</code></td><td class="type"><code>bool</code></td><td>Query</td><td></td><td><code>false</code> selects exchanges received by the person; <code>true</code> selects exchanges initiated by the person.</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><span class="py">List[<a href="modelle.html#m-ServiceExchangeRequest">ServiceExchangeRequest</a>]</span><span class="rs">Vec&lt;<a href="modelle.html#m-ServiceExchangeRequest">ServiceExchangeRequest</a>&gt;</span></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code><span class="t-kw">for</span> exchange_request <span class="t-kw">in</span> client.persons.exchange_requests.list(<span class="t-number">42</span>):
+    print(exchange_request.id)</code></pre><pre class="rs"><code><span class="t-kw">for</span> exchange_request <span class="t-kw">in</span> client.persons().exchange_requests().list(<span class="t-number">42</span>)? {
+    <span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, exchange_request.id);
+}</code></pre></div></div></article>
+<article class="op" id="op-put-persons-id-exchangerequests-id"><div class="prose"><h4><span class="verb v-put">PUT</span><code class="path">/persons/{personId}/exchangerequests/{requestId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.persons.exchange_requests.update()</span><span class="rs">client.persons().exchange_requests().update()</span></code></p><p class="summary">Accept a service exchange request</p><div class="desc"><p>Accepts the exchange and swaps the persons assigned to the two event-service assignments, confirming both assignments. The workflow archives the accepted exchange and other active exchanges from the same source assignment, and sends notifications. Requires <code>personId</code> to identify the current user and the person assigned to the requested assignment. Returns the updated exchange request without enriching events or persons.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code>request_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service exchange request</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceExchangeRequest">ServiceExchangeRequest</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>result = client.persons.exchange_requests.update(<span class="t-number">42</span>, <span class="t-number">42</span>)
+print(result.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span> result = client.persons().exchange_requests().update(<span class="t-number">42</span>, <span class="t-number">42</span>)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, result.id);</code></pre></div></div></article>
+<article class="op" id="op-delete-persons-id-exchangerequests-id"><div class="prose"><h4><span class="verb v-delete">DELETE</span><code class="path">/persons/{personId}/exchangerequests/{requestId}</code><a class="untested" href="index.html#testabdeckung" title="noch nicht getestet: kein Testszenario" aria-label="noch nicht getestet: kein Testszenario">*</a></h4><p class="call"><code><span class="py">client.persons.exchange_requests.delete()</span><span class="rs">client.persons().exchange_requests().delete()</span></code></p><p class="summary">Decline a service exchange request</p><div class="desc"><p>Declines the exchange by setting its status to <code>DECLINED</code> and sending a notification. The request remains stored and its archive flag is unchanged; the assignments are not swapped. Requires <code>personId</code> to identify the current user and the person assigned to the requested assignment. Returns the updated exchange request without enriching events or persons. Already answered requests are returned unchanged.</p></div><div class="table-wrap"><table class="params"><thead><tr><th>Parameter</th><th>Typ</th><th>Ort</th><th>Pflicht</th><th>Beschreibung</th></tr></thead><tbody><tr><td><code>person_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of person</td></tr><tr><td><code>request_id</code></td><td class="type"><code><span class="py">int</span><span class="rs">impl Display</span></code></td><td>Pfad</td><td>ja</td><td>ID of a service exchange request</td></tr></tbody></table></div><p class="returns"><span class="label">Rückgabe</span> <code><a href="modelle.html#m-ServiceExchangeRequest">ServiceExchangeRequest</a></code></p></div><div class="example"><div class="code"><div class="code-bar" role="tablist" aria-label="Sprache"><button type="button" class="tab" data-l="python" role="tab">Python</button><button type="button" class="tab" data-l="rust" role="tab">Rust</button><button type="button" class="copy" aria-label="Code kopieren">Kopieren</button></div><pre class="py"><code>exchange_request = client.persons.exchange_requests.delete(<span class="t-number">42</span>, <span class="t-number">42</span>)
+print(exchange_request.id)</code></pre><pre class="rs"><code><span class="t-kw">let</span> exchange_request = client.persons().exchange_requests().delete(<span class="t-number">42</span>, <span class="t-number">42</span>)?;
+<span class="t-macro">println!</span>(<span class="t-string">&quot;{}&quot;</span>, exchange_request.id);</code></pre></div></div></article></section>
+<nav class="pager" aria-label="Bereiche"><a href="referenz-calendar.html">← Calendar</a><a href="referenz-service-service-groups.html">Service &amp; Service Groups →</a></nav>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(() => {
+  const app = document.getElementById("app");
+  const switches = document.querySelectorAll(".lang-switch button");
+
+  function setLang(lang, anchor) {
+    const before = anchor ? anchor.getBoundingClientRect().top : 0;
+    app.dataset.lang = lang;
+    switches.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.l === lang)));
+    try { localStorage.setItem("ct-lang", lang); } catch (e) {}
+    // Keep the clicked element in place although code heights above it change.
+    if (anchor) window.scrollBy(0, anchor.getBoundingClientRect().top - before);
+  }
+  try {
+    const saved = localStorage.getItem("ct-lang");
+    if (saved === "python" || saved === "rust") setLang(saved);
+  } catch (e) {}
+
+  document.addEventListener("click", (event) => {
+    const langButton = event.target.closest("[data-l]");
+    if (langButton) { setLang(langButton.dataset.l, langButton); return; }
+    const copy = event.target.closest(".copy");
+    if (copy) {
+      const pre = copy.closest(".code").querySelector(app.dataset.lang === "rust" ? "pre.rs" : "pre.py");
+      const done = () => { copy.textContent = "Kopiert"; setTimeout(() => (copy.textContent = "Kopieren"), 1500); };
+      const select = () => {
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        const sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(range);
+        copy.textContent = "Markiert";
+        setTimeout(() => (copy.textContent = "Kopieren"), 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pre.innerText).then(done, select);
+      } else select();
+    }
+    if (event.target.closest(".nav a")) closeNav();
+  });
+
+  // Light/dark: follows the system until chosen here; the choice is kept in localStorage.
+  const themeToggle = document.getElementById("theme-toggle");
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const isDark = () => (document.documentElement.dataset.theme || (systemDark.matches ? "dark" : "light")) === "dark";
+  function showTheme() {
+    const dark = isDark();
+    themeToggle.textContent = dark ? "☀" : "☾";
+    themeToggle.title = dark ? "Helles Design" : "Dunkles Design";
+    themeToggle.setAttribute("aria-label", themeToggle.title);
+  }
+  themeToggle.addEventListener("click", () => {
+    const theme = isDark() ? "light" : "dark";
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem("ct-theme", theme); } catch (e) {}
+    showTheme();
+  });
+  systemDark.addEventListener("change", showTheme);
+  showTheme();
+
+  // Navigation drawer on small screens
+  const nav = document.getElementById("nav");
+  const toggle = document.getElementById("nav-toggle");
+  function closeNav() { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  // Open a model when its link is followed, and align the target once more after the endpoints near it have been
+  // laid out with their real height (they are estimated until they come into view, see content-visibility).
+  // A model's fields are in a <template> until it is opened: 1,143 tables in the page would make every click slow.
+  document.addEventListener("toggle", (event) => {
+    const t = event.target.open && event.target.querySelector(":scope > template");
+    if (t) t.replaceWith(t.content);
+  }, true);
+  function openTarget() {
+    const id = location.hash.slice(1);
+    const el = id && document.getElementById(id);
+    if (!el) return;
+    if (el.tagName === "DETAILS") el.open = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => el.scrollIntoView()));
+  }
+  window.addEventListener("hashchange", openTarget);
+  // On a fresh load the browser jumps to the target only after parsing; align after that.
+  if (document.readyState === "complete") openTarget(); else window.addEventListener("load", openTarget);
+
+  // Search over all pages. The index (suche.js, ~200 KB) is loaded on first use; a <script> instead of fetch()
+  // keeps it working when the pages are opened from disk.
+  let entries = null;
+  function loadIndex() {
+    if (entries) return Promise.resolve(entries);
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "suche.js";
+      s.onload = () => { entries = window.CT_SEARCH || []; resolve(entries); };
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  const search = document.getElementById("search");
+  const hitList = document.getElementById("search-hits");
+  const VERBS = new Set(["get", "post", "put", "patch", "delete"]);
+  let selected = -1;
+  function showHits(hits, q) {
+    selected = hits.length ? 0 : -1;
+    hitList.replaceChildren(...hits.map(([label, sub, href, kind], i) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = href;
+      a.setAttribute("role", "option");
+      a.setAttribute("aria-selected", String(i === 0));
+      const b = document.createElement("b");
+      if (VERBS.has(kind)) {
+        const v = document.createElement("span");
+        v.className = `verb v-${kind}`;
+        v.textContent = kind.toUpperCase();
+        b.append(v);
+      }
+      b.append(label);
+      const s = document.createElement("span");
+      s.className = "sub";
+      s.textContent = sub;
+      a.append(b, s);
+      li.append(a);
+      return li;
+    }));
+    if (!hits.length) {
+      const li = document.createElement("li");
+      li.className = "none";
+      li.textContent = `Keine Treffer für „${q}“. Suche nach einem Pfadteil wie members oder einem Methodennamen wie list_birthdays.`;
+      hitList.append(li);
+    }
+    hitList.hidden = false;
+    search.setAttribute("aria-expanded", "true");
+  }
+  function hideHits() { hitList.hidden = true; search.setAttribute("aria-expanded", "false"); }
+  function select(i) {
+    const options = hitList.querySelectorAll("a");
+    if (!options.length) return;
+    selected = (i + options.length) % options.length;
+    options.forEach((a, j) => a.setAttribute("aria-selected", String(j === selected)));
+    options[selected].scrollIntoView({ block: "nearest" });
+  }
+  let timer;
+  search.addEventListener("focus", () => { loadIndex().catch(() => {}); });
+  search.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      const q = search.value.trim().toLowerCase();
+      if (!q) { hideHits(); return; }
+      const all = await loadIndex().catch(() => []);
+      all.forEach((e) => { if (e.text === undefined) e.text = `${e[0]} ${e[1]} ${e[4]}`.toLowerCase(); });
+      if (search.value.trim().toLowerCase() !== q) return;
+      // Matches in the name first, then in the description; at most 40.
+      const first = [], second = [];
+      for (const e of all) {
+        if (e[0].toLowerCase().includes(q)) first.push(e);
+        else if (e.text.includes(q)) second.push(e);
+        if (first.length >= 40) break;
+      }
+      showHits(first.concat(second).slice(0, 40), search.value.trim());
+    }, 120);
+  });
+  search.addEventListener("keydown", (event) => {
+    if (hitList.hidden) return;
+    if (event.key === "ArrowDown") { event.preventDefault(); select(selected + 1); }
+    else if (event.key === "ArrowUp") { event.preventDefault(); select(selected - 1); }
+    else if (event.key === "Escape") { hideHits(); }
+    else if (event.key === "Enter") {
+      const a = hitList.querySelectorAll("a")[selected];
+      if (a) { event.preventDefault(); hideHits(); location.href = a.href; }
+    }
+  });
+  document.addEventListener("click", (event) => { if (!event.target.closest(".search")) hideHits(); });
+  hitList.addEventListener("click", (event) => { if (event.target.closest("a")) hideHits(); });
+
+  // Links from before the split into several pages (index.html#op-…, #m-…, #tag-…) lead to the right page.
+  const oldTarget = location.hash.slice(1);
+  const movedSections = { referenz: "referenz.html", modelle: "modelle.html" };
+  if (oldTarget && !document.getElementById(oldTarget) && movedSections[oldTarget]) {
+    location.replace(movedSections[oldTarget]);
+  } else if (oldTarget && !document.getElementById(oldTarget) && /^(op|m|tag)-/.test(oldTarget)) {
+    loadIndex().then((all) => {
+      const area = oldTarget.startsWith("tag-") && `referenz-${oldTarget.slice(4)}.html`;
+      const hit = all.find((e) => e[2].endsWith("#" + oldTarget) || e[2] === area);
+      if (hit) location.replace(hit[2]);
+    }, () => {});
+  }
+
+  // Highlight the current area in the navigation
+  const here = location.pathname.split("/").pop() || "index.html";
+  const links = new Map();
+  nav.querySelectorAll("a[href]").forEach((a) => {
+    const [page, id] = a.getAttribute("href").split("#");
+    if ((page || here) === here && id) links.set(id, a);
+  });
+  const observed = Array.from(document.querySelectorAll(".topic, .tag, #modelle, #fehlercodes, #testabdeckung, #lizenz, #weiter"));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const link = links.get(e.target.id);
+        if (!link) return;
+        nav.querySelectorAll("a.active").forEach((a) => a.classList.remove("active"));
+        link.classList.add("active");
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    observed.forEach((el) => io.observe(el));
+  }
+})();
+</script>
+
+</body>
+</html>

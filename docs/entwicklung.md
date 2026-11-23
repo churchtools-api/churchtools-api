@@ -11,7 +11,7 @@ python/    churchtools-api-rs:  PyO3-Erweiterung `_core` + Python-Paket `churcht
 codegen/   generate.py:     openapi.json -> Rust- und Python-Code, OPERATIONS.md, Doku
            guide.py:        handgeschriebene Doku-Texte und Projekt-Beispiele
            examples.py:     erzeugt die Referenz-Beispiele
-docs/      site/index.html: generierte Doku-Seite; testbericht.md: Ergebnis der Live-Tests
+docs/      site/: generierte Doku-Seiten; testbericht.md: Ergebnis der Live-Tests
 fixtures/  aufgezeichnete Antworten der Demo-Instanz (bereinigt), Grundlage der Offline-Tests
 benchmarks/ eigener Cargo-Workspace, siehe benchmarks/README.md
 ```

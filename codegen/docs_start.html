@@ -1,0 +1,64 @@
+        <section class="hero" id="start">
+          <h1>ChurchTools aus Python und Rust ansprechen</h1>
+          <p class="lead">Ein Client für die gesamte ChurchTools-REST-API: typisierte Antworten, Fehler mit verständlicher Meldung, automatisches Blättern durch lange Listen.</p>
+          <ul class="facts">
+            <li><b>%%OPS%%</b> Endpunkte</li>
+            <li><b>%%MODELS%%</b> Modelle</li>
+            <li>API-Stand <b>%%VERSION%%</b> (<a href="aenderungen.html">Änderungen</a>)</li>
+          </ul>
+          <div class="cta">
+            <a class="primary" href="#schnellstart">Erster Aufruf</a>
+            <a href="#projekte">Projekte ansehen</a>
+            <a href="#referenz">Zur Referenz</a>
+          </div>
+        </section>
+
+        %%GUIDE%%
+
+        <section class="reference" id="fehlercodes">
+          <h2>Fehlercodes</h2>
+          <p class="lead">Was ein Fehler bedeutet und wie du ihn abfängst. Mehr dazu unter <a href="#fehler">Fehler behandeln</a>.</p>
+          <div class="table-wrap"><table><thead><tr><th>Status</th><th>Ausnahme / Variante</th><th>Bedeutung</th></tr></thead><tbody>%%ERRORS%%</tbody></table></div>
+        </section>
+
+        <section class="reference" id="testabdeckung">
+          <h2>Testabdeckung</h2>
+          <p class="lead">Alle Endpunkte werden gegen eine echte ChurchTools-Testinstanz geprüft. Ein rotes
+          Sternchen <span class="untested">*</span> an einem Endpunkt heißt: <b>noch nicht oder nicht ausreichend
+          getestet.</b> Fährst du mit der Maus darüber, steht dort der Grund.</p>
+          <ul>
+            <li><b>kein Testszenario:</b> Der Aufruf wurde bewusst nicht ausgeführt, etwa weil er E-Mails verschickt,
+            Logins oder Rechte ändert oder ein externes System braucht.</li>
+            <li><b>keine Testdaten:</b> Die Testinstanz hatte nichts, worauf sich der Aufruf anwenden ließ, und es ließ
+            sich auch nicht über die API anlegen.</li>
+            <li><b>getestet, Fehler der API:</b> Der Aufruf scheitert auch auf der Testinstanz, mit bekannter Ursache,
+            meist einem Fehler in ChurchTools.</li>
+          </ul>
+          <p>Die Beispiele auf dieser Seite sind Teil der Tests: Alle werden kompiliert bzw. typgeprüft, und die
+          Beispiele zu getesteten Endpunkten laufen gegen die aufgezeichneten Antworten der Testinstanz.</p>
+          <p>Ohne Sternchen heißt: Der Aufruf lief erfolgreich, und die Antwort passte zu den Typen in Python und Rust.
+          Das garantiert nicht jede Kombination von Parametern. Details stehen im Testbericht (<code>docs/testbericht.md</code>).</p>
+          <div class="table-wrap"><table>%%COVERAGE%%</table></div>
+        </section>
+
+        <section class="reference" id="lizenz">
+          <h2>Lizenz</h2>
+          <p>Der Code von churchtools-api steht unter der MIT-Lizenz. Die Referenz, die Modelle und die
+          englischen Beschreibungen stammen aus der API-Beschreibung „ChurchTools REST API“ von ChurchTools
+          (<a href="https://demo.church.tools/system/runtime/swagger/openapi.json" target="_blank" rel="noopener">OpenAPI-Spec</a>),
+          lizenziert unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank" rel="noopener">CC BY 4.0</a>.
+          Sie wurde in Code und diese Seite umgewandelt, an einigen Stellen korrigiert und um Beispiele ergänzt.
+          Details stehen in <code>NOTICE</code>.</p>
+          <p>churchtools-api ist kein offizielles Produkt der ChurchTools Innovations GmbH und wird von ihr weder
+          unterstützt noch geprüft.</p>
+        </section>
+
+        <section class="reference" id="weiter">
+          <h2>Nächste Schritte</h2>
+          <div class="next">
+            <a href="#projekte"><b>Ein Projekt nachbauen</b><span>Monatsplan, Dienstplan, Geburtstage, CSV-Export, Anmeldung.</span></a>
+            <a href="#tag-person"><b>Personen</b><span>Der größte Bereich der API, mit Suche, Beziehungen und Einstellungen.</span></a>
+            <a href="#tag-group"><b>Gruppen</b><span>Mitglieder, Rollen und Treffen verwalten.</span></a>
+            <a href="#modelle"><b>Modelle nachschlagen</b><span>Welche Felder ein Objekt hat und welchen Typ sie haben.</span></a>
+          </div>
+        </section>
