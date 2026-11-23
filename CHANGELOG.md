@@ -13,11 +13,11 @@ Jede Version hat denselben Aufbau, `codegen/changelog.py` prüft ihn:
 - Danach nur die Abschnitte, die etwas enthalten, in dieser Reihenfolge: `### Inkompatibel` (jeweils mit dem, was
   beim Umstieg zu ändern ist), `### Neu`, `### Geändert`, `### Korrigiert`.
 
-## [Unreleased]
+## [0.3.0] – 2026-11-23
 
 ChurchTools 3.139.0 (Build 32955) · 875 Operationen · 1143 Modelle
 
-Update auf ChurchTools 3.139.0 mit 25 neuen Endpunkten und einigen inkompatiblen Typänderungen; erscheint als 0.3.0.
+Update auf ChurchTools 3.139.0 mit 25 neuen Endpunkten und einigen inkompatiblen Typänderungen.
 
 ### Inkompatibel
 
