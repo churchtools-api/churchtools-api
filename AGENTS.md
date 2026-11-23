@@ -32,7 +32,9 @@ generiert (`codegen/generate.py`); handgeschrieben sind nur Transport, Fehler, T
    `python3 codegen/generate.py` und `git diff --stat`.
 6. **Sprache und Stil.** Nutzer-Doku und Changelog auf Deutsch; Code, Kommentare, Docstrings und Fehlermeldungen
    auf Englisch; Zeilenlänge 120; vorhandene Kommentardichte und Benennung übernehmen. Keine
-   KI-Attributionszeilen (`Co-Authored-By` o. Ä.) in Commit-Messages; der Einsatz von KI-Werkzeugen steht im README.
+   KI-Attribution: keine Zeilen wie `Co-Authored-By`, „Generated with/by …“ oder Links zu KI-Sitzungen in
+   Commit-Messages, PR-Beschreibungen, Issues und Kommentaren auf GitHub, und kein KI-Werkzeug als Autor oder
+   Committer (Git-Identität des Maintainers verwenden). Der Einsatz von KI-Werkzeugen steht im README.
 7. **Abweichungen der API von der Spec** werden im Generator ausgeglichen (`FIELD_FIXES`, `RESULT_FIXES` in
    `codegen/generate.py`, allgemeine Regeln in `spec.py`), jeweils mit Beleg (Endpunkt, Beispielantwort), und in
    `docs/testbericht.md` festgehalten.
