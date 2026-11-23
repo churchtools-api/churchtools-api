@@ -477,6 +477,10 @@ def example_post_reset_password(client: ct.Client) -> None:
     result = client.reset_password.create(email_or_username="alex@example.org")
     print(result)
 
+# post-reset-password-session
+def example_post_reset_password_session(client: ct.Client) -> None:
+    client.reset_password.session(token="8Aq4zGm2Vn7Lx9Rk3Yp6Td1Hs5Wc0B")
+
 # get-saml-login
 def example_get_saml_login(client: ct.Client) -> None:
     client.saml.get_login()
@@ -638,6 +642,11 @@ def example_get_persons_id(client: ct.Client) -> None:
     person = client.persons.get(42)
     print(person.title)
 
+# get-persons-personId-consentstatus
+def example_get_persons_personid_consentstatus(client: ct.Client) -> None:
+    consentstatu = client.persons.get_consentstatus(42)
+    print(consentstatu.birthday_required)
+
 # get-persons-personId-information
 def example_get_persons_personid_information(client: ct.Client) -> None:
     information = client.persons.get_information(42)
@@ -673,7 +682,6 @@ def example_put_persons_id_password(client: ct.Client) -> None:
         42,
         new_password="ExamplePassword42",
         new_password_confirm="ExamplePassword42",
-        old_password="PreviousPassword41",
     )
 
 # put-persons-id-privacypolicy
@@ -709,9 +717,17 @@ def example_delete_persons_id_logintoken(client: ct.Client) -> None:
 def example_delete_persons_id_privacypolicy(client: ct.Client) -> None:
     client.persons.delete_privacy_policy(42)
 
+# post-persons-personId-activate
+def example_post_persons_personid_activate(client: ct.Client) -> None:
+    client.persons.activate(42)
+
 # post-persons-personId-archive
 def example_post_persons_personid_archive(client: ct.Client) -> None:
     client.persons.archive(42, archived=True)
+
+# post-persons-personId-deactivate
+def example_post_persons_personid_deactivate(client: ct.Client) -> None:
+    client.persons.deactivate(42)
 
 # post-persons-id-invite
 def example_post_persons_id_invite(client: ct.Client) -> None:
@@ -721,6 +737,10 @@ def example_post_persons_id_invite(client: ct.Client) -> None:
 def example_post_persons_properties(client: ct.Client) -> None:
     result = client.persons.properties()
     print(result)
+
+# post-persons-personId-unarchive
+def example_post_persons_personid_unarchive(client: ct.Client) -> None:
+    client.persons.unarchive(42)
 
 # get-persons-personId-devices
 def example_get_persons_personid_devices(client: ct.Client) -> None:
@@ -1725,6 +1745,11 @@ def example_get_events(client: ct.Client) -> None:
     for event in client.events.list():
         print(event.name)
 
+# get-events-serviceId-candidates
+def example_get_events_serviceid_candidates(client: ct.Client) -> None:
+    for candidate in client.events.list_candidates(2):
+        print(candidate.full_name)
+
 # get-events-id-possiblepersonsforservice
 def example_get_events_id_possiblepersonsforservice(client: ct.Client) -> None:
     for possible_persons_for_service in client.events.list_possible_persons_for_service(2):
@@ -1753,9 +1778,21 @@ def example_put_events_id(client: ct.Client) -> None:
     )
     print(result.id)
 
+# patch-events-id
+def example_patch_events_id(client: ct.Client) -> None:
+    result = client.events.patch(
+        42,
+        description="Sound check starts 30 minutes before the gathering.",
+    )
+    print(result.id)
+
 # delete-events-id
 def example_delete_events_id(client: ct.Client) -> None:
     client.events.delete(42)
+
+# post-events-id-cancel
+def example_post_events_id_cancel(client: ct.Client) -> None:
+    client.events.cancel(42, send_mail=True)
 
 # post-events-id-chat
 def example_post_events_id_chat(client: ct.Client) -> None:
@@ -1846,6 +1883,11 @@ def example_post_events_id_servicerequests_id_decline(client: ct.Client) -> None
 def example_post_events_id_servicerequests_id_undo(client: ct.Client) -> None:
     service_request = client.events.service_requests.undo(42, 42, person_id=42)
     print(service_request.name)
+
+# get-events-eventId-services-serviceId-candidates
+def example_get_events_eventid_services_serviceid_candidates(client: ct.Client) -> None:
+    for candidate in client.events.services.list_candidates(42, 2):
+        print(candidate.partner_services)
 
 # get-events-eventId-services-serviceId-possiblepersons
 def example_get_events_eventid_services_serviceid_possiblepersons(client: ct.Client) -> None:
@@ -2001,6 +2043,11 @@ def example_put_agendatemplates_agendaid_items_itemid(client: ct.Client) -> None
     )
     print(result)
 
+# patch-agendatemplates-agendaId-items-itemId
+def example_patch_agendatemplates_agendaid_items_itemid(client: ct.Client) -> None:
+    result = client.agenda_templates.items.patch(35, 123, title="Opening song")
+    print(result)
+
 # delete-agendatemplates-agendaId-items-itemId
 def example_delete_agendatemplates_agendaid_items_itemid(client: ct.Client) -> None:
     client.agenda_templates.items.delete(35, 123)
@@ -2086,6 +2133,11 @@ def example_put_events_id_agenda_items_id(client: ct.Client) -> None:
         123,
         body=ct.models.AgendaItemInputHeader.model_validate({"type": "header"}),
     )
+    print(result)
+
+# patch-events-eventId-agenda-items-itemId
+def example_patch_events_eventid_agenda_items_itemid(client: ct.Client) -> None:
+    result = client.events.agenda.items.patch(42, 123, title="Opening song")
     print(result)
 
 # delete-events-id-agenda-items-id
@@ -2645,6 +2697,10 @@ def example_post_posts(client: ct.Client) -> None:
 # put-posts-postId-expire
 def example_put_posts_postid_expire(client: ct.Client) -> None:
     client.posts.update_expire(42)
+
+# put-posts-seen
+def example_put_posts_seen(client: ct.Client) -> None:
+    client.posts.update_seen(post_ids=[42, 43])
 
 # patch-posts-postId
 def example_patch_posts_postid(client: ct.Client) -> None:
@@ -4073,6 +4129,11 @@ def example_get_permissions_locked(client: ct.Client) -> None:
     locked = client.permissions.get_locked()
     print(locked.is_current_user_authorized_person)
 
+# get-permissions-overview
+def example_get_permissions_overview(client: ct.Client) -> None:
+    overview = client.permissions.get_overview()
+    print(overview.public_permission_count)
+
 # put-permissions-domainType-domainId
 def example_put_permissions_domaintype_domainid(client: ct.Client) -> None:
     client.permissions.update("group_role", 1, auth_id=10130)
@@ -4098,6 +4159,28 @@ def example_post_permissions_bulk(client: ct.Client) -> None:
     client.permissions.bulk(
         changes=[ct.models.PermissionBulkChange.model_validate({"domainId": 7, "domainType": "group_type_role"})],
     )
+
+# post-permissions-promote
+def example_post_permissions_promote(client: ct.Client) -> None:
+    client.permissions.promote(
+        auth_id=3,
+        sources=[ct.models.PermissionAssignmentTargetReference.model_validate({"domainId": 91, "domainType": "group_role"})],
+        target=ct.models.PermissionAssignmentTargetReference.model_validate({"domainId": 91, "domainType": "group_role"}),
+    )
+
+# post-permissions-assignment-targets-higher-levels-query
+def example_post_permissions_assignment_targets_higher_levels_query(client: ct.Client) -> None:
+    for higher_level in client.permissions.assignment_targets.higher_levels.query(
+        sources=[ct.models.PermissionAssignmentTargetReference.model_validate({"domainId": 91, "domainType": "group_role"})],
+    ):
+        print(higher_level.domain_id)
+
+# post-permissions-assignment-targets-person-summary-query
+def example_post_permissions_assignment_targets_person_summary_query(client: ct.Client) -> None:
+    person_summary = client.permissions.assignment_targets.person_summary.query(
+        targets=[ct.models.PermissionAssignmentTargetReference.model_validate({"domainId": 91, "domainType": "group_role"})],
+    )
+    print(person_summary.unique_person_count)
 
 # get-permissions-global
 def example_get_permissions_global(client: ct.Client) -> None:
@@ -4143,6 +4226,16 @@ def example_get_permissions_internal_groups_groupid_auths_authid_persons(client:
 def example_get_permissions_internal_persons_id(client: ct.Client) -> None:
     person = client.permissions.internal.persons.get(42)
     print(person)
+
+# get-permissions-origins-global-domainType-domainId
+def example_get_permissions_origins_global_domaintype_domainid(client: ct.Client) -> None:
+    item = client.permissions.origins.global_.get("status", 1)
+    print(item.domain_id)
+
+# get-permissions-origins-global-group-roles-groupRoleId
+def example_get_permissions_origins_global_group_roles_grouproleid(client: ct.Client) -> None:
+    group_role = client.permissions.origins.global_.group_roles.get(91)
+    print(group_role.group_role_id)
 
 # get-permissions-origins-global-persons-personId
 def example_get_permissions_origins_global_persons_personid(client: ct.Client) -> None:
@@ -4763,6 +4856,25 @@ def example_post_actions(client: ct.Client) -> None:
     for action in client.actions.filter(domain_type=["group_membership"]):
         print(action.domain_type)
 
+# delete-ccli-connection
+def example_delete_ccli_connection(client: ct.Client) -> None:
+    client.ccli.delete_connection()
+
+# post-ccli-authorization
+def example_post_ccli_authorization(client: ct.Client) -> None:
+    ccli = client.ccli.authorization()
+    print(ccli.url)
+
+# get-ccli-songs
+def example_get_ccli_songs(client: ct.Client) -> None:
+    for song in client.ccli.songs.list(query="Amazing Grace"):
+        print(song.title)
+
+# get-ccli-songs-songNumber
+def example_get_ccli_songs_songnumber(client: ct.Client) -> None:
+    song = client.ccli.songs.get(1100)
+    print(song.title)
+
 # get-churchquery-metadata
 def example_get_churchquery_metadata(client: ct.Client) -> None:
     result = client.church_query.get_metadata()
@@ -4771,6 +4883,11 @@ def example_get_churchquery_metadata(client: ct.Client) -> None:
 # post-churchquery-debug-export
 def example_post_churchquery_debug_export(client: ct.Client) -> None:
     client.church_query.debug.export(body="beispiel")
+
+# post-events-id-agenda-print
+def example_post_events_id_agenda_print(client: ct.Client) -> None:
+    agenda = client.events.agenda.print(42, font_size="medium")
+    print(agenda.url)
 
 # post-externallogins-id-link
 def example_post_externallogins_id_link(client: ct.Client) -> None:
@@ -5004,10 +5121,24 @@ def example_post_routines_routineid_runs_bulk_runaction(client: ct.Client) -> No
 def example_post_routines_routineid_steps_validate(client: ct.Client) -> None:
     client.routines.steps.validate(42, action_key="special:wait")
 
+# post-songs-songId-arrangements-arrangementId-files-ccli
+def example_post_songs_songid_arrangements_arrangementid_files_ccli(client: ct.Client) -> None:
+    for file in client.songs.arrangements.files.ccli(
+        42,
+        42,
+        body=ct.models.PostSongsSongIdArrangementsArrangementIdFilesCcliBodyVariant1.model_validate({"type": "lyrics"}),
+    ):
+        print(file.name)
+
 # get-translations-keysbytext
 def example_get_translations_keysbytext(client: ct.Client) -> None:
     for keys_by_text in client.translations.list_keys_by_text(query="Welcome"):
         print(keys_by_text)
+
+# post-triggers
+def example_post_triggers(client: ct.Client) -> None:
+    for trigger in client.triggers.create(domain_type=["group_membership"]):
+        print(trigger.domain_type)
 
 # get-website-starttest
 def example_get_website_starttest(client: ct.Client) -> None:
@@ -5061,6 +5192,7 @@ REFERENCE = {
     'post-markdown-convert': example_post_markdown_convert,
     'get-pollfornews': example_get_pollfornews,
     'post-reset-password': example_post_reset_password,
+    'post-reset-password-session': example_post_reset_password_session,
     'get-saml-login': example_get_saml_login,
     'get-saml-metadata': example_get_saml_metadata,
     'post-saml-acs': example_post_saml_acs,
@@ -5094,6 +5226,7 @@ REFERENCE = {
     'get-persons-personId-posts': example_get_persons_personid_posts,
     'get-persons-relationships': example_get_persons_relationships,
     'get-persons-id': example_get_persons_id,
+    'get-persons-personId-consentstatus': example_get_persons_personid_consentstatus,
     'get-persons-personId-information': example_get_persons_personid_information,
     'get-persons-id-loginstring': example_get_persons_id_loginstring,
     'get-persons-id-logintoken': example_get_persons_id_logintoken,
@@ -5107,9 +5240,12 @@ REFERENCE = {
     'delete-persons-personId-confidentialityagreement': example_delete_persons_personid_confidentialityagreement,
     'delete-persons-id-logintoken': example_delete_persons_id_logintoken,
     'delete-persons-id-privacypolicy': example_delete_persons_id_privacypolicy,
+    'post-persons-personId-activate': example_post_persons_personid_activate,
     'post-persons-personId-archive': example_post_persons_personid_archive,
+    'post-persons-personId-deactivate': example_post_persons_personid_deactivate,
     'post-persons-id-invite': example_post_persons_id_invite,
     'post-persons-properties': example_post_persons_properties,
+    'post-persons-personId-unarchive': example_post_persons_personid_unarchive,
     'get-persons-personId-devices': example_get_persons_personid_devices,
     'get-persons-personId-devices-deviceId': example_get_persons_personid_devices_deviceid,
     'put-persons-personId-devices-deviceId': example_put_persons_personid_devices_deviceid,
@@ -5284,12 +5420,15 @@ REFERENCE = {
     'post-repeatcalculation': example_post_repeatcalculation,
     'get-eventtemplates': example_get_eventtemplates,
     'get-events': example_get_events,
+    'get-events-serviceId-candidates': example_get_events_serviceid_candidates,
     'get-events-id-possiblepersonsforservice': example_get_events_id_possiblepersonsforservice,
     'get-events-id': example_get_events_id,
     'get-events-ical': example_get_events_ical,
     'post-events-ical': example_post_events_ical,
     'put-events-id': example_put_events_id,
+    'patch-events-id': example_patch_events_id,
     'delete-events-id': example_delete_events_id,
+    'post-events-id-cancel': example_post_events_id_cancel,
     'post-events-id-chat': example_post_events_id_chat,
     'post-events-send': example_post_events_send,
     'put-events-id-eventservices-id': example_put_events_id_eventservices_id,
@@ -5306,6 +5445,7 @@ REFERENCE = {
     'post-events-id-servicerequests-id-accept': example_post_events_id_servicerequests_id_accept,
     'post-events-id-servicerequests-id-decline': example_post_events_id_servicerequests_id_decline,
     'post-events-id-servicerequests-id-undo': example_post_events_id_servicerequests_id_undo,
+    'get-events-eventId-services-serviceId-candidates': example_get_events_eventid_services_serviceid_candidates,
     'get-events-eventId-services-serviceId-possiblepersons': example_get_events_eventid_services_serviceid_possiblepersons,
     'get-persons-id-events': example_get_persons_id_events,
     'get-persons-id-events-id-services': example_get_persons_id_events_id_services,
@@ -5334,6 +5474,7 @@ REFERENCE = {
     'post-agendatemplates-agendaId-export': example_post_agendatemplates_agendaid_export,
     'post-agendatemplates-agendaId-items': example_post_agendatemplates_agendaid_items,
     'put-agendatemplates-agendaId-items-itemId': example_put_agendatemplates_agendaid_items_itemid,
+    'patch-agendatemplates-agendaId-items-itemId': example_patch_agendatemplates_agendaid_items_itemid,
     'delete-agendatemplates-agendaId-items-itemId': example_delete_agendatemplates_agendaid_items_itemid,
     'put-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId': example_put_agendatemplates_agendaid_items_itemid_servicegroups_servicegroupid,
     'delete-agendatemplates-agendaId-items-itemId-servicegroups-serviceGroupId': example_delete_agendatemplates_agendaid_items_itemid_servicegroups_servicegroupid,
@@ -5348,6 +5489,7 @@ REFERENCE = {
     'post-events-id-agenda-unlock': example_post_events_id_agenda_unlock,
     'post-events-id-agenda-items': example_post_events_id_agenda_items,
     'put-events-id-agenda-items-id': example_put_events_id_agenda_items_id,
+    'patch-events-eventId-agenda-items-itemId': example_patch_events_eventid_agenda_items_itemid,
     'delete-events-id-agenda-items-id': example_delete_events_id_agenda_items_id,
     'post-events-id-agenda-items-id-hide': example_post_events_id_agenda_items_id_hide,
     'post-events-id-agenda-items-id-unhide': example_post_events_id_agenda_items_id_unhide,
@@ -5452,6 +5594,7 @@ REFERENCE = {
     'get-posts-postId': example_get_posts_postid,
     'post-posts': example_post_posts,
     'put-posts-postId-expire': example_put_posts_postid_expire,
+    'put-posts-seen': example_put_posts_seen,
     'patch-posts-postId': example_patch_posts_postid,
     'delete-posts-postId': example_delete_posts_postid,
     'get-posts-postId-comments': example_get_posts_postid_comments,
@@ -5709,11 +5852,15 @@ REFERENCE = {
     'get-permissions-permissionDomainType': example_get_permissions_permissiondomaintype,
     'get-permissions-definitions': example_get_permissions_definitions,
     'get-permissions-locked': example_get_permissions_locked,
+    'get-permissions-overview': example_get_permissions_overview,
     'put-permissions-domainType-domainId': example_put_permissions_domaintype_domainid,
     'put-permissions-locked': example_put_permissions_locked,
     'put-permissions-domainType-domainId-replace': example_put_permissions_domaintype_domainid_replace,
     'delete-permissions-domainType-domainId': example_delete_permissions_domaintype_domainid,
     'post-permissions-bulk': example_post_permissions_bulk,
+    'post-permissions-promote': example_post_permissions_promote,
+    'post-permissions-assignment-targets-higher-levels-query': example_post_permissions_assignment_targets_higher_levels_query,
+    'post-permissions-assignment-targets-person-summary-query': example_post_permissions_assignment_targets_person_summary_query,
     'get-permissions-global': example_get_permissions_global,
     'get-permissions-global-person-summary': example_get_permissions_global_person_summary,
     'get-permissions-global-auths-authId-assignment-summary': example_get_permissions_global_auths_authid_assignment_summary,
@@ -5723,6 +5870,8 @@ REFERENCE = {
     'get-permissions-internal-groups-groupId': example_get_permissions_internal_groups_groupid,
     'get-permissions-internal-groups-groupId-auths-authId-persons': example_get_permissions_internal_groups_groupid_auths_authid_persons,
     'get-permissions-internal-persons-id': example_get_permissions_internal_persons_id,
+    'get-permissions-origins-global-domainType-domainId': example_get_permissions_origins_global_domaintype_domainid,
+    'get-permissions-origins-global-group-roles-groupRoleId': example_get_permissions_origins_global_group_roles_grouproleid,
     'get-permissions-origins-global-persons-personId': example_get_permissions_origins_global_persons_personid,
     'get-permissions-origins-internal-persons-personId': example_get_permissions_origins_internal_persons_personid,
     'get-logs': example_get_logs,
@@ -5831,8 +5980,13 @@ REFERENCE = {
     'post-domainobjects': example_post_domainobjects,
     'get-fields': example_get_fields,
     'post-actions': example_post_actions,
+    'delete-ccli-connection': example_delete_ccli_connection,
+    'post-ccli-authorization': example_post_ccli_authorization,
+    'get-ccli-songs': example_get_ccli_songs,
+    'get-ccli-songs-songNumber': example_get_ccli_songs_songnumber,
     'get-churchquery-metadata': example_get_churchquery_metadata,
     'post-churchquery-debug-export': example_post_churchquery_debug_export,
+    'post-events-id-agenda-print': example_post_events_id_agenda_print,
     'post-externallogins-id-link': example_post_externallogins_id_link,
     'post-externallogins-id-link-create-person': example_post_externallogins_id_link_create_person,
     'get-externallogins-id-oidc-start': example_get_externallogins_id_oidc_start,
@@ -5875,7 +6029,9 @@ REFERENCE = {
     'post-routines-id-runs-id-runAction': example_post_routines_id_runs_id_runaction,
     'post-routines-routineId-runs-bulk-runAction': example_post_routines_routineid_runs_bulk_runaction,
     'post-routines-routineId-steps-validate': example_post_routines_routineid_steps_validate,
+    'post-songs-songId-arrangements-arrangementId-files-ccli': example_post_songs_songid_arrangements_arrangementid_files_ccli,
     'get-translations-keysbytext': example_get_translations_keysbytext,
+    'post-triggers': example_post_triggers,
     'get-website-starttest': example_get_website_starttest,
     'get-website-data': example_get_website_data,
     'post-website-data': example_post_website_data,

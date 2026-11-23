@@ -1,27 +1,92 @@
 # Changelog
 
-Alle nennenswerten Änderungen am Rust-Crate `churchtools-api` und am Python-Paket `churchtools-api-rs`. Das Format folgt
-[Keep a Changelog](https://keepachangelog.com/de/1.1.0/), die Versionen folgen [SemVer](https://semver.org/lang/de/);
-vor 1.0 kann jede Minor-Version inkompatible Änderungen enthalten. Wie Versionen und ChurchTools-Versionen
-zusammenhängen, steht im README unter „ChurchTools-Versionen und Kompatibilität“.
+Alle nennenswerten Änderungen am Rust-Crate `churchtools-api` und am Python-Paket `churchtools-api-rs`. Die Versionen
+folgen [SemVer](https://semver.org/lang/de/): neue Funktionen und inkompatible Änderungen erhöhen die Minor-Version,
+reine Fehlerkorrekturen die Patch-Version. Wie Versionen und ChurchTools-Versionen zusammenhängen, steht im README unter
+„ChurchTools-Versionen und Kompatibilität“. Die Doku-Seite zeigt diese Datei als „Änderungen je Version“.
+
+Jede Version hat denselben Aufbau, `codegen/changelog.py` prüft ihn:
+
+- Überschrift `## [Version] – JJJJ-MM-TT` (vor der Veröffentlichung `## [Unreleased]`).
+- Erste Zeile: `ChurchTools <Version> (Build <Nummer>) · <n> Operationen · <n> Modelle`.
+- Ein Satz, was die Version ausmacht.
+- Danach nur die Abschnitte, die etwas enthalten, in dieser Reihenfolge: `### Inkompatibel` (jeweils mit dem, was
+  beim Umstieg zu ändern ist), `### Neu`, `### Geändert`, `### Korrigiert`.
+
+## [Unreleased]
+
+ChurchTools 3.139.0 (Build 32955) · 875 Operationen · 1143 Modelle
+
+Update auf ChurchTools 3.139.0 mit 25 neuen Endpunkten und einigen inkompatiblen Typänderungen; erscheint als 0.3.0.
+
+### Inkompatibel
+
+- Koordinaten in Adressen (`latitude`, `longitude`, `latitudeLoose`, `longitudeLoose`, `geoLat`, `geoLng`) können
+  Zahl oder Text sein: Python `float | str | None` statt `str | None`, Rust `serde_json::Value` statt
+  `Option<String>`. Wer mit dem Wert rechnet, wandelt ihn selbst um (`float(address.latitude)`). Bei `CheckinPerson`
+  sind `latitude`/`longitude` nicht mehr Pflicht.
+- `security_levels.create()` und `security_levels.patch()` geben `GetSecuritylevelsIdResponse` zurück (die Stufe
+  direkt und zusätzlich unter `data`); `PostSecuritylevelsIdResponse` und `PatchSecuritylevelsIdResponse` entfallen.
+  Typangaben im eigenen Code entsprechend umbenennen.
+- `ProbeTraversalExpression` (Body von `persons.filter()`) ist aufgeteilt in `ProbeMembershipTraversalExpression`
+  und `ProbeRelationshipTraversalExpression`; den passenden Typ wählen.
+- Rust: Viele Felder in Bodies zum Ändern sind `null`-fähig und damit `Option<Option<T>>`, z. B. in
+  `PatchPersonsIdBody`, `PostPersonsBody` und `PatchGroupsIdBody`: `city: Some(Some("Esslingen".into()))` setzt den
+  Wert, `Some(None)` sendet `null`. In Python sind die Argumente nur zusätzlich `None`-fähig.
+- `Config.feature_old_group_module` entfällt; `PermissionModification.modified_date` ist Pflicht.
+
+### Neu
+
+- 25 Endpunkte: CCLI (`ccli.authorization()`, `ccli.delete_connection()`, `ccli.songs.list()`, `ccli.songs.get()`,
+  `songs.arrangements.files.ccli()`), `events.patch()`, `events.cancel()`, `events.agenda.print()`,
+  `events.agenda.items.patch()`, `agenda_templates.items.patch()`, Dienst-Kandidaten (`events.list_candidates()`,
+  `events.services.list_candidates()`), Berechtigungen (`permissions.get_overview()`, `permissions.promote()`,
+  `permissions.assignment_targets.higher_levels.query()`, `permissions.assignment_targets.person_summary.query()`,
+  `permissions.origins.global_.get()`, `permissions.origins.global_.group_roles.get()`), Personen
+  (`persons.activate()`, `persons.deactivate()`, `persons.unarchive()`, `persons.get_consentstatus()`),
+  `posts.update_seen()`, `reset_password.session()` und `triggers.create()`.
+- Optionale Argumente und Felder, z. B. `include=["statistics"]` bei `permissions.list_assignment_targets()`,
+  `include=["hasSeen"]` bei `posts.get()`, `include=["usage"]` bei `songs.get()`, `hasSeen`/`imagesMeta` bei
+  Beiträgen, `triggerKey` bei Routinen, `statistics` bei `PermissionAssignmentTarget`.
+- Doku-Seite „Änderungen je Version“ aus diesem Changelog.
+
+### Geändert
+
+- `PersonPasswordUpdate.old_password` (Argument von `persons.update_password()`) ist optional.
+- `permissions.list_assignment_targets()` behält seinen Namen, obwohl es unter `/permissions/assignment-targets` jetzt
+  Unterpfade gibt, und `PermissionAssignmentTarget` behält `domain_type` (die Spec führt es nur noch in den Varianten).
+- `API_VERSION`/`API_BUILD` sind `3.139.0`/`32955`.
+
+### Korrigiert
+
+- `GroupInformation.note` darf `null` sein: Seit 3.139.0 sendet der Server bei Gruppen ohne Notiz `null` statt `""`.
 
 ## [0.2.0] – 2026-11-22
 
-Generiert aus der API-Beschreibung von ChurchTools 3.138.3 (Build 32945): 850 Operationen, 1110 Modelle. Keine
-inkompatiblen Änderungen.
+ChurchTools 3.138.3 (Build 32945) · 850 Operationen · 1110 Modelle
 
-- Neu: `security_levels.renumber()` (`POST /securitylevels/renumber`) nummeriert die Sicherheitsstufen neu, ohne ihre
+Update auf ChurchTools 3.138.3: Sicherheitsstufen neu nummerieren und gegen gleichzeitige Änderungen schützen.
+
+### Neu
+
+- `security_levels.renumber()` (`POST /securitylevels/renumber`) nummeriert die Sicherheitsstufen neu, ohne ihre
   Reihenfolge zu ändern. Danach haben die Stufen andere IDs; gespeicherte IDs müssen neu gelesen werden.
-- Neu: optionales Argument `expected_name` bei `security_levels.patch` und `security_levels.delete` (Rust:
+- Optionales Argument `expected_name` bei `security_levels.patch` und `security_levels.delete` (Rust:
   `PatchSecuritylevelsIdBody::expected_name`, `DeleteSecuritylevelsIdQuery::expected_name`). Weicht der Name ab,
   lehnt der Server mit 409 ab (`Conflict`).
+
+### Geändert
+
 - `forcereorder` bei `security_levels.patch` ist veraltet (der Server ignoriert es) und erzeugt eine Warnung.
-- `API_VERSION`/`API_BUILD` sind jetzt `3.138.3`/`32945`.
+- `API_VERSION`/`API_BUILD` sind `3.138.3`/`32945`.
 
 ## [0.1.0] – 2026-10-30
 
-Erste Veröffentlichung. Generiert aus der API-Beschreibung von ChurchTools 3.138.1 (Build 32938): 849 Operationen,
-1110 Modelle.
+ChurchTools 3.138.1 (Build 32938) · 849 Operationen · 1110 Modelle
+
+Erste Veröffentlichung.
+
+### Neu
 
 - Rust-Crate `churchtools-api`: `Client`/`ClientBuilder` (`timeout`, `connect_timeout`, `max_response_size`,
   `allow_insecure_http`, `from_env`), generierte Ressourcen (`client.events().list_with(&query)`), Modelle mit

@@ -66,7 +66,11 @@
     "imagesMeta": [
      {
       "imageUrl": "https://gemeinde.example/images/3213/33dacd2d0c3f4c1632b4d3cd57d24acb649083b8cc5c86db401def13e7f48904",
-      "aspectRatio": 2
+      "aspectRatio": 2,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      }
     ],
     "publicationDate": "2026-08-17T11:40:18Z",
@@ -146,11 +150,19 @@
     "imagesMeta": [
      {
       "imageUrl": "https://gemeinde.example/images/3177/e977bca614d670344744c394036abc501dc63760389b259e82441dca7c73af1b",
-      "aspectRatio": 1.50282
+      "aspectRatio": 1.50282,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/3192/36d832f6b70466dbc15bd78bc755659444e2b3384c34e1d993c048335515c0b1",
-      "aspectRatio": 1.32398
+      "aspectRatio": 1.32398,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      }
     ],
     "publicationDate": "2026-08-17T11:29:29Z",
@@ -230,11 +242,19 @@
     "imagesMeta": [
      {
       "imageUrl": "https://gemeinde.example/images/3189/c36c957df2bf9e90a1e84de6b3065db65376b9c5338597e596eb641f53dd63db",
-      "aspectRatio": 1.5
+      "aspectRatio": 1.5,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/3186/c18a0b6b56ff4d74042e85a2235cee72e69c856f1fd510d283acb23976377eb7",
-      "aspectRatio": 0.66667
+      "aspectRatio": 0.66667,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      }
     ],
     "publicationDate": "2026-08-17T10:05:47Z",
@@ -388,19 +408,35 @@
     "imagesMeta": [
      {
       "imageUrl": "https://gemeinde.example/images/2524/e0af7228d0ecd72fa042fc0c65be644bb5520bcbd4437d1ea8103225f5f41d54",
-      "aspectRatio": 0.75
+      "aspectRatio": 0.75,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/2521/649bd36e74b4c268eb243d582f666398b358110f61c41e68085ac76298aa3f7d",
-      "aspectRatio": 1.49718
+      "aspectRatio": 1.49718,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/2518/b90bc21a9647a927da7bd13ee06af27c249fdfd950f79a714500c67d0e908d01",
-      "aspectRatio": 1.50257
+      "aspectRatio": 1.50257,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/2527/2d6945f930db8f56abbc82404723d9cf9eb1ab6ed11f9b237a4911eaa366fffd",
-      "aspectRatio": 1.25107
+      "aspectRatio": 1.25107,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      }
     ],
     "publicationDate": null,
@@ -482,19 +518,35 @@
     "imagesMeta": [
      {
       "imageUrl": "https://gemeinde.example/images/2464/7470c5ab23be43296ba83c54ac9ede0c40b979d253f90fbe215540729b91bc49",
-      "aspectRatio": 0.8
+      "aspectRatio": 0.8,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/2455/ccdb977c15d8981b8cba40c461dcf0dbc5e36b3d9eccf6f945e88a1252dd0188",
-      "aspectRatio": 1.53535
+      "aspectRatio": 1.53535,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/2458/e9e6fa676624fa90ff89bb4d741cf196428d2a13ae21c216a8f8481b0e2af9b6",
-      "aspectRatio": 1.48889
+      "aspectRatio": 1.48889,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/2461/e2a2e18cc9b91d0282a8bc574aff002102fbbf8246daa2dc4c0fcc5428787bdb",
-      "aspectRatio": 0.66785
+      "aspectRatio": 0.66785,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      }
     ],
     "publicationDate": null,
@@ -647,15 +699,27 @@
     "imagesMeta": [
      {
       "imageUrl": "https://gemeinde.example/images/2428/617cfe148c1276b7813481ea7398d699ca5f5fb788c3c2dc021e009b7a521c22",
-      "aspectRatio": 0.99804
+      "aspectRatio": 0.99804,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/2425/207dff9e7aaf90a3b49be5e7b18442549e1bde1644afd640cf9adbf1a4c0ba94",
-      "aspectRatio": 1.49986
+      "aspectRatio": 1.49986,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      },
      {
       "imageUrl": "https://gemeinde.example/images/2422/7a0f2b93868c97629e0450477c8a10952c6bca7bb16173953328d738ac0beb7c",
-      "aspectRatio": 0.94118
+      "aspectRatio": 0.94118,
+      "aiGenerated": false,
+      "annotation": null,
+      "annotationLink": null,
+      "description": null
      }
     ],
     "publicationDate": null,

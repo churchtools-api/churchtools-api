@@ -1,0 +1,91 @@
+{
+ "operation": "get-permissions-overview",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/overview",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "categories": [
+    {
+     "domainType": "status",
+     "total": 4,
+     "targets": [
+      {
+       "domainId": 3,
+       "permissionCount": 13
+      },
+      {
+       "domainId": 1,
+       "permissionCount": 9
+      },
+      {
+       "domainId": 0,
+       "permissionCount": 7
+      }
+     ]
+    },
+    {
+     "domainType": "group_type_role",
+     "total": 7,
+     "targets": [
+      {
+       "domainId": 9,
+       "permissionCount": 11
+      },
+      {
+       "domainId": 10,
+       "permissionCount": 11
+      },
+      {
+       "domainId": 15,
+       "permissionCount": 4
+      }
+     ]
+    },
+    {
+     "domainType": "person",
+     "total": 4,
+     "targets": [
+      {
+       "domainId": 1,
+       "permissionCount": 105
+      },
+      {
+       "domainId": 249,
+       "permissionCount": 105
+      },
+      {
+       "domainId": 103,
+       "permissionCount": 65
+      }
+     ]
+    },
+    {
+     "domainType": "group_role",
+     "total": 176,
+     "targets": [
+      {
+       "domainId": 2509,
+       "permissionCount": 99,
+       "groupId": 208
+      },
+      {
+       "domainId": 2512,
+       "permissionCount": 99,
+       "groupId": 208
+      },
+      {
+       "domainId": 2515,
+       "permissionCount": 99,
+       "groupId": 208
+      }
+     ]
+    }
+   ],
+   "publicPermissionCount": 4
+  }
+ }
+}

@@ -3,7 +3,8 @@
 Getestet am 28.10.2026 gegen eine 3-Tage-Demo-Instanz (ChurchTools 3.138.0, Build 32935) und am 30.10.2026 erneut
 gegen eine frische Instanz mit ChurchTools 3.138.1 (Build 32938), jeweils dieselbe Spec wie demo.church.tools. Die
 Spec von 3.138.1 ist byte-identisch mit der von 3.138.0; der zweite Lauf hatte dieselben Ergebnisse. Am 21. und
-22.11.2026 lief die Suite gegen eine Instanz mit ChurchTools 3.138.3 (Build 32945), siehe „Änderungen in 3.138.3“.
+22.11.2026 lief die Suite gegen eine Instanz mit ChurchTools 3.138.3 (Build 32945), siehe „Änderungen in 3.138.3“,
+am 23.11.2026 gegen eine frische Instanz mit ChurchTools 3.139.0 (Build 32955), siehe „Änderungen in 3.139.0“.
 Angemeldet war
 der Demo-Admin (Person 1, Sicherheitsstufe 99999). Alle Anfragen liefen mit höchstens 4 Anfragen pro Sekunde
 (`CT_MIN_INTERVAL=0.25`).
@@ -26,20 +27,20 @@ Sie prüfen Python und Rust gegen echte Daten, ohne die Instanz erneut zu belast
 
 ## Ergebnis
 
-Alle 850 Operationen, Stand des letzten Laufs (`fixtures/live-results.json`):
+Alle 875 Operationen, Stand des letzten Laufs (`fixtures/live-results.json`):
 
 | | ok | erwartet | keine Daten | nicht aufgerufen | gesamt |
 |---|---:|---:|---:|---:|---:|
-| GET | 348 | 11 | 6 | – | 365 |
-| POST | 74 | – | – | 143 | 217 |
-| PUT | 49 | 1 | – | 68 | 118 |
-| PATCH | 10 | – | – | 14 | 24 |
-| DELETE | 58 | – | – | 68 | 126 |
-| **gesamt** | **539** | **12** | **6** | **293** | **850** |
+| GET | 354 | 12 | 7 | – | 373 |
+| POST | 74 | – | – | 155 | 229 |
+| PUT | 49 | 1 | – | 69 | 119 |
+| PATCH | 10 | – | – | 17 | 27 |
+| DELETE | 58 | – | – | 69 | 127 |
+| **gesamt** | **545** | **13** | **7** | **310** | **875** |
 
-pytest (3.138.3): 392 bestanden, 12 erwartete Fehler (`xfail`), 6 übersprungen, 0 fehlgeschlagen; Laufzeit etwa
-4 Minuten. Mit den Testdaten aus `seed.py` sind von den 365 GET-Endpunkten 348 erfolgreich getestet; vorher waren es
-298. Von den 485 schreibenden ruft die Suite 191 auf, verteilt auf 45 Szenario-Tests. In der Doku-Seite tragen alle
+pytest (3.139.0): 398 bestanden, 13 erwartete Fehler (`xfail`), 7 übersprungen, 0 fehlgeschlagen; Laufzeit etwa
+5 Minuten. Mit den Testdaten aus `seed.py` sind von den 373 GET-Endpunkten 354 erfolgreich getestet; vor `seed.py`
+waren es 298. Von den 502 schreibenden ruft die Suite 191 auf, verteilt auf 45 Szenario-Tests. In der Doku-Seite tragen alle
 Endpunkte, die nicht „ok“ sind, ein rotes Sternchen.
 
 - **ok:** Aufruf erfolgreich, Antwort passt zu den Modellen.
@@ -48,7 +49,7 @@ Endpunkte, die nicht „ok“ sind, ein rotes Sternchen.
   dynamischen Gruppen oder keine Sync-Berechtigung.
 - **nicht aufgerufen:** Schreibende Endpunkte ohne Szenario, siehe „Bewusst nicht getestet“.
 
-Alle 333 aufgezeichneten Antworten dekodieren in Python und in Rust. Eine davon, `GET /website/starttest`, liefert `{}`
+Alle 452 aufgezeichneten Antworten dekodieren in Python und in Rust. Eine davon, `GET /website/starttest`, liefert `{}`
 ohne dokumentierten Typ und wird nur in Python übersprungen.
 
 ### Unabhängig von der Instanz
@@ -189,6 +190,30 @@ Erfolgscode; der Client meldet das als `Conflict`.
 Die Aufzeichnungen wurden nur ergänzt: neue Felder (z. B. `addSignOutUrl`, `skipIfEmailAddressMissing` bei
 Routinen), Werte, wo bisher nur `null` aufgezeichnet war, und die zwei neuen Sicherheitsstufen-Endpunkte (13 Dateien,
 rund 190 Zeilen).
+
+## Änderungen in 3.139.0
+
+Die Spec von 3.139.0 (Build 32955) bringt 25 neue Operationen (CCLI, Ereignisse ändern und absagen, Ablauf drucken,
+Dienst-Kandidaten, Berechtigungsübersicht und -herkunft, Personen aktivieren, deaktivieren und wiederherstellen,
+Beiträge als gesehen markieren, Routinen-Auslöser). Bei 655 der 773 Operationen, die `check_upstream.py` als
+geändert meldet, kommt nur ein Schema für den Fehler-Body von 400/403/404 dazu; daraus entsteht kein Code. Geprüft
+auf einer frischen Demo-Instanz:
+
+| Änderung | Ergebnis |
+|---|---|
+| `GET /groups`, `GET /groups/{id}` | `information.note` ist `null` bei Gruppen ohne Notiz (vorher `""`), laut Spec Pflicht-Text; `FIELD_FIXES` macht das Feld `null`-fähig |
+| `GET /ccli/songs` | 502 `ccli.upstream.failed`, weil die Demo nicht mit CCLI verbunden ist; als erwarteter Fehler geführt. `GET /ccli/songs/{n}` bleibt deshalb ohne Daten |
+| `GET /events/{serviceId}/candidates` | erwartet trotz des Pfads eine Dienst-ID (wie `possiblepersonsforservice`); Resolver angepasst |
+| `GET /permissions/origins/global/{domainType}/{domainId}` | nur für `status` und `group_type_role`, sonst 400; Resolver nimmt den ersten Status |
+| `POST`/`PATCH /securitylevels/{id}` | Antwort enthält die Stufe direkt und zusätzlich unter `data`, wie in der Spec |
+| `GET /permissions/assignment-targets` | `domainType` steht in der Spec nur noch in den `oneOf`-Varianten; der Generator übernimmt jetzt Felder, die alle Varianten haben |
+
+Neue Pflichtfelder (z. B. `triggerKey` bei Routinen, `aiGenerated` in `imagesMeta`, `createdDate` in `meta` von
+Berechtigungen) hätten ältere Listeneinträge in den Aufzeichnungen ungültig gemacht, weil `merge` ein neues Feld nur
+in einen Eintrag einfügt. `complete` in `conftest.py` ergänzt deshalb Felder, die alle Einträge der neuen Antwort
+haben, in allen Einträgen (mit `null`, wo eine Antwort `null` hat, sonst mit dem ersten Wert). Das macht den größten
+Teil des Fixture-Diffs aus (17 Dateien, rund 3.000 Zeilen, davon 1.800 in zwei Berechtigungs-Listen), dazu 6 neue
+Aufzeichnungen.
 
 ## Bewusst nicht getestet
 

@@ -55,6 +55,15 @@ generiert (`codegen/generate.py`); handgeschrieben sind nur Transport, Fehler, T
   mit geänderter Spec hat (`codegen/check_upstream.py`). Neue Felder sind unkritisch (`extra`/`model_extra`), neue Pflichtfelder und umbenannte Endpunkte
   sind inkompatible Änderungen. Versioniert wird nach SemVer: neue Funktionen (Endpunkte, Argumente) und
   inkompatible Änderungen → Minor-Version, nur Fehlerkorrekturen → Patch-Version; jeweils mit Changelog.
+- **Changelog und Seite „Änderungen je Version“:** Jede Version in `CHANGELOG.md` hat denselben Aufbau (oben in der
+  Datei beschrieben): Überschrift `## [Version] – Datum` bzw. `## [Unreleased]`, die Zeile
+  `ChurchTools <Version> (Build <Nummer>) · <n> Operationen · <n> Modelle`, ein Satz zur Version, danach nur die
+  nicht leeren Abschnitte `### Inkompatibel`, `### Neu`, `### Geändert`, `### Korrigiert` in dieser Reihenfolge, jeweils
+  als Liste. Unter „Inkompatibel“ steht, was Nutzer beim Umstieg ändern müssen. Methoden (`events.cancel()`),
+  Endpunkte (`POST /events/{eventId}/cancel`) und Modelle (`Person`, `Person.first_name`) in Backticks verlinkt die
+  Seite auf die Referenz. `codegen/changelog.py` prüft das Format und erzeugt daraus `docs/site/aenderungen.html`;
+  ein abweichender Eintrag lässt Generator und CI scheitern (`codegen/tests/test_changelog.py`). Bei einem
+  Versions-Update kommt der Eintrag unter `## [Unreleased]`, mit den Zahlen aus der Ausgabe von `generate.py`.
 - **Abhängigkeiten** werden gelegentlich aktualisiert (`cargo update`, Pydantic-/PyO3-/maturin-Versionen in
   `pyproject.toml` und `python/Cargo.toml`). Nach einem Update die vollständige Prüfung aus Regel 5 laufen lassen;
   bei PyO3- oder reqwest-Major-Updates die Bindings in `python/src/lib.rs` bzw. `core/src/client.rs` durchsehen.

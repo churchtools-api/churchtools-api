@@ -40,6 +40,8 @@ FIELD_FIXES: dict[tuple[str, str], dict[str, bool]] = {  # required / nullable /
     ("PublicGroupToken", "group"): {"any": True},
     # PUT /posts/{id}/reactions/{emoji}/persons/{personId} answers without meta.
     ("PostReaction", "meta"): {"required": False},
+    # GET /groups, /groups/{id} (3.139.0): information.note is null for groups without a note (before: "").
+    ("GroupInformation", "note"): {"nullable": True},
 }
 # operationId -> changes to the response description. `result`/`type` describe a
 # response body the spec does not document at all.
@@ -131,6 +133,8 @@ NAME_OVERRIDES: dict[str, tuple[str, str]] = {
     "get-permissions-internal-groups-groupId": ("permissions.internal.groups", "get"),
     "get-permissions-permissionDomainType": ("permissions", "list_for_type"),
     "get-permissions-permissionDomainType-permissionDomainId": ("permissions", "list"),
+    # Keeps the name from before 3.139.0, when sub-paths of /permissions/assignment-targets turned it into a resource.
+    "get-permissions-assignment-targets": ("permissions", "list_assignment_targets"),
     # Public groups
     "get-publicgroups-id": ("publicgroups", "get"),
     "get-publicgroups-id-hash": ("publicgroups", "get_with_hash"),
@@ -363,7 +367,34 @@ def merge_object(s: dict):
             doc = doc or d
     props.update(s.get("properties", {}))
     required |= set(s.get("required", []))
+    if props:
+        # Fields that every variant of a oneOf/anyOf next to the properties has (since 3.139.0 e.g. `domainType` of
+        # PermissionAssignmentTarget, with one enum value per variant).
+        for key in ("oneOf", "anyOf"):
+            members = [merge_object(m) for m in s.get(key, []) if isinstance(m, dict) and is_object(m)]
+            if not members or len(members) != len(s[key]):
+                continue
+            for name in sorted(set.intersection(*(set(m[0]) for m in members)) - set(props)):
+                variants = [m[0][name] for m in members]
+                props[name] = _combine(variants)
+                if all(name in m[1] for m in members):
+                    required.add(name)
     return props, required, additional, doc, nullable
+
+
+def _combine(variants: list) -> dict:
+    """One schema for the variants of a field: enums are joined, other differing schemas become anyOf."""
+    if all(isinstance(v, dict) and isinstance(v.get("enum"), list) and set(v) <= {"enum", "type", "description"}
+           for v in variants):
+        values = sorted(set(x for v in variants for x in v["enum"]), key=lambda x: (str(type(x)), x))
+        doc = next((v["description"] for v in variants if v.get("description")), None)
+        out: dict = {"enum": values}
+        types = {v.get("type") for v in variants} - {None}
+        if len(types) == 1:
+            out["type"] = types.pop()
+        return {**out, "description": doc} if doc else out
+    unique_variants = list({canon(v): v for v in variants}.values())
+    return unique_variants[0] if len(unique_variants) == 1 else {"anyOf": unique_variants}
 
 
 # ---------------------------------------------------------------------------

@@ -104,7 +104,13 @@ for _t_path in ("/persons/{personId}/events/{eventId}/services/{serviceId}/excha
     PATH_VALUES[(_t_path, "serviceId")] = lambda r, v: r.pick(
         r.first(f"/persons/{v['personId']}/events/{v['eventId']}/services"), "id")
 # Despite the URL, this is a service id, not an event id.
-PATH_VALUES[("/events/{serviceId}/possiblepersonsforservice", "serviceId")] = first_of("/services", "id")
+for _t_path in ("/events/{serviceId}/possiblepersonsforservice", "/events/{serviceId}/candidates"):
+    PATH_VALUES[(_t_path, "serviceId")] = first_of("/services", "id")
+# Global permission origins exist only for a status or a group-type role.
+PATH_VALUES[("/permissions/origins/global/{domainType}/{domainId}", "domainType")] = "status"
+PATH_VALUES[("/permissions/origins/global/{domainType}/{domainId}", "domainId")] = first_of("/statuses", "id")
+PATH_VALUES[("/permissions/origins/global/group-roles/{groupRoleId}", "groupRoleId")] = lambda r, v: r.pick(
+    r.first(f"/groups/{r.pick(r.first('/groups'), 'id')}/roles"), "id")
 for _t_path in ("/htmltemplates/{templateId}/export", "/htmltemplates/{templateId}/html", "/htmltemplates/{templateId}/mjml"):
     PATH_VALUES[(_t_path, "templateId")] = PATH_VALUES[("/htmltemplates/{templateId}", "templateId")]
 

@@ -25,7 +25,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 10,
@@ -39,7 +40,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 11,
@@ -53,7 +55,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 12,
@@ -67,7 +70,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 13,
@@ -81,7 +85,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 2,
@@ -95,7 +100,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 3,
@@ -109,7 +115,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 9,
@@ -199,7 +206,8 @@
          "name": "Schwedisch",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 5,
@@ -213,7 +221,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 7,
@@ -227,7 +236,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 6,
@@ -241,7 +251,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 16,
@@ -255,7 +266,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 17,
@@ -305,7 +317,8 @@
          "name": "ctrs-test Bescheinigung",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 19,
@@ -330,7 +343,8 @@
          "name": "ctrs-test",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 18,
@@ -350,7 +364,8 @@
          "name": "Alle",
          "kind": "all"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -370,7 +385,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -390,7 +406,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 124,
@@ -420,7 +437,8 @@
          "name": "Hafencity",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 133,
@@ -450,7 +468,8 @@
          "name": "Hafencity",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 102,
@@ -475,7 +494,8 @@
          "name": "Gemeindeliste",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 125,
@@ -520,7 +540,8 @@
          "name": "Stufe 5 (Administration)",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 131,
@@ -565,7 +586,8 @@
          "name": "Stufe 5 (Administration)",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 132,
@@ -610,7 +632,8 @@
          "name": "Stufe 5 (Administration)",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 119,
@@ -624,7 +647,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 111,
@@ -638,7 +662,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 129,
@@ -652,7 +677,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 134,
@@ -666,7 +692,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 135,
@@ -680,7 +707,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 118,
@@ -694,7 +722,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 116,
@@ -708,7 +737,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 106,
@@ -722,7 +752,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 107,
@@ -736,7 +767,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 113,
@@ -776,7 +808,8 @@
          "name": "Admin",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 112,
@@ -790,7 +823,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 128,
@@ -804,7 +838,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 130,
@@ -818,7 +853,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 117,
@@ -832,7 +868,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 108,
@@ -846,7 +883,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 109,
@@ -860,7 +898,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 122,
@@ -874,7 +913,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 120,
@@ -888,7 +928,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 127,
@@ -902,7 +943,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 199,
@@ -916,7 +958,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -936,7 +979,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1104,
@@ -1436,7 +1480,8 @@
          "name": "ctrs-test Anmeldung 745f23",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1105,
@@ -1936,7 +1981,8 @@
          "name": "ctrs-test Anmeldung 745f23",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1106,
@@ -2436,7 +2482,8 @@
          "name": "ctrs-test Anmeldung 745f23",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1107,
@@ -2486,7 +2533,8 @@
          "name": "Prozesse",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1108,
@@ -2536,7 +2584,8 @@
          "name": "Prozesse",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1109,
@@ -2586,7 +2635,8 @@
          "name": "Prozesse",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1110,
@@ -2636,7 +2686,8 @@
          "name": "Prozesse",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1111,
@@ -2686,7 +2737,8 @@
          "name": "Prozesse",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1112,
@@ -3186,7 +3238,8 @@
          "name": "ctrs-test Anmeldung 745f23",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1113,
@@ -3200,7 +3253,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1114,
@@ -3245,7 +3299,8 @@
          "name": "Stufe 5 (Administration)",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1102,
@@ -3259,7 +3314,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1103,
@@ -3273,7 +3329,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1115,
@@ -3287,7 +3344,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 1116,
@@ -3301,7 +3359,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -3321,7 +3380,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 403,
@@ -3401,7 +3461,8 @@
          "name": "Feiertage",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 404,
@@ -3481,7 +3542,8 @@
          "name": "Feiertage",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 410,
@@ -3561,7 +3623,8 @@
          "name": "Feiertage",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 409,
@@ -3575,7 +3638,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 407,
@@ -3589,7 +3653,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 406,
@@ -3603,7 +3668,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 408,
@@ -3617,7 +3683,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 405,
@@ -3631,7 +3698,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 402,
@@ -3645,7 +3713,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 411,
@@ -3659,7 +3728,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -3679,7 +3749,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 304,
@@ -3749,7 +3820,8 @@
          "name": "Kaffeebar",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 305,
@@ -3819,7 +3891,8 @@
          "name": "Kaffeebar",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 302,
@@ -3833,7 +3906,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 306,
@@ -3913,7 +3987,8 @@
          "name": "Feiertage",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 303,
@@ -3993,7 +4068,8 @@
          "name": "Feiertage",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 309,
@@ -4007,7 +4083,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 307,
@@ -4021,7 +4098,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 321,
@@ -4061,7 +4139,8 @@
          "name": "Kollekte Ausgang",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 308,
@@ -4101,7 +4180,8 @@
          "name": "Kollekte Ausgang",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 322,
@@ -4115,7 +4195,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 331,
@@ -4195,7 +4276,8 @@
          "name": "Feiertage",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 332,
@@ -4275,7 +4357,8 @@
          "name": "Feiertage",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 333,
@@ -4355,7 +4438,8 @@
          "name": "Feiertage",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 313,
@@ -4385,7 +4469,8 @@
          "name": "Inaktive Songs",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 312,
@@ -4415,7 +4500,8 @@
          "name": "Inaktive Songs",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 314,
@@ -4429,7 +4515,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 341,
@@ -4443,7 +4530,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 399,
@@ -4457,7 +4545,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -4477,7 +4566,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 205,
@@ -4557,7 +4647,8 @@
          "name": "Küche",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 206,
@@ -4637,7 +4728,8 @@
          "name": "Küche",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 204,
@@ -4651,7 +4743,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 202,
@@ -4731,7 +4824,8 @@
          "name": "Küche",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 203,
@@ -4745,7 +4839,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 299,
@@ -4759,7 +4854,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -4779,7 +4875,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 602,
@@ -4793,7 +4890,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 699,
@@ -4807,7 +4905,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -4827,7 +4926,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 502,
@@ -4877,7 +4977,8 @@
          "name": "Willkommen 👋🏼",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 503,
@@ -4927,7 +5028,8 @@
          "name": "Willkommen 👋🏼",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 599,
@@ -4941,7 +5043,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -4961,7 +5064,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 902,
@@ -4996,7 +5100,8 @@
          "name": "6",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 903,
@@ -5031,7 +5136,8 @@
          "name": "6",
          "kind": "value"
         }
-       ]
+       ],
+       "isPubliclyAssignable": false
       },
       {
        "authId": 999,
@@ -5045,7 +5151,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     },
@@ -5065,7 +5172,8 @@
         "group_role",
         "person"
        ],
-       "selections": []
+       "selections": [],
+       "isPubliclyAssignable": false
       }
      ]
     }

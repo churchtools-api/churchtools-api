@@ -1,0 +1,18 @@
+{
+ "operation": "get-persons-personId-consentstatus",
+ "request": {
+  "method": "GET",
+  "path": "/persons/1/consentstatus",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "privacyPolicyAccepted": true,
+   "confidentialityAgreementAccepted": true,
+   "birthdayRequired": false,
+   "canAcceptPrivacyPolicy": true,
+   "minimumAge": 16
+  }
+ }
+}

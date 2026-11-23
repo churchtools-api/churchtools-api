@@ -3,7 +3,7 @@
 Ein Client für die REST-API von [ChurchTools](https://church.tools), für **Python** und **Rust**. Der Kern ist in
 Rust geschrieben; das Python-Paket nutzt ihn für HTTP, Login-Token, Rate-Limit, Wiederholungen und Paginierung und
 liefert Pydantic-Modelle. Beide Varianten entstehen aus derselben API-Beschreibung und decken die gesamte API ab:
-850 Operationen und 1110 Modelle (ChurchTools 3.138.3).
+875 Operationen und 1143 Modelle (ChurchTools 3.139.0).
 
 *A ChurchTools REST API client for Python and Rust, generated from the official OpenAPI description. The
 documentation is in German.*
@@ -73,13 +73,15 @@ TLS-Bibliothek). Details stehen in der Doku unter „Installation“.
 
 ## ChurchTools-Versionen und Kompatibilität
 
-Der Code ist aus der API-Beschreibung von ChurchTools 3.138.3 erzeugt (`API_VERSION`). Gegen andere Versionen
+Der Code ist aus der API-Beschreibung von ChurchTools 3.139.0 erzeugt (`API_VERSION`). Gegen andere Versionen
 funktioniert er, soweit die API gleich ist: Neue Felder landen in `model_extra`/`extra`, neue Enum-Werte in
 Antworten sind erlaubt, fehlende Endpunkte antworten mit `404`.
 
 Die Paketversion folgt [SemVer](https://semver.org/lang/de/). Das Projekt startet mit 0.1.0; vor 1.0 kann jede
 Minor-Version inkompatible Änderungen enthalten, insbesondere wenn der Code für eine neue ChurchTools-Version neu
-erzeugt wird. Änderungen stehen in [`CHANGELOG.md`](https://github.com/churchtools-api/churchtools-api/blob/main/CHANGELOG.md).
+erzeugt wird. Änderungen stehen in [`CHANGELOG.md`](https://github.com/churchtools-api/churchtools-api/blob/main/CHANGELOG.md)
+und, mit Links in die Referenz, auf der Seite
+[Änderungen je Version](https://churchtools-api.github.io/churchtools-api/aenderungen.html).
 
 ## Stand und Vorgehen
 

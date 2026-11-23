@@ -19,7 +19,16 @@
       {
        "type": "superAdmin",
        "value": true,
-       "revokedByGroupRoleId": null
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false,
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "unrestricted": true,
+       "statusId": 3,
+       "groupTypeId": 1,
+       "personId": 1
       },
       {
        "type": "groupRole",
@@ -29,7 +38,40 @@
        "inherited": false,
        "value": true,
        "revokedByGroupRoleId": null
+      },
+      {
+       "type": "superAdmin",
+       "value": [
+        6,
+        1,
+        2,
+        4,
+        7,
+        17,
+        3,
+        14,
+        10,
+        12,
+        9,
+        8,
+        22,
+        5
+       ],
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": 10,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
       }
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": [
+      56
      ]
     },
     {
@@ -52,7 +94,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 11,
@@ -74,7 +119,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 12,
@@ -96,7 +144,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 13,
@@ -118,7 +169,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 2,
@@ -140,7 +194,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 3,
@@ -162,7 +219,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 9,
@@ -229,7 +289,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 5,
@@ -251,7 +314,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 7,
@@ -273,7 +339,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 6,
@@ -295,7 +364,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 16,
@@ -308,7 +380,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 17,
@@ -335,7 +410,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 19,
@@ -352,7 +430,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1201,
@@ -365,7 +446,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 101,
@@ -483,7 +567,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 124,
@@ -538,7 +625,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 133,
@@ -557,7 +647,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 102,
@@ -607,7 +700,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 125,
@@ -671,7 +767,10 @@
        "value": 1,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 131,
@@ -699,7 +798,10 @@
        "value": 99999,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 132,
@@ -727,7 +829,10 @@
        "value": 99999,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 119,
@@ -767,7 +872,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 111,
@@ -798,7 +906,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 129,
@@ -829,7 +940,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 118,
@@ -869,7 +983,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 116,
@@ -909,7 +1026,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 106,
@@ -940,7 +1060,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 107,
@@ -971,7 +1094,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 113,
@@ -1033,7 +1159,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 112,
@@ -1064,7 +1193,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 128,
@@ -1104,7 +1236,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 130,
@@ -1144,7 +1279,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 117,
@@ -1166,7 +1304,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 108,
@@ -1197,7 +1338,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 109,
@@ -1228,7 +1372,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 122,
@@ -1274,7 +1421,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 120,
@@ -1314,7 +1464,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 127,
@@ -1354,7 +1507,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 199,
@@ -1376,7 +1532,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1101,
@@ -1494,7 +1653,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1104,
@@ -1705,7 +1867,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1105,
@@ -2124,7 +2289,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1106,
@@ -2543,7 +2711,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1107,
@@ -2602,7 +2773,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1108,
@@ -2661,7 +2835,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1109,
@@ -2720,7 +2897,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1110,
@@ -2779,7 +2959,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1111,
@@ -2838,7 +3021,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1112,
@@ -3257,7 +3443,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1113,
@@ -3288,7 +3477,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1114,
@@ -3310,7 +3502,10 @@
        "value": 99999,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1102,
@@ -3341,7 +3536,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1103,
@@ -3372,7 +3570,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1115,
@@ -3412,7 +3613,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1116,
@@ -3434,7 +3638,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 401,
@@ -3485,7 +3692,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 403,
@@ -3601,7 +3811,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 404,
@@ -3684,7 +3897,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 410,
@@ -3762,7 +3978,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 409,
@@ -3793,7 +4012,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 407,
@@ -3821,7 +4043,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 406,
@@ -3849,7 +4074,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 408,
@@ -3871,7 +4099,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 405,
@@ -3893,7 +4124,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 402,
@@ -3915,7 +4149,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 411,
@@ -3943,7 +4180,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 301,
@@ -4046,7 +4286,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 304,
@@ -4141,7 +4384,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 305,
@@ -4227,7 +4473,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 302,
@@ -4258,7 +4507,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 306,
@@ -4454,7 +4706,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 303,
@@ -4529,7 +4784,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 309,
@@ -4560,7 +4818,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 307,
@@ -4600,7 +4861,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 321,
@@ -4665,7 +4929,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 308,
@@ -4716,7 +4983,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 322,
@@ -4747,7 +5017,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 331,
@@ -4837,7 +5110,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 332,
@@ -4925,7 +5201,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 333,
@@ -5000,7 +5279,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 313,
@@ -5055,7 +5337,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 312,
@@ -5098,7 +5383,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 314,
@@ -5138,7 +5426,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 341,
@@ -5178,7 +5469,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 399,
@@ -5209,7 +5503,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 201,
@@ -5267,7 +5564,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 205,
@@ -5406,7 +5706,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 206,
@@ -5539,7 +5842,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 204,
@@ -5561,7 +5867,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 202,
@@ -5639,7 +5948,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 203,
@@ -5670,7 +5982,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 299,
@@ -5692,7 +6007,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 601,
@@ -5741,7 +6059,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 602,
@@ -5772,7 +6093,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 699,
@@ -5803,7 +6127,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 501,
@@ -5845,7 +6172,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 502,
@@ -5927,7 +6257,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 503,
@@ -5982,7 +6315,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 599,
@@ -6004,7 +6340,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 901,
@@ -6044,7 +6383,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 902,
@@ -6103,7 +6445,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 903,
@@ -6150,7 +6495,10 @@
        ],
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 999,
@@ -6181,7 +6529,10 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
-     ]
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
     },
     {
      "authId": 1001,
@@ -6194,6 +6545,283 @@
        "value": true,
        "revokedByGroupRoleId": null
       }
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
+    },
+    {
+     "authId": 9,
+     "module": "churchcore",
+     "auth": "edit languages",
+     "effectiveValue": [
+      6,
+      1,
+      2,
+      4,
+      7,
+      17,
+      3,
+      14,
+      10,
+      12,
+      9,
+      8,
+      22,
+      5
+     ],
+     "origins": [
+      {
+       "type": "superAdmin",
+       "value": [
+        6,
+        1,
+        2,
+        4,
+        7,
+        17,
+        3,
+        14,
+        10,
+        12,
+        9,
+        8,
+        22,
+        5
+       ],
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        6,
+        1,
+        2,
+        4,
+        7,
+        17,
+        3,
+        14,
+        10,
+        12,
+        9,
+        8,
+        22,
+        5
+       ],
+       "revokedByGroupRoleId": null,
+       "unrestricted": true,
+       "contributesUnrestricted": true
+      }
+     ],
+     "directValue": [],
+     "indirectValue": [
+      6,
+      1,
+      2,
+      4,
+      7,
+      17,
+      3,
+      14,
+      10,
+      12,
+      9,
+      8,
+      22,
+      5,
+      -1
+     ],
+     "redundantDataIds": []
+    },
+    {
+     "authId": 125,
+     "module": "churchdb",
+     "auth": "security level person",
+     "effectiveValue": 99999,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 3,
+       "value": 10,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "superAdmin",
+       "value": 99999,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": 40,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "groupRole",
+       "groupId": 154,
+       "groupRoleId": 1756,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": 40,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 203,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": 10,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": 99999,
+       "revokedByGroupRoleId": null,
+       "unrestricted": true,
+       "contributesUnrestricted": true
+      },
+      {
+       "type": "groupTypeRole",
+       "groupId": 891,
+       "groupTypeId": 1,
+       "groupTypeRoleId": 9,
+       "inherited": false,
+       "value": 10,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      }
+     ],
+     "directValue": 0,
+     "indirectValue": -1,
+     "redundantDataIds": []
+    },
+    {
+     "authId": 404,
+     "module": "churchcal",
+     "auth": "edit category",
+     "effectiveValue": [
+      31,
+      1,
+      2,
+      3,
+      49,
+      56,
+      59,
+      4,
+      62,
+      65,
+      54,
+      51
+     ],
+     "origins": [
+      {
+       "type": "person",
+       "personId": 1,
+       "value": [
+        56,
+        59,
+        62,
+        65
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "groupRole",
+       "groupId": 10,
+       "groupRoleId": 65,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        31,
+        1,
+        2,
+        3,
+        49,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "groupRole",
+       "groupId": 11,
+       "groupRoleId": 71,
+       "groupTypeRoleId": 15,
+       "inherited": false,
+       "value": [
+        31,
+        4
+       ],
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      },
+      {
+       "type": "groupRole",
+       "groupId": 208,
+       "groupRoleId": 2512,
+       "groupTypeRoleId": 16,
+       "inherited": false,
+       "value": [
+        31,
+        1,
+        2,
+        3,
+        49,
+        56,
+        59,
+        4,
+        54,
+        62,
+        65,
+        51
+       ],
+       "revokedByGroupRoleId": null,
+       "unrestricted": true,
+       "contributesUnrestricted": true
+      }
+     ],
+     "directValue": [
+      56,
+      59,
+      62,
+      65
+     ],
+     "indirectValue": [
+      31,
+      1,
+      2,
+      3,
+      49,
+      56,
+      59,
+      4,
+      -1
+     ],
+     "redundantDataIds": [
+      56,
+      59,
+      62,
+      65
      ]
     }
    ]

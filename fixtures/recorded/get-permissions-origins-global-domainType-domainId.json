@@ -1,0 +1,220 @@
+{
+ "operation": "get-permissions-origins-global-domainType-domainId",
+ "request": {
+  "method": "GET",
+  "path": "/permissions/origins/global/status/0",
+  "query": [],
+  "body": null
+ },
+ "body": {
+  "data": {
+   "domainType": "status",
+   "domainId": 0,
+   "permissions": [
+    {
+     "authId": 125,
+     "module": "churchdb",
+     "auth": "security level person",
+     "effectiveValue": 10,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 0,
+       "value": 10,
+       "revokedByGroupRoleId": null
+      }
+     ],
+     "directValue": 10,
+     "indirectValue": 0,
+     "redundantDataIds": []
+    },
+    {
+     "authId": 131,
+     "module": "churchdb",
+     "auth": "security level view own data",
+     "effectiveValue": 10,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 0,
+       "value": 10,
+       "revokedByGroupRoleId": null
+      }
+     ],
+     "directValue": 10,
+     "indirectValue": 0,
+     "redundantDataIds": []
+    },
+    {
+     "authId": 132,
+     "module": "churchdb",
+     "auth": "security level edit own data",
+     "effectiveValue": 20,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 0,
+       "value": 20,
+       "revokedByGroupRoleId": null
+      }
+     ],
+     "directValue": 20,
+     "indirectValue": 0,
+     "redundantDataIds": []
+    },
+    {
+     "authId": 1104,
+     "module": "churchgroup",
+     "auth": "view group",
+     "effectiveValue": [
+      11
+     ],
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 0,
+       "value": [
+        11
+       ],
+       "revokedByGroupRoleId": null
+      }
+     ],
+     "directValue": [
+      11
+     ],
+     "indirectValue": [],
+     "redundantDataIds": []
+    },
+    {
+     "authId": 401,
+     "module": "churchcal",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "publicUser",
+       "value": true,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      }
+     ],
+     "directValue": false,
+     "indirectValue": true,
+     "redundantDataIds": []
+    },
+    {
+     "authId": 403,
+     "module": "churchcal",
+     "auth": "view category",
+     "effectiveValue": [
+      1,
+      2,
+      3,
+      56,
+      59
+     ],
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 0,
+       "value": [
+        1,
+        2,
+        3,
+        56,
+        59
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "publicUser",
+       "value": [
+        2,
+        3
+       ],
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      }
+     ],
+     "directValue": [
+      59,
+      2,
+      56,
+      3,
+      1
+     ],
+     "indirectValue": [
+      2,
+      3
+     ],
+     "redundantDataIds": [
+      2,
+      3
+     ]
+    },
+    {
+     "authId": 501,
+     "module": "churchwiki",
+     "auth": "view",
+     "effectiveValue": true,
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 0,
+       "value": true,
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "publicUser",
+       "value": true,
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      }
+     ],
+     "directValue": true,
+     "indirectValue": true,
+     "redundantDataIds": [
+      null
+     ]
+    },
+    {
+     "authId": 502,
+     "module": "churchwiki",
+     "auth": "view category",
+     "effectiveValue": [
+      0,
+      8,
+      9
+     ],
+     "origins": [
+      {
+       "type": "status",
+       "statusId": 0,
+       "value": [
+        0
+       ],
+       "revokedByGroupRoleId": null
+      },
+      {
+       "type": "publicUser",
+       "value": [
+        8,
+        9
+       ],
+       "revokedByGroupRoleId": null,
+       "contributesUnrestricted": false
+      }
+     ],
+     "directValue": [
+      0
+     ],
+     "indirectValue": [
+      8,
+      9
+     ],
+     "redundantDataIds": []
+    }
+   ]
+  }
+ }
+}
