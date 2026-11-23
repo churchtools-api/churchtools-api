@@ -11,6 +11,7 @@ import json
 import re
 from pathlib import Path
 
+import changelog
 import examples as ex
 import generate as g
 import guide
@@ -482,6 +483,7 @@ def build(schemas: g.Schemas, ops: list[g.Op], version: str) -> list[tuple[str, 
     # Same page without document skeleton, for publishing as a claude.ai artifact.
     g.CACHE.parent.mkdir(parents=True, exist_ok=True)
     (g.CACHE.parent / "docs_fragment.html").write_text(page)
+    changelog.build(g.ROOT, TEMPLATE, md, esc)
     ex.write_check_files(checks, g.ROOT)
     return checks
 

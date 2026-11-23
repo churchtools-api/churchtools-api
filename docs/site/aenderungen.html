@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>churchtools-api: Änderungen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Python- und Rust-Client für die ChurchTools-API: Grundlagen, Projekte und vollständige Referenz.">
+<script>
+  // Saved light/dark choice, applied before the first paint; without one the system setting applies.
+  try { const t = localStorage.getItem("ct-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: sticky top bar; left nav rail; each topic pairs prose (left) with a code panel (right) on wide screens, stacked below. */
+:root {
+  --bg: #f5f7f8;
+  --surface: #ffffff;
+  --fg: #18212b;
+  --muted: #586472;
+  --line: #dde3e8;
+  --accent: #0a6a73;
+  --accent-soft: #e2f0f1;
+  --code-bg: #111820;
+  --code-fg: #d8e2ea;
+  --code-bar: #1a232d;
+  --code-muted: #8795a5;
+  --t-kw: #7fd0d8;
+  --t-string: #b8df8e;
+  --t-number: #f0b873;
+  --t-comment: #7d8a9b;
+  --t-type: #c9b8ff;
+  --t-macro: #8fc6ff;
+  --v-get: #0a6a73;
+  --v-post: #2e7a34;
+  --v-put: #8f5c00;
+  --v-patch: #6a4dbd;
+  --v-delete: #b0281f;
+  --warn-bg: #fff2d9;
+  --warn-fg: #7a4b00;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --header-h: 3.5rem;
+  --nav-w: 16.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+    --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+    --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+    --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+    --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1217; --surface: #131a21; --fg: #e3e9ee; --muted: #97a3b0; --line: #243039;
+  --accent: #5cc3cd; --accent-soft: #12303a; --code-bg: #090d12; --code-fg: #d8e2ea; --code-bar: #121a22;
+  --code-muted: #8795a5; --t-kw: #7fd0d8; --t-string: #b8df8e; --t-number: #f0b873; --t-comment: #7d8a9b;
+  --t-type: #c9b8ff; --t-macro: #8fc6ff; --v-get: #5cc3cd; --v-post: #7cc77f; --v-put: #e0b25a;
+  --v-patch: #b19bff; --v-delete: #f08a80; --warn-bg: #3a2c10; --warn-fg: #f2c879;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 15px/1.6 var(--font-body);
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--surface);
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+code { font-family: var(--font-mono); font-size: 0.86em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; margin: 0; }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  display: flex; align-items: center; gap: 1rem;
+  min-height: var(--header-h);
+  padding-block: 0.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; color: var(--fg); white-space: nowrap; }
+.brand b { font: 700 1.15rem/1 var(--font-display); letter-spacing: -0.01em; }
+.brand span { font: 400 0.78rem/1 var(--font-mono); color: var(--muted); }
+.search { flex: 1; max-width: 26rem; margin-left: auto; position: relative; }
+.search input {
+  width: 100%; padding: 0.45rem 0.75rem; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: inherit; font-size: 0.9rem;
+}
+.lang-switch { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.lang-switch button, .nav-toggle {
+  border: 0; background: transparent; color: var(--muted); font: 500 0.85rem/1 var(--font-body);
+  padding: 0.5rem 0.8rem; cursor: pointer;
+}
+.lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.nav-toggle { display: none; border: 1px solid var(--line); border-radius: 6px; }
+.theme-toggle {
+  flex-shrink: 0; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--muted);
+  font: 500 1rem/1 var(--font-body); width: 2.2rem; height: 2.1rem; cursor: pointer;
+}
+.theme-toggle:hover { color: var(--fg); }
+
+/* Shell */
+.shell { display: grid; grid-template-columns: var(--nav-w) minmax(0, 1fr); }
+.nav {
+  position: sticky; top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0px));
+  overflow-y: auto; padding: 1.25rem 0.75rem 3rem max(16px, env(safe-area-inset-left, 0px));
+  border-right: 1px solid var(--line); font-size: 0.88rem;
+}
+.nav ul { list-style: none; margin: 0; padding: 0; }
+.nav .nav-chapter > a, .nav h2 {
+  display: block; margin: 1.1rem 0 0.35rem; font: 600 0.72rem/1.2 var(--font-body);
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-decoration: none;
+}
+.nav li li a, .nav-ref a {
+  display: flex; justify-content: space-between; gap: 0.5rem;
+  padding: 0.22rem 0.5rem; border-radius: 5px; color: var(--fg); text-decoration: none;
+}
+.nav a:hover, .nav a.active { background: var(--accent-soft); color: var(--accent); }
+.nav .count { color: var(--muted); font: 400 0.75rem/1.6 var(--font-mono); font-variant-numeric: tabular-nums; }
+
+main {
+  min-width: 0;
+  padding-block: 2rem 6rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.inner { max-width: 82rem; margin: 0 auto; display: grid; gap: 3.5rem; }
+
+/* Hero */
+.hero { display: grid; gap: 1rem; max-width: 46rem; padding-top: 0.5rem; }
+.hero h1 { font: 700 clamp(2rem, 4vw, 2.9rem)/1.05 var(--font-display); letter-spacing: -0.02em; }
+.hero .lead { font-size: 1.12rem; color: var(--muted); margin: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none;
+  font: 400 0.85rem/1.4 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.facts b { color: var(--fg); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cta a { padding: 0.55rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; border: 1px solid var(--line); color: var(--fg); background: var(--surface); }
+.cta a.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+
+/* Chapters and topics */
+.chapter, .reference { display: grid; gap: 2.5rem; }
+.chapter > h2, .reference > h2 {
+  font: 700 1.85rem/1.1 var(--font-display); letter-spacing: -0.015em;
+  padding-top: 1.5rem; border-top: 1px solid var(--line);
+}
+.chapter > .lead, .reference > .lead { margin: -1.75rem 0 0; color: var(--muted); max-width: 60ch; }
+.topic, .op { display: grid; gap: 1.25rem 2.5rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1180px) {
+  .topic, .op { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: start; }
+  .example { position: sticky; top: calc(var(--header-h) + 1rem); }
+}
+.topic.no-code { grid-template-columns: minmax(0, 1fr); }
+.prose { min-width: 0; max-width: 65ch; }
+.prose h3 { font: 600 1.25rem/1.25 var(--font-display); margin-bottom: 0.6rem; }
+.prose p, .prose ul, .prose ol { margin: 0 0 0.85rem; }
+.prose li { margin-bottom: 0.3rem; }
+.prose code, .call code, td code {
+  background: var(--accent-soft); padding: 0.08em 0.35em; border-radius: 4px; color: var(--fg);
+}
+.aside { font-size: 0.85rem; color: var(--muted); margin: 0.5rem 0 0; }
+.example { min-width: 0; }
+
+/* Code panels */
+.code { background: var(--code-bg); border-radius: 8px; overflow: hidden; }
+.code-bar { display: flex; align-items: center; gap: 0.25rem; padding: 0.3rem 0.4rem; background: var(--code-bar); }
+.code-bar button {
+  border: 0; background: transparent; color: var(--code-muted); cursor: pointer;
+  font: 500 0.78rem/1 var(--font-body); padding: 0.45rem 0.65rem; border-radius: 5px;
+}
+.code-bar .copy { margin-left: auto; }
+.code-bar button:hover { color: var(--code-fg); }
+#app[data-lang="python"] .tab[data-l="python"],
+#app[data-lang="rust"] .tab[data-l="rust"] { color: var(--code-fg); background: var(--code-bg); }
+.code pre { margin: 0; padding: 0.9rem 1rem 1rem; overflow-x: auto; color: var(--code-fg);
+  font: 400 0.82rem/1.6 var(--font-mono); tab-size: 4; }
+.code pre code { font-size: inherit; }
+.t-kw { color: var(--t-kw); }
+.t-string { color: var(--t-string); }
+.t-number { color: var(--t-number); }
+.t-comment { color: var(--t-comment); font-style: italic; }
+.t-type { color: var(--t-type); }
+.t-macro { color: var(--t-macro); }
+
+/* Language visibility */
+#app[data-lang="python"] .rs, #app[data-lang="rust"] .py { display: none; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th { text-align: left; font: 600 0.72rem/1.3 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+th, td { padding: 0.45rem 0.6rem 0.45rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.type code { background: transparent; padding: 0; white-space: nowrap; }
+td.type a { color: var(--accent); }
+details > summary { cursor: pointer; color: var(--accent); font-size: 0.88rem; margin-bottom: 0.5rem; }
+
+/* Reference */
+.tag { display: grid; gap: 2rem; }
+.tag-head { display: grid; gap: 0.5rem; max-width: 65ch; }
+.tag-head h3 { font: 700 1.45rem/1.15 var(--font-display); }
+.tag-head p { margin: 0; color: var(--muted); }
+.tag-index ul { list-style: none; padding: 0; margin: 0; columns: 2 18rem; font-size: 0.82rem; }
+.tag-index li { break-inside: avoid; }
+.tag-index a { display: flex; gap: 0.5rem; align-items: baseline; text-decoration: none; color: var(--fg); padding: 0.1rem 0; }
+.op { padding-top: 1.75rem; border-top: 1px dashed var(--line); }
+.op h4 { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+.op .path { font-size: 0.95rem; font-weight: 500; word-break: break-all; }
+.verb {
+  font: 600 0.7rem/1 var(--font-mono); letter-spacing: 0.04em; padding: 0.3rem 0.45rem; border-radius: 4px;
+  border: 1px solid currentColor; min-width: 3.6rem; text-align: center; flex-shrink: 0;
+}
+.v-get { color: var(--v-get); } .v-post { color: var(--v-post); } .v-put { color: var(--v-put); }
+.v-patch { color: var(--v-patch); } .v-delete { color: var(--v-delete); }
+.call { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0 0 0.5rem; }
+.call code { word-break: break-all; }
+.call .alt { font-size: 0.82rem; color: var(--muted); }
+.summary { font-weight: 600; margin: 0 0 0.35rem; }
+.desc { color: var(--muted); font-size: 0.92rem; }
+.desc p { margin: 0 0 0.6rem; }
+.badge { font: 500 0.72rem/1 var(--font-body); padding: 0.28rem 0.5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+.badge.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.untested { color: var(--v-delete); font-weight: 700; text-decoration: none; margin-left: 0.15rem; vertical-align: super; font-size: 0.8em; line-height: 0; }
+a.untested:hover { text-decoration: underline; }
+.returns { font-size: 0.88rem; margin: 0; }
+.returns .label, .model .count { font: 600 0.72rem/1 var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-right: 0.4rem; }
+.returns code a { color: var(--accent); }
+
+/* Models */
+.models { display: grid; gap: 0.25rem; }
+.model { border-bottom: 1px solid var(--line); padding: 0.4rem 0; }
+/* Most of the page are the 850 endpoints: lay each out only when it scrolls into view. The size is a typical
+   height until then (models are cheap, closed <details> do not lay out their content). */
+.op { content-visibility: auto; contain-intrinsic-size: auto 450px; }
+.model > summary { display: flex; justify-content: space-between; gap: 1rem; color: var(--fg); margin: 0; }
+.model > summary code { font-size: 0.88rem; }
+.model[open] { padding-bottom: 1rem; }
+.model:target > summary code { color: var(--accent); }
+.model-doc { color: var(--muted); font-size: 0.9rem; max-width: 65ch; }
+
+.nohits { color: var(--muted); }
+.searching .chapter, .searching .hide-search { display: none; }
+.next { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.next a { display: block; padding: 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--fg); }
+.next a b { display: block; color: var(--accent); margin-bottom: 0.25rem; }
+.next a span { color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .nav-toggle { display: block; }
+  .nav { display: none; position: fixed; z-index: 15; inset: calc(var(--header-h) + env(safe-area-inset-top, 0px)) 0 0 0;
+    height: auto; background: var(--surface); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .nav.open { display: block; }
+  .brand span { display: none; }
+}
+@media (max-width: 560px) {
+  .topbar { flex-wrap: wrap; }
+  .search { order: 3; flex-basis: 100%; max-width: none; }
+  :root { --header-h: 6.25rem; }
+}
+</style>
+<style>
+.release .facts .date { font-weight: 600; margin-right: .5rem; }
+.change { border-left: 3px solid var(--line, #ccc); padding: .1rem 0 .1rem 1rem; margin: 1.25rem 0; }
+.change h3 { margin: 0 0 .4rem; font-size: 1rem; text-transform: uppercase; letter-spacing: .04em; }
+.change-inkompatibel { border-left-color: #d9480f; }
+.change-inkompatibel h3 { color: #d9480f; }
+.change-neu { border-left-color: #2f9e44; }
+.change-neu h3 { color: #2f9e44; }
+.badge-break { font-size: .7rem; color: #d9480f; border: 1px solid currentColor; border-radius: 999px;
+  padding: 0 .4rem; margin-left: .3rem; }
+</style>
+<div id="app">
+  <header class="topbar">
+    <a class="brand" href="index.html"><b>churchtools-api</b><span>Änderungen</span></a>
+    <button type="button" class="theme-toggle" id="theme-toggle"></button>
+  </header>
+  <div class="shell">
+    <nav class="nav" id="nav" aria-label="Versionen">
+      <h2><a href="index.html">Zur Dokumentation</a></h2>
+      <h2>Versionen</h2>
+      <ul class="nav-ref"><li><a href="#v-unreleased">Nächste Version <span class="badge-break">inkompatibel</span></a></li><li><a href="#v0-2-0">0.2.0</a></li><li><a href="#v0-1-0">0.1.0</a></li></ul>
+    </nav>
+    <main id="main">
+      <div class="inner">
+        <section class="hero" id="start">
+          <h1>Änderungen je Version</h1>
+          <p class="lead">Was sich von Version zu Version an churchtools-api ändert. Jede Version nennt die
+          ChurchTools-Version, aus der der Code erzeugt ist, und gliedert die Änderungen immer gleich:
+          <b>Inkompatibel</b> (mit dem, was beim Umstieg zu ändern ist), <b>Neu</b>, <b>Geändert</b> und
+          <b>Korrigiert</b>. Leere Abschnitte fehlen.</p>
+        </section>
+        <section class="reference release" id="v-unreleased"><h2>Nächste Version (noch nicht veröffentlicht)</h2><ul class="facts"><li>ChurchTools <b>3.139.0</b> (Build 32955)</li><li><b>875</b> Endpunkte (+25)</li><li><b>1143</b> Modelle</li></ul><p class="lead">Update auf ChurchTools 3.139.0 mit 25 neuen Endpunkten und einigen inkompatiblen Typänderungen; erscheint als 0.3.0.</p><div class="change change-inkompatibel"><h3>Inkompatibel</h3><ul><li>Koordinaten in Adressen (<code>latitude</code>, <code>longitude</code>, <code>latitudeLoose</code>, <code>longitudeLoose</code>, <code>geoLat</code>, <code>geoLng</code>) können Zahl oder Text sein: Python <code>float | str | None</code> statt <code>str | None</code>, Rust <code>serde_json::Value</code> statt <code>Option&lt;String&gt;</code>. Wer mit dem Wert rechnet, wandelt ihn selbst um (<code>float(address.latitude)</code>). Bei <code>CheckinPerson</code> sind <code>latitude</code>/<code>longitude</code> nicht mehr Pflicht.</li><li><code>security_levels.create()</code> und <code>security_levels.patch()</code> geben <code>GetSecuritylevelsIdResponse</code> zurück (die Stufe direkt und zusätzlich unter <code>data</code>); <code>PostSecuritylevelsIdResponse</code> und <code>PatchSecuritylevelsIdResponse</code> entfallen. Typangaben im eigenen Code entsprechend umbenennen.</li><li><code>ProbeTraversalExpression</code> (Body von <code>persons.filter()</code>) ist aufgeteilt in <code>ProbeMembershipTraversalExpression</code> und <code>ProbeRelationshipTraversalExpression</code>; den passenden Typ wählen.</li><li>Rust: Viele Felder in Bodies zum Ändern sind <code>null</code>-fähig und damit <code>Option&lt;Option&lt;T&gt;&gt;</code>, z. B. in <code>PatchPersonsIdBody</code>, <code>PostPersonsBody</code> und <code>PatchGroupsIdBody</code>: <code>city: Some(Some(&quot;Esslingen&quot;.into()))</code> setzt den Wert, <code>Some(None)</code> sendet <code>null</code>. In Python sind die Argumente nur zusätzlich <code>None</code>-fähig.</li><li><code>Config.feature_old_group_module</code> entfällt; <code>PermissionModification.modified_date</code> ist Pflicht.</li></ul></div><div class="change change-neu"><h3>Neu</h3><ul><li>25 Endpunkte: CCLI (<code>ccli.authorization()</code>, <code>ccli.delete_connection()</code>, <code>ccli.songs.list()</code>, <code>ccli.songs.get()</code>, <code>songs.arrangements.files.ccli()</code>), <code>events.patch()</code>, <code>events.cancel()</code>, <code>events.agenda.print()</code>, <code>events.agenda.items.patch()</code>, <code>agenda_templates.items.patch()</code>, Dienst-Kandidaten (<code>events.list_candidates()</code>, <code>events.services.list_candidates()</code>), Berechtigungen (<code>permissions.get_overview()</code>, <code>permissions.promote()</code>, <code>permissions.assignment_targets.higher_levels.query()</code>, <code>permissions.assignment_targets.person_summary.query()</code>, <code>permissions.origins.global_.get()</code>, <code>permissions.origins.global_.group_roles.get()</code>), Personen (<code>persons.activate()</code>, <code>persons.deactivate()</code>, <code>persons.unarchive()</code>, <code>persons.get_consentstatus()</code>), <code>posts.update_seen()</code>, <code>reset_password.session()</code> und <code>triggers.create()</code>.</li><li>Optionale Argumente und Felder, z. B. <code>include=[&quot;statistics&quot;]</code> bei <code>permissions.list_assignment_targets()</code>, <code>include=[&quot;hasSeen&quot;]</code> bei <code>posts.get()</code>, <code>include=[&quot;usage&quot;]</code> bei <code>songs.get()</code>, <code>hasSeen</code>/<code>imagesMeta</code> bei Beiträgen, <code>triggerKey</code> bei Routinen, <code>statistics</code> bei <code>PermissionAssignmentTarget</code>.</li><li>Doku-Seite „Änderungen je Version“ aus diesem Changelog.</li></ul></div><div class="change change-geaendert"><h3>Geändert</h3><ul><li><code>PersonPasswordUpdate.old_password</code> (Argument von <code>persons.update_password()</code>) ist optional.</li><li><code>permissions.list_assignment_targets()</code> behält seinen Namen, obwohl es unter <code>/permissions/assignment-targets</code> jetzt Unterpfade gibt, und <code>PermissionAssignmentTarget</code> behält <code>domain_type</code> (die Spec führt es nur noch in den Varianten).</li><li><code>API_VERSION</code>/<code>API_BUILD</code> sind <code>3.139.0</code>/<code>32955</code>.</li></ul></div><div class="change change-korrigiert"><h3>Korrigiert</h3><ul><li><code>GroupInformation.note</code> darf <code>null</code> sein: Seit 3.139.0 sendet der Server bei Gruppen ohne Notiz <code>null</code> statt <code>&quot;&quot;</code>.</li></ul></div></section><section class="reference release" id="v0-2-0"><h2>Version 0.2.0</h2><ul class="facts"><li class="date">22.11.2026</li><li>ChurchTools <b>3.138.3</b> (Build 32945)</li><li><b>850</b> Endpunkte (+1)</li><li><b>1110</b> Modelle</li></ul><p class="lead">Update auf ChurchTools 3.138.3: Sicherheitsstufen neu nummerieren und gegen gleichzeitige Änderungen schützen.</p><div class="change change-neu"><h3>Neu</h3><ul><li><code>security_levels.renumber()</code> (<code>POST /securitylevels/renumber</code>) nummeriert die Sicherheitsstufen neu, ohne ihre Reihenfolge zu ändern. Danach haben die Stufen andere IDs; gespeicherte IDs müssen neu gelesen werden.</li><li>Optionales Argument <code>expected_name</code> bei <code>security_levels.patch</code> und <code>security_levels.delete</code> (Rust: <code>PatchSecuritylevelsIdBody::expected_name</code>, <code>DeleteSecuritylevelsIdQuery::expected_name</code>). Weicht der Name ab, lehnt der Server mit 409 ab (<code>Conflict</code>).</li></ul></div><div class="change change-geaendert"><h3>Geändert</h3><ul><li><code>forcereorder</code> bei <code>security_levels.patch</code> ist veraltet (der Server ignoriert es) und erzeugt eine Warnung.</li><li><code>API_VERSION</code>/<code>API_BUILD</code> sind <code>3.138.3</code>/<code>32945</code>.</li></ul></div></section><section class="reference release" id="v0-1-0"><h2>Version 0.1.0</h2><ul class="facts"><li class="date">30.10.2026</li><li>ChurchTools <b>3.138.1</b> (Build 32938)</li><li><b>849</b> Endpunkte</li><li><b>1110</b> Modelle</li></ul><p class="lead">Erste Veröffentlichung.</p><div class="change change-neu"><h3>Neu</h3><ul><li>Rust-Crate <code>churchtools-api</code>: <code>Client</code>/<code>ClientBuilder</code> (<code>timeout</code>, <code>connect_timeout</code>, <code>max_response_size</code>, <code>allow_insecure_http</code>, <code>from_env</code>), generierte Ressourcen (<code>client.events().list_with(&amp;query)</code>), Modelle mit <code>Default</code> und <code>extra</code>, lazy Iteratoren <code>…_iter</code> und <code>Client::items</code>, <code>Error</code> mit <code>is_not_found()</code>, <code>status()</code>, <code>api()</code>; die HTTP-Bibliothek ist nicht Teil der öffentlichen API (<code>Method</code>, <code>TransportError</code>).</li><li>Python-Paket <code>churchtools-api-rs</code> (Import <code>churchtools_api</code>): <code>Client</code> mit denselben Optionen, generierte Ressourcen (<code>client.events.list(...)</code>), Pydantic-Modelle mit <code>model_extra</code>, <code>Paginator</code>, Ausnahmen <code>NotFound</code>, <code>Unauthorized</code>, <code>Forbidden</code>, <code>UnprocessableEntity</code>, <code>ConnectError</code>, <code>Timeout</code>, <code>ResponseTooLarge</code>, <code>RedirectError</code>, <code>DecodeError</code>, <code>InvalidArgument</code>; Argumente mit fester Werteliste als <code>Literal[...]</code>.</li><li>Sicherheit: nur <code>https://</code> (Ausnahme <code>localhost</code>, sonst <code>allow_insecure_http</code>); Token nicht in Debug-Ausgaben und Fehlermeldungen; Weiterleitungen 301/302/303 werden nicht verfolgt; leere, <code>.</code>- und <code>..</code>-Pfadsegmente werden abgelehnt; Antwortgröße begrenzt (256 MiB).</li><li>Rate-Limit (<code>min_interval</code>) und Wiederholungen: <code>429</code> nach <code>Retry-After</code> (Sekunden oder Datum), <code>502</code>/<code>503</code>/<code>504</code> für idempotente Methoden, Verbindungsfehler einmal.</li><li>Paginierung: ab der zweiten Seite wird die nächste Seite in einem Hintergrund-Thread angefordert, während die aktuelle dekodiert und verarbeitet wird; <code>prefetch(false)</code> auf <code>Pages</code>/<code>Items</code> (Rust) und <code>prefetch(False)</code> auf <code>Paginator</code> (Python) schalten das ab.</li><li>Toleranzregeln für Abweichungen der API von der Spec (Zahlen als String, PHP-Nulldatum, <code>[]</code> als leeres Objekt, Array-Parameter mit <code>[]</code>, leere 204-Antworten) und Einzelkorrekturen aus den Live-Tests.</li><li>Datei-Uploads (<code>Upload</code>), <code>login_with_password</code>, veraltete Endpunkte und Argumente markiert (<code>@deprecated</code>, <code>#[deprecated]</code>), <code>API_VERSION</code>/<code>API_BUILD</code>, <code>churchtools_api.__version__</code>.</li><li>TLS über rustls mit <code>ring</code> und dem Trust-Store des Betriebssystems.</li><li>Pakete auf PyPI (Wheels für Linux, macOS und Windows, abi3 ab Python 3.10, dazu ein sdist) und crates.io; Mindestversion Rust 1.88.</li><li>Doku-Seite mit Einstieg, Grundlagen, Beispielprojekten und Referenz; alle Beispiele laufen als Tests.</li><li>Lizenz MIT; generierte Dateien zusätzlich CC BY 4.0 (API-Beschreibung von ChurchTools), siehe <code>NOTICE</code>.</li></ul></div></section>
+      </div>
+    </main>
+  </div>
+</div>
+<script>
+(() => {
+  const t = document.getElementById("theme-toggle");
+  const sys = matchMedia("(prefers-color-scheme: dark)");
+  const dark = () => (document.documentElement.dataset.theme || (sys.matches ? "dark" : "light")) === "dark";
+  const show = () => { t.textContent = dark() ? "☀" : "☾"; t.title = dark() ? "Helles Design" : "Dunkles Design"; };
+  t.addEventListener("click", () => {
+    const next = dark() ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("ct-theme", next); } catch (e) {}
+    show();
+  });
+  show();
+})();
+</script>
+</body>
+</html>
